@@ -4,7 +4,7 @@
 
 _对进来的文档、发票、表单做分类和路由。_
 
-这个决策的全部已收录例子 —— 共 16 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#文档分拣)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 20 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#文档分拣)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[tax-doc-classifier](https://github.com/kyotofin/tax-doc-classifier)** — 基于 Jev 决策的税务文档分页分类器，在 261 种 IRS 表单上达到严格全对，每页约 $0.001。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★419 · kyotofin · `TS`</sub>
@@ -24,6 +24,9 @@ _对进来的文档、发票、表单做分类和路由。_
 - **[jevmory](https://github.com/romiluz13/jevmory)** — 编程智能体的记忆：每条事实都是一句逐字引文，由 Jev 的校准置信度评级。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★9 · romiluz13 · `Py`</sub>
 
+- **[pdf-race](https://github.com/goodrahstar/pdf-race)** — Docling → Jev 对比 Docling → Gemini Flash 以及 Gemini 直接读 PDF：同样的文档、同一个计时器，按 arXiv 标准打分。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★9 · goodrahstar · `JS`</sub>
+
 - **[jev-document-classification](https://github.com/Charlyhno-eng/jev-document-classification)** — 对文本文档做快速且低成本的分类。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★4 · charlyhno-eng · `TS`</sub>
 
@@ -39,8 +42,17 @@ _对进来的文档、发票、表单做分类和路由。_
 - **[jev-layer](https://github.com/typakon4/jev-layer)** — 可移植的 System-1 决策层，面向智能体 harness，含宿主自控路由、凭据与回放。 <sub>(机翻)</sub>
   <sub>`平台集成` · ★2 · typakon4 · `JS`</sub>
 
+- **[jev-boe-demo](https://github.com/Tatuck/jev-boe-demo)** — 每天把 TypeSafe 的 Jev 模型应用于西班牙官方公报（BOE）的演示。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★1 · tatuck · `TS` · ⚠ `无许可证`</sub>
+
+- **[jev-organize](https://github.com/nexibeo/jev-organize)** — 把一堆公司文件扔进去，就能按部门、类型、敏感度、日期、交易方等分类整理好。 <sub>(机翻)</sub>
+  <sub>`插件` · ★1 · nexibeo · `JS`</sub>
+
 - **[jev-score](https://github.com/a-Fig/jev-score)** — 由 Jev 驱动的本地优先文档评估工作区。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★1 · a-fig · `JS`</sub>
+
+- **[tiab-review-plugin](https://github.com/youkiti/tiab-review-plugin)** — 一个加速系统综述中“标题与摘要筛选”的 Chrome 扩展，已上架 Chrome 应用商店。 <sub>(机翻)</sub>
+  <sub>`插件` · ★1 · youkiti · `TS`</sub>
 
 - **[jev-decision-lab](https://github.com/jlov7/jev-decision-lab)** — 一个本地实验室，观察 Jev 在真实业务场景上的判断表现。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★0 · jlov7 · `Py`</sub>

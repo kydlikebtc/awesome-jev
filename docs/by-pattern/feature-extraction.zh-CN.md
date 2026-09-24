@@ -4,7 +4,7 @@
 
 _把自由文本转成数值特征，喂给下游的传统模型。_
 
-这个决策的全部已收录例子 —— 共 7 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#机器学习特征抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=feature-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 8 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#机器学习特征抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=feature-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[Cookbook: Autoresearch feature discovery](https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery)** ⭐ — 一个自动研究循环：自己提出问题、把自由文本转成数值特征、再用误差反过来改进下游的梯度提升回归模型。
   <sub>`官方文档` · `Py`</sub>
@@ -26,6 +26,9 @@ _把自由文本转成数值特征，喂给下游的传统模型。_
 
 - **[jev-board-lab](https://github.com/WebGrga/jev-board-lab)** — 面向 Jev Board 数据集的交互式浏览与问题工作区。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★0 · webgrga · `JS` · ⚠ `无许可证`</sub>
+
+- **[jev-calibrated-narrative-coding](https://github.com/pozapas/jev-calibrated-narrative-coding)** — 用 System One 模型把警方的交通事故叙述，校准地转换为带概率的事故变量。包含完整流程。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★0 · pozapas · `Py`</sub>
 
 ---
 

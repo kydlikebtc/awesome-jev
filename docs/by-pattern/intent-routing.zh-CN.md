@@ -4,7 +4,7 @@
 
 _判断用户意图，把请求分流到正确的分支。_
 
-这个决策的全部已收录例子 —— 共 31 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 35 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[Demo: Smart home assistant](https://docs.typesafe.ai/demos/smart-home)** ⭐ — 一个可运行的智能家居助手示例，用类型化决策来解析用户请求。
   <sub>`官方文档` · `Py`</sub>
@@ -69,11 +69,20 @@ _判断用户意图，把请求分流到正确的分支。_
 - **[jevyoumean](https://github.com/syumai/jevyoumean)** — 给任意 CLI 的语义化「你是不是想输入」：用 Jev 匹配子命令。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★13 · syumai · `Go`</sub>
 
+- **[jevcache](https://github.com/kushals256/jevcache)** — 当 TypeSafe Jev 判断意图相同时，跳过昂贵的 LLM 调用。一个兼容 OpenAI 的本地缓存代理。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★9 · kushals256 · `TS`</sub>
+
 - **[typesafe-jev-workflow](https://github.com/GiesN/typesafe-jev-workflow)** — 一个小型异步 LangGraph 工作流：把模拟邮件交给 Jev 做带类型的 Choice（发票或一般邮件），再路由到演示处理器。分类会真实调用 API；处理器只设置去向。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★9 · giesn · `Py` · ⚠ `无许可证`</sub>
 
+- **[jev-ai-sdk-form-router](https://github.com/vercel-labs/jev-ai-sdk-form-router)** — 用 Jev 和 AI SDK 把表单提交路由给合适的负责人。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★5 · vercel-labs · `TS`</sub>
+
 - **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)** — 在 2000 封钓鱼邮件上对比 Jev 与一个轻量 LLM：准确率、校准度、延迟、成本。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★5 · anisselbd · `Py` · ⚠ `无许可证`</sub>
+
+- **[jev-inbox-queue](https://github.com/tusharck/jev-inbox-queue)** — 用 Jev（TypeSafe System One）把收件箱变成一个简短的行动队列。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★1 · tusharck · `Py`</sub>
 
 - **[A deep dive into Jev, TypeSafe's System One model](https://flaviocopes.com/jev/)** — 技术密度最高的独立讲解：JS / Python / AI SDK 三种代码、三种应答结构、进阶模式，还诚实列出了模型的失效场景。
   <sub>`教程` · Flavio Copes · `JS` · `Py` · `TS` · `choice` · `score` · `noul`</sub>
@@ -86,6 +95,9 @@ _判断用户意图，把请求分流到正确的分支。_
 
 - **[Jev on Netlify AI Gateway](https://www.netlify.com/changelog/typesafe-jev-ai-gateway/)** — 在 Netlify function 里零配置调用：直接用官方 SDK，不需要 API key、baseURL 或 provider 配置，按 Netlify credits 计费。
   <sub>`平台集成` · `TS` · `choice`</sub>
+
+- **[jev-eval](https://github.com/Shogo-nfrealmusic/jev-eval)** — 第三方在相同条件下对比 Jev 与两款 LLM：为面向日本游客的摄影服务路由预订咨询，共六十条四种语言的合成消息。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★0 · shogo-nfrealmusic · `TS` · ⚠ `无许可证`</sub>
 
 - **[lanebreak](https://github.com/ndolinschi/lanebreak)** — LaneBreak：工单优先级与路由。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★0 · ndolinschi · `TS` · ⚠ `无许可证`</sub>

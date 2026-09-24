@@ -174,6 +174,27 @@ running could:
   were re-read against the code, and nineteen more sibling directories were
   added to the harvest.
 
+### The second discovery batch, 2026-09-24
+
+With 51 sibling directories instead of 32, the harvest cited 3,285 repositories,
+2,368 of them uncatalogued. The 400 most-cited were read; 325 had a call site,
+and 323 were added — taking the catalogue past 1,200.
+
+* `recommendation`, empty since the first build, got its first example: a movie
+  recommender that narrows 4,800 films by retrieval, then has Jev parse the
+  request and choose from the shortlist. The absence recorded above was true
+  for every list harvested at the time; it is not true any more.
+* Twenty-two rows are reimplementations of the interface, among them wrappers
+  that serve another vendor's model in Jev's API shape. The classifier again
+  filed them as Jev projects.
+* Independent measurements outside English arrived — Russian and Spanish
+  calibration audits, and Brazil's national exam — which is the gap the status
+  page lists as worth watching.
+* The scanner learned two more places a call site hides: Google Apps Script
+  (`.gs`), and extensionless CLI scripts named after Jev.
+* Two candidates were declined with a reason in `docs/declined.txt`: an early
+  copy of a catalogued project, and an account-pooling gateway.
+
 ## Why a status code is not a verdict
 
 Every row's `link_status` says the URL answered. That is all it says. It does not

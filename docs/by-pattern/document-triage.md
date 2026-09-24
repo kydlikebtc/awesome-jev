@@ -4,7 +4,7 @@
 
 _Classify and route incoming documents, invoices and forms._
 
-Every catalogued example of this decision — 16 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#document-triage); [the site](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 20 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#document-triage); [the site](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=en) can filter them further by language, primitive and kind.
 
 - **[tax-doc-classifier](https://github.com/kyotofin/tax-doc-classifier)** — Tax document page classifier built on Jev decisions. 100% strict accuracy across 261 IRS forms, ~$0.001 per page.
   <sub>`Project` · ★419 · kyotofin · `TS`</sub>
@@ -24,6 +24,9 @@ Every catalogued example of this decision — 16 of them, official first, then r
 - **[jevmory](https://github.com/romiluz13/jevmory)** — Coding-agent memory where every fact is a verbatim quote graded by TypeSafe Jev's calibrated confidence. Local-first, SQLite receipts, zero dependencies.
   <sub>`Project` · ★9 · romiluz13 · `Py`</sub>
 
+- **[pdf-race](https://github.com/goodrahstar/pdf-race)** — Docling → Jev vs Docling → Gemini 3.8 Flash vs Gemini reading the PDF: same documents, one clock, scored against arXiv's own metadata
+  <sub>`Benchmark` · ★9 · goodrahstar · `JS`</sub>
+
 - **[jev-document-classification](https://github.com/Charlyhno-eng/jev-document-classification)** — JEV Document Classification enables the rapid and cost-effective classification of text-based documents using AI, leveraging TypeSafe's "System One" model.
   <sub>`Project` · ★4 · charlyhno-eng · `TS`</sub>
 
@@ -39,8 +42,17 @@ Every catalogued example of this decision — 16 of them, official first, then r
 - **[jev-layer](https://github.com/typakon4/jev-layer)** — Portable System-1 decision layer for agent harnesses with host-owned routing, receipts, replay, and fail-open integrations.
   <sub>`Integration` · ★2 · typakon4 · `JS`</sub>
 
+- **[jev-boe-demo](https://github.com/Tatuck/jev-boe-demo)** — Daily demo applying TypeSafe's Jev model to Spain's official gazette (BOE).
+  <sub>`Project` · ★1 · tatuck · `TS` · ⚠ `no licence`</sub>
+
+- **[jev-organize](https://github.com/nexibeo/jev-organize)** — Throw in a pile of company files and get them classified and organized by department, type, sensitivity, date, counterparty and PII, with an index for AI agents. Powered by TypeSafe's Jev on OpenRouter (17¢ per 1,000 files). Zero-dependency Node CLI + Claude skill + Codex agent.
+  <sub>`Plugin` · ★1 · nexibeo · `JS`</sub>
+
 - **[jev-score](https://github.com/a-Fig/jev-score)** — Local-first document evaluation workspaces powered by Jev
   <sub>`Project` · ★1 · a-fig · `JS`</sub>
+
+- **[tiab-review-plugin](https://github.com/youkiti/tiab-review-plugin)** — A Chrome extension that speeds up title-and-abstract screening for systematic reviews, published on the Chrome Web Store.
+  <sub>`Plugin` · ★1 · youkiti · `TS`</sub>
 
 - **[jev-decision-lab](https://github.com/jlov7/jev-decision-lab)** — A local lab for seeing what TypeSafe's Jev judgment model does on realistic business cases: typed answers, probabilities, policy in code, receipts.
   <sub>`Project` · ★0 · jlov7 · `Py`</sub>

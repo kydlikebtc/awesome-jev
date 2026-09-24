@@ -79,21 +79,27 @@ def shape_block(s: dict) -> str:
     )
 
 
-# Editorial commentary on a gap, shown only while the gap exists. A note that
-# says "nobody has published one" must disappear the day someone does; written
-# as free prose beside the generated list, it would contradict it instead.
+# Editorial commentary on a gap, keyed by the state it describes. A note is
+# emitted only while that state holds: "nobody has published one" belongs to
+# `empty` and must vanish the day the first example lands. Keying notes by
+# pattern alone let that sentence survive into the `thin` list the day
+# recommendation got its first entry, contradicting the count printed beside it.
 GAP_NOTES = {
-    "recommendation": (
+    ("recommendation", "empty"): (
         "The vendor lists it as a use case, and nothing has surfaced across every "
         "sibling directory harvested so far — by now a reasonably strong claim that "
         "nobody has published one."
     ),
-    "retry-control": (
+    ("recommendation", "thin"): (
+        "The first example is a movie recommender: retrieval narrows the field, and "
+        "Jev parses the request and chooses from the shortlist."
+    ),
+    ("retry-control", "thin"): (
         "Most apparent matches are false positives: an HTTP client advertising "
         "\"observable retries\" is not a retry decision. The first real one was a "
         "semantic circuit breaker asking whether an HTTP 200 is a silent failure."
     ),
-    "case-study": (
+    ("case-study", "empty"): (
         "Projects are running this in production; none has published what it cost "
         "and what it changed."
     ),
@@ -110,17 +116,19 @@ def gaps_block(s: dict, patterns: list[dict]) -> str:
         (p for p in patterns if 0 < counts[p["key"]] < thin_below and p["key"] != "overview"),
         key=lambda p: counts[p["key"]],
     )
-    note = lambda key: f" {GAP_NOTES[key]}" if key in GAP_NOTES else ""  # noqa: E731
+    def note(key: str, state: str, lead: str = " ") -> str:
+        text = GAP_NOTES.get((key, state))
+        return f"{lead}{text}" if text else ""
 
     lines = []
     if empty:
         lines += ["No entries yet:", ""]
-        lines += [f"- **`{p['key']}`** — {p['blurb_en']}{note(p['key'])}" for p in empty]
+        lines += [f"- **`{p['key']}`** — {p['blurb_en']}{note(p['key'], 'empty')}" for p in empty]
     else:
         lines.append("Every pattern has at least one entry.")
     if s["empty_kinds"]:
         lines += ["", "Empty kinds:", ""]
-        lines += [f"- **`{k}`**.{note(k)}" for k in s["empty_kinds"]]
+        lines += [f"- **`{k}`**.{note(k, 'empty')}" for k in s["empty_kinds"]]
     if thin:
         pct = f"{_stats.THIN_SHARE:.1%}".replace(".0%", "%")
         lines += [
@@ -130,7 +138,7 @@ def gaps_block(s: dict, patterns: list[dict]) -> str:
         ]
         lines += [
             f"- `{p['key']}` ({counts[p['key']]} of {s['entries']})"
-            + (f" —{note(p['key'])}" if p["key"] in GAP_NOTES else "")
+            + note(p["key"], "thin", " — ")
             for p in thin
         ]
     return "\n".join(lines)

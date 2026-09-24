@@ -8,11 +8,11 @@
 
 **全网 Jev（TypeSafe AI 的 System One 决策模型）使用例子索引 —— 按它做的**决策**归类，而不是按提到它的博客归类。**
 
-[![lint](https://github.com/kydlikebtc/awesome-jev/actions/workflows/lint.yml/badge.svg)](https://github.com/kydlikebtc/awesome-jev/actions/workflows/lint.yml) [![links](https://github.com/kydlikebtc/awesome-jev/actions/workflows/links.yml/badge.svg)](https://github.com/kydlikebtc/awesome-jev/actions/workflows/links.yml) [![entries](https://img.shields.io/badge/条目-884-f5a524?style=flat-square)](https://kydlikebtc.github.io/awesome-jev/) [![verified](https://img.shields.io/badge/链接已核实-881-3fb950?style=flat-square)](https://kydlikebtc.github.io/awesome-jev/) [![rechecked](https://img.shields.io/badge/声明可复检-799-58a6ff?style=flat-square)](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) [![data](https://img.shields.io/badge/data-CC0--1.0-8b949e?style=flat-square)](LICENSE-CC0) [![code](https://img.shields.io/badge/code-MIT-8b949e?style=flat-square)](LICENSE-MIT)
+[![lint](https://github.com/kydlikebtc/awesome-jev/actions/workflows/lint.yml/badge.svg)](https://github.com/kydlikebtc/awesome-jev/actions/workflows/lint.yml) [![links](https://github.com/kydlikebtc/awesome-jev/actions/workflows/links.yml/badge.svg)](https://github.com/kydlikebtc/awesome-jev/actions/workflows/links.yml) [![entries](https://img.shields.io/badge/条目-1207-f5a524?style=flat-square)](https://kydlikebtc.github.io/awesome-jev/) [![verified](https://img.shields.io/badge/链接已核实-1204-3fb950?style=flat-square)](https://kydlikebtc.github.io/awesome-jev/) [![rechecked](https://img.shields.io/badge/声明可复检-1121-58a6ff?style=flat-square)](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) [![data](https://img.shields.io/badge/data-CC0--1.0-8b949e?style=flat-square)](LICENSE-CC0) [![code](https://img.shields.io/badge/code-MIT-8b949e?style=flat-square)](LICENSE-MIT)
 
 [可搜索站点](https://kydlikebtc.github.io/awesome-jev/) &nbsp;·&nbsp; [English](README.md) &nbsp;·&nbsp; [决策模式](docs/patterns.md) &nbsp;·&nbsp; [兼容性](docs/compatibility.md) &nbsp;·&nbsp; [核查指南](docs/vetting.md)
 
-<a href="https://kydlikebtc.github.io/awesome-jev/"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=884-2026-09-24" alt="awesome-jev 站点：左侧覆盖度直方图兼作模式筛选器，右侧是密集的条目卡片" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=1207-2026-09-24" alt="awesome-jev 站点：左侧覆盖度直方图兼作模式筛选器，右侧是密集的条目卡片" width="760"></a>
 
 <sub>点击条形即可筛选。另有两个视图：<a href="https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh">三个原语</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh">兼容性矩阵</a>。每个筛选条件和每个条目都是可分享的 URL。</sub>
 
@@ -98,6 +98,9 @@
 - **[jevbench](https://github.com/fstandhartinger/jevbench)** — JevBench v1 —— 面向 Jev 这类类型化决策模型的基准。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★107 · fstandhartinger · `Py`</sub>
 
+- **[jev-arena](https://github.com/NanmiCoder/jev-arena)** — Jev 模型介绍与实测：通过 Choice / Score / Noul 将自然语言转为带类型的判断与概率，用于分类、评分和路由；支持与 DeepSeek 等模型对比评论打标、速度与结果，含 CSV/Excel 导入、原速回放与离线报告。
+  <sub>`基准测试` · ★97 · nanmicoder · `JS`</sub>
+
 - **[windtunnel](https://github.com/nekuda-ai/WindTunnel)** — 一个 WebMCP 基准，衡量 WebMCP 与其他浏览器智能体接口的差距。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★80 · nekuda-ai · `TS`</sub>
 
@@ -119,6 +122,9 @@
 - **[jev-rag-benchmark](https://github.com/erendikmenn/jev-rag-benchmark)** — 可复现的基准：衡量 Jev 在 RAG 里的重排质量、延迟与成本。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★14 · erendikmenn · `Py`</sub>
 
+- **[pdf-race](https://github.com/goodrahstar/pdf-race)** — Docling → Jev 对比 Docling → Gemini Flash 以及 Gemini 直接读 PDF：同样的文档、同一个计时器，按 arXiv 标准打分。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★9 · goodrahstar · `JS`</sub>
+
 - **[jev-dspy-lab](https://github.com/jmanhype/jev-dspy-lab)** — 在 DSPy 工作流中对 Jev 决策做可复现的校准与选择性风险基准。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★7 · jmanhype · `Py`</sub>
 
@@ -138,6 +144,9 @@
 - **[jev-search-rerank-eval](https://github.com/zhuyansen/jev-search-rerank-eval)** — TypeSafe Jev 重排能否胜过向量检索？在 Agent Skills Hub 目录上做分级相关性评测（9,831 对、164 条中英文查询），并测量了“裁判循环”偏差。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★6 · zhuyansen · `Py`</sub>
 
+- **[jev-code-review-benchmark](https://github.com/gemanor/jev-code-review-benchmark)** — 在 Python 代码审查规则上比较 Jev、Gemini Flash 与 Claude Fable：成本、速度、准确率与一致性。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★5 · gemanor · `Py`</sub>
+
 - **[jev-little-airways](https://github.com/lbotinelly/jev-little-airways)** — Jev 的能力展示与研究：一次 show-and-tell 式的考察。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★5 · lbotinelly · `TS`</sub>
 
@@ -146,6 +155,9 @@
 
 - **[legalforecastbench](https://github.com/johnhughes3/LegalForecastBench)** — LegalForecast-MTD 基准 alpha 版与官方评测流程。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★5 · johnhughes3 · `Py`</sub>
+
+- **[jevarena](https://github.com/chenmingtang830/jevarena)** — 开源的自带 key 竞技场，用来评测 Jev 与其他 AI 裁判：找出失败案例，比较质量、成本与延迟。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★4 · chenmingtang830 · `TS`</sub>
 
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)** — 首个独立的 System One 决策模型横评（Laya 对比 Jev）。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★4 · instax-dutta · `Py`</sub>
@@ -159,8 +171,14 @@
 - **[jev-exploration](https://github.com/SamuelSacco/jev-exploration)** — Jev 探索性合集：宣称核查、实时演示与可运行代码。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★3 · samuelsacco · `Py` · ⚠ `无许可证`</sub>
 
+- **[jev-plays](https://github.com/mansicer/jev-plays)** — 由 System One 模型玩 Craftax，LLM 负责设定目标：同一张地图上的五种智能体，从 Jev 直接操作原始动作到 LLM 控制每一步，用记录下来的对局进行比较。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★3 · mansicer · `Py`</sub>
+
 - **[origin-civilization](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION)** — AI 生命与文明模拟：每个决策都由 Jev 做出。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★3 · jacquesgariepy · `TS`</sub>
+
+- **[typesafe-jev-calibrate-for-code-review](https://github.com/Selmar/typesafe-jev-calibrate-for-code-review)** — 关于为代码审查校准 Jev 的研究。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★3 · selmar · `Py` · ⚠ `无许可证`</sub>
 
 - **[jev-agent-failure-benchmark](https://github.com/TokenTrim/jev-agent-failure-benchmark)** — 在一个智能体失败归因基准上，把 Jev 与一个强 LLM 做对比测试。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★2 · tokentrim · `Py`</sub>
@@ -177,14 +195,32 @@
 - **[antigravity-mcp-semantic-search-with-typesafeai](https://github.com/greenyamao/Antigravity-mcp-semantic-search-with-TypeSafeAi)** — 给 AI 编程助手的快速语义代码搜索与 diff 合理性审查。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★1 · greenyamao · `Py` · ⚠ `无许可证`</sub>
 
+- **[can-jev-bayes](https://github.com/TomRichner/can-jev-bayes)** — Jev 会贝叶斯吗？把 TypeSafe AI 的 Jev 与贝叶斯最优策略对比，并测试它能否有效使用贝叶斯推理。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★1 · tomrichner · `Py`</sub>
+
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)** — 面向基于文档的决策模型的开放基准运行框架。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★1 · hanno-labs · `Py`</sub>
 
 - **[dsh-jev-verify](https://github.com/xienda/dsh-jev-verify)** — 给 DeepSeek Harness 的 Jev 决策工具与实时验证基准。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★1 · xienda · `JS`</sub>
 
+- **[jev-bench](https://github.com/TheWayWithin/jev-bench)** — 引用的来源真的这么说了吗？一个包含 42 条论断的基准：Jev（TypeSafe System One）对比 GPT 与 Claude 等模型。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★1 · thewaywithin · `Py`</sub>
+
+- **[jev-benchmark](https://github.com/themsquared/jev-benchmark)** — TypeSafe AI Jev 在智能体工具调用风险分类上的可复现基准：准确率、延迟，以及其置信度是否可信。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★1 · themsquared · `Py`</sub>
+
+- **[jev-decision-benchmarks](https://github.com/baibizhe/jev-decision-benchmarks)** — JEV 在 MetaTool、When2Call 与 BFCL V4 上的决策基准结果，附双语表格和可复现报告。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★1 · baibizhe · `Py` · ⚠ `无许可证`</sub>
+
 - **[jev-eval](https://github.com/4esv/jev-eval)** — 在你自己的标注分类数据上，把 Jev 与任意 OpenRouter 模型做基准对比：准确率与校准度。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★1 · 4esv · `Py` · ⚠ `无许可证`</sub>
+
+- **[jev-lab](https://github.com/llt22/jev-lab)** — TypeSafe Jev（System One 模型）的动手研究实验室：对 Noul/Choice/Score 原语的可复现基准。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★1 · llt22 · `Py` · ⚠ `无许可证`</sub>
+
+- **[jev-lab](https://github.com/danielhirt/jev-lab)** — 通过 OpenRouter 对 TypeSafe Jev（System One 决策模型）做的实验：可重复性、扰动敏感性与 LLM 基线对比。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★1 · danielhirt · `TS` · ⚠ `无许可证`</sub>
 
 - **[jev-secret-detection](https://github.com/teyhouse/jev-secret-detection)** — 衡量 Jev 在文件片段中识别真实密钥凭据的能力。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★1 · teyhouse · `Py` · ⚠ `无许可证`</sub>
@@ -198,8 +234,16 @@
 - **[padflow-jev-evals](https://github.com/zsavage8/padflow-jev-evals)** — 来自某土地开发 SaaS 的类型化决策基准：schema、匿名标注数据与运行器。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★1 · zsavage8 · `Py`</sub>
 
+- **[what-is-jev](https://github.com/g0runmezadam/what-is-jev)** — 关于 TypeSafe AI Jev（System One）的独立、有来源的研究，包含对 947 个公开仓库的评分。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★1 · g0runmezadam · `Py`</sub>
+  <sub>这是对生态的研究，而不是 API 的调用者，因此没有调用点证据。</sub>
+
 - **[agent-handoff-gate](https://github.com/zsoXi/agent-handoff-gate)** — 面向证据感知的智能体交接与有界工作续跑的实验性协议。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★0 · zsoxi · `Py`</sub>
+
+- **[jev-acento](https://github.com/marcosmartinez/jev-acento)** — Jev 听得懂你的口音吗？一项预先注册的、针对 TypeSafe AI Jev 西班牙语表现的审计——准确率、校准与 token 成本。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★0 · marcosmartinez · `Py`</sub>
+  <sub>一项独立、预先注册的非英语审计——正是 docs/status.md 中列为值得关注的空白。</sub>
 
 - **[jev-calibration-audit](https://github.com/jujumilk3/jev-calibration-audit)** — 仅通过 API 对 Jev 做的独立校准审计。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★0 · jujumilk3 · `Py`</sub>
@@ -207,14 +251,31 @@
 - **[jev-certify](https://github.com/nikkoxgonzales/jev-certify)** — 给 Jev 的有限样本保证：用保形风险控制把校准概率转成可证的约束。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★0 · nikkoxgonzales · `Py`</sub>
 
+- **[jev-cyrillic-audit](https://github.com/AHTOOOXA/jev-cyrillic-audit)** — TypeSafe 的 Jev 在俄语上能保持准确率与校准吗？一项独立的俄英对照审计（ECE、可靠性图）。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★0 · ahtoooxa · `Py`</sub>
+  <sub>一项独立的非英语校准审计——正是 docs/status.md 中列为值得关注的空白。</sub>
+
 - **[jev-enterprise-decision-fabric](https://github.com/ghubnab99/jev-enterprise-decision-fabric)** — 让大量语义决策走同一条经过验证的路径的架构，附带标注数据集。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★0 · ghubnab99 · `C#`</sub>
+
+- **[jev-eval](https://github.com/onlyoneaman/jev-eval)** — 在四个公开分类数据集上比较 TypeSafe 的 Jev 与两款 GPT 模型：案例、逐条答案、评分全部公开。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★0 · onlyoneaman · `TS`</sub>
+
+- **[jev-eval](https://github.com/Shogo-nfrealmusic/jev-eval)** — 第三方在相同条件下对比 Jev 与两款 LLM：为面向日本游客的摄影服务路由预订咨询，共六十条四种语言的合成消息。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★0 · shogo-nfrealmusic · `TS` · ⚠ `无许可证`</sub>
 
 - **[jev-fanout-bench](https://github.com/blowxian/jev-fanout-bench)** — 实测：在一次调用里向 TypeSafe Jev 提 N 个问题，state 只计费一次。基于 2,976 次真实请求，附原始数据和精确的计费核对。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★0 · blowxian · `Py`</sub>
 
+- **[jev-lab](https://github.com/Menny1337/jev-lab)** — 针对 TypeSafe Jev 模型的 TypeScript 实验、评测与延迟基准。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★0 · menny1337 · `TS` · ⚠ `无许可证`</sub>
+
 - **[jev-llm-router-benchmark](https://github.com/erendikmenn/jev-llm-router-benchmark)** — 以基准驱动的 Jev 路由器与评判者，服务于成本可控的 LLM 编程流程。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★0 · erendikmenn · `Py`</sub>
+
+- **[jev-no-enem](https://github.com/patryckalves/jev-no-enem)** — 在巴西 2025 年 ENEM 标准化考试上评测 TypeSafe AI Jev（System One 范式）的可复现基准。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★0 · patryckalves · `Py` · ⚠ `无许可证`</sub>
+  <sub>一项非英语的独立评测，使用的是有标准答案的公开考试。</sub>
 
 - **[jev-orderby-bench](https://github.com/yodablocks/jev-orderby-bench)** — 按 Jev 概率做 ORDER BY 能否给出站得住脚的排序？独立的排序、校准与不变量实测。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★0 · yodablocks · `Py`</sub>
@@ -253,6 +314,9 @@ _智能体下一步该调用哪个工具或动作。_
 - **[Demo: Smart home assistant](https://docs.typesafe.ai/demos/smart-home)** ⭐ — 一个可运行的智能家居助手示例，用类型化决策来解析用户请求。
   <sub>`官方文档` · `Py`</sub>
 
+- **[ai-hedge-fund](https://github.com/virattt/ai-hedge-fund)** — 一支 AI 对冲基金团队：多个投资者智能体协作做出交易决策；TypeSafe（Jev）是可选的模型提供方之一。 <sub>(机翻)</sub>
+  <sub>`平台集成` · ★63,705 · virattt · `Py`</sub>
+
 - **[claude-code-templates: three Jev plugins](https://github.com/davila7/claude-code-templates)** — 三个可独立安装的 Claude Code 插件 —— 护栏、模型路由、技能推荐 —— 各自带 hook 和测试。
   <sub>`插件` · ★31,582 · `Py` · `TS` · `choice` · `score` · `noul`</sub>
 
@@ -271,10 +335,7 @@ _智能体下一步该调用哪个工具或动作。_
 - **[json-render](https://github.com/vercel-labs/json-render)** — Vercel Labs 的生成式 UI 框架。实验里 Jev 不逐 token 写 JSON，只负责选组件、属性和布局。
   <sub>`开源项目` · ★18,204 · Vercel Labs · `TS` · `choice`</sub>
 
-- **[DeepChat: agent tool-permission review](https://github.com/ThinkInAIXYZ/deepchat)** — 从三个维度审查每次工具调用：风险等级、用户是否授权、以及一个显式的提示注入压力检查。
-  <sub>`开源项目` · ★6,341 · `TS` · `choice` · `noul`</sub>
-
-已显示 **10 / 161** 条 · [在单独页面查看全部 161 条 →](docs/by-pattern/tool-selection.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)
+已显示 **10 / 230** 条 · [在单独页面查看全部 230 条 →](docs/by-pattern/tool-selection.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)
 
 ### 意图路由
 
@@ -310,7 +371,7 @@ _判断用户意图，把请求分流到正确的分支。_
 - **[foreman](https://github.com/thruwire/foreman)** — 一个「软件工厂工头」，用 Jev 决定智能体流水线下一步该做什么。
   <sub>`开源项目` · ★538 · thruwire · `Py`</sub>
 
-已显示 **10 / 31** 条 · [在单独页面查看全部 31 条 →](docs/by-pattern/intent-routing.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)
+已显示 **10 / 35** 条 · [在单独页面查看全部 35 条 →](docs/by-pattern/intent-routing.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)
 
 ### 上下文压缩
 
@@ -337,16 +398,16 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 - **[Winnow](https://github.com/GhalebDweikat/winnow)** — 给 Claude Code 做上下文垃圾回收。Read / Bash / Grep 吐一大堆时，Jev 先判断哪些真和当前任务有关。
   <sub>`插件` · ★79 · `Py` · `noul`</sub>
 
+- **[save-token-jev-clean](https://github.com/IAmUnbounded/save-token-jev-clean)** — 为编码智能体提供可移植的、由 Jev 引导的上下文压缩：不让另一个 LLM 把旧上下文改写成有损摘要，而是由 Jev 判断哪些工具调用和结果仍然重要，用户与助手的文字保持原样。 <sub>(机翻)</sub>
+  <sub>`插件` · ★69 · iamunbounded · `TS`</sub>
+
 - **[yoshi](https://github.com/compozy/yoshi)** — 给 Claude Code 和 Codex 做的上下文裁剪代理：由 Jev 判断哪些历史还需要 —— 实测而非宣称。 <sub>(机翻)</sub>
   <sub>`插件` · ★25 · compozy · `TS`</sub>
 
 - **[claude-jev](https://github.com/0x7067/claude-jev)** — Claude Code 插件：Jev 负责规则检查、逐字压缩与提示路由。 <sub>(机翻)</sub>
   <sub>`插件` · ★12 · 0x7067 · `Py`</sub>
 
-- **[omp-jev-compaction](https://github.com/jerryfane/omp-jev-compaction)** — 给 omp 做的逐字保留式 Jev 打分上下文削减。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★8 · jerryfane · `TS`</sub>
-
-已显示 **10 / 22** 条 · [在单独页面查看全部 22 条 →](docs/by-pattern/context-compaction.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)
+已显示 **10 / 34** 条 · [在单独页面查看全部 34 条 →](docs/by-pattern/context-compaction.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)
 
 ### 安全闸门
 
@@ -382,7 +443,7 @@ _在执行前判断一个动作是否安全。属纵深防御，绝不是安全�
 - **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — 带 Jev 智能路由的 AI 智能体：把大白话请求分派给合适的专家智能体。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★425 · notque · `Py`</sub>
 
-已显示 **10 / 107** 条 · [在单独页面查看全部 107 条 →](docs/by-pattern/safety-gating.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)
+已显示 **10 / 138** 条 · [在单独页面查看全部 138 条 →](docs/by-pattern/safety-gating.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)
 
 ### 输出校验
 
@@ -397,6 +458,9 @@ _在输出到达用户前，按评分标准检查模型产出。_
 - **[latitude-llm](https://github.com/latitude-dev/latitude-llm)** — 面向 AI 智能体的开源可观测性：定位智能体在哪里失败。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★4,672 · latitude-dev · `TS`</sub>
 
+- **[reticle](https://github.com/reticlehq/reticle)** — AI 智能体能生成代码，却仍难以理解自己构建的东西。Reticle 用 TypeSafe Jev 路由验证流程，并由 Jev 驱动对页面的探索。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★830 · reticlehq · `TS`</sub>
+
 - **[atomic](https://github.com/bastani-inc/atomic)** — 可验证的编程智能体运行时：用自然语言定义智能体的流程。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★820 · bastani-inc · `TS`</sub>
 
@@ -406,19 +470,16 @@ _在输出到达用户前，按评分标准检查模型产出。_
 - **[jev-mcp](https://github.com/jkudish/jev-mcp)** — 现成的 Agent 判断工具箱：事实核验、内容筛查、语义排序、分类和信息提取，各自独立成工具。
   <sub>`插件` · ★320 · `JS` · `choice` · `score` · `noul`</sub>
 
+- **[JevRev](https://github.com/Alex314618-create/JevRev)** — LLM 身边的决策层：Jev 负责筛选方案、检查进度，把注意力留在值得继续的工作上；LLM 负责广度和具体实现。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★303 · alex314618-create · `TS`</sub>
+
 - **[jev-review](https://github.com/NiazMorshed2007/jev-review)** — 一个本地优先的 MCP 插件，供编程智能体做持续的代码质量审查。
   <sub>`插件` · ★217 · niazmorshed2007 · `TS`</sub>
 
 - **[abide](https://github.com/coldteadotai/abide)** — 让你的编码智能体遵守项目里的所有规则。 <sub>(机翻)</sub>
   <sub>`插件` · ★211 · coldteadotai · `TS`</sub>
 
-- **[perch: semantic code linting](https://github.com/lakeday-org/perch)** — 先用 tree-sitter 找出并排序方法，再把用户自写的 YAML 规则编译成 noul；严重度取评分量表的期望值，而不是概率最高的那一档。
-  <sub>`开源项目` · ★173 · `JS` · `choice` · `score` · `noul`</sub>
-
-- **[supercov](https://github.com/supercorp-ai/supercov)** — 给编程智能体用的代码质量与覆盖率判断，Rust 实现。
-  <sub>`开源项目` · ★109 · supercorp-ai · `Rs`</sub>
-
-已显示 **10 / 104** 条 · [在单独页面查看全部 104 条 →](docs/by-pattern/output-validation.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)
+已显示 **10 / 134** 条 · [在单独页面查看全部 134 条 →](docs/by-pattern/output-validation.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)
 
 ### 重试控制
 
@@ -427,16 +488,22 @@ _判断失败的步骤是否值得重试。_
 - **[jevswiftsdk](https://github.com/NSStudent/JevSwiftSDK)** — 独立的类型安全 Swift SDK，支持 async/await、批处理与重试。 <sub>(机翻)</sub>
   <sub>`SDK` · ★8 · nsstudent · `Swift`</sub>
 
+- **[jev-harness](https://github.com/ismaelsoilet/jev-harness)** — 零依赖的 System One 决策框架：用 5 道语义关卡，在琐碎错误和“死循环”上替前沿 AI 智能体省下 token。 <sub>(机翻)</sub>
+  <sub>`插件` · ★6 · ismaelsoilet · `Py`</sub>
+
 - **[jev-resilience](https://github.com/Vicente-MD/jev-resilience)** — 给 Spring WebFlux 的非阻塞 Starter，实现一个语义熔断器来检测静默故障。 <sub>(机翻)</sub>
   <sub>`插件` · ★2 · vicente-md · `Java` · ⚠ `无许可证`</sub>
 
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
   <sub>`开源项目` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `仅一次提交` `疑似 AI 生成`</sub>
 
+- **[jev-reasoning-navigator](https://github.com/AndreuVM/jev-reasoning-navigator)** — JEV 推理导航器：面向自主 LLM 智能体的认知监督、防止循环与反幻觉引擎。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★1 · andreuvm · `Py` · ⚠ `无许可证`</sub>
+
 - **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — 评判智能体的每一步：通过／重试／升级／停止。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★0 · ndolinschi · `TS` · ⚠ `无许可证`</sub>
 
-已显示全部 4 条 · [单独页面](docs/by-pattern/retry-control.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=zh)
+已显示全部 6 条 · [单独页面](docs/by-pattern/retry-control.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=zh)
 
 ### 人工升级
 
@@ -472,7 +539,7 @@ _用校准置信度决定哪些情况必须由人来看。_
 - **[Inbox Zero: seven email decisions](https://github.com/elie222/inbox-zero)** — 七个互不相同的邮件决策，每个都有自己单独设定的阈值，任何出错都回落到普通 LLM。
   <sub>`开源项目` · ★12,328 · `TS` · `choice` · `noul`</sub>
 
-已显示 **10 / 60** 条 · [在单独页面查看全部 60 条 →](docs/by-pattern/human-escalation.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)
+已显示 **10 / 67** 条 · [在单独页面查看全部 67 条 →](docs/by-pattern/human-escalation.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)
 
 ### 模型路由
 
@@ -499,16 +566,16 @@ _选择由哪个下游模型或档位处理请求。_
 - **[jev-codex-router](https://github.com/0xNatoshi/jev-codex-router)** — 先让 Jev 判断这一轮编程任务有多难，再决定模型档位、推理深度和速度模式。
   <sub>`插件` · ★260 · `JS` · `choice` · `score`</sub>
 
+- **[Astra-Ares](https://github.com/miuuyy/Astra-Ares)** — 在 Codex 任务中为 GPT-6 自适应地调整推理力度，由 Jev 驱动，以减少 token 消耗。 <sub>(机翻)</sub>
+  <sub>`插件` · ★250 · miuuyy · `JS`</sub>
+
 - **[jevrouter](https://github.com/BillionsBobby/JevRouter)** — 面向模型、工具和子智能体的路由器。
   <sub>`开源项目` · ★189 · billionsbobby · `TS`</sub>
 
 - **[jev-eval-agent](https://github.com/vinilana/jev-eval-agent)** — 一个把评测工作通过类型化决策来路由的智能体。
   <sub>`开源项目` · ★105 · vinilana · `TS` · ⚠ `无许可证`</sub>
 
-- **[jev-use](https://github.com/shitianfang/jev-use)** — 一个智能体插件：把不需要文本输出的步骤交给 Jev，而不是主模型。
-  <sub>`插件` · ★25 · shitianfang · `JS`</sub>
-
-已显示 **10 / 30** 条 · [在单独页面查看全部 30 条 →](docs/by-pattern/model-routing.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)
+已显示 **10 / 43** 条 · [在单独页面查看全部 43 条 →](docs/by-pattern/model-routing.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)
 
 ### 并行扇出
 
@@ -544,7 +611,7 @@ _把大量问题（包括推测性的）打包进一次请求，再由代码挑�
 - **[pi-typesafe](https://github.com/DevMortimer/pi-typesafe)** — 给 Pi 用的 Jev 决策：批量评估工具、终端 playground，以及给扩展作者的类型化 API。 <sub>(机翻)</sub>
   <sub>`插件` · ★45 · devmortimer · `TS`</sub>
 
-已显示 **10 / 30** 条 · [在单独页面查看全部 30 条 →](docs/by-pattern/fan-out.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)
+已显示 **10 / 32** 条 · [在单独页面查看全部 32 条 →](docs/by-pattern/fan-out.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)
 
 ### 检索与排序
 
@@ -580,7 +647,7 @@ _对来自廉价检索步骤的候选做打分或重排。_
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — 一个 Android 回复副驾：从屏幕文本判断意图、时机和风险，OCR 与文案起草交给另外的模型。
   <sub>`开源项目` · ★5,414 · `Java` · `choice` · `score` · `noul`</sub>
 
-已显示 **10 / 50** 条 · [在单独页面查看全部 50 条 →](docs/by-pattern/search-ranking.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)
+已显示 **10 / 64** 条 · [在单独页面查看全部 64 条 →](docs/by-pattern/search-ranking.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)
 
 ### 结构化抽取
 
@@ -598,11 +665,17 @@ _从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不�
 - **[Cookbook: Structured data extraction cascade](https://docs.typesafe.ai/cookbooks/sde_cascade)** ⭐ — 「小模型 → 校验 → 推理模型」的两段级联，用一小部分成本拿到接近大推理模型的质量。
   <sub>`官方文档` · `Py`</sub>
 
+- **[smart-paste](https://github.com/nomanjack/smart-paste)** — 根据粘贴的文本自动填写表单：把表单标题、字段标签和你的文字交给 TypeSafe，插入匹配到的值，提交前由你检查。 <sub>(机翻)</sub>
+  <sub>`插件` · ★38 · nomanjack · `JS`</sub>
+
 - **[jev-reviewer](https://github.com/choxos/jev-reviewer)** — 系统综述的数据抽取：让 Jev 从论文及其补充材料里按抽取表取值，并附原文引用。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★33 · choxos · `JS`</sub>
 
 - **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — 开源的 macOS computer use 与原生 GUI 自动化，运行在 Apple 芯片上。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★21 · jcpsimmons · `JS`</sub>
+
+- **[jevfill](https://github.com/imohitmayank/jevfill)** — 一个 Chrome 扩展：用 Jev 根据零散的文字笔记自动填写网页表单。把个人信息以纯文本粘贴一次即可，无需结构化档案，随时按需填表。 <sub>(机翻)</sub>
+  <sub>`插件` · ★18 · imohitmayank · `TS`</sub>
 
 - **[jeveryword](https://github.com/jkrup/jeveryword)** — 用 Jev 做文本抽取：字段抽取、PII 检测与逐字引文。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★4 · jkrup · `JS`</sub>
@@ -610,13 +683,7 @@ _从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不�
 - **[jev-mcp-dispatcher](https://github.com/abhishekashokvkumar/jev-mcp-dispatcher)** — 完全由 Jev 驱动的自然语言 MCP 工具分发器，不用通用 LLM。 <sub>(机翻)</sub>
   <sub>`插件` · ★3 · abhishekashokvkumar · `Py` · ⚠ `无许可证`</sub>
 
-- **[jevsume](https://github.com/unownone/jevsume)** — 由 Jev 驱动的 ATS 友好简历评审。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★3 · unownone · `TS` · ⚠ `无许可证`</sub>
-
-- **[jev-information-extraction](https://github.com/abhishekmamdapure/jev-information-extraction)** — 解析 PDF 并抽取相关信息。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★2 · abhishekmamdapure · `Py` · ⚠ `无许可证`</sub>
-
-已显示 **10 / 12** 条 · [在单独页面查看全部 12 条 →](docs/by-pattern/data-extraction.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)
+已显示 **10 / 16** 条 · [在单独页面查看全部 16 条 →](docs/by-pattern/data-extraction.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)
 
 ### 分类
 
@@ -652,7 +719,7 @@ _把条目归入分类体系，包括用概率遍历的深层层级。_
 - **[docjev](https://github.com/jerryjliu/docjev)** — 非常快的文档分类与切分器。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★414 · jerryjliu · `Py`</sub>
 
-已显示 **10 / 92** 条 · [在单独页面查看全部 92 条 →](docs/by-pattern/classification.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)
+已显示 **10 / 119** 条 · [在单独页面查看全部 119 条 →](docs/by-pattern/classification.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)
 
 ### 机器学习特征抽取
 
@@ -679,7 +746,10 @@ _把自由文本转成数值特征，喂给下游的传统模型。_
 - **[jev-board-lab](https://github.com/WebGrga/jev-board-lab)** — 面向 Jev Board 数据集的交互式浏览与问题工作区。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★0 · webgrga · `JS` · ⚠ `无许可证`</sub>
 
-已显示全部 7 条 · [单独页面](docs/by-pattern/feature-extraction.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=feature-extraction&lang=zh)
+- **[jev-calibrated-narrative-coding](https://github.com/pozapas/jev-calibrated-narrative-coding)** — 用 System One 模型把警方的交通事故叙述，校准地转换为带概率的事故变量。包含完整流程。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★0 · pozapas · `Py`</sub>
+
+已显示全部 8 条 · [单独页面](docs/by-pattern/feature-extraction.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=feature-extraction&lang=zh)
 
 ### 文档分拣
 
@@ -703,6 +773,9 @@ _对进来的文档、发票、表单做分类和路由。_
 - **[jevmory](https://github.com/romiluz13/jevmory)** — 编程智能体的记忆：每条事实都是一句逐字引文，由 Jev 的校准置信度评级。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★9 · romiluz13 · `Py`</sub>
 
+- **[pdf-race](https://github.com/goodrahstar/pdf-race)** — Docling → Jev 对比 Docling → Gemini Flash 以及 Gemini 直接读 PDF：同样的文档、同一个计时器，按 arXiv 标准打分。 <sub>(机翻)</sub>
+  <sub>`基准测试` · ★9 · goodrahstar · `JS`</sub>
+
 - **[jev-document-classification](https://github.com/Charlyhno-eng/jev-document-classification)** — 对文本文档做快速且低成本的分类。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★4 · charlyhno-eng · `TS`</sub>
 
@@ -712,10 +785,7 @@ _对进来的文档、发票、表单做分类和路由。_
 - **[decision-first](https://github.com/harrymunro/decision-first)** — 一个 agent 技能：识别出有界判断步骤，优先尝试用类型化决策模型解决。 <sub>(机翻)</sub>
   <sub>`插件` · ★2 · harrymunro · `Py`</sub>
 
-- **[jev-information-extraction](https://github.com/abhishekmamdapure/jev-information-extraction)** — 解析 PDF 并抽取相关信息。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★2 · abhishekmamdapure · `Py` · ⚠ `无许可证`</sub>
-
-已显示 **10 / 16** 条 · [在单独页面查看全部 16 条 →](docs/by-pattern/document-triage.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=zh)
+已显示 **10 / 20** 条 · [在单独页面查看全部 20 条 →](docs/by-pattern/document-triage.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=zh)
 
 ### 工单分拣
 
@@ -730,6 +800,9 @@ _按意图和紧急度路由支持工单与会话。_
 - **[spring-ai-typesafe](https://spring.io/blog/2026/09/21/spring-ai-typesafe-structured-judgment)** — 社区维护的 Spring AI starter，把类型化决策带到 Java，用 builder API 封装三种问题类型。
   <sub>`平台集成` · ★36 · `Java` · `choice` · `score` · `noul`</sub>
 
+- **[jev-triage](https://github.com/boldbug1/jev-triage)** — 基于 TypeSafe AI Jev 决策模型的 Go 消息分诊 CLI：为消息归类、给紧急程度打分并决定去向。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★3 · boldbug1 · `Go`</sub>
+
 - **[Example: three primitives in one request](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/01-three-primitives/main.py)** — 最小化的第一次调用：同时问一个 choice、一个 score 和一个 noul，并标注了容易踩的那几处不对称。
   <sub>`代码片段` · `Py` · `choice` · `score` · `noul` · ⚠ `代码未实测`</sub>
 
@@ -742,7 +815,7 @@ _按意图和紧急度路由支持工单与会话。_
 - **[Jev on Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/)** — Workers AI binding 与 REST 示例：一次调用同时问 noul、choice、score，并给出含逐答案置信度的完整响应。
   <sub>`平台集成` · `TS` · `sh` · `noul` · `choice` · `score`</sub>
 
-已显示全部 7 条 · [单独页面](docs/by-pattern/support-triage.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=zh)
+已显示全部 8 条 · [单独页面](docs/by-pattern/support-triage.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=zh)
 
 ### 内容评分
 
@@ -778,7 +851,16 @@ _在有序量表上给质量、风险或相关性打分。_
 - **[llm2jev](https://github.com/Yinsongxu/LLM2Jev)** — 把本地语言模型改造成 Jev 兼容的结构化决策引擎，输出 Choice、Score、Noul。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★286 · yinsongxu · `Py`</sub>
 
-已显示 **10 / 150** 条 · [在单独页面查看全部 150 条 →](docs/by-pattern/content-scoring.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)
+已显示 **10 / 164** 条 · [在单独页面查看全部 164 条 →](docs/by-pattern/content-scoring.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)
+
+### 实时推荐
+
+_选择下一步呈现什么，快到能用在实时会话里。_
+
+- **[Jevflix](https://github.com/ArielBubis/Jevflix)** — Jev 来挑，你来看。一个混合电影推荐器：快速的语义加关键词检索把 4,800 部电影缩小成短名单，再由 TypeSafe Jev 读懂你的请求并挑选。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★0 · arielbubis · `Py`</sub>
+
+已显示全部 1 条 · [单独页面](docs/by-pattern/recommendation.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=recommendation&lang=zh)
 
 ### 总览
 
@@ -814,7 +896,7 @@ _介绍模型或整个领域，而非单一模式。_
 - **[Jev 1.13 known limitations](https://docs.typesafe.ai/model-jaggedness/jev-1.13)** ⭐ — 厂商自己列出的失效场景：字面化理解、算术与计数、日期比较、间接指代、夹杂大量无关细节的长 state、对抗性内容。
   <sub>`官方文档`</sub>
 
-已显示 **10 / 329** 条 · [在单独页面查看全部 329 条 →](docs/by-pattern/overview.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)
+已显示 **10 / 451** 条 · [在单独页面查看全部 451 条 →](docs/by-pattern/overview.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)
 
 ## 按资源形态
 
@@ -822,18 +904,18 @@ _介绍模型或整个领域，而非单一模式。_
 
 | 形态 | 例子数 | 点开会看到 |
 | --- | :-- | --- |
-| **官方文档** | `31` █ | 厂商文档、cookbook 与模式页。 |
-| **SDK** | `53` █▋ | 客户端库，官方与社区。 |
-| **平台集成** | `32` █ | 接入模型的网关、框架或平台路径。 |
+| **官方文档** | `31` ▊ | 厂商文档、cookbook 与模式页。 |
+| **SDK** | `94` ██▎ | 客户端库，官方与社区。 |
+| **平台集成** | `34` ▉ | 接入模型的网关、框架或平台路径。 |
 | **代码片段** | ` 4` ▏ | 本仓库内的小型可运行样例。 |
-| **开源项目** | `504` ████████████████ | 真正在调用 Jev 的应用或库。 |
-| **插件** | `151` ████▊ | 可安装的编辑器、智能体、MCP 集成。 |
-| **教程** | ` 6` ▎ | 带代码的分步教学材料。 |
-| **基准测试** | `51` █▋ | 实测。注意区分独立实测与厂商自报。 |
-| **文章** | `12` ▍ | 讲解、分析与发布报道。 |
+| **开源项目** | `653` ████████████████ | 真正在调用 Jev 的应用或库。 |
+| **插件** | `238` █████▉ | 可安装的编辑器、智能体、MCP 集成。 |
+| **教程** | ` 9` ▎ | 带代码的分步教学材料。 |
+| **基准测试** | `70` █▊ | 实测。注意区分独立实测与厂商自报。 |
+| **文章** | `12` ▎ | 讲解、分析与发布报道。 |
 | **视频** | ` 3` ▏ | 演示与评测。 |
 | **讨论** | ` 2` ▏ | 值得读的讨论，包括质疑的声音。 |
-| **Jev 替代实现** | `35` █▏ | 独立复现实现。它们**不**调用 Jev。 |
+| **Jev 替代实现** | `57` █▍ | 独立复现实现。它们**不**调用 Jev。 |
 
 ## 本仓库还有什么
 
@@ -858,7 +940,7 @@ _介绍模型或整个领域，而非单一模式。_
 ## 哪些经过核实，哪些没有
 
 - ✅ **已核实** —— 该链接在 `checked` 日期返回成功状态；有人打开它、按页面实际内容写了摘要；含代码的行都读过调用处、确认了实际使用的原语；star 数与许可证来自 GitHub API。
-- 🔁 **每周复检** —— 有 799 行记录了其原语声明是在哪个文件里读到的。定时任务会从该仓库的默认分支重新读取，一旦声明不再成立就开 issue，因此上游把集成删掉了也不会留下一条假声明。刻意不锁 commit —— 锁了就会永远在校验一个历史快照。
+- 🔁 **每周复检** —— 有 1121 行记录了其原语声明是在哪个文件里读到的。定时任务会从该仓库的默认分支重新读取，一旦声明不再成立就开 issue，因此上游把集成删掉了也不会留下一条假声明。刻意不锁 commit —— 锁了就会永远在校验一个历史快照。
 - ❌ **未核实** —— 代码能否跑通、任何性能宣称是否成立、项目是否仍在维护、以及这些做法是否适合你的系统。本仓库没有执行过、压测过或做过安全审计。
 
 ### 这些标记是什么意思
@@ -894,7 +976,7 @@ _介绍模型或整个领域，而非单一模式。_
 
 | 文件 | 是什么 |
 | --- | --- |
-| [`catalog.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json) | 884 条目 |
+| [`catalog.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json) | 1207 条目 |
 | [`retired.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json) | 2 已退休 |
 | [`compat.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/compat.json) | The platform matrix behind `docs/compatibility.md` |
 | [`patterns.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/patterns.json) | The decision taxonomy both generators and the MCP server read |

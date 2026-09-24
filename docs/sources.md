@@ -13,7 +13,7 @@ source.
 <!-- sources:start -->
 | Source | URL | Rows |
 | --- | --- | --- |
-| sibling-list aggregate (docs/sibling-lists.txt) | <https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt> | 730 |
+| sibling-list aggregate (docs/sibling-lists.txt) | <https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt> | 1053 |
 | GitHub code search | <https://github.com/search> | 51 |
 | TypeSafe AI docs index | <https://docs.typesafe.ai/llms.txt> | 36 |
 | maintainer submission | <https://github.com/kydlikebtc/awesome-jev> | 20 |
@@ -76,19 +76,20 @@ Declared licences across the catalog's linked repositories:
 <!-- licences:start -->
 | Licence | Repositories |
 | --- | --- |
-| MIT | 527 |
-| None declared | 146 |
-| Apache-2.0 | 89 |
-| NOASSERTION (non-standard terms) | 35 |
-| AGPL-3.0 | 5 |
-| GPL-3.0 | 5 |
+| MIT | 735 |
+| None declared | 203 |
+| Apache-2.0 | 129 |
+| NOASSERTION (non-standard terms) | 49 |
+| AGPL-3.0 | 6 |
+| GPL-3.0 | 6 |
 | BSD-3-Clause | 2 |
 | CC0-1.0 | 2 |
-| GPL-2.0 | 1 |
+| GPL-2.0 | 2 |
+| CC-BY-4.0 | 1 |
 | LGPL-3.0 | 1 |
 <!-- licences:end -->
 
-In all, <!--n:no_licence-->146<!--/n--> linked projects declare no licence. If you
+In all, <!--n:no_licence-->203<!--/n--> linked projects declare no licence. If you
 plan to reuse code from one, that is a blocker, not a detail — check before you
 copy.
 

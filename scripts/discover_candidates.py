@@ -258,10 +258,19 @@ def inspect(slug: str) -> dict:
     if not isinstance(tree, dict) or "tree" not in tree:
         return {**out, "verdict": "tree-unavailable"}
 
+    # An extensionless file named after Jev is almost always a CLI script with a
+    # shebang (okooo5km/jev's lives at jev/scripts/jev); read those too.
     paths = [
         n["path"]
         for n in tree["tree"]
-        if n.get("type") == "blob" and n["path"].endswith(CODE_EXT)
+        if n.get("type") == "blob"
+        and (
+            n["path"].endswith(CODE_EXT)
+            or (
+                "." not in n["path"].rsplit("/", 1)[-1]
+                and re.search(r"jev|typesafe", n["path"].rsplit("/", 1)[-1], re.I)
+            )
+        )
     ]
     hinted = [p for p in paths if re.search(r"jev|typesafe", p, re.I)]
     # Same preference verify_claims.py applies. A fixture called fake_jev.py

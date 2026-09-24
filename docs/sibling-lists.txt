@@ -63,3 +63,4 @@ https://github.com/Gerry9000/awesome-jev
 https://github.com/onlyoasis/awesome-jev-cases
 https://github.com/yangzhou-chaofan/awesome-jev-prompt
 https://github.com/JingHao-Leon/awesome-jev-apps
+https://github.com/seeapi/awesome-jev-use-cases

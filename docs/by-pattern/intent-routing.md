@@ -4,7 +4,7 @@
 
 _Classify what the user wants and send the request down the right branch._
 
-Every catalogued example of this decision — 31 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#intent-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 35 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#intent-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en) can filter them further by language, primitive and kind.
 
 - **[Demo: Smart home assistant](https://docs.typesafe.ai/demos/smart-home)** ⭐ — Runnable demo code for a smart home assistant that evaluates user requests with typed decisions.
   <sub>`Official docs` · `Py`</sub>
@@ -69,11 +69,20 @@ Every catalogued example of this decision — 31 of them, official first, then r
 - **[jevyoumean](https://github.com/syumai/jevyoumean)** — Semantic "Did you mean?" for any CLI — wraps commands and uses TypeSafe's Jev to match subcommand typos by intent, not edit distance.
   <sub>`Project` · ★13 · syumai · `Go`</sub>
 
+- **[jevcache](https://github.com/kushals256/jevcache)** — Skip expensive LLM calls when TypeSafe Jev says same intent. OpenAI-compatible local cache proxy — npx @kushalicious/jevcache
+  <sub>`Project` · ★9 · kushals256 · `TS`</sub>
+
 - **[typesafe-jev-workflow](https://github.com/GiesN/typesafe-jev-workflow)** — A small async LangGraph workflow: each mocked email goes to Jev as a typed Choice (invoice or general) and the graph routes it to a demo handler. Classification makes real API calls; the handlers only set a destination.
   <sub>`Project` · ★9 · giesn · `Py` · ⚠ `no licence`</sub>
 
+- **[jev-ai-sdk-form-router](https://github.com/vercel-labs/jev-ai-sdk-form-router)** — Route form submissions to the right people with Jev and AI SDK.
+  <sub>`Project` · ★5 · vercel-labs · `TS`</sub>
+
 - **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)** — Jev (TypeSafe) vs Claude Haiku 4.5 on 2 000 phishing emails: accuracy, calibration, latency, cost. Reproducible benchmark.
   <sub>`Benchmark` · ★5 · anisselbd · `Py` · ⚠ `no licence`</sub>
+
+- **[jev-inbox-queue](https://github.com/tusharck/jev-inbox-queue)** — Turn an inbox into a short action queue with Jev (TypeSafe System One)
+  <sub>`Project` · ★1 · tusharck · `Py`</sub>
 
 - **[A deep dive into Jev, TypeSafe's System One model](https://flaviocopes.com/jev/)** — The densest independent explainer: code in JS, Python and the AI SDK, all three answer shapes, the advanced patterns, and an honest list of where the model fails.
   <sub>`Tutorial` · Flavio Copes · `JS` · `Py` · `TS` · `choice` · `score` · `noul`</sub>
@@ -86,6 +95,9 @@ Every catalogued example of this decision — 31 of them, official first, then r
 
 - **[Jev on Netlify AI Gateway](https://www.netlify.com/changelog/typesafe-jev-ai-gateway/)** — Zero-config access from a Netlify function: use the official SDK with no API key, base URL or provider setup, billed through Netlify credits.
   <sub>`Integration` · `TS` · `choice`</sub>
+
+- **[jev-eval](https://github.com/Shogo-nfrealmusic/jev-eval)** — A third-party check of Jev against two LLMs under identical conditions: routing booking inquiries to a photo-shoot service for tourists in Japan, sixty synthetic messages in four languages.
+  <sub>`Benchmark` · ★0 · shogo-nfrealmusic · `TS` · ⚠ `no licence`</sub>
 
 - **[lanebreak](https://github.com/ndolinschi/lanebreak)** — LaneBreak — support ticket priority+routing via TypeSafe Jev
   <sub>`Project` · ★0 · ndolinschi · `TS` · ⚠ `no licence`</sub>

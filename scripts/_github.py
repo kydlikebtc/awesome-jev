@@ -34,7 +34,7 @@ SELF = "kydlikebtc/awesome-jev"
 LANG_EXT: dict[str, tuple[str, ...]] = {
     "python": (".py",),
     "typescript": (".ts", ".tsx", ".mts", ".cts"),
-    "javascript": (".js", ".mjs", ".cjs", ".jsx"),
+    "javascript": (".js", ".mjs", ".cjs", ".jsx", ".gs"),  # .gs: Google Apps Script
     "go": (".go",),
     "rust": (".rs",),
     "shell": (".sh", ".bash"),

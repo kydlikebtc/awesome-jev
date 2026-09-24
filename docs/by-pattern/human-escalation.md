@@ -4,7 +4,7 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 60 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 67 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 - **[Cookbook: Classification using confidence](https://docs.typesafe.ai/cookbooks/classification_using_confidence)** ⭐ — Classifies annual reports into 75 industry groups, then reads the answer's own confidence to decide whether to report that group or the broader division above it.
   <sub>`Official docs` · `Py` · `choice`</sub>
@@ -68,6 +68,12 @@ Every catalogued example of this decision — 60 of them, official first, then r
 
 - **[jev-benchmarks](https://github.com/AbdelStark/jev-benchmarks)** — Probability-aware evaluation for typed decision models: calibration, selective risk, latency, and reproducible benchmarks.
   <sub>`Benchmark` · ★17 · abdelstark · `Py`</sub>
+
+- **[jeval](https://github.com/rlaope/jeval)** — Measures what your Jev classifier's confidence is really worth, and sets the human hand-off line from what a mistake costs.
+  <sub>`Project` · ★16 · rlaope · `Py`</sub>
+
+- **[muse-jev-playbook](https://github.com/Bodila51/muse-jev-playbook)** — Jev decision layer for Muse: a fast, cheap TypeSafe AI gate before expensive agent work — confidence policy, recipes, reference router, honest measurement.
+  <sub>`Plugin` · ★16 · bodila51 · `Py`</sub>
 
 - **[discern](https://github.com/doeixd/discern)** — Craft Type-Safe Uncertainty-aware semantic pattern matching, control flow, and smart procedures for Effect DecisionModel and Jev
   <sub>`Project` · ★12 · doeixd · `TS`</sub>
@@ -138,6 +144,9 @@ Every catalogued example of this decision — 60 of them, official first, then r
 - **[tenbin](https://github.com/simota/tenbin)** — MCP server and agent skill for the TypeSafe AI System One API (Jev): decompose a judgment into Choice / Score / Noul questions, lint them, measure on labelled data, and put calibrated thresholds in code
   <sub>`Plugin` · ★3 · simota · `TS`</sub>
 
+- **[grok-jev-guard](https://github.com/0xwhrari/grok-jev-guard)** — A typed preflight and approval layer for Grok Bot: local policy owns the hard boundaries, Jev judges the ambiguous cases, and Grok Bot executes within the envelope it gets back.
+  <sub>`Project` · ★2 · 0xwhrari · `Py`</sub>
+
 - **[jev-mcp-server](https://github.com/wangkuangkuang/jev-mcp-server)** — MCP server for Jev (TypeSafe System One): the three official question types — choice, score, noul — plus batch classify. Calibrated probabilities, ~0.5s, <$0.001/call.
   <sub>`Plugin` · ★2 · wangkuangkuang · `Py`</sub>
 
@@ -147,8 +156,14 @@ Every catalogued example of this decision — 60 of them, official first, then r
 - **[jevbus](https://github.com/zkjoie/jevbus)** — A streaming event bus whose routing, subscription and consumption are decided by a probabilistic judge. The reference judge is TypeSafe AI's Jev (System One) model: send it a payload and a set of typed questions, get back calibrated probabilities instead of prose.
   <sub>`Project` · ★2 · zkjoie · `Rs`</sub>
 
+- **[opencode-jev-guard](https://github.com/CogFlux/opencode-jev-guard)** — OpenCode 2 plugin that sends every shell command (local or via FarHand) to TypeSafe's Jev and asks you first when it leaves files outside the project, installs software globally, changes global settings, is harmful or exposes private data
+  <sub>`Plugin` · ★2 · cogflux · `TS`</sub>
+
 - **[toolgate](https://github.com/RiskAverseTech/toolgate)** — Open auto mode for AI agents — a calibrated tool-call firewall powered by TypeSafe Jev. Ships as a Claude Code hook
   <sub>`Plugin` · ★2 · riskaversetech · `TS`</sub>
+
+- **[toolgate](https://github.com/ndolinschi/toolgate)** — Agent tool/MCP call gate — allow / ask_human / deny via TypeSafe Jev
+  <sub>`Plugin` · ★2 · ndolinschi · `TS` · ⚠ `no licence`</sub>
 
 - **[watfile](https://github.com/jexp/watfile)** — Text/PDF - File categorization and sorting with Typesafe AI Jev or local calibrated decision model
   <sub>`Project` · ★2 · jexp · `Py` · ⚠ `no licence`</sub>
@@ -176,6 +191,12 @@ Every catalogued example of this decision — 60 of them, official first, then r
 
 - **[jev-calibration-audit](https://github.com/jujumilk3/jev-calibration-audit)** — Independent API-only calibration audit of TypeSafe AI's Jev decision model
   <sub>`Benchmark` · ★0 · jujumilk3 · `Py`</sub>
+
+- **[jev-guard](https://github.com/CMaintz/jev-guard)** — Vets an LLM agent's tool calls through TypeSafe AI's Jev before they run — allow, block, or hold, failing safe on uncertainty.
+  <sub>`Project` · ★0 · cmaintz · `TS`</sub>
+
+- **[jev-review](https://github.com/thiago-ss/jev-review)** — Autonomous Jev pull-request review with typed decisions, calibrated approval gates, and trusted-owner escalation
+  <sub>`Project` · ★0 · thiago-ss · `Py` · ⚠ `no licence`</sub>
 
 - **[jev-the-janitor](https://github.com/kylehovance-ai/jev-the-janitor)** — A janitor for markdown vaults powered by TypeSafe Jev: Jev votes on each note, your code files it, you review the low-confidence pile.
   <sub>`Project` · ★0 · kylehovance-ai · `Py`</sub>

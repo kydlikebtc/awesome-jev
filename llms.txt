@@ -1,12 +1,12 @@
 # awesome-jev
 
-> A catalogue of public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each example makes. <!--n:entries-->884<!--/n--> entries, every row attributable to a named source. <!--n:link_ok-->881<!--/n--> answered with a 2xx status on the last link sweep (<!--n:last_sweep-->2026-09-24<!--/n-->); the other <!--n:link_unstamped-->3<!--/n--> carry no `link_status` — see *What is verified* for why.
+> A catalogue of public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each example makes. <!--n:entries-->1207<!--/n--> entries, every row attributable to a named source. <!--n:link_ok-->1204<!--/n--> answered with a 2xx status on the last link sweep (<!--n:last_sweep-->2026-09-24<!--/n-->); the other <!--n:link_unstamped-->3<!--/n--> carry no `link_status` — see *What is verified* for why.
 
 Jev (https://docs.typesafe.ai/) returns typed decisions rather than text: a `choice` among up to 255 options, a `score` on an ordered 2-to-10 level scale, or a `noul` yes-no probability. This repository is an index of how people use it. It is not the product, not an SDK, and not affiliated with TypeSafe AI.
 
 ## Machine-readable data
 
-Catalog (<!--n:entries-->884<!--/n--> entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json
+Catalog (<!--n:entries-->1207<!--/n--> entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json
 Retired entries (dead links): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json
 JSON Schema for one entry: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/schema/entry.schema.json
 
@@ -44,7 +44,7 @@ Platform matrix: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/c
 
 Verified: the URL returned a success status on the date in `checked`; a person opened it and wrote the summary from what was actually on the page; for code entries, the call site was read to confirm which primitives are actually used; repository stars, licence and creation date came from the GitHub API.
 
-In all, <!--n:evidence_rows-->799<!--/n--> rows cite the exact file that shows the project calls Jev, and a scheduled job re-reads each one weekly from the repository's default branch — a removed integration upstream opens an issue here rather than leaving a false claim in place. That is a claim about *whether* a project calls Jev. The narrower claim about *which* primitives it calls is made by <!--n:primitive_rows-->100<!--/n--> rows, of which <!--n:primitive_rows_cited-->72<!--/n--> cite the file it was read in. The remaining rows carry `evidence_none` saying why no file can be cited (a docs page, a video, a paywalled article). This is the difference between a catalogue asserting it was verified and one that keeps proving it.
+In all, <!--n:evidence_rows-->1121<!--/n--> rows cite the exact file that shows the project calls Jev, and a scheduled job re-reads each one weekly from the repository's default branch — a removed integration upstream opens an issue here rather than leaving a false claim in place. That is a claim about *whether* a project calls Jev. The narrower claim about *which* primitives it calls is made by <!--n:primitive_rows-->100<!--/n--> rows, of which <!--n:primitive_rows_cited-->72<!--/n--> cite the file it was read in. The remaining rows carry `evidence_none` saying why no file can be cited (a docs page, a video, a paywalled article). This is the difference between a catalogue asserting it was verified and one that keeps proving it.
 
 A row with no `checked` or `link_status` is one whose host refuses scripted requests — a 403 from Forbes or Medium is not evidence a page is gone, so those rows were left unstamped rather than retired or falsely marked as verified.
 

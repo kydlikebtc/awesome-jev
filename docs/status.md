@@ -11,22 +11,20 @@ is the point of dating it.
 <!-- shape:start -->
 |  |  |
 | --- | --- |
-| Entries | 884 |
-| Carrying code | 860 |
+| Entries | 1207 |
+| Carrying code | 1183 |
 | Official (TypeSafe AI's own) | 36 |
-| Link answered 2xx on the last sweep (2026-09-24) | 881 |
-| Rows citing a call site CI re-reads weekly | 799 |
-| Patterns covered | 17 of 18 |
-| Chinese summaries hand-written | 187 of 884 |
+| Link answered 2xx on the last sweep (2026-09-24) | 1204 |
+| Rows citing a call site CI re-reads weekly | 1121 |
+| Patterns covered | 18 of 18 |
+| Chinese summaries hand-written | 196 of 1207 |
 | Retired links | 2 |
 <!-- shape:end -->
 
 ### Coverage gaps
 
 <!-- gaps:start -->
-No entries yet:
-
-- **`recommendation`** — Choose what to surface next, fast enough for a live conversation. The vendor lists it as a use case, and nothing has surfaced across every sibling directory harvested so far — by now a reasonably strong claim that nobody has published one.
+Every pattern has at least one entry.
 
 Empty kinds:
 
@@ -34,12 +32,12 @@ Empty kinds:
 
 Thin — under 2.5% of the catalogue:
 
-- `retry-control` (4 of 884) — Most apparent matches are false positives: an HTTP client advertising "observable retries" is not a retry decision. The first real one was a semantic circuit breaker asking whether an HTTP 200 is a silent failure.
-- `feature-extraction` (7 of 884)
-- `support-triage` (7 of 884)
-- `data-extraction` (12 of 884)
-- `document-triage` (16 of 884)
-- `context-compaction` (22 of 884)
+- `recommendation` (1 of 1207) — The first example is a movie recommender: retrieval narrows the field, and Jev parses the request and chooses from the shortlist.
+- `retry-control` (6 of 1207) — Most apparent matches are false positives: an HTTP client advertising "observable retries" is not a retry decision. The first real one was a semantic circuit breaker asking whether an HTTP 200 is a silent failure.
+- `feature-extraction` (8 of 1207)
+- `support-triage` (8 of 1207)
+- `data-extraction` (16 of 1207)
+- `document-triage` (20 of 1207)
 <!-- gaps:end -->
 
 Two holes are in the research rather than the ecosystem: **Reddit** produced
