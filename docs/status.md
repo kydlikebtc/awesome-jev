@@ -14,8 +14,9 @@ is the point of dating it.
 | Entries | 1207 |
 | Carrying code | 1183 |
 | Official (TypeSafe AI's own) | 36 |
-| Link answered 2xx on the last sweep (2026-09-24) | 1204 |
-| Rows citing a call site CI re-reads weekly | 1121 |
+| Links with a dated 2xx response record | 1204 |
+| Most recent successful link-check date (dates vary by row) | 2026-09-24 |
+| Rows with call-site text evidence recorded (not a CI pass count) | 1121 |
 | Patterns covered | 18 of 18 |
 | Chinese summaries hand-written | 196 of 1207 |
 | Retired links | 2 |
@@ -28,7 +29,7 @@ Every pattern has at least one entry.
 
 Empty kinds:
 
-- **`case-study`**. Projects are running this in production; none has published what it cost and what it changed.
+- **`case-study`**. The catalogue has no case study documenting both cost and observed outcomes.
 
 Thin — under 2.5% of the catalogue:
 
@@ -46,6 +47,12 @@ represented for the same reason. Both are gaps, not judgements.
 
 Run `python3 scripts/counts.py` for the full breakdown by kind, language and
 platform.
+
+Link counts describe dated response records, and evidence counts describe saved
+citations. They are not a count of successful current CI checks. The latest
+successful link-check date can differ from an individual row's date. Catalogue
+coverage does not imply that this repository ran the code or reproduced the
+linked performance measurements; see [the review limits](vetting.md).
 
 ## Snapshot at 2026-09-22: what week one looked like
 

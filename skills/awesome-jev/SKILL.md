@@ -5,7 +5,7 @@ description: Use when writing code that calls Jev, TypeSafe AI's System One deci
 
 # Building with Jev
 
-A verified catalogue of public Jev examples, indexed by the decision each one
+A source-attributed catalogue of public Jev examples, indexed by the decision each one
 makes. Use it to find how someone already solved the decision you are wiring up,
 and to avoid the mistakes that recur in this ecosystem.
 

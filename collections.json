@@ -1,0 +1,136 @@
+{
+  "collections": [
+    {
+      "id": "first-call",
+      "title": "Make your first call",
+      "title_zh": "第一次调用",
+      "description": "Start with the request shape, choose a question type, then decide how to handle uncertainty.",
+      "description_zh": "先看请求结构，再选问题类型，最后决定怎样处理不确定的答案。",
+      "entries": [
+        {
+          "slug": "typesafe-quickstart",
+          "reason": "Start a support-triage prototype with all three question types in one request; examples cover Python, JavaScript and cURL.",
+          "reason_zh": "适合从工单分流开始：一次请求体验三种问题类型，有 Python、JavaScript 和 cURL 示例。",
+          "caution": "An official worked example; this catalog has not run it or measured its performance.",
+          "caution_zh": "这是官方示例；本目录未执行代码，也未测量性能。"
+        },
+        {
+          "slug": "typesafe-primitives",
+          "reason": "Use this to choose between a category, an ordered rating and a yes/no probability before writing questions.",
+          "reason_zh": "适合设计第一个问题：先分清类别选择、有序评分和是非概率各自解决什么任务。",
+          "caution": "A Noul probability is not a score on a quality scale, and Noul has no separate confidence field.",
+          "caution_zh": "Noul 概率不是质量评分，且没有单独的 confidence 字段。"
+        },
+        {
+          "slug": "typesafe-confidence",
+          "reason": "Read before adding an act-or-escalate gate; it connects answer uncertainty to concrete application behavior.",
+          "reason_zh": "适合设计自动执行或转人工的分支，把答案的不确定性落实到应用行为。",
+          "caution": "The example thresholds are starting points; validate them on your own task and data.",
+          "caution_zh": "示例阈值只是起点，需要用自己的任务与数据验证。"
+        },
+        {
+          "slug": "typesafe-pattern-intent-routing",
+          "reason": "Build a small router that sends requests to code, a specialist model or a person from a fixed option set.",
+          "reason_zh": "适合搭建小型请求路由：从固定选项中选择代码、专用模型或人工处理。",
+          "caution": "Routing is a semantic judgment; your application still owns the handlers and fallback behavior.",
+          "caution_zh": "路由属于语义判断；处理程序与回退行为仍需由应用代码实现。"
+        },
+        {
+          "slug": "realpython-hello-jev",
+          "reason": "For Python learners: compare a plain Y/N program with a Noul-based station enquiry and a middle band that asks again.",
+          "reason_zh": "适合 Python 入门：对照只认 Y/N 的程序，理解 Noul 如何判断问询意图，并在中间概率区间追问。",
+          "caution": "The tutorial uses OpenRouter; check that provider's setup before copying the client configuration.",
+          "caution_zh": "教程使用 OpenRouter；复制客户端配置前先核对该网关的接入方式。"
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "title": "Find a project to adapt",
+      "title_zh": "找可改造项目",
+      "description": "Read the implementation behind a useful pattern. Selection means editorial relevance, not a runtime certification.",
+      "description_zh": "沿着具体实现学习可复用模式。入选代表编辑推荐，不代表已通过运行验证。",
+      "entries": [
+        {
+          "slug": "cua-jev-use",
+          "reason": "Adapt bounded browser-action selection with reserved abstain/reobserve options and a credential-free mock loop.",
+          "reason_zh": "适合改造浏览器动作选择：固定候选集、保留放弃和重新观察选项，并提供无密钥 mock 循环。",
+          "caution": "The mock validates the integration loop, not live Jev decisions; live use needs separate verification.",
+          "caution_zh": "mock 验证集成循环，不证明真实 Jev 的决策效果；在线调用需要单独验证。"
+        },
+        {
+          "slug": "fastmcp-jev-search",
+          "reason": "Adapt two-stage MCP tool search: coarse ranking, then a Noul per shortlisted tool so no match can return an empty result.",
+          "reason_zh": "适合改造 MCP 工具检索：先粗排，再逐候选问 Noul，让没有匹配工具时可以返回空结果。",
+          "caution": "The transform is experimental. Tool descriptions influence ranking; tune thresholds before relying on its choices.",
+          "caution_zh": "该 transform 仍属实验功能，工具描述会影响排序；依赖其选择前需要调试阈值。"
+        },
+        {
+          "slug": "autogpt-typesafe-blocks",
+          "reason": "Study workflow blocks for routing, filtering and batching, with explicit request budgets and raw-response handling.",
+          "reason_zh": "适合参考工作流组件：路由、过滤与批量提问，同时学习请求预算和原始响应处理。",
+          "caution": "The byte budget is an integration safeguard, not a token count; inspect the relevant component license before reuse.",
+          "caution_zh": "字节预算是集成侧保护措施，不等于 token 计数；复用前需核对具体组件的许可。"
+        },
+        {
+          "slug": "fast-jev-compaction",
+          "reason": "Study selective context compaction: decide separately whether each tool call and its full result still matter.",
+          "reason_zh": "适合研究选择性上下文压缩：分别判断工具调用本身与完整结果是否还需要保留。",
+          "caution": "Keeping retained text verbatim does not prevent useful items from being dropped. Compare recall on your own tasks.",
+          "caution_zh": "保留内容逐字不变，也可能误删有用条目；需要在自己的任务上比较召回效果。"
+        },
+        {
+          "slug": "lancedb-typesafe-reranker",
+          "reason": "Adapt a retrieval reranker that asks one Noul per result and orders candidates by relevance probability.",
+          "reason_zh": "适合改造检索重排：对每条候选结果问一个 Noul，再按相关性概率排序。",
+          "caution": "Cross-query comparability is the integration's design claim, not an independently reproduced result in this catalog.",
+          "caution_zh": "跨查询可比较是该集成的设计主张，本目录未独立复现这一效果。"
+        }
+      ]
+    },
+    {
+      "id": "measured",
+      "title": "Read independent measurements",
+      "title_zh": "看独立实测",
+      "description": "Third-party reports, including failures and decisions not to adopt. Their results have not been reproduced by this catalog.",
+      "description_zh": "阅读第三方报告，包括失败案例与不采用的决定。本目录未复现这些结果。",
+      "entries": [
+        {
+          "slug": "lindfors-early-access-test",
+          "reason": "Study uncertainty and question wording on Norwegian documents, with disagreements and the measurement method exposed.",
+          "reason_zh": "适合研究非英语文档上的不确定性与问题措辞，原文公开了分歧案例和测量方法。",
+          "caution": "Only 24 documents; reference labels came from two passes of the same LLM, so agreement is not human-adjudicated accuracy.",
+          "caution_zh": "仅 24 篇文档，参考标签来自同一 LLM 的两轮标注；一致率不等于经人工裁定的准确率。"
+        },
+        {
+          "slug": "nearhere-three-way-comparison",
+          "reason": "Compare Jev, Mistral and Gemini on one event-validation task, including the product cost of rejecting valid listings.",
+          "reason_zh": "适合比较同一活动校验任务中的 Jev、Mistral 与 Gemini，并关注误拒有效活动的产品代价。",
+          "caution": "Prompts used the main test cases during selection; the small additional sample does not establish a general accuracy advantage.",
+          "caution_zh": "主测试集参与了提示词选择；额外样本很小，不能据此推断通用准确率优势。"
+        },
+        {
+          "slug": "hermes-agent-jev-evaluation",
+          "reason": "Read a decision not to adopt Jev compaction after comparing it with an existing summarizer and a recency baseline.",
+          "reason_zh": "适合判断是否替换压缩器：项目对比现有摘要器与时间顺序基线后，公开了不采用 Jev 的结论。",
+          "caution": "This is one project's compaction evaluation, not a verdict on every task that uses Jev.",
+          "caution_zh": "这是单个项目的上下文压缩评估，不能外推到所有使用 Jev 的任务。"
+        },
+        {
+          "slug": "worldmonitor-shadow-mode",
+          "reason": "Study a news-classification trial that retained shadow mode after Jev tied the incumbent in a blind evaluation.",
+          "reason_zh": "适合学习新闻分类试运行：盲测与现有模型打平后，项目保留了影子运行模式。",
+          "caution": "The catalog records shadow-only use; an integration in source code does not mean Jev controls production labels or alerts.",
+          "caution_zh": "目录记录的是仅影子运行；代码中存在集成，不代表 Jev 控制生产标签或告警。"
+        },
+        {
+          "slug": "no-mistakes-review-context",
+          "reason": "Learn why a review-context ranker was removed: poor candidate coverage limited the benefit that ranking could deliver.",
+          "reason_zh": "适合分析排序无效的原因：候选覆盖不足限制了代码审查上下文重排的收益，最终功能被移除。",
+          "caution": "A historical removal report; the default branch no longer contains this integration to copy.",
+          "caution_zh": "这是历史移除报告；默认分支已经没有这套可直接复制的集成。"
+        }
+      ]
+    }
+  ]
+}

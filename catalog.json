@@ -52710,8 +52710,8 @@
   {
     "slug": "jev-ci-selector",
     "title": "jev-ci-selector",
-    "summary": "Conservative CI task selection for GitHub Actions with Jev, a pure policy engine, and shadow mode by default.",
-    "summary_zh": "为 GitHub Actions 做保守的 CI 任务选择：Jev 加一个纯策略引擎，默认以影子模式运行。",
+    "summary": "CI task selection for GitHub Actions with Jev and a pure policy engine; current selection is applied by default, with an explicit shadow mode for observation.",
+    "summary_zh": "为 GitHub Actions 做 CI 任务选择：Jev 加一个纯策略引擎；当前默认实际应用选择，可显式开启影子模式观察。",
     "url": "https://github.com/guilhem/jev-ci-selector",
     "kind": "project",
     "patterns": [
@@ -52734,6 +52734,10 @@
       {
         "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
         "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "Upstream README: default-mode recheck (2026-09-24)",
+        "url": "https://github.com/guilhem/jev-ci-selector#readme"
       }
     ],
     "license": "CC0-1.0",
@@ -52750,8 +52754,8 @@
     "languages": [
       "typescript"
     ],
-    "notes": "Runs in shadow mode by default; it only skips work once you switch it on.",
-    "notes_zh": "默认以影子模式运行；只有你手动开启后才会真正跳过任务。",
+    "notes": "The current README states that selection is applied by default (enforce); set mode: shadow to keep all tasks while observing proposals. Its GitHub About text still says shadow mode by default. The default threshold is experimental; a skipped task is a policy decision, not a guarantee that it cannot find a regression.",
+    "notes_zh": "当前 README 明确默认应用选择（enforce）；设置 mode: shadow 才会保留所有任务、只观察建议。GitHub About 仍写默认影子模式。默认阈值属于实验设置；跳过任务是策略决定，不保证该任务无法发现回归。",
     "checked": "2026-09-24",
     "link_status": 200
   },

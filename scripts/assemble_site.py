@@ -29,7 +29,7 @@ ROOT = _stats.ROOT
 SITE = ROOT / "site"
 
 # Every data file the site fetches at runtime, copied verbatim.
-RUNTIME_FILES = ("catalog.json", "compat.json", "patterns.json", "taxonomy.json")
+RUNTIME_FILES = ("catalog.json", "compat.json", "patterns.json", "taxonomy.json", "collections.json")
 
 
 def stats_payload() -> dict:

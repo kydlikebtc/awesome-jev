@@ -15,7 +15,7 @@ build-backend = "hatchling.build"
 [project]
 name = "awesome-jev-mcp"
 version = "0.1.0"
-description = "An MCP server over a verified catalogue of public Jev examples, indexed by the decision each one makes"
+description = "An MCP server over a source-attributed catalogue of public Jev examples, indexed by the decision each one makes"
 readme = "src/awesome_jev_mcp/README.md"
 requires-python = ">=3.10"
 license = "MIT"

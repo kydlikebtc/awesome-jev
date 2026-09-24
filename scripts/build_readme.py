@@ -133,11 +133,15 @@ EN = {
     "other_readme": "README.zh-CN.md",
     "other_name": "中文",
     "site_label": "Searchable site",
+    "collection_first": "First call",
+    "collection_build": "Adapt a project",
+    "collection_measured": "Independent reports",
     "tagline": (
-        "Every public example of Jev — TypeSafe AI's System One decision model — "
+        "Public resources for Jev — TypeSafe AI's System One decision model — "
         "indexed by the decision it makes, not by the blog that mentioned it."
     ),
     "generated": "This file is generated from catalog.json. Edit the catalog, then run `python3 scripts/build_readme.py`.",
+    "badge_note": "Counts describe saved link and evidence records, not current CI passes or runtime tests.",
     "shot_alt": "The awesome-jev site: a coverage histogram down the left acting as the pattern filter, dense entry cards on the right",
     "shot_cap": 'Filter by clicking a bar. Two more views: <a href="https://kydlikebtc.github.io/awesome-jev/?view=prims">primitives</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat">compatibility</a>. Every filter and entry is a shareable URL.',
     # ---- what this is ----
@@ -153,14 +157,14 @@ EN = {
             "made. The resource you read this week is disposable; the decision pattern is not.",
         ),
         (
-            "**Why trust it:** every row names where it came from, says which primitives the code "
-            "actually calls, and flags what a reader deserves to know before clicking. "
-            "There are dozens of Jev lists — this one competes on verification, not on size.",
+            "**How to assess it:** every row names its source. Call-site citations, primitive "
+            "claims and caveats are recorded where available, so you can inspect what was read "
+            "and what remains untested.",
         ),
     ],
     "about_not": (
         "Not the product, not an SDK, not affiliated with TypeSafe AI, and not a recommendation. "
-        "A row means the link resolved and a person read it — nothing more. "
+        "Inclusion is a source record, not a runtime or performance endorsement. "
         "See [what is verified](#what-is-verified-and-what-is-not)."
     ),
     # ---- primitives ----
@@ -185,21 +189,20 @@ EN = {
     "l_vetting": "Vetting",
     "cov_alt": "Horizontal bar chart of how many catalog examples exist for each of the eighteen decision patterns",
     "prim_alt": "Three panels describing the choice, score and noul primitives and what each returns",
-    "coverage_after": "Two patterns have no examples yet. Both are plausible fits nobody appears to have published — see [`docs/status.md`](docs/status.md).",
     "start_h": "Start here",
     "start_intro": 'Six things in reading order. Hand-picked, because "most starred" is not the same as "read this first".',
     "th_why_read": "Why this one",
     "coverage_h": "Coverage",
     "coverage_intro": (
-        "Every decision pattern, sized by how many examples exist. This doubles as the index — "
+        "Every decision pattern, sized by how many entries this catalogue contains. This doubles as the index — "
         "the names link to the sections below. A zero is a research gap, not a rendering bug."
     ),
     "measured_h": "Measured, not claimed",
     "measured_intro": (
-        "Almost every performance number circulating about this model is the vendor's own, produced "
-        "with reference answers derived from other models' judgements rather than human ground truth. "
-        "These are the independent measurements in the catalog — several are **negative results**, "
-        "which is exactly why they are worth reading first."
+        "Independent measurement reports in the catalogue, including **negative results** that "
+        "help explain where an approach fails. These are the original authors' measurements; "
+        "this repository has not independently reproduced them. Check each report's dataset, "
+        "method and model version before comparing results."
     ),
     "patterns_h": "By decision pattern",
     "patterns_intro": (
@@ -215,23 +218,31 @@ EN = {
     "th_file": "File",
     "th_what": "What it is",
     "verified_h": "What is verified, and what is not",
-    "stat_rechecked": "claims re--checked",
+    "stat_rechecked": "evidence recorded",
     "verified_recheck": (
-        "**Re-checked weekly** — {n} rows record the file their primitive claim was read in. "
-        "A scheduled job re-reads each one from the repository's default branch and opens an "
-        "issue if the claim stopped holding, so an upstream removal cannot leave a false claim "
-        "sitting here. Deliberately unpinned to a commit: pinning would verify a historical "
-        "snapshot forever."
+        "**Call-site text checks** — {n} rows record a file and matching strings in `evidence`. "
+        "The weekly [claims job](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) "
+        "checks that those strings remain on the default branch and reports missing text or files. "
+        "This count measures recorded evidence, **not latest CI passes**. A text match does not "
+        "prove that a call executes, the API is compatible, or the result is correct."
     ),
     "verified_yes": (
-        "**Verified** — the URL returned a success status on the date in `checked`; a person opened "
-        "it and wrote the summary from what was there; for code rows the call site was read to "
-        "confirm which primitives are used; stars and licences came from the GitHub API."
+        "**Link checks** — {link_ok} rows carry an HTTP 2xx response and a `checked` date; "
+        "{link_unstamped} carry no dated success record. Dates vary by row and a past success "
+        "does not guarantee availability today. Stars and licences are repository metadata snapshots."
+    ),
+    "verified_read": (
+        "**Source and code review** — `evidence.path` cites the file read, `evidence.read_on` "
+        "records the reported review date, and `evidence_none` explains missing file evidence. "
+        "Reading a call site is separate from running it. Summaries include source descriptions "
+        "and machine translations; see the [method and its limits](docs/method.md)."
     ),
     "verified_no": (
-        "**Not verified** — whether the code runs, whether any performance claim holds, whether a "
-        "project is maintained, or whether any of this suits your system. Nothing here has been "
-        "executed, load-tested or security-reviewed."
+        "**Runtime and performance not independently tested here** — treat every catalogue entry "
+        "as untested by this repository, including entries without `code-untested`. Linked "
+        "benchmarks describe their authors' measurements; this catalogue has not reproduced them. "
+        "Repository build checks and package smoke tests do not exercise those integrations or "
+        "the live Jev API, and inclusion is not a security review."
     ),
     "verified_flags_h": "What the tags mean",
     "th_tag": "Tag",
@@ -278,7 +289,7 @@ EN = {
     "stat_entries": "entries",
     "stat_with_code": "with code",
     "stat_official": "official",
-    "stat_verified": "link-verified",
+    "stat_verified": "dated 2xx",
     "stat_patterns": "patterns",
     "stat_retired": "retired",
 }
@@ -288,11 +299,15 @@ ZH = {
     "other_readme": "README.md",
     "other_name": "English",
     "site_label": "可搜索站点",
+    "collection_first": "第一次调用",
+    "collection_build": "改造现有项目",
+    "collection_measured": "独立测量报告",
     "tagline": (
-        "全网 Jev（TypeSafe AI 的 System One 决策模型）使用例子索引 —— "
+        "Jev（TypeSafe AI 的 System One 决策模型）公开资源索引 —— "
         "按它做的**决策**归类，而不是按提到它的博客归类。"
     ),
     "generated": "本文件由 catalog.json 生成。请修改目录数据后运行 `python3 scripts/build_readme.py`。",
+    "badge_note": "数字统计已保存的链接与证据记录，不代表当前 CI 通过数或运行测试结果。",
     "shot_alt": "awesome-jev 站点：左侧覆盖度直方图兼作模式筛选器，右侧是密集的条目卡片",
     "shot_cap": '点击条形即可筛选。另有两个视图：<a href="https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh">三个原语</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh">兼容性矩阵</a>。每个筛选条件和每个条目都是可分享的 URL。',
     "about_h": "这是什么",
@@ -306,13 +321,13 @@ ZH = {
             "你这周读的那篇资料是一次性的，决策模式不是。",
         ),
         (
-            "**凭什么可信：**每一行都写明来源、写明代码实际调用了哪些原语、"
-            "并标出点开前该知道的事。Jev 的列表有几十个 —— 这一个竞争的是核实严谨度，不是收录数量。",
+            "**如何判断可信度：**每一行都写明来源；有依据时记录调用点、原语声明和注意事项，"
+            "方便你查看读过什么，以及哪些部分仍未实测。",
         ),
     ],
     "about_not": (
         "不是产品本身，不是 SDK，与 TypeSafe AI 无隶属关系，也不构成推荐。"
-        "收录只意味着链接可访问、并且有人读过 —— 仅此而已。"
+        "收录是一份来源记录，不代表运行验证或性能背书。"
         "详见[哪些经过核实](#哪些经过核实哪些没有)。"
     ),
     "prims_h": "Jev 返回什么",
@@ -332,20 +347,18 @@ ZH = {
     "l_vetting": "核查指南",
     "cov_alt": "十八个决策模式各有多少个目录条目的横向条形图",
     "prim_alt": "三个面板，分别说明 choice、score、noul 三个原语各自返回什么",
-    "coverage_after": "有两个模式目前没有例子。两者都是合理的适用场景，只是还没人公开发表 —— 见 [`docs/status.md`](docs/status.md)。",
     "start_h": "从这里开始",
     "start_intro": "六条，按阅读顺序。手工挑选 —— 因为「star 最多」和「该先读哪个」不是一回事。",
     "th_why_read": "为什么是它",
     "coverage_h": "覆盖度",
     "coverage_intro": (
-        "全部决策模式，按例子数量排列长度。这张表同时就是索引 —— 名称链接到下面对应章节。"
+        "全部决策模式，按本目录的收录数量排列长度。这张表同时就是索引 —— 名称链接到下面对应章节。"
         "数字为 0 的是待补的研究缺口，不是渲染 bug。"
     ),
     "measured_h": "实测，而非宣称",
     "measured_intro": (
-        "关于这个模型流传的性能数字几乎全是厂商自测，而且参考答案由其他模型的判断推导而来、"
-        "不是人工 ground truth。下面这些是本目录里的独立实测 —— 其中几条是**负面结果**，"
-        "这恰恰是它们值得先读的原因。"
+        "本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，"
+        "本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。"
     ),
     "patterns_h": "按决策模式",
     "patterns_intro": (
@@ -360,20 +373,28 @@ ZH = {
     "th_file": "文件",
     "th_what": "是什么",
     "verified_h": "哪些经过核实，哪些没有",
-    "stat_rechecked": "\u58f0\u660e\u53ef\u590d\u68c0",
+    "stat_rechecked": "已记录证据",
     "verified_recheck": (
-        "**每周复检** —— 有 {n} 行记录了其原语声明是在哪个文件里读到的。"
-        "定时任务会从该仓库的默认分支重新读取，一旦声明不再成立就开 issue，"
-        "因此上游把集成删掉了也不会留下一条假声明。刻意不锁 commit —— "
-        "锁了就会永远在校验一个历史快照。"
+        "**调用点文本复查** —— 有 {n} 行通过 `evidence` 记录了文件和匹配字符串。"
+        "每周 [claims 任务](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) "
+        "检查这些字符串是否仍在默认分支，发现文本或文件缺失时报告。"
+        "这个数字是已记录的证据数量，**不是最新 CI 通过数**。文本匹配不能证明调用实际执行、"
+        "API 兼容或结果正确。"
     ),
     "verified_yes": (
-        "**已核实** —— 该链接在 `checked` 日期返回成功状态；有人打开它、按页面实际内容写了摘要；"
-        "含代码的行都读过调用处、确认了实际使用的原语；star 数与许可证来自 GitHub API。"
+        "**链接检查** —— 有 {link_ok} 行记录了 HTTP 2xx 响应和 `checked` 日期，"
+        "另有 {link_unstamped} 行没有带日期的成功记录。检查日期因条目而异，过去成功不保证今天仍可访问。"
+        "star 数和许可证也是仓库元数据的快照。"
+    ),
+    "verified_read": (
+        "**来源与代码阅读** —— `evidence.path` 指向所读文件，`evidence.read_on` 记录声明的阅读日期，"
+        "`evidence_none` 解释缺少文件证据的原因。阅读调用点与运行代码是两件事。"
+        "摘要包含源项目描述与机翻，详见[方法与局限](docs/method.md)。"
     ),
     "verified_no": (
-        "**未核实** —— 代码能否跑通、任何性能宣称是否成立、项目是否仍在维护、"
-        "以及这些做法是否适合你的系统。本仓库没有执行过、压测过或做过安全审计。"
+        "**本仓库未独立验证运行与性能** —— 所有目录条目默认都未经本仓库实测，没有 "
+        "`code-untested` 标签也不代表已测试。被收录的基准是原作者的测量，本目录没有独立复现。"
+        "仓库构建检查与安装包冒烟测试不运行这些集成，也不调用 Jev 在线 API；收录亦不代表安全审计。"
     ),
     "verified_flags_h": "这些标记是什么意思",
     "th_tag": "标记",
@@ -416,7 +437,7 @@ ZH = {
     "stat_entries": "条目",
     "stat_with_code": "含代码",
     "stat_official": "官方",
-    "stat_verified": "链接已核实",
+    "stat_verified": "带日期的2xx",
     "stat_patterns": "覆盖模式",
     "stat_retired": "已退休",
 }
@@ -684,6 +705,35 @@ def render_page(key: str, rows: list[dict], strings: dict) -> str:
     return "\n".join(out)
 
 
+def coverage_note(stats: dict, lang: str) -> str:
+    """Describe current catalogue coverage without inferring ecosystem absence."""
+    missing = [key for key, count in stats["by_pattern"].items() if count == 0]
+    total = len(stats["by_pattern"])
+    if lang == "zh":
+        if missing:
+            statement = (
+                f"本目录有 {len(missing)} 个模式尚未收录条目："
+                + "、".join(f"`{key}`" for key in missing)
+                + "。未收录不代表其他地方没有公开案例。"
+            )
+        elif total:
+            statement = f"全部 {total} 个模式均已收录条目。覆盖不代表已运行验证或各模式成熟度相同。"
+        else:
+            statement = "尚未配置决策模式，因此暂不报告覆盖率。"
+        return statement + " 详见 [`docs/status.md`](docs/status.md)。"
+    if missing:
+        statement = (
+            f"{len(missing)} patterns have no entries in this catalogue: "
+            + ", ".join(f"`{key}`" for key in missing)
+            + ". Absence here does not establish absence elsewhere."
+        )
+    elif total:
+        statement = f"All {total} patterns have at least one catalogue entry. Coverage does not imply runtime testing or equal maturity."
+    else:
+        statement = "No decision patterns are configured, so coverage is not reported yet."
+    return statement + " See [`docs/status.md`](docs/status.md)."
+
+
 def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) -> str:
     lang = strings["lang_code"]
     out: list[str] = []
@@ -698,13 +748,12 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     live_patterns = [key for key in PATTERN_ORDER if by_pattern[key]]
     live_kinds = [key for key in KIND_ORDER if by_kind[key]]
     # Counted in _stats so the badges, docs/status.md, llms.txt and the site's
-    # meta tags all use one definition of "with code" or "link-verified".
+    # meta tags all use one definition of "with code" or dated link records.
     stats = _stats.compute()
     with_code, official = stats["with_code"], stats["official"]
-    verified = stats["link_ok"]
-    # Rows citing a file a machine re-reads weekly: the difference between
-    # asserting verification and having it.
-    rechecked = stats["evidence_rows"]
+    link_records = stats["link_ok"]
+    # Recorded citations are not the result of the latest scheduled check.
+    evidence_records = stats["evidence_rows"]
 
     # ---- header ----
     add("<!--")
@@ -713,7 +762,9 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add("")
     add('<div align="center">')
     add("")
-    add("# awesome-jev")
+    add('# <img src="site/favicon.svg" width="36" height="36" alt=""> awesome-jev')
+    add("")
+    add("<sub>Jev Decision Atlas</sub>")
     add("")
     add(f"**{strings['tagline']}**")
     add("")
@@ -721,11 +772,11 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
         f"[![lint]({REPO_URL}/actions/workflows/lint.yml/badge.svg)]({REPO_URL}/actions/workflows/lint.yml) "
         f"[![links]({REPO_URL}/actions/workflows/links.yml/badge.svg)]({REPO_URL}/actions/workflows/links.yml) "
         f"[![entries](https://img.shields.io/badge/{strings['stat_entries']}-{len(catalog)}-f5a524?style=flat-square)]({SITE}) "
-        f"[![verified](https://img.shields.io/badge/{strings['stat_verified'].replace(' ', '%20').replace('-', '--')}-{verified}-3fb950?style=flat-square)]({SITE}) "
-        f"[![rechecked](https://img.shields.io/badge/{strings['stat_rechecked'].replace(' ', '%20')}-{rechecked}-58a6ff?style=flat-square)]({REPO_URL}/actions/workflows/claims.yml) "
-        "[![data](https://img.shields.io/badge/data-CC0--1.0-8b949e?style=flat-square)](LICENSE-CC0) "
-        "[![code](https://img.shields.io/badge/code-MIT-8b949e?style=flat-square)](LICENSE-MIT)"
+        f"[![dated HTTP 2xx records](https://img.shields.io/badge/{strings['stat_verified'].replace(' ', '%20').replace('-', '--')}-{link_records}-4ec97a?style=flat-square)]({SITE}) "
+        f"[![evidence records](https://img.shields.io/badge/{strings['stat_rechecked'].replace(' ', '%20')}-{evidence_records}-a9b3c0?style=flat-square)]({REPO_URL}/actions/workflows/claims.yml)"
     )
+    add("")
+    add(f"<sub>{strings['badge_note']}</sub>")
     add("")
     add(
         f"[{strings['site_label']}]({SITE}) &nbsp;·&nbsp; "
@@ -733,6 +784,12 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
         f"[{strings['l_patterns']}](docs/patterns.md) &nbsp;·&nbsp; "
         f"[{strings['l_compat']}](docs/compatibility.md) &nbsp;·&nbsp; "
         f"[{strings['l_vetting']}](docs/vetting.md)"
+    )
+    add("")
+    add(
+        f"[{strings['collection_first']}]({SITE}?collection=first-call&lang={lang}) &nbsp;·&nbsp; "
+        f"[{strings['collection_build']}]({SITE}?collection=build&lang={lang}) &nbsp;·&nbsp; "
+        f"[{strings['collection_measured']}]({SITE}?collection=measured&lang={lang})"
     )
     add("")
     # Rendered from the live site on every Pages deploy (render_images.py) and
@@ -817,7 +874,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     )
     add("</picture>")
     add("")
-    add(strings["coverage_after"])
+    add(coverage_note(stats, lang))
     add("")
 
     # ---- measured results: the differentiator, surfaced early ----
@@ -891,8 +948,9 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     # ---- verification ----
     add(f"## {strings['verified_h']}")
     add("")
-    add(f"- ✅ {strings['verified_yes']}")
-    add(f"- 🔁 {strings['verified_recheck'].replace('{n}', str(rechecked))}")
+    add(f"- 🔗 {strings['verified_yes'].format(**stats)}")
+    add(f"- 📖 {strings['verified_read']}")
+    add(f"- 🔁 {strings['verified_recheck'].replace('{n}', str(evidence_records))}")
     add(f"- ❌ {strings['verified_no']}")
     add("")
     add(f"### {strings['verified_flags_h']}")

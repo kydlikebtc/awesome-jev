@@ -1,7 +1,7 @@
 {
   "name": "awesome-jev",
   "version": "0.1.0",
-  "description": "Build with Jev, TypeSafe AI's decision model: a skill for the facts generated code most often gets wrong, and an MCP server over a verified catalogue of public examples indexed by the decision each one makes.",
+  "description": "Build with Jev, TypeSafe AI's decision model: a skill for the facts generated code most often gets wrong, and an MCP server over a source-attributed catalogue of public examples indexed by the decision each one makes.",
   "author": {
     "name": "kydlikebtc",
     "url": "https://github.com/kydlikebtc"

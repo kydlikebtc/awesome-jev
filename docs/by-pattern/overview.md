@@ -861,7 +861,7 @@ Every catalogued example of this decision — 451 of them, official first, then 
 - **[jev-broadcast-lab](https://github.com/4anti/jev-broadcast-lab)** — Testing Lab for Jev AI
   <sub>`Project` · ★2 · 4anti · `JS` · ⚠ `no licence`</sub>
 
-- **[jev-ci-selector](https://github.com/guilhem/jev-ci-selector)** — Conservative CI task selection for GitHub Actions with Jev, a pure policy engine, and shadow mode by default.
+- **[jev-ci-selector](https://github.com/guilhem/jev-ci-selector)** — CI task selection for GitHub Actions with Jev and a pure policy engine; current selection is applied by default, with an explicit shadow mode for observation.
   <sub>`Project` · ★2 · guilhem · `TS`</sub>
 
 - **[jev-cloud-quiz](https://github.com/minorun365/jev-cloud-quiz)** — A demo in which Jev judges, with probabilities, which of the three big clouds a feature name belongs to.

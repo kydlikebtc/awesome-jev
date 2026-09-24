@@ -861,7 +861,7 @@ _介绍模型或整个领域，而非单一模式。_
 - **[jev-broadcast-lab](https://github.com/4anti/jev-broadcast-lab)** — Jev 的测试实验室。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★2 · 4anti · `JS` · ⚠ `无许可证`</sub>
 
-- **[jev-ci-selector](https://github.com/guilhem/jev-ci-selector)** — 为 GitHub Actions 做保守的 CI 任务选择：Jev 加一个纯策略引擎，默认以影子模式运行。 <sub>(机翻)</sub>
+- **[jev-ci-selector](https://github.com/guilhem/jev-ci-selector)** — 为 GitHub Actions 做 CI 任务选择：Jev 加一个纯策略引擎；当前默认实际应用选择，可显式开启影子模式观察。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★2 · guilhem · `TS`</sub>
 
 - **[jev-cloud-quiz](https://github.com/minorun365/jev-cloud-quiz)** — 一个演示：由 TypeSafe AI 的 System One 模型 Jev 带概率地判断某个功能名属于三大云中的哪一家。 <sub>(机翻)</sub>
