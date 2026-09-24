@@ -94,6 +94,35 @@ def cover(lang: str, theme: str) -> str:
     return '\n'.join(out)
 
 
+def mobile_cover(lang: str, theme: str) -> str:
+    """Use a separate composition so a narrow README keeps readable type."""
+    c = THEMES[theme]
+    lines = (
+        ("Examples by task.", "Evidence in view.")
+        if lang == "en" else ("按场景找案例，", "沿证据做判断。")
+    )
+    desc = (
+        "Jev Decision Atlas: public Jev examples organised by task, with source evidence."
+        if lang == "en" else "Jev 决策图谱：按场景整理公开案例，保留来源与证据。"
+    )
+    return '\n'.join([
+        '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="260" viewBox="0 0 600 260" role="img" aria-labelledby="title description">',
+        '<title id="title">awesome-jev · Jev Decision Atlas</title>',
+        f'<desc id="description">{escape(desc)}</desc>',
+        f'<style>text{{font-family:{SANS};fill:{c["fg"]}}}.muted{{fill:{c["muted"]}}}</style>',
+        f'<rect x=".5" y=".5" width="599" height="259" rx="16" fill="{c["bg"]}" stroke="{c["line"]}"/>',
+        '<rect x="34" y="28" width="36" height="36" rx="8" fill="#0b0d10"/>',
+        '<rect x="42" y="50" width="5" height="7" rx="1.5" fill="#4ec97a"/>',
+        '<rect x="49.5" y="43" width="5" height="14" rx="1.5" fill="#a9b3c0"/>',
+        '<rect x="57" y="36" width="5" height="21" rx="1.5" fill="#f5a524"/>',
+        '<text x="85" y="54" font-size="20" font-weight="600" letter-spacing="1.1" class="muted">JEV DECISION ATLAS</text>',
+        '<text x="32" y="140" font-size="64" font-weight="750" letter-spacing="-2.6">awesome<tspan fill="' + c["amber"] + '">-</tspan>jev</text>',
+        f'<text x="35" y="185" font-size="27">{escape(lines[0])}</text>',
+        f'<text x="35" y="220" font-size="27">{escape(lines[1])}</text>',
+        '</svg>\n',
+    ])
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="report stale generated covers without modifying files")
@@ -103,18 +132,19 @@ def main() -> int:
         OUT.mkdir(parents=True, exist_ok=True)
     for lang in COPY:
         for theme in THEMES:
-            path = OUT / f"readme-cover-{lang}-{theme}.svg"
-            content = cover(lang, theme)
-            if args.check:
-                if not path.exists() or path.read_text(encoding="utf-8") != content:
-                    stale.append(str(path.relative_to(ROOT)))
-            else:
-                path.write_text(content, encoding="utf-8")
+            for suffix, render in (("", cover), ("-mobile", mobile_cover)):
+                path = OUT / f"readme-cover-{lang}-{theme}{suffix}.svg"
+                content = render(lang, theme)
+                if args.check:
+                    if not path.exists() or path.read_text(encoding="utf-8") != content:
+                        stale.append(str(path.relative_to(ROOT)))
+                else:
+                    path.write_text(content, encoding="utf-8")
     if stale:
         print("Stale README covers; run python3 scripts/build_readme_cover.py:")
         print("\n".join(stale))
         return 1
-    print("README covers are current" if args.check else "Wrote 4 README covers (1200 × 300) to docs/assets/")
+    print("README covers are current" if args.check else "Wrote 8 README covers (desktop 1200 × 300; mobile 600 × 260) to docs/assets/")
     return 0
 
 

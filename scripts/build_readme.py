@@ -796,6 +796,8 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add('<a name="-awesome-jev"></a>')
     add("")
     add('<picture>')
+    add(f'  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-{lang}-dark-mobile.svg">')
+    add(f'  <source media="(max-width: 600px)" srcset="docs/assets/readme-cover-{lang}-light-mobile.svg">')
     add(f'  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-{lang}-dark.svg">')
     cover_alt = "awesome-jev — Jev Decision Atlas. 按场景找案例，沿证据做判断。" if lang == "zh" else "awesome-jev — Jev Decision Atlas. Examples by task. Evidence in view."
     add(f'  <img src="docs/assets/readme-cover-{lang}-light.svg" alt="{cover_alt}" width="100%">')

@@ -7,6 +7,8 @@
 <a name="-awesome-jev"></a>
 
 <picture>
+  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-en-dark-mobile.svg">
+  <source media="(max-width: 600px)" srcset="docs/assets/readme-cover-en-light-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-en-dark.svg">
   <img src="docs/assets/readme-cover-en-light.svg" alt="awesome-jev — Jev Decision Atlas. Examples by task. Evidence in view." width="100%">
 </picture>
