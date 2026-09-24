@@ -15,7 +15,8 @@
 
 TypeSafe AI Jev 的公开资源目录，按开发者要做的决策组织。
 
-**[可搜索站点 ↗](https://kydlikebtc.github.io/awesome-jev/?lang=zh)** &nbsp; · &nbsp; [English](README.md) &nbsp; · &nbsp; [决策模式](docs/patterns.md) &nbsp; · &nbsp; [兼容性](docs/compatibility.md) &nbsp; · &nbsp; [核查指南](docs/vetting.md)
+**[可搜索站点 ↗](https://kydlikebtc.github.io/awesome-jev/?lang=zh)** &nbsp; · &nbsp; [English](README.md)<br>
+[决策模式](docs/patterns.md) &nbsp; · &nbsp; [兼容性](docs/compatibility.md) &nbsp; · &nbsp; [核查指南](docs/vetting.md)
 
 **1,207** 公开资源 &nbsp; · &nbsp; **1,204** 链接成功记录 &nbsp; · &nbsp; **1,121** 调用点记录
 

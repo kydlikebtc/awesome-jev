@@ -15,7 +15,8 @@
 
 Public resources for TypeSafe AI’s Jev, organised by the decision you need to make.
 
-**[Searchable site ↗](https://kydlikebtc.github.io/awesome-jev/?lang=en)** &nbsp; · &nbsp; [中文](README.zh-CN.md) &nbsp; · &nbsp; [Patterns](docs/patterns.md) &nbsp; · &nbsp; [Compatibility](docs/compatibility.md) &nbsp; · &nbsp; [Vetting](docs/vetting.md)
+**[Searchable site ↗](https://kydlikebtc.github.io/awesome-jev/?lang=en)** &nbsp; · &nbsp; [中文](README.zh-CN.md)<br>
+[Patterns](docs/patterns.md) &nbsp; · &nbsp; [Compatibility](docs/compatibility.md) &nbsp; · &nbsp; [Vetting](docs/vetting.md)
 
 **1,207** Public resources &nbsp; · &nbsp; **1,204** Dated 2xx links &nbsp; · &nbsp; **1,121** Call-site records
 

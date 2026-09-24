@@ -806,7 +806,8 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     intro = "TypeSafe AI Jev 的公开资源目录，按开发者要做的决策组织。" if lang == "zh" else "Public resources for TypeSafe AI’s Jev, organised by the decision you need to make."
     add(intro)
     add("")
-    add(f"**[{strings['site_label']} ↗]({SITE}?lang={lang})** &nbsp; · &nbsp; [{strings['other_name']}]({strings['other_readme']}) &nbsp; · &nbsp; [{strings['l_patterns']}](docs/patterns.md) &nbsp; · &nbsp; [{strings['l_compat']}](docs/compatibility.md) &nbsp; · &nbsp; [{strings['l_vetting']}](docs/vetting.md)")
+    add(f"**[{strings['site_label']} ↗]({SITE}?lang={lang})** &nbsp; · &nbsp; [{strings['other_name']}]({strings['other_readme']})<br>")
+    add(f"[{strings['l_patterns']}](docs/patterns.md) &nbsp; · &nbsp; [{strings['l_compat']}](docs/compatibility.md) &nbsp; · &nbsp; [{strings['l_vetting']}](docs/vetting.md)")
     add("")
     # Local native text keeps these values selectable and readable without
     # external badge services. Scope definitions remain directly beside them.
