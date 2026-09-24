@@ -153,7 +153,7 @@ _智能体下一步该调用哪个工具或动作。_
 - **[jev-mem](https://github.com/libingzheren/Jev-Mem)** — Jev-Mem：由 System One 控制的智能体记忆。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★56 · libingzheren · `Py`</sub>
 
-- **[jev-social](https://github.com/socai-io/jev-social)** — 只读的 Instagram、TikTok 与 LinkedIn 调研：Jev 先路由平台，再从最新浏览器证据中选择受限的 SocAI CLI 动作；代码校验目标并保留来源链接。 <sub>(机翻)</sub>
+- **[jev-social](https://github.com/socai-io/jev-social)** — 只读的 Instagram、TikTok 与 LinkedIn 调研：Jev 先路由平台，再从最新浏览器证据中选择受限的 socai CLI 动作；代码校验目标并保留来源链接。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★53 · socai-io · `JS` · `choice` · ⚠ `需第三方密钥`</sub>
 
 - **[pi-jev](https://github.com/TheoOliveira/pi-jev)** — 为 Pi 编码智能体提供语义化的工具路由和带类型的 System One 决策，基于 TypeSafe Jev。 <sub>(机翻)</sub>

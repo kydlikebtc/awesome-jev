@@ -57,7 +57,7 @@ Every catalogued example of this decision — 31 of them, official first, then r
 - **[ha-jev](https://github.com/AboveColin/HA-Jev)** — A Home Assistant integration: typed answers as sensors, with actions for automations.
   <sub>`Integration` · ★58 · abovecolin · `Py`</sub>
 
-- **[jev-social](https://github.com/socai-io/jev-social)** — Read-only Instagram, TikTok and LinkedIn research: Jev routes the platform and selects each bounded SocAI CLI action from fresh browser evidence; code validates targets and preserves source links.
+- **[jev-social](https://github.com/socai-io/jev-social)** — Read-only Instagram, TikTok and LinkedIn research: Jev routes the platform and selects each bounded socai CLI action from fresh browser evidence; code validates targets and preserves source links.
   <sub>`Project` · ★53 · socai-io · `JS` · `choice` · ⚠ `3rd-party key`</sub>
 
 - **[hono-jev-router](https://github.com/yusukebe/hono-jev-router)** — Routes HTTP requests by meaning — a semantic router for a web framework.

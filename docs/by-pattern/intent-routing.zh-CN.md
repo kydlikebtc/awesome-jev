@@ -57,7 +57,7 @@ _判断用户意图，把请求分流到正确的分支。_
 - **[ha-jev](https://github.com/AboveColin/HA-Jev)** — 一个 Home Assistant 集成：把类型化答案变成传感器，并提供可用于自动化的动作。
   <sub>`平台集成` · ★58 · abovecolin · `Py`</sub>
 
-- **[jev-social](https://github.com/socai-io/jev-social)** — 只读的 Instagram、TikTok 与 LinkedIn 调研：Jev 先路由平台，再从最新浏览器证据中选择受限的 SocAI CLI 动作；代码校验目标并保留来源链接。 <sub>(机翻)</sub>
+- **[jev-social](https://github.com/socai-io/jev-social)** — 只读的 Instagram、TikTok 与 LinkedIn 调研：Jev 先路由平台，再从最新浏览器证据中选择受限的 socai CLI 动作；代码校验目标并保留来源链接。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★53 · socai-io · `JS` · `choice` · ⚠ `需第三方密钥`</sub>
 
 - **[hono-jev-router](https://github.com/yusukebe/hono-jev-router)** — 按语义路由 HTTP 请求 —— 给 Web 框架做的语义路由器。

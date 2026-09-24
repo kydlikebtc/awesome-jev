@@ -7093,8 +7093,8 @@
   {
     "slug": "jev-social",
     "title": "jev-social",
-    "summary": "Read-only Instagram, TikTok and LinkedIn research: Jev routes the platform and selects each bounded SocAI CLI action from fresh browser evidence; code validates targets and preserves source links.",
-    "summary_zh": "只读的 Instagram、TikTok 与 LinkedIn 调研：Jev 先路由平台，再从最新浏览器证据中选择受限的 SocAI CLI 动作；代码校验目标并保留来源链接。",
+    "summary": "Read-only Instagram, TikTok and LinkedIn research: Jev routes the platform and selects each bounded socai CLI action from fresh browser evidence; code validates targets and preserves source links.",
+    "summary_zh": "只读的 Instagram、TikTok 与 LinkedIn 调研：Jev 先路由平台，再从最新浏览器证据中选择受限的 socai CLI 动作；代码校验目标并保留来源链接。",
     "zh_machine": true,
     "url": "https://github.com/socai-io/jev-social",
     "kind": "project",
@@ -7139,8 +7139,8 @@
     "flags": [
       "third-party-api-key"
     ],
-    "notes": "Corrected by its maintainer. Jev selects only from code-built, read-only actions; SocAI executes them in a logged-in Chrome session. TikTok media download is offered only after explicit user intent. OpenRouter sees the goal and selected evidence snippets. The recorded 64-second report is one dated local run, not a benchmark.",
-    "notes_zh": "由维护者本人更正。Jev 只能从代码生成的只读动作中选择，SocAI 在已登录的 Chrome 会话中执行。只有用户明确要求时才提供 TikTok 媒体下载。OpenRouter 会接收目标与筛选后的证据片段。README 中 64 秒报告只是一次带日期的本地运行，不是基准测试。",
+    "notes": "Corrected by its maintainer. Jev selects only from code-built, read-only actions; socai executes them in a logged-in Chrome session. TikTok media download is offered only after explicit user intent. OpenRouter sees the goal and selected evidence snippets. The recorded 64-second report is one dated local run, not a benchmark.",
+    "notes_zh": "由维护者本人更正。Jev 只能从代码生成的只读动作中选择，socai 在已登录的 Chrome 会话中执行。只有用户明确要求时才提供 TikTok 媒体下载。OpenRouter 会接收目标与筛选后的证据片段。README 中 64 秒报告只是一次带日期的本地运行，不是基准测试。",
     "languages": [
       "javascript"
     ],

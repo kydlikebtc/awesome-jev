@@ -153,7 +153,7 @@ Every catalogued example of this decision — 161 of them, official first, then 
 - **[jev-mem](https://github.com/libingzheren/Jev-Mem)** — Jev-Mem: System-One Controlled Agentic Memory
   <sub>`Project` · ★56 · libingzheren · `Py`</sub>
 
-- **[jev-social](https://github.com/socai-io/jev-social)** — Read-only Instagram, TikTok and LinkedIn research: Jev routes the platform and selects each bounded SocAI CLI action from fresh browser evidence; code validates targets and preserves source links.
+- **[jev-social](https://github.com/socai-io/jev-social)** — Read-only Instagram, TikTok and LinkedIn research: Jev routes the platform and selects each bounded socai CLI action from fresh browser evidence; code validates targets and preserves source links.
   <sub>`Project` · ★53 · socai-io · `JS` · `choice` · ⚠ `3rd-party key`</sub>
 
 - **[pi-jev](https://github.com/TheoOliveira/pi-jev)** — Semantic tool routing and typed System One decisions for the Pi coding agent using TypeSafe Jev
