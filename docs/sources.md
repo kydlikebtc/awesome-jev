@@ -37,6 +37,7 @@ source.
 | OpenRouter providers | <https://openrouter.ai/providers> | 1 |
 | Pydantic AI docs | <https://pydantic.dev/docs/ai/models/> | 1 |
 | Spring blog | <https://spring.io/blog> | 1 |
+| Upstream README: default-mode recheck (2026-09-24) | <https://github.com/guilhem/jev-ci-selector#readme> | 1 |
 | Vercel changelog | <https://vercel.com/changelog> | 1 |
 | Vercel docs | <https://vercel.com/docs/ai-gateway> | 1 |
 | Vercel knowledge base | <https://vercel.com/kb> | 1 |

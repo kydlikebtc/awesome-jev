@@ -70,8 +70,9 @@ def shape_block(s: dict) -> str:
             ["Entries", s["entries"]],
             ["Carrying code", s["with_code"]],
             ["Official (TypeSafe AI's own)", s["official"]],
-            [f"Link answered 2xx on the last sweep ({s['last_sweep']})", s["link_ok"]],
-            ["Rows citing a call site CI re-reads weekly", s["evidence_rows"]],
+            ["Links with a dated 2xx response record", s["link_ok"]],
+            ["Most recent successful link-check date (dates vary by row)", s["last_sweep"]],
+            ["Rows with call-site text evidence recorded (not a CI pass count)", s["evidence_rows"]],
             ["Patterns covered", f"{s['patterns_covered']} of {s['patterns_total']}"],
             ["Chinese summaries hand-written", f"{s['zh_hand']} of {s['entries']}"],
             ["Retired links", s["retired"]],
@@ -87,8 +88,8 @@ def shape_block(s: dict) -> str:
 GAP_NOTES = {
     ("recommendation", "empty"): (
         "The vendor lists it as a use case, and nothing has surfaced across every "
-        "sibling directory harvested so far — by now a reasonably strong claim that "
-        "nobody has published one."
+        "sibling directory harvested so far. This is a gap in this catalogue, "
+        "not proof that no example has been published."
     ),
     ("recommendation", "thin"): (
         "The first example is a movie recommender: retrieval narrows the field, and "
@@ -100,8 +101,7 @@ GAP_NOTES = {
         "semantic circuit breaker asking whether an HTTP 200 is a silent failure."
     ),
     ("case-study", "empty"): (
-        "Projects are running this in production; none has published what it cost "
-        "and what it changed."
+        "The catalogue has no case study documenting both cost and observed outcomes."
     ),
 }
 
@@ -194,8 +194,8 @@ def meta_block(s: dict) -> str:
     site and a link to the repo can no longer describe different catalogues."""
     text = html.escape(_stats.pitch(s), quote=True)
     alt = html.escape(
-        "A decision readout: should_you_star_this? answered 0.97. awesome-jev — "
-        f"{s['entries']} verified examples of TypeSafe AI's Jev, indexed by the "
+        "awesome-jev — "
+        f"{s['entries']} public resources for TypeSafe AI's Jev, indexed by the "
         "decision each one makes.",
         quote=True,
     )

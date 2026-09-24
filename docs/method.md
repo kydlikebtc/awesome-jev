@@ -42,19 +42,26 @@ is weakest. If you want to reproduce or audit it, this is the page.
   accepted only `typesafe.ai` hosts, which wrongly rejected the vendor's own
   GitHub org. The rule was widened to the org and no further.
 
-## Claims are re-checked, not just asserted
+## Call-site text is re-checked separately from human review
 
 A row carrying `question_types` asserts which primitives a project's code calls.
 That was true when a person read the call site, and nothing stopped it going
 stale — an upstream refactor could remove the integration entirely and this
 catalog would keep claiming it.
 
-So every such row records `evidence`: the file the claim was read in, and
-strings from that file that substantiate it. `scripts/verify_claims.py` fetches
+Readable repository sources record `evidence`: the file the claim was read in,
+strings from that file, and the reported reading date in `read_on`.
+`scripts/verify_claims.py` fetches
 each one from the repository's default branch and asserts those strings are
 still there. A scheduled job runs it weekly and opens an issue on failure,
-rather than failing the build — an upstream rename is a false positive, and a
-permanently red repo teaches people to ignore the signal.
+rather than failing the build — a moved file needs a reviewer to distinguish a
+rename from a removed integration.
+
+The evidence count is the number of stored citations, not the number that passed
+the latest job. A successful string match establishes only that those strings
+remain in the fetched file. It does not execute a call path, check API
+compatibility, reproduce performance, or renew the human review date. The
+workflow report and any resulting issue must be read to assess its latest run.
 
 Deliberately unpinned to a commit. Pinning would verify a historical snapshot
 forever and never notice a removal, which defeats the purpose.
@@ -239,12 +246,15 @@ When sources disagree:
 
 ## Known limits
 
-- **No code was executed and the live API was never called.** Early access is
-  gated. Every row with code was read, not run. The in-repo examples carry
-  `code-untested` for the same reason.
+- **Catalogue code and the live API were not executed as part of this review.**
+  Treat all rows as untested by this repository, even when `code-untested` is
+  absent. That flag is an additional caveat, not a complete testing-status
+  field. Repository generation checks and package smoke tests validate this
+  repository's tooling; they do not test the catalogued integrations against
+  the live API.
 - **Performance claims were not reproduced.** Rows repeating vendor benchmarks
-  carry `vendor-reported`. The independent measurements catalogued here are few,
-  and that ratio is itself a finding.
+  carry `vendor-reported`. Independent reports keep their authors' methods and
+  limitations; inclusion does not turn those reports into our own reproduction.
 - **Reddit produced nothing verifiable.** Four retrieval routes failed. There is
   no Reddit row, which is a gap rather than a judgement that none exists.
 - **X/Twitter is barely represented**, for the same reason.
@@ -298,7 +308,7 @@ catalogue passed 800, and no build ever went red.
 | Labels for patterns, kinds and flags | When the taxonomy changes | One copy each, in `patterns.json` and `taxonomy.json`, read by the README generators and by the site at runtime. `lint` checks both against the schema; `lint_docs` checks `docs/patterns.md` has a section for each pattern. |
 | Model strings and limits | When the vendor or a gateway ships | One source, `compat.json`. `lint_docs` checks every copy — in docs, examples, and the generated README and figures — against it. `claims` re-reads each platform's documentation weekly and opens an issue if a recorded string disappears. |
 | Link status, stars, licences, archive status | Continuously, upstream | `metadata` weekly: stamps every link that answers, re-reads the GitHub API, rebuilds everything generated, runs the whole lint chain, commits to `main`, and redeploys the site. It opens an issue only for a change that is more than a star count, and falls back to a branch if `main` moved underneath it. `links` weekly is the separate alarm for a dead link, which only a person may retire. The site shows the date of the sweep its figure comes from. |
-| Whether a cited call site still exists | Continuously, upstream | `claims` weekly re-reads every `evidence` file and opens an issue for anything moved or removed. |
+| Whether cited text is still present | Continuously, upstream | `claims` is scheduled weekly to fetch each `evidence` file and report missing strings or files. Counts show citations recorded, not CI passes, and the job does not update the human `read_on` date. |
 | What the catalogue is missing | Continuously, upstream | `discover` weekly: harvests every sibling directory, reads the code of the most-cited uncatalogued repositories, searches for sibling directories not yet harvested, and files one issue. It never adds a row. |
 | Dated history | Never | This page's log sections are append-only and exempt from the number rules: what the first build found is true forever. |
 

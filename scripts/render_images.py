@@ -10,8 +10,8 @@ half-megabyte PNG every week.
 
   img/og.png           card.html?mode=live — the site's og:image, live figures
   img/card.png         card.html — the durable card for GitHub's social preview,
-                       which has to be uploaded by hand; its only figure is a
-                       floor ("800+") that growth can only understate
+                       which has to be uploaded by hand; it contains no figures
+                       or dates that can become stale
   img/site-en.png      the site, English — the README hero image
   img/site-zh.png      the site, Chinese — the Chinese README hero image
   img/site-compat.png  the compatibility view — docs/compatibility.md
@@ -46,13 +46,25 @@ SITE = ROOT / "site"
 OUT = SITE / "img"
 BUDGET_MS = 15000
 
-# (output name, page, viewport, a string the rendered DOM must contain)
+# (output name, page, viewport, strings the rendered DOM must contain)
 TARGETS = (
-    ("og.png", "card.html?mode=live", (1280, 640), "should_you_star_this?"),
-    ("card.png", "card.html", (1280, 640), "should_you_star_this?"),
-    ("site-en.png", "index.html?lang=en", (1200, 900), "Tool selection"),
-    ("site-zh.png", "index.html?lang=zh", (1200, 900), "工具选择"),
-    ("site-compat.png", "index.html?lang=en&view=compat", (1200, 900), "typesafe/jev"),
+    (
+        "og.png", "card.html?mode=live", (1280, 640),
+        (
+            'data-mode="live"', "Jev Decision Atlas", "indexed examples",
+            "link checked · 2xx", "call-site cited",
+        ),
+    ),
+    (
+        "card.png", "card.html", (1280, 640),
+        (
+            'data-mode="durable"', "Jev Decision Atlas", "Browse by task",
+            "Check link status", "Read call-site citations",
+        ),
+    ),
+    ("site-en.png", "index.html?lang=en", (1200, 900), ("Tool selection",)),
+    ("site-zh.png", "index.html?lang=zh", (1200, 900), ("工具选择",)),
+    ("site-compat.png", "index.html?lang=en&view=compat", (1200, 900), ("typesafe/jev",)),
 )
 
 CANDIDATES = (
@@ -127,7 +139,7 @@ def main() -> int:
             # survives a failed render is exactly the bug this script removes.
             target.unlink(missing_ok=True)
             dom = chrome(binary, size, "--dump-dom", url).stdout
-            if 'data-ready="1"' not in dom or expect not in dom:
+            if 'data-ready="1"' not in dom or not all(text in dom for text in expect):
                 failures.append(f"{name}: {page} never finished rendering its data")
                 continue
             chrome(binary, size, f"--screenshot={target}", url)

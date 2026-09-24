@@ -27,13 +27,34 @@ jobs:
         run: |
           python3 -c "
           import json
-          for path in ('catalog.json', 'retired.json', 'compat.json', 'patterns.json', 'taxonomy.json', 'schema/entry.schema.json'):
+          for path in ('catalog.json', 'retired.json', 'compat.json', 'patterns.json', 'taxonomy.json', 'collections.json', 'schema/entry.schema.json'):
               json.load(open(path))
               print(f'  ok {path}')
           "
 
       - name: Validate entries against the schema
         run: python3 scripts/lint.py
+
+      - name: Validate curated entry points and their regression checks
+        run: |
+          python3 scripts/check_collections.py
+          python3 -m unittest discover -s scripts/tests
+          python3 -m unittest discover -s tests
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Catalog filtering and sorting regression checks
+        run: node --test scripts/test_catalog_core.mjs
+
+      - name: Assembled site data is complete and current
+        run: |
+          python3 scripts/assemble_site.py
+          python3 scripts/check_site_data.py
+
+      - name: Preview images render with the current catalogue
+        run: python3 scripts/render_images.py
 
       # `git status --porcelain`, not `git diff --quiet`: the pattern pages are
       # created and deleted as patterns gain or lose entries, and git diff cannot
@@ -80,6 +101,9 @@ jobs:
       # examples" while the catalogue grew to 805. Checked on the same push
       # that changes the count, because that is when it goes stale.
       - name: Published description still matches the catalogue
+        # A PR may intentionally revise the public pitch; its branch should
+        # not require changing the live repository description before review.
+        if: github.event_name != 'pull_request'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/check_description.py

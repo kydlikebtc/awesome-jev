@@ -1,9 +1,9 @@
 # Contributing
 
-This catalog competes on verification, not on size. There are dozens of Jev
-directories; the reason to use this one is that every row was opened by a person
-and says what it does not know. A submission that adds a link without adding
-that confidence makes the list worse, not longer.
+This catalog is built around traceable sources and explicit limits. A submission
+should say what you inspected and what remains unknown. A link, a code reading,
+a text-matching check and a successful API run are different kinds of evidence;
+do not present one as another.
 
 So the bar is: **could a reader act on this row without opening the link?**
 
@@ -66,8 +66,8 @@ turns red.
   claims. "Routes support tickets with a choice and a score" beats "revolutionary
   AI-powered triage".
 - **`summary_zh`** — write it yourself if you can. If you machine-translated it,
-  set `zh_machine: true`. The READMEs report the split; claiming hand-written
-  Chinese that is not is the one thing that would quietly make the data untrue.
+  set `zh_machine: true`. The READMEs report the split. This field describes
+  translation provenance, not code quality or runtime testing.
 - **`kind`** — the form of the thing. Use `alternative` for anything that does
   not call Jev, however Jev-shaped it is.
 - **`patterns`** — which decisions it demonstrates. Read
@@ -89,7 +89,9 @@ turns red.
   Prefer the implementation over a test file: tests get deleted while features
   stay, and a mocked string is weaker proof than a real call site. When the
   source is a docs page, a video or a paywalled post, set `evidence_none`
-  instead and say which.
+  instead and say which. Set `read_on` to the date you actually read that file;
+  do not advance it after an automated text check. An `evidence` record is a
+  citation, not a stored CI pass or proof that the integration executes.
 - **`official`** — true only for `typesafe.ai` hosts and the `typesafe-ai`
   GitHub org. A first-party integration published by another vendor is not
   official. The linter checks this.
@@ -119,6 +121,13 @@ Use them generously. A flagged row is more useful than an unflagged one.
 
 `ai-generated`, `unverified-claims` and `code-untested` require a `notes` line
 saying why — a flag a reader cannot interpret is worse than no flag.
+
+All catalogue code is **untested by this repository by default**, including rows
+without `code-untested`. That flag adds a caveat; its absence must never be used
+as a passed-test signal. Upstream benchmark results belong to their authors and
+have not been independently reproduced here. A future runtime-verification claim
+needs a dated report with the source revision, environment, model version and
+result; neither `checked` nor `evidence.read_on` is a substitute.
 
 ## What does not belong here
 
@@ -184,9 +193,11 @@ site.
 
 ## Adding a runnable example
 
-See [`examples/README.md`](examples/README.md). Two patterns have no example yet
-— `retry-control` and `recommendation` — and either would be a genuinely useful
-contribution. Say plainly in the file whether you ran it against the live API.
+See [`examples/README.md`](examples/README.md) for the runnable examples maintained
+inside this repository. Their coverage is separate from the public resources in
+the catalogue; use [`docs/status.md`](docs/status.md) for current catalogue gaps.
+Say plainly in the file whether you ran it against the live API, and include a
+reproducible test record before claiming that you did.
 
 ## Ground rules
 

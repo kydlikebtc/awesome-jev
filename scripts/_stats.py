@@ -1,7 +1,7 @@
 """The one definition of every number this project publishes about itself.
 
 build_readme, build_docs, check_description and counts.py each used to count
-"with code" or "link-verified" on their own. They happened to agree. A number
+"with code" or "dated 2xx records" on their own. They happened to agree. A number
 that appears in the README badge, the status page, llms.txt, the site meta tags
 and the repository description has to be computed once, or sooner or later two
 of those surfaces will disagree and a reader will reasonably trust neither.
@@ -33,13 +33,14 @@ def load() -> tuple[list[dict], list[dict], list[dict], dict, dict]:
 
 
 def link_ok(entry: dict) -> bool:
-    return 200 <= (entry.get("link_status") or 0) < 300
+    """A dated successful HTTP response, not a current availability guarantee."""
+    return bool(entry.get("checked")) and 200 <= (entry.get("link_status") or 0) < 300
 
 
 def compute() -> dict:
     catalog, retired, patterns, compat, schema = load()
     by_pattern = Counter(p for e in catalog for p in e["patterns"])
-    swept = [e["checked"] for e in catalog if e.get("checked")]
+    swept = [e["checked"] for e in catalog if link_ok(e)]
     siblings = [
         line
         for line in (ROOT / "docs" / "sibling-lists.txt").read_text().splitlines()
@@ -53,7 +54,8 @@ def compute() -> dict:
         "link_unstamped": sum(1 for e in catalog if not link_ok(e)),
         "last_sweep": max(swept) if swept else "never",
         "retired": len(retired),
-        # A row with evidence cites a file that proves it calls Jev at all.
+        # Evidence counts recorded citations, not successful CI checks or
+        # executed integrations. CI results do not live in catalog.json.
         "evidence_rows": sum(1 for e in catalog if e.get("evidence")),
         # A row with question_types additionally asserts *which* primitives.
         # Different claims; publishing one number for both would overstate it.
@@ -83,8 +85,8 @@ def pitch(stats: dict) -> str:
     """The one-line description used by the GitHub repository and the site's
     meta tags. One function, so the two cannot drift into different sentences."""
     return (
-        f"{stats['entries']} verified examples of Jev — TypeSafe AI's System One "
-        "decision model — indexed by the decision each one makes, not the blog "
-        "that mentioned it. Every cited call site is re-read by CI each week. "
-        "Bilingual EN/中文, JSON schema, and a cross-platform compatibility table."
+        f"{stats['entries']} public resources for Jev, TypeSafe AI's System One "
+        "decision model, indexed by decision pattern. Source citations, dated link "
+        "checks and scheduled call-site text checks; runtime and performance are "
+        "not independently tested here. EN/中文, JSON schema and platform compatibility."
     )

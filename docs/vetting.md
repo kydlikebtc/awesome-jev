@@ -1,8 +1,9 @@
 # Before you trust an entry
 
-A row in this catalog means a link resolved and a person read it. It does not
-mean the code runs, the numbers hold, or the design suits you. Here is what to
-check, roughly in order of how often it bites.
+A row in this catalog is a source record. Its `checked` date, call-site citation
+and review notes describe different checks; none means the code runs, the
+numbers hold, or the design suits you. Here is what to check, roughly in order
+of how often it bites.
 
 ## The one thing most people get wrong
 
@@ -31,10 +32,17 @@ deliberately fails closed. Copy that shape, not the shape that trusts the score.
 - [ ] **Are the numbers measured or repeated?** `vendor-reported` means the row
       carries the vendor's own benchmark figures. Those were produced with
       reference answers derived from other models' judgements rather than human
-      ground truth. Independent measurements are `kind: benchmark` without that
-      flag, and there are only a handful.
-- [ ] **Was the code run?** `code-untested` means read, not executed — including
-      for the examples in this repository.
+      ground truth. Use `kind: benchmark` to find measurement reports, then read
+      the methodology and attribution; a category or absent flag is not proof
+      of quality or independent reproduction.
+- [ ] **Was the code run?** All catalogue code is untested by this repository,
+      including rows without `code-untested` and the in-repo API examples.
+      That flag is an additional caveat, not the inverse of a passed-test status.
+      A linked benchmark is its authors' measurement, not our reproduction.
+- [ ] **What does the citation establish?** `evidence.read_on` is the reported
+      date a person read the cited file. The scheduled claims job only checks
+      that recorded strings remain in it. A stored citation is not a latest-CI
+      result, and a string match does not prove the call runs.
 - [ ] **Is it maintained?** `single-commit` and `archived` exist because this
       ecosystem is days old and a four-figure star count can sit on top of one
       commit. Check the last push date yourself.
@@ -80,8 +88,11 @@ the order and treat it as part of your prompt.
 
 ## What a green link proves
 
-That the URL answered on the date in `checked`. Nothing else. Do not present any
-row here as vetted, recommended, or safe.
+That the URL returned a 2xx status on the date in `checked`. Dates vary by row;
+the newest date shown for the catalogue is not the check date for every entry.
+A row without a dated success record is not counted as link-checked. A past
+response does not guarantee availability today or prove that protected content
+was read. Do not present any row here as runtime-tested, recommended, or safe.
 
 ## Reporting a problem
 

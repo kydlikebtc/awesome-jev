@@ -1,6 +1,6 @@
 # awesome-jev
 
-> A catalogue of public examples of Jev, TypeSafe AI's System One decision model, indexed by the decision each example makes. <!--n:entries-->1207<!--/n--> entries, every row attributable to a named source. <!--n:link_ok-->1204<!--/n--> answered with a 2xx status on the last link sweep (<!--n:last_sweep-->2026-09-24<!--/n-->); the other <!--n:link_unstamped-->3<!--/n--> carry no `link_status` — see *What is verified* for why.
+> A catalogue of public resources for Jev, TypeSafe AI's System One decision model, indexed by decision pattern. It contains <!--n:entries-->1207<!--/n--> entries, every row attributable to a named source. In all, <!--n:link_ok-->1204<!--/n--> have a dated 2xx response record; the other <!--n:link_unstamped-->3<!--/n--> have no dated success record. The newest successful check is <!--n:last_sweep-->2026-09-24<!--/n-->, and dates vary by row. These counts do not describe runtime tests or current availability.
 
 Jev (https://docs.typesafe.ai/) returns typed decisions rather than text: a `choice` among up to 255 options, a `score` on an ordered 2-to-10 level scale, or a `noul` yes-no probability. This repository is an index of how people use it. It is not the product, not an SDK, and not affiliated with TypeSafe AI.
 
@@ -42,17 +42,19 @@ Platform matrix: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/c
 
 ## What is verified
 
-Verified: the URL returned a success status on the date in `checked`; a person opened it and wrote the summary from what was actually on the page; for code entries, the call site was read to confirm which primitives are actually used; repository stars, licence and creation date came from the GitHub API.
+Link records: `link_status` and `checked` together record a dated HTTP response. A success establishes availability at that time, not code execution or access to protected page content. Repository stars and licences are metadata snapshots.
 
-In all, <!--n:evidence_rows-->1121<!--/n--> rows cite the exact file that shows the project calls Jev, and a scheduled job re-reads each one weekly from the repository's default branch — a removed integration upstream opens an issue here rather than leaving a false claim in place. That is a claim about *whether* a project calls Jev. The narrower claim about *which* primitives it calls is made by <!--n:primitive_rows-->100<!--/n--> rows, of which <!--n:primitive_rows_cited-->72<!--/n--> cite the file it was read in. The remaining rows carry `evidence_none` saying why no file can be cited (a docs page, a video, a paywalled article). This is the difference between a catalogue asserting it was verified and one that keeps proving it.
+Human review: `evidence.path` cites the file reviewed, and `evidence.read_on` records the reported reading date. Reading code is separate from running it. Summaries include source-project descriptions and machine translations; `zh_machine` marks the latter. See `docs/method.md` for the collection method and limits.
 
-A row with no `checked` or `link_status` is one whose host refuses scripted requests — a 403 from Forbes or Medium is not evidence a page is gone, so those rows were left unstamped rather than retired or falsely marked as verified.
+Call-site text records: in all, <!--n:evidence_rows-->1121<!--/n--> rows cite a file and matching strings. A weekly job fetches the default-branch file and reports missing strings or files. This is a count of stored citations, not the latest CI passes. Inspect the workflow report and resulting issues for current results. A string match does not prove a call executes or the API is compatible. The narrower claim about which primitives are used is made by <!--n:primitive_rows-->100<!--/n--> rows, of which <!--n:primitive_rows_cited-->72<!--/n--> cite a file. Other primitive claims carry `evidence_none` explaining why no readable repository file is cited.
 
-NOT verified: whether any code runs, whether any performance claim holds, whether a project is maintained, or whether any of this is a good design for a given system. Nothing here has been executed, load-tested or security-reviewed.
+A row without a dated link-success record may have a host that refuses scripted requests. A 403 from Forbes or Medium is not evidence that a page is gone; such rows are left unstamped instead of inventing a successful check.
+
+Runtime and performance: treat all catalogue code as untested by this repository, including entries without `code-untested`. Linked benchmarks are their authors' measurements and have not been independently reproduced here. Repository build checks and package smoke tests do not test catalogued integrations or the live Jev API. Inclusion is not a security review, maintenance guarantee or recommendation.
 
 ## Caveats for anyone summarising this data
 
-1. **Performance numbers in this space are almost all vendor-reported.** Rows flagged `vendor-reported` repeat the vendor's own benchmarks, whose reference answers were derived from other models' judgements rather than human ground truth. Only a handful of rows are independent measurements; those are `kind: benchmark` without that flag. Do not present vendor figures as measured results.
+1. **Identify who measured each result.** Rows flagged `vendor-reported` repeat the vendor's own benchmarks. Entries with `kind: benchmark` can contain independent reports, but the label alone is not a methodological endorsement or a reproduction by this catalogue. Attribute results to their authors, preserve limitations and distinguish vendor measurements from independent ones.
 
 2. **`kind: alternative` rows are NOT Jev.** They are independent reimplementations with a compatible wire format. Several are among the most-starred repositories mentioning Jev, and are frequently miscatalogued elsewhere as Jev usage examples. A compatible API does not imply compatible calibration, so thresholds do not transfer.
 

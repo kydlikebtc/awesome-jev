@@ -1,45 +1,72 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Not found — awesome-jev</title>
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#0b0d10">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400&display=swap" rel="stylesheet">
-<style>
-  :root{--ink:#0b0d10;--fg:#e8eaed;--fg-2:#9aa4b1;--fg-3:#6b7684;--amber:#f5a524;--rule:#242b34;
-        --mono:"IBM Plex Mono",ui-monospace,monospace;--sans:"IBM Plex Sans",system-ui,sans-serif}
-  *{box-sizing:border-box;margin:0}
-  body{background:var(--ink);color:var(--fg);font:15px/1.65 var(--sans);min-height:100vh;
-       display:grid;place-items:center;padding:32px;text-align:center;
-       background-image:linear-gradient(to right,rgba(255,255,255,.022) 1px,transparent 1px),
-                        linear-gradient(to bottom,rgba(255,255,255,.022) 1px,transparent 1px);
-       background-size:44px 44px}
-  .code{font-family:var(--mono);font-size:clamp(56px,14vw,120px);font-weight:600;letter-spacing:-.06em;line-height:1;color:var(--amber)}
-  h1{font-family:var(--mono);font-size:clamp(17px,3vw,22px);font-weight:500;margin:14px 0 0;letter-spacing:-.02em}
-  p{color:var(--fg-2);max-width:52ch;margin:14px auto 0}
-  .links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:26px;font:12.5px var(--mono)}
-  a{color:var(--amber);text-decoration:none}
-  a:hover{text-decoration:underline;text-underline-offset:3px}
-  code{font-family:var(--mono);font-size:.9em;color:var(--fg)}
-  .hint{margin-top:22px;font:12px var(--mono);color:var(--fg-3)}
-</style>
-</head>
-<body>
-  <div>
-    <div class="code">404</div>
-    <h1>No such page</h1>
-    <p>This site is a single page. Entries are addressed by their catalog slug on the
-       catalogue view, and the two reference views live behind query parameters.</p>
-    <div class="links">
-      <a href="./">Catalogue</a>
-      <a href="./?view=prims">Primitives</a>
-      <a href="./?view=compat">Compatibility</a>
-      <a href="https://github.com/kydlikebtc/awesome-jev">GitHub ↗</a>
-    </div>
-    <p class="hint">Looking for one entry? <code>./#&lt;slug&gt;</code> — the slugs are in <a href="./catalog.json">catalog.json</a>.</p>
-  </div>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Page not found — Jev Decision Atlas</title>
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0b0d10" />
+    <link rel="icon" href="/awesome-jev/favicon.svg" type="image/svg+xml" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #0b0d10; --fg: #e8eaed; --fg-2: #a9b3c0;
+        --amber: #f5a524; --signal: #4ec97a; --rule: #333c48;
+        --mono: "IBM Plex Mono", ui-monospace, monospace;
+        --sans: "IBM Plex Sans", system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; margin: 0; }
+      body {
+        background: var(--ink); color: var(--fg); font: 16px/1.65 var(--sans);
+        min-height: 100vh; display: grid; place-items: center; padding: 32px;
+        background-image: linear-gradient(to right, rgba(255,255,255,.022) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255,255,255,.022) 1px, transparent 1px);
+        background-size: 44px 44px;
+      }
+      main { width: min(100%, 600px); }
+      .brand { display: flex; align-items: center; gap: 12px; font: 500 17px var(--mono); }
+      .brand svg { width: 36px; height: 36px; }
+      .code { font: 600 clamp(72px, 16vw, 120px)/1 var(--mono); letter-spacing: -.06em; color: var(--amber); margin-top: 50px; }
+      h1 { font-size: clamp(28px, 5vw, 38px); font-weight: 500; letter-spacing: -.03em; margin-top: 18px; }
+      p { color: var(--fg-2); max-width: 48ch; margin-top: 16px; }
+      .links { display: flex; align-items: center; gap: 16px 24px; flex-wrap: wrap; margin-top: 28px; }
+      a { color: var(--amber); text-decoration: none; text-underline-offset: 4px; }
+      a:hover { text-decoration: underline; }
+      a:focus-visible { outline: 2px solid var(--amber); outline-offset: 6px; }
+      .primary { background: var(--amber); color: var(--ink); padding: 10px 18px; border-radius: 5px; font-weight: 600; }
+      footer { border-top: 1px solid var(--rule); margin-top: 44px; padding-top: 20px; color: var(--fg-2); font-size: 14px; }
+      footer a { color: var(--signal); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="brand">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="7" fill="#0b0d10" />
+          <rect x="7" y="20" width="5" height="6" rx="1.5" fill="#4ec97a" />
+          <rect x="13.5" y="14" width="5" height="12" rx="1.5" fill="#a9b3c0" />
+          <rect x="20" y="8" width="5" height="18" rx="1.5" fill="#f5a524" />
+        </svg>
+        awesome-jev
+      </div>
+      <div class="code">404</div>
+      <h1>This page isn't in the atlas.</h1>
+      <p>Find Jev examples by task in the catalogue, or explore the reference guides.</p>
+      <nav class="links" aria-label="Find your way back">
+        <a class="primary" data-home="" href="/awesome-jev/">Browse the catalogue</a>
+        <a data-home="?view=prims" href="/awesome-jev/?view=prims">Primitives</a>
+        <a data-home="?view=compat" href="/awesome-jev/?view=compat">Compatibility</a>
+      </nav>
+      <footer>Jev Decision Atlas · <a href="https://github.com/kydlikebtc/awesome-jev">View on GitHub ↗</a></footer>
+    </main>
+    <script>
+      // The Pages 404 is also returned for nested paths; relative links would
+      // point back into that missing directory. Keep local previews usable.
+      const base = location.hostname === "kydlikebtc.github.io" ? "/awesome-jev/" : "/";
+      document.querySelectorAll("[data-home]").forEach((link) => {
+        link.href = base + link.dataset.home;
+      });
+      document.querySelector('link[rel="icon"]').href = base + "favicon.svg";
+    </script>
+  </body>
 </html>

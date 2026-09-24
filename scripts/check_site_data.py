@@ -17,6 +17,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 from assemble_site import ROOT, RUNTIME_FILES, stats_payload  # noqa: E402
+from check_collections import validate_collections  # noqa: E402
 
 # The site renders these fields unconditionally; a missing one is a blank cell.
 REQUIRED = ("slug", "title", "summary", "summary_zh", "url", "kind", "patterns")
@@ -40,7 +41,16 @@ def main() -> int:
         return 1
     print("site/stats.json matches _stats.compute()")
 
-    for entry in json.loads((ROOT / "site" / "catalog.json").read_text()):
+    catalog = json.loads((ROOT / "site" / "catalog.json").read_text())
+    collections = json.loads((ROOT / "site" / "collections.json").read_text())
+    errors = validate_collections(collections, catalog)
+    if errors:
+        for error in errors:
+            print(f"error: site/{error}", file=sys.stderr)
+        return 1
+    print("site/collections.json references valid catalog entries")
+
+    for entry in catalog:
         missing = [field for field in REQUIRED if field not in entry]
         if missing:
             print(

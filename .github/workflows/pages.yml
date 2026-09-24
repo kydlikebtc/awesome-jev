@@ -16,8 +16,11 @@ on:
       - "compat.json"
       - "patterns.json"
       - "taxonomy.json"
+      - "collections.json"
       - "scripts/_stats.py"
       - "scripts/assemble_site.py"
+      - "scripts/check_collections.py"
+      - "scripts/check_site_data.py"
       - "scripts/render_images.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
@@ -47,7 +50,7 @@ jobs:
         # a local preview uses, so the two cannot assemble different sites.
         run: python3 scripts/assemble_site.py
 
-      - name: Sanity-check the copied catalog
+      - name: Sanity-check the catalog and curated entry points
         run: python3 scripts/check_site_data.py
 
       # The og:image, the durable social card and the README screenshots are

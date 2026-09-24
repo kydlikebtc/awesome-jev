@@ -55,6 +55,14 @@ BARE_COUNT = re.compile(
 )
 # `document-triage` (1) — a per-pattern count written by hand.
 PATTERN_COUNT = re.compile(r"`[a-z]+(?:-[a-z]+)*`\s*\(\d+\)")
+# Coverage prose can freeze even when the figure beside it is generated. The
+# original README kept "Two patterns have no examples" after every pattern was
+# populated. Keep such catalogue claims inside generated coverage blocks.
+PATTERN_GAP_COUNT = re.compile(
+    rf"\b(?:\d+|{WORDS})\s+patterns?\s+(?:have|has)\s+no\s+(?:examples|entries)\b"
+    r"|(?:\d+|[零一二两三四五六七八九十]+)\s*个模式(?:目前|尚)?(?:没有|未收录|无)(?:例子|条目)?",
+    re.I,
+)
 # A table whose header announces counts, or whose first column is a stat label.
 COUNT_HEADER = re.compile(r"^(rows|repositories|entries|count|examples|条目)$", re.I)
 STAT_LABEL = re.compile(
@@ -87,7 +95,7 @@ def check_bare_counts(rel: str, text: str) -> list[str]:
     hint = "wrap it in <!--n:key-->…<!--/n--> (see scripts/build_docs.py) or reword it"
     found = [
         f"{rel}:{line_of(masked, m.start())}: bare catalogue count {m.group(0).strip()!r} — {hint}"
-        for rx in (BARE_COUNT, PATTERN_COUNT)
+        for rx in (BARE_COUNT, PATTERN_COUNT, PATTERN_GAP_COUNT)
         for m in rx.finditer(masked)
     ]
     return found + check_count_tables(rel, masked)

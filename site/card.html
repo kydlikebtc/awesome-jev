@@ -2,46 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>awesome-jev share card — 1280×640</title>
+    <meta name="viewport" content="width=1280, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0b0d10" />
+    <title>Jev Decision Atlas — awesome-jev share card</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <!--
-      The share card: one question, answered the way Jev answers — a typed
-      probability instead of a paragraph. It replaced a dashboard of fourteen
-      small elements that read as grey texture at feed size.
-
-      scripts/render_images.py renders both modes on every Pages deploy:
-
-        card.html            durable — for GitHub's social preview, which is
-                             uploaded by hand and never regenerated. Its count
-                             is a floor ("800+") that can only ever understate.
-        card.html?mode=live  the site's og:image, with the exact count.
-
-      Design rule: it must still read at 400px wide. Anything smaller than the
-      footer's first line is decoration, not information.
+      card.html: a durable, count-free preview for manual upload to GitHub.
+      card.html?mode=live: the site's og:image, using assembled stats.json.
+      Neither mode implies that listed code was run or its results reproduced.
+      scripts/render_images.py renders both at 1280 × 640 on each Pages deploy.
     -->
     <style>
       :root {
         --ink: #0b0d10;
-        --track: #171b21;
-        --rule: #242b34;
-        --fg: #eceef1;
-        --fg-2: #9aa4b1;
-        --fg-3: #6b7684;
+        --rule: #333c48;
+        --fg: #e8eaed;
+        --fg-2: #a9b3c0;
         --amber: #f5a524;
-        --amber-dim: #8a5d14;
         --signal: #4ec97a;
         --mono: "IBM Plex Mono", "Noto Sans SC", ui-monospace, monospace;
-        --sans: "IBM Plex Sans", "Noto Sans SC", sans-serif;
+        --sans: "IBM Plex Sans", "Noto Sans SC", system-ui, sans-serif;
       }
-      * {
-        box-sizing: border-box;
-        margin: 0;
-      }
+      * { box-sizing: border-box; margin: 0; }
       body {
-        background: #050607;
+        background: var(--ink);
         display: grid;
         place-items: center;
         min-height: 100vh;
@@ -51,199 +42,127 @@
         width: 1280px;
         height: 640px;
         overflow: hidden;
+        padding: 48px 72px 36px;
         color: var(--fg);
         font-family: var(--sans);
         background-color: var(--ink);
-        /* Graph paper, as on the site: the catalogue as plotting stock. */
         background-image:
-          linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.028) 1px,
-            transparent 1px
-          ),
-          linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.028) 1px,
-            transparent 1px
-          );
+          linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
         background-size: 64px 64px;
-        background-position: -1px -1px;
       }
-      /* The instrument lamp: warmth where the answer is. */
-      .card::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background: radial-gradient(
-          60% 55% at 50% 50%,
-          rgba(245, 165, 36, 0.12),
-          transparent 70%
-        );
-      }
-      /* Grain, so the flat fill never reads as plastic. */
-      .card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: 3;
-        pointer-events: none;
-        opacity: 0.55;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
-      }
-
-      /* ── the question ── */
-      .q {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 112px;
-        text-align: center;
-        font-family: var(--mono);
-        font-weight: 500;
-        font-size: 58px;
-        letter-spacing: -0.03em;
-        z-index: 2;
-      }
-      /* Which primitive asked it. A noul answers with a bare probability. */
-      .tag {
-        display: inline-block;
-        font-size: 22px;
-        font-weight: 500;
-        color: var(--signal);
-        border: 1.5px solid rgba(78, 201, 122, 0.45);
-        border-radius: 5px;
-        padding: 2px 11px 3px;
-        line-height: 1.2;
-        vertical-align: 14px;
-        margin-right: 20px;
-      }
-
-      /* ── the answer ── */
-      .meter {
-        position: absolute;
-        left: 110px;
-        right: 110px;
-        top: 244px;
+      .brand {
         display: flex;
         align-items: center;
-        gap: 34px;
-        z-index: 2;
+        justify-content: space-between;
+        gap: 32px;
+        font: 500 24px/1.3 var(--mono);
       }
-      .track {
-        flex: 1;
-        height: 30px;
-        background: var(--track);
-        border-radius: 15px;
-        position: relative;
-        box-shadow: inset 0 0 0 1px var(--rule);
+      .wordmark { display: flex; align-items: center; gap: 16px; }
+      .wordmark img { width: 44px; height: 44px; }
+      .brand-note { color: var(--fg-2); font-size: 20px; }
+      h1 {
+        margin-top: 45px;
+        font: 600 82px/1.1 var(--sans);
+        letter-spacing: -0.045em;
       }
-      .fill {
-        position: absolute;
-        inset: 0 3% 0 0;
-        border-radius: 15px;
-        background: linear-gradient(90deg, var(--amber-dim), var(--amber));
-        box-shadow: 0 0 40px rgba(245, 165, 36, 0.35);
+      .intro {
+        margin-top: 24px;
+        font-size: 37px;
+        line-height: 1.3;
+        letter-spacing: -0.02em;
+        color: var(--fg-2);
       }
-      .p {
-        font-family: var(--mono);
-        font-weight: 600;
-        font-size: 128px;
-        line-height: 1;
-        letter-spacing: -0.06em;
-        color: var(--amber);
-        text-shadow: 0 0 60px rgba(245, 165, 36, 0.3);
+      .intro strong { font-weight: 500; color: var(--amber); }
+      .evidence {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        margin-top: 42px;
+        padding-top: 24px;
+        border-top: 1px solid var(--rule);
       }
-
-      /* ── who is asking ── */
+      .evidence li { list-style: none; }
+      .evidence li + li { border-left: 1px solid var(--rule); padding-left: 32px; }
+      .label { font: 500 24px/1.4 var(--sans); }
+      .detail { display: block; color: var(--fg-2); font-size: 19px; line-height: 1.5; margin-top: 7px; }
+      .count { display: none; font: 500 44px/1.1 var(--mono); letter-spacing: -0.04em; color: var(--amber); margin-bottom: 9px; }
+      html[data-mode="live"] .count { display: block; }
+      html[data-mode="live"] .detail { display: none; }
       .foot {
         position: absolute;
         left: 72px;
         right: 72px;
-        bottom: 60px;
+        bottom: 31px;
         display: flex;
-        align-items: flex-end;
         justify-content: space-between;
-        gap: 40px;
-        padding-top: 30px;
-        border-top: 1.5px solid var(--rule);
-        z-index: 2;
-      }
-      .wm {
-        font-family: var(--mono);
-        font-weight: 600;
-        font-size: 54px;
-        line-height: 1;
-        letter-spacing: -0.045em;
-      }
-      .wm i {
-        font-style: normal;
-        color: var(--fg-3);
-      }
-      .line {
-        text-align: right;
-        line-height: 1.3;
-      }
-      .line b {
-        display: block;
-        font-size: 31px;
-        font-weight: 600;
-        letter-spacing: -0.01em;
-      }
-      .line .sub {
-        font-size: 25px;
+        gap: 30px;
+        font: 400 17px/1.4 var(--mono);
         color: var(--fg-2);
       }
-      .n {
-        font-family: var(--mono);
-        color: var(--amber);
-        letter-spacing: -0.02em;
-      }
+      .signal { color: var(--signal); }
     </style>
   </head>
   <body>
-    <div class="card">
-      <div class="q"><span class="tag">noul</span>should_you_star_this?</div>
-      <div class="meter">
-        <div class="track"><span class="fill"></span></div>
-        <div class="p">0.97</div>
+    <main class="card" aria-label="awesome-jev: Jev Decision Atlas">
+      <div class="brand">
+        <div class="wordmark"><img src="favicon.svg" alt="" />awesome-jev</div>
+        <span class="brand-note">TypeSafe AI's Jev · EN / 中文</span>
       </div>
+      <h1>Jev Decision Atlas</h1>
+      <p class="intro">Find Jev examples by task.<br /><strong>Inspect the evidence.</strong></p>
+      <ul class="evidence" aria-label="Catalogue evidence">
+        <li>
+          <span class="count" data-stat="entries"></span>
+          <span class="label" data-label="indexed">Browse by task</span>
+          <span class="detail">Find the decision you need.</span>
+        </li>
+        <li>
+          <span class="count" data-stat="link_ok"></span>
+          <span class="label" data-label="links">Check link status</span>
+          <span class="detail">See the latest link-check date.</span>
+        </li>
+        <li>
+          <span class="count" data-stat="evidence_rows"></span>
+          <span class="label" data-label="citations">Read call-site citations</span>
+          <span class="detail">Follow the source evidence.</span>
+        </li>
+      </ul>
       <div class="foot">
-        <div class="wm">awesome<i>-</i>jev</div>
-        <div class="line">
-          <b
-            ><span class="n" data-n></span> verified examples of TypeSafe AI's
-            Jev</b
-          >
-          <span class="sub">indexed by the decision each one makes · EN + 中文</span>
-        </div>
+        <span>Index &amp; source checks · code and benchmarks not reproduced</span>
+        <span class="signal" data-stamp>kydlikebtc / awesome-jev</span>
       </div>
-    </div>
-
+    </main>
     <script>
       const live = new URLSearchParams(location.search).get("mode") === "live";
+      document.documentElement.dataset.mode = live ? "live" : "durable";
 
-      // The durable card is uploaded by hand and never regenerated, so it
-      // prints a floor that can only become an understatement as the catalogue
-      // grows. The live card prints the exact figure. Both come from
-      // stats.json — the same definitions as the README badges.
-      fetch("stats.json")
-        .then((r) => {
-          if (!r.ok) throw new Error(`stats.json: HTTP ${r.status}`);
-          return r.json();
-        })
-        .then((s) => {
-          const shown = live
-            ? String(s.entries)
-            : `${Math.floor(s.entries / 100) * 100}+`;
-          document
-            .querySelectorAll("[data-n]")
-            .forEach((el) => (el.textContent = shown));
-          return document.fonts.ready;
-        })
-        // render_images.py refuses to publish a card that never got here.
-        .then(() => (document.documentElement.dataset.ready = "1"))
-        .catch((err) => (document.title = "card failed: " + err.message));
+      async function prepareCard() {
+        if (live) {
+          const response = await fetch("stats.json");
+          if (!response.ok) throw new Error(`stats.json: HTTP ${response.status}`);
+          const stats = await response.json();
+          for (const el of document.querySelectorAll("[data-stat]")) {
+            const value = stats[el.dataset.stat];
+            if (!Number.isInteger(value) || value < 0) {
+              throw new Error(`stats.json: invalid ${el.dataset.stat}`);
+            }
+            el.textContent = value.toLocaleString("en-US");
+          }
+          document.querySelector('[data-label="indexed"]').textContent = "indexed examples";
+          document.querySelector('[data-label="links"]').textContent = "link checked · 2xx";
+          document.querySelector('[data-label="citations"]').textContent = "call-site cited";
+          document.querySelector("[data-stamp]").textContent = `Latest check: ${stats.last_sweep}`;
+        }
+        await document.fonts.ready;
+        await document.querySelector(".wordmark img").decode();
+        // The deploy renderer requires this marker before publishing an image.
+        document.documentElement.dataset.ready = "1";
+      }
+      prepareCard().catch((err) => {
+        document.title = "card failed: " + err.message;
+        document.documentElement.dataset.error = err.message;
+      });
     </script>
   </body>
 </html>

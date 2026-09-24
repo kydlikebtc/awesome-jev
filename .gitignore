@@ -6,6 +6,7 @@ site/catalog.json
 site/compat.json
 site/patterns.json
 site/taxonomy.json
+site/collections.json
 # Rendered at deploy by scripts/render_images.py, from the data above.
 site/stats.json
 site/img/
