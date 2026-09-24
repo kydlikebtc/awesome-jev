@@ -758,8 +758,10 @@ def preview_version() -> str:
     return digest.hexdigest()[:16]
 
 
-def section_nav(strings: dict) -> list[str]:
+def section_nav(strings: dict, *, has_measured: bool = True) -> list[str]:
     keys = ["about_h", "prims_h", "start_h", "coverage_h", "measured_h", "patterns_h", "kinds_h", "repo_h", "verified_h", "data_h", "contrib_h"]
+    if not has_measured:
+        keys.remove("measured_h")
     return [f"{n:02d} [{strings[key]}](#{anchor(strings[key])})" for n, key in enumerate(keys, 1)]
 
 
@@ -790,6 +792,8 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add("-->")
     add("")
     add('<a name="top"></a>')
+    add('<a name="awesome-jev"></a>')
+    add('<a name="-awesome-jev"></a>')
     add("")
     add('<picture>')
     add(f'  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-{lang}-dark.svg">')
@@ -805,12 +809,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     # Local native text keeps these values selectable and readable without
     # external badge services. Scope definitions remain directly beside them.
     labels = ("公开资源", "链接成功记录", "调用点记录") if lang == "zh" else ("Public resources", "Dated 2xx links", "Call-site records")
-    add('<table width="100%">')
-    add('<tr>')
-    for number, title in zip((len(catalog), link_records, evidence_records), labels):
-        add(f'<td width="33%" align="center"><h3>{number:,}</h3>{title}</td>')
-    add('</tr>')
-    add('</table>')
+    add(" &nbsp; · &nbsp; ".join(f"**{number:,}** {title}" for number, title in zip((len(catalog), link_records, evidence_records), labels)))
     add("")
     add(f"<sub>{strings['badge_note']}</sub>")
     add("")
@@ -828,7 +827,8 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     toc_label = "阅读导航 · 完整目录" if lang == "zh" else "On this page · full reading map"
     add(f'<summary><b>{toc_label}</b></summary>')
     add("")
-    for item in section_nav(strings):
+    has_measured = any(e['kind'] == 'benchmark' and 'vendor-reported' not in e.get('flags', []) for e in catalog)
+    for item in section_nav(strings, has_measured=has_measured):
         add(f"- {item}")
     add("")
     add('</details>')

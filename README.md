@@ -3,6 +3,8 @@
 -->
 
 <a name="top"></a>
+<a name="awesome-jev"></a>
+<a name="-awesome-jev"></a>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-en-dark.svg">
@@ -13,13 +15,7 @@ Public resources for TypeSafe AI’s Jev, organised by the decision you need to 
 
 **[Searchable site ↗](https://kydlikebtc.github.io/awesome-jev/?lang=en)** &nbsp; · &nbsp; [中文](README.zh-CN.md) &nbsp; · &nbsp; [Patterns](docs/patterns.md) &nbsp; · &nbsp; [Compatibility](docs/compatibility.md) &nbsp; · &nbsp; [Vetting](docs/vetting.md)
 
-<table width="100%">
-<tr>
-<td width="33%" align="center"><h3>1,207</h3>Public resources</td>
-<td width="33%" align="center"><h3>1,204</h3>Dated 2xx links</td>
-<td width="33%" align="center"><h3>1,121</h3>Call-site records</td>
-</tr>
-</table>
+**1,207** Public resources &nbsp; · &nbsp; **1,204** Dated 2xx links &nbsp; · &nbsp; **1,121** Call-site records
 
 <sub>Counts describe saved link and evidence records, not current CI passes or runtime tests.</sub>
 

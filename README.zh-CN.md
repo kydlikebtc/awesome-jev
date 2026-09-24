@@ -3,6 +3,8 @@
 -->
 
 <a name="top"></a>
+<a name="awesome-jev"></a>
+<a name="-awesome-jev"></a>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-zh-dark.svg">
@@ -13,13 +15,7 @@ TypeSafe AI Jev 的公开资源目录，按开发者要做的决策组织。
 
 **[可搜索站点 ↗](https://kydlikebtc.github.io/awesome-jev/?lang=zh)** &nbsp; · &nbsp; [English](README.md) &nbsp; · &nbsp; [决策模式](docs/patterns.md) &nbsp; · &nbsp; [兼容性](docs/compatibility.md) &nbsp; · &nbsp; [核查指南](docs/vetting.md)
 
-<table width="100%">
-<tr>
-<td width="33%" align="center"><h3>1,207</h3>公开资源</td>
-<td width="33%" align="center"><h3>1,204</h3>链接成功记录</td>
-<td width="33%" align="center"><h3>1,121</h3>调用点记录</td>
-</tr>
-</table>
+**1,207** 公开资源 &nbsp; · &nbsp; **1,204** 链接成功记录 &nbsp; · &nbsp; **1,121** 调用点记录
 
 <sub>数字统计已保存的链接与证据记录，不代表当前 CI 通过数或运行测试结果。</sub>
 
