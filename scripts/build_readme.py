@@ -773,9 +773,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
         f"[![links]({REPO_URL}/actions/workflows/links.yml/badge.svg)]({REPO_URL}/actions/workflows/links.yml) "
         f"[![entries](https://img.shields.io/badge/{strings['stat_entries']}-{len(catalog)}-f5a524?style=flat-square)]({SITE}) "
         f"[![dated HTTP 2xx records](https://img.shields.io/badge/{strings['stat_verified'].replace(' ', '%20').replace('-', '--')}-{link_records}-4ec97a?style=flat-square)]({SITE}) "
-        f"[![evidence records](https://img.shields.io/badge/{strings['stat_rechecked'].replace(' ', '%20')}-{evidence_records}-a9b3c0?style=flat-square)]({REPO_URL}/actions/workflows/claims.yml) "
-        "[![data](https://img.shields.io/badge/data-CC0--1.0-8b949e?style=flat-square)](LICENSE-CC0) "
-        "[![code](https://img.shields.io/badge/code-MIT-8b949e?style=flat-square)](LICENSE-MIT)"
+        f"[![evidence records](https://img.shields.io/badge/{strings['stat_rechecked'].replace(' ', '%20')}-{evidence_records}-a9b3c0?style=flat-square)]({REPO_URL}/actions/workflows/claims.yml)"
     )
     add("")
     add(f"<sub>{strings['badge_note']}</sub>")
