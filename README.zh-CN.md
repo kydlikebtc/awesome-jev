@@ -17,7 +17,7 @@
 <strong><a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh">浏览资源目录 →</a></strong> &nbsp; · &nbsp; <a href="README.md">English</a>
 </p>
 <p align="center">
-<a href="https://kydlikebtc.github.io/awesome-jev/?collection=first-call&amp;lang=zh">第一次调用</a> &nbsp; · &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=build&amp;lang=zh">改造现有项目</a> &nbsp; · &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=measured&amp;lang=zh">独立测量报告</a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?collection=first-call&amp;lang=zh">第一次调用</a> &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=build&amp;lang=zh">改造现有项目</a> &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=measured&amp;lang=zh">独立测量报告</a>
 </p>
 
 <sub>数字统计已保存的链接与证据记录，不代表当前 CI 通过数或运行测试结果。 [统计口径](#哪些经过核实哪些没有)</sub>

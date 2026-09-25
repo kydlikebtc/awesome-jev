@@ -17,7 +17,7 @@
 <strong><a href="https://kydlikebtc.github.io/awesome-jev/?lang=en">Explore the catalogue →</a></strong> &nbsp; · &nbsp; <a href="README.zh-CN.md">中文</a>
 </p>
 <p align="center">
-<a href="https://kydlikebtc.github.io/awesome-jev/?collection=first-call&amp;lang=en">First call</a> &nbsp; · &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=build&amp;lang=en">Adapt a project</a> &nbsp; · &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=measured&amp;lang=en">Independent reports</a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?collection=first-call&amp;lang=en">First&nbsp;call</a> &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=build&amp;lang=en">Adapt&nbsp;a&nbsp;project</a> &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=measured&amp;lang=en">Independent&nbsp;reports</a>
 </p>
 
 <sub>Counts describe saved link and evidence records, not current CI passes or runtime tests. [About these counts](#what-is-verified-and-what-is-not)</sub>

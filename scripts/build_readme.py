@@ -811,7 +811,9 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add('</p>')
     add('<p align="center">')
     paths = [("first-call", strings["collection_first"]), ("build", strings["collection_build"]), ("measured", strings["collection_measured"])]
-    add(" &nbsp; · &nbsp; ".join(f'<a href="{SITE}?collection={key}&amp;lang={lang}">{title}</a>' for key, title in paths))
+    # A path label should wrap as a unit on mobile, rather than leaving
+    # "reports" on its own line. Ordinary outer spaces still allow reflow.
+    add(" &nbsp; ".join(f'<a href="{SITE}?collection={key}&amp;lang={lang}">{title.replace(" ", "&nbsp;")}</a>' for key, title in paths))
     add('</p>')
     add("")
     scope = "统计口径" if lang == "zh" else "About these counts"
