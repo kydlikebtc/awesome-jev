@@ -1,23 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title description">
 <title id="title">awesome-jev · Jev Decision Atlas</title>
 <desc id="description">Jev Decision Atlas: 1,207 public resources, 1,204 dated HTTP 2xx link records, and 1,121 call-site citation records. Counts describe saved records, not current link availability or passed runtime and performance tests.</desc>
-<style>
-text{font-family:Arial,Helvetica,'Noto Sans CJK SC',sans-serif;fill:#f4f2e9}
-.muted{fill:#b9bbb2}.amber{fill:#f5a524}
-.wordmark{font-weight:800}.number{font-weight:700;font-variant-numeric:tabular-nums}
-</style>
-<rect width="1200" height="430" fill="#131412"/>
-<rect x="58" y="57" width="7" height="9" rx="1.5" fill="#4ec97a"/>
-<rect x="69" y="48" width="7" height="18" rx="1.5" fill="#a9b3c0"/>
-<rect x="80" y="38" width="7" height="28" rx="1.5" fill="#f5a524"/>
-<text x="106" y="61" font-size="21" letter-spacing="1.6" class="muted">JEV DECISION ATLAS</text>
-<text x="51" y="219" font-size="136" letter-spacing="-7.2" class="wordmark">awesome<tspan class="amber">-jev</tspan></text>
-<text x="59" y="274" font-size="29">Public resources for Jev, TypeSafe AI’s decision model.</text>
-<path d="M58 315H1142" stroke="#393b34"/>
-<text x="58" y="368" font-size="41" letter-spacing="-1.3" class="number amber">1,207</text>
-<text x="58" y="401" font-size="21" class="muted">Public resources</text>
-<text x="437" y="368" font-size="41" letter-spacing="-1.3" class="number">1,204</text>
-<text x="437" y="401" font-size="21" class="muted">Dated 2xx links</text>
-<text x="816" y="368" font-size="41" letter-spacing="-1.3" class="number">1,121</text>
-<text x="816" y="401" font-size="21" class="muted">Call-site records</text>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#1f2328}.mono{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}.muted{fill:#59636e}.faint{fill:#656d76}.accent{fill:#a15c00}</style>
+<defs>
+<pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#1f2328" stroke-opacity=".05"/></pattern>
+<linearGradient id="fade" x1="0" y1="0" x2="1" y2="0"><stop offset=".4" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff"/></linearGradient>
+<mask id="reveal"><rect width="1200" height="440" fill="url(#fade)"/></mask>
+<clipPath id="card"><rect x="1" y="1" width="1198" height="438" rx="15"/></clipPath>
+</defs>
+<rect x=".5" y=".5" width="1199" height="439" rx="16" fill="#f6f8fa" stroke="#d1d9e0"/>
+<g clip-path="url(#card)"><rect width="1200" height="440" fill="url(#grid)" mask="url(#reveal)"/></g>
+<g transform="translate(60 50)"><rect x=".5" y=".5" width="31" height="31" rx="7" fill="#0b0d10" stroke="#0b0d10"/><rect x="7" y="20" width="5" height="6" rx="1.5" fill="#4ec97a"/><rect x="13.5" y="14" width="5" height="12" rx="1.5" fill="#a9b3c0"/><rect x="20" y="8" width="5" height="18" rx="1.5" fill="#f5a524"/></g>
+<text x="106" y="73" font-size="18"><tspan class="mono" font-size="22" font-weight="600">awesome-jev</tspan><tspan class="faint" dx="12">·</tspan><tspan class="muted" dx="10">community index</tspan></text>
+<text x="57" y="172" font-size="64" font-weight="600" letter-spacing="-1.6">Jev Decision Atlas</text>
+<text x="60" y="225" font-size="27" class="muted">Find Jev examples by task.</text>
+<text x="60" y="262" font-size="27" class="accent" font-weight="500">Inspect the evidence before you build.</text>
+<path d="M60 306H640" stroke="#d1d9e0"/>
+<text x="60" y="362" font-size="36" class="mono accent" font-weight="600" letter-spacing="-1">1,207</text>
+<text x="60" y="395" font-size="19" class="muted">public resources</text>
+<text x="262" y="362" font-size="36" class="mono" font-weight="600" letter-spacing="-1">1,204</text>
+<text x="262" y="395" font-size="19" class="muted">dated 2xx links</text>
+<text x="464" y="362" font-size="36" class="mono" font-weight="600" letter-spacing="-1">1,121</text>
+<text x="464" y="395" font-size="19" class="muted">call-site records</text>
+<text x="712" y="73" font-size="16" class="mono faint" letter-spacing="1.6">ONE STATE · TYPED QUESTIONS</text>
+<path d="M828 232H862M862 160V304M862 160q0 -12 12 -12H896M862 232H896M862 304q0 12 12 12H896" fill="none" stroke="#d1d9e0" stroke-width="2"/>
+<circle cx="862" cy="232" r="4" fill="#e59a1a"/>
+<rect x="712" y="198" width="116" height="68" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
+<text x="770" y="230" font-size="20" class="mono" font-weight="600" text-anchor="middle">state</text>
+<text x="770" y="253" font-size="15" class="faint" text-anchor="middle">text · JSON</text>
+<rect x="896" y="118" width="244" height="60" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
+<rect x="896" y="134" width="3" height="28" rx="1.5" fill="#a15c00"/>
+<text x="918" y="145" font-size="20" class="mono" font-weight="600">choice</text>
+<text x="918" y="167" font-size="16" class="muted">category</text>
+<circle cx="1062" cy="148" r="4.5" fill="none" stroke="#656d76" stroke-width="1.5"/><circle cx="1077" cy="148" r="4.5" fill="#a15c00" stroke="#a15c00" stroke-width="1.5"/><circle cx="1092" cy="148" r="4.5" fill="none" stroke="#656d76" stroke-width="1.5"/><circle cx="1107" cy="148" r="4.5" fill="none" stroke="#656d76" stroke-width="1.5"/>
+<rect x="896" y="202" width="244" height="60" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
+<rect x="896" y="218" width="3" height="28" rx="1.5" fill="#6e7781"/>
+<text x="918" y="229" font-size="20" class="mono" font-weight="600">score</text>
+<text x="918" y="251" font-size="16" class="muted">ordinal</text>
+<rect x="1058" y="235" width="7" height="4" rx="1.5" fill="#6e7781"/><rect x="1069" y="232" width="7" height="7" rx="1.5" fill="#6e7781"/><rect x="1080" y="229" width="7" height="10" rx="1.5" fill="#6e7781"/><rect x="1091" y="226" width="7" height="13" rx="1.5" fill="none" stroke="#656d76" stroke-width="1.2"/><rect x="1102" y="223" width="7" height="16" rx="1.5" fill="none" stroke="#656d76" stroke-width="1.2"/>
+<rect x="896" y="286" width="244" height="60" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
+<rect x="896" y="302" width="3" height="28" rx="1.5" fill="#1a7f37"/>
+<text x="918" y="313" font-size="20" class="mono" font-weight="600">noul</text>
+<text x="918" y="335" font-size="16" class="muted">probability</text>
+<rect x="1058" y="313.5" width="52" height="5" rx="2.5" fill="#d1d9e0"/><rect x="1058" y="313.5" width="34" height="5" rx="2.5" fill="#1a7f37"/><circle cx="1092" cy="316" r="5.5" fill="#ffffff" stroke="#1a7f37" stroke-width="2"/>
 </svg>

@@ -8,19 +8,23 @@
 
 <a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh">
 <picture>
-  <source media="(max-width: 600px)" srcset="docs/assets/readme-cover-zh-dark-mobile.svg">
-  <img src="docs/assets/readme-cover-zh-dark.svg" alt="awesome-jev — Jev Decision Atlas. 1,207 公开资源; 1,204 链接成功记录; 1,121 调用点记录." width="100%">
+  <source media="(min-width: 768px) and (prefers-color-scheme: light)" srcset="docs/assets/readme-cover-zh-light.svg">
+  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="docs/assets/readme-cover-zh-light-mobile.svg">
+  <source media="(max-width: 767px)" srcset="docs/assets/readme-cover-zh-dark-mobile.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-zh-dark.svg">
+  <img src="docs/assets/readme-cover-zh-light.svg" alt="awesome-jev — Jev 决策图谱：1,207 条公开资源、1,204 条带日期的 HTTP 2xx 链接记录、1,121 条调用点引用记录。数字来自保存的记录，不代表当前链接可用或运行与性能测试通过。" width="100%">
 </picture>
 </a>
 
 <p align="center">
-<strong><a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh">浏览资源目录 →</a></strong> &nbsp; · &nbsp; <a href="README.md">English</a>
-</p>
-<p align="center">
-<a href="https://kydlikebtc.github.io/awesome-jev/?collection=first-call&amp;lang=zh">第一次调用</a> &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=build&amp;lang=zh">改造现有项目</a> &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=measured&amp;lang=zh">独立测量报告</a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><kbd>&nbsp;<b>浏览资源目录&nbsp;↗</b>&nbsp;</kbd></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?collection=first-call&amp;lang=zh"><kbd>&nbsp;第一次调用&nbsp;</kbd></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?collection=build&amp;lang=zh"><kbd>&nbsp;改造现有项目&nbsp;</kbd></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?collection=measured&amp;lang=zh"><kbd>&nbsp;独立测量报告&nbsp;</kbd></a>
+<a href="README.md"><kbd>&nbsp;English&nbsp;</kbd></a>
 </p>
 
-<sub>数字统计已保存的链接与证据记录，不代表当前 CI 通过数或运行测试结果。 [统计口径](#哪些经过核实哪些没有)</sub>
+<p align="center"><sub>数字统计已保存的链接与证据记录，不代表当前 CI 通过数或运行测试结果。 <a href="#哪些经过核实哪些没有">统计口径</a></sub></p>
 
 <details>
 <summary><b>阅读导航 · 完整目录</b></summary>

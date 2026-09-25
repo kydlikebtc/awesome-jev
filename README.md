@@ -8,19 +8,23 @@
 
 <a href="https://kydlikebtc.github.io/awesome-jev/?lang=en">
 <picture>
-  <source media="(max-width: 600px)" srcset="docs/assets/readme-cover-en-dark-mobile.svg">
-  <img src="docs/assets/readme-cover-en-dark.svg" alt="awesome-jev — Jev Decision Atlas. 1,207 Public resources; 1,204 Dated 2xx links; 1,121 Call-site records." width="100%">
+  <source media="(min-width: 768px) and (prefers-color-scheme: light)" srcset="docs/assets/readme-cover-en-light.svg">
+  <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="docs/assets/readme-cover-en-light-mobile.svg">
+  <source media="(max-width: 767px)" srcset="docs/assets/readme-cover-en-dark-mobile.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-en-dark.svg">
+  <img src="docs/assets/readme-cover-en-light.svg" alt="awesome-jev — Jev Decision Atlas: 1,207 public resources, 1,204 dated HTTP 2xx link records, and 1,121 call-site citation records. Counts describe saved records, not current link availability or passed runtime and performance tests." width="100%">
 </picture>
 </a>
 
 <p align="center">
-<strong><a href="https://kydlikebtc.github.io/awesome-jev/?lang=en">Explore the catalogue →</a></strong> &nbsp; · &nbsp; <a href="README.zh-CN.md">中文</a>
-</p>
-<p align="center">
-<a href="https://kydlikebtc.github.io/awesome-jev/?collection=first-call&amp;lang=en">First&nbsp;call</a> &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=build&amp;lang=en">Adapt&nbsp;a&nbsp;project</a> &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=measured&amp;lang=en">Independent&nbsp;reports</a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><kbd>&nbsp;<b>Explore&nbsp;the&nbsp;catalogue&nbsp;↗</b>&nbsp;</kbd></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?collection=first-call&amp;lang=en"><kbd>&nbsp;First&nbsp;call&nbsp;</kbd></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?collection=build&amp;lang=en"><kbd>&nbsp;Adapt&nbsp;a&nbsp;project&nbsp;</kbd></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?collection=measured&amp;lang=en"><kbd>&nbsp;Independent&nbsp;reports&nbsp;</kbd></a>
+<a href="README.zh-CN.md"><kbd>&nbsp;中文&nbsp;</kbd></a>
 </p>
 
-<sub>Counts describe saved link and evidence records, not current CI passes or runtime tests. [About these counts](#what-is-verified-and-what-is-not)</sub>
+<p align="center"><sub>Counts describe saved link and evidence records, not current CI passes or runtime tests. <a href="#what-is-verified-and-what-is-not">About these counts</a></sub></p>
 
 <details>
 <summary><b>On this page · full reading map</b></summary>
