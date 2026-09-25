@@ -16,7 +16,7 @@ source.
 | sibling-list aggregate (docs/sibling-lists.txt) | <https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt> | 1053 |
 | GitHub code search | <https://github.com/search> | 51 |
 | TypeSafe AI docs index | <https://docs.typesafe.ai/llms.txt> | 36 |
-| maintainer submission | <https://github.com/kydlikebtc/awesome-jev> | 20 |
+| maintainer submission | <https://github.com/kydlikebtc/awesome-jev> | 21 |
 | web search | various | 12 |
 | Hacker News | various | 5 |
 | jevai.org community site | <https://www.jevai.org/> | 5 |
@@ -77,7 +77,7 @@ Declared licences across the catalog's linked repositories:
 <!-- licences:start -->
 | Licence | Repositories |
 | --- | --- |
-| MIT | 735 |
+| MIT | 736 |
 | None declared | 203 |
 | Apache-2.0 | 129 |
 | NOASSERTION (non-standard terms) | 49 |

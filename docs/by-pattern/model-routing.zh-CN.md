@@ -4,7 +4,7 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 43 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 44 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[Cookbook: Structured data extraction cascade](https://docs.typesafe.ai/cookbooks/sde_cascade)** ⭐ — 「小模型 → 校验 → 推理模型」的两段级联，用一小部分成本拿到接近大推理模型的质量。
   <sub>`官方文档` · `Py`</sub>
@@ -119,6 +119,9 @@ _选择由哪个下游模型或档位处理请求。_
 
 - **[stuntdouble](https://github.com/ReallyArtificial/stuntdouble)** — 一个即插即用的 /v1/systemone 代理：应用照常调用 Jev，本地决策模型在影子里回答同样的请求，再报告它们是否会做出同样的决策 —— 按问题、按置信区间、按应用自己的 decide() 分别统计，并给出 Brier、ECE、延迟与成本。回答“能不能换成本地模型”这个问题。
   <sub>`开源项目` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `疑似 AI 生成`</sub>
+
+- **[XavierJev](https://github.com/liu-x27/XavierJev)** — Jev 形状的本地决策层：是非、选择和量表问题都从本地模型单个 token 的 logprob 读出答案；附带一个在留出命令集上测量过的 Claude Code 权限闸门。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · ★1 · Xinyu Liu · `TS` · `noul` · `choice` · `score` · ⚠ `并非 Jev 本身` `疑似 AI 生成`</sub>
 
 - **[Building a Harness with Jev](https://www.langchain.com/blog/building-a-harness-with-jev)** — LangChain 的讲解兼集成实操：三种问题类型，加上模型路由、以及在高风险工具调用执行前拦截它。
   <sub>`文章` · Sydney Runkle, Hunter Lovell · `Py` · ⚠ `厂商自报数据`</sub>

@@ -4,7 +4,7 @@
 
 _判断失败的步骤是否值得重试。_
 
-这个决策的全部已收录例子 —— 共 6 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#重试控制)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 7 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#重试控制)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[jevswiftsdk](https://github.com/NSStudent/JevSwiftSDK)** — 独立的类型安全 Swift SDK，支持 async/await、批处理与重试。 <sub>(机翻)</sub>
   <sub>`SDK` · ★8 · nsstudent · `Swift`</sub>
@@ -20,6 +20,9 @@ _判断失败的步骤是否值得重试。_
 
 - **[jev-reasoning-navigator](https://github.com/AndreuVM/jev-reasoning-navigator)** — JEV 推理导航器：面向自主 LLM 智能体的认知监督、防止循环与反幻觉引擎。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★1 · andreuvm · `Py` · ⚠ `无许可证`</sub>
+
+- **[XavierJev](https://github.com/liu-x27/XavierJev)** — Jev 形状的本地决策层：是非、选择和量表问题都从本地模型单个 token 的 logprob 读出答案；附带一个在留出命令集上测量过的 Claude Code 权限闸门。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · ★1 · Xinyu Liu · `TS` · `noul` · `choice` · `score` · ⚠ `并非 Jev 本身` `疑似 AI 生成`</sub>
 
 - **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — 评判智能体的每一步：通过／重试／升级／停止。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★0 · ndolinschi · `TS` · ⚠ `无许可证`</sub>
