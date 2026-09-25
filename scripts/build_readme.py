@@ -15,8 +15,8 @@ Readability rules this file enforces, learned the hard way:
   rows and the note *is* the point. In the big pattern tables it would make
   every row several lines tall and destroy scanning, so those carry short flag
   pills instead and the full note lives in catalog.json and on the site.
-* Native links do the navigation. An SVG embedded as an image cannot make its
-  labels clickable, so the coverage figure is paired with a real pattern index.
+* One index, not two. The coverage histogram doubles as the table of contents,
+  so there is no separate link list repeating the same eighteen counts.
 * Anything that is really a table is rendered as a table, not as prose or as a
   comma-separated wall of links.
 
@@ -26,7 +26,6 @@ Run: python3 scripts/build_readme.py
 from __future__ import annotations
 
 import datetime as dt
-import hashlib
 import json
 import pathlib
 import sys
@@ -143,7 +142,7 @@ EN = {
     ),
     "generated": "This file is generated from catalog.json. Edit the catalog, then run `python3 scripts/build_readme.py`.",
     "badge_note": "Counts describe saved link and evidence records, not current CI passes or runtime tests.",
-    "shot_alt": "Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards",
+    "shot_alt": "The awesome-jev site: a coverage histogram down the left acting as the pattern filter, dense entry cards on the right",
     "shot_cap": 'Filter by clicking a bar. Two more views: <a href="https://kydlikebtc.github.io/awesome-jev/?view=prims">primitives</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat">compatibility</a>. Every filter and entry is a shareable URL.',
     # ---- what this is ----
     "about_h": "What this is",
@@ -195,8 +194,8 @@ EN = {
     "th_why_read": "Why this one",
     "coverage_h": "Coverage",
     "coverage_intro": (
-        "Every decision pattern, sized by how many entries this catalogue contains. "
-        "Use the pattern index below the chart to jump to a section. A zero is a research gap, not a rendering bug."
+        "Every decision pattern, sized by how many entries this catalogue contains. This doubles as the index — "
+        "the names link to the sections below. A zero is a research gap, not a rendering bug."
     ),
     "measured_h": "Measured, not claimed",
     "measured_intro": (
@@ -309,7 +308,7 @@ ZH = {
     ),
     "generated": "本文件由 catalog.json 生成。请修改目录数据后运行 `python3 scripts/build_readme.py`。",
     "badge_note": "数字统计已保存的链接与证据记录，不代表当前 CI 通过数或运行测试结果。",
-    "shot_alt": "可搜索的 Jev 目录：精选路径、筛选排序、带日期的来源证据与条目卡片",
+    "shot_alt": "awesome-jev 站点：左侧覆盖度直方图兼作模式筛选器，右侧是密集的条目卡片",
     "shot_cap": '点击条形即可筛选。另有两个视图：<a href="https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh">三个原语</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh">兼容性矩阵</a>。每个筛选条件和每个条目都是可分享的 URL。',
     "about_h": "这是什么",
     "about_rows": [
@@ -353,7 +352,7 @@ ZH = {
     "th_why_read": "为什么是它",
     "coverage_h": "覆盖度",
     "coverage_intro": (
-        "全部决策模式，按本目录的收录数量排列长度。图表下方的场景索引可跳转到对应章节。"
+        "全部决策模式，按本目录的收录数量排列长度。这张表同时就是索引 —— 名称链接到下面对应章节。"
         "数字为 0 的是待补的研究缺口，不是渲染 bug。"
     ),
     "measured_h": "实测，而非宣称",
@@ -608,7 +607,7 @@ def sort_key(entry: dict) -> tuple:
     )
 
 
-def entry_list(entries: list[dict], strings: dict, *, notes: bool = False, readme_layout: bool = False) -> list[str]:
+def entry_list(entries: list[dict], strings: dict, *, notes: bool = False) -> list[str]:
     """Render rows as a list rather than a table.
 
     Tables lose here. GitHub sizes columns by content, so with 148 rows the
@@ -629,10 +628,7 @@ def entry_list(entries: list[dict], strings: dict, *, notes: bool = False, readm
         head = f"- **[{esc(entry['title'])}]({entry['url']})**"
         if entry.get("official"):
             head += " ⭐"
-        if readme_layout:
-            lines.extend([head + "<br>", f"  {summary_of(entry, lang)}<br>"])
-        else:
-            lines.append(f"{head} — {summary_of(entry, lang)}")
+        lines.append(f"{head} — {summary_of(entry, lang)}")
 
         # Signals go on a dim second line: kind, popularity, author, language,
         # primitives, then caveats last so they read as the final word.
@@ -650,20 +646,14 @@ def entry_list(entries: list[dict], strings: dict, *, notes: bool = False, readm
             for flag in FLAG_ORDER
             if flag in entry.get("flags", [])
         ]
-        if flags and not readme_layout:
+        if flags:
             bits.append("⚠ " + " ".join(flags))
         lines.append(f"  <sub>{' · '.join(bits)}</sub>")
-        if flags and readme_layout:
-            caution = "注意" if lang == "zh" else "Caveats"
-            lines.extend(["", f"  **{caution}:** " + " · ".join(flags)])
 
         if notes:
             note = entry.get("notes_zh" if lang == "zh" else "notes")
             if note:
-                if readme_layout:
-                    lines.extend(["", f"  > {esc(note)}"])
-                else:
-                    lines.append(f"  <sub>{esc(note)}</sub>")
+                lines.append(f"  <sub>{esc(note)}</sub>")
         lines.append("")
     return lines
 
@@ -744,27 +734,6 @@ def coverage_note(stats: dict, lang: str) -> str:
     return statement + " See [`docs/status.md`](docs/status.md)."
 
 
-def preview_version() -> str:
-    """Invalidate GitHub's image proxy when a rendered preview can change."""
-    paths = [
-        "site/index.html", "site/catalog.css", "site/catalog-core.mjs",
-        "site/favicon.svg", "scripts/render_images.py", "scripts/_stats.py",
-        "catalog.json", "collections.json", "compat.json", "patterns.json", "taxonomy.json",
-    ]
-    digest = hashlib.sha256()
-    for path in paths:
-        digest.update(path.encode())
-        digest.update((ROOT / path).read_bytes())
-    return digest.hexdigest()[:16]
-
-
-def section_nav(strings: dict, *, has_measured: bool = True) -> list[str]:
-    keys = ["about_h", "prims_h", "start_h", "coverage_h", "measured_h", "patterns_h", "kinds_h", "repo_h", "verified_h", "data_h", "contrib_h"]
-    if not has_measured:
-        keys.remove("measured_h")
-    return [f"{n:02d} [{strings[key]}](#{anchor(strings[key])})" for n, key in enumerate(keys, 1)]
-
-
 def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) -> str:
     lang = strings["lang_code"]
     out: list[str] = []
@@ -786,55 +755,57 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     # Recorded citations are not the result of the latest scheduled check.
     evidence_records = stats["evidence_rows"]
 
-    # ---- GitHub-native cover, entry points and navigation ----
+    # ---- header ----
     add("<!--")
     add(f"  {strings['generated']}")
     add("-->")
     add("")
-    add('<a name="top"></a>')
-    add('<a name="awesome-jev"></a>')
-    add('<a name="-awesome-jev"></a>')
+    add('<div align="center">')
     add("")
-    add('<picture>')
-    add(f'  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-{lang}-dark-mobile.svg">')
-    add(f'  <source media="(max-width: 600px)" srcset="docs/assets/readme-cover-{lang}-light-mobile.svg">')
-    add(f'  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-{lang}-dark.svg">')
-    cover_alt = "awesome-jev — Jev Decision Atlas. 按场景找案例，沿证据做判断。" if lang == "zh" else "awesome-jev — Jev Decision Atlas. Examples by task. Evidence in view."
-    add(f'  <img src="docs/assets/readme-cover-{lang}-light.svg" alt="{cover_alt}" width="100%">')
-    add('</picture>')
+    add('# <img src="site/favicon.svg" width="36" height="36" alt=""> awesome-jev')
     add("")
-    intro = "TypeSafe AI Jev 的公开资源目录，按开发者要做的决策组织。" if lang == "zh" else "Public resources for TypeSafe AI’s Jev, organised by the decision you need to make."
-    add(intro)
+    add("<sub>Jev Decision Atlas</sub>")
     add("")
-    add(f"**[{strings['site_label']} ↗]({SITE}?lang={lang})** &nbsp; · &nbsp; [{strings['other_name']}]({strings['other_readme']})<br>")
-    add(f"[{strings['l_patterns']}](docs/patterns.md) &nbsp; · &nbsp; [{strings['l_compat']}](docs/compatibility.md) &nbsp; · &nbsp; [{strings['l_vetting']}](docs/vetting.md)")
+    add(f"**{strings['tagline']}**")
     add("")
-    # Local native text keeps these values selectable and readable without
-    # external badge services. Scope definitions remain directly beside them.
-    labels = ("公开资源", "链接成功记录", "调用点记录") if lang == "zh" else ("Public resources", "Dated 2xx links", "Call-site records")
-    add(" &nbsp; · &nbsp; ".join(f"**{number:,}** {title}" for number, title in zip((len(catalog), link_records, evidence_records), labels)))
+    add(
+        f"[![lint]({REPO_URL}/actions/workflows/lint.yml/badge.svg)]({REPO_URL}/actions/workflows/lint.yml) "
+        f"[![links]({REPO_URL}/actions/workflows/links.yml/badge.svg)]({REPO_URL}/actions/workflows/links.yml) "
+        f"[![entries](https://img.shields.io/badge/{strings['stat_entries']}-{len(catalog)}-f5a524?style=flat-square)]({SITE}) "
+        f"[![dated HTTP 2xx records](https://img.shields.io/badge/{strings['stat_verified'].replace(' ', '%20').replace('-', '--')}-{link_records}-4ec97a?style=flat-square)]({SITE}) "
+        f"[![evidence records](https://img.shields.io/badge/{strings['stat_rechecked'].replace(' ', '%20')}-{evidence_records}-a9b3c0?style=flat-square)]({REPO_URL}/actions/workflows/claims.yml)"
+    )
     add("")
     add(f"<sub>{strings['badge_note']}</sub>")
     add("")
-    paths = [
-        ("first-call", strings["collection_first"], "先跑通一个类型化决策，再理解置信度与限制。" if lang == "zh" else "Start with a typed decision, then learn its confidence and limits."),
-        ("build", strings["collection_build"], "沿真实调用点，找可参考的工具选择、路由与记忆实现。" if lang == "zh" else "Follow real call sites for tools, routing and memory."),
-        ("measured", strings["collection_measured"], "先看测试方法、负面结果和适用边界。" if lang == "zh" else "Read methods, negative results and boundaries before adopting."),
-    ]
-    add("| 从哪里开始 | 你会找到什么 |" if lang == "zh" else "| Choose a starting point | What you will find |")
-    add("| :--- | :--- |")
-    for index, (key, title, desc) in enumerate(paths, 1):
-        add(f"| **{index:02d} [{title} ↗]({SITE}?collection={key}&lang={lang})** | {desc} |")
+    add(
+        f"[{strings['site_label']}]({SITE}) &nbsp;·&nbsp; "
+        f"[{strings['other_name']}]({strings['other_readme']}) &nbsp;·&nbsp; "
+        f"[{strings['l_patterns']}](docs/patterns.md) &nbsp;·&nbsp; "
+        f"[{strings['l_compat']}](docs/compatibility.md) &nbsp;·&nbsp; "
+        f"[{strings['l_vetting']}](docs/vetting.md)"
+    )
     add("")
-    add('<details>')
-    toc_label = "阅读导航 · 完整目录" if lang == "zh" else "On this page · full reading map"
-    add(f'<summary><b>{toc_label}</b></summary>')
+    add(
+        f"[{strings['collection_first']}]({SITE}?collection=first-call&lang={lang}) &nbsp;·&nbsp; "
+        f"[{strings['collection_build']}]({SITE}?collection=build&lang={lang}) &nbsp;·&nbsp; "
+        f"[{strings['collection_measured']}]({SITE}?collection=measured&lang={lang})"
+    )
     add("")
-    has_measured = any(e['kind'] == 'benchmark' and 'vendor-reported' not in e.get('flags', []) for e in catalog)
-    for item in section_nav(strings, has_measured=has_measured):
-        add(f"- {item}")
+    # Rendered from the live site on every Pages deploy (render_images.py) and
+    # never committed, so it cannot show a number the catalogue has moved past.
+    # GitHub proxies README images through a cache; the query string changes
+    # whenever the data does, so a new render is actually fetched.
+    shot = "site-zh.png" if lang == "zh" else "site-en.png"
+    version = f"{stats['entries']}-{stats['last_sweep']}"
+    add(
+        f'<a href="{SITE}"><img src="{SITE}img/{shot}?v={version}" '
+        f'alt="{strings["shot_alt"]}" width="760"></a>'
+    )
     add("")
-    add('</details>')
+    add(f"<sub>{strings['shot_cap']}</sub>")
+    add("")
+    add("</div>")
     add("")
     add("---")
     add("")
@@ -845,8 +816,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     for (line,) in strings["about_rows"]:
         add(f"- {line}")
     add("")
-    add("> [!NOTE]")
-    add(f"> {strings['about_not']}")
+    add(f"> ⚠️ {strings['about_not']}")
     add("")
 
     # ---- primitives, as a generated figure ----
@@ -885,8 +855,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
         )
         # An ordered list: a table squeezed the title column until names wrapped.
         add(f"{index}. **[{esc(entry['title'])}]({entry['url']})**")
-        add("")
-        add(f"   {esc(why)}")
+        add(f"   <sub>{esc(why)}</sub>")
         add("")
 
     # ---- coverage: a generated figure, not block characters ----
@@ -907,19 +876,6 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add("")
     add(coverage_note(stats, lang))
     add("")
-    add('<a name="pattern-index"></a>')
-    add("")
-    add("**场景索引 · 点击跳转到条目**" if lang == "zh" else "**Pattern index · jump to the examples**")
-    add("")
-    add("| 场景 | 场景 |" if lang == "zh" else "| Decision pattern | Decision pattern |")
-    add("| :--- | :--- |")
-    cells = []
-    for key in live_patterns:
-        name = label(PATTERN_LABELS, key, lang)
-        cells.append(f"[{name}](#{anchor(name)}) · **{len(by_pattern[key])}**")
-    for index in range(0, len(cells), 2):
-        add(f"| {cells[index]} | {cells[index + 1] if index + 1 < len(cells) else ''} |")
-    add("")
 
     # ---- measured results: the differentiator, surfaced early ----
     measured = [
@@ -933,7 +889,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
         add("")
         add(strings["measured_intro"])
         add("")
-        out.extend(entry_list(measured, strings, notes=True, readme_layout=True))
+        out.extend(entry_list(measured, strings, notes=True))
 
     # ---- by pattern ----
     add(f"## {strings['patterns_h']}")
@@ -948,7 +904,7 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
         add("")
         add(f"_{blurb}_")
         add("")
-        out.extend(entry_list(rows[:INLINE_PER_PATTERN], strings, readme_layout=True))
+        out.extend(entry_list(rows[:INLINE_PER_PATTERN], strings))
         more = "pattern_more" if len(rows) > INLINE_PER_PATTERN else "pattern_all"
         add(
             strings[more].format(
@@ -959,23 +915,21 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
             )
         )
         add("")
-        up = "↑ 场景索引" if lang == "zh" else "↑ Pattern index"
-        add(f"<sub>[{up}](#pattern-index)</sub>")
-        add("")
 
     # ---- by kind, as a table with its own bars ----
     add(f"## {strings['kinds_h']}")
     add("")
     add(strings["kinds_intro"])
     add("")
+    kind_peak = max((len(by_kind[key]) for key in KIND_ORDER), default=1) or 1
     add(
         f"| {strings['th_kind'] if 'th_kind' in strings else 'Kind'} | {strings['th_count']} | {strings['th_find']} |"
     )
-    add("| --- | ---: | --- |")
+    add("| --- | :-- | --- |")
     for key in live_kinds:
         count = len(by_kind[key])
         add(
-            f"| **{label(KIND_LABELS, key, lang)}** | **{count}** "
+            f"| **{label(KIND_LABELS, key, lang)}** | `{count:>2}` {bar(count, kind_peak)} "
             f"| {esc(label(KIND_LABELS, key, lang, field=2))} |"
         )
     add("")
@@ -984,17 +938,6 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add(f"## {strings['repo_h']}")
     add("")
     add(strings["repo_intro"])
-    add("")
-    add('<details>')
-    preview_label = "查看可搜索站点预览" if lang == "zh" else "Preview the searchable catalogue"
-    add(f'<summary><b>{preview_label}</b></summary>')
-    add("")
-    shot = "site-zh.png" if lang == "zh" else "site-en.png"
-    add(f'<a href="{SITE}?lang={lang}"><img src="{SITE}img/{shot}?v={preview_version()}" alt="{strings["shot_alt"]}" width="760"></a>')
-    add("")
-    add(f"<sub>{strings['shot_cap']}</sub>")
-    add("")
-    add('</details>')
     add("")
     add(f"| {strings['th_file']} | {strings['th_what']} |")
     add("| --- | --- |")
@@ -1005,9 +948,10 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     # ---- verification ----
     add(f"## {strings['verified_h']}")
     add("")
-    for text in [strings['verified_yes'].format(**stats), strings['verified_read'], strings['verified_recheck'].replace('{n}', str(evidence_records)), strings['verified_no']]:
-        add(f"- {text}")
-        add("")
+    add(f"- 🔗 {strings['verified_yes'].format(**stats)}")
+    add(f"- 📖 {strings['verified_read']}")
+    add(f"- 🔁 {strings['verified_recheck'].replace('{n}', str(evidence_records))}")
+    add(f"- ❌ {strings['verified_no']}")
     add("")
     add(f"### {strings['verified_flags_h']}")
     add("")
@@ -1051,15 +995,16 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add(
         f"| [`retired.json`]({RAW}/retired.json) | {len(retired)} {strings['stat_retired']} |"
     )
-    data_rows = [
-        ("compat.json", "The platform matrix behind `docs/compatibility.md`", "`docs/compatibility.md` 使用的平台兼容性数据"),
-        ("patterns.json", "The decision taxonomy both generators and the MCP server read", "生成器与 MCP server 共用的决策模式分类"),
-        ("collections.json", "Bilingual editorial paths, selection reasons and limitations", "双语精选路径、推荐理由与使用限制"),
-        ("schema/entry.schema.json", "One entry's shape", "每条目录记录的字段规范"),
-        ("llms.txt", "For agents, with the caveats spelled out", "供智能体读取的目录说明，明确附带限制"),
-    ]
-    for path, en, zh in data_rows:
-        add(f"| [`{path}`]({RAW}/{path}) | {zh if lang == 'zh' else en} |")
+    add(
+        f"| [`compat.json`]({RAW}/compat.json) | The platform matrix behind `docs/compatibility.md` |"
+    )
+    add(
+        f"| [`patterns.json`]({RAW}/patterns.json) | The decision taxonomy both generators and the MCP server read |"
+    )
+    add(
+        f"| [`schema/entry.schema.json`]({RAW}/schema/entry.schema.json) | One entry's shape |"
+    )
+    add(f"| [`llms.txt`]({RAW}/llms.txt) | For agents, with the caveats spelled out |")
     add("")
 
     # ---- contributing + licence ----
@@ -1068,16 +1013,6 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add(strings["contrib_body"])
     add("")
     add(strings["license_body"])
-    add("")
-    checks_label = "维护检查" if lang == "zh" else "Maintenance checks"
-    links_label = "定期链接检查" if lang == "zh" else "Scheduled link checks"
-    claims_label = "调用点文本检查" if lang == "zh" else "Call-site text checks"
-    add(f"**{checks_label}:** [![lint]({REPO_URL}/actions/workflows/lint.yml/badge.svg?branch=main)]({REPO_URL}/actions/workflows/lint.yml) · [{links_label}]({REPO_URL}/actions/workflows/links.yml) · [{claims_label}]({REPO_URL}/actions/workflows/claims.yml)")
-    add("")
-    add("---")
-    add("")
-    top_label = "↑ 返回顶部" if lang == "zh" else "↑ Back to top"
-    add(f"**Jev Decision Atlas** · [{top_label}](#top) · [{strings['other_name']}]({strings['other_readme']})")
     add("")
 
     return "\n".join(out)

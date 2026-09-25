@@ -87,7 +87,6 @@ jobs:
 
       - name: README figures are in sync with catalog.json
         run: |
-          python3 scripts/build_readme_cover.py --check
           python3 scripts/build_assets.py
           if ! git diff --quiet -- docs/assets; then
             echo "::error::docs/assets/*.svg are out of sync with catalog.json."
