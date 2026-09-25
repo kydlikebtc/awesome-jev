@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import pathlib
+import tempfile
 import sys
 import unittest
 from unittest.mock import patch
@@ -83,7 +84,7 @@ class VerificationReportingTests(unittest.TestCase):
         with patch.object(_stats, "compute", return_value=stats), patch.object(build_readme, "START_HERE", []):
             english = build_readme.render([entry], [], build_readme.EN, "2026-09-24")
             chinese = build_readme.render([entry], [], build_readme.ZH, "2026-09-24")
-        self.assertIn("evidence%20recorded-1", english)
+        self.assertIn("**1** Call-site records", english)
         self.assertIn("**not latest CI passes**", english)
         self.assertIn("including entries without `code-untested`", english)
         self.assertIn("不是最新 CI 通过数", chinese)
@@ -91,6 +92,26 @@ class VerificationReportingTests(unittest.TestCase):
         self.assertIn("`recommendation`", english)
         self.assertNotIn("verified examples", _stats.pitch(stats))
         self.assertNotIn("verified examples", build_docs.meta_block(stats))
+
+
+class ReadmePreviewTests(unittest.TestCase):
+    def test_style_only_change_invalidates_the_preview_url(self):
+        paths = [
+            "site/index.html", "site/catalog.css", "site/catalog-core.mjs",
+            "site/favicon.svg", "scripts/render_images.py", "scripts/_stats.py",
+            "catalog.json", "collections.json", "compat.json", "patterns.json", "taxonomy.json",
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            root = pathlib.Path(directory)
+            for path in paths:
+                target = root / path
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text("unchanged")
+            with patch.object(build_readme, "ROOT", root):
+                before = build_readme.preview_version()
+                self.assertEqual(before, build_readme.preview_version())
+                (root / "site/catalog.css").write_text("new layout")
+                self.assertNotEqual(before, build_readme.preview_version())
 
 
 if __name__ == "__main__":
