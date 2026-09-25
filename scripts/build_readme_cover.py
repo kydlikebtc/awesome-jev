@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Build compact, theme-aware README covers without external image services.
+"""Generate the README's dark brand hero and narrow-screen composition.
 
-The cover identifies the catalogue rather than duplicating the site's interface.
-It contains no mutable counts, sample confidence values, or claims of testing.
-GitHub can render these self-contained SVG files through a README <picture>.
+Both GitHub themes intentionally use the same dark poster. All numbers come
+from _stats.compute(); they describe saved records, never runtime test passes.
+The SVGs are portable: no external fonts, images, scripts or foreign objects.
 
 Run: python3 scripts/build_readme_cover.py [--check]
 """
@@ -14,137 +14,167 @@ import argparse
 from html import escape
 from pathlib import Path
 
+from _stats import compute
+
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "docs" / "assets"
-WIDTH, HEIGHT = 1200, 300
-SANS = "-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,'Noto Sans CJK SC',sans-serif"
-MONO = "ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',monospace"
-
-THEMES = {
-    "light": {
-        "bg": "#f7f8fa", "fg": "#18212b", "muted": "#586675",
-        "line": "#d5dde5", "panel": "#ffffff", "amber": "#ad6500", "green": "#21834a",
-    },
-    "dark": {
-        "bg": "#10161d", "fg": "#eef2f6", "muted": "#a2afbd",
-        "line": "#33404e", "panel": "#17212b", "amber": "#f5a524", "green": "#4ec97a",
-    },
-}
+WIDTH, HEIGHT = 1200, 430
+MOBILE_WIDTH, MOBILE_HEIGHT = 600, 420
+SANS = "Arial,Helvetica,'Noto Sans CJK SC',sans-serif"
+BG = "#131412"
+FG = "#f4f2e9"
+MUTED = "#b9bbb2"
+AMBER = "#f5a524"
+RULE = "#393b34"
+THEMES = ("light", "dark")
 
 COPY = {
     "en": {
-        "tagline": "Examples by task. Evidence in view.",
-        "foot": "PUBLIC RESOURCES  /  DECISION PATTERNS  /  SOURCE NOTES",
-        "diagram": "STRUCTURED DECISIONS",
-        "state": "state",
-        "types": ("category", "ordinal", "probability"),
-        "desc": "Jev Decision Atlas: a catalogue of public Jev examples organised by task, with source evidence. A small diagram connects state to the choice, score and noul primitives.",
+        "purpose": "Public resources for Jev, TypeSafe AI’s decision model.",
+        "mobile_purpose": ("Public resources for Jev,", "TypeSafe AI’s decision model."),
+        "labels": ("Public resources", "Dated 2xx links", "Call-site records"),
+        "mobile_labels": (("Public", "resources"), ("Dated 2xx", "links"), ("Call-site", "records")),
     },
     "zh": {
-        "tagline": "按场景找案例，沿证据做判断。",
-        "foot": "公开资源  /  决策模式  /  来源记录",
-        "diagram": "结构化决策",
-        "state": "状态",
-        "types": ("类别", "级别", "概率"),
-        "desc": "Jev 决策图谱：按场景整理公开案例，保留来源与证据。右侧示意图连接状态与 choice、score、noul 三种原语。",
+        "purpose": "按决策场景索引 TypeSafe AI 决策模型 Jev 的公开资源。",
+        "mobile_purpose": ("TypeSafe AI 决策模型 Jev", "公开资源，按决策场景索引。"),
+        "labels": ("公开资源", "带日期的 2xx 链接", "调用点记录"),
+        "mobile_labels": (("公开", "资源"), ("有日期 2xx", "链接"), ("调用点", "记录")),
     },
 }
+METRICS = ("entries", "link_ok", "evidence_rows")
 
 
-def cover(lang: str, theme: str) -> str:
-    c, s = THEMES[theme], COPY[lang]
-    out = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" role="img" aria-labelledby="title description">',
+def description(lang: str, stats: dict) -> str:
+    """Keep the record/verification distinction available to screen readers."""
+    if lang == "zh":
+        return (
+            f"Jev 决策图谱：{stats['entries']:,} 条公开资源、"
+            f"{stats['link_ok']:,} 条带日期的 HTTP 2xx 链接记录、"
+            f"{stats['evidence_rows']:,} 条调用点引用记录。"
+            "数字来自保存的记录，不代表当前链接可用或运行与性能测试通过。"
+        )
+    return (
+        f"Jev Decision Atlas: {stats['entries']:,} public resources, "
+        f"{stats['link_ok']:,} dated HTTP 2xx link records, and "
+        f"{stats['evidence_rows']:,} call-site citation records. "
+        "Counts describe saved records, not current link availability or passed runtime and performance tests."
+    )
+
+
+def opening(lang: str, stats: dict, width: int, height: int) -> list[str]:
+    return [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title description">',
         '<title id="title">awesome-jev · Jev Decision Atlas</title>',
-        f'<desc id="description">{escape(s["desc"])}</desc>',
+        f'<desc id="description">{escape(description(lang, stats))}</desc>',
         '<style>',
-        f'text{{font-family:{SANS};fill:{c["fg"]}}}',
-        f'.mono{{font-family:{MONO}}}',
-        f'.muted{{fill:{c["muted"]}}}',
+        f'text{{font-family:{SANS};fill:{FG}}}',
+        f'.muted{{fill:{MUTED}}}.amber{{fill:{AMBER}}}',
+        '.wordmark{font-weight:800}.number{font-weight:700;font-variant-numeric:tabular-nums}',
         '</style>',
-        f'<rect x=".5" y=".5" width="1199" height="299" rx="16" fill="{c["bg"]}" stroke="{c["line"]}"/>',
-        # Shared three-bar brand mark, drawn inline for portable image rendering.
-        '<rect x="44" y="35" width="36" height="36" rx="8" fill="#0b0d10"/>',
-        '<rect x="52" y="57" width="5" height="7" rx="1.5" fill="#4ec97a"/>',
-        '<rect x="59.5" y="50" width="5" height="14" rx="1.5" fill="#a9b3c0"/>',
-        '<rect x="67" y="43" width="5" height="21" rx="1.5" fill="#f5a524"/>',
-        '<text x="95" y="59" font-size="15" font-weight="600" letter-spacing="2.1" class="muted">JEV DECISION ATLAS</text>',
-        '<text x="42" y="145" font-size="72" font-weight="750" letter-spacing="-3">awesome<tspan fill="' + c["amber"] + '">-</tspan>jev</text>',
-        f'<text x="45" y="190" font-size="25">{escape(s["tagline"])}</text>',
-        f'<path d="M44 228H675" stroke="{c["line"]}"/>',
-        f'<text x="45" y="260" font-size="12.5" letter-spacing="1.1" class="muted">{escape(s["foot"])}</text>',
-        f'<path d="M719 35V265" stroke="{c["line"]}"/>',
-        f'<text x="766" y="59" font-size="12.5" letter-spacing="1.3" class="muted">{escape(s["diagram"])}</text>',
-        # Branches carry no numeric values; this is a topology, not example output.
-        f'<path d="M843 163H881M881 109V217M881 109H916M881 163H916M881 217H916" fill="none" stroke="{c["line"]}" stroke-width="2"/>',
-        f'<rect x="766" y="144" width="77" height="38" rx="7" fill="{c["panel"]}" stroke="{c["line"]}"/>',
-        f'<text x="804.5" y="168" text-anchor="middle" class="mono" font-size="15">{escape(s["state"])}</text>',
-        f'<circle cx="881" cy="163" r="4" fill="{c["amber"]}"/>',
+        f'<rect width="{width}" height="{height}" fill="{BG}"/>',
     ]
-    for index, primitive in enumerate(("choice", "score", "noul")):
-        y = 87 + index * 54
-        accent = (c["amber"], c["muted"], c["green"])[index]
+
+
+def brand(x: int, y: int, font_size: int) -> list[str]:
+    """The only graphic: the shared three-bar mark beside the atlas name."""
+    return [
+        f'<rect x="{x}" y="{y + 19}" width="7" height="9" rx="1.5" fill="#4ec97a"/>',
+        f'<rect x="{x + 11}" y="{y + 10}" width="7" height="18" rx="1.5" fill="#a9b3c0"/>',
+        f'<rect x="{x + 22}" y="{y}" width="7" height="28" rx="1.5" fill="{AMBER}"/>',
+        f'<text x="{x + 48}" y="{y + 23}" font-size="{font_size}" letter-spacing="1.6" class="muted">JEV DECISION ATLAS</text>',
+    ]
+
+
+def cover(lang: str, theme: str, stats: dict | None = None) -> str:
+    """Render the desktop poster; theme is retained for stable asset names."""
+    if theme not in THEMES:
+        raise ValueError(f"Unknown theme: {theme}")
+    stats = compute() if stats is None else stats
+    s = COPY[lang]
+    out = opening(lang, stats, WIDTH, HEIGHT)
+    out.extend(brand(58, 38, 21))
+    out.extend([
+        '<text x="51" y="219" font-size="136" letter-spacing="-7.2" class="wordmark">awesome<tspan class="amber">-jev</tspan></text>',
+        f'<text x="59" y="274" font-size="29">{escape(s["purpose"])}</text>',
+        f'<path d="M58 315H1142" stroke="{RULE}"/>',
+    ])
+    for index, (key, x) in enumerate(zip(METRICS, (58, 437, 816))):
+        accent = " amber" if index == 0 else ""
         out.extend([
-            f'<rect x="916" y="{y}" width="240" height="44" rx="7" fill="{c["panel"]}" stroke="{c["line"]}"/>',
-            f'<rect x="929" y="{y + 17}" width="4" height="10" rx="2" fill="{accent}"/>',
-            f'<text x="945" y="{y + 28}" font-size="19" font-weight="600" class="mono">{primitive}</text>',
-            f'<text x="1141" y="{y + 27}" text-anchor="end" font-size="12.5" class="muted">{escape(s["types"][index])}</text>',
+            f'<text x="{x}" y="368" font-size="41" letter-spacing="-1.3" class="number{accent}">{stats[key]:,}</text>',
+            f'<text x="{x}" y="401" font-size="21" class="muted">{escape(s["labels"][index])}</text>',
         ])
     out.append('</svg>\n')
     return '\n'.join(out)
 
 
-def mobile_cover(lang: str, theme: str) -> str:
-    """Use a separate composition so a narrow README keeps readable type."""
-    c = THEMES[theme]
-    lines = (
-        ("Examples by task.", "Evidence in view.")
-        if lang == "en" else ("按场景找案例，", "沿证据做判断。")
-    )
-    desc = (
-        "Jev Decision Atlas: public Jev examples organised by task, with source evidence."
-        if lang == "en" else "Jev 决策图谱：按场景整理公开案例，保留来源与证据。"
-    )
-    return '\n'.join([
-        '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="260" viewBox="0 0 600 260" role="img" aria-labelledby="title description">',
-        '<title id="title">awesome-jev · Jev Decision Atlas</title>',
-        f'<desc id="description">{escape(desc)}</desc>',
-        f'<style>text{{font-family:{SANS};fill:{c["fg"]}}}.muted{{fill:{c["muted"]}}}</style>',
-        f'<rect x=".5" y=".5" width="599" height="259" rx="16" fill="{c["bg"]}" stroke="{c["line"]}"/>',
-        '<rect x="34" y="28" width="36" height="36" rx="8" fill="#0b0d10"/>',
-        '<rect x="42" y="50" width="5" height="7" rx="1.5" fill="#4ec97a"/>',
-        '<rect x="49.5" y="43" width="5" height="14" rx="1.5" fill="#a9b3c0"/>',
-        '<rect x="57" y="36" width="5" height="21" rx="1.5" fill="#f5a524"/>',
-        '<text x="85" y="54" font-size="20" font-weight="600" letter-spacing="1.1" class="muted">JEV DECISION ATLAS</text>',
-        '<text x="32" y="140" font-size="64" font-weight="750" letter-spacing="-2.6">awesome<tspan fill="' + c["amber"] + '">-</tspan>jev</text>',
-        f'<text x="35" y="185" font-size="27">{escape(lines[0])}</text>',
-        f'<text x="35" y="220" font-size="27">{escape(lines[1])}</text>',
-        '</svg>\n',
+def mobile_cover(lang: str, theme: str, stats: dict | None = None) -> str:
+    """Recompose rather than shrink the desktop poster into unreadable type."""
+    if theme not in THEMES:
+        raise ValueError(f"Unknown theme: {theme}")
+    stats = compute() if stats is None else stats
+    s = COPY[lang]
+    out = opening(lang, stats, MOBILE_WIDTH, MOBILE_HEIGHT)
+    out.extend(brand(32, 29, 21))
+    out.extend([
+        '<text x="27" y="158" font-size="82" letter-spacing="-4.4" class="wordmark">awesome<tspan class="amber">-jev</tspan></text>',
+        f'<text x="33" y="211" font-size="28">{escape(s["mobile_purpose"][0])}</text>',
+        f'<text x="33" y="248" font-size="28">{escape(s["mobile_purpose"][1])}</text>',
+        f'<path d="M32 285H568" stroke="{RULE}"/>',
     ])
+    for index, (key, x) in enumerate(zip(METRICS, (32, 220, 408))):
+        accent = " amber" if index == 0 else ""
+        labels = s["mobile_labels"][index]
+        out.extend([
+            f'<text x="{x}" y="338" font-size="39" letter-spacing="-1.3" class="number{accent}">{stats[key]:,}</text>',
+            f'<text x="{x}" y="372" font-size="22" class="muted">{escape(labels[0])}</text>',
+            f'<text x="{x}" y="399" font-size="22" class="muted">{escape(labels[1])}</text>',
+        ])
+    out.append('</svg>\n')
+    return '\n'.join(out)
+
+
+def rendered_covers(stats: dict | None = None) -> dict[str, str]:
+    """Return deterministic asset contents with a single consistent stats read."""
+    stats = compute() if stats is None else stats
+    return {
+        f"readme-cover-{lang}-{theme}{suffix}.svg": render(lang, theme, stats)
+        for lang in COPY
+        for theme in THEMES
+        for suffix, render in (("", cover), ("-mobile", mobile_cover))
+    }
+
+
+def write_covers(stats: dict | None = None, out_dir: Path = OUT) -> list[Path]:
+    """Write all cover assets; build_readme.main can share its own stats snapshot."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    paths = []
+    for filename, content in rendered_covers(stats).items():
+        path = out_dir / filename
+        path.write_text(content, encoding="utf-8")
+        paths.append(path)
+    return paths
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="report stale generated covers without modifying files")
     args = parser.parse_args()
-    stale = []
-    if not args.check:
-        OUT.mkdir(parents=True, exist_ok=True)
-    for lang in COPY:
-        for theme in THEMES:
-            for suffix, render in (("", cover), ("-mobile", mobile_cover)):
-                path = OUT / f"readme-cover-{lang}-{theme}{suffix}.svg"
-                content = render(lang, theme)
-                if args.check:
-                    if not path.exists() or path.read_text(encoding="utf-8") != content:
-                        stale.append(str(path.relative_to(ROOT)))
-                else:
-                    path.write_text(content, encoding="utf-8")
-    if stale:
-        print("Stale README covers; run python3 scripts/build_readme_cover.py:")
-        print("\n".join(stale))
-        return 1
-    print("README covers are current" if args.check else "Wrote 8 README covers (desktop 1200 × 300; mobile 600 × 260) to docs/assets/")
+    if args.check:
+        stale = [
+            f"docs/assets/{filename}"
+            for filename, content in rendered_covers().items()
+            if not (OUT / filename).exists() or (OUT / filename).read_text(encoding="utf-8") != content
+        ]
+        if stale:
+            print("Stale README covers; run python3 scripts/build_readme_cover.py:")
+            print("\n".join(stale))
+            return 1
+        print("README covers are current")
+    else:
+        write_covers()
+        print("Wrote 8 README covers (desktop 1200 × 430; mobile 600 × 420) to docs/assets/")
     return 0
 
 

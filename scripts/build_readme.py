@@ -39,6 +39,7 @@ RETIRED = ROOT / "retired.json"
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import _stats  # noqa: E402
+import build_readme_cover  # noqa: E402
 from _github import SELF as REPO  # noqa: E402
 
 REPO_URL = f"https://github.com/{REPO}"
@@ -781,7 +782,6 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     # Counted in _stats so the badges, docs/status.md, llms.txt and the site's
     # meta tags all use one definition of "with code" or dated link records.
     stats = _stats.compute()
-    with_code, official = stats["with_code"], stats["official"]
     link_records = stats["link_ok"]
     # Recorded citations are not the result of the latest scheduled check.
     evidence_records = stats["evidence_rows"]
@@ -795,40 +795,33 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add('<a name="awesome-jev"></a>')
     add('<a name="-awesome-jev"></a>')
     add("")
-    add('<picture>')
-    add(f'  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-{lang}-dark-mobile.svg">')
-    add(f'  <source media="(max-width: 600px)" srcset="docs/assets/readme-cover-{lang}-light-mobile.svg">')
-    add(f'  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-{lang}-dark.svg">')
-    cover_alt = "awesome-jev — Jev Decision Atlas. 按场景找案例，沿证据做判断。" if lang == "zh" else "awesome-jev — Jev Decision Atlas. Examples by task. Evidence in view."
-    add(f'  <img src="docs/assets/readme-cover-{lang}-light.svg" alt="{cover_alt}" width="100%">')
-    add('</picture>')
-    add("")
-    intro = "TypeSafe AI Jev 的公开资源目录，按开发者要做的决策组织。" if lang == "zh" else "Public resources for TypeSafe AI’s Jev, organised by the decision you need to make."
-    add(intro)
-    add("")
-    add(f"**[{strings['site_label']} ↗]({SITE}?lang={lang})** &nbsp; · &nbsp; [{strings['other_name']}]({strings['other_readme']})<br>")
-    add(f"[{strings['l_patterns']}](docs/patterns.md) &nbsp; · &nbsp; [{strings['l_compat']}](docs/compatibility.md) &nbsp; · &nbsp; [{strings['l_vetting']}](docs/vetting.md)")
-    add("")
-    # Local native text keeps these values selectable and readable without
-    # external badge services. Scope definitions remain directly beside them.
     labels = ("公开资源", "链接成功记录", "调用点记录") if lang == "zh" else ("Public resources", "Dated 2xx links", "Call-site records")
-    add(" &nbsp; · &nbsp; ".join(f"**{number:,}** {title}" for number, title in zip((len(catalog), link_records, evidence_records), labels)))
+    counts = "; ".join(f"{number:,} {title}" for number, title in zip((len(catalog), link_records, evidence_records), labels))
+    cover_alt = f"awesome-jev — Jev Decision Atlas. {counts}."
+    add(f'<a href="{SITE}?lang={lang}">')
+    add('<picture>')
+    add(f'  <source media="(max-width: 600px)" srcset="docs/assets/readme-cover-{lang}-dark-mobile.svg">')
+    add(f'  <img src="docs/assets/readme-cover-{lang}-dark.svg" alt="{cover_alt}" width="100%">')
+    add('</picture>')
+    add('</a>')
     add("")
-    add(f"<sub>{strings['badge_note']}</sub>")
+    explore = "浏览资源目录 →" if lang == "zh" else "Explore the catalogue →"
+    add('<p align="center">')
+    add(f'<strong><a href="{SITE}?lang={lang}">{explore}</a></strong> &nbsp; · &nbsp; <a href="{strings["other_readme"]}">{strings["other_name"]}</a>')
+    add('</p>')
+    add('<p align="center">')
+    paths = [("first-call", strings["collection_first"]), ("build", strings["collection_build"]), ("measured", strings["collection_measured"])]
+    add(" &nbsp; · &nbsp; ".join(f'<a href="{SITE}?collection={key}&amp;lang={lang}">{title}</a>' for key, title in paths))
+    add('</p>')
     add("")
-    paths = [
-        ("first-call", strings["collection_first"], "先跑通一个类型化决策，再理解置信度与限制。" if lang == "zh" else "Start with a typed decision, then learn its confidence and limits."),
-        ("build", strings["collection_build"], "沿真实调用点，找可参考的工具选择、路由与记忆实现。" if lang == "zh" else "Follow real call sites for tools, routing and memory."),
-        ("measured", strings["collection_measured"], "先看测试方法、负面结果和适用边界。" if lang == "zh" else "Read methods, negative results and boundaries before adopting."),
-    ]
-    add("| 从哪里开始 | 你会找到什么 |" if lang == "zh" else "| Choose a starting point | What you will find |")
-    add("| :--- | :--- |")
-    for index, (key, title, desc) in enumerate(paths, 1):
-        add(f"| **{index:02d} [{title} ↗]({SITE}?collection={key}&lang={lang})** | {desc} |")
+    scope = "统计口径" if lang == "zh" else "About these counts"
+    add(f"<sub>{strings['badge_note']} [{scope}](#{anchor(strings['verified_h'])})</sub>")
     add("")
     add('<details>')
     toc_label = "阅读导航 · 完整目录" if lang == "zh" else "On this page · full reading map"
     add(f'<summary><b>{toc_label}</b></summary>')
+    add("")
+    add(f"[{strings['l_patterns']}](docs/patterns.md) · [{strings['l_compat']}](docs/compatibility.md) · [{strings['l_vetting']}](docs/vetting.md)")
     add("")
     has_measured = any(e['kind'] == 'benchmark' and 'vendor-reported' not in e.get('flags', []) for e in catalog)
     for item in section_nav(strings, has_measured=has_measured):
@@ -1116,6 +1109,7 @@ def main() -> int:
         (ROOT / "README.md").write_text(render(catalog, retired, EN, today))
         (ROOT / "README.zh-CN.md").write_text(render(catalog, retired, ZH, today))
         pages = write_pattern_pages(catalog)
+        build_readme_cover.write_covers()
     except KeyError as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1

@@ -6,30 +6,26 @@
 <a name="awesome-jev"></a>
 <a name="-awesome-jev"></a>
 
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en">
 <picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-en-dark-mobile.svg">
-  <source media="(max-width: 600px)" srcset="docs/assets/readme-cover-en-light-mobile.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-en-dark.svg">
-  <img src="docs/assets/readme-cover-en-light.svg" alt="awesome-jev — Jev Decision Atlas. Examples by task. Evidence in view." width="100%">
+  <source media="(max-width: 600px)" srcset="docs/assets/readme-cover-en-dark-mobile.svg">
+  <img src="docs/assets/readme-cover-en-dark.svg" alt="awesome-jev — Jev Decision Atlas. 1,207 Public resources; 1,204 Dated 2xx links; 1,121 Call-site records." width="100%">
 </picture>
+</a>
 
-Public resources for TypeSafe AI’s Jev, organised by the decision you need to make.
+<p align="center">
+<strong><a href="https://kydlikebtc.github.io/awesome-jev/?lang=en">Explore the catalogue →</a></strong> &nbsp; · &nbsp; <a href="README.zh-CN.md">中文</a>
+</p>
+<p align="center">
+<a href="https://kydlikebtc.github.io/awesome-jev/?collection=first-call&amp;lang=en">First call</a> &nbsp; · &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=build&amp;lang=en">Adapt a project</a> &nbsp; · &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=measured&amp;lang=en">Independent reports</a>
+</p>
 
-**[Searchable site ↗](https://kydlikebtc.github.io/awesome-jev/?lang=en)** &nbsp; · &nbsp; [中文](README.zh-CN.md)<br>
-[Patterns](docs/patterns.md) &nbsp; · &nbsp; [Compatibility](docs/compatibility.md) &nbsp; · &nbsp; [Vetting](docs/vetting.md)
-
-**1,207** Public resources &nbsp; · &nbsp; **1,204** Dated 2xx links &nbsp; · &nbsp; **1,121** Call-site records
-
-<sub>Counts describe saved link and evidence records, not current CI passes or runtime tests.</sub>
-
-| Choose a starting point | What you will find |
-| :--- | :--- |
-| **01 [First call ↗](https://kydlikebtc.github.io/awesome-jev/?collection=first-call&lang=en)** | Start with a typed decision, then learn its confidence and limits. |
-| **02 [Adapt a project ↗](https://kydlikebtc.github.io/awesome-jev/?collection=build&lang=en)** | Follow real call sites for tools, routing and memory. |
-| **03 [Independent reports ↗](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en)** | Read methods, negative results and boundaries before adopting. |
+<sub>Counts describe saved link and evidence records, not current CI passes or runtime tests. [About these counts](#what-is-verified-and-what-is-not)</sub>
 
 <details>
 <summary><b>On this page · full reading map</b></summary>
+
+[Patterns](docs/patterns.md) · [Compatibility](docs/compatibility.md) · [Vetting](docs/vetting.md)
 
 - 01 [What this is](#what-this-is)
 - 02 [What Jev returns](#what-jev-returns)

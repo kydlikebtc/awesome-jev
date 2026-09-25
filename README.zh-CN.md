@@ -6,30 +6,26 @@
 <a name="awesome-jev"></a>
 <a name="-awesome-jev"></a>
 
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh">
 <picture>
-  <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-zh-dark-mobile.svg">
-  <source media="(max-width: 600px)" srcset="docs/assets/readme-cover-zh-light-mobile.svg">
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-zh-dark.svg">
-  <img src="docs/assets/readme-cover-zh-light.svg" alt="awesome-jev — Jev Decision Atlas. 按场景找案例，沿证据做判断。" width="100%">
+  <source media="(max-width: 600px)" srcset="docs/assets/readme-cover-zh-dark-mobile.svg">
+  <img src="docs/assets/readme-cover-zh-dark.svg" alt="awesome-jev — Jev Decision Atlas. 1,207 公开资源; 1,204 链接成功记录; 1,121 调用点记录." width="100%">
 </picture>
+</a>
 
-TypeSafe AI Jev 的公开资源目录，按开发者要做的决策组织。
+<p align="center">
+<strong><a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh">浏览资源目录 →</a></strong> &nbsp; · &nbsp; <a href="README.md">English</a>
+</p>
+<p align="center">
+<a href="https://kydlikebtc.github.io/awesome-jev/?collection=first-call&amp;lang=zh">第一次调用</a> &nbsp; · &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=build&amp;lang=zh">改造现有项目</a> &nbsp; · &nbsp; <a href="https://kydlikebtc.github.io/awesome-jev/?collection=measured&amp;lang=zh">独立测量报告</a>
+</p>
 
-**[可搜索站点 ↗](https://kydlikebtc.github.io/awesome-jev/?lang=zh)** &nbsp; · &nbsp; [English](README.md)<br>
-[决策模式](docs/patterns.md) &nbsp; · &nbsp; [兼容性](docs/compatibility.md) &nbsp; · &nbsp; [核查指南](docs/vetting.md)
-
-**1,207** 公开资源 &nbsp; · &nbsp; **1,204** 链接成功记录 &nbsp; · &nbsp; **1,121** 调用点记录
-
-<sub>数字统计已保存的链接与证据记录，不代表当前 CI 通过数或运行测试结果。</sub>
-
-| 从哪里开始 | 你会找到什么 |
-| :--- | :--- |
-| **01 [第一次调用 ↗](https://kydlikebtc.github.io/awesome-jev/?collection=first-call&lang=zh)** | 先跑通一个类型化决策，再理解置信度与限制。 |
-| **02 [改造现有项目 ↗](https://kydlikebtc.github.io/awesome-jev/?collection=build&lang=zh)** | 沿真实调用点，找可参考的工具选择、路由与记忆实现。 |
-| **03 [独立测量报告 ↗](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)** | 先看测试方法、负面结果和适用边界。 |
+<sub>数字统计已保存的链接与证据记录，不代表当前 CI 通过数或运行测试结果。 [统计口径](#哪些经过核实哪些没有)</sub>
 
 <details>
 <summary><b>阅读导航 · 完整目录</b></summary>
+
+[决策模式](docs/patterns.md) · [兼容性](docs/compatibility.md) · [核查指南](docs/vetting.md)
 
 - 01 [这是什么](#这是什么)
 - 02 [Jev 返回什么](#jev-返回什么)
