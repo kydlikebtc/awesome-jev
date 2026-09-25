@@ -84,7 +84,7 @@ class VerificationReportingTests(unittest.TestCase):
         with patch.object(_stats, "compute", return_value=stats), patch.object(build_readme, "START_HERE", []):
             english = build_readme.render([entry], [], build_readme.EN, "2026-09-24")
             chinese = build_readme.render([entry], [], build_readme.ZH, "2026-09-24")
-        self.assertIn("1 Call-site records", english)
+        self.assertIn("1 call-site citation records", english)
         self.assertIn("**not latest CI passes**", english)
         self.assertIn("including entries without `code-untested`", english)
         self.assertIn("不是最新 CI 通过数", chinese)

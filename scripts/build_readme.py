@@ -766,6 +766,20 @@ def section_nav(strings: dict, *, has_measured: bool = True) -> list[str]:
     return [f"{n:02d} [{strings[key]}](#{anchor(strings[key])})" for n, key in enumerate(keys, 1)]
 
 
+def entry_points(strings: dict) -> list[tuple[str, str]]:
+    """Header chips: the catalogue, its three curated paths, the other language.
+
+    Spaces become &nbsp; so a chip wraps as a unit on phones, never mid-label.
+    """
+    lang = strings["lang_code"]
+    explore = "浏览资源目录 ↗" if lang == "zh" else "Explore the catalogue ↗"
+    paths = [("first-call", strings["collection_first"]), ("build", strings["collection_build"]), ("measured", strings["collection_measured"])]
+    chips = [(f"{SITE}?lang={lang}", f"<b>{explore}</b>")]
+    chips += [(f"{SITE}?collection={key}&amp;lang={lang}", title) for key, title in paths]
+    chips.append((strings["other_readme"], strings["other_name"]))
+    return [(href, title.replace(" ", "&nbsp;")) for href, title in chips]
+
+
 def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) -> str:
     lang = strings["lang_code"]
     out: list[str] = []
@@ -795,29 +809,27 @@ def render(catalog: list[dict], retired: list[dict], strings: dict, today: str) 
     add('<a name="awesome-jev"></a>')
     add('<a name="-awesome-jev"></a>')
     add("")
-    labels = ("公开资源", "链接成功记录", "调用点记录") if lang == "zh" else ("Public resources", "Dated 2xx links", "Call-site records")
-    counts = "; ".join(f"{number:,} {title}" for number, title in zip((len(catalog), link_records, evidence_records), labels))
-    cover_alt = f"awesome-jev — Jev Decision Atlas. {counts}."
+    # The cover's own <desc>, so the alt text carries the same counts, labels
+    # and record caveat as the image instead of a third wording of them.
+    cover_alt = f"awesome-jev — {build_readme_cover.description(lang, stats)}"
     add(f'<a href="{SITE}?lang={lang}">')
     add('<picture>')
-    add(f'  <source media="(max-width: 600px)" srcset="docs/assets/readme-cover-{lang}-dark-mobile.svg">')
-    add(f'  <img src="docs/assets/readme-cover-{lang}-dark.svg" alt="{cover_alt}" width="100%">')
+    # The order is load-bearing; see build_readme_cover.picture_sources.
+    for media, srcset in build_readme_cover.picture_sources(lang):
+        add(f'  <source media="{media}" srcset="{srcset}">')
+    add(f'  <img src="{build_readme_cover.asset_path(lang, "light")}" alt="{cover_alt}" width="100%">')
     add('</picture>')
     add('</a>')
     add("")
-    explore = "浏览资源目录 →" if lang == "zh" else "Explore the catalogue →"
+    # <kbd> is the one native element GitHub draws like a button: bordered,
+    # rounded and shadowed, with no image to go stale or resist translation.
     add('<p align="center">')
-    add(f'<strong><a href="{SITE}?lang={lang}">{explore}</a></strong> &nbsp; · &nbsp; <a href="{strings["other_readme"]}">{strings["other_name"]}</a>')
-    add('</p>')
-    add('<p align="center">')
-    paths = [("first-call", strings["collection_first"]), ("build", strings["collection_build"]), ("measured", strings["collection_measured"])]
-    # A path label should wrap as a unit on mobile, rather than leaving
-    # "reports" on its own line. Ordinary outer spaces still allow reflow.
-    add(" &nbsp; ".join(f'<a href="{SITE}?collection={key}&amp;lang={lang}">{title.replace(" ", "&nbsp;")}</a>' for key, title in paths))
+    for href, title in entry_points(strings):
+        add(f'<a href="{href}"><kbd>&nbsp;{title}&nbsp;</kbd></a>')
     add('</p>')
     add("")
     scope = "统计口径" if lang == "zh" else "About these counts"
-    add(f"<sub>{strings['badge_note']} [{scope}](#{anchor(strings['verified_h'])})</sub>")
+    add(f'<p align="center"><sub>{strings["badge_note"]} <a href="#{anchor(strings["verified_h"])}">{scope}</a></sub></p>')
     add("")
     add('<details>')
     toc_label = "阅读导航 · 完整目录" if lang == "zh" else "On this page · full reading map"
@@ -1108,11 +1120,13 @@ def main() -> int:
     today = dt.date.today().isoformat()
 
     try:
+        # Covers first: all eight render before any is written, so a cover
+        # layout error stops the build before it has touched a file.
+        build_readme_cover.write_covers()
         (ROOT / "README.md").write_text(render(catalog, retired, EN, today))
         (ROOT / "README.zh-CN.md").write_text(render(catalog, retired, ZH, today))
         pages = write_pattern_pages(catalog)
-        build_readme_cover.write_covers()
-    except KeyError as exc:
+    except (KeyError, build_readme_cover.CoverLayoutError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1
 
