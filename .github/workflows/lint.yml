@@ -89,10 +89,11 @@ jobs:
         run: |
           python3 scripts/build_readme_cover.py --check
           python3 scripts/build_assets.py
-          if ! git diff --quiet -- docs/assets; then
+          drift=$(git status --porcelain -- docs/assets)
+          if [ -n "$drift" ]; then
             echo "::error::docs/assets/*.svg are out of sync with catalog.json."
-            echo "Run 'python3 scripts/build_assets.py' and commit the result."
-            git --no-pager diff --stat -- docs/assets
+            echo "Run 'python3 scripts/build_readme.py' and 'python3 scripts/build_assets.py', then commit the result."
+            echo "$drift"
             exit 1
           fi
           echo "figures in sync"
