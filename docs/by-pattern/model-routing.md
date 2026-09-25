@@ -4,7 +4,7 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 43 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 44 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 - **[Cookbook: Structured data extraction cascade](https://docs.typesafe.ai/cookbooks/sde_cascade)** ⭐ — A two-stage mini-then-verify-then-reasoning cascade that reaches most of a big reasoning model's quality at a fraction of the cost.
   <sub>`Official docs` · `Py`</sub>
@@ -119,6 +119,9 @@ Every catalogued example of this decision — 43 of them, official first, then r
 
 - **[stuntdouble](https://github.com/ReallyArtificial/stuntdouble)** — A drop-in /v1/systemone proxy: the app keeps calling Jev while local decision models answer the same requests in the shadow, then it reports whether they would have decided the same — per question, per confidence band, at the app's own decide() — plus Brier, ECE, latency and cost.
   <sub>`Project` · ★1 · Really Artificial · `JS` · `choice` · `score` · `noul` · ⚠ `AI-written`</sub>
+
+- **[XavierJev](https://github.com/liu-x27/XavierJev)** — A local decision layer in Jev's shape: yes/no, choice and rubric questions read off one token's logprobs from a local model, with a Claude Code permission gate measured on held-out command sets.
+  <sub>`Jev-like alternative` · ★1 · Xinyu Liu · `TS` · `noul` · `choice` · `score` · ⚠ `not Jev itself` `AI-written`</sub>
 
 - **[Building a Harness with Jev](https://www.langchain.com/blog/building-a-harness-with-jev)** — LangChain's explainer and integration walkthrough: the three question types, plus model routing and gating risky tool calls before they run.
   <sub>`Article` · Sydney Runkle, Hunter Lovell · `Py` · ⚠ `vendor numbers`</sub>

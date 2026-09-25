@@ -4,7 +4,7 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 138 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 139 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[Cookbook: Classifying RAG passages](https://docs.typesafe.ai/cookbooks/classifying_rag_passages)** ⭐ — 给每条召回的段落打分，再由代码决定哪些能进入回答模型 —— 矛盾的标记保留，夹带提示注入的直接丢弃。
   <sub>`官方文档` · `Py`</sub>
@@ -326,6 +326,9 @@ _在执行前判断一个动作是否安全。属纵深防御，绝不是安全�
 
 - **[stepwarden](https://github.com/getexcited/stepwarden)** — 智能体的每一次工具调用在执行前都过一遍检查的 Claude Code 插件。 <sub>(机翻)</sub>
   <sub>`插件` · ★1 · getexcited · `TS`</sub>
+
+- **[XavierJev](https://github.com/liu-x27/XavierJev)** — Jev 形状的本地决策层：是非、选择和量表问题都从本地模型单个 token 的 logprob 读出答案；附带一个在留出命令集上测量过的 Claude Code 权限闸门。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · ★1 · Xinyu Liu · `TS` · `noul` · `choice` · `score` · ⚠ `并非 Jev 本身` `疑似 AI 生成`</sub>
 
 - **[agent-gate-loop](https://github.com/Ripwords/agent-gate-loop)** — 可复用的 GitHub Action：由检查、AI 审查者与 Jev 共同把关的智能体修复循环。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★0 · ripwords · `TS` · ⚠ `无许可证`</sub>

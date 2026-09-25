@@ -54043,5 +54043,67 @@
     "notes_zh": "本目录中第一个“推荐”模式的例子：检索先缩小范围，再由 Jev 解析请求中的约束并从短名单中挑选。",
     "checked": "2026-09-24",
     "link_status": 200
+  },
+  {
+    "slug": "xavierjev",
+    "title": "XavierJev",
+    "summary": "A local decision layer in Jev's shape: yes/no, choice and rubric questions read off one token's logprobs from a local model, with a Claude Code permission gate measured on held-out command sets.",
+    "summary_zh": "Jev 形状的本地决策层：是非、选择和量表问题都从本地模型单个 token 的 logprob 读出答案；附带一个在留出命令集上测量过的 Claude Code 权限闸门。",
+    "url": "https://github.com/liu-x27/XavierJev",
+    "kind": "alternative",
+    "patterns": [
+      "safety-gating",
+      "model-routing",
+      "retry-control",
+      "human-escalation"
+    ],
+    "question_types": [
+      "noul",
+      "choice",
+      "score"
+    ],
+    "platforms": [
+      "self-hosted",
+      "claude-code"
+    ],
+    "author": {
+      "name": "Xinyu Liu",
+      "handle": "liu-x27",
+      "url": "https://github.com/liu-x27"
+    },
+    "repo": "https://github.com/liu-x27/XavierJev",
+    "has_code": true,
+    "stars": 1,
+    "repo_license": "MIT",
+    "published": "2026-09-25",
+    "first_seen": "2026-09-25",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "evidence": {
+      "path": "src/gate.ts",
+      "matched": [
+        "export function createRiskGate",
+        "export async function checkGate",
+        "export const RISK_QUESTIONS"
+      ],
+      "read_on": "2026-09-25"
+    },
+    "zh_machine": true,
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "not-jev",
+      "ai-generated"
+    ],
+    "notes": "Submitted by its own author, who discloses that the project and this entry were written with Claude Code; the flag records that disclosure. Never calls the Jev API or uses its outputs. The gate's numbers are on held-out sets with read logs and a false-allow bound, and its negative results are kept in docs/measurements.md.",
+    "notes_zh": "由作者本人提交。作者说明项目和本条目都借助 Claude Code 编写，这个标记记录的就是这一说明。从不调用 Jev API，也不使用它的输出。闸门的数字来自带读取记录和误放上界的留出集，负结果保留在 docs/measurements.md。",
+    "checked": "2026-09-25",
+    "link_status": 200
   }
 ]

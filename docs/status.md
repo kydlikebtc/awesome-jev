@@ -11,14 +11,14 @@ is the point of dating it.
 <!-- shape:start -->
 |  |  |
 | --- | --- |
-| Entries | 1207 |
-| Carrying code | 1183 |
+| Entries | 1208 |
+| Carrying code | 1184 |
 | Official (TypeSafe AI's own) | 36 |
-| Links with a dated 2xx response record | 1204 |
-| Most recent successful link-check date (dates vary by row) | 2026-09-24 |
-| Rows with call-site text evidence recorded (not a CI pass count) | 1121 |
+| Links with a dated 2xx response record | 1205 |
+| Most recent successful link-check date (dates vary by row) | 2026-09-25 |
+| Rows with call-site text evidence recorded (not a CI pass count) | 1122 |
 | Patterns covered | 18 of 18 |
-| Chinese summaries hand-written | 196 of 1207 |
+| Chinese summaries hand-written | 196 of 1208 |
 | Retired links | 2 |
 <!-- shape:end -->
 
@@ -33,12 +33,12 @@ Empty kinds:
 
 Thin — under 2.5% of the catalogue:
 
-- `recommendation` (1 of 1207) — The first example is a movie recommender: retrieval narrows the field, and Jev parses the request and chooses from the shortlist.
-- `retry-control` (6 of 1207) — Most apparent matches are false positives: an HTTP client advertising "observable retries" is not a retry decision. The first real one was a semantic circuit breaker asking whether an HTTP 200 is a silent failure.
-- `feature-extraction` (8 of 1207)
-- `support-triage` (8 of 1207)
-- `data-extraction` (16 of 1207)
-- `document-triage` (20 of 1207)
+- `recommendation` (1 of 1208) — The first example is a movie recommender: retrieval narrows the field, and Jev parses the request and chooses from the shortlist.
+- `retry-control` (7 of 1208) — Most apparent matches are false positives: an HTTP client advertising "observable retries" is not a retry decision. The first real one was a semantic circuit breaker asking whether an HTTP 200 is a silent failure.
+- `feature-extraction` (8 of 1208)
+- `support-triage` (8 of 1208)
+- `data-extraction` (16 of 1208)
+- `document-triage` (20 of 1208)
 <!-- gaps:end -->
 
 Two holes are in the research rather than the ecosystem: **Reddit** produced

@@ -4,7 +4,7 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 67 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 68 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 - **[Cookbook: Classification using confidence](https://docs.typesafe.ai/cookbooks/classification_using_confidence)** ⭐ — Classifies annual reports into 75 industry groups, then reads the answer's own confidence to decide whether to report that group or the broader division above it.
   <sub>`Official docs` · `Py` · `choice`</sub>
@@ -179,6 +179,9 @@ Every catalogued example of this decision — 67 of them, official first, then r
 
 - **[qualm](https://github.com/qddegtya/qualm)** — Typed decisions from a System One model, where uncertainty is something you have to handle.
   <sub>`Project` · ★1 · qddegtya · `TS`</sub>
+
+- **[XavierJev](https://github.com/liu-x27/XavierJev)** — A local decision layer in Jev's shape: yes/no, choice and rubric questions read off one token's logprobs from a local model, with a Claude Code permission gate measured on held-out command sets.
+  <sub>`Jev-like alternative` · ★1 · Xinyu Liu · `TS` · `noul` · `choice` · `score` · ⚠ `not Jev itself` `AI-written`</sub>
 
 - **[assay-001](https://github.com/jourdanlabs/assay-001)** — ASSAY-001: independent, pre-registered verification of TypeSafe Jev's calibration and type-safety claims. Split verdict, published in full.
   <sub>`Project` · ★0 · jourdanlabs · `Py` · ⚠ `no licence`</sub>

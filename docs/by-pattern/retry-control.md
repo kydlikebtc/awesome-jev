@@ -4,7 +4,7 @@
 
 _Decide whether a failed step is worth retrying._
 
-Every catalogued example of this decision — 6 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#retry-control); [the site](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 7 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#retry-control); [the site](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=en) can filter them further by language, primitive and kind.
 
 - **[jevswiftsdk](https://github.com/NSStudent/JevSwiftSDK)** — An independent, type-safe Swift SDK for TypeSafe Jev, with async/await, batching, retries, and SPM support.
   <sub>`SDK` · ★8 · nsstudent · `Swift`</sub>
@@ -20,6 +20,9 @@ Every catalogued example of this decision — 6 of them, official first, then ro
 
 - **[jev-reasoning-navigator](https://github.com/AndreuVM/jev-reasoning-navigator)** — JEV Reasoning Navigator: Cognitive supervision, loop prevention, and anti-hallucination engine for autonomous LLM agents using TypeSafe AI
   <sub>`Project` · ★1 · andreuvm · `Py` · ⚠ `no licence`</sub>
+
+- **[XavierJev](https://github.com/liu-x27/XavierJev)** — A local decision layer in Jev's shape: yes/no, choice and rubric questions read off one token's logprobs from a local model, with a Claude Code permission gate measured on held-out command sets.
+  <sub>`Jev-like alternative` · ★1 · Xinyu Liu · `TS` · `noul` · `choice` · `score` · ⚠ `not Jev itself` `AI-written`</sub>
 
 - **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — Judge agent steps — ok / retry / escalate / stop via TypeSafe Jev
   <sub>`Project` · ★0 · ndolinschi · `TS` · ⚠ `no licence`</sub>
