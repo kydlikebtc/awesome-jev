@@ -1,12 +1,12 @@
 # awesome-jev
 
-> A catalogue of public resources for Jev, TypeSafe AI's System One decision model, indexed by decision pattern. It contains <!--n:entries-->1207<!--/n--> entries, every row attributable to a named source. In all, <!--n:link_ok-->1204<!--/n--> have a dated 2xx response record; the other <!--n:link_unstamped-->3<!--/n--> have no dated success record. The newest successful check is <!--n:last_sweep-->2026-09-24<!--/n-->, and dates vary by row. These counts do not describe runtime tests or current availability.
+> A catalogue of public resources for Jev, TypeSafe AI's System One decision model, indexed by decision pattern. It contains <!--n:entries-->1208<!--/n--> entries, every row attributable to a named source. In all, <!--n:link_ok-->1205<!--/n--> have a dated 2xx response record; the other <!--n:link_unstamped-->3<!--/n--> have no dated success record. The newest successful check is <!--n:last_sweep-->2026-09-26<!--/n-->, and dates vary by row. These counts do not describe runtime tests or current availability.
 
 Jev (https://docs.typesafe.ai/) returns typed decisions rather than text: a `choice` among up to 255 options, a `score` on an ordered 2-to-10 level scale, or a `noul` yes-no probability. This repository is an index of how people use it. It is not the product, not an SDK, and not affiliated with TypeSafe AI.
 
 ## Machine-readable data
 
-Catalog (<!--n:entries-->1207<!--/n--> entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json
+Catalog (<!--n:entries-->1208<!--/n--> entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json
 Retired entries (dead links): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json
 JSON Schema for one entry: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/schema/entry.schema.json
 

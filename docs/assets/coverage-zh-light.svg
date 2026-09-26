@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="638" height="530" viewBox="0 0 638 530" role="img" aria-label="各决策模式下的例子数">
 <style>.t{font:600 15px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#1f2328}.s{font:11px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#818b98}.l{font:12.5px -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;fill:#59636e}.n{font:600 12px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#1f2328}.g{font:italic 11px -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;fill:#818b98}</style>
 <text x="12" y="22" class="t">各决策模式下的例子数</text>
-<text x="12" y="40" class="s">1207 条 · 覆盖 18/18 个模式 · 2026-09-24</text>
+<text x="12" y="40" class="s">1208 条 · 覆盖 18/18 个模式 · 2026-09-26</text>
 <line x1="12" y1="50" x2="626" y2="50" stroke="#d1d9e0" stroke-width="1"/>
 <text x="12" y="74" class="l">工具选择</text>
 <rect x="168" y="65" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 65h192a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-192z" fill="#bc7503"/>
+<path d="M168 65h191a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-191z" fill="#bc7503"/>
 <text x="560" y="75" class="n">230</text>
 <text x="12" y="99" class="l">意图路由</text>
 <rect x="168" y="90" width="380" height="11" rx="1" fill="#eef1f4"/>
@@ -74,5 +74,5 @@
 <text x="12" y="499" class="l">总览</text>
 <rect x="168" y="490" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 490h378a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-378z" fill="#bc7503"/>
-<text x="560" y="500" class="n">451</text>
+<text x="560" y="500" class="n">452</text>
 </svg>
