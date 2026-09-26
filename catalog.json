@@ -10895,7 +10895,7 @@
   {
     "slug": "neurolink",
     "title": "neurolink",
-    "summary": "The pipe layer of an AI nervous system: one interface connecting provider neurons to an application, across three inference types — generate, stream, and decide. Decide returns typed, calibrated judgments (boolean/choice/score) via TypeSafe Jev, not text.",
+    "summary": "The pipe layer of an AI nervous system: one interface connecting provider neurons to an application, across three inference types — generate, stream, and decide. Decide returns typed, calibrated judgments (boolean/choice/score) via TypeSafe Jev or the open-weights Laya, not text.",
     "summary_zh": "用一套 TypeScript 接口对接 40 家 AI 供应商，覆盖生成、流式与决策三种推理形态。",
     "zh_machine": true,
     "url": "https://github.com/juspay/neurolink",
