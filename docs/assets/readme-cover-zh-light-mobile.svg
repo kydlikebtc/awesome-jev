@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="560" viewBox="0 0 600 560" role="img" aria-labelledby="title description">
 <title id="title">awesome-jev · Jev Decision Atlas</title>
-<desc id="description">Jev 决策图谱：1,207 条公开资源、1,204 条带日期的 HTTP 2xx 链接记录、1,121 条调用点引用记录。数字来自保存的记录，不代表当前链接可用或运行与性能测试通过。</desc>
+<desc id="description">Jev 决策图谱：1,208 条公开资源、1,205 条带日期的 HTTP 2xx 链接记录、1,121 条调用点引用记录。数字来自保存的记录，不代表当前链接可用或运行与性能测试通过。</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#1f2328}.mono{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}.muted{fill:#59636e}.faint{fill:#656d76}.accent{fill:#a15c00}</style>
 <defs>
 <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#1f2328" stroke-opacity=".05"/></pattern>
@@ -16,9 +16,9 @@
 <text x="36" y="196" font-size="26" class="muted">按场景发现 Jev 用法，</text>
 <text x="36" y="232" font-size="26" class="accent" font-weight="500">沿证据判断是否适合你的项目。</text>
 <path d="M36 272H564" stroke="#d1d9e0"/>
-<text x="36" y="322" font-size="34" class="mono accent" font-weight="600" letter-spacing="-1">1,207</text>
+<text x="36" y="322" font-size="34" class="mono accent" font-weight="600" letter-spacing="-1">1,208</text>
 <text x="36" y="355" font-size="19" class="muted">公开资源</text>
-<text x="216" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,204</text>
+<text x="216" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,205</text>
 <text x="216" y="355" font-size="19" class="muted">带日期的 2xx 链接</text>
 <text x="396" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,121</text>
 <text x="396" y="355" font-size="19" class="muted">调用点记录</text>

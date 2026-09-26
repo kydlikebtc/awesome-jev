@@ -54043,5 +54043,34 @@
     "notes_zh": "本目录中第一个“推荐”模式的例子：检索先缩小范围，再由 Jev 解析请求中的约束并从短名单中挑选。",
     "checked": "2026-09-24",
     "link_status": 200
+  },
+  {
+    "slug": "ling-2026-jev-in-the-wild",
+    "title": "Jev in the Wild: A Data-Driven Analysis of the Jev Model's Functionality, Applications and Ecosystem",
+    "summary": "The first data-driven survey and analysis of Jev's application ecosystem examines 2,170 public GitHub projects, documenting rapid early growth, application domains, and decision-use patterns.",
+    "summary_zh": "首个基于数据的 Jev 应用生态综述与分析，研究 2,170 个公开 GitHub 项目，记录早期快速增长、应用领域和决策用途分布。",
+    "url": "https://arxiv.org/abs/2609.30216",
+    "kind": "article",
+    "patterns": [
+      "overview"
+    ],
+    "author": {
+      "name": "Guoming Ling, Muen Xue, and Zijian Ye",
+      "url": "https://arxiv.org/abs/2609.30216"
+    },
+    "has_code": false,
+    "published": "2026-09-24",
+    "first_seen": "2026-09-26",
+    "sources": [
+      {
+        "catalog": "arXiv",
+        "url": "https://arxiv.org/abs/2609.30216"
+      }
+    ],
+    "license": "CC0-1.0",
+    "notes": "An arXiv preprint surveying public repositories; project counts are not deployment counts or model-accuracy measurements.",
+    "notes_zh": "arXiv 预印本分析的是公开仓库；项目数量不能当作实际部署量或模型准确率。",
+    "checked": "2026-09-26",
+    "link_status": 200
   }
 ]

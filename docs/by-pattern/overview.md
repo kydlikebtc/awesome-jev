@@ -4,7 +4,7 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 451 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 452 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 - **[Official agent skill for Claude Code](https://docs.typesafe.ai/agent-skill)** ⭐ — Installs a TypeSafe skill into Claude Code so an agent can write correct Jev calls without you pasting the API shape each time.
   <sub>`Official docs` · ★2,036 · `sh`</sub>
@@ -1340,6 +1340,9 @@ Every catalogued example of this decision — 451 of them, official first, then 
 
 - **[Jev From TypeSafe is a New Class of AI Model that is FAST and CHEAP - But There is a Caveat!](https://youtube.com/watch?v=qdji39XXgEY)** — A review that puts the limitation in the title rather than burying it.
   <sub>`Video` · Gary Explains</sub>
+
+- **[Jev in the Wild: A Data-Driven Analysis of the Jev Model's Functionality, Applications and Ecosystem](https://arxiv.org/abs/2609.30216)** — The first data-driven survey and analysis of Jev's application ecosystem examines 2,170 public GitHub projects, documenting rapid early growth, application domains, and decision-use patterns.
+  <sub>`Article` · Guoming Ling, Muen Xue, and Zijian Ye</sub>
 
 - **[Jev: System One models for Prod, not God](https://www.latent.space/p/jev)** — The only long-form founder interview: why RLHF was the wrong optimisation target, why public benchmarks were withheld, and the all-synthetic data approach.
   <sub>`Discussion` · Latent Space</sub>
