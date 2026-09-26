@@ -4,7 +4,7 @@
 
 _对来自廉价检索步骤的候选做打分或重排。_
 
-这个决策的全部已收录例子 —— 共 64 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 65 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[Cookbook: Classifying RAG passages](https://docs.typesafe.ai/cookbooks/classifying_rag_passages)** ⭐ — 给每条召回的段落打分，再由代码决定哪些能进入回答模型 —— 矛盾的标记保留，夹带提示注入的直接丢弃。
   <sub>`官方文档` · `Py`</sub>
@@ -161,6 +161,9 @@ _对来自廉价检索步骤的候选做打分或重排。_
 
 - **[agent-seek](https://github.com/Gitmaxd/agent-seek)** — Agent Seek——为智能体提供精准的网页召回：You.com 负责发现，TypeSafe Jev 负责排序。提供 MCP 与 REST。 <sub>(机翻)</sub>
   <sub>`插件` · ★2 · gitmaxd · `Py`</sub>
+
+- **[Jev RAG](https://github.com/aifabrice/jev-rag)** — 用 SQLite FTS5/BM25 索引本地文档，再对每个候选文段询问一个 Jev Noul，按返回的相关性概率重排，并可选生成带引用的回答。
+  <sub>`开源项目` · ★2 · aifabrice · `Py` · `noul` · ⚠ `需第三方密钥` `疑似 AI 生成`</sub>
 
 - **[jev-starter](https://github.com/hamakyo/jev-starter)** — 基于 Jev 的类型化、策略驱动决策工作流：置信路由、回退与评测。 <sub>(机翻)</sub>
   <sub>`插件` · ★2 · hamakyo · `TS`</sub>

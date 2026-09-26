@@ -4,7 +4,7 @@
 
 _Score or re-rank candidates from a cheaper retrieval step._
 
-Every catalogued example of this decision — 64 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 65 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
 
 - **[Cookbook: Classifying RAG passages](https://docs.typesafe.ai/cookbooks/classifying_rag_passages)** ⭐ — Scores each retrieved passage, then decides in code which reach the answering model — keeping contradictory ones flagged and dropping ones carrying prompt injection.
   <sub>`Official docs` · `Py`</sub>
@@ -161,6 +161,9 @@ Every catalogued example of this decision — 64 of them, official first, then r
 
 - **[agent-seek](https://github.com/Gitmaxd/agent-seek)** — Agent Seek — precision web recall for agents. You.com discover + TypeSafe Jev ranking. MCP + REST. Live demo: https://agentseek.dev
   <sub>`Plugin` · ★2 · gitmaxd · `Py`</sub>
+
+- **[Jev RAG](https://github.com/aifabrice/jev-rag)** — Indexes local documents with SQLite FTS5/BM25, then asks one Jev Noul per candidate passage and sorts by the returned relevance probability before optionally generating a cited answer.
+  <sub>`Project` · ★2 · aifabrice · `Py` · `noul` · ⚠ `3rd-party key` `AI-written`</sub>
 
 - **[jev-starter](https://github.com/hamakyo/jev-starter)** — Typed, policy-driven decision workflows on top of TypeSafe AI Jev: confidence routing, fallbacks, evaluation, and RAG patterns for TypeScript apps.
   <sub>`Plugin` · ★2 · hamakyo · `TS`</sub>
