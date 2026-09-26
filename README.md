@@ -12,7 +12,7 @@
   <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="docs/assets/readme-cover-en-light-mobile.svg">
   <source media="(max-width: 767px)" srcset="docs/assets/readme-cover-en-dark-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-en-dark.svg">
-  <img src="docs/assets/readme-cover-en-light.svg" alt="awesome-jev — Jev Decision Atlas: 1,207 public resources, 1,204 dated HTTP 2xx link records, and 1,121 call-site citation records. Counts describe saved records, not current link availability or passed runtime and performance tests." width="100%">
+  <img src="docs/assets/readme-cover-en-light.svg" alt="awesome-jev — Jev Decision Atlas: 1,208 public resources, 1,205 dated HTTP 2xx link records, and 1,122 call-site citation records. Counts describe saved records, not current link availability or passed runtime and performance tests." width="100%">
 </picture>
 </a>
 
@@ -116,7 +116,7 @@ All 18 patterns have at least one catalogue entry. Coverage does not imply runti
 | [Context compaction](#context-compaction) · **34** | [Safety gating](#safety-gating) · **138** |
 | [Output validation](#output-validation) · **134** | [Retry control](#retry-control) · **6** |
 | [Human escalation](#human-escalation) · **67** | [Model routing](#model-routing) · **43** |
-| [Speculative fan-out](#speculative-fan-out) · **32** | [Search & ranking](#search--ranking) · **64** |
+| [Speculative fan-out](#speculative-fan-out) · **32** | [Search & ranking](#search--ranking) · **65** |
 | [Structured extraction](#structured-extraction) · **16** | [Classification](#classification) · **119** |
 | [ML feature extraction](#ml-feature-extraction) · **8** | [Document triage](#document-triage) · **20** |
 | [Support triage](#support-triage) · **8** | [Content scoring](#content-scoring) · **164** |
@@ -944,7 +944,7 @@ _Score or re-rank candidates from a cheaper retrieval step._
   An Android reply co-pilot that judges intent, timing and risk from on-screen text, while separate models handle OCR and drafting.<br>
   <sub>`Project` · ★5,414 · `Java` · `choice` · `score` · `noul`</sub>
 
-**10 of 64** shown · [all 64 on one page →](docs/by-pattern/search-ranking.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en)
+**10 of 65** shown · [all 65 on one page →](docs/by-pattern/search-ranking.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en)
 
 <sub>[↑ Pattern index](#pattern-index)</sub>
 
@@ -1306,7 +1306,7 @@ The same rows grouped by what you will find when you open the link.
 | **SDK** | **94** | Client libraries, official and community. |
 | **Integration** | **34** | A gateway, framework or platform route to the model. |
 | **Snippet** | **4** | Small runnable examples in this repository. |
-| **Project** | **653** | An application or library that calls Jev in anger. |
+| **Project** | **654** | An application or library that calls Jev in anger. |
 | **Plugin** | **238** | Editor, agent and MCP integrations you can install. |
 | **Tutorial** | **9** | Step-by-step material with code. |
 | **Benchmark** | **70** | Measurement. Check whether it is independent or vendor-reported. |
@@ -1322,7 +1322,7 @@ The parts that are not the catalog.
 <details>
 <summary><b>Preview the searchable catalogue</b></summary>
 
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=af9967f604fc056d" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=f2ebb358a7a21b1d" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
 
 <sub>Filter by clicking a bar. Two more views: <a href="https://kydlikebtc.github.io/awesome-jev/?view=prims">primitives</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat">compatibility</a>. Every filter and entry is a shareable URL.</sub>
 
@@ -1346,11 +1346,11 @@ The parts that are not the catalog.
 
 ## What is verified, and what is not
 
-- **Link checks** — 1204 rows carry an HTTP 2xx response and a `checked` date; 3 carry no dated success record. Dates vary by row and a past success does not guarantee availability today. Stars and licences are repository metadata snapshots.
+- **Link checks** — 1205 rows carry an HTTP 2xx response and a `checked` date; 3 carry no dated success record. Dates vary by row and a past success does not guarantee availability today. Stars and licences are repository metadata snapshots.
 
 - **Source and code review** — `evidence.path` cites the file read, `evidence.read_on` records the reported review date, and `evidence_none` explains missing file evidence. Reading a call site is separate from running it. Summaries include source descriptions and machine translations; see the [method and its limits](docs/method.md).
 
-- **Call-site text checks** — 1121 rows record a file and matching strings in `evidence`. The weekly [claims job](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) checks that those strings remain on the default branch and reports missing text or files. This count measures recorded evidence, **not latest CI passes**. A text match does not prove that a call executes, the API is compatible, or the result is correct.
+- **Call-site text checks** — 1122 rows record a file and matching strings in `evidence`. The weekly [claims job](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) checks that those strings remain on the default branch and reports missing text or files. This count measures recorded evidence, **not latest CI passes**. A text match does not prove that a call executes, the API is compatible, or the result is correct.
 
 - **Runtime and performance not independently tested here** — treat every catalogue entry as untested by this repository, including entries without `code-untested`. Linked benchmarks describe their authors' measurements; this catalogue has not reproduced them. Repository build checks and package smoke tests do not exercise those integrations or the live Jev API, and inclusion is not a security review.
 
@@ -1388,7 +1388,7 @@ One entry per example, validated against a JSON Schema on every push.
 
 | File | What it is |
 | --- | --- |
-| [`catalog.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json) | 1207 entries |
+| [`catalog.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json) | 1208 entries |
 | [`retired.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json) | 2 retired |
 | [`compat.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/compat.json) | The platform matrix behind `docs/compatibility.md` |
 | [`patterns.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/patterns.json) | The decision taxonomy both generators and the MCP server read |

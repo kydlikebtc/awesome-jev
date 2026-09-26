@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="638" height="530" viewBox="0 0 638 530" role="img" aria-label="各决策模式下的例子数">
 <style>.t{font:600 15px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#e6edf3}.s{font:11px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#6e7681}.l{font:12.5px -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;fill:#8b949e}.n{font:600 12px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#e6edf3}.g{font:italic 11px -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;fill:#6e7681}</style>
 <text x="12" y="22" class="t">各决策模式下的例子数</text>
-<text x="12" y="40" class="s">1207 条 · 覆盖 18/18 个模式 · 2026-09-24</text>
+<text x="12" y="40" class="s">1208 条 · 覆盖 18/18 个模式 · 2026-09-26</text>
 <line x1="12" y1="50" x2="626" y2="50" stroke="#30363d" stroke-width="1"/>
 <text x="12" y="74" class="l">工具选择</text>
 <rect x="168" y="65" width="380" height="11" rx="1" fill="#21262d"/>
@@ -41,8 +41,8 @@
 <text x="560" y="275" class="n">32</text>
 <text x="12" y="299" class="l">检索与排序</text>
 <rect x="168" y="290" width="380" height="11" rx="1" fill="#21262d"/>
-<path d="M168 290h52a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-52z" fill="#8a5d14"/>
-<text x="560" y="300" class="n">64</text>
+<path d="M168 290h53a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-53z" fill="#8a5d14"/>
+<text x="560" y="300" class="n">65</text>
 <text x="12" y="324" class="l">结构化抽取</text>
 <rect x="168" y="315" width="380" height="11" rx="1" fill="#21262d"/>
 <path d="M168 315h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-11z" fill="#8a5d14"/>

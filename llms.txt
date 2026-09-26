@@ -1,12 +1,12 @@
 # awesome-jev
 
-> A catalogue of public resources for Jev, TypeSafe AI's System One decision model, indexed by decision pattern. It contains <!--n:entries-->1207<!--/n--> entries, every row attributable to a named source. In all, <!--n:link_ok-->1204<!--/n--> have a dated 2xx response record; the other <!--n:link_unstamped-->3<!--/n--> have no dated success record. The newest successful check is <!--n:last_sweep-->2026-09-24<!--/n-->, and dates vary by row. These counts do not describe runtime tests or current availability.
+> A catalogue of public resources for Jev, TypeSafe AI's System One decision model, indexed by decision pattern. It contains <!--n:entries-->1208<!--/n--> entries, every row attributable to a named source. In all, <!--n:link_ok-->1205<!--/n--> have a dated 2xx response record; the other <!--n:link_unstamped-->3<!--/n--> have no dated success record. The newest successful check is <!--n:last_sweep-->2026-09-26<!--/n-->, and dates vary by row. These counts do not describe runtime tests or current availability.
 
 Jev (https://docs.typesafe.ai/) returns typed decisions rather than text: a `choice` among up to 255 options, a `score` on an ordered 2-to-10 level scale, or a `noul` yes-no probability. This repository is an index of how people use it. It is not the product, not an SDK, and not affiliated with TypeSafe AI.
 
 ## Machine-readable data
 
-Catalog (<!--n:entries-->1207<!--/n--> entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json
+Catalog (<!--n:entries-->1208<!--/n--> entries): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json
 Retired entries (dead links): https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json
 JSON Schema for one entry: https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/schema/entry.schema.json
 
@@ -46,7 +46,7 @@ Link records: `link_status` and `checked` together record a dated HTTP response.
 
 Human review: `evidence.path` cites the file reviewed, and `evidence.read_on` records the reported reading date. Reading code is separate from running it. Summaries include source-project descriptions and machine translations; `zh_machine` marks the latter. See `docs/method.md` for the collection method and limits.
 
-Call-site text records: in all, <!--n:evidence_rows-->1121<!--/n--> rows cite a file and matching strings. A weekly job fetches the default-branch file and reports missing strings or files. This is a count of stored citations, not the latest CI passes. Inspect the workflow report and resulting issues for current results. A string match does not prove a call executes or the API is compatible. The narrower claim about which primitives are used is made by <!--n:primitive_rows-->100<!--/n--> rows, of which <!--n:primitive_rows_cited-->72<!--/n--> cite a file. Other primitive claims carry `evidence_none` explaining why no readable repository file is cited.
+Call-site text records: in all, <!--n:evidence_rows-->1122<!--/n--> rows cite a file and matching strings. A weekly job fetches the default-branch file and reports missing strings or files. This is a count of stored citations, not the latest CI passes. Inspect the workflow report and resulting issues for current results. A string match does not prove a call executes or the API is compatible. The narrower claim about which primitives are used is made by <!--n:primitive_rows-->101<!--/n--> rows, of which <!--n:primitive_rows_cited-->73<!--/n--> cite a file. Other primitive claims carry `evidence_none` explaining why no readable repository file is cited.
 
 A row without a dated link-success record may have a host that refuses scripted requests. A 403 from Forbes or Medium is not evidence that a page is gone; such rows are left unstamped instead of inventing a successful check.
 
