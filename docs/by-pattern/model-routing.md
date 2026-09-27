@@ -105,8 +105,8 @@ Every catalogued example of this decision — 43 of them, official first, then r
 - **[hermes-jev-router](https://github.com/ussyverse/hermes-jev-router)** — Experimental Hermes plugin: Jev-assisted model routing plans with budget and capability constraints. API access pending.
   <sub>`Plugin` · ★1 · ussyverse · `Py`</sub>
 
-- **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — The decision layer for AI agents. Typed, calibrated decisions in ~400ms for two hundredths of a cent: gate tool calls, route models, rank options. With the 300-call injection test that found what breaks.
-  <sub>`Project` · ★1 · eugeniughelbur · `Py`</sub>
+- **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — Claude Code PreToolUse gate: regex hard rules and a read-only allowlist first, then one Noul and one Choice decide allow, ask or deny, so clearly safe commands skip the permission prompt. Codex, Cursor and OpenCode adapters, plus a review-router GitHub Action.
+  <sub>`Plugin` · ★1 · eugeniughelbur · `Py` · `noul` · `choice`</sub>
 
 - **[jev-harness-router](https://github.com/JoacoMarc/jev-harness-router)** — Per-turn router for agent harnesses: one 350ms Jev call picks the model tier, effort, tools and skill, behind a hard deadline with a regex fallback. Claude Agent SDK adapter included.
   <sub>`SDK` · ★1 · joacomarc · `TS`</sub>

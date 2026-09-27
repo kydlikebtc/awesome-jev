@@ -4,7 +4,7 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 67 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 68 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[Cookbook: Classification using confidence](https://docs.typesafe.ai/cookbooks/classification_using_confidence)** ⭐ — 把年报分入 75 个行业组，再根据答案自身的置信度决定：报这个细分组，还是退回上一层的大类。
   <sub>`官方文档` · `Py` · `choice`</sub>
@@ -167,6 +167,9 @@ _用校准置信度决定哪些情况必须由人来看。_
 
 - **[watfile](https://github.com/jexp/watfile)** — 用 Jev 或本地校准决策模型给文本与 PDF 分类归档。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★2 · jexp · `Py` · ⚠ `无许可证`</sub>
+
+- **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — Claude Code 的 PreToolUse 门禁：先用正则硬规则和只读白名单，再用一个 Noul 和一个 Choice 判定放行、询问或拒绝，明确安全的命令无需权限确认。附 Codex、Cursor、OpenCode 适配和 review-router GitHub Action。 <sub>(机翻)</sub>
+  <sub>`插件` · ★1 · eugeniughelbur · `Py` · `noul` · `choice`</sub>
 
 - **[jev-eval](https://github.com/4esv/jev-eval)** — 在你自己的标注分类数据上，把 Jev 与任意 OpenRouter 模型做基准对比：准确率与校准度。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★1 · 4esv · `Py` · ⚠ `无许可证`</sub>

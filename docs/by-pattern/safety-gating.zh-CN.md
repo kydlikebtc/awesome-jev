@@ -4,7 +4,7 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 138 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 139 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[Cookbook: Classifying RAG passages](https://docs.typesafe.ai/cookbooks/classifying_rag_passages)** ⭐ — 给每条召回的段落打分，再由代码决定哪些能进入回答模型 —— 矛盾的标记保留，夹带提示注入的直接丢弃。
   <sub>`官方文档` · `Py`</sub>
@@ -287,6 +287,9 @@ _在执行前判断一个动作是否安全。属纵深防御，绝不是安全�
 
 - **[jev-carryforward](https://github.com/Dharundp6/jev-carryforward)** — 把上一轮会话知道的东西，对照这一轮正在做的事打分。 <sub>(机翻)</sub>
   <sub>`插件` · ★1 · dharundp6 · `TS`</sub>
+
+- **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — Claude Code 的 PreToolUse 门禁：先用正则硬规则和只读白名单，再用一个 Noul 和一个 Choice 判定放行、询问或拒绝，明确安全的命令无需权限确认。附 Codex、Cursor、OpenCode 适配和 review-router GitHub Action。 <sub>(机翻)</sub>
+  <sub>`插件` · ★1 · eugeniughelbur · `Py` · `noul` · `choice`</sub>
 
 - **[jev-logtriage](https://github.com/jyatesdotdev/jev-logtriage)** — 由 Jev 判断一批日志是否值得处理：类型化问题、置信闸门，不执行任何动作。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★1 · jyatesdotdev · `Py`</sub>

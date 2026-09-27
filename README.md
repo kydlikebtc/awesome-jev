@@ -112,11 +112,11 @@ All 18 patterns have at least one catalogue entry. Coverage does not imply runti
 
 | Decision pattern | Decision pattern |
 | :--- | :--- |
-| [Tool selection](#tool-selection) · **230** | [Intent routing](#intent-routing) · **35** |
-| [Context compaction](#context-compaction) · **34** | [Safety gating](#safety-gating) · **138** |
+| [Tool selection](#tool-selection) · **229** | [Intent routing](#intent-routing) · **35** |
+| [Context compaction](#context-compaction) · **34** | [Safety gating](#safety-gating) · **139** |
 | [Output validation](#output-validation) · **134** | [Retry control](#retry-control) · **6** |
-| [Human escalation](#human-escalation) · **67** | [Model routing](#model-routing) · **43** |
-| [Speculative fan-out](#speculative-fan-out) · **32** | [Search & ranking](#search--ranking) · **64** |
+| [Human escalation](#human-escalation) · **68** | [Model routing](#model-routing) · **43** |
+| [Speculative fan-out](#speculative-fan-out) · **32** | [Search & ranking](#search--ranking) · **63** |
 | [Structured extraction](#structured-extraction) · **16** | [Classification](#classification) · **119** |
 | [ML feature extraction](#ml-feature-extraction) · **8** | [Document triage](#document-triage) · **20** |
 | [Support triage](#support-triage) · **8** | [Content scoring](#content-scoring) · **164** |
@@ -514,7 +514,7 @@ _Which tool or action the agent should call next._
   Vercel Labs' generative UI framework. In its Jev experiment the model does not write JSON token by token — it only picks components, props and layout.<br>
   <sub>`Project` · ★18,204 · Vercel Labs · `TS` · `choice`</sub>
 
-**10 of 230** shown · [all 230 on one page →](docs/by-pattern/tool-selection.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en)
+**10 of 229** shown · [all 229 on one page →](docs/by-pattern/tool-selection.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en)
 
 <sub>[↑ Pattern index](#pattern-index)</sub>
 
@@ -658,7 +658,7 @@ _Decide whether an action is safe to run. Defence in depth, never a security bou
   VexJoy AI Agent with Jev Intelligent Routing - /do routes plain-English requests to the right specialist agent and gates the work with reviews, tests, and a learning loop.<br>
   <sub>`Project` · ★425 · notque · `Py`</sub>
 
-**10 of 138** shown · [all 138 on one page →](docs/by-pattern/safety-gating.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en)
+**10 of 139** shown · [all 139 on one page →](docs/by-pattern/safety-gating.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en)
 
 <sub>[↑ Pattern index](#pattern-index)</sub>
 
@@ -794,7 +794,7 @@ _Use calibrated confidence to decide what a person must see._
   Seven distinct email decisions, each with its own separately chosen threshold, falling back to the normal LLM on any error.<br>
   <sub>`Project` · ★12,328 · `TS` · `choice` · `noul`</sub>
 
-**10 of 67** shown · [all 67 on one page →](docs/by-pattern/human-escalation.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en)
+**10 of 68** shown · [all 68 on one page →](docs/by-pattern/human-escalation.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en)
 
 <sub>[↑ Pattern index](#pattern-index)</sub>
 
@@ -944,7 +944,7 @@ _Score or re-rank candidates from a cheaper retrieval step._
   An Android reply co-pilot that judges intent, timing and risk from on-screen text, while separate models handle OCR and drafting.<br>
   <sub>`Project` · ★5,414 · `Java` · `choice` · `score` · `noul`</sub>
 
-**10 of 64** shown · [all 64 on one page →](docs/by-pattern/search-ranking.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en)
+**10 of 63** shown · [all 63 on one page →](docs/by-pattern/search-ranking.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en)
 
 <sub>[↑ Pattern index](#pattern-index)</sub>
 
@@ -1306,8 +1306,8 @@ The same rows grouped by what you will find when you open the link.
 | **SDK** | **94** | Client libraries, official and community. |
 | **Integration** | **34** | A gateway, framework or platform route to the model. |
 | **Snippet** | **4** | Small runnable examples in this repository. |
-| **Project** | **653** | An application or library that calls Jev in anger. |
-| **Plugin** | **238** | Editor, agent and MCP integrations you can install. |
+| **Project** | **652** | An application or library that calls Jev in anger. |
+| **Plugin** | **239** | Editor, agent and MCP integrations you can install. |
 | **Tutorial** | **9** | Step-by-step material with code. |
 | **Benchmark** | **70** | Measurement. Check whether it is independent or vendor-reported. |
 | **Article** | **12** | Explainers, analysis and launch coverage. |
@@ -1322,7 +1322,7 @@ The parts that are not the catalog.
 <details>
 <summary><b>Preview the searchable catalogue</b></summary>
 
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=af9967f604fc056d" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=10dd9a43dc96e861" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
 
 <sub>Filter by clicking a bar. Two more views: <a href="https://kydlikebtc.github.io/awesome-jev/?view=prims">primitives</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat">compatibility</a>. Every filter and entry is a shareable URL.</sub>
 

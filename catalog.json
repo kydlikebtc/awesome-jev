@@ -11828,17 +11828,19 @@
   {
     "slug": "jev-engineering",
     "title": "jev-engineering",
-    "summary": "The decision layer for AI agents. Typed, calibrated decisions in ~400ms for two hundredths of a cent: gate tool calls, route models, rank options. With the 300-call injection test that found what breaks.",
-    "summary_zh": "面向 AI 智能体的决策层：约 400 毫秒、两百分之一美分的类型化校准决策，用于拦截工具调用。",
+    "summary": "Claude Code PreToolUse gate: regex hard rules and a read-only allowlist first, then one Noul and one Choice decide allow, ask or deny, so clearly safe commands skip the permission prompt. Codex, Cursor and OpenCode adapters, plus a review-router GitHub Action.",
+    "summary_zh": "Claude Code 的 PreToolUse 门禁：先用正则硬规则和只读白名单，再用一个 Noul 和一个 Choice 判定放行、询问或拒绝，明确安全的命令无需权限确认。附 Codex、Cursor、OpenCode 适配和 review-router GitHub Action。",
     "zh_machine": true,
     "url": "https://github.com/eugeniughelbur/jev-engineering",
-    "kind": "project",
+    "kind": "plugin",
     "patterns": [
-      "search-ranking",
-      "model-routing",
-      "tool-selection"
+      "safety-gating",
+      "human-escalation",
+      "model-routing"
     ],
     "platforms": [
+      "claude-code",
+      "openrouter",
       "typesafe-api"
     ],
     "author": {
@@ -11849,13 +11851,15 @@
     "stars": 1,
     "repo_license": "MIT",
     "evidence": {
-      "path": "build/lib/jev_gate.py",
+      "path": "jev_gate.py",
       "matched": [
         "typesafe/jev",
         "jev-1.13",
-        "/v1/systemone"
+        "/v1/systemone",
+        "noul",
+        "choice"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-28"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -11869,7 +11873,13 @@
       "python"
     ],
     "checked": "2026-09-24",
-    "link_status": 200
+    "link_status": 200,
+    "question_types": [
+      "noul",
+      "choice"
+    ],
+    "notes": "Starts in observe mode, which only logs. Auto mode, which approves clear allows without a prompt, is opt-in. The author's own replay of 3,622 Bash commands from their Claude Code history reports 66% approved without a prompt; that is the author's measurement and an upper bound.",
+    "notes_zh": "默认为只记录的观察模式；自动批准明确安全命令的 auto 模式需手动开启。作者用自己 Claude Code 历史中的 3,622 条 Bash 命令回放，报告 66% 无需确认即被批准；这是作者自测数据，属于上限。"
   },
   {
     "slug": "jev-calibration-audit",
