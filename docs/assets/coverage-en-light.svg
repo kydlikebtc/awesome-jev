@@ -5,8 +5,8 @@
 <line x1="12" y1="50" x2="626" y2="50" stroke="#d1d9e0" stroke-width="1"/>
 <text x="12" y="74" class="l">Tool selection</text>
 <rect x="168" y="65" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 65h192a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-192z" fill="#bc7503"/>
-<text x="560" y="75" class="n">230</text>
+<path d="M168 65h191a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-191z" fill="#bc7503"/>
+<text x="560" y="75" class="n">229</text>
 <text x="12" y="99" class="l">Intent routing</text>
 <rect x="168" y="90" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 90h27a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-27z" fill="#e5b45f"/>
@@ -17,8 +17,8 @@
 <text x="560" y="125" class="n">34</text>
 <text x="12" y="149" class="l">Safety gating</text>
 <rect x="168" y="140" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 140h114a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-114z" fill="#bc7503"/>
-<text x="560" y="150" class="n">138</text>
+<path d="M168 140h115a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-115z" fill="#bc7503"/>
+<text x="560" y="150" class="n">139</text>
 <text x="12" y="174" class="l">Output validation</text>
 <rect x="168" y="165" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 165h111a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-111z" fill="#bc7503"/>
@@ -29,8 +29,8 @@
 <text x="560" y="200" class="n">6</text>
 <text x="12" y="224" class="l">Human escalation</text>
 <rect x="168" y="215" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 215h54a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-54z" fill="#e5b45f"/>
-<text x="560" y="225" class="n">67</text>
+<path d="M168 215h55a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-55z" fill="#e5b45f"/>
+<text x="560" y="225" class="n">68</text>
 <text x="12" y="249" class="l">Model routing</text>
 <rect x="168" y="240" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 240h34a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-34z" fill="#e5b45f"/>
@@ -41,8 +41,8 @@
 <text x="560" y="275" class="n">32</text>
 <text x="12" y="299" class="l">Search &amp; ranking</text>
 <rect x="168" y="290" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 290h52a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-52z" fill="#e5b45f"/>
-<text x="560" y="300" class="n">64</text>
+<path d="M168 290h51a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-51z" fill="#e5b45f"/>
+<text x="560" y="300" class="n">63</text>
 <text x="12" y="324" class="l">Structured extraction</text>
 <rect x="168" y="315" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 315h11a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-11z" fill="#e5b45f"/>

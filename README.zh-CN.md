@@ -112,11 +112,11 @@
 
 | 场景 | 场景 |
 | :--- | :--- |
-| [工具选择](#工具选择) · **230** | [意图路由](#意图路由) · **35** |
-| [上下文压缩](#上下文压缩) · **34** | [安全闸门](#安全闸门) · **138** |
+| [工具选择](#工具选择) · **229** | [意图路由](#意图路由) · **35** |
+| [上下文压缩](#上下文压缩) · **34** | [安全闸门](#安全闸门) · **139** |
 | [输出校验](#输出校验) · **134** | [重试控制](#重试控制) · **6** |
-| [人工升级](#人工升级) · **67** | [模型路由](#模型路由) · **43** |
-| [并行扇出](#并行扇出) · **32** | [检索与排序](#检索与排序) · **64** |
+| [人工升级](#人工升级) · **68** | [模型路由](#模型路由) · **43** |
+| [并行扇出](#并行扇出) · **32** | [检索与排序](#检索与排序) · **63** |
 | [结构化抽取](#结构化抽取) · **16** | [分类](#分类) · **119** |
 | [机器学习特征抽取](#机器学习特征抽取) · **8** | [文档分拣](#文档分拣) · **20** |
 | [工单分拣](#工单分拣) · **8** | [内容评分](#内容评分) · **164** |
@@ -514,7 +514,7 @@ _智能体下一步该调用哪个工具或动作。_
   Vercel Labs 的生成式 UI 框架。实验里 Jev 不逐 token 写 JSON，只负责选组件、属性和布局。<br>
   <sub>`开源项目` · ★18,204 · Vercel Labs · `TS` · `choice`</sub>
 
-已显示 **10 / 230** 条 · [在单独页面查看全部 230 条 →](docs/by-pattern/tool-selection.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)
+已显示 **10 / 229** 条 · [在单独页面查看全部 229 条 →](docs/by-pattern/tool-selection.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -658,7 +658,7 @@ _在执行前判断一个动作是否安全。属纵深防御，绝不是安全�
   带 Jev 智能路由的 AI 智能体：把大白话请求分派给合适的专家智能体。 <sub>(机翻)</sub><br>
   <sub>`开源项目` · ★425 · notque · `Py`</sub>
 
-已显示 **10 / 138** 条 · [在单独页面查看全部 138 条 →](docs/by-pattern/safety-gating.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)
+已显示 **10 / 139** 条 · [在单独页面查看全部 139 条 →](docs/by-pattern/safety-gating.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -794,7 +794,7 @@ _用校准置信度决定哪些情况必须由人来看。_
   七个互不相同的邮件决策，每个都有自己单独设定的阈值，任何出错都回落到普通 LLM。<br>
   <sub>`开源项目` · ★12,328 · `TS` · `choice` · `noul`</sub>
 
-已显示 **10 / 67** 条 · [在单独页面查看全部 67 条 →](docs/by-pattern/human-escalation.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)
+已显示 **10 / 68** 条 · [在单独页面查看全部 68 条 →](docs/by-pattern/human-escalation.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -944,7 +944,7 @@ _对来自廉价检索步骤的候选做打分或重排。_
   一个 Android 回复副驾：从屏幕文本判断意图、时机和风险，OCR 与文案起草交给另外的模型。<br>
   <sub>`开源项目` · ★5,414 · `Java` · `choice` · `score` · `noul`</sub>
 
-已显示 **10 / 64** 条 · [在单独页面查看全部 64 条 →](docs/by-pattern/search-ranking.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)
+已显示 **10 / 63** 条 · [在单独页面查看全部 63 条 →](docs/by-pattern/search-ranking.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -1306,8 +1306,8 @@ _介绍模型或整个领域，而非单一模式。_
 | **SDK** | **94** | 客户端库，官方与社区。 |
 | **平台集成** | **34** | 接入模型的网关、框架或平台路径。 |
 | **代码片段** | **4** | 本仓库内的小型可运行样例。 |
-| **开源项目** | **653** | 真正在调用 Jev 的应用或库。 |
-| **插件** | **238** | 可安装的编辑器、智能体、MCP 集成。 |
+| **开源项目** | **652** | 真正在调用 Jev 的应用或库。 |
+| **插件** | **239** | 可安装的编辑器、智能体、MCP 集成。 |
 | **教程** | **9** | 带代码的分步教学材料。 |
 | **基准测试** | **70** | 实测。注意区分独立实测与厂商自报。 |
 | **文章** | **12** | 讲解、分析与发布报道。 |
@@ -1322,7 +1322,7 @@ _介绍模型或整个领域，而非单一模式。_
 <details>
 <summary><b>查看可搜索站点预览</b></summary>
 
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=af9967f604fc056d" alt="可搜索的 Jev 目录：精选路径、筛选排序、带日期的来源证据与条目卡片" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=10dd9a43dc96e861" alt="可搜索的 Jev 目录：精选路径、筛选排序、带日期的来源证据与条目卡片" width="760"></a>
 
 <sub>点击条形即可筛选。另有两个视图：<a href="https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh">三个原语</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh">兼容性矩阵</a>。每个筛选条件和每个条目都是可分享的 URL。</sub>
 
