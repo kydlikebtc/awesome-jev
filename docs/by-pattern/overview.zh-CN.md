@@ -4,7 +4,7 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 451 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 452 条，官方优先，其次是含代码的，再按 star 排序。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 - **[Official agent skill for Claude Code](https://docs.typesafe.ai/agent-skill)** ⭐ — 把 TypeSafe 官方技能装进 Claude Code，让智能体自己写出正确的 Jev 调用，不必每次手动贴 API 结构。
   <sub>`官方文档` · ★2,036 · `sh`</sub>
@@ -113,6 +113,9 @@ _介绍模型或整个领域，而非单一模式。_
 
 - **[celesto](https://github.com/CelestoAI/celesto)** — 给 AI 智能体的安全持久化计算环境。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★972 · celestoai · `Py`</sub>
+
+- **[jevos](https://github.com/feder-cr/jev)** — 开源的 Jev 兼容是非判断模型：一个 1B 模型（MiniCPM）裁剪至 17 层并加一个单 logit 输出头，GGUF q4_k_m 量化（619 MB），通过 llama.cpp 在 CPU 上做一次前向传播。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · ★879 · Federico Elia (feder-cr) and Loris Salsi (LosaLosSantos) · `Py` · `noul` · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[awesome-jev (heyjunpenn)](https://github.com/heyjunpenn/awesome-jev)** — 覆盖最广的同类目录：数百个项目、六种语言，且它的 README 本身就是被解析的数据源。
   <sub>`开源项目` · ★782 · heyjunpenn · `TS`</sub>
