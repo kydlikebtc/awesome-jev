@@ -4,7 +4,7 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 451 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 452 of them, official first, then rows with code, then by stars. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 - **[Official agent skill for Claude Code](https://docs.typesafe.ai/agent-skill)** ⭐ — Installs a TypeSafe skill into Claude Code so an agent can write correct Jev calls without you pasting the API shape each time.
   <sub>`Official docs` · ★2,036 · `sh`</sub>
@@ -113,6 +113,9 @@ Every catalogued example of this decision — 451 of them, official first, then 
 
 - **[celesto](https://github.com/CelestoAI/celesto)** — Secure and persistent computer for AI agents -- build your own Grokbot, and Muse.
   <sub>`Project` · ★972 · celestoai · `Py`</sub>
+
+- **[jevos](https://github.com/feder-cr/jev)** — Open-source, Jev-compatible yes/no decision model: a 1B model (MiniCPM) cut to 17 layers with a one-logit head, GGUF q4_k_m (619 MB), one forward pass on CPU via llama.cpp.
+  <sub>`Jev-like alternative` · ★879 · Federico Elia (feder-cr) and Loris Salsi (LosaLosSantos) · `Py` · `noul` · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[awesome-jev (heyjunpenn)](https://github.com/heyjunpenn/awesome-jev)** — The broadest sibling directory: hundreds of projects in six languages, with a README that is itself the parsed data source.
   <sub>`Project` · ★782 · heyjunpenn · `TS`</sub>

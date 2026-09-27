@@ -18,9 +18,9 @@ source.
 | TypeSafe AI docs index | <https://docs.typesafe.ai/llms.txt> | 36 |
 | maintainer submission | <https://github.com/kydlikebtc/awesome-jev> | 20 |
 | web search | various | 12 |
+| author submission | various | 5 |
 | Hacker News | various | 5 |
 | jevai.org community site | <https://www.jevai.org/> | 5 |
-| author submission | various | 4 |
 | this repository | <https://github.com/kydlikebtc/awesome-jev> | 4 |
 | YouTube search | <https://www.youtube.com/results?search_query=typesafe+jev> | 3 |
 | AI SDK providers | <https://ai-sdk.dev/providers> | 1 |
@@ -77,7 +77,7 @@ Declared licences across the catalog's linked repositories:
 <!-- licences:start -->
 | Licence | Repositories |
 | --- | --- |
-| MIT | 735 |
+| MIT | 736 |
 | None declared | 203 |
 | Apache-2.0 | 129 |
 | NOASSERTION (non-standard terms) | 49 |
