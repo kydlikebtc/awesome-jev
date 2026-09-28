@@ -45,7 +45,7 @@ _用校准置信度决定哪些情况必须由人来看。_
 - **[Probing Jev's behaviour with repeated API calls](https://github.com/ahastudio/til)** — 独立的韩语实测笔记，报告仅仅把选项顺序倒过来，就能让概率移动到足以翻转 0.9 阈值的程度。
   <sub>`基准测试` · ★190 · `Py` · ⚠ `无许可证` `宣称未核实`</sub>
 
-- **[neurolink](https://github.com/juspay/neurolink)** — 用一套 TypeScript 接口对接 40 家 AI 供应商，覆盖生成、流式与决策三种推理形态。 <sub>(机翻)</sub>
+- **[neurolink](https://github.com/juspay/neurolink)** — 用一套 TypeScript 接口对接多家 AI 供应商，覆盖生成、流式与决策三种推理形态；决策由 TypeSafe Jev 或开源权重的 Laya 返回类型化、经过校准的判断，而非文本。 <sub>(机翻)</sub>
   <sub>`插件` · ★139 · juspay · `TS`</sub>
 
 - **[Jev-Moderation-Bot](https://github.com/brainstormity/Jev-Moderation-Bot)** — 一个 Discord 审核机器人：用 Choice 给每条消息定级、用 Noul 表示封禁紧急度，管理员一旦赦免，该消息会作为「安全先例」注入后续请求。
