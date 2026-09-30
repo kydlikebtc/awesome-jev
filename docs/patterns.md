@@ -367,7 +367,7 @@ your "scale" is really unordered categories wearing a number.
 rankable, which makes this the pattern for populating review queues worst-first.
 
 <!-- catalogued-content-scoring:start -->
-**Content scoring** in the catalogue: 165 rows, [each listed with its caveats](by-pattern/content-scoring.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en).
+**Content scoring** in the catalogue: 166 rows, [each listed with its caveats](by-pattern/content-scoring.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en).
 <!-- catalogued-content-scoring:end -->
 
 ---

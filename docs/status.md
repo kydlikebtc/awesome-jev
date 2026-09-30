@@ -12,17 +12,17 @@ table regenerated like the first half, each reading in it dated on its own.
 <!-- shape:start -->
 |  |  |
 | --- | --- |
-| Entries | 1210 |
-| Carrying code | 1182 |
+| Entries | 1211 |
+| Carrying code | 1183 |
 | Official (TypeSafe AI's own) | 36 |
 | Links with a dated 2xx response record | 1207 |
 | Most recent successful link-check date (dates vary by row) | 2026-09-30 |
-| Rows whose latest successful check is on that date | 1202 of 1210 |
-| Rows citing a file where the project calls Jev (`evidence`; not a CI pass count) | 1076 |
+| Rows whose latest successful check is on that date | 1202 of 1211 |
+| Rows citing a file where the project calls Jev (`evidence`; not a CI pass count) | 1077 |
 | Rows citing a file that speaks Jev's request shape rather than building on Jev (`evidence.kind` `wire-shape`) | 56 |
 | Rows citing only an example the project ships (`evidence.kind` `example-only`) | 0 |
 | Rows with code citing no file and giving no reason (neither `evidence` nor `evidence_none`) | 0 |
-| Rows naming the primitives a person read the code calling (`question_types`) | 104 |
+| Rows naming the primitives a person read the code calling (`question_types`) | 105 |
 | Machine text signal: rows whose cited file contains a primitive's request or answer shape (`primitives_seen`; not a reading, never counted as `question_types`) | 684 |
 | Of those, rows with no `question_types`: the text signal is all that is recorded about their primitives | 632 |
 | Machine signal: evidence under an examples directory, not yet judged ([review queue](review-queue.md#examples-dir)) | 22 |
@@ -35,16 +35,16 @@ table regenerated like the first half, each reading in it dated on its own.
 | Machine signal: of those, rows with a threshold no person has read in the file ([review queue](review-queue.md#thresholds-unread)) | 32 |
 | Negative results: rows whose own author measured Jev for the use and concluded against it (a benchmark's `measurement.direction` unfavourable, the `negative-result` flag on any other row; author-stated, not reproduced here; [listed below](#negative-results)) | 5 |
 | Patterns covered | 18 of 18 |
-| Rows whose `patterns` are exactly what the keyword rules suggest for their summary (agreement with the rules, not a review: any review of these rows was not recorded) | 759 of 1210 |
-| Rows whose patterns a person recorded reading (`patterns_reviewed`) | 0 |
+| Rows whose `patterns` are exactly what the keyword rules suggest for their summary (agreement with the rules, not a review: any review of these rows was not recorded) | 759 of 1211 |
+| Rows whose patterns a person recorded reading (`patterns_reviewed`) | 1 |
 | Overview rows that are projects or plugins with code, listed apart as not yet indexed by pattern ([review queue](review-queue.md#unsorted-overview)) | 252 |
-| Summaries that are the project's own GitHub description (`summary_source` `upstream-description`) | 882 of 1210 |
+| Summaries that are the project's own GitHub description (`summary_source` `upstream-description`) | 882 of 1211 |
 | Summaries taken from that description that no longer match it (`upstream-description-stale`) | 9 |
-| Summaries marked as written for this catalogue (`curated`) | 2 |
-| Chinese summaries hand-written | 195 of 1210 |
-| Rows recording GitHub's creation date, last push and default-branch commit count for their repository (`repo_created_at`, `repo_pushed_at`, `repo_commits`; GitHub's facts at the last weekly refresh, not a judgement of upkeep) | 1137 of 1210 |
+| Summaries marked as written for this catalogue (`curated`) | 3 |
+| Chinese summaries hand-written | 195 of 1211 |
+| Rows recording GitHub's creation date, last push and default-branch commit count for their repository (`repo_created_at`, `repo_pushed_at`, `repo_commits`; GitHub's facts at the last weekly refresh, not a judgement of upkeep) | 1137 of 1211 |
 | Rows flagged `single-commit`: one commit on the default branch (the refresh sets and clears it from `repo_commits`) | 91 |
-| Rows with a GitHub repository that at least one sibling directory links (`sources` citations, from the lists' READMEs at the last weekly read; a count of mentions, not a review) | 1130 of 1139 |
+| Rows with a GitHub repository that at least one sibling directory links (`sources` citations, from the lists' READMEs at the last weekly read; a count of mentions, not a review) | 1130 of 1140 |
 | Retired links | 2 |
 <!-- shape:end -->
 
@@ -74,7 +74,7 @@ project, and a repository no list links is not thereby worse.
 <!-- cited-by:start -->
 | Sibling directories linking the repository | Rows |
 | --- | --- |
-| 0 | 9 |
+| 0 | 10 |
 | 1 | 25 |
 | 2 | 97 |
 | 3–5 | 489 |
@@ -112,12 +112,12 @@ Empty kinds:
 
 Thin — under 2.5% of the catalogue:
 
-- `recommendation` (1 of 1210) — The first example is a movie recommender: retrieval narrows the field, and Jev parses the request and chooses from the shortlist.
-- `retry-control` (7 of 1210) — Most apparent matches are false positives: an HTTP client advertising "observable retries" is not a retry decision. The first real one was a semantic circuit breaker asking whether an HTTP 200 is a silent failure.
-- `feature-extraction` (8 of 1210)
-- `support-triage` (8 of 1210)
-- `data-extraction` (17 of 1210)
-- `document-triage` (20 of 1210)
+- `recommendation` (1 of 1211) — The first example is a movie recommender: retrieval narrows the field, and Jev parses the request and chooses from the shortlist.
+- `retry-control` (7 of 1211) — Most apparent matches are false positives: an HTTP client advertising "observable retries" is not a retry decision. The first real one was a semantic circuit breaker asking whether an HTTP 200 is a silent failure.
+- `feature-extraction` (8 of 1211)
+- `support-triage` (8 of 1211)
+- `data-extraction` (17 of 1211)
+- `document-triage` (20 of 1211)
 <!-- gaps:end -->
 
 Two holes are in the research rather than the ecosystem: **Reddit** produced

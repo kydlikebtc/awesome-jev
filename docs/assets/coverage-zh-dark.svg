@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="638" height="530" viewBox="0 0 638 530" role="img" aria-label="各决策模式下的例子数">
 <style>.t{font:600 15px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#e6edf3}.s{font:11px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#6e7681}.l{font:12.5px -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;fill:#8b949e}.n{font:600 12px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#e6edf3}.g{font:italic 11px -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;fill:#6e7681}</style>
 <text x="12" y="22" class="t">各决策模式下的例子数</text>
-<text x="12" y="40" class="s">1210 条 · 覆盖 18/18 个模式 · 2026-09-30</text>
+<text x="12" y="40" class="s">1211 条 · 覆盖 18/18 个模式 · 2026-09-30</text>
 <line x1="12" y1="50" x2="626" y2="50" stroke="#30363d" stroke-width="1"/>
 <text x="12" y="74" class="l">工具选择</text>
 <rect x="168" y="65" width="380" height="11" rx="1" fill="#21262d"/>
@@ -65,8 +65,8 @@
 <text x="560" y="425" class="n">8</text>
 <text x="12" y="449" class="l">内容评分</text>
 <rect x="168" y="440" width="380" height="11" rx="1" fill="#21262d"/>
-<path d="M168 440h137a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-137z" fill="#f5a524"/>
-<text x="560" y="450" class="n">165</text>
+<path d="M168 440h138a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-138z" fill="#f5a524"/>
+<text x="560" y="450" class="n">166</text>
 <text x="12" y="474" class="l">实时推荐</text>
 <rect x="168" y="465" width="380" height="11" rx="1" fill="#21262d"/>
 <path d="M168 465h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-1z" fill="#8a5d14"/>

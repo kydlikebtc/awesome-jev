@@ -44440,6 +44440,66 @@
     "link_status": 200
   },
   {
+    "slug": "jev-seo-deploymates",
+    "title": "jev-seo",
+    "summary": "Audits a business website for SEO and AI-answer-engine visibility. A deterministic crawler measures each page, then one request sends Jev a batch of narrow typed questions about it, and the answers are surfaced as probabilities in a dashboard.",
+    "summary_source": "curated",
+    "summary_zh": "审计企业网站的 SEO 与 AI 搜索引擎可见性。确定性爬虫先测量每个页面，然后用一次请求把一批狭窄的类型化问题发给 Jev，答案以概率形式呈现在看板上。",
+    "zh_machine": true,
+    "url": "https://github.com/DeployMates/jev-seo",
+    "kind": "project",
+    "patterns": [
+      "content-scoring"
+    ],
+    "patterns_reviewed": "2026-09-30",
+    "platforms": [
+      "opencode-zen"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "author": {
+      "name": "vakandi",
+      "handle": "vakandi",
+      "url": "https://github.com/vakandi"
+    },
+    "has_code": true,
+    "official": false,
+    "stars": 0,
+    "repo_license": "unknown",
+    "languages": [
+      "typescript"
+    ],
+    "evidence": {
+      "path": "server/src/jevClient.ts",
+      "matched": [
+        "type: \"choice\"",
+        "type: \"score\"",
+        "type: \"noul\"",
+        "{ state, model, questions }",
+        "/systemone"
+      ],
+      "read_on": "2026-09-30"
+    },
+    "flags": [
+      "self-submitted",
+      "no-license",
+      "ai-generated",
+      "code-untested"
+    ],
+    "notes": "No LICENSE file in the repository, so the licence is recorded as unknown rather than read off the README. The call site was read, not run, so no Jev answer is claimed as reproduced. Built with AI assistance.",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/33"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-09-30"
+  },
+  {
     "slug": "jev-shadcn-lint-eval",
     "title": "jev-shadcn-lint-eval",
     "summary": "A small second eval for shadcn-ui/lint that uses TypeSafe's Jev to judge the linter's own output.",

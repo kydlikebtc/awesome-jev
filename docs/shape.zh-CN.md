@@ -29,7 +29,7 @@
 | [机器学习特征抽取](by-pattern/feature-extraction.zh-CN.md) | 8 | 1 | 7 | 0 | 0 | 0 | 0 | 1 |
 | [文档分拣](by-pattern/document-triage.zh-CN.md) | 20 | 0 | 19 | 0 | 0 | 2 | 0 | 1 |
 | [工单分拣](by-pattern/support-triage.zh-CN.md) | 8 | 1 | 4 | 0 | 0 | 0 | 0 | 4 |
-| [内容评分](by-pattern/content-scoring.zh-CN.md) | 165 | 2 | 156 | 5 | 0 | 9 | 1 | 4 |
+| [内容评分](by-pattern/content-scoring.zh-CN.md) | 166 | 2 | 157 | 5 | 0 | 9 | 1 | 4 |
 | [实时推荐](by-pattern/recommendation.zh-CN.md) | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
 | [总览](by-pattern/overview.zh-CN.md) | 451 | 6 | 370 | 45 | 0 | 23 | 1 | 36 |
 
@@ -42,7 +42,7 @@
 | 语言 | 行数 |
 | --- | --- |
 | `python` | 458 |
-| `typescript` | 402 |
+| `typescript` | 403 |
 | `javascript` | 152 |
 | `rust` | 52 |
 | `go` | 42 |
@@ -67,7 +67,7 @@
 | --- | --- |
 | 只有 `typesafe-api` | 1091 |
 | 至少有一个值对应[兼容性表](compatibility.md)中的其他接入面（网关、SDK 或框架），且不含 `self-hosted` | 35 |
-| 除 `typesafe-api` 外只记录没有任何兼容性接入面对应的值（示例运行所在的主机、工具或框架，或该表未描述的路径），且不含 `self-hosted` | 28 |
+| 除 `typesafe-api` 外只记录没有任何兼容性接入面对应的值（示例运行所在的主机、工具或框架，或该表未描述的路径），且不含 `self-hosted` | 29 |
 | 含 `self-hosted`，无论还记录了什么 | 39 |
 | 未记录任何值 | 17 |
 
@@ -84,6 +84,7 @@
 | `langchain` | `langchain` | 4 |
 | `jevai-org` | — | 3 |
 | `mcp` | — | 3 |
+| `opencode-zen` | — | 2 |
 | `pydantic-ai` | `pydantic-ai` | 2 |
 | `vercel-ai-sdk` | `vercel-eval`, `ai-sdk-direct` | 2 |
 | `aimlapi` | `aimlapi` | 1 |
@@ -99,7 +100,6 @@
 | `langfuse` | — | 1 |
 | `litellm` | `litellm` | 1 |
 | `netlify` | `netlify` | 1 |
-| `opencode-zen` | — | 1 |
 | `opik` | — | 1 |
 | `postgresql` | — | 1 |
 | `rig` | `rig` | 1 |
@@ -118,7 +118,7 @@
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 官方文档 (`official-docs`) | 31 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | ★1k+ |
 | 平台集成 (`integration`) | 34 | 24 | 8 | 6 | 1 | 3 | 5 | 1 | ★10+ |
-| 开源项目 (`project`) | 654 | 651 | 366 | 172 | 82 | 15 | 14 | 2 | 不足 10 |
+| 开源项目 (`project`) | 655 | 652 | 367 | 172 | 82 | 15 | 14 | 2 | 不足 10 |
 | 插件 (`plugin`) | 238 | 238 | 139 | 70 | 25 | 3 | 1 | 0 | 不足 10 |
 | SDK (`sdk`) | 94 | 93 | 71 | 18 | 3 | 0 | 1 | 0 | 不足 10 |
 | 代码片段 (`snippet`) | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
@@ -150,7 +150,7 @@
 | [机器学习特征抽取](by-pattern/feature-extraction.zh-CN.md) | 4 | 2 | 1 | 1 | 0 | 0 | 0 |
 | [文档分拣](by-pattern/document-triage.zh-CN.md) | 7 | 4 | 6 | 2 | 0 | 0 | 0 |
 | [工单分拣](by-pattern/support-triage.zh-CN.md) | 5 | 2 | 0 | 0 | 1 | 0 | 3 |
-| [内容评分](by-pattern/content-scoring.zh-CN.md) | 69 | 58 | 25 | 6 | 1 | 1 | 8 |
+| [内容评分](by-pattern/content-scoring.zh-CN.md) | 69 | 59 | 25 | 6 | 1 | 1 | 8 |
 | [实时推荐](by-pattern/recommendation.zh-CN.md) | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
 | [总览](by-pattern/overview.zh-CN.md) | 165 | 118 | 45 | 24 | 29 | 8 | 50 |
 
@@ -173,7 +173,7 @@
 
 ## 作者
 
-有 1092 行写明了作者，共 985 位不同的作者（按显示名比较，不区分大小写）。其中 910 位在本目录只有一行，60 位有两行，15 位有三行或更多；单个作者最多有 11 行。本页不列出任何作者的名字：它显示的是目录的集中程度，而不是谁在贡献。
+有 1093 行写明了作者，共 986 位不同的作者（按显示名比较，不区分大小写）。其中 911 位在本目录只有一行，60 位有两行，15 位有三行或更多；单个作者最多有 11 行。本页不列出任何作者的名字：它显示的是目录的集中程度，而不是谁在贡献。
 
 ## 随时间的变化
 

@@ -10,7 +10,7 @@
 <text x="26" y="162" class="d">+ 概率分布、置信度</text>
 <line x1="26" y1="178" x2="204" y2="178" stroke="#30363d" stroke-width="1"/>
 <text x="26" y="198" class="d">人读确认</text>
-<text x="204" y="198" class="c" text-anchor="end">84 条</text>
+<text x="204" y="198" class="c" text-anchor="end">85 条</text>
 <text x="26" y="218" class="k">仅文本信号</text>
 <text x="204" y="218" class="k" text-anchor="end">450 条</text>
 <rect x="233" y="58" width="206" height="172" rx="3" fill="none" stroke="#30363d"/>
@@ -21,7 +21,7 @@
 <text x="247" y="162" class="d">+ 图例、概率、置信度</text>
 <line x1="247" y1="178" x2="425" y2="178" stroke="#30363d" stroke-width="1"/>
 <text x="247" y="198" class="d">人读确认</text>
-<text x="425" y="198" class="c" text-anchor="end">52 条</text>
+<text x="425" y="198" class="c" text-anchor="end">53 条</text>
 <text x="247" y="218" class="k">仅文本信号</text>
 <text x="425" y="218" class="k" text-anchor="end">225 条</text>
 <rect x="454" y="58" width="206" height="172" rx="3" fill="none" stroke="#30363d"/>
@@ -32,7 +32,7 @@
 <text x="468" y="162" class="w">不带 confidence 字段</text>
 <line x1="468" y1="178" x2="646" y2="178" stroke="#30363d" stroke-width="1"/>
 <text x="468" y="198" class="d">人读确认</text>
-<text x="646" y="198" class="c" text-anchor="end">74 条</text>
+<text x="646" y="198" class="c" text-anchor="end">75 条</text>
 <text x="468" y="218" class="k">仅文本信号</text>
 <text x="646" y="218" class="k" text-anchor="end">455 条</text>
 <text x="12" y="252" class="k">人读确认：有人读过代码、记入 question_types 的行</text>

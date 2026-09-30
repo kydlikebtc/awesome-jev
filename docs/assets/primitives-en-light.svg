@@ -10,7 +10,7 @@
 <text x="26" y="162" class="d">+ probabilities, confidence</text>
 <line x1="26" y1="178" x2="204" y2="178" stroke="#d1d9e0" stroke-width="1"/>
 <text x="26" y="198" class="d">read by a person</text>
-<text x="204" y="198" class="c" text-anchor="end">84 rows</text>
+<text x="204" y="198" class="c" text-anchor="end">85 rows</text>
 <text x="26" y="218" class="k">text signal only</text>
 <text x="204" y="218" class="k" text-anchor="end">450 rows</text>
 <rect x="233" y="58" width="206" height="172" rx="3" fill="none" stroke="#d1d9e0"/>
@@ -21,7 +21,7 @@
 <text x="247" y="162" class="d">+ legend, probabilities, confidence</text>
 <line x1="247" y1="178" x2="425" y2="178" stroke="#d1d9e0" stroke-width="1"/>
 <text x="247" y="198" class="d">read by a person</text>
-<text x="425" y="198" class="c" text-anchor="end">52 rows</text>
+<text x="425" y="198" class="c" text-anchor="end">53 rows</text>
 <text x="247" y="218" class="k">text signal only</text>
 <text x="425" y="218" class="k" text-anchor="end">225 rows</text>
 <rect x="454" y="58" width="206" height="172" rx="3" fill="none" stroke="#d1d9e0"/>
@@ -32,7 +32,7 @@
 <text x="468" y="162" class="w">no confidence field</text>
 <line x1="468" y1="178" x2="646" y2="178" stroke="#d1d9e0" stroke-width="1"/>
 <text x="468" y="198" class="d">read by a person</text>
-<text x="646" y="198" class="c" text-anchor="end">74 rows</text>
+<text x="646" y="198" class="c" text-anchor="end">75 rows</text>
 <text x="468" y="218" class="k">text signal only</text>
 <text x="646" y="218" class="k" text-anchor="end">455 rows</text>
 <text x="12" y="252" class="k">read by a person: rows whose question_types a person recorded from the code</text>

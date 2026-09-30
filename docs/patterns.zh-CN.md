@@ -280,7 +280,7 @@
 **注：** 只支持 2–10 级。带校准置信度的有序量表可以排序，这让它成为按最差优先填充复核队列的那个模式。
 
 <!-- catalogued-content-scoring:start -->
-目录中的**内容评分**：共 165 条，[逐条列出并附警示](by-pattern/content-scoring.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)。
+目录中的**内容评分**：共 166 条，[逐条列出并附警示](by-pattern/content-scoring.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)。
 <!-- catalogued-content-scoring:end -->
 
 ---
