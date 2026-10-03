@@ -93644,6 +93644,88 @@
     "link_status": 200
   },
   {
+    "slug": "watersheep",
+    "title": "WaterSheep",
+    "summary": "Open, Apache-2.0 alternative to Jev: a ModernBERT fine-tune served locally on POST /v1/systemone that answers noul, choice and score questions, plus multi-label ones, with a probability for every option.",
+    "summary_source": "curated",
+    "summary_zh": "开源的 Jev 替代方案（Apache-2.0）：基于 ModernBERT 微调的模型，在本地通过 POST /v1/systemone 提供服务，回答 noul、choice、score 以及多标签问题，并为每个选项给出概率。",
+    "zh_machine": true,
+    "url": "https://github.com/SamratDuttaOfficial/WaterSheep",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "SamratDuttaOfficial",
+      "url": "https://github.com/SamratDuttaOfficial"
+    },
+    "has_code": true,
+    "official": false,
+    "stars": 2,
+    "repo_license": "Apache-2.0",
+    "first_seen": "2026-10-03",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/37"
+      }
+    ],
+    "license": "CC0-1.0",
+    "evidence": {
+      "path": "watersheep/cli.py",
+      "matched": [
+        "/v1/systemone"
+      ],
+      "kind": "wire-shape",
+      "read_on": "2026-10-03"
+    },
+    "wire": {
+      "endpoint": "POST /v1/systemone",
+      "yesno_spelling": "noul",
+      "answer_field": "noul",
+      "confidence_field": "confidence",
+      "envelope": "top-level",
+      "weights": "open",
+      "base_model": "answerdotai/ModernBERT-base",
+      "source": [
+        {
+          "path": "watersheep/cli.py",
+          "matched": [
+            "if self.path.rstrip(\"/\") not in (\"/v1/decisions\", \"/v1/systemone\"):"
+          ],
+          "read_on": "2026-10-03"
+        },
+        {
+          "path": "watersheep/infer.py",
+          "matched": [
+            "return {\"type\": \"noul\", \"noul\": r4(p[0])}, n",
+            "return {\"type\": \"choice\", \"choice\": best, \"confidence\": r4(concentration(p)),"
+          ],
+          "read_on": "2026-10-03"
+        },
+        {
+          "path": "README.md",
+          "matched": [
+            "- Base model: [answerdotai/ModernBERT-base](https://huggingface.co/answerdotai/ModernBERT-base), fine-tuned with a decision head."
+          ],
+          "read_on": "2026-10-03"
+        }
+      ]
+    },
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev",
+      "self-submitted"
+    ],
+    "notes": "Submitted by its author. A reimplementation of the System One interface, not Jev: a compatible API does not imply compatible calibration, so thresholds tuned on Jev do not transfer.",
+    "notes_zh": "由作者本人提交。这是 System One 接口的重新实现，不是 Jev；接口兼容不代表校准兼容，在 Jev 上调好的阈值不能直接照搬。"
+  },
+  {
     "slug": "watfile",
     "title": "watfile",
     "summary": "Text/PDF - File categorization and sorting with Typesafe AI Jev or local calibrated decision model",
