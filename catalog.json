@@ -78468,6 +78468,64 @@
     "link_status": 200
   },
   {
+    "slug": "sedum",
+    "title": "Sedum (npm: sedum-cli)",
+    "summary": "Plain-English browser end-to-end tests next to Playwright code. In goal mode a Jev Choice picks each next operation (click, type, done or blocked) and its target; authored steps use a Choice per sentence; each verify claim is two Nouls (holds, contradicted). Playwright acts; code applies thresholds.",
+    "summary_source": "curated",
+    "summary_zh": "在 Playwright 代码旁用纯英文句子编写浏览器端到端测试。目标模式下，由 Jev 的 Choice 选出每一步操作（点击、输入、完成或受阻）及其目标；逐句步骤每句用一个 Choice；每条验证断言是两个 Noul（holds、contradicted）。动作由 Playwright 执行，阈值由代码判定。",
+    "zh_machine": true,
+    "url": "https://github.com/sedum-dev/sedum",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "output-validation"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "typescript"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "sedum-dev",
+      "url": "https://github.com/sedum-dev"
+    },
+    "package": {
+      "registry": "npm",
+      "name": "sedum-cli",
+      "url": "https://www.npmjs.com/package/sedum-cli"
+    },
+    "has_code": true,
+    "stars": 1,
+    "repo_license": "MIT",
+    "notes": "Self-submission by the maintainer. Sends the step sentence, bounded descriptions of candidate elements and a bounded page digest to TypeSafe or a compatible endpoint set by TYPESAFE_BASE_URL; opt-in vision fallback sends screenshots to OpenRouter. Verify passes at holds >= 0.75, low-confidence at 0.60-0.75, and flags a pass when contradicted >= 0.50. Cost and speed figures in the README are author-reported.",
+    "notes_zh": "维护者自荐。会把步骤句子、候选元素的有限描述和有限的页面摘要发送到 TypeSafe 或通过 TYPESAFE_BASE_URL 配置的兼容端点；可选的视觉回退会把截图发送到 OpenRouter。验证在 holds >= 0.75 时通过，0.60-0.75 为低置信度通过，contradicted >= 0.50 时对通过结果加标记。README 中的成本和速度数据为作者自测。",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/34"
+      }
+    ],
+    "license": "CC0-1.0",
+    "evidence": {
+      "path": "packages/provider-typesafe/src/index.ts",
+      "matched": [
+        "this.client.systemOne(request",
+        "operation: choice(",
+        "validateNoul(answers.holds)"
+      ],
+      "read_on": "2026-09-30"
+    },
+    "flags": [
+      "unverified-claims",
+      "self-submitted"
+    ]
+  },
+  {
     "slug": "semantic-assert",
     "title": "semantic-assert",
     "summary": "Testing lib for asserting the real requirement.",
