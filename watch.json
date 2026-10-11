@@ -37,7 +37,7 @@
       "status_en": "None linked: the documentation's index links no paper, and its AI primer names the training path (RLCD) without linking one.",
       "status_zh": "没有链接：文档索引没有链接任何论文，其 AI 入门页提到了训练路径（RLCD），但没有链接论文。",
       "url": "https://docs.typesafe.ai/introduction/machine-learning-primer",
-      "as_of": "2026-10-06",
+      "as_of": "2026-10-11",
       "checked_by": "model",
       "zh_machine": true
     },
@@ -61,7 +61,7 @@
       "status_en": "Not yet: the models page still warns that rate limits are adjusting dynamically and can change without notice.",
       "status_zh": "尚未稳定：模型页仍然提示限流正在动态调整，可能随时变更，恕不另行通知。",
       "url": "https://docs.typesafe.ai/models",
-      "as_of": "2026-10-06",
+      "as_of": "2026-10-11",
       "checked_by": "model",
       "zh_machine": true
     }
