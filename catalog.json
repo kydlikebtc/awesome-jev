@@ -9330,6 +9330,62 @@
     "link_status": 200
   },
   {
+    "slug": "decisionmodelhub-support-routing",
+    "title": "Support-routing benchmark: 100 held-out cases",
+    "summary": "Compares Jev with Clef, Clef Flash, OpenAI's Decisions API and a GPT-6 Luna structured-output baseline on 100 held-out fictional support messages, each routed to one of five team labels; every case and recorded answer can be downloaded.",
+    "summary_source": "curated",
+    "summary_zh": "在 100 条留出的虚构客服消息上，将 Jev 与 Clef、Clef Flash、OpenAI 的 Decisions API 以及 GPT-6 Luna 结构化输出基线进行对比：每条消息路由到五个团队标签之一；所有用例和各模型的作答记录均可下载。",
+    "zh_machine": true,
+    "url": "https://decisionmodelhub.com/benchmarks/support-routing",
+    "kind": "benchmark",
+    "patterns": [
+      "support-triage"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "DecisionModelHub",
+      "url": "https://decisionmodelhub.com"
+    },
+    "has_code": false,
+    "measurement": {
+      "task": "Route a support message to one of five team labels: billing, technical, account, sales or needs_clarification",
+      "datasets": [
+        "Support routing v1"
+      ],
+      "comparators": [
+        "Clef",
+        "Clef Flash",
+        "Decisions API",
+        "GPT-6 Luna"
+      ],
+      "metrics": [
+        "accuracy",
+        "f1",
+        "calibration",
+        "latency",
+        "cost"
+      ],
+      "n": 100,
+      "model_string": "jev-1.13.0",
+      "as_of": "2026-10-09",
+      "raw_data": true
+    },
+    "first_seen": "2026-10-09",
+    "flags": [
+      "self-submitted"
+    ],
+    "notes": "Submitted by the site's own maintainer. Jev: 92 of 100 correct (95% interval 85 to 96), median 138 ms, in a single run. The page reports intervals and no paired comparison between models. Cases are fictional and were drafted with AI assistance, then reviewed by two people. The runner code is not public; the cases, per-case answers and probabilities are. This row was drafted with an AI coding assistant.",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/43"
+      }
+    ],
+    "license": "CC0-1.0"
+  },
+  {
     "slug": "decisions-judge-mcp",
     "title": "decisions-judge-mcp",
     "summary": "Typed decisions for AI agents as an MCP tool: yes/no probability (noul), choice, and score in one fast request. Backed by the TypeSafe System One model.",
