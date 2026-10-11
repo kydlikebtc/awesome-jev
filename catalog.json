@@ -65530,6 +65530,35 @@
     "link_status": 200
   },
   {
+    "slug": "madewithjev-jev-router",
+    "title": "Jev router: how model routing works, and 16 routers compared",
+    "summary": "Explains a router that asks Jev which model, tool or skill the next turn needs before anything is spent, why routing down and back up can cost more than not routing, and compares 16 routers for Claude Code, Codex and OpenRouter.",
+    "summary_zh": "讲解用 Jev 在花钱之前判断下一轮该用哪个模型、工具或 skill 的路由器，说明先降级再升级为什么可能比不路由更贵，并对比了 16 个面向 Claude Code、Codex 和 OpenRouter 的路由器。",
+    "zh_machine": true,
+    "summary_source": "curated",
+    "url": "https://madewithjev.com/jev-router",
+    "kind": "article",
+    "patterns": [
+      "model-routing",
+      "intent-routing"
+    ],
+    "author": {
+      "name": "Jon Kraayenbrink",
+      "url": "https://madewithjev.com"
+    },
+    "has_code": false,
+    "flags": [
+      "self-submitted"
+    ],
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/42"
+      }
+    ],
+    "license": "CC0-1.0"
+  },
+  {
     "slug": "magic-jev-ball",
     "title": "magic-jev-ball",
     "summary": "A Magic 8 Ball that asks Jev instead of picking at random. Convex + AI Gateway + three.js.",
