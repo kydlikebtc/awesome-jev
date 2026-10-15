@@ -1,4 +1,4 @@
-"""All three primitives in one request.
+"""The three core primitives in one request.
 
 The state is ingested once and every question is evaluated against it in
 parallel, so asking three things costs about what asking one costs plus the

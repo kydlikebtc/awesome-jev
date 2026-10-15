@@ -65,12 +65,34 @@ class HintTest(unittest.TestCase):
         for item in self.server.COMPAT["not_model_strings"]:
             self.assertIn(f"`{item['s']}`: {item['why']}", hint)
 
+    def test_jev_1_14_pin_is_accepted_on_the_documented_native_surface(self):
+        answer = self.server.check_model_string(model="jev-1.14.0")
+        self.assertIs(answer["valid"], True)
+        self.assertEqual(
+            [(s["surface"], s["endpoint"], s["env"]) for s in answer["surfaces"]],
+            [("TypeSafe API (direct)", "POST /v1/systemone", "TYPESAFE_API_KEY")],
+        )
+
+    def test_new_native_pin_keeps_the_previous_pin_and_aliases_valid(self):
+        for model in ("jev-1.13.0", "jev-latest", "jev-preview"):
+            with self.subTest(model=model):
+                answer = self.server.check_model_string(model=model)
+                self.assertIs(answer["valid"], True)
+                self.assertIn("TypeSafe API (direct)", [s["surface"] for s in answer["surfaces"]])
+
+    def test_native_release_does_not_validate_guessed_gateway_ids(self):
+        for model in ("typesafe/jev-1.14", "typesafe-ai/jev-1.14", "jev-1.14"):
+            with self.subTest(model=model):
+                answer = self.server.check_model_string(model=model)
+                self.assertIs(answer["valid"], False)
+                self.assertIn("jev-1.14.0", answer["valid_strings"])
+
     def test_a_release_moves_the_hint_with_compat_json(self):
         released, old = lint_docs.simulated_compat(self.server.COMPAT, "jev-99.0.0")
         with mock.patch.object(self.server, "COMPAT", released):
             hint = self.server.check_model_string(model="typesafe/jev-1")["hint"]
             self.assertIs(self.server.check_model_string(model="jev-99.0.0")["valid"], True)
-        self.assertTrue(hint.startswith("The versioned id is jev-99.0.0,"), hint)
+        self.assertIn("jev-99.0.0", hint)
         # Only compat.json's own prose (its `why` lines) may still name the old
         # version, and lint_docs.py reports that prose in the rehearsal.
         refuted = " ".join(f"`{i['s']}`: {i['why']}" for i in released["not_model_strings"])

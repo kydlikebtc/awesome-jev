@@ -7,15 +7,15 @@
       "name": "TypeSafe API (direct)",
       "official": true,
       "url": "https://docs.typesafe.ai/api",
-      "model": "jev-latest · jev-preview · jev-1.13.0",
+      "model": "jev-latest · jev-preview · jev-1.14.0 · jev-1.13.0",
       "yesno": "noul",
       "answer_field": ".noul",
       "confidence": "on the answer",
       "envelope": "top level",
       "endpoint": "POST /v1/systemone",
       "env": "TYPESAFE_API_KEY",
-      "notes": "The reference surface. Everything else is measured against this.",
-      "notes_zh": "基准面。其他所有平台都以它为参照。",
+      "notes": "The reference surface. A model-assisted documentation check on 2026-10-15 covered only the native API: jev-preview points to jev-1.14.0; jev-latest still points to jev-1.13.0. Other surfaces retain the matrix's 2026-09-22 reading date.",
+      "notes_zh": "基准面。2026-10-15 的模型辅助文档核对仅覆盖原生 API：jev-preview 指向 jev-1.14.0，jev-latest 仍指向 jev-1.13.0。其他平台仍沿用矩阵的 2026-09-22 阅读日期。",
       "model_source": "https://docs.typesafe.ai/models",
       "docs_url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13",
       "catalog_platforms": [
@@ -255,9 +255,9 @@
     },
     {
       "k": "context",
-      "v": "64k tokens per request; 32k for state plus the longest question",
-      "why": "No tokenizer is published, which is why at least one production integration budgets in UTF-8 bytes with headroom.",
-      "why_zh": "官方没有公开 tokenizer —— 所以至少有一个生产级集成改用「UTF-8 字节数 + 留余量」来做预算。",
+      "v": "default: 64k tokens per request; 32k for state plus the longest question",
+      "why": "On native jev-1.14.0 and jev-1.13.0, the experimental TypeSafe-Danger-Zone-Long-Context: true header raises both limits to 262k; it is slower and less accurate. See https://docs.typesafe.ai/models#long-context. No tokenizer is published; leave headroom when budgeting input.",
+      "why_zh": "原生 jev-1.14.0 和 jev-1.13.0 可通过实验性请求头 TypeSafe-Danger-Zone-Long-Context: true 将两项限制均提高至 262k，但速度更慢、准确率更低。见 https://docs.typesafe.ai/models#long-context。官方没有公开 tokenizer；估算输入时应留余量。",
       "n": {
         "request_k": 64,
         "state_k": 32
@@ -265,9 +265,9 @@
     },
     {
       "k": "input",
-      "v": "text only: string, JSON object, or array of text",
-      "why": "No image, audio or video. Pre-process to text or to typed fields.",
-      "why_zh": "不支持图像、音频、视频。请先预处理成文本或类型化字段。"
+      "v": "text by default: string, JSON object, or array; experimental PNG/JPEG images on the native API",
+      "why": "Native jev-1.14.0 and jev-1.13.0 accept experimental PNG/JPEG images with TypeSafe-Danger-Zone-Images: true. See https://docs.typesafe.ai/images for the image request shape. Audio and video are unsupported; pre-process them to text or typed fields. Gateway support is unverified.",
+      "why_zh": "原生 jev-1.14.0 和 jev-1.13.0 可通过 TypeSafe-Danger-Zone-Images: true 启用实验性 PNG/JPEG 图像输入。图像请求结构见 https://docs.typesafe.ai/images。不支持音频和视频，须先转为文本或类型化字段。网关支持情况未经核实。"
     },
     {
       "k": "output tokens",
@@ -295,7 +295,7 @@
     },
     {
       "s": "jev-1",
-      "why": "Not a model ID. The native API accepts jev-1.13.0, jev-latest and jev-preview."
+      "why": "Not a model ID. The native API accepts jev-1.14.0, jev-1.13.0, jev-latest and jev-preview."
     }
   ]
 }

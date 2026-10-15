@@ -7,10 +7,15 @@ post you read this week is disposable and the pattern is not. This page defines
 each pattern: what decision it makes, why a calibrated decision model suits it,
 and when you should reach for something else instead.
 
-## The three primitives
+## The three core primitives
 
 Every pattern below is built out of these. Shapes are from the official API
 reference — see [`sources.md`](sources.md) for the exact URLs.
+
+Jev 1.14 also offers experimental [Box](https://docs.typesafe.ai/primitives/box)
+for image localization: one normalized bounding box and confidence per question,
+with no "not found" answer. It requires an image and the images opt-in below;
+the catalogue's existing primitive counts and picker cover Choice, Score and Noul.
 
 | `type`   | Returns                                             | `criteria`                            | Limits                     |
 | -------- | --------------------------------------------------- | ------------------------------------- | -------------------------- |
@@ -27,9 +32,9 @@ Three facts that catch people out:
    quantities.
 2. **A `score` is probability-weighted and lands between levels.** The docs' own
    example returns `1.05` on a three-level scale. Do not assume an integer.
-3. **Input is text only.** String, JSON object, or array of text. No image,
-   audio or video — pre-process to text first. There is no visual-classification
-   pattern in this catalog for that reason.
+3. **Text is the default input.** Native Jev 1.13 and 1.14 also accept
+   experimental [PNG/JPEG images](https://docs.typesafe.ai/images) with
+   `TypeSafe-Danger-Zone-Images: true`. Audio and video remain unsupported.
 
 The property that makes the rest of this page work is **calibration**:
 confidence tracks accuracy, so a threshold is a policy lever rather than a
@@ -46,15 +51,17 @@ A decision is a good fit when **all** of these hold:
    per document. A decision made once a day does not need to be cheap.
 3. **Being wrong is survivable or detectable.** Either the step is reversible, or
    a confidence threshold can route the doubtful cases to a person.
-4. **The context fits.** 64k tokens per request total, and 32k for the `state`
-   plus the single longest question.
+4. **The context fits.** By default, 64k tokens per request total, and 32k for
+   the `state` plus the single longest question. The native experimental header
+   `TypeSafe-Danger-Zone-Long-Context: true` raises both limits to 262k on Jev
+   1.13 and 1.14, with lower speed and accuracy; see [models](https://docs.typesafe.ai/models).
 
 If any of those fails, keep an LLM in that spot. The practical division of
 labour: a generative model for open-ended reasoning and writing, a decision
 model for the frequent typed judgements along the way, ordinary code for policy.
 
 The vendor's own [jaggedness doc](https://docs.typesafe.ai/model-jaggedness/jev-1.13)
-lists where the current model is weak — literal reading, arithmetic and
+lists where Jev 1.13 is weak — literal reading, arithmetic and
 counting, date comparison, indirection, large states full of irrelevant detail,
 adversarial content. Read it before designing around any of those.
 
@@ -234,7 +241,7 @@ second round trip. That changes the design: ask speculatively, then let code pic
 what mattered. The vendor's parallel-questions cookbook reports large cost and
 latency wins from batching a briefing into one call rather than many.
 
-**Shape:** many questions of any type in a single request, within the 64k budget.
+**Shape:** many questions of any type in a single request, within the default 64k budget.
 
 **When not to:** when a later question's wording depends on an earlier answer.
 That needs two round trips.

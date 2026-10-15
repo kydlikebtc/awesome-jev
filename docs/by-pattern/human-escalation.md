@@ -54,7 +54,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Pattern: Confidence-gated routing](https://docs.typesafe.ai/patterns/confidence-routing)** ⭐ — Treat confidence as a second axis: the answer tells you what, the confidence tells you whether to act on it.
   <sub>`Official docs` · `Py`</sub>
 
-- **[Confidence](https://docs.typesafe.ai/confidence)** ⭐ — How confidence is derived from the probability distribution, and why a threshold tuned on one question type does not transfer to another.
+- **[Confidence](https://docs.typesafe.ai/confidence)** ⭐ — How Choice and Score confidence is derived from probabilities, how Noul differs, and how to tune thresholds for the question and application.
   <sub>`Official docs`</sub>
 
 - **[Airflow LLMBranchOperator with Jev](https://airflow.apache.org/docs/apache-airflow-providers-common-ai/stable/index.html)** — Turns downstream task ids into a choice option set, with a minimum-confidence gate that routes uncertain runs to a human.

@@ -300,7 +300,7 @@ def what_jev_returns(page: Page) -> list[str]:
 
     add(f"## {strings['prims_h']}")
     add("")
-    add(strings["prims_intro"])
+    add(marked(strings, "prims_intro"))
     add("")
     add("<picture>")
     add(
@@ -317,7 +317,7 @@ def what_jev_returns(page: Page) -> list[str]:
     # as the figure counts them.
     add(marked(strings, "prims_layers"))
     add("")
-    add(strings["prims_after"])
+    add(marked(strings, "prims_after"))
     add("")
     out += primitive_picker(page)
     return out

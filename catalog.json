@@ -741,8 +741,8 @@
     "repo_created_at": "2026-02-19T18:00:49Z",
     "repo_pushed_at": "2026-10-06T19:54:33Z",
     "repo_commits": 256,
-    "notes": "Using the accessibility tree rather than screenshots fits the model's text-only input exactly, with no vision step to lose information.",
-    "notes_zh": "用无障碍树而不是截图，正好契合模型只接受文本输入的限制，中间不需要一个会丢信息的视觉步骤。",
+    "notes": "This example feeds the accessibility tree to Jev as structured text, so its decision path does not need a screenshot-to-text step.",
+    "notes_zh": "该示例将无障碍树作为结构化文本交给 Jev，因此这条决策路径无需先把截图转成文本。",
     "first_seen": "2026-09-22",
     "sources": [
       {
@@ -54661,8 +54661,8 @@
     "languages": [
       "typescript"
     ],
-    "notes": "Jev reads text only; the CNN turns the image into a typed report first, which is the right way round.",
-    "notes_zh": "Jev 只读文本；由 CNN 先把图像转成带类型的报告，这是正确的分工。",
+    "notes": "In this example, the CNN first turns the image into a typed report, and Jev evaluates that report through the text input path.",
+    "notes_zh": "在该示例中，CNN 先把图像转成带类型的报告，再通过文本输入路径交给 Jev 评估。",
     "checked": "2026-10-14",
     "link_status": 200
   },
@@ -68687,8 +68687,8 @@
     "languages": [
       "python"
     ],
-    "notes": "Jev reads text only, so the multimodal side turns observations into typed state before any question reaches it.",
-    "notes_zh": "Jev 只读文本，因此多模态部分会先把观测转换成带类型的状态，再向 Jev 提问。",
+    "notes": "This example turns multimodal observations into typed state before asking Jev to choose an action through the text input path.",
+    "notes_zh": "该示例先把多模态观测转换成带类型的状态，再通过文本输入路径让 Jev 选择动作。",
     "checked": "2026-10-14",
     "link_status": 200
   },
@@ -87576,8 +87576,8 @@
   {
     "slug": "typesafe-api-reference",
     "title": "API reference",
-    "summary": "The one endpoint, POST /v1/systemone, with the exact request and answer shapes for all three question types.",
-    "summary_zh": "唯一的端点 POST /v1/systemone，给出三种问题类型的完整请求与应答结构。",
+    "summary": "POST /v1/systemone request and response shapes for the core Choice, Score and Noul questions, plus request validation and HTTP error handling.",
+    "summary_zh": "POST /v1/systemone 的核心 Choice、Score、Noul 问题请求与应答结构，以及请求校验和 HTTP 错误处理。",
     "url": "https://docs.typesafe.ai/api",
     "kind": "official-docs",
     "patterns": [
@@ -87593,8 +87593,8 @@
     ],
     "official": true,
     "has_code": true,
-    "notes": "Read this before any integration: the noul answer carries no confidence field, while choice and score do.",
-    "notes_zh": "接任何集成前先读这页：noul 应答不带 confidence 字段，choice 和 score 才带。",
+    "notes": "Noul has no separate confidence; Choice and Score do. Experimental images and Box use this endpoint with TypeSafe-Danger-Zone-Images: true; see https://docs.typesafe.ai/images and https://docs.typesafe.ai/primitives/box. Box requires Jev 1.14 and returns one normalized bounding box plus confidence.",
+    "notes_zh": "Noul 没有独立的 confidence，Choice 和 Score 有。实验性图像与 Box 使用同一端点，需开启 TypeSafe-Danger-Zone-Images: true；详见 https://docs.typesafe.ai/images 和 https://docs.typesafe.ai/primitives/box。Box 要求 Jev 1.14，每个答案返回一个归一化边界框及 confidence。",
     "first_seen": "2026-09-22",
     "sources": [
       {
@@ -87605,7 +87605,8 @@
     "license": "CC0-1.0",
     "checked": "2026-10-14",
     "link_status": 200,
-    "evidence_none": "docs-page"
+    "evidence_none": "docs-page",
+    "zh_machine": true
   },
   {
     "slug": "typesafe-as-a-judge",
@@ -88371,8 +88372,8 @@
   {
     "slug": "typesafe-confidence",
     "title": "Confidence",
-    "summary": "How confidence is derived from the probability distribution, and why a threshold tuned on one question type does not transfer to another.",
-    "summary_zh": "confidence 如何从概率分布推导出来，以及为什么在一种问题类型上调好的阈值不能挪到另一种上用。",
+    "summary": "How Choice and Score confidence is derived from probabilities, how Noul differs, and how to tune thresholds for the question and application.",
+    "summary_zh": "Choice 和 Score 的 confidence 如何从概率推导、Noul 有何不同，以及如何针对问题与应用调节阈值。",
     "url": "https://docs.typesafe.ai/confidence",
     "kind": "official-docs",
     "patterns": [
@@ -88383,8 +88384,8 @@
     ],
     "official": true,
     "has_code": false,
-    "notes": "The concept the whole act-or-escalate design rests on. Worth reading before you pick any threshold.",
-    "notes_zh": "「自动执行还是转人工」这套设计的理论基础。定任何阈值前都该先读。",
+    "notes": "Read before choosing thresholds for automatic action or human review. For experimental Box confidence and threshold guidance, see https://docs.typesafe.ai/primitives/box.",
+    "notes_zh": "选择自动执行或转人工的阈值前应先读此页。实验性 Box 的 confidence 与阈值说明见 https://docs.typesafe.ai/primitives/box。",
     "first_seen": "2026-09-22",
     "sources": [
       {
@@ -88394,7 +88395,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-10-14",
-    "link_status": 200
+    "link_status": 200,
+    "zh_machine": true
   },
   {
     "slug": "typesafe-demo-mcp",
@@ -88877,8 +88879,8 @@
   {
     "slug": "typesafe-jaggedness",
     "title": "Jev 1.13 known limitations",
-    "summary": "The vendor's own list of where the model fails: literal reading, arithmetic and counting, date comparison, indirection, large noisy states, adversarial content.",
-    "summary_zh": "厂商自己列出的失效场景：字面化理解、算术与计数、日期比较、间接指代、夹杂大量无关细节的长 state、对抗性内容。",
+    "summary": "The vendor's Jev 1.13 limitations: literal reading, arithmetic and counting, date comparison, indirection, large noisy states and adversarial content.",
+    "summary_zh": "厂商列出的 Jev 1.13 局限：字面化理解、算术与计数、日期比较、间接指代、夹杂无关细节的长 state，以及对抗性内容。",
     "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13",
     "kind": "official-docs",
     "patterns": [
@@ -88889,8 +88891,8 @@
     ],
     "official": true,
     "has_code": false,
-    "notes": "The most useful page in the docs and the least linked. It explains, among other things, that a Choice over options and one Noul per option answer different questions.",
-    "notes_zh": "官方文档里最有用、却最少被引用的一页。它还解释了一件事：对选项做一个 Choice，和每个选项各问一个 Noul，问的根本不是同一个问题。",
+    "notes": "This page is explicitly scoped to Jev 1.13; it does not establish which limitations remain in Jev 1.14. It explains why a Choice over options and one Noul per option answer different questions.",
+    "notes_zh": "该页明确针对 Jev 1.13，不能据此判断哪些局限仍存在于 Jev 1.14。它解释了为什么对选项做一个 Choice，与每个选项各问一个 Noul，回答的是不同问题。",
     "first_seen": "2026-09-22",
     "sources": [
       {
@@ -88900,7 +88902,8 @@
     ],
     "license": "CC0-1.0",
     "checked": "2026-10-14",
-    "link_status": 200
+    "link_status": 200,
+    "zh_machine": true
   },
   {
     "slug": "typesafe-jev",
@@ -89644,8 +89647,8 @@
       "single-commit",
       "code-untested"
     ],
-    "notes": "A good illustration of feeding structured state instead of pixels, given the model is text-only. One commit and no licence, so treat it as a demo to read rather than code to depend on.",
-    "notes_zh": "很好地示范了「喂结构化状态而非像素」—— 毕竟模型只接受文本。仅一次提交且无许可证，请当作可读的演示、而非可依赖的代码。",
+    "notes": "This example feeds structured emulator RAM state to Jev through the text input path. One commit and no licence, so treat it as a demo to read rather than code to depend on.",
+    "notes_zh": "该示例通过文本输入路径向 Jev 提供模拟器 RAM 的结构化状态。仅一次提交且无许可证，请当作可读的演示，而非可依赖的代码。",
     "first_seen": "2026-09-22",
     "sources": [
       {
@@ -90194,8 +90197,8 @@
   {
     "slug": "typesafe-models",
     "title": "Models, pricing and limits",
-    "summary": "The authoritative sheet: jev-1.13.0, $0.042 per Mtok input with output free, 64k context, 32k for state plus the longest question, text input only.",
-    "summary_zh": "权威参数表：jev-1.13.0、输入 $0.042/Mtok 且输出免费、64k 上下文、state 加最长问题 32k、仅支持文本输入。",
+    "summary": "Native Jev 1.14/1.13 IDs, aliases, pricing and limits: $0.042/Mtok input, free output, 64k tokens per request and 32k per question by default. Text is the default; images and 262k long context require experimental opt-ins.",
+    "summary_zh": "原生 Jev 1.14/1.13 的 ID、别名、价格与限制：输入 $0.042/Mtok，输出免费，默认每次请求 64k token、每个问题 32k。默认输入为文本；图像和 262k 长上下文需显式开启实验功能。",
     "url": "https://docs.typesafe.ai/models",
     "kind": "official-docs",
     "patterns": [
@@ -90211,8 +90214,8 @@
       "python",
       "typescript"
     ],
-    "notes": "Also states English is the primary training language and CJK is handled but not equally well. Rate limits carry an explicit warning that they can change without notice.",
-    "notes_zh": "该页还说明英语是主要训练语言、中日韩文「能处理但不同等」。速率限制附有官方警告：可能随时变动。",
+    "notes": "Checked 2026-10-15: jev-preview points to jev-1.14.0; jev-latest to jev-1.13.0. The October 14 announcement (https://typesafe.ai/blog/jev-1-14) plans the latest switch about a week later. TypeSafe-Danger-Zone-Long-Context: true raises both limits to 262k on 1.13/1.14. Images: https://docs.typesafe.ai/images; enable with TypeSafe-Danger-Zone-Images: true.",
+    "notes_zh": "2026-10-15 核对：jev-preview 指向 jev-1.14.0，jev-latest 指向 jev-1.13.0。10 月 14 日公告（https://typesafe.ai/blog/jev-1-14）计划约一周后切换 latest。1.13/1.14 均可通过 TypeSafe-Danger-Zone-Long-Context: true 把两个上限提高至 262k。图像见 https://docs.typesafe.ai/images，需开启 TypeSafe-Danger-Zone-Images: true。",
     "first_seen": "2026-09-22",
     "sources": [
       {
@@ -90223,7 +90226,8 @@
     "license": "CC0-1.0",
     "checked": "2026-10-14",
     "link_status": 200,
-    "evidence_none": "docs-page"
+    "evidence_none": "docs-page",
+    "zh_machine": true
   },
   {
     "slug": "typesafe-oracles",
@@ -90372,7 +90376,9 @@
     "license": "CC0-1.0",
     "checked": "2026-10-14",
     "link_status": 200,
-    "evidence_none": "docs-page"
+    "evidence_none": "docs-page",
+    "notes": "There is no separate question-count cap. Keep state plus all questions within 64k tokens and state plus any one question within 32k by default. The experimental TypeSafe-Danger-Zone-Long-Context: true header raises both to 262k on Jev 1.13/1.14. See https://docs.typesafe.ai/models#context-length.",
+    "notes_zh": "问题数量没有独立上限。默认 state 加全部问题不得超过 64k token，state 加任一问题不得超过 32k。Jev 1.13/1.14 均可通过实验性请求头 TypeSafe-Danger-Zone-Long-Context: true 将两者提高至 262k。详见 https://docs.typesafe.ai/models#context-length。"
   },
   {
     "slug": "typesafe-pattern-intent-routing",
@@ -90596,8 +90602,8 @@
   {
     "slug": "typesafe-primitives",
     "title": "Primitives: Choice, Score, Noul",
-    "summary": "What each primitive is for and how to write criteria, including the 255-option cap on Choice and the 2-10 level range on Score.",
-    "summary_zh": "三个原语各自的用途与 criteria 写法，含 Choice 最多 255 个选项、Score 只能 2–10 级这些硬限制。",
+    "summary": "How to choose and combine the core Choice, Score and Noul question types and define their criteria. Choice supports up to 255 options and Score 2-10 levels.",
+    "summary_zh": "核心 Choice、Score、Noul 问题类型的选择、组合与 criteria 写法；Choice 最多 255 个选项，Score 支持 2–10 级。",
     "url": "https://docs.typesafe.ai/primitives",
     "kind": "official-docs",
     "patterns": [
@@ -90627,7 +90633,10 @@
     "license": "CC0-1.0",
     "checked": "2026-10-14",
     "link_status": 200,
-    "evidence_none": "docs-page"
+    "evidence_none": "docs-page",
+    "notes": "The overview focuses on the core types. For experimental Box on Jev 1.14, see https://docs.typesafe.ai/primitives/box: one bounding box per question, no criteria and no not-found output. Images and Box require TypeSafe-Danger-Zone-Images: true.",
+    "notes_zh": "该概览聚焦核心类型。Jev 1.14 的实验性 Box 见 https://docs.typesafe.ai/primitives/box：每个问题返回一个边界框，不接受 criteria，也不返回“未找到”。图像与 Box 均需开启 TypeSafe-Danger-Zone-Images: true。",
+    "zh_machine": true
   },
   {
     "slug": "typesafe-quickstart",

@@ -28,6 +28,12 @@ debugging.
 > strings; a string still being there does not move that date. **Open the
 > linked doc before you ship.**
 
+**Native update, 2026-10-15:** a model-assisted reading of the official
+[models](https://docs.typesafe.ai/models), [images](https://docs.typesafe.ai/images)
+and [Box](https://docs.typesafe.ai/primitives/box) docs adds Jev 1.14 and the native
+experimental opt-ins below. Other gateways were not rechecked for this update;
+the whole-matrix date above is unchanged.
+
 [![The compatibility matrix on the site, with cells that differ from the native surface in red and matching cells in green](https://kydlikebtc.github.io/awesome-jev/img/site-compat.png)](https://kydlikebtc.github.io/awesome-jev/?view=compat)
 
 <sub>The same data [on the site](https://kydlikebtc.github.io/awesome-jev/?view=compat), where a cell is red when it
@@ -42,7 +48,7 @@ There is no portable model string. This is the most common porting bug.
 <!-- models:start -->
 | Surface | Model string to send |
 | --- | --- |
-| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | `jev-latest` · `jev-preview` · `jev-1.13.0` |
+| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | `jev-latest` · `jev-preview` · `jev-1.14.0` · `jev-1.13.0` |
 | [Vercel AI SDK evaluation API](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk) | `typesafe-ai/jev` |
 | [Vercel AI Gateway (TypeSafe-compatible)](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe) | `typesafe-ai/jev` |
 | [@ai-sdk/typesafe-ai](https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai) | `jev-latest` |
@@ -61,6 +67,13 @@ There is no portable model string. This is the most common porting bug.
 alias moves when a release ships, and the answers behind it can change with no
 change on your side. The response reports the versioned ID that actually
 answered, so log it.
+
+As checked on 2026-10-15, native `jev-preview` points to `jev-1.14.0` and
+`jev-latest` still points to `jev-1.13.0`. Both pinned IDs remain accepted.
+The [October 14 announcement](https://typesafe.ai/blog/jev-1-14) said latest
+would move about a week later, without an exact switch date. These aliases
+and experimental capabilities are documented for the native API; do not infer
+support through another gateway from this update.
 
 `typesafe/jev-1` does not exist on any surface. It appears in no documentation
 and is the single most repeated fabrication about this model.
@@ -181,7 +194,7 @@ but not in CI".
 <!-- notes:start -->
 | Surface | Worth knowing | Catalogued examples |
 | --- | --- | --- |
-| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | The reference surface. Everything else is measured against this. | [1121](https://kydlikebtc.github.io/awesome-jev/?platform=typesafe-native&lang=en) · `typesafe-api` (coarse) |
+| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | The reference surface. A model-assisted documentation check on 2026-10-15 covered only the native API: jev-preview points to jev-1.14.0; jev-latest still points to jev-1.13.0. Other surfaces retain the matrix's 2026-09-22 reading date. | [1121](https://kydlikebtc.github.io/awesome-jev/?platform=typesafe-native&lang=en) · `typesafe-api` (coarse) |
 | [Vercel AI SDK evaluation API](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk) | The one surface that renames the primitive. Needs AI SDK 7.0.105 or newer. | [17](https://kydlikebtc.github.io/awesome-jev/?platform=vercel-eval&lang=en) · `vercel-ai-gateway`, `vercel-ai-sdk` (coarse) |
 | [Vercel AI Gateway (TypeSafe-compatible)](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe) | Same gateway as the row above, different route, different spelling. Pick one and stay on it. | [15](https://kydlikebtc.github.io/awesome-jev/?platform=vercel-compat&lang=en) · `vercel-ai-gateway` (coarse) |
 | [@ai-sdk/typesafe-ai](https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai) | Note the env var: TYPESAFE_AI_API_KEY, not TYPESAFE_API_KEY. | [2](https://kydlikebtc.github.io/awesome-jev/?platform=ai-sdk-direct&lang=en) · `vercel-ai-sdk` (coarse) |
@@ -261,17 +274,18 @@ has, the row is also listed in [review-queue.md](review-queue.md#wire-unread).
 
 ---
 
-## Hard limits
+## Default limits and native experimental opt-ins
 
-Properties of the model, so they hold on every surface.
+Default model limits and explicitly enabled native capabilities. A gateway may
+impose additional limits or omit experimental features; check its own docs.
 
 <!-- limits:start -->
 |  | Limit | Why it matters |
 | --- | --- | --- |
 | **choice options** | max 255 | Walk a hierarchy with a beam search over probabilities to get past it. |
 | **score levels** | 2 to 10, 0-indexed, ordered low to high | A score is probability-weighted, so it lands between levels. Do not assume an integer. |
-| **context** | 64k tokens per request; 32k for state plus the longest question | No tokenizer is published, which is why at least one production integration budgets in UTF-8 bytes with headroom. |
-| **input** | text only: string, JSON object, or array of text | No image, audio or video. Pre-process to text or to typed fields. |
+| **context** | default: 64k tokens per request; 32k for state plus the longest question | On native jev-1.14.0 and jev-1.13.0, the experimental TypeSafe-Danger-Zone-Long-Context: true header raises both limits to 262k; it is slower and less accurate. See https://docs.typesafe.ai/models#long-context. No tokenizer is published; leave headroom when budgeting input. |
+| **input** | text by default: string, JSON object, or array; experimental PNG/JPEG images on the native API | Native jev-1.14.0 and jev-1.13.0 accept experimental PNG/JPEG images with TypeSafe-Danger-Zone-Images: true. See https://docs.typesafe.ai/images for the image request shape. Audio and video are unsupported; pre-process them to text or typed fields. Gateway support is unverified. |
 | **output tokens** | free; the model generates no text | Only input is charged, which is what makes per-item judgement at scale affordable. |
 | **streaming** | not supported anywhere | The upstream API does not stream, so no gateway can add it. |
 | **self-hosting** | impossible; no published weights | Anything that runs locally is a different model with a compatible wire format. Calibration does not transfer, so neither do thresholds. |
@@ -315,7 +329,7 @@ Claims that circulate but are wrong, each checked against a primary source:
 
 | Claim                                            | Reality                                                                                                                                                                                                     |
 | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The model ID is `jev-1`                          | It is `jev-1.13.0`, with aliases `jev-latest` and `jev-preview`.                                                                                                                                            |
+| The model ID is `jev-1`                          | Native pinned IDs include `jev-1.14.0` and `jev-1.13.0`, with aliases `jev-latest` and `jev-preview`; see §1 for the dated mapping. |
 | `typesafe/jev-1` is a gateway model string       | It exists nowhere. Each gateway has its own string — see §1.                                                                                                                                                |
 | The yes/no type is called "Binary"               | It is `noul`. One SDK spells it `boolean`; much of the press coverage got it wrong.                                                                                                                         |
 | All three primitives carry confidence            | `noul` does not. Its probability _is_ the answer.                                                                                                                                                           |

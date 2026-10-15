@@ -58,7 +58,7 @@
 
 ## Jev 返回什么
 
-三个原语。下面所有模式都由它们构成，而最后一行那个不对称是最常见的 bug 来源。
+三个核心原语：Choice、Score 和 Noul。下面的模式使用它们；Noul 返回概率，没有单独的 confidence 字段。Jev 1.14 还新增了实验性 [Box](https://docs.typesafe.ai/primitives/box)：每个问题返回一个边界框和置信度，没有「未找到」答案。Box 需要图像，并须按下文显式启用图像功能。 <sub>(机翻)</sub>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/primitives-zh-dark.svg">
@@ -67,7 +67,7 @@
 
 每个原语下方有两个互不相加的数：先是 `question_types` 记录了有人读过代码、确认调用该原语的行数；再是只有文本信号的行数 —— 每周刷新在该行所引的那一个文件中找到了它的请求或回答结构（`primitives_seen`），这并不表明代码调用了它。见[哪些经过核实](#哪些经过核实哪些没有)。 <sub>(机翻)</sub>
 
-输入**仅支持文本** —— 字符串、JSON 对象、或文本数组。上下文每次请求 **64k** token，其中 state 加最长的那个问题占 **32k**。输出 token 免费。权重未公开，因此无法本地运行。跨平台差异全表见 [`docs/compatibility.md`](docs/compatibility.md)。
+默认输入为文本或结构化 JSON。原生 API 的 Jev 1.13 和 1.14 也支持实验性 [PNG/JPEG 图像](https://docs.typesafe.ai/images)，须发送 `TypeSafe-Danger-Zone-Images: true`；不支持音频和视频。默认每次请求 **64k** token，其中 state 加最长问题最多 **32k**。实验性请求头 `TypeSafe-Danger-Zone-Long-Context: true` 将两项限制均提高到 **262k**，但速度和准确率会降低（见[模型文档](https://docs.typesafe.ai/models)）。输出 token 免费。截至 2026-10-15，原生 `jev-preview` 指向 `jev-1.14.0`，`jev-latest` 仍指向 `jev-1.13.0`；两个固定版本 ID 均可用。[10 月 14 日公告](https://typesafe.ai/blog/jev-1-14)称 latest 约一周后切换，未给出确切切换日期。权重未公开，因此无法本地运行。跨平台差异全表见 [`docs/compatibility.md`](docs/compatibility.md)。 <sub>(机翻)</sub>
 
 某个决策该用哪个原语？下图把 TypeSafe 官方的指引排成一张判断清单：自上而下，遇到第一个「是」即停。顺序与措辞出自本仓库；每一步都注明所依据的页面，列在图下。这是厂商附有来源的设计指引，不是对本目录任何条目的推荐。 <sub>(机翻)</sub>
 
@@ -88,7 +88,7 @@
 
 2. **[Jev 1.13 known limitations](https://docs.typesafe.ai/model-jaggedness/jev-1.13)**
 
-   官方文档里最有用、却最少被引用的一页。它还解释了一件事：对选项做一个 Choice，和每个选项各问一个 Noul，问的根本不是同一个问题。
+   该页明确针对 Jev 1.13，不能据此判断哪些局限仍存在于 Jev 1.14。它解释了为什么对选项做一个 Choice，与每个选项各问一个 Noul，回答的是不同问题。
 
 3. **[Example: three primitives in one request](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/01-three-primitives/main.py)**
 
@@ -538,7 +538,7 @@ _用校准置信度决定哪些情况必须由人来看。_
   <sub>`官方文档` · `Py`</sub>
 
 - **[Confidence](https://docs.typesafe.ai/confidence)** ⭐<br>
-  confidence 如何从概率分布推导出来，以及为什么在一种问题类型上调好的阈值不能挪到另一种上用。<br>
+  Choice 和 Score 的 confidence 如何从概率推导、Noul 有何不同，以及如何针对问题与应用调节阈值。 <sub>(机翻)</sub><br>
   <sub>`官方文档`</sub>
 
 - **[Airflow LLMBranchOperator with Jev](https://airflow.apache.org/docs/apache-airflow-providers-common-ai/stable/index.html)**<br>
@@ -1044,15 +1044,15 @@ _介绍模型或整个领域，而非单一模式。_
   <sub>`SDK` · ★100+ · `Py` · `choice` · `score` · `noul` · [调用点](https://github.com/typesafe-ai/typesafe-sdk-python/blob/HEAD/src/typesafe_sdk/_core/client/aio/client.py)，2026-09-22 阅读</sub>
 
 - **[API reference](https://docs.typesafe.ai/api)** ⭐<br>
-  唯一的端点 POST /v1/systemone，给出三种问题类型的完整请求与应答结构。<br>
+  POST /v1/systemone 的核心 Choice、Score、Noul 问题请求与应答结构，以及请求校验和 HTTP 错误处理。 <sub>(机翻)</sub><br>
   <sub>`官方文档` · `sh` · `Py` · `TS`</sub>
 
 - **[Models, pricing and limits](https://docs.typesafe.ai/models)** ⭐<br>
-  权威参数表：jev-1.13.0、输入 $0.042/Mtok 且输出免费、64k 上下文、state 加最长问题 32k、仅支持文本输入。<br>
+  原生 Jev 1.14/1.13 的 ID、别名、价格与限制：输入 $0.042/Mtok，输出免费，默认每次请求 64k token、每个问题 32k。默认输入为文本；图像和 262k 长上下文需显式开启实验功能。 <sub>(机翻)</sub><br>
   <sub>`官方文档` · `sh` · `Py` · `TS`</sub>
 
 - **[Primitives: Choice, Score, Noul](https://docs.typesafe.ai/primitives)** ⭐<br>
-  三个原语各自的用途与 criteria 写法，含 Choice 最多 255 个选项、Score 只能 2–10 级这些硬限制。<br>
+  核心 Choice、Score、Noul 问题类型的选择、组合与 criteria 写法；Choice 最多 255 个选项，Score 支持 2–10 级。 <sub>(机翻)</sub><br>
   <sub>`官方文档` · `Py` · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[Introducing System One models and Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev)** ⭐<br>
@@ -1062,7 +1062,7 @@ _介绍模型或整个领域，而非单一模式。_
   **注意:** `厂商自报数据`
 
 - **[Jev 1.13 known limitations](https://docs.typesafe.ai/model-jaggedness/jev-1.13)** ⭐<br>
-  厂商自己列出的失效场景：字面化理解、算术与计数、日期比较、间接指代、夹杂大量无关细节的长 state、对抗性内容。<br>
+  厂商列出的 Jev 1.13 局限：字面化理解、算术与计数、日期比较、间接指代、夹杂无关细节的长 state，以及对抗性内容。 <sub>(机翻)</sub><br>
   <sub>`官方文档`</sub>
 
 - **[Use case map](https://docs.typesafe.ai/concepts/use-case-map)** ⭐<br>
@@ -1103,7 +1103,7 @@ _介绍模型或整个领域，而非单一模式。_
 <details>
 <summary><b>查看可搜索站点预览</b></summary>
 
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=f04a599f06762cc6" alt="可搜索的 Jev 目录：精选路径、筛选排序、带日期的来源证据与条目卡片" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=f9641984b13f217e" alt="可搜索的 Jev 目录：精选路径、筛选排序、带日期的来源证据与条目卡片" width="760"></a>
 
 <sub>点击条形即可筛选。另有两个视图：<a href="https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh">三个原语</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh">兼容性矩阵</a>。每个筛选条件和每个条目都是可分享的 URL。</sub>
 
@@ -1136,7 +1136,7 @@ _介绍模型或整个领域，而非单一模式。_
 
 - **摘要是谁的文字** —— 865 条摘要的英文原文就是被链接项目自己在 GitHub 上的描述，逐字相同，这些行标为 *(项目自述)*；26 条标为 *(项目旧自述)*：英文取自项目描述，但两者已不再相同。这些文字出自项目作者，中文摘要是其译文。7 条摘要标明为本目录撰写，320 条未作记录。每周刷新会把每条英文摘要与其仓库描述比对并标出相同者；只有人才能把摘要标为本目录撰写。 <sub>(机翻)</sub>
 
-- **中文是谁写的** —— 1218 行中有 195 行的中文摘要由人撰写；其余 1023 行由模型翻译，带有 `zh_machine`，并在中文 README、中文模式页面和站点的中文视图中逐条标为 *(机翻)*。[翻译队列](docs/zh-queue.md)列出等待有人替换的机翻：先是星标最高各行的全部机翻，再按星标从高到低列出被脚本计算的三项文本信号（比英文短得多、缺少英文里的数字、大部分是 ASCII 字符）中至少一项标出的其他机翻。信号只是对照比较，不是对译文的结论，README、模式页面和站点上的各行都不显示信号。认领方法见[认领翻译](CONTRIBUTING.md#claim-a-translation)；只有你自己写的译文才能去掉 `zh_machine`。 <sub>(机翻)</sub>
+- **中文是谁写的** —— 1218 行中有 190 行的中文摘要由人撰写；其余 1028 行由模型翻译，带有 `zh_machine`，并在中文 README、中文模式页面和站点的中文视图中逐条标为 *(机翻)*。[翻译队列](docs/zh-queue.md)列出等待有人替换的机翻：先是星标最高各行的全部机翻，再按星标从高到低列出被脚本计算的三项文本信号（比英文短得多、缺少英文里的数字、大部分是 ASCII 字符）中至少一项标出的其他机翻。信号只是对照比较，不是对译文的结论，README、模式页面和站点上的各行都不显示信号。认领方法见[认领翻译](CONTRIBUTING.md#claim-a-translation)；只有你自己写的译文才能去掉 `zh_machine`。 <sub>(机翻)</sub>
 
 - **调用点文本复查** —— 有 1079 行通过 `evidence` 记录了项目调用 Jev 的文件及其中匹配的字符串。另有 57 行记录的文件只表明项目采用了 Jev 的请求结构、并非基于 Jev 构建（所有 `alternative`——无论是自己提供这种结构，还是向 Jev 发送同样的请求作对比——以及由其他模型支撑的适配器），0 行记录的只是项目附带的示例；`evidence.kind` 标明属于哪一种。每周 [claims 任务](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) 检查这些字符串是否仍在默认分支，发现文本或文件缺失时报告。这些数字是已记录的证据数量，**不是最新 CI 通过数**。文本匹配不能证明调用实际执行、API 兼容或结果正确。脚本标出、需要人重读的引用列在[复核队列](docs/review-queue.md)。 <sub>(机翻)</sub>
 

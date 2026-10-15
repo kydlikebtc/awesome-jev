@@ -35,13 +35,13 @@ table regenerated like the first half, each reading in it dated on its own.
 | Machine signal: of those, rows with a threshold no person has read in the file ([review queue](review-queue.md#thresholds-unread)) | 32 |
 | Negative results: rows whose own author measured Jev for the use and concluded against it (a benchmark's `measurement.direction` unfavourable, the `negative-result` flag on any other row; author-stated, not reproduced here; [listed below](#negative-results)) | 5 |
 | Patterns covered | 18 of 18 |
-| Rows whose `patterns` are exactly what the keyword rules suggest for their summary (agreement with the rules, not a review: any review of these rows was not recorded) | 759 of 1218 |
+| Rows whose `patterns` are exactly what the keyword rules suggest for their summary (agreement with the rules, not a review: any review of these rows was not recorded) | 757 of 1218 |
 | Rows whose patterns a person recorded reading (`patterns_reviewed`) | 1 |
 | Overview rows that are projects or plugins with code, listed apart as not yet indexed by pattern ([review queue](review-queue.md#unsorted-overview)) | 252 |
 | Summaries that are the project's own GitHub description (`summary_source` `upstream-description`) | 865 of 1218 |
 | Summaries taken from that description that no longer match it (`upstream-description-stale`) | 26 |
 | Summaries marked as written for this catalogue (`curated`) | 7 |
-| Chinese summaries hand-written | 195 of 1218 |
+| Chinese summaries hand-written | 190 of 1218 |
 | Rows recording GitHub's creation date, last push and default-branch commit count for their repository (`repo_created_at`, `repo_pushed_at`, `repo_commits`; GitHub's facts at the last weekly refresh, not a judgement of upkeep) | 1141 of 1218 |
 | Rows flagged `single-commit`: one commit on the default branch (the refresh sets and clears it from `repo_commits`) | 90 |
 | Rows with a GitHub repository that at least one sibling directory links (`sources` citations, from the lists' READMEs at the last weekly read; a count of mentions, not a review) | 1134 of 1144 |
