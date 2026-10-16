@@ -9347,6 +9347,39 @@
     "link_status": 200
   },
   {
+    "slug": "decision-models",
+    "title": "Decision Models",
+    "summary": "Hosted API that takes Jev's POST /v1/systemone request shape and answers noul, choice and score questions with probabilities from open models (s1-fast, s1-pro, quyet-1-large); EU tier available, from $0.019 per 1M input tokens, output free.",
+    "summary_source": "curated",
+    "summary_zh": "托管 API，接受 Jev 的 POST /v1/systemone 请求格式，用开源模型（s1-fast、s1-pro、quyet-1-large）回答 noul、choice 和 score 问题并返回概率；提供欧盟层级，输入每百万 token 起价 0.019 美元，输出免费。",
+    "url": "https://decisionmodels.io",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "has_code": false,
+    "official": false,
+    "author": {
+      "name": "Florian Standhartinger",
+      "url": "https://decisionmodels.io"
+    },
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/48"
+      }
+    ],
+    "license": "CC0-1.0",
+    "flags": [
+      "not-jev",
+      "self-submitted"
+    ],
+    "notes": "Not Jev: open models behind a Jev-compatible API, so thresholds tuned on Jev do not transfer. Listed by its operator. Prices are list prices for the Peer-to-Peer tier (https://api.decisionmodels.io/v1/models, 2026-10-16); no benchmark claims are made here.",
+    "notes_zh": "并非 Jev：这是用开源模型实现的 Jev 兼容接口，在 Jev 上调好的阈值不能直接照搬。由服务运营者本人提交。价格为 Peer-to-Peer 层级的标价（https://api.decisionmodels.io/v1/models，2026-10-16）；此处不含任何基准测试结论。",
+    "evidence_none": "docs-page",
+    "zh_machine": true
+  },
+  {
     "slug": "decisionmodelhub-support-routing",
     "title": "Support-routing benchmark: 100 held-out cases",
     "summary": "Compares Jev with Clef, Clef Flash, OpenAI's Decisions API and a GPT-6 Luna structured-output baseline on 100 held-out fictional support messages, each routed to one of five team labels; every case and recorded answer can be downloaded.",
