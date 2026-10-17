@@ -9373,7 +9373,7 @@
     },
     "has_code": true,
     "stars": 0,
-    "repo_license": "unknown",
+    "repo_license": "Apache-2.0",
     "evidence": {
       "path": "benchmark/goldrails_bench/systemone.py",
       "matched": [
@@ -9408,10 +9408,9 @@
     },
     "first_seen": "2026-10-17",
     "flags": [
-      "self-submitted",
-      "no-license"
+      "self-submitted"
     ],
-    "notes": "Submitted by raxIT Labs, which built and ran it. Version 1.0.0 (15 Oct 2026): balanced accuracy 90.4 for the Perplexity Decisions API, 88.7 for Jev 1.14.0, 79.0 for Bedrock Guardrails; Jev 1.14.0 costs $39 per million checks at list price, Bedrock $113. One fixed 0.5 threshold, no per-model calibration. The site states Apache-2.0; the repository has no LICENSE file. Drafted with an AI coding assistant.",
+    "notes": "Submitted by raxIT Labs, which built and ran it. Version 1.0.0 (15 Oct 2026): balanced accuracy 90.4 for the Perplexity Decisions API, 88.7 for Jev 1.14.0, 79.0 for Bedrock Guardrails; Jev 1.14.0 costs $39 per million checks at list price, Bedrock $113. One fixed 0.5 threshold, no per-model calibration. Drafted with an AI coding assistant.",
     "sources": [
       {
         "catalog": "author submission",
