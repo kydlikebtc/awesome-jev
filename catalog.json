@@ -9347,6 +9347,83 @@
     "link_status": 200
   },
   {
+    "slug": "decision-models-as-guardrails",
+    "title": "Decision Models as Guardrails",
+    "summary": "Asks Jev 1.13.0, Jev 1.14.0 and 17 other systems, Bedrock Guardrails among them, the same 9,975 labelled guardrail checks in six suites. Jev answers each as a noul; 0.5 or more blocks, nothing tuned per model. Reports balanced accuracy with 95% intervals and USD per 1,000 checks at list price.",
+    "summary_source": "curated",
+    "summary_zh": "让 Jev 1.13.0、Jev 1.14.0 及其他 17 个系统（包括 Bedrock Guardrails）回答同样的 9,975 条带标注的护栏检查，分为六个套件。Jev 以 noul 回答每条检查，概率达到 0.5 或以上即拦截，不对任何模型单独调参。报告平衡准确率（含 95% 区间）以及按公开价格计算的每 1,000 次检查的美元成本。",
+    "zh_machine": true,
+    "url": "https://dm-as-guardrails.raxitlabs.com",
+    "repo": "https://github.com/raxITlabs/decision-models-as-guardrails",
+    "kind": "benchmark",
+    "patterns": [
+      "safety-gating"
+    ],
+    "question_types": [
+      "noul",
+      "score"
+    ],
+    "platforms": [
+      "typesafe-api",
+      "self-hosted"
+    ],
+    "author": {
+      "name": "raxIT Labs",
+      "url": "https://github.com/raxITlabs"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "unknown",
+    "evidence": {
+      "path": "benchmark/goldrails_bench/systemone.py",
+      "matched": [
+        "api.typesafe.ai",
+        "POST /v1/systemone",
+        "self.client.system_one(state, qs, model=self.model)"
+      ]
+    },
+    "measurement": {
+      "task": "Decide whether to block a guardrail check across six suites: content, prompt attacks, denied topics, profanity, PII and grounding",
+      "datasets": [
+        "raxITLabs/decision-models-as-guardrails"
+      ],
+      "comparators": [
+        "Amazon Bedrock Guardrails",
+        "Perplexity Decisions API",
+        "OpenAI Decisions API",
+        "Kev",
+        "Open-Jev",
+        "Laya",
+        "Clef",
+        "Strands Deciders"
+      ],
+      "metrics": [
+        "accuracy",
+        "recall",
+        "cost"
+      ],
+      "n": 9975,
+      "as_of": "2026-10-15",
+      "raw_data": true
+    },
+    "first_seen": "2026-10-17",
+    "flags": [
+      "self-submitted",
+      "no-license"
+    ],
+    "notes": "Submitted by raxIT Labs, which built and ran it. Version 1.0.0 (15 Oct 2026): balanced accuracy 90.4 for the Perplexity Decisions API, 88.7 for Jev 1.14.0, 79.0 for Bedrock Guardrails; Jev 1.14.0 costs $39 per million checks at list price, Bedrock $113. One fixed 0.5 threshold, no per-model calibration. The site states Apache-2.0; the repository has no LICENSE file. Drafted with an AI coding assistant.",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/50"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ]
+  },
+  {
     "slug": "decisionmodelhub-support-routing",
     "title": "Support-routing benchmark: 100 held-out cases",
     "summary": "Compares Jev with Clef, Clef Flash, OpenAI's Decisions API and a GPT-6 Luna structured-output baseline on 100 held-out fictional support messages, each routed to one of five team labels; every case and recorded answer can be downloaded.",
