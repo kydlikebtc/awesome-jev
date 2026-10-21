@@ -98,6 +98,10 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   Does a TypeSafe Jev rerank beat embedding search? Graded relevance eval (9,831 pairs, 164 zh/en queries) over the Agent Skills Hub catalog, with the judge-circularity bias measured. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · ★10+ · zhuyansen · `Py` · [call site](https://github.com/zhuyansen/jev-search-rerank-eval/blob/HEAD/src/jse/openrouter.py), read 2026-09-24 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
 
+- **[legalforecastbench](https://github.com/johnhughes3/LegalForecastBench)**<br>
+  LegalForecast-MTD benchmark alpha and official evaluation workflows <sub>(upstream description)</sub><br>
+  <sub>`Benchmark` · ★10+ · johnhughes3 · `Py` · [call site](https://github.com/johnhughes3/LegalForecastBench/blob/HEAD/legalforecast/jev/execution.py), read 2026-09-22</sub>
+
 - **[pdf-race](https://github.com/goodrahstar/pdf-race)**<br>
   Docling → Jev vs Docling → Gemini 3.8 Flash vs Gemini reading the PDF: same documents, one clock, scored against arXiv's own metadata <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · ★10+ · goodrahstar · `JS` · [call site](https://github.com/goodrahstar/pdf-race/blob/HEAD/lib/lanes.mjs), read 2026-09-24</sub>
@@ -271,10 +275,8 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   <sub>`Benchmark` · yodablocks · `Py` · [call site](https://github.com/yodablocks/jev-orderby-bench/blob/HEAD/harness/client.py), read 2026-09-22</sub>
 
 - **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)**<br>
-  Jev (TypeSafe) vs Claude Haiku 4.5 on 2 000 phishing emails: accuracy, calibration, latency, cost. Reproducible benchmark. <sub>(upstream description)</sub><br>
+  Jev (TypeSafe) vs Claude Haiku 4.5 on 2 000 phishing emails: accuracy, calibration, latency, cost. Reproducible benchmark. <sub>(earlier upstream description)</sub><br>
   <sub>`Benchmark` · anisselbd · `Py` · [call site](https://github.com/anisselbd/jev-phishing-bench/blob/HEAD/run_jev.py), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
-
-  **Caveats:** `no licence`
 
 - **[jev-play-ping-pong](https://github.com/Icohen007/jev-play-ping-pong)**<br>
   Jev plays browser table tennis in real time: structured telemetry, typed decisions, ordinary Chrome inputs, and auditable evidence. <sub>(upstream description)</sub><br>
@@ -323,10 +325,6 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[jevsbistro](https://github.com/andrewsilber/JevsBistro)**<br>
   3D restaurant service simulator for benchmarking low-latency decision models <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · andrewsilber · `TS` · [call site](https://github.com/andrewsilber/JevsBistro/blob/HEAD/src/jev/protocol.ts), read 2026-09-22</sub>
-
-- **[legalforecastbench](https://github.com/johnhughes3/LegalForecastBench)**<br>
-  LegalForecast-MTD benchmark alpha and official evaluation workflows <sub>(upstream description)</sub><br>
-  <sub>`Benchmark` · johnhughes3 · `Py` · [call site](https://github.com/johnhughes3/LegalForecastBench/blob/HEAD/legalforecast/jev/execution.py), read 2026-09-22</sub>
 
 - **[origin-civilization](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION)**<br>
   AI life-and-civilization simulation: TypeSafe Jev makes every decision (typed, probabilistic, auditable); LLMs plan — OpenAI-compatible APIs, local models (Ollama, LM Studio), Claude Code, Codex. <sub>(upstream description)</sub><br>

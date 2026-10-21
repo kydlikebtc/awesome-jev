@@ -119,6 +119,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jeff](https://github.com/logan-markewich/jeff)** — A self-hosted drop-in replacement for TypeSafe's jev, powered by GliFormer. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · ★100+ · logan-markewich · `Py` · cited file [`bench/jevbench.py`](https://github.com/logan-markewich/jeff/blob/HEAD/bench/jevbench.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
 
+- **[JevAny](https://github.com/SimpleJev/JevAny)** — JevAny: a calibrated decision layer for RL, agents and model harnesses that returns typed answers and option probabilities in one prefill pass — an open 27B model on a Qwen backbone, not Jev.
+  <sub>`Jev-like alternative` · ★100+ · weitianxin · `Py` · cited file [`jevany/api.py`](https://github.com/SimpleJev/JevAny/blob/HEAD/jevany/api.py), read 2026-09-24 · ⚠ `not Jev itself`</sub>
+
 - **[jevbench](https://github.com/fstandhartinger/jevbench)** — JevBench v1 - a benchmark for Jev-class typed decision models: smart, cheap, fast, reliable, open. <sub>(earlier upstream description)</sub>
   <sub>`Benchmark` · ★100+ · fstandhartinger · `Py` · call site [`jevbench/adapters/typesafe.py`](https://github.com/fstandhartinger/jevbench/blob/HEAD/jevbench/adapters/typesafe.py), read 2026-09-22</sub>
 
@@ -140,6 +143,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Open-Jev](https://github.com/Zefan-Cai/Open-Jev)** — Open-Jev-27B, an open-weight model that returns typed probabilities for a context, questions and candidates without generating an answer — a Jev-style decision model you can run yourself.
   <sub>`Jev-like alternative` · ★100+ · zefan-cai · `Py` · cited file [`jev/eval_frontier.py`](https://github.com/Zefan-Cai/Open-Jev/blob/HEAD/jev/eval_frontier.py), read 2026-09-24 · ⚠ `not Jev itself`</sub>
 
+- **[OpenDecision](https://github.com/deepanwadhwa/OpenDecision)** — An open-source semantic decision engine running a local zero-shot model, with a FastAPI server proven wire-compatible with the official SDK.
+  <sub>`Jev-like alternative` · ★100+ · deepanwadhwa · `Py` · `choice` · `score` · `noul` · cited file [`examples/m3_typesafe_sdk_demo.py`](https://github.com/deepanwadhwa/OpenDecision/blob/HEAD/examples/m3_typesafe_sdk_demo.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
+
 - **[openjev](https://github.com/razorback16/openjev)** — A Jev-compatible decision server on an open diffusion model.
   <sub>`Jev-like alternative` · ★100+ · razorback16 · `Py` · cited file [`openjev/api.py`](https://github.com/razorback16/openjev/blob/HEAD/openjev/api.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
 
@@ -156,7 +162,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Jev-like alternative` · ★100+ · `Py` · cited file [`hf-server/hf_server.py`](https://github.com/featherless-ai/simple-jev/blob/HEAD/hf-server/hf_server.py) · ⚠ `not Jev itself`</sub>
 
 - **[von](https://github.com/wfzyx/von)** — The open-source System One decision model. Sub-15ms, non-autoregressive, local drop-in alternative to TypeSafe Jev. <sub>(upstream description)</sub>
-  <sub>`Jev-like alternative` · ★100+ · wfzyx · `Py` · cited file [`js/src/client.ts`](https://github.com/wfzyx/von/blob/HEAD/js/src/client.ts), read 2026-09-24 · ⚠ `not Jev itself`</sub>
+  <sub>`Jev-like alternative` · ★100+ · wfzyx · `Py` · cited file [`js/src/client.ts`](https://github.com/wfzyx/von/blob/HEAD/js/src/client.ts), read 2026-09-24 · ⚠ `not Jev itself` `archived`</sub>
 
 - **[advocaat](https://github.com/pithings/advocaat)** — A small typed client for asking questions about your own data.
   <sub>`SDK` · ★10+ · pithings · `TS` · call site [`src/api.ts`](https://github.com/pithings/advocaat/blob/HEAD/src/api.ts), read 2026-09-22</sub>
@@ -182,6 +188,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-cli](https://github.com/tumf/jev-cli)** — Small dependency-free CLI for TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`SDK` · ★10+ · tumf · `Py` · call site [`src/jev_cli/__init__.py`](https://github.com/tumf/jev-cli/blob/HEAD/src/jev_cli/__init__.py), read 2026-09-22</sub>
 
+- **[jev-cookbook](https://github.com/paramjeetn/jev-cookbook)** — The complete cookbook for Jev by TypeSafe AI — 120+ use cases, 10 runnable examples, 4 composition patterns, and first-principles theory for the world's first System One AI model. <sub>(upstream description)</sub>
+  <sub>`Tutorial` · ★10+ · paramjeetn · `Py` · call site [`examples/01-customer-support-triage/triage.py`](https://github.com/paramjeetn/jev-cookbook/blob/HEAD/examples/01-customer-support-triage/triage.py), read 2026-09-24</sub>
+
 - **[jev-explained](https://github.com/davila7/jev-explained)** — Jev Explained <sub>(upstream description)</sub>
   <sub>`Tutorial` · ★10+ · davila7 · `TS` · call site [`src/lib/providers.ts`](https://github.com/davila7/jev-explained/blob/HEAD/src/lib/providers.ts), read 2026-09-24</sub>
 
@@ -194,9 +203,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev_local](https://github.com/Argos1111/jev_local)** — Replicating Jev with a local LLM <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · ★10+ · argos1111 · `Py` · cited file [`tools/verify_api.py`](https://github.com/Argos1111/jev_local/blob/HEAD/tools/verify_api.py), read 2026-09-24 · ⚠ `not Jev itself` `no licence`</sub>
 
-- **[JevAny](https://github.com/SimpleJev/JevAny)** — JevAny: a calibrated decision layer for RL, agents and model harnesses that returns typed answers and option probabilities in one prefill pass — an open 27B model on a Qwen backbone, not Jev.
-  <sub>`Jev-like alternative` · ★10+ · weitianxin · `Py` · cited file [`jevany/api.py`](https://github.com/SimpleJev/JevAny/blob/HEAD/jevany/api.py), read 2026-09-24 · ⚠ `not Jev itself`</sub>
-
 - **[jevify](https://github.com/fidecastro/jevify)** — Supersimple way to serve LLMs as a Jev-like endpoint <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · ★10+ · fidecastro · `Py` · cited file [`jevify/api/app.py`](https://github.com/fidecastro/jevify/blob/HEAD/jevify/api/app.py), read 2026-09-24 · ⚠ `not Jev itself`</sub>
 
@@ -206,6 +212,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[learn-jev-end-to-end](https://github.com/harshithsunku/learn-jev-end-to-end)** — Learn Jev end to end: a free hands-on course. Build 13 AI agent use cases with a fast brain (Jev) and a slow brain (LLM). One OpenRouter key. <sub>(upstream description)</sub>
   <sub>`Tutorial` · ★10+ · harshithsunku · `Py` · call site [`app.py`](https://github.com/harshithsunku/learn-jev-end-to-end/blob/HEAD/app.py), read 2026-09-24</sub>
 
+- **[legalforecastbench](https://github.com/johnhughes3/LegalForecastBench)** — LegalForecast-MTD benchmark alpha and official evaluation workflows <sub>(upstream description)</sub>
+  <sub>`Benchmark` · ★10+ · johnhughes3 · `Py` · call site [`legalforecast/jev/execution.py`](https://github.com/johnhughes3/LegalForecastBench/blob/HEAD/legalforecast/jev/execution.py), read 2026-09-22</sub>
+
 - **[litjev](https://github.com/zhengxuyu/litjev)** — Turn any off-the-shelf LLM into a Jev -like decision layer <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · ★10+ · zhengxuyu · `Py` · cited file [`src/litjev/api.py`](https://github.com/zhengxuyu/litjev/blob/HEAD/src/litjev/api.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
 
@@ -214,9 +223,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[notjev](https://github.com/9pings/notjev)** — Super fast Jev like server, model agnostic, working with any OpenAI compatible endpoint <sub>(earlier upstream description)</sub>
   <sub>`Jev-like alternative` · ★10+ · 9pings · `JS` · cited file [`bin/notjev.js`](https://github.com/9pings/notjev/blob/HEAD/bin/notjev.js), read 2026-09-24 · ⚠ `not Jev itself`</sub>
-
-- **[OpenDecision](https://github.com/deepanwadhwa/OpenDecision)** — An open-source semantic decision engine running a local zero-shot model, with a FastAPI server proven wire-compatible with the official SDK.
-  <sub>`Jev-like alternative` · ★10+ · deepanwadhwa · `Py` · `choice` · `score` · `noul` · cited file [`examples/m3_typesafe_sdk_demo.py`](https://github.com/deepanwadhwa/OpenDecision/blob/HEAD/examples/m3_typesafe_sdk_demo.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
 
 - **[OpenJev](https://github.com/GPT-AGI/OpenJev)** — Jev-compatible System 开源Jev
   <sub>`Jev-like alternative` · ★10+ · gpt-agi · `Py` · cited file [`src/openjev/core/primitives.py`](https://github.com/GPT-AGI/OpenJev/blob/HEAD/src/openjev/core/primitives.py), read 2026-09-24 · ⚠ `not Jev itself`</sub>
@@ -241,9 +247,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[ruling](https://github.com/bradAGI/ruling)** — Typed, calibrated decisions from a local model. No text generated. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · ★10+ · bradagi · `Py` · cited file [`ruling/against.py`](https://github.com/bradAGI/ruling/blob/HEAD/ruling/against.py), read 2026-09-24 · ⚠ `not Jev itself` `unverified claims`</sub>
-
-- **[snap](https://github.com/emnlmn/snap)** — Typed decisions from unstructured state: one forward pass, zero generated text. Local, deterministic, Jev-compatible. Not affiliated with typesafe.ai. <sub>(upstream description)</sub>
-  <sub>`Jev-like alternative` · ★10+ · emnlmn · `Rs` · cited file [`src/api.rs`](https://github.com/emnlmn/snap/blob/HEAD/src/api.rs), read 2026-09-24 · ⚠ `not Jev itself`</sub>
 
 - **[snapjudge](https://github.com/Micha0827/snapjudge)** — Typed decisions (choice / score / yes-no) from local Qwen models on Apple Silicon. Probabilities come straight from the logits, no text generation. TypeSafe-compatible HTTP API, runs on MLX. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · ★10+ · micha0827 · `Py` · cited file [`eval/extern/typesafe_public.py`](https://github.com/Micha0827/snapjudge/blob/HEAD/eval/extern/typesafe_public.py), read 2026-09-24 · ⚠ `not Jev itself`</sub>
@@ -330,7 +333,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`SDK` · anilsenay · `Go` · call site [`client.go`](https://github.com/anilsenay/jev/blob/HEAD/client.go), read 2026-09-24</sub>
 
 - **[jev](https://github.com/kataras/jev)** — A Go client for the TypeSafe AI's System One API and its model, Jev. <sub>(upstream description)</sub>
-  <sub>`SDK` · kataras · `Go` · call site [`client.go`](https://github.com/kataras/jev/blob/HEAD/client.go), read 2026-09-24 · ⚠ `one commit`</sub>
+  <sub>`SDK` · kataras · `Go` · call site [`client.go`](https://github.com/kataras/jev/blob/HEAD/client.go), read 2026-09-24</sub>
 
 - **[Jev Explained: How to Add Fast, Typed Decisions to an AI Agent](https://aihubmix.com/blog/jev-explained-how-to-add-fast-typed-decisions-to-an-ai-agent)** — A third-party explainer with a useful architecture sketch and an unusually honest list of cases where you should not use a decision model.
   <sub>`Article` · `Py` · ⚠ `code untested`</sub>
@@ -349,9 +352,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-bun1](https://github.com/heiwa4126/jev-bun1)** — TypeSafe の Jev を TypeScript SDK で使ってみる最初の 1 歩 <sub>(upstream description)</sub>
   <sub>`SDK` · heiwa4126 · `TS` · call site [`src/ex0.ts`](https://github.com/heiwa4126/jev-bun1/blob/HEAD/src/ex0.ts), read 2026-09-22 · ⚠ `no licence`</sub>
-
-- **[jev-cookbook](https://github.com/paramjeetn/jev-cookbook)** — The complete cookbook for Jev by TypeSafe AI — 120+ use cases, 10 runnable examples, 4 composition patterns, and first-principles theory for the world's first System One AI model. <sub>(upstream description)</sub>
-  <sub>`Tutorial` · paramjeetn · `Py` · call site [`examples/01-customer-support-triage/triage.py`](https://github.com/paramjeetn/jev-cookbook/blob/HEAD/examples/01-customer-support-triage/triage.py), read 2026-09-24</sub>
 
 - **[jev-cyrillic-audit](https://github.com/AHTOOOXA/jev-cyrillic-audit)** — Does TypeSafe's Jev keep its accuracy and calibration on Russian? Independent RU vs EN audit (ECE, reliability diagrams, paired bootstrap) on parallel human-labelled data. <sub>(upstream description)</sub>
   <sub>`Benchmark` · ahtoooxa · `Py` · call site [`src/jev_cyrillic_audit/run.py`](https://github.com/AHTOOOXA/jev-cyrillic-audit/blob/HEAD/src/jev_cyrillic_audit/run.py), read 2026-09-24</sub>
@@ -440,9 +440,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[kunobi-jev](https://github.com/kunobi-ninja/kunobi-decision)** — Rust client for the TypeSafe System One API (Jev) <sub>(upstream description)</sub>
   <sub>`SDK` · kunobi-ninja · `Rs` · call site [`src/client/mod.rs`](https://github.com/kunobi-ninja/kunobi-decision/blob/HEAD/src/client/mod.rs), read 2026-09-22</sub>
 
-- **[legalforecastbench](https://github.com/johnhughes3/LegalForecastBench)** — LegalForecast-MTD benchmark alpha and official evaluation workflows <sub>(upstream description)</sub>
-  <sub>`Benchmark` · johnhughes3 · `Py` · call site [`legalforecast/jev/execution.py`](https://github.com/johnhughes3/LegalForecastBench/blob/HEAD/legalforecast/jev/execution.py), read 2026-09-22</sub>
-
 - **[OpenJev](https://github.com/xingwudao/OpenJev)** — OpenJev: an independent Jev-inspired System One decision API based on TypeSafe.ai concepts. Choice, score and noul primitives, local mock server, Python and TypeScript SDKs. Real inference planned; not affiliated with TypeSafe AI. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · xingwudao · `Py` · cited file [`sdk/python/openjev/__init__.py`](https://github.com/xingwudao/OpenJev/blob/HEAD/sdk/python/openjev/__init__.py), read 2026-09-24 · ⚠ `not Jev itself` `no licence`</sub>
 
@@ -451,6 +448,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[s1_ruby](https://github.com/innocentdiaz/s1_ruby)** — Makes S1-model 'measurement' (and the collapse that follows it) a Ruby primitive. <sub>(upstream description)</sub>
   <sub>`SDK` · innocentdiaz · `Rb` · call site [`lib/s1/providers/typesafe.rb`](https://github.com/innocentdiaz/s1_ruby/blob/HEAD/lib/s1/providers/typesafe.rb), read 2026-09-24 · ⚠ `one commit`</sub>
+
+- **[snap](https://github.com/emnlmn/snap)** — Typed decisions from unstructured state: one forward pass, zero generated text. Local, deterministic, Jev-compatible. Not affiliated with typesafe.ai. <sub>(upstream description)</sub>
+  <sub>`Jev-like alternative` · emnlmn · `Rs` · cited file [`src/api.rs`](https://github.com/emnlmn/snap/blob/HEAD/src/api.rs), read 2026-09-24 · ⚠ `not Jev itself`</sub>
 
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)** — First independent head-to-head benchmark of System One decision models (Laya vs Jev) on byte-identical inputs <sub>(upstream description)</sub>
   <sub>`Benchmark` · instax-dutta · `Py` · call site [`runners/jev_runner.py`](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py), read 2026-09-22</sub>
@@ -480,7 +480,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Integration` · `sh`</sub>
 
 - **[typesafe-ai-go](https://github.com/kisshan13/typesafe-ai-go)** — Community-maintained Go SDK for the TypeSafe AI System One evaluation API, with typed questions, fluent builders, retries, and examples. <sub>(upstream description)</sub>
-  <sub>`SDK` · kisshan13 · `Go` · call site [`types.go`](https://github.com/kisshan13/typesafe-ai-go/blob/HEAD/types.go), read 2026-09-24 · ⚠ `one commit`</sub>
+  <sub>`SDK` · kisshan13 · `Go` · call site [`types.go`](https://github.com/kisshan13/typesafe-ai-go/blob/HEAD/types.go), read 2026-09-24</sub>
 
 - **[typesafe-ai-java](https://github.com/jamilxt/typesafe-ai-java)** — Community-maintained Java SDK for the TypeSafe AI System One (Jev) API. Not an official TypeSafe product. <sub>(upstream description)</sub>
   <sub>`SDK` · jamilxt · `Java` · call site [`typesafe-ai-java-core/src/main/java/ai/typesafe/TypeSafeClient.java`](https://github.com/jamilxt/typesafe-ai-java/blob/HEAD/typesafe-ai-java-core/src/main/java/ai/typesafe/TypeSafeClient.java), read 2026-09-24 · ⚠ `no licence`</sub>
@@ -734,8 +734,8 @@ Projects and plugins with code, 252 of them, whose only pattern is `overview` an
 - **[Jevmind](https://github.com/dealerdefi/Jevmind)** — An agent's decisions pulled out of its prose into one place: typed answers with a confidence, behind a gate written in code, sealed in a ledger, graded and learned from. Runs offline on a local rules brain; Jev can be swapped in with one flag.
   <sub>`Project` · ★100+ · dealerdefi · `Py` · call site [`src/jevmind/brain.py`](https://github.com/dealerdefi/Jevmind/blob/HEAD/src/jevmind/brain.py), read 2026-09-24</sub>
 
-- **[kody](https://github.com/kentcdodds/kody)** — 🐨 Your assistant's home — the memory, keys, code, and automations your AI agent keeps, portable across every MCP host. Built on Cloudflare Workers. <sub>(earlier upstream description)</sub>
-  <sub>`Plugin` · ★100+ · kentcdodds · `TS` · call site [`packages/worker/src/mcp/tools/search-jev-rerank.ts`](https://github.com/kentcdodds/kody/blob/HEAD/packages/worker/src/mcp/tools/search-jev-rerank.ts), read 2026-09-22</sub>
+- **[kody](https://github.com/kody-hq/kody)** — 🐨 Your assistant's home — the memory, keys, code, and automations your AI agent keeps, portable across every MCP host. Built on Cloudflare Workers. <sub>(earlier upstream description)</sub>
+  <sub>`Plugin` · ★100+ · kentcdodds · `TS` · call site [`packages/worker/src/mcp/tools/search-jev-rerank.ts`](https://github.com/kody-hq/kody/blob/HEAD/packages/worker/src/mcp/tools/search-jev-rerank.ts), read 2026-09-22</sub>
 
 - **[laya](https://github.com/receptron/laya)** — Run Laya, the open-source Jev-compatible System-1 decision model, from Node.js / TypeScript via ONNX Runtime <sub>(upstream description)</sub>
   <sub>`Project` · ★100+ · receptron · `TS` · call site [`src/laya.ts`](https://github.com/receptron/laya/blob/HEAD/src/laya.ts), read 2026-09-22</sub>
@@ -851,6 +851,9 @@ Projects and plugins with code, 252 of them, whose only pattern is `overview` an
 - **[jev-playground](https://github.com/mizchi/jev-playground)** — A playground for calling Jev from MoonBit, with a CLI per question type (score, choice, noul) and measured reports on which composition patterns win.
   <sub>`Project` · ★10+ · mizchi · `TS` · call site [`experiments/agent-questions/src/spec.ts`](https://github.com/mizchi/jev-playground/blob/HEAD/experiments/agent-questions/src/spec.ts), read 2026-09-24 · ⚠ `no licence`</sub>
 
+- **[jev-realtime-trading](https://github.com/rthomas24/jev-realtime-trading)** — Paper trading agents on a live tape, decided every second by TypeSafe's Jev (System One). Electron desktop app. <sub>(earlier upstream description)</sub>
+  <sub>`Project` · ★10+ · rthomas24 · `TS` · call site [`src/core/realtime/jev.ts`](https://github.com/rthomas24/jev-realtime-trading/blob/HEAD/src/core/realtime/jev.ts), read 2026-09-22</sub>
+
 - **[jev-recipes](https://github.com/agencyenterprise/jev-recipes)** — 80+ composable TypeScript recipes powered by Jev for AI agents, retrieval, answer verification, and conversation workflows.
   <sub>`Project` · ★10+ · agencyenterprise · `TS` · call site [`examples/checkers/ai.mjs`](https://github.com/agencyenterprise/jev-recipes/blob/HEAD/examples/checkers/ai.mjs), read 2026-09-24</sub>
 
@@ -895,6 +898,9 @@ Projects and plugins with code, 252 of them, whose only pattern is `overview` an
 
 - **[Jev_Ontology](https://github.com/dagfinndybvig/Jev_Ontology)** — Trying to combine Jev with ontology <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · dagfinndybvig · `Py` · call site [`mvp_jev_ontology.py`](https://github.com/dagfinndybvig/Jev_Ontology/blob/HEAD/mvp_jev_ontology.py), read 2026-09-24 · ⚠ `no licence`</sub>
+
+- **[jev_project_context](https://github.com/poiuyjie/jev_project_context)** — Evidence-first long-term experiment memory skill for AI coding agents, with optional Jev decision-model layers <sub>(upstream description)</sub>
+  <sub>`Plugin` · ★10+ · poiuyjie · `Py` · call site [`scripts/jev_client.py`](https://github.com/poiuyjie/jev_project_context/blob/HEAD/scripts/jev_client.py), read 2026-09-22</sub>
 
 - **[jev_stock](https://github.com/sosopop/jev_stock)** — An experimental JEV-powered framework for forecasting short-term stock price direction from structured market data. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · sosopop · `Py` · call site [`jev_hk_predict.py`](https://github.com/sosopop/jev_stock/blob/HEAD/jev_hk_predict.py), read 2026-09-22 · ⚠ `no licence`</sub>
@@ -1199,9 +1205,6 @@ Projects and plugins with code, 252 of them, whose only pattern is `overview` an
 - **[jev-practice-speed](https://github.com/tubone24/jev-practice-speed)** — A WebGL demo where you play the card game Speed against a CPU whose brain is TypeSafe AI's Jev. The whole point of the app is to measure and show Jev's decision speed and decision accuracy in real time. <sub>(upstream description)</sub>
   <sub>`Project` · tubone24 · `JS` · call site [`src/core/jev-core.js`](https://github.com/tubone24/jev-practice-speed/blob/HEAD/src/core/jev-core.js), read 2026-09-22 · ⚠ `no licence`</sub>
 
-- **[jev-realtime-trading](https://github.com/rthomas24/jev-realtime-trading)** — Paper trading agents on a live tape, decided every second by TypeSafe's Jev (System One). Electron desktop app. <sub>(earlier upstream description)</sub>
-  <sub>`Project` · rthomas24 · `TS` · call site [`src/core/realtime/jev.ts`](https://github.com/rthomas24/jev-realtime-trading/blob/HEAD/src/core/realtime/jev.ts), read 2026-09-22</sub>
-
 - **[jev-resume-disqualifier](https://github.com/AiPersonacademy/jev-resume-disqualifier)** — Jev Resume Disqualifier: Sub-25ms automated resume knockout engine powered by TypeSafe Jev System One decision intelligence. Eliminates 80% of unqualified applicants with deterministic date math & EEOC-safe rejection notices. <sub>(upstream description)</sub>
   <sub>`Project` · aipersonacademy · `Py` · call site [`engine/decision_gateway.py`](https://github.com/AiPersonacademy/jev-resume-disqualifier/blob/HEAD/engine/decision_gateway.py), read 2026-09-22</sub>
 
@@ -1240,9 +1243,6 @@ Projects and plugins with code, 252 of them, whose only pattern is `overview` an
 
 - **[jev_jsonschema](https://github.com/Kiln-AI/jev_jsonschema)** — Run a JSON Schema through TypeSafe's Jev API, and get JSON back. <sub>(upstream description)</sub>
   <sub>`Project` · kiln-ai · `Py` · call site [`src/jev_jsonschema/client.py`](https://github.com/Kiln-AI/jev_jsonschema/blob/HEAD/src/jev_jsonschema/client.py), read 2026-09-22</sub>
-
-- **[jev_project_context](https://github.com/poiuyjie/jev_project_context)** — Evidence-first long-term experiment memory skill for AI coding agents, with optional Jev decision-model layers <sub>(upstream description)</sub>
-  <sub>`Plugin` · poiuyjie · `Py` · call site [`scripts/jev_client.py`](https://github.com/poiuyjie/jev_project_context/blob/HEAD/scripts/jev_client.py), read 2026-09-22</sub>
 
 - **[jevals](https://github.com/dayhaysoos/jevals)** — Local evaluation workbench for TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · dayhaysoos · `TS` · call site [`src/server.ts`](https://github.com/dayhaysoos/jevals/blob/HEAD/src/server.ts), read 2026-09-24</sub>

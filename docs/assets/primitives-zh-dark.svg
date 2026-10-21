@@ -12,7 +12,7 @@
 <text x="26" y="198" class="d">人读确认</text>
 <text x="204" y="198" class="c" text-anchor="end">87 条</text>
 <text x="26" y="218" class="k">仅文本信号</text>
-<text x="204" y="218" class="k" text-anchor="end">441 条</text>
+<text x="204" y="218" class="k" text-anchor="end">437 条</text>
 <rect x="233" y="58" width="206" height="172" rx="3" fill="none" stroke="#30363d"/>
 <rect x="233" y="58" width="206" height="2" fill="#3fb950"/>
 <text x="247" y="90" class="g">▮</text>
@@ -34,7 +34,7 @@
 <text x="468" y="198" class="d">人读确认</text>
 <text x="646" y="198" class="c" text-anchor="end">77 条</text>
 <text x="468" y="218" class="k">仅文本信号</text>
-<text x="646" y="218" class="k" text-anchor="end">443 条</text>
+<text x="646" y="218" class="k" text-anchor="end">438 条</text>
 <text x="12" y="252" class="k">人读确认：有人读过代码、记入 question_types 的行</text>
 <text x="12" y="269" class="k">仅文本信号：所引文件含其请求或回答结构（primitives_seen），人读记录中没有它 (机翻)</text>
 </svg>

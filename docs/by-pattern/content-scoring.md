@@ -60,7 +60,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · ★100+ · `Rs` · `score` · `noul` · call site [`src/client.rs`](https://github.com/AkashPriyadarshii/jev-curate/blob/HEAD/src/client.rs), read 2026-09-22</sub>
 
 - **[jev-forge](https://github.com/zwliJay/jev-forge)** — An open training and inference stack for Jev-style decision models. Train models to score dynamic candidate branches from a shared prefix, with support for high-cardinality choice, calibration, and fast batched inference. <sub>(upstream description)</sub>
-  <sub>`Jev-like alternative` · ★100+ · zwlijay · `Py` · cited file [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py), read 2026-09-22 · ⚠ `not Jev itself` `one commit`</sub>
+  <sub>`Jev-like alternative` · ★100+ · zwlijay · `Py` · cited file [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
 
 - **[jev-lint](https://github.com/mizchi/jev-lint)** — lint text in code by jev scorerer <sub>(upstream description)</sub>
   <sub>`Project` · ★100+ · mizchi · `TS` · call site [`src/jev.ts`](https://github.com/mizchi/jev-lint/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
@@ -164,6 +164,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[JevScout](https://github.com/hqman/JevScout)** — A coding-agent skill that hunts jobs on real company sites: Chrome sees and acts, Jev scores every link and posting, and the host LLM never picks what to click.
   <sub>`Plugin` · ★10+ · hqman · `Py` · call site [`jev_job_hunter/jev.py`](https://github.com/hqman/JevScout/blob/HEAD/jev_job_hunter/jev.py), read 2026-09-24 · ⚠ `no licence`</sub>
 
+- **[jevseo](https://github.com/epergaboni/jevseo)** — Typed SEO, AEO and GEO judgments powered by Jev, a System One decision model. Code owns the rules, the model owns the meaning. <sub>(upstream description)</sub>
+  <sub>`Project` · ★10+ · epergaboni · `TS` · call site [`src/lib/typesafe/client.ts`](https://github.com/epergaboni/jevseo/blob/HEAD/src/lib/typesafe/client.ts), read 2026-09-22</sub>
+
 - **[jsort](https://github.com/keltokhy/jsort)** — sort by meaning: order lines along a plain-English dimension, from pairwise comparisons judged by TypeSafe's Jev model <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · keltokhy · `Py` · call site [`bench/local_models.py`](https://github.com/keltokhy/jsort/blob/HEAD/bench/local_models.py), read 2026-09-24</sub>
 
@@ -194,7 +197,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[snifftest](https://github.com/DanRWilloughby/snifftest)** — A prose linter that sniffs out AI writing tells. Zero dependencies, countable rules plus one judgment model. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · danrwilloughby · `TS` · call site [`src/jev.ts`](https://github.com/DanRWilloughby/snifftest/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
-- **[toolgate](https://github.com/RiskAverseTech/toolgate)** — Open auto mode for AI agents — a calibrated tool-call firewall powered by TypeSafe Jev. Ships as a Claude Code hook <sub>(upstream description)</sub>
+- **[toolgate](https://github.com/RiskAverseTech/toolgate)** — Open auto mode for AI agents — a calibrated tool-call firewall powered by TypeSafe Jev. Ships as a Claude Code hook <sub>(earlier upstream description)</sub>
   <sub>`Plugin` · ★10+ · riskaversetech · `TS` · call site [`src/backends/typesafe.ts`](https://github.com/RiskAverseTech/toolgate/blob/HEAD/src/backends/typesafe.ts), read 2026-09-22</sub>
 
 - **[typed-decision-bert](https://github.com/hawkymisc/typed-decision-bert)** — Unofficial PoC: a BERT-style encoder decision engine behind a typed-decision (noul / choice / score) HTTP API. Not affiliated with TypeSafe. <sub>(upstream description)</sub>
@@ -219,7 +222,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Tutorial` · Flavio Copes · `JS` · `Py` · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[a0-typesafe-ai](https://github.com/3clyp50/a0-typesafe-ai)** — TypeSafe AI Jev judgments for Agent Zero, with typed tools and probability cards. <sub>(upstream description)</sub>
-  <sub>`Project` · 3clyp50 · `Py` · call site [`tools/typesafe_query.py`](https://github.com/3clyp50/a0-typesafe-ai/blob/HEAD/tools/typesafe_query.py), read 2026-09-22 · ⚠ `one commit`</sub>
+  <sub>`Project` · 3clyp50 · `Py` · call site [`tools/typesafe_query.py`](https://github.com/3clyp50/a0-typesafe-ai/blob/HEAD/tools/typesafe_query.py), read 2026-09-22</sub>
 
 - **[ai-provider-for-jev](https://github.com/soderlind/ai-provider-for-jev)** — Connect WordPress to TypeSafe's Jev System One model for structured decisions (choice, score, noul). <sub>(upstream description)</sub>
   <sub>`Integration` · soderlind · `PHP` · call site [`src/js/client.js`](https://github.com/soderlind/ai-provider-for-jev/blob/HEAD/src/js/client.js), read 2026-09-22 · ⚠ `no licence`</sub>
@@ -405,13 +408,10 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Plugin` · crowdlinker · `TS` · call site [`src/jev.ts`](https://github.com/CrowdLinker/JevPromptCoach/blob/HEAD/src/jev.ts), read 2026-09-24</sub>
 
 - **[jevriel](https://github.com/thehan-co/jevriel)** — Give your AI JEV wings. A skill and plugin to build with TypeSafe Jev, upgrade LLM-only workflows and measure the result. <sub>(upstream description)</sub>
-  <sub>`Plugin` · thehan-co · `JS` · call site [`vendor/typesafe-as-a-judge/judge.mjs`](https://github.com/thehan-co/jevriel/blob/HEAD/vendor/typesafe-as-a-judge/judge.mjs), read 2026-09-22</sub>
+  <sub>`Plugin` · thehan-co · `JS` · call site [`vendor/typesafe-as-a-judge/judge.mjs`](https://github.com/thehan-co/jevriel/blob/HEAD/vendor/typesafe-as-a-judge/judge.mjs), read 2026-09-22 · ⚠ `archived`</sub>
 
 - **[jevseek](https://github.com/morcoan/JMP)** — JMP — Joint Model Participation. A local coding workspace where Jev routes actions and OpenAI, DeepSeek, or local models generate arguments. <sub>(upstream description)</sub>
   <sub>`Project` · morcoan · `Py` · call site [`benchmarks/compare_deliberation.py`](https://github.com/morcoan/JMP/blob/HEAD/benchmarks/compare_deliberation.py), read 2026-09-22 · ⚠ `archived`</sub>
-
-- **[jevseo](https://github.com/epergaboni/jevseo)** — Typed SEO, AEO and GEO judgments powered by Jev, a System One decision model. Code owns the rules, the model owns the meaning. <sub>(upstream description)</sub>
-  <sub>`Project` · epergaboni · `TS` · call site [`src/lib/typesafe/client.ts`](https://github.com/epergaboni/jevseo/blob/HEAD/src/lib/typesafe/client.ts), read 2026-09-22</sub>
 
 - **[jevshield](https://github.com/lgy1027/jevshield)** — Sub-100ms security gate for AI agent tool calls, powered by TypeSafe's Jev (System-1) decision model. Single-request Choice/Noul/Score evaluation, dual-factor blocking matrix, calibrated-confidence routing, fail-closed parsing, zero-config local fallback. LangChain-ready. <sub>(upstream description)</sub>
   <sub>`Project` · lgy1027 · `Py` · call site [`jevshield/client.py`](https://github.com/lgy1027/jevshield/blob/HEAD/jevshield/client.py), read 2026-09-22</sub>

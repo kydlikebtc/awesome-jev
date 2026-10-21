@@ -60,7 +60,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`开源项目` · ★100+ · `Rs` · `score` · `noul` · 调用点 [`src/client.rs`](https://github.com/AkashPriyadarshii/jev-curate/blob/HEAD/src/client.rs)，2026-09-22 阅读</sub>
 
 - **[jev-forge](https://github.com/zwliJay/jev-forge)** — 面向 Jev 式决策模型的开源训练与推理栈。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`Jev 替代实现` · ★100+ · zwlijay · `Py` · 引用文件 [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身` `仅一次提交`</sub>
+  <sub>`Jev 替代实现` · ★100+ · zwlijay · `Py` · 引用文件 [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
 
 - **[jev-lint](https://github.com/mizchi/jev-lint)** — 用 Jev 打分器给代码中的文本做 lint。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · mizchi · `TS` · 调用点 [`src/jev.ts`](https://github.com/mizchi/jev-lint/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
@@ -164,6 +164,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[JevScout](https://github.com/hqman/JevScout)** — 在真实公司官网上找工作的编码智能体技能：Chrome 负责看和操作，Jev 为每个链接和职位打分，宿主 LLM 从不决定点哪里。 <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · hqman · `Py` · 调用点 [`jev_job_hunter/jev.py`](https://github.com/hqman/JevScout/blob/HEAD/jev_job_hunter/jev.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
 
+- **[jevseo](https://github.com/epergaboni/jevseo)** — 由 Jev 驱动的类型化 SEO／AEO／GEO 判断，代码掌管其余。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · epergaboni · `TS` · 调用点 [`src/lib/typesafe/client.ts`](https://github.com/epergaboni/jevseo/blob/HEAD/src/lib/typesafe/client.ts)，2026-09-22 阅读</sub>
+
 - **[jsort](https://github.com/keltokhy/jsort)** — 按含义排序：沿着一条用自然语言描述的维度给文本行排序，依据是 TypeSafe Jev 判定的两两比较。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · keltokhy · `Py` · 调用点 [`bench/local_models.py`](https://github.com/keltokhy/jsort/blob/HEAD/bench/local_models.py)，2026-09-24 阅读</sub>
 
@@ -194,7 +197,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[snifftest](https://github.com/DanRWilloughby/snifftest)** — 识别 AI 写作痕迹的文风 linter：零依赖，可计数规则外加一个判断模型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · danrwilloughby · `TS` · 调用点 [`src/jev.ts`](https://github.com/DanRWilloughby/snifftest/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
-- **[toolgate](https://github.com/RiskAverseTech/toolgate)** — 面向 AI 智能体的开源自动模式：一个校准过的工具调用防火墙。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[toolgate](https://github.com/RiskAverseTech/toolgate)** — 面向 AI 智能体的开源自动模式：一个校准过的工具调用防火墙。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · riskaversetech · `TS` · 调用点 [`src/backends/typesafe.ts`](https://github.com/RiskAverseTech/toolgate/blob/HEAD/src/backends/typesafe.ts)，2026-09-22 阅读</sub>
 
 - **[typed-decision-bert](https://github.com/hawkymisc/typed-decision-bert)** — 非官方概念验证：用 BERT 式编码器做类型化决策引擎。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
@@ -219,7 +222,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`教程` · Flavio Copes · `JS` · `Py` · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[a0-typesafe-ai](https://github.com/3clyp50/a0-typesafe-ai)** — 给 Agent Zero 的 Jev 判断，带类型化工具与概率卡片。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · 3clyp50 · `Py` · 调用点 [`tools/typesafe_query.py`](https://github.com/3clyp50/a0-typesafe-ai/blob/HEAD/tools/typesafe_query.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
+  <sub>`开源项目` · 3clyp50 · `Py` · 调用点 [`tools/typesafe_query.py`](https://github.com/3clyp50/a0-typesafe-ai/blob/HEAD/tools/typesafe_query.py)，2026-09-22 阅读</sub>
 
 - **[ai-provider-for-jev](https://github.com/soderlind/ai-provider-for-jev)** — 把 WordPress 接到 Jev 上做结构化决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · soderlind · `PHP` · 调用点 [`src/js/client.js`](https://github.com/soderlind/ai-provider-for-jev/blob/HEAD/src/js/client.js)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
@@ -405,13 +408,10 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`插件` · crowdlinker · `TS` · 调用点 [`src/jev.ts`](https://github.com/CrowdLinker/JevPromptCoach/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>
 
 - **[jevriel](https://github.com/thehan-co/jevriel)** — 给你的 AI 装上 JEV 的翅膀：用于构建与升级的技能与插件。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · thehan-co · `JS` · 调用点 [`vendor/typesafe-as-a-judge/judge.mjs`](https://github.com/thehan-co/jevriel/blob/HEAD/vendor/typesafe-as-a-judge/judge.mjs)，2026-09-22 阅读</sub>
+  <sub>`插件` · thehan-co · `JS` · 调用点 [`vendor/typesafe-as-a-judge/judge.mjs`](https://github.com/thehan-co/jevriel/blob/HEAD/vendor/typesafe-as-a-judge/judge.mjs)，2026-09-22 阅读 · ⚠ `已归档`</sub>
 
 - **[jevseek](https://github.com/morcoan/JMP)** — 本地编程工作区：由 Jev 路由动作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · morcoan · `Py` · 调用点 [`benchmarks/compare_deliberation.py`](https://github.com/morcoan/JMP/blob/HEAD/benchmarks/compare_deliberation.py)，2026-09-22 阅读 · ⚠ `已归档`</sub>
-
-- **[jevseo](https://github.com/epergaboni/jevseo)** — 由 Jev 驱动的类型化 SEO／AEO／GEO 判断，代码掌管其余。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · epergaboni · `TS` · 调用点 [`src/lib/typesafe/client.ts`](https://github.com/epergaboni/jevseo/blob/HEAD/src/lib/typesafe/client.ts)，2026-09-22 阅读</sub>
 
 - **[jevshield](https://github.com/lgy1027/jevshield)** — 亚 100 毫秒的智能体工具调用安全闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · lgy1027 · `Py` · 调用点 [`jevshield/client.py`](https://github.com/lgy1027/jevshield/blob/HEAD/jevshield/client.py)，2026-09-22 阅读</sub>
