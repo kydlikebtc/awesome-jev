@@ -1,5 +1,53 @@
 [
   {
+    "slug": "1-million-emojis",
+    "title": "1 Million Emojis",
+    "summary": "A shared 1,000 × 1,000 emoji canvas where Jev paints next to people: after each stroke one request asks a choice of emoji-and-placement options and a noul on whether the stroke looks unfinished, through Vercel AI Gateway with TypeSafe direct as fallback.",
+    "summary_zh": "一块 1,000 × 1,000 的共享表情画布，Jev 和人一起作画：每一笔之后发一次请求，用 choice 从“表情加位置”的选项里挑一个，再用 noul 判断这一笔是否还没画完；先走 Vercel AI Gateway，TypeSafe 直连作为后备。",
+    "url": "https://github.com/cwdx/1-million-emojis",
+    "kind": "project",
+    "patterns": [
+      "recommendation"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "platforms": [
+      "vercel-ai-gateway",
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "cwdx",
+      "url": "https://github.com/cwdx"
+    },
+    "has_code": true,
+    "official": false,
+    "repo_license": "MIT",
+    "languages": [
+      "typescript"
+    ],
+    "evidence": {
+      "path": "packages/jev/src/index.ts",
+      "matched": [
+        "https://ai-gateway.vercel.sh/typesafe/v1/systemone",
+        "https://api.typesafe.ai/v1/systemone",
+        "questions: { pick: { type: \"choice\""
+      ]
+    },
+    "notes": "Requested in issue #27. The cited client defines all three primitives; the choice call is in this file, and the README describes the noul on unfinished strokes. The repository mirrors the site's monorepo. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-24; a maintainer has not yet read the call site.",
+    "notes_zh": "issue #27 中有人提议收录。所引客户端定义了三种原语；choice 调用就在该文件中，README 描述了判断笔画是否画完的 noul。该仓库是网站 monorepo 的镜像。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-24 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-24",
+    "zh_machine": true
+  },
+  {
     "slug": "332-lab-jev-chat",
     "title": "332_lab-jev-chat",
     "summary": "A Windows WeChat assistant: Jev judges the intent of each incoming message and DeepSeek suggests replies.",
@@ -18579,6 +18627,53 @@
     "link_status": 200
   },
   {
+    "slug": "jeeves-posthog",
+    "title": "Jeeves",
+    "summary": "PostHog's open 9B Jev-like model (Qwen3.5-9B, LoRA, pointer head) that answers noul, choice and score directly when confident and reasons first when not, with a diffusion drafter, training code and data. The authors report it ahead of Jev on JevBench's public tiers.",
+    "summary_zh": "PostHog 的开源 9B 类 Jev 模型（Qwen3.5-9B + LoRA + 指针头）：有把握时直接回答 noul、choice 和 score，没把握时先推理再回答；附扩散草稿模型、训练代码和数据。作者报告它在 JevBench 公开层级上超过 Jev。",
+    "url": "https://github.com/PostHog/jeeves",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "posthog",
+      "url": "https://github.com/PostHog"
+    },
+    "has_code": true,
+    "official": false,
+    "repo_license": "MIT",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev",
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "sdk/jeeves_sdk/__init__.py",
+      "matched": [
+        "import typesafe_sdk",
+        "class TypeSafeClient(typesafe_sdk.TypeSafeClient):"
+      ],
+      "kind": "wire-shape"
+    },
+    "notes": "Not Jev: an open model behind a Jev-compatible client. Benchmark comparisons are the authors' own runs. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-24; a maintainer has not yet read the call site.",
+    "notes_zh": "并非 Jev：这是在 Jev 兼容客户端后面的开源模型。基准对比由作者自行运行。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-24 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-24",
+    "zh_machine": true
+  },
+  {
     "slug": "jeff",
     "title": "jeff",
     "summary": "A self-hosted drop-in replacement for TypeSafe's jev, powered by GliFormer.",
@@ -34888,6 +34983,53 @@
     "link_status": 200
   },
   {
+    "slug": "jev-lint-ckorhonen",
+    "title": "jev-lint",
+    "summary": "Fuzzy linter for coding agents: after an agent writes a file, each of the team's plain-language rules is asked as a Jev noul, and about 0.3 s later the agent hears which rules it broke. Can generate rules from the repository; Cloudflare and OpenAI judges as alternatives.",
+    "summary_zh": "面向编程 Agent 的模糊 linter：Agent 写完文件后，团队用自然语言写的每条规则都作为一个 Jev noul 来问，约 0.3 秒后 Agent 就能知道自己违反了哪些规则。可以从仓库自动生成规则；也可改用 Cloudflare 或 OpenAI 作为评判。",
+    "url": "https://github.com/ckorhonen/jev-lint",
+    "kind": "plugin",
+    "patterns": [
+      "output-validation"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "platforms": [
+      "typesafe-api",
+      "claude-code"
+    ],
+    "author": {
+      "name": "ckorhonen",
+      "url": "https://github.com/ckorhonen"
+    },
+    "has_code": true,
+    "official": false,
+    "repo_license": "MIT",
+    "languages": [
+      "typescript"
+    ],
+    "evidence": {
+      "path": "src/jev.ts",
+      "matched": [
+        "Minimal TypeSafe System One client (POST /v1/systemone)",
+        "type: \"noul\";",
+        "\"jev-latest\""
+      ]
+    },
+    "notes": "Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-24; a maintainer has not yet read the call site.",
+    "notes_zh": "本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-24 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-24",
+    "zh_machine": true
+  },
+  {
     "slug": "jev-little-airways",
     "title": "jev-little-airways",
     "summary": "A show-and-tell capability study for Jev, TypeSafe's System One decision model.",
@@ -39872,6 +40014,51 @@
     ],
     "checked": "2026-10-21",
     "link_status": 200
+  },
+  {
+    "slug": "jev-plays-pokemon-red-christianmat",
+    "title": "Jev Plays Pokémon Red",
+    "summary": "Harness in which Jev beat Pokémon Red: it reads the emulator's memory, lists the legal options with facts (type matchups, damage estimates, distance to the objective) and Jev picks one. 16,150 decisions over 37 h 40 m for about $1.65, via the AI SDK on Vercel AI Gateway.",
+    "summary_zh": "让 Jev 通关《宝可梦 红》的框架：读取模拟器内存，列出合法选项及相关事实（属性克制、伤害估计、离目标还有多远），由 Jev 选一个。37 小时 40 分钟内共做出 16,150 次决策，花费约 1.65 美元，通过 Vercel AI Gateway 上的 AI SDK 调用。",
+    "url": "https://github.com/christianmat/jev-pokemon",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "platforms": [
+      "vercel-ai-gateway"
+    ],
+    "author": {
+      "name": "christianmat",
+      "url": "https://github.com/christianmat"
+    },
+    "has_code": true,
+    "official": false,
+    "repo_license": "GPL-2.0",
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "unverified-claims"
+    ],
+    "evidence": {
+      "path": "src/jev/gateway.ts",
+      "matched": [
+        "experimental_evaluate as evaluate",
+        "'typesafe-ai/jev'"
+      ]
+    },
+    "notes": "Run totals (time, decisions, cost) are the author's report of one live stream, 25–26 Sep 2026. A separate jev-plays-pokemon-red row is a different project. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-24; a maintainer has not yet read the call site.",
+    "notes_zh": "运行总计（时间、决策数、费用）是作者对 2026 年 9 月 25–26 日一次直播的自报。另一条 jev-plays-pokemon-red 是不同的项目。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-24 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-24",
+    "zh_machine": true
   },
   {
     "slug": "jev-playwright-mcp",
@@ -57908,6 +58095,54 @@
     ],
     "checked": "2026-10-21",
     "link_status": 200
+  },
+  {
+    "slug": "jevos-feder-cr",
+    "title": "jev (jevos)",
+    "summary": "One CPU-only binary that serves an open model, jevos-v5, behind Jev's POST /v1/systemone: noul, choice and score answers with probabilities in about 30–130 ms on a laptop, no Python. Weights on Hugging Face and as GGUF; the author's 7-task benchmark has Jev ahead on accuracy.",
+    "summary_zh": "单个仅用 CPU 的二进制程序，在 Jev 的 POST /v1/systemone 接口后面提供开源模型 jevos-v5：在笔记本上约 30–130 毫秒给出带概率的 noul、choice 和 score 回答，不需要 Python。权重发布在 Hugging Face，也有 GGUF 版本；作者的 7 项任务基准中 Jev 的准确率更高。",
+    "url": "https://github.com/feder-cr/jev",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "feder-cr",
+      "url": "https://github.com/feder-cr"
+    },
+    "has_code": true,
+    "official": false,
+    "repo_license": "MIT",
+    "languages": [
+      "cpp"
+    ],
+    "flags": [
+      "not-jev",
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "src/server.cpp",
+      "matched": [
+        "/v1/systemone",
+        "\\\"type\\\":\\\"noul\\\"",
+        "accepts any 'jev-*' alias"
+      ],
+      "kind": "wire-shape"
+    },
+    "notes": "Not Jev: an open model answering in Jev's request shape, and its `jev-latest` alias is answered by jevos. Thresholds tuned on Jev do not transfer. Latency and accuracy figures are the author's. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-24; a maintainer has not yet read the call site.",
+    "notes_zh": "并非 Jev：这是按 Jev 请求格式作答的开源模型，`jev-latest` 别名实际由 jevos 回答。在 Jev 上调好的阈值不能照搬。延迟与准确率数字由作者自报。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-24 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-24",
+    "zh_machine": true
   },
   {
     "slug": "jevpdf",
@@ -86990,6 +87225,49 @@
     ]
   },
   {
+    "slug": "typesafe-ai-php",
+    "title": "typesafe-ai-php",
+    "summary": "PHP SDK for Jev: a TypeSafeClient, a fluent SystemOneRequest builder for state and typed questions, and a SystemOneResult keyed by question ID. PHP 8.2+, installed with Composer.",
+    "summary_zh": "Jev 的 PHP SDK：提供 TypeSafeClient、用于构建状态和类型化问题的链式 SystemOneRequest，以及按问题 ID 索引的 SystemOneResult。支持 PHP 8.2 及以上，通过 Composer 安装。",
+    "url": "https://github.com/sanmai/typesafe-ai-php",
+    "kind": "sdk",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "sanmai",
+      "url": "https://github.com/sanmai"
+    },
+    "has_code": true,
+    "official": false,
+    "repo_license": "Apache-2.0",
+    "languages": [
+      "php"
+    ],
+    "evidence": {
+      "path": "src/TypeSafeClient.php",
+      "matched": [
+        "'https://api.typesafe.ai'",
+        "'jev-latest'",
+        "public function systemOne(SystemOneRequest $request): SystemOneResult"
+      ]
+    },
+    "notes": "Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-24; a maintainer has not yet read the call site.",
+    "notes_zh": "本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-24 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-24",
+    "zh_machine": true
+  },
+  {
     "slug": "typesafe-ai-playground",
     "title": "typesafe-ai-playground",
     "summary": "A playground for experiments around Jev, TypeSafe's System One model.",
@@ -94166,6 +94444,53 @@
     "link_status": 200
   },
   {
+    "slug": "vibecheck-jlowin",
+    "title": "vibecheck",
+    "summary": "Python library that turns System One calls into plain values: check (yes/no), classify (one option), label (every option that applies) and score, with thresholds, an unsure answer and batching of several questions about the same data. Works against TypeSafe or any compatible server.",
+    "summary_zh": "把 System One 调用变成普通 Python 值的库：check（是/否）、classify（选一个）、label（选出所有适用项）和 score，支持阈值、“不确定”回答，以及把针对同一数据的多个问题合并成一批。可对接 TypeSafe 或任何兼容服务器。",
+    "url": "https://github.com/jlowin/vibecheck",
+    "kind": "sdk",
+    "patterns": [
+      "classification",
+      "content-scoring"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "platforms": [
+      "typesafe-api",
+      "vercel-ai-gateway"
+    ],
+    "author": {
+      "name": "jlowin",
+      "url": "https://github.com/jlowin"
+    },
+    "has_code": true,
+    "official": false,
+    "languages": [
+      "python"
+    ],
+    "evidence": {
+      "path": "src/vibecheck/backends.py",
+      "matched": [
+        "from typesafe_sdk import (",
+        "system_one(",
+        "YesNoAnswer(probability=answer.noul)"
+      ]
+    },
+    "notes": "question_types lists only what the cited lines show (the noul mapping); the README also documents choice and score. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-24; a maintainer has not yet read the call site.",
+    "notes_zh": "question_types 只列出所引代码行能证明的部分（noul 映射）；README 还记录了 choice 和 score。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-24 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-24",
+    "zh_machine": true
+  },
+  {
     "slug": "video-aicodeking-browser-use",
     "title": "Jev (Fully Tested) + Browser Use: FASTEST AI Agent I'VE TRIED YET!",
     "summary": "Wires Jev into Browser Use to drive a browser automation agent.",
@@ -94356,6 +94681,53 @@
       }
     ],
     "license": "CC0-1.0"
+  },
+  {
+    "slug": "vllm-jev",
+    "title": "vLLM Jev",
+    "summary": "vLLM-based serving engine for open Jev-shaped decision models such as Valen: scores choice, noul and score candidates through prefill with shared-prefix reuse, with image and video inputs and an MLX path for Apple Silicon. The author reports 4.3× over Valen's PyTorch reference on one video run.",
+    "summary_zh": "基于 vLLM 的推理引擎，用于 Valen 等开源的 Jev 形态决策模型：通过 prefill 并复用共享前缀为 choice、noul、score 候选打分，支持图像和视频输入，并为 Apple Silicon 提供 MLX 路径。作者报告在一次视频测试中比 Valen 的 PyTorch 参考实现快 4.3 倍。",
+    "url": "https://github.com/mode-io/vllm-jev",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "mode-io",
+      "url": "https://github.com/mode-io"
+    },
+    "has_code": true,
+    "official": false,
+    "repo_license": "Apache-2.0",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev",
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "vllm_jev/endpoint.py",
+      "matched": [
+        "open_jev_choice",
+        "noul_prompt"
+      ],
+      "kind": "wire-shape"
+    },
+    "notes": "Not Jev: it serves open models in Jev's question shape. Speed-ups are the author's measurements. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-24; a maintainer has not yet read the call site.",
+    "notes_zh": "并非 Jev：它以 Jev 的问题格式服务开源模型。加速数据由作者测得。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-24 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-24",
+    "zh_machine": true
   },
   {
     "slug": "von",
