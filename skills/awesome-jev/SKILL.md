@@ -211,7 +211,10 @@ repositories a script found calling Jev that nobody has read yet (unticked),
 with the ones already catalogued or declined ticked or struck through.
 
 1. Pick an unticked box and comment `claim owner/name` on the issue; the first
-   claim wins.
+   claim wins. The list runs strongest first (most stars, then most commits,
+   then the latest push), so start near the top. Candidates under "Parked"
+   are weak on two counts, not declined: take one only when the person you
+   work for asks for it.
 2. In a clone of the repository, run
    `python3 scripts/discover_candidates.py --only owner/name --drafts drafts`.
    It re-reads the repository and writes `drafts/<slug>.json`, a draft row with

@@ -485,9 +485,28 @@ always give the same text, so the workflow rewrites the description only when
 a state changed. No state is stored anywhere, and a person's decision still
 comes only from the catalogue or the declined list, never from the verdict
 file. Before this the issue was a thread of weekly comments whose boxes only
-someone with write access could tick. One gap remains: a candidate catalogued
-under a newer name than the one the sibling lists cite shows as still to read,
-because the verdict file keeps the cited name.
+someone with write access could tick. One gap remained until 2026-10-24 (next
+paragraph): a candidate catalogued under a newer name than the one the sibling
+lists cite showed as still to read, because the verdict file keeps the cited
+name.
+
+Since 2026-10-24, the queue puts the candidates most worth a person's hour
+first, and parks the weakest. It used to list them by the day a script last
+read them, then by name, so its top was whichever repositories the sibling
+lists happened to cite first. `metadata` now reads GitHub's figures for every
+candidate still to read, in the same batched GraphQL queries as the refresh
+(`scripts/discover_facts.py`): stars, commits on the default branch, the last
+push, whether a README tops the tree, whether it is archived, and the name
+GitHub now gives it. It keeps them in `.discover/facts.json`, committed with
+the verdicts. `queue_sync.py` lists the candidates to read by most stars, then
+most commits, then the latest push, with any found since the last refresh at
+the end. A candidate weak on at least two counts (one commit or none, no star,
+no README), or one GitHub no longer finds, goes under its own heading,
+"Parked". Parking is not declining. Nothing is decided about a parked
+candidate: anyone may still read it, and the first refresh that finds it
+stronger moves it back. A person's decision is still only a row or a line in
+`docs/declined.txt`. The name closes the gap above: a candidate catalogued,
+retired or declined under the name GitHub now gives it takes that state.
 
 Since 2026-09-27, which sibling directories cite a row is recorded on the row.
 Until then 1,053 rows named one and the same source, the sibling-list
@@ -1080,7 +1099,7 @@ catalogue passed 800, and no build ever went red.
 | Link status, stars, licences, archive status, whether a summary is the repository's own description, creation date, last push and commit count (with `single-commit`), which sibling directories link each repository | Continuously, upstream | `metadata` weekly: stamps every link that answers, re-reads the GitHub API and every sibling directory's README, rebuilds everything generated, commits it, runs `lint`'s checks on that commit (`check.py --ci --quick`: all but the preview images, which `pages` renders), pushes to `main`, and redeploys the site. It opens an issue only for a change that is more than a star count, a last push, a commit count or a sibling-list citation, and falls back to a branch if `main` moved underneath it. `links` weekly is the separate alarm for a dead link, which only a person may retire, and for a sweep so refused by GitHub or by other hosts that it checked little; since 2026-10-24 it says so in one open issue, labelled `links`. Both jobs, and `claims`, write their counts and the GitHub budget they spent to the run's summary. The site shows the date of the sweep its figure comes from, and the status page how many rows share it. |
 | Whether cited text is still present | Continuously, upstream | `claims` is scheduled weekly to fetch each `evidence` file and report missing strings or files. Counts show citations recorded, not CI passes, and the job does not update the human `read_on` date. A claim that lost only its pinned model version, from a file that names another, is `version-moved`: the issue counts those rows per version instead of listing each, and `verify_claims.py --propose-version-rewrite` prints each one's `evidence.matched` rewritten, for a person to apply without touching `read_on`. A `path-gone` file's line names, where one exists, a file in the same repository that still holds every matched string: a proposed path for a person to open. |
 | Whether the scheduled jobs still run | Daily | `watchdog` (since 2026-10-24) asks the Actions API about every workflow with a schedule and keeps one issue, labelled `watchdog`, while any is disabled or has had no successful run in eight days; it rewrites the issue only when what it says changes and closes it when all are healthy. The jobs report through issues and commits, so one that stops says nothing; this is what hears that. |
-| What the catalogue is missing | Continuously, upstream | `discover` weekly: harvests every sibling directory, reads the code of the most-cited uncatalogued repositories, searches for sibling directories not yet harvested, and keeps one issue: its description is the queue of every candidate, ticked or struck through from `catalog.json`, `retired.json` and `docs/declined.txt` (`queue_sync.py`), and each week's new candidates are a comment, a box per candidate to claim with the command that re-reads it. It never adds a row. Its verdicts are kept in `.discover/seen.json`, which `metadata` commits from `discover`'s artifact. |
+| What the catalogue is missing | Continuously, upstream | `discover` weekly: harvests every sibling directory, reads the code of the most-cited uncatalogued repositories, searches for sibling directories not yet harvested, and keeps one issue: its description is the queue of every candidate, ticked or struck through from `catalog.json`, `retired.json` and `docs/declined.txt` (`queue_sync.py`), and each week's new candidates are a comment, a box per candidate to claim with the command that re-reads it. It never adds a row. Its verdicts are kept in `.discover/seen.json`, which `metadata` commits from `discover`'s artifact, and (since 2026-10-24) `metadata` keeps GitHub's figures for each candidate still to read in `.discover/facts.json`, by which the queue lists them strongest first and parks the weakest. |
 | The open questions on the status page | Whenever a row is added or edited; a reading when a person re-reads its source | `build_watch.py` writes the table from `watch.json` and `catalog.json`, counting against the snapshot before the newest in `history/`. A reading carries its `as_of` and whether a person or a model made it, and changes only when someone edits `watch.json`. |
 | What the published counts were on each weekly refresh | Weekly, from the first refresh after 2026-09-28 | `metadata` writes `history/<UTC date>.json` with `snapshot_stats.py` after the refresh and before its commit: generated data, never read back into `catalog.json`, never backfilled, never dated before the newest snapshot. `docs/shape.md` reads it for its trend table once there are three. |
 | How many people reach the repository, and from where | Weekly, once a `TRAFFIC_TOKEN` secret exists | `metadata` writes `history/traffic/<UTC date>.json` with `snapshot_traffic.py` (since 2026-10-24): GitHub's own figures for the 14 days before the refresh, views and clones per day, the ten referrers and the ten paths it sees most. GitHub keeps no more than 14 days and the workflow token cannot read them, so without the secret nothing is kept. Successive files overlap; nothing reads them back, and no counter of this repository's own is added. |
