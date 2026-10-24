@@ -20,7 +20,7 @@ list by list below.
 | sibling-list aggregate (docs/sibling-lists.txt) | <https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt> | 1084 |
 | GitHub code search | <https://github.com/search> | 51 |
 | TypeSafe AI docs index | <https://docs.typesafe.ai/llms.txt> | 36 |
-| author submission | various | 21 |
+| author submission | various | 22 |
 | maintainer submission | <https://github.com/kydlikebtc/awesome-jev> | 20 |
 | web search | various | 12 |
 | Hacker News | various | 5 |

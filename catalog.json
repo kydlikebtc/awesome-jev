@@ -37,12 +37,19 @@
       ],
       "model_read_on": "2026-10-24"
     },
-    "notes": "Requested in issue #27. The cited client defines all three primitives; the choice call is in this file, and the README describes the noul on unfinished strokes. The repository mirrors the site's monorepo. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-24; a maintainer has not yet read the call site.",
-    "notes_zh": "issue #27 中有人提议收录。所引客户端定义了三种原语；choice 调用就在该文件中，README 描述了判断笔画是否画完的 noul。该仓库是网站 monorepo 的镜像。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-24 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "flags": [
+      "self-submitted"
+    ],
+    "notes": "Submitted by its author (cwdx) in issue #27. The live canvas needs no key; running it from source needs a TypeSafe or Vercel AI Gateway key. The cited client defines all three primitives; the choice call is in this file, and the README describes the noul on unfinished strokes. The repository mirrors the site's monorepo. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-24; a maintainer has not yet read the call site.",
+    "notes_zh": "由作者本人（cwdx）在 issue #27 中提交。在线画布无需密钥；从源码运行需要 TypeSafe 或 Vercel AI Gateway 的密钥。所引客户端定义了三种原语；choice 调用就在该文件中，README 描述了判断笔画是否画完的 noul。该仓库是网站 monorepo 的镜像。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-24 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
     "sources": [
       {
         "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
         "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/issues/27"
       }
     ],
     "license": "CC0-1.0",
