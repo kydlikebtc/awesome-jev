@@ -55465,6 +55465,64 @@
     "link_status": 200
   },
   {
+    "slug": "jevgpt-sunyasheng",
+    "title": "JevGPT: Thinking Fast and Slow in Autonomous Research",
+    "summary": "Research agent from arXiv 2610.18272. GPT-5.5 plans searches and writes the answer; in BrowseComp-Plus QA, Jev answers a Choice over numbered source lines (where is the answer) and a Noul (does the region address it) per document region and query, in parallel. GPT gets the original lines.",
+    "summary_source": "curated",
+    "summary_zh": "论文 arXiv 2610.18272 的研究 Agent。GPT-5.5 规划检索并写出答案；在 BrowseComp-Plus 问答中，对每个被检查的文档区域和每个查询，Jev 回答一个 Choice（在编号的原文行中选出答案所在行）和一个 Noul（该区域是否涉及该查询），在多个文档上并行运行。GPT 拿到的是原文行。",
+    "zh_machine": true,
+    "url": "https://github.com/sunyasheng/JevGPT",
+    "kind": "project",
+    "patterns": [
+      "search-ranking",
+      "fan-out"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "typescript",
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "sunyasheng",
+      "url": "https://github.com/sunyasheng"
+    },
+    "has_code": true,
+    "stars": 8,
+    "repo_license": "Apache-2.0",
+    "evidence": {
+      "path": "runtime/pi-serini/src/extensions/jev_find_v1.ts",
+      "matched": [
+        "env.JEV_URL ?? \"https://api.typesafe.ai/v1/systemone\"",
+        "questions[`where_${i}`] = { type: \"choice\", criteria,",
+        "questions[`exists_${i}`] = { type: \"noul\",",
+        "Which numbered source line or range contains the answer to"
+      ]
+    },
+    "first_seen": "2026-10-17",
+    "flags": [
+      "self-submitted",
+      "unverified-claims",
+      "third-party-api-key"
+    ],
+    "notes": "Self-submission by the paper's first author. Runs on the Pi-Serini agent runtime for BrowseComp-Plus question answering and NeuCLIRBench ranking. Further Choice and Noul gates (jev_adaptive_overlap_v1.ts) decide whether to stop or inspect more ranked documents. NeuCLIRBench ranking also calls Score (jev_document_ranking_policy.ts); question_types omit it because the evidence file covers the QA path. Live runs need GPT-5.5 access and a TypeSafe key. Benchmark figures are author-reported.",
+    "notes_zh": "论文第一作者自荐。运行在 Pi-Serini Agent 运行时上，用于 BrowseComp-Plus 问答和 NeuCLIRBench 排序。jev_adaptive_overlap_v1.ts 中另有 Choice 和 Noul 判断，决定停止还是继续检查排序结果中的更多文档。NeuCLIRBench 排序还会调用 Score（jev_document_ranking_policy.ts）；evidence 文件只覆盖问答路径，所以 question_types 没有列出 Score。实际运行需要 GPT-5.5 访问权限和 TypeSafe 密钥。准确率、耗时和成本数据为作者自报。",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/49"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-10-17",
+    "link_status": 200
+  },
+  {
     "slug": "jevgraph",
     "title": "jevgraph",
     "summary": "Evidence-backed knowledge graph construction with typed Jev relation decisions",
