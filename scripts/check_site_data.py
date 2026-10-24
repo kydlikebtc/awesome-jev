@@ -15,7 +15,9 @@ And it holds the files published for agents to what the catalogue gives:
 site/llms.txt to llms.txt with its values refilled, and site/api/v1/ to a
 rebuild from site/catalog.json, with each pattern file holding as many rows as
 stats.json's by_pattern counts and the index listing exactly patterns.json's
-keys (scripts/site_api.py).
+keys (scripts/site_api.py). The plain pages (scripts/site_pages.py: one per
+pattern, what's new, the feeds, the sitemap) are held to a rebuild the same
+way, and none may be missing or left over.
 
 Run: python3 scripts/check_site_data.py
      python3 scripts/check_site_data.py --deploy    # pages.yml, after assemble --deploy
@@ -31,8 +33,9 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import site_api  # noqa: E402
+import site_pages  # noqa: E402
 from assemble_site import (  # noqa: E402
-    META_PLACEHOLDER, PUBLISHED, ROOT, RUNTIME_FILES, SITE_URL, meta_block, meta_body, stats_payload,
+    META_PLACEHOLDER, PUBLISHED, ROOT, RUNTIME_FILES, SITE_URL, meta_block, meta_body, page_files, stats_payload,
 )
 from check_collections import validate_collections  # noqa: E402
 
@@ -117,6 +120,16 @@ def main(argv: list[str] | None = None) -> int:
     print(
         f"site/{site_api.INDEX} and {len(patterns)} pattern file(s) match a rebuild from site/catalog.json; "
         "each holds as many rows as stats.json's by_pattern counts"
+    )
+
+    problems = site_pages.page_problems(ROOT / "site", page_files())
+    if problems:
+        for problem in problems:
+            print(f"error: {problem}", file=sys.stderr)
+        return 1
+    print(
+        f"site/{site_pages.PATTERN_DIR}/ and {', '.join(site_pages.TOP_FILES)} match a rebuild "
+        "from the published files"
     )
 
     collections = json.loads((ROOT / "site" / "collections.json").read_text())

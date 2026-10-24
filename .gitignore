@@ -14,6 +14,14 @@ site/llms.txt
 # Written by scripts/assemble_site.py from the files above: one JSON file per
 # decision pattern, for agents (scripts/site_api.py).
 site/api/
+# Written by scripts/assemble_site.py from the same files: plain pages per
+# decision pattern, what's new, its feeds and the sitemap (scripts/site_pages.py).
+site/patterns/
+site/new.html
+site/new.zh.html
+site/feed.xml
+site/feed.zh.xml
+site/sitemap.xml
 # Rendered at deploy by scripts/render_images.py, from the data above.
 site/stats.json
 site/img/

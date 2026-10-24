@@ -9,6 +9,10 @@
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#0b0d10" />
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <!-- Written beside this page at deploy, with what's new and a plain page
+         per decision pattern (scripts/site_pages.py). -->
+    <link rel="alternate" type="application/atom+xml" title="awesome-jev: what's new" href="feed.xml" />
+    <link rel="alternate" type="application/atom+xml" hreflang="zh-CN" title="awesome-jev：新增与退役" href="feed.zh.xml" />
     <!-- Link-preview tags (description, og:*, twitter:card) are written between
          these markers at deploy by scripts/assemble_site.py, from _stats.pitch_public.
          Git keeps only the placeholder, so no catalogue number is committed here. -->
@@ -1073,6 +1077,15 @@
             href="https://github.com/kydlikebtc/awesome-jev/blob/main/CONTRIBUTING.md"
             data-i="l_con"
           ></a>
+          <a href="patterns/" data-i="l_pages"></a>
+          <a href="new.html" data-href-en="new.html" data-href-zh="new.zh.html" data-i="l_new"></a>
+          <a
+            href="feed.xml"
+            data-href-en="feed.xml"
+            data-href-zh="feed.zh.xml"
+            type="application/atom+xml"
+            data-i="l_feed"
+          ></a>
           <a href="https://docs.typesafe.ai/">docs.typesafe.ai ↗</a>
         </div>
       </div>
@@ -1128,6 +1141,9 @@
           l_vet: "Vetting",
           l_ex: "Examples",
           l_con: "Contributing",
+          l_pages: "Browse by pattern",
+          l_new: "What's new",
+          l_feed: "Atom feed",
           t_code: "has code",
           t_off: "official",
           t_flag: "no caveats",
@@ -1273,6 +1289,9 @@
           l_vet: "核查指南",
           l_ex: "可运行样例",
           l_con: "参与贡献",
+          l_pages: "按模式浏览",
+          l_new: "新增与退役",
+          l_feed: "Atom 订阅",
           t_code: "仅含代码",
           t_off: "仅官方",
           t_flag: "无警示",
@@ -1494,6 +1513,10 @@
         document
           .querySelectorAll("[data-ip]")
           .forEach((e) => (e.placeholder = S()[e.dataset.ip]));
+        // What's new and its feed are one file per language.
+        document
+          .querySelectorAll("[data-href-zh]")
+          .forEach((e) => e.setAttribute("href", L === "zh" ? e.dataset.hrefZh : e.dataset.hrefEn));
         document.getElementById("kind").setAttribute("aria-label", S().resource);
         document.getElementById("langf").setAttribute("aria-label", S().language);
         document.getElementById("platf").setAttribute("aria-label", S().platform);

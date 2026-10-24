@@ -19,6 +19,10 @@ agent reads the megabyte catalog.json whole. llms.txt is published with its
 inline values refilled from the same stats (site_api.llms_text), since the
 committed file can trail a merge by one bot commit that starts no Pages run.
 
+For people and search engines it writes plain pages too (scripts/site_pages.py,
+since 2026-10-24): one per decision pattern in each language, what's new week
+by week with an Atom feed in each language, and sitemap.xml.
+
 `--deploy` also writes the link-preview tags (description, og:*, twitter:card)
 into site/index.html, between its `meta` markers. They quote the catalogue
 size, so until 2026-09-27 build_docs.py rewrote them in git and every pull
@@ -46,6 +50,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import _stats  # noqa: E402
 import site_api  # noqa: E402
+import site_pages  # noqa: E402
 from _markers import read_block, replace_block  # noqa: E402
 
 ROOT = _stats.ROOT
@@ -113,6 +118,15 @@ def fill_meta(text: str, stats: dict) -> str:
     return replace_block(text, "meta", meta_block(stats), where="site/index.html")
 
 
+def page_files() -> dict[str, str]:
+    """The plain pages (site_pages.py), built from the root files the site publishes."""
+    catalog = json.loads((ROOT / "catalog.json").read_text())
+    retired = json.loads((ROOT / "retired.json").read_text())
+    patterns = json.loads((ROOT / "patterns.json").read_text())["patterns"]
+    taxonomy = json.loads((ROOT / "taxonomy.json").read_text())
+    return site_pages.pages(catalog, retired, patterns, taxonomy)
+
+
 def api_files(stats: dict) -> dict[str, str]:
     """site/api/v1/, built from the root files the site publishes."""
     catalog = json.loads((ROOT / "catalog.json").read_text())
@@ -149,6 +163,13 @@ def main(argv: list[str] | None = None) -> int:
         f"wrote site/{site_api.API_DIR}/: index.json and {len(sizes)} pattern file(s), "
         f"{sum(stats['by_pattern'].values())} row(s) in all (a row can sit under several patterns); "
         f"largest {largest.rsplit('/', 1)[1]} at {sizes[largest]:,} bytes"
+    )
+
+    pages = page_files()
+    site_pages.write_pages(SITE, pages)
+    print(
+        f"wrote {sum(1 for rel in pages if rel.startswith(site_pages.PATTERN_DIR + '/'))} page(s) under "
+        f"site/{site_pages.PATTERN_DIR}/, and {', '.join(site_pages.TOP_FILES)}"
     )
 
     if args.deploy:
