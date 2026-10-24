@@ -69,7 +69,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)** — Biologically-inspired memory for AI agents. Decay, retrieval strengthening, consolidation. Zero runtime deps, SQLite, MCP. Benchmarked retrieval with an opt-in TypeSafe Jev reranker.
   <sub>`Benchmark` · ★100+ · kitfunso · `TS` · call site [`src/rerankers/jev.ts`](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/rerankers/jev.ts), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
 
-- **[jegrep](https://github.com/can1357/jegrep)** — Semantic grep: find code by describing what you're looking for, powered by Jev. <sub>(upstream description)</sub>
+- **[jegrep](https://github.com/can1357/jegrep)** — Semantic grep for code with no index or embeddings: Jev nouls judge each path, then the passages read, against your description, each a yes probability so thresholds hold across batches; hits come back as line ranges. The author puts a typical search over a few thousand files at about $0.005. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · can1357 · `Rs` · call site [`src/jev.rs`](https://github.com/can1357/jegrep/blob/HEAD/src/jev.rs), read 2026-09-22</sub>
 
 - **[jev-mcp](https://github.com/jkudish/jev-mcp)** — A ready-made judgement toolbox for agents: fact verification, content screening, semantic ranking, classification and extraction as separate tools.
@@ -78,16 +78,16 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-search](https://github.com/superagents-lab/jev-search)** — Jev-driven web search: chooses the recency window and the best query rewrite, then reranks results in batches with one noul each.
   <sub>`Project` · ★100+ · `TS` · `choice` · `noul` · call site [`src/lib/typesafe.ts`](https://github.com/superagents-lab/jev-search/blob/HEAD/src/lib/typesafe.ts), read 2026-09-22</sub>
 
-- **[jev-semgrep](https://github.com/uehaj/sys1grep)** — grep by meaning, across languages. TypeSafe Jev scores every line against a meaning; combine meanings with AND/OR/NOT. 意味で探す grep。日本語で英語を、英語で日本語を検索できる <sub>(upstream description)</sub>
+- **[jev-semgrep](https://github.com/uehaj/sys1grep)** — grep by meaning, now named sys1grep: for every line Jev answers a noul on whether the line matches a meaning, such as network failure, and a threshold decides. Meanings combine with AND, OR and NOT, a regex can prefilter lines, and the meaning and the text can be in different languages. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · uehaj · `JS` · call site [`semgrep.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/semgrep.mjs), read 2026-09-22</sub>
 
 - **[jev-shell-history](https://github.com/mrnugget/jev-shell-history)** — Fish-style zsh history autosuggestions, ranked by Jev rather than by recency.
   <sub>`Project` · ★100+ · mrnugget · `TS` · call site [`src/cli.ts`](https://github.com/mrnugget/jev-shell-history/blob/HEAD/src/cli.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
 
-- **[jevgrep](https://github.com/nassim-arifette/jevgrep)** — Jev-powered semantic code search for coding agents — find behavior across repositories via CLI or MCP, with exact source excerpts and line numbers. <sub>(upstream description)</sub>
+- **[jevgrep](https://github.com/nassim-arifette/jevgrep)** — Code search for agents that lack the symbol name: it splits the authorized repository into fragments, asks a Jev noul per fragment whether it answers your question, and returns the exact excerpts with paths and line numbers, via CLI or local MCP. Remote calls stay off until enabled per project. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · nassim-arifette · `TS` · call site [`experiments/jev-contract/probe.mjs`](https://github.com/nassim-arifette/jevgrep/blob/HEAD/experiments/jev-contract/probe.mjs), read 2026-09-24</sub>
 
-- **[jgrep](https://github.com/keltokhy/jgrep)** — grep, but the pattern is a description. Filters lines by meaning with TypeSafe's Jev decision model: ~200 ms and a thousandth of a cent per line. <sub>(upstream description)</sub>
+- **[jgrep](https://github.com/keltokhy/jgrep)** — grep where the pattern is a description: each line becomes one Jev noul, matched at probability 0.5 by default, judged concurrently and printed in input order, so it works on tail -f. On 994 Hacker News titles the author measured 4.6 seconds and $0.012 for one description. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · keltokhy · `Py` · call site [`bench/code_review.py`](https://github.com/keltokhy/jgrep/blob/HEAD/bench/code_review.py), read 2026-09-22</sub>
 
 - **[neo4jev](https://github.com/jexp/neo4jev)** — Puts Jev inside a knowledge graph traversal: at each node it decides which edge is most worth following.
@@ -99,10 +99,10 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[skillranker](https://github.com/Dicklesworthstone/skillranker)** — Ranks an agent's skills for the next step using live session context, with Claude Code hooks.
   <sub>`Plugin` · ★100+ · dicklesworthstone · `Rs` · call site [`src/jev/endpoint.rs`](https://github.com/Dicklesworthstone/skillranker/blob/HEAD/src/jev/endpoint.rs), read 2026-09-22</sub>
 
-- **[vector-graph-rag](https://github.com/zilliztech/vector-graph-rag)** — Graph RAG with pure vector search, achieving SOTA performance in multi-hop reasoning scenarios. <sub>(upstream description)</sub>
+- **[vector-graph-rag](https://github.com/zilliztech/vector-graph-rag)** — Graph RAG that stores entities and relations as vectors in Milvus, no graph database. Two-stage Jev reranking asks a noul per candidate relation against the query, then scores the passages of the top relations; by the author's run, 86.61% average Recall@5 on MuSiQue and 2Wiki, 1,000 questions each. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · zilliztech · `Py` · call site [`src/vector_graph_rag/llm/jev.py`](https://github.com/zilliztech/vector-graph-rag/blob/HEAD/src/vector_graph_rag/llm/jev.py), read 2026-09-22</sub>
 
-- **[warrenduffer](https://github.com/arimanyus/warrenduffer)** — AI-driven intraday trading bot for Indian stocks. Jev ranks the Nifty 50 every 15s; code sizes each trade and places the stop; orders go live through Zerodha Kite or Kotak Neo. Day replay, kill switch, daily loss halt, terminal dashboard. <sub>(upstream description)</sub>
+- **[warrenduffer](https://github.com/arimanyus/warrenduffer)** — Intraday trading bot for Indian stocks placing real orders, with no paper mode: Jev ranks Nifty 50 names in two stages and decides take-profit and exits; code sizes each trade, sets the stop and halts at the daily loss cap, via Zerodha Kite or Kotak Neo. A replay runs the same loop on a past day. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · arimanyus · `TS` · call site [`src/model/jev.ts`](https://github.com/arimanyus/warrenduffer/blob/HEAD/src/model/jev.ts), read 2026-09-24</sub>
 
 - **[Cheshi](https://github.com/CheshiAI/Cheshi)** — Jev-powered conversation memory: find past sessions and revisit decisions with original sources. A macOS workspace for OpenAI Codex. Manage AI conversations and agents, explore code with CodeGraph, and work with Git, Ghostty terminals, and Apple Notes in one app. <sub>(upstream description)</sub>

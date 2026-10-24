@@ -83,7 +83,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[mu](https://github.com/qybaihe/mu)** — 基于 pi 的编程 Agent（命令行和桌面端），在 38 个决策点上问 Jev：工具输出的哪些片段进上下文、哪些过期的工具结果可以丢掉、被规则拦下的命令是不是用户要的、抓取的网页和 MCP 输出里有没有注入的指令。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · qybaihe · `TS` · `choice` · `noul` · `score` · 调用点 [`packages/kyrn-judge/src/providers/typesafe.ts`](https://github.com/qybaihe/mu/blob/HEAD/packages/kyrn-judge/src/providers/typesafe.ts) · ⚠ `作者自荐`</sub>
 
-- **[taskuary](https://github.com/ldbumble/taskuary)** — 本地优先的 AI 任务中枢：把邮件、Teams、Slack 与报表汇成一条时间线。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
+- **[taskuary](https://github.com/ldbumble/taskuary)** — 本地优先的工作助手：把邮件、聊天和工单变成任务，交给你的编程智能体去做，未经你批准什么都不会发出。配置 TypeSafe 密钥后由 Jev 分诊：状态里带上你的资料和过往判断，用 noul 按你会怎么判断来提问，例如这一项要不要建成任务。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · ldbumble · `Py` · 调用点 [`taskuary/jev.py`](https://github.com/ldbumble/taskuary/blob/HEAD/taskuary/jev.py)，2026-09-22 阅读</sub>
 
 - **[ha-jev](https://github.com/AboveColin/HA-Jev)** — 一个 Home Assistant 集成：把关于家的类型化答案变成传感器，提供可用于自动化的 noul、choice 和 score 动作，以及一个对话代理。 <sub>(机翻)</sub>

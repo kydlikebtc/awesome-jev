@@ -454,7 +454,13 @@ the 37 in the project's own words and one the generic-summary rule marked. Each
 says what the project asks Jev to decide and is marked `model-written`, and its
 Chinese, redone to match, stays `zh_machine`, so the 38 rows stay listed until
 a person checks them. The two other summaries the rule marked have Chinese a
-person wrote, and were left to a person.
+person wrote, and were left to a person. It then did the same for the rows with
+100 or more stars that the README does not print by name. Of those 138, 72
+still had the project's own description, and it redrafted 68 of them, marked
+and translated the same way; they wait for a person in [the queue's section for
+a model's work](review-queue.md#model-read). The four it left cite files that
+are no longer in their repositories, and their READMEs do not say what they ask
+Jev.
 
 ## Discovery is crowdsourced, verification is not
 

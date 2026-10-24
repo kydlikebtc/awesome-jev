@@ -59,7 +59,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-forge](https://github.com/zwliJay/jev-forge)** — Not Jev: a toolkit that synthesizes decision data, trains and calibrates small candidate scorers (JevForge-0.8B) and serves them behind a Jev-compatible API, first for picking the next click or form control on a web page. Its benchmark sends the same held-out choice, noul and score questions to Jev. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · ★100+ · zwlijay · `Py` · cited file [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
 
-- **[jev-lint](https://github.com/mizchi/jev-lint)** — lint text in code by jev scorerer <sub>(upstream description)</sub>
+- **[jev-lint](https://github.com/mizchi/jev-lint)** — Linter for what parsers miss: ast-grep picks the code, Jev is asked each rule's one-sentence question about every match, such as whether the comment above claims something untrue of the code, and matches over the cutoff are flagged. 99 rules ship, from 48 questions; judged code goes to the API. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · mizchi · `TS` · call site [`src/jev.ts`](https://github.com/mizchi/jev-lint/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
 - **[jev-review](https://github.com/NiazMorshed2007/jev-review)** — A local-first MCP plugin for continuous code-quality review by coding agents.
@@ -68,10 +68,10 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-review](https://github.com/devagrawal09/jev-review)** — Pre-screens code review with Jev to surface high-risk changes for a more expensive model or a person, with a local dashboard.
   <sub>`Project` · ★100+ · `TS` · `choice` · `score` · `noul` · call site [`src/review/codebase-judgments.ts`](https://github.com/devagrawal09/jev-review/blob/HEAD/src/review/codebase-judgments.ts), read 2026-09-22</sub>
 
-- **[jev-semgrep](https://github.com/uehaj/sys1grep)** — grep by meaning, across languages. TypeSafe Jev scores every line against a meaning; combine meanings with AND/OR/NOT. 意味で探す grep。日本語で英語を、英語で日本語を検索できる <sub>(upstream description)</sub>
+- **[jev-semgrep](https://github.com/uehaj/sys1grep)** — grep by meaning, now named sys1grep: for every line Jev answers a noul on whether the line matches a meaning, such as network failure, and a threshold decides. Meanings combine with AND, OR and NOT, a regex can prefilter lines, and the meaning and the text can be in different languages. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · uehaj · `JS` · call site [`semgrep.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/semgrep.mjs), read 2026-09-22</sub>
 
-- **[jev-seo](https://github.com/AgriciDaniel/jev-seo)** — Live SEO audit for any website from one homepage URL, judged by Jev. PDF, XLSX and Markdown reports. <sub>(upstream description)</sub>
+- **[jev-seo](https://github.com/AgriciDaniel/jev-seo)** — SEO audit from one homepage URL: it crawls the site, checks 52 rules and Core Web Vitals, and asks Jev choice, score and noul questions about each page (type, search intent, helpfulness, trust, whether it opens with the point). Code acts only on decisive answers (0.80 confidence) and ranks fixes. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · agricidaniel · `Py` · call site [`jevseo/jev.py`](https://github.com/AgriciDaniel/jev-seo/blob/HEAD/jevseo/jev.py), read 2026-09-24</sub>
 
 - **[jevmeter](https://github.com/ChetasLua/jevmeter)** — Scores every sentence of a video and renders the result as a live meter.

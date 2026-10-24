@@ -62,16 +62,16 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-drone](https://github.com/RomanSlack/jev-drone)** — Camera-only simulated drone where Jev makes tactical judgements at a low rate while stabilisation and safety reflexes stay in ordinary fast code.
   <sub>`Project` · ★100+ · `Py` · `choice` · `score` · `noul` · call site [`tactics.py`](https://github.com/RomanSlack/jev-drone/blob/HEAD/tactics.py), read 2026-09-22 · ⚠ `unverified claims`</sub>
 
-- **[jev-gateway](https://github.com/vinilana/jev-gateway)** — An easy way to use jev with your coding agent for tool calling reasoning <sub>(upstream description)</sub>
+- **[jev-gateway](https://github.com/vinilana/jev-gateway)** — Local gateway for coding agents such as Codex, Claude Code and OpenCode. Each turn it asks Jev which offered tool fits; when Jev is confident it steers the LLM to that tool, otherwise the request passes through unchanged. If Jev is down, slow or misconfigured, requests go straight to the LLM. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · vinilana · `TS` · call site [`src/jev.ts`](https://github.com/vinilana/jev-gateway/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
-- **[jev-guard](https://github.com/leepokai/jev-guard)** — Auto mode for every coding agent, built on Jev: risk-scores every tool call with session context (deny / ask / allow), flags prompt injection in results, checks skills and plugins. Claude Code, Codex, Copilot, Gemini, Cursor, pi, OpenCode, ACP. <sub>(upstream description)</sub>
+- **[jev-guard](https://github.com/leepokai/jev-guard)** — Security hook for coding agents: before each tool call Jev judges how much harm it could do, whether the user asked for it and whether it follows untrusted text, and code denies, asks or allows; afterwards Jev scans the result for prompt injection. For Claude Code, Codex, Cursor and more. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · leepokai · `JS` · call site [`src/jev.js`](https://github.com/leepokai/jev-guard/blob/HEAD/src/jev.js), read 2026-09-22</sub>
 
 - **[jev-mcp](https://github.com/jkudish/jev-mcp)** — A ready-made judgement toolbox for agents: fact verification, content screening, semantic ranking, classification and extraction as separate tools.
   <sub>`Plugin` · ★100+ · `JS` · `choice` · `score` · `noul` · call site [`src/provider.ts`](https://github.com/jkudish/jev-mcp/blob/HEAD/src/provider.ts), read 2026-09-22</sub>
 
-- **[jevals](https://github.com/openlayer-ai/jevals)** — Agent evals and guardrails as Jev decisions: one request per trace, a fraction of a cent, fast enough for the agent loop. Runs locally with Kev or Laya. <sub>(upstream description)</sub>
+- **[jevals](https://github.com/openlayer-ai/jevals)** — Agent evals and guardrails as Jev questions, not an LLM judge: each eval turns a trace into nouls, choices or scores, such as a noul per claim on whether tool results back it, and a trace's evals go out as one request. The README example ran eight in 0.33 s for $0.00006. Kev or Laya run it locally. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · openlayer-ai · `Py` · call site [`src/jevals/backends/typesafe.py`](https://github.com/openlayer-ai/jevals/blob/HEAD/src/jevals/backends/typesafe.py), read 2026-09-22</sub>
 
 - **[mu](https://github.com/qybaihe/mu)** — Coding agent and desktop app built on pi that asks Jev at 38 decision points which tool-output chunks enter the context, which stale tool results to drop, whether a rule-flagged command was asked for and whether fetched pages or MCP output carry injected instructions.
@@ -83,13 +83,13 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[quackd](https://github.com/rokbenko/quackd)** — One CLI for all your robots. Connect them, command them, and let them work together, each with an LLM for a brain, Jev for cheaper steps. Microduck, Open Duck Mini, LeRobot, XLeRobot, AlohaMini, ToddlerBot or any ROS base. Claude, OpenAI, Gemini, Grok, or local via Ollama or vLLM. Simulator, .d
   <sub>`Plugin` · ★100+ · rokbenko · `Py` · call site [`quackd/agent/decision/systemone.py`](https://github.com/rokbenko/quackd/blob/HEAD/quackd/agent/decision/systemone.py), read 2026-09-24</sub>
 
-- **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — VexJoy AI Agent with Jev Intelligent Routing - /do routes plain-English requests to the right specialist agent and gates the work with reviews, tests, and a learning loop. <sub>(upstream description)</sub>
+- **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — Toolkit of 44 agents, 63 skills and 79 hooks routed from plain-English requests. Its /d router asks Jev to classify a request and gates dispatch on whether the route keeps the requested outcome; its auto-compact plugin, past 60% context, asks three nouls per unclear tool call and prunes verbatim. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · notque · `Py` · call site [`plugins/jev-auto-compact/hooks/jev-auto-compact.mjs`](https://github.com/notque/vexjoy-agent/blob/HEAD/plugins/jev-auto-compact/hooks/jev-auto-compact.mjs), read 2026-09-22</sub>
 
-- **[wrongstack](https://github.com/WrongStack/WrongStack)** — An AI coding agent that reads your code, edits files, runs commands, and reasons through bugs — across a terminal REPL, a full-screen TUI, and a browser UI, while you keep your hand on every permission. <sub>(upstream description)</sub>
+- **[wrongstack](https://github.com/WrongStack/WrongStack)** — Open-source coding agent with its own kernel, memory, multi-agent fleet and permission policy, run from a terminal, TUI or browser. An opt-in TypeSafe service asks Jev typed choice, noul and score questions to suggest skills and classify dispatch, and the agent can call Jev as a tool. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · wrongstack · `TS` · call site [`packages/core/src/typesafe/client.ts`](https://github.com/WrongStack/WrongStack/blob/HEAD/packages/core/src/typesafe/client.ts), read 2026-09-22</sub>
 
-- **[youtube-sponsor-detection](https://github.com/trungdq88/youtube-sponsor-detection)** — Detect youtube sponsor segment with live audio and transcript powered by Jev <sub>(upstream description)</sub>
+- **[youtube-sponsor-detection](https://github.com/trungdq88/youtube-sponsor-detection)** — Chrome extension that skips YouTube sponsor reads: per 80-line transcript window, a Jev noul asks if a read starts there and a choice names the line, then nouls on short phrases place the cut; code maps lines to seconds. Audio modes ask Jev every few seconds if a read is on. Default skip bar: 70%. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · trungdq88 · `JS` · call site [`extension/lib/jev.js`](https://github.com/trungdq88/youtube-sponsor-detection/blob/HEAD/extension/lib/jev.js), read 2026-09-22 · ⚠ `no licence`</sub>
 
 - **[augustus](https://github.com/24601/Augustus)** — Agent skill for the decision-model class (classifiers, encoders/decoders, specialized AR heads, System One). TypeSafe Jev is the dominant exemplar. Composition algebra, question design, validation gates. MIT.

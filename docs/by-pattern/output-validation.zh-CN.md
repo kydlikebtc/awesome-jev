@@ -59,10 +59,10 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-eval-agent](https://github.com/vinilana/jev-eval-agent)** — 一个把评测工作通过类型化决策来路由的智能体。
   <sub>`开源项目` · ★100+ · vinilana · `TS` · 调用点 [`agent/lib/jev-router.ts`](https://github.com/vinilana/jev-eval-agent/blob/HEAD/agent/lib/jev-router.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
-- **[jev-guard](https://github.com/leepokai/jev-guard)** — 给所有编程智能体做的自动模式：结合会话上下文给每次工具调用打风险分（拒绝／询问／放行）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-guard](https://github.com/leepokai/jev-guard)** — 给编程智能体用的安全钩子：每次工具调用前，Jev 判断这次调用可能造成多大危害、是不是用户要求的、是否在执行不可信的文字，再由代码决定拒绝、询问还是放行；调用返回后，Jev 扫描结果中的提示注入。支持 Claude Code、Codex、Cursor 等。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · leepokai · `JS` · 调用点 [`src/jev.js`](https://github.com/leepokai/jev-guard/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
 
-- **[jev-lint](https://github.com/mizchi/jev-lint)** — 用 Jev 打分器给代码中的文本做 lint。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-lint](https://github.com/mizchi/jev-lint)** — 检查解析器查不出的问题的 lint 工具：由 ast-grep 挑出代码，再就每处匹配向 Jev 提出该规则的一句话问题，例如上方注释是否说了代码里不成立的事，概率超过规则的阈值就报出。随附 99 条规则，出自 48 个问题；被判断的代码会发送到 API。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · mizchi · `TS` · 调用点 [`src/jev.ts`](https://github.com/mizchi/jev-lint/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
 - **[jev-mcp](https://github.com/jkudish/jev-mcp)** — 现成的 Agent 判断工具箱：事实核验、内容筛查、语义排序、分类和信息提取，各自独立成工具。
@@ -77,7 +77,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[supercov](https://github.com/supercorp-ai/supercov)** — 给编程智能体用的代码质量与覆盖率判断，Rust 实现。
   <sub>`开源项目` · ★100+ · supercorp-ai · `Rs` · 调用点 [`crates/supercov-cli/src/quality.rs`](https://github.com/supercorp-ai/supercov/blob/HEAD/crates/supercov-cli/src/quality.rs)，2026-09-22 阅读</sub>
 
-- **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — 带 Jev 智能路由的 AI 智能体：把大白话请求分派给合适的专家智能体。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — 由 44 个智能体、63 个技能和 79 个钩子组成的工具包，按大白话请求分派。它的 /d 路由器请 Jev 给请求分类，并在派发前确认所选路线不会改变用户要的结果；它的自动压缩插件在上下文超过 60% 后，对每个难以判断的工具调用提三个 noul，并逐字裁剪。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · notque · `Py` · 调用点 [`plugins/jev-auto-compact/hooks/jev-auto-compact.mjs`](https://github.com/notque/vexjoy-agent/blob/HEAD/plugins/jev-auto-compact/hooks/jev-auto-compact.mjs)，2026-09-22 阅读</sub>
 
 - **[augustus](https://github.com/24601/Augustus)** — 面向决策模型这一类别的 agent 技能：分类器、编解码器、专用 AR 头、System One。 <sub>(机翻)</sub>

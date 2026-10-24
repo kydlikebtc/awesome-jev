@@ -83,7 +83,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[mu](https://github.com/qybaihe/mu)** — Coding agent and desktop app built on pi that asks Jev at 38 decision points which tool-output chunks enter the context, which stale tool results to drop, whether a rule-flagged command was asked for and whether fetched pages or MCP output carry injected instructions.
   <sub>`Project` · ★100+ · qybaihe · `TS` · `choice` · `noul` · `score` · call site [`packages/kyrn-judge/src/providers/typesafe.ts`](https://github.com/qybaihe/mu/blob/HEAD/packages/kyrn-judge/src/providers/typesafe.ts) · ⚠ `self-submitted`</sub>
 
-- **[taskuary](https://github.com/ldbumble/taskuary)** — Automate your job: local-first AI task hub. Email, Teams, Slack & reports -> one timeline -> AI triage -> your coding agents (Claude Code, Codex, Gemini) do the work, you approve. <sub>(earlier upstream description)</sub>
+- **[taskuary](https://github.com/ldbumble/taskuary)** — Local-first work assistant that turns mail, chats and tickets into tasks your coding agents do, sending nothing until you approve. With a TypeSafe key, Jev triages: nouls asked as the owner would judge, with their profile and past verdicts in the state, such as whether to make an item a task. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · ldbumble · `Py` · call site [`taskuary/jev.py`](https://github.com/ldbumble/taskuary/blob/HEAD/taskuary/jev.py), read 2026-09-22</sub>
 
 - **[ha-jev](https://github.com/AboveColin/HA-Jev)** — A Home Assistant integration: typed answers about the house as sensors, noul, choice and score actions for automations, and a conversation agent.

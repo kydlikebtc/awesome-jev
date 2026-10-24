@@ -59,10 +59,10 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-eval-agent](https://github.com/vinilana/jev-eval-agent)** — An agent that routes evaluation work through typed decisions.
   <sub>`Project` · ★100+ · vinilana · `TS` · call site [`agent/lib/jev-router.ts`](https://github.com/vinilana/jev-eval-agent/blob/HEAD/agent/lib/jev-router.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
-- **[jev-guard](https://github.com/leepokai/jev-guard)** — Auto mode for every coding agent, built on Jev: risk-scores every tool call with session context (deny / ask / allow), flags prompt injection in results, checks skills and plugins. Claude Code, Codex, Copilot, Gemini, Cursor, pi, OpenCode, ACP. <sub>(upstream description)</sub>
+- **[jev-guard](https://github.com/leepokai/jev-guard)** — Security hook for coding agents: before each tool call Jev judges how much harm it could do, whether the user asked for it and whether it follows untrusted text, and code denies, asks or allows; afterwards Jev scans the result for prompt injection. For Claude Code, Codex, Cursor and more. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · leepokai · `JS` · call site [`src/jev.js`](https://github.com/leepokai/jev-guard/blob/HEAD/src/jev.js), read 2026-09-22</sub>
 
-- **[jev-lint](https://github.com/mizchi/jev-lint)** — lint text in code by jev scorerer <sub>(upstream description)</sub>
+- **[jev-lint](https://github.com/mizchi/jev-lint)** — Linter for what parsers miss: ast-grep picks the code, Jev is asked each rule's one-sentence question about every match, such as whether the comment above claims something untrue of the code, and matches over the cutoff are flagged. 99 rules ship, from 48 questions; judged code goes to the API. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · mizchi · `TS` · call site [`src/jev.ts`](https://github.com/mizchi/jev-lint/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
 - **[jev-mcp](https://github.com/jkudish/jev-mcp)** — A ready-made judgement toolbox for agents: fact verification, content screening, semantic ranking, classification and extraction as separate tools.
@@ -77,7 +77,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[supercov](https://github.com/supercorp-ai/supercov)** — Code quality and coverage judgements for coding agents, in Rust.
   <sub>`Project` · ★100+ · supercorp-ai · `Rs` · call site [`crates/supercov-cli/src/quality.rs`](https://github.com/supercorp-ai/supercov/blob/HEAD/crates/supercov-cli/src/quality.rs), read 2026-09-22</sub>
 
-- **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — VexJoy AI Agent with Jev Intelligent Routing - /do routes plain-English requests to the right specialist agent and gates the work with reviews, tests, and a learning loop. <sub>(upstream description)</sub>
+- **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — Toolkit of 44 agents, 63 skills and 79 hooks routed from plain-English requests. Its /d router asks Jev to classify a request and gates dispatch on whether the route keeps the requested outcome; its auto-compact plugin, past 60% context, asks three nouls per unclear tool call and prunes verbatim. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · notque · `Py` · call site [`plugins/jev-auto-compact/hooks/jev-auto-compact.mjs`](https://github.com/notque/vexjoy-agent/blob/HEAD/plugins/jev-auto-compact/hooks/jev-auto-compact.mjs), read 2026-09-22</sub>
 
 - **[augustus](https://github.com/24601/Augustus)** — Agent skill for the decision-model class (classifiers, encoders/decoders, specialized AR heads, System One). TypeSafe Jev is the dominant exemplar. Composition algebra, question design, validation gates. MIT.

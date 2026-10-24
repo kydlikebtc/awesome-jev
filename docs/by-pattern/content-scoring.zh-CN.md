@@ -59,7 +59,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-forge](https://github.com/zwliJay/jev-forge)** — 并非 Jev：一套合成决策数据、训练并校准小型候选打分模型（JevForge-0.8B）、再通过兼容 Jev 的 API 提供服务的工具链，首个场景是在网页上挑选下一次点击或表单控件。其基准脚本把同一批留出的 choice、noul 和 score 问题发给真正的 Jev 作对比。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★100+ · zwlijay · `Py` · 引用文件 [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
 
-- **[jev-lint](https://github.com/mizchi/jev-lint)** — 用 Jev 打分器给代码中的文本做 lint。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-lint](https://github.com/mizchi/jev-lint)** — 检查解析器查不出的问题的 lint 工具：由 ast-grep 挑出代码，再就每处匹配向 Jev 提出该规则的一句话问题，例如上方注释是否说了代码里不成立的事，概率超过规则的阈值就报出。随附 99 条规则，出自 48 个问题；被判断的代码会发送到 API。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · mizchi · `TS` · 调用点 [`src/jev.ts`](https://github.com/mizchi/jev-lint/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
 - **[jev-review](https://github.com/NiazMorshed2007/jev-review)** — 一个本地优先的 MCP 插件，供编程智能体做持续的代码质量审查。
@@ -68,10 +68,10 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-review](https://github.com/devagrawal09/jev-review)** — 代码审查前先过一遍 Jev，把高风险改动挑出来，再交给更贵的大模型或人。带本地看板。
   <sub>`开源项目` · ★100+ · `TS` · `choice` · `score` · `noul` · 调用点 [`src/review/codebase-judgments.ts`](https://github.com/devagrawal09/jev-review/blob/HEAD/src/review/codebase-judgments.ts)，2026-09-22 阅读</sub>
 
-- **[jev-semgrep](https://github.com/uehaj/sys1grep)** — 按含义 grep，跨语言：Jev 给每一行按含义打分，可用 AND/OR/NOT 组合多个含义。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-semgrep](https://github.com/uehaj/sys1grep)** — 按含义 grep 的工具，现名 sys1grep：对每一行，Jev 回答一个 noul，判断这一行是否符合给定含义（例如“网络故障”），再由阈值决定是否匹配。多个含义可用 AND、OR、NOT 组合，可先用正则预筛行，含义和文本可以是不同语言。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · uehaj · `JS` · 调用点 [`semgrep.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/semgrep.mjs)，2026-09-22 阅读</sub>
 
-- **[jev-seo](https://github.com/AgriciDaniel/jev-seo)** — 从一个首页网址出发，对任意网站做实时 SEO 审计，由 Jev 判定，输出 PDF、XLSX 和 Markdown 报告。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-seo](https://github.com/AgriciDaniel/jev-seo)** — 从一个首页网址出发的 SEO 审计：抓取整站，检查 52 条规则和 Core Web Vitals，并就每个页面向 Jev 提出 choice、score 和 noul 问题（页面类型、搜索意图、有用程度、可信度、开头是否直奔主题）。代码只采用达到 0.80 置信度的明确答案，再给修复项排序。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · agricidaniel · `Py` · 调用点 [`jevseo/jev.py`](https://github.com/AgriciDaniel/jev-seo/blob/HEAD/jevseo/jev.py)，2026-09-24 阅读</sub>
 
 - **[jevmeter](https://github.com/ChetasLua/jevmeter)** — 给视频里的每一句话打分，并把结果渲染成一个实时仪表。

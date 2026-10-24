@@ -62,16 +62,16 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-drone](https://github.com/RomanSlack/jev-drone)** — 拿 Jev 控无人机。底层飞控继续负责稳定和安全，Jev 只做爬升、刹车、穿越障碍这类上层判断。
   <sub>`开源项目` · ★100+ · `Py` · `choice` · `score` · `noul` · 调用点 [`tactics.py`](https://github.com/RomanSlack/jev-drone/blob/HEAD/tactics.py)，2026-09-22 阅读 · ⚠ `宣称未核实`</sub>
 
-- **[jev-gateway](https://github.com/vinilana/jev-gateway)** — 把 Jev 接进编程智能体，用于工具调用的推理判断。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-gateway](https://github.com/vinilana/jev-gateway)** — 面向 Codex、Claude Code、OpenCode 等编程智能体的本地网关。每一轮它都问 Jev 现有工具里哪个合适；Jev 有把握时就引导 LLM 调用该工具，否则请求原样放行。Jev 宕机、变慢或配置有误时，请求直接发给 LLM。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · vinilana · `TS` · 调用点 [`src/jev.ts`](https://github.com/vinilana/jev-gateway/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
-- **[jev-guard](https://github.com/leepokai/jev-guard)** — 给所有编程智能体做的自动模式：结合会话上下文给每次工具调用打风险分（拒绝／询问／放行）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-guard](https://github.com/leepokai/jev-guard)** — 给编程智能体用的安全钩子：每次工具调用前，Jev 判断这次调用可能造成多大危害、是不是用户要求的、是否在执行不可信的文字，再由代码决定拒绝、询问还是放行；调用返回后，Jev 扫描结果中的提示注入。支持 Claude Code、Codex、Cursor 等。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · leepokai · `JS` · 调用点 [`src/jev.js`](https://github.com/leepokai/jev-guard/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
 
 - **[jev-mcp](https://github.com/jkudish/jev-mcp)** — 现成的 Agent 判断工具箱：事实核验、内容筛查、语义排序、分类和信息提取，各自独立成工具。
   <sub>`插件` · ★100+ · `JS` · `choice` · `score` · `noul` · 调用点 [`src/provider.ts`](https://github.com/jkudish/jev-mcp/blob/HEAD/src/provider.ts)，2026-09-22 阅读</sub>
 
-- **[jevals](https://github.com/openlayer-ai/jevals)** — 把智能体评测与护栏做成 Jev 决策：每条 trace 一次请求，成本不到一美分的零头。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jevals](https://github.com/openlayer-ai/jevals)** — 用 Jev 问题而不是 LLM 评审来做智能体评测与护栏：每项评测把一条 trace 变成 noul、choice 或 score，例如对每个论断用一个 noul 判断工具结果是否支持它；一条 trace 的所有评测合并成一个请求发出。README 的例子用 0.33 秒、0.00006 美元跑完八项。也可在本地用 Kev 或 Laya 运行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · openlayer-ai · `Py` · 调用点 [`src/jevals/backends/typesafe.py`](https://github.com/openlayer-ai/jevals/blob/HEAD/src/jevals/backends/typesafe.py)，2026-09-22 阅读</sub>
 
 - **[mu](https://github.com/qybaihe/mu)** — 基于 pi 的编程 Agent（命令行和桌面端），在 38 个决策点上问 Jev：工具输出的哪些片段进上下文、哪些过期的工具结果可以丢掉、被规则拦下的命令是不是用户要的、抓取的网页和 MCP 输出里有没有注入的指令。 <sub>(机翻)</sub>
@@ -83,13 +83,13 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[quackd](https://github.com/rokbenko/quackd)** — 统管所有机器人的 CLI：每台机器人配一个 LLM 作大脑，由 Jev 做决策。 <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · rokbenko · `Py` · 调用点 [`quackd/agent/decision/systemone.py`](https://github.com/rokbenko/quackd/blob/HEAD/quackd/agent/decision/systemone.py)，2026-09-24 阅读</sub>
 
-- **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — 带 Jev 智能路由的 AI 智能体：把大白话请求分派给合适的专家智能体。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — 由 44 个智能体、63 个技能和 79 个钩子组成的工具包，按大白话请求分派。它的 /d 路由器请 Jev 给请求分类，并在派发前确认所选路线不会改变用户要的结果；它的自动压缩插件在上下文超过 60% 后，对每个难以判断的工具调用提三个 noul，并逐字裁剪。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · notque · `Py` · 调用点 [`plugins/jev-auto-compact/hooks/jev-auto-compact.mjs`](https://github.com/notque/vexjoy-agent/blob/HEAD/plugins/jev-auto-compact/hooks/jev-auto-compact.mjs)，2026-09-22 阅读</sub>
 
-- **[wrongstack](https://github.com/WrongStack/WrongStack)** — 一个 AI 编程智能体：读代码、改文件、跑命令、推理 bug。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[wrongstack](https://github.com/WrongStack/WrongStack)** — 开源编程智能体，自带内核、记忆、多智能体编队和权限策略，可在终端、TUI 或浏览器中使用。可选开启的 TypeSafe 服务会向 Jev 提出类型化的 choice、noul 和 score 问题，用于推荐技能和给派发分类，智能体也可以把 Jev 当作工具调用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · wrongstack · `TS` · 调用点 [`packages/core/src/typesafe/client.ts`](https://github.com/WrongStack/WrongStack/blob/HEAD/packages/core/src/typesafe/client.ts)，2026-09-22 阅读</sub>
 
-- **[youtube-sponsor-detection](https://github.com/trungdq88/youtube-sponsor-detection)** — 结合实时音频与字幕检测 YouTube 视频里的赞助片段。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[youtube-sponsor-detection](https://github.com/trungdq88/youtube-sponsor-detection)** — 跳过 YouTube 赞助口播的 Chrome 扩展：字幕按每 80 行分窗，用 Jev 的 noul 判断口播是否从这里开始，用 choice 指出是哪一行，再对短语逐个用 noul 定下切点；由代码把行号换算成秒数。音频模式每隔几秒问 Jev 口播是否正在播放。默认把握达到 70% 才跳过。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · trungdq88 · `JS` · 调用点 [`extension/lib/jev.js`](https://github.com/trungdq88/youtube-sponsor-detection/blob/HEAD/extension/lib/jev.js)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
 - **[augustus](https://github.com/24601/Augustus)** — 面向决策模型这一类别的 agent 技能：分类器、编解码器、专用 AR 头、System One。 <sub>(机翻)</sub>
