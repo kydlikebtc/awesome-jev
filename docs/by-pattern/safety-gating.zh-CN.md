@@ -4,11 +4,11 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 139 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 141 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#safety-gating)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#safety-gating)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 133 · 接口形态 2 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 135 · 接口形态 2 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -245,6 +245,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
   <sub>`开源项目` · Really Artificial · `JS` · `choice` · `score` · `noul` · 调用点 [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs)，2026-09-22 阅读 · ⚠ `疑似 AI 生成`</sub>
 
+- **[JEV Safety Gateway](https://github.com/dark-hxx/jev-safety-gateway)** — 位于 nginx 与 OpenAI 兼容大模型后端之间的反向代理：取出每个请求中的用户输入，用一个 noul 让 Jev 判断是否安全，拦截有害请求、放行正常请求；可在多个 API 密钥之间轮换。文档以中文为主。 <sub>(机翻)</sub>
+  <sub>`开源项目` · dark-hxx · `Go` · `noul` · 调用点 [`internal/jev/client.go`](https://github.com/dark-hxx/jev-safety-gateway/blob/HEAD/internal/jev/client.go)</sub>
+
 - **[jev-agent-authorization](https://github.com/kinde-starter-kits/jev-agent-authorization)** — 面向 MCP 工具调用的 Jev 智能体授权：结合 Kinde 的身份与权限，以及 Jev 的类型化校准决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · kinde-starter-kits · `TS` · 调用点 [`convex/jev/client.ts`](https://github.com/kinde-starter-kits/jev-agent-authorization/blob/HEAD/convex/jev/client.ts)，2026-09-24 阅读</sub>
 
@@ -439,6 +442,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[wakegate](https://github.com/shitianfang/wakegate)** — 在唤醒一个休眠智能体之前，先问 Jev 这次唤醒是否值得一次完整的 LLM 轮次。失败时默认放行。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · shitianfang · `TS` · 调用点 [`src/index.ts`](https://github.com/shitianfang/wakegate/blob/HEAD/src/index.ts)，2026-09-22 阅读</sub>
+
+- **[x402check](https://github.com/caiovicentino/jev-risk-check-provider)** — 面向 x402 Agent 和钱包的付款前风险检查服务：结合制裁名单、钓鱼情报、交易模拟和盗币工具包指纹，再用 Jev 的多个 noul、一个 choice 和一个 score 检查 Agent 所依据的内容里有没有被注入的指令。结论以签名证明的形式给出。 <sub>(机翻)</sub>
+  <sub>`开源项目` · caiovicentino · `TS` · `noul` · `choice` · `score` · 调用点 [`src/jev.ts`](https://github.com/caiovicentino/jev-risk-check-provider/blob/HEAD/src/jev.ts) · ⚠ `营销内容`</sub>
 
 - **[XavierJev](https://github.com/liu-x27/XavierJev)** — Jev 形状的本地决策层：是非、选择和量表问题都从本地模型单个 token 的 logprob 读出答案；附带一个在留出命令集上测量过的 Claude Code 权限闸门。 <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · Xinyu Liu · `TS` · `noul` · `choice` · `score` · 引用文件 [`src/gate.ts`](https://github.com/liu-x27/XavierJev/blob/HEAD/src/gate.ts)，2026-09-25 阅读 · ⚠ `并非 Jev 本身` `疑似 AI 生成`</sub>

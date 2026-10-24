@@ -4,11 +4,11 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 71 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 72 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#human-escalation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#human-escalation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 56 · 接口形态 5 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 57 · 接口形态 5 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -155,6 +155,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-calibration-audit](https://github.com/tapesymbolstate/jev-calibration-audit)** — 仅通过 API 对 Jev 做的独立校准审计。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · jujumilk3 · `Py` · 调用点 [`src/jev_audit/client.py`](https://github.com/tapesymbolstate/jev-calibration-audit/blob/HEAD/src/jev_audit/client.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[Jev-Code-Reviewer](https://github.com/egma-ai/jev-code-reviewer)** — 用于审阅编程 Agent 所提 PR 的本地工具：按书面的优先级规则，用 Jev 的 choice 把每处改动分为 P0、P1 或 P2，默认只显示 P0。不会向 GitHub 发布任何内容。 <sub>(机翻)</sub>
+  <sub>`开源项目` · egma-ai · `JS` · `choice` · 调用点 [`src/providers.mjs`](https://github.com/egma-ai/jev-code-reviewer/blob/HEAD/src/providers.mjs)</sub>
 
 - **[jev-eval](https://github.com/4esv/jev-eval)** — 在你自己的标注分类数据上，把 Jev 与任意 OpenRouter 模型做基准对比：准确率与校准度。 <sub>(机翻)</sub>
   <sub>`基准测试` · 4esv · `Py` · 调用点 [`evaljev/runners.py`](https://github.com/4esv/jev-eval/blob/HEAD/evaljev/runners.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

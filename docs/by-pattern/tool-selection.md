@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 228 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 230 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 220 · wire shape 4 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 222 · wire shape 4 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -393,6 +393,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[AskJev](https://github.com/ranjan2829/AskJev)** — AskJev — Jev autopilot for any website + guard on irreversible clicks (TypeSafe System One, not Claude) <sub>(upstream description)</sub>
   <sub>`Project` · ranjan2829 · `TS` · call site [`mcp/src/jev-client.ts`](https://github.com/ranjan2829/AskJev/blob/HEAD/mcp/src/jev-client.ts), read 2026-09-24</sub>
 
+- **[beebots](https://github.com/imikerussell/beebots)** — Three trading bots race on OKX perpetual futures, paper trading by default: Jev (or Gemini) picks each move as a choice from the legal actions plus a score for conviction, with a deterministic fallback, a plain-code risk layer and a live dashboard.
+  <sub>`Project` · imikerussell · `TS` · `choice` · `score` · call site [`src/jev.ts`](https://github.com/imikerussell/beebots/blob/HEAD/src/jev.ts)</sub>
+
 - **[bicameral](https://github.com/AbdelStark/bicameral)** — Hybrid coding harness: System 2 writes, System 1 (Jev) runs reflexes. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`packages/s1-runtime/src/backends/typesafe.ts`](https://github.com/AbdelStark/bicameral/blob/HEAD/packages/s1-runtime/src/backends/typesafe.ts), read 2026-09-22</sub>
 
@@ -425,6 +428,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[fast-compaction-dsh](https://github.com/kolawong/fast-compaction-dsh)** — Verdict-based context compaction for DeepSeek Harness — replaces lossy LLM summaries with fast keep/truncate/drop decisions from jev-latest; everything kept stays verbatim. Port of tamaratran/fast-jev-compaction. <sub>(upstream description)</sub>
   <sub>`Project` · kolawong · `TS` · call site [`src/jev.ts`](https://github.com/kolawong/fast-compaction-dsh/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
+
+- **[Flick](https://github.com/bgivenb/flick-computer-use)** — Local stdio MCP server that runs whole browser and macOS goals: each observe-decide-act step asks Jev a choice over actions keyed by observed element IDs, plus choices for which field and value to fill. Playwright browser driver and a Swift Accessibility driver.
+  <sub>`Plugin` · bgivenb · `TS` · `Swift` · `choice` · `noul` · call site [`src/providers/typesafe.ts`](https://github.com/bgivenb/flick-computer-use/blob/HEAD/src/providers/typesafe.ts)</sub>
 
 - **[gg-friggin-ez](https://github.com/ItisShikhar/gg-friggin-ez)** — Fast, drop-in multilingual profanity and toxicity screener for Node.js, powered by System 1 models like TypeSafe AI Jev and Laya. Catches leetspeak, character spacing, and romanized profanity across languages including Kannada, Telugu, Tamil, Hindi, and Bengali. ~50-500ms latency. <sub>(upstream description)</sub>
   <sub>`Project` · itisshikhar · `TS` · call site [`demo/js/models.js`](https://github.com/ItisShikhar/gg-friggin-ez/blob/HEAD/demo/js/models.js), read 2026-09-22</sub>

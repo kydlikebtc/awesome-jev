@@ -4,11 +4,11 @@
 
 _Score or re-rank candidates from a cheaper retrieval step._
 
-Every catalogued example of this decision — 65 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 66 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#search-ranking): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 61 · wire shape 0 · example only 0 · independent reports 6 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 62 · wire shape 0 · example only 0 · independent reports 6 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -164,6 +164,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[every](https://github.com/sufianetaouil/every)** — Ask a yes/no question of every function in a codebase. Ranked answers in seconds, for cents. Grep whose pattern is a question, powered by TypeSafe Jev. <sub>(upstream description)</sub>
   <sub>`Project` · sufianetaouil · `Py` · call site [`reference/probe_jev.py`](https://github.com/sufianetaouil/every/blob/HEAD/reference/probe_jev.py), read 2026-09-22</sub>
+
+- **[grev](https://github.com/aurorainfra/grev)** — Unix filters that ask questions instead of matching patterns: `grev 'is a vegan meal' menu.txt` keeps the lines Jev says yes to, with related tools that use a choice's confidence or a path score. Pins jev-1.13.0 because thresholds are tuned per model version.
+  <sub>`Project` · aurorainfra · `Go` · call site [`internal/jev/price.go`](https://github.com/aurorainfra/grev/blob/HEAD/internal/jev/price.go)</sub>
 
 - **[Jev RAG](https://github.com/aifabrice/jev-rag)** — Indexes local documents with SQLite FTS5/BM25, then asks one Jev Noul per candidate passage and sorts by the returned relevance probability before optionally generating a cited answer.
   <sub>`Project` · aifabrice · `Py` · `noul` · call site [`local_kb.py`](https://github.com/aifabrice/jev-rag/blob/HEAD/local_kb.py), read 2026-09-26 · ⚠ `3rd-party key` `AI-written` `self-submitted`</sub>

@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 228 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 230 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 220 · 接口形态 4 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 222 · 接口形态 4 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -393,6 +393,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[AskJev](https://github.com/ranjan2829/AskJev)** — AskJev：适用于任意网站的 Jev 自动驾驶，并对不可逆的点击加一道防护（使用 TypeSafe System One，而不是 Claude）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ranjan2829 · `TS` · 调用点 [`mcp/src/jev-client.ts`](https://github.com/ranjan2829/AskJev/blob/HEAD/mcp/src/jev-client.ts)，2026-09-24 阅读</sub>
 
+- **[beebots](https://github.com/imikerussell/beebots)** — 三个交易机器人在 OKX 永续合约上比赛，默认是模拟盘：每一步由 Jev（或 Gemini）用 choice 从合法动作中选出，再用 score 给出信心；另有确定性的备用选择器、纯代码写的风控层，以及显示每个决策由谁做出的实时面板。 <sub>(机翻)</sub>
+  <sub>`开源项目` · imikerussell · `TS` · `choice` · `score` · 调用点 [`src/jev.ts`](https://github.com/imikerussell/beebots/blob/HEAD/src/jev.ts)</sub>
+
 - **[bicameral](https://github.com/AbdelStark/bicameral)** — 混合式编程 harness：System 2 负责写，System 1（Jev）负责反射式动作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`packages/s1-runtime/src/backends/typesafe.ts`](https://github.com/AbdelStark/bicameral/blob/HEAD/packages/s1-runtime/src/backends/typesafe.ts)，2026-09-22 阅读</sub>
 
@@ -425,6 +428,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[fast-compaction-dsh](https://github.com/kolawong/fast-compaction-dsh)** — 给 DeepSeek Harness 的判定式上下文压缩，取代有损的 LLM 摘要。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · kolawong · `TS` · 调用点 [`src/jev.ts`](https://github.com/kolawong/fast-compaction-dsh/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
+
+- **[Flick](https://github.com/bgivenb/flick-computer-use)** — 本地 stdio MCP 服务器，可执行完整的浏览器和 macOS 任务：每一步“观察—决定—行动”都向 Jev 问一个 choice，选项是以观测到的元素 ID 为键的动作；另有几个 choice 决定填哪个字段、填什么值。浏览器用 Playwright 驱动，macOS 用 Swift 辅助功能驱动。 <sub>(机翻)</sub>
+  <sub>`插件` · bgivenb · `TS` · `Swift` · `choice` · `noul` · 调用点 [`src/providers/typesafe.ts`](https://github.com/bgivenb/flick-computer-use/blob/HEAD/src/providers/typesafe.ts)</sub>
 
 - **[gg-friggin-ez](https://github.com/ItisShikhar/gg-friggin-ez)** — 给 Node.js 的快速多语言脏话与毒性筛查器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · itisshikhar · `TS` · 调用点 [`demo/js/models.js`](https://github.com/ItisShikhar/gg-friggin-ez/blob/HEAD/demo/js/models.js)，2026-09-22 阅读</sub>

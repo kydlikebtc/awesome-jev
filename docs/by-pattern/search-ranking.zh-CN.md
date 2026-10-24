@@ -4,11 +4,11 @@
 
 _对来自廉价检索步骤的候选做打分或重排。_
 
-这个决策的全部已收录例子 —— 共 65 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 66 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#search-ranking)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#search-ranking)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 61 · 接口形态 0 · 仅示例 0 · 独立报告 6 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 62 · 接口形态 0 · 仅示例 0 · 独立报告 6 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -164,6 +164,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[every](https://github.com/sufianetaouil/every)** — 对代码库里每一个函数问一个是非问题，几秒内得到排序结果 —— 模式本身是一个问题的 grep。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · sufianetaouil · `Py` · 调用点 [`reference/probe_jev.py`](https://github.com/sufianetaouil/every/blob/HEAD/reference/probe_jev.py)，2026-09-22 阅读</sub>
+
+- **[grev](https://github.com/aurorainfra/grev)** — 用提问代替模式匹配的 Unix 过滤工具：`grev 'is a vegan meal' menu.txt` 只保留 Jev 回答“是”的行；配套工具还会用到 choice 的置信度或路径分数。默认固定 jev-1.13.0，因为阈值是按模型版本调的。 <sub>(机翻)</sub>
+  <sub>`开源项目` · aurorainfra · `Go` · 调用点 [`internal/jev/price.go`](https://github.com/aurorainfra/grev/blob/HEAD/internal/jev/price.go)</sub>
 
 - **[Jev RAG](https://github.com/aifabrice/jev-rag)** — 用 SQLite FTS5/BM25 索引本地文档，再对每个候选文段询问一个 Jev Noul，按返回的相关性概率重排，并可选生成带引用的回答。
   <sub>`开源项目` · aifabrice · `Py` · `noul` · 调用点 [`local_kb.py`](https://github.com/aifabrice/jev-rag/blob/HEAD/local_kb.py)，2026-09-26 阅读 · ⚠ `需第三方密钥` `疑似 AI 生成` `作者自荐`</sub>

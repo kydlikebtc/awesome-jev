@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 163 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 164 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 154 · wire shape 5 · example only 0 · independent reports 9 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 155 · wire shape 5 · example only 0 · independent reports 9 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -226,6 +226,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[ask-jev-ai](https://github.com/waynesutton/ask-jev-ai)** — A public wall where anyone asks a question in three to fifteen words and Jev, TypeSafe's judgment model, answers yes, no, or it depends in about 100 milliseconds. Every judged ask lands on the wall in realtime, with a running count toward one million, showing cost. <sub>(upstream description)</sub>
   <sub>`Project` · waynesutton · `JS` · call site [`convex/lib/typesafe.ts`](https://github.com/waynesutton/ask-jev-ai/blob/HEAD/convex/lib/typesafe.ts), read 2026-09-22 · ⚠ `no licence`</sub>
+
+- **[beebots](https://github.com/imikerussell/beebots)** — Three trading bots race on OKX perpetual futures, paper trading by default: Jev (or Gemini) picks each move as a choice from the legal actions plus a score for conviction, with a deterministic fallback, a plain-code risk layer and a live dashboard.
+  <sub>`Project` · imikerussell · `TS` · `choice` · `score` · call site [`src/jev.ts`](https://github.com/imikerussell/beebots/blob/HEAD/src/jev.ts)</sub>
 
 - **[book-aurora](https://github.com/dani1005/book-aurora)** — Jev reads a whole novel in seconds. Every passage becomes a row of colour. <sub>(upstream description)</sub>
   <sub>`Project` · dani1005 · `TS` · call site [`server/jev.ts`](https://github.com/dani1005/book-aurora/blob/HEAD/server/jev.ts), read 2026-09-24</sub>

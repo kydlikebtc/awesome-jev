@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 119 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 122 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 109 · 接口形态 1 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 112 · 接口形态 1 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -208,6 +208,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[github-issue-classification-using-jev](https://github.com/KalyanM45/GitHub-Issue-Classification-Using-Jev)** — 基于 Jev 的 GitHub issue 分类器。 <sub>(机翻)</sub>
   <sub>`开源项目` · kalyanm45 · `Py` · 调用点 [`src/ghtriage/adapters/typesafe.py`](https://github.com/KalyanM45/GitHub-Issue-Classification-Using-Jev/blob/HEAD/src/ghtriage/adapters/typesafe.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
+- **[grev](https://github.com/aurorainfra/grev)** — 用提问代替模式匹配的 Unix 过滤工具：`grev 'is a vegan meal' menu.txt` 只保留 Jev 回答“是”的行；配套工具还会用到 choice 的置信度或路径分数。默认固定 jev-1.13.0，因为阈值是按模型版本调的。 <sub>(机翻)</sub>
+  <sub>`开源项目` · aurorainfra · `Go` · 调用点 [`internal/jev/price.go`](https://github.com/aurorainfra/grev/blob/HEAD/internal/jev/price.go)</sub>
+
 - **[guard-jev](https://github.com/NorbertBodziony/guard-jev)** — 一个文本审核演示：一次 systemOne 调用并行检查七个 Noul 风险项和一个严重程度 Score，最终结论由代码按策略阈值计算。 <sub>(机翻)</sub>
   <sub>`开源项目` · norbertbodziony · `TS` · 调用点 [`app/api/moderate/route.ts`](https://github.com/NorbertBodziony/guard-jev/blob/HEAD/app/api/moderate/route.ts)，2026-09-24 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
 
@@ -234,6 +237,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-clean](https://github.com/Kunyanli230/jev-clean)** — 以决策为先的数据清洗系统，由 Jev 驱动。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · kunyanli230 · `Py` · 调用点 [`src/idac/typesafe_client.py`](https://github.com/Kunyanli230/jev-clean/blob/HEAD/src/idac/typesafe_client.py)，2026-09-24 阅读</sub>
+
+- **[Jev-Code-Reviewer](https://github.com/egma-ai/jev-code-reviewer)** — 用于审阅编程 Agent 所提 PR 的本地工具：按书面的优先级规则，用 Jev 的 choice 把每处改动分为 P0、P1 或 P2，默认只显示 P0。不会向 GitHub 发布任何内容。 <sub>(机翻)</sub>
+  <sub>`开源项目` · egma-ai · `JS` · `choice` · 调用点 [`src/providers.mjs`](https://github.com/egma-ai/jev-code-reviewer/blob/HEAD/src/providers.mjs)</sub>
 
 - **[jev-document-classification](https://github.com/Charlyhno-eng/jev-document-classification)** — 对文本文档做快速且低成本的分类。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · charlyhno-eng · `TS` · 调用点 [`server/classification-cache.ts`](https://github.com/Charlyhno-eng/jev-document-classification/blob/HEAD/server/classification-cache.ts)，2026-09-22 阅读</sub>
@@ -318,6 +324,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevmod](https://github.com/ohernandezdev/jevmod)** — 面向社区和应用的内容审核，由 Jev（TypeSafe）驱动：按类别给出概率，阈值由你掌控。支持 Discord。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ohernandezdev · `Py` · 调用点 [`jevmod/judge.py`](https://github.com/ohernandezdev/jevmod/blob/HEAD/jevmod/judge.py)，2026-09-24 阅读</sub>
+
+- **[Jevstiller](https://github.com/tomerglick57/Jevstiller)** — 放在重复性 Jev 分类调用前面的代理：起初全部转发给 Jev，用 Jev 自己的答案和概率训练一个本地小模型，等它在留出流量上与 Jev 足够一致后改为本地作答。作者报告 Banking77 上有 61.7% 的消息由本地回答，与 Jev 的一致率为 99.4%。 <sub>(机翻)</sub>
+  <sub>`开源项目` · tomerglick57 · `Py` · `choice` · `noul` · 调用点 [`jevstiller/teachers/jev.py`](https://github.com/tomerglick57/Jevstiller/blob/HEAD/jevstiller/teachers/jev.py) · ⚠ `厂商自报数据`</sub>
 
 - **[jevticktrouter](https://github.com/GhrezaKh74/JevTicktRouter)** — 用 .NET 10 与 React 19 做的快速结构化工单分拣。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ghrezakh74 · `C#` · 调用点 [`backend/JevTicketRouter.Application/Jev/Contracts/JevSystemOneRequest.cs`](https://github.com/GhrezaKh74/JevTicktRouter/blob/HEAD/backend/JevTicketRouter.Application/Jev/Contracts/JevSystemOneRequest.cs)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

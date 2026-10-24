@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 457 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 460 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 369 · 接口形态 49 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 39。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 369 · 接口形态 52 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 39。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -335,6 +335,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jeeves](https://github.com/PostHog/jeeves)** — PostHog 的开源 9B 类 Jev 模型（Qwen3.5-9B + LoRA + 指针头）：有把握时直接回答 noul、choice 和 score，没把握时先推理再回答；附扩散草稿模型、训练代码和数据。作者报告它在 JevBench 公开层级上超过 Jev。 <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · posthog · `Py` · 引用文件 [`sdk/jeeves_sdk/__init__.py`](https://github.com/PostHog/jeeves/blob/HEAD/sdk/jeeves_sdk/__init__.py) · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
+- **[Jeff](https://github.com/firelex/jeff)** — 一个开源的 0.8B “System 1”模型，带任务适配器和 GGUF 版本，用来放在大型本地模型前面做快速决策；它的游戏运行器每回合通过 /v1/systemone 在合法走法中问一个 choice。作者报告 8 个适配器的平均准确率为 94.6%，Qwen3.8-27B 为 86.6%。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · firelex · `Py` · 引用文件 [`src/jeff/games/common.py`](https://github.com/firelex/jeff/blob/HEAD/src/jeff/games/common.py) · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
 - **[jev](https://github.com/anilsenay/jev)** — TypeSafe System One API 及其模型 Jev 的非官方 Go 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · anilsenay · `Go` · 调用点 [`client.go`](https://github.com/anilsenay/jev/blob/HEAD/client.go)，2026-09-24 阅读</sub>
 
@@ -422,6 +425,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-sim](https://github.com/dashbi1/jev-sim)** — 从 LLM logits 读出类型化决策的 Jev 兼容 /v1/systemone 服务，带基准。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · dashbi1 · `Py` · 调用点 [`jev_sim/cli.py`](https://github.com/dashbi1/jev-sim/blob/HEAD/jev_sim/cli.py)，2026-09-22 阅读</sub>
 
+- **[Jev-Style](https://github.com/lawrence3699/jev-style)** — 基于 Qwen3.5 的本地小型决策模型（2B 和 0.8B），附带 /v1/systemone 服务器、提供 decide/noul/choice/score 工具的 MCP 服务器、Claude Code 的 PreToolUse 守卫，以及针对自有标注数据的评估命令。作者自测在 JevBench v1.4.1 公开题上得分 73.6%。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · lawrence3699 · `Py` · 引用文件 [`jev_style/client.py`](https://github.com/lawrence3699/jev-style/blob/HEAD/jev_style/client.py) · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
 - **[jev-symfony-bundle](https://github.com/vbcherepanov/jev-symfony-bundle)** — TypeSafe AI Jev 的非官方 Symfony bundle：带类型的客户端、校验约束、Messenger、Workflow 守卫等。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · vbcherepanov · `PHP` · 调用点 [`src/Client/JevClientInterface.php`](https://github.com/vbcherepanov/jev-symfony-bundle/blob/HEAD/src/Client/JevClientInterface.php)，2026-09-24 阅读</sub>
 
@@ -454,6 +460,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[origin-civilization](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION)** — AI 生命与文明模拟：每个决策都由 Jev 做出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · jacquesgariepy · `TS` · 调用点 [`legacy/source/providers.js`](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION/blob/HEAD/legacy/source/providers.js)，2026-09-22 阅读</sub>
+
+- **[RSI-Jev](https://github.com/Shanghua-Gao/RSI-Jev)** — 一个由 Agent 驱动的研究循环：提出假设、预先登记预测，然后训练并淘汰开源决策模型。这些模型按 /v1/systemone 格式回答 noul、choice 和 score。496 个实验全部写成记录，失败的也包括在内。作者报告 27B 视觉语言模型在公开的 Decision Index 0.3 集上得分 65.64。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · shanghua-gao · `Py` · 引用文件 [`rsijev/contract.py`](https://github.com/Shanghua-Gao/RSI-Jev/blob/HEAD/rsijev/contract.py) · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[s1_ruby](https://github.com/innocentdiaz/s1_ruby)** — 把 S1 模型的“测量”（以及随之而来的坍缩）变成 Ruby 的一个基本操作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · innocentdiaz · `Rb` · 调用点 [`lib/s1/providers/typesafe.rb`](https://github.com/innocentdiaz/s1_ruby/blob/HEAD/lib/s1/providers/typesafe.rb)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>

@@ -12,24 +12,24 @@ What the catalogue records about the rows filed under each pattern: reports coun
 
 | Pattern | Rows | Official documentation | Call site | Wire shape | Example only | Independent reports | Negative results | No file cited |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [Tool selection](by-pattern/tool-selection.md) | 228 | 3 | 220 | 4 | 0 | 11 | 1 | 4 |
+| [Tool selection](by-pattern/tool-selection.md) | 230 | 3 | 222 | 4 | 0 | 11 | 1 | 4 |
 | [Intent routing](by-pattern/intent-routing.md) | 37 | 3 | 26 | 0 | 0 | 2 | 0 | 11 |
-| [Context compaction](by-pattern/context-compaction.md) | 35 | 0 | 35 | 0 | 0 | 2 | 2 | 0 |
-| [Safety gating](by-pattern/safety-gating.md) | 139 | 2 | 133 | 2 | 0 | 10 | 0 | 4 |
+| [Context compaction](by-pattern/context-compaction.md) | 36 | 0 | 36 | 0 | 0 | 2 | 2 | 0 |
+| [Safety gating](by-pattern/safety-gating.md) | 141 | 2 | 135 | 2 | 0 | 10 | 0 | 4 |
 | [Output validation](by-pattern/output-validation.md) | 134 | 2 | 129 | 1 | 0 | 11 | 0 | 4 |
 | [Retry control](by-pattern/retry-control.md) | 7 | 0 | 6 | 1 | 0 | 0 | 0 | 0 |
-| [Human escalation](by-pattern/human-escalation.md) | 71 | 7 | 56 | 5 | 0 | 10 | 0 | 10 |
-| [Model routing](by-pattern/model-routing.md) | 45 | 2 | 38 | 1 | 0 | 0 | 1 | 6 |
+| [Human escalation](by-pattern/human-escalation.md) | 72 | 7 | 57 | 5 | 0 | 10 | 0 | 10 |
+| [Model routing](by-pattern/model-routing.md) | 46 | 2 | 39 | 1 | 0 | 0 | 1 | 6 |
 | [Speculative fan-out](by-pattern/fan-out.md) | 34 | 3 | 26 | 1 | 0 | 1 | 0 | 7 |
-| [Search & ranking](by-pattern/search-ranking.md) | 65 | 3 | 61 | 0 | 0 | 6 | 1 | 4 |
+| [Search & ranking](by-pattern/search-ranking.md) | 66 | 3 | 62 | 0 | 0 | 6 | 1 | 4 |
 | [Structured extraction](by-pattern/data-extraction.md) | 17 | 4 | 13 | 0 | 0 | 1 | 0 | 4 |
-| [Classification](by-pattern/classification.md) | 119 | 4 | 109 | 1 | 0 | 11 | 1 | 9 |
+| [Classification](by-pattern/classification.md) | 122 | 4 | 112 | 1 | 0 | 11 | 1 | 9 |
 | [ML feature extraction](by-pattern/feature-extraction.md) | 7 | 1 | 6 | 0 | 0 | 0 | 0 | 1 |
-| [Document triage](by-pattern/document-triage.md) | 20 | 0 | 19 | 0 | 0 | 2 | 0 | 1 |
+| [Document triage](by-pattern/document-triage.md) | 21 | 0 | 20 | 0 | 0 | 2 | 0 | 1 |
 | [Support triage](by-pattern/support-triage.md) | 9 | 1 | 4 | 0 | 0 | 1 | 0 | 5 |
-| [Content scoring](by-pattern/content-scoring.md) | 163 | 2 | 154 | 5 | 0 | 9 | 1 | 4 |
+| [Content scoring](by-pattern/content-scoring.md) | 164 | 2 | 155 | 5 | 0 | 9 | 1 | 4 |
 | [Recommendation](by-pattern/recommendation.md) | 2 | 0 | 2 | 0 | 0 | 0 | 0 | 0 |
-| [Overview](by-pattern/overview.md) | 457 | 6 | 369 | 49 | 0 | 23 | 1 | 39 |
+| [Overview](by-pattern/overview.md) | 460 | 6 | 369 | 52 | 0 | 23 | 1 | 39 |
 
 23 independent reports are filed under `overview` and no other pattern, so this table cannot count them for the decision they measured until a person files them under it.
 
@@ -39,12 +39,12 @@ Rows recording each language (`languages`; a row may record several). 32 rows re
 
 | Language | Rows |
 | --- | --- |
-| `python` | 466 |
-| `typescript` | 404 |
-| `javascript` | 151 |
+| `python` | 470 |
+| `typescript` | 407 |
+| `javascript` | 153 |
 | `rust` | 48 |
-| `go` | 42 |
-| `swift` | 16 |
+| `go` | 44 |
+| `swift` | 17 |
 | `java` | 15 |
 | `ruby` | 12 |
 | `shell` | 10 |
@@ -63,25 +63,25 @@ Rows recording each language (`languages`; a row may record several). 32 rows re
 
 | Group | Rows |
 | --- | --- |
-| `typesafe-api` and nothing else | 1083 |
+| `typesafe-api` and nothing else | 1089 |
 | At least one value another surface in [the compatibility table](compatibility.md) stands for (a gateway, SDK or framework), and not `self-hosted` | 41 |
-| Besides `typesafe-api`, only values no compatibility surface stands for (a host, tool or framework the example runs in, or a route that table does not describe), and not `self-hosted` | 30 |
-| `self-hosted`, whatever else is recorded | 45 |
+| Besides `typesafe-api`, only values no compatibility surface stands for (a host, tool or framework the example runs in, or a route that table does not describe), and not `self-hosted` | 32 |
+| `self-hosted`, whatever else is recorded | 48 |
 | No value recorded | 21 |
 
 Every value rows record, with the compatibility surfaces that stand for it:
 
 | Value | Compatibility surface | Rows |
 | --- | --- | --- |
-| `typesafe-api` | `typesafe-native` | 1117 |
-| `self-hosted` | — | 45 |
+| `typesafe-api` | `typesafe-native` | 1125 |
+| `self-hosted` | — | 48 |
 | `vercel-ai-gateway` | `vercel-eval`, `vercel-compat` | 18 |
-| `claude-code` | — | 11 |
+| `claude-code` | — | 13 |
 | `openrouter` | `openrouter` | 9 |
+| `mcp` | — | 5 |
 | `github` | — | 4 |
 | `langchain` | `langchain` | 4 |
 | `jevai-org` | — | 3 |
-| `mcp` | — | 3 |
 | `opencode-zen` | — | 2 |
 | `pydantic-ai` | `pydantic-ai` | 2 |
 | `vercel-ai-sdk` | `vercel-eval`, `ai-sdk-direct` | 2 |
@@ -116,8 +116,8 @@ Rows of each kind per star band, from GitHub's count at the last weekly refresh;
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Official docs (`official-docs`) | 31 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | ★1k+ |
 | Integration (`integration`) | 34 | 24 | 8 | 6 | 1 | 3 | 5 | 1 | ★10+ |
-| Project (`project`) | 654 | 649 | 354 | 175 | 85 | 19 | 14 | 2 | under 10 |
-| Plugin (`plugin`) | 235 | 234 | 125 | 77 | 27 | 4 | 1 | 0 | under 10 |
+| Project (`project`) | 660 | 649 | 354 | 175 | 85 | 19 | 14 | 2 | under 10 |
+| Plugin (`plugin`) | 237 | 234 | 125 | 77 | 27 | 4 | 1 | 0 | under 10 |
 | SDK (`sdk`) | 97 | 94 | 73 | 16 | 4 | 0 | 1 | 0 | under 10 |
 | Snippet (`snippet`) | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | Tutorial (`tutorial`) | 10 | 6 | 1 | 3 | 0 | 2 | 0 | 0 | ★10+ |
@@ -125,7 +125,7 @@ Rows of each kind per star band, from GitHub's count at the last weekly refresh;
 | Video (`video`) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | Benchmark (`benchmark`) | 72 | 69 | 50 | 12 | 4 | 1 | 1 | 1 | under 10 |
 | Discussion (`discussion`) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-| Jev-like alternative (`alternative`) | 64 | 59 | 12 | 22 | 17 | 6 | 2 | 0 | ★10+ |
+| Jev-like alternative (`alternative`) | 67 | 59 | 12 | 22 | 17 | 6 | 2 | 0 | ★10+ |
 
 ## Languages by decision pattern
 
@@ -133,28 +133,28 @@ Rows per pattern recording each of the 6 most recorded languages; the rest share
 
 | Pattern | `python` | `typescript` | `javascript` | `rust` | `go` | `swift` | Other languages |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [Tool selection](by-pattern/tool-selection.md) | 87 | 84 | 45 | 3 | 4 | 5 | 1 |
+| [Tool selection](by-pattern/tool-selection.md) | 87 | 86 | 45 | 3 | 4 | 6 | 1 |
 | [Intent routing](by-pattern/intent-routing.md) | 18 | 14 | 3 | 0 | 1 | 0 | 1 |
-| [Context compaction](by-pattern/context-compaction.md) | 10 | 21 | 3 | 1 | 0 | 0 | 0 |
-| [Safety gating](by-pattern/safety-gating.md) | 49 | 59 | 20 | 4 | 4 | 0 | 4 |
+| [Context compaction](by-pattern/context-compaction.md) | 10 | 21 | 4 | 1 | 0 | 0 | 0 |
+| [Safety gating](by-pattern/safety-gating.md) | 49 | 60 | 20 | 4 | 5 | 0 | 4 |
 | [Output validation](by-pattern/output-validation.md) | 45 | 53 | 19 | 7 | 3 | 1 | 4 |
 | [Retry control](by-pattern/retry-control.md) | 2 | 2 | 1 | 0 | 0 | 1 | 1 |
-| [Human escalation](by-pattern/human-escalation.md) | 43 | 22 | 0 | 1 | 0 | 0 | 2 |
-| [Model routing](by-pattern/model-routing.md) | 16 | 19 | 9 | 0 | 0 | 1 | 0 |
+| [Human escalation](by-pattern/human-escalation.md) | 43 | 22 | 1 | 1 | 0 | 0 | 2 |
+| [Model routing](by-pattern/model-routing.md) | 17 | 19 | 9 | 0 | 0 | 1 | 0 |
 | [Speculative fan-out](by-pattern/fan-out.md) | 17 | 13 | 3 | 1 | 1 | 1 | 4 |
-| [Search & ranking](by-pattern/search-ranking.md) | 29 | 20 | 5 | 7 | 2 | 0 | 4 |
+| [Search & ranking](by-pattern/search-ranking.md) | 29 | 20 | 5 | 7 | 3 | 0 | 4 |
 | [Structured extraction](by-pattern/data-extraction.md) | 10 | 3 | 4 | 0 | 0 | 0 | 0 |
-| [Classification](by-pattern/classification.md) | 42 | 34 | 24 | 3 | 0 | 0 | 13 |
+| [Classification](by-pattern/classification.md) | 43 | 34 | 25 | 3 | 1 | 0 | 13 |
 | [ML feature extraction](by-pattern/feature-extraction.md) | 4 | 2 | 1 | 0 | 0 | 0 | 0 |
-| [Document triage](by-pattern/document-triage.md) | 7 | 4 | 6 | 2 | 0 | 0 | 0 |
+| [Document triage](by-pattern/document-triage.md) | 7 | 4 | 7 | 2 | 0 | 0 | 0 |
 | [Support triage](by-pattern/support-triage.md) | 5 | 2 | 0 | 0 | 1 | 0 | 3 |
-| [Content scoring](by-pattern/content-scoring.md) | 70 | 58 | 24 | 4 | 1 | 1 | 8 |
+| [Content scoring](by-pattern/content-scoring.md) | 70 | 59 | 24 | 4 | 1 | 1 | 8 |
 | [Recommendation](by-pattern/recommendation.md) | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
-| [Overview](by-pattern/overview.md) | 168 | 118 | 45 | 23 | 29 | 8 | 52 |
+| [Overview](by-pattern/overview.md) | 171 | 118 | 45 | 23 | 29 | 8 | 52 |
 
 ## Patterns filed together
 
-286 rows are filed under more than one pattern. The 10 pairs most often filed on the same row:
+291 rows are filed under more than one pattern. The 10 pairs most often filed on the same row:
 
 | Patterns | Rows |
 | --- | --- |
@@ -167,11 +167,11 @@ Rows per pattern recording each of the 6 most recorded languages; the rest share
 | [Safety gating](by-pattern/safety-gating.md) + [Classification](by-pattern/classification.md) | 21 |
 | [Tool selection](by-pattern/tool-selection.md) + [Output validation](by-pattern/output-validation.md) | 19 |
 | [Safety gating](by-pattern/safety-gating.md) + [Human escalation](by-pattern/human-escalation.md) | 19 |
-| [Tool selection](by-pattern/tool-selection.md) + [Content scoring](by-pattern/content-scoring.md) | 17 |
+| [Tool selection](by-pattern/tool-selection.md) + [Content scoring](by-pattern/content-scoring.md) | 18 |
 
 ## Authors
 
-1103 rows name an author; they name 1001 different ones, compared by display name without regard to case. 929 of them have one row here, 58 two, and 14 three or more; the most any one author has is 11. No author is named on this page: it shows how concentrated the catalogue is, not who contributes to it.
+1114 rows name an author; they name 1011 different ones, compared by display name without regard to case. 938 of them have one row here, 59 two, and 14 three or more; the most any one author has is 11. No author is named on this page: it shows how concentrated the catalogue is, not who contributes to it.
 
 ## Over time
 

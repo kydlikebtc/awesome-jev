@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 139 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 141 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 133 · wire shape 2 · example only 0 · independent reports 10 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 135 · wire shape 2 · example only 0 · independent reports 10 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -245,6 +245,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
 
+- **[JEV Safety Gateway](https://github.com/dark-hxx/jev-safety-gateway)** — Reverse proxy between nginx and an OpenAI-compatible LLM backend that extracts each request's user input, asks Jev a noul on whether it is safe, and blocks harmful requests while passing the rest through; rotates over several API keys. Chinese-first docs.
+  <sub>`Project` · dark-hxx · `Go` · `noul` · call site [`internal/jev/client.go`](https://github.com/dark-hxx/jev-safety-gateway/blob/HEAD/internal/jev/client.go)</sub>
+
 - **[jev-agent-authorization](https://github.com/kinde-starter-kits/jev-agent-authorization)** — Jev agent authorization for MCP tool calls: Kinde identity and permissions plus Jev's typed, calibrated decisions, checked server-side before every call runs <sub>(upstream description)</sub>
   <sub>`Plugin` · kinde-starter-kits · `TS` · call site [`convex/jev/client.ts`](https://github.com/kinde-starter-kits/jev-agent-authorization/blob/HEAD/convex/jev/client.ts), read 2026-09-24</sub>
 
@@ -439,6 +442,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[wakegate](https://github.com/shitianfang/wakegate)** — Ask Jev whether a sleeping agent's wakeup is worth a full LLM turn before you resume it. A fail-open wake gate for long-running agents on Workers, Durable Objects and Node. <sub>(upstream description)</sub>
   <sub>`Project` · shitianfang · `TS` · call site [`src/index.ts`](https://github.com/shitianfang/wakegate/blob/HEAD/src/index.ts), read 2026-09-22</sub>
+
+- **[x402check](https://github.com/caiovicentino/jev-risk-check-provider)** — Pre-payment risk-check provider for x402 agents and wallets: sanctions lists, phishing feeds, transaction simulation and drainer-kit fingerprints, plus Jev nouls, a choice and a score that read what the agent acted on for injected instructions. Verdicts are signed attestations.
+  <sub>`Project` · caiovicentino · `TS` · `noul` · `choice` · `score` · call site [`src/jev.ts`](https://github.com/caiovicentino/jev-risk-check-provider/blob/HEAD/src/jev.ts) · ⚠ `marketing`</sub>
 
 - **[XavierJev](https://github.com/liu-x27/XavierJev)** — A local decision layer in Jev's shape: yes/no, choice and rubric questions read off one token's logprobs from a local model, with a Claude Code permission gate measured on held-out command sets.
   <sub>`Jev-like alternative` · Xinyu Liu · `TS` · `noul` · `choice` · `score` · cited file [`src/gate.ts`](https://github.com/liu-x27/XavierJev/blob/HEAD/src/gate.ts), read 2026-09-25 · ⚠ `not Jev itself` `AI-written`</sub>

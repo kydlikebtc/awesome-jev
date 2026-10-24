@@ -84,7 +84,7 @@ arguments are the hard part. This chooses _which_; something still fills in the
 arguments.
 
 <!-- catalogued-tool-selection:start -->
-**Tool selection** in the catalogue: 228 rows, [each listed with its caveats](by-pattern/tool-selection.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en).
+**Tool selection** in the catalogue: 230 rows, [each listed with its caveats](by-pattern/tool-selection.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en).
 <!-- catalogued-tool-selection:end -->
 
 ---
@@ -127,7 +127,7 @@ dropping something that turns out to matter — so do not pay for it until conte
 pressure is real.
 
 <!-- catalogued-context-compaction:start -->
-**Context compaction** in the catalogue: 35 rows, [each listed with its caveats](by-pattern/context-compaction.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en).
+**Context compaction** in the catalogue: 36 rows, [each listed with its caveats](by-pattern/context-compaction.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en).
 <!-- catalogued-context-compaction:end -->
 
 ---
@@ -148,7 +148,7 @@ for the other 1%. The vendor's jaggedness doc names adversarial content as a
 known weak spot.
 
 <!-- catalogued-safety-gating:start -->
-**Safety gating** in the catalogue: 139 rows, [each listed with its caveats](by-pattern/safety-gating.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en).
+**Safety gating** in the catalogue: 141 rows, [each listed with its caveats](by-pattern/safety-gating.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en).
 <!-- catalogued-safety-gating:end -->
 
 ---
@@ -206,7 +206,7 @@ belongs in config, reviewed against measured outcomes. See
 [`../examples/README.md`](../examples/README.md).
 
 <!-- catalogued-human-escalation:start -->
-**Human escalation** in the catalogue: 71 rows, [each listed with its caveats](by-pattern/human-escalation.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en).
+**Human escalation** in the catalogue: 72 rows, [each listed with its caveats](by-pattern/human-escalation.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en).
 <!-- catalogued-human-escalation:end -->
 
 ---
@@ -225,7 +225,7 @@ tiers in code — the second is easier to re-tune when your tiers change.
 the cheap path is genuinely adequate for the easy cases before building a router.
 
 <!-- catalogued-model-routing:start -->
-**Model routing** in the catalogue: 45 rows, [each listed with its caveats](by-pattern/model-routing.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en).
+**Model routing** in the catalogue: 46 rows, [each listed with its caveats](by-pattern/model-routing.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en).
 <!-- catalogued-model-routing:end -->
 
 ---
@@ -268,7 +268,7 @@ line-granular search.
 does not replace an index over a large corpus.
 
 <!-- catalogued-search-ranking:start -->
-**Search & ranking** in the catalogue: 65 rows, [each listed with its caveats](by-pattern/search-ranking.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en).
+**Search & ranking** in the catalogue: 66 rows, [each listed with its caveats](by-pattern/search-ranking.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en).
 <!-- catalogued-search-ranking:end -->
 
 ---
@@ -307,7 +307,7 @@ lets you fall back to a coarser level instead of guessing a fine one.
 **When not to:** when your taxonomy has overlapping leaves. Fix the taxonomy.
 
 <!-- catalogued-classification:start -->
-**Classification** in the catalogue: 119 rows, [each listed with its caveats](by-pattern/classification.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en).
+**Classification** in the catalogue: 122 rows, [each listed with its caveats](by-pattern/classification.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en).
 <!-- catalogued-classification:end -->
 
 ---
@@ -343,7 +343,7 @@ fills a review queue, not as an approver. Approval stays with a person or a
 deterministic rule.
 
 <!-- catalogued-document-triage:start -->
-**Document triage** in the catalogue: 20 rows, [each listed with its caveats](by-pattern/document-triage.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=en).
+**Document triage** in the catalogue: 21 rows, [each listed with its caveats](by-pattern/document-triage.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=en).
 <!-- catalogued-document-triage:end -->
 
 ---
@@ -374,7 +374,7 @@ your "scale" is really unordered categories wearing a number.
 rankable, which makes this the pattern for populating review queues worst-first.
 
 <!-- catalogued-content-scoring:start -->
-**Content scoring** in the catalogue: 163 rows, [each listed with its caveats](by-pattern/content-scoring.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en).
+**Content scoring** in the catalogue: 164 rows, [each listed with its caveats](by-pattern/content-scoring.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en).
 <!-- catalogued-content-scoring:end -->
 
 ---
@@ -414,7 +414,7 @@ suggestion. Read one against the patterns above, give it the ones it shows or
 keep `overview`, and set `patterns_reviewed` to the date you read it.
 
 <!-- catalogued-overview:start -->
-**Overview** in the catalogue: 457 rows, [each listed with its caveats](by-pattern/overview.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en).
+**Overview** in the catalogue: 460 rows, [each listed with its caveats](by-pattern/overview.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en).
 <!-- catalogued-overview:end -->
 
 ---

@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 457 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 460 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 369 · wire shape 49 · example only 0 · independent reports 23 · negative results 1 · no file cited 39. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 369 · wire shape 52 · example only 0 · independent reports 23 · negative results 1 · no file cited 39. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -335,6 +335,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jeeves](https://github.com/PostHog/jeeves)** — PostHog's open 9B Jev-like model (Qwen3.5-9B, LoRA, pointer head) that answers noul, choice and score directly when confident and reasons first when not, with a diffusion drafter, training code and data. The authors report it ahead of Jev on JevBench's public tiers.
   <sub>`Jev-like alternative` · posthog · `Py` · cited file [`sdk/jeeves_sdk/__init__.py`](https://github.com/PostHog/jeeves/blob/HEAD/sdk/jeeves_sdk/__init__.py) · ⚠ `not Jev itself` `vendor numbers`</sub>
 
+- **[Jeff](https://github.com/firelex/jeff)** — An open 0.8B 'System 1' model with task adapters and GGUF builds, meant to sit in front of a large local model and make quick decisions; its game runner asks one choice per turn over legal moves via /v1/systemone. The author reports 94.6% mean accuracy over 8 adapters vs 86.6% for Qwen3.8-27B.
+  <sub>`Jev-like alternative` · firelex · `Py` · cited file [`src/jeff/games/common.py`](https://github.com/firelex/jeff/blob/HEAD/src/jeff/games/common.py) · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[jev](https://github.com/anilsenay/jev)** — Unofficial Go client for TypeSafe's System One API and its model, Jev. <sub>(upstream description)</sub>
   <sub>`SDK` · anilsenay · `Go` · call site [`client.go`](https://github.com/anilsenay/jev/blob/HEAD/client.go), read 2026-09-24</sub>
 
@@ -422,6 +425,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-sim](https://github.com/dashbi1/jev-sim)** — Jev-compatible /v1/systemone server reading typed decisions from LLM logits, benchmarked against TypeSafe's Jev on the same items via JevBench <sub>(upstream description)</sub>
   <sub>`Benchmark` · dashbi1 · `Py` · call site [`jev_sim/cli.py`](https://github.com/dashbi1/jev-sim/blob/HEAD/jev_sim/cli.py), read 2026-09-22</sub>
 
+- **[Jev-Style](https://github.com/lawrence3699/jev-style)** — Small local decision models on Qwen3.5 (2B and 0.8B) with a /v1/systemone server, an MCP server with decide, noul, choice and score tools, a Claude Code PreToolUse guard and an eval command for your own labels. The author reports 73.6% on JevBench v1.4.1's public items, self-run.
+  <sub>`Jev-like alternative` · lawrence3699 · `Py` · cited file [`jev_style/client.py`](https://github.com/lawrence3699/jev-style/blob/HEAD/jev_style/client.py) · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[jev-symfony-bundle](https://github.com/vbcherepanov/jev-symfony-bundle)** — Unofficial Symfony bundle for TypeSafe AI's Jev: typed client, validator constraints, Messenger, Workflow guards and profiler panel <sub>(upstream description)</sub>
   <sub>`SDK` · vbcherepanov · `PHP` · call site [`src/Client/JevClientInterface.php`](https://github.com/vbcherepanov/jev-symfony-bundle/blob/HEAD/src/Client/JevClientInterface.php), read 2026-09-24</sub>
 
@@ -454,6 +460,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[origin-civilization](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION)** — AI life-and-civilization simulation: TypeSafe Jev makes every decision (typed, probabilistic, auditable); LLMs plan — OpenAI-compatible APIs, local models (Ollama, LM Studio), Claude Code, Codex. <sub>(upstream description)</sub>
   <sub>`Benchmark` · jacquesgariepy · `TS` · call site [`legacy/source/providers.js`](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION/blob/HEAD/legacy/source/providers.js), read 2026-09-22</sub>
+
+- **[RSI-Jev](https://github.com/Shanghua-Gao/RSI-Jev)** — An agent loop that proposes hypotheses, pre-registers predictions, trains and retires open decision models answering noul, choice and score in the /v1/systemone shape; 496 experiments written up, failures included. The author reports 65.64 on the public Decision Index 0.3 set for the 27B VL model.
+  <sub>`Jev-like alternative` · shanghua-gao · `Py` · cited file [`rsijev/contract.py`](https://github.com/Shanghua-Gao/RSI-Jev/blob/HEAD/rsijev/contract.py) · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[s1_ruby](https://github.com/innocentdiaz/s1_ruby)** — Makes S1-model 'measurement' (and the collapse that follows it) a Ruby primitive. <sub>(upstream description)</sub>
   <sub>`SDK` · innocentdiaz · `Rb` · call site [`lib/s1/providers/typesafe.rb`](https://github.com/innocentdiaz/s1_ruby/blob/HEAD/lib/s1/providers/typesafe.rb), read 2026-09-24 · ⚠ `one commit`</sub>

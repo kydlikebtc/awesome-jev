@@ -4,11 +4,11 @@
 
 _Classify and route incoming documents, invoices and forms._
 
-Every catalogued example of this decision — 20 of them. The same rows, with caveats, are in [the index](../../README.md#document-triage); [the site](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 21 of them. The same rows, with caveats, are in [the index](../../README.md#document-triage); [the site](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#document-triage): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 19 · wire shape 0 · example only 0 · independent reports 2 · negative results 0 · no file cited 1. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 20 · wire shape 0 · example only 0 · independent reports 2 · negative results 0 · no file cited 1. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -79,6 +79,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[last-exit](https://github.com/0x963D/last-exit)** — A cyberpunk border encounter powered by TypeSafe Jev. Bluff the guard. Inspect the receipts. <sub>(upstream description)</sub>
   <sub>`Project` · 0x963d · `JS` · call site [`lib/hosted.mjs`](https://github.com/0x963D/last-exit/blob/HEAD/lib/hosted.mjs), read 2026-09-22</sub>
+
+- **[Quicksilver](https://github.com/UditAkhourii/quicksilver)** — Claude Code skill that hands relevance calls to Jev: one noul per file, log line or ticket ('which of these files handle auth?'), asked in parallel and sorted by probability, so Claude gets a shortlist with confidences instead of reading everything.
+  <sub>`Plugin` · uditakhourii · `JS` · `noul` · call site [`skills/quicksilver/scripts/qs.mjs`](https://github.com/UditAkhourii/quicksilver/blob/HEAD/skills/quicksilver/scripts/qs.mjs)</sub>
 
 - **[tiab-review-plugin](https://github.com/youkiti/tiab-review-plugin)** — A Chrome extension that speeds up title-and-abstract screening for systematic reviews, published on the Chrome Web Store.
   <sub>`Plugin` · youkiti · `TS` · call site [`src/lib/providers/typesafe.ts`](https://github.com/youkiti/tiab-review-plugin/blob/HEAD/src/lib/providers/typesafe.ts), read 2026-09-24</sub>
