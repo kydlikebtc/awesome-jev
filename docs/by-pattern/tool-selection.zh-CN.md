@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 230 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 233 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 222 · 接口形态 4 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 225 · 接口形态 4 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -444,6 +444,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jet](https://github.com/arczhi/jet)** — 原生面向 TypeSafe（Jev）的编码智能体，基于递归式 LLM 上下文分解，配有原生 macOS 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arczhi · `Py` · 调用点 [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py)，2026-09-24 阅读</sub>
 
+- **[Jev Browser Bridge](https://github.com/lexmount/jev-browser-bridge)** — 让 Jev 浏览器 Agent 运行在任何支持 CDP 的浏览器上，包括从不渲染页面的浏览器：它读取 DOM 而不是坐标，向 Jev 问一个 choice 选操作、再问一个 choice 选目标。作者报告在六种浏览器上的 172 个 MiniWoB++ 回合中成功率为 59–65%，基于坐标的读取方式为 24–31%。 <sub>(机翻)</sub>
+  <sub>`开源项目` · lexmount · `Py` · `choice` · 调用点 [`jev_browser_bridge/model.py`](https://github.com/lexmount/jev-browser-bridge/blob/HEAD/jev_browser_bridge/model.py) · ⚠ `厂商自报数据`</sub>
+
 - **[Jev Plays Pokémon Red](https://github.com/christianmat/jev-pokemon)** — 让 Jev 通关《宝可梦 红》的框架：读取模拟器内存，列出合法选项及相关事实（属性克制、伤害估计、离目标还有多远），由 Jev 选一个。37 小时 40 分钟内共做出 16,150 次决策，花费约 1.65 美元，通过 Vercel AI Gateway 上的 AI SDK 调用。 <sub>(机翻)</sub>
   <sub>`开源项目` · christianmat · `TS` · 调用点 [`src/jev/gateway.ts`](https://github.com/christianmat/jev-pokemon/blob/HEAD/src/jev/gateway.ts) · ⚠ `宣称未核实`</sub>
 
@@ -458,6 +461,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-behavior-study](https://github.com/RINNECODER/jev-behavior-study)** — 独立的 Jev 1.13.0 行为研究：报告、受控提示实验、原始结果与离线验证。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · rinnecoder · `Py` · 调用点 [`behavior_study.py`](https://github.com/RINNECODER/jev-behavior-study/blob/HEAD/behavior_study.py)，2026-09-22 阅读</sub>
+
+- **[jev-browse](https://github.com/danielnc/jev-browse)** — 为 browser-harness 提供的辅助函数，让 Claude Code 或 Codex 用一次 fast_run 调用交出整个网站子任务：每一步都由 Jev 决定，必须停下时返回带类型的原因。它移植自 browser-use/jev-ultrafast；作者报告速度快 1.6–3.0 倍、成本低 2.1–5.3 倍。 <sub>(机翻)</sub>
+  <sub>`开源项目` · danielnc · `Py` · 调用点 [`jev_browse/config.py`](https://github.com/danielnc/jev-browse/blob/HEAD/jev_browse/config.py) · ⚠ `厂商自报数据`</sub>
 
 - **[jev-browse](https://github.com/0x7067/jev-browse)** — 以 Jev（TypeSafe）作为决策模型的浏览器自动化。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · 0x7067 · `JS` · 调用点 [`bundled/cli.mjs`](https://github.com/0x7067/jev-browse/blob/HEAD/bundled/cli.mjs)，2026-09-24 阅读</sub>
@@ -521,6 +527,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-in-codex](https://github.com/teempai/jev-in-codex)** — 通过 MCP 为 Codex 提供由 Jev 驱动的工具与技能选择、上下文搜索和输出分诊。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · teempai · `TS` · 调用点 [`src/labelling.ts`](https://github.com/teempai/jev-in-codex/blob/HEAD/src/labelling.ts)，2026-09-24 阅读</sub>
+
+- **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — 一套 Claude Code 工具包：PreToolUse 守卫先用免费的代码预筛放行约 93% 的工具调用，其余交给 Jev 判断（放行、警告、改写或拦截，出错时默认放行）；还能为子 Agent 选择合适的规格，并把 Jev 接入文件搜索、浏览和代码审阅。作者报告浏览器任务 9/9 成功，Claude 花费仅 0.0008 美元。 <sub>(机翻)</sub>
+  <sub>`插件` · jonathanavis96 · `Py` · `choice` · `noul` · 调用点 [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py) · ⚠ `厂商自报数据`</sub>
 
 - **[jev-lab](https://github.com/jammaru/jev-lab)** — 100 个 AI NPC 住在一个小镇里：Jev 选择下一步动作，世界自己写故事。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jammaru · `TS` · 调用点 [`apps/shogi-server/src/jev.ts`](https://github.com/jammaru/jev-lab/blob/HEAD/apps/shogi-server/src/jev.ts)，2026-09-22 阅读</sub>

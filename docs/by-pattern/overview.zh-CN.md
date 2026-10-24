@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 460 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 464 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 369 · 接口形态 52 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 39。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 371 · 接口形态 54 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 39。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -290,6 +290,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[WaterSheep](https://github.com/SamratDuttaOfficial/WaterSheep)** — 开源的 Jev 替代方案（Apache-2.0）：基于 ModernBERT 微调的模型，在本地通过 POST /v1/systemone 提供服务，回答 noul、choice、score 以及多标签问题，并为每个选项给出概率。 <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★10+ · SamratDuttaOfficial · `Py` · 引用文件 [`watersheep/cli.py`](https://github.com/SamratDuttaOfficial/WaterSheep/blob/HEAD/watersheep/cli.py)，2026-10-03 阅读 · ⚠ `并非 Jev 本身` `作者自荐`</sub>
 
+- **[10 Levels of Jev](https://github.com/disler/ten-levels-of-jev)** — 把 Jev 的三十种用法排成十个层级：从普通代码里的一个“聪明的 if”，到 pi 编程 Agent 里的钩子和工具，最后是自己编写问题的 Agent。附带在线实验台、终端运行器、含 201 个测试的离线模拟器，以及配套的 YouTube 视频。 <sub>(机翻)</sub>
+  <sub>`教程` · disler · `TS` · `noul` · `choice` · `score` · 调用点 [`.claude/skills/hyper-jev/templates/starter/src/core/client.ts`](https://github.com/disler/ten-levels-of-jev/blob/HEAD/.claude/skills/hyper-jev/templates/starter/src/core/client.ts)</sub>
+
 - **[@ai-sdk/typesafe-ai provider](https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai)** — 直连 TypeSafe 的 AI SDK provider 包，示例覆盖三种问题类型以及嵌套的 criteria 写法。
   <sub>`SDK` · `TS` · `JS` · `choice` · `score` · `noul`</sub>
 
@@ -316,6 +319,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[decido](https://github.com/yairshy/decido)** — 给 Python 的概率式决策：可用 Jev 也可自带 provider，配合 Playwright 抓取。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · yairshy · `Py` · 调用点 [`src/decido/providers/typesafe.py`](https://github.com/yairshy/decido/blob/HEAD/src/decido/providers/typesafe.py)，2026-09-22 阅读</sub>
+
+- **[Decis](https://github.com/chaitin/Decis)** — 可自托管的开源决策模型推理服务器，实现了 /v1/systemone 协议，官方 TypeSafe SDK 只需改 base_url 即可接入。每个引擎一个内置权重的 Docker 镜像（laya-multilingual、kev-0.8b 和两个 Jeff 版本），另附游戏演示场。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · chaitin · `Py` · 引用文件 [`examples/python_sdk.py`](https://github.com/chaitin/Decis/blob/HEAD/examples/python_sdk.py) · ⚠ `并非 Jev 本身`</sub>
 
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)** — 面向基于文档的决策模型的开放基准运行框架。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · hanno-labs · `Py` · 调用点 [`src/decision_bench/models/jev_openrouter.py`](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py)，2026-09-24 阅读</sub>
@@ -437,6 +443,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevclient](https://github.com/AboveColin/jevclient)** — Jev 的异步 Python 客户端：类型化问题进，概率与选择出，没有散文需要解析。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · abovecolin · `Py` · 调用点 [`jevclient/const.py`](https://github.com/AboveColin/jevclient/blob/HEAD/jevclient/const.py)，2026-09-22 阅读</sub>
 
+- **[JevEmbed](https://github.com/HITsz-TMG/JevEmbed)** — 把嵌入模型变成 choice、score、noul 作答器的工具包：包括数据合成、微调、/v1/systemone 服务器、基准测试模块和演示场。已在 Hugging Face 发布微调后的 Qwen3-Embedding 与 KaLM 模型，以及含 167 万道题的数据集。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · hitsz-tmg · `Py` · 引用文件 [`src/jevembed/server.py`](https://github.com/HITsz-TMG/JevEmbed/blob/HEAD/src/jevembed/server.py) · ⚠ `并非 Jev 本身`</sub>
+
 - **[jevgo](https://github.com/fgn/jevgo)** — System One API 的 Go 客户端，可选接入 Langfuse 观测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · fgn · `Go` · 调用点 [`client.go`](https://github.com/fgn/jevgo/blob/HEAD/client.go)，2026-09-22 阅读</sub>
 
@@ -517,6 +526,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[typesafe-client](https://github.com/JedimEmO/typesafe-client)** — 非官方的类型化异步 Rust 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · jedimemo · `Rs` · 调用点 [`crates/typesafe-client/src/client/mod.rs`](https://github.com/JedimEmO/typesafe-client/blob/HEAD/crates/typesafe-client/src/client/mod.rs)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[typesafe-client (Go and Rust)](https://github.com/haileyok/typesafe-client)** — 非官方的 System One API 客户端，提供 Go（仅用标准库）和 Rust 两个版本：支持类型化的 noul、choice、score 问题，沿用官方 SDK 的重试策略，带请求 ID 的类型化错误、响应校验、GET /v1/models 以及网关支持。 <sub>(机翻)</sub>
+  <sub>`SDK` · haileyok · `Go` · `Rs` · `noul` · `choice` · `score` · 调用点 [`go/typesafe.go`](https://github.com/haileyok/typesafe-client/blob/HEAD/go/typesafe.go)</sub>
 
 - **[TypeSafe-compatible API on Vercel AI Gateway](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe)** — 只改一个 baseURL 就能把官方 TypeSafe SDK 指向 Vercel，也可以直接用 cURL 调网关的 systemone 端点。
   <sub>`平台集成` · `TS` · `sh` · `noul`</sub>

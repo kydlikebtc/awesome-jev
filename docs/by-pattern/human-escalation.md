@@ -4,11 +4,11 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 72 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 73 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#human-escalation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 57 · wire shape 5 · example only 0 · independent reports 10 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 58 · wire shape 5 · example only 0 · independent reports 10 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -152,6 +152,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-block-android-ad](https://github.com/ufec/jev-block-android-ad)** — JevNoiseGate filters unwanted notifications and SMS on Android. Rather than matching keywords, an LLM decides what's noise — and only what it explicitly flags is blocked. Verification codes are matched on-device and never uploaded; anything uncertain passes through. <sub>(upstream description)</sub>
   <sub>`Project` · ufec · `Kt` · call site [`app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt`](https://github.com/ufec/jev-block-android-ad/blob/HEAD/app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt), read 2026-09-22</sub>
+
+- **[jev-browse](https://github.com/danielnc/jev-browse)** — Helpers for browser-harness that let Claude Code or Codex hand off a whole website sub-task in one fast_run call, with each step decided by Jev and a typed reason returned when it must stop. A port of browser-use/jev-ultrafast; the author reports 1.6–3.0x faster and 2.1–5.3x cheaper runs.
+  <sub>`Project` · danielnc · `Py` · call site [`jev_browse/config.py`](https://github.com/danielnc/jev-browse/blob/HEAD/jev_browse/config.py) · ⚠ `vendor numbers`</sub>
 
 - **[jev-calibration-audit](https://github.com/tapesymbolstate/jev-calibration-audit)** — Independent API-only calibration audit of TypeSafe AI's Jev decision model <sub>(upstream description)</sub>
   <sub>`Benchmark` · jujumilk3 · `Py` · call site [`src/jev_audit/client.py`](https://github.com/tapesymbolstate/jev-calibration-audit/blob/HEAD/src/jev_audit/client.py), read 2026-09-22 · ⚠ `one commit`</sub>

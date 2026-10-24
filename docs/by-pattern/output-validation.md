@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 134 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 135 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 129 · wire shape 1 · example only 0 · independent reports 11 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 130 · wire shape 1 · example only 0 · independent reports 11 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -268,6 +268,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-decisions](https://github.com/bojansandhaus/jev-decisions-hermes)** — Jev Decisions Plugin for Hermes (and other AI Agents): tool risk reviews, human approval recommendations, evidence checks, and a local decision journal.
   <sub>`Plugin` · bojansandhaus · `Py` · call site [`jev_client.py`](https://github.com/bojansandhaus/jev-decisions-hermes/blob/HEAD/jev_client.py), read 2026-09-22</sub>
+
+- **[jev-enforce](https://github.com/erkamyaman/jev-enforce)** — Claude Code plugin that checks every reply and file edit against your CLAUDE.md or AGENTS.md: one Jev noul per rule in a single request, and broken rules are quoted back as a Stop or PostToolUse block so Claude fixes them in the same turn. Also a CLI for CI.
+  <sub>`Plugin` · erkamyaman · `TS` · `noul` · call site [`dist/src/jev.js`](https://github.com/erkamyaman/jev-enforce/blob/HEAD/dist/src/jev.js)</sub>
 
 - **[jev-enterprise-decision-fabric](https://github.com/ghubnab99/jev-enterprise-decision-fabric)** — Architecture for running many semantic decisions through one validated path, with a labelled 111-case benchmark comparing TypeSafe Jev against a Claude baseline, and a dashboard for inspecting any single decision. Experimental, not production. <sub>(upstream description)</sub>
   <sub>`Benchmark` · ghubnab99 · `C#` · call site [`src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs`](https://github.com/ghubnab99/jev-enterprise-decision-fabric/blob/HEAD/src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs), read 2026-09-22</sub>

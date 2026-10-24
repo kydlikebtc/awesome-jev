@@ -84,7 +84,7 @@ arguments are the hard part. This chooses _which_; something still fills in the
 arguments.
 
 <!-- catalogued-tool-selection:start -->
-**Tool selection** in the catalogue: 230 rows, [each listed with its caveats](by-pattern/tool-selection.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en).
+**Tool selection** in the catalogue: 233 rows, [each listed with its caveats](by-pattern/tool-selection.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en).
 <!-- catalogued-tool-selection:end -->
 
 ---
@@ -148,7 +148,7 @@ for the other 1%. The vendor's jaggedness doc names adversarial content as a
 known weak spot.
 
 <!-- catalogued-safety-gating:start -->
-**Safety gating** in the catalogue: 141 rows, [each listed with its caveats](by-pattern/safety-gating.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en).
+**Safety gating** in the catalogue: 142 rows, [each listed with its caveats](by-pattern/safety-gating.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en).
 <!-- catalogued-safety-gating:end -->
 
 ---
@@ -169,7 +169,7 @@ says the output is weak; it does not say how to fix it. Pair it with a generativ
 critique for the cases it rejects.
 
 <!-- catalogued-output-validation:start -->
-**Output validation** in the catalogue: 134 rows, [each listed with its caveats](by-pattern/output-validation.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en).
+**Output validation** in the catalogue: 135 rows, [each listed with its caveats](by-pattern/output-validation.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en).
 <!-- catalogued-output-validation:end -->
 
 ---
@@ -185,7 +185,7 @@ critique for the cases it rejects.
 Reach for a decision model for the messy cases, after the deterministic rules.
 
 <!-- catalogued-retry-control:start -->
-**Retry control** in the catalogue: 7 rows, [each listed with its caveats](by-pattern/retry-control.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=en).
+**Retry control** in the catalogue: 8 rows, [each listed with its caveats](by-pattern/retry-control.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=en).
 <!-- catalogued-retry-control:end -->
 
 ---
@@ -206,7 +206,7 @@ belongs in config, reviewed against measured outcomes. See
 [`../examples/README.md`](../examples/README.md).
 
 <!-- catalogued-human-escalation:start -->
-**Human escalation** in the catalogue: 72 rows, [each listed with its caveats](by-pattern/human-escalation.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en).
+**Human escalation** in the catalogue: 73 rows, [each listed with its caveats](by-pattern/human-escalation.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en).
 <!-- catalogued-human-escalation:end -->
 
 ---
@@ -225,7 +225,7 @@ tiers in code — the second is easier to re-tune when your tiers change.
 the cheap path is genuinely adequate for the easy cases before building a router.
 
 <!-- catalogued-model-routing:start -->
-**Model routing** in the catalogue: 46 rows, [each listed with its caveats](by-pattern/model-routing.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en).
+**Model routing** in the catalogue: 48 rows, [each listed with its caveats](by-pattern/model-routing.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en).
 <!-- catalogued-model-routing:end -->
 
 ---
@@ -307,7 +307,7 @@ lets you fall back to a coarser level instead of guessing a fine one.
 **When not to:** when your taxonomy has overlapping leaves. Fix the taxonomy.
 
 <!-- catalogued-classification:start -->
-**Classification** in the catalogue: 122 rows, [each listed with its caveats](by-pattern/classification.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en).
+**Classification** in the catalogue: 124 rows, [each listed with its caveats](by-pattern/classification.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en).
 <!-- catalogued-classification:end -->
 
 ---
@@ -343,7 +343,7 @@ fills a review queue, not as an approver. Approval stays with a person or a
 deterministic rule.
 
 <!-- catalogued-document-triage:start -->
-**Document triage** in the catalogue: 21 rows, [each listed with its caveats](by-pattern/document-triage.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=en).
+**Document triage** in the catalogue: 22 rows, [each listed with its caveats](by-pattern/document-triage.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=en).
 <!-- catalogued-document-triage:end -->
 
 ---
@@ -414,7 +414,7 @@ suggestion. Read one against the patterns above, give it the ones it shows or
 keep `overview`, and set `patterns_reviewed` to the date you read it.
 
 <!-- catalogued-overview:start -->
-**Overview** in the catalogue: 460 rows, [each listed with its caveats](by-pattern/overview.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en).
+**Overview** in the catalogue: 464 rows, [each listed with its caveats](by-pattern/overview.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en).
 <!-- catalogued-overview:end -->
 
 ---

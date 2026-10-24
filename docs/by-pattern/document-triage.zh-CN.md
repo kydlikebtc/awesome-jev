@@ -4,11 +4,11 @@
 
 _对进来的文档、发票、表单做分类和路由。_
 
-这个决策的全部已收录例子 —— 共 21 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#文档分拣)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 22 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#文档分拣)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#document-triage)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#document-triage)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 20 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 0 · 未引用文件 1。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 21 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 0 · 未引用文件 1。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -49,6 +49,9 @@ _对进来的文档、发票、表单做分类和路由。_
 
 - **[decision-first](https://github.com/harrymunro/decision-first)** — 一个 agent 技能：识别出有界判断步骤，优先尝试用类型化决策模型解决。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · harrymunro · `Py` · 调用点 [`skills/decision-first/scripts/ask.py`](https://github.com/harrymunro/decision-first/blob/HEAD/skills/decision-first/scripts/ask.py)，2026-09-22 阅读</sub>
+
+- **[Jev Playwright](https://github.com/arthurfiorette/jev-playwright)** — 一个 Playwright 报告器：在启动任何浏览器之前，询问 Jev 某次代码改动可能影响哪些现有端到端测试，并跳过明显无关的测试。默认会发送改动路径、补丁和测试代码；README 提醒它可能漏掉受影响的测试。 <sub>(机翻)</sub>
+  <sub>`开源项目` · arthurfiorette · `TS` · 调用点 [`src/config.ts`](https://github.com/arthurfiorette/jev-playwright/blob/HEAD/src/config.ts)</sub>
 
 - **[jev-boe-demo](https://github.com/Tatuck/jev-boe-demo)** — 每天把 TypeSafe 的 Jev 模型应用于西班牙官方公报（BOE）的演示。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tatuck · `TS` · 调用点 [`pipeline/analyze.ts`](https://github.com/Tatuck/jev-boe-demo/blob/HEAD/pipeline/analyze.ts)，2026-09-24 阅读 · ⚠ `无许可证`</sub>

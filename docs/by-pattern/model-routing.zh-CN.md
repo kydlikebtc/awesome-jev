@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 46 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 48 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 39 · 接口形态 1 · 仅示例 0 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 41 · 接口形态 1 · 仅示例 0 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -108,6 +108,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jev AI Use Cases](https://medium.com/data-science-in-your-pocket/jev-ai-use-cases-9a87d57ac3b4)** — 逐个用例走一遍 —— 智能体路由、智能体内部的决策层、工单分拣 —— 每个都给出具体的选项集和示例响应。
   <sub>`教程` · Mehul Gupta · `Py` · `choice` · ⚠ `付费墙`</sub>
 
+- **[Jev Switch](https://github.com/ARCJ137442/jev-switch)** — 一个轻量的 Jev 协议网关：对外提供 POST /v1/systemone，并按可编辑的路由图把每次调用转发到上游（TypeSafe、Vercel、OpenRouter、Laya 或本地服务），支持优先级和故障切换。Rust 守护进程，附带 React 控制台、Tauri 桌面应用和 Docker 镜像。文档以中文为主。 <sub>(机翻)</sub>
+  <sub>`开源项目` · arcj137442 · `Rs` · `TS` · 调用点 [`rs/crates/jev-switch-daemon/src/admin.rs`](https://github.com/ARCJ137442/jev-switch/blob/HEAD/rs/crates/jev-switch-daemon/src/admin.rs)</sub>
+
 - **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — 实验性的逐次调用 GPT 模型路由，通过 Jev 与一个本地 Rescue 层为 Codex 服务。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · minilv · `TS` · 调用点 [`src/jev-adapter.ts`](https://github.com/miniLV/Jev-Auto-Router/blob/HEAD/src/jev-adapter.ts)，2026-09-22 阅读</sub>
 
@@ -122,6 +125,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-harness-router](https://github.com/JoacoMarc/jev-harness-router)** — 面向智能体框架的逐轮路由器：一次约 350 毫秒的 Jev 调用选出模型档位、推理力度、工具与技能，并有硬性兜底。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · joacomarc · `TS` · 调用点 [`src/jev.ts`](https://github.com/JoacoMarc/jev-harness-router/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>
+
+- **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — 一套 Claude Code 工具包：PreToolUse 守卫先用免费的代码预筛放行约 93% 的工具调用，其余交给 Jev 判断（放行、警告、改写或拦截，出错时默认放行）；还能为子 Agent 选择合适的规格，并把 Jev 接入文件搜索、浏览和代码审阅。作者报告浏览器任务 9/9 成功，Claude 花费仅 0.0008 美元。 <sub>(机翻)</sub>
+  <sub>`插件` · jonathanavis96 · `Py` · `choice` · `noul` · 调用点 [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py) · ⚠ `厂商自报数据`</sub>
 
 - **[jev-model-router](https://github.com/az9713/jev-model-router)** — 运行在 Vercel AI Gateway 上的 Jev（TypeSafe）模型路由器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · az9713 · `JS` · 调用点 [`probe.mjs`](https://github.com/az9713/jev-model-router/blob/HEAD/probe.mjs)，2026-09-24 阅读 · ⚠ `无许可证`</sub>

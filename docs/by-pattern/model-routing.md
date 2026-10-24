@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 46 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 48 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 39 · wire shape 1 · example only 0 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 41 · wire shape 1 · example only 0 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -108,6 +108,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev AI Use Cases](https://medium.com/data-science-in-your-pocket/jev-ai-use-cases-9a87d57ac3b4)** — Walks through use case after use case — agent routing, an in-agent decision layer, ticket triage — each with a concrete option set and a sample response.
   <sub>`Tutorial` · Mehul Gupta · `Py` · `choice` · ⚠ `paywall`</sub>
 
+- **[Jev Switch](https://github.com/ARCJ137442/jev-switch)** — Lightweight gateway that serves POST /v1/systemone and routes each call through an editable graph of upstreams (TypeSafe, Vercel, OpenRouter, Laya or a local server) with priorities and failover. Rust daemon with a React console, Tauri desktop app and Docker image. Chinese-first docs.
+  <sub>`Project` · arcj137442 · `Rs` · `TS` · call site [`rs/crates/jev-switch-daemon/src/admin.rs`](https://github.com/ARCJ137442/jev-switch/blob/HEAD/rs/crates/jev-switch-daemon/src/admin.rs)</sub>
+
 - **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — Jev Auto Router (Jev Router): experimental per-call GPT model routing for Codex via TypeSafe Jev and a local Responses proxy, with independent task verification. <sub>(upstream description)</sub>
   <sub>`Plugin` · minilv · `TS` · call site [`src/jev-adapter.ts`](https://github.com/miniLV/Jev-Auto-Router/blob/HEAD/src/jev-adapter.ts), read 2026-09-22</sub>
 
@@ -122,6 +125,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-harness-router](https://github.com/JoacoMarc/jev-harness-router)** — Per-turn router for agent harnesses: one 350ms Jev call picks the model tier, effort, tools and skill, behind a hard deadline with a regex fallback. Claude Agent SDK adapter included. <sub>(upstream description)</sub>
   <sub>`SDK` · joacomarc · `TS` · call site [`src/jev.ts`](https://github.com/JoacoMarc/jev-harness-router/blob/HEAD/src/jev.ts), read 2026-09-24</sub>
+
+- **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — Claude Code kit: a PreToolUse guard where a free pre-filter passes about 93% of tool calls and Jev judges the rest (allow, warn, rewrite or block; fails open), sub-agent sizing, and Jev wired into file search, browsing and review. The author reports 9/9 browser runs at 0.0008 USD of Claude spend.
+  <sub>`Plugin` · jonathanavis96 · `Py` · `choice` · `noul` · call site [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py) · ⚠ `vendor numbers`</sub>
 
 - **[jev-model-router](https://github.com/az9713/jev-model-router)** — Jev (TypeSafe) model router on the Vercel AI Gateway <sub>(upstream description)</sub>
   <sub>`Project` · az9713 · `JS` · call site [`probe.mjs`](https://github.com/az9713/jev-model-router/blob/HEAD/probe.mjs), read 2026-09-24 · ⚠ `no licence`</sub>

@@ -4,11 +4,11 @@
 
 _判断失败的步骤是否值得重试。_
 
-这个决策的全部已收录例子 —— 共 7 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#重试控制)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 8 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#重试控制)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#retry-control)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#retry-control)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 6 · 接口形态 1 · 仅示例 0 · 独立报告 0 · 负面结果 0 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 7 · 接口形态 1 · 仅示例 0 · 独立报告 0 · 负面结果 0 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -26,6 +26,9 @@ _判断失败的步骤是否值得重试。_
 
 - **[jev-harness](https://github.com/ismaelsoilet/jev-harness)** — 零依赖的 System One 决策框架：用 5 道语义关卡，在琐碎错误和“死循环”上替前沿 AI 智能体省下 token。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · ismaelsoilet · `Py` · 调用点 [`src/jev_harness/client.py`](https://github.com/ismaelsoilet/jev-harness/blob/HEAD/src/jev_harness/client.py)，2026-09-24 阅读</sub>
+
+- **[DuoMind](https://github.com/j1s4nn/duomind)** — 一个 OpenAI 兼容的本地服务器，把 llama.cpp 上的小模型与 Jev 搭配：在生成之前、之中和之后共 18 个决策点（是否需要推理、是否安全、输出格式、是否该停、是否重试）引导本地模型。提示词会发送给 TypeSafe，生成过程留在本地。 <sub>(机翻)</sub>
+  <sub>`开源项目` · j1s4nn · `Py` · `noul` · `choice` · 调用点 [`src/duomind/jev_client.py`](https://github.com/j1s4nn/duomind/blob/HEAD/src/duomind/jev_client.py) · ⚠ `厂商自报数据`</sub>
 
 - **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — 评判智能体的每一步：通过／重试／升级／停止。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/harnessjudge/blob/HEAD/src/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>

@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 460 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 464 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 369 · wire shape 52 · example only 0 · independent reports 23 · negative results 1 · no file cited 39. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 371 · wire shape 54 · example only 0 · independent reports 23 · negative results 1 · no file cited 39. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -290,6 +290,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[WaterSheep](https://github.com/SamratDuttaOfficial/WaterSheep)** — Open, Apache-2.0 alternative to Jev: a ModernBERT fine-tune served locally on POST /v1/systemone that answers noul, choice and score questions, plus multi-label ones, with a probability for every option.
   <sub>`Jev-like alternative` · ★10+ · SamratDuttaOfficial · `Py` · cited file [`watersheep/cli.py`](https://github.com/SamratDuttaOfficial/WaterSheep/blob/HEAD/watersheep/cli.py), read 2026-10-03 · ⚠ `not Jev itself` `self-submitted`</sub>
 
+- **[10 Levels of Jev](https://github.com/disler/ten-levels-of-jev)** — Thirty uses of Jev arranged in ten levels, from one smart if statement in plain code to hooks and tools inside the pi coding agent and finally an agent that writes its own questions. A live lab, terminal runner, offline mock with 201 tests and a companion YouTube video.
+  <sub>`Tutorial` · disler · `TS` · `noul` · `choice` · `score` · call site [`.claude/skills/hyper-jev/templates/starter/src/core/client.ts`](https://github.com/disler/ten-levels-of-jev/blob/HEAD/.claude/skills/hyper-jev/templates/starter/src/core/client.ts)</sub>
+
 - **[@ai-sdk/typesafe-ai provider](https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai)** — The AI SDK provider package for calling TypeSafe directly, with a sample covering all three question types and nested criteria shapes.
   <sub>`SDK` · `TS` · `JS` · `choice` · `score` · `noul`</sub>
 
@@ -316,6 +319,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[decido](https://github.com/yairshy/decido)** — Probabilistic decisions for Python. Use Jev or bring your own provider; crawl with Playwright. <sub>(upstream description)</sub>
   <sub>`Integration` · yairshy · `Py` · call site [`src/decido/providers/typesafe.py`](https://github.com/yairshy/decido/blob/HEAD/src/decido/providers/typesafe.py), read 2026-09-22</sub>
+
+- **[Decis](https://github.com/chaitin/Decis)** — Self-hostable inference server for open decision models that implements the /v1/systemone contract, so the official TypeSafe SDK only needs base_url changed. One Docker image per engine with weights inside (laya-multilingual, kev-0.8b and two Jeff builds), plus a game playground.
+  <sub>`Jev-like alternative` · chaitin · `Py` · cited file [`examples/python_sdk.py`](https://github.com/chaitin/Decis/blob/HEAD/examples/python_sdk.py) · ⚠ `not Jev itself`</sub>
 
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)** — Open benchmark runtime for document-grounded decision models <sub>(upstream description)</sub>
   <sub>`Benchmark` · hanno-labs · `Py` · call site [`src/decision_bench/models/jev_openrouter.py`](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py), read 2026-09-24</sub>
@@ -437,6 +443,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevclient](https://github.com/AboveColin/jevclient)** — Async Python client for TypeSafe Jev. Typed questions in, probabilities and choices out, no prose to parse. <sub>(upstream description)</sub>
   <sub>`SDK` · abovecolin · `Py` · call site [`jevclient/const.py`](https://github.com/AboveColin/jevclient/blob/HEAD/jevclient/const.py), read 2026-09-22</sub>
 
+- **[JevEmbed](https://github.com/HITsz-TMG/JevEmbed)** — Toolkit that turns embedding models into choice, score and noul answerers: data synthesis, fine-tuning, a /v1/systemone server, a benchmark module and a playground. Released fine-tuned Qwen3-Embedding and KaLM checkpoints and a 1.67M-question dataset on Hugging Face.
+  <sub>`Jev-like alternative` · hitsz-tmg · `Py` · cited file [`src/jevembed/server.py`](https://github.com/HITsz-TMG/JevEmbed/blob/HEAD/src/jevembed/server.py) · ⚠ `not Jev itself`</sub>
+
 - **[jevgo](https://github.com/fgn/jevgo)** — Go client for TypeSafe AI's System One API (Jev), with optional Langfuse instrumentation <sub>(upstream description)</sub>
   <sub>`SDK` · fgn · `Go` · call site [`client.go`](https://github.com/fgn/jevgo/blob/HEAD/client.go), read 2026-09-22</sub>
 
@@ -517,6 +526,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[typesafe-client](https://github.com/JedimEmO/typesafe-client)** — Unofficial typed async Rust client for the TypeSafe System One API <sub>(upstream description)</sub>
   <sub>`SDK` · jedimemo · `Rs` · call site [`crates/typesafe-client/src/client/mod.rs`](https://github.com/JedimEmO/typesafe-client/blob/HEAD/crates/typesafe-client/src/client/mod.rs), read 2026-09-22 · ⚠ `one commit`</sub>
+
+- **[typesafe-client (Go and Rust)](https://github.com/haileyok/typesafe-client)** — Unofficial Go (stdlib only) and Rust clients for the System One API with typed noul, choice and score questions, the official SDKs' retry policy, typed errors with request IDs, response validation, GET /v1/models and gateway support.
+  <sub>`SDK` · haileyok · `Go` · `Rs` · `noul` · `choice` · `score` · call site [`go/typesafe.go`](https://github.com/haileyok/typesafe-client/blob/HEAD/go/typesafe.go)</sub>
 
 - **[TypeSafe-compatible API on Vercel AI Gateway](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe)** — Point the official TypeSafe SDK at Vercel by changing one baseURL, or call the gateway's systemone endpoint directly with cURL.
   <sub>`Integration` · `TS` · `sh` · `noul`</sub>
