@@ -15,9 +15,10 @@ Rows a script has singled out for a person to read. Each entry is a machine sign
 | [Tool selection resting on words the keyword rules no longer count · 工具选择只靠关键词规则已不再计入的词](#tool-selection-broad-words) | 65 |
 | [Overview rows with code, not yet indexed by pattern · 带代码、尚未按模式索引的 overview 行](#unsorted-overview) | 251 |
 | [Rows with code whose summary names nothing about Jev · 带代码、摘要没有提到 Jev 的行](#generic-summary) | 101 |
-| [Benchmark measurements no person has read against the report · 尚无人对照报告核读的基准测试测量](#measurement-unread) | 27 |
-| [Interfaces of alternatives no person has read in the cited files · 尚无人在所引文件中核读的替代实现接口](#wire-unread) | 14 |
-| [Thresholds no person has read in the cited file · 尚无人在所引文件中核读的阈值](#thresholds-unread) | 31 |
+| [Benchmark measurements nobody has read against the report · 人和模型都还没有对照报告读过的基准测试测量](#measurement-unread) | 27 |
+| [Interfaces of alternatives nobody has read in the cited files · 人和模型都还没有在所引文件中读过的替代实现接口](#wire-unread) | 14 |
+| [Thresholds nobody has read in the cited file · 人和模型都还没有在所引文件中读过的阈值](#thresholds-unread) | 31 |
+| [Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对](#model-read) | 42 |
 
 <a id="examples-dir"></a>
 
@@ -27,9 +28,9 @@ The cited file sits under an `examples/` or `example/` directory and the row doe
 
 引用的文件位于 `examples/` 或 `example/` 目录下，而该行没有记录 `evidence.kind`。SDK 的示例往往就是最清楚的调用点；但一个项目的示例也可能是它仅有的调用，说明不了它自己如何使用 Jev。单凭路径无法判断是哪一种。
 
-To take a row off, read the file and set `evidence.kind`: `call-site` when it is the project's own use of Jev, `example-only` when it is only an example. Citing a better file from the project's own code instead also takes it off.
+To take a row off, read the file and set `evidence.kind`: `call-site` when it is the project's own use of Jev, `example-only` when it is only an example. Citing a better file from the project's own code instead also takes it off. A model that does either records its reading in `evidence.model_read_on`, never in `evidence.read_on`.
 
-移出方法：读这个文件，然后设置 `evidence.kind`——它就是项目自身对 Jev 的使用时设为 `call-site`，只是示例时设为 `example-only`。改为引用项目自身代码中更合适的文件，也会让它移出。
+移出方法：读这个文件，然后设置 `evidence.kind`——它就是项目自身对 Jev 的使用时设为 `call-site`，只是示例时设为 `example-only`。改为引用项目自身代码中更合适的文件，也会让它移出。由模型来做时，把阅读记在 `evidence.model_read_on`，不要记在 `evidence.read_on`。
 
 | Row · 行 | Kind · 类型 | Cited file · 引用的文件 | Matched · 匹配文本 |
 | --- | --- | --- | --- |
@@ -64,9 +65,9 @@ The only string in `evidence.matched` is one of `jev-latest`, `typesafe-ai/jev`,
 
 `evidence.matched` 里唯一的字符串是 `jev-latest`, `typesafe-ai/jev`, `typesafe/jev`, `api.typesafe.ai` 之一，或一个固定的模型版本号（`jev-` 加版本号）。任何配置 Jev 的文件都会包含它们（设置文件、价格表、模型列表），不论是否真的调用 API；所以即使调用本身已经删除，每周的文本检查也可能继续通过。
 
-To take a row off, add a second string from the call itself (an import, the method called, a question type) to `evidence.matched`, then run `python3 scripts/verify_claims.py --only <slug>` to confirm the file holds every string.
+To take a row off, add a second string from the call itself (an import, the method called, a question type) to `evidence.matched`, then run `python3 scripts/verify_claims.py --only <slug>` to confirm the file holds every string. A model that does this records its reading in `evidence.model_read_on`, never in `evidence.read_on`.
 
-移出方法：从调用本身再取一个字符串（import、被调用的方法、问题类型）加入 `evidence.matched`，然后运行 `python3 scripts/verify_claims.py --only <slug>`，确认文件含有每一个字符串。
+移出方法：从调用本身再取一个字符串（import、被调用的方法、问题类型）加入 `evidence.matched`，然后运行 `python3 scripts/verify_claims.py --only <slug>`，确认文件含有每一个字符串。由模型来做时，把阅读记在 `evidence.model_read_on`，不要记在 `evidence.read_on`。
 
 | Row · 行 | Kind · 类型 | Cited file · 引用的文件 | Matched · 匹配文本 |
 | --- | --- | --- | --- |
@@ -155,9 +156,9 @@ The row carries `tool-selection`, and the keyword rules suggest it for the row's
 
 该行带有 `tool-selection`，而关键词规则只有按 2026-09-27 之前的写法才会从它的摘要和标题建议这个模式。当时的规则单凭 "control"、"harness"、"screen" 就算数，"robot"、"autonomous"、"drive" 旁边没有表示决定或动作的词也算数；`scripts/classify.py` 里现在的规则不再这样。批量收录时直接采用了规则给出的模式，所以这里的行可能从未有人对照 tool-selection 读过，也可能有人读过并同意，只是没有记录。规则在发现阶段读的是项目的 GitHub 描述；这里以摘要代替。
 
-To take a row off, read the project against [`tool-selection`](patterns.md#tool-selection). If nothing in it decides which tool or action comes next, replace `tool-selection` in `patterns` with the pattern it does show, or with `overview`. Either way, set `patterns_reviewed` to the date you read it; that alone takes off a row whose `tool-selection` was right.
+To take a row off, read the project against [`tool-selection`](patterns.md#tool-selection). If nothing in it decides which tool or action comes next, replace `tool-selection` in `patterns` with the pattern it does show, or with `overview`. Either way, set `patterns_reviewed` to the date you read it; that alone takes off a row whose `tool-selection` was right. A model that reads it sets `patterns_model_read_on` instead, which moves the row to [Read or written by a model](#model-read).
 
-移出方法：对照 [`tool-selection`](patterns.md#tool-selection) 阅读该项目。如果其中没有任何东西在决定下一步调用哪个工具或采取哪个动作，就把 `patterns` 里的 `tool-selection` 换成它实际体现的模式，或换成 `overview`。无论哪种情况，都把阅读日期写入 `patterns_reviewed`；`tool-selection` 本来就对的行，只写这个日期也会移出。
+移出方法：对照 [`tool-selection`](patterns.md#tool-selection) 阅读该项目。如果其中没有任何东西在决定下一步调用哪个工具或采取哪个动作，就把 `patterns` 里的 `tool-selection` 换成它实际体现的模式，或换成 `overview`。无论哪种情况，都把阅读日期写入 `patterns_reviewed`；`tool-selection` 本来就对的行，只写这个日期也会移出。由模型阅读时改写 `patterns_model_read_on`，该行会移到[模型读过或撰写](#model-read)一节。
 
 | Row · 行 | Stars · 星标 | Patterns in the row · 该行的模式 | Suggested until 2026-09-27 · 2026-09-27 之前的建议 | Suggested now · 现在的建议 |
 | --- | --- | --- | --- | --- |
@@ -231,13 +232,13 @@ To take a row off, read the project against [`tool-selection`](patterns.md#tool-
 
 ## Overview rows with code, not yet indexed by pattern · 带代码、尚未按模式索引的 overview 行
 
-The row is a project or a plugin with code, its only pattern is `overview`, and it records no `patterns_reviewed`. `overview` is for a row that surveys the model or the space ([patterns.md](patterns.md#overview)); it is also what the keyword rules suggest when nothing matches, and the bulk passes took the rules' patterns. The READMEs, the Overview page and the site list these rows apart, as not yet indexed by pattern. The last column is only a suggestion: what the keyword rules (`scripts/classify.py`) make of the row's summary and title, and a dash when none of them matches.
+The row is a project or a plugin with code, its only pattern is `overview`, and it records no reading against the patterns, neither a person's (`patterns_reviewed`) nor a model's (`patterns_model_read_on`). `overview` is for a row that surveys the model or the space ([patterns.md](patterns.md#overview)); it is also what the keyword rules suggest when nothing matches, and the bulk passes took the rules' patterns. The READMEs, the Overview page and the site list these rows apart, as not yet indexed by pattern. The last column is only a suggestion: what the keyword rules (`scripts/classify.py`) make of the row's summary and title, and a dash when none of them matches.
 
-该行是带代码的项目或插件，唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 本是给介绍模型或整个领域的行用的（[patterns.md](patterns.md#overview)）；它也是关键词规则什么都没匹配到时给出的建议，而批量收录时直接采用了规则给出的模式。README、Overview 页面和站点把这些行单独列为“尚未按模式索引”。最后一列只是建议：关键词规则（`scripts/classify.py`）根据该行摘要和标题给出的结果，没有任何规则匹配时显示为破折号。
+该行是带代码的项目或插件，唯一的模式是 `overview`，且没有任何对照决策模式阅读的记录：既没有人的（`patterns_reviewed`），也没有模型的（`patterns_model_read_on`）。`overview` 本是给介绍模型或整个领域的行用的（[patterns.md](patterns.md#overview)）；它也是关键词规则什么都没匹配到时给出的建议，而批量收录时直接采用了规则给出的模式。README、Overview 页面和站点把这些行单独列为“尚未按模式索引”。最后一列只是建议：关键词规则（`scripts/classify.py`）根据该行摘要和标题给出的结果，没有任何规则匹配时显示为破折号。
 
-To take a row off, read the project against [the patterns](patterns.md). Put the patterns it shows in `patterns`, or keep `overview` if it surveys the space, and set `patterns_reviewed` to the date you read it.
+To take a row off, read the project against [the patterns](patterns.md). Put the patterns it shows in `patterns`, or keep `overview` if it surveys the space, and set `patterns_reviewed` to the date you read it. A model that reads it sets `patterns_model_read_on` instead, which moves the row to [Read or written by a model](#model-read).
 
-移出方法：对照[决策模式](patterns.md)阅读该项目。把它体现的模式写进 `patterns`；如果它确实是在介绍整个领域，就保留 `overview`。然后把阅读日期写入 `patterns_reviewed`。
+移出方法：对照[决策模式](patterns.md)阅读该项目。把它体现的模式写进 `patterns`；如果它确实是在介绍整个领域，就保留 `overview`。然后把阅读日期写入 `patterns_reviewed`。由模型阅读时改写 `patterns_model_read_on`，该行会移到[模型读过或撰写](#model-read)一节。
 
 | Row · 行 | Kind · 类型 | Stars · 星标 | Keyword rules suggest (a suggestion) · 关键词规则的建议（仅供参考） |
 | --- | --- | --- | --- |
@@ -501,9 +502,9 @@ The row has code, is not TypeSafe AI's own (`official`), has no `notes`, and its
 
 该行带代码，不是 TypeSafe AI 自己发布的（`official`），没有 `notes`，而且英文摘要里没有 `jev`、`typesafe`、`System One`、`choice`、`score`、`noul`、`decision`、`confidence` 中的任何一个（不分大小写，出现在更长的词里也算）。其中多数是项目自己在 GitHub 上的描述（`summary_source`），它没有理由提到 Jev，于是读列表的人看不出这个项目让 Jev 做什么决策。这些词只是底线，不是检验：没有这些词的摘要也可能说清楚了，有这些词的也可能什么都没说。最后一列链接到该行引用的文件，与 README 和模式页面一样。
 
-To take a row off, read the cited file and write a summary that says what the project asks Jev to decide, in words that include one of those above (naming Jev is enough; the rule reads only the words), with `summary_source` set to `curated` and `summary_zh` to match (see the `summary` field rules in [CONTRIBUTING](../CONTRIBUTING.md#field-rules)); or keep the summary and add a `notes` line that says it.
+To take a row off, read the cited file and write a summary that says what the project asks Jev to decide, in words that include one of those above (naming Jev is enough; the rule reads only the words), with `summary_source` set to `curated` and `summary_zh` to match (see the `summary` field rules in [CONTRIBUTING](../CONTRIBUTING.md#field-rules)); or keep the summary and add a `notes` line that says it. A summary a model writes is labelled `model-written` instead, and the row moves to [Read or written by a model](#model-read).
 
-移出方法：读引用的文件，写一条说明该项目让 Jev 决定什么的摘要，其中要含有上面列出的某个词（写出 Jev 即可；规则只看这些词），把 `summary_source` 设为 `curated`，并相应更新 `summary_zh`（见 [CONTRIBUTING](../CONTRIBUTING.md#field-rules) 中关于 `summary` 的字段规则）；或者保留摘要，加一行 `notes` 说明这一点。
+移出方法：读引用的文件，写一条说明该项目让 Jev 决定什么的摘要，其中要含有上面列出的某个词（写出 Jev 即可；规则只看这些词），把 `summary_source` 设为 `curated`，并相应更新 `summary_zh`（见 [CONTRIBUTING](../CONTRIBUTING.md#field-rules) 中关于 `summary` 的字段规则）；或者保留摘要，加一行 `notes` 说明这一点。由模型撰写的摘要改标为 `model-written`，该行会移到[模型读过或撰写](#model-read)一节。
 
 | Row · 行 | Kind · 类型 | Stars · 星标 | Summary · 摘要 | Summary source · 摘要来源 | Cited file · 引用的文件 |
 | --- | --- | --- | --- | --- | --- |
@@ -611,15 +612,15 @@ To take a row off, read the cited file and write a summary that says what the pr
 
 <a id="measurement-unread"></a>
 
-## Benchmark measurements no person has read against the report · 尚无人对照报告核读的基准测试测量
+## Benchmark measurements nobody has read against the report · 人和模型都还没有对照报告读过的基准测试测量
 
-The row's `measurement` has no `read_on`: a script or a model filled in its fields from the author's README or results, and no person has checked them since. The fields index what the author reports; the direction is the author's own conclusion (author-stated, not reproduced here). The fields first filled in on 2026-09-28 were read by a model; [method.md](method.md) says how. [benchmarks.md](benchmarks.md) shows every field.
+The row's `measurement` has neither `read_on` nor `model_read_on`: a script or a model filled in its fields from the author's README or results, and nobody has recorded reading them since. The fields index what the author reports; the direction is the author's own conclusion (author-stated, not reproduced here). The fields first filled in on 2026-09-28 were read by a model; [method.md](method.md) says how. [benchmarks.md](benchmarks.md) shows every field.
 
-该行的 `measurement` 没有 `read_on`：字段由脚本或模型根据作者的 README 或结果填写，此后没有人核对过。这些字段索引的是作者报告的内容；结论方向是作者本人的结论（作者自述，未经本仓库复现）。2026-09-28 首次填写的字段由模型阅读得出，做法见 [method.md](method.md)。全部字段见 [benchmarks.zh-CN.md](benchmarks.zh-CN.md)。
+该行的 `measurement` 既没有 `read_on` 也没有 `model_read_on`：字段由脚本或模型根据作者的 README 或结果填写，此后没有人或模型记录过核读。这些字段索引的是作者报告的内容；结论方向是作者本人的结论（作者自述，未经本仓库复现）。2026-09-28 首次填写的字段由模型阅读得出，做法见 [method.md](method.md)。全部字段见 [benchmarks.zh-CN.md](benchmarks.zh-CN.md)。
 
-To take a row off, read the author's report (the row's link, or `measurement.report`) against every field, correct or remove any the report does not state, and set `measurement.read_on` to the day you read it (see the `measurement` field rules in [CONTRIBUTING](../CONTRIBUTING.md#field-rules)).
+To take a row off, read the author's report (the row's link, or `measurement.report`) against every field, correct or remove any the report does not state, and set `measurement.read_on` to the day you read it (see the `measurement` field rules in [CONTRIBUTING](../CONTRIBUTING.md#field-rules)). A model that reads it sets `measurement.model_read_on` instead, which moves the row to [Read or written by a model](#model-read).
 
-移出方法：对照作者的报告（该行的链接，或 `measurement.report`）逐项核读，改正或删去报告里没有说的字段，再把 `measurement.read_on` 设为核读当天（见 [CONTRIBUTING](../CONTRIBUTING.md#field-rules) 中关于 `measurement` 的字段规则）。
+移出方法：对照作者的报告（该行的链接，或 `measurement.report`）逐项核读，改正或删去报告里没有说的字段，再把 `measurement.read_on` 设为核读当天（见 [CONTRIBUTING](../CONTRIBUTING.md#field-rules) 中关于 `measurement` 的字段规则）。由模型核读时改写 `measurement.model_read_on`，该行会移到[模型读过或撰写](#model-read)一节。
 
 | Row · 行 | Stars · 星标 | Direction (author-stated, not reproduced here) · 结论方向（作者自述，未经本仓库复现） | Report · 报告 |
 | --- | --- | --- | --- |
@@ -653,15 +654,15 @@ To take a row off, read the author's report (the row's link, or `measurement.rep
 
 <a id="wire-unread"></a>
 
-## Interfaces of alternatives no person has read in the cited files · 尚无人在所引文件中核读的替代实现接口
+## Interfaces of alternatives nobody has read in the cited files · 人和模型都还没有在所引文件中读过的替代实现接口
 
-The row's `wire` record cites files without a `read_on`: a script or a model read the project's code for its route, its yes/no spelling, where its answers come from and whether it calls Jev to compare, and no person has checked since. Every value is backed by a string in a cited file, which the weekly `claims` run re-reads; whether the strings mean what the fields say is the reading. The records first filled in on 2026-09-28 were read by a model; [method.md](method.md) says how. [compatibility.md](compatibility.md#7-compatible-interfaces-that-are-not-jev) shows every field.
+The row's `wire` record cites a file with neither `read_on` nor `model_read_on`: a script or a model read the project's code for its route, its yes/no spelling, where its answers come from and whether it calls Jev to compare, and no person has checked since. Every value is backed by a string in a cited file, which the weekly `claims` run re-reads; whether the strings mean what the fields say is the reading. The records first filled in on 2026-09-28 were read by a model; [method.md](method.md) says how. [compatibility.md](compatibility.md#7-compatible-interfaces-that-are-not-jev) shows every field.
 
-该行的 `wire` 记录所引文件没有 `read_on`：由脚本或模型阅读项目代码，得出其路由、是/否题型的写法、答案来自哪里、是否调用 Jev 做对比，此后没有人核对过。每个值都有所引文件中的一段字符串作依据，每周的 `claims` 任务会重读这些字符串；这些字符串是否真如字段所说，则要靠人读。2026-09-28 首次填写的记录由模型阅读得出，做法见 [method.md](method.md)。全部字段见 [compatibility.md](compatibility.md#7-compatible-interfaces-that-are-not-jev)。
+该行的 `wire` 记录所引文件中有的既没有 `read_on` 也没有 `model_read_on`：由脚本或模型阅读项目代码，得出其路由、是/否题型的写法、答案来自哪里、是否调用 Jev 做对比，此后没有人核对过。每个值都有所引文件中的一段字符串作依据，每周的 `claims` 任务会重读这些字符串；这些字符串是否真如字段所说，则要靠人读。2026-09-28 首次填写的记录由模型阅读得出，做法见 [method.md](method.md)。全部字段见 [compatibility.md](compatibility.md#7-compatible-interfaces-that-are-not-jev)。
 
-To take a row off, read each file in `wire.source` against every field, correct or remove any field the files do not show, and set `read_on` on each source to the day you read it (see the `wire` field rules in [CONTRIBUTING](../CONTRIBUTING.md#field-rules)).
+To take a row off, read each file in `wire.source` against every field, correct or remove any field the files do not show, and set `read_on` on each source to the day you read it (see the `wire` field rules in [CONTRIBUTING](../CONTRIBUTING.md#field-rules)). A model that reads them sets `model_read_on` instead, which moves the row to [Read or written by a model](#model-read).
 
-移出方法：对照 `wire.source` 中的每个文件逐项核读，改正或删去文件里看不出的字段，再把每个来源的 `read_on` 设为核读当天（见 [CONTRIBUTING](../CONTRIBUTING.md#field-rules) 中关于 `wire` 的字段规则）。
+移出方法：对照 `wire.source` 中的每个文件逐项核读，改正或删去文件里看不出的字段，再把每个来源的 `read_on` 设为核读当天（见 [CONTRIBUTING](../CONTRIBUTING.md#field-rules) 中关于 `wire` 的字段规则）。由模型核读时改写 `model_read_on`，该行会移到[模型读过或撰写](#model-read)一节。
 
 | Row · 行 | Stars · 星标 | Weights · 权重 | Cited files · 引用的文件 |
 | --- | --- | --- | --- |
@@ -682,15 +683,15 @@ To take a row off, read each file in `wire.source` against every field, correct 
 
 <a id="thresholds-unread"></a>
 
-## Thresholds no person has read in the cited file · 尚无人在所引文件中核读的阈值
+## Thresholds nobody has read in the cited file · 人和模型都还没有在所引文件中读过的阈值
 
-The row's `observed_thresholds` has an item without a `read_on`: a script or a model read the cited file for the constants it compares a Jev answer with, and no person has checked since. Each item's `source` is a string in `evidence.matched`, which the weekly `claims` run re-reads, and its `value` is written in it; which answer the constant is compared with, and what the code does on each side, is the reading. They are what the project chose, not recommendations. The thresholds first recorded on 2026-09-28 were read by a model; [method.md](method.md) says how.
+The row's `observed_thresholds` has an item with neither `read_on` nor `model_read_on`: a script or a model read the cited file for the constants it compares a Jev answer with, and no person has checked since. Each item's `source` is a string in `evidence.matched`, which the weekly `claims` run re-reads, and its `value` is written in it; which answer the constant is compared with, and what the code does on each side, is the reading. They are what the project chose, not recommendations. The thresholds first recorded on 2026-09-28 were read by a model; [method.md](method.md) says how.
 
-该行的 `observed_thresholds` 中有条目没有 `read_on`：由脚本或模型阅读所引文件，找出其中与 Jev 答案比较的常量，此后没有人核对过。每个条目的 `source` 是 `evidence.matched` 中的一段字符串，每周的 `claims` 任务会重读它，`value` 就写在其中；常量与哪个答案比较、两侧代码各做什么，则要靠人读。这些是该项目自己的选择，不是推荐值。2026-09-28 首次记录的阈值由模型阅读得出，做法见 [method.md](method.md)。
+该行的 `observed_thresholds` 中有条目既没有 `read_on` 也没有 `model_read_on`：由脚本或模型阅读所引文件，找出其中与 Jev 答案比较的常量，此后没有人核对过。每个条目的 `source` 是 `evidence.matched` 中的一段字符串，每周的 `claims` 任务会重读它，`value` 就写在其中；常量与哪个答案比较、两侧代码各做什么，则要靠人读。这些是该项目自己的选择，不是推荐值。2026-09-28 首次记录的阈值由模型阅读得出，做法见 [method.md](method.md)。
 
-To take a row off, read the cited file against every item: correct `question_type`, `compares` and `decision`, remove any item that is not a decision on a Jev answer, and set each item's `read_on` to the day you read it (see the `observed_thresholds` field rules in [CONTRIBUTING](../CONTRIBUTING.md#field-rules)).
+To take a row off, read the cited file against every item: correct `question_type`, `compares` and `decision`, remove any item that is not a decision on a Jev answer, and set each item's `read_on` to the day you read it (see the `observed_thresholds` field rules in [CONTRIBUTING](../CONTRIBUTING.md#field-rules)). A model that reads them sets `model_read_on` instead, which moves the row to [Read or written by a model](#model-read).
 
-移出方法：对照所引文件逐条核读，改正 `question_type`、`compares` 和 `decision`，删去不是基于 Jev 答案做决定的条目，再把每个条目的 `read_on` 设为核读当天（见 [CONTRIBUTING](../CONTRIBUTING.md#field-rules) 中关于 `observed_thresholds` 的字段规则）。
+移出方法：对照所引文件逐条核读，改正 `question_type`、`compares` 和 `decision`，删去不是基于 Jev 答案做决定的条目，再把每个条目的 `read_on` 设为核读当天（见 [CONTRIBUTING](../CONTRIBUTING.md#field-rules) 中关于 `observed_thresholds` 的字段规则）。由模型核读时改写 `model_read_on`，该行会移到[模型读过或撰写](#model-read)一节。
 
 | Row · 行 | Stars · 星标 | Thresholds · 阈值 | Cited file · 引用的文件 |
 | --- | --- | --- | --- |
@@ -725,3 +726,60 @@ To take a row off, read the cited file against every item: correct `question_typ
 | [jevpdf](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevpdf) |  | `noul probability 0.55` `noul probability 0.3` | [`src/lib/jev-config.ts`](https://github.com/kylemclaren/jevpdf/blob/HEAD/src/lib/jev-config.ts) |
 | [omp-jevens-classifier](https://kydlikebtc.github.io/awesome-jev/?lang=en#omp-jevens-classifier) |  | `choice probability 0.8` `noul probability 0.9` `noul probability 0.55` | [`jev.ts`](https://github.com/STRML/omp-jevens-classifier/blob/HEAD/jev.ts) |
 | [river-run-typesafe](https://kydlikebtc.github.io/awesome-jev/?lang=en#river-run-typesafe) |  | `noul probability 0.5` | [`typesafe_pilot/pilot.py`](https://github.com/ashaazami/river-run-typesafe/blob/HEAD/typesafe_pilot/pilot.py) |
+
+<a id="model-read"></a>
+
+## Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对
+
+Since 2026-10-24 a model's reading is recorded apart from a person's: `patterns_model_read_on`, and `model_read_on` on the call site (`evidence`), a benchmark's `measurement`, each file of an alternative's `wire` and each threshold; a summary a model wrote is labelled `model-written`, and `question_types` on a row whose call site only a model has read is that model's reading too. Every surface shows these as a model's work, never as a person's. A row here left the lists above because a model read it, not because a person agreed: a model can misread a file in ways a person would not, so these rows are for a person to check, all of them or a sample.
+
+自 2026-10-24 起，模型的阅读与人的阅读分开记录：`patterns_model_read_on`，以及调用点（`evidence`）、基准测试的 `measurement`、替代实现 `wire` 的每个文件和每个阈值上的 `model_read_on`；模型撰写的摘要标为 `model-written`；调用点只有模型读过的行，其 `question_types` 也是模型的阅读。所有页面都把这些显示为模型的工作，从不当作人的。这里的行离开上面各节，是因为模型读过，而不是因为有人认可：模型可能以人不会的方式读错文件，所以这些行留给人核对，全部或抽查。
+
+To take a row off, check what the model read or wrote, correct anything it got wrong, and record your own reading: `patterns_reviewed`, `evidence.read_on` (after checking `question_types` against the call site), `measurement.read_on`, or `read_on` on each file or threshold; keep or rewrite a summary and set `summary_source` to `curated`. The model's date may stay beside yours: a person's reading supersedes it everywhere it is shown.
+
+移出方法：核对模型读过或写下的内容，改正它弄错的地方，再记下你自己的阅读：`patterns_reviewed`、`evidence.read_on`（先对照调用点核对 `question_types`）、`measurement.read_on`，或每个文件、每个阈值上的 `read_on`；摘要则保留或改写，并把 `summary_source` 设为 `curated`。模型的日期可以留在你的旁边：凡是显示日期的地方，人的阅读都优先。
+
+| Row · 行 | Stars · 星标 | A model's work, unchecked · 模型的工作（未经核对） |
+| --- | --- | --- |
+| [1-million-emojis](https://kydlikebtc.github.io/awesome-jev/?lang=en#1-million-emojis) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [ten-levels-of-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#ten-levels-of-jev) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [beebots](https://kydlikebtc.github.io/awesome-jev/?lang=en#beebots) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [building-with-typesafe-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#building-with-typesafe-jev) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [decis](https://kydlikebtc.github.io/awesome-jev/?lang=en#decis) |  | `call site` 2026-10-24 · `summary` |
+| [duomind](https://kydlikebtc.github.io/awesome-jev/?lang=en#duomind) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [flick-computer-use](https://kydlikebtc.github.io/awesome-jev/?lang=en#flick-computer-use) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [grev](https://kydlikebtc.github.io/awesome-jev/?lang=en#grev) |  | `call site` 2026-10-24 · `summary` |
+| [harness-router](https://kydlikebtc.github.io/awesome-jev/?lang=en#harness-router) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [imajev](https://kydlikebtc.github.io/awesome-jev/?lang=en#imajev) |  | `call site` 2026-10-24 · `summary` |
+| [jeeves-posthog](https://kydlikebtc.github.io/awesome-jev/?lang=en#jeeves-posthog) |  | `call site` 2026-10-24 · `summary` |
+| [jeff-firelex](https://kydlikebtc.github.io/awesome-jev/?lang=en#jeff-firelex) |  | `call site` 2026-10-24 · `summary` |
+| [jevos-feder-cr](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevos-feder-cr) |  | `call site` 2026-10-24 · `summary` |
+| [jev-browser-bridge](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-browser-bridge) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [jev-civilizations](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-civilizations) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [jev-plays-pokemon-red-christianmat](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-plays-pokemon-red-christianmat) |  | `call site` 2026-10-24 · `summary` |
+| [jev-playwright](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-playwright) |  | `call site` 2026-10-24 · `summary` |
+| [jev-safety-gateway](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-safety-gateway) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [jev-sees](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-sees) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [jev-switch](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-switch) |  | `call site` 2026-10-24 · `summary` |
+| [jev-browse](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-browse) |  | `call site` 2026-10-24 · `summary` |
+| [jev-code-reviewer](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-code-reviewer) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [jev-enforce](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-enforce) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [jev-kit](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-kit) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [jev-lint-ckorhonen](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-lint-ckorhonen) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [jev-opus](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-opus) |  | `call site` 2026-10-24 · `summary` |
+| [jev-style](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-style) |  | `call site` 2026-10-24 · `summary` |
+| [jevembed](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevembed) |  | `call site` 2026-10-24 · `summary` |
+| [jevgrep-dzhng](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevgrep-dzhng) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [jevry](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevry) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [jevstiller](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevstiller) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [jevtpp](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevtpp) |  | `call site` 2026-10-24 · `summary` |
+| [ollaya](https://kydlikebtc.github.io/awesome-jev/?lang=en#ollaya) |  | `call site` 2026-10-24 · `summary` |
+| [onejev](https://kydlikebtc.github.io/awesome-jev/?lang=en#onejev) |  | `call site` 2026-10-24 · `summary` |
+| [quicksilver](https://kydlikebtc.github.io/awesome-jev/?lang=en#quicksilver) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [rsi-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#rsi-jev) |  | `call site` 2026-10-24 · `summary` |
+| [typesafe-ai-php](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-ai-php) |  | `call site` 2026-10-24 · `summary` |
+| [typesafe-client-haileyok](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-client-haileyok) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [vibecheck-jlowin](https://kydlikebtc.github.io/awesome-jev/?lang=en#vibecheck-jlowin) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [vllm-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#vllm-jev) |  | `call site` 2026-10-24 · `summary` |
+| [x402check](https://kydlikebtc.github.io/awesome-jev/?lang=en#x402check) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [yao-agents](https://kydlikebtc.github.io/awesome-jev/?lang=en#yao-agents) |  | `call site` 2026-10-24 · `summary` |

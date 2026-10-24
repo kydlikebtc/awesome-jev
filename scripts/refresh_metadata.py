@@ -89,8 +89,12 @@ FIELDS = (
 )
 
 # summary_source values (schema/entry.schema.json). The refresh writes the two
-# upstream ones; CURATED is a person's statement and the refresh leaves it be.
+# upstream ones; CURATED is a person's statement that they wrote the text and
+# MODEL_WRITTEN (since 2026-10-24) the same of a model, and the refresh leaves
+# both be.
 CURATED = "curated"
+MODEL_WRITTEN = "model-written"
+WRITTEN_HERE = (CURATED, MODEL_WRITTEN)
 UPSTREAM = "upstream-description"
 UPSTREAM_STALE = "upstream-description-stale"
 
@@ -337,17 +341,18 @@ def summary_source_for(entry: dict, description: str | None) -> str | None:
 
       identical to the description        -> upstream-description
       was upstream-description, differs   -> upstream-description-stale
-      curated                             -> left alone, whatever GitHub says
+      curated or model-written            -> left alone, whatever GitHub says
       anything else that differs          -> left alone (unlabelled stays so)
 
     A repository without a description matches nothing. Nothing here can
     produce `curated`: that is a person saying they wrote the text, which no
-    comparison can know. Stale is not undone by drifting further; only a
-    description that matches again (or a person) changes it.
+    comparison can know, and `model-written` says the same of a model. Stale
+    is not undone by drifting further; only a description that matches again
+    (or a person) changes it.
     """
     summary = entry.get("summary")
     current = entry.get("summary_source")
-    if not isinstance(summary, str) or current == CURATED:
+    if not isinstance(summary, str) or current in WRITTEN_HERE:
         return None
     wanted = same_text(description)
     if wanted and same_text(summary) == wanted:

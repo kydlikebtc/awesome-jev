@@ -13,7 +13,8 @@ from. This assembles, from the data it is handed:
   answer field, key variable — or the surfaces to choose from;
 * up to five rows filed under the pattern that cite the file their code was
   read in, each linked at HEAD as the site links it (evidence_url.py) and
-  dated only by a person's reading, with its caveats and what they mean, and
+  dated by a person's reading, or a model's said to be one (query.reading),
+  with its caveats and what they mean, and
   whether its own author measured Jev for the use and concluded against it
   (query.is_negative_result, the rule every other surface uses);
 * the skeleton from this repository's examples/ for that pattern and language,
@@ -34,11 +35,13 @@ from .evidence_url import evidence_url
 from .query import (
     DIRECTION_NOTE,
     DISQUALIFYING,
+    PERSON,
     SEARCH_NOTE,
     TEXT_NOTE,
     caveat_glossary,
     compat_lookup,
     is_negative_result,
+    reading,
     sort_key,
     when_not_to_use,
 )
@@ -49,8 +52,9 @@ EXAMPLES_URL = "https://github.com/kydlikebtc/awesome-jev/tree/main/examples"
 UNTESTED = "code-untested"
 # Languages whose line comments start with `#`; every other gets `//`.
 HASH_COMMENTS = frozenset({"python", "ruby", "shell", "bash", "r", "perl", "elixir"})
-# The two summary sources a surface marks: the project's own words.
-UPSTREAM = frozenset({"upstream-description", "upstream-description-stale"})
+# The summary sources a surface marks: the project's own words, and since
+# 2026-10-24 a model's (site/catalog-core.mjs MARKED_SOURCES).
+MARKED = frozenset({"upstream-description", "upstream-description-stale", "model-written"})
 # compat.json fields about which catalogue rows stand for a surface, not about
 # wiring it; compatibility() and search_examples(platform=...) carry them.
 CATALOGUE_FIELDS = frozenset({"catalog_platforms", "granularity"})
@@ -127,12 +131,16 @@ def _surface(compat: dict, surface: str) -> tuple[list[str], list[str]]:
 
 def _row_lines(n: int, entry: dict, labels: dict[str, str]) -> list[str]:
     summary = entry["summary"]
-    if entry.get("summary_source") in UPSTREAM:
+    if entry.get("summary_source") in MARKED:
         summary += f" ({labels.get(entry['summary_source'], entry['summary_source'])})"
     languages = f" · {', '.join(entry['languages'])}" if entry.get("languages") else ""
     what = "Example the project ships" if _kind(entry) == "example-only" else "Call site"
-    read = entry["evidence"].get("read_on")
-    when = f"read by a person on {read}" if read else "no reading date recorded"
+    found = reading(entry["evidence"])
+    if found is None:
+        when = "no reading date recorded"
+    else:
+        who, day = found
+        when = f"read by a person on {day}" if who == PERSON else f"read by a model on {day}, not yet checked by a person"
     lines = [
         f"{n}. **{entry['title']}** (`{entry['slug']}`{languages}) — {summary}",
         f"   {what}: [{entry['evidence']['path']}]({evidence_url(entry)}), {when}",

@@ -258,7 +258,7 @@ class DocsTest(unittest.TestCase):
             text = rendered[rel]
             with self.subTest(rel=rel):
                 for key in ("threshold_rows", "threshold_noul_low", "threshold_noul_high",
-                            "threshold_choice_low", "threshold_choice_high", "thresholds_unread"):
+                            "threshold_choice_low", "threshold_choice_high", "thresholds_unchecked"):
                     self.assertIn(f"<!--n:{key}-->{values[key]}<!--/n-->", text)
                 self.assertIn("not recommendations", text)
                 # The count is of rows recording a threshold so far, not of every

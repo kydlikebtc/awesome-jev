@@ -85,7 +85,8 @@ def main() -> int:
     )
     print(f"code, no cite  {stats['has_code_unbacked']} (neither evidence nor evidence_none)")
     print(
-        f"primitives     {stats['primitive_rows']} read by a person (question_types), "
+        f"primitives     {stats['primitive_rows'] - stats['primitive_rows_model']} read by a person, "
+        f"{stats['primitive_rows_model']} by a model (question_types), "
         f"{stats['primitive_signal_rows']} with a text signal in the cited file (primitives_seen), "
         f"{stats['primitive_signal_only_rows']} of them with no question_types"
     )
@@ -103,7 +104,13 @@ def main() -> int:
     print(
         f"summaries      {stats['summary_upstream']} upstream-description, "
         f"{stats['summary_upstream_stale']} upstream-description-stale, {stats['summary_curated']} curated, "
-        f"{stats['summary_unlabelled']} unlabelled (summary_source)"
+        f"{stats['summary_model_written']} model-written, {stats['summary_unlabelled']} unlabelled (summary_source)"
+    )
+    model = stats["model_read"]
+    print(
+        f"model-read     {model['patterns']} patterns, {model['evidence']} call sites, "
+        f"{model['measurement']} measurements, {model['wire']} interfaces, {model['thresholds']} threshold rows "
+        "read only by a model (model_read_on; docs/review-queue.md#model-read)"
     )
     last_pushes = ", ".join(f"{month} {count}" for month, count in stats["pushed_by_month"].items()) or "none"
     print(
@@ -113,7 +120,7 @@ def main() -> int:
     directions = ", ".join(f"{key} {count}" for key, count in stats["measurement_directions"].items())
     print(
         f"measurements   {stats['measured_rows']} benchmark rows index their author's measurement "
-        f"(author-stated directions: {directions}), {stats['review_measurement_unread']} not read by a person; "
+        f"(author-stated directions: {directions}), {stats['review_measurement_unread']} read by nobody; "
         f"{stats['independent_reports']} independent reports (benchmarks not flagged vendor-reported)"
     )
     ranges = "; ".join(
@@ -122,7 +129,7 @@ def main() -> int:
     print(
         f"thresholds     {stats['thresholds_recorded']} constants on {stats['threshold_rows']} rows compared with "
         f"a Jev answer (observed_thresholds; observations, not recommendations), "
-        f"{stats['review_thresholds_unread']} rows not read by a person: {ranges}"
+        f"{stats['review_thresholds_unread']} rows read by nobody: {ranges}"
     )
     print(
         f"citations      {stats['cited_rows']} of {stats['citable_rows']} rows with a GitHub repository "

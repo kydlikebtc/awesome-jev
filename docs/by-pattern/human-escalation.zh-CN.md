@@ -32,7 +32,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
-*调用点*链接打开该行引用的那一个文件（`evidence.path`）在仓库默认分支 `HEAD` 上的版本；其后的日期是有人最近一次阅读该文件的日期（`evidence.read_on`）：这是阅读记录，不是运行过代码。*引用文件*链接同理，只是该文件表明项目采用了 Jev 的请求结构、并非基于 Jev 构建，或只是项目附带的示例（`evidence.kind`）。两种链接都没有固定到某个提交，打开的是文件的当前版本，可能与当时读到的不同；文件移动后链接就会失效，每周的 claims 检查会报告这种情况。 <sub>(机翻)</sub>
+*调用点*链接打开该行引用的那一个文件（`evidence.path`）在仓库默认分支 `HEAD` 上的版本；其后的日期是有人最近一次阅读该文件的日期（`evidence.read_on`）；注明“模型阅读”的，则是模型阅读该文件的日期（`evidence.model_read_on`）：这是阅读记录，不是运行过代码。*引用文件*链接同理，只是该文件表明项目采用了 Jev 的请求结构、并非基于 Jev 构建，或只是项目附带的示例（`evidence.kind`）。两种链接都没有固定到某个提交，打开的是文件的当前版本，可能与当时读到的不同；文件移动后链接就会失效，每周的 claims 检查会报告这种情况。 <sub>(机翻)</sub>
 
 *作者结论*是基准测试作者本人对 Jev 在其所测任务上给出的结论方向（`measurement.direction`：有利、好坏参半、不利或无定论），按作者的报告索引：属作者自述，未经本仓库复现；作者没有用文字说明结论的则不标。[docs/benchmarks.zh-CN.md](../benchmarks.zh-CN.md) 把每条基准测试的测量字段并列展示。 <sub>(机翻)</sub>
 
@@ -153,14 +153,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-block-android-ad](https://github.com/ufec/jev-block-android-ad)** — Android 上的通知与短信过滤：不是匹配关键词，而是由模型判断。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ufec · `Kt` · 调用点 [`app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt`](https://github.com/ufec/jev-block-android-ad/blob/HEAD/app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt)，2026-09-22 阅读</sub>
 
-- **[jev-browse](https://github.com/danielnc/jev-browse)** — 为 browser-harness 提供的辅助函数，让 Claude Code 或 Codex 用一次 fast_run 调用交出整个网站子任务：每一步都由 Jev 决定，必须停下时返回带类型的原因。它移植自 browser-use/jev-ultrafast；作者报告速度快 1.6–3.0 倍、成本低 2.1–5.3 倍。 <sub>(机翻)</sub>
-  <sub>`开源项目` · danielnc · `Py` · 调用点 [`jev_browse/config.py`](https://github.com/danielnc/jev-browse/blob/HEAD/jev_browse/config.py) · ⚠ `厂商自报数据`</sub>
+- **[jev-browse](https://github.com/danielnc/jev-browse)** — 为 browser-harness 提供的辅助函数，让 Claude Code 或 Codex 用一次 fast_run 调用交出整个网站子任务：每一步都由 Jev 决定，必须停下时返回带类型的原因。它移植自 browser-use/jev-ultrafast；作者报告速度快 1.6–3.0 倍、成本低 2.1–5.3 倍。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · danielnc · `Py` · 调用点 [`jev_browse/config.py`](https://github.com/danielnc/jev-browse/blob/HEAD/jev_browse/config.py)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jev-calibration-audit](https://github.com/tapesymbolstate/jev-calibration-audit)** — 仅通过 API 对 Jev 做的独立校准审计。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · jujumilk3 · `Py` · 调用点 [`src/jev_audit/client.py`](https://github.com/tapesymbolstate/jev-calibration-audit/blob/HEAD/src/jev_audit/client.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
-- **[Jev-Code-Reviewer](https://github.com/egma-ai/jev-code-reviewer)** — 用于审阅编程 Agent 所提 PR 的本地工具：按书面的优先级规则，用 Jev 的 choice 把每处改动分为 P0、P1 或 P2，默认只显示 P0。不会向 GitHub 发布任何内容。 <sub>(机翻)</sub>
-  <sub>`开源项目` · egma-ai · `JS` · `choice` · 调用点 [`src/providers.mjs`](https://github.com/egma-ai/jev-code-reviewer/blob/HEAD/src/providers.mjs)</sub>
+- **[Jev-Code-Reviewer](https://github.com/egma-ai/jev-code-reviewer)** — 用于审阅编程 Agent 所提 PR 的本地工具：按书面的优先级规则，用 Jev 的 choice 把每处改动分为 P0、P1 或 P2，默认只显示 P0。不会向 GitHub 发布任何内容。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · egma-ai · `JS` · `choice` · 调用点 [`src/providers.mjs`](https://github.com/egma-ai/jev-code-reviewer/blob/HEAD/src/providers.mjs)，2026-10-24 模型阅读</sub>
 
 - **[jev-eval](https://github.com/4esv/jev-eval)** — 在你自己的标注分类数据上，把 Jev 与任意 OpenRouter 模型做基准对比：准确率与校准度。 <sub>(机翻)</sub>
   <sub>`基准测试` · 4esv · `Py` · 调用点 [`evaljev/runners.py`](https://github.com/4esv/jev-eval/blob/HEAD/evaljev/runners.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

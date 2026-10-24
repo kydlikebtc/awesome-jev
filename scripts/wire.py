@@ -25,7 +25,8 @@ own files show about the interface it offers (schema/entry.schema.json):
 * `source`: the files those were read in, each `{path, matched, read_on}` as
   `evidence` is. Every matched string must still be in its file, and
   scripts/verify_claims.py re-reads them every week. `read_on` dates a person's
-  reading; without it a script or a model read the files and no person has since.
+  reading and (since 2026-10-24) `model_read_on` a model's, kept apart; with
+  neither, a script or a model read the files and nobody recorded a reading.
 
 Nothing in it is inferred: a field the cited files do not show is left out, and
 every surface prints a dash for it. A compatible interface implies nothing
@@ -43,7 +44,7 @@ What lint holds (lint.check_wire):
 * calls_real_jev_as_baseline needs a matched string naming Jev's own host or a
   gateway's id for Jev (REAL_JEV_SIGNALS): a floor, not proof, like the words
   measurements.NEGATIVE_NOTE_SOURCE asks for;
-* each `read_on` is a real date, not in the future.
+* each `read_on` and `model_read_on` is a real date, not in the future.
 
 docs/compatibility.md ("Compatible interfaces that are not Jev") and the site's
 Compatibility view show these rows; docs/review-queue.md lists those no person
@@ -57,6 +58,8 @@ from __future__ import annotations
 import datetime as dt
 
 FIELD = "wire"
+# A person's reading and a model's (query.READ_ON, query.MODEL_READ_ON).
+READINGS = ("read_on", "model_read_on")
 KIND = "alternative"
 NOT_JEV = "not-jev"
 SOURCE = "source"
@@ -150,15 +153,16 @@ def row_problems(entry: dict, today: dt.date, *, on_github: bool) -> list[str]:
             f"({', '.join(REAL_JEV_SIGNALS)}): add the string from the file that sends the request"
         )
     for i, item in enumerate(sources(wire)):
-        if "read_on" not in item:
-            continue
-        try:
-            read = dt.date.fromisoformat(item["read_on"])
-        except (TypeError, ValueError):
-            found.append(f"wire.source[{i}].read_on is not a valid date")
-            continue
-        if read > today:
-            found.append(f"wire.source[{i}].read_on {item['read_on']} is in the future")
+        for field in READINGS:
+            if field not in item:
+                continue
+            try:
+                read = dt.date.fromisoformat(item[field])
+            except (TypeError, ValueError):
+                found.append(f"wire.source[{i}].{field} is not a valid date")
+                continue
+            if read > today:
+                found.append(f"wire.source[{i}].{field} {item[field]} is in the future")
     return found
 
 
@@ -179,9 +183,21 @@ def person_read(wire: dict) -> bool:
     return bool(items) and all("read_on" in item for item in items)
 
 
+def every_file_read(wire: dict) -> bool:
+    """Every cited file carries a reading date, a person's or a model's."""
+    items = sources(wire)
+    return bool(items) and all(any(field in item for field in READINGS) for item in items)
+
+
 def unread(catalog: list[dict]) -> list[dict]:
-    """Rows whose wire no person has read against every cited file."""
-    return [e for e in wired(catalog) if not person_read(wire_of(e))]
+    """Rows whose wire nobody has read against every cited file: some file
+    carries neither a person's reading nor a model's."""
+    return [e for e in wired(catalog) if not every_file_read(wire_of(e))]
+
+
+def model_read(catalog: list[dict]) -> list[dict]:
+    """Rows whose every cited file was read, and some only by a model."""
+    return [e for e in wired(catalog) if every_file_read(wire_of(e)) and not person_read(wire_of(e))]
 
 
 def claims(entry: dict) -> list[dict]:

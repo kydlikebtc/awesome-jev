@@ -29,7 +29,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
-*调用点*链接打开该行引用的那一个文件（`evidence.path`）在仓库默认分支 `HEAD` 上的版本；其后的日期是有人最近一次阅读该文件的日期（`evidence.read_on`）：这是阅读记录，不是运行过代码。*引用文件*链接同理，只是该文件表明项目采用了 Jev 的请求结构、并非基于 Jev 构建，或只是项目附带的示例（`evidence.kind`）。两种链接都没有固定到某个提交，打开的是文件的当前版本，可能与当时读到的不同；文件移动后链接就会失效，每周的 claims 检查会报告这种情况。 <sub>(机翻)</sub>
+*调用点*链接打开该行引用的那一个文件（`evidence.path`）在仓库默认分支 `HEAD` 上的版本；其后的日期是有人最近一次阅读该文件的日期（`evidence.read_on`）；注明“模型阅读”的，则是模型阅读该文件的日期（`evidence.model_read_on`）：这是阅读记录，不是运行过代码。*引用文件*链接同理，只是该文件表明项目采用了 Jev 的请求结构、并非基于 Jev 构建，或只是项目附带的示例（`evidence.kind`）。两种链接都没有固定到某个提交，打开的是文件的当前版本，可能与当时读到的不同；文件移动后链接就会失效，每周的 claims 检查会报告这种情况。 <sub>(机翻)</sub>
 
 *作者结论*是基准测试作者本人对 Jev 在其所测任务上给出的结论方向（`measurement.direction`：有利、好坏参半、不利或无定论），按作者的报告索引：属作者自述，未经本仓库复现；作者没有用文字说明结论的则不标。[docs/benchmarks.zh-CN.md](../benchmarks.zh-CN.md) 把每条基准测试的测量字段并列展示。 <sub>(机翻)</sub>
 
@@ -393,8 +393,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[AskJev](https://github.com/ranjan2829/AskJev)** — AskJev：适用于任意网站的 Jev 自动驾驶，并对不可逆的点击加一道防护（使用 TypeSafe System One，而不是 Claude）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ranjan2829 · `TS` · 调用点 [`mcp/src/jev-client.ts`](https://github.com/ranjan2829/AskJev/blob/HEAD/mcp/src/jev-client.ts)，2026-09-24 阅读</sub>
 
-- **[beebots](https://github.com/imikerussell/beebots)** — 三个交易机器人在 OKX 永续合约上比赛，默认是模拟盘：每一步由 Jev（或 Gemini）用 choice 从合法动作中选出，再用 score 给出信心；另有确定性的备用选择器、纯代码写的风控层，以及显示每个决策由谁做出的实时面板。 <sub>(机翻)</sub>
-  <sub>`开源项目` · imikerussell · `TS` · `choice` · `score` · 调用点 [`src/jev.ts`](https://github.com/imikerussell/beebots/blob/HEAD/src/jev.ts)</sub>
+- **[beebots](https://github.com/imikerussell/beebots)** — 三个交易机器人在 OKX 永续合约上比赛，默认是模拟盘：每一步由 Jev（或 Gemini）用 choice 从合法动作中选出，再用 score 给出信心；另有确定性的备用选择器、纯代码写的风控层，以及显示每个决策由谁做出的实时面板。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · imikerussell · `TS` · `choice` · `score` · 调用点 [`src/jev.ts`](https://github.com/imikerussell/beebots/blob/HEAD/src/jev.ts)，2026-10-24 模型阅读</sub>
 
 - **[bicameral](https://github.com/AbdelStark/bicameral)** — 混合式编程 harness：System 2 负责写，System 1（Jev）负责反射式动作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`packages/s1-runtime/src/backends/typesafe.ts`](https://github.com/AbdelStark/bicameral/blob/HEAD/packages/s1-runtime/src/backends/typesafe.ts)，2026-09-22 阅读</sub>
@@ -429,14 +429,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[fast-compaction-dsh](https://github.com/kolawong/fast-compaction-dsh)** — 给 DeepSeek Harness 的判定式上下文压缩，取代有损的 LLM 摘要。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · kolawong · `TS` · 调用点 [`src/jev.ts`](https://github.com/kolawong/fast-compaction-dsh/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
-- **[Flick](https://github.com/bgivenb/flick-computer-use)** — 本地 stdio MCP 服务器，可执行完整的浏览器和 macOS 任务：每一步“观察—决定—行动”都向 Jev 问一个 choice，选项是以观测到的元素 ID 为键的动作；另有几个 choice 决定填哪个字段、填什么值。浏览器用 Playwright 驱动，macOS 用 Swift 辅助功能驱动。 <sub>(机翻)</sub>
-  <sub>`插件` · bgivenb · `TS` · `Swift` · `choice` · `noul` · 调用点 [`src/providers/typesafe.ts`](https://github.com/bgivenb/flick-computer-use/blob/HEAD/src/providers/typesafe.ts)</sub>
+- **[Flick](https://github.com/bgivenb/flick-computer-use)** — 本地 stdio MCP 服务器，可执行完整的浏览器和 macOS 任务：每一步“观察—决定—行动”都向 Jev 问一个 choice，选项是以观测到的元素 ID 为键的动作；另有几个 choice 决定填哪个字段、填什么值。浏览器用 Playwright 驱动，macOS 用 Swift 辅助功能驱动。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · bgivenb · `TS` · `Swift` · `choice` · `noul` · 调用点 [`src/providers/typesafe.ts`](https://github.com/bgivenb/flick-computer-use/blob/HEAD/src/providers/typesafe.ts)，2026-10-24 模型阅读</sub>
 
 - **[gg-friggin-ez](https://github.com/ItisShikhar/gg-friggin-ez)** — 给 Node.js 的快速多语言脏话与毒性筛查器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · itisshikhar · `TS` · 调用点 [`demo/js/models.js`](https://github.com/ItisShikhar/gg-friggin-ez/blob/HEAD/demo/js/models.js)，2026-09-22 阅读</sub>
 
-- **[Harness Router](https://github.com/Protocol-Lattice/harness-router)** — 在现有 Agent 循环中挑选下一个工具：给定目标、当前观测和工具列表，由 Jev 返回带置信度的工具选择，或交回宿主规划器处理。会缓存可复用的选择，可选 MCTS 搜索，能挂接到 Codex 等框架，也可作为 MCP 服务器运行。 <sub>(机翻)</sub>
-  <sub>`开源项目` · protocol-lattice · `Py` · `choice` · 调用点 [`src/harness_router/config.py`](https://github.com/Protocol-Lattice/harness-router/blob/HEAD/src/harness_router/config.py)</sub>
+- **[Harness Router](https://github.com/Protocol-Lattice/harness-router)** — 在现有 Agent 循环中挑选下一个工具：给定目标、当前观测和工具列表，由 Jev 返回带置信度的工具选择，或交回宿主规划器处理。会缓存可复用的选择，可选 MCTS 搜索，能挂接到 Codex 等框架，也可作为 MCP 服务器运行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · protocol-lattice · `Py` · `choice` · 调用点 [`src/harness_router/config.py`](https://github.com/Protocol-Lattice/harness-router/blob/HEAD/src/harness_router/config.py)，2026-10-24 模型阅读</sub>
 
 - **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — 评判智能体的每一步：通过／重试／升级／停止。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/harnessjudge/blob/HEAD/src/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
@@ -447,14 +447,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jet](https://github.com/arczhi/jet)** — 原生面向 TypeSafe（Jev）的编码智能体，基于递归式 LLM 上下文分解，配有原生 macOS 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arczhi · `Py` · 调用点 [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py)，2026-09-24 阅读</sub>
 
-- **[Jev Browser Bridge](https://github.com/lexmount/jev-browser-bridge)** — 让 Jev 浏览器 Agent 运行在任何支持 CDP 的浏览器上，包括从不渲染页面的浏览器：它读取 DOM 而不是坐标，向 Jev 问一个 choice 选操作、再问一个 choice 选目标。作者报告在六种浏览器上的 172 个 MiniWoB++ 回合中成功率为 59–65%，基于坐标的读取方式为 24–31%。 <sub>(机翻)</sub>
-  <sub>`开源项目` · lexmount · `Py` · `choice` · 调用点 [`jev_browser_bridge/model.py`](https://github.com/lexmount/jev-browser-bridge/blob/HEAD/jev_browser_bridge/model.py) · ⚠ `厂商自报数据`</sub>
+- **[Jev Browser Bridge](https://github.com/lexmount/jev-browser-bridge)** — 让 Jev 浏览器 Agent 运行在任何支持 CDP 的浏览器上，包括从不渲染页面的浏览器：它读取 DOM 而不是坐标，向 Jev 问一个 choice 选操作、再问一个 choice 选目标。作者报告在六种浏览器上的 172 个 MiniWoB++ 回合中成功率为 59–65%，基于坐标的读取方式为 24–31%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · lexmount · `Py` · `choice` · 调用点 [`jev_browser_bridge/model.py`](https://github.com/lexmount/jev-browser-bridge/blob/HEAD/jev_browser_bridge/model.py)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
 
-- **[Jev Civilizations](https://github.com/JonesSteven/jev_civilization)** — 一款带在线演示的小型策略游戏：四个部落自主生活，你只能改变环境。每回合 Jev 用 choice 从真正合法的行动中为每个部落选一个，普通的游戏引擎计算结果，检查器会显示 Jev 收到了哪些信息。 <sub>(机翻)</sub>
-  <sub>`开源项目` · jonessteven · `TS` · `choice` · 调用点 [`scripts/probe-jev.ts`](https://github.com/JonesSteven/jev_civilization/blob/HEAD/scripts/probe-jev.ts)</sub>
+- **[Jev Civilizations](https://github.com/JonesSteven/jev_civilization)** — 一款带在线演示的小型策略游戏：四个部落自主生活，你只能改变环境。每回合 Jev 用 choice 从真正合法的行动中为每个部落选一个，普通的游戏引擎计算结果，检查器会显示 Jev 收到了哪些信息。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · jonessteven · `TS` · `choice` · 调用点 [`scripts/probe-jev.ts`](https://github.com/JonesSteven/jev_civilization/blob/HEAD/scripts/probe-jev.ts)，2026-10-24 模型阅读</sub>
 
-- **[Jev Plays Pokémon Red](https://github.com/christianmat/jev-pokemon)** — 让 Jev 通关《宝可梦 红》的框架：读取模拟器内存，列出合法选项及相关事实（属性克制、伤害估计、离目标还有多远），由 Jev 选一个。37 小时 40 分钟内共做出 16,150 次决策，花费约 1.65 美元，通过 Vercel AI Gateway 上的 AI SDK 调用。 <sub>(机翻)</sub>
-  <sub>`开源项目` · christianmat · `TS` · 调用点 [`src/jev/gateway.ts`](https://github.com/christianmat/jev-pokemon/blob/HEAD/src/jev/gateway.ts) · ⚠ `宣称未核实`</sub>
+- **[Jev Plays Pokémon Red](https://github.com/christianmat/jev-pokemon)** — 让 Jev 通关《宝可梦 红》的框架：读取模拟器内存，列出合法选项及相关事实（属性克制、伤害估计、离目标还有多远），由 Jev 选一个。37 小时 40 分钟内共做出 16,150 次决策，花费约 1.65 美元，通过 Vercel AI Gateway 上的 AI SDK 调用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · christianmat · `TS` · 调用点 [`src/jev/gateway.ts`](https://github.com/christianmat/jev-pokemon/blob/HEAD/src/jev/gateway.ts)，2026-10-24 模型阅读 · ⚠ `宣称未核实`</sub>
 
 - **[jev-A-share-trader](https://github.com/Eric-Zhou-0302/jev-A-share-trader)** — 由 Jev 驱动的中国 A 股技术分析工作台，支持 AKShare/Tushare、市场扫描以及买入/持有/卖出建议。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · eric-zhou-0302 · `Py` · 调用点 [`src/jev_trader/jev.py`](https://github.com/Eric-Zhou-0302/jev-A-share-trader/blob/HEAD/src/jev_trader/jev.py)，2026-09-24 阅读</sub>
@@ -468,8 +468,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-behavior-study](https://github.com/RINNECODER/jev-behavior-study)** — 独立的 Jev 1.13.0 行为研究：报告、受控提示实验、原始结果与离线验证。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · rinnecoder · `Py` · 调用点 [`behavior_study.py`](https://github.com/RINNECODER/jev-behavior-study/blob/HEAD/behavior_study.py)，2026-09-22 阅读</sub>
 
-- **[jev-browse](https://github.com/danielnc/jev-browse)** — 为 browser-harness 提供的辅助函数，让 Claude Code 或 Codex 用一次 fast_run 调用交出整个网站子任务：每一步都由 Jev 决定，必须停下时返回带类型的原因。它移植自 browser-use/jev-ultrafast；作者报告速度快 1.6–3.0 倍、成本低 2.1–5.3 倍。 <sub>(机翻)</sub>
-  <sub>`开源项目` · danielnc · `Py` · 调用点 [`jev_browse/config.py`](https://github.com/danielnc/jev-browse/blob/HEAD/jev_browse/config.py) · ⚠ `厂商自报数据`</sub>
+- **[jev-browse](https://github.com/danielnc/jev-browse)** — 为 browser-harness 提供的辅助函数，让 Claude Code 或 Codex 用一次 fast_run 调用交出整个网站子任务：每一步都由 Jev 决定，必须停下时返回带类型的原因。它移植自 browser-use/jev-ultrafast；作者报告速度快 1.6–3.0 倍、成本低 2.1–5.3 倍。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · danielnc · `Py` · 调用点 [`jev_browse/config.py`](https://github.com/danielnc/jev-browse/blob/HEAD/jev_browse/config.py)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jev-browse](https://github.com/0x7067/jev-browse)** — 以 Jev（TypeSafe）作为决策模型的浏览器自动化。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · 0x7067 · `JS` · 调用点 [`bundled/cli.mjs`](https://github.com/0x7067/jev-browse/blob/HEAD/bundled/cli.mjs)，2026-09-24 阅读</sub>
@@ -534,8 +534,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-in-codex](https://github.com/teempai/jev-in-codex)** — 通过 MCP 为 Codex 提供由 Jev 驱动的工具与技能选择、上下文搜索和输出分诊。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · teempai · `TS` · 调用点 [`src/labelling.ts`](https://github.com/teempai/jev-in-codex/blob/HEAD/src/labelling.ts)，2026-09-24 阅读</sub>
 
-- **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — 一套 Claude Code 工具包：PreToolUse 守卫先用免费的代码预筛放行约 93% 的工具调用，其余交给 Jev 判断（放行、警告、改写或拦截，出错时默认放行）；还能为子 Agent 选择合适的规格，并把 Jev 接入文件搜索、浏览和代码审阅。作者报告浏览器任务 9/9 成功，Claude 花费仅 0.0008 美元。 <sub>(机翻)</sub>
-  <sub>`插件` · jonathanavis96 · `Py` · `choice` · `noul` · 调用点 [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py) · ⚠ `厂商自报数据`</sub>
+- **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — 一套 Claude Code 工具包：PreToolUse 守卫先用免费的代码预筛放行约 93% 的工具调用，其余交给 Jev 判断（放行、警告、改写或拦截，出错时默认放行）；还能为子 Agent 选择合适的规格，并把 Jev 接入文件搜索、浏览和代码审阅。作者报告浏览器任务 9/9 成功，Claude 花费仅 0.0008 美元。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · jonathanavis96 · `Py` · `choice` · `noul` · 调用点 [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jev-lab](https://github.com/jammaru/jev-lab)** — 100 个 AI NPC 住在一个小镇里：Jev 选择下一步动作，世界自己写故事。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jammaru · `TS` · 调用点 [`apps/shogi-server/src/jev.ts`](https://github.com/jammaru/jev-lab/blob/HEAD/apps/shogi-server/src/jev.ts)，2026-09-22 阅读</sub>
@@ -651,8 +651,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevonly](https://github.com/buluoray/JevOnly)** — 纯 Jev 驱动的智能体：能「打字」并推进任务直至完成。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · buluoray · `Py` · 调用点 [`src/jevonly/core/jev.py`](https://github.com/buluoray/JevOnly/blob/HEAD/src/jevonly/core/jev.py)，2026-09-22 阅读</sub>
 
-- **[Jevry](https://github.com/michaelswissa/jevry)** — 一款开源桌面浏览器，可根据自然语言任务操作网站：文本模型负责规划，Jev 用 choice 从浏览器真正能执行的动作中挑选每一步（绝不生成 JavaScript 或选择器），Chromium 执行，步骤可见并可随时停止。 <sub>(机翻)</sub>
-  <sub>`开源项目` · michaelswissa · `TS` · `choice` · 调用点 [`desktop/jev-direct-plan.ts`](https://github.com/michaelswissa/jevry/blob/HEAD/desktop/jev-direct-plan.ts)</sub>
+- **[Jevry](https://github.com/michaelswissa/jevry)** — 一款开源桌面浏览器，可根据自然语言任务操作网站：文本模型负责规划，Jev 用 choice 从浏览器真正能执行的动作中挑选每一步（绝不生成 JavaScript 或选择器），Chromium 执行，步骤可见并可随时停止。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · michaelswissa · `TS` · `choice` · 调用点 [`desktop/jev-direct-plan.ts`](https://github.com/michaelswissa/jevry/blob/HEAD/desktop/jev-direct-plan.ts)，2026-10-24 模型阅读</sub>
 
 - **[jevshield](https://github.com/lgy1027/jevshield)** — 亚 100 毫秒的智能体工具调用安全闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · lgy1027 · `Py` · 调用点 [`jevshield/client.py`](https://github.com/lgy1027/jevshield/blob/HEAD/jevshield/client.py)，2026-09-22 阅读</sub>

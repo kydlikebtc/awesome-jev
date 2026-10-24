@@ -39,6 +39,7 @@ on:
       - "scripts/site_api.py"
       - "scripts/site_pages.py"
       - "scripts/thresholds.py"
+      - "scripts/wire.py"
       - "src/awesome_jev_mcp/query.py"
       - ".github/workflows/pages.yml"
   workflow_dispatch:

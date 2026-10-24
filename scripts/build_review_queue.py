@@ -35,6 +35,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import _stats  # noqa: E402
 from classify import classify_broad, suggest  # noqa: E402
 from evidence_url import evidence_url  # noqa: E402
+from measurements import model_read as measurements_model_read  # noqa: E402
 from measurements import unread  # noqa: E402
 from readme.rows import esc, md_url, star_band, star_label  # noqa: E402
 import thresholds  # noqa: E402
@@ -109,11 +110,13 @@ def examples_dir(catalog: list[dict]) -> Section:
         leave_en=(
             "To take a row off, read the file and set `evidence.kind`: `call-site` when it is the "
             "project's own use of Jev, `example-only` when it is only an example. Citing a better "
-            "file from the project's own code instead also takes it off."
+            "file from the project's own code instead also takes it off. A model that does either records "
+            "its reading in `evidence.model_read_on`, never in `evidence.read_on`."
         ),
         leave_zh=(
             "移出方法：读这个文件，然后设置 `evidence.kind`——它就是项目自身对 Jev 的使用时设为 "
             "`call-site`，只是示例时设为 `example-only`。改为引用项目自身代码中更合适的文件，也会让它移出。"
+            "由模型来做时，把阅读记在 `evidence.model_read_on`，不要记在 `evidence.read_on`。"
         ),
         columns=EVIDENCE_COLUMNS,
         rows=evidence_rows(catalog, _stats.examples_unjudged),
@@ -141,12 +144,13 @@ def single_model_name(catalog: list[dict]) -> Section:
         leave_en=(
             "To take a row off, add a second string from the call itself (an import, the method "
             "called, a question type) to `evidence.matched`, then run "
-            "`python3 scripts/verify_claims.py --only <slug>` to confirm the file holds every string."
+            "`python3 scripts/verify_claims.py --only <slug>` to confirm the file holds every string. A "
+            "model that does this records its reading in `evidence.model_read_on`, never in `evidence.read_on`."
         ),
         leave_zh=(
             "移出方法：从调用本身再取一个字符串（import、被调用的方法、问题类型）加入 "
             "`evidence.matched`，然后运行 `python3 scripts/verify_claims.py --only <slug>`，"
-            "确认文件含有每一个字符串。"
+            "确认文件含有每一个字符串。由模型来做时，把阅读记在 `evidence.model_read_on`，不要记在 `evidence.read_on`。"
         ),
         columns=EVIDENCE_COLUMNS,
         rows=evidence_rows(catalog, _stats.single_model_name),
@@ -191,13 +195,15 @@ def tool_selection_broad_words(catalog: list[dict]) -> Section:
             "If nothing in it decides which tool or action comes next, replace `tool-selection` in "
             "`patterns` with the pattern it does show, or with `overview`. Either way, set "
             "`patterns_reviewed` to the date you read it; that alone takes off a row whose "
-            "`tool-selection` was right."
+            "`tool-selection` was right. A model that reads it sets `patterns_model_read_on` instead, "
+            "which moves the row to [Read or written by a model](#model-read)."
         ),
         leave_zh=(
             "移出方法：对照 [`tool-selection`](patterns.md#tool-selection) 阅读该项目。"
             "如果其中没有任何东西在决定下一步调用哪个工具或采取哪个动作，就把 `patterns` 里的 `tool-selection` "
             "换成它实际体现的模式，或换成 `overview`。无论哪种情况，都把阅读日期写入 `patterns_reviewed`；"
-            "`tool-selection` 本来就对的行，只写这个日期也会移出。"
+            "`tool-selection` 本来就对的行，只写这个日期也会移出。由模型阅读时改写 `patterns_model_read_on`，"
+            "该行会移到[模型读过或撰写](#model-read)一节。"
         ),
         columns=(
             ("Row", "行"),
@@ -232,7 +238,8 @@ def unsorted_overview(catalog: list[dict]) -> Section:
         title_zh="带代码、尚未按模式索引的 overview 行",
         about_en=(
             "The row is a project or a plugin with code, its only pattern is `overview`, and it records no "
-            "`patterns_reviewed`. `overview` is for a row that surveys the model or the space "
+            "reading against the patterns, neither a person's (`patterns_reviewed`) nor a model's "
+            "(`patterns_model_read_on`). `overview` is for a row that surveys the model or the space "
             "([patterns.md](patterns.md#overview)); it is also what the keyword rules suggest when nothing "
             "matches, and the bulk passes took the rules' patterns. The READMEs, the Overview page and the "
             "site list these rows apart, as not yet indexed by pattern. The last column is only a "
@@ -240,7 +247,8 @@ def unsorted_overview(catalog: list[dict]) -> Section:
             "title, and a dash when none of them matches."
         ),
         about_zh=(
-            "该行是带代码的项目或插件，唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。"
+            "该行是带代码的项目或插件，唯一的模式是 `overview`，且没有任何对照决策模式阅读的记录："
+            "既没有人的（`patterns_reviewed`），也没有模型的（`patterns_model_read_on`）。"
             "`overview` 本是给介绍模型或整个领域的行用的（[patterns.md](patterns.md#overview)）；"
             "它也是关键词规则什么都没匹配到时给出的建议，而批量收录时直接采用了规则给出的模式。"
             "README、Overview 页面和站点把这些行单独列为“尚未按模式索引”。最后一列只是建议："
@@ -249,11 +257,13 @@ def unsorted_overview(catalog: list[dict]) -> Section:
         leave_en=(
             "To take a row off, read the project against [the patterns](patterns.md). Put the patterns it "
             "shows in `patterns`, or keep `overview` if it surveys the space, and set `patterns_reviewed` "
-            "to the date you read it."
+            "to the date you read it. A model that reads it sets `patterns_model_read_on` instead, which "
+            "moves the row to [Read or written by a model](#model-read)."
         ),
         leave_zh=(
             "移出方法：对照[决策模式](patterns.md)阅读该项目。把它体现的模式写进 `patterns`；"
             "如果它确实是在介绍整个领域，就保留 `overview`。然后把阅读日期写入 `patterns_reviewed`。"
+            "由模型阅读时改写 `patterns_model_read_on`，该行会移到[模型读过或撰写](#model-read)一节。"
         ),
         columns=(
             ("Row", "行"),
@@ -296,12 +306,14 @@ def generic_summary(catalog: list[dict]) -> Section:
             "Jev to decide, in words that include one of those above (naming Jev is enough; the rule reads "
             "only the words), with `summary_source` set to `curated` and `summary_zh` to match (see the "
             "`summary` field rules in [CONTRIBUTING](../CONTRIBUTING.md#field-rules)); or keep the "
-            "summary and add a `notes` line that says it."
+            "summary and add a `notes` line that says it. A summary a model writes is labelled "
+            "`model-written` instead, and the row moves to [Read or written by a model](#model-read)."
         ),
         leave_zh=(
             "移出方法：读引用的文件，写一条说明该项目让 Jev 决定什么的摘要，其中要含有上面列出的某个词（写出 Jev 即可；规则只看这些词），把 `summary_source` 设为 `curated`，"
             "并相应更新 `summary_zh`（见 [CONTRIBUTING](../CONTRIBUTING.md#field-rules) 中关于 `summary` 的字段规则）；"
-            "或者保留摘要，加一行 `notes` 说明这一点。"
+            "或者保留摘要，加一行 `notes` 说明这一点。由模型撰写的摘要改标为 `model-written`，"
+            "该行会移到[模型读过或撰写](#model-read)一节。"
         ),
         columns=(
             ("Row", "行"),
@@ -329,17 +341,18 @@ def measurement_unread(catalog: list[dict]) -> Section:
     marked = by_band(unread(catalog))
     return Section(
         key="measurement-unread",
-        title_en="Benchmark measurements no person has read against the report",
-        title_zh="尚无人对照报告核读的基准测试测量",
+        title_en="Benchmark measurements nobody has read against the report",
+        title_zh="人和模型都还没有对照报告读过的基准测试测量",
         about_en=(
-            "The row's `measurement` has no `read_on`: a script or a model filled in its fields from the "
-            "author's README or results, and no person has checked them since. The fields index what the "
+            "The row's `measurement` has neither `read_on` nor `model_read_on`: a script or a model filled "
+            "in its fields from the author's README or results, and nobody has recorded reading them since. The fields index what the "
             "author reports; the direction is the author's own conclusion (author-stated, not reproduced "
             "here). The fields first filled in on 2026-09-28 were read by a model; "
             "[method.md](method.md) says how. [benchmarks.md](benchmarks.md) shows every field."
         ),
         about_zh=(
-            "该行的 `measurement` 没有 `read_on`：字段由脚本或模型根据作者的 README 或结果填写，此后没有人核对过。"
+            "该行的 `measurement` 既没有 `read_on` 也没有 `model_read_on`：字段由脚本或模型根据作者的 README "
+            "或结果填写，此后没有人或模型记录过核读。"
             "这些字段索引的是作者报告的内容；结论方向是作者本人的结论（作者自述，未经本仓库复现）。"
             "2026-09-28 首次填写的字段由模型阅读得出，做法见 [method.md](method.md)。"
             "全部字段见 [benchmarks.zh-CN.md](benchmarks.zh-CN.md)。"
@@ -348,12 +361,14 @@ def measurement_unread(catalog: list[dict]) -> Section:
             "To take a row off, read the author's report (the row's link, or `measurement.report`) against "
             "every field, correct or remove any the report does not state, and set `measurement.read_on` to "
             "the day you read it (see the `measurement` field rules in "
-            "[CONTRIBUTING](../CONTRIBUTING.md#field-rules))."
+            "[CONTRIBUTING](../CONTRIBUTING.md#field-rules)). A model that reads it sets "
+            "`measurement.model_read_on` instead, which moves the row to [Read or written by a model](#model-read)."
         ),
         leave_zh=(
             "移出方法：对照作者的报告（该行的链接，或 `measurement.report`）逐项核读，改正或删去报告里没有说的字段，"
             "再把 `measurement.read_on` 设为核读当天（见 [CONTRIBUTING](../CONTRIBUTING.md#field-rules) 中关于 "
-            "`measurement` 的字段规则）。"
+            "`measurement` 的字段规则）。由模型核读时改写 `measurement.model_read_on`，该行会移到"
+            "[模型读过或撰写](#model-read)一节。"
         ),
         columns=(
             ("Row", "行"),
@@ -377,10 +392,10 @@ def wire_unread(catalog: list[dict]) -> Section:
     marked = by_band(wire.unread(catalog))
     return Section(
         key="wire-unread",
-        title_en="Interfaces of alternatives no person has read in the cited files",
-        title_zh="尚无人在所引文件中核读的替代实现接口",
+        title_en="Interfaces of alternatives nobody has read in the cited files",
+        title_zh="人和模型都还没有在所引文件中读过的替代实现接口",
         about_en=(
-            "The row's `wire` record cites files without a `read_on`: a script or a model read the "
+            "The row's `wire` record cites a file with neither `read_on` nor `model_read_on`: a script or a model read the "
             "project's code for its route, its yes/no spelling, where its answers come from and whether it "
             "calls Jev to compare, and no person has checked since. Every value is backed by a string in a "
             "cited file, which the weekly `claims` run re-reads; whether the strings mean what the fields say "
@@ -389,7 +404,7 @@ def wire_unread(catalog: list[dict]) -> Section:
             "shows every field."
         ),
         about_zh=(
-            "该行的 `wire` 记录所引文件没有 `read_on`：由脚本或模型阅读项目代码，得出其路由、是/否题型的写法、"
+            "该行的 `wire` 记录所引文件中有的既没有 `read_on` 也没有 `model_read_on`：由脚本或模型阅读项目代码，得出其路由、是/否题型的写法、"
             "答案来自哪里、是否调用 Jev 做对比，此后没有人核对过。每个值都有所引文件中的一段字符串作依据，"
             "每周的 `claims` 任务会重读这些字符串；这些字符串是否真如字段所说，则要靠人读。"
             "2026-09-28 首次填写的记录由模型阅读得出，做法见 [method.md](method.md)。"
@@ -398,11 +413,13 @@ def wire_unread(catalog: list[dict]) -> Section:
         leave_en=(
             "To take a row off, read each file in `wire.source` against every field, correct or remove any "
             "field the files do not show, and set `read_on` on each source to the day you read it (see the "
-            "`wire` field rules in [CONTRIBUTING](../CONTRIBUTING.md#field-rules))."
+            "`wire` field rules in [CONTRIBUTING](../CONTRIBUTING.md#field-rules)). A model that reads them "
+            "sets `model_read_on` instead, which moves the row to [Read or written by a model](#model-read)."
         ),
         leave_zh=(
             "移出方法：对照 `wire.source` 中的每个文件逐项核读，改正或删去文件里看不出的字段，再把每个来源的 "
             "`read_on` 设为核读当天（见 [CONTRIBUTING](../CONTRIBUTING.md#field-rules) 中关于 `wire` 的字段规则）。"
+            "由模型核读时改写 `model_read_on`，该行会移到[模型读过或撰写](#model-read)一节。"
         ),
         columns=(("Row", "行"), ("Stars", "星标"), ("Weights", "权重"), ("Cited files", "引用的文件")),
         rows=tuple(
@@ -426,10 +443,10 @@ def thresholds_unread(catalog: list[dict]) -> Section:
     marked = by_band(thresholds.unread(catalog))
     return Section(
         key="thresholds-unread",
-        title_en="Thresholds no person has read in the cited file",
-        title_zh="尚无人在所引文件中核读的阈值",
+        title_en="Thresholds nobody has read in the cited file",
+        title_zh="人和模型都还没有在所引文件中读过的阈值",
         about_en=(
-            "The row's `observed_thresholds` has an item without a `read_on`: a script or a model read the "
+            "The row's `observed_thresholds` has an item with neither `read_on` nor `model_read_on`: a script or a model read the "
             "cited file for the constants it compares a Jev answer with, and no person has checked since. "
             "Each item's `source` is a string in `evidence.matched`, which the weekly `claims` run re-reads, "
             "and its `value` is written in it; which answer the constant is compared with, and what the code "
@@ -437,7 +454,7 @@ def thresholds_unread(catalog: list[dict]) -> Section:
             "thresholds first recorded on 2026-09-28 were read by a model; [method.md](method.md) says how."
         ),
         about_zh=(
-            "该行的 `observed_thresholds` 中有条目没有 `read_on`：由脚本或模型阅读所引文件，找出其中与 Jev "
+            "该行的 `observed_thresholds` 中有条目既没有 `read_on` 也没有 `model_read_on`：由脚本或模型阅读所引文件，找出其中与 Jev "
             "答案比较的常量，此后没有人核对过。每个条目的 `source` 是 `evidence.matched` 中的一段字符串，"
             "每周的 `claims` 任务会重读它，`value` 就写在其中；常量与哪个答案比较、两侧代码各做什么，则要靠人读。"
             "这些是该项目自己的选择，不是推荐值。2026-09-28 首次记录的阈值由模型阅读得出，做法见 "
@@ -447,12 +464,14 @@ def thresholds_unread(catalog: list[dict]) -> Section:
             "To take a row off, read the cited file against every item: correct `question_type`, `compares` "
             "and `decision`, remove any item that is not a decision on a Jev answer, and set each item's "
             "`read_on` to the day you read it (see the `observed_thresholds` field rules in "
-            "[CONTRIBUTING](../CONTRIBUTING.md#field-rules))."
+            "[CONTRIBUTING](../CONTRIBUTING.md#field-rules)). A model that reads them sets `model_read_on` "
+            "instead, which moves the row to [Read or written by a model](#model-read)."
         ),
         leave_zh=(
             "移出方法：对照所引文件逐条核读，改正 `question_type`、`compares` 和 `decision`，删去不是基于 Jev "
             "答案做决定的条目，再把每个条目的 `read_on` 设为核读当天（见 "
             "[CONTRIBUTING](../CONTRIBUTING.md#field-rules) 中关于 `observed_thresholds` 的字段规则）。"
+            "由模型核读时改写 `model_read_on`，该行会移到[模型读过或撰写](#model-read)一节。"
         ),
         columns=(("Row", "行"), ("Stars", "星标"), ("Thresholds", "阈值"), ("Cited file", "引用的文件")),
         rows=tuple(
@@ -467,9 +486,81 @@ def thresholds_unread(catalog: list[dict]) -> Section:
     )
 
 
+def model_work(entry: dict) -> list[tuple[str, str]]:
+    """What a model read or wrote for the row that no person has checked since,
+    as (what, when) pairs; `when` is "" for a summary, which records no date."""
+    query = _stats.load_query()
+    found = []
+    if entry.get("patterns_model_read_on") and not entry.get("patterns_reviewed"):
+        found.append(("patterns", entry["patterns_model_read_on"]))
+    if query.read_by(entry.get("evidence")) == query.MODEL:
+        found.append(("call site", entry["evidence"]["model_read_on"]))
+        # Read in that call site, so the model's reading too (primitives_read_by).
+        if query.primitives_read_by(entry) == query.MODEL:
+            found.append(("question_types", ""))
+    if entry in measurements_model_read([entry]):
+        found.append(("measurement", entry["measurement"]["model_read_on"]))
+    if entry in wire.model_read([entry]):
+        days = sorted({item["model_read_on"] for item in wire.sources(entry["wire"]) if "read_on" not in item})
+        found.append(("interface", ", ".join(days)))
+    if entry in thresholds.model_read([entry]):
+        days = sorted({item["model_read_on"] for item in thresholds.recorded(entry) if "read_on" not in item})
+        found.append(("thresholds", ", ".join(days)))
+    if entry.get("summary_source") == "model-written":
+        found.append(("summary", ""))
+    return found
+
+
+def model_read(catalog: list[dict]) -> Section:
+    marked = by_band(e for e in catalog if model_work(e))
+    return Section(
+        key="model-read",
+        title_en="Read or written by a model, not yet checked by a person",
+        title_zh="模型读过或撰写、尚无人核对",
+        about_en=(
+            "Since 2026-10-24 a model's reading is recorded apart from a person's: `patterns_model_read_on`, "
+            "and `model_read_on` on the call site (`evidence`), a benchmark's `measurement`, each file of an "
+            "alternative's `wire` and each threshold; a summary a model wrote is labelled `model-written`, and "
+            "`question_types` on a row whose call site only a model has read is that model's reading too. "
+            "Every surface shows these as a model's work, never as a person's. A row here left the lists "
+            "above because a model read it, not because a person agreed: a model can misread a file in ways "
+            "a person would not, so these rows are for a person to check, all of them or a sample."
+        ),
+        about_zh=(
+            "自 2026-10-24 起，模型的阅读与人的阅读分开记录：`patterns_model_read_on`，以及调用点（`evidence`）、"
+            "基准测试的 `measurement`、替代实现 `wire` 的每个文件和每个阈值上的 `model_read_on`；模型撰写的摘要标为 "
+            "`model-written`；调用点只有模型读过的行，其 `question_types` 也是模型的阅读。"
+            "所有页面都把这些显示为模型的工作，从不当作人的。这里的行离开上面各节，是因为模型读过，"
+            "而不是因为有人认可：模型可能以人不会的方式读错文件，所以这些行留给人核对，全部或抽查。"
+        ),
+        leave_en=(
+            "To take a row off, check what the model read or wrote, correct anything it got wrong, and record "
+            "your own reading: `patterns_reviewed`, `evidence.read_on` (after checking `question_types` against "
+            "the call site), `measurement.read_on`, or `read_on` on each file or threshold; keep or rewrite a "
+            "summary and set `summary_source` to `curated`. The "
+            "model's date may stay beside yours: a person's reading supersedes it everywhere it is shown."
+        ),
+        leave_zh=(
+            "移出方法：核对模型读过或写下的内容，改正它弄错的地方，再记下你自己的阅读：`patterns_reviewed`、"
+            "`evidence.read_on`（先对照调用点核对 `question_types`）、`measurement.read_on`，"
+            "或每个文件、每个阈值上的 `read_on`；摘要则保留或改写，"
+            "并把 `summary_source` 设为 `curated`。模型的日期可以留在你的旁边：凡是显示日期的地方，人的阅读都优先。"
+        ),
+        columns=(("Row", "行"), ("Stars", "星标"), ("A model's work, unchecked", "模型的工作（未经核对）")),
+        rows=tuple(
+            (
+                row_link(e),
+                star_label(e.get("stars")),
+                " · ".join(f"{cell(what)} {when}".rstrip() for what, when in model_work(e)),
+            )
+            for e in marked
+        ),
+    )
+
+
 SECTIONS = (
     examples_dir, single_model_name, tool_selection_broad_words, unsorted_overview, generic_summary, measurement_unread,
-    wire_unread, thresholds_unread,
+    wire_unread, thresholds_unread, model_read,
 )
 
 HEADER = "<!-- Written by scripts/build_review_queue.py from catalog.json. Edit those, not this file. -->"

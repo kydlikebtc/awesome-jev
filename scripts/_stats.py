@@ -19,12 +19,15 @@ from collections import Counter
 from classify import classify_broad, suggest
 from measurements import directions as measurement_directions
 from measurements import measured, negative, unread
+from measurements import model_read as measurements_model_read
 from platform_values import load_query
 from sibling_lists import citations_of, own_repository
 from thresholds import ranges as threshold_ranges
 from thresholds import rows as threshold_rows
 from thresholds import sources as threshold_sources
+from thresholds import model_read as thresholds_model_read
 from thresholds import unread as thresholds_unread
+from wire import model_read as wire_model_read
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
@@ -87,21 +90,27 @@ TOOL_SELECTION = "tool-selection"
 # passes took their suggestion, so it filled with projects nobody placed. A
 # project or plugin with code whose only pattern is overview is therefore
 # listed apart, as not yet indexed by pattern, until a person records reading
-# it against the patterns (`patterns_reviewed`) or gives it one. site/
-# catalog-core.mjs holds the same rule for the site.
+# it against the patterns (`patterns_reviewed`), a model does (since
+# 2026-10-24, `patterns_model_read_on`, shown as a model's reading), or either
+# gives it one. site/catalog-core.mjs holds the same rule for the site.
 OVERVIEW = "overview"
 UNINDEXED_KINDS = ("project", "plugin")
 
 # Where a summary's words come from, as summary_source records it
 # (schema/entry.schema.json). The two upstream values are the project's own
-# text, which is why docs/sources.md counts them apart from the rest.
-SUMMARY_SOURCES = ("curated", "upstream-description", "upstream-description-stale")
+# text, which is why docs/sources.md counts them apart from the rest; since
+# 2026-10-24 a model's writing for the catalogue is labelled apart too.
+SUMMARY_SOURCES = ("curated", "upstream-description", "upstream-description-stale", "model-written")
+UPSTREAM_SOURCES = ("upstream-description", "upstream-description-stale")
 
 # The Jev primitives, in the schema's order. Two layers of evidence about them,
 # never merged: `question_types` is a person's reading of the code calling a
 # primitive; `primitives_seen` is a script's text signal that the one file a
 # row's evidence cites contains the primitive's request or answer shape
 # (scripts/verify_claims.py). A count of primitive claims reads the first only.
+# Since 2026-10-24 a row whose call site only a model has read
+# (evidence.model_read_on) holds a model's reading in `question_types`
+# (query.primitives_read_by): counted apart, in neither layer.
 PRIMITIVES = ("choice", "score", "noul")
 
 # GitHub's own facts about a row's repository, recorded by the weekly refresh
@@ -178,20 +187,27 @@ def shadow_path_unflagged(entry: dict) -> bool:
 
 
 def signal_only(entry: dict) -> list[str]:
-    """The primitives the cited file's text shows (primitives_seen) that no
-    person recorded reading (question_types), in PRIMITIVES order."""
+    """The primitives the cited file's text shows (primitives_seen) that
+    nobody recorded reading (question_types), in PRIMITIVES order."""
     read = set(entry.get("question_types") or [])
     seen = set(entry.get("primitives_seen") or [])
     return [name for name in PRIMITIVES if name in seen and name not in read]
 
 
+def primitives_by_model(entry: dict) -> bool:
+    """The row's question_types are a model's reading (query.primitives_read_by)."""
+    query = load_query()
+    return query.primitives_read_by(entry) == query.MODEL
+
+
 def primitive_layers(catalog: list[dict]) -> dict[str, dict[str, int]]:
     """Per primitive: rows a person read calling it, and rows where only the
     text signal shows it. The two never overlap, so they may be shown side by
-    side; neither is a count of the other."""
+    side; neither is a count of the other. A model's reading is in neither."""
+    people = [e for e in catalog if not primitives_by_model(e)]
     return {
         name: {
-            "read": sum(1 for e in catalog if name in (e.get("question_types") or [])),
+            "read": sum(1 for e in people if name in (e.get("question_types") or [])),
             "signal_only": sum(1 for e in catalog if name in signal_only(e)),
         }
         for name in PRIMITIVES
@@ -225,6 +241,12 @@ def cited_by(catalog: list[dict]) -> dict[str, int]:
     return {str(n): rows for n, rows in sorted(counts.items())}
 
 
+def patterns_read(entry: dict) -> bool:
+    """A reading of the row against the patterns is recorded: a person's
+    (patterns_reviewed) or a model's (patterns_model_read_on)."""
+    return bool(entry.get("patterns_reviewed") or entry.get("patterns_model_read_on"))
+
+
 def not_indexed_by_pattern(entry: dict) -> bool:
     """A project or plugin with code filed only under overview, and no record
     of anyone reading it against the patterns. Derived, never stored."""
@@ -232,7 +254,7 @@ def not_indexed_by_pattern(entry: dict) -> bool:
         entry.get("patterns") == [OVERVIEW]
         and bool(entry.get("has_code"))
         and entry.get("kind") in UNINDEXED_KINDS
-        and not entry.get("patterns_reviewed")
+        and not patterns_read(entry)
     )
 
 
@@ -240,7 +262,21 @@ def patterns_match_rules(entry: dict) -> bool:
     """Machine signal, not a verdict: the row's patterns are exactly what the
     keyword rules suggest for its summary and title, and no reading is
     recorded. A person may have reviewed and agreed; that was not recorded."""
-    return not entry.get("patterns_reviewed") and entry.get("patterns") == suggest(entry)[1]
+    return not patterns_read(entry) and entry.get("patterns") == suggest(entry)[1]
+
+
+def model_read_counts(catalog: list[dict]) -> dict[str, int]:
+    """Per record, the rows whose only reading is a model's: their patterns,
+    the call site, a benchmark's measurement, an alternative's interface,
+    the thresholds. A person's reading of the same record takes a row out."""
+    query = load_query()
+    return {
+        "patterns": sum(1 for e in catalog if e.get("patterns_model_read_on") and not e.get("patterns_reviewed")),
+        "evidence": sum(1 for e in catalog if query.read_by(e.get("evidence")) == query.MODEL),
+        "measurement": len(measurements_model_read(catalog)),
+        "wire": len(wire_model_read(catalog)),
+        "thresholds": len(thresholds_model_read(catalog)),
+    }
 
 
 def tool_selection_broad_only(entry: dict) -> bool:
@@ -248,7 +284,7 @@ def tool_selection_broad_only(entry: dict) -> bool:
     they stood until 2026-09-27 suggest it for the row's summary and title,
     the current rules do not, and no reading is recorded."""
     return (
-        not entry.get("patterns_reviewed")
+        not patterns_read(entry)
         and TOOL_SELECTION in entry.get("patterns", [])
         and TOOL_SELECTION in suggest(entry, classify_broad)[1]
         and TOOL_SELECTION not in suggest(entry)[1]
@@ -495,11 +531,17 @@ def compute() -> dict:
         # whose patterns equal the keyword rules' suggestion shows agreement
         # with the rules and nothing more: the review, if any, was not recorded.
         "patterns_reviewed": sum(1 for e in catalog if e.get("patterns_reviewed")),
+        # Readings a model recorded and no person has (since 2026-10-24): the
+        # tier every surface shows apart, and docs/review-queue.md#model-read
+        # lists for a person to check.
+        "model_read": model_read_counts(catalog),
         "patterns_rule_identical": sum(1 for e in catalog if patterns_match_rules(e)),
         "overview_unindexed": sum(1 for e in catalog if not_indexed_by_pattern(e)),
         # A row with question_types additionally asserts *which* primitives.
         # Different claims; publishing one number for both would overstate it.
         "primitive_rows": sum(1 for e in catalog if e.get("question_types")),
+        # Of those, rows whose primitives a model read (since 2026-10-24).
+        "primitive_rows_model": sum(1 for e in catalog if primitives_by_model(e)),
         "primitive_rows_cited": sum(
             1 for e in catalog if e.get("question_types") and e.get("evidence")
         ),
@@ -544,13 +586,14 @@ def compute() -> dict:
             1 for e in catalog if e.get("summary_source") == "upstream-description-stale"
         ),
         "summary_curated": sum(1 for e in catalog if e.get("summary_source") == "curated"),
+        "summary_model_written": sum(1 for e in catalog if e.get("summary_source") == "model-written"),
         "summary_unlabelled": sum(1 for e in catalog if e.get("summary_source") not in SUMMARY_SOURCES),
         # Of the project-worded summaries, how many Chinese counterparts are a
         # machine translation of them.
         "summary_upstream_zh_machine": sum(
             1
             for e in catalog
-            if e.get("summary_source") in SUMMARY_SOURCES[1:] and e.get("zh_machine")
+            if e.get("summary_source") in UPSTREAM_SOURCES and e.get("zh_machine")
         ),
         # Who wrote each Chinese summary: a person, or a model (zh_machine).
         # scripts/zh_audit.py compares the machine translations with their English.

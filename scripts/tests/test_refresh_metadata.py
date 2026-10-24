@@ -293,7 +293,8 @@ class RepositoryFactsTest(Quiet):
 class SummarySourceTest(unittest.TestCase):
     """I21: summary_source records whether the summary is the repository's own
     description. Identical labels it; a labelled summary that stops matching is
-    stale; `curated` is a person's and never written or overwritten here."""
+    stale; `curated` is a person's, `model-written` a model's, and neither is
+    ever written or overwritten here."""
 
     SAME = "Routes support tickets with a choice."
 
@@ -304,7 +305,7 @@ class SummarySourceTest(unittest.TestCase):
         return rm.summary_source_for(entry, description)
 
     def test_the_rules(self):
-        up, stale, curated = rm.UPSTREAM, rm.UPSTREAM_STALE, rm.CURATED
+        up, stale, curated, model = rm.UPSTREAM, rm.UPSTREAM_STALE, rm.CURATED, rm.MODEL_WRITTEN
         other = "A different sentence someone wrote."
         cases = [
             # current, description,          expected
@@ -320,6 +321,9 @@ class SummarySourceTest(unittest.TestCase):
             (curated, self.SAME,               None),
             (curated, other,                   None),
             (curated, None,                    None),
+            (model,   self.SAME,               None),
+            (model,   other,                   None),
+            (model,   None,                    None),
         ]
         for current, description, expected in cases:
             with self.subTest(current=current, description=description):
@@ -344,11 +348,11 @@ class SummarySourceTest(unittest.TestCase):
             with self.subTest(description=description):
                 self.assertIsNone(self.source(None, self.SAME, description))
 
-    def test_curated_is_never_produced(self):
-        for current in (None, rm.CURATED, rm.UPSTREAM, rm.UPSTREAM_STALE):
+    def test_curated_and_model_written_are_never_produced(self):
+        for current in (None, rm.CURATED, rm.UPSTREAM, rm.UPSTREAM_STALE, rm.MODEL_WRITTEN):
             for description in (self.SAME, "Other.", None):
                 with self.subTest(current=current, description=description):
-                    self.assertNotEqual(self.source(current, self.SAME, description), rm.CURATED)
+                    self.assertNotIn(self.source(current, self.SAME, description), rm.WRITTEN_HERE)
 
     def test_a_row_without_a_summary_is_left_alone(self):
         self.assertIsNone(rm.summary_source_for({"slug": "x"}, self.SAME))

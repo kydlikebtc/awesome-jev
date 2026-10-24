@@ -50,8 +50,9 @@ LANGS = ("en", "zh")
 WEEKS_SHOWN = 26
 RETIRED_ON = re.compile(r"^Retired (\d{4}-\d{2}-\d{2})\b")
 # The summary sources a line marks, as the site and the READMEs do
-# (site/catalog-core.mjs MARKED_SOURCES).
-MARKED_SOURCES = ("upstream-description", "upstream-description-stale")
+# (site/catalog-core.mjs MARKED_SOURCES): the project's own words, and since
+# 2026-10-24 a model's.
+MARKED_SOURCES = ("upstream-description", "upstream-description-stale", "model-written")
 PATTERN_DIR = "patterns"
 
 # The Chinese is model-written, like the site's own strings.

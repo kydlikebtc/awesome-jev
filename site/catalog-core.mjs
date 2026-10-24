@@ -6,6 +6,9 @@ export function verification(entry) {
     linkChecked: entry.checked || null,
     linkOk: Boolean(entry.checked && entry.link_status >= 200 && entry.link_status < 300),
     codeRead: entry.evidence?.read_on || null,
+    // A model's reading of the call site (since 2026-10-24), kept apart and
+    // shown as a model's; only where no person's reading is recorded.
+    codeModelRead: (!entry.evidence?.read_on && entry.evidence?.model_read_on) || null,
     // The catalogue records source inspection, not executions or replications.
     runtime: "not-tested",
     performance: "not-reproduced",
@@ -22,10 +25,11 @@ export function evidenceKind(entry) {
 }
 
 // Whose words a summary is, as summary_source records it (schema/entry.schema.json).
-// The two upstream values are the project's own description; they are marked
-// wherever the summary is shown, as the READMEs mark them. `curated` is not.
-export const SUMMARY_SOURCES = ["curated", "upstream-description", "upstream-description-stale"];
-export const MARKED_SOURCES = ["upstream-description", "upstream-description-stale"];
+// The two upstream values are the project's own description, and model-written
+// a model's text for the catalogue; they are marked wherever the summary is
+// shown, as the READMEs mark them. `curated`, a person's text, is not.
+export const SUMMARY_SOURCES = ["curated", "upstream-description", "upstream-description-stale", "model-written"];
+export const MARKED_SOURCES = ["upstream-description", "upstream-description-stale", "model-written"];
 
 // The provenance marks a card's summary carries in a language, in reading
 // order: whose words it is, then, for the Chinese text only, that a model
@@ -38,21 +42,24 @@ export function summaryMarks(entry, lang) {
 }
 
 // A project or plugin with code whose only pattern is `overview`, and no record
-// of a person reading it against the patterns (`patterns_reviewed`), is not yet
-// indexed by pattern: `overview` is also what the keyword rules suggest when
-// nothing matches. The overview listing shows these rows last, under their own
-// heading, as the READMEs do. scripts/_stats.py not_indexed_by_pattern() is the
-// same rule for the generated pages.
+// of anyone reading it against the patterns (a person's `patterns_reviewed`,
+// or since 2026-10-24 a model's `patterns_model_read_on`), is not yet indexed
+// by pattern: `overview` is also what the keyword rules suggest when nothing
+// matches. The overview listing shows these rows last, under their own
+// heading, as the READMEs do. scripts/_stats.py not_indexed_by_pattern() is
+// the same rule for the generated pages.
 export const UNINDEXED_KINDS = ["project", "plugin"];
 
 export function notIndexedByPattern(entry) {
   return Array.isArray(entry.patterns) && entry.patterns.length === 1 && entry.patterns[0] === "overview"
-    && Boolean(entry.has_code) && UNINDEXED_KINDS.includes(entry.kind) && !entry.patterns_reviewed;
+    && Boolean(entry.has_code) && UNINDEXED_KINDS.includes(entry.kind)
+    && !entry.patterns_reviewed && !entry.patterns_model_read_on;
 }
 
 // The Jev primitives in the schema's order, and the two records of which ones a
 // row uses, never merged. question_types is a person's reading of the code
-// calling them. primitives_seen is a script's text signal: the one file the
+// calling them (a model's where only a model read the call site:
+// primitivesReadBy). primitives_seen is a script's text signal: the one file the
 // row's evidence cites contains their request or answer shape, which is not a
 // call. signalOnly is what the signal adds to the reading. scripts/_stats.py
 // signal_only() is the same rule for the generated pages and the figures.
@@ -62,6 +69,15 @@ export function primitiveLayers(entry) {
   const read = PRIMITIVES.filter(p => (entry.question_types || []).includes(p));
   const signalOnly = PRIMITIVES.filter(p => (entry.primitives_seen || []).includes(p) && !read.includes(p));
   return { read, signalOnly };
+}
+
+// Whose reading question_types is (since 2026-10-24): a model's when the row's
+// call site records only a model's reading (evidence.model_read_on), since no
+// person read the code; a person's otherwise; null without question_types.
+// The MCP package's query.py primitives_read_by() is the same rule.
+export function primitivesReadBy(entry) {
+  if (!(entry.question_types || []).length) return null;
+  return verification(entry).codeModelRead ? "model" : "person";
 }
 
 // The primitive picker (picker.json), walked as the README's figure draws it:
@@ -252,6 +268,13 @@ export function wireSources(wire) {
 export function wirePersonRead(wire) {
   const items = wireSources(wire);
   return items.length > 0 && items.every(i => "read_on" in i);
+}
+
+// Every cited file carries a reading date, a person's or (since 2026-10-24) a
+// model's. scripts/wire.py every_file_read() is the same rule.
+export function wireEveryFileRead(wire) {
+  const items = wireSources(wire);
+  return items.length > 0 && items.every(i => "read_on" in i || "model_read_on" in i);
 }
 
 export function wireRows(entries) {

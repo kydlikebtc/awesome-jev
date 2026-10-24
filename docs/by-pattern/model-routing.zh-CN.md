@@ -25,7 +25,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
-*调用点*链接打开该行引用的那一个文件（`evidence.path`）在仓库默认分支 `HEAD` 上的版本；其后的日期是有人最近一次阅读该文件的日期（`evidence.read_on`）：这是阅读记录，不是运行过代码。*引用文件*链接同理，只是该文件表明项目采用了 Jev 的请求结构、并非基于 Jev 构建，或只是项目附带的示例（`evidence.kind`）。两种链接都没有固定到某个提交，打开的是文件的当前版本，可能与当时读到的不同；文件移动后链接就会失效，每周的 claims 检查会报告这种情况。 <sub>(机翻)</sub>
+*调用点*链接打开该行引用的那一个文件（`evidence.path`）在仓库默认分支 `HEAD` 上的版本；其后的日期是有人最近一次阅读该文件的日期（`evidence.read_on`）；注明“模型阅读”的，则是模型阅读该文件的日期（`evidence.model_read_on`）：这是阅读记录，不是运行过代码。*引用文件*链接同理，只是该文件表明项目采用了 Jev 的请求结构、并非基于 Jev 构建，或只是项目附带的示例（`evidence.kind`）。两种链接都没有固定到某个提交，打开的是文件的当前版本，可能与当时读到的不同；文件移动后链接就会失效，每周的 claims 检查会报告这种情况。 <sub>(机翻)</sub>
 
 - **[Cookbook: Structured data extraction cascade](https://docs.typesafe.ai/cookbooks/sde_cascade)** ⭐ — 「小模型 → 校验 → 推理模型」的两段级联，用一小部分成本拿到接近大推理模型的质量。
   <sub>`官方文档` · `Py`</sub>
@@ -108,8 +108,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jev AI Use Cases](https://medium.com/data-science-in-your-pocket/jev-ai-use-cases-9a87d57ac3b4)** — 逐个用例走一遍 —— 智能体路由、智能体内部的决策层、工单分拣 —— 每个都给出具体的选项集和示例响应。
   <sub>`教程` · Mehul Gupta · `Py` · `choice` · ⚠ `付费墙`</sub>
 
-- **[Jev Switch](https://github.com/ARCJ137442/jev-switch)** — 一个轻量的 Jev 协议网关：对外提供 POST /v1/systemone，并按可编辑的路由图把每次调用转发到上游（TypeSafe、Vercel、OpenRouter、Laya 或本地服务），支持优先级和故障切换。Rust 守护进程，附带 React 控制台、Tauri 桌面应用和 Docker 镜像。文档以中文为主。 <sub>(机翻)</sub>
-  <sub>`开源项目` · arcj137442 · `Rs` · `TS` · 调用点 [`rs/crates/jev-switch-daemon/src/admin.rs`](https://github.com/ARCJ137442/jev-switch/blob/HEAD/rs/crates/jev-switch-daemon/src/admin.rs)</sub>
+- **[Jev Switch](https://github.com/ARCJ137442/jev-switch)** — 一个轻量的 Jev 协议网关：对外提供 POST /v1/systemone，并按可编辑的路由图把每次调用转发到上游（TypeSafe、Vercel、OpenRouter、Laya 或本地服务），支持优先级和故障切换。Rust 守护进程，附带 React 控制台、Tauri 桌面应用和 Docker 镜像。文档以中文为主。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · arcj137442 · `Rs` · `TS` · 调用点 [`rs/crates/jev-switch-daemon/src/admin.rs`](https://github.com/ARCJ137442/jev-switch/blob/HEAD/rs/crates/jev-switch-daemon/src/admin.rs)，2026-10-24 模型阅读</sub>
 
 - **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — 实验性的逐次调用 GPT 模型路由，通过 Jev 与一个本地 Rescue 层为 Codex 服务。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · minilv · `TS` · 调用点 [`src/jev-adapter.ts`](https://github.com/miniLV/Jev-Auto-Router/blob/HEAD/src/jev-adapter.ts)，2026-09-22 阅读</sub>
@@ -126,8 +126,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-harness-router](https://github.com/JoacoMarc/jev-harness-router)** — 面向智能体框架的逐轮路由器：一次约 350 毫秒的 Jev 调用选出模型档位、推理力度、工具与技能，并有硬性兜底。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · joacomarc · `TS` · 调用点 [`src/jev.ts`](https://github.com/JoacoMarc/jev-harness-router/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>
 
-- **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — 一套 Claude Code 工具包：PreToolUse 守卫先用免费的代码预筛放行约 93% 的工具调用，其余交给 Jev 判断（放行、警告、改写或拦截，出错时默认放行）；还能为子 Agent 选择合适的规格，并把 Jev 接入文件搜索、浏览和代码审阅。作者报告浏览器任务 9/9 成功，Claude 花费仅 0.0008 美元。 <sub>(机翻)</sub>
-  <sub>`插件` · jonathanavis96 · `Py` · `choice` · `noul` · 调用点 [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py) · ⚠ `厂商自报数据`</sub>
+- **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — 一套 Claude Code 工具包：PreToolUse 守卫先用免费的代码预筛放行约 93% 的工具调用，其余交给 Jev 判断（放行、警告、改写或拦截，出错时默认放行）；还能为子 Agent 选择合适的规格，并把 Jev 接入文件搜索、浏览和代码审阅。作者报告浏览器任务 9/9 成功，Claude 花费仅 0.0008 美元。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · jonathanavis96 · `Py` · `choice` · `noul` · 调用点 [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jev-model-router](https://github.com/az9713/jev-model-router)** — 运行在 Vercel AI Gateway 上的 Jev（TypeSafe）模型路由器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · az9713 · `JS` · 调用点 [`probe.mjs`](https://github.com/az9713/jev-model-router/blob/HEAD/probe.mjs)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
@@ -138,8 +138,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-model-router](https://github.com/satviksinha/jev-model-router)** — 为 Claude Code 打造的模型路由器，基于 Jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · satviksinha · `TS` · 调用点 [`scripts/check-jev.mjs`](https://github.com/satviksinha/jev-model-router/blob/HEAD/scripts/check-jev.mjs)，2026-09-24 阅读</sub>
 
-- **[jev-opus](https://github.com/WXK-AI/jev-opus)** — 让 Claude Code 在 Opus 5.5 上运行，并由 Jev 在每次收到提示和每批工具调用之后重新选择推理强度（测试失败时调高，通过后调回），以逐条消息的强度声明发送，从而保住提示缓存。可作为本地网关或无界面驱动器使用。 <sub>(机翻)</sub>
-  <sub>`插件` · wxk-ai · `TS` · 调用点 [`dist/config.js`](https://github.com/WXK-AI/jev-opus/blob/HEAD/dist/config.js)</sub>
+- **[jev-opus](https://github.com/WXK-AI/jev-opus)** — 让 Claude Code 在 Opus 5.5 上运行，并由 Jev 在每次收到提示和每批工具调用之后重新选择推理强度（测试失败时调高，通过后调回），以逐条消息的强度声明发送，从而保住提示缓存。可作为本地网关或无界面驱动器使用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · wxk-ai · `TS` · 调用点 [`dist/config.js`](https://github.com/WXK-AI/jev-opus/blob/HEAD/dist/config.js)，2026-10-24 模型阅读</sub>
 
 - **[jev-smart-router](https://github.com/rmosleydb/jev-smart-router)** — JEV Smart Router：一个 Databricks 应用，用 TypeSafe JEV 选择由哪个模型回答每条消息，再执行推理。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · rmosleydb · `Py` · 调用点 [`src/app.py`](https://github.com/rmosleydb/jev-smart-router/blob/HEAD/src/app.py)，2026-09-24 阅读</sub>
@@ -147,8 +147,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-synthetic-survey](https://github.com/jjd-lab/jev-synthetic-survey)** — 把 Jev 与 GPT-4.1 当作合成问卷受访者做对比 —— 怎么问比用哪个模型更重要。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jjd-lab · `Py` · 调用点 [`scripts/twin2k/jev_client.py`](https://github.com/jjd-lab/jev-synthetic-survey/blob/HEAD/scripts/twin2k/jev_client.py)，2026-09-22 阅读</sub>
 
-- **[Jevstiller](https://github.com/tomerglick57/Jevstiller)** — 放在重复性 Jev 分类调用前面的代理：起初全部转发给 Jev，用 Jev 自己的答案和概率训练一个本地小模型，等它在留出流量上与 Jev 足够一致后改为本地作答。作者报告 Banking77 上有 61.7% 的消息由本地回答，与 Jev 的一致率为 99.4%。 <sub>(机翻)</sub>
-  <sub>`开源项目` · tomerglick57 · `Py` · `choice` · `noul` · 调用点 [`jevstiller/teachers/jev.py`](https://github.com/tomerglick57/Jevstiller/blob/HEAD/jevstiller/teachers/jev.py) · ⚠ `厂商自报数据`</sub>
+- **[Jevstiller](https://github.com/tomerglick57/Jevstiller)** — 放在重复性 Jev 分类调用前面的代理：起初全部转发给 Jev，用 Jev 自己的答案和概率训练一个本地小模型，等它在留出流量上与 Jev 足够一致后改为本地作答。作者报告 Banking77 上有 61.7% 的消息由本地回答，与 Jev 的一致率为 99.4%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · tomerglick57 · `Py` · `choice` · `noul` · 调用点 [`jevstiller/teachers/jev.py`](https://github.com/tomerglick57/Jevstiller/blob/HEAD/jevstiller/teachers/jev.py)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — LangChain 集成：一个分类器，外加用于模型路由、以及在高风险工具调用执行前拦截它的实验性 middleware。
   <sub>`平台集成` · `Py` · `choice` · `score` · `noul` · ⚠ `需早期访问`</sub>

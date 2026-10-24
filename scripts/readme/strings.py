@@ -159,6 +159,7 @@ EN = {
     "call_site": "call site",
     "cited_file": "cited file",
     "read_on": ", read {date}",
+    "model_read_on": ", read by a model {date}",
     "direction_bit": "author's conclusion: {direction} (author-stated, not reproduced here)",
     "direction_note": (
         "*Author's conclusion* is the direction a benchmark's own author states for Jev on the task they "
@@ -169,7 +170,8 @@ EN = {
     "call_site_note": (
         "A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of the "
         "repository's default branch; the date after it is the day a person last read that file "
-        "(`evidence.read_on`): a reading, not a run of the code. A *cited file* link is the same for "
+        "(`evidence.read_on`) or, where it says *read by a model*, the day a model did "
+        "(`evidence.model_read_on`): a reading, not a run of the code. A *cited file* link is the same for "
         "a file that shows the project speaking Jev's request shape rather than building on Jev, or "
         "only an example it ships (`evidence.kind`). Neither is pinned to a commit, so it opens the "
         "file as it is now, which may differ from what was read, and stops resolving once the file "
@@ -209,7 +211,8 @@ EN = {
     ),
     "verified_read": (
         "**Source and code review** — `evidence.path` cites the file read, `evidence.read_on` "
-        "records the reported review date, and `evidence_none` explains missing file evidence. "
+        "records the reported review date, `evidence.model_read_on` a model's reading, shown apart, and "
+        "`evidence_none` explains missing file evidence. "
         "Reading a call site is separate from running it. Summaries include source descriptions "
         "and machine translations; see the [method and its limits](docs/method.md)."
     ),
@@ -217,9 +220,10 @@ EN = {
         "**Whose words the summaries are** — {upstream} summaries are the linked project's own GitHub "
         "description, word for word, and are marked *({upstream_mark})*; {stale} are marked "
         "*({stale_mark})*: taken from one that no longer reads the same. Those words are their "
-        "authors'. {curated} summaries are marked as written for this catalogue, and {unlabelled} "
-        "carry no record either way. The weekly refresh compares each summary with its repository's "
-        "description and labels a match; only a person marks a summary as written here."
+        "authors'. {curated} summaries are marked as written for this catalogue by a person, {model} "
+        "were written for it by a model and are marked *({model_mark})*, and {unlabelled} carry no record "
+        "either way. The weekly refresh compares each summary with its repository's description and labels "
+        "a match; only a person marks a summary as a person's."
     ),
     "verified_translations": (
         "**Who wrote the Chinese** — {hand} of {entries} rows have a Chinese summary a person wrote; a "
@@ -236,7 +240,9 @@ EN = {
     ),
     "verified_primitives": (
         "**Which primitives** — {read} rows name in `question_types` the primitives a person read the "
-        "code calling. Apart from those, {signal} rows carry `primitives_seen`, a machine text signal: "
+        "code calling, and {model} more the primitives a model read there, on rows whose call site only a "
+        "model has read (`evidence.model_read_on`). Apart from those, {signal} rows carry `primitives_seen`, "
+        "a machine text signal: "
         "the weekly refresh found a primitive's request or answer shape (`\"type\": \"choice\"`, "
         "`Noul(`, `.noul`) in the one file the row cites. A shape in a file is not a call, and "
         "{signal_only} of those rows carry no `question_types`, so the signal is all that is recorded "
@@ -471,6 +477,7 @@ ZH = {
     "call_site": "调用点",
     "cited_file": "引用文件",
     "read_on": "，{date} 阅读",
+    "model_read_on": "，{date} 模型阅读",
     "direction_bit": "作者结论：{direction}（作者自述，未经本仓库复现）",
     "direction_note": (
         "*作者结论*是基准测试作者本人对 Jev 在其所测任务上给出的结论方向（`measurement.direction`：有利、好坏参半、"
@@ -479,7 +486,8 @@ ZH = {
     ),
     "call_site_note": (
         "*调用点*链接打开该行引用的那一个文件（`evidence.path`）在仓库默认分支 `HEAD` 上的版本；"
-        "其后的日期是有人最近一次阅读该文件的日期（`evidence.read_on`）：这是阅读记录，不是运行过代码。"
+        "其后的日期是有人最近一次阅读该文件的日期（`evidence.read_on`）；注明“模型阅读”的，"
+        "则是模型阅读该文件的日期（`evidence.model_read_on`）：这是阅读记录，不是运行过代码。"
         "*引用文件*链接同理，只是该文件表明项目采用了 Jev 的请求结构、并非基于 Jev 构建，"
         "或只是项目附带的示例（`evidence.kind`）。两种链接都没有固定到某个提交，打开的是文件的当前版本，"
         "可能与当时读到的不同；文件移动后链接就会失效，每周的 claims 检查会报告这种情况。"
@@ -516,15 +524,15 @@ ZH = {
     ),
     "verified_read": (
         "**来源与代码阅读** —— `evidence.path` 指向所读文件，`evidence.read_on` 记录声明的阅读日期，"
-        "`evidence_none` 解释缺少文件证据的原因。阅读调用点与运行代码是两件事。"
+        "`evidence.model_read_on` 记录模型的阅读、单独显示，`evidence_none` 解释缺少文件证据的原因。阅读调用点与运行代码是两件事。"
         "摘要包含源项目描述与机翻，详见[方法与局限](docs/method.md)。"
     ),
     "verified_summaries": (
         "**摘要是谁的文字** —— {upstream} 条摘要的英文原文就是被链接项目自己在 GitHub 上的描述，"
         "逐字相同，这些行标为 *({upstream_mark})*；{stale} 条标为 *({stale_mark})*：英文取自项目描述，"
-        "但两者已不再相同。这些文字出自项目作者，中文摘要是其译文。{curated} 条摘要标明为本目录撰写，"
-        "{unlabelled} 条未作记录。每周刷新会把每条英文摘要与其仓库描述比对并标出相同者；"
-        "只有人才能把摘要标为本目录撰写。"
+        "但两者已不再相同。这些文字出自项目作者，中文摘要是其译文。{curated} 条摘要标明由人为本目录撰写，"
+        "{model} 条由模型为本目录撰写并标为 *({model_mark})*，{unlabelled} 条未作记录。"
+        "每周刷新会把每条英文摘要与其仓库描述比对并标出相同者；只有人才能把摘要标为人写的。"
     ),
     "verified_translations": (
         "**中文是谁写的** —— {entries} 行中有 {hand} 行的中文摘要由人撰写；其余 {machine} 行由模型翻译，"
@@ -536,8 +544,9 @@ ZH = {
         "只有你自己写的译文才能去掉 `zh_machine`。"
     ),
     "verified_primitives": (
-        "**用了哪些原语** —— 有 {read} 行在 `question_types` 中记录了有人读代码时确认调用的原语。"
-        "另有 {signal} 行带 `primitives_seen`，这是机器文本信号：每周刷新在该行所引的那一个文件中"
+        "**用了哪些原语** —— 有 {read} 行在 `question_types` 中记录了有人读代码时确认调用的原语；"
+        "另有 {model} 行记录的是模型读代码时确认的原语，这些行的调用点只有模型读过（`evidence.model_read_on`）。"
+        "此外还有 {signal} 行带 `primitives_seen`，这是机器文本信号：每周刷新在该行所引的那一个文件中"
         "找到了某个原语的请求或回答结构（`\"type\": \"choice\"`、`Noul(`、`.noul`）。"
         "文件里出现这种结构不等于调用；其中 {signal_only} 行没有 `question_types`，"
         "这个信号就是关于它们所用原语的全部记录。本目录的筛选、计数和规则都不会把它当作原语声明。"
@@ -641,7 +650,7 @@ ZH = {
 # "(机翻)" after it. A person who rewrites one removes its key from here.
 ZH_MACHINE = frozenset(
     {
-        "stars_note", "verified_recheck", "verified_summaries", "license_summaries", "unindexed_readme",
+        "stars_note", "verified_recheck", "verified_read", "verified_summaries", "license_summaries", "unindexed_readme",
         "unindexed_page", "prims_intro", "prims_after", "prims_layers", "verified_primitives", "verified_translations",
         "call_site_note", "measured_more", "measured_page_intro", "repo_skill_division", "direction_note",
         "measured_more_negative", "negative_note", "pattern_evidence", "design_link", "design_link_overview",

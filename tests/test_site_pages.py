@@ -150,6 +150,16 @@ class PagesTest(unittest.TestCase):
         self.assertNotIn("机翻", en)
         self.assertIn(f'<span class="mark">{LABELS.name("summary_sources", "upstream-description", "en")}</span>', en)
 
+    def test_the_sources_marked_are_the_sites_and_a_models_summary_is_one(self):
+        core = (ROOT / "site" / "catalog-core.mjs").read_text()
+        listed = re.search(r"export const MARKED_SOURCES = (\[[^\]]*\])", core).group(1)
+        self.assertEqual(site_pages.MARKED_SOURCES, tuple(json.loads(listed)))
+        files = build(catalog=[row("written", summary_source="model-written"), row("person", summary_source="curated")],
+                      retired=[])
+        page = files["patterns/tool-selection.html"]
+        self.assertIn(f'written summary<span class="mark">{LABELS.name("summary_sources", "model-written", "en")}</span>', page)
+        self.assertIn("person summary</p>", page)
+
     def test_each_language_links_the_other(self):
         en, zh = self.files["patterns/safety-gating.html"], self.files["patterns/safety-gating.zh.html"]
         self.assertIn(f'<link rel="alternate" hreflang="zh-CN" href="{site_pages.SITE_URL}patterns/safety-gating.zh.html" />', en)

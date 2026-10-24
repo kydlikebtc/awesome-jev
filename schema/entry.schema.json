@@ -37,12 +37,13 @@
       "maxLength": 300
     },
     "summary_source": {
-      "description": "Where the words of summary come from; the same disclosure for the English text that zh_machine makes for the Chinese. `upstream-description`: the linked repository's own GitHub description, identical apart from letter case, runs of whitespace and one final full stop; scripts/refresh_metadata.py sets it whenever the two match. `upstream-description-stale`: labelled upstream-description once, and no longer identical to the description GitHub serves (the project changed it, or the summary kept only part of it); the words are still the project's. `curated`: a person wrote the summary for this catalogue; only a person sets it, and the refresh never changes it. Absent: not recorded. Anyone who rewrites a summary sets `curated`, or the refresh will call the new text stale.",
+      "description": "Where the words of summary come from; the same disclosure for the English text that zh_machine makes for the Chinese. `upstream-description`: the linked repository's own GitHub description, identical apart from letter case, runs of whitespace and one final full stop; scripts/refresh_metadata.py sets it whenever the two match. `upstream-description-stale`: labelled upstream-description once, and no longer identical to the description GitHub serves (the project changed it, or the summary kept only part of it); the words are still the project's. `curated`: a person wrote the summary for this catalogue; only a person sets it, and the refresh never changes it. `model-written` (since 2026-10-24): a model wrote it for this catalogue after reading the project, and no person has rewritten it since; the refresh never changes it either, and every surface marks it. Absent: not recorded. Anyone who rewrites a summary sets `curated`, or `model-written` when a model rewrote it, or the refresh will call the new text stale.",
       "type": "string",
       "enum": [
         "curated",
         "upstream-description",
-        "upstream-description-stale"
+        "upstream-description-stale",
+        "model-written"
       ]
     },
     "summary_zh": {
@@ -111,12 +112,17 @@
       }
     },
     "patterns_reviewed": {
-      "description": "Date a person last read this row against the decision patterns (docs/patterns.md) and set or confirmed `patterns`. Only that person writes it; nothing infers it. Patterns that match what the keyword rules suggest for the summary (scripts/classify.py) say nothing about a review either way, which is why this field exists. A project or plugin with code whose only pattern is `overview` is listed as not yet indexed by pattern until it is set or the pattern changes.",
+      "description": "Date a person last read this row against the decision patterns (docs/patterns.md) and set or confirmed `patterns`. Only that person writes it; nothing infers it. Patterns that match what the keyword rules suggest for the summary (scripts/classify.py) say nothing about a review either way, which is why this field exists. A project or plugin with code whose only pattern is `overview` is listed as not yet indexed by pattern until it is set or the pattern changes. A model's reading goes in `patterns_model_read_on` instead.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "patterns_model_read_on": {
+      "description": "Date a model last read this row against the decision patterns (docs/patterns.md) and set or confirmed `patterns` (since 2026-10-24). Kept apart from `patterns_reviewed`, which only a person's reading sets, and shown as a model's reading. Either takes an `overview` project or plugin with code off the not-yet-indexed list; a person's reading supersedes a model's wherever one date is shown.",
       "type": "string",
       "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
     },
     "question_types": {
-      "description": "Which Jev question primitives the example actually calls. The yes/no primitive is named `noul`, not `binary`. Omit when the entry contains no code. A person's reading of the call site; primitives_seen is a script's text signal and never stands in for it.",
+      "description": "Which Jev question primitives the example actually calls. The yes/no primitive is named `noul`, not `binary`. Omit when the entry contains no code. A person's reading of the call site; since 2026-10-24 a model's when `evidence` records only a model's reading of it (`model_read_on`, no `read_on`), shown as a model's. primitives_seen is a script's text signal and never stands in for it.",
       "type": "array",
       "maxItems": 3,
       "uniqueItems": true,
@@ -285,7 +291,12 @@
           ]
         },
         "read_on": {
-          "description": "Date the call site was last read by a person.",
+          "description": "Date the call site was last read by a person. A model's reading goes in `model_read_on` instead.",
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "model_read_on": {
+          "description": "Date a model last read the call site (since 2026-10-24). Kept apart from `read_on`, which only a person's reading sets; every surface shows it as a model's reading, and a person's supersedes it.",
           "type": "string",
           "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
         }
@@ -358,7 +369,12 @@
             "minLength": 2
           },
           "read_on": {
-            "description": "Date a person read the threshold in the file. Absent: a script or a model read it and no person has since.",
+            "description": "Date a person read the threshold in the file. Absent: a script or a model read it and no person has since; a model's reading goes in `model_read_on`.",
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+          },
+          "model_read_on": {
+            "description": "Date a model read the threshold in the file (since 2026-10-24). Kept apart from `read_on`, which only a person's reading sets, and shown as a model's reading.",
             "type": "string",
             "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
           }
@@ -476,7 +492,12 @@
                 }
               },
               "read_on": {
-                "description": "Date a person last read this file against the fields. Absent means a script or a model read it and no person has since (docs/review-queue.md lists those rows).",
+                "description": "Date a person last read this file against the fields. Absent means a script or a model read it and no person has since (docs/review-queue.md lists those rows); a model's reading goes in `model_read_on`.",
+                "type": "string",
+                "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+              },
+              "model_read_on": {
+                "description": "Date a model last read this file against the fields (since 2026-10-24). Kept apart from `read_on`, which only a person's reading sets, and shown as a model's reading.",
                 "type": "string",
                 "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
               }
@@ -598,7 +619,12 @@
           ]
         },
         "read_on": {
-          "description": "The day a person last read the author's report against these fields. Left out when a script or a model filled them in and no person has checked since.",
+          "description": "The day a person last read the author's report against these fields. Left out when a script or a model filled them in and no person has checked since; a model's reading goes in `model_read_on`.",
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "model_read_on": {
+          "description": "The day a model last read the author's report against these fields (since 2026-10-24). Kept apart from `read_on`, which only a person's reading sets, and shown as a model's reading.",
           "type": "string",
           "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
         }

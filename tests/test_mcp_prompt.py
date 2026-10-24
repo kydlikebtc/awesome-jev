@@ -48,6 +48,7 @@ TAXONOMY = {
         {"key": "curated", "en": "written for this list"},
         {"key": "upstream-description", "en": "upstream description"},
         {"key": "upstream-description-stale", "en": "earlier upstream description"},
+        {"key": "model-written", "en": "written by a model"},
     ],
 }
 
@@ -212,6 +213,19 @@ class RowsTest(unittest.TestCase):
         self.assertIn("   Call site: [src/b.ts](https://github.com/o/ts-one/blob/HEAD/src/b.ts), no reading date recorded",
                       section(text(language="typescript"), "Worked examples"))
         self.assertNotIn("verified", part.lower())
+
+    def test_a_models_reading_and_a_models_summary_say_so(self):
+        read = row("modelled", stars=1, summary_source="model-written")
+        read["evidence"]["model_read_on"] = "2026-10-24"
+        both = row("checked", stars=2, read_on="2026-10-24")
+        both["evidence"]["model_read_on"] = "2026-10-20"
+        part = section(prompts.wire_pattern_text([read, both], PATTERNS, COMPAT, TAXONOMY, None,
+                                                 pattern="tool-selection"), "Worked examples")
+        self.assertIn("modelled does it. (written by a model)", part)
+        self.assertIn("/src/main.py), read by a model on 2026-10-24, not yet checked by a person", part)
+        # A person's reading is the one shown when both are recorded.
+        self.assertIn("/src/main.py), read by a person on 2026-10-24", part)
+        self.assertNotIn("2026-10-20", part)
 
     def test_whose_words_the_summary_is_and_the_caveats_travel(self):
         part = section(text(), "Worked examples")

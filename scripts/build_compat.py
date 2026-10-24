@@ -23,10 +23,11 @@ The table between the `alternatives` markers ("Compatible interfaces that are
 not Jev") is read from catalog.json alone: every `kind: alternative` row that
 records its interface in `wire` (scripts/wire.py), in star-band order, each
 with the not-jev caveat and the calibration sentence of taxonomy.json's blurb,
-its other caveats, and whether a person has read the cited files. The
-*Weights* column is always there, because open weights and a proxy in front of
-another provider's model look the same from the route. A field the cited files
-do not show is a dash. The alternative rows that record no interface are
+its other caveats, and who has read the cited files: a person, or (since
+2026-10-24) only a model, which the table says in words. The *Weights* column
+is always there, because open weights and a proxy in front of another
+provider's model look the same from the route. A field the cited files do not
+show is a dash. The alternative rows that record no interface are
 counted under the table, not listed. The site's Compatibility view shows the
 same rows (site/catalog-core.mjs wireRows).
 
@@ -163,9 +164,15 @@ def read_in(entry: dict, record: dict) -> str:
         url = evidence_url({**entry, "evidence": {"path": item["path"]}})
         code = wire_code(item["path"])
         links.append(f"[{code}]({md_url(url)})" if url else code)
+    people = sorted({item["read_on"] for item in wire.sources(record) if "read_on" in item})
     if wire.person_read(record):
-        dates = sorted({item["read_on"] for item in wire.sources(record)})
-        who = f"read by a person on {', '.join(dates)}"
+        who = f"read by a person on {', '.join(people)}"
+    elif wire.every_file_read(record):
+        # Some file only a model has read (model_read_on): never shown as a person's reading.
+        models = sorted({item["model_read_on"] for item in wire.sources(record) if "read_on" not in item})
+        who = f"read by a model on {', '.join(models)}, not yet checked by a person"
+        if people:
+            who = f"partly read by a person on {', '.join(people)}, the rest by a model on {', '.join(models)}"
     else:
         who = "not yet read by a person"
     return f"{' · '.join(links)} ({who})"

@@ -25,7 +25,7 @@ This repository ships no example of this pattern; [`examples/`](../../examples/)
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
-A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of the repository's default branch; the date after it is the day a person last read that file (`evidence.read_on`): a reading, not a run of the code. A *cited file* link is the same for a file that shows the project speaking Jev's request shape rather than building on Jev, or only an example it ships (`evidence.kind`). Neither is pinned to a commit, so it opens the file as it is now, which may differ from what was read, and stops resolving once the file moves; the weekly claims check reports that.
+A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of the repository's default branch; the date after it is the day a person last read that file (`evidence.read_on`) or, where it says *read by a model*, the day a model did (`evidence.model_read_on`): a reading, not a run of the code. A *cited file* link is the same for a file that shows the project speaking Jev's request shape rather than building on Jev, or only an example it ships (`evidence.kind`). Neither is pinned to a commit, so it opens the file as it is now, which may differ from what was read, and stops resolving once the file moves; the weekly claims check reports that.
 
 *Author's conclusion* is the direction a benchmark's own author states for Jev on the task they measured (`measurement.direction`: favourable, mixed, unfavourable or inconclusive), indexed from the author's report: author-stated, not reproduced here, and absent where the author states none in words. [docs/benchmarks.md](../benchmarks.md) sets every benchmark's measurement side by side.
 
@@ -227,8 +227,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[ask-jev-ai](https://github.com/waynesutton/ask-jev-ai)** — A public wall where anyone asks a question in three to fifteen words and Jev, TypeSafe's judgment model, answers yes, no, or it depends in about 100 milliseconds. Every judged ask lands on the wall in realtime, with a running count toward one million, showing cost. <sub>(upstream description)</sub>
   <sub>`Project` · waynesutton · `JS` · call site [`convex/lib/typesafe.ts`](https://github.com/waynesutton/ask-jev-ai/blob/HEAD/convex/lib/typesafe.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
-- **[beebots](https://github.com/imikerussell/beebots)** — Three trading bots race on OKX perpetual futures, paper trading by default: Jev (or Gemini) picks each move as a choice from the legal actions plus a score for conviction, with a deterministic fallback, a plain-code risk layer and a live dashboard.
-  <sub>`Project` · imikerussell · `TS` · `choice` · `score` · call site [`src/jev.ts`](https://github.com/imikerussell/beebots/blob/HEAD/src/jev.ts)</sub>
+- **[beebots](https://github.com/imikerussell/beebots)** — Three trading bots race on OKX perpetual futures, paper trading by default: Jev (or Gemini) picks each move as a choice from the legal actions plus a score for conviction, with a deterministic fallback, a plain-code risk layer and a live dashboard. <sub>(written by a model)</sub>
+  <sub>`Project` · imikerussell · `TS` · `choice` · `score` · call site [`src/jev.ts`](https://github.com/imikerussell/beebots/blob/HEAD/src/jev.ts), read by a model 2026-10-24</sub>
 
 - **[book-aurora](https://github.com/dani1005/book-aurora)** — Jev reads a whole novel in seconds. Every passage becomes a row of colour. <sub>(upstream description)</sub>
   <sub>`Project` · dani1005 · `TS` · call site [`server/jev.ts`](https://github.com/dani1005/book-aurora/blob/HEAD/server/jev.ts), read 2026-09-24</sub>
@@ -509,8 +509,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[vgi-typesafe](https://github.com/Query-farm/vgi-typesafe)** — A VGI worker exposing TypeSafe System One questions (choice, noul, score) to DuckDB/SQL as LATERAL-joinable table functions <sub>(upstream description)</sub>
   <sub>`Project` · query-farm · `Py` · call site [`vgi_typesafe/typesafe_api.py`](https://github.com/Query-farm/vgi-typesafe/blob/HEAD/vgi_typesafe/typesafe_api.py), read 2026-09-22</sub>
 
-- **[vibecheck](https://github.com/jlowin/vibecheck)** — Python library that turns System One calls into plain values: check (yes/no), classify (one option), label (every option that applies) and score, with thresholds, an unsure answer and batching of several questions about the same data. Works against TypeSafe or any compatible server.
-  <sub>`SDK` · jlowin · `Py` · `noul` · call site [`src/vibecheck/backends.py`](https://github.com/jlowin/vibecheck/blob/HEAD/src/vibecheck/backends.py)</sub>
+- **[vibecheck](https://github.com/jlowin/vibecheck)** — Python library that turns System One calls into plain values: check (yes/no), classify (one option), label (every option that applies) and score, with thresholds, an unsure answer and batching of several questions about the same data. Works against TypeSafe or any compatible server. <sub>(written by a model)</sub>
+  <sub>`SDK` · jlowin · `Py` · `noul` · call site [`src/vibecheck/backends.py`](https://github.com/jlowin/vibecheck/blob/HEAD/src/vibecheck/backends.py), read by a model 2026-10-24</sub>
 
 - **[watfile](https://github.com/jexp/watfile)** — Text/PDF - File categorization and sorting with Typesafe AI Jev or local calibrated decision model <sub>(upstream description)</sub>
   <sub>`Project` · jexp · `Py` · call site [`src/watfile/classifier/jev.py`](https://github.com/jexp/watfile/blob/HEAD/src/watfile/classifier/jev.py), read 2026-09-22 · ⚠ `no licence`</sub>

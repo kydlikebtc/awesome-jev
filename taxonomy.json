@@ -227,6 +227,14 @@
       "blurb_en": "Taken from the project's own GitHub description, which no longer reads the same (the project changed it, or the summary kept only part of it). The words are still the project author's.",
       "blurb_zh": "取自项目自己在 GitHub 上的描述，但两者已不再相同（项目改了描述，或摘要只保留了其中一部分）。文字仍出自项目作者。",
       "zh_machine": true
+    },
+    {
+      "key": "model-written",
+      "en": "written by a model",
+      "zh": "模型撰写",
+      "blurb_en": "A model wrote this summary for the catalogue after reading the project; no person has rewritten it since.",
+      "blurb_zh": "由模型阅读项目后为本目录撰写的摘要，此后没有人改写过。",
+      "zh_machine": true
     }
   ],
   "measurement_directions": [
