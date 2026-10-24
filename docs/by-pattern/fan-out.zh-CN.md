@@ -56,10 +56,19 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`开源项目` · ★100+ · `TS` · `choice` · `noul` · 调用点 [`apps/server/src/jev/client.ts`](https://github.com/w3cj/jev-chat/blob/HEAD/apps/server/src/jev/client.ts)，2026-09-22 阅读</sub>
 
 - **[jev-forge](https://github.com/zwliJay/jev-forge)** — 面向 Jev 式决策模型的开源训练与推理栈。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`Jev 替代实现` · ★100+ · zwlijay · `Py` · 引用文件 [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身` `仅一次提交`</sub>
+  <sub>`Jev 替代实现` · ★100+ · zwlijay · `Py` · 引用文件 [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
+
+- **[VideoJev](https://github.com/MCG-NJU/VideoJev)** — 开源 System One 视频模型，在共享视频前缀上对多个问题的时间候选和多选答案直接打分，返回区间、答案和候选概率，无需生成文本。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · ★100+ · Yuhan Zhu and collaborators · `Py` · ⚠ `并非 Jev 本身` `代码未实测` `作者自荐`</sub>
+
+- **[duckdb-jev](https://github.com/prasanthj/duckdb-jev)** — 高吞吐的原生 DuckDB 扩展，支持批量与流式的分类、打分与筛选。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · prasanthj · `C++` · 调用点 [`benchmarks/live.py`](https://github.com/prasanthj/duckdb-jev/blob/HEAD/benchmarks/live.py)，2026-09-22 阅读</sub>
 
 - **[jev-sift](https://github.com/kbhuw/jev-sift)** — 先分类，再选择性阅读：可移植的批量文本分类插件与 MCP 工具。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · kbhuw · `JS` · 调用点 [`dist/server.mjs`](https://github.com/kbhuw/jev-sift/blob/HEAD/dist/server.mjs)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+
+- **[jev-tree](https://github.com/reachjalil/jev-tree)** — 在分类体系上做递归 Jev choice —— 在不突破 255 选项上限的前提下，从更多选项中做选择。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · reachjalil · `TS` · 调用点 [`benchmarks/run.mjs`](https://github.com/reachjalil/jev-tree/blob/HEAD/benchmarks/run.mjs)，2026-09-22 阅读</sub>
 
 - **[jev-ultralightspeed](https://github.com/collapseindex/jev-ultralightspeed)** — 对一大堆文本（工单、评论、日志）批量回答同一个问题：把多个条目打包进每次请求，并称吞吐量是逐条请求的 32 倍、成本低 41%。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · collapseindex · `Py` · 调用点 [`src/jev_ultralightspeed/_settings.py`](https://github.com/collapseindex/jev-ultralightspeed/blob/HEAD/src/jev_ultralightspeed/_settings.py)，2026-09-24 阅读 · ⚠ `宣称未核实`</sub>
@@ -76,14 +85,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[system-one](https://github.com/sgoedecke/system-one)** — 面向开源语言模型的批量单 token 选择推理，兼容 TypeSafe 协议。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · sgoedecke · `Py` · 调用点 [`system_one/inference.py`](https://github.com/sgoedecke/system-one/blob/HEAD/system_one/inference.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
-- **[VideoJev](https://github.com/MCG-NJU/VideoJev)** — 开源 System One 视频模型，在共享视频前缀上对多个问题的时间候选和多选答案直接打分，返回区间、答案和候选概率，无需生成文本。 <sub>(机翻)</sub>
-  <sub>`Jev 替代实现` · ★10+ · Yuhan Zhu and collaborators · `Py` · ⚠ `并非 Jev 本身` `代码未实测` `作者自荐`</sub>
-
 - **[A deep dive into Jev, TypeSafe's System One model](https://flaviocopes.com/jev/)** — 技术密度最高的独立讲解：JS / Python / AI SDK 三种代码、三种应答结构、进阶模式，还诚实列出了模型的失效场景。
   <sub>`教程` · Flavio Copes · `JS` · `Py` · `TS` · `choice` · `score` · `noul`</sub>
-
-- **[duckdb-jev](https://github.com/prasanthj/duckdb-jev)** — 高吞吐的原生 DuckDB 扩展，支持批量与流式的分类、打分与筛选。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · prasanthj · `C++` · 调用点 [`benchmarks/live.py`](https://github.com/prasanthj/duckdb-jev/blob/HEAD/benchmarks/live.py)，2026-09-22 阅读</sub>
 
 - **[Example: speculative fan-out](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/03-fan-out/main.py)** — 一次问清操作本身、以及每个可能操作各自的目标 —— 于是浏览器的一步永远不需要第二次往返。
   <sub>`代码片段` · `Py` · `choice` · `noul` · 调用点 [`examples/03-fan-out/main.py`](https://github.com/kydlikebtc/awesome-jev/blob/HEAD/examples/03-fan-out/main.py)，2026-09-22 阅读 · ⚠ `代码未实测`</sub>
@@ -105,9 +108,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-switchboard](https://github.com/ZIJIAN004/jev-switchboard)** — 给并行编程智能体的 JEV 门控语义通信层。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zijian004 · `JS` · 调用点 [`src/jev.mjs`](https://github.com/ZIJIAN004/jev-switchboard/blob/HEAD/src/jev.mjs)，2026-09-22 阅读</sub>
-
-- **[jev-tree](https://github.com/reachjalil/jev-tree)** — 在分类体系上做递归 Jev choice —— 在不突破 255 选项上限的前提下，从更多选项中做选择。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · reachjalil · `TS` · 调用点 [`benchmarks/run.mjs`](https://github.com/reachjalil/jev-tree/blob/HEAD/benchmarks/run.mjs)，2026-09-22 阅读</sub>
 
 - **[jevswiftsdk](https://github.com/NSStudent/JevSwiftSDK)** — 独立的类型安全 Swift SDK，支持 async/await、批处理与重试。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · nsstudent · `Swift` · 调用点 [`Sources/JevSwiftSDK/Configuration.swift`](https://github.com/NSStudent/JevSwiftSDK/blob/HEAD/Sources/JevSwiftSDK/Configuration.swift)，2026-09-22 阅读</sub>

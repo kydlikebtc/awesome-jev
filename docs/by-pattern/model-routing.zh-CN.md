@@ -60,6 +60,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[a3m-router](https://github.com/Das-rebel/a3m-router)** — 自适应的多模型 LLM 路由器——覆盖 80 多个提供方，用 Jev System One 单次完成路由决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · das-rebel · `TS` · 调用点 [`dist/routing/jev/remote.d.ts`](https://github.com/Das-rebel/a3m-router/blob/HEAD/dist/routing/jev/remote.d.ts)，2026-09-24 阅读</sub>
 
+- **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — 面向 AI 智能体的决策层：约 400 毫秒、两百分之一美分的类型化校准决策，用于拦截工具调用。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · eugeniughelbur · `Py` · 调用点 [`build/lib/jev_gate.py`](https://github.com/eugeniughelbur/jev-engineering/blob/HEAD/build/lib/jev_gate.py)，2026-09-22 阅读</sub>
+
 - **[jev-router](https://github.com/prismhq/jev-router)** — 开源 LLM 路由器，在 LiteLLM 之上用 Jev 选模型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · prismhq · `Py` · 调用点 [`jev_router/deciders.py`](https://github.com/prismhq/jev-router/blob/HEAD/jev_router/deciders.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
@@ -114,11 +117,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-codex-pilot](https://github.com/Charlyhno-eng/jev-codex-pilot)** — 带 JEV 模型路由、上下文优化与看板自动化的 Codex 覆盖层。 <sub>(机翻)</sub>
   <sub>`插件` · charlyhno-eng · `TS` · `choice` · `score` · `noul` · 调用点 [`src/core/hooks/jev-client.ts`](https://github.com/Charlyhno-eng/jev-codex-pilot/blob/HEAD/src/core/hooks/jev-client.ts)，2026-09-24 阅读</sub>
 
-- **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — 面向 AI 智能体的决策层：约 400 毫秒、两百分之一美分的类型化校准决策，用于拦截工具调用。 <sub>(机翻)</sub>
-  <sub>`开源项目` · eugeniughelbur · `Py` · 调用点 [`build/lib/jev_gate.py`](https://github.com/eugeniughelbur/jev-engineering/blob/HEAD/build/lib/jev_gate.py)，2026-09-22 阅读</sub>
-
 - **[jev-gate](https://github.com/MongLong0214/jev-gate)** — 不是每个编程任务都需要你最好的模型：实验性的 Jev 模型路由。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · monglong0214 · `TS` · 调用点 [`src/jev.ts`](https://github.com/MongLong0214/jev-gate/blob/HEAD/src/jev.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+  <sub>`插件` · monglong0214 · `TS` · 调用点 [`src/jev.ts`](https://github.com/MongLong0214/jev-gate/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
 - **[jev-harness-router](https://github.com/JoacoMarc/jev-harness-router)** — 面向智能体框架的逐轮路由器：一次约 350 毫秒的 Jev 调用选出模型档位、推理力度、工具与技能，并有硬性兜底。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · joacomarc · `TS` · 调用点 [`src/jev.ts`](https://github.com/JoacoMarc/jev-harness-router/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>

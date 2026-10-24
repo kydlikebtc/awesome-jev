@@ -105,9 +105,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-browser](https://github.com/jkudish/jev-browser)** — Browser automation where Jev chooses the next action.
   <sub>`Project` · ★100+ · jkudish · `TS` · call site [`src/index.ts`](https://github.com/jkudish/jev-browser/blob/HEAD/src/index.ts), read 2026-09-24</sub>
 
-- **[jev-browser](https://github.com/openqa-cn/jev-browser)** — Jev Browser — indexed browser automation. Jev chooses the control, Playwright acts. A CodexQA skill. <sub>(upstream description)</sub>
-  <sub>`Plugin` · ★100+ · openqa-cn · `TS` · call site [`src/jev.ts`](https://github.com/openqa-cn/jev-browser/blob/HEAD/src/jev.ts), read 2026-09-24</sub>
-
 - **[jev-browser](https://github.com/Ying-Kai-Liao/jev-browser)** — Browser automation where an LLM plans and Jev (Typesafe System One) decides. Library, CLI and MCP server. <sub>(upstream description)</sub>
   <sub>`Project` · ★100+ · ying-kai-liao · `JS` · call site [`src/jev.mjs`](https://github.com/Ying-Kai-Liao/jev-browser/blob/HEAD/src/jev.mjs), read 2026-09-24</sub>
 
@@ -125,6 +122,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-gateway](https://github.com/vinilana/jev-gateway)** — An easy way to use jev with your coding agent for tool calling reasoning <sub>(upstream description)</sub>
   <sub>`Project` · ★100+ · vinilana · `TS` · call site [`src/jev.ts`](https://github.com/vinilana/jev-gateway/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
+
+- **[jev-guard](https://github.com/leepokai/jev-guard)** — Auto mode for every coding agent, built on Jev: risk-scores every tool call with session context (deny / ask / allow), flags prompt injection in results, checks skills and plugins. Claude Code, Codex, Copilot, Gemini, Cursor, pi, OpenCode, ACP. <sub>(upstream description)</sub>
+  <sub>`Plugin` · ★100+ · leepokai · `JS` · call site [`src/jev.js`](https://github.com/leepokai/jev-guard/blob/HEAD/src/jev.js), read 2026-09-22</sub>
 
 - **[jev-mem](https://github.com/libingzheren/Jev-Mem)** — Jev-Mem: System-One Controlled Agentic Memory <sub>(upstream description)</sub>
   <sub>`Project` · ★100+ · libingzheren · `Py` · call site [`memory/jev_client.py`](https://github.com/libingzheren/Jev-Mem/blob/HEAD/memory/jev_client.py), read 2026-09-22</sub>
@@ -213,6 +213,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[dsh-jev](https://github.com/zhangxaochen/dsh-jev)** — Jev (System One decision model) plugin suite for DeepSeek Harness (dsh) <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · zhangxaochen · `TS` · call site [`lib/typesafe-client.d.ts`](https://github.com/zhangxaochen/dsh-jev/blob/HEAD/lib/typesafe-client.d.ts), read 2026-09-24</sub>
 
+- **[ego-jev](https://github.com/jiangkoumo/ego-decision-layer)** — Drive the ego lite browser with Jev (TypeSafe System One): one indexed element table in, one operation + target out, single process. ~2x faster than a per-step LLM loop in our measurements.
+  <sub>`Project` · ★10+ · jiangkoumo · `JS` · call site [`scripts/ego-jev.mjs`](https://github.com/jiangkoumo/ego-decision-layer/blob/HEAD/scripts/ego-jev.mjs), read 2026-09-22</sub>
+
 - **[ego-jev](https://github.com/ZephyrDeng/ego-jev)** — Jev (TypeSafe System One) inner loop for ego-browser — one ~0.4s typed decision per DOM step instead of an LLM turn. Agent skill for ego lite.
   <sub>`Plugin` · ★10+ · zephyrdeng · `JS` · call site [`skills/ego-jev/scripts/jev-loop.mjs`](https://github.com/ZephyrDeng/ego-jev/blob/HEAD/skills/ego-jev/scripts/jev-loop.mjs), read 2026-09-24</sub>
 
@@ -221,6 +224,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[evoke](https://github.com/evoke-build/evoke)** — Software, by reflex. A sentence becomes a call of a small program, chosen by Jev, TypeSafe AI's classifier, and run only when it is sure enough. Reflexes are recipes anyone can write, share and improve. A CLI you talk to, a package manager for reflexes from git, and a TypeScript SDK.
   <sub>`Project` · ★10+ · evoke-build · `Rs` · call site [`crates/evoke-adapters/src/systemone.rs`](https://github.com/evoke-build/evoke/blob/HEAD/crates/evoke-adapters/src/systemone.rs), read 2026-09-24</sub>
+
+- **[hearth-jev-rental-search](https://github.com/Nancy-Chauhan/hearth-jev-rental-search)** — Autonomous multi-source rental search powered by TypeSafe Jev <sub>(upstream description)</sub>
+  <sub>`Project` · ★10+ · nancy-chauhan · `JS` · call site [`jev_ultrafast/model.py`](https://github.com/Nancy-Chauhan/hearth-jev-rental-search/blob/HEAD/jev_ultrafast/model.py), read 2026-09-22</sub>
 
 - **[jcr](https://github.com/NiazMorshed2007/jcr)** — A Jev-powered resolver for agent harnesses to find deterministic commands and their context in a nested capability tree. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · niazmorshed2007 · `JS` · call site [`src/jcr/jev.ts`](https://github.com/NiazMorshed2007/jcr/blob/HEAD/src/jcr/jev.ts), read 2026-09-22</sub>
@@ -240,6 +246,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-bot](https://github.com/bl888m/jev-bot)** — JEV-powered market decision bot for stocks, crypto and memes. State in, BUY/SELL/HOLD/AVOID out, paper by default <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · bl888m · `Py` · call site [`jev_bot/jev.py`](https://github.com/bl888m/jev-bot/blob/HEAD/jev_bot/jev.py), read 2026-09-24</sub>
 
+- **[jev-browser](https://github.com/openqa-cn/jev-browser)** — Jev Browser — indexed browser automation. Jev chooses the control, Playwright acts. A CodexQA skill. <sub>(upstream description)</sub>
+  <sub>`Plugin` · ★10+ · openqa-cn · `TS` · call site [`src/jev.ts`](https://github.com/openqa-cn/jev-browser/blob/HEAD/src/jev.ts), read 2026-09-24</sub>
+
 - **[jev-browser](https://github.com/tontoko/jev-browser)** — One grounded Jev/Playwright core: typed SDK, persistent CLI, and MCP server with native browser operations and deterministic assertions. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · tontoko · `JS` · call site [`src/decision.ts`](https://github.com/tontoko/jev-browser/blob/HEAD/src/decision.ts), read 2026-09-24</sub>
 
@@ -258,11 +267,11 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-doom-agent](https://github.com/lukaske/jev-doom-agent)** — A browser-native Doom agent experiment with structured spatial state, composable AI controls, live decision telemetry, and a Chocolate Doom WebAssembly runtime. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · lukaske · `TS` · call site [`server/typesafe.ts`](https://github.com/lukaske/jev-doom-agent/blob/HEAD/server/typesafe.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — The decision layer for AI agents. Typed, calibrated decisions in ~400ms for two hundredths of a cent: gate tool calls, route models, rank options. With the 300-call injection test that found what breaks.
+  <sub>`Project` · ★10+ · eugeniughelbur · `Py` · call site [`build/lib/jev_gate.py`](https://github.com/eugeniughelbur/jev-engineering/blob/HEAD/build/lib/jev_gate.py), read 2026-09-22</sub>
+
 - **[jev-for-chrome](https://github.com/chy4pro/jev-for-chrome)** — Jev for Chrome: drives the tab you are looking at with TypeSafe Jev, a sub-second decision model. Community port of browser-use/jev-ultrafast, not affiliated with TypeSafe. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · chy4pro · `TS` · call site [`src/shared/providers/typesafe.ts`](https://github.com/chy4pro/jev-for-chrome/blob/HEAD/src/shared/providers/typesafe.ts), read 2026-09-22</sub>
-
-- **[jev-guard](https://github.com/leepokai/jev-guard)** — Auto mode for every coding agent, built on Jev: risk-scores every tool call with session context (deny / ask / allow), flags prompt injection in results, checks skills and plugins. Claude Code, Codex, Copilot, Gemini, Cursor, pi, OpenCode, ACP. <sub>(upstream description)</sub>
-  <sub>`Plugin` · ★10+ · leepokai · `JS` · call site [`src/jev.js`](https://github.com/leepokai/jev-guard/blob/HEAD/src/jev.js), read 2026-09-22</sub>
 
 - **[jev-harness](https://github.com/AntonioCoppe/jev-harness)** — Decision harness for TypeSafe Jev — confidence gates, shadow mode, recipes, and evals. Claude CLI 48.9s → Jev 1.3s on the same row-filter job. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · antoniocoppe · `TS` · call site [`demos/proof/row-filter/run.ts`](https://github.com/AntonioCoppe/jev-harness/blob/HEAD/demos/proof/row-filter/run.ts), read 2026-09-22</sub>
@@ -411,9 +420,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[dsh-jev-verify](https://github.com/xienda/dsh-jev-verify)** — Jev (TypeSafe System One) decision tools + live verification benchmark for DeepSeek Harness: jev_decision (choice/score/noul) and jev_verify, honest by design. <sub>(earlier upstream description)</sub>
   <sub>`Benchmark` · xienda · `JS` · call site [`lib/index.js`](https://github.com/xienda/dsh-jev-verify/blob/HEAD/lib/index.js), read 2026-09-22</sub>
 
-- **[ego-jev](https://github.com/jiangkoumo/ego-decision-layer)** — Drive the ego lite browser with Jev (TypeSafe System One): one indexed element table in, one operation + target out, single process. ~2x faster than a per-step LLM loop in our measurements.
-  <sub>`Project` · jiangkoumo · `JS` · call site [`scripts/ego-jev.mjs`](https://github.com/jiangkoumo/ego-decision-layer/blob/HEAD/scripts/ego-jev.mjs), read 2026-09-22</sub>
-
 - **[ego-jev-ultrafast](https://github.com/shikaizhong-design/ego-jev-ultrafast)** — Jev drives your Ego Lite browser: one typed-choice request per step. Single-file, zero-dependency port of browser-use/jev-ultrafast with multi-model benchmarks and extra guardrails. Unofficial. <sub>(upstream description)</sub>
   <sub>`Benchmark` · shikaizhong-design · `JS` · call site [`jego.js`](https://github.com/shikaizhong-design/ego-jev-ultrafast/blob/HEAD/jego.js), read 2026-09-22</sub>
 
@@ -431,9 +437,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — Judge agent steps — ok / retry / escalate / stop via TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/harnessjudge/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
-
-- **[hearth-jev-rental-search](https://github.com/Nancy-Chauhan/hearth-jev-rental-search)** — Autonomous multi-source rental search powered by TypeSafe Jev <sub>(upstream description)</sub>
-  <sub>`Project` · nancy-chauhan · `JS` · call site [`jev_ultrafast/model.py`](https://github.com/Nancy-Chauhan/hearth-jev-rental-search/blob/HEAD/jev_ultrafast/model.py), read 2026-09-22</sub>
 
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — Observable browser stealth game: Jev makes typed guard judgments while deterministic code owns the world. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts), read 2026-09-22</sub>
@@ -500,9 +503,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-decision-benchmarks](https://github.com/baibizhe/jev-decision-benchmarks)** — JEV decision benchmark results on MetaTool, When2Call, and BFCL V4, with bilingual tables and reproducible reports. <sub>(upstream description)</sub>
   <sub>`Benchmark` · baibizhe · `Py` · call site [`scripts/build_tables.py`](https://github.com/baibizhe/jev-decision-benchmarks/blob/HEAD/scripts/build_tables.py), read 2026-09-24 · ⚠ `no licence`</sub>
-
-- **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — The decision layer for AI agents. Typed, calibrated decisions in ~400ms for two hundredths of a cent: gate tool calls, route models, rank options. With the 300-call injection test that found what breaks.
-  <sub>`Project` · eugeniughelbur · `Py` · call site [`build/lib/jev_gate.py`](https://github.com/eugeniughelbur/jev-engineering/blob/HEAD/build/lib/jev_gate.py), read 2026-09-22</sub>
 
 - **[jev-flappy-bird](https://github.com/hosseintoussi/jev-flappy-bird)** — A live demo of TypeSafe's Jev model playing Flappy Bird, one flap-or-wait decision at a time. <sub>(upstream description)</sub>
   <sub>`Project` · hosseintoussi · `TS` · call site [`server/jev.ts`](https://github.com/hosseintoussi/jev-flappy-bird/blob/HEAD/server/jev.ts), read 2026-09-24</sub>
