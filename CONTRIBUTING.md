@@ -212,9 +212,12 @@ turn red, and writes nothing (the runbook is in
   `upstream-description-stale` once a labelled one stops matching. Never write
   `upstream-description` for a text that differs. Rewriting a summary labelled
   with either upstream value? Set `curated`, or the refresh will call your
-  words the project's old ones. The READMEs, pattern pages and site mark the
-  project's own words, and [`docs/sources.md`](docs/sources.md#licences) says
-  why: the copyright in them is the project author's, not this catalogue's.
+  words the project's old ones. A model wrote it for the catalogue after
+  reading the project? Set `model-written` (since 2026-10-24), never `curated`;
+  lint warns about the same words, and the refresh leaves both alone. The
+  READMEs, pattern pages and site mark the project's own words and a model's,
+  and [`docs/sources.md`](docs/sources.md#licences) says why the project's are
+  marked: the copyright in them is the project author's, not this catalogue's.
 - **`summary_zh`** — write it yourself if you can. If a model translated it,
   set `zh_machine: true`, and keep it after you edit the model's text: the flag
   records who wrote the words, not how good they are (see
@@ -237,7 +240,18 @@ turn red, and writes nothing (the runbook is in
   Only a person writes it: never because the keyword rules agree, and never
   for a row you did not read. It takes the row off the *not yet indexed by
   pattern* list and off the pattern sections of
-  [`docs/review-queue.md`](docs/review-queue.md).
+  [`docs/review-queue.md`](docs/review-queue.md). A model's reading goes in
+  `patterns_model_read_on` instead (next item).
+- **A model's reading** (since 2026-10-24) — a model that read a file, a
+  report or a row records the day in `model_read_on` (on `evidence`,
+  `measurement`, a `wire.source` item or an `observed_thresholds` item) or in
+  `patterns_model_read_on`, and a summary it wrote as
+  `summary_source: model-written`. It never writes `read_on`,
+  `patterns_reviewed` or `curated`: those say a person did. Every surface
+  shows a model's reading as one, a person's wins wherever one date is shown,
+  and [the review queue](docs/review-queue.md#model-read) lists the rows only
+  a model has read for a person to check. Checking one, set the person's field
+  to the day you read it yourself; you may drop the model's.
 - **`question_types`** — only the primitives the code _actually_ calls. Read the
   call site; do not infer from the README. Several projects describe "scoring"
   while using only `noul`. The primitive is `noul`, never `binary`.
@@ -264,8 +278,8 @@ turn red, and writes nothing (the runbook is in
   that decides something about a Jev answer itself — not a range check, a
   test, a mock, a score derived from several answers or a posterior that
   blends an answer with a prior — and never on a `not-jev` row or on this
-  repository's own examples. Set `read_on` on each item you read yourself;
-  without it the row is listed in the
+  repository's own examples. Set `read_on` on each item you read yourself
+  (a model sets `model_read_on`); with neither, the row is listed in the
   [review queue](docs/review-queue.md#thresholds-unread). It records what that
   project chose, not a recommendation, and a `noul` probability is never a
   `choice` confidence.
@@ -302,7 +316,8 @@ turn red, and writes nothing (the runbook is in
   speaks its request shape (a reimplementation with its own interface, tooling
   about Jev), `no-jev-call-site`. A link holding no code at all, such as a list
   of links or a community site, gets `has_code: false` rather than either. Set
-  `read_on` to the date you actually read that file; do not advance it after an
+  `read_on` to the date you actually read that file (a model sets
+  `model_read_on`, never `read_on`); do not advance it after an
   automated text check. When the weekly claims issue counts a row as
   `version-moved` (its file now names another model version),
   `python3 scripts/verify_claims.py --propose-version-rewrite --only <slug>`
@@ -357,8 +372,8 @@ turn red, and writes nothing (the runbook is in
   unless the author states it in words. Every surface shows a direction as
   author-stated, not reproduced here; `unfavourable` makes the row a negative
   result. Never infer a number, a dataset or a direction. Set `read_on` to the
-  day you read the report against every field; a measurement without it was
-  filled in by a script or a model, and
+  day you read the report against every field (a model sets `model_read_on`);
+  a measurement with neither was filled in by a script or a model, and
   [`docs/review-queue.md`](docs/review-queue.md#measurement-unread) lists it.
   [`docs/benchmarks.md`](docs/benchmarks.md) is generated from these fields.
 - **`wire`** — on a `kind: alternative` row with the `not-jev` flag only
@@ -380,8 +395,8 @@ turn red, and writes nothing (the runbook is in
   none of the matched strings, and a baseline call without a string naming
   `api.typesafe.ai` or a gateway's id for Jev; the weekly `claims` run re-reads
   every cited file. Never infer a field. Set `read_on` on a source to the day
-  you read that file against the fields; a record without it was filled in by
-  a script or a model, and
+  you read that file against the fields (a model sets `model_read_on`); a
+  record with neither on some source was filled in by a script or a model, and
   [`docs/review-queue.md`](docs/review-queue.md#wire-unread) lists it.
   [`docs/compatibility.md`](docs/compatibility.md#7-compatible-interfaces-that-are-not-jev)
   §7 is generated from these fields.

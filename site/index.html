@@ -1092,7 +1092,7 @@
     </footer>
 
     <script type="module">
-      import { SORTS, verification, evidenceKind, evidenceUrl, isIndependentReport, compareEntries, matchesEntry, queryFromState, shareUrl, stateFromQuery, summaryMarks, notIndexedByPattern, primitiveLayers, repositoryFacts, siblingCitations, platformRows, resolvePlatform, platformChoices, measurementOf, wireOf, wireSources, wirePersonRead, wireRows, wireRemainder, wireRepository, pickerSteps, pickerCounts, isNegativeResult } from "./catalog-core.mjs";
+      import { SORTS, verification, evidenceKind, evidenceUrl, isIndependentReport, compareEntries, matchesEntry, queryFromState, shareUrl, stateFromQuery, summaryMarks, notIndexedByPattern, primitiveLayers, primitivesReadBy, repositoryFacts, siblingCitations, platformRows, resolvePlatform, platformChoices, measurementOf, wireOf, wireSources, wirePersonRead, wireEveryFileRead, wireRows, wireRemainder, wireRepository, pickerSteps, pickerCounts, isNegativeResult } from "./catalog-core.mjs";
       const STR = {
         en: {
           eyebrow: "Jev Decision Atlas · community index",
@@ -1107,14 +1107,15 @@
           code_read: "Call-site citation", code_missing: "No call-site citation", runtime: "Code not run by this catalogue", performance: "Performance not reproduced",
           cite_wire_shape: "Wire-shape citation, not a Jev integration", cite_example_only: "Example-only citation", evidence_file: "View cited file ↗",
           mark_zh_machine: "machine-translated", mark_zh_machine_about: "A model translated this Chinese summary; no person wrote it.",
+          model_read: "read by a model", model_read_about: "A model read this and recorded the date (model_read_on); no person has checked its reading yet.",
           unindexed_h: "Not yet indexed by pattern",
-          unindexed_about: "Projects and plugins with code whose only pattern is overview, and whose rows record no reading against the patterns (patterns_reviewed). Overview is also what the keyword rules suggest when nothing matches, so these may never have been placed. A person gives each a pattern, or records the date they read it.",
+          unindexed_about: "Projects and plugins with code whose only pattern is overview, and whose rows record no reading against the patterns (a person's patterns_reviewed or a model's patterns_model_read_on). Overview is also what the keyword rules suggest when nothing matches, so these may never have been placed. A person gives each a pattern, or records the date they read it.",
           unindexed_last: "Projects and plugins with code that nobody has recorded reading against the patterns come last, under “Not yet indexed by pattern” ({n}).",
           third_party: "Third-party report", review_scope: "A dated citation is not a current CI result or a runtime test.",
           negative: "Negative result",
           negative_about: "Its own author measured Jev for this use and concluded against it: an unfavourable direction in a benchmark's measurement, or the “measured, not adopted” flag. Author-stated, not reproduced here; read it before the positive examples.",
           signals: "Recorded matching text", added: "Added", stars: "Repository stars", author: "Author", read_context: "Source context",
-          prims_read: "Primitives read by a person", prims_signal: "Text signal only",
+          prims_read: "Primitives read by a person", prims_model: "Primitives read by a model", prims_signal: "Text signal only",
           repo_created: "Repository created", repo_pushed: "Last push", repo_commits: "Commits on the default branch",
           repo_facts_about: "As GitHub stated them at the last weekly refresh (days in UTC). A date says when someone last pushed, not whether the project is maintained.",
           cited_one: "Cited by 1 other directory", cited_n: "Cited by {n} other directories", cited_h: "Other directories citing it",
@@ -1123,6 +1124,7 @@
           m_qualifier: "author-stated, not reproduced here", m_report: "Report",
           m_about: "Indexed from the author’s own report (measurement); this catalogue ran none of it. Without a reading date, a script or a model filled these fields in and no person has checked them.",
           m_read: "A person read it against the report on {date}.",
+          m_model_read: "A model read it against the report on {date}; no person has checked its reading yet.",
           prims_signal_about: "The cited file contains this primitive’s request or answer shape (primitives_seen). A script found the text; nobody recorded reading the code call it.",
           reason: "Why this pick", caution: "Before you use it", notes: "Editor’s note", empty_help: "Try a broader phrase or reset the filters.",
           trust_short: "Source checks ≠ runtime tests.", trust_link: "What we check ↗", patterns_count: "patterns",
@@ -1227,6 +1229,8 @@
           w_yes: "yes",
           w_link: "link",
           w_person: "(read by a person on {dates})",
+          w_model: "(read by a model on {dates}, not yet checked by a person)",
+          w_mixed: "(partly read by a person on {people}, the rest by a model on {models})",
           w_unread: "(not yet read by a person)",
           w_negative: "negative result, author-stated, not reproduced here",
           // taxonomy.json's not-jev blurb, its second sentence (scripts/tests/test_wire.py holds both languages to it).
@@ -1249,9 +1253,11 @@
           cite_wire_shape: "接口形态记录，并非 Jev 集成", cite_example_only: "仅示例记录", evidence_file: "查看引用文件 ↗",
           // mark_zh_machine is the READMEs' own mark; its tooltip below is model-written, like the summary-source labels in taxonomy.json.
           mark_zh_machine: "机翻", mark_zh_machine_about: "这条中文摘要由模型翻译，不是人写的。",
+          // The Chinese of the model-reading strings (model_read, m_model_read, w_model, w_mixed) is model-written; a person who revises it drops this note.
+          model_read: "模型阅读", model_read_about: "由模型阅读并记下日期（model_read_on），尚无人核对这次阅读。",
           // The Chinese of the three "not yet indexed by pattern" strings below is model-written; a person who revises it drops this note.
           unindexed_h: "尚未按模式索引",
-          unindexed_about: "带代码的项目或插件：唯一的模式是 overview，且没有任何对照决策模式阅读过的记录（patterns_reviewed）。overview 也是关键词规则什么都没匹配到时给出的建议，所以这些行可能从未被归类。由人为每一行指定模式，或记下阅读日期。",
+          unindexed_about: "带代码的项目或插件：唯一的模式是 overview，且没有任何对照决策模式阅读过的记录（人写的 patterns_reviewed 或模型的 patterns_model_read_on）。overview 也是关键词规则什么都没匹配到时给出的建议，所以这些行可能从未被归类。由人为每一行指定模式，或记下阅读日期。",
           unindexed_last: "没有任何人对照决策模式阅读过记录的带代码项目和插件排在最后，列在“尚未按模式索引”之下（{n} 行）。",
           third_party: "第三方评测", review_scope: "带日期的引用不代表最新 CI 已通过，也不代表代码已运行。",
           // The Chinese of negative and negative_about is model-written; a person who revises it drops this note.
@@ -1259,7 +1265,7 @@
           negative_about: "项目作者本人针对这一用途测量过 Jev，结论是不采用：基准测试的测量结论为「不利」，或带有「实测后未采用」标记。作者自述，未经本仓库复现；请先读它，再看正面例子。",
           signals: "记录的匹配文本", added: "收录日期", stars: "仓库星标", author: "作者", read_context: "来源说明",
           // The Chinese of the primitive-layer strings here and in the primitives view (p_read … p_layers) is model-written; a person who revises it drops this note.
-          prims_read: "人读确认的原语", prims_signal: "仅文本信号",
+          prims_read: "人读确认的原语", prims_model: "模型读到的原语", prims_signal: "仅文本信号",
           // The Chinese of the four repository-fact strings below is model-written; a person who revises it drops this note.
           repo_created: "仓库创建", repo_pushed: "最近推送", repo_commits: "默认分支提交数",
           repo_facts_about: "上次每周刷新时 GitHub 给出的数据（UTC 日期）。日期只说明最近何时有人推送，不代表项目是否仍在维护。",
@@ -1271,6 +1277,7 @@
           m_qualifier: "作者自述，未经本仓库复现", m_report: "报告",
           m_about: "按作者本人的报告索引（measurement）；本目录一项都没有运行过。没有核读日期的，是脚本或模型填写的字段，尚无人核对。",
           m_read: "有人于 {date} 对照报告核读过。",
+          m_model_read: "模型于 {date} 对照报告读过，尚无人核对。",
           prims_signal_about: "所引文件含有这个原语的请求或回答结构（primitives_seen）。这是脚本找到的文本，没有人记录读过代码确认调用。",
           reason: "精选理由", caution: "使用前留意", notes: "编辑备注", empty_help: "试试更宽泛的关键词，或重置筛选条件。",
           trust_short: "来源核查 ≠ 运行验证。", trust_link: "了解核验范围 ↗", patterns_count: "类场景",
@@ -1379,6 +1386,8 @@
           w_yes: "是",
           w_link: "链接",
           w_person: "（已由人于 {dates} 核读）",
+          w_model: "（模型于 {dates} 读过，尚无人核对）",
+          w_mixed: "（部分由人于 {people} 核读，其余由模型于 {models} 读过）",
           w_unread: "（尚无人核读）",
           w_negative: "负面结果，作者自述，未经本仓库复现",
           w_calibration: "协议兼容不等于校准兼容，所以阈值不能迁移。",
@@ -1696,7 +1705,9 @@
         if ((m.datasets || []).length) parts.push(`<p>${S().m_datasets}${colon}${esc(m.datasets.join(sep))}</p>`);
         if (m.direction) parts.push(`<p>${S().m_direction}${colon}<b>${esc(lbl(DIR, m.direction))}</b>${qualifier}</p>`);
         if (m.report) parts.push(`<p><a href="${esc(m.report)}" rel="noopener">${S().m_report} ↗</a></p>`);
-        const read = m.read_on ? " " + S().m_read.replace("{date}", `<time datetime="${esc(m.read_on)}">${esc(m.read_on)}</time>`) : "";
+        // A person's reading, else a model's, which says it is one.
+        const [readKey, readOn] = m.read_on ? ["m_read", m.read_on] : m.model_read_on ? ["m_model_read", m.model_read_on] : [];
+        const read = readKey ? " " + S()[readKey].replace("{date}", `<time datetime="${esc(readOn)}">${esc(readOn)}</time>`) : "";
         return `<dt>${S().m_h}</dt><dd>${parts.join("")}<p class="sig-about">${S().m_about}${read}</p></dd>`;
       }
 
@@ -1714,6 +1725,9 @@
         const first = !seenIds.has(e.slug);
         seenIds.add(e.slug);
         const linkLabel = v.linkOk ? S().link_ok : v.linkChecked ? S().link_failed : S().link_missing;
+        // A person's reading of the cited file, else a model's, marked as a model's.
+        const codeOn = v.codeRead || v.codeModelRead;
+        const codeMark = v.codeRead ? "" : `<span class="src-mark" title="${esc(S().model_read_about)}">${S().model_read}</span>`;
         const technical = [
           ...(e.languages || []), ...(e.platforms || []), ...e.patterns.map(p => lbl(PAT, p)),
         ].map(x => `<span class="p">${esc(x)}</span>`).join("");
@@ -1752,7 +1766,7 @@
           ${flags.length ? `<div class="pills risks">${flags.map(f => `<span class="p f">${esc(lbl(FLAG, f))}</span>`).join("")}</div>` : ""}
           <div class="verification">
             <span class="${v.linkOk ? "link-ok" : ""}">${linkLabel}${v.linkChecked ? ` <time datetime="${esc(v.linkChecked)}">${esc(v.linkChecked)}</time>` : ""}</span>
-            ${v.codeRead ? `<span>${citeLabel} <time datetime="${esc(v.codeRead)}">${esc(v.codeRead)}</time></span>` : ""}
+            ${codeOn ? `<span>${citeLabel} <time datetime="${esc(codeOn)}">${esc(codeOn)}</time>${codeMark}</span>` : ""}
             ${e.has_code ? `<span>${S().runtime}</span>` : ""}
           </div>
           <div class="card-bottom">
@@ -1770,9 +1784,9 @@
                 ${repoFacts}
                 ${citedList}
                 ${e.author ? `<dt>${S().author}</dt><dd>${esc(e.author.name)}</dd>` : ""}
-                <dt>${citeLabel}</dt><dd>${e.evidence ? `${esc(e.evidence.path)}${v.codeRead ? ` · ${esc(v.codeRead)}` : ""}` : S().code_missing}</dd>
+                <dt>${citeLabel}</dt><dd>${e.evidence ? `${esc(e.evidence.path)}${codeOn ? ` · ${esc(codeOn)}${codeMark}` : ""}` : S().code_missing}</dd>
                 ${e.evidence ? `<dt>${S().signals}</dt><dd>${e.evidence.matched.map(x => `<code>${esc(x)}</code>`).join(" ")}</dd>` : ""}
-                ${prims.read.length ? `<dt>${S().prims_read}</dt><dd>${primPills(prims.read, "p q")}</dd>` : ""}
+                ${prims.read.length ? `<dt>${primitivesReadBy(e) === "model" ? S().prims_model : S().prims_read}</dt><dd>${primPills(prims.read, "p q")}</dd>` : ""}
                 ${prims.signalOnly.length ? `<dt>${S().prims_signal}</dt><dd>${primPills(prims.signalOnly, "p sig")}<p class="sig-about">${S().prims_signal_about}</p></dd>` : ""}
                 ${measured(e)}
                 ${e.evidence_none ? `<dt>${S().read_context}</dt><dd>${esc(evidenceContext(e.evidence_none))}</dd>` : ""}
@@ -2153,8 +2167,14 @@
             const url = evidenceUrl({ ...e, evidence: { path: item.path } });
             return url ? `<a href="${esc(url)}" rel="noopener"><code>${esc(item.path)}</code></a>` : `<code>${esc(item.path)}</code>`;
           });
-          const dates = [...new Set(wireSources(w).map((item) => item.read_on))].sort().join(", ");
-          const who = wirePersonRead(w) ? S().w_person.replace("{dates}", esc(dates)) : S().w_unread;
+          // A person's readings, and a model's where no person has read the file, never merged.
+          const days = (items) => [...new Set(items)].sort().join(", ");
+          const people = days(wireSources(w).filter((item) => "read_on" in item).map((item) => item.read_on));
+          const models = days(wireSources(w).filter((item) => !("read_on" in item)).map((item) => item.model_read_on));
+          const who = wirePersonRead(w) ? S().w_person.replace("{dates}", esc(people))
+            : !wireEveryFileRead(w) ? S().w_unread
+            : people ? S().w_mixed.replace("{people}", esc(people)).replace("{models}", esc(models))
+            : S().w_model.replace("{dates}", esc(models));
           return `${files.join(" · ")} <span class="dash">${who}</span>`;
         };
         const caveats = (e) => {

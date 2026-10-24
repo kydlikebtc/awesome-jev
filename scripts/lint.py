@@ -136,8 +136,11 @@ SINGLE_COMMIT_FLAG = "single-commit"
 # own description quotes the project and is not warned about: rewording it would
 # put unreviewed text in the project's name, and a row without the label says
 # nothing about who wrote it. A warning, not an error: the list points at the
-# usual suspects, and a reviewer decides.
+# usual suspects, and a reviewer decides. Since 2026-10-24 a summary a model
+# wrote for the catalogue is labelled `model-written`, and held to the same.
 CURATED = "curated"
+MODEL_WRITTEN = "model-written"
+WRITTEN_HERE = (CURATED, MODEL_WRITTEN)
 MARKETING_WORDS = re.compile(
     r"\b(?:revolutionary|game[- ]chang\w*|ultimate|powerful|(?:blazing|lightning)[- ]fast"
     r"|cutting[- ]edge|world[- ]class|best[- ]in[- ]class|next[- ]gen(?:eration)?"
@@ -449,14 +452,19 @@ def check_entry_invariants(
         report.err(path, f"{slug}: 'overview' cannot be combined with specific patterns")
 
     # Dates must be real and not from the future. patterns_reviewed is a
-    # person's reading, and a reading cannot happen tomorrow either.
-    for field in ("published", "first_seen", "checked", "patterns_reviewed"):
-        if field in entry:
-            parsed = parse_date(entry[field])
-            if parsed is None:
-                report.err(path, f"{slug}: {field} is not a valid date")
-            elif parsed > today:
-                report.err(path, f"{slug}: {field} {entry[field]} is in the future")
+    # person's reading and patterns_model_read_on a model's (since 2026-10-24),
+    # and a reading cannot happen tomorrow either; nor can one of the call site.
+    dated = [(field, entry[field]) for field in ("published", "first_seen", "checked", "patterns_reviewed",
+                                                 "patterns_model_read_on") if field in entry]
+    if isinstance(entry.get("evidence"), dict):
+        dated += [(f"evidence.{field}", entry["evidence"][field]) for field in ("read_on", "model_read_on")
+                  if field in entry["evidence"]]
+    for field, value in dated:
+        parsed = parse_date(value)
+        if parsed is None:
+            report.err(path, f"{slug}: {field} is not a valid date")
+        elif parsed > today:
+            report.err(path, f"{slug}: {field} {value} is in the future")
 
     published, checked = (
         parse_date(entry.get("published", "")),
@@ -595,22 +603,24 @@ def on_github(entry: dict) -> bool:
 
 
 def check_curated_summary(entry: dict, path: str) -> Findings:
-    """A summary a person wrote for this catalogue reads like one: no marketing
-    words, no emoji. Only rows labelled `summary_source: curated`; see CURATED."""
+    """A summary written for this catalogue reads like one: no marketing
+    words, no emoji. Only rows labelled `summary_source: curated` or
+    `model-written`; see CURATED."""
     report = Report()
     summary = entry.get("summary")
-    if entry.get("summary_source") != CURATED or not isinstance(summary, str):
+    source = entry.get("summary_source")
+    if source not in WRITTEN_HERE or not isinstance(summary, str):
         return report.findings()
     slug = entry.get("slug", "?")
     words = sorted({match.group(0).lower() for match in MARKETING_WORDS.finditer(summary)})
     if words:
         report.warn(
             path,
-            f"{slug}: summary_source is curated but the summary uses marketing words "
+            f"{slug}: summary_source is {source} but the summary uses marketing words "
             f"({', '.join(words)}); say what decision the project makes instead",
         )
     if EMOJI.search(summary):
-        report.warn(path, f"{slug}: summary_source is curated but the summary contains emoji")
+        report.warn(path, f"{slug}: summary_source is {source} but the summary contains emoji")
     return report.findings()
 
 

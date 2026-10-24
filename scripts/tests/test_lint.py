@@ -60,6 +60,8 @@ FULL = {
     "kind": "benchmark",
     "summary_source": "curated",
     "patterns_reviewed": "2026-09-20",
+    # A model's reading beside a person's (since 2026-10-24): kept apart, both allowed.
+    "patterns_model_read_on": "2026-09-19",
     "zh_machine": True,
     "has_code": True,
     "languages": ["python"],
@@ -78,6 +80,7 @@ FULL = {
         "matched": ["from jev import", "CONFIDENCE_FLOOR = 0.8"],
         "kind": "call-site",
         "read_on": "2026-09-01",
+        "model_read_on": "2026-08-31",
     },
     "primitives_seen": ["choice", "noul"],
     # A threshold the cited file compares an answer with (I26): its source is
@@ -90,6 +93,7 @@ FULL = {
             "decision": "at or above: route the ticket without review",
             "source": "CONFIDENCE_FLOOR = 0.8",
             "read_on": "2026-09-02",
+            "model_read_on": "2026-09-01",
         }
     ],
     "official": False,
@@ -107,6 +111,7 @@ FULL = {
         "preregistered": False,
         "direction": "mixed",
         "read_on": "2026-09-02",
+        "model_read_on": "2026-09-01",
     },
     "first_seen": "2026-09-01",
     "checked": "2026-09-20",
@@ -144,6 +149,7 @@ ALTERNATIVE = {
                 "path": "server.py",
                 "matched": ['@app.post("/v1/systemone")', '{"type": "noul", "noul": p}', '"confidence": c'],
                 "read_on": "2026-09-20",
+                "model_read_on": "2026-09-19",
             },
             {"path": "config.py", "matched": ['MODEL = "someone/demo-4b"']},
             {"path": "bench.py", "matched": ["api.typesafe.ai/v1/systemone"]},
@@ -396,6 +402,12 @@ class EntryInvariantTest(FindingsAssertions):
                     else f"observed_thresholds[0].read_on 2026-09-28 {fragment}",
                 )
         self.assertClean(lint_row(row(FULL, observed_thresholds=[row(item, read_on=DROP)])))
+        self.assertOnly(
+            lint_row(row(FULL, observed_thresholds=[row(item, model_read_on="2026-09-28")])),
+            "error",
+            "observed_thresholds[0].model_read_on 2026-09-28 is in the future",
+        )
+        self.assertClean(lint_row(row(FULL, observed_thresholds=[row(item, read_on=DROP, model_read_on=DROP)])))
 
     def test_primitive_text_signals_hold_only_primitive_names(self):
         for bad, fragment in (
@@ -559,14 +571,14 @@ class EntryInvariantTest(FindingsAssertions):
 
     def test_dates_must_exist_on_the_calendar(self):
         # The schema pattern only checks the shape, so 30 February gets past it.
-        for field in ("published", "first_seen", "checked", "patterns_reviewed"):
+        for field in ("published", "first_seen", "checked", "patterns_reviewed", "patterns_model_read_on"):
             with self.subTest(field=field):
                 self.assertOnly(
                     lint_row(row(MINIMAL, **{field: "2026-02-30"})), "error", f"{field} is not a valid date"
                 )
 
     def test_dates_must_not_be_in_the_future(self):
-        for field in ("published", "first_seen", "checked", "patterns_reviewed"):
+        for field in ("published", "first_seen", "checked", "patterns_reviewed", "patterns_model_read_on"):
             with self.subTest(field=field):
                 self.assertOnly(
                     lint_row(row(MINIMAL, **{field: "2026-09-28"})),
@@ -574,6 +586,15 @@ class EntryInvariantTest(FindingsAssertions):
                     f"{field} 2026-09-28 is in the future",
                 )
                 self.assertClean(lint_row(row(MINIMAL, **{field: TODAY.isoformat()})))
+
+    def test_a_reading_of_the_call_site_is_a_real_past_date_whoever_read_it(self):
+        for field in ("read_on", "model_read_on"):
+            for value, fragment in (("2026-02-30", f"evidence.{field} is not a valid date"),
+                                    ("2026-09-28", f"evidence.{field} 2026-09-28 is in the future")):
+                with self.subTest(field=field, value=value):
+                    evidence = row(FULL["evidence"], **{field: value})
+                    self.assertOnly(lint_row(row(FULL, evidence=evidence)), "error", fragment)
+        self.assertClean(lint_row(row(FULL, evidence=row(FULL["evidence"], read_on=DROP))))
 
     def test_today_is_the_bound_it_is_given(self):
         # Far from the real date, so ignoring the argument cannot pass by coincidence.
@@ -723,6 +744,15 @@ class EntryInvariantTest(FindingsAssertions):
             "(blazing-fast, powerful, ultimate)",
         )
 
+    def test_a_model_written_summary_is_held_to_the_same(self):
+        written = row(FULL, summary="The ultimate router \u26a1 with a choice.", summary_source="model-written")
+        errors, warnings = lint_row(written)
+        self.assertEqual(errors, ())
+        self.assertEqual(len(warnings), 2, warnings)
+        self.assertIn("demo-row: summary_source is model-written but the summary uses marketing words (ultimate)",
+                      warnings[0])
+        self.assertIn("demo-row: summary_source is model-written but the summary contains emoji", warnings[1])
+
     def test_a_curated_summary_with_emoji_is_warned_about(self):
         for summary in ("Routes tickets \u26a1 with a choice.", "Routes tickets \U0001f680 with a choice."):
             with self.subTest(summary=summary):
@@ -861,6 +891,13 @@ class EntryInvariantTest(FindingsAssertions):
                                   ("2026-02-30", "wire.source[0].read_on is not a valid date")):
             with self.subTest(read_on=read_on):
                 source = [row(ALTERNATIVE["wire"]["source"][0], read_on=read_on), *ALTERNATIVE["wire"]["source"][1:]]
+                self.assertOnly(lint_row(row(ALTERNATIVE, wire=row(ALTERNATIVE["wire"], source=source))), "error", fragment)
+
+    def test_a_model_reading_a_wire_source_is_a_real_past_date_too(self):
+        for value, fragment in (("2026-09-28", "wire.source[0].model_read_on 2026-09-28 is in the future"),
+                                ("2026-02-30", "wire.source[0].model_read_on is not a valid date")):
+            with self.subTest(value=value):
+                source = [row(ALTERNATIVE["wire"]["source"][0], model_read_on=value), *ALTERNATIVE["wire"]["source"][1:]]
                 self.assertOnly(lint_row(row(ALTERNATIVE, wire=row(ALTERNATIVE["wire"], source=source))), "error", fragment)
 
     def test_the_schema_holds_the_shape_of_wire(self):

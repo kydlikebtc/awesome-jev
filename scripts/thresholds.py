@@ -17,8 +17,10 @@ writes them (schema/entry.schema.json):
   `evidence.matched`, so the weekly `claims` run re-reads it like every other
   matched string: a project that moves its threshold turns the claim red, and
   a person re-reads the file;
-* `read_on`: the day a person read it. Without it a model read the file and no
-  person has since; docs/review-queue.md lists those rows.
+* `read_on`: the day a person read it, and (since 2026-10-24) `model_read_on`
+  the day a model did, kept apart. With neither, a script or a model read the
+  file and nobody recorded a reading; docs/review-queue.md lists those rows,
+  and the model's readings in a section of their own.
 
 An observation, never a recommendation: a threshold is one project's policy for
 what being wrong costs it, tuned (if at all) on its own data and model version.
@@ -38,7 +40,7 @@ What lint holds (lint.check_thresholds):
 * the answer the question type returns carries the compared quantity (a `noul`
   answer is a probability alone: ANSWERS);
 * a probability or a confidence is at most 1;
-* each `read_on` is a real date, not in the future.
+* each `read_on` and `model_read_on` is a real date, not in the future.
 
 Stdlib only, like the rest of scripts/.
 """
@@ -70,6 +72,8 @@ UNIT = ("probability", "confidence")
 # an identifier (p_2) or a version (1.13.0).
 NUMBER = re.compile(r"(?<![\w.])(?:\d+\.\d*|\.\d+|\d+)(?![\w.])")
 DATE = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}$")
+# A person's reading and a model's (query.READ_ON, query.MODEL_READ_ON).
+READINGS = frozenset({"read_on", "model_read_on"})
 
 
 def recorded(entry: dict) -> list[dict]:
@@ -114,16 +118,18 @@ def item_problems(item: dict, where: str, matched: list, today: dt.date) -> list
         problems.append(f"{where}: a {question_type} answer carries no {compares} to compare with")
     if compares in UNIT and isinstance(value, (int, float)) and not isinstance(value, bool) and value > 1:
         problems.append(f"{where}.value {value}: a {compares} is at most 1")
-    if "read_on" in item:
-        read_on = item["read_on"]
+    for field in READINGS:
+        if field not in item:
+            continue
+        read_on = item[field]
         try:
             day = dt.date.fromisoformat(read_on) if isinstance(read_on, str) and DATE.match(read_on) else None
         except ValueError:
             day = None
         if day is None:
-            problems.append(f"{where}.read_on is not a valid date")
+            problems.append(f"{where}.{field} is not a valid date")
         elif day > today:
-            problems.append(f"{where}.read_on {read_on} is in the future")
+            problems.append(f"{where}.{field} {read_on} is in the future")
     return problems
 
 
@@ -162,8 +168,18 @@ def rows(catalog: list[dict]) -> list[dict]:
 
 
 def unread(catalog: list[dict]) -> list[dict]:
-    """Rows with a threshold no person has read (no `read_on`)."""
-    return [e for e in catalog if any("read_on" not in item for item in recorded(e))]
+    """Rows with a threshold nobody has read: no `read_on` and no `model_read_on`."""
+    return [e for e in catalog if any(not READINGS & set(item) for item in recorded(e))]
+
+
+def model_read(catalog: list[dict]) -> list[dict]:
+    """Rows whose every threshold has a reading, and some only a model's."""
+    return [
+        e for e in catalog
+        if (items := recorded(e))
+        and all(READINGS & set(item) for item in items)
+        and any("read_on" not in item for item in items)
+    ]
 
 
 def ranges(catalog: list[dict]) -> dict[str, dict]:

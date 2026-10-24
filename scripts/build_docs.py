@@ -82,7 +82,8 @@ def shape_block(s: dict) -> str:
             ["Rows citing a file that speaks Jev's request shape rather than building on Jev (`evidence.kind` `wire-shape`)", s["wire_shape_rows"]],
             ["Rows citing only an example the project ships (`evidence.kind` `example-only`)", s["example_only_rows"]],
             ["Rows with code citing no file and giving no reason (neither `evidence` nor `evidence_none`)", s["has_code_unbacked"]],
-            ["Rows naming the primitives a person read the code calling (`question_types`)", s["primitive_rows"]],
+            ["Rows naming the primitives a person read the code calling (`question_types`)", s["primitive_rows"] - s["primitive_rows_model"]],
+            ["Rows naming the primitives a model read the code calling (`question_types` on a row whose call site only a model has read, since 2026-10-24)", s["primitive_rows_model"]],
             ["Machine text signal: rows whose cited file contains a primitive's request or answer shape (`primitives_seen`; not a reading, never counted as `question_types`)", s["primitive_signal_rows"]],
             ["Of those, rows with no `question_types`: the text signal is all that is recorded about their primitives", s["primitive_signal_only_rows"]],
             ["Machine signal: evidence under an examples directory, not yet judged ([review queue](review-queue.md#examples-dir))", s["review_examples_dir"]],
@@ -90,17 +91,23 @@ def shape_block(s: dict) -> str:
             ["Machine signal: `tool-selection` suggested only by keyword-rule words dropped on 2026-09-27 ([review queue](review-queue.md#tool-selection-broad-words))", s["review_tool_selection_broad"]],
             ["Machine signal: rows with code, not TypeSafe AI's own, whose summary names nothing about Jev and that carry no `notes` ([review queue](review-queue.md#generic-summary))", s["review_generic_summary"]],
             ["Benchmark rows indexing their own author's measurement (`measurement`: task, datasets, comparators, the author's direction; author-stated, not reproduced here; [side by side](benchmarks.md))", s["measured_rows"]],
-            ["Machine signal: of those, measurements no person has read against the author's report ([review queue](review-queue.md#measurement-unread))", s["review_measurement_unread"]],
+            ["Machine signal: of those, measurements nobody has read against the author's report, neither a person nor a model ([review queue](review-queue.md#measurement-unread))", s["review_measurement_unread"]],
+            ["Of those measured rows, measurements only a model has read against the report (`measurement.model_read_on`; [review queue](review-queue.md#model-read))", s["model_read"]["measurement"]],
             ["Rows recording thresholds their cited file compares a Jev answer with (`observed_thresholds`: each a constant written in that file; what one project chose, not a recommendation)", s["threshold_rows"]],
-            ["Machine signal: of those, rows with a threshold no person has read in the file ([review queue](review-queue.md#thresholds-unread))", s["review_thresholds_unread"]],
+            ["Machine signal: of those, rows with a threshold nobody has read in the file, neither a person nor a model ([review queue](review-queue.md#thresholds-unread))", s["review_thresholds_unread"]],
+            ["Of those rows, rows whose thresholds were all read, some only by a model (`model_read_on`; [review queue](review-queue.md#model-read))", s["model_read"]["thresholds"]],
             ["Negative results: rows whose own author measured Jev for the use and concluded against it (a benchmark's `measurement.direction` unfavourable, the `negative-result` flag on any other row; author-stated, not reproduced here; [listed below](#negative-results))", s["negative_results"]],
             ["Patterns covered", f"{s['patterns_covered']} of {s['patterns_total']}"],
             ["Rows whose `patterns` are exactly what the keyword rules suggest for their summary (agreement with the rules, not a review: any review of these rows was not recorded)", f"{s['patterns_rule_identical']} of {s['entries']}"],
             ["Rows whose patterns a person recorded reading (`patterns_reviewed`)", s["patterns_reviewed"]],
+            ["Rows whose patterns only a model recorded reading (`patterns_model_read_on`, since 2026-10-24; shown as a model's reading; [review queue](review-queue.md#model-read))", s["model_read"]["patterns"]],
+            ["Rows whose call site only a model recorded reading (`evidence.model_read_on`; [review queue](review-queue.md#model-read))", s["model_read"]["evidence"]],
+            ["Alternatives whose interface records were read in every cited file, some only by a model (`wire.source[].model_read_on`; [review queue](review-queue.md#model-read))", s["model_read"]["wire"]],
             ["Overview rows that are projects or plugins with code, listed apart as not yet indexed by pattern ([review queue](review-queue.md#unsorted-overview))", s["overview_unindexed"]],
             ["Summaries that are the project's own GitHub description (`summary_source` `upstream-description`)", f"{s['summary_upstream']} of {s['entries']}"],
             ["Summaries taken from that description that no longer match it (`upstream-description-stale`)", s["summary_upstream_stale"]],
-            ["Summaries marked as written for this catalogue (`curated`)", s["summary_curated"]],
+            ["Summaries marked as written for this catalogue by a person (`curated`)", s["summary_curated"]],
+            ["Summaries marked as written for this catalogue by a model (`model-written`, since 2026-10-24)", s["summary_model_written"]],
             ["Chinese summaries hand-written", f"{s['zh_hand']} of {s['entries']}"],
             ["Rows recording GitHub's creation date, last push and default-branch commit count for their repository (`repo_created_at`, `repo_pushed_at`, `repo_commits`; GitHub's facts at the last weekly refresh, not a judgement of upkeep)", f"{s['repo_facts_rows']} of {s['entries']}"],
             ["Rows flagged `single-commit`: one commit on the default branch (the refresh sets and clears it from `repo_commits`)", s["single_commit_rows"]],
@@ -310,9 +317,10 @@ def row_licences_block(s: dict, catalog: list[dict]) -> str:
             f"*({labels['upstream-description']})* or *({labels['upstream-description-stale']})*."
         )
     parts.append(
-        f"{s['summary_curated']} summaries are marked `curated`: written for this catalogue. The "
-        f"other {s['summary_unlabelled']} carry no `summary_source`, so where their words come from "
-        "is not recorded row by row."
+        f"{s['summary_curated']} summaries are marked `curated`: written for this catalogue by a person. "
+        f"{s['summary_model_written']} are marked `model-written`: written for it by a model, and marked "
+        f"*({labels['model-written']})* wherever they are shown. The other {s['summary_unlabelled']} carry "
+        "no `summary_source`, so where their words come from is not recorded row by row."
     )
     by = Counter(e["license"] for e in catalog)
     scope = (
@@ -372,12 +380,13 @@ THRESHOLD_RANGES = (("noul", "noul probability"), ("choice", "choice confidence"
 
 def threshold_values(s: dict) -> dict[str, object]:
     """Inline values for what catalogued files compare Jev's answers with
-    (observed_thresholds): rows, thresholds, rows no person has read, and per
-    THRESHOLD_RANGES group its rows and lowest and highest constant."""
+    (observed_thresholds): rows, thresholds, rows no person has checked (no
+    reading recorded, or only a model's), and per THRESHOLD_RANGES group its
+    rows and lowest and highest constant."""
     out: dict[str, object] = {
         "threshold_rows": s["threshold_rows"],
         "thresholds_recorded": s["thresholds_recorded"],
-        "thresholds_unread": s["review_thresholds_unread"],
+        "thresholds_unchecked": s["review_thresholds_unread"] + s["model_read"]["thresholds"],
     }
     for key, group in THRESHOLD_RANGES:
         found = s["threshold_ranges"].get(group, {})

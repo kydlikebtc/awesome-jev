@@ -55,8 +55,9 @@ DIRECTION_LABELS = {
     d["key"]: (d["en"], d["zh"], d["blurb_en"], d["blurb_zh"]) for d in _TAXONOMY["measurement_directions"]
 }
 # summary_source values a summary is marked with wherever it is shown: the
-# project's own words. `curated` is how a list is read anyway, so it gets none.
-MARKED_SOURCES = ("upstream-description", "upstream-description-stale")
+# project's own words, and (since 2026-10-24) a model's. `curated`, a person
+# writing for the list, is how a list is read anyway, so it gets none.
+MARKED_SOURCES = ("upstream-description", "upstream-description-stale", "model-written")
 
 LANG_LABELS = {
     "python": "Py",
@@ -116,10 +117,11 @@ def summary_of(entry: dict, lang: str) -> str:
 
 
 def source_marks(lang: str) -> dict[str, str]:
-    """The two marks by name, for the sentences that explain them."""
+    """The marks by name, for the sentences that explain them."""
     return {
-        "upstream_mark": label(SUMMARY_SOURCE_LABELS, MARKED_SOURCES[0], lang),
-        "stale_mark": label(SUMMARY_SOURCE_LABELS, MARKED_SOURCES[1], lang),
+        "upstream_mark": label(SUMMARY_SOURCE_LABELS, "upstream-description", lang),
+        "stale_mark": label(SUMMARY_SOURCE_LABELS, "upstream-description-stale", lang),
+        "model_mark": label(SUMMARY_SOURCE_LABELS, "model-written", lang),
     }
 
 
@@ -185,10 +187,11 @@ def call_site(entry: dict, strings: dict, *, with_path: bool = False) -> str:
 
     Named by what evidence.kind says the file shows: a call site only where the
     project calls Jev; a wire-shape or example-only file is a "cited file". Then
-    the day a person last read it (evidence.read_on): a dated reading, never a
-    verdict, and nothing when no reading is dated. The link opens the file at
-    HEAD (evidence_url), so it can stop resolving after the file moves. The
-    READMEs print the link alone; the pattern pages also print the path.
+    the day a person last read it (evidence.read_on), or failing that the day a
+    model did (evidence.model_read_on), said to be a model's: a dated reading,
+    never a verdict, and nothing when no reading is dated. The link opens the
+    file at HEAD (evidence_url), so it can stop resolving after the file moves.
+    The READMEs print the link alone; the pattern pages also print the path.
     """
     url = evidence_url(entry)
     if not url:
@@ -199,8 +202,11 @@ def call_site(entry: dict, strings: dict, *, with_path: bool = False) -> str:
         link = f"{name} [{md_code(evidence['path'])}]({md_url(url)})"
     else:
         link = f"[{name}]({md_url(url)})"
-    read_on = evidence.get("read_on")
-    return link + strings["read_on"].format(date=read_on) if read_on else link
+    if evidence.get("read_on"):
+        return link + strings["read_on"].format(date=evidence["read_on"])
+    if evidence.get("model_read_on"):
+        return link + strings["model_read_on"].format(date=evidence["model_read_on"])
+    return link
 
 
 def direction_bit(entry: dict, strings: dict) -> str:

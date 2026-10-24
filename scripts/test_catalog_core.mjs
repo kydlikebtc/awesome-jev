@@ -6,8 +6,8 @@ import {
   UNINDEXED_KINDS, notIndexedByPattern, PRIMITIVES, primitiveLayers, repositoryFacts, siblingCitations,
   COARSE, platformRows, resolvePlatform, platformChoices, DIRECTIONS, measurementOf,
   NEGATIVE_FLAG, NEGATIVE_DIRECTION, isNegativeResult,
-  WIRE_KIND, WIRE_WEIGHTS, wireOf, wireSources, wirePersonRead, wireRows, wireRemainder, wireRepository,
-  pickerSteps, pickerCounts,
+  WIRE_KIND, WIRE_WEIGHTS, wireOf, wireSources, wirePersonRead, wireEveryFileRead, wireRows, wireRemainder,
+  wireRepository, pickerSteps, pickerCounts, primitivesReadBy,
 } from "../site/catalog-core.mjs";
 import { readFileSync } from "node:fs";
 
@@ -23,6 +23,22 @@ test("an HTTP success and dated call-site citation never imply an execution", ()
   assert.equal(verification(row("failed", {checked: "2026-09-24", link_status: 404})).linkOk, false);
 });
 
+test("a model's reading of the call site is kept apart, and a person's wins", () => {
+  const model = verification(row("m", {evidence: {model_read_on: "2026-10-20"}}));
+  assert.equal(model.codeRead, null);
+  assert.equal(model.codeModelRead, "2026-10-20");
+  const both = verification(row("b", {evidence: {read_on: "2026-10-24", model_read_on: "2026-10-20"}}));
+  assert.equal(both.codeRead, "2026-10-24");
+  assert.equal(both.codeModelRead, null);
+  assert.equal(verification(row("none")).codeModelRead, null);
+  // The primitives read in that call site are the same reader's.
+  const named = {question_types: ["noul"]};
+  assert.equal(primitivesReadBy(row("m", {...named, evidence: {model_read_on: "2026-10-20"}})), "model");
+  assert.equal(primitivesReadBy(row("b", {...named, evidence: {read_on: "2026-10-24", model_read_on: "2026-10-20"}})), "person");
+  assert.equal(primitivesReadBy(row("u", named)), "person");
+  assert.equal(primitivesReadBy(row("n", {evidence: {model_read_on: "2026-10-20"}})), null);
+});
+
 test("a summary in the project's own words is marked, and Chinese says when a model translated it", () => {
   const schema = JSON.parse(readFileSync(new URL("../schema/entry.schema.json", import.meta.url)));
   assert.deepEqual(SUMMARY_SOURCES, schema.properties.summary_source.enum);
@@ -32,6 +48,8 @@ test("a summary in the project's own words is marked, and Chinese says when a mo
   assert.deepEqual(summaryMarks(upstream, "en"), ["upstream-description"]);
   assert.deepEqual(summaryMarks(upstream, "zh"), ["upstream-description", "zh-machine"]);
   assert.deepEqual(summaryMarks(row("stale", {summary_source: "upstream-description-stale"}), "en"), ["upstream-description-stale"]);
+  // A model's text for the catalogue is marked too (since 2026-10-24).
+  assert.deepEqual(summaryMarks(row("model", {summary_source: "model-written", zh_machine: true}), "zh"), ["model-written", "zh-machine"]);
   // A person's text, or no record, carries no source mark; zh_machine only describes the Chinese.
   assert.deepEqual(summaryMarks(row("curated", {summary_source: "curated", zh_machine: true}), "en"), []);
   assert.deepEqual(summaryMarks(row("curated", {summary_source: "curated", zh_machine: true}), "zh"), ["zh-machine"]);
@@ -79,6 +97,7 @@ test("an overview project or plugin with code is not yet indexed by pattern unti
   assert.equal(notIndexedByPattern(unplaced({kind: "plugin"})), true);
   // A person's recorded reading ends it; so does any real pattern.
   assert.equal(notIndexedByPattern(unplaced({patterns_reviewed: "2026-09-27"})), false);
+  assert.equal(notIndexedByPattern(unplaced({patterns_model_read_on: "2026-10-24"})), false);
   assert.equal(notIndexedByPattern(unplaced({patterns: ["tool-selection"]})), false);
   // Docs, SDKs and rows without code are what overview is for, or cannot be placed by reading code.
   assert.equal(notIndexedByPattern(unplaced({kind: "sdk"})), false);
@@ -353,6 +372,7 @@ test("the compatibility view lists the alternatives that record their interface,
   for (const c of cases) {
     assert.equal(listed.has(c.entry.slug), c.wired, c.name);
     assert.equal(wirePersonRead(wireOf(c.entry)), c.person_read, c.name);
+    assert.equal(wireEveryFileRead(wireOf(c.entry)), c.every_file_read, c.name);
     assert.equal(wireRepository(c.entry), c.repository, c.name);
   }
   assert.equal(wireRemainder(entries), cases.filter(c => c.unwired).length);

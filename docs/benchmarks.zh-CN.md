@@ -8,7 +8,7 @@
 
 所有带 `measurement` 的 `kind: benchmark` 行：作者本人测了什么，按作者的报告逐项索引。这些测量本仓库一项都没有做过或重跑过。**结论方向**是作者本人对 Jev 在该任务上的结论，属作者自述、未经本仓库复现；作者没有用文字说明结论的，这一栏留空。
 
-共 **72** 条基准测试行；其中 **27** 条带测量字段；其中 **0** 条已由人对照报告核读（`measurement.read_on`）。其余由脚本或模型填写，[复核队列](review-queue.md#measurement-unread)列出了它们。这些字段最初如何填写：[docs/method.md](method.md)。字段规则：[CONTRIBUTING](../CONTRIBUTING.md#field-rules)。
+共 **72** 条基准测试行；其中 **27** 条带测量字段。这些行里，**0** 条已由人对照报告核读（`measurement.read_on`），**0** 条只有模型读过（`measurement.model_read_on`）；其余 **27** 条由脚本或模型填写，还没有人或模型读回核对。复核队列列出了[未读的行](review-queue.md#measurement-unread)和[只有模型读过的行](review-queue.md#model-read)。这些字段最初如何填写：[docs/method.md](method.md)。字段规则：[CONTRIBUTING](../CONTRIBUTING.md#field-rules)。
 
 ## 按决策模式看结论方向
 
@@ -138,9 +138,9 @@
 
 ## 全部带测量的报告
 
-按 star 区间、再按标题排序。**独立**：除非该行带 vendor-reported 标记，否则为「是」。**原始数据**：作者公开逐条结果或原始响应为「是」，作者说明只公开汇总为「否」，两者都无法确认为「—」。**预注册**：作者说明方案或数据集在运行前已固定为「是」。**测量日期**取测量的 `as_of`，没有则取该行的发布日期。
+按 star 区间、再按标题排序。**独立**：除非该行带 vendor-reported 标记，否则为「是」。**原始数据**：作者公开逐条结果或原始响应为「是」，作者说明只公开汇总为「否」，两者都无法确认为「—」。**预注册**：作者说明方案或数据集在运行前已固定为「是」。**测量日期**取测量的 `as_of`，没有则取该行的发布日期。**核读**是人对照报告核读字段的日期；标 *（模型）* 的日期是模型的阅读，尚无人核对。
 
-| 行 | 星标 | 独立 | 原始数据 | 预注册 | 警示 | 任务 | 指标 | n | 模型字符串 | 测量日期 | 结论方向（作者自述，未经本仓库复现） | 人工核读 |
+| 行 | 星标 | 独立 | 原始数据 | 预注册 | 警示 | 任务 | 指标 | n | 模型字符串 | 测量日期 | 结论方向（作者自述，未经本仓库复现） | 核读 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Hermes Agent: Jev compaction evaluation](https://kydlikebtc.github.io/awesome-jev/?lang=zh#hermes-agent-jev-evaluation) | ★100k+ | 是 | — | — | — | Compact long agent transcripts with a port of fast-jev-compaction and score recall on a fixed question exam · [报告](https://github.com/NousResearch/hermes-agent/blob/HEAD/evals/compaction/results/SCORECARD-2026-09-19-jev.md) | 召回率, token 用量, 成本, 延迟 | 45 | `~typesafe/jev-latest` | 2026-09-19 | 不利 | — |
 | [worldmonitor: news threat classification](https://kydlikebtc.github.io/awesome-jev/?lang=zh#worldmonitor-shadow-mode) | ★10k+ | 是 | — | — | `仅影子运行` | Label news headlines' threat level, scored on alerts against a blind human judgement · [报告](https://github.com/koala73/worldmonitor/pull/8326) | 召回率, 精确率 | 413 | `jev-1.13.0` | 2026-09-19 | 不利 | — |

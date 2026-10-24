@@ -358,6 +358,18 @@ class StatsTest(unittest.TestCase):
         )
         self.assertEqual(_stats.PRIMITIVES, vc.PRIMITIVES)
 
+    def test_a_models_reading_of_the_call_site_is_in_neither_layer(self):
+        model = {"slug": "m", "question_types": ["noul"], "primitives_seen": ["noul", "score"],
+                 "evidence": {"path": "a.py", "matched": ["x"], "model_read_on": "2026-10-24"}}
+        person = {**model, "slug": "p", "evidence": {**model["evidence"], "read_on": "2026-10-24"}}
+        self.assertTrue(_stats.primitives_by_model(model))
+        self.assertFalse(_stats.primitives_by_model(person), "a person's reading of the call site wins")
+        self.assertFalse(_stats.primitives_by_model({"slug": "bare", "question_types": ["noul"]}))
+        self.assertFalse(_stats.primitives_by_model({"slug": "none", "evidence": model["evidence"]}))
+        layers = _stats.primitive_layers([model, person])
+        self.assertEqual(layers["noul"], {"read": 1, "signal_only": 0})
+        self.assertEqual(layers["score"], {"read": 0, "signal_only": 2})
+
     def test_a_primitive_claim_is_counted_from_question_types_only(self):
         catalog, retired, patterns, compat, schema = _stats.load()
         signal_everywhere = [dict(e, primitives_seen=["choice", "score", "noul"]) for e in catalog]
@@ -371,8 +383,10 @@ class StatsTest(unittest.TestCase):
         for name in vc.PRIMITIVES:
             with self.subTest(primitive=name):
                 self.assertEqual(fake["primitive_layers"][name]["read"], real["primitive_layers"][name]["read"])
+                # A model's reading is a reading, so never a signal, and is counted in neither.
+                by_model = sum(1 for e in catalog if _stats.primitives_by_model(e) and name in e["question_types"])
                 self.assertEqual(
-                    fake["primitive_layers"][name]["read"] + fake["primitive_layers"][name]["signal_only"],
+                    fake["primitive_layers"][name]["read"] + fake["primitive_layers"][name]["signal_only"] + by_model,
                     len(catalog),
                 )
 
@@ -411,7 +425,8 @@ class SurfaceTest(unittest.TestCase):
                 caption = pack["prims_layers"] + mark
                 self.assertIn("\n" + caption + "\n", text)
                 bullet = pack["verified_primitives"].format(
-                    read=stats["primitive_rows"],
+                    read=stats["primitive_rows"] - stats["primitive_rows_model"],
+                    model=stats["primitive_rows_model"],
                     signal=stats["primitive_signal_rows"],
                     signal_only=stats["primitive_signal_only_rows"],
                 )

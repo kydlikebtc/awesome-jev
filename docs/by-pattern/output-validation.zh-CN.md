@@ -25,7 +25,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
-*调用点*链接打开该行引用的那一个文件（`evidence.path`）在仓库默认分支 `HEAD` 上的版本；其后的日期是有人最近一次阅读该文件的日期（`evidence.read_on`）：这是阅读记录，不是运行过代码。*引用文件*链接同理，只是该文件表明项目采用了 Jev 的请求结构、并非基于 Jev 构建，或只是项目附带的示例（`evidence.kind`）。两种链接都没有固定到某个提交，打开的是文件的当前版本，可能与当时读到的不同；文件移动后链接就会失效，每周的 claims 检查会报告这种情况。 <sub>(机翻)</sub>
+*调用点*链接打开该行引用的那一个文件（`evidence.path`）在仓库默认分支 `HEAD` 上的版本；其后的日期是有人最近一次阅读该文件的日期（`evidence.read_on`）；注明“模型阅读”的，则是模型阅读该文件的日期（`evidence.model_read_on`）：这是阅读记录，不是运行过代码。*引用文件*链接同理，只是该文件表明项目采用了 Jev 的请求结构、并非基于 Jev 构建，或只是项目附带的示例（`evidence.kind`）。两种链接都没有固定到某个提交，打开的是文件的当前版本，可能与当时读到的不同；文件移动后链接就会失效，每周的 claims 检查会报告这种情况。 <sub>(机翻)</sub>
 
 *作者结论*是基准测试作者本人对 Jev 在其所测任务上给出的结论方向（`measurement.direction`：有利、好坏参半、不利或无定论），按作者的报告索引：属作者自述，未经本仓库复现；作者没有用文字说明结论的则不标。[docs/benchmarks.zh-CN.md](../benchmarks.zh-CN.md) 把每条基准测试的测量字段并列展示。 <sub>(机翻)</sub>
 
@@ -269,8 +269,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-decisions](https://github.com/bojansandhaus/jev-decisions-hermes)** — 给 Hermes 及其他智能体的 Jev 决策插件：工具风险审查与人工批准。 <sub>(机翻)</sub>
   <sub>`插件` · bojansandhaus · `Py` · 调用点 [`jev_client.py`](https://github.com/bojansandhaus/jev-decisions-hermes/blob/HEAD/jev_client.py)，2026-09-22 阅读</sub>
 
-- **[jev-enforce](https://github.com/erkamyaman/jev-enforce)** — 一个 Claude Code 插件，按你的 CLAUDE.md 或 AGENTS.md 检查每次回复和每次文件编辑：每条规则对应一个 Jev noul，全部放在一个请求里；违反的规则会通过 Stop 或 PostToolUse 钩子被引用回去，让 Claude 在同一轮内修正。也提供可用于 CI 的命令行工具。 <sub>(机翻)</sub>
-  <sub>`插件` · erkamyaman · `TS` · `noul` · 调用点 [`dist/src/jev.js`](https://github.com/erkamyaman/jev-enforce/blob/HEAD/dist/src/jev.js)</sub>
+- **[jev-enforce](https://github.com/erkamyaman/jev-enforce)** — 一个 Claude Code 插件，按你的 CLAUDE.md 或 AGENTS.md 检查每次回复和每次文件编辑：每条规则对应一个 Jev noul，全部放在一个请求里；违反的规则会通过 Stop 或 PostToolUse 钩子被引用回去，让 Claude 在同一轮内修正。也提供可用于 CI 的命令行工具。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · erkamyaman · `TS` · `noul` · 调用点 [`dist/src/jev.js`](https://github.com/erkamyaman/jev-enforce/blob/HEAD/dist/src/jev.js)，2026-10-24 模型阅读</sub>
 
 - **[jev-enterprise-decision-fabric](https://github.com/ghubnab99/jev-enterprise-decision-fabric)** — 让大量语义决策走同一条经过验证的路径的架构，附带标注数据集。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ghubnab99 · `C#` · 调用点 [`src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs`](https://github.com/ghubnab99/jev-enterprise-decision-fabric/blob/HEAD/src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs)，2026-09-22 阅读</sub>
@@ -290,8 +290,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-labs](https://github.com/copyleftdev/jev-labs)** — 绝不自信地犯错：围绕 Jev 的 TLA+ 验证共识内核。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · copyleftdev · `Py` · 调用点 [`consensus/rust/consensus-kernel/src/jev.rs`](https://github.com/copyleftdev/jev-labs/blob/HEAD/consensus/rust/consensus-kernel/src/jev.rs)，2026-09-22 阅读</sub>
 
-- **[jev-lint](https://github.com/ckorhonen/jev-lint)** — 面向编程 Agent 的模糊 linter：Agent 写完文件后，团队用自然语言写的每条规则都作为一个 Jev noul 来问，约 0.3 秒后 Agent 就能知道自己违反了哪些规则。可以从仓库自动生成规则；也可改用 Cloudflare 或 OpenAI 作为评判。 <sub>(机翻)</sub>
-  <sub>`插件` · ckorhonen · `TS` · `noul` · 调用点 [`src/jev.ts`](https://github.com/ckorhonen/jev-lint/blob/HEAD/src/jev.ts)</sub>
+- **[jev-lint](https://github.com/ckorhonen/jev-lint)** — 面向编程 Agent 的模糊 linter：Agent 写完文件后，团队用自然语言写的每条规则都作为一个 Jev noul 来问，约 0.3 秒后 Agent 就能知道自己违反了哪些规则。可以从仓库自动生成规则；也可改用 Cloudflare 或 OpenAI 作为评判。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ckorhonen · `TS` · `noul` · 调用点 [`src/jev.ts`](https://github.com/ckorhonen/jev-lint/blob/HEAD/src/jev.ts)，2026-10-24 模型阅读</sub>
 
 - **[jev-lm](https://github.com/y0usaf/jev-lm)** — 输出层就是 Jev 的词级语言模型：n-gram 起草，Noul 做分块校验。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · y0usaf · `TS` · 调用点 [`python/jev_lm/api.py`](https://github.com/y0usaf/jev-lm/blob/HEAD/python/jev_lm/api.py)，2026-09-22 阅读</sub>

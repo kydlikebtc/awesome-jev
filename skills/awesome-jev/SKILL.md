@@ -176,7 +176,7 @@ from <!--n:threshold_noul_low-->0.2<!--/n--> to <!--n:threshold_noul_high-->0.9<
 and a `choice` confidence from <!--n:threshold_choice_low-->0.3<!--/n--> to <!--n:threshold_choice_high-->0.9<!--/n-->.
 Those are what each project chose, not recommendations: `get_example` returns a
 row's `observed_thresholds` with the text in its file each one stands on, and no
-person has yet checked them on <!--n:thresholds_unread-->31<!--/n--> of those rows,
+person has yet checked them on <!--n:thresholds_unchecked-->31<!--/n--> of those rows,
 which a model read. A threshold tuned on a `noul` probability is not a `choice`
 confidence.
 
@@ -221,14 +221,16 @@ with the ones already catalogued or declined ticked or struck through.
    what the script found filled in and a `_draft` field listing what is left.
 3. Open the call site the draft names and read it. Write `summary` and
    `summary_zh` from what the code does, not from its README, and set
-   `summary_source: curated`, since you wrote it; add
+   `summary_source: model-written`, since a model wrote it; add
    `question_types` only for the primitives it actually calls; set
-   `evidence.read_on` to the day you read the file; check the guessed `kind`,
-   `patterns` and `languages`; if the kind is `alternative`, set
-   `evidence.kind` to `wire-shape`, since the project is not built on Jev; set
-   `zh_machine: true` if a model wrote the Chinese; name the source in
-   `sources`. Leave `patterns_reviewed` out: it records a person reading the
-   row against `docs/patterns.md`, which the person you work for adds. Leave
+   `evidence.model_read_on` to the day you read the file; check the guessed
+   `kind`, `patterns` and `languages`, and set `patterns_model_read_on` to the
+   day if you read the row against `docs/patterns.md`; if the kind is
+   `alternative`, set `evidence.kind` to `wire-shape`, since the project is not
+   built on Jev; set `zh_machine: true`, since a model wrote the Chinese; name
+   the source in `sources`. Leave `curated`, `evidence.read_on` and
+   `patterns_reviewed` to the person you work for: they record that a person
+   wrote or read it, and the catalogue shows a model's work as a model's. Leave
    `primitives_seen` out too: the weekly refresh writes it from the cited
    file's text, and it is no substitute for `question_types`.
 4. Delete `_draft`, add the row to `catalog.json`, run

@@ -572,6 +572,7 @@ def what_is_verified(page: Page) -> list[str]:
         upstream=stats["summary_upstream"],
         stale=stats["summary_upstream_stale"],
         curated=stats["summary_curated"],
+        model=stats["summary_model_written"],
         unlabelled=stats["summary_unlabelled"],
         **source_marks(lang),
     )
@@ -581,11 +582,12 @@ def what_is_verified(page: Page) -> list[str]:
     translations = marked(
         strings, "verified_translations", hand=stats["zh_hand"], machine=stats["zh_machine"], entries=stats["entries"]
     )
-    # A person's reading and a script's text signal, counted apart.
+    # A person's reading, a model's and a script's text signal, counted apart.
     primitives = marked(
         strings,
         "verified_primitives",
-        read=stats["primitive_rows"],
+        read=stats["primitive_rows"] - stats["primitive_rows_model"],
+        model=stats["primitive_rows_model"],
         signal=stats["primitive_signal_rows"],
         signal_only=stats["primitive_signal_only_rows"],
     )
@@ -595,7 +597,7 @@ def what_is_verified(page: Page) -> list[str]:
     add(f"## {strings['verified_h']}")
     add("")
     for text in [
-        strings['verified_yes'].format(**stats), strings['verified_read'], summaries, translations, recheck,
+        strings['verified_yes'].format(**stats), marked(strings, 'verified_read'), summaries, translations, recheck,
         primitives, strings['verified_no'],
     ]:
         add(f"- {text}")

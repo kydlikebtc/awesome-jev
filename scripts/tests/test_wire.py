@@ -98,6 +98,7 @@ class DefinitionTest(unittest.TestCase):
                 self.assertEqual(case["entry"]["slug"] in wired, case["wired"])
                 self.assertEqual(case["entry"]["slug"] in unwired, case["unwired"])
                 self.assertEqual(wire.person_read(wire.wire_of(case["entry"]) or {}), case["person_read"])
+                self.assertEqual(wire.every_file_read(wire.wire_of(case["entry"]) or {}), case["every_file_read"])
                 self.assertEqual(build_compat.row_repository(case["entry"]), case["repository"])
 
     def test_claims_are_the_well_formed_cited_files(self):

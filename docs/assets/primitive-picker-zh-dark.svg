@@ -71,7 +71,7 @@
 <text x="366" y="384" class="d">每个 noul 是绝对判断，可以对所有条目都偏低；choice 是相对</text>
 <text x="366" y="399" class="d">判断，只挑其中最合适的一个。</text>
 <text x="366" y="414" class="k">模式：上下文压缩</text>
-<text x="366" y="429" class="c">人读确认 10 条 · 仅文本信号 15 条</text>
+<text x="366" y="429" class="c">人读确认 8 条 · 仅文本信号 15 条</text>
 <line x1="36" y1="441" x2="36" y2="461" stroke="#8b949e"/>
 <path d="M32 461l4 6 4-6z" fill="#8b949e"/>
 <text x="44" y="458.0" class="a">否</text>
@@ -91,7 +91,7 @@
 <text x="366" y="504" class="d">每个问题只量一个维度；每一级写成一种情形，而不是一个程</text>
 <text x="366" y="519" class="d">度。</text>
 <text x="366" y="534" class="k">模式：内容评分</text>
-<text x="366" y="549" class="c">人读确认 13 条 · 仅文本信号 44 条</text>
+<text x="366" y="549" class="c">人读确认 12 条 · 仅文本信号 44 条</text>
 <line x1="36" y1="561" x2="36" y2="581" stroke="#8b949e"/>
 <path d="M32 581l4 6 4-6z" fill="#8b949e"/>
 <text x="44" y="578.0" class="a">否</text>
@@ -110,7 +110,7 @@
 <text x="696" y="608" class="k" text-anchor="end">[8]</text>
 <text x="366" y="624" class="d">每个问题只问一个条件，并让高值表示「是」。</text>
 <text x="366" y="639" class="k">模式：安全闸门</text>
-<text x="366" y="654" class="c">人读确认 19 条 · 仅文本信号 62 条</text>
+<text x="366" y="654" class="c">人读确认 16 条 · 仅文本信号 62 条</text>
 <line x1="36" y1="666" x2="36" y2="686" stroke="#8b949e"/>
 <path d="M32 686l4 6 4-6z" fill="#8b949e"/>
 <text x="44" y="683.0" class="a">否</text>
@@ -130,7 +130,7 @@
 <text x="366" y="729" class="d">给出完整的选项列表；若它可能覆盖不了所有输入，加一个</text>
 <text x="366" y="744" class="d">other 或 none 选项。</text>
 <text x="366" y="759" class="k">模式：工具选择</text>
-<text x="366" y="774" class="c">人读确认 33 条 · 仅文本信号 106 条</text>
+<text x="366" y="774" class="c">人读确认 26 条 · 仅文本信号 106 条</text>
 <line x1="36" y1="786" x2="36" y2="806" stroke="#8b949e"/>
 <path d="M32 806l4 6 4-6z" fill="#8b949e"/>
 <text x="44" y="803.0" class="a">否</text>

@@ -5,8 +5,10 @@ its own author measured, indexed field by field from the author's report — the
 task, named datasets, comparators, kinds of metric, n, the model string, when,
 whether per-item data is published, whether the protocol was fixed first, and
 the author's own `direction`. Nothing in it was measured or reproduced here.
-`read_on` dates a person's reading of the report against the fields; without
-it a script or a model filled them in (docs/review-queue.md lists those rows).
+`read_on` dates a person's reading of the report against the fields, and
+(since 2026-10-24) `model_read_on` a model's, kept apart; with neither, a
+script or a model filled them in and nobody read them back (docs/review-queue.md
+lists those rows, and the model's readings in a section of their own).
 
 How a measurement is read — which rows have one, how a direction is shown — is
 the MCP package's query.py, loaded by its path as platform_values.py loads it,
@@ -17,8 +19,8 @@ What lint holds (lint.check_measurement, lint.check_measurement_models):
 * a measurement only on a kind: benchmark row;
 * `as_of`, or the row's `published`, dates it: model versions move, and a
   measurement is of the model served that day;
-* `as_of` and `read_on` are real dates, not in the future, and nobody read the
-  report before the measurement was taken;
+* `as_of`, `read_on` and `model_read_on` are real dates, not in the future,
+  and nobody read the report before the measurement was taken;
 * `model_string` is a string compat.json lists on some surface (a string it
   does not list is left out of the row rather than recorded).
 
@@ -43,7 +45,7 @@ from platform_values import load_query
 
 KIND = "benchmark"
 FIELD = "measurement"
-DATED = ("as_of", "read_on")
+DATED = ("as_of", "read_on", "model_read_on")
 NEGATIVE_FLAG = "negative-result"
 # What a negative-result row's notes must hold: a link, a pull request or issue
 # number, or a word naming what was measured. The words are a floor: a note
@@ -91,11 +93,12 @@ def row_problems(entry: dict, today: dt.date) -> list[str]:
                 found.append(f"measurement.{field} {measurement[field]} is in the future")
             else:
                 dates[field] = parsed
-    if len(dates) == 2 and dates["read_on"] < dates["as_of"]:
-        found.append(
-            f"measurement.read_on {measurement['read_on']} is before as_of {measurement['as_of']}: nobody "
-            "can read the report of a measurement not yet taken"
-        )
+    for field in DATED[1:]:
+        if field in dates and "as_of" in dates and dates[field] < dates["as_of"]:
+            found.append(
+                f"measurement.{field} {measurement[field]} is before as_of {measurement['as_of']}: nobody "
+                "can read the report of a measurement not yet taken"
+            )
     return found
 
 
@@ -163,9 +166,16 @@ def measured(catalog: list[dict]) -> list[dict]:
 
 
 def unread(catalog: list[dict]) -> list[dict]:
-    """Measured rows no person has read against their report (no measurement.read_on)."""
+    """Measured rows nobody has read against their report: no person
+    (measurement.read_on) and no model (measurement.model_read_on)."""
     query = load_query()
-    return [entry for entry in measured(catalog) if not query.measurement_of(entry).get("read_on")]
+    return [entry for entry in measured(catalog) if query.reading(query.measurement_of(entry)) is None]
+
+
+def model_read(catalog: list[dict]) -> list[dict]:
+    """Measured rows whose only reading against their report is a model's."""
+    query = load_query()
+    return [entry for entry in measured(catalog) if query.read_by(query.measurement_of(entry)) == query.MODEL]
 
 
 def negative(catalog: list[dict]) -> list[dict]:

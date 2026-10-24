@@ -6,7 +6,7 @@
 
 Every `kind: benchmark` row that carries a `measurement`: what its own author measured, indexed field by field from the author's report. This repository measured and re-ran none of it. A **direction** is the author's own conclusion about Jev for that task, author-stated and not reproduced here, and is left blank where the author states none in words. Task, dataset and comparator names are recorded as the author names them.
 
-**72** benchmark rows; **27** carry a measurement; **0** of those have been read against their report by a person (`measurement.read_on`). A script or a model filled in the others, and [the review queue](review-queue.md#measurement-unread) lists them. How the fields were first filled in: [docs/method.md](method.md). Field rules: [CONTRIBUTING](../CONTRIBUTING.md#field-rules).
+**72** benchmark rows; **27** carry a measurement. Of those, a person has read **0** against their report (`measurement.read_on`) and only a model **0** (`measurement.model_read_on`); a script or a model filled in the other **27** and nobody has read them back. The review queue lists [the unread rows](review-queue.md#measurement-unread) and [those only a model has read](review-queue.md#model-read). How the fields were first filled in: [docs/method.md](method.md). Field rules: [CONTRIBUTING](../CONTRIBUTING.md#field-rules).
 
 ## Direction by decision pattern
 
@@ -136,9 +136,9 @@ Named datasets and benchmark suites the measurements used, as each author names 
 
 ## Every measured report
 
-Rows by star band, then title. **Independent** is yes unless the row is flagged vendor-reported. **Raw data**: yes when the author publishes per-item results or raw responses, no when the author says only aggregates are published, — when neither is established. **Pre-registered**: yes when the author states the protocol or set was fixed before the run. **Taken** is the measurement's `as_of`, else the row's publication date.
+Rows by star band, then title. **Independent** is yes unless the row is flagged vendor-reported. **Raw data**: yes when the author publishes per-item results or raw responses, no when the author says only aggregates are published, — when neither is established. **Pre-registered**: yes when the author states the protocol or set was fixed before the run. **Taken** is the measurement's `as_of`, else the row's publication date. **Read** is the day a person read the report against the fields; a date marked *(model)* is a model's reading, not yet checked by a person.
 
-| Row | Stars | Independent | Raw data | Pre-registered | Caveats | Task | Metrics | n | Model string | Taken | Direction (author-stated, not reproduced here) | Read by a person |
+| Row | Stars | Independent | Raw data | Pre-registered | Caveats | Task | Metrics | n | Model string | Taken | Direction (author-stated, not reproduced here) | Read |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Hermes Agent: Jev compaction evaluation](https://kydlikebtc.github.io/awesome-jev/?lang=en#hermes-agent-jev-evaluation) | ★100k+ | yes | — | — | — | Compact long agent transcripts with a port of fast-jev-compaction and score recall on a fixed question exam · [report](https://github.com/NousResearch/hermes-agent/blob/HEAD/evals/compaction/results/SCORECARD-2026-09-19-jev.md) | recall, tokens, cost, latency | 45 | `~typesafe/jev-latest` | 2026-09-19 | unfavourable | — |
 | [worldmonitor: news threat classification](https://kydlikebtc.github.io/awesome-jev/?lang=en#worldmonitor-shadow-mode) | ★10k+ | yes | — | — | `shadow mode` | Label news headlines' threat level, scored on alerts against a blind human judgement · [report](https://github.com/koala73/worldmonitor/pull/8326) | recall, precision | 413 | `jev-1.13.0` | 2026-09-19 | unfavourable | — |

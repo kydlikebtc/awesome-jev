@@ -60,8 +60,11 @@ class CountsTest(unittest.TestCase):
             "summary_upstream": 7012,
             "summary_upstream_stale": 7013,
             "summary_curated": 7014,
+            "summary_model_written": 7040,
+            "model_read": {"patterns": 7041, "evidence": 7042, "measurement": 7043, "wire": 7044, "thresholds": 7045},
             "summary_unlabelled": 7015,
             "primitive_rows": 7020,
+            "primitive_rows_model": 7,
             "primitive_signal_rows": 7021,
             "primitive_signal_only_rows": 7022,
             "repo_facts_rows": 7023,
@@ -89,18 +92,21 @@ class CountsTest(unittest.TestCase):
             "review queue   7009 under examples/, 7010 on one model name or host, "
             "7016 tool-selection on dropped keywords, 7029 summaries naming nothing about Jev (docs/review-queue.md)",
             "code, no cite  7011 (neither evidence nor evidence_none)",
-            "primitives     7020 read by a person (question_types), 7021 with a text signal in the cited file "
+            "primitives     7013 read by a person, 7 by a model (question_types), 7021 with a text signal in the cited file "
             "(primitives_seen), 7022 of them with no question_types",
             "patterns       7017 equal the keyword rules' suggestion (no review recorded), 7018 patterns_reviewed, "
             "7019 overview rows with code not yet indexed by pattern",
-            "summaries      7012 upstream-description, 7013 upstream-description-stale, 7014 curated, 7015 unlabelled",
+            "summaries      7012 upstream-description, 7013 upstream-description-stale, 7014 curated, "
+            "7040 model-written, 7015 unlabelled",
+            "model-read     7041 patterns, 7042 call sites, 7043 measurements, 7044 interfaces, 7045 threshold rows "
+            "read only by a model",
             "repositories   7023 with GitHub's creation date, last push and commit count, 7024 single-commit; "
             "last push by month (UTC): 2026-10 7025, 2026-09 7026",
             "citations      7027 of 7028 rows with a GitHub repository linked by at least one sibling directory",
             "measurements   7030 benchmark rows index their author's measurement (author-stated directions: "
-            "favourable 7031, mixed 7032, not stated 7033), 7034 not read by a person",
+            "favourable 7031, mixed 7032, not stated 7033), 7034 read by nobody",
             "thresholds     7036 constants on 7035 rows compared with a Jev answer (observed_thresholds; "
-            "observations, not recommendations), 7037 rows not read by a person: noul probability 0.25–0.75 (7038 rows)",
+            "observations, not recommendations), 7037 rows read by nobody: noul probability 0.25–0.75 (7038 rows)",
             "next changes at 7,100 entries",
             "  7,000+ public resources for Jev",
         ):
