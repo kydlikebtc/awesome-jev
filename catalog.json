@@ -3811,6 +3811,37 @@
     "link_status": 200
   },
   {
+    "slug": "awesome-jev-prompts",
+    "title": "awesome-jev-prompts",
+    "summary": "Question-design pattern library for Jev typed decisions: 51 entries / 9 categories (choice, score, noul, routing, guardrails, calibration, embodied & multimodal, anti-patterns), bilingual EN/中文, each entry sourced under a four-level verification policy.",
+    "summary_zh": "Jev 类型化决策的问题设计模式库：51 条、9 大分类（选择/评分/判定/路由/护栏/校准/具身多模态/反模式等），中英双语，每条按四级验证政策标注来源（documented/community-observed/derived/measured）；带日期化生态编年史与每日 CI 链接检查。",
+    "url": "https://github.com/vicfei/awesome-jev-prompts",
+    "kind": "tutorial",
+    "patterns": [
+      "overview"
+    ],
+    "author": {
+      "name": "vicfei",
+      "url": "https://github.com/vicfei"
+    },
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/vicfei/awesome-jev-prompts"
+      }
+    ],
+    "license": "CC0-1.0",
+    "repo_license": "CC0-1.0",
+    "has_code": true,
+    "evidence_none": "no-jev-call-site",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "self-submitted"
+    ]
+  },
+  {
     "slug": "awesome-jev-use-cases",
     "title": "awesome-jev-use-cases",
     "summary": "Explore real-world use cases and projects built with TypeSafe AI's Jev: content moderation, AI agents, model routing, and semantic search. Curated by SeeAPI.",
@@ -9379,6 +9410,82 @@
     ],
     "checked": "2026-10-21",
     "link_status": 200
+  },
+  {
+    "slug": "decision-models-as-guardrails",
+    "title": "Decision Models as Guardrails",
+    "summary": "Asks Jev 1.13.0, Jev 1.14.0 and 17 other systems, Bedrock Guardrails among them, the same 9,975 labelled guardrail checks in six suites. Jev answers each as a noul; 0.5 or more blocks, nothing tuned per model. Reports balanced accuracy with 95% intervals and USD per 1,000 checks at list price.",
+    "summary_source": "curated",
+    "summary_zh": "让 Jev 1.13.0、Jev 1.14.0 及其他 17 个系统（包括 Bedrock Guardrails）回答同样的 9,975 条带标注的护栏检查，分为六个套件。Jev 以 noul 回答每条检查，概率达到 0.5 或以上即拦截，不对任何模型单独调参。报告平衡准确率（含 95% 区间）以及按公开价格计算的每 1,000 次检查的美元成本。",
+    "zh_machine": true,
+    "url": "https://dm-as-guardrails.raxitlabs.com",
+    "repo": "https://github.com/raxITlabs/decision-models-as-guardrails",
+    "kind": "benchmark",
+    "patterns": [
+      "safety-gating"
+    ],
+    "question_types": [
+      "noul",
+      "score"
+    ],
+    "platforms": [
+      "typesafe-api",
+      "self-hosted"
+    ],
+    "author": {
+      "name": "raxIT Labs",
+      "url": "https://github.com/raxITlabs"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "Apache-2.0",
+    "evidence": {
+      "path": "benchmark/goldrails_bench/systemone.py",
+      "matched": [
+        "api.typesafe.ai",
+        "POST /v1/systemone",
+        "self.client.system_one(state, qs, model=self.model)"
+      ]
+    },
+    "measurement": {
+      "task": "Decide whether to block a guardrail check across six suites: content, prompt attacks, denied topics, profanity, PII and grounding",
+      "datasets": [
+        "raxITLabs/decision-models-as-guardrails"
+      ],
+      "comparators": [
+        "Amazon Bedrock Guardrails",
+        "Perplexity Decisions API",
+        "OpenAI Decisions API",
+        "Kev",
+        "Open-Jev",
+        "Laya",
+        "Clef",
+        "Strands Deciders"
+      ],
+      "metrics": [
+        "accuracy",
+        "recall",
+        "cost"
+      ],
+      "n": 9975,
+      "as_of": "2026-10-15",
+      "raw_data": true
+    },
+    "first_seen": "2026-10-17",
+    "flags": [
+      "self-submitted"
+    ],
+    "notes": "Submitted by raxIT Labs, which built and ran it. Version 1.0.0 (15 Oct 2026): balanced accuracy 90.4 for the Perplexity Decisions API, 88.7 for Jev 1.14.0, 79.0 for Bedrock Guardrails; Jev 1.14.0 costs $39 per million checks at list price, Bedrock $113. One fixed 0.5 threshold, no per-model calibration. Drafted with an AI coding assistant.",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/50"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ]
   },
   {
     "slug": "decisionmodelhub-support-routing",
@@ -55465,6 +55572,64 @@
     "link_status": 200
   },
   {
+    "slug": "jevgpt-sunyasheng",
+    "title": "JevGPT: Thinking Fast and Slow in Autonomous Research",
+    "summary": "Research agent from arXiv 2610.18272. GPT-5.5 plans searches and writes the answer; in BrowseComp-Plus QA, Jev answers a Choice over numbered source lines (where is the answer) and a Noul (does the region address it) per document region and query, in parallel. GPT gets the original lines.",
+    "summary_source": "curated",
+    "summary_zh": "论文 arXiv 2610.18272 的研究 Agent。GPT-5.5 规划检索并写出答案；在 BrowseComp-Plus 问答中，对每个被检查的文档区域和每个查询，Jev 回答一个 Choice（在编号的原文行中选出答案所在行）和一个 Noul（该区域是否涉及该查询），在多个文档上并行运行。GPT 拿到的是原文行。",
+    "zh_machine": true,
+    "url": "https://github.com/sunyasheng/JevGPT",
+    "kind": "project",
+    "patterns": [
+      "search-ranking",
+      "fan-out"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "typescript",
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "sunyasheng",
+      "url": "https://github.com/sunyasheng"
+    },
+    "has_code": true,
+    "stars": 8,
+    "repo_license": "Apache-2.0",
+    "evidence": {
+      "path": "runtime/pi-serini/src/extensions/jev_find_v1.ts",
+      "matched": [
+        "env.JEV_URL ?? \"https://api.typesafe.ai/v1/systemone\"",
+        "questions[`where_${i}`] = { type: \"choice\", criteria,",
+        "questions[`exists_${i}`] = { type: \"noul\",",
+        "Which numbered source line or range contains the answer to"
+      ]
+    },
+    "first_seen": "2026-10-17",
+    "flags": [
+      "self-submitted",
+      "unverified-claims",
+      "third-party-api-key"
+    ],
+    "notes": "Self-submission by the paper's first author. Runs on the Pi-Serini agent runtime for BrowseComp-Plus question answering and NeuCLIRBench ranking. Further Choice and Noul gates (jev_adaptive_overlap_v1.ts) decide whether to stop or inspect more ranked documents. NeuCLIRBench ranking also calls Score (jev_document_ranking_policy.ts); question_types omit it because the evidence file covers the QA path. Live runs need GPT-5.5 access and a TypeSafe key. Benchmark figures are author-reported.",
+    "notes_zh": "论文第一作者自荐。运行在 Pi-Serini Agent 运行时上，用于 BrowseComp-Plus 问答和 NeuCLIRBench 排序。jev_adaptive_overlap_v1.ts 中另有 Choice 和 Noul 判断，决定停止还是继续检查排序结果中的更多文档。NeuCLIRBench 排序还会调用 Score（jev_document_ranking_policy.ts）；evidence 文件只覆盖问答路径，所以 question_types 没有列出 Score。实际运行需要 GPT-5.5 访问权限和 TypeSafe 密钥。准确率、耗时和成本数据为作者自报。",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/49"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-10-17",
+    "link_status": 200
+  },
+  {
     "slug": "jevgraph",
     "title": "jevgraph",
     "summary": "Evidence-backed knowledge graph construction with typed Jev relation decisions",
@@ -81564,6 +81729,59 @@
     "notes_zh": "这是 System One 接口的重新实现，不是 Jev。接口兼容不代表校准兼容，在 Jev 上调好的阈值不能直接照搬。",
     "checked": "2026-10-21",
     "link_status": 200
+  },
+  {
+    "slug": "solvi",
+    "title": "solvi",
+    "summary": "Python runtime with a System One API adapter: Jev, an LLM or a local checkpoint proposes typed answers; hard checks, rules and calibrated thresholds decide, abstain or escalate to a person, and every decision is a hash-chained replayable trace.",
+    "summary_source": "curated",
+    "summary_zh": "Python 决策运行时，内置 System One API 适配器：由 Jev、LLM 或本地模型给出类型化答案，再由硬性检查、规则和校准阈值决定采纳、弃权或转交人工；每个决策都保存为可重放的哈希链记录。",
+    "zh_machine": true,
+    "url": "https://github.com/solvi-ai/solvi",
+    "kind": "sdk",
+    "patterns": [
+      "human-escalation",
+      "safety-gating",
+      "output-validation"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "mxkuzn",
+      "url": "https://github.com/mxkuzn"
+    },
+    "has_code": true,
+    "official": false,
+    "stars": 4,
+    "repo_license": "Apache-2.0",
+    "flags": [
+      "self-submitted"
+    ],
+    "first_seen": "2026-10-23",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/53"
+      }
+    ],
+    "license": "CC0-1.0",
+    "evidence": {
+      "path": "src/solvi/core/deciders/systemone.py",
+      "matched": [
+        "/v1/systemone",
+        "\"type\": \"choice\"",
+        "\"type\": \"noul\""
+      ],
+      "read_on": "2026-10-23"
+    }
   },
   {
     "slug": "soupbase",

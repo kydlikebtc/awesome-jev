@@ -21,7 +21,7 @@ list by list below.
 | GitHub code search | <https://github.com/search> | 51 |
 | TypeSafe AI docs index | <https://docs.typesafe.ai/llms.txt> | 36 |
 | maintainer submission | <https://github.com/kydlikebtc/awesome-jev> | 21 |
-| author submission | various | 14 |
+| author submission | various | 18 |
 | web search | various | 12 |
 | Hacker News | various | 5 |
 | jevai.org community site | <https://www.jevai.org/> | 5 |
@@ -136,9 +136,9 @@ repository established.
 | `docs/`, `README*.md`                     | CC0-1.0, quoted summaries aside (below)                   |
 
 <!-- row-licences:start -->
-863 of the 1218 summaries in `catalog.json` are the linked project's own GitHub description, word for word apart from letter case, spacing and a final full stop (`summary_source: upstream-description`), and 28 more were taken from such a description and no longer match it (`upstream-description-stale`). The projects' authors wrote those words and the copyright in them is theirs: this repository does not dedicate them under `CC0-1.0`. 891 of their Chinese counterparts are machine translations of them (`zh_machine`); the Chinese of such a row translates the project's words, and this repository does not dedicate it under `CC0-1.0` either. The READMEs, the pattern pages and the site mark each such summary *(upstream description)* or *(earlier upstream description)*.
+863 of the 1222 summaries in `catalog.json` are the linked project's own GitHub description, word for word apart from letter case, spacing and a final full stop (`summary_source: upstream-description`), and 28 more were taken from such a description and no longer match it (`upstream-description-stale`). The projects' authors wrote those words and the copyright in them is theirs: this repository does not dedicate them under `CC0-1.0`. 891 of their Chinese counterparts are machine translations of them (`zh_machine`); the Chinese of such a row translates the project's words, and this repository does not dedicate it under `CC0-1.0` either. The READMEs, the pattern pages and the site mark each such summary *(upstream description)* or *(earlier upstream description)*.
 
-7 summaries are marked `curated`: written for this catalogue. The other 320 carry no `summary_source`, so where their words come from is not recorded row by row.
+10 summaries are marked `curated`: written for this catalogue. The other 321 carry no `summary_source`, so where their words come from is not recorded row by row.
 
 Every row's `license` field is `CC0-1.0`. It covers the row's structured metadata (slug, kind, patterns, flags, dates, counts, evidence records and the rest) and any text written for this catalogue, not a summary labelled as the project's own description or the Chinese translation of one.
 <!-- row-licences:end -->
@@ -158,12 +158,12 @@ Declared licences across the catalog's linked repositories:
 | --- | --- |
 | MIT | 749 |
 | None declared | 194 |
-| Apache-2.0 | 132 |
+| Apache-2.0 | 135 |
 | NOASSERTION (non-standard terms) | 48 |
 | AGPL-3.0 | 7 |
 | GPL-3.0 | 6 |
+| CC0-1.0 | 3 |
 | BSD-3-Clause | 2 |
-| CC0-1.0 | 2 |
 | GPL-2.0 | 2 |
 | CC-BY-4.0 | 1 |
 | LGPL-3.0 | 1 |

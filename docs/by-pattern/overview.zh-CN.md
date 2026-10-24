@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 453 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 454 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 370 · 接口形态 46 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 37。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 370 · 接口形态 46 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 38。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -298,6 +298,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[audio-jevlike](https://github.com/alperiox/audio-jevlike)** — Prosodia：原生面向音频、形似 Jev 的决策模型——直接从语音给出校准的类型化决策，无需语音识别。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · alperiox · `Py` · 引用文件 [`space/prosodia/evaluation/baselines.py`](https://github.com/alperiox/audio-jevlike/blob/HEAD/space/prosodia/evaluation/baselines.py)，2026-09-24 阅读 · ⚠ `并非 Jev 本身` `无许可证`</sub>
+
+- **[awesome-jev-prompts](https://github.com/vicfei/awesome-jev-prompts)** — Jev 类型化决策的问题设计模式库：51 条、9 大分类（选择/评分/判定/路由/护栏/校准/具身多模态/反模式等），中英双语，每条按四级验证政策标注来源（documented/community-observed/derived/measured）；带日期化生态编年史与每日 CI 链接检查。
+  <sub>`教程` · vicfei · `Py` · ⚠ `作者自荐`</sub>
 
 - **[Build Your Own JEV Locally: Run a 100% Private AI Agent on Your Machine](https://medium.com/coding-nexus/build-your-own-jev-locally-run-a-100-private-ai-agent-on-your-machine-bb98126d394a)** — 标题误导：它并没有在跑 Jev，而是用开源 LLM 加受约束的 next-token 打分，自己搭一个 Jev-like 决策引擎。
   <sub>`Jev 替代实现` · DataScience Nexus · `Py` · ⚠ `并非 Jev 本身` `代码未实测` `付费墙`</sub>

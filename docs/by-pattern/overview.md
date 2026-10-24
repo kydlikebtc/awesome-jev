@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 453 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 454 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 370 · wire shape 46 · example only 0 · independent reports 23 · negative results 1 · no file cited 37. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 370 · wire shape 46 · example only 0 · independent reports 23 · negative results 1 · no file cited 38. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -298,6 +298,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[audio-jevlike](https://github.com/alperiox/audio-jevlike)** — Prosodia: an audio-native Jev-shaped decision model — typed calibrated decisions from speech, no ASR <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · alperiox · `Py` · cited file [`space/prosodia/evaluation/baselines.py`](https://github.com/alperiox/audio-jevlike/blob/HEAD/space/prosodia/evaluation/baselines.py), read 2026-09-24 · ⚠ `not Jev itself` `no licence`</sub>
+
+- **[awesome-jev-prompts](https://github.com/vicfei/awesome-jev-prompts)** — Question-design pattern library for Jev typed decisions: 51 entries / 9 categories (choice, score, noul, routing, guardrails, calibration, embodied & multimodal, anti-patterns), bilingual EN/中文, each entry sourced under a four-level verification policy.
+  <sub>`Tutorial` · vicfei · `Py` · ⚠ `self-submitted`</sub>
 
 - **[Build Your Own JEV Locally: Run a 100% Private AI Agent on Your Machine](https://medium.com/coding-nexus/build-your-own-jev-locally-run-a-100-private-ai-agent-on-your-machine-bb98126d394a)** — Despite the title, this does not run Jev. It builds a Jev-like decision engine from an open LLM using constrained next-token scoring.
   <sub>`Jev-like alternative` · DataScience Nexus · `Py` · ⚠ `not Jev itself` `code untested` `paywall`</sub>

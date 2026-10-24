@@ -8,7 +8,7 @@
 
 所有带 `measurement` 的 `kind: benchmark` 行：作者本人测了什么，按作者的报告逐项索引。这些测量本仓库一项都没有做过或重跑过。**结论方向**是作者本人对 Jev 在该任务上的结论，属作者自述、未经本仓库复现；作者没有用文字说明结论的，这一栏留空。
 
-共 **72** 条基准测试行；其中 **26** 条带测量字段；其中 **0** 条已由人对照报告核读（`measurement.read_on`）。其余由脚本或模型填写，[复核队列](review-queue.md#measurement-unread)列出了它们。这些字段最初如何填写：[docs/method.md](method.md)。字段规则：[CONTRIBUTING](../CONTRIBUTING.md#field-rules)。
+共 **73** 条基准测试行；其中 **27** 条带测量字段；其中 **0** 条已由人对照报告核读（`measurement.read_on`）。其余由脚本或模型填写，[复核队列](review-queue.md#measurement-unread)列出了它们。这些字段最初如何填写：[docs/method.md](method.md)。字段规则：[CONTRIBUTING](../CONTRIBUTING.md#field-rules)。
 
 ## 按决策模式看结论方向
 
@@ -19,7 +19,7 @@
 | 工具选择 | · | 1 | · | 1 | 1 | 9 |
 | 意图路由 | · | 1 | · | · | · | 1 |
 | 上下文压缩 | · | · | 1 | · | · | 1 |
-| 安全闸门 | · | 2 | · | · | 1 | 7 |
+| 安全闸门 | · | 2 | · | · | 2 | 7 |
 | 输出校验 | 1 | 2 | · | · | · | 8 |
 | 人工升级 | · | 4 | · | · | 2 | 4 |
 | 并行扇出 | · | · | · | · | · | 1 |
@@ -37,7 +37,9 @@
 
 | 对比对象 | 行 |
 | --- | --- |
-| Laya | [jevbench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jevbench), [jev-capability-atlas](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-capability-atlas) |
+| Laya | [jevbench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jevbench), [jev-capability-atlas](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-capability-atlas), [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decision-models-as-guardrails) |
+| Clef | [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decision-models-as-guardrails), [Support-routing benchmark: 100 held-out cases](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decisionmodelhub-support-routing) |
+| Amazon Bedrock Guardrails | [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decision-models-as-guardrails) |
 | ash keyword ranker | [jev-search-rerank-eval](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-search-rerank-eval) |
 | BART-MNLI | [jevbench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jevbench-human-disagreement) |
 | base order without a reranker | [hippo-memory](https://kydlikebtc.github.io/awesome-jev/?lang=zh#hippo-memory) |
@@ -47,7 +49,6 @@
 | Claude Fable 5.1 | [jev-code-review-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-code-review-benchmark) |
 | Claude Haiku 4.5 | [jev-phishing-bench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-phishing-bench) |
 | Claude Opus 5 | [windtunnel](https://kydlikebtc.github.io/awesome-jev/?lang=zh#windtunnel) |
-| Clef | [Support-routing benchmark: 100 held-out cases](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decisionmodelhub-support-routing) |
 | Clef Flash | [Support-routing benchmark: 100 held-out cases](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decisionmodelhub-support-routing) |
 | Cohere Rerank 3.5 | [jev-rag-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-rag-benchmark) |
 | Cohere Rerank 4 Fast | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-rerank-bench) |
@@ -78,10 +79,14 @@
 | hybrid order without a reranker | [jev-rag-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-rag-benchmark) |
 | Imajev-4B | [jevbench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jevbench) |
 | JevK5 v0.2.0 | [jevbench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jevbench) |
+| Kev | [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decision-models-as-guardrails) |
 | Laya 421M | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-rerank-bench) |
 | local cross-encoder reranker | [hippo-memory](https://kydlikebtc.github.io/awesome-jev/?lang=zh#hippo-memory) |
 | Needle 3, local | [typesafe-ai-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=zh#typesafe-ai-benchmark) |
+| Open-Jev | [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decision-models-as-guardrails) |
 | Open-Jev 9B | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-rerank-bench) |
+| OpenAI Decisions API | [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decision-models-as-guardrails) |
+| Perplexity Decisions API | [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decision-models-as-guardrails) |
 | Plumb-4B | [jevbench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jevbench) |
 | Qwen 3.8 27B on Cerebras, structured output | [typesafe-ai-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=zh#typesafe-ai-benchmark) |
 | Qwen3-Reranker-4B | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-rerank-bench) |
@@ -90,6 +95,7 @@
 | regex rule on link hosts | [jev-phishing-bench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-phishing-bench) |
 | Sonnet 5 | [windtunnel](https://kydlikebtc.github.io/awesome-jev/?lang=zh#windtunnel) |
 | Stockfish | [jev-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-benchmark) |
+| Strands Deciders | [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decision-models-as-guardrails) |
 | text-embedding-3-small | [jev-search-rerank-eval](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-search-rerank-eval) |
 | the same review without the pre-brief | [no-mistakes: Jev review pre-brief, measured and retired](https://kydlikebtc.github.io/awesome-jev/?lang=zh#no-mistakes-review-context) |
 | ZeroEntropy zerank-2 | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-rerank-bench) |
@@ -123,6 +129,7 @@
 | OpenBookQA | [jev-ood-calibration](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-ood-calibration) |
 | PAWS-X | [jev-korean-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-korean-benchmark) |
 | PhishNChips v5.2 | [jev-phishing-bench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-phishing-bench) |
+| raxITLabs/decision-models-as-guardrails | [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decision-models-as-guardrails) |
 | SciFact | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-rerank-bench) |
 | Support routing v1 | [Support-routing benchmark: 100 held-out cases](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decisionmodelhub-support-routing) |
 | TREC-COVID | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-rerank-bench) |
@@ -152,6 +159,7 @@
 | [smartmoney-cub](https://kydlikebtc.github.io/awesome-jev/?lang=zh#smartmoney-cub) | ★10+ | 是 | — | — | — | Answer typed finance judgements over trading logs, filings, industry news and central-bank text in a frozen offline suite · [报告](https://github.com/myc0576/SmartMoney-Cub/blob/HEAD/assets/benchmark/run.json) | 准确率, F1, 校准, 延迟 | 240 | `jev-1.13.0` | 2026-09-20 | 好坏参半 | — |
 | [typesafe-ai-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=zh#typesafe-ai-benchmark) | ★10+ | 是 | 是 | — | — | Seven synthetic application workloads (ticket triage, routing, driving, guardrails, approvals, answer scoring, home control) with the same typed outputs · [报告](https://github.com/iammrduncan/typesafe-ai-benchmark/blob/HEAD/docs/benchmarks/README.md) | 准确率, 延迟, 成本, token 用量 | 480 | `jev-latest` | 2026-09-17 | 好坏参半 | — |
 | [windtunnel](https://kydlikebtc.github.io/awesome-jev/?lang=zh#windtunnel) | ★10+ | 是 | 是 | — | — | Complete browser tasks on eight self-hosted web apps, Jev choosing each action while Mercury 2.5 writes arguments and answers · [报告](https://github.com/nekuda-ai/WindTunnel/blob/HEAD/results/2026-09-18-jev-mercury/PROVENANCE.md) | 任务成功率, 成本, 延迟, token 用量 | 49 | `jev-1.13.0` | 2026-09-18 | — | — |
+| [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=zh#decision-models-as-guardrails) | — | 是 | 是 | — | `作者自荐` | Decide whether to block a guardrail check across six suites: content, prompt attacks, denied topics, profanity, PII and grounding | 准确率, 召回率, 成本 | 9975 | — | 2026-10-15 | — | — |
 | [jev-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-benchmark) | — | 是 | 是 | — | — | Choose chess moves among legal candidates, and tell which game characters a spoken line addresses | 准确率, F1, 精确率, 延迟 | — | `jev-1.13.0` | 2026-09-16 | 好坏参半 | — |
 | [jev-code-review-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-code-review-benchmark) | — | 是 | 是 | — | — | Check whether small Python programs follow four supplied rules · [报告](https://github.com/gemanor/jev-code-review-benchmark/blob/HEAD/docs/results/README.md) | 准确率, 成本, 延迟, 稳健性 | 360 | `jev-1.13.0` | 2026-09-17 | 好坏参半 | — |
 | [jev-korean-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=zh#jev-korean-benchmark) | — | 是 | 是 | — | `无许可证` | Answer the same test questions in Korean and in English, to see whether Korean text needs translating first | 准确率, 校准, 稳健性, 延迟, 成本 | 100 | `jev-latest` | 2026-09-17 | 好坏参半 | — |

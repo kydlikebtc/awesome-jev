@@ -148,7 +148,7 @@ for the other 1%. The vendor's jaggedness doc names adversarial content as a
 known weak spot.
 
 <!-- catalogued-safety-gating:start -->
-**Safety gating** in the catalogue: 140 rows, [each listed with its caveats](by-pattern/safety-gating.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en).
+**Safety gating** in the catalogue: 142 rows, [each listed with its caveats](by-pattern/safety-gating.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en).
 <!-- catalogued-safety-gating:end -->
 
 ---
@@ -169,7 +169,7 @@ says the output is weak; it does not say how to fix it. Pair it with a generativ
 critique for the cases it rejects.
 
 <!-- catalogued-output-validation:start -->
-**Output validation** in the catalogue: 135 rows, [each listed with its caveats](by-pattern/output-validation.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en).
+**Output validation** in the catalogue: 136 rows, [each listed with its caveats](by-pattern/output-validation.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en).
 <!-- catalogued-output-validation:end -->
 
 ---
@@ -206,7 +206,7 @@ belongs in config, reviewed against measured outcomes. See
 [`../examples/README.md`](../examples/README.md).
 
 <!-- catalogued-human-escalation:start -->
-**Human escalation** in the catalogue: 69 rows, [each listed with its caveats](by-pattern/human-escalation.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en).
+**Human escalation** in the catalogue: 70 rows, [each listed with its caveats](by-pattern/human-escalation.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en).
 <!-- catalogued-human-escalation:end -->
 
 ---
@@ -247,7 +247,7 @@ latency wins from batching a briefing into one call rather than many.
 That needs two round trips.
 
 <!-- catalogued-fan-out:start -->
-**Speculative fan-out** in the catalogue: 33 rows, [each listed with its caveats](by-pattern/fan-out.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en).
+**Speculative fan-out** in the catalogue: 34 rows, [each listed with its caveats](by-pattern/fan-out.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en).
 <!-- catalogued-fan-out:end -->
 
 ---
@@ -268,7 +268,7 @@ line-granular search.
 does not replace an index over a large corpus.
 
 <!-- catalogued-search-ranking:start -->
-**Search & ranking** in the catalogue: 64 rows, [each listed with its caveats](by-pattern/search-ranking.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en).
+**Search & ranking** in the catalogue: 65 rows, [each listed with its caveats](by-pattern/search-ranking.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en).
 <!-- catalogued-search-ranking:end -->
 
 ---
@@ -414,7 +414,7 @@ suggestion. Read one against the patterns above, give it the ones it shows or
 keep `overview`, and set `patterns_reviewed` to the date you read it.
 
 <!-- catalogued-overview:start -->
-**Overview** in the catalogue: 453 rows, [each listed with its caveats](by-pattern/overview.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en).
+**Overview** in the catalogue: 454 rows, [each listed with its caveats](by-pattern/overview.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en).
 <!-- catalogued-overview:end -->
 
 ---
