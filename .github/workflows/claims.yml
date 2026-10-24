@@ -11,6 +11,10 @@
 # per version; and flags a platform page naming a version newer than compat.json
 # records, the cue for the release rehearsal in docs/method.md ("Kept current").
 #
+# Since 2026-10-24 a `path-gone` line names, where one exists, a file in the
+# same repository that still holds every string the claim matched: the
+# proposed new path, for a person to open (verify_claims.py, "path-gone").
+#
 # Injection review: no `github.event.*` value reaches a `run:` block. The issue
 # body is read from a file the script wrote, never interpolated into a shell.
 name: claims
@@ -80,7 +84,10 @@ jobs:
               echo
               echo "### Cited call sites"
               echo
-              echo '- `path-gone` — the file moved or was renamed. Update `evidence.path`.'
+              echo '- `path-gone` — the file moved or was renamed. Where its line names a'
+              echo '  file that holds every matched string, that is the proposed path: open'
+              echo '  it, then update `evidence.path` (move `read_on` only if you read the'
+              echo '  call there). Without one, the file may be gone with its integration.'
               echo '- `claim-gone` — the strings are gone. The integration may have been'
               echo '  removed, in which case `question_types` on that row is now wrong.'
               echo '- `version-moved` — only a pinned model version is gone, and the file'

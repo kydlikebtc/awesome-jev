@@ -1,0 +1,87 @@
+# Daily check that every scheduled workflow still runs and succeeds
+# (scripts/watchdog.py, since 2026-10-24). The weekly jobs each report through an
+# issue or a commit, so one that stops running, or fails before it reports, says
+# nothing: links failed on each of its first four Mondays and only the Actions
+# page showed it. This keeps one issue, labelled `watchdog`, while any scheduled
+# workflow is disabled or has had no successful run in eight days: opened once,
+# its description rewritten only when what it says changes (it quotes dates,
+# never ages, so a quiet day changes nothing), and closed on the first day all
+# of them are healthy again. A daily edit would notify no one; a daily comment
+# would teach everyone to mute it.
+#
+# It cannot report its own silence. It is the one scheduled workflow with no
+# issue of its own, and its runs are on the Actions page beside the others.
+#
+# Injection review: no `github.event.*` value reaches a `run:` block. The issue
+# body is read from a file the script wrote, never interpolated into a shell.
+name: watchdog
+
+on:
+  schedule:
+    # Every day at 07:30 UTC, after the weekly jobs' usual start.
+    - cron: "30 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    name: Every scheduled workflow ran and succeeded lately
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Ask the Actions API about each scheduled workflow
+        id: watch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # 1 means a workflow needs a person, which the issue says; 2 means
+          # the API could not be read, so nothing was judged and the run fails.
+          code=0
+          python3 scripts/watchdog.py --markdown /tmp/body.md || code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" -gt 1 ]; then
+            exit "$code"
+          fi
+
+      - name: Open, rewrite or close the watchdog issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CODE: ${{ steps.watch.outputs.code }}
+        run: |
+          existing=$(gh issue list --state open --label watchdog --json number --jq '.[0].number')
+          if [ "$CODE" = "0" ]; then
+            if [ -n "$existing" ]; then
+              gh issue close "$existing" --comment "Every scheduled workflow has succeeded within the last 8 days again."
+            else
+              echo "every scheduled workflow is healthy"
+            fi
+            exit 0
+          fi
+
+          if [ -n "$existing" ]; then
+            # Compared without carriage returns, which an edit in the browser adds.
+            current=$(gh issue view "$existing" --json body --jq .body | tr -d '\r')
+            if [ "$current" = "$(cat /tmp/body.md)" ]; then
+              echo "#$existing already says this"
+            else
+              gh issue edit "$existing" --body-file /tmp/body.md
+              echo "rewrote #$existing"
+            fi
+            exit 0
+          fi
+
+          gh label create watchdog --color b60205 \
+            --description "A scheduled workflow stopped running or succeeding" 2>/dev/null || true
+          gh issue create --title "A scheduled workflow has stopped succeeding" \
+            --label watchdog --body-file /tmp/body.md \
+            || gh issue create --title "A scheduled workflow has stopped succeeding" \
+                 --body-file /tmp/body.md

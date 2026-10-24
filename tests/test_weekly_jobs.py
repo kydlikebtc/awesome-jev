@@ -53,11 +53,8 @@ exit "$STUB_EXIT"
 """
 
 
-class LinksWorkflowTest(unittest.TestCase):
-    def test_the_sweep_has_a_token(self):
-        lines = step_lines((WORKFLOWS / "links.yml").read_text(), "Sweep links")
-        self.assertIn("          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}", lines)
-        self.assertIn("        run: python3 scripts/check_links.py", lines)
+# links.yml itself, which since 2026-10-24 reports through an issue, is
+# tested in tests/test_watchdog.py beside the watchdog that watches it.
 
 
 class MetadataStampTest(unittest.TestCase):

@@ -1,11 +1,18 @@
 # Weekly link sweep. Reports only — it never edits the catalog or moves a row
 # to retired.json, because retiring an entry needs a human-written reason.
-# Red means a dead link (exit 1) or, exit 3, so many refusals from GitHub or
-# from other hosts that the sweep was rate limited or blocked rather than quiet;
-# the job summary carries every count, split by host, and the API budget spent.
 #
-# Injection review: no `github.event.*` value reaches a `run:` block.
-# Permissions are read-only; a failure surfaces as a red run, not a commit.
+# Since 2026-10-24 it reports through one open issue, labelled `links`, as
+# claims and metadata do: a dead link (check_links.py exit 1) or a sweep so
+# refused by GitHub or by other hosts that it was rate limited or blocked rather
+# than quiet (exit 3) is a comment there listing what a person has to do. Until
+# then a red run was the only signal, and the sweep was red on each of its first
+# four Mondays (2026-09-28 to 2026-10-19) without anyone being told. The run is
+# now red only when the sweep itself stopped before its counts; the job summary
+# carries every count, split by host, and the API budget spent, and the whole
+# log is kept as an artifact.
+#
+# Injection review: no `github.event.*` value reaches a `run:` block. The issue
+# body is read from a file the script wrote, never interpolated into a shell.
 name: links
 
 on:
@@ -16,6 +23,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 jobs:
   sweep:
@@ -29,9 +37,48 @@ jobs:
           python-version: "3.12"
 
       - name: Sweep links
+        id: sweep
         env:
           # Bare repository URLs are asked of the API with this token. Without
           # it they went to github.com's HTML, which answers 429 after a few
           # dozen requests, and most GitHub rows came back refused.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 scripts/check_links.py
+        run: |
+          # Exit 1 (dead links) and 3 (too many refusals) are the issue's to
+          # report, below. A sweep that never printed its counts crashed, and
+          # that alone fails the job.
+          code=0
+          python3 scripts/check_links.py --markdown /tmp/body.md > /tmp/links.log || code=$?
+          tail -n 2 /tmp/links.log
+          if ! grep -q '^links: ' /tmp/links.log; then
+            echo "::error title=Link sweep stopped::check_links.py exited $code before its counts; see the links-log artifact"
+            exit 1
+          fi
+          echo "check_links.py exit $code (0 all fine, 1 dead links, 3 too many refusals)"
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+
+      - name: Keep the sweep log
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: links-log
+          path: /tmp/links.log
+          if-no-files-found: ignore
+
+      - name: Open or update the links issue
+        if: steps.sweep.outputs.code == '1' || steps.sweep.outputs.code == '3'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh label create links --color b60205 \
+            --description "A catalogue link the weekly sweep could not resolve" 2>/dev/null || true
+
+          existing=$(gh issue list --state open --label links --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file /tmp/body.md
+          else
+            gh issue create --title "Dead links found by the weekly sweep" \
+              --label links --body-file /tmp/body.md \
+              || gh issue create --title "Dead links found by the weekly sweep" \
+                   --body-file /tmp/body.md
+          fi
