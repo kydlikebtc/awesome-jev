@@ -3811,6 +3811,37 @@
     "link_status": 200
   },
   {
+    "slug": "awesome-jev-prompts",
+    "title": "awesome-jev-prompts",
+    "summary": "Question-design pattern library for Jev typed decisions: 51 entries / 9 categories (choice, score, noul, routing, guardrails, calibration, embodied & multimodal, anti-patterns), bilingual EN/中文, each entry sourced under a four-level verification policy.",
+    "summary_zh": "Jev 类型化决策的问题设计模式库：51 条、9 大分类（选择/评分/判定/路由/护栏/校准/具身多模态/反模式等），中英双语，每条按四级验证政策标注来源（documented/community-observed/derived/measured）；带日期化生态编年史与每日 CI 链接检查。",
+    "url": "https://github.com/vicfei/awesome-jev-prompts",
+    "kind": "tutorial",
+    "patterns": [
+      "overview"
+    ],
+    "author": {
+      "name": "vicfei",
+      "url": "https://github.com/vicfei"
+    },
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/vicfei/awesome-jev-prompts"
+      }
+    ],
+    "license": "CC0-1.0",
+    "repo_license": "CC0-1.0",
+    "has_code": true,
+    "evidence_none": "no-jev-call-site",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "self-submitted"
+    ]
+  },
+  {
     "slug": "awesome-jev-use-cases",
     "title": "awesome-jev-use-cases",
     "summary": "Explore real-world use cases and projects built with TypeSafe AI's Jev: content moderation, AI agents, model routing, and semantic search. Curated by SeeAPI.",
