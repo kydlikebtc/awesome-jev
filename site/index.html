@@ -15,12 +15,23 @@
     <!-- meta:start -->
     <!-- written at deploy by scripts/assemble_site.py, see pages.yml -->
     <!-- meta:end -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Served from this site, not a font host (fonts/fonts.css says why).
+         The two files the first screen draws with are fetched at once. -->
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="fonts/ibm-plex-sans-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
+    <link
+      rel="preload"
+      href="fonts/ibm-plex-mono-400-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="fonts/fonts.css" />
     <style>
       :root {
         --ink: #0b0d10;
@@ -41,16 +52,22 @@
         --alert: #e8564b; /* caveats */
         --cool: #5fb3d9; /* patterns */
 
-        /* IBM Plex Mono has no CJK glyphs. Without the Noto Sans SC fallback, a
-           machine with no Chinese system font — any stock Linux, and the CI
-           runner that renders the README screenshots — draws every Chinese
-           label in the monospace UI as empty boxes. */
+        /* IBM Plex has no CJK glyphs, and the site loads no Chinese web font
+           (fonts/fonts.css says why), so each stack names the system ones:
+           PingFang SC and Hiragino Sans GB on Apple systems, Microsoft YaHei
+           on Windows, Noto Sans CJK SC on Linux and Android, which the Pages
+           deploy installs before it renders the README screenshots. A machine
+           with none of them draws every Chinese label as empty boxes, which
+           is how the screenshots once shipped; scripts/lint_docs.py checks
+           each stack on a page that shows Chinese. */
         --mono:
-          "IBM Plex Mono", "Noto Sans SC", ui-monospace, SFMono-Regular, Menlo,
-          monospace;
+          "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, "PingFang SC",
+          "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC",
+          "Noto Sans SC", monospace;
         --sans:
-          "IBM Plex Sans", "Noto Sans SC", -apple-system, BlinkMacSystemFont,
-          sans-serif;
+          "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "PingFang SC",
+          "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC",
+          "Noto Sans SC", sans-serif;
 
         --gut: clamp(16px, 3vw, 34px);
       }

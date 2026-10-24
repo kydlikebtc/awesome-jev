@@ -127,7 +127,7 @@ class ReadmePreviewTests(unittest.TestCase):
     def test_style_only_change_invalidates_the_preview_url(self):
         paths = [
             "site/index.html", "site/catalog.css", "site/catalog-core.mjs",
-            "site/favicon.svg", "scripts/render_images.py", "scripts/_stats.py",
+            "site/favicon.svg", "site/fonts/fonts.css", "scripts/render_images.py", "scripts/_stats.py",
             "catalog.json", "collections.json", "compat.json", "patterns.json", "taxonomy.json",
         ]
         with tempfile.TemporaryDirectory() as directory:

@@ -64,7 +64,7 @@ class GlossaryTest(unittest.TestCase):
     def test_search_explains_the_flags_of_the_rows_it_returns_in_taxonomy_order(self):
         answer = query.search(ROWS, PATTERNS, FLAGS)
         self.assertEqual(slugs(answer), ["vendor-docs", "gate", "router"])
-        self.assertEqual(list(answer), ["total_matching", "returned", "results", "note", "caveat_glossary"])
+        self.assertEqual(list(answer), ["total_matching", "returned", "results", "note", "text_note", "caveat_glossary"])
         # router carries ["vendor-reported", "single-commit"]; the glossary follows taxonomy.json.
         self.assertEqual(answer["caveat_glossary"], {"single-commit": "One commit.",
                                                      "vendor-reported": "The vendor's numbers."})
@@ -90,14 +90,15 @@ class GlossaryTest(unittest.TestCase):
 
     def test_without_the_taxonomy_there_is_no_glossary(self):
         self.assertNotIn("caveat_glossary", query.search(ROWS, PATTERNS))
-        self.assertEqual(query.find_example(ROWS, "router"), ROWS[0])
+        self.assertEqual(query.find_example(ROWS, "router"), {**ROWS[0], "text_note": query.TEXT_NOTE})
 
     def test_get_example_adds_the_glossary_after_the_rows_own_fields(self):
         answer = query.find_example(ROWS, "router", FLAGS)
-        self.assertEqual(list(answer), [*ROWS[0], "caveat_glossary"])
+        self.assertEqual(list(answer), [*ROWS[0], "text_note", "caveat_glossary"])
         self.assertEqual(answer["flags"], ["vendor-reported", "single-commit"])
         self.assertEqual(list(answer["caveat_glossary"]), ["single-commit", "vendor-reported"])
-        self.assertIs(query.find_example(ROWS, "gate", FLAGS), ROWS[1], "a row without flags is returned as is")
+        self.assertEqual(query.find_example(ROWS, "gate", FLAGS), {**ROWS[1], "text_note": query.TEXT_NOTE},
+                         "a row without flags gains no glossary")
         self.assertNotIn("caveat_glossary", query.find_example(ROWS, "zzz", FLAGS))
 
     def test_a_flag_the_taxonomy_lacks_still_travels_as_a_key(self):
@@ -135,7 +136,7 @@ class CollectionsResourceTest(unittest.TestCase):
         self.assertEqual(list(router), ["slug", "reason", "reason_zh", "caution", "caution_zh", "row"])
         self.assertEqual(router["row"], query.compact(ROWS[0]))
         self.assertEqual(answer["title_zh"], "第一次调用")
-        self.assertEqual(list(answer)[-2:], ["note", "caveat_glossary"])
+        self.assertEqual(list(answer)[-3:], ["note", "text_note", "caveat_glossary"])
         self.assertEqual(list(answer["caveat_glossary"]), ["single-commit", "vendor-reported"])
 
     def test_a_pick_is_kept_whatever_its_caveats_and_a_missing_row_is_said(self):
@@ -157,8 +158,8 @@ class PatternResourceTest(unittest.TestCase):
         answer = query.pattern_listing(ROWS, PATTERNS, FLAGS, "tool-selection")
         self.assertEqual(
             list(answer),
-            ["pattern", "name", "description", "when_not_to_use", "examples", "not_examples", "note", "entries",
-             "caveat_glossary"],
+            ["pattern", "name", "description", "when_not_to_use", "examples", "not_examples", "note", "text_note",
+             "entries", "caveat_glossary"],
         )
         self.assertEqual([e["slug"] for e in answer["entries"]], ["clone", "gate", "dry-run", "router"])
         self.assertEqual(answer["entries"], query.pattern_rows(ROWS, "tool-selection"))

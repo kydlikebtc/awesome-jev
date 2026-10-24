@@ -390,6 +390,12 @@ def check_pattern_docs(texts: dict[str, str] | None = None, keys: list[str] | No
 
 CJK = re.compile(r"[\u3400-\u9fff]")
 FONT_STACK = re.compile(r"--(mono|sans):\s*([^;]+);")
+# The system CJK fonts every stack on a page that shows Chinese names: Apple's
+# two, Windows', and Noto Sans CJK SC for Linux and Android, which the Pages
+# deploy installs (fonts-noto-cjk) before it renders the README screenshots.
+# The site loads no Chinese web font (site/fonts/fonts.css says why), and the
+# README cover's SVGs name the same four (build_readme_cover.py).
+CJK_FAMILIES = ("PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC")
 
 
 def check_cjk_fallback() -> list[str]:
@@ -404,12 +410,42 @@ def check_cjk_fallback() -> list[str]:
         if not CJK.search(text):
             continue
         for m in FONT_STACK.finditer(text):
-            if "Noto Sans SC" not in m.group(2):
+            missing = [family for family in CJK_FAMILIES if f'"{family}"' not in m.group(2)]
+            if missing:
                 problems.append(
-                    f"{rel}:{line_of(text, m.start())}: --{m.group(1)} has no CJK "
-                    "fallback; add \"Noto Sans SC\" (already loaded) to the stack"
+                    f"{rel}:{line_of(text, m.start())}: --{m.group(1)} has no CJK fallback for "
+                    f"{', '.join(missing)}; name every system font in lint_docs.CJK_FAMILIES"
                 )
     return problems
+
+
+# A tag or rule that loads something from another host. Since 2026-10-24 the
+# site loads nothing from one: its fonts came from fonts.googleapis.com until
+# then, a render-blocking stylesheet on a host most readers in mainland China
+# cannot reach, so a page could stay blank until the request timed out. A link
+# a reader follows to another site is fine; a stylesheet, script, font, image,
+# frame, preconnect or fetch from one is not.
+LOADS = "stylesheet|preload|modulepreload|preconnect|dns-prefetch|icon"
+FOREIGN_LOAD = re.compile(
+    rf'<link\b[^>]*\brel="(?:{LOADS})"[^>]*\bhref="(?:https?:)?//'
+    rf'|<link\b[^>]*\bhref="(?:https?:)?//[^"]*"[^>]*\brel="(?:{LOADS})"'
+    r'|<(?:script|img|iframe|source|video|audio|embed)\b[^>]*\bsrc="(?:https?:)?//'
+    r"|@import\s+(?:url\()?[\"']?(?:https?:)?//"
+    r"|url\(\s*[\"']?(?:https?:)?//"
+    r"|\bfetch\(\s*[\"'`](?:https?:)?//",
+    re.I,
+)
+
+
+def check_site_origin() -> list[str]:
+    """Every page, stylesheet and script under site/ loads only from the site."""
+    return [
+        f"{rel}:{line_of(text, m.start())}: loads from another host ({' '.join(m.group(0).split())[:70]}); "
+        "serve the file from site/ instead"
+        for rel in tracked("site/*.html", "site/*.css", "site/*.mjs", "site/*.js")
+        for text in [(ROOT / rel).read_text()]
+        for m in FOREIGN_LOAD.finditer(text)
+    ]
 
 
 def check_leading_markers(rel: str, text: str) -> list[str]:
@@ -446,7 +482,9 @@ def hand_written_files() -> list[str]:
     return [
         f
         for f in tracked("*.md", "*.txt", "*.html")
-        if not generated(f) and not f.startswith(("LICENSE",))
+        # A licence is not prose this repository wrote, at the root or beside
+        # the fonts it covers (site/fonts/LICENSE.txt).
+        if not generated(f) and not pathlib.PurePosixPath(f).name.startswith("LICENSE")
     ]
 
 
@@ -658,6 +696,7 @@ def main(argv: list[str] | None = None) -> int:
     problems += vendor_problems(load_compat(), fact_files)
     problems += check_pattern_docs()
     problems += check_cjk_fallback()
+    problems += check_site_origin()
 
     for problem in problems:
         print(f"error: {problem}", file=sys.stderr)

@@ -35,6 +35,7 @@ from .query import (
     DIRECTION_NOTE,
     DISQUALIFYING,
     SEARCH_NOTE,
+    TEXT_NOTE,
     caveat_glossary,
     compat_lookup,
     is_negative_result,
@@ -163,7 +164,7 @@ def _rows(rows: list[dict], taxonomy: dict, key: str, language: str) -> list[str
         lines += [f"No cited `{key}` row lists {language}; these are in other languages.", ""]
     lines += [
         f"{len(shown)} of the {len(found)} `{key}` rows{where} that cite the file their code was read "
-        f"in, official first, then rows with code, then by stars. {SEARCH_NOTE}",
+        f"in, official first, then rows with code, then by stars. {SEARCH_NOTE} {TEXT_NOTE}",
         "",
     ]
     labels = {s["key"]: s["en"] for s in taxonomy.get("summary_sources") or []}

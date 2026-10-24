@@ -124,6 +124,7 @@ def api_files(
                 "examples": len(rows),
                 "not_examples": not_examples,
                 "note": query.SEARCH_NOTE,
+                "text_note": query.TEXT_NOTE,
                 "entries": rows,
             }
         )

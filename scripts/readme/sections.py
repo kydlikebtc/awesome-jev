@@ -135,7 +135,7 @@ def preview_version() -> str:
     """Invalidate GitHub's image proxy when a rendered preview can change."""
     paths = [
         "site/index.html", "site/catalog.css", "site/catalog-core.mjs",
-        "site/favicon.svg", "scripts/render_images.py", "scripts/_stats.py",
+        "site/favicon.svg", "site/fonts/fonts.css", "scripts/render_images.py", "scripts/_stats.py",
         "catalog.json", "collections.json", "compat.json", "patterns.json", "taxonomy.json",
     ]
     digest = hashlib.sha256()

@@ -7,12 +7,7 @@
     <meta name="theme-color" content="#0b0d10" />
     <title>Jev Decision Atlas — awesome-jev share card</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="fonts/fonts.css" />
     <!--
       card.html: a durable, count-free preview for manual upload to GitHub.
       card.html?mode=live: the site's og:image, using assembled stats.json.
@@ -27,8 +22,12 @@
         --fg-2: #a9b3c0;
         --amber: #f5a524;
         --signal: #4ec97a;
-        --mono: "IBM Plex Mono", "Noto Sans SC", ui-monospace, monospace;
-        --sans: "IBM Plex Sans", "Noto Sans SC", system-ui, sans-serif;
+        /* The brand note says 中文; Chinese comes from a system font, as
+           on index.html, which says why. */
+        --mono: "IBM Plex Mono", ui-monospace, "PingFang SC", "Hiragino Sans GB",
+          "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", monospace;
+        --sans: "IBM Plex Sans", system-ui, "PingFang SC", "Hiragino Sans GB",
+          "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", sans-serif;
       }
       * { box-sizing: border-box; margin: 0; }
       body {

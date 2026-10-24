@@ -23,11 +23,20 @@ whose fetch failed would otherwise go live looking like a real preview.
 Stdlib plus a Chrome binary. GitHub's ubuntu runners ship Google Chrome, so CI
 needs no install step; locally, set CHROME if it is not found.
 
+Chinese is drawn with a system font (the site loads no Chinese web font, since
+2026-10-24; site/fonts/fonts.css says why), and the runner image has none: on
+Linux this asks fontconfig for one first. Without one, the Chinese screenshot
+and the cards' "中文" would be empty boxes. `--require-cjk-font`, which
+pages.yml passes after installing fonts-noto-cjk, makes that an error rather
+than a warning; elsewhere (CI's lint run, a local check) the images are thrown
+away, and only their data is checked.
+
 Run: python3 scripts/assemble_site.py && python3 scripts/render_images.py
 """
 
 from __future__ import annotations
 
+import argparse
 import functools
 import http.server
 import os
@@ -122,10 +131,34 @@ def chrome(
     )
 
 
-def main() -> int:
+def cjk_fonts() -> list[str] | None:
+    """The font families fontconfig would draw Chinese with, or None where
+    there is no fontconfig to ask: macOS and Windows draw Chinese with their
+    own system fonts, which every font stack on the site names."""
+    if platform.system() != "Linux" or not shutil.which("fc-list"):
+        return None
+    listed = subprocess.run(["fc-list", ":lang=zh", "family"], capture_output=True, text=True).stdout
+    return sorted({line.split(",")[0].strip() for line in listed.splitlines() if line.strip()})
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument(
+        "--require-cjk-font", action="store_true",
+        help="fail, rather than warn, when no installed font draws Chinese (pages.yml)",
+    )
+    args = parser.parse_args(argv)
     for name in (*RUNTIME_FILES, "stats.json"):
         if not (SITE / name).exists():
             raise SystemExit(f"error: site/{name} is missing; run assemble_site.py first")
+    if cjk_fonts() == []:
+        problem = (
+            "no installed font draws Chinese, so site-zh.png and the cards' 中文 would be empty boxes; "
+            "install one (pages.yml installs fonts-noto-cjk)"
+        )
+        if args.require_cjk_font:
+            raise SystemExit(f"error: {problem}")
+        print(f"warning: {problem}", file=sys.stderr)
 
     OUT.mkdir(exist_ok=True)
     binary = find_chrome()

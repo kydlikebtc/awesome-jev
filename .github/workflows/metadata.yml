@@ -41,7 +41,9 @@
 # entry is checked against a fixed shape on the way (scripts/discover_seen.py),
 # and a missing or broken artifact costs only a warning. And it keeps a dated
 # snapshot of the catalogue's counts in history/ (scripts/snapshot_stats.py):
-# derived from catalog.json, never read back into it.
+# derived from catalog.json, never read back into it. Once a TRAFFIC_TOKEN
+# secret exists, the repository's GitHub traffic goes beside it, in
+# history/traffic/ (scripts/snapshot_traffic.py, since 2026-10-24).
 #
 # A push made with GITHUB_TOKEN does not trigger other workflows, so the run
 # dispatches pages (and lint, for a visible check) itself; workflow_dispatch is
@@ -209,6 +211,19 @@ jobs:
       - name: Keep a dated snapshot of the catalogue's counts
         continue-on-error: true
         run: python3 scripts/snapshot_stats.py
+
+      # GitHub keeps the repository's traffic (views, clones, the top referrers
+      # and paths) for 14 days, and this run's token cannot read it: that takes
+      # a fine-grained token with Administration: read, kept as the
+      # TRAFFIC_TOKEN secret (docs/method.md, "Kept current"). With it, the
+      # week's figures go to history/traffic/<UTC date>.json, beside the
+      # counts, and are committed with them; without it this says so and
+      # writes nothing. Since 2026-10-24; a failure costs this step only.
+      - name: Keep a dated snapshot of the repository's traffic
+        continue-on-error: true
+        env:
+          TRAFFIC_TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
+        run: python3 scripts/snapshot_traffic.py
 
       - name: Rebuild everything generated from those facts, and commit it here
         id: commit

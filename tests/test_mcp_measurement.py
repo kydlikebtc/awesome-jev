@@ -79,7 +79,7 @@ class MeasurementAnswerTest(unittest.TestCase):
     def test_get_example_marks_the_direction_too(self):
         answer = query.find_example(ROWS, "memory")
         self.assertEqual(answer["measurement"]["direction_note"], query.DIRECTION_NOTE)
-        self.assertEqual(query.find_example(ROWS, "plain"), ROWS[3])
+        self.assertEqual(query.find_example(ROWS, "plain"), {**ROWS[3], "text_note": query.TEXT_NOTE})
 
     def test_independent_report_is_a_benchmark_without_the_vendor_flag(self):
         self.assertTrue(query.is_independent_report(ROWS[0]))
