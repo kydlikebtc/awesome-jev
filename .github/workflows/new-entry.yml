@@ -1,0 +1,68 @@
+# Answers a new-entry issue (the "Add an entry" form) with a first read of the
+# repository it names and a draft row (scripts/draft_from_issue.py, since
+# 2026-10-24). Until then the form led nowhere until a person had time: issue
+# #27 waited 25 days, and never heard back after its row landed.
+#
+# Anyone can open an issue, so this job can only read and comment: it checks out
+# the default branch (an `issues` event always runs the workflow as it is on the
+# default branch, never a contributor's copy), reads public repositories, and
+# writes one comment. It commits nothing and opens no pull request. Run it again
+# by hand on any issue (Run workflow, with the issue's number), for example
+# after the issue was edited; the second run rewrites its earlier comment.
+#
+# Injection review: no `github.event.*` value reaches a `run:` block. The script
+# reads the event payload from the file GitHub writes ($GITHUB_EVENT_PATH), and
+# the number it comments on is one it parsed and checked; the dispatched number
+# is passed through `env:` and checked as digits before use.
+name: new-entry
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: The number of a new-entry issue to read again
+        required: true
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: new-entry-${{ github.event.issue.number || inputs.issue }}
+
+jobs:
+  draft:
+    name: Read the repository and draft a row
+    # The form applies the label; an issue without it is not a submission.
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.issue.labels.*.name, 'new entry')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Read the repository the issue names
+        id: read
+        env:
+          # Public reads only; the budget is the workflow token's.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE: ${{ inputs.issue }}
+        run: |
+          if [ -n "$ISSUE" ]; then
+            python3 scripts/draft_from_issue.py --issue "$ISSUE" --out /tmp/comment.md
+          else
+            python3 scripts/draft_from_issue.py --event "$GITHUB_EVENT_PATH" --out /tmp/comment.md
+          fi
+
+      - name: Comment on the issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUMBER: ${{ steps.read.outputs.number }}
+        run: |
+          # A second run rewrites the first run's comment rather than adding one.
+          gh issue comment "$NUMBER" --edit-last --body-file /tmp/comment.md 2>/dev/null \
+            || gh issue comment "$NUMBER" --body-file /tmp/comment.md

@@ -18,10 +18,18 @@ Exit codes: 0 fine, 1 dead links, 3 too many refusals to trust a group.
 A dead link is never deleted by this script. Moving a row to retired.json is a
 judgement call — the row needs a `notes` line saying why — so a person does it.
 
+`--markdown FILE` also writes the rows a person has to look at as an issue
+body: the dead links, the redirects, and, when a group's refusals passed the
+alarm, the refused links. links.yml keeps one issue open with it (since
+2026-10-24): before that a red run on the Actions page was the sweep's only
+signal, and it was red on each of its first four Mondays without anyone
+being told.
+
 Usage:
   python3 scripts/check_links.py               # report only
   python3 scripts/check_links.py --write       # also update checked/link_status
   python3 scripts/check_links.py --only youtube.com
+  python3 scripts/check_links.py --markdown /tmp/body.md   # and write the issue body
 """
 
 from __future__ import annotations
@@ -198,6 +206,58 @@ def summary_markdown(counts: dict[str, dict[str, int]], shares, warnings: list[s
     return "\n".join(lines)
 
 
+# One issue comment stays well under GitHub's 65,536-character limit.
+ISSUE_ROWS = 150
+
+
+def cell(text: object) -> str:
+    """Text for one cell of a Markdown table: one line, no column breaks."""
+    return " ".join(str(text).split()).replace("|", "\\|")
+
+
+def issue_table(items: list[tuple], heading: str, advice: str) -> list[str]:
+    """One section of the issue: a heading with its count, what to do, and a
+    row per link (slug, HTTP status, URL, and the note, when there is one)."""
+    lines = [f"### {heading} ({len(items)})", "", advice, "", "| Row | HTTP | URL |", "| --- | ---: | --- |"]
+    for entry, status, *note in items[:ISSUE_ROWS]:
+        why = f" ({cell(note[0])})" if note and note[0] else ""
+        lines.append(f"| `{entry['slug']}` | {status or '---'} | <{cell(entry['url'])}>{why} |")
+    if len(items) > ISSUE_ROWS:
+        lines.append(f"\n…and {len(items) - ISSUE_ROWS} more, in the run's log.")
+    return lines + [""]
+
+
+def issue_markdown(dead: list, moved: list, blocked: list, warnings: list[str], counts: str) -> str:
+    """The issue body links.yml posts: the rows a person has to act on, by
+    what they have to do. The refused links are listed only when a group's
+    refusals passed the alarm, since a handful refuse every week."""
+    lines = [
+        "A scheduled link sweep found links that need a person: a link that no longer",
+        "resolves, a redirect, or a sweep refused so often that it checked little.",
+        "",
+    ]
+    if dead:
+        lines += issue_table(
+            dead,
+            "Dead links",
+            "Open each one first: a site that is down for a day looks the same. A link that "
+            "is gone moves its row to `retired.json` with a `notes` line saying why; a "
+            "script never retires one.",
+        )
+    if moved:
+        lines += issue_table(moved, "Redirects", "Update each row's `url` to where it now leads.")
+    if warnings:
+        lines += [f"**{warning}**" for warning in warnings] + [""]
+        lines += issue_table(
+            blocked,
+            "Refused",
+            "Not evidence that a page is gone: open them in a browser, and do not retire a "
+            "row on a 401, 403 or 429 alone.",
+        )
+    lines += ["```", counts, "```", ""]
+    return "\n".join(lines)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -205,6 +265,10 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument(
         "--only", default="", help="only check URLs containing this substring"
+    )
+    parser.add_argument(
+        "--markdown", default="", metavar="FILE",
+        help="also write the dead links, redirects and (past the alarm) refused links as an issue body",
     )
     args = parser.parse_args(argv)
 
@@ -281,15 +345,21 @@ def main(argv: list[str] | None = None) -> int:
     _github.log_usage()
     # The last two lines are the counts, so a log's tail always carries them.
     (gh, gh_total), (other, other_total) = shares[GROUPS[0]], shares[GROUPS[1]]
-    print(
-        f"\nrefused: {gh} of {gh_total} GitHub URLs ({pct(gh, gh_total)}), "
+    refusals = (
+        f"refused: {gh} of {gh_total} GitHub URLs ({pct(gh, gh_total)}), "
         f"{other} of {other_total} on other hosts ({pct(other, other_total)})"
     )
-    print(
+    counts = (
         f"links: {len(targets)} checked: {alive_total} answered 2xx"
         + (" (stamped)" if args.write else "")
         + f", {len(moved)} redirected, {len(blocked)} refused, {len(dead)} dead"
     )
+    if args.markdown:
+        pathlib.Path(args.markdown).write_text(
+            issue_markdown(dead, moved, blocked, warnings, f"{refusals}\n{counts}"), encoding="utf-8"
+        )
+    print(f"\n{refusals}")
+    print(counts)
     if dead:
         return 1
     return 3 if warnings else 0

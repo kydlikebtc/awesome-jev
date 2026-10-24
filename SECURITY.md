@@ -62,7 +62,10 @@ catalogue's counts in `history/`, derived from those files and never read back
 into them; and `lint`'s `regenerate`
 job, which commits only generated files and runs only for a push to `main`,
 never for a pull request. (The Pages deploy holds `pages: write` to publish the
-site, not `contents: write`.) No workflow writes a human
+site, not `contents: write`.) `new-entry` answers any new-entry issue anyone
+opens, so it can only read and comment: it reads the issue from the event
+file GitHub writes, quotes the issue's text only inside a code block, and
+commits nothing. No workflow writes a human
 judgement — a summary, a pattern, a retirement — into the catalog. On a pull
 request, `lint`'s `review` job runs the base branch's scripts, from a separate
 checkout of the base commit, against the pull request's `catalog.json` with the

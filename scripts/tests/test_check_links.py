@@ -147,5 +147,54 @@ class MainTest(unittest.TestCase):
         self.assertIn("links: 0 checked", out)
 
 
+class IssueBodyTest(unittest.TestCase):
+    """--markdown: the body links.yml keeps its issue with (since 2026-10-24)."""
+
+    run_main = MainTest.run_main
+    refuse = MainTest.refuse
+
+    def body(self, catalog: list[dict], answers: dict) -> tuple[int, str]:
+        with tempfile.TemporaryDirectory() as tmp:
+            path = pathlib.Path(tmp) / "body.md"
+            code, _, _, _ = self.run_main(catalog, answers, "--markdown", str(path))
+            return code, path.read_text(encoding="utf-8")
+
+    def test_dead_links_and_redirects_are_listed_with_what_to_do(self):
+        catalog = rows(25, 3)
+        answers = {
+            catalog[0]["url"]: (404, "repository not found via API"),
+            catalog[-1]["url"]: (0, "timed out"),
+            catalog[-2]["url"]: (301, ""),
+        }
+        code, body = self.body(catalog, answers)
+        self.assertEqual(code, 1)
+        self.assertIn("### Dead links (2)", body)
+        self.assertIn("| `gh-00` | 404 | <https://github.com/o/r0> (repository not found via API) |", body)
+        self.assertIn("| `web-02` | --- | <https://example2.org/page> (timed out) |", body)
+        self.assertIn("`retired.json` with a `notes` line", body)
+        self.assertIn("### Redirects (1)", body)
+        self.assertNotIn("### Refused", body, "a few refusals are every week's noise")
+        self.assertTrue(body.rstrip().endswith("2 dead\n```"), body[-200:])
+
+    def test_refusals_are_listed_only_past_the_alarm(self):
+        catalog = rows(25, 0)
+        code, body = self.body(catalog, self.refuse(catalog, "gh-", 6))
+        self.assertEqual(code, 3)
+        self.assertIn("**6 of 25 GitHub URLs refused this checker", body)
+        self.assertIn("### Refused (6)", body)
+        self.assertNotIn("### Dead links", body)
+
+    def test_a_cell_cannot_break_the_table(self):
+        self.assertEqual(check_links.cell("a | b\nc"), "a \\| b c")
+
+    def test_a_long_list_is_cut_to_fit_one_comment(self):
+        catalog = rows(0, check_links.ISSUE_ROWS + 3)
+        answers = {e["url"]: (404, "Not Found") for e in catalog}
+        _, body = self.body(catalog, answers)
+        self.assertEqual(body.count("| 404 |"), check_links.ISSUE_ROWS)
+        self.assertIn("…and 3 more, in the run's log.", body)
+        self.assertLess(len(body), 65_536)
+
+
 if __name__ == "__main__":
     unittest.main()

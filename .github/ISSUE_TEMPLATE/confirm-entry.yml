@@ -1,0 +1,65 @@
+name: Confirm or correct your own project's entry
+description: You wrote or maintain a catalogued project, and can say whether its row is right
+labels: ["correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A row here is written from a project's code and pages by someone who did not
+        write them. If you did, you know best whether it is right. Confirm it, or say
+        what is wrong: a maintainer checks it against the code, applies it, and
+        records in the row that it came from you, with this issue as the source.
+
+        To have a row removed, use "Report a problem with an entry" instead.
+
+  - type: input
+    id: slug
+    attributes:
+      label: Entry slug or URL
+      description: The row's `slug` (the part after `#` in its address on the site), or the project's URL.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: relation
+    attributes:
+      label: Your relationship to the project
+      options:
+        - "I wrote it or maintain it"
+        - "I contribute to it"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: verdict
+    attributes:
+      label: Is the row right?
+      options:
+        - "Yes, as written"
+        - "Mostly; corrections below"
+        - "No; corrections below"
+    validations:
+      required: true
+
+  - type: input
+    id: call_site
+    attributes:
+      label: Where does the code call Jev?
+      description: The file, and the line if you like, if the row cites another file or none.
+      placeholder: src/decide.ts#L42
+
+  - type: textarea
+    id: corrections
+    attributes:
+      label: Corrections
+      description: >
+        What the summary, the patterns, the primitives the code calls or the flags get
+        wrong, and what is true instead. Say what the project does, not how good it is.
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: I wrote, maintain or contribute to this project, as I said above
+          required: true

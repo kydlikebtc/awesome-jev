@@ -25,6 +25,13 @@ resolves, not a reason to check the wrong thing.
 Exit code is 0 when every claim holds and 1 when any fails, so the scheduled
 workflow can open an issue.
 
+A `path-gone` file has usually been moved or renamed rather than deleted with
+its integration. In the weekly report each one's repository tree is searched
+(one API call, then a bounded number of reads on the raw host) for a file that
+still holds every string in `evidence.matched`, and the line names it: a
+proposed `evidence.path` (or wire.source path) for the person resolving the
+failure, who opens it first. The claim still fails, and nothing is written.
+
 A claim that lost only a pinned model version (`jev-1.2`, say) from a file that
 now names another is reported as `version-moved` rather than `claim-gone`, and
 the report counts those rows per version ("N rows now pin X"): when the vendor
@@ -69,6 +76,7 @@ import json
 import pathlib
 import re
 import sys
+import urllib.parse
 from concurrent.futures import ThreadPoolExecutor
 
 from _github import (
@@ -128,6 +136,10 @@ PRIMITIVE_SHAPES = (
 )
 
 WORKERS = 6
+
+# A test file's path. discover() ranks one below an implementation, and
+# relocation_candidates() reads one last.
+TEST_PATH = re.compile(r"(^|/)(tests?|spec|__tests__)/|\.(test|spec)\.[a-z]+$|_test\.[a-z]+$|test_[^/]*$", re.I)
 
 
 def weak_words(body: str) -> list[str]:
@@ -200,7 +212,10 @@ def check_wire(item: tuple[dict, dict]) -> dict:
         except RateLimited as exc:
             result = {"status": "skipped", "detail": f"not checked: {exc}"}
     status = "claim-gone" if result["status"] == VERSION_MOVED else result["status"]
-    return {"slug": slug, "status": status, "claim": WIRE, "detail": f"wire.source {result['detail']}"}
+    out = {"slug": slug, "status": status, "claim": WIRE, "detail": f"wire.source {result['detail']}"}
+    if status == "path-gone":
+        out.update({key: result[key] for key in WHERE})
+    return out
 
 
 def read_claim(slug: str, repo: str, evidence: dict) -> dict:
@@ -228,6 +243,11 @@ def read_claim(slug: str, repo: str, evidence: dict) -> dict:
             "slug": slug,
             "status": "path-gone",
             "detail": f"{repo}@{branch}:{evidence['path']} not found — renamed, moved or deleted",
+            # Where it looked, for propose_paths(): the file may only have moved.
+            "repo": repo,
+            "branch": branch,
+            "path": evidence["path"],
+            "matched": list(evidence["matched"]),
         }
 
     missing = [needle for needle in evidence["matched"] if needle not in body]
@@ -337,6 +357,102 @@ def move_lines(moves: dict[str, list[str]]) -> list[str]:
     ]
 
 
+# --- path-gone -----------------------------------------------------------------
+#
+# A cited file missing from the default branch has often been moved or renamed
+# with the integration intact. 24 of the 66 failures in the claims run of
+# 2026-10-20 were path-gone, and each was a person's search through someone
+# else's tree. The weekly report now does the search: one API call for the
+# repository's file tree, then at most RELOCATE_READS files read on the raw
+# host, in relocation_candidates' order, until one holds every string in
+# `matched`. A hit is a proposal, never written, and the claim still fails:
+# the strings being elsewhere does not say that file is where the integration
+# lives now, so a person opens it first.
+WHERE = ("repo", "branch", "path", "matched")
+RELOCATE_READS = 20
+# A name that hints at the integration, the way discover() narrows a tree.
+HINT = re.compile(r"jev|typesafe|system_?one", re.I)
+
+
+def relocation_candidates(paths: list[str], old: str) -> list[str]:
+    """The files worth reading in place of `old`, best first: the same file name
+    anywhere in the tree, then paths that hint at the integration, then files
+    with its extension. Within each group a test file comes last (the claim was
+    read in an implementation), then the paths sharing the longest leading
+    directories with `old`, then the shallowest. At most RELOCATE_READS of them."""
+    gone = pathlib.PurePosixPath(old)
+
+    def rank(path: str) -> tuple[bool, int, int, str]:
+        parts = pathlib.PurePosixPath(path).parts
+        shared = 0
+        for mine, theirs in zip(gone.parent.parts, parts[:-1]):
+            if mine != theirs:
+                break
+            shared += 1
+        return (bool(TEST_PATH.search(path)), -shared, len(parts), path)
+
+    groups: list[list[str]] = [[], [], []]
+    for path in paths:
+        if path == old:
+            continue
+        here = pathlib.PurePosixPath(path)
+        if here.name == gone.name:
+            groups[0].append(path)
+        elif HINT.search(path):
+            groups[1].append(path)
+        elif gone.suffix and here.suffix == gone.suffix:
+            groups[2].append(path)
+    return [path for group in groups for path in sorted(group, key=rank)][:RELOCATE_READS]
+
+
+def relocate(result: dict) -> str | None:
+    """A file on the result's branch holding every string its claim matched, or
+    None: none of the candidates does, the tree is unavailable, or the GitHub
+    budget ran out (which leaves the failure as it was, not unchecked)."""
+    repo, branch = result["repo"], result["branch"]
+    try:
+        tree = api_get(f"/repos/{repo}/git/trees/{urllib.parse.quote(branch, safe='')}?recursive=1")
+        if not isinstance(tree, dict) or not isinstance(tree.get("tree"), list):
+            return None
+        paths = [
+            node["path"]
+            for node in tree["tree"]
+            if node.get("type") == "blob" and isinstance(node.get("path"), str)
+        ]
+        for path in relocation_candidates(paths, result["path"]):
+            body = raw_get(repo, branch, urllib.parse.quote(path, safe="/"))
+            if body is not None and all(needle in body for needle in result["matched"]):
+                return path
+    except RateLimited:
+        return None
+    return None
+
+
+def propose_paths(results: list[dict]) -> int:
+    """Give each path-gone result whose matched strings all sit in another file
+    of its repository that file's path, as `proposed_path` and at the end of
+    its detail. Returns how many got one."""
+    gone = [r for r in results if r["status"] == "path-gone" and all(key in r for key in WHERE)]
+    if not gone:
+        return 0
+    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
+        found = list(pool.map(relocate, gone))
+    for result, path in zip(gone, found):
+        if path:
+            result["proposed_path"] = path
+            result["detail"] += f"; every matched string is in {path} — open it, then update the path"
+    return sum(1 for path in found if path)
+
+
+def path_line(proposed: int, gone: int) -> str:
+    """The report's one line about path-gone proposals, the form claims.yml's issue quotes."""
+    return (
+        f"path-gone: {proposed} of {gone} missing file(s) have a proposed new path — a file in the same "
+        "repository holding every matched string, named on its line; open it before changing the row's "
+        "path, and move read_on only if you read the call there"
+    )
+
+
 def propose_rewrites(todo: list[dict], as_json: bool) -> int:
     """--propose-version-rewrite: a dry run. Reads every cited file and prints,
     for each version-moved row, evidence.matched as it is and as the file now
@@ -432,7 +548,7 @@ def discover(entry: dict) -> dict:
         # A test file proves the integration exists, but the implementation is
         # the better witness: tests get deleted while features stay, and a
         # mocked string is weaker proof than a real call site.
-        if re.search(r"(^|/)(tests?|spec|__tests__)/|\.(test|spec)\.[a-z]+$|_test\.[a-z]+$|test_[^/]*$", path, re.I):
+        if TEST_PATH.search(path):
             score -= 5
         # Config and fixture files mention endpoints without calling them.
         if re.search(r"(^|/)(fixtures?|config|constants|prefs)[./]", path, re.I):
@@ -636,6 +752,9 @@ def main() -> int:
     print(f"re-checking {len(todo)} claim(s) and {len(wire_todo)} wire source file(s)\n", file=sys.stderr)
     with ThreadPoolExecutor(max_workers=WORKERS) as pool:
         results = list(pool.map(check, todo)) + list(pool.map(check_wire, wire_todo))
+    # Only once every claim is read, so the search spends what the reads left.
+    proposed = propose_paths(results)
+    gone = sum(1 for r in results if r["status"] == "path-gone")
 
     # A claim the rate limit kept us from reading is neither a pass nor a
     # failure. Counting it as either would be the false report this avoids.
@@ -652,6 +771,7 @@ def main() -> int:
         + f"- {len(wire_todo)} of them are files an `alternative` row's `wire` record cites (wire.source)\n"
         + (f"- {moved} of the failures only moved to another model version:\n" if moved else "")
         + "".join(f"  - {line}\n" for line in move_lines(moves))
+        + (f"- {path_line(proposed, gone)}\n" if gone else "")
         + "".join(f"- {line}\n" for line in usage_lines())
     )
     if skipped:
@@ -669,6 +789,13 @@ def main() -> int:
                     "skipped": skipped,
                     # Slugs by the version their cited file now names; each is also in `failed`.
                     "version_moved": moves,
+                    # A file holding every matched string, for each path-gone claim that has one;
+                    # each is also in `failed`.
+                    "proposed_paths": [
+                        {key: r[key] for key in ("slug", "claim", "path", "proposed_path") if key in r}
+                        for r in results
+                        if r.get("proposed_path")
+                    ],
                     # A text signal per file whose claim held; see --write-signals.
                     "primitive_signals": {
                         r["slug"]: r["primitive_signals"]
@@ -686,7 +813,7 @@ def main() -> int:
             shapes = r.get("primitive_signals")
             tail = f"  · primitive shapes: {', '.join(shapes)}" if shapes else ""
             print(f"  {mark:<12} {r['slug']}  {r['detail']}{tail}")
-        lines = move_lines(moves)
+        lines = move_lines(moves) + ([path_line(proposed, gone)] if gone else [])
         if lines:
             print()
             for line in lines:

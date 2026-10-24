@@ -27,16 +27,20 @@ ROW = {
 
 
 class Files:
-    """A fake raw host: {(branch, path): body}; a missing key is a 404."""
+    """A fake raw host: {(branch, path): body}; a missing key is a 404. The
+    API's file tree for a branch lists every path the fake holds there."""
 
     def __init__(self, files: dict, *, branch: str | None = "main"):
         self.files = files
         self.branch = branch
         self.reads: list[str] = []
+        self.paths_read: list[str] = []
         self.branch_lookups = 0
+        self.trees: list[str] = []
 
     def raw_get(self, repo, branch, path, **_):
         self.reads.append(branch)
+        self.paths_read.append(path)
         value = self.files.get((branch, path))
         if isinstance(value, BaseException):
             raise value
@@ -46,8 +50,13 @@ class Files:
         self.branch_lookups += 1
         return self.branch
 
+    def api_get(self, path):
+        self.trees.append(path)
+        branch = path.split("/git/trees/", 1)[1].split("?", 1)[0]
+        return {"tree": [{"type": "blob", "path": p} for b, p in self.files if b == branch]}
+
     def patch(self, test: unittest.TestCase) -> None:
-        for name in ("raw_get", "default_branch"):
+        for name in ("raw_get", "default_branch", "api_get"):
             patcher = mock.patch.object(vc, name, getattr(self, name))
             patcher.start()
             test.addCleanup(patcher.stop)
@@ -93,17 +102,18 @@ class CheckTest(unittest.TestCase):
 
 
 class MainTest(unittest.TestCase):
-    def run_main(self, rows: list[dict], files: Files) -> tuple[int, str, str]:
+    def run_main(self, rows: list[dict], files: Files, *args: str) -> tuple[int, str, str]:
         with tempfile.TemporaryDirectory() as tmp:
             catalog = pathlib.Path(tmp) / "catalog.json"
             catalog.write_text(json.dumps(rows))
             summary = pathlib.Path(tmp) / "summary.md"
             out, err = io.StringIO(), io.StringIO()
             with mock.patch.object(vc, "CATALOG", catalog), \
-                 mock.patch.object(sys, "argv", ["verify_claims.py"]), \
+                 mock.patch.object(sys, "argv", ["verify_claims.py", *args]), \
                  mock.patch.dict(os.environ, {"GITHUB_STEP_SUMMARY": str(summary)}), \
                  mock.patch.object(vc, "raw_get", files.raw_get), \
                  mock.patch.object(vc, "default_branch", files.default_branch), \
+                 mock.patch.object(vc, "api_get", files.api_get), \
                  contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
                 code = vc.main()
             return code, out.getvalue(), summary.read_text()
@@ -133,6 +143,87 @@ class MainTest(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("0/3 claims still hold", out)
         self.assertIn("checked 3 of 3 claim(s): 3 failed, 0 skipped", summary)
+
+
+class PathGoneTest(unittest.TestCase):
+    """A path-gone claim whose strings all sit in another file of the same
+    repository names that file in the weekly report, as a proposal: the claim
+    still fails and nothing is written."""
+
+    MOVED = {("main", "lib/core/x.py"): "client.system_one()", ("main", "README.md"): "system_one"}
+
+    def test_candidates_put_the_same_name_first_then_hints_then_the_extension(self):
+        paths = [
+            "tests/x.py", "lib/core/x.py", "src/x.md", "src/jev_client.ts", "src/deep/other.py",
+            "docs/x.py", "src/x.py", "src/other.py",
+        ]
+        self.assertEqual(
+            vc.relocation_candidates(paths, "src/x.py"),
+            ["docs/x.py", "lib/core/x.py", "tests/x.py", "src/jev_client.ts", "src/other.py", "src/deep/other.py"],
+        )
+        # The longest shared directories first, so a move one level up is read first.
+        self.assertEqual(vc.relocation_candidates(paths, "src/sub/x.py")[0], "src/x.py")
+        many = [f"pkg/f{i}.py" for i in range(vc.RELOCATE_READS + 5)]
+        self.assertEqual(len(vc.relocation_candidates(many, "src/x.py")), vc.RELOCATE_READS)
+
+    def test_the_report_names_the_file_that_holds_every_string(self):
+        files = Files(dict(self.MOVED))
+        code, out, summary = MainTest().run_main([ROW], files)
+        self.assertEqual(code, 1, "a proposal does not make the claim hold")
+        line = next(l for l in out.splitlines() if "PATH-GONE" in l)
+        self.assertIn("a/b@main:src/x.py not found", line)
+        self.assertIn("every matched string is in lib/core/x.py", line)
+        self.assertIn("path-gone: 1 of 1 missing file(s) have a proposed new path", out)
+        self.assertIn("path-gone: 1 of 1", summary)
+        self.assertEqual(files.trees, ["/repos/a/b/git/trees/main?recursive=1"])
+
+    def test_a_file_missing_one_string_is_not_proposed(self):
+        row = dict(ROW, evidence={"path": "src/x.py", "matched": ["system_one", "jev-latest"], "read_on": "2026-09-01"})
+        code, out, _ = MainTest().run_main([row], Files(dict(self.MOVED)))
+        self.assertEqual(code, 1)
+        self.assertNotIn("every matched string is in", out)
+        self.assertIn("path-gone: 0 of 1", out)
+
+    def test_json_lists_the_proposals(self):
+        code, out, _ = MainTest().run_main([ROW], Files(dict(self.MOVED)), "--json")
+        self.assertEqual(code, 1)
+        report = json.loads(out)
+        self.assertEqual(report["proposed_paths"], [{"slug": "demo", "path": "src/x.py", "proposed_path": "lib/core/x.py"}])
+        self.assertEqual(report["failed"][0]["proposed_path"], "lib/core/x.py")
+
+    def test_a_wire_source_that_moved_is_proposed_too(self):
+        row = {"slug": "alt", "kind": "alternative", "url": "https://github.com/a/b",
+               "wire": {"weights": "open", "source": [{"path": "src/x.py", "matched": ["system_one"]}]}}
+        code, out, _ = MainTest().run_main([row], Files(dict(self.MOVED)), "--json")
+        self.assertEqual(code, 1)
+        report = json.loads(out)
+        self.assertEqual(report["proposed_paths"],
+                         [{"slug": "alt", "claim": "wire", "path": "src/x.py", "proposed_path": "lib/core/x.py"}])
+
+    def test_no_tree_or_no_budget_leaves_the_failure_as_it_was(self):
+        gone = {"slug": "demo", "status": "path-gone", "detail": "d", "repo": "a/b", "branch": "main",
+                "path": "src/x.py", "matched": ["system_one"]}
+        with mock.patch.object(vc, "api_get", return_value=None):
+            self.assertIsNone(vc.relocate(gone))
+        with mock.patch.object(vc, "api_get", side_effect=_github.RateLimited("core", "spent")):
+            self.assertIsNone(vc.relocate(gone))
+        Files({("main", "lib/x.py"): _github.RateLimited("raw", "HTTP 429 again")}).patch(self)
+        self.assertIsNone(vc.relocate(gone))
+        self.assertEqual(gone["detail"], "d")
+
+    def test_only_the_report_searches(self):
+        # check() also serves --write-signals, --propose-version-rewrite and the
+        # pull-request review card, none of which should spend a tree call.
+        files = Files(dict(self.MOVED))
+        files.patch(self)
+        result = vc.check(ROW)
+        self.assertEqual(result["status"], "path-gone")
+        self.assertNotIn("proposed_path", result)
+        self.assertEqual(files.trees, [])
+
+    def test_the_claims_issue_explains_the_proposal(self):
+        text = (pathlib.Path(__file__).resolve().parents[2] / ".github" / "workflows" / "claims.yml").read_text()
+        self.assertIn("that is the proposed path", text)
 
 
 class DiscoverTest(unittest.TestCase):

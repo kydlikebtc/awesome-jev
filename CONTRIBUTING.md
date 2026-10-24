@@ -24,7 +24,21 @@ python3 scripts/check.py --fix
    That one command sorts `catalog.json`, then runs every check CI runs, in
    CI's order, and ends with one line per check. A check that needs Node.js or
    Chrome is reported as skipped where that is not installed; CI runs it.
-3. Open a pull request. `catalog.json` alone is enough.
+3. Open a pull request. `catalog.json` alone is enough. The template's first
+   checklist is what a row needs; the rest of the field rules are folded
+   under it, for the fields your row uses beyond those.
+
+Or open the [Add an entry](https://github.com/kydlikebtc/awesome-jev/issues/new?template=new-entry.yml)
+form instead. When the issue opens, the `new-entry` workflow
+(`scripts/draft_from_issue.py`) reads the repository it names, with the code
+the weekly discovery run uses, and replies with what it found: the call site
+and the strings it matched, and a draft row built from GitHub, that file and
+the form's answers. The draft's first field, `_draft`, lists what a person
+still has to check, and `lint.py` refuses the row until it is gone. A
+repository already catalogued, retired or declined gets a reply saying which
+row, or why. The workflow only comments: it commits nothing and opens no pull
+request, since anyone can open an issue. Complete the draft yourself, or leave
+it for a maintainer.
 
 ### Generated files are optional
 
@@ -383,6 +397,12 @@ turn red, and writes nothing (the runbook is in
     self-submission, unless the maintainer is also that project's author, in
     which case it is an `author submission` like any other.
 
+  Two more record what a project's author said about a row someone else
+  proposed (see [If the project is yours](#if-the-project-is-yours)), with
+  their issue or pull request as `url` and a `notes` sentence saying so:
+  `author correction` when their words changed the row, `author confirmation`
+  when they confirmed it as written. Neither makes the row a self-submission.
+
   After the sources you write, the weekly refresh
   (`scripts/attribute_sources.py`) appends one item per sibling directory in
   `docs/sibling-lists.txt` whose README links the row's repository:
@@ -447,6 +467,37 @@ as a passed-test signal. Upstream benchmark results belong to their authors and
 have not been independently reproduced here. A future runtime-verification claim
 needs a dated report with the source revision, environment, model version and
 result; neither `checked` nor `evidence.read_on` is a substitute.
+
+## If the project is yours
+
+A row is written from a project's code and pages by someone who did not write
+them. If you did, you know best whether it is right.
+
+- **Confirm or correct it** with the
+  [Confirm or correct your own project's entry](https://github.com/kydlikebtc/awesome-jev/issues/new?template=confirm-entry.yml)
+  form. A maintainer checks what you say against the code, applies it, and
+  records where it came from: a source `{"catalog": "author correction",
+  "url": <the issue>}` when your words changed the row, or `author
+  confirmation` when you confirmed it as written, and a `notes` sentence
+  ("Confirmed by its maintainer in issue #…"). The row does not take the
+  `self-submitted` flag, since you did not propose it, and `evidence.read_on`
+  still dates a reading here, not yours.
+- **Show that it is listed**, if you like, with the badge the site serves,
+  linked to your row (its `slug` is the part after `#` in its address on the
+  site):
+
+  ```markdown
+  [![Listed in awesome-jev](https://kydlikebtc.github.io/awesome-jev/badge.svg)](https://kydlikebtc.github.io/awesome-jev/#your-slug)
+  ```
+
+  It is a static image with no counter, and it says the project is
+  catalogued, nothing about its quality.
+- **Have it removed** with the
+  [Report a problem with an entry](https://github.com/kydlikebtc/awesome-jev/issues/new?template=entry-problem.yml)
+  form ("This is my project and I want it removed").
+
+Nobody here asks authors to add the badge or to confirm their rows: both are
+for an author who comes looking.
 
 ## What does not belong here
 
