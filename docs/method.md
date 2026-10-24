@@ -434,6 +434,22 @@ README and the cited file and no maintainer had, now say it in the fields too:
 rows it is a model's, counted apart from a person's and in neither of the
 primitive figures' layers. Every date already in `read_on` stays as it is.
 
+Since 2026-10-24, the review queue opens with [the rows the README prints by
+name](review-queue.md#front-page): its *Start here* list, the reports under
+*Measured, not claimed* and the first rows of each pattern, the only rows most
+readers ever see. `readme.sections.front_page()` picks them with the README's
+own rules, so the list cannot drift from the page. A row is listed, in the
+order the README first prints it, while it lacks a summary a person wrote for
+the catalogue (its `summary_source` is the project's own description or a
+model's, or the generic-summary rule marks it), Chinese a person wrote
+(`zh_machine`), or a person's reading of the file it cites
+(`evidence.read_on`). All three record who wrote or read the text, not whether
+it is right, so a model's draft of any of them keeps the row listed until a
+person has checked it. Whether a row sits under the right pattern stays with
+the queue's pattern sections. `docs/status.md` counts the rows and those
+listed: 61 of 134 that day, most of them for machine-translated Chinese (58)
+or a summary in the project's own words (37).
+
 ## Discovery is crowdsourced, verification is not
 
 There are dozens of Jev directories. Each is a different person's sweep of the

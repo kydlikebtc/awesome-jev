@@ -279,6 +279,48 @@ def model_read_counts(catalog: list[dict]) -> dict[str, int]:
     }
 
 
+# summary_source values whose words are not a person's: the project's own
+# GitHub description, as it reads now or once did, and a summary a model wrote
+# that no person has checked since.
+NOT_A_PERSONS_SUMMARY = ("upstream-description", "upstream-description-stale", "model-written")
+
+
+def front_page_gaps(entry: dict) -> dict[str, str]:
+    """Machine signal: what a row still lacks from a person, as {field: what the
+    row has instead}, empty when it lacks nothing. "summary": its summary_source
+    when that is not a person's words, else "generic-summary" when
+    generic_summary() marks it; "summary_zh": "zh_machine"; "evidence":
+    "model_read_on" when only a model has read the cited file, "unread" when
+    nobody has. A fact about who wrote or read the text, not whether it is
+    right. docs/review-queue.md lists the rows the README prints that have any."""
+    query = load_query()
+    gaps = {}
+    source = entry.get("summary_source")
+    if source in NOT_A_PERSONS_SUMMARY:
+        gaps["summary"] = source
+    elif generic_summary(entry):
+        gaps["summary"] = "generic-summary"
+    if entry.get("zh_machine"):
+        gaps["summary_zh"] = "zh_machine"
+    if entry.get("evidence"):
+        reader = query.read_by(entry["evidence"])
+        if reader != query.PERSON:
+            gaps["evidence"] = "model_read_on" if reader == query.MODEL else "unread"
+    return gaps
+
+
+def front_page(catalog: list[dict]) -> list[dict]:
+    """The rows the README prints by name (readme.sections.front_page), once
+    each, in the order it first prints them: the rows most readers see.
+    Imported when called, since the README's modules import this one."""
+    from readme.sections import front_page as printed
+
+    rows: dict[str, dict] = {}
+    for _place, _position, entry in printed(catalog):
+        rows.setdefault(entry["slug"], entry)
+    return list(rows.values())
+
+
 def tool_selection_broad_only(entry: dict) -> bool:
     """Machine signal: the row carries tool-selection, the keyword rules as
     they stood until 2026-09-27 suggest it for the row's summary and title,
@@ -474,6 +516,7 @@ def current_shape() -> dict:
 
 def compute() -> dict:
     catalog, retired, patterns, compat, schema = load()
+    front = front_page(catalog)
     by_pattern = pattern_tally(catalog, patterns)
     swept = [e["checked"] for e in catalog if link_ok(e)]
     last_sweep = newest_check(catalog)
@@ -512,6 +555,11 @@ def compute() -> dict:
         "review_single_model_name": sum(1 for e in catalog if single_model_name(e)),
         "review_tool_selection_broad": sum(1 for e in catalog if tool_selection_broad_only(e)),
         "review_generic_summary": sum(1 for e in catalog if generic_summary(e)),
+        # The rows the README prints by name, which most readers see and no
+        # others, and those still lacking a person's summary, Chinese or
+        # reading of the cited file (front_page_gaps).
+        "front_page_rows": len(front),
+        "review_front_page": sum(1 for e in front if front_page_gaps(e)),
         # A benchmark's own report, indexed (`measurement`): how many rows carry
         # one, the directions their authors state (author-stated, not
         # reproduced here), and how many no person has read against the report

@@ -50,7 +50,9 @@ def entry(slug: str, *, kind: str = "project", url: str | None = None, **evidenc
         "license": "CC0-1.0",
     }
     if evidence:
-        row["evidence"] = evidence
+        # Read by a person, so that only the signals under test list the row:
+        # the README front-page section lists a cited file nobody has read.
+        row["evidence"] = {"read_on": "2026-09-01", **evidence}
     return row
 
 
