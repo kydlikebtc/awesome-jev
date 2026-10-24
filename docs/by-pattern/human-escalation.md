@@ -4,11 +4,11 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 70 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 71 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#human-escalation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 55 · wire shape 5 · example only 0 · independent reports 10 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 56 · wire shape 5 · example only 0 · independent reports 10 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -75,7 +75,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-review](https://github.com/devagrawal09/jev-review)** — Pre-screens code review with Jev to surface high-risk changes for a more expensive model or a person, with a local dashboard.
   <sub>`Project` · ★100+ · `TS` · `choice` · `score` · `noul` · call site [`src/review/codebase-judgments.ts`](https://github.com/devagrawal09/jev-review/blob/HEAD/src/review/codebase-judgments.ts), read 2026-09-22</sub>
 
-- **[neurolink](https://github.com/juspay/neurolink)** — The pipe layer of an AI nervous system: one interface connecting provider neurons to an application, across three inference types — generate, stream, and decide. Decide returns typed, calibrated judgments (boolean/choice/score) via TypeSafe Jev, not text.
+- **[neurolink](https://github.com/juspay/neurolink)** — The pipe layer of an AI nervous system: one interface connecting provider neurons to an application, across three inference types — generate, stream, and decide. Decide returns typed, calibrated judgments (boolean/choice/score) via TypeSafe Jev or the open-weights Laya, not text.
   <sub>`Plugin` · ★100+ · juspay · `TS` · call site [`src/lib/providers/typesafe.ts`](https://github.com/juspay/neurolink/blob/HEAD/src/lib/providers/typesafe.ts), read 2026-09-22</sub>
 
 - **[discern](https://github.com/doeixd/discern)** — Craft Type-Safe Uncertainty-aware semantic pattern matching, control flow, and smart procedures for Effect DecisionModel and Jev <sub>(upstream description)</sub>
@@ -92,6 +92,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-dspy-lab](https://github.com/jmanhype/jev-dspy-lab)** — Reproducible calibration and selective-risk benchmarks for Jev/TypeSafe decisions in DSPy workflows <sub>(upstream description)</sub>
   <sub>`Benchmark` · ★10+ · jmanhype · `Py` · call site [`src/jev_dspy_lab/live.py`](https://github.com/jmanhype/jev-dspy-lab/blob/HEAD/src/jev_dspy_lab/live.py), read 2026-09-22</sub>
+
+- **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — Claude Code PreToolUse gate: regex hard rules and a read-only allowlist first, then one Noul and one Choice decide allow, ask or deny, so clearly safe commands skip the permission prompt. Codex, Cursor and OpenCode adapters, plus a review-router GitHub Action.
+  <sub>`Plugin` · ★10+ · eugeniughelbur · `Py` · `noul` · `choice` · call site [`jev_gate.py`](https://github.com/eugeniughelbur/jev-engineering/blob/HEAD/jev_gate.py), read 2026-09-28 · ⚠ `self-submitted`</sub>
 
 - **[jev-harness](https://github.com/AntonioCoppe/jev-harness)** — Decision harness for TypeSafe Jev — confidence gates, shadow mode, recipes, and evals. Claude CLI 48.9s → Jev 1.3s on the same row-filter job. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · antoniocoppe · `TS` · call site [`demos/proof/row-filter/run.ts`](https://github.com/AntonioCoppe/jev-harness/blob/HEAD/demos/proof/row-filter/run.ts), read 2026-09-22</sub>

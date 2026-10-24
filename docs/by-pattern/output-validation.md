@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 136 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 133 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 131 · wire shape 1 · example only 0 · independent reports 11 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 128 · wire shape 1 · example only 0 · independent reports 11 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -70,9 +70,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-review](https://github.com/NiazMorshed2007/jev-review)** — A local-first MCP plugin for continuous code-quality review by coding agents.
   <sub>`Plugin` · ★100+ · niazmorshed2007 · `TS` · call site [`src/jev/client.ts`](https://github.com/NiazMorshed2007/jev-review/blob/HEAD/src/jev/client.ts), read 2026-09-22</sub>
-
-- **[JevRev](https://github.com/Alex314618-create/JevRev)** — The decision layer beside an LLM: Jev filters plans, checks progress and keeps attention on work worth continuing, while the LLM supplies breadth and implementation.
-  <sub>`Project` · ★100+ · alex314618-create · `TS` · call site [`src/cli.ts`](https://github.com/Alex314618-create/JevRev/blob/HEAD/src/cli.ts), read 2026-09-24</sub>
 
 - **[perch: semantic code linting](https://github.com/lakeday-org/perch)** — Tree-sitter finds and ranks methods, then user-authored YAML rules compile into nouls, with severity read as the rubric's expected value rather than the top band.
   <sub>`Project` · ★100+ · `JS` · `choice` · `score` · `noul` · call site [`src/cli.js`](https://github.com/lakeday-org/perch/blob/HEAD/src/cli.js), read 2026-09-22</sub>
@@ -215,9 +212,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[clear-head](https://github.com/VladyslavHontar/clear-head)** — Claude Code Stop hook that checks an AI assistant's claims against what it actually read this session, using TypeSafe's Jev as the judge <sub>(upstream description)</sub>
   <sub>`Plugin` · vladyslavhontar · `Py` · call site [`stop_verify.py`](https://github.com/VladyslavHontar/clear-head/blob/HEAD/stop_verify.py), read 2026-09-22</sub>
 
-- **[datajev](https://github.com/zzz1YAO/DataJev)** — ⚡ DataJev LLM → Analyze Jev → Continue / Switch / Verify / Stop System-1 control for System-2 data agents <sub>(upstream description)</sub>
-  <sub>`Project` · zzz1yao · `Py` · call site [`datajev/controllers/jev.py`](https://github.com/zzz1YAO/DataJev/blob/HEAD/datajev/controllers/jev.py), read 2026-09-22</sub>
-
 - **[diffjury](https://github.com/raihankhan-rk/diffjury)** — DiffJury — TypeSafe Jev PR risk router + code review coach <sub>(upstream description)</sub>
   <sub>`Project` · raihankhan-rk · `TS` · call site [`src/lib/review.ts`](https://github.com/raihankhan-rk/diffjury/blob/HEAD/src/lib/review.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
@@ -319,9 +313,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-rust-review](https://github.com/kindintelligence/jev-rust-review)** — Rust-aware code review for Claude Code and coding agents, powered by TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · kindintelligence · `Rs` · call site [`src/jev.rs`](https://github.com/kindintelligence/jev-rust-review/blob/HEAD/src/jev.rs), read 2026-09-22</sub>
-
-- **[jev-scout](https://github.com/AkashPriyadarshii/jev-scout)** — Zero-hallucination open-source repo and crate scout powered by TypeSafe AI Jev System One scoring <sub>(upstream description)</sub>
-  <sub>`Project` · akashpriyadarshii · `Rs` · call site [`src/jev.rs`](https://github.com/AkashPriyadarshii/jev-scout/blob/HEAD/src/jev.rs), read 2026-09-22</sub>
 
 - **[jev-shadcn-lint-eval](https://github.com/blas0/jev-shadcn-lint-eval)** — A small second eval for shadcn-ui/lint that uses TypeSafe's Jev to judge the linter's own output. <sub>(upstream description)</sub>
   <sub>`Project` · blas0 · `JS` · call site [`run-rule-cases.mjs`](https://github.com/blas0/jev-shadcn-lint-eval/blob/HEAD/run-rule-cases.mjs), read 2026-09-22</sub>

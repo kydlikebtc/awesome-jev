@@ -93,7 +93,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[neo4jev](https://github.com/jexp/neo4jev)** — 把 Jev 塞进知识图谱。每走到一个节点，判断下一条最值得走的边，再一路找下去。
   <sub>`开源项目` · ★100+ · `Py` · `choice` · 调用点 [`src/neo4jev/navigator.py`](https://github.com/jexp/neo4jev/blob/HEAD/src/neo4jev/navigator.py)，2026-09-22 阅读</sub>
 
-- **[neurolink](https://github.com/juspay/neurolink)** — 用一套 TypeScript 接口对接 40 家 AI 供应商，覆盖生成、流式与决策三种推理形态。 <sub>(机翻)</sub>
+- **[neurolink](https://github.com/juspay/neurolink)** — 用一套 TypeScript 接口对接多家 AI 供应商，覆盖生成、流式与决策三种推理形态；决策由 TypeSafe Jev 或开源权重的 Laya 返回类型化、经过校准的判断，而非文本。 <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · juspay · `TS` · 调用点 [`src/lib/providers/typesafe.ts`](https://github.com/juspay/neurolink/blob/HEAD/src/lib/providers/typesafe.ts)，2026-09-22 阅读</sub>
 
 - **[skillranker](https://github.com/Dicklesworthstone/skillranker)** — 用当前会话上下文给智能体的技能排序以决定下一步，带 Claude Code hook。
@@ -110,9 +110,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[hermes-jev](https://github.com/keeltrace/hermes-nerve)** — 类型化的 System One 决策、排序、校验，以及可选启用的 Hermes 工具闸门。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · keeltrace · `Py` · 调用点 [`hermes_nerve/client.py`](https://github.com/keeltrace/hermes-nerve/blob/HEAD/hermes_nerve/client.py)，2026-09-22 阅读</sub>
-
-- **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — 面向 AI 智能体的决策层：约 400 毫秒、两百分之一美分的类型化校准决策，用于拦截工具调用。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10+ · eugeniughelbur · `Py` · 调用点 [`build/lib/jev_gate.py`](https://github.com/eugeniughelbur/jev-engineering/blob/HEAD/build/lib/jev_gate.py)，2026-09-22 阅读</sub>
 
 - **[jev-rag-benchmark](https://github.com/erendikmenn/jev-rag-benchmark)** — 可复现的基准：衡量 Jev 在 RAG 里的重排质量、延迟与成本。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ★10+ · erendikmenn · `Py` · 调用点 [`src/jev_rag_benchmark/rerankers.py`](https://github.com/erendikmenn/jev-rag-benchmark/blob/HEAD/src/jev_rag_benchmark/rerankers.py)，2026-09-22 阅读 · 作者结论：有利（作者自述，未经本仓库复现）</sub>
@@ -167,6 +164,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[every](https://github.com/sufianetaouil/every)** — 对代码库里每一个函数问一个是非问题，几秒内得到排序结果 —— 模式本身是一个问题的 grep。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · sufianetaouil · `Py` · 调用点 [`reference/probe_jev.py`](https://github.com/sufianetaouil/every/blob/HEAD/reference/probe_jev.py)，2026-09-22 阅读</sub>
+
+- **[Jev RAG](https://github.com/aifabrice/jev-rag)** — 用 SQLite FTS5/BM25 索引本地文档，再对每个候选文段询问一个 Jev Noul，按返回的相关性概率重排，并可选生成带引用的回答。
+  <sub>`开源项目` · aifabrice · `Py` · `noul` · 调用点 [`local_kb.py`](https://github.com/aifabrice/jev-rag/blob/HEAD/local_kb.py)，2026-09-26 阅读 · ⚠ `需第三方密钥` `疑似 AI 生成` `作者自荐`</sub>
 
 - **[jev-assist](https://github.com/glud123/jev-assist)** — 别让昂贵的主模型干「grep 加猜」的粗活 —— 让 Jev 先把整个仓库排一遍序。 <sub>(机翻)</sub>
   <sub>`开源项目` · glud123 · `JS` · 调用点 [`scripts/jev.mjs`](https://github.com/glud123/jev-assist/blob/HEAD/scripts/jev.mjs)，2026-09-22 阅读</sub>

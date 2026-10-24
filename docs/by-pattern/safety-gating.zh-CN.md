@@ -4,11 +4,11 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 142 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 139 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#safety-gating)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#safety-gating)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 136 · 接口形态 2 · 仅示例 0 · 独立报告 11 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 133 · 接口形态 2 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -121,6 +121,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-dspy-lab](https://github.com/jmanhype/jev-dspy-lab)** — 在 DSPy 工作流中对 Jev 决策做可复现的校准与选择性风险基准。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ★10+ · jmanhype · `Py` · 调用点 [`src/jev_dspy_lab/live.py`](https://github.com/jmanhype/jev-dspy-lab/blob/HEAD/src/jev_dspy_lab/live.py)，2026-09-22 阅读</sub>
+
+- **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — Claude Code 的 PreToolUse 门禁：先用正则硬规则和只读白名单，再用一个 Noul 和一个 Choice 判定放行、询问或拒绝，明确安全的命令无需权限确认。附 Codex、Cursor、OpenCode 适配和 review-router GitHub Action。 <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · eugeniughelbur · `Py` · `noul` · `choice` · 调用点 [`jev_gate.py`](https://github.com/eugeniughelbur/jev-engineering/blob/HEAD/jev_gate.py)，2026-09-28 阅读 · ⚠ `作者自荐`</sub>
 
 - **[jev-guard](https://github.com/klauswg/jev-guard)** — 面向交易所充值与提现的实时风险分诊网关——Jev（TypeSafe System One）只负责分诊，裁决另有机制。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · klauswg · `Java` · 调用点 [`src/main/java/com/jevguard/eval/EvalRunner.java`](https://github.com/klauswg/jev-guard/blob/HEAD/src/main/java/com/jevguard/eval/EvalRunner.java)，2026-09-24 阅读</sub>
@@ -272,9 +275,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-gates](https://github.com/rashedInt32/jev-gates)** — 给 Claude Code 的六道校准闸门：规则、范围、意图、完成度等。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · rashedint32 · `JS` · 调用点 [`lib/jev.mjs`](https://github.com/rashedInt32/jev-gates/blob/HEAD/lib/jev.mjs)，2026-09-22 阅读</sub>
 
-- **[jev-git](https://github.com/AkashPriyadarshii/jev-git)** — 亚秒级的 Git pre-commit / pre-push 语义反射闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · akashpriyadarshii · `Rs` · 调用点 [`src/main.rs`](https://github.com/AkashPriyadarshii/jev-git/blob/HEAD/src/main.rs)，2026-09-22 阅读</sub>
-
 - **[jev-guard](https://github.com/ClemensSchartmueller/jev-guard)** — 面向 Claude Code、Codex CLI 与 Antigravity 的跨智能体安全关卡：拦截 shell 执行、文件写入和补丁，先做快速的本地边界检查，再让 Jev 判断影响范围、可逆性与破坏性。 <sub>(机翻)</sub>
   <sub>`插件` · clemensschartmueller · `Go` · 调用点 [`pkg/evaluator/typesafe.go`](https://github.com/ClemensSchartmueller/jev-guard/blob/HEAD/pkg/evaluator/typesafe.go)，2026-09-24 阅读</sub>
 
@@ -307,9 +307,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-resilience](https://github.com/Vicente-MD/jev-resilience)** — 给 Spring WebFlux 的非阻塞 Starter，实现一个语义熔断器来检测静默故障。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · vicente-md · `Java` · 调用点 [`src/main/java/ai/jev/resilience/client/dto/JevRequest.java`](https://github.com/Vicente-MD/jev-resilience/blob/HEAD/src/main/java/ai/jev/resilience/client/dto/JevRequest.java)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
-
-- **[jev-screen-mcp](https://github.com/jiawei686/jev-screen-mcp)** — 单一用途的 MCP 服务器（一个工具，一件事）：由 TypeSafe Jev 驱动的内容审核关卡。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · jiawei686 · `TS` · 调用点 [`src/jev.ts`](https://github.com/jiawei686/jev-screen-mcp/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>
 
 - **[jev-secret-detection](https://github.com/teyhouse/jev-secret-detection)** — 衡量 Jev 在文件片段中识别真实密钥凭据的能力。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · teyhouse · `Py` · 调用点 [`main.py`](https://github.com/teyhouse/jev-secret-detection/blob/HEAD/main.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
@@ -404,9 +401,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[progressgate](https://github.com/AshutoshVJTI/progressgate)** — 检测 AI 智能体循环中的语义停滞。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ashutoshvjti · `TS` · 调用点 [`experiments/jev-client.ts`](https://github.com/AshutoshVJTI/progressgate/blob/HEAD/experiments/jev-client.ts)，2026-09-22 阅读</sub>
 
-- **[rh-guard](https://github.com/24601/rh-guard)** — 给编程智能体的奖励作弊雷达：结构化拒绝加 System One 旁路。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · 24601 · `TS` · 调用点 [`src/lib/risk/jev.ts`](https://github.com/24601/rh-guard/blob/HEAD/src/lib/risk/jev.ts)，2026-09-22 阅读</sub>
-
 - **[s1s](https://github.com/cpaczek/s1s)** — System One 搜索：用类型化判断与仓库证据导航与追踪代码。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · cpaczek · `TS` · 调用点 [`src/client.ts`](https://github.com/cpaczek/s1s/blob/HEAD/src/client.ts)，2026-09-22 阅读</sub>
 
@@ -451,9 +445,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[zcode-jev](https://github.com/Zahrannnn/zcode-jev)** — 给编程智能体的类型化判断层：从需求文档到发布的各道闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · zahrannnn · `TS` · 调用点 [`src/backends/jev.ts`](https://github.com/Zahrannnn/zcode-jev/blob/HEAD/src/backends/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
-
-- **[zerosweep](https://github.com/sysadarsh/zerosweep)** — 自主的 System-One 分拣引擎与基准，75 毫秒推理。 <sub>(机翻)</sub>
-  <sub>`基准测试` · sysadarsh · `TS` · 调用点 [`src/lib/typesafe.ts`](https://github.com/sysadarsh/zerosweep/blob/HEAD/src/lib/typesafe.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
 ---
 

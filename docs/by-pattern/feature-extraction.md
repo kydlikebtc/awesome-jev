@@ -4,11 +4,11 @@
 
 _Turn free text into numeric features for a classical downstream model._
 
-Every catalogued example of this decision — 8 of them. The same rows, with caveats, are in [the index](../../README.md#ml-feature-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=feature-extraction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 7 of them. The same rows, with caveats, are in [the index](../../README.md#ml-feature-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=feature-extraction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#feature-extraction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 1 · call site 7 · wire shape 0 · example only 0 · independent reports 0 · negative results 0 · no file cited 1. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 1 · call site 6 · wire shape 0 · example only 0 · independent reports 0 · negative results 0 · no file cited 1. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -34,9 +34,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-align](https://github.com/sutro-sh/jev-align)** — Builds calibrated decision functions from human feedback.
   <sub>`Project` · ★100+ · sutro-sh · `Py` · call site [`src/jev_align/jev.py`](https://github.com/sutro-sh/jev-align/blob/HEAD/src/jev_align/jev.py), read 2026-09-22</sub>
-
-- **[jev-curate](https://github.com/AkashPriyadarshii/jev-curate)** — Curates training data: JSONL and Parquet rows are judged on quality, relevance and risk before deciding what reaches downstream training.
-  <sub>`Project` · ★100+ · `Rs` · `score` · `noul` · call site [`src/client.rs`](https://github.com/AkashPriyadarshii/jev-curate/blob/HEAD/src/client.rs), read 2026-09-22</sub>
 
 - **[Prism](https://github.com/irfndi/prism-liquidity-agent)** — Does not place orders. It judges market conditions such as toxic flow and mean reversion, and hands the assessment to the existing strategy.
   <sub>`Project` · ★100+ · `TS` · `choice` · `score` · call site [`engine/jev-service.ts`](https://github.com/irfndi/prism-liquidity-agent/blob/HEAD/engine/jev-service.ts), read 2026-09-22</sub>

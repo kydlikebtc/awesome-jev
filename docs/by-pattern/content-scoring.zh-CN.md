@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 166 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 162 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 157 · 接口形态 5 · 仅示例 0 · 独立报告 9 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 153 · 接口形态 5 · 仅示例 0 · 独立报告 9 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -56,9 +56,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-as-a-judge](https://github.com/danielgshea/jev-as-a-judge)** — 把 Jev 当作评估器使用。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · danielgshea · `Py` · 调用点 [`src/evals/judges/__init__.py`](https://github.com/danielgshea/jev-as-a-judge/blob/HEAD/src/evals/judges/__init__.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
-- **[jev-curate](https://github.com/AkashPriyadarshii/jev-curate)** — 拿 Jev 筛训练数据。JSONL / Parquet 先做质量、相关性和风险判断，再决定哪些进后面的训练。
-  <sub>`开源项目` · ★100+ · `Rs` · `score` · `noul` · 调用点 [`src/client.rs`](https://github.com/AkashPriyadarshii/jev-curate/blob/HEAD/src/client.rs)，2026-09-22 阅读</sub>
-
 - **[jev-forge](https://github.com/zwliJay/jev-forge)** — 面向 Jev 式决策模型的开源训练与推理栈。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★100+ · zwlijay · `Py` · 引用文件 [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
 
@@ -86,7 +83,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[llm2jev](https://github.com/Yinsongxu/LLM2Jev)** — 把本地语言模型改造成 Jev 兼容的结构化决策引擎，输出 Choice、Score、Noul。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · yinsongxu · `Py` · 调用点 [`src/llm2jev/server/sglang_server.py`](https://github.com/Yinsongxu/LLM2Jev/blob/HEAD/src/llm2jev/server/sglang_server.py)，2026-09-24 阅读</sub>
 
-- **[neurolink](https://github.com/juspay/neurolink)** — 用一套 TypeScript 接口对接 40 家 AI 供应商，覆盖生成、流式与决策三种推理形态。 <sub>(机翻)</sub>
+- **[neurolink](https://github.com/juspay/neurolink)** — 用一套 TypeScript 接口对接多家 AI 供应商，覆盖生成、流式与决策三种推理形态；决策由 TypeSafe Jev 或开源权重的 Laya 返回类型化、经过校准的判断，而非文本。 <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · juspay · `TS` · 调用点 [`src/lib/providers/typesafe.ts`](https://github.com/juspay/neurolink/blob/HEAD/src/lib/providers/typesafe.ts)，2026-09-22 阅读</sub>
 
 - **[perch: semantic code linting](https://github.com/lakeday-org/perch)** — 先用 tree-sitter 找出并排序方法，再把用户自写的 YAML 规则编译成 noul；严重度取评分量表的期望值，而不是概率最高的那一档。
@@ -130,9 +127,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-rs](https://github.com/yijunyu/jev-rs)** — 用一次 prefill 从任意 LLM 得到 System One 判断的 Rust 兼容服务。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · yijunyu · `Rs` · 调用点 [`src/backend/typesafe.rs`](https://github.com/yijunyu/jev-rs/blob/HEAD/src/backend/typesafe.rs)，2026-09-22 阅读</sub>
-
-- **[jev-superpowers](https://github.com/AkashPriyadarshii/jev-superpowers)** — 面向 AI 编程智能体的系统化开发框架，接入了 Jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10+ · akashpriyadarshii · `TS` · 调用点 [`scripts/serve-laya.py`](https://github.com/AkashPriyadarshii/jev-superpowers/blob/HEAD/scripts/serve-laya.py)，2026-09-22 阅读</sub>
 
 - **[jev-test-filter](https://github.com/mizchi/jev-test-filter)** — 用 Jev 给每个测试相对 git diff 打分，并产出测试框架所需的过滤参数。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · mizchi · `TS` · 调用点 [`src/jev.ts`](https://github.com/mizchi/jev-test-filter/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
@@ -356,9 +350,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-score](https://github.com/a-Fig/jev-score)** — 由 Jev 驱动的本地优先文档评估工作区。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · a-fig · `JS` · 调用点 [`src/jev.mjs`](https://github.com/a-Fig/jev-score/blob/HEAD/src/jev.mjs)，2026-09-22 阅读</sub>
 
-- **[jev-scout](https://github.com/AkashPriyadarshii/jev-scout)** — 由 Jev 打分驱动的开源仓库与 crate 侦察工具。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · akashpriyadarshii · `Rs` · 调用点 [`src/jev.rs`](https://github.com/AkashPriyadarshii/jev-scout/blob/HEAD/src/jev.rs)，2026-09-22 阅读</sub>
-
 - **[jev-seo](https://github.com/DeployMates/jev-seo)** — 审计企业网站的 SEO 与 AI 搜索引擎可见性。确定性爬虫先测量每个页面，然后用一次请求把一批狭窄的类型化问题发给 Jev，答案以概率形式呈现在看板上。 <sub>(机翻)</sub>
   <sub>`开源项目` · vakandi · `TS` · `choice` · `score` · `noul` · 调用点 [`server/src/jevClient.ts`](https://github.com/DeployMates/jev-seo/blob/HEAD/server/src/jevClient.ts)，2026-09-30 阅读 · ⚠ `代码未实测` `无许可证` `疑似 AI 生成` `作者自荐`</sub>
 
@@ -502,9 +493,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[typesafe-local](https://github.com/aabolfazl/typesafe-local)** — 受 TypeSafe 启发：向本地 LLM 提类型化问题，拿到校准概率。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · aabolfazl · `Py` · 调用点 [`ots/server.py`](https://github.com/aabolfazl/typesafe-local/blob/HEAD/ots/server.py)，2026-09-22 阅读</sub>
-
-- **[typesafe-oracles](https://github.com/trophee-bot/typesafe-oracles)** — 评估 System One 三原语：类型化的裁决在哪些场景胜过生成式模型。 <sub>(机翻)</sub>
-  <sub>`开源项目` · trophee-bot · `JS` · 调用点 [`probes/run-arms.mjs`](https://github.com/trophee-bot/typesafe-oracles/blob/HEAD/probes/run-arms.mjs)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
 - **[typesafe-showcase](https://github.com/Ashadeepa/typesafe-showcase)** — 展示 Jev 的 Next.js 界面：并行 Noul 判断与实时结果。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ashadeepa · `TS` · 调用点 [`lib/typesafe-client.ts`](https://github.com/Ashadeepa/typesafe-showcase/blob/HEAD/lib/typesafe-client.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

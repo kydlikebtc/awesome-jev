@@ -16,12 +16,12 @@ list by list below.
 <!-- sources:start -->
 | Source | URL | Rows |
 | --- | --- | --- |
-| Sibling directories linking the row's repository (one `owner/name` item per list, read weekly) | [each list, below](#sibling-directories-linking-catalogued-repositories) | 1134 |
-| sibling-list aggregate (docs/sibling-lists.txt) | <https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt> | 1053 |
+| Sibling directories linking the row's repository (one `owner/name` item per list, read weekly) | [each list, below](#sibling-directories-linking-catalogued-repositories) | 1122 |
+| sibling-list aggregate (docs/sibling-lists.txt) | <https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt> | 1042 |
 | GitHub code search | <https://github.com/search> | 51 |
 | TypeSafe AI docs index | <https://docs.typesafe.ai/llms.txt> | 36 |
-| maintainer submission | <https://github.com/kydlikebtc/awesome-jev> | 21 |
-| author submission | various | 18 |
+| author submission | various | 21 |
+| maintainer submission | <https://github.com/kydlikebtc/awesome-jev> | 20 |
 | web search | various | 12 |
 | Hacker News | various | 5 |
 | jevai.org community site | <https://www.jevai.org/> | 5 |
@@ -70,35 +70,35 @@ same README under each, and it is counted once, under the name listed first.
 <!-- citations:start -->
 | Sibling directory | Catalogued rows whose repository its README links |
 | --- | --- |
-| [Omrigotlieb/awesome-jev](https://github.com/Omrigotlieb/awesome-jev) | 810 |
+| [Omrigotlieb/awesome-jev](https://github.com/Omrigotlieb/awesome-jev) | 801 |
 | [hellogumbo/awesome-jev](https://github.com/hellogumbo/awesome-jev) | 744 |
 | [daftAI2026/awesome-jev](https://github.com/daftAI2026/awesome-jev) | 681 |
-| [heyjunpenn/awesome-jev](https://github.com/heyjunpenn/awesome-jev) | 658 |
-| [logicrw/awesome-jev-projects](https://github.com/logicrw/awesome-jev-projects) | 490 |
+| [heyjunpenn/awesome-jev](https://github.com/heyjunpenn/awesome-jev) | 651 |
+| [logicrw/awesome-jev-projects](https://github.com/logicrw/awesome-jev-projects) | 482 |
 | [RadRebelSam/awesome-jev](https://github.com/RadRebelSam/awesome-jev) | 456 |
-| [AppitStudio/awesome-jev](https://github.com/AppitStudio/awesome-jev) | 354 |
+| [AppitStudio/awesome-jev](https://github.com/AppitStudio/awesome-jev) | 353 |
 | [MrJev/awesome-jev](https://github.com/MrJev/awesome-jev) | 318 |
-| [yibie/awesome-jev](https://github.com/yibie/awesome-jev) | 285 |
-| [valentynkit/awesome-jev-typesafe](https://github.com/valentynkit/awesome-jev-typesafe) | 259 |
-| [jqueryscript/awesome-jev](https://github.com/jqueryscript/awesome-jev) | 230 |
+| [yibie/awesome-jev](https://github.com/yibie/awesome-jev) | 278 |
+| [valentynkit/awesome-jev-typesafe](https://github.com/valentynkit/awesome-jev-typesafe) | 256 |
+| [jqueryscript/awesome-jev](https://github.com/jqueryscript/awesome-jev) | 226 |
 | [wh000wh000/awesome-jev-live](https://github.com/wh000wh000/awesome-jev-live) | 214 |
-| [JohnDotOwl/awesome-jev](https://github.com/JohnDotOwl/awesome-jev) | 185 |
-| [cobanov/awesome-jev](https://github.com/cobanov/awesome-jev) | 183 |
+| [JohnDotOwl/awesome-jev](https://github.com/JohnDotOwl/awesome-jev) | 184 |
+| [cobanov/awesome-jev](https://github.com/cobanov/awesome-jev) | 182 |
 | [AbdelStark/awesome-typesafe-jev](https://github.com/AbdelStark/awesome-typesafe-jev) | 180 |
 | [robokrunch/awesome-jev](https://github.com/robokrunch/awesome-jev) | 171 |
-| [BeatAPI/awesome-jev](https://github.com/BeatAPI/awesome-jev) | 166 |
+| [BeatAPI/awesome-jev](https://github.com/BeatAPI/awesome-jev) | 164 |
 | [AnotiaWang/awesome-jev](https://github.com/AnotiaWang/awesome-jev) | 160 |
 | [fatwang2/awesome-jev](https://github.com/fatwang2/awesome-jev) | 150 |
-| [walidboulanouar/awesome-jev-use-cases](https://github.com/walidboulanouar/awesome-jev-use-cases) | 149 |
-| [tanxarx/awesome-jev](https://github.com/tanxarx/awesome-jev) | 144 |
-| [kraayenjon/awesome-jev](https://github.com/kraayenjon/awesome-jev) | 126 |
+| [walidboulanouar/awesome-jev-use-cases](https://github.com/walidboulanouar/awesome-jev-use-cases) | 144 |
+| [tanxarx/awesome-jev](https://github.com/tanxarx/awesome-jev) | 142 |
 | [yzfly/awesome-jev-zh](https://github.com/yzfly/awesome-jev-zh) | 126 |
-| [Gerry9000/awesome-jev](https://github.com/Gerry9000/awesome-jev) | 120 |
+| [kraayenjon/awesome-jev](https://github.com/kraayenjon/awesome-jev) | 125 |
+| [Gerry9000/awesome-jev](https://github.com/Gerry9000/awesome-jev) | 118 |
 | [Eurekaleo/awesome-jev-survey](https://github.com/Eurekaleo/awesome-jev-survey) | 90 |
 | [jtnkminimal/awesome-jev](https://github.com/jtnkminimal/awesome-jev) | 87 |
-| [Anil-matcha/awesome-jev-by-typesafe](https://github.com/Anil-matcha/awesome-jev-by-typesafe) | 85 |
 | [OmniJev/awesome-jev-gallery](https://github.com/OmniJev/awesome-jev-gallery) | 82 |
-| [sontakey/awesome-jev](https://github.com/sontakey/awesome-jev) | 78 |
+| [Anil-matcha/awesome-jev-by-typesafe](https://github.com/Anil-matcha/awesome-jev-by-typesafe) | 80 |
+| [sontakey/awesome-jev](https://github.com/sontakey/awesome-jev) | 77 |
 | [onlyoasis/awesome-jev-cases](https://github.com/onlyoasis/awesome-jev-cases) | 73 |
 | [charetterat/awesome-jev-essentials](https://github.com/charetterat/awesome-jev-essentials) | 72 |
 | [anandi1989/awesome-jev-usecases](https://github.com/anandi1989/awesome-jev-usecases) | 67 |
@@ -136,9 +136,9 @@ repository established.
 | `docs/`, `README*.md`                     | CC0-1.0, quoted summaries aside (below)                   |
 
 <!-- row-licences:start -->
-863 of the 1222 summaries in `catalog.json` are the linked project's own GitHub description, word for word apart from letter case, spacing and a final full stop (`summary_source: upstream-description`), and 28 more were taken from such a description and no longer match it (`upstream-description-stale`). The projects' authors wrote those words and the copyright in them is theirs: this repository does not dedicate them under `CC0-1.0`. 891 of their Chinese counterparts are machine translations of them (`zh_machine`); the Chinese of such a row translates the project's words, and this repository does not dedicate it under `CC0-1.0` either. The READMEs, the pattern pages and the site mark each such summary *(upstream description)* or *(earlier upstream description)*.
+856 of the 1212 summaries in `catalog.json` are the linked project's own GitHub description, word for word apart from letter case, spacing and a final full stop (`summary_source: upstream-description`), and 28 more were taken from such a description and no longer match it (`upstream-description-stale`). The projects' authors wrote those words and the copyright in them is theirs: this repository does not dedicate them under `CC0-1.0`. 884 of their Chinese counterparts are machine translations of them (`zh_machine`); the Chinese of such a row translates the project's words, and this repository does not dedicate it under `CC0-1.0` either. The READMEs, the pattern pages and the site mark each such summary *(upstream description)* or *(earlier upstream description)*.
 
-10 summaries are marked `curated`: written for this catalogue. The other 321 carry no `summary_source`, so where their words come from is not recorded row by row.
+11 summaries are marked `curated`: written for this catalogue. The other 317 carry no `summary_source`, so where their words come from is not recorded row by row.
 
 Every row's `license` field is `CC0-1.0`. It covers the row's structured metadata (slug, kind, patterns, flags, dates, counts, evidence records and the rest) and any text written for this catalogue, not a summary labelled as the project's own description or the Chinese translation of one.
 <!-- row-licences:end -->
@@ -156,8 +156,8 @@ Declared licences across the catalog's linked repositories:
 <!-- licences:start -->
 | Licence | Repositories |
 | --- | --- |
-| MIT | 749 |
-| None declared | 194 |
+| MIT | 741 |
+| None declared | 191 |
 | Apache-2.0 | 135 |
 | NOASSERTION (non-standard terms) | 48 |
 | AGPL-3.0 | 7 |
@@ -169,7 +169,7 @@ Declared licences across the catalog's linked repositories:
 | LGPL-3.0 | 1 |
 <!-- licences:end -->
 
-In all, <!--n:no_licence-->194<!--/n--> linked projects declare no licence. If you
+In all, <!--n:no_licence-->191<!--/n--> linked projects declare no licence. If you
 plan to reuse code from one, that is a blocker, not a detail — check before you
 copy.
 

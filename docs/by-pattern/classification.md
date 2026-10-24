@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 120 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 118 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 110 · wire shape 1 · example only 0 · independent reports 12 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 108 · wire shape 1 · example only 0 · independent reports 11 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -289,9 +289,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-review-action](https://github.com/fatwang2/jev-review-action)** — Configurable GitHub submission review and PR classification with TypeSafe Jev. No text-generation model. <sub>(upstream description)</sub>
   <sub>`Project` · fatwang2 · `JS` · call site [`src/jev.mjs`](https://github.com/fatwang2/jev-review-action/blob/HEAD/src/jev.mjs), read 2026-09-22</sub>
 
-- **[jev-screen-mcp](https://github.com/jiawei686/jev-screen-mcp)** — Single-purpose MCP server (one tool, one job): a content-moderation gate powered by TypeSafe Jev (System One decision model). <sub>(upstream description)</sub>
-  <sub>`Plugin` · jiawei686 · `TS` · call site [`src/jev.ts`](https://github.com/jiawei686/jev-screen-mcp/blob/HEAD/src/jev.ts), read 2026-09-24</sub>
-
 - **[jev-secret-detection](https://github.com/teyhouse/jev-secret-detection)** — Measures how well TypeSafe's RLCD-Jev model spots real secret credentials in file snippets <sub>(upstream description)</sub>
   <sub>`Benchmark` · teyhouse · `Py` · call site [`main.py`](https://github.com/teyhouse/jev-secret-detection/blob/HEAD/main.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
@@ -372,9 +369,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[watfile](https://github.com/jexp/watfile)** — Text/PDF - File categorization and sorting with Typesafe AI Jev or local calibrated decision model <sub>(upstream description)</sub>
   <sub>`Project` · jexp · `Py` · call site [`src/watfile/classifier/jev.py`](https://github.com/jexp/watfile/blob/HEAD/src/watfile/classifier/jev.py), read 2026-09-22 · ⚠ `no licence`</sub>
-
-- **[zerosweep](https://github.com/sysadarsh/zerosweep)** — Autonomous System-One Triage Engine & Benchmark powered by TypeSafe AI (Jev). 75ms inference, $0 output tokens, and RLCD epistemic safety gates.
-  <sub>`Benchmark` · sysadarsh · `TS` · call site [`src/lib/typesafe.ts`](https://github.com/sysadarsh/zerosweep/blob/HEAD/src/lib/typesafe.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
 - **[Probing Jev's behaviour with repeated API calls](https://github.com/ahastudio/til)** — Independent Korean-language notes reporting that reversing the order of options shifted a probability enough to flip a 0.9 threshold.
   <sub>`Benchmark` · ★100+ · ⚠ `no licence` `unverified claims`</sub>

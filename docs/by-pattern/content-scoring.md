@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 166 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 162 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 157 · wire shape 5 · example only 0 · independent reports 9 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 153 · wire shape 5 · example only 0 · independent reports 9 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -56,9 +56,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-as-a-judge](https://github.com/danielgshea/jev-as-a-judge)** — Using Jev as an evaluator. <sub>(upstream description)</sub>
   <sub>`Project` · ★100+ · danielgshea · `Py` · call site [`src/evals/judges/__init__.py`](https://github.com/danielgshea/jev-as-a-judge/blob/HEAD/src/evals/judges/__init__.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
-- **[jev-curate](https://github.com/AkashPriyadarshii/jev-curate)** — Curates training data: JSONL and Parquet rows are judged on quality, relevance and risk before deciding what reaches downstream training.
-  <sub>`Project` · ★100+ · `Rs` · `score` · `noul` · call site [`src/client.rs`](https://github.com/AkashPriyadarshii/jev-curate/blob/HEAD/src/client.rs), read 2026-09-22</sub>
-
 - **[jev-forge](https://github.com/zwliJay/jev-forge)** — An open training and inference stack for Jev-style decision models. Train models to score dynamic candidate branches from a shared prefix, with support for high-cardinality choice, calibration, and fast batched inference. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · ★100+ · zwlijay · `Py` · cited file [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
 
@@ -86,7 +83,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[llm2jev](https://github.com/Yinsongxu/LLM2Jev)** — Adapt local language models into Jev-compatible structured decision engines with Choice, Score, and Noul outputs powered by prefill-only binary inference.
   <sub>`Project` · ★100+ · yinsongxu · `Py` · call site [`src/llm2jev/server/sglang_server.py`](https://github.com/Yinsongxu/LLM2Jev/blob/HEAD/src/llm2jev/server/sglang_server.py), read 2026-09-24</sub>
 
-- **[neurolink](https://github.com/juspay/neurolink)** — The pipe layer of an AI nervous system: one interface connecting provider neurons to an application, across three inference types — generate, stream, and decide. Decide returns typed, calibrated judgments (boolean/choice/score) via TypeSafe Jev, not text.
+- **[neurolink](https://github.com/juspay/neurolink)** — The pipe layer of an AI nervous system: one interface connecting provider neurons to an application, across three inference types — generate, stream, and decide. Decide returns typed, calibrated judgments (boolean/choice/score) via TypeSafe Jev or the open-weights Laya, not text.
   <sub>`Plugin` · ★100+ · juspay · `TS` · call site [`src/lib/providers/typesafe.ts`](https://github.com/juspay/neurolink/blob/HEAD/src/lib/providers/typesafe.ts), read 2026-09-22</sub>
 
 - **[perch: semantic code linting](https://github.com/lakeday-org/perch)** — Tree-sitter finds and ranks methods, then user-authored YAML rules compile into nouls, with severity read as the rubric's expected value rather than the top band.
@@ -130,9 +127,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-rs](https://github.com/yijunyu/jev-rs)** — System One judgments (noul/choice/score) from any LLM in one prefill — a Rust, Jev-compatible /v1/systemone engine <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · yijunyu · `Rs` · call site [`src/backend/typesafe.rs`](https://github.com/yijunyu/jev-rs/blob/HEAD/src/backend/typesafe.rs), read 2026-09-22</sub>
-
-- **[jev-superpowers](https://github.com/AkashPriyadarshii/jev-superpowers)** — Systematic software development framework for AI coding agents upgraded with TypeSafe Jev System One typed decisions <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · akashpriyadarshii · `TS` · call site [`scripts/serve-laya.py`](https://github.com/AkashPriyadarshii/jev-superpowers/blob/HEAD/scripts/serve-laya.py), read 2026-09-22</sub>
 
 - **[jev-test-filter](https://github.com/mizchi/jev-test-filter)** — Score every test against a git diff with Jev, and emit the filter arguments vitest, node:test, Playwright, cargo test and go test already understand <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · mizchi · `TS` · call site [`src/jev.ts`](https://github.com/mizchi/jev-test-filter/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
@@ -356,9 +350,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-score](https://github.com/a-Fig/jev-score)** — Local-first document evaluation workspaces powered by Jev <sub>(upstream description)</sub>
   <sub>`Project` · a-fig · `JS` · call site [`src/jev.mjs`](https://github.com/a-Fig/jev-score/blob/HEAD/src/jev.mjs), read 2026-09-22</sub>
 
-- **[jev-scout](https://github.com/AkashPriyadarshii/jev-scout)** — Zero-hallucination open-source repo and crate scout powered by TypeSafe AI Jev System One scoring <sub>(upstream description)</sub>
-  <sub>`Project` · akashpriyadarshii · `Rs` · call site [`src/jev.rs`](https://github.com/AkashPriyadarshii/jev-scout/blob/HEAD/src/jev.rs), read 2026-09-22</sub>
-
 - **[jev-seo](https://github.com/DeployMates/jev-seo)** — Audits a business website for SEO and AI-answer-engine visibility. A deterministic crawler measures each page, then one request sends Jev a batch of narrow typed questions about it, and the answers are surfaced as probabilities in a dashboard.
   <sub>`Project` · vakandi · `TS` · `choice` · `score` · `noul` · call site [`server/src/jevClient.ts`](https://github.com/DeployMates/jev-seo/blob/HEAD/server/src/jevClient.ts), read 2026-09-30 · ⚠ `code untested` `no licence` `AI-written` `self-submitted`</sub>
 
@@ -502,9 +493,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[typesafe-local](https://github.com/aabolfazl/typesafe-local)** — Inspired by TypeSafe Ai, Ask a local LLM typed questions, get calibrated probabilities instead of text. Structured output without generation or parsing. MLX / Apple Silicon. <sub>(upstream description)</sub>
   <sub>`Project` · aabolfazl · `Py` · call site [`ots/server.py`](https://github.com/aabolfazl/typesafe-local/blob/HEAD/ots/server.py), read 2026-09-22</sub>
-
-- **[typesafe-oracles](https://github.com/trophee-bot/typesafe-oracles)** — Evaluating TypeSafe's System One primitives (Choice/Score/Noul) — where a typed oracle beats an LLM call
-  <sub>`Project` · trophee-bot · `JS` · call site [`probes/run-arms.mjs`](https://github.com/trophee-bot/typesafe-oracles/blob/HEAD/probes/run-arms.mjs), read 2026-09-22 · ⚠ `no licence`</sub>
 
 - **[typesafe-showcase](https://github.com/Ashadeepa/typesafe-showcase)** — Next.js UI showing off TypeSafe's System One model (Jev) — parallel Noul judgments and a Choice-based citation checker, deployable to Vercel <sub>(upstream description)</sub>
   <sub>`Project` · ashadeepa · `TS` · call site [`lib/typesafe-client.ts`](https://github.com/Ashadeepa/typesafe-showcase/blob/HEAD/lib/typesafe-client.ts), read 2026-09-22 · ⚠ `no licence`</sub>

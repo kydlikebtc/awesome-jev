@@ -4,11 +4,11 @@
 
 _在输出到达用户前，按评分标准检查模型产出。_
 
-这个决策的全部已收录例子 —— 共 136 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 133 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#output-validation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#output-validation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 131 · 接口形态 1 · 仅示例 0 · 独立报告 11 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 128 · 接口形态 1 · 仅示例 0 · 独立报告 11 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -70,9 +70,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-review](https://github.com/NiazMorshed2007/jev-review)** — 一个本地优先的 MCP 插件，供编程智能体做持续的代码质量审查。
   <sub>`插件` · ★100+ · niazmorshed2007 · `TS` · 调用点 [`src/jev/client.ts`](https://github.com/NiazMorshed2007/jev-review/blob/HEAD/src/jev/client.ts)，2026-09-22 阅读</sub>
-
-- **[JevRev](https://github.com/Alex314618-create/JevRev)** — LLM 身边的决策层：Jev 负责筛选方案、检查进度，把注意力留在值得继续的工作上；LLM 负责广度和具体实现。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★100+ · alex314618-create · `TS` · 调用点 [`src/cli.ts`](https://github.com/Alex314618-create/JevRev/blob/HEAD/src/cli.ts)，2026-09-24 阅读</sub>
 
 - **[perch: semantic code linting](https://github.com/lakeday-org/perch)** — 先用 tree-sitter 找出并排序方法，再把用户自写的 YAML 规则编译成 noul；严重度取评分量表的期望值，而不是概率最高的那一档。
   <sub>`开源项目` · ★100+ · `JS` · `choice` · `score` · `noul` · 调用点 [`src/cli.js`](https://github.com/lakeday-org/perch/blob/HEAD/src/cli.js)，2026-09-22 阅读</sub>
@@ -215,9 +212,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[clear-head](https://github.com/VladyslavHontar/clear-head)** — Claude Code Stop 钩子：核对 AI 助手的声明与它这轮实际读过的内容是否相符。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · vladyslavhontar · `Py` · 调用点 [`stop_verify.py`](https://github.com/VladyslavHontar/clear-head/blob/HEAD/stop_verify.py)，2026-09-22 阅读</sub>
 
-- **[datajev](https://github.com/zzz1YAO/DataJev)** — 用 System-1 控制 System-2：继续／切换／校验／停止。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · zzz1yao · `Py` · 调用点 [`datajev/controllers/jev.py`](https://github.com/zzz1YAO/DataJev/blob/HEAD/datajev/controllers/jev.py)，2026-09-22 阅读</sub>
-
 - **[diffjury](https://github.com/raihankhan-rk/diffjury)** — PR 风险路由器兼代码审查教练。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · raihankhan-rk · `TS` · 调用点 [`src/lib/review.ts`](https://github.com/raihankhan-rk/diffjury/blob/HEAD/src/lib/review.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
@@ -319,9 +313,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-rust-review](https://github.com/kindintelligence/jev-rust-review)** — 给 Claude Code 与编程智能体的 Rust 感知代码审查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · kindintelligence · `Rs` · 调用点 [`src/jev.rs`](https://github.com/kindintelligence/jev-rust-review/blob/HEAD/src/jev.rs)，2026-09-22 阅读</sub>
-
-- **[jev-scout](https://github.com/AkashPriyadarshii/jev-scout)** — 由 Jev 打分驱动的开源仓库与 crate 侦察工具。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · akashpriyadarshii · `Rs` · 调用点 [`src/jev.rs`](https://github.com/AkashPriyadarshii/jev-scout/blob/HEAD/src/jev.rs)，2026-09-22 阅读</sub>
 
 - **[jev-shadcn-lint-eval](https://github.com/blas0/jev-shadcn-lint-eval)** — 给某 lint 工具做的二次评估：用 Jev 评判 linter 的判断。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · blas0 · `JS` · 调用点 [`run-rule-cases.mjs`](https://github.com/blas0/jev-shadcn-lint-eval/blob/HEAD/run-rule-cases.mjs)，2026-09-22 阅读</sub>

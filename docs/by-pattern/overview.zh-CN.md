@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 454 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 453 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 370 · 接口形态 46 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 38。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 368 · 接口形态 46 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 39。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -605,6 +605,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[AI model "Jev" to make machines decide faster](https://www.heise.de/en/news/AI-model-Jev-to-make-machines-decide-faster-11457071.html)** — 重点落在可解释性的缺失 —— 模型不给出语言层面的理由 —— 以及所有已公布基准都出自厂商自己。
   <sub>`文章` · Tomislav Bezmalinović</sub>
 
+- **[Decision Models](https://decisionmodels.io)** — 托管 API，接受 Jev 的 POST /v1/systemone 请求格式，用开源模型（s1-fast、s1-pro、quyet-1-large）回答 noul、choice 和 score 问题并返回概率；提供欧盟层级，输入每百万 token 起价 0.019 美元，输出免费。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · Florian Standhartinger · ⚠ `并非 Jev 本身` `作者自荐`</sub>
+
 - **[Hacker News: Introducing System One Models and Jev](https://news.ycombinator.com/item?id=49717558)** — 发布讨论帖，也是质疑最集中的地方：RLCD 缺乏支撑材料、延迟对比不对等、以及官方刻意不公开基准。
   <sub>`讨论`</sub>
 
@@ -648,7 +651,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ## 尚未按模式索引
 
-带代码的项目或插件，共 252 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
+带代码的项目或插件，共 250 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
 
 - **[typesafe-ai/skills](https://github.com/typesafe-ai/skills)** ⭐ — Claude Code 插件背后的官方技能仓库，里面的 SKILL.md 教会智能体如何使用 System One API。
   <sub>`插件` · ★1k+ · `sh`</sub>
@@ -865,9 +868,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-rules](https://github.com/EliaAlberti/jev-rules)** — 由 Jev 挑出哪些规则适用于当前提示，让模型只看到相关的那些。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · eliaalberti · `JS` · 调用点 [`plugins/jev-rules/hooks/lib/jev.mjs`](https://github.com/EliaAlberti/jev-rules/blob/HEAD/plugins/jev-rules/hooks/lib/jev.mjs)，2026-09-22 阅读</sub>
-
-- **[jev-seo](https://github.com/AkashPriyadarshii/jev-seo)** — 用 Rust 写的 agent 优先 SEO/GEO CLI 套件与 MCP server。 <sub>(机翻)</sub>
-  <sub>`插件` · ★10+ · akashpriyadarshii · `Rs` · 调用点 [`src/engine.rs`](https://github.com/AkashPriyadarshii/jev-seo/blob/HEAD/src/engine.rs)，2026-09-24 阅读</sub>
 
 - **[jev-skill-router](https://github.com/shimo4228/jev-skill-router)** — Claude Code 插件：询问 Jev 哪个已安装技能适配当前提示，并记录答案（先影子运行）。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · shimo4228 · `Py` · 调用点 [`scripts/jev_client.py`](https://github.com/shimo4228/jev-skill-router/blob/HEAD/scripts/jev_client.py)，2026-09-22 阅读 · ⚠ `实测后未采用`</sub>
@@ -1216,9 +1216,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-skills](https://github.com/laguagu/jev-skills)** — 用 Jev 构建应用的实用智能体技能与示例：API 配置、路由、排序与证据检查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · laguagu · `JS` · 调用点 [`examples/decisions/run.mjs`](https://github.com/laguagu/jev-skills/blob/HEAD/examples/decisions/run.mjs)，2026-09-24 阅读</sub>
-
-- **[jev-skills](https://github.com/WanLanglin/jev-skills)** — 由 TypeSafe System One 模型 Jev 驱动的 Claude Code 与 Codex 技能。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · wanlanglin · `Py` · 调用点 [`scripts/jev.py`](https://github.com/WanLanglin/jev-skills/blob/HEAD/scripts/jev.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
 
 - **[jev-snake](https://github.com/iammusham/jev-snake)** — 实验性贪吃蛇环境：游戏引擎掌管确定性规则，Jev 负责决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · iammusham · `Py` · 调用点 [`snake_game/jev_agent.py`](https://github.com/iammusham/jev-snake/blob/HEAD/snake_game/jev_agent.py)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>

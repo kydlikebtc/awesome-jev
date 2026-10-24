@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 454 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 453 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 370 · wire shape 46 · example only 0 · independent reports 23 · negative results 1 · no file cited 38. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 368 · wire shape 46 · example only 0 · independent reports 23 · negative results 1 · no file cited 39. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -605,6 +605,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[AI model "Jev" to make machines decide faster](https://www.heise.de/en/news/AI-model-Jev-to-make-machines-decide-faster-11457071.html)** — Focuses on the missing explainability — the model returns no reasoning in language — and on every published benchmark coming from the vendor.
   <sub>`Article` · Tomislav Bezmalinović</sub>
 
+- **[Decision Models](https://decisionmodels.io)** — Hosted API that takes Jev's POST /v1/systemone request shape and answers noul, choice and score questions with probabilities from open models (s1-fast, s1-pro, quyet-1-large); EU tier available, from $0.019 per 1M input tokens, output free.
+  <sub>`Jev-like alternative` · Florian Standhartinger · ⚠ `not Jev itself` `self-submitted`</sub>
+
 - **[Hacker News: Introducing System One Models and Jev](https://news.ycombinator.com/item?id=49717558)** — The launch thread, and the densest single collection of scepticism: unsupported RLCD claims, apples-to-oranges latency comparisons, and the deliberate absence of public benchmarks.
   <sub>`Discussion`</sub>
 
@@ -648,7 +651,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 252 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 250 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[typesafe-ai/skills](https://github.com/typesafe-ai/skills)** ⭐ — The official agent-skills repository behind the Claude Code plugin, holding the SKILL.md that teaches an agent the System One API.
   <sub>`Plugin` · ★1k+ · `sh`</sub>
@@ -865,9 +868,6 @@ Projects and plugins with code, 252 of them, whose only pattern is `overview` an
 
 - **[jev-rules](https://github.com/EliaAlberti/jev-rules)** — Jev picks which of your rules apply to each prompt, so Claude only sees the ones that matter. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · eliaalberti · `JS` · call site [`plugins/jev-rules/hooks/lib/jev.mjs`](https://github.com/EliaAlberti/jev-rules/blob/HEAD/plugins/jev-rules/hooks/lib/jev.mjs), read 2026-09-22</sub>
-
-- **[jev-seo](https://github.com/AkashPriyadarshii/jev-seo)** — 100% free ₹0 agent-first SEO & GEO CLI suite and MCP server in Rust replacing Semrush and OpenSEO via DuckDuckGo and TypeSafe Jev System One https://akashpriyadarshii.github.io/jev-seo/
-  <sub>`Plugin` · ★10+ · akashpriyadarshii · `Rs` · call site [`src/engine.rs`](https://github.com/AkashPriyadarshii/jev-seo/blob/HEAD/src/engine.rs), read 2026-09-24</sub>
 
 - **[jev-skill-router](https://github.com/shimo4228/jev-skill-router)** — Claude Code plugin: asks TypeSafe Jev which installed skill fits each prompt and logs the answer (shadow-first). A working reference for the skill-suggestion cookbook on Claude Code — the README records why it is unlikely to help a strong model as a router. <sub>(earlier upstream description)</sub>
   <sub>`Plugin` · ★10+ · shimo4228 · `Py` · call site [`scripts/jev_client.py`](https://github.com/shimo4228/jev-skill-router/blob/HEAD/scripts/jev_client.py), read 2026-09-22 · ⚠ `measured, not adopted`</sub>
@@ -1216,9 +1216,6 @@ Projects and plugins with code, 252 of them, whose only pattern is `overview` an
 
 - **[jev-skills](https://github.com/laguagu/jev-skills)** — Practical agent skills and examples for building with Jev. API setup, routing, ranking, and evidence checks. <sub>(upstream description)</sub>
   <sub>`Plugin` · laguagu · `JS` · call site [`examples/decisions/run.mjs`](https://github.com/laguagu/jev-skills/blob/HEAD/examples/decisions/run.mjs), read 2026-09-24</sub>
-
-- **[jev-skills](https://github.com/WanLanglin/jev-skills)** — Claude Code & Codex skills powered by Jev, TypeSafe's System One model. 256 calibrated judgements for $0.0005 in 0.72s — 360x cheaper than Claude Opus 5. Includes the first published Jev calibration curve, measured on 4,995 real agent decisions. <sub>(upstream description)</sub>
-  <sub>`Plugin` · wanlanglin · `Py` · call site [`scripts/jev.py`](https://github.com/WanLanglin/jev-skills/blob/HEAD/scripts/jev.py), read 2026-09-24 · ⚠ `no licence`</sub>
 
 - **[jev-snake](https://github.com/iammusham/jev-snake)** — An experimental Snake environment where the game engine owns deterministic rules and TypeSafe AI's Jev makes the movement decision from structured state on every tick. <sub>(upstream description)</sub>
   <sub>`Project` · iammusham · `Py` · call site [`snake_game/jev_agent.py`](https://github.com/iammusham/jev-snake/blob/HEAD/snake_game/jev_agent.py), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
