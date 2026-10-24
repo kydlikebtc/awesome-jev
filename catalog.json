@@ -1858,6 +1858,62 @@
     "link_status": 200
   },
   {
+    "slug": "aifabrice-jev-rag",
+    "title": "Jev RAG",
+    "summary": "Indexes local documents with SQLite FTS5/BM25, then asks one Jev Noul per candidate passage and sorts by the returned relevance probability before optionally generating a cited answer.",
+    "summary_zh": "用 SQLite FTS5/BM25 索引本地文档，再对每个候选文段询问一个 Jev Noul，按返回的相关性概率重排，并可选生成带引用的回答。",
+    "url": "https://github.com/aifabrice/jev-rag",
+    "kind": "project",
+    "patterns": [
+      "search-ranking"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "openrouter",
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "aifabrice",
+      "url": "https://github.com/aifabrice"
+    },
+    "repo": "https://github.com/aifabrice/jev-rag",
+    "has_code": true,
+    "official": false,
+    "stars": 2,
+    "repo_license": "MIT",
+    "flags": [
+      "third-party-api-key",
+      "ai-generated",
+      "self-submitted"
+    ],
+    "notes": "Jev is used for batched passage reranking, not first-stage retrieval. The default retrieval path is BM25; an optional hybrid mode adds OpenRouter embeddings and reciprocal-rank fusion. The project was built with Codex assistance and reviewed and tested by its maintainer. Its bundled four-question evaluation is a smoke test, not a general retrieval-quality benchmark.",
+    "notes_zh": "Jev 用于批量文段重排，而不是第一阶段召回。默认召回使用 BM25；可选混合模式会加入 OpenRouter Embedding 和倒数排名融合。项目由 Codex 辅助开发，并由维护者审阅和测试。内置的四题评估是冒烟测试，不是通用检索质量基准。",
+    "first_seen": "2026-09-26",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/21"
+      }
+    ],
+    "license": "CC0-1.0",
+    "checked": "2026-09-26",
+    "link_status": 200,
+    "evidence": {
+      "path": "local_kb.py",
+      "matched": [
+        "request_decision(",
+        "\"type\": \"noul\"",
+        "jev_score"
+      ],
+      "read_on": "2026-09-26"
+    }
+  },
+  {
     "slug": "aihubmix-jev-explained",
     "title": "Jev Explained: How to Add Fast, Typed Decisions to an AI Agent",
     "summary": "A third-party explainer with a useful architecture sketch and an unusually honest list of cases where you should not use a decision model.",
@@ -9353,6 +9409,39 @@
     ],
     "checked": "2026-10-21",
     "link_status": 200
+  },
+  {
+    "slug": "decision-models",
+    "title": "Decision Models",
+    "summary": "Hosted API that takes Jev's POST /v1/systemone request shape and answers noul, choice and score questions with probabilities from open models (s1-fast, s1-pro, quyet-1-large); EU tier available, from $0.019 per 1M input tokens, output free.",
+    "summary_source": "curated",
+    "summary_zh": "托管 API，接受 Jev 的 POST /v1/systemone 请求格式，用开源模型（s1-fast、s1-pro、quyet-1-large）回答 noul、choice 和 score 问题并返回概率；提供欧盟层级，输入每百万 token 起价 0.019 美元，输出免费。",
+    "url": "https://decisionmodels.io",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "has_code": false,
+    "official": false,
+    "author": {
+      "name": "Florian Standhartinger",
+      "url": "https://decisionmodels.io"
+    },
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/48"
+      }
+    ],
+    "license": "CC0-1.0",
+    "flags": [
+      "not-jev",
+      "self-submitted"
+    ],
+    "notes": "Not Jev: open models behind a Jev-compatible API, so thresholds tuned on Jev do not transfer. Listed by its operator. Prices are list prices for the Peer-to-Peer tier (https://api.decisionmodels.io/v1/models, 2026-10-16); no benchmark claims are made here.",
+    "notes_zh": "并非 Jev：这是用开源模型实现的 Jev 兼容接口，在 Jev 上调好的阈值不能直接照搬。由服务运营者本人提交。价格为 Peer-to-Peer 层级的标价（https://api.decisionmodels.io/v1/models，2026-10-16）；此处不含任何基准测试结论。",
+    "evidence_none": "docs-page",
+    "zh_machine": true
   },
   {
     "slug": "decision-models-as-guardrails",
@@ -29456,17 +29545,19 @@
   {
     "slug": "jev-engineering",
     "title": "jev-engineering",
-    "summary": "The decision layer for AI agents. Typed, calibrated decisions in ~400ms for two hundredths of a cent: gate tool calls, route models, rank options. With the 300-call injection test that found what breaks.",
-    "summary_zh": "面向 AI 智能体的决策层：约 400 毫秒、两百分之一美分的类型化校准决策，用于拦截工具调用。",
+    "summary": "Claude Code PreToolUse gate: regex hard rules and a read-only allowlist first, then one Noul and one Choice decide allow, ask or deny, so clearly safe commands skip the permission prompt. Codex, Cursor and OpenCode adapters, plus a review-router GitHub Action.",
+    "summary_zh": "Claude Code 的 PreToolUse 门禁：先用正则硬规则和只读白名单，再用一个 Noul 和一个 Choice 判定放行、询问或拒绝，明确安全的命令无需权限确认。附 Codex、Cursor、OpenCode 适配和 review-router GitHub Action。",
     "zh_machine": true,
     "url": "https://github.com/eugeniughelbur/jev-engineering",
-    "kind": "project",
+    "kind": "plugin",
     "patterns": [
-      "search-ranking",
-      "model-routing",
-      "tool-selection"
+      "safety-gating",
+      "human-escalation",
+      "model-routing"
     ],
     "platforms": [
+      "claude-code",
+      "openrouter",
       "typesafe-api"
     ],
     "author": {
@@ -29480,16 +29571,22 @@
     "repo_pushed_at": "2026-09-27T23:17:13Z",
     "repo_commits": 39,
     "evidence": {
-      "path": "build/lib/jev_gate.py",
+      "path": "jev_gate.py",
       "matched": [
         "typesafe/jev",
         "jev-1.13",
-        "/v1/systemone"
+        "/v1/systemone",
+        "noul",
+        "choice"
       ],
-      "read_on": "2026-09-22"
+      "read_on": "2026-09-28"
     },
     "first_seen": "2026-09-22",
     "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/24"
+      },
       {
         "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
         "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
@@ -29544,7 +29641,16 @@
       "python"
     ],
     "checked": "2026-10-21",
-    "link_status": 200
+    "link_status": 200,
+    "notes": "Starts in observe mode, which only logs. Auto mode, which approves clear allows without a prompt, is opt-in. The author's own replay of 3,622 Bash commands from their Claude Code history reports 66% approved without a prompt; that is the author's measurement and an upper bound.",
+    "notes_zh": "默认为只记录的观察模式；自动批准明确安全命令的 auto 模式需手动开启。作者用自己 Claude Code 历史中的 3,622 条 Bash 命令回放，报告 66% 无需确认即被批准；这是作者自测数据，属于上限。",
+    "question_types": [
+      "noul",
+      "choice"
+    ],
+    "flags": [
+      "self-submitted"
+    ]
   },
   {
     "slug": "jev-enterprise-decision-fabric",
@@ -67702,8 +67808,8 @@
   {
     "slug": "neurolink",
     "title": "neurolink",
-    "summary": "The pipe layer of an AI nervous system: one interface connecting provider neurons to an application, across three inference types — generate, stream, and decide. Decide returns typed, calibrated judgments (boolean/choice/score) via TypeSafe Jev, not text.",
-    "summary_zh": "用一套 TypeScript 接口对接 40 家 AI 供应商，覆盖生成、流式与决策三种推理形态。",
+    "summary": "The pipe layer of an AI nervous system: one interface connecting provider neurons to an application, across three inference types — generate, stream, and decide. Decide returns typed, calibrated judgments (boolean/choice/score) via TypeSafe Jev or the open-weights Laya, not text.",
+    "summary_zh": "用一套 TypeScript 接口对接多家 AI 供应商，覆盖生成、流式与决策三种推理形态；决策由 TypeSafe Jev 或开源权重的 Laya 返回类型化、经过校准的判断，而非文本。",
     "zh_machine": true,
     "url": "https://github.com/juspay/neurolink",
     "kind": "plugin",
