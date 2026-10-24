@@ -54,8 +54,11 @@ EN = {
     # ---- primitives ----
     "prims_h": "What Jev returns",
     "prims_intro": (
-        "Three primitives. Every pattern below is built out of them, and the asymmetry in the last "
-        "row is the single most common source of bugs."
+        "Three core primitives: Choice, Score and Noul. The patterns below use these; "
+        "Noul returns a probability without a separate confidence field. "
+        "Jev 1.14 also adds experimental [Box](https://docs.typesafe.ai/primitives/box): "
+        "one bounding box and confidence per question, with no 'not found' answer. "
+        "Box requires an image and the images opt-in described below."
     ),
     "th_prim": "Primitive",
     "th_returns": "Returns",
@@ -69,8 +72,17 @@ EN = {
         "See [what is verified](#what-is-verified-and-what-is-not)."
     ),
     "prims_after": (
-        "Input is **text only** — string, JSON object, or array of text. Context is **64k** tokens "
-        "per request, **32k** for the state plus the longest question. Output tokens are free. "
+        "Input is text or structured JSON by default. On the native API, Jev 1.13 and 1.14 also accept "
+        "experimental [PNG/JPEG images](https://docs.typesafe.ai/images) with "
+        "`TypeSafe-Danger-Zone-Images: true`; audio and video are unsupported. "
+        "Default context is **64k** tokens per request, **32k** for the state plus the longest question. "
+        "The experimental `TypeSafe-Danger-Zone-Long-Context: true` header raises both limits to "
+        "**262k**, with lower speed and accuracy ([models](https://docs.typesafe.ai/models)). "
+        "Output tokens are free. "
+        "As checked on 2026-10-15, native `jev-preview` points to `jev-1.14.0` and `jev-latest` "
+        "still points to `jev-1.13.0`; both pinned IDs are accepted. The "
+        "[October 14 announcement](https://typesafe.ai/blog/jev-1-14) said latest would move "
+        "about a week later, without an exact switch date. "
         "There are no published weights, so it cannot be run locally. "
         "Full cross-platform differences: [`docs/compatibility.md`](docs/compatibility.md)."
     ),
@@ -370,7 +382,11 @@ ZH = {
         "详见[哪些经过核实](#哪些经过核实哪些没有)。"
     ),
     "prims_h": "Jev 返回什么",
-    "prims_intro": "三个原语。下面所有模式都由它们构成，而最后一行那个不对称是最常见的 bug 来源。",
+    "prims_intro": (
+        "三个核心原语：Choice、Score 和 Noul。下面的模式使用它们；Noul 返回概率，没有单独的 confidence 字段。"
+        "Jev 1.14 还新增了实验性 [Box](https://docs.typesafe.ai/primitives/box)：每个问题返回一个边界框和置信度，"
+        "没有「未找到」答案。Box 需要图像，并须按下文显式启用图像功能。"
+    ),
     "th_prim": "原语",
     "th_returns": "返回",
     "th_limit": "限制",
@@ -381,8 +397,14 @@ ZH = {
         "（`primitives_seen`），这并不表明代码调用了它。见[哪些经过核实](#哪些经过核实哪些没有)。"
     ),
     "prims_after": (
-        "输入**仅支持文本** —— 字符串、JSON 对象、或文本数组。上下文每次请求 **64k** token，"
-        "其中 state 加最长的那个问题占 **32k**。输出 token 免费。"
+        "默认输入为文本或结构化 JSON。原生 API 的 Jev 1.13 和 1.14 也支持实验性 "
+        "[PNG/JPEG 图像](https://docs.typesafe.ai/images)，须发送 `TypeSafe-Danger-Zone-Images: true`；"
+        "不支持音频和视频。默认每次请求 **64k** token，其中 state 加最长问题最多 **32k**。"
+        "实验性请求头 `TypeSafe-Danger-Zone-Long-Context: true` 将两项限制均提高到 **262k**，"
+        "但速度和准确率会降低（见[模型文档](https://docs.typesafe.ai/models)）。输出 token 免费。"
+        "截至 2026-10-15，原生 `jev-preview` 指向 `jev-1.14.0`，`jev-latest` 仍指向 `jev-1.13.0`；"
+        "两个固定版本 ID 均可用。[10 月 14 日公告](https://typesafe.ai/blog/jev-1-14)称 latest 约一周后切换，"
+        "未给出确切切换日期。"
         "权重未公开，因此无法本地运行。"
         "跨平台差异全表见 [`docs/compatibility.md`](docs/compatibility.md)。"
     ),
@@ -620,7 +642,7 @@ ZH = {
 ZH_MACHINE = frozenset(
     {
         "stars_note", "verified_recheck", "verified_summaries", "license_summaries", "unindexed_readme",
-        "unindexed_page", "prims_layers", "verified_primitives", "verified_translations",
+        "unindexed_page", "prims_intro", "prims_after", "prims_layers", "verified_primitives", "verified_translations",
         "call_site_note", "measured_more", "measured_page_intro", "repo_skill_division", "direction_note",
         "measured_more_negative", "negative_note", "pattern_evidence", "design_link", "design_link_overview",
         "official_intro", "official_none", "examples_intro", "examples_none", "picker_intro", "picker_sources",

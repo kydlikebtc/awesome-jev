@@ -22,8 +22,10 @@ from typesafe_sdk import Choice, Noul, TypeSafeClient
 
 GOAL = "Find a one-way flight from Zurich to London next Friday"
 
-# The page as text. Note there is no screenshot: input is text only, so the
-# accessibility tree or a serialised DOM is the right thing to send.
+# This example uses page text from an accessibility tree or serialised DOM.
+# Native Jev also accepts experimental images with an explicit opt-in; this
+# text example needs neither image assets nor that header. See:
+# https://docs.typesafe.ai/images
 ELEMENTS = {
     "e1": "text input, label 'Where from?', value 'Zurich'",
     "e2": "text input, label 'Where to?', value empty",
@@ -90,8 +92,11 @@ def main() -> None:
     else:
         print(f"-> {operation.choice}, no target needed")
 
-    # Fan-out has a budget: 64k tokens per request, and 32k for the state plus
+    # Fan-out's default budget is 64k tokens per request, and 32k for the state plus
     # the single longest question. Speculative questions are cheap, not free.
+    # Native experimental long context raises both limits to 262k via
+    # TypeSafe-Danger-Zone-Long-Context: true, with lower speed and accuracy.
+    # This example keeps the defaults: https://docs.typesafe.ai/models
 
 
 if __name__ == "__main__":

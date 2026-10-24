@@ -44,14 +44,27 @@ across all three returns nothing for a third of the questions.
 on OpenRouter. **`typesafe/jev-1` exists nowhere** and is the most repeated
 fabrication about this model — check before writing one.
 
-**Input is text only.** String, JSON object, or array of text. No images, no
-audio. Pre-process to text or typed fields.
+**Text is the default input.** Native Jev 1.13 and 1.14 also accept experimental
+[PNG/JPEG images](https://docs.typesafe.ai/images) with
+`TypeSafe-Danger-Zone-Images: true`. Audio and video remain unsupported.
+Jev 1.14 adds experimental [Box](https://docs.typesafe.ai/primitives/box): one
+normalized bounding box and confidence per question, with no "not found" answer.
+It requires an image and the same opt-in header; combine with Noul for presence
+when needed. The catalogue's primitive filters and picker still cover the three
+core primitives, Choice, Score and Noul.
+
+**Native versions, checked 2026-10-15:** `jev-1.14.0` and `jev-1.13.0` are
+accepted; `jev-preview` points to 1.14 and `jev-latest` still points to 1.13.
+The [October 14 announcement](https://typesafe.ai/blog/jev-1-14) said latest
+would move about a week later, without an exact switch date. Recheck
+[models](https://docs.typesafe.ai/models) before relying on an alias. This says
+nothing about a gateway's support for the new version or experimental features.
 
 **It cannot be run locally.** No weights are published. Anything claiming to run
 Jev locally is a different model with a compatible wire format, and a compatible
 API implies nothing about compatible calibration — thresholds do not transfer.
 
-## Hard limits
+## Default limits
 
 |                  |                                                                 |
 | ---------------- | --------------------------------------------------------------- |
@@ -60,6 +73,11 @@ API implies nothing about compatible calibration — thresholds do not transfer.
 | Context          | 64k tokens per request; 32k for state plus the longest question |
 | Output tokens    | free — the model generates no text                              |
 | Streaming        | not supported on any surface                                    |
+
+On native Jev 1.13 and 1.14, the experimental header
+`TypeSafe-Danger-Zone-Long-Context: true` raises both context limits to 262k,
+with lower speed and accuracy. The table above retains the defaults; see
+[models](https://docs.typesafe.ai/models).
 
 A `score` is probability-weighted and lands _between_ levels — the official
 example returns `1.05` on a three-level scale. Do not assume an integer.

@@ -58,7 +58,7 @@
 
 ## What Jev returns
 
-Three primitives. Every pattern below is built out of them, and the asymmetry in the last row is the single most common source of bugs.
+Three core primitives: Choice, Score and Noul. The patterns below use these; Noul returns a probability without a separate confidence field. Jev 1.14 also adds experimental [Box](https://docs.typesafe.ai/primitives/box): one bounding box and confidence per question, with no 'not found' answer. Box requires an image and the images opt-in described below.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/primitives-en-dark.svg">
@@ -67,7 +67,7 @@ Three primitives. Every pattern below is built out of them, and the asymmetry in
 
 Under each primitive, two counts that are never added together: rows whose `question_types` records a person reading the code call it, and rows where only a text signal shows it — the weekly refresh found its request or answer shape in the one file the row cites (`primitives_seen`), which does not show that the code calls it. See [what is verified](#what-is-verified-and-what-is-not).
 
-Input is **text only** — string, JSON object, or array of text. Context is **64k** tokens per request, **32k** for the state plus the longest question. Output tokens are free. There are no published weights, so it cannot be run locally. Full cross-platform differences: [`docs/compatibility.md`](docs/compatibility.md).
+Input is text or structured JSON by default. On the native API, Jev 1.13 and 1.14 also accept experimental [PNG/JPEG images](https://docs.typesafe.ai/images) with `TypeSafe-Danger-Zone-Images: true`; audio and video are unsupported. Default context is **64k** tokens per request, **32k** for the state plus the longest question. The experimental `TypeSafe-Danger-Zone-Long-Context: true` header raises both limits to **262k**, with lower speed and accuracy ([models](https://docs.typesafe.ai/models)). Output tokens are free. As checked on 2026-10-15, native `jev-preview` points to `jev-1.14.0` and `jev-latest` still points to `jev-1.13.0`; both pinned IDs are accepted. The [October 14 announcement](https://typesafe.ai/blog/jev-1-14) said latest would move about a week later, without an exact switch date. There are no published weights, so it cannot be run locally. Full cross-platform differences: [`docs/compatibility.md`](docs/compatibility.md).
 
 Which primitive fits a decision? The figure below arranges TypeSafe's own guidance as a decision list: read down and stop at the first yes. The order and the wording are this repository's; every step cites the page it follows, listed under the figure. It is the vendor's design guidance with its sources, not a recommendation of any row here.
 
@@ -88,7 +88,7 @@ Six things in reading order. Hand-picked, because "most starred" is not the same
 
 2. **[Jev 1.13 known limitations](https://docs.typesafe.ai/model-jaggedness/jev-1.13)**
 
-   The most useful page in the docs and the least linked. It explains, among other things, that a Choice over options and one Noul per option answer different questions.
+   This page is explicitly scoped to Jev 1.13; it does not establish which limitations remain in Jev 1.14. It explains why a Choice over options and one Noul per option answer different questions.
 
 3. **[Example: three primitives in one request](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/01-three-primitives/main.py)**
 
@@ -538,7 +538,7 @@ _Use calibrated confidence to decide what a person must see._
   <sub>`Official docs` · `Py`</sub>
 
 - **[Confidence](https://docs.typesafe.ai/confidence)** ⭐<br>
-  How confidence is derived from the probability distribution, and why a threshold tuned on one question type does not transfer to another.<br>
+  How Choice and Score confidence is derived from probabilities, how Noul differs, and how to tune thresholds for the question and application.<br>
   <sub>`Official docs`</sub>
 
 - **[Airflow LLMBranchOperator with Jev](https://airflow.apache.org/docs/apache-airflow-providers-common-ai/stable/index.html)**<br>
@@ -1042,15 +1042,15 @@ _Surveys the model or the space rather than one pattern._
   <sub>`SDK` · ★100+ · `Py` · `choice` · `score` · `noul` · [call site](https://github.com/typesafe-ai/typesafe-sdk-python/blob/HEAD/src/typesafe_sdk/_core/client/aio/client.py), read 2026-09-22</sub>
 
 - **[API reference](https://docs.typesafe.ai/api)** ⭐<br>
-  The one endpoint, POST /v1/systemone, with the exact request and answer shapes for all three question types.<br>
+  POST /v1/systemone request and response shapes for the core Choice, Score and Noul questions, plus request validation and HTTP error handling.<br>
   <sub>`Official docs` · `sh` · `Py` · `TS`</sub>
 
 - **[Models, pricing and limits](https://docs.typesafe.ai/models)** ⭐<br>
-  The authoritative sheet: jev-1.13.0, $0.042 per Mtok input with output free, 64k context, 32k for state plus the longest question, text input only.<br>
+  Native Jev 1.14/1.13 IDs, aliases, pricing and limits: $0.042/Mtok input, free output, 64k tokens per request and 32k per question by default. Text is the default; images and 262k long context require experimental opt-ins.<br>
   <sub>`Official docs` · `sh` · `Py` · `TS`</sub>
 
 - **[Primitives: Choice, Score, Noul](https://docs.typesafe.ai/primitives)** ⭐<br>
-  What each primitive is for and how to write criteria, including the 255-option cap on Choice and the 2-10 level range on Score.<br>
+  How to choose and combine the core Choice, Score and Noul question types and define their criteria. Choice supports up to 255 options and Score 2-10 levels.<br>
   <sub>`Official docs` · `Py` · `TS` · `choice` · `score` · `noul`</sub>
 
 - **[Introducing System One models and Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev)** ⭐<br>
@@ -1060,7 +1060,7 @@ _Surveys the model or the space rather than one pattern._
   **Caveats:** `vendor numbers`
 
 - **[Jev 1.13 known limitations](https://docs.typesafe.ai/model-jaggedness/jev-1.13)** ⭐<br>
-  The vendor's own list of where the model fails: literal reading, arithmetic and counting, date comparison, indirection, large noisy states, adversarial content.<br>
+  The vendor's Jev 1.13 limitations: literal reading, arithmetic and counting, date comparison, indirection, large noisy states and adversarial content.<br>
   <sub>`Official docs`</sub>
 
 - **[Use case map](https://docs.typesafe.ai/concepts/use-case-map)** ⭐<br>
@@ -1101,7 +1101,7 @@ The parts that are not the catalog.
 <details>
 <summary><b>Preview the searchable catalogue</b></summary>
 
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=6cfe2c679225443e" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=1bd3575375f434fa" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
 
 <sub>Filter by clicking a bar. Two more views: <a href="https://kydlikebtc.github.io/awesome-jev/?view=prims">primitives</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat">compatibility</a>. Every filter and entry is a shareable URL.</sub>
 
@@ -1134,7 +1134,7 @@ The parts that are not the catalog.
 
 - **Whose words the summaries are** — 856 summaries are the linked project's own GitHub description, word for word, and are marked *(upstream description)*; 28 are marked *(earlier upstream description)*: taken from one that no longer reads the same. Those words are their authors'. 11 summaries are marked as written for this catalogue, and 317 carry no record either way. The weekly refresh compares each summary with its repository's description and labels a match; only a person marks a summary as written here.
 
-- **Who wrote the Chinese** — 196 of 1212 rows have a Chinese summary a person wrote; a model translated the other 1016, and each of those carries `zh_machine` and is marked *(机翻)* in the Chinese README, on the Chinese pattern pages and in the site's Chinese view. The [translation queue](docs/zh-queue.md) lists machine translations for a person to replace: every one on the most-starred rows, then, most-starred first, others flagged by at least one of three text signals a script computes (much shorter than the English, a number from the English missing, mostly ASCII). A signal is a comparison, not a verdict on a translation, and no row in the READMEs, the pattern pages or the site shows one. To take some, see [Claim a translation](CONTRIBUTING.md#claim-a-translation); only a translation of your own takes `zh_machine` off.
+- **Who wrote the Chinese** — 191 of 1212 rows have a Chinese summary a person wrote; a model translated the other 1021, and each of those carries `zh_machine` and is marked *(机翻)* in the Chinese README, on the Chinese pattern pages and in the site's Chinese view. The [translation queue](docs/zh-queue.md) lists machine translations for a person to replace: every one on the most-starred rows, then, most-starred first, others flagged by at least one of three text signals a script computes (much shorter than the English, a number from the English missing, mostly ASCII). A signal is a comparison, not a verdict on a translation, and no row in the READMEs, the pattern pages or the site shows one. To take some, see [Claim a translation](CONTRIBUTING.md#claim-a-translation); only a translation of your own takes `zh_machine` off.
 
 - **Call-site text checks** — 1071 rows record in `evidence` a file where the project calls Jev, and strings matched in it. Another 57 record a file that shows a project speaking Jev's request shape rather than building on Jev (every `alternative`, whether it serves that shape or sends Jev the same request to compare, and adapters backed by other models), and 0 only an example the project ships; `evidence.kind` says which. The weekly [claims job](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) checks that those strings remain on the default branch and reports missing text or files. These counts measure recorded evidence, **not latest CI passes**. A text match does not prove that a call executes, the API is compatible, or the result is correct. Citations a script marks for a person to re-read are listed in the [review queue](docs/review-queue.md).
 

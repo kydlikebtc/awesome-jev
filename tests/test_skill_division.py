@@ -92,7 +92,7 @@ class SkillTest(unittest.TestCase):
 
     def test_the_facts_and_limits_stay(self):
         # lint_docs holds these to compat.json; they are this skill's own.
-        for heading in ("Get the facts right first", "Hard limits", "Querying the catalogue", "Before believing a benchmark"):
+        for heading in ("Get the facts right first", "Default limits", "Querying the catalogue", "Before believing a benchmark"):
             self.assertIn(f"\n## {heading}\n", self.text)
 
     def test_the_row_it_links_is_in_the_catalogue(self):

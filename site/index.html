@@ -1124,7 +1124,7 @@
           v_compat: "Compatibility",
           p_h: "What Jev returns",
           p_lede:
-            "Three primitives, and one asymmetry that causes most of the bugs. Every fact here is from the official API reference.",
+            "Three core primitives: Choice, Score and Noul. Noul returns a probability without separate confidence. Jev 1.14 also offers experimental <a href='https://docs.typesafe.ai/primitives/box'>Box</a>: one bounding box and confidence per question, with no ‘not found’ answer. It requires an image and <code>TypeSafe-Danger-Zone-Images: true</code>; see the <a href='https://docs.typesafe.ai/images'>images guide</a>.",
           p_returns: "Returns",
           p_limit: "Limits",
           p_for: "Used for",
@@ -1137,7 +1137,7 @@
           p_shape_h: "The shape of a call",
           p_shape_p:
             "One <b>state</b>, many <b>questions</b>. The state is read once and every question is evaluated against it in parallel, which is why asking five things costs roughly what asking one costs plus the question tokens — and why speculative fan-out is a real technique rather than a waste.",
-          p_limits_h: "Limits that apply everywhere",
+          p_limits_h: "Default limits and native experimental opt-ins",
           pick_h: "Which primitive?",
           pick_p:
             "TypeSafe’s own guidance on choosing a primitive, arranged as a decision list: read down and stop at the first yes. The order and the wording are this repository’s; each step links the docs.typesafe.ai page it follows. It is the vendor’s design guidance with its sources, not a recommendation of any row here. The same list, <code>picker.json</code>, draws the figure in the README.",
@@ -1266,11 +1266,11 @@
           more: "展开其余 {n} 条",
           disc: "TypeSafe AI Jev 的非官方社区目录。链接检查和带日期的调用点记录是不同证据；本目录尚未执行收录代码，也未复现其性能结论。第三方评测保留各自的限制。",
           v_catalog: "目录",
-          v_prims: "三个原语",
+          v_prims: "原语",
           v_compat: "兼容性",
           p_h: "Jev 返回什么",
           p_lede:
-            "三个原语，以及一个造成大多数 bug 的不对称。此处每条事实均来自官方 API 参考。",
+            "三个核心原语：Choice、Score 和 Noul。Noul 返回概率，没有单独的置信度。Jev 1.14 还提供实验性 <a href='https://docs.typesafe.ai/primitives/box'>Box</a>：每个问题返回一个边界框和置信度，没有「未找到」答案。它需要图像和 <code>TypeSafe-Danger-Zone-Images: true</code> 请求头；见<a href='https://docs.typesafe.ai/images'>图像指南</a>。",
           p_returns: "返回",
           p_limit: "限制",
           p_for: "用来",
@@ -1283,7 +1283,7 @@
           p_shape_h: "一次调用的形状",
           p_shape_p:
             "一个 <b>state</b>，多个 <b>questions</b>。state 只被读一次，所有问题并行地对它求值 —— 这就是为什么问五件事的成本约等于问一件事加上问题本身的 token，也是为什么「推测性并行扇出」是一个真实可用的技巧而不是浪费。",
-          p_limits_h: "所有平台通用的限制",
+          p_limits_h: "默认限制与原生实验性功能",
           // The Chinese of the primitive picker's strings here (pick_*) and of picker.json is model-written; a person who revises it drops this note.
           pick_h: "选哪个原语？",
           pick_p:
@@ -1373,7 +1373,8 @@
         );
       const QGLYPH = { choice: "◆", score: "▮", noul: "◐" };
 
-      // The three primitives. Facts from the official API reference; the
+      // The three core primitives indexed by the catalogue. Experimental Box
+      // is documented in the introduction, outside these catalogue counts. The
       // "watch out" line is the thing that actually bites people.
       const PRIMS = [
         {
