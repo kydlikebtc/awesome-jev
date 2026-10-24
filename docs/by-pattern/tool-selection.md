@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 233 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 236 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 225 · wire shape 4 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 228 · wire shape 4 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -435,6 +435,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[gg-friggin-ez](https://github.com/ItisShikhar/gg-friggin-ez)** — Fast, drop-in multilingual profanity and toxicity screener for Node.js, powered by System 1 models like TypeSafe AI Jev and Laya. Catches leetspeak, character spacing, and romanized profanity across languages including Kannada, Telugu, Tamil, Hindi, and Bengali. ~50-500ms latency. <sub>(upstream description)</sub>
   <sub>`Project` · itisshikhar · `TS` · call site [`demo/js/models.js`](https://github.com/ItisShikhar/gg-friggin-ez/blob/HEAD/demo/js/models.js), read 2026-09-22</sub>
 
+- **[Harness Router](https://github.com/Protocol-Lattice/harness-router)** — Picks the next tool inside an existing agent loop: given a goal, observation and tool list, Jev returns a tool choice with confidence or a fallback to the host planner. Caches reusable choices, offers optional MCTS, and hooks into Codex and other harnesses or runs as an MCP server.
+  <sub>`Project` · protocol-lattice · `Py` · `choice` · call site [`src/harness_router/config.py`](https://github.com/Protocol-Lattice/harness-router/blob/HEAD/src/harness_router/config.py)</sub>
+
 - **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — Judge agent steps — ok / retry / escalate / stop via TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/harnessjudge/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
 
@@ -446,6 +449,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev Browser Bridge](https://github.com/lexmount/jev-browser-bridge)** — Runs a Jev browser agent on any CDP browser, even ones that never draw a page: it reads the DOM rather than positions and asks Jev one choice for the operation and one for its target. The author reports 59–65% on 172 MiniWoB++ episodes across six browsers, against 24–31% for a position reader.
   <sub>`Project` · lexmount · `Py` · `choice` · call site [`jev_browser_bridge/model.py`](https://github.com/lexmount/jev-browser-bridge/blob/HEAD/jev_browser_bridge/model.py) · ⚠ `vendor numbers`</sub>
+
+- **[Jev Civilizations](https://github.com/JonesSteven/jev_civilization)** — Small strategy game with a live demo: four tribes run their own lives while you only change the environment. Each turn Jev picks one action per tribe as a choice over the moves that are actually legal, a plain game engine works out the results, and an inspector shows what Jev was told.
+  <sub>`Project` · jonessteven · `TS` · `choice` · call site [`scripts/probe-jev.ts`](https://github.com/JonesSteven/jev_civilization/blob/HEAD/scripts/probe-jev.ts)</sub>
 
 - **[Jev Plays Pokémon Red](https://github.com/christianmat/jev-pokemon)** — Harness in which Jev beat Pokémon Red: it reads the emulator's memory, lists the legal options with facts (type matchups, damage estimates, distance to the objective) and Jev picks one. 16,150 decisions over 37 h 40 m for about $1.65, via the AI SDK on Vercel AI Gateway.
   <sub>`Project` · christianmat · `TS` · call site [`src/jev/gateway.ts`](https://github.com/christianmat/jev-pokemon/blob/HEAD/src/jev/gateway.ts) · ⚠ `unverified claims`</sub>
@@ -644,6 +650,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevonly](https://github.com/buluoray/JevOnly)** — Pure Jev that can "type" and drive towards task completion. <sub>(upstream description)</sub>
   <sub>`Project` · buluoray · `Py` · call site [`src/jevonly/core/jev.py`](https://github.com/buluoray/JevOnly/blob/HEAD/src/jevonly/core/jev.py), read 2026-09-22</sub>
+
+- **[Jevry](https://github.com/michaelswissa/jevry)** — Open-source desktop browser that works through websites from a plain-language task: a text model plans, Jev picks each action as a choice among what the browser can actually execute (never generated JavaScript or selectors), and Chromium acts with visible steps and stop controls.
+  <sub>`Project` · michaelswissa · `TS` · `choice` · call site [`desktop/jev-direct-plan.ts`](https://github.com/michaelswissa/jevry/blob/HEAD/desktop/jev-direct-plan.ts)</sub>
 
 - **[jevshield](https://github.com/lgy1027/jevshield)** — Sub-100ms security gate for AI agent tool calls, powered by TypeSafe's Jev (System-1) decision model. Single-request Choice/Noul/Score evaluation, dual-factor blocking matrix, calibrated-confidence routing, fail-closed parsing, zero-config local fallback. LangChain-ready. <sub>(upstream description)</sub>
   <sub>`Project` · lgy1027 · `Py` · call site [`jevshield/client.py`](https://github.com/lgy1027/jevshield/blob/HEAD/jevshield/client.py), read 2026-09-22</sub>

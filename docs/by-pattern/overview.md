@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 464 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 469 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 371 · wire shape 54 · example only 0 · independent reports 23 · negative results 1 · no file cited 39. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 373 · wire shape 57 · example only 0 · independent reports 23 · negative results 1 · no file cited 39. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -335,6 +335,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[hunch-js](https://github.com/steven-shoemaker/hunch-js)** — Jev judgments as TypeScript functions over arrays: classify, score, check, where, extract, pick, rank, verify. LLMs propose, Jev decides. <sub>(upstream description)</sub>
   <sub>`SDK` · steven-shoemaker · `TS` · call site [`src/gateway.ts`](https://github.com/steven-shoemaker/hunch-js/blob/HEAD/src/gateway.ts), read 2026-09-24</sub>
 
+- **[imajev](https://github.com/mohit67890/imajev)** — Small open models (2B, 4B, 9B) that read the photos, records and text a business already has and answer in the options you set, each with a probability and an explicit can't-tell, so a system acts when sure and hands the rest to a person. The author reports first place of 91 on JevBench v1.4.2.2.
+  <sub>`Jev-like alternative` · mohit67890 · `Py` · cited file [`results/benchmarks/fast-decisions/imajev-4b/run_fastdec.py`](https://github.com/mohit67890/imajev/blob/HEAD/results/benchmarks/fast-decisions/imajev-4b/run_fastdec.py) · ⚠ `not Jev itself` `vendor numbers` `marketing`</sub>
+
 - **[jear](https://github.com/iJ03l/jear)** — Jev-routed client for NEAR AI Cloud inference and IronClaw agents. <sub>(upstream description)</sub>
   <sub>`SDK` · ij03l · `Rs` · call site [`src/jev_wire.rs`](https://github.com/iJ03l/jear/blob/HEAD/src/jev_wire.rs), read 2026-09-22</sub>
 
@@ -463,6 +466,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[kunobi-jev](https://github.com/kunobi-ninja/kunobi-decision)** — Rust client for the TypeSafe System One API (Jev) <sub>(upstream description)</sub>
   <sub>`SDK` · kunobi-ninja · `Rs` · call site [`src/client/mod.rs`](https://github.com/kunobi-ninja/kunobi-decision/blob/HEAD/src/client/mod.rs), read 2026-09-22</sub>
+
+- **[Ollaya](https://github.com/ollaya-dev/ollaya)** — Runs open decision models locally the way Ollama runs LLMs: pull a model by name and serve it behind a /v1/systemone-compatible daemon, so the TypeSafe SDK works unchanged. The README reports 0.724 typed-decision accuracy for its recommended winnow:e4b against TypeSafe's 0.738 for Jev.
+  <sub>`Jev-like alternative` · ollaya-dev · `Py` · cited file [`convert/ollaya_convert/bench_public.py`](https://github.com/ollaya-dev/ollaya/blob/HEAD/convert/ollaya_convert/bench_public.py) · ⚠ `not Jev itself` `vendor numbers`</sub>
+
+- **[OneJev](https://github.com/OmniJev/OneJev)** — Multimodal open decision model on Qwen (0.8B, 4B, 9B and 27B) that returns calibrated probabilities for typed questions about screenshots, photos, video and text, with a local server the official TypeSafe SDK talks to unchanged. The authors report 69.49 for the 27B on the public Decision Index 0.3.
+  <sub>`Jev-like alternative` · omnijev · `Py` · cited file [`examples/official_sdk.py`](https://github.com/OmniJev/OneJev/blob/HEAD/examples/official_sdk.py) · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[OpenJev](https://github.com/xingwudao/OpenJev)** — OpenJev: an independent Jev-inspired System One decision API based on TypeSafe.ai concepts. Choice, score and noul primitives, local mock server, Python and TypeScript SDKs. Real inference planned; not affiliated with TypeSafe AI. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · xingwudao · `Py` · cited file [`sdk/python/openjev/__init__.py`](https://github.com/xingwudao/OpenJev/blob/HEAD/sdk/python/openjev/__init__.py), read 2026-09-24 · ⚠ `not Jev itself` `no licence`</sub>
@@ -623,6 +632,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[what-is-jev](https://github.com/g0runmezadam/what-is-jev)** — Independent, source-linked research on TypeSafe AI's Jev (System One), with 947 rubric-scored public repositories, recurring patterns, datasets, and bilingual documentation. <sub>(upstream description)</sub>
   <sub>`Benchmark` · g0runmezadam · `Py`</sub>
 
+- **[Yao Agents](https://github.com/YaoApp/yao)** — Self-hosted agent workspace that runs agents across your own devices with a task board, isolated workspaces and an open API; it added Jev as a decision-model provider alongside its text models. The cited file tests Jev key validation against /v1/models.
+  <sub>`Integration` · yaoapp · `Go` · call site [`openapi/setting/typesafe_test.go`](https://github.com/YaoApp/yao/blob/HEAD/openapi/setting/typesafe_test.go)</sub>
+
 - **[awesome-jev (yibie)](https://github.com/yibie/awesome-jev)** — Currently the most-starred sibling directory in this space.
   <sub>`Project` · ★1k+ · ⚠ `no licence`</sub>
 
@@ -684,7 +696,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 250 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 251 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[typesafe-ai/skills](https://github.com/typesafe-ai/skills)** ⭐ — The official agent-skills repository behind the Claude Code plugin, holding the SKILL.md that teaches an agent the System One API.
   <sub>`Plugin` · ★1k+ · `sh`</sub>
@@ -1063,6 +1075,9 @@ Projects and plugins with code, 250 of them, whose only pattern is `overview` an
 
 - **[btc-jev-signal](https://github.com/WebGrga/btc-jev-signal)** — Experimental multi-horizon BTC signal generator using TypeSafe Jev probabilities and Binance market data. <sub>(earlier upstream description)</sub>
   <sub>`Project` · webgrga · `TS` · call site [`src/experiment-jev.ts`](https://github.com/WebGrga/btc-jev-signal/blob/HEAD/src/experiment-jev.ts), read 2026-09-22 · ⚠ `no licence`</sub>
+
+- **[Building with TypeSafe Jev](https://github.com/aaddrick/building-with-typesafe-jev)** — Unofficial agent skill that teaches coding agents to design for Jev rather than treat it as a chat model: typed questions, thresholds on calibrated confidence, and links to 150+ community projects sorted by shape with a code sketch for each. Installs in Claude Code, Codex and others.
+  <sub>`Plugin` · aaddrick · `Py` · `noul` · call site [`evals/runs/2026-09-26T11-43-49Z-none/outputs/log-labeler/with-1/label_logs.py`](https://github.com/aaddrick/building-with-typesafe-jev/blob/HEAD/evals/runs/2026-09-26T11-43-49Z-none/outputs/log-labeler/with-1/label_logs.py)</sub>
 
 - **[cairn-jev-lab](https://github.com/Cairn-ink/cairn-jev-lab)** — Test what your AI should remember. An experimental, source-aware memory admission evaluator powered by Jev, with editable cases and inspectable results. <sub>(upstream description)</sub>
   <sub>`Project` · cairn-ink · `JS` · call site [`src/jev.mjs`](https://github.com/Cairn-ink/cairn-jev-lab/blob/HEAD/src/jev.mjs), read 2026-09-22</sub>

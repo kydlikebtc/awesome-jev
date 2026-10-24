@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 464 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 469 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 371 · 接口形态 54 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 39。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 373 · 接口形态 57 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 39。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -335,6 +335,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[hunch-js](https://github.com/steven-shoemaker/hunch-js)** — 把 Jev 判断变成作用于数组的 TypeScript 函数：classify、score、check、where、extract、pick、rank、verify。LLM 提议，Jev 决定。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · steven-shoemaker · `TS` · 调用点 [`src/gateway.ts`](https://github.com/steven-shoemaker/hunch-js/blob/HEAD/src/gateway.ts)，2026-09-24 阅读</sub>
 
+- **[imajev](https://github.com/mohit67890/imajev)** — 小型开源模型（2B、4B、9B），读取企业已有的照片、记录和文本，按你设定的选项作答，每个答案附带概率和明确的“无法判断”，系统有把握时自动执行，其余交给人处理。作者报告在 JevBench v1.4.2.2 的 91 个模型中排名第一。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · mohit67890 · `Py` · 引用文件 [`results/benchmarks/fast-decisions/imajev-4b/run_fastdec.py`](https://github.com/mohit67890/imajev/blob/HEAD/results/benchmarks/fast-decisions/imajev-4b/run_fastdec.py) · ⚠ `并非 Jev 本身` `厂商自报数据` `营销内容`</sub>
+
 - **[jear](https://github.com/iJ03l/jear)** — 由 Jev 路由的 NEAR AI Cloud 推理与智能体客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · ij03l · `Rs` · 调用点 [`src/jev_wire.rs`](https://github.com/iJ03l/jear/blob/HEAD/src/jev_wire.rs)，2026-09-22 阅读</sub>
 
@@ -463,6 +466,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[kunobi-jev](https://github.com/kunobi-ninja/kunobi-decision)** — System One API 的 Rust 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · kunobi-ninja · `Rs` · 调用点 [`src/client/mod.rs`](https://github.com/kunobi-ninja/kunobi-decision/blob/HEAD/src/client/mod.rs)，2026-09-22 阅读</sub>
+
+- **[Ollaya](https://github.com/ollaya-dev/ollaya)** — 像 Ollama 运行大模型那样在本地运行开源决策模型：按名称拉取模型，通过兼容 /v1/systemone 的守护进程提供服务，TypeSafe SDK 无需修改即可使用。README 报告其推荐模型 winnow:e4b 的类型化决策准确率为 0.724，TypeSafe 报告 Jev 为 0.738。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · ollaya-dev · `Py` · 引用文件 [`convert/ollaya_convert/bench_public.py`](https://github.com/ollaya-dev/ollaya/blob/HEAD/convert/ollaya_convert/bench_public.py) · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
+- **[OneJev](https://github.com/OmniJev/OneJev)** — 基于 Qwen 的多模态开源决策模型（0.8B、4B、9B 和 27B），针对截图、照片、视频和文本的类型化问题返回校准概率；附带本地服务器，官方 TypeSafe SDK 无需修改即可连接。作者报告 27B 版本在公开的 Decision Index 0.3 上得分 69.49。 <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · omnijev · `Py` · 引用文件 [`examples/official_sdk.py`](https://github.com/OmniJev/OneJev/blob/HEAD/examples/official_sdk.py) · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[OpenJev](https://github.com/xingwudao/OpenJev)** — OpenJev：受 Jev 启发、基于 TypeSafe.ai 理念的独立 System One 决策 API，提供 choice、score、noul 原语、本地模拟服务器以及 Python 和 TypeScript SDK。真实推理尚在计划中，与 TypeSafe AI 无关。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · xingwudao · `Py` · 引用文件 [`sdk/python/openjev/__init__.py`](https://github.com/xingwudao/OpenJev/blob/HEAD/sdk/python/openjev/__init__.py)，2026-09-24 阅读 · ⚠ `并非 Jev 本身` `无许可证`</sub>
@@ -623,6 +632,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[what-is-jev](https://github.com/g0runmezadam/what-is-jev)** — 关于 TypeSafe AI Jev（System One）的独立、有来源的研究，包含对 947 个公开仓库的评分。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · g0runmezadam · `Py`</sub>
 
+- **[Yao Agents](https://github.com/YaoApp/yao)** — 可自托管的 Agent 工作空间，让 Agent 在你自己的多台设备上运行，提供任务看板、相互隔离的工作区和开放 API；它已把 Jev 作为决策模型提供商，与文本模型并列。所引文件测试的是通过 /v1/models 校验 Jev 密钥。 <sub>(机翻)</sub>
+  <sub>`平台集成` · yaoapp · `Go` · 调用点 [`openapi/setting/typesafe_test.go`](https://github.com/YaoApp/yao/blob/HEAD/openapi/setting/typesafe_test.go)</sub>
+
 - **[awesome-jev (yibie)](https://github.com/yibie/awesome-jev)** — 目前这个领域里 star 数最高的同类目录。
   <sub>`开源项目` · ★1k+ · ⚠ `无许可证`</sub>
 
@@ -684,7 +696,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ## 尚未按模式索引
 
-带代码的项目或插件，共 250 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
+带代码的项目或插件，共 251 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
 
 - **[typesafe-ai/skills](https://github.com/typesafe-ai/skills)** ⭐ — Claude Code 插件背后的官方技能仓库，里面的 SKILL.md 教会智能体如何使用 System One API。
   <sub>`插件` · ★1k+ · `sh`</sub>
@@ -1063,6 +1075,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[btc-jev-signal](https://github.com/WebGrga/btc-jev-signal)** — 实验性的多周期 BTC 信号生成器，使用 Jev 概率与交易所数据。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · webgrga · `TS` · 调用点 [`src/experiment-jev.ts`](https://github.com/WebGrga/btc-jev-signal/blob/HEAD/src/experiment-jev.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+
+- **[Building with TypeSafe Jev](https://github.com/aaddrick/building-with-typesafe-jev)** — 非官方的 Agent 技能，教编程 Agent 按 Jev 的特点来设计，而不是把它当作聊天模型：类型化问题、基于校准置信度的阈值，以及按形态分类的 150 多个社区项目链接，每类附有代码示例。可安装到 Claude Code、Codex 等工具。 <sub>(机翻)</sub>
+  <sub>`插件` · aaddrick · `Py` · `noul` · 调用点 [`evals/runs/2026-09-26T11-43-49Z-none/outputs/log-labeler/with-1/label_logs.py`](https://github.com/aaddrick/building-with-typesafe-jev/blob/HEAD/evals/runs/2026-09-26T11-43-49Z-none/outputs/log-labeler/with-1/label_logs.py)</sub>
 
 - **[cairn-jev-lab](https://github.com/Cairn-ink/cairn-jev-lab)** — 测试你的 AI 应该记住什么：实验性的、感知来源的记忆准入评估器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · cairn-ink · `JS` · 调用点 [`src/jev.mjs`](https://github.com/Cairn-ink/cairn-jev-lab/blob/HEAD/src/jev.mjs)，2026-09-22 阅读</sub>

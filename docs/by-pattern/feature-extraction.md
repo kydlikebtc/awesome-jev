@@ -4,11 +4,11 @@
 
 _Turn free text into numeric features for a classical downstream model._
 
-Every catalogued example of this decision — 7 of them. The same rows, with caveats, are in [the index](../../README.md#ml-feature-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=feature-extraction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 8 of them. The same rows, with caveats, are in [the index](../../README.md#ml-feature-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=feature-extraction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#feature-extraction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 1 · call site 6 · wire shape 0 · example only 0 · independent reports 0 · negative results 0 · no file cited 1. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 1 · call site 7 · wire shape 0 · example only 0 · independent reports 0 · negative results 0 · no file cited 1. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -37,6 +37,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Prism](https://github.com/irfndi/prism-liquidity-agent)** — Does not place orders. It judges market conditions such as toxic flow and mean reversion, and hands the assessment to the existing strategy.
   <sub>`Project` · ★100+ · `TS` · `choice` · `score` · call site [`engine/jev-service.ts`](https://github.com/irfndi/prism-liquidity-agent/blob/HEAD/engine/jev-service.ts), read 2026-09-22</sub>
+
+- **[JEV Sees](https://github.com/CharlesFeng0314/JEV_sees)** — Gives Jev vision: local Florence-2 and CLIP models find the objects in an image, video or RGB-D frame and keep their IDs across frames, then Jev answers a choice, noul or score about each relevant object (bus colour, pedestrian risk, animal motion).
+  <sub>`Project` · charlesfeng0314 · `Py` · `choice` · `noul` · `score` · call site [`jev_sees/session.py`](https://github.com/CharlesFeng0314/JEV_sees/blob/HEAD/jev_sees/session.py)</sub>
 
 - **[jev-board-lab](https://github.com/WebGrga/jev-board-lab)** — Interactive explorer and Jev question workspace for Jev Board datasets. <sub>(upstream description)</sub>
   <sub>`Project` · webgrga · `JS` · call site [`worker/src/index.js`](https://github.com/WebGrga/jev-board-lab/blob/HEAD/worker/src/index.js), read 2026-09-22 · ⚠ `no licence`</sub>

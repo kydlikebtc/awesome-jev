@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 233 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 236 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 225 · 接口形态 4 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 228 · 接口形态 4 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -435,6 +435,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[gg-friggin-ez](https://github.com/ItisShikhar/gg-friggin-ez)** — 给 Node.js 的快速多语言脏话与毒性筛查器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · itisshikhar · `TS` · 调用点 [`demo/js/models.js`](https://github.com/ItisShikhar/gg-friggin-ez/blob/HEAD/demo/js/models.js)，2026-09-22 阅读</sub>
 
+- **[Harness Router](https://github.com/Protocol-Lattice/harness-router)** — 在现有 Agent 循环中挑选下一个工具：给定目标、当前观测和工具列表，由 Jev 返回带置信度的工具选择，或交回宿主规划器处理。会缓存可复用的选择，可选 MCTS 搜索，能挂接到 Codex 等框架，也可作为 MCP 服务器运行。 <sub>(机翻)</sub>
+  <sub>`开源项目` · protocol-lattice · `Py` · `choice` · 调用点 [`src/harness_router/config.py`](https://github.com/Protocol-Lattice/harness-router/blob/HEAD/src/harness_router/config.py)</sub>
+
 - **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — 评判智能体的每一步：通过／重试／升级／停止。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/harnessjudge/blob/HEAD/src/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
 
@@ -446,6 +449,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev Browser Bridge](https://github.com/lexmount/jev-browser-bridge)** — 让 Jev 浏览器 Agent 运行在任何支持 CDP 的浏览器上，包括从不渲染页面的浏览器：它读取 DOM 而不是坐标，向 Jev 问一个 choice 选操作、再问一个 choice 选目标。作者报告在六种浏览器上的 172 个 MiniWoB++ 回合中成功率为 59–65%，基于坐标的读取方式为 24–31%。 <sub>(机翻)</sub>
   <sub>`开源项目` · lexmount · `Py` · `choice` · 调用点 [`jev_browser_bridge/model.py`](https://github.com/lexmount/jev-browser-bridge/blob/HEAD/jev_browser_bridge/model.py) · ⚠ `厂商自报数据`</sub>
+
+- **[Jev Civilizations](https://github.com/JonesSteven/jev_civilization)** — 一款带在线演示的小型策略游戏：四个部落自主生活，你只能改变环境。每回合 Jev 用 choice 从真正合法的行动中为每个部落选一个，普通的游戏引擎计算结果，检查器会显示 Jev 收到了哪些信息。 <sub>(机翻)</sub>
+  <sub>`开源项目` · jonessteven · `TS` · `choice` · 调用点 [`scripts/probe-jev.ts`](https://github.com/JonesSteven/jev_civilization/blob/HEAD/scripts/probe-jev.ts)</sub>
 
 - **[Jev Plays Pokémon Red](https://github.com/christianmat/jev-pokemon)** — 让 Jev 通关《宝可梦 红》的框架：读取模拟器内存，列出合法选项及相关事实（属性克制、伤害估计、离目标还有多远），由 Jev 选一个。37 小时 40 分钟内共做出 16,150 次决策，花费约 1.65 美元，通过 Vercel AI Gateway 上的 AI SDK 调用。 <sub>(机翻)</sub>
   <sub>`开源项目` · christianmat · `TS` · 调用点 [`src/jev/gateway.ts`](https://github.com/christianmat/jev-pokemon/blob/HEAD/src/jev/gateway.ts) · ⚠ `宣称未核实`</sub>
@@ -644,6 +650,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevonly](https://github.com/buluoray/JevOnly)** — 纯 Jev 驱动的智能体：能「打字」并推进任务直至完成。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · buluoray · `Py` · 调用点 [`src/jevonly/core/jev.py`](https://github.com/buluoray/JevOnly/blob/HEAD/src/jevonly/core/jev.py)，2026-09-22 阅读</sub>
+
+- **[Jevry](https://github.com/michaelswissa/jevry)** — 一款开源桌面浏览器，可根据自然语言任务操作网站：文本模型负责规划，Jev 用 choice 从浏览器真正能执行的动作中挑选每一步（绝不生成 JavaScript 或选择器），Chromium 执行，步骤可见并可随时停止。 <sub>(机翻)</sub>
+  <sub>`开源项目` · michaelswissa · `TS` · `choice` · 调用点 [`desktop/jev-direct-plan.ts`](https://github.com/michaelswissa/jevry/blob/HEAD/desktop/jev-direct-plan.ts)</sub>
 
 - **[jevshield](https://github.com/lgy1027/jevshield)** — 亚 100 毫秒的智能体工具调用安全闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · lgy1027 · `Py` · 调用点 [`jevshield/client.py`](https://github.com/lgy1027/jevshield/blob/HEAD/jevshield/client.py)，2026-09-22 阅读</sub>
