@@ -448,7 +448,13 @@ it is right, so a model's draft of any of them keeps the row listed until a
 person has checked it. Whether a row sits under the right pattern stays with
 the queue's pattern sections. `docs/status.md` counts the rows and those
 listed: 61 of 134 that day, most of them for machine-translated Chinese (58)
-or a summary in the project's own words (37).
+or a summary in the project's own words (37). The same day a model read those
+rows' READMEs and, for most, the files they cite, and redrafted 38 summaries:
+the 37 in the project's own words and one the generic-summary rule marked. Each
+says what the project asks Jev to decide and is marked `model-written`, and its
+Chinese, redone to match, stays `zh_machine`, so the 38 rows stay listed until
+a person checks them. The two other summaries the rule marked have Chinese a
+person wrote, and were left to a person.
 
 ## Discovery is crowdsourced, verification is not
 
