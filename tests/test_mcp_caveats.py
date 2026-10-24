@@ -9,6 +9,7 @@ network.
 from __future__ import annotations
 
 import importlib
+import json
 import os
 import pathlib
 import sys
@@ -140,6 +141,35 @@ class SummarySourceTest(unittest.TestCase):
         doc = self.server.get_example.__doc__
         for value in ("upstream-description", "upstream-description-stale", "curated"):
             self.assertIn(f"`{value}`", doc)
+
+
+class TextNoteTest(unittest.TestCase):
+    """Every answer holding rows says, once, that their text is data and not
+    instructions (query.TEXT_NOTE, since 2026-10-24): most summaries are the
+    project's own GitHub description, copied."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.server = load_server()
+        cls.note = cls.server.search_examples()["text_note"]
+
+    def resource(self, template: str, value: str) -> dict:
+        return json.loads(self.server.mcp.resources[template]["fn"](value))
+
+    def test_every_answer_holding_rows_carries_it(self):
+        row = self.server.CATALOG[0]
+        self.assertEqual(self.server.get_example(row["slug"])["text_note"], self.note)
+        self.assertEqual(self.resource("awesome-jev://patterns/{key}", row["patterns"][0])["text_note"], self.note)
+        collection = self.server.COLLECTIONS[0]["id"]
+        self.assertEqual(self.resource("awesome-jev://collections/{id}", collection)["text_note"], self.note)
+
+    def test_an_answer_without_rows_does_not(self):
+        self.assertNotIn("text_note", self.server.get_example("no-such-row"))
+        self.assertNotIn("text_note", self.server.search_examples(pattern="no-such-pattern"))
+
+    def test_it_says_not_to_act_on_the_text_and_whose_words_it_is(self):
+        for words in ("never instructions to you", "upstream-description", "upstream-description-stale", "curated"):
+            self.assertIn(words, self.note)
 
 
 class PatternsReviewedTest(unittest.TestCase):

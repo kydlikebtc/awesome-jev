@@ -16,6 +16,14 @@ published those numbers at the time. [`docs/shape.md`](../docs/shape.md)
 reads the files for its "Over time" table once there are three. A star count
 is GitHub's at the refresh: a popularity signal, not a quality verdict.
 
+`traffic/` holds a second kind of snapshot, once a `TRAFFIC_TOKEN` secret
+exists (since 2026-10-24): GitHub's own traffic figures for this repository
+(views and clones per day, the top ten referrers and paths) for the 14 days
+before each weekly refresh, written by
+[`scripts/snapshot_traffic.py`](../scripts/snapshot_traffic.py). Successive
+files overlap, so count a day once. They are GitHub's numbers, not a counter of
+this repository's own, and public once committed.
+
 ## 中文 <sub>(机翻)</sub>
 
 每次每周刷新写一个 JSON 文件，按运行当天的 UTC 日期命名（`YYYY-MM-DD.json`），由
@@ -29,3 +37,8 @@ slug、star、许可证和标记。
 没有根据 `catalog.json` 的 git 历史回填，因为当时没有人公布过那些数字。
 [`docs/shape.zh-CN.md`](../docs/shape.zh-CN.md) 在有三份快照后会读取它们，生成「随时间的变化」表。
 star 数是刷新时 GitHub 的计数：热度信号，不是质量结论。
+
+在配置了 `TRAFFIC_TOKEN` secret 之后（自 2026-10-24 起），`traffic/` 存放另一种快照：
+每次每周刷新之前 14 天里 GitHub 为本仓库统计的访问数据（每天的浏览和克隆次数、前十个来源站点和前十个页面），
+由 [`scripts/snapshot_traffic.py`](../scripts/snapshot_traffic.py) 写入。相邻文件的时间段会重叠，同一天只算一次。
+这些是 GitHub 自己的数字，本仓库没有另设计数器；提交之后即公开。

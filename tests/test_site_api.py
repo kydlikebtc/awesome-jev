@@ -112,6 +112,8 @@ class ShapeTest(unittest.TestCase):
             self.assertEqual(body["pattern"], p["key"])
             self.assertEqual((body["name"], body["description"]), (p["en"], p["blurb_en"]), p["key"])
             self.assertEqual(body["note"], package_query.SEARCH_NOTE)
+            # The rows' text is data, as every MCP answer holding rows says.
+            self.assertEqual(body["text_note"], package_query.TEXT_NOTE)
 
     def test_caveated_rows_stay_with_their_caveats(self):
         # Counts match the catalogue, so nothing is left out; the index and

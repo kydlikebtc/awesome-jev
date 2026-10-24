@@ -78,10 +78,22 @@ jobs:
       # used to be committed PNGs, and every one of them froze at the first
       # build. If any page fails to finish rendering its data, this step fails
       # and the previous deploy — whose images match its own data — stays live.
+      #
+      # The site loads no Chinese web font (site/fonts/fonts.css says why) and
+      # the runner image has no CJK font, so Noto Sans CJK, which every font
+      # stack on the site names, is installed first: without it the Chinese
+      # screenshot and the cards' "中文" render as empty boxes, and
+      # --require-cjk-font fails the step instead of publishing them.
+      - name: Install a CJK font for the screenshots
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq --no-install-recommends fonts-noto-cjk
+          fc-list :lang=zh family | sort -u
+
       - name: Render preview images from the live data
         run: |
           google-chrome --version
-          python3 scripts/render_images.py
+          python3 scripts/render_images.py --require-cjk-font
 
       - uses: actions/configure-pages@v6
 

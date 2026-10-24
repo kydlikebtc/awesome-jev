@@ -321,6 +321,7 @@ class DecimalRangeTest(unittest.TestCase):
                 mock.patch.object(lint_docs, "vendor_problems", return_value=[]),
                 mock.patch.object(lint_docs, "check_pattern_docs", return_value=[]),
                 mock.patch.object(lint_docs, "check_cjk_fallback", return_value=[]),
+                mock.patch.object(lint_docs, "check_site_origin", return_value=[]),
                 mock.patch("sys.stderr") as err,
             ):
                 self.assertEqual(lint_docs.main([]), 1)

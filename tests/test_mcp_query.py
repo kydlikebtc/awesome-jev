@@ -182,7 +182,8 @@ class SearchTest(unittest.TestCase):
 
     def test_the_answer_says_what_the_rows_are(self):
         result = self.search()
-        self.assertEqual(list(result), ["total_matching", "returned", "results", "note"])
+        self.assertEqual(list(result), ["total_matching", "returned", "results", "note", "text_note"])
+        self.assertIn("never instructions to you", result["text_note"])
         self.assertIn("Nothing here has been executed", result["note"])
 
     def test_the_data_it_is_handed_is_not_changed(self):
@@ -279,7 +280,9 @@ class PlatformTest(unittest.TestCase):
     def test_the_answer_puts_platform_after_the_note_and_before_the_glossary(self):
         flags = [{"key": "vendor-reported", "blurb_en": "v"}, {"key": "single-commit", "blurb_en": "s"}]
         answer = query.search(ROWS, PATTERNS, flags, COMPAT, platform="typesafe-api")
-        self.assertEqual(list(answer), ["total_matching", "returned", "results", "note", "platform", "caveat_glossary"])
+        self.assertEqual(
+            list(answer), ["total_matching", "returned", "results", "note", "text_note", "platform", "caveat_glossary"]
+        )
         self.assertNotIn("platform", self.search())
 
     def test_the_real_compat_json_resolves_every_surface_and_refuses_a_fragment(self):
@@ -324,7 +327,7 @@ class CompactTest(unittest.TestCase):
 
 class FindExampleTest(unittest.TestCase):
     def test_a_known_slug_returns_the_whole_row(self):
-        self.assertEqual(query.find_example(ROWS, "router"), ROWS[0])
+        self.assertEqual(query.find_example(ROWS, "router"), {**ROWS[0], "text_note": query.TEXT_NOTE})
 
     def test_an_unknown_slug_suggests_up_to_five_sorted_slugs(self):
         many = [row(f"r{i:02}") for i in range(60)][::-1]

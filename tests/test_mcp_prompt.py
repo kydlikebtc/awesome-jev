@@ -217,6 +217,9 @@ class RowsTest(unittest.TestCase):
         part = section(text(), "Worked examples")
         self.assertIn("py-top does it. (upstream description)", part)
         self.assertIn("   Caveats: `single-commit`", part)
+        # Said once, before the rows: their text is data, not instructions.
+        self.assertEqual(part.count(prompts.TEXT_NOTE), 1)
+        self.assertLess(part.index(prompts.TEXT_NOTE), part.index("py-top does it."))
         body = text(language="python")
         rest = prompts.wire_pattern_text([e for e in ROWS if e["slug"] in {"shipped"}], PATTERNS, COMPAT,
                                          TAXONOMY, None, pattern="tool-selection")

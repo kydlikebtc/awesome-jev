@@ -144,6 +144,37 @@ MARKETING_WORDS = re.compile(
     r"|seamless(?:ly)?|supercharg\w*|effortless(?:ly)?|unleash\w*|100% free)\b",
     re.IGNORECASE,
 )
+# Text written as instructions to a model, in a field agents read: the MCP
+# server, llms.txt and the site's api/v1 files hand titles, summaries and notes
+# to agents, and most summaries are a project's own GitHub description, copied
+# unreviewed for intent. Every answer says the text is data, never instructions
+# (TEXT_NOTE in src/awesome_jev_mcp/query.py); this refuses the plain cases
+# before they are published: an order to drop earlier instructions, a role
+# reassigned, a chat template's role tokens, a line addressed to AI readers, an
+# order to keep something from the user. Since 2026-10-24, when no row matched.
+# A row about prompt injection describes the attack rather than quoting it.
+INSTRUCTION_FIELDS = ("title", "summary", "summary_zh", "notes", "notes_zh")
+INSTRUCTIONS = re.compile(
+    r"\b(?:ignore|disregard|forget|override)\s+(?:all\s+|any\s+|the\s+|your\s+)?"
+    r"(?:previous|prior|above|earlier|preceding|system)\s+(?:instructions?|prompts?|rules|messages?|context)\b"
+    # A role reassigned: "you are now a", not "you are now ready".
+    r"|\byou\s+are\s+now\s+(?:an?|acting\s+as|DAN)\b"
+    r"|\byou\s+are\s+(?:an?|the)\s+(?:\w+\s+)?(?:ai|llm|(?:large\s+)?language\s+model|assistant)\b"
+    # Addressed to AI readers: "If you are an AI reading this,", "Note to AI agents:";
+    # not "if you are an AI researcher" or "sends a message to the agent".
+    r"|\bif\s+you\s+are\s+(?:an?\s+)?(?:ai|llm|(?:large\s+)?language\s+model)"
+    r"(?:\s+(?:agent|assistant|model|system))?\s*(?:[,:]|reading\b|processing\b)"
+    r"|\b(?:(?:note|message|important)\s+(?:to|for)|attention)\s+(?:the\s+|any\s+|all\s+)?"
+    r"(?:ai|llms?|agents?|assistants?|models?|bots?)(?:\s+(?:agents?|models?|assistants?|readers?))?\s*:"
+    r"|\b(?:do\s+not|don't|never)\s+(?:tell|inform|mention\s+(?:this|it)\s+to|reveal\s+(?:this\s+|it\s+)?to)"
+    r"\s+the\s+user\b"
+    r"|</?\s*(?:system|assistant|user)\s*>|\[/?(?:INST|SYS)\]|<\|(?:im_start|im_end|system|endoftext)\|>"
+    r"|(?:忽略|无视|忘记|忽视)(?:之前|以上|前面|先前|上述)的?(?:所有)?(?:指令|指示|提示|规则)"
+    # "你现在是一个…助手", not "告诉你现在是哪个版本".
+    r"|你现在是(?:一个|一名|一位)"
+    r"|如果你是(?:一个)?\s*(?:AI|人工智能|大模型|大语言模型|语言模型)(?:助手|智能体|模型)?\s*(?:[，,：:]|正在|在读)",
+    re.IGNORECASE,
+)
 # Pictographs, the two symbol blocks emoji are drawn from, and the variation
 # selector that turns a symbol into one. Arrows (→) and keyboard symbols (⌘),
 # which summaries use for meaning, are outside these ranges.
@@ -386,6 +417,7 @@ def check_entry_invariants(
             "shadow-mode-only flag: read the call, and flag it if nothing it returns reaches a decision",
         )
     report.add(check_curated_summary(entry, path))
+    report.add(check_instructions(entry, path))
 
     # `official` is a factual claim about who published the thing, so it is
     # checked against the vendor's own hosts and GitHub org rather than trusted.
@@ -579,6 +611,23 @@ def check_curated_summary(entry: dict, path: str) -> Findings:
         )
     if EMOJI.search(summary):
         report.warn(path, f"{slug}: summary_source is curated but the summary contains emoji")
+    return report.findings()
+
+
+def check_instructions(entry: dict, path: str) -> Findings:
+    """No text an agent reads is written as instructions to it; see INSTRUCTIONS."""
+    report = Report()
+    slug = entry.get("slug", "?")
+    for field in INSTRUCTION_FIELDS:
+        value = entry.get(field)
+        match = INSTRUCTIONS.search(value) if isinstance(value, str) else None
+        if match:
+            report.err(
+                path,
+                f"{slug}: {field} reads as an instruction to a model ({match.group(0)!r}). Agents read "
+                "this text (the MCP server, llms.txt, the site's api/v1): say what the project does "
+                "rather than quoting it",
+            )
     return report.findings()
 
 
