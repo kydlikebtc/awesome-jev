@@ -15,7 +15,7 @@ Rows a script has singled out for a person to read. Each entry is a machine sign
 | [Tool selection resting on words the keyword rules no longer count · 工具选择只靠关键词规则已不再计入的词](#tool-selection-broad-words) | 65 |
 | [Overview rows with code, not yet indexed by pattern · 带代码、尚未按模式索引的 overview 行](#unsorted-overview) | 252 |
 | [Rows with code whose summary names nothing about Jev · 带代码、摘要没有提到 Jev 的行](#generic-summary) | 101 |
-| [Benchmark measurements no person has read against the report · 尚无人对照报告核读的基准测试测量](#measurement-unread) | 26 |
+| [Benchmark measurements no person has read against the report · 尚无人对照报告核读的基准测试测量](#measurement-unread) | 27 |
 | [Interfaces of alternatives no person has read in the cited files · 尚无人在所引文件中核读的替代实现接口](#wire-unread) | 14 |
 | [Thresholds no person has read in the cited file · 尚无人在所引文件中核读的阈值](#thresholds-unread) | 32 |
 
@@ -642,6 +642,7 @@ To take a row off, read the author's report (the row's link, or `measurement.rep
 | [smartmoney-cub](https://kydlikebtc.github.io/awesome-jev/?lang=en#smartmoney-cub) | ★10+ | `mixed` | [`https://github.com/myc0576/SmartMoney-Cub/blob/HEAD/assets/benchmark/run.json`](https://github.com/myc0576/SmartMoney-Cub/blob/HEAD/assets/benchmark/run.json) |
 | [typesafe-ai-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-ai-benchmark) | ★10+ | `mixed` | [`https://github.com/iammrduncan/typesafe-ai-benchmark/blob/HEAD/docs/benchmarks/README.md`](https://github.com/iammrduncan/typesafe-ai-benchmark/blob/HEAD/docs/benchmarks/README.md) |
 | [windtunnel](https://kydlikebtc.github.io/awesome-jev/?lang=en#windtunnel) | ★10+ | — | [`https://github.com/nekuda-ai/WindTunnel/blob/HEAD/results/2026-09-18-jev-mercury/PROVENANCE.md`](https://github.com/nekuda-ai/WindTunnel/blob/HEAD/results/2026-09-18-jev-mercury/PROVENANCE.md) |
+| [decision-models-as-guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=en#decision-models-as-guardrails) |  | — | [`https://dm-as-guardrails.raxitlabs.com`](https://dm-as-guardrails.raxitlabs.com) |
 | [jev-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-benchmark) |  | `mixed` | [`https://github.com/wondertwins/jev-benchmark`](https://github.com/wondertwins/jev-benchmark) |
 | [jev-code-review-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-code-review-benchmark) |  | `mixed` | [`https://github.com/gemanor/jev-code-review-benchmark/blob/HEAD/docs/results/README.md`](https://github.com/gemanor/jev-code-review-benchmark/blob/HEAD/docs/results/README.md) |
 | [jev-korean-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-korean-benchmark) |  | `mixed` | [`https://github.com/mahlernim/jev-korean-benchmark`](https://github.com/mahlernim/jev-korean-benchmark) |

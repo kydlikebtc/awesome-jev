@@ -181,7 +181,7 @@ but not in CI".
 <!-- notes:start -->
 | Surface | Worth knowing | Catalogued examples |
 | --- | --- | --- |
-| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | The reference surface. Everything else is measured against this. | [1121](https://kydlikebtc.github.io/awesome-jev/?platform=typesafe-native&lang=en) · `typesafe-api` (coarse) |
+| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | The reference surface. Everything else is measured against this. | [1124](https://kydlikebtc.github.io/awesome-jev/?platform=typesafe-native&lang=en) · `typesafe-api` (coarse) |
 | [Vercel AI SDK evaluation API](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk) | The one surface that renames the primitive. Needs AI SDK 7.0.105 or newer. | [17](https://kydlikebtc.github.io/awesome-jev/?platform=vercel-eval&lang=en) · `vercel-ai-gateway`, `vercel-ai-sdk` (coarse) |
 | [Vercel AI Gateway (TypeSafe-compatible)](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe) | Same gateway as the row above, different route, different spelling. Pick one and stay on it. | [15](https://kydlikebtc.github.io/awesome-jev/?platform=vercel-compat&lang=en) · `vercel-ai-gateway` (coarse) |
 | [@ai-sdk/typesafe-ai](https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai) | Note the env var: TYPESAFE_AI_API_KEY, not TYPESAFE_API_KEY. | [2](https://kydlikebtc.github.io/awesome-jev/?platform=ai-sdk-direct&lang=en) · `vercel-ai-sdk` (coarse) |
