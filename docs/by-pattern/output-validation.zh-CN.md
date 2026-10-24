@@ -4,11 +4,11 @@
 
 _在输出到达用户前，按评分标准检查模型产出。_
 
-这个决策的全部已收录例子 —— 共 133 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 134 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#output-validation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#output-validation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 128 · 接口形态 1 · 仅示例 0 · 独立报告 11 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 129 · 接口形态 1 · 仅示例 0 · 独立报告 11 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -286,6 +286,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-labs](https://github.com/copyleftdev/jev-labs)** — 绝不自信地犯错：围绕 Jev 的 TLA+ 验证共识内核。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · copyleftdev · `Py` · 调用点 [`consensus/rust/consensus-kernel/src/jev.rs`](https://github.com/copyleftdev/jev-labs/blob/HEAD/consensus/rust/consensus-kernel/src/jev.rs)，2026-09-22 阅读</sub>
+
+- **[jev-lint](https://github.com/ckorhonen/jev-lint)** — 面向编程 Agent 的模糊 linter：Agent 写完文件后，团队用自然语言写的每条规则都作为一个 Jev noul 来问，约 0.3 秒后 Agent 就能知道自己违反了哪些规则。可以从仓库自动生成规则；也可改用 Cloudflare 或 OpenAI 作为评判。 <sub>(机翻)</sub>
+  <sub>`插件` · ckorhonen · `TS` · `noul` · 调用点 [`src/jev.ts`](https://github.com/ckorhonen/jev-lint/blob/HEAD/src/jev.ts)</sub>
 
 - **[jev-lm](https://github.com/y0usaf/jev-lm)** — 输出层就是 Jev 的词级语言模型：n-gram 起草，Noul 做分块校验。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · y0usaf · `TS` · 调用点 [`python/jev_lm/api.py`](https://github.com/y0usaf/jev-lm/blob/HEAD/python/jev_lm/api.py)，2026-09-22 阅读</sub>
