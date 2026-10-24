@@ -25,7 +25,8 @@
 - [ ] Each `observed_thresholds` item is a constant the cited file compares a Jev answer with, its `source` copied exactly and also in `evidence.matched` (lint checks), `compares` naming Jev's answer rather than the project's variable, and `read_on` set only on items I read in the file myself
 - [ ] `stars` / `repo_license` came from the GitHub API, not a badge, and I left `repo_created_at`, `repo_pushed_at` and `repo_commits` to the weekly refresh
 - [ ] `sources` names where I found the row; I left the sibling-list citations (`{"catalog": "owner/name", …}` items) to the weekly refresh
-- [ ] `summary_source` is `curated` if I wrote or rewrote the summary, and left out if I pasted the repository's own GitHub description (the weekly refresh labels that)
+- [ ] `summary_source` is `curated` if I wrote or rewrote the summary, `model-written` if a model wrote it and no person has rewritten it since, and left out if I pasted the repository's own GitHub description (the weekly refresh labels that)
+- [ ] What a model read for me is recorded as a model's reading: `model_read_on` (on `evidence`, `measurement`, a `wire.source` file or a threshold) or `patterns_model_read_on`, never `read_on` or `patterns_reviewed`, which say a person read it (see CONTRIBUTING, *A model's reading*)
 - [ ] A row started from a draft (`discover_candidates.py --drafts`, or the one posted on a new-entry issue): I read its call site myself, checked the `kind`, `patterns` and `languages` the script guessed, and deleted `_draft`. Leave unticked otherwise.
 
 </details>
