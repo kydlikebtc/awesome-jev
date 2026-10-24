@@ -39,11 +39,14 @@
 # discover.yml reads strangers' repositories and holds no write permission, so
 # it leaves them as an artifact, and this run merges the newest one in. Every
 # entry is checked against a fixed shape on the way (scripts/discover_seen.py),
-# and a missing or broken artifact costs only a warning. And it keeps a dated
-# snapshot of the catalogue's counts in history/ (scripts/snapshot_stats.py):
-# derived from catalog.json, never read back into it. Once a TRAFFIC_TOKEN
-# secret exists, the repository's GitHub traffic goes beside it, in
-# history/traffic/ (scripts/snapshot_traffic.py, since 2026-10-24).
+# and a missing or broken artifact costs only a warning. Beside them it keeps
+# GitHub's figures for each candidate still to read (.discover/facts.json,
+# scripts/discover_facts.py, since 2026-10-24), which order the discovery
+# queue and park its weakest candidates. And it keeps a dated snapshot of the
+# catalogue's counts in history/ (scripts/snapshot_stats.py): derived from
+# catalog.json, never read back into it. Once a TRAFFIC_TOKEN secret exists,
+# the repository's GitHub traffic goes beside it, in history/traffic/
+# (scripts/snapshot_traffic.py, since 2026-10-24).
 #
 # A push made with GITHUB_TOKEN does not trigger other workflows, so the run
 # dispatches pages (and lint, for a visible check) itself; workflow_dispatch is
@@ -198,6 +201,20 @@ jobs:
           fi
           echo "discovery run $run"
           python3 scripts/discover_seen.py .discover/seen.json "$src"
+
+      # GitHub's figures for every candidate the discovery queue still has to
+      # read (stars, commits, last push, whether a README tops its tree),
+      # kept in .discover/facts.json and committed with the verdicts. The
+      # queue orders its candidates by them and parks the weakest, deciding
+      # nothing about them (scripts/discover_facts.py). After the verdicts are
+      # taken in, so last week's candidates are read too. Batched GraphQL,
+      # like the refresh; a candidate not answered keeps last week's facts.
+      # Since 2026-10-24; a crash costs this step, not the week's refresh.
+      - name: Read GitHub's figures for the candidates still to read
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/discover_facts.py
 
       # A dated copy of the catalogue's counts, history/<UTC date>.json: every
       # number compute() publishes, rows per kind, pattern, flag, language and

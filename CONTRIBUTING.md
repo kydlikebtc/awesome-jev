@@ -525,7 +525,12 @@ once `docs/declined.txt` declines it, and otherwise waiting to be read.
 `scripts/queue_sync.py` derives those states from `catalog.json`,
 `retired.json`, `docs/declined.txt` and `.discover/seen.json`, and the weekly
 run rewrites the description with them, so nobody ticks a box by hand: merging
-the pull request that adds the row or the decline is what ticks it. Each
+the pull request that adds the row or the decline is what ticks it. Those
+waiting to be read come strongest first, by GitHub's figures from the weekly
+refresh (`.discover/facts.json`): most stars, then most commits, then the
+latest push. A candidate weak on at least two counts (one commit or none, no
+star, no README) is listed apart as parked. That is not a decline: read one if
+you like, and it moves back once a refresh finds it stronger. Each
 week's new candidates arrive as a comment, a task list with one box per
 repository, its call site, and under it the command that reads that one
 repository again:

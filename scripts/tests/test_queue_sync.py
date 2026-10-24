@@ -4,7 +4,8 @@ state derived from the repository's files, rendered the same way every time.
 A candidate is a repository .discover/seen.json records as calls-jev. It is
 catalogued when a row in catalog.json links to it, catalogued and since
 retired when only retired.json does, declined when docs/declined.txt names it,
-and otherwise still to read. No network.
+and otherwise still to read, or parked when .discover/facts.json says it is
+weak on two counts (since 2026-10-24). No network.
 """
 
 from __future__ import annotations
@@ -23,6 +24,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import discover_candidates as dc  # noqa: E402
+import discover_facts as df  # noqa: E402
 import discover_seen as ds  # noqa: E402
 import queue_sync as qs  # noqa: E402
 from readme import rows as readme_rows  # noqa: E402
@@ -127,7 +129,9 @@ class RenderTest(unittest.TestCase):
 
     def test_counts_and_order(self):
         body = self.body()
-        self.assertIn("**3** to read · **4** catalogued · **1** declined · **1** catalogued and since retired", body)
+        self.assertIn(
+            "**3** to read · **0** parked · **4** catalogued · **1** declined · **1** catalogued and since retired", body
+        )
         opened = re.findall(r"^- \[ \] \[([^\]]+)\]", body, re.M)
         self.assertEqual(opened, ["alpha/early", "aaa/newest", "zeta/late"], "oldest read first, then by name")
         done = re.findall(r"^- \[x\] \[([^\]]+)\]", body, re.M)
@@ -155,7 +159,7 @@ class RenderTest(unittest.TestCase):
         # Principle f: the description is read by people in either language,
         # and the Chinese is marked as model-written.
         body = self.body()
-        self.assertIn("待读 **3** · 已收录 **4** · 已拒收 **1** · 收录后已退役 **1** <sub>(机翻)</sub>", body)
+        self.assertIn("待读 **3** · 暂缓 **0** · 已收录 **4** · 已拒收 **1** · 收录后已退役 **1** <sub>(机翻)</sub>", body)
         self.assertIn("本描述里的中文（包括下面的标题和计数）都由模型写成。 <sub>(机翻)</sub>", body)
         settled = qs.render(qs.derive({"no/thanks": v("2026-09-24")}, CATALOG, RETIRED, DECLINED))
         self.assertIn("没有待读的候选：迄今每个候选都已收录或已拒收。 <sub>(机翻)</sub>", settled)
@@ -214,6 +218,111 @@ class RenderTest(unittest.TestCase):
         self.assertEqual(qs.SITE, readme_rows.SITE)
 
 
+def f(stars: int, commits: int, pushed: str = "2026-10-01", readme: bool = True, **extra) -> dict:
+    return {"stars": stars, "commits": commits, "pushed": pushed, "readme": readme, "archived": False, **extra}
+
+
+class FactsTest(unittest.TestCase):
+    """Since 2026-10-24: GitHub's figures order the candidates to read, and
+    the weakest are parked, which decides nothing."""
+
+    SEEN = {
+        "few/stars": v("2026-09-03"),
+        "many/stars": v("2026-09-24"),
+        "same/stars-more-commits": v("2026-09-24"),
+        "same/stars-later-push": v("2026-09-24"),
+        "not/measured": v("2026-09-10"),
+        "one/commit": v("2026-09-03"),
+        "bare/repo": v("2026-09-03"),
+        "gone/now": v("2026-09-03"),
+        "old/name": v("2026-09-03"),
+        "older/name": v("2026-09-03"),
+    }
+    FACTS = {
+        "few/stars": f(2, 40),
+        "many/stars": f(90, 3),
+        "same/stars-more-commits": f(10, 50, "2026-01-01"),
+        "same/stars-later-push": f(10, 5, "2026-10-20"),
+        "one/commit": f(0, 1),
+        "bare/repo": f(4, 1, readme=False),
+        "gone/now": {"missing": True},
+        "old/name": f(7, 7, name="new/name"),
+        "older/name": f(7, 7, name="declined/name"),
+    }
+    CATALOG = [entry("new-name", "https://github.com/New/Name")]
+    DECLINED = {"declined/name": "a fork of a catalogued project"}
+
+    def derive(self, facts=None):
+        return qs.derive(self.SEEN, self.CATALOG, [], self.DECLINED, self.FACTS if facts is None else facts)
+
+    def test_to_read_goes_by_stars_then_commits_then_the_latest_push_and_unmeasured_last(self):
+        body = qs.render(self.derive())
+        opened = re.findall(r"^- \[ \] \[([^\]]+)\]", body, re.M)
+        self.assertEqual(opened, [
+            "many/stars", "same/stars-more-commits", "same/stars-later-push", "few/stars", "not/measured",
+        ])
+        line = next(line for line in body.splitlines() if "[many/stars]" in line)
+        self.assertIn(" · ★90 · 3 commits · last push 2026-10-01 · read by script 2026-09-24 · ", line)
+        line = next(line for line in body.splitlines() if "[not/measured]" in line)
+        self.assertIn("(https://github.com/not/measured) · read by script 2026-09-10 · ", line, "no figures, no words")
+
+    def test_two_weak_counts_or_a_missing_repository_park_a_candidate(self):
+        got = {c.repo: c for c in self.derive()}
+        self.assertEqual(got["one/commit"].state, "parked")
+        self.assertEqual(got["one/commit"].reason, "one commit or none, no star")
+        self.assertEqual(got["bare/repo"].reason, "one commit or none, no README")
+        self.assertEqual(got["gone/now"].reason, df.MISSING)
+        for repo in ("few/stars", "many/stars", "not/measured"):
+            self.assertEqual(got[repo].state, "open", repo)
+        self.assertEqual(df.parked(f(0, 30)), [], "one weak count alone parks nothing")
+
+    def test_the_parked_section_says_nothing_was_decided(self):
+        body = qs.render(self.derive())
+        self.assertIn("**5** to read · **3** parked · **1** catalogued · **1** declined", body)
+        self.assertIn("待读 **5** · 暂缓 **3** · ", body)
+        start = body.index("<summary>Parked · 暂缓 (3)</summary>")
+        self.assertLess(body.index("### To read · 待读"), start)
+        self.assertLess(start, body.index("<summary>Catalogued · 已收录 (1)</summary>"))
+        section = body[start:body.index("</details>", start)]
+        self.assertIn(qs.PARKED_EN, section)
+        self.assertIn(qs.PARKED_ZH, section)
+        self.assertIn("Not declined", qs.PARKED_EN)
+        self.assertTrue(qs.PARKED_ZH.endswith(" <sub>(机翻)</sub>"))
+        self.assertNotIn("- [ ] ", section, "no box: nothing is asked of anyone")
+        parked = re.findall(r"^- \[([^\]]+)\]\(https://github.com/[^)]+\) · parked: ", section, re.M)
+        self.assertEqual(parked, ["bare/repo", "one/commit", "gone/now"], "strongest first, the missing one last")
+        line = next(line for line in section.splitlines() if "[bare/repo]" in line)
+        self.assertIn(" · parked: one commit or none, no README · ★4 · 1 commit · last push 2026-10-01 · read by ", line)
+        self.assertEqual(line.count("README"), 1, "the reason names it once")
+        line = next(line for line in section.splitlines() if "[gone/now]" in line)
+        self.assertIn(f" · parked: {df.MISSING} · read by script 2026-09-03 · ", line)
+
+    def test_a_renamed_candidate_takes_the_state_of_its_new_name(self):
+        got = {c.repo: c for c in self.derive()}
+        self.assertEqual((got["old/name"].state, got["old/name"].rows), ("catalogued", ("new-name",)))
+        self.assertEqual((got["older/name"].state, got["older/name"].reason), ("declined", "a fork of a catalogued project"))
+        # Until the refresh has read it, the cited name is all there is.
+        self.assertEqual({c.repo: c.state for c in self.derive(facts={})}["old/name"], "open")
+
+    def test_without_facts_the_queue_reads_as_it_did(self):
+        self.assertEqual(
+            qs.render(qs.derive(SEEN, CATALOG, RETIRED, DECLINED, {})),
+            qs.render(qs.derive(SEEN, CATALOG, RETIRED, DECLINED)),
+        )
+        settled = qs.render(qs.derive({"one/commit": v("2026-09-03")}, [], [], {}, {"one/commit": f(0, 1)}))
+        self.assertIn("Nothing to read but the parked candidates below.", settled)
+        self.assertIn("除了下面暂缓的候选，没有待读的。 <sub>(机翻)</sub>", settled)
+        self.assertNotIn("claim owner/name", settled)
+
+    def test_same_facts_same_bytes_whatever_their_order(self):
+        body = qs.render(self.derive())
+        rng = random.Random(7)
+        for _ in range(10):
+            facts = dict(rng.sample(list(self.FACTS.items()), len(self.FACTS)))
+            seen = dict(rng.sample(list(self.SEEN.items()), len(self.SEEN)))
+            self.assertEqual(qs.render(qs.derive(seen, self.CATALOG, [], self.DECLINED, facts)), body)
+
+
 class CommandTest(unittest.TestCase):
     def setUp(self):
         tmp = tempfile.TemporaryDirectory()
@@ -239,8 +348,10 @@ class CommandTest(unittest.TestCase):
         self.assertEqual(code, 0, err)
         self.assertEqual(out, "")
         self.assertEqual(target.read_text(encoding="utf-8"), qs.body(qs.derive(SEEN, CATALOG, RETIRED, DECLINED)))
-        self.assertIn("discovery queue: 9 candidate(s) among 11 verdict(s): 3 open, 4 catalogued, 1 retired, 1 declined",
-                      err)
+        self.assertIn(
+            "discovery queue: 9 candidate(s) among 11 verdict(s): 3 open, 0 parked, 4 catalogued, 1 retired, 1 declined",
+            err,
+        )
         self.assertIn(f"wrote {target}", err)
 
     def test_prints_it_without_out(self):
@@ -268,6 +379,18 @@ class CommandTest(unittest.TestCase):
         code, _, err = self.run_main()
         self.assertEqual(code, 1)
         self.assertIn("error:", err)
+
+    def test_reads_the_facts_file_and_reports_entries_of_the_wrong_shape(self):
+        df.write(self.root / ".discover" / "facts.json", {"alpha/early": f(0, 1), "zeta/late": f(3, 9)})
+        path = self.root / ".discover" / "facts.json"
+        data = json.loads(path.read_text())
+        data["facts"]["aaa/newest"] = {"stars": "many"}
+        path.write_text(json.dumps(data))
+        code, out, err = self.run_main()
+        self.assertEqual(code, 0, err)
+        self.assertIn("discovery queue: 9 candidate(s) among 11 verdict(s): 2 open, 1 parked, ", err)
+        self.assertIn("::warning title=Discovery facts left out::.discover/facts.json: 1 entry", err)
+        self.assertIn("[zeta/late](https://github.com/zeta/late) · ★3 · 9 commits", out)
 
     def test_runs_on_this_repository(self):
         out, err = io.StringIO(), io.StringIO()
