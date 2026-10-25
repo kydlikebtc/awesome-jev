@@ -269,7 +269,7 @@ has, the row is also listed in [review-queue.md](review-queue.md#wire-unread).
 | [von](https://kydlikebtc.github.io/awesome-jev/?lang=en#von) <sub>wfzyx/von</sub> ★100+ | open weights | `wfzyx/von` | `POST /v1/systemone` | top level | `noul` | `noul` | `confidence` | — | [link](https://github.com/wfzyx/von#empirical-benchmark) | [`src/von/server.py`](https://github.com/wfzyx/von/blob/HEAD/src/von/server.py) · [`src/von/types.py`](https://github.com/wfzyx/von/blob/HEAD/src/von/types.py) · [`src/von/backends/option_marker_backend.py`](https://github.com/wfzyx/von/blob/HEAD/src/von/backends/option_marker_backend.py) (not yet read by a person) | **not Jev itself**: A compatible API does not imply compatible calibration, so thresholds do not transfer. · archived |
 | [WaterSheep](https://kydlikebtc.github.io/awesome-jev/?lang=en#watersheep) <sub>SamratDuttaOfficial/WaterSheep</sub> ★10+ | open weights | `answerdotai/ModernBERT-base` | `POST /v1/systemone` | top level | `noul` | `noul` | `confidence` | — | — | [`watersheep/cli.py`](https://github.com/SamratDuttaOfficial/WaterSheep/blob/HEAD/watersheep/cli.py) · [`watersheep/infer.py`](https://github.com/SamratDuttaOfficial/WaterSheep/blob/HEAD/watersheep/infer.py) · [`README.md`](https://github.com/SamratDuttaOfficial/WaterSheep/blob/HEAD/README.md) (read by a person on 2026-10-03) | **not Jev itself**: A compatible API does not imply compatible calibration, so thresholds do not transfer. · self-submitted |
 
-57 more `alternative` rows carry no `wire` record: no one has recorded an interface from their files yet, or their files show none.
+58 more `alternative` rows carry no `wire` record: no one has recorded an interface from their files yet, or their files show none.
 <!-- alternatives:end -->
 
 ---

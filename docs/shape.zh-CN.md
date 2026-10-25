@@ -31,7 +31,7 @@
 | [工单分拣](by-pattern/support-triage.zh-CN.md) | 9 | 1 | 4 | 0 | 0 | 1 | 0 | 5 |
 | [内容评分](by-pattern/content-scoring.zh-CN.md) | 164 | 2 | 155 | 5 | 0 | 9 | 1 | 4 |
 | [实时推荐](by-pattern/recommendation.zh-CN.md) | 2 | 0 | 2 | 0 | 0 | 0 | 0 | 0 |
-| [总览](by-pattern/overview.zh-CN.md) | 469 | 6 | 373 | 57 | 0 | 23 | 1 | 39 |
+| [总览](by-pattern/overview.zh-CN.md) | 470 | 6 | 373 | 58 | 0 | 23 | 1 | 39 |
 
 有 23 份独立报告只归入了 `overview`、没有归入任何其他模式，所以在有人把它们归入所测的决策之前，这张表无法把它们计入那个决策。
 
@@ -41,7 +41,7 @@
 
 | 语言 | 行数 |
 | --- | --- |
-| `python` | 482 |
+| `python` | 483 |
 | `typescript` | 415 |
 | `javascript` | 153 |
 | `rust` | 50 |
@@ -68,7 +68,7 @@
 | 只有 `typesafe-api` | 1093 |
 | 至少有一个值对应[兼容性表](compatibility.md)中的其他接入面（网关、SDK 或框架），且不含 `self-hosted` | 47 |
 | 除 `typesafe-api` 外只记录没有任何兼容性接入面对应的值（示例运行所在的主机、工具或框架，或该表未描述的路径），且不含 `self-hosted` | 35 |
-| 含 `self-hosted`，无论还记录了什么 | 58 |
+| 含 `self-hosted`，无论还记录了什么 | 59 |
 | 未记录任何值 | 21 |
 
 各行记录的每个值，以及对应它的兼容性接入面：
@@ -76,7 +76,7 @@
 | 值 | 兼容性接入面 | 行数 |
 | --- | --- | --- |
 | `typesafe-api` | `typesafe-native` | 1142 |
-| `self-hosted` | — | 58 |
+| `self-hosted` | — | 59 |
 | `vercel-ai-gateway` | `vercel-eval`, `vercel-compat` | 21 |
 | `claude-code` | — | 18 |
 | `openrouter` | `openrouter` | 17 |
@@ -127,7 +127,7 @@
 | 视频 (`video`) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | 基准测试 (`benchmark`) | 72 | 69 | 50 | 12 | 4 | 1 | 1 | 1 | 不足 10 |
 | 讨论 (`discussion`) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-| Jev 替代实现 (`alternative`) | 72 | 59 | 12 | 22 | 17 | 6 | 2 | 0 | ★10+ |
+| Jev 替代实现 (`alternative`) | 73 | 59 | 12 | 22 | 17 | 6 | 2 | 0 | ★10+ |
 
 ## 按决策模式看语言
 
@@ -152,7 +152,7 @@
 | [工单分拣](by-pattern/support-triage.zh-CN.md) | 5 | 2 | 0 | 0 | 1 | 0 | 3 |
 | [内容评分](by-pattern/content-scoring.zh-CN.md) | 70 | 59 | 24 | 4 | 1 | 1 | 8 |
 | [实时推荐](by-pattern/recommendation.zh-CN.md) | 1 | 1 | 0 | 0 | 0 | 0 | 0 |
-| [总览](by-pattern/overview.zh-CN.md) | 177 | 119 | 45 | 24 | 31 | 8 | 52 |
+| [总览](by-pattern/overview.zh-CN.md) | 178 | 119 | 45 | 24 | 31 | 8 | 52 |
 
 ## 一起归档的模式
 
@@ -173,7 +173,7 @@
 
 ## 作者
 
-有 1137 行写明了作者，共 1033 位不同的作者（按显示名比较，不区分大小写）。其中 960 位在本目录只有一行，58 位有两行，15 位有三行或更多；单个作者最多有 11 行。本页不列出任何作者的名字：它显示的是目录的集中程度，而不是谁在贡献。
+有 1138 行写明了作者，共 1034 位不同的作者（按显示名比较，不区分大小写）。其中 961 位在本目录只有一行，58 位有两行，15 位有三行或更多；单个作者最多有 11 行。本页不列出任何作者的名字：它显示的是目录的集中程度，而不是谁在贡献。
 
 ## 随时间的变化
 
