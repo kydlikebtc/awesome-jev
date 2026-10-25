@@ -38,7 +38,7 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 - **[hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills)** — 九个 agent 技能加一个 CLI，覆盖模型路由、记忆过滤、对话轮保留、多选一技能选择和下一步动作决策。
   <sub>`插件` · ★1k+ · `Py` · `choice` · `score` · `noul` · 调用点 [`jevkit/client.py`](https://github.com/kerpopule/hermes-jev-skills/blob/HEAD/jevkit/client.py)，2026-09-22 阅读 · ⚠ `实测后未采用`</sub>
 
-- **[compact-adviser](https://github.com/kunchenguid/compact-adviser)** — 判断工作是否已完成或已记录，据此提示运行上下文压缩。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[compact-adviser](https://github.com/kunchenguid/compact-adviser)** — 只回答一个问题的插件：现在该不该 /compact。一次 Jev 请求问两个 choice（最近一段工作是否已完成；是亲手干活还是在协调他人），由代码合成一个分数，随着上下文变满，门槛从 0.90 放宽到 0.50。它给出提示；在 Pi 和 Claude Code 上若你开启，也可以自动压缩。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · kunchenguid · `TS` · 调用点 [`packages/claude-mod/lib/judge.ts`](https://github.com/kunchenguid/compact-adviser/blob/HEAD/packages/claude-mod/lib/judge.ts)，2026-09-22 阅读</sub>
 
 - **[jev-pruner](https://github.com/tamaratran/jev-pruner)** — 在模型看到之前先修剪冗长的 shell 输出，每个片段问一个 Noul。
@@ -50,10 +50,10 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 - **[Winnow](https://github.com/GhalebDweikat/winnow)** — 给 Claude Code 做上下文垃圾回收。Read / Bash / Grep 吐一大堆时，Jev 先判断哪些真和当前任务有关。
   <sub>`插件` · ★100+ · `Py` · `noul` · 调用点 [`sidecar/src/winnow/judge.py`](https://github.com/GhalebDweikat/winnow/blob/HEAD/sidecar/src/winnow/judge.py)，2026-09-22 阅读</sub>
 
-- **[claude-jev](https://github.com/0x7067/claude-jev)** — Claude Code 插件：Jev 负责规则检查、逐字压缩与提示路由。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[claude-jev](https://github.com/0x7067/claude-jev)** — Claude Code 与 Pi 插件，把智能体的小判断交给 Jev：一次编辑是否违反 CLAUDE.md 中的规则（违反则拦下并给出 file:line 引用）、压缩时逐字保留哪些上下文块、为每个子智能体选模型档位并用 noul 检查其任务说明，以及为每条提示给出路由提示。所有钩子都失败即放行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · 0x7067 · `Py` · 调用点 [`scripts/jev.py`](https://github.com/0x7067/claude-jev/blob/HEAD/scripts/jev.py)，2026-09-22 阅读</sub>
 
-- **[dsh-jev-tools](https://github.com/HorusJiang/dsh-jev-tools)** — 用 Jev 做判断而不是生成：修剪过长的工具输出、筛查抓取页面中注入的指令、为“完成”把关。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[dsh-jev-tools](https://github.com/HorusJiang/dsh-jev-tools)** — DeepSeek Harness 插件，在工具输出进入上下文之前先问 Jev：长篇读取或抓取结果里哪些段落相关（按排序保留，不卡阈值）；抓回的页面里有没有针对 AI 的指令（概率达到 0.75 时附提醒，内容原样保留）；推荐哪一个技能；以及每条“完成”声明有没有证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · horusjiang · `TS` · 调用点 [`src/config.ts`](https://github.com/HorusJiang/dsh-jev-tools/blob/HEAD/src/config.ts)，2026-09-24 阅读</sub>
 
 - **[fast-dev-compaction](https://github.com/leonaaardob/fast-dev-compaction)** — Codex 插件：在会话压缩前后，由 Jev 引导逐字恢复上下文。移植自 tamaratran/fast-jev-compaction，适配 Codex 的生命周期钩子。 <sub>(项目自述)</sub> <sub>(机翻)</sub>

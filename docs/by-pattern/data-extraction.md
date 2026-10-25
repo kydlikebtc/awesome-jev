@@ -41,7 +41,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Cookbook: Structured data extraction cascade](https://docs.typesafe.ai/cookbooks/sde_cascade)** ⭐ — A two-stage mini-then-verify-then-reasoning cascade that reaches most of a big reasoning model's quality at a fraction of the cost.
   <sub>`Official docs` · `Py`</sub>
 
-- **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — Open-source macOS AI computer use and native GUI automation on Apple silicon. Jev + OmniParser CoreML + Apple Vision OCR. Bring your own OpenRouter, Vercel AI Gateway, or TypesafeAI token. <sub>(upstream description)</sub>
+- **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — Computer-use agent for native macOS apps on Apple silicon: OmniParser CoreML, Apple Vision OCR and accessibility labels find a window's controls locally, and Jev picks the next action with a choice from the observed text, never pixels. Input is guarded, and benchmarks check results, not Jev's DONE. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · jcpsimmons · `JS` · call site [`src/providers.mjs`](https://github.com/jcpsimmons/jev-macos-loop/blob/HEAD/src/providers.mjs), read 2026-09-22</sub>
 
 - **[jev-reviewer](https://github.com/choxos/jev-reviewer)** — Data extraction for systematic reviews, quoted from the papers. Ask a trial report and its supplements your extraction form or a RoB 2, ROBINS-I, QUADAS-2 or TIDieR template; Jev points at the lines, every answer is a verbatim quote with its page, you check it and export the table. Files stay i
@@ -56,7 +56,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[smart-paste](https://github.com/nomanjack/smart-paste)** — Fills form fields from pasted text: the form's heading, labels and your text go to TypeSafe, and it inserts the values it matches for you to review before submitting.
   <sub>`Plugin` · ★10+ · nomanjack · `JS` · call site [`worker.js`](https://github.com/nomanjack/smart-paste/blob/HEAD/worker.js), read 2026-09-24</sub>
 
-- **[ask-jev](https://github.com/logicrw/ask-jev)** — Ultra-fast, fail-open advisory decisions and verbatim extractive reading view for AI coding agents and CLI pipelines <sub>(upstream description)</sub>
+- **[ask-jev](https://github.com/logicrw/ask-jev)** — Standard-library CLI that hands an agent's small judgments to Jev within a 280 ms advisory budget: choose (a choice), check (a noul on whether evidence shows a claim), score, a batch of at most 32, and purify, a noul per passage keeping only relevant original lines. Fails open; the agent decides. <sub>(written by a model)</sub>
   <sub>`Project` · logicrw · `Py` · call site [`scripts/jev_context.py`](https://github.com/logicrw/ask-jev/blob/HEAD/scripts/jev_context.py), read 2026-09-24</sub>
 
 - **[jev-data-questions](https://github.com/narulaskaran/jev-data-questions)** — Bring a dataset and see the right chart: the UI inspects the CSV's shape and proposes insights, and Jev fills in the values.

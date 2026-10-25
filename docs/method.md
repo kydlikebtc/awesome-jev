@@ -434,6 +434,34 @@ README and the cited file and no maintainer had, now say it in the fields too:
 rows it is a model's, counted apart from a person's and in neither of the
 primitive figures' layers. Every date already in `read_on` stays as it is.
 
+Since 2026-10-24, the review queue opens with [the rows the README prints by
+name](review-queue.md#front-page): its *Start here* list, the reports under
+*Measured, not claimed* and the first rows of each pattern, the only rows most
+readers ever see. `readme.sections.front_page()` picks them with the README's
+own rules, so the list cannot drift from the page. A row is listed, in the
+order the README first prints it, while it lacks a summary a person wrote for
+the catalogue (its `summary_source` is the project's own description or a
+model's, or the generic-summary rule marks it), Chinese a person wrote
+(`zh_machine`), or a person's reading of the file it cites
+(`evidence.read_on`). All three record who wrote or read the text, not whether
+it is right, so a model's draft of any of them keeps the row listed until a
+person has checked it. Whether a row sits under the right pattern stays with
+the queue's pattern sections. `docs/status.md` counts the rows and those
+listed: 61 of 134 that day, most of them for machine-translated Chinese (58)
+or a summary in the project's own words (37). The same day a model read those
+rows' READMEs and, for most, the files they cite, and redrafted 38 summaries:
+the 37 in the project's own words and one the generic-summary rule marked. Each
+says what the project asks Jev to decide and is marked `model-written`, and its
+Chinese, redone to match, stays `zh_machine`, so the 38 rows stay listed until
+a person checks them. The two other summaries the rule marked have Chinese a
+person wrote, and were left to a person. It then did the same for the rows with
+100 or more stars that the README does not print by name. Of those 138, 72
+still had the project's own description, and it redrafted 68 of them, marked
+and translated the same way; they wait for a person in [the queue's section for
+a model's work](review-queue.md#model-read). The four it left cite files that
+are no longer in their repositories, and their READMEs do not say what they ask
+Jev.
+
 ## Discovery is crowdsourced, verification is not
 
 There are dozens of Jev directories. Each is a different person's sweep of the

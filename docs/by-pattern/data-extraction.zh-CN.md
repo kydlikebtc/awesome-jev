@@ -41,7 +41,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Cookbook: Structured data extraction cascade](https://docs.typesafe.ai/cookbooks/sde_cascade)** ⭐ — 「小模型 → 校验 → 推理模型」的两段级联，用一小部分成本拿到接近大推理模型的质量。
   <sub>`官方文档` · `Py`</sub>
 
-- **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — 开源的 macOS computer use 与原生 GUI 自动化，运行在 Apple 芯片上。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — 面向 Apple 芯片上原生 macOS 应用的 computer use 智能体：由 OmniParser CoreML、Apple Vision OCR 和辅助功能标签在本机找出窗口里的控件，再由 Jev 根据观察到的文字（从不看像素）用 choice 选下一步动作。输入前有防护检查，基准测试核对的是实际结果，而不是 Jev 的 DONE 判断。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · jcpsimmons · `JS` · 调用点 [`src/providers.mjs`](https://github.com/jcpsimmons/jev-macos-loop/blob/HEAD/src/providers.mjs)，2026-09-22 阅读</sub>
 
 - **[jev-reviewer](https://github.com/choxos/jev-reviewer)** — 系统综述的数据抽取：让 Jev 从论文及其补充材料里按抽取表取值，并附原文引用。 <sub>(机翻)</sub>
@@ -56,7 +56,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[smart-paste](https://github.com/nomanjack/smart-paste)** — 根据粘贴的文本自动填写表单：把表单标题、字段标签和你的文字交给 TypeSafe，插入匹配到的值，提交前由你检查。 <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · nomanjack · `JS` · 调用点 [`worker.js`](https://github.com/nomanjack/smart-paste/blob/HEAD/worker.js)，2026-09-24 阅读</sub>
 
-- **[ask-jev](https://github.com/logicrw/ask-jev)** — 极快、失败即放行的建议式决策，以及面向 AI 编码智能体和 CLI 管道的逐字抽取式阅读视图。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[ask-jev](https://github.com/logicrw/ask-jev)** — 只用标准库的命令行工具，在 280 毫秒的建议预算内把智能体的小判断交给 Jev：choose（choice）、check（用 noul 判断证据是否支持某个说法）、score、最多 32 题的 batch，以及 purify：对每段文字问一个 noul，只保留相关的原文行。失败即放行，由智能体做决定。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · logicrw · `Py` · 调用点 [`scripts/jev_context.py`](https://github.com/logicrw/ask-jev/blob/HEAD/scripts/jev_context.py)，2026-09-24 阅读</sub>
 
 - **[jev-data-questions](https://github.com/narulaskaran/jev-data-questions)** — 带上数据集，看到合适的图表：界面检查 CSV 的结构并提出洞察，由 Jev 填入具体数值。 <sub>(机翻)</sub>

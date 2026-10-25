@@ -49,7 +49,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev on Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/)** — Workers AI binding and REST samples asking a noul, a choice and a score in one call, with the full response including per-answer confidence.
   <sub>`Integration` · `TS` · `sh` · `noul` · `choice` · `score`</sub>
 
-- **[jev-triage](https://github.com/boldbug1/jev-triage)** — Message triage CLI in Go, built on the Jev decision model from TypeSafe AI. Categorizes messages, scores urgency, and flags low-confidence ones for human review. <sub>(upstream description)</sub>
+- **[jev-triage](https://github.com/boldbug1/jev-triage)** — Go command-line tool that sorts messages by urgency: one Jev request per message asks a choice of kind (bug, billing, feature request, account, other), a 0–3 urgency score and a noul on whether the sender sounds frustrated. Below 0.8 category confidence a message goes to a review-by-hand list. <sub>(written by a model)</sub>
   <sub>`Project` · boldbug1 · `Go` · call site [`main.go`](https://github.com/boldbug1/jev-triage/blob/HEAD/main.go), read 2026-09-24</sub>
 
 - **[Support-routing benchmark: 100 held-out cases](https://decisionmodelhub.com/benchmarks/support-routing)** — Compares Jev with Clef, Clef Flash, OpenAI's Decisions API and a GPT-6 Luna structured-output baseline on 100 held-out fictional support messages, each routed to one of five team labels; every case and recorded answer can be downloaded.

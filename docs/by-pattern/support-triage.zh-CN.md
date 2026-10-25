@@ -49,7 +49,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jev on Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/)** — Workers AI binding 与 REST 示例：一次调用同时问 noul、choice、score，并给出含逐答案置信度的完整响应。
   <sub>`平台集成` · `TS` · `sh` · `noul` · `choice` · `score`</sub>
 
-- **[jev-triage](https://github.com/boldbug1/jev-triage)** — 基于 TypeSafe AI Jev 决策模型的 Go 消息分诊 CLI：为消息归类、给紧急程度打分并决定去向。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-triage](https://github.com/boldbug1/jev-triage)** — 按紧急程度给消息排序的 Go 命令行工具：每条消息发一次 Jev 请求，问一个类型 choice（bug、计费、功能请求、账户、其他）、一个 0–3 的紧急程度 score，以及一个“发信人是否显得沮丧”的 noul。类别置信度低于 0.8 的消息放进人工复核列表。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · boldbug1 · `Go` · 调用点 [`main.go`](https://github.com/boldbug1/jev-triage/blob/HEAD/main.go)，2026-09-24 阅读</sub>
 
 - **[Support-routing benchmark: 100 held-out cases](https://decisionmodelhub.com/benchmarks/support-routing)** — 在 100 条留出的虚构客服消息上，将 Jev 与 Clef、Clef Flash、OpenAI 的 Decisions API 以及 GPT-6 Luna 结构化输出基线进行对比：每条消息路由到五个团队标签之一；所有用例和各模型的作答记录均可下载。 <sub>(机翻)</sub>

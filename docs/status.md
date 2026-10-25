@@ -26,10 +26,11 @@ table regenerated like the first half, each reading in it dated on its own.
 | Rows naming the primitives a model read the code calling (`question_types` on a row whose call site only a model has read, since 2026-10-24) | 22 |
 | Machine text signal: rows whose cited file contains a primitive's request or answer shape (`primitives_seen`; not a reading, never counted as `question_types`) | 661 |
 | Of those, rows with no `question_types`: the text signal is all that is recorded about their primitives | 610 |
+| Rows the README prints by name (*Start here*, the first reports under *Measured, not claimed*, the first rows of each pattern) still lacking a person's summary, Chinese or reading of the cited file ([review queue](review-queue.md#front-page)) | 61 of 134 |
 | Machine signal: evidence under an examples directory, not yet judged ([review queue](review-queue.md#examples-dir)) | 22 |
 | Machine signal: evidence resting on one model name or the API host ([review queue](review-queue.md#single-model-name)) | 76 |
-| Machine signal: `tool-selection` suggested only by keyword-rule words dropped on 2026-09-27 ([review queue](review-queue.md#tool-selection-broad-words)) | 65 |
-| Machine signal: rows with code, not TypeSafe AI's own, whose summary names nothing about Jev and that carry no `notes` ([review queue](review-queue.md#generic-summary)) | 101 |
+| Machine signal: `tool-selection` suggested only by keyword-rule words dropped on 2026-09-27 ([review queue](review-queue.md#tool-selection-broad-words)) | 63 |
+| Machine signal: rows with code, not TypeSafe AI's own, whose summary names nothing about Jev and that carry no `notes` ([review queue](review-queue.md#generic-summary)) | 73 |
 | Benchmark rows indexing their own author's measurement (`measurement`: task, datasets, comparators, the author's direction; author-stated, not reproduced here; [side by side](benchmarks.md)) | 27 |
 | Machine signal: of those, measurements nobody has read against the author's report, neither a person nor a model ([review queue](review-queue.md#measurement-unread)) | 27 |
 | Of those measured rows, measurements only a model has read against the report (`measurement.model_read_on`; [review queue](review-queue.md#model-read)) | 0 |
@@ -38,16 +39,16 @@ table regenerated like the first half, each reading in it dated on its own.
 | Of those rows, rows whose thresholds were all read, some only by a model (`model_read_on`; [review queue](review-queue.md#model-read)) | 0 |
 | Negative results: rows whose own author measured Jev for the use and concluded against it (a benchmark's `measurement.direction` unfavourable, the `negative-result` flag on any other row; author-stated, not reproduced here; [listed below](#negative-results)) | 5 |
 | Patterns covered | 18 of 18 |
-| Rows whose `patterns` are exactly what the keyword rules suggest for their summary (agreement with the rules, not a review: any review of these rows was not recorded) | 756 of 1254 |
+| Rows whose `patterns` are exactly what the keyword rules suggest for their summary (agreement with the rules, not a review: any review of these rows was not recorded) | 687 of 1254 |
 | Rows whose patterns a person recorded reading (`patterns_reviewed`) | 1 |
 | Rows whose patterns only a model recorded reading (`patterns_model_read_on`, since 2026-10-24; shown as a model's reading; [review queue](review-queue.md#model-read)) | 0 |
 | Rows whose call site only a model recorded reading (`evidence.model_read_on`; [review queue](review-queue.md#model-read)) | 42 |
 | Alternatives whose interface records were read in every cited file, some only by a model (`wire.source[].model_read_on`; [review queue](review-queue.md#model-read)) | 0 |
 | Overview rows that are projects or plugins with code, listed apart as not yet indexed by pattern ([review queue](review-queue.md#unsorted-overview)) | 251 |
-| Summaries that are the project's own GitHub description (`summary_source` `upstream-description`) | 856 of 1254 |
-| Summaries taken from that description that no longer match it (`upstream-description-stale`) | 28 |
+| Summaries that are the project's own GitHub description (`summary_source` `upstream-description`) | 756 of 1254 |
+| Summaries taken from that description that no longer match it (`upstream-description-stale`) | 23 |
 | Summaries marked as written for this catalogue by a person (`curated`) | 11 |
-| Summaries marked as written for this catalogue by a model (`model-written`, since 2026-10-24) | 42 |
+| Summaries marked as written for this catalogue by a model (`model-written`, since 2026-10-24) | 148 |
 | Chinese summaries hand-written | 191 of 1254 |
 | Rows recording GitHub's creation date, last push and default-branch commit count for their repository (`repo_created_at`, `repo_pushed_at`, `repo_commits`; GitHub's facts at the last weekly refresh, not a judgement of upkeep) | 1132 of 1254 |
 | Rows flagged `single-commit`: one commit on the default branch (the refresh sets and clears it from `repo_commits`) | 86 |

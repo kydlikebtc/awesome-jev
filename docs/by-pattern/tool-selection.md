@@ -42,7 +42,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Demo: Smart home assistant](https://docs.typesafe.ai/demos/smart-home)** ⭐ — Runnable demo code for a smart home assistant that evaluates user requests with typed decisions.
   <sub>`Official docs` · `Py`</sub>
 
-- **[ai-hedge-fund](https://github.com/virattt/ai-hedge-fund)** — An AI Hedge Fund Team <sub>(upstream description)</sub>
+- **[ai-hedge-fund](https://github.com/virattt/ai-hedge-fund)** — Educational paper-trading and backtesting app whose investor-persona agents turn a financial snapshot into a bullish, bearish or neutral signal. With TypeSafe as provider, one Jev request per agent asks a choice of direction and a five-level score of each case's strength, mapped to the agents' JSON. <sub>(written by a model)</sub>
   <sub>`Integration` · ★10k+ · virattt · `Py` · call site [`hedge_fund/llm/client.py`](https://github.com/virattt/ai-hedge-fund/blob/HEAD/hedge_fund/llm/client.py), read 2026-09-24</sub>
 
 - **[claude-code-templates: three Jev plugins](https://github.com/davila7/claude-code-templates)** — Three independently installable Claude Code plugins — guardrails, model router and skill suggestion — each with its own hooks and tests.
@@ -78,7 +78,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-trader](https://github.com/jarrodwatts/jev-trader)** — High-frequency market making on a test network, deciding buy or sell from spread and trade direction.
   <sub>`Project` · ★1k+ · `TS` · `choice` · call site [`src/config.ts`](https://github.com/jarrodwatts/jev-trader/blob/HEAD/src/config.ts), read 2026-09-22 · ⚠ `unverified claims`</sub>
 
-- **[reticle](https://github.com/reticlehq/reticle)** — AI agents can generate code, but still struggle to understand what they build. Reticle brings Jev-style machine-native runtime perception to web & desktop applications. <sub>(upstream description)</sub>
+- **[reticle](https://github.com/reticlehq/reticle)** — Checks an agent's "done" by driving the running app and returning pass, fail or cannot tell. Its benchmark harness asks Jev, in one call on captured evidence, five nouls (did the intended consequence happen, is the capture clean, did the app error), a pass/fail/unknown choice and a severity score. <sub>(written by a model)</sub>
   <sub>`Project` · ★1k+ · reticlehq · `TS` · call site [`bench/harness/jev.mjs`](https://github.com/reticlehq/reticle/blob/HEAD/bench/harness/jev.mjs), read 2026-09-24</sub>
 
 - **[typesafe-computer-use](https://github.com/awlevin/typesafe-computer-use)** — Computer use on macOS: OCR the screen, classify the next action, click. Costs a fraction of a cent per step.
@@ -87,10 +87,10 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[agent](https://github.com/AgentiLoop/Agent)** — AgentiLoop Agent! An Autonomous Agentic Agent for Mac, and exclusive Apple only harnesss. Supports automation, scripting, coding, build anything and more. Powered by 21 LLM providers across local and cloud platforms. Dark or Light Mode UI.
   <sub>`Integration` · ★100+ · agentiloop · `Swift` · call site [`TypeSafeKit/Sources/TypeSafeKit/TypeSafeClient.swift`](https://github.com/AgentiLoop/Agent/blob/HEAD/TypeSafeKit/Sources/TypeSafeKit/TypeSafeClient.swift), read 2026-09-22</sub>
 
-- **[embodied-jev](https://github.com/FBddcz/embodied-jev)** — EmbodiedJev: MuJoCo robot decision workbench with MiniCPM5-2B, Jev and compatible model APIs <sub>(upstream description)</sub>
+- **[embodied-jev](https://github.com/FBddcz/embodied-jev)** — MuJoCo workbench where a model drives a Franka arm through carry, stack and obstacle tasks. With Jev, each step is a choice among the controller's actions, given text state and detected coordinates; physics judges success. Two Jev carry runs ended in 89 and 88 steps, both dropping the block. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · fbddcz · `Py` · call site [`src/embodied_jev/policies.py`](https://github.com/FBddcz/embodied-jev/blob/HEAD/src/embodied_jev/policies.py), read 2026-09-22</sub>
 
-- **[fastbrowse](https://github.com/agent-labs-dev/fastbrowse)** — A fast browser agent: Jev picks each action from what is on the page, an LLM reads and plans, and every claim in an answer cites a quote from the page. <sub>(upstream description)</sub>
+- **[fastbrowse](https://github.com/agent-labs-dev/fastbrowse)** — Browser agent: each page is indexed into candidate controls and Jev chooses the next one, so it cannot click what is not there; a Gemini Flash LLM plans and reads, and answers cite the page. Its maintainer recorded 99.2% on 46 tasks against 97.8% for hosted Browser Use, at under a tenth of the cost. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · agent-labs-dev · `Py` · call site [`src/fastbrowse/clients/typesafe.py`](https://github.com/agent-labs-dev/fastbrowse/blob/HEAD/src/fastbrowse/clients/typesafe.py), read 2026-09-22</sub>
 
 - **[foreman](https://github.com/thruwire/foreman)** — A software-factory foreman that uses Jev to decide what an agent pipeline should do next.
@@ -99,13 +99,13 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[hyperedit](https://github.com/kevinbadi/hyperedit)** — An AI video editor routing an editing instruction to an operation, a target clip and a track, with a keyword router as fallback.
   <sub>`Project` · ★100+ · `TS` · `choice` · `noul` · call site [`scripts/jev.js`](https://github.com/kevinbadi/hyperedit/blob/HEAD/scripts/jev.js), read 2026-09-22 · ⚠ `no licence`</sub>
 
-- **[interlinked-cli](https://github.com/QuentinCody/interlinked-cli)** — The harness for your harness. Local hooks, taste enforcement, and developer observability for AI coding agents (Claude Code, Codex, Cursor, Copilot CLI). <sub>(upstream description)</sub>
+- **[interlinked-cli](https://github.com/QuentinCody/interlinked-cli)** — Local guard for AI coding agents (Claude Code, Codex) that checks each tool hook against deterministic rules and blocks dangerous ones. Jev is an optional scoring signal: its answers can only tighten a verdict, never gate alone, and any failure or the $0.25 spend ceiling counts as not measured. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · quentincody · `TS` · call site [`src/harness/jev/client.ts`](https://github.com/QuentinCody/interlinked-cli/blob/HEAD/src/harness/jev/client.ts), read 2026-09-22</sub>
 
 - **[jev-browser](https://github.com/jkudish/jev-browser)** — Browser automation where Jev chooses the next action.
   <sub>`Project` · ★100+ · jkudish · `TS` · call site [`src/index.ts`](https://github.com/jkudish/jev-browser/blob/HEAD/src/index.ts), read 2026-09-24</sub>
 
-- **[jev-browser](https://github.com/Ying-Kai-Liao/jev-browser)** — Browser automation where an LLM plans and Jev (Typesafe System One) decides. Library, CLI and MCP server. <sub>(upstream description)</sub>
+- **[jev-browser](https://github.com/Ying-Kai-Liao/jev-browser)** — Browser automation where an LLM plans and Jev decides: one ~300 ms request per round asks which element, action and value, and if the step is done, blocked, showing an error or about to do something irreversible; Playwright acts. Author's run: 40 of 42 live-site tasks right, 0 false done claims. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · ying-kai-liao · `JS` · call site [`src/jev.mjs`](https://github.com/Ying-Kai-Liao/jev-browser/blob/HEAD/src/jev.mjs), read 2026-09-24</sub>
 
 - **[jev-chat: a tool-calling chatbot with no LLM](https://github.com/w3cj/jev-chat)** — A chat bot that does tool calling with no language model anywhere: one request asks the request kind, the tool, and every tool's arguments at once.
@@ -117,34 +117,34 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-drone](https://github.com/RomanSlack/jev-drone)** — Camera-only simulated drone where Jev makes tactical judgements at a low rate while stabilisation and safety reflexes stay in ordinary fast code.
   <sub>`Project` · ★100+ · `Py` · `choice` · `score` · `noul` · call site [`tactics.py`](https://github.com/RomanSlack/jev-drone/blob/HEAD/tactics.py), read 2026-09-22 · ⚠ `unverified claims`</sub>
 
-- **[jev-dsh-decision](https://github.com/Devin-AXIS/jev-dsh-decision)** — Jev DSH 决策引擎｜面向 Agent Harness 的结构化决策插件。原生支持 DeepSeek Harness，通过 iPolloWork 支持 OpenCode、Codex Harness。 <sub>(upstream description)</sub>
+- **[jev-dsh-decision](https://github.com/Devin-AXIS/jev-dsh-decision)** — Plugin for DeepSeek Harness, and through iPolloWork for OpenCode and Codex Harness, that lets the agent ask Jev which available tool, skill or agent fits a task, whether a capability is needed and how well a result meets stated criteria. It returns choices and probabilities and acts on none. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · devin-axis · `JS` · call site [`service/jev.mjs`](https://github.com/Devin-AXIS/jev-dsh-decision/blob/HEAD/service/jev.mjs), read 2026-09-22 · ⚠ `no licence`</sub>
 
-- **[jev-gateway](https://github.com/vinilana/jev-gateway)** — An easy way to use jev with your coding agent for tool calling reasoning <sub>(upstream description)</sub>
+- **[jev-gateway](https://github.com/vinilana/jev-gateway)** — Local gateway for coding agents such as Codex, Claude Code and OpenCode. Each turn it asks Jev which offered tool fits; when Jev is confident it steers the LLM to that tool, otherwise the request passes through unchanged. If Jev is down, slow or misconfigured, requests go straight to the LLM. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · vinilana · `TS` · call site [`src/jev.ts`](https://github.com/vinilana/jev-gateway/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
-- **[jev-guard](https://github.com/leepokai/jev-guard)** — Auto mode for every coding agent, built on Jev: risk-scores every tool call with session context (deny / ask / allow), flags prompt injection in results, checks skills and plugins. Claude Code, Codex, Copilot, Gemini, Cursor, pi, OpenCode, ACP. <sub>(upstream description)</sub>
+- **[jev-guard](https://github.com/leepokai/jev-guard)** — Security hook for coding agents: before each tool call Jev judges how much harm it could do, whether the user asked for it and whether it follows untrusted text, and code denies, asks or allows; afterwards Jev scans the result for prompt injection. For Claude Code, Codex, Cursor and more. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · leepokai · `JS` · call site [`src/jev.js`](https://github.com/leepokai/jev-guard/blob/HEAD/src/jev.js), read 2026-09-22</sub>
 
-- **[jev-mem](https://github.com/libingzheren/Jev-Mem)** — Jev-Mem: System-One Controlled Agentic Memory <sub>(upstream description)</sub>
+- **[jev-mem](https://github.com/libingzheren/Jev-Mem)** — Agent memory where Jev, or a local Laya, makes the frequent decisions as nouls and choices: which relations to draw between memories, which graph view to search, when enough evidence is found; an LLM writes the answer. On LoCoMo the paper reports 11.0% better answers and 36.7% lower latency. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · libingzheren · `Py` · call site [`memory/jev_client.py`](https://github.com/libingzheren/Jev-Mem/blob/HEAD/memory/jev_client.py), read 2026-09-22</sub>
 
 - **[jev-social](https://github.com/socai-io/jev-social)** — Read-only Instagram, TikTok and LinkedIn research: Jev routes the platform and selects each bounded socai CLI action from fresh browser evidence; code validates targets and preserves source links.
   <sub>`Project` · ★100+ · socai-io · `JS` · `choice` · call site [`src/actions.js`](https://github.com/socai-io/jev-social/blob/HEAD/src/actions.js), read 2026-09-23 · ⚠ `3rd-party key`</sub>
 
-- **[jev-trade](https://github.com/aowang-ai/jev-trade)** — Live Jev trader on Hyperliquid <sub>(upstream description)</sub>
+- **[jev-trade](https://github.com/aowang-ai/jev-trade)** — Trading bot on Hyperliquid running five coins from five wallets. Every tick Jev reads the order book and position and answers choices: long or short; open, close or hold; and the cross leverage. The bot places the order, and hold sends none. Without a wallet key it is a dry run with simulated fills. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · aowang-ai · `TS` · call site [`src/model.ts`](https://github.com/aowang-ai/jev-trade/blob/HEAD/src/model.ts), read 2026-09-24</sub>
 
-- **[jev-use](https://github.com/savka777/jev-use)** — Say it, and your Mac does it. A computer-use harness on Jev that reads the screen through Accessibility. Fast, no vision model <sub>(upstream description)</sub>
+- **[jev-use](https://github.com/savka777/jev-use)** — Voice and typed computer use for macOS: the app reads the front window's Accessibility tree instead of screenshots, and each step one Jev request chooses an operation and a numbered target, typed text being a span of your sentence, with nouls on whether more steps remain or the effect already shows. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · savka777 · `Swift` · call site [`Sources/JevCore/Decision.swift`](https://github.com/savka777/jev-use/blob/HEAD/Sources/JevCore/Decision.swift), read 2026-09-24</sub>
 
 - **[jev-voice-browser](https://github.com/moritzkremb/jev-voice-browser)** — Voice-driven browser control where target criteria are rebuilt per request from the live element list, always including a none option.
   <sub>`Project` · ★100+ · `JS` · `choice` · `score` · `noul` · call site [`src/jev.js`](https://github.com/moritzkremb/jev-voice-browser/blob/HEAD/src/jev.js), read 2026-09-22</sub>
 
-- **[jev-webmcp-extension](https://github.com/sdras/jev-webmcp-extension)** — A small extension that demos the combination of Jev x WebMCP <sub>(upstream description)</sub>
+- **[jev-webmcp-extension](https://github.com/sdras/jev-webmcp-extension)** — Chrome side panel turning a page's WebMCP tools into Jev questions as you type: a choice over the tools plus "none of these", enums as choices, booleans as nouls, free text as a choice over spans of your words, an "is it stated?" noul per optional field. Only confident read-only calls run unasked. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · sdras · `JS` · call site [`src/jev.js`](https://github.com/sdras/jev-webmcp-extension/blob/HEAD/src/jev.js), read 2026-09-24</sub>
 
-- **[jevharness](https://github.com/TianyuCodings/JevHarness)** — LLM-authored task-specific Jev harnesses with optional full-trajectory reward reflection and GEPA evolution. <sub>(upstream description)</sub>
+- **[jevharness](https://github.com/TianyuCodings/JevHarness)** — An LLM writes a task-specific harness in which code computes features, asks Jev questions and turns the answers into actions; rewards and full traces can then revise it. In the author's Pokémon run, five rounds of reflection lifted the eval win rate from 3 of 12 games to 9 of 12. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · tianyucodings · `Py` · call site [`auto_jev/providers.py`](https://github.com/TianyuCodings/JevHarness/blob/HEAD/auto_jev/providers.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
 - **[jevpilot](https://github.com/standardagents/jevpilot)** — A driving simulator autopilot asking two choices per tick, which short-circuits single-option questions locally instead of paying to send them.
@@ -153,7 +153,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevrouter](https://github.com/BillionsBobby/JevRouter)** — A router for models, tools and subagents.
   <sub>`Project` · ★100+ · billionsbobby · `TS` · call site [`functions/api/jev.js`](https://github.com/BillionsBobby/JevRouter/blob/HEAD/functions/api/jev.js), read 2026-09-22</sub>
 
-- **[macbrow](https://github.com/timpratim/macbrow)** — Hands free Mac and Browser control powered by Gradium <sub>(upstream description)</sub>
+- **[macbrow](https://github.com/timpratim/macbrow)** — Voice control for a Mac and Chrome. One Jev request, about 300 ms, routes each utterance: a choice among the tools for the open apps, plus chat or new action, with argument choices alongside; high confidence runs, middling asks. A noul checks each script an LLM writes for a new tool. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · timpratim · `Py` · call site [`macbrow/generator.py`](https://github.com/timpratim/macbrow/blob/HEAD/macbrow/generator.py), read 2026-09-22</sub>
 
 - **[mobile-jev](https://github.com/droidrun/mobile-jev)** — Mobile computer use: Jev picks the next on-screen action on a phone.
@@ -162,7 +162,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[neo4jev](https://github.com/jexp/neo4jev)** — Puts Jev inside a knowledge graph traversal: at each node it decides which edge is most worth following.
   <sub>`Project` · ★100+ · `Py` · `choice` · call site [`src/neo4jev/navigator.py`](https://github.com/jexp/neo4jev/blob/HEAD/src/neo4jev/navigator.py), read 2026-09-22</sub>
 
-- **[omg.dev](https://github.com/BennyKok/omg.dev)** — omg.dev — Remote control for claude, codex, cursor, opencode, pi, grok, jcocde with mobile client <sub>(upstream description)</sub>
+- **[omg.dev](https://github.com/BennyKok/omg.dev)** — Phone remote for Claude Code, Codex and other coding agents running on your computer or a hosted one. Its mobile end-to-end tests use Jev as the decision layer: given the screen's accessibility tree, nouls ask whether a step is done or a dead end and a choice picks the element to tap next. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · bennykok · `TS` · call site [`mobile/scripts/jev.ts`](https://github.com/BennyKok/omg.dev/blob/HEAD/mobile/scripts/jev.ts), read 2026-09-22</sub>
 
 - **[pi-jev](https://github.com/y0usaf/pi-jev)** — A decision layer for a coding agent: a measured tool-call gate plus a typed ask for calibrated answers.
@@ -174,19 +174,19 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[skillranker](https://github.com/Dicklesworthstone/skillranker)** — Ranks an agent's skills for the next step using live session context, with Claude Code hooks.
   <sub>`Plugin` · ★100+ · dicklesworthstone · `Rs` · call site [`src/jev/endpoint.rs`](https://github.com/Dicklesworthstone/skillranker/blob/HEAD/src/jev/endpoint.rs), read 2026-09-22</sub>
 
-- **[system1-agents](https://github.com/ThinkFlowLab/system1-agents)** — System 1 decision models (Jev, Laya, Cua-S1) as brain for agents: Browser use, computer use, games and robotics <sub>(upstream description)</sub>
+- **[system1-agents](https://github.com/ThinkFlowLab/system1-agents)** — Prebuilt agents for browser use, computer use, games and robotics whose decisions go to a System 1 model, Jev, Laya or Cua-S1, as typed choices. In the author's runs Jev matched a chat model's score while being 1.41 to 6.39 times faster and 5.3 to 25.3 times cheaper per scenario. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · thinkflowlab · `Py` · call site [`s1a/decision_models/wire.py`](https://github.com/ThinkFlowLab/system1-agents/blob/HEAD/s1a/decision_models/wire.py), read 2026-09-24</sub>
 
 - **[systemoneharness](https://github.com/HarnessRouter/SystemOneHarness)** — The system one Harness for system one models
   <sub>`Project` · ★100+ · harnessrouter · `Py` · call site [`systemone_harness/provider.py`](https://github.com/HarnessRouter/SystemOneHarness/blob/HEAD/systemone_harness/provider.py), read 2026-09-22</sub>
 
-- **[tiptour-macos](https://github.com/milind-soni/tiptour-macos)** — Open-Source fast local computer use <sub>(upstream description)</sub>
+- **[tiptour-macos](https://github.com/milind-soni/tiptour-macos)** — macOS menu-bar assistant that clicks for you. In its default Jev mode you type a task; each step, a Jev choice picks one of the controls detected on screen and TipTour clicks it, with no confidence cutoff, until Jev picks none or reports the task done, or after 12 actions. Screenshots stay local. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · milind-soni · `Swift` · call site [`TipTour/Jev/JevClient.swift`](https://github.com/milind-soni/tiptour-macos/blob/HEAD/TipTour/Jev/JevClient.swift), read 2026-09-22</sub>
 
 - **[typesafe-mario](https://github.com/fhshaik/typesafe-mario)** — Plays Super Mario Bros. from structured emulator RAM rather than screenshots, deciding run, jump and dodge.
   <sub>`Project` · ★100+ · `Py` · `choice` · `score` · `noul` · call site [`src/typesafe_mario/policy.py`](https://github.com/fhshaik/typesafe-mario/blob/HEAD/src/typesafe_mario/policy.py), read 2026-09-22 · ⚠ `code untested` `one commit` `no licence`</sub>
 
-- **[wrongstack](https://github.com/WrongStack/WrongStack)** — An AI coding agent that reads your code, edits files, runs commands, and reasons through bugs — across a terminal REPL, a full-screen TUI, and a browser UI, while you keep your hand on every permission. <sub>(upstream description)</sub>
+- **[wrongstack](https://github.com/WrongStack/WrongStack)** — Open-source coding agent with its own kernel, memory, multi-agent fleet and permission policy, run from a terminal, TUI or browser. An opt-in TypeSafe service asks Jev typed choice, noul and score questions to suggest skills and classify dispatch, and the agent can call Jev as a tool. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · wrongstack · `TS` · call site [`packages/core/src/typesafe/client.ts`](https://github.com/WrongStack/WrongStack/blob/HEAD/packages/core/src/typesafe/client.ts), read 2026-09-22</sub>
 
 - **[agent-chaperone](https://github.com/agent-chaperone/agent-chaperone)** — Screens an AI agent's tool calls before they run and tool results before the agent reads them. An MCP proxy plus a hooks adapter for a client's built-in tools. <sub>(upstream description)</sub>
@@ -279,7 +279,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-libero](https://github.com/Dimweaker/jev-libero)** — Fine-grained robot control with Jev, physics previews, and configurable LIBERO tasks. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · dimweaker · `Py` · call site [`src/jev_libero/client.py`](https://github.com/Dimweaker/jev-libero/blob/HEAD/src/jev_libero/client.py), read 2026-09-22</sub>
 
-- **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — Open-source macOS AI computer use and native GUI automation on Apple silicon. Jev + OmniParser CoreML + Apple Vision OCR. Bring your own OpenRouter, Vercel AI Gateway, or TypesafeAI token. <sub>(upstream description)</sub>
+- **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — Computer-use agent for native macOS apps on Apple silicon: OmniParser CoreML, Apple Vision OCR and accessibility labels find a window's controls locally, and Jev picks the next action with a choice from the observed text, never pixels. Input is guarded, and benchmarks check results, not Jev's DONE. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · jcpsimmons · `JS` · call site [`src/providers.mjs`](https://github.com/jcpsimmons/jev-macos-loop/blob/HEAD/src/providers.mjs), read 2026-09-22</sub>
 
 - **[jev-mail-classifier](https://github.com/parth-kp/jev-mail-classifier)** — Classify your inbox with Jev (TypeSafe's System One model) — tag, move, flag, and notify, all config-driven. <sub>(upstream description)</sub>
@@ -438,7 +438,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Harness Router](https://github.com/Protocol-Lattice/harness-router)** — Picks the next tool inside an existing agent loop: given a goal, observation and tool list, Jev returns a tool choice with confidence or a fallback to the host planner. Caches reusable choices, offers optional MCTS, and hooks into Codex and other harnesses or runs as an MCP server. <sub>(written by a model)</sub>
   <sub>`Project` · protocol-lattice · `Py` · `choice` · call site [`src/harness_router/config.py`](https://github.com/Protocol-Lattice/harness-router/blob/HEAD/src/harness_router/config.py), read by a model 2026-10-24</sub>
 
-- **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — Judge agent steps — ok / retry / escalate / stop via TypeSafe Jev <sub>(upstream description)</sub>
+- **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — Web app for agent builders: paste the trace of one agent step and Jev judges it as ok, retry, escalate or stop. Without a TYPESAFE_API_KEY, local heuristics return answers of the same shape, labelled as demo mode. <sub>(written by a model)</sub>
   <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/harnessjudge/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
 
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — Observable browser stealth game: Jev makes typed guard judgments while deterministic code owns the world. <sub>(upstream description)</sub>

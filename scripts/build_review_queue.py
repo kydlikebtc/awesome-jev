@@ -37,7 +37,10 @@ from classify import classify_broad, suggest  # noqa: E402
 from evidence_url import evidence_url  # noqa: E402
 from measurements import model_read as measurements_model_read  # noqa: E402
 from measurements import unread  # noqa: E402
-from readme.rows import esc, md_url, star_band, star_label  # noqa: E402
+from readme.rows import PATTERN_LABELS, anchor, esc, label, md_url, star_band, star_label  # noqa: E402
+from readme.sections import INLINE_MEASURED, INLINE_PER_PATTERN, MEASURED_PLACE, START_PLACE  # noqa: E402
+from readme.sections import front_page as printed_by_name  # noqa: E402
+from readme.strings import EN, ZH  # noqa: E402
 import thresholds  # noqa: E402
 import wire  # noqa: E402
 
@@ -558,9 +561,107 @@ def model_read(catalog: list[dict]) -> Section:
     )
 
 
+def place_link(place: str) -> str:
+    """Where the README prints a row (readme.sections.front_page), named and
+    linked as the English README's heading for it."""
+    names = {START_PLACE: EN["start_h"], MEASURED_PLACE: EN["measured_h"]}
+    name = names.get(place) or label(PATTERN_LABELS, place, "en")
+    return f"[{name}](../README.md#{anchor(name)})"
+
+
+def gap_cell(field: str, gaps: dict[str, str], entry: dict) -> str:
+    """One of _stats.front_page_gaps() as a cell, "—" when the row lacks nothing there."""
+    found = gaps.get(field)
+    if found is None:
+        return "—"
+    if found == "generic-summary":
+        return f"[{cell(found)}](#generic-summary)"
+    if found == "model_read_on":
+        return f"[{cell(found)}](#model-read) {entry['evidence']['model_read_on']}"
+    if found == "unread":
+        return found
+    return cell(found)
+
+
+def front_page(catalog: list[dict]) -> Section:
+    places: dict[str, list[str]] = {}
+    rows: dict[str, dict] = {}
+    for place, position, entry in printed_by_name(catalog):
+        places.setdefault(entry["slug"], []).append(f"{place_link(place)} {position}")
+        rows.setdefault(entry["slug"], entry)
+    marked = [(entry, _stats.front_page_gaps(entry)) for entry in rows.values()]
+    marked = [(entry, gaps) for entry, gaps in marked if gaps]
+    start = (EN["start_h"], ZH["start_h"])
+    measured = (EN["measured_h"], ZH["measured_h"])
+    return Section(
+        key="front-page",
+        title_en="Rows the README shows, still lacking a person's summary, Chinese or reading",
+        title_zh="README 展示、仍缺人写摘要、人写中文或人读所引文件的行",
+        about_en=(
+            f"Most readers see only the README, and of the catalogue only the rows it prints by name: the "
+            f"*{start[0]}* list, the first {INLINE_MEASURED} reports under *{measured[0]}* and the first "
+            f"{INLINE_PER_PATTERN} rows of each decision pattern, {len(rows)} rows in all. A row is listed here, "
+            "in the order the README first prints it, while it lacks any of three things a person gives it: a "
+            "summary written for this catalogue, Chinese a person wrote, and a person's reading of the file it "
+            "cites. A summary lacks it when `summary_source` says it is the project's own GitHub description "
+            "or a model's that no person has checked, or when any other summary names nothing about Jev (the "
+            "[`generic-summary`](#generic-summary) rule); the Chinese, while `zh_machine` is set; the cited "
+            "file, while `evidence` records no `read_on`. Each is a fact about who wrote or read the text, not "
+            "a verdict on it: a project's own description can be clear and a machine translation right. Whether "
+            "a row is filed under the right pattern is for the pattern sections below. The README orders each "
+            "pattern's rows by star band, so the weekly refresh can move a row on or off this list when it "
+            "crosses a band floor."
+        ),
+        about_zh=(
+            f"大多数读者只看 README，而目录里他们看得到的只有 README 点名列出的行：“{start[1]}”列表、"
+            f"“{measured[1]}”下的前 {INLINE_MEASURED} 份报告，以及每个决策模式的前 {INLINE_PER_PATTERN} 行，"
+            f"共 {len(rows)} 行。这里按 README 首次列出的顺序，列出其中仍缺以下任何一项的行，三项都要由人来补："
+            "为本目录撰写的摘要、人写的中文、人对所引文件的阅读。`summary_source` 表明摘要是项目自己的 GitHub 描述，"
+            "或是尚无人核对的模型撰写时，摘要算缺；其他摘要没有提到 Jev 的（[`generic-summary`](#generic-summary) "
+            "规则），也算缺。设置了 `zh_machine` 的中文算缺；`evidence` 没有 `read_on` 的，所引文件算缺。"
+            "每一项说的都是谁写了、谁读了这些文字，不是对文字的评判：项目自己的描述可能很清楚，机翻也可能是对的。"
+            "某行是否归在正确的模式下，由下面的模式各节负责。README 按星标档位排列每个模式的行，"
+            "所以每周刷新让某行跨过档位下限时，它可能进入或离开这个列表。"
+        ),
+        leave_en=(
+            "To take a row off, give it what it lacks. Write a summary that says what the project asks Jev to "
+            "decide and set `summary_source` to `curated` (see the `summary` field rules in "
+            "[CONTRIBUTING](../CONTRIBUTING.md#field-rules)); a model's summary takes `curated` once you have "
+            "checked or rewritten it. Write the Chinese yourself and delete `zh_machine` "
+            "([Claim a translation](../CONTRIBUTING.md#claim-a-translation): a model's draft keeps the flag, "
+            "however carefully you corrected it). Read the cited file, check `question_types` against it and set "
+            "`evidence.read_on`. A model can draft any of these, recorded as a model's work (`model-written`, "
+            "`zh_machine`, `evidence.model_read_on`), and the row stays here until a person has checked it."
+        ),
+        leave_zh=(
+            "移出方法：补上它缺的。写一条说明该项目让 Jev 决定什么的摘要，并把 `summary_source` 设为 `curated`"
+            "（见 [CONTRIBUTING](../CONTRIBUTING.md#field-rules) 中关于 `summary` 的字段规则）；"
+            "模型写的摘要，经你核对或改写后再设为 `curated`。中文由你亲自撰写，并删去 `zh_machine`"
+            "（见[认领翻译](../CONTRIBUTING.md#claim-a-translation)：模型起草的译文无论你改得多仔细，都保留这个标记）。"
+            "读所引文件，对照它核对 `question_types`，再设置 `evidence.read_on`。模型可以起草其中任何一项，"
+            "但要记为模型的工作（`model-written`、`zh_machine`、`evidence.model_read_on`），该行会留在这里，直到有人核对。"
+        ),
+        columns=(
+            ("Row", "行"),
+            ("Where the README prints it", "README 中的位置"),
+            ("Summary", "摘要"),
+            ("Chinese", "中文"),
+            ("Cited file", "引用的文件"),
+        ),
+        rows=tuple(
+            (
+                row_link(entry),
+                " · ".join(places[entry["slug"]]),
+                *(gap_cell(field, gaps, entry) for field in ("summary", "summary_zh", "evidence")),
+            )
+            for entry, gaps in marked
+        ),
+    )
+
+
 SECTIONS = (
-    examples_dir, single_model_name, tool_selection_broad_words, unsorted_overview, generic_summary, measurement_unread,
-    wire_unread, thresholds_unread, model_read,
+    front_page, examples_dir, single_model_name, tool_selection_broad_words, unsorted_overview, generic_summary,
+    measurement_unread, wire_unread, thresholds_unread, model_read,
 )
 
 HEADER = "<!-- Written by scripts/build_review_queue.py from catalog.json. Edit those, not this file. -->"

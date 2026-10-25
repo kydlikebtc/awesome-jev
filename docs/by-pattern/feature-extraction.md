@@ -29,7 +29,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Cookbook: Autoresearch feature discovery](https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery)** ⭐ — An autoresearch loop that proposes questions, turns free text into numeric features, and uses model error to improve a supervised gradient-boosting regressor.
   <sub>`Official docs` · `Py`</sub>
 
-- **[nimble](https://github.com/bespokelabsai/nimble)** — Local typed decisions, contrastive data curation, and model evaluation. <sub>(upstream description)</sub>
+- **[nimble](https://github.com/bespokelabsai/nimble)** — Data, recipe and serving code for Bespoke-Nimble-9B, an open decision model inspired by Jev: a Qwen3.5-9B LoRA that answers choice and true-or-false questions about a text with probabilities. On 324 held-out examples it matched 90.1% of reference labels; scored alike, Jev 1.13.0 matched 93.2%. <sub>(written by a model)</sub>
   <sub>`Project` · ★1k+ · bespokelabsai · `Py` · call site [`nimble/evaluation/evaluate_public_jev.py`](https://github.com/bespokelabsai/nimble/blob/HEAD/nimble/evaluation/evaluate_public_jev.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
 - **[jev-align](https://github.com/sutro-sh/jev-align)** — Builds calibrated decision functions from human feedback.
@@ -41,13 +41,13 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[JEV Sees](https://github.com/CharlesFeng0314/JEV_sees)** — Gives Jev vision: local Florence-2 and CLIP models find the objects in an image, video or RGB-D frame and keep their IDs across frames, then Jev answers a choice, noul or score about each relevant object (bus colour, pedestrian risk, animal motion). <sub>(written by a model)</sub>
   <sub>`Project` · charlesfeng0314 · `Py` · `choice` · `noul` · `score` · call site [`jev_sees/session.py`](https://github.com/CharlesFeng0314/JEV_sees/blob/HEAD/jev_sees/session.py), read by a model 2026-10-24</sub>
 
-- **[jev-board-lab](https://github.com/WebGrga/jev-board-lab)** — Interactive explorer and Jev question workspace for Jev Board datasets. <sub>(upstream description)</sub>
+- **[jev-board-lab](https://github.com/WebGrga/jev-board-lab)** — Password-protected browser workbench that turns CSV rows into Jev judgments: you write at most 20 noul, choice or score questions and run them on at most 25 selected rows, each row sent as one state through a Cloudflare Worker that holds the key. The CSV stays in the browser. <sub>(written by a model)</sub>
   <sub>`Project` · webgrga · `JS` · call site [`worker/src/index.js`](https://github.com/WebGrga/jev-board-lab/blob/HEAD/worker/src/index.js), read 2026-09-22 · ⚠ `no licence`</sub>
 
-- **[jev-calibrated-narrative-coding](https://github.com/pozapas/jev-calibrated-narrative-coding)** — Calibrated conversion of police crash narratives into probabilistic crash variables with a System One model. Pipeline, schema and aggregated results. <sub>(upstream description)</sub>
+- **[jev-calibrated-narrative-coding](https://github.com/pozapas/jev-calibrated-narrative-coding)** — Code, question schema and aggregated results of a paper that sent 5,018,080 Texas police crash narratives (2017–2025) to Jev as noul, choice and score questions, checked their calibration against coded fields and a human gold set, and turned it into how many flagged records people must review. <sub>(written by a model)</sub>
   <sub>`Project` · pozapas · `Py` · call site [`src/jev_runner.py`](https://github.com/pozapas/jev-calibrated-narrative-coding/blob/HEAD/src/jev_runner.py), read 2026-09-24</sub>
 
-- **[tiershift](https://github.com/iamvatsalpatel/tiershift)** — Shift every LLM call to the cheapest model that can handle it. Routing decided by TypeSafe Jev in ~180 ms. No training data. Policy in plain YAML. TypeScript and Python. <sub>(upstream description)</sub>
+- **[tiershift](https://github.com/iamvatsalpatel/tiershift)** — Model router that starts each request on the cheapest tier and lifts it only when Jev's signals (multi-step reasoning, difficulty, stakes, safety) cross a YAML policy. On its author's 120 prompts it matched the flagship's quality at 40% less cost; the fast model alone did as well at 3% of the cost. <sub>(written by a model)</sub>
   <sub>`Project` · iamvatsalpatel · `TS` · call site [`bench/experiments/gate-experiment.ts`](https://github.com/iamvatsalpatel/tiershift/blob/HEAD/bench/experiments/gate-experiment.ts), read 2026-09-22</sub>
 
 ---

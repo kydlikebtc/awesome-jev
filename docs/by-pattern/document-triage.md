@@ -26,34 +26,34 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 *Author's conclusion* is the direction a benchmark's own author states for Jev on the task they measured (`measurement.direction`: favourable, mixed, unfavourable or inconclusive), indexed from the author's report: author-stated, not reproduced here, and absent where the author states none in words. [docs/benchmarks.md](../benchmarks.md) sets every benchmark's measurement side by side.
 
-- **[docjev](https://github.com/jerryjliu/docjev)** — A very fast document classifier/splitter using Jev <sub>(upstream description)</sub>
+- **[docjev](https://github.com/jerryjliu/docjev)** — Classifies and splits PDF, DOCX and PPTX files: LiteParse extracts page text locally, then Jev picks a document's category with a choice over your rules, or for a packet answers per page a category choice and a noul on whether a new document starts there. Its report covers 40 real PDFs. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · jerryjliu · `Py` · call site [`src/jev_docs/engines/jev.py`](https://github.com/jerryjliu/docjev/blob/HEAD/src/jev_docs/engines/jev.py), read 2026-09-22</sub>
 
-- **[formanator](https://github.com/timrogers/formanator)** — Submit Forma <https://joinforma.com> benefit claims from the command line and Model Context Protocol (MCP) clients, with support for AI-powered receipt analysis with an LLM or Jev <sub>(upstream description)</sub>
+- **[formanator](https://github.com/timrogers/formanator)** — Submits Forma benefit claims from the command line or an MCP client. With --category-provider jev, Jev picks the benefit and category with a choice over the pairs Forma allows plus no_match, seeing only merchant and description; under 0.5 confidence or no match it falls back to the configured LLM. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · timrogers · `Rs` · call site [`src/typesafe.rs`](https://github.com/timrogers/formanator/blob/HEAD/src/typesafe.rs), read 2026-09-22</sub>
 
-- **[tax-doc-classifier](https://github.com/kyotofin/tax-doc-classifier)** — Tax document page classifier built on Jev decisions. 100% strict accuracy across 261 IRS forms, ~$0.001 per page. <sub>(upstream description)</sub>
+- **[tax-doc-classifier](https://github.com/kyotofin/tax-doc-classifier)** — Classifies tax document pages: one request per page asks Jev two choices, page kind (7 options) and IRS form (230 plus none), and a follow-up choice for five forms' schedules; criteria come from IRS PDFs and code gates at 0.95. Its author measured no strict error on 314 filled pages. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · kyotofin · `TS` · call site [`src/backend.ts`](https://github.com/kyotofin/tax-doc-classifier/blob/HEAD/src/backend.ts), read 2026-09-22</sub>
 
-- **[doc-router](https://github.com/misbahsy/doc-router)** — A Document OCR Router to help route pages based on content. <sub>(upstream description)</sub>
+- **[doc-router](https://github.com/misbahsy/doc-router)** — Rust library that decides page by page whether a PDF needs OCR: Jev, or by default a bundled heuristic, answers one noul per page from text-layer evidence; text pages are extracted locally and only the rest go to an OCR model through LiteLLM. In the author's run, 87 of 155 pages were billed. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · misbahsy · `Rs` · call site [`crates/doc-router-jev/src/wire.rs`](https://github.com/misbahsy/doc-router/blob/HEAD/crates/doc-router-jev/src/wire.rs), read 2026-09-22</sub>
 
-- **[jev-capability-atlas](https://github.com/Zaious/jev-capability-atlas)** — Independent, evidence-based map of when TypeSafe's Jev actually holds up vs. breaks down — real API-call receipts, not a leaderboard. 中文為主的雙語 repo。 <sub>(upstream description)</sub>
+- **[jev-capability-atlas](https://github.com/Zaious/jev-capability-atlas)** — Independent community map, mostly in Chinese, of which tasks suit Jev and why, from test suites with saved API calls, not a leaderboard: accurate when the answer is in the given text, like which DOM element to click, and miscalibrated elsewhere (48% right at 0.819 mean confidence on DAIR Emotion). <sub>(written by a model)</sub>
   <sub>`Benchmark` · ★10+ · zaious · `Py` · call site [`scripts/common/jev_client.py`](https://github.com/Zaious/jev-capability-atlas/blob/HEAD/scripts/common/jev_client.py), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
 
-- **[jevmory](https://github.com/romiluz13/jevmory)** — Coding-agent memory where every fact is a verbatim quote graded by TypeSafe Jev's calibrated confidence. Local-first, SQLite receipts, zero dependencies. <sub>(upstream description)</sub>
+- **[jevmory](https://github.com/romiluz13/jevmory)** — Local memory for coding agents: hooks store what sessions actually said as verbatim quotes, and jevmory audit asks Jev, for each line of a MEMORY.md, whether stored evidence supports or contradicts it, marking it keep, stale, wrong or unsupported. Python standard library, SQLite; grading is opt-in. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · romiluz13 · `Py` · call site [`jevmory/cli.py`](https://github.com/romiluz13/jevmory/blob/HEAD/jevmory/cli.py), read 2026-09-22</sub>
 
-- **[pdf-race](https://github.com/goodrahstar/pdf-race)** — Docling → Jev vs Docling → Gemini 3.8 Flash vs Gemini reading the PDF: same documents, one clock, scored against arXiv's own metadata <sub>(upstream description)</sub>
+- **[pdf-race](https://github.com/goodrahstar/pdf-race)** — Races three pipelines on 12 arXiv papers: Docling then Jev, Docling then Gemini 3.8 Flash, and Gemini reading the PDF, each answering four questions per paper scored against arXiv's metadata. All got 12 of 12 categories and titles; the Jev lane cost $0.0022 against $0.036 and $0.088. <sub>(written by a model)</sub>
   <sub>`Benchmark` · ★10+ · goodrahstar · `JS` · call site [`lib/lanes.mjs`](https://github.com/goodrahstar/pdf-race/blob/HEAD/lib/lanes.mjs), read 2026-09-24</sub>
 
-- **[decision-first](https://github.com/harrymunro/decision-first)** — Agent skill that spots bounded-judgment steps, tries a typed decision model (TypeSafe's Jev) first, and documents every attempt <sub>(upstream description)</sub>
+- **[decision-first](https://github.com/harrymunro/decision-first)** — Agent skill for Claude Code, Codex, Cursor and more: when a step is a bounded judgment (classify, triage, rank, route, filter, verify, gate), the agent tries Jev first, via a bundled script sending noul, choice or score questions, before a regex or LLM prompt, and logs each attempt, adopted or not. <sub>(written by a model)</sub>
   <sub>`Plugin` · harrymunro · `Py` · call site [`skills/decision-first/scripts/ask.py`](https://github.com/harrymunro/decision-first/blob/HEAD/skills/decision-first/scripts/ask.py), read 2026-09-22</sub>
 
 - **[Jev Playwright](https://github.com/arthurfiorette/jev-playwright)** — Playwright reporter that asks Jev which existing end-to-end tests a code change could affect and skips the clearly unrelated ones before any browser starts. Sends changed paths, patches and test bodies by default; its README warns it can miss affected tests. <sub>(written by a model)</sub>
   <sub>`Project` · arthurfiorette · `TS` · call site [`src/config.ts`](https://github.com/arthurfiorette/jev-playwright/blob/HEAD/src/config.ts), read by a model 2026-10-24</sub>
 
-- **[jev-boe-demo](https://github.com/Tatuck/jev-boe-demo)** — Daily demo applying TypeSafe's Jev model to Spain's official gazette (BOE). <sub>(upstream description)</sub>
+- **[jev-boe-demo](https://github.com/Tatuck/jev-boe-demo)** — Each morning a pipeline fetches Spain's official gazette (BOE) and asks Jev, in one call per item, a 0–3 score of how much it changes ordinary people's lives (relevant from 2), 13 category nouls (housing, jobs, tax…) kept above 0.6, and a choice of the paragraph a static site quotes as its summary. <sub>(written by a model)</sub>
   <sub>`Project` · tatuck · `TS` · call site [`pipeline/analyze.ts`](https://github.com/Tatuck/jev-boe-demo/blob/HEAD/pipeline/analyze.ts), read 2026-09-24 · ⚠ `no licence`</sub>
 
 - **[jev-builder](https://github.com/collapseindex/jev-builder)** — A browser form for building requests to TypeSafe's Jev: pick a template, fill in the blanks, copy the request. No JSON, no install, runs locally. <sub>(upstream description)</sub>

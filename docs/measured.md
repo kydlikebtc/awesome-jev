@@ -45,7 +45,7 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   > Removed in PR #1165 (2026-09-22). Their offline measurement found the candidate generator excluded changed files by construction while nearly all review findings sit in changed files, and that per-file excerpts made the list less precise at higher token cost. The code is gone from the default branch, so this row cites the change that removed it.
 
 - **[jev-skill-router](https://github.com/shimo4228/jev-skill-router)**<br>
-  Claude Code plugin: asks TypeSafe Jev which installed skill fits each prompt and logs the answer (shadow-first). A working reference for the skill-suggestion cookbook on Claude Code — the README records why it is unlikely to help a strong model as a router. <sub>(earlier upstream description)</sub><br>
+  Claude Code hook asking Jev which installed skill fits each prompt: a choice ranks all skills beside three noul gates, then a choice and a noul per skill judge the top three, none suggested under 0.30. Shadow mode only logs; in the author's week, 28 of 539 suggestions were followed by that skill. <sub>(written by a model)</sub><br>
   <sub>`Plugin` · ★10+ · shimo4228 · `Py` · [call site](https://github.com/shimo4228/jev-skill-router/blob/HEAD/scripts/jev_client.py), read 2026-09-22</sub>
 
   **Caveats:** `measured, not adopted`
@@ -63,7 +63,7 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   <sub>`Benchmark` · ★100+ · nanmicoder · `JS` · [call site](https://github.com/NanmiCoder/jev-arena/blob/HEAD/src/backends/jev.mjs), read 2026-09-24</sub>
 
 - **[jevbench](https://github.com/fstandhartinger/jevbench)**<br>
-  JevBench v1 - a benchmark for Jev-class typed decision models: smart, cheap, fast, reliable, open. <sub>(earlier upstream description)</sub><br>
+  Benchmark Heaven's benchmark for Jev and Jev-compatible decision models: noul, choice and score tasks, sent through a /v1/systemone adapter and scored for accuracy, calibration, latency and cost. Release v1.6.1 (2026-10-06); some inputs are sealed, so it cannot be fully rerun independently. <sub>(written by a model)</sub><br>
   <sub>`Benchmark` · ★100+ · fstandhartinger · `Py` · [call site](https://github.com/fstandhartinger/jevbench/blob/HEAD/jevbench/adapters/typesafe.py), read 2026-09-22</sub>
 
 - **[jev-benchmarks](https://github.com/AbdelStark/jev-benchmarks)**<br>
@@ -71,7 +71,7 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   <sub>`Benchmark` · ★10+ · abdelstark · `Py` · [call site](https://github.com/AbdelStark/jev-benchmarks/blob/HEAD/src/jev_benchmarks/adapters/jev.py), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
 
 - **[jev-capability-atlas](https://github.com/Zaious/jev-capability-atlas)**<br>
-  Independent, evidence-based map of when TypeSafe's Jev actually holds up vs. breaks down — real API-call receipts, not a leaderboard. 中文為主的雙語 repo。 <sub>(upstream description)</sub><br>
+  Independent community map, mostly in Chinese, of which tasks suit Jev and why, from test suites with saved API calls, not a leaderboard: accurate when the answer is in the given text, like which DOM element to click, and miscalibrated elsewhere (48% right at 0.819 mean confidence on DAIR Emotion). <sub>(written by a model)</sub><br>
   <sub>`Benchmark` · ★10+ · zaious · `Py` · [call site](https://github.com/Zaious/jev-capability-atlas/blob/HEAD/scripts/common/jev_client.py), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
 
 - **[jev-dspy-lab](https://github.com/jmanhype/jev-dspy-lab)**<br>
@@ -103,7 +103,7 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   <sub>`Benchmark` · ★10+ · johnhughes3 · `Py` · [call site](https://github.com/johnhughes3/LegalForecastBench/blob/HEAD/legalforecast/jev/execution.py), read 2026-09-22</sub>
 
 - **[pdf-race](https://github.com/goodrahstar/pdf-race)**<br>
-  Docling → Jev vs Docling → Gemini 3.8 Flash vs Gemini reading the PDF: same documents, one clock, scored against arXiv's own metadata <sub>(upstream description)</sub><br>
+  Races three pipelines on 12 arXiv papers: Docling then Jev, Docling then Gemini 3.8 Flash, and Gemini reading the PDF, each answering four questions per paper scored against arXiv's metadata. All got 12 of 12 categories and titles; the Jev lane cost $0.0022 against $0.036 and $0.088. <sub>(written by a model)</sub><br>
   <sub>`Benchmark` · ★10+ · goodrahstar · `JS` · [call site](https://github.com/goodrahstar/pdf-race/blob/HEAD/lib/lanes.mjs), read 2026-09-24</sub>
 
 - **[smartmoney-cub](https://github.com/myc0576/SmartMoney-Cub)**<br>

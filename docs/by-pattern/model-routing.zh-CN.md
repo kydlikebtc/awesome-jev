@@ -42,7 +42,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills)** — 九个 agent 技能加一个 CLI，覆盖模型路由、记忆过滤、对话轮保留、多选一技能选择和下一步动作决策。
   <sub>`插件` · ★1k+ · `Py` · `choice` · `score` · `noul` · 调用点 [`jevkit/client.py`](https://github.com/kerpopule/hermes-jev-skills/blob/HEAD/jevkit/client.py)，2026-09-22 阅读 · ⚠ `实测后未采用`</sub>
 
-- **[Astra-Ares](https://github.com/miuuyy/Astra-Ares)** — 在 Codex 任务中为 GPT-6 自适应地调整推理力度，由 Jev 驱动，以减少 token 消耗。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[Astra-Ares](https://github.com/miuuyy/Astra-Ares)** — 运行一个打过补丁的 Codex CLI：Jev 读取有限的任务上下文，用两个 choice 选出 GPT-6 下一次回复的推理力度，以及这个力度持续几次回复（1、2、5 或 10）；GPT-6 改变推理力度不会破坏提示缓存。属于实验性的参考实现。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · miuuyy · `JS` · 调用点 [`src/jev.mjs`](https://github.com/miuuyy/Astra-Ares/blob/HEAD/src/jev.mjs)，2026-09-24 阅读</sub>
 
 - **[jev-codex-router](https://github.com/0xNatoshi/jev-codex-router)** — 先让 Jev 判断这一轮编程任务有多难，再决定模型档位、推理深度和速度模式。
@@ -165,7 +165,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[switchboard](https://github.com/aniruddh-krovvidi/switchboard)** — 基于 TypeSafe Jev（System One 模型）的 LLM 网关护栏与模型路由器，附带独立的准确率与校准评估。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · aniruddh-krovvidi · `Py` · 调用点 [`jev.py`](https://github.com/aniruddh-krovvidi/switchboard/blob/HEAD/jev.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
 
-- **[tiershift](https://github.com/iamvatsalpatel/tiershift)** — 把每次 LLM 调用下沉到能胜任的最便宜模型，路由由 Jev 在约 180 毫秒内决定，无需训练。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[tiershift](https://github.com/iamvatsalpatel/tiershift)** — 模型路由器：每个请求都从最便宜的档位开始，只有当 Jev 给出的信号（多步推理、难度、风险高低、安全）越过 YAML 策略时才往上升。在作者的 120 条提示上，它以低 40% 的成本达到旗舰模型的质量；而单用快速模型也得到同样的分数，成本只有 3%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · iamvatsalpatel · `TS` · 调用点 [`bench/experiments/gate-experiment.ts`](https://github.com/iamvatsalpatel/tiershift/blob/HEAD/bench/experiments/gate-experiment.ts)，2026-09-22 阅读</sub>
 
 - **[XavierJev](https://github.com/liu-x27/XavierJev)** — Jev 形状的本地决策层：是非、选择和量表问题都从本地模型单个 token 的 logprob 读出答案；附带一个在留出命令集上测量过的 Claude Code 权限闸门。 <sub>(机翻)</sub>

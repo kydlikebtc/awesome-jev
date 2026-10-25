@@ -59,7 +59,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Real Python: hello-jev](https://github.com/realpython/materials/tree/master/hello-jev)** — A teaching example with a deliberate control group: the same station-enquiry task written in plain Python that only accepts Y/N, next to a Noul that reads intent.
   <sub>`Tutorial` · ★1k+ · Real Python · `Py` · `noul` · call site [`hello-jev/jev_noul.py`](https://github.com/realpython/materials/blob/HEAD/hello-jev/jev_noul.py), read 2026-09-22</sub>
 
-- **[shapeshift](https://github.com/anishfn/shapeshift)** — An input that becomes what you mean: one text box that morphs into the right UI as you type. Powered by TypeSafe Jev, works offline. <sub>(upstream description)</sub>
+- **[shapeshift](https://github.com/anishfn/shapeshift)** — One text box that turns into the right card as you type (event, checklist, timer, bill split and more). With a TypeSafe key one Jev call answers 14 questions: which card, plus choices, nouls and scores such as urgency or video call; code parses dates and amounts. Offline, keyword rules answer. <sub>(written by a model)</sub>
   <sub>`Project` · ★1k+ · anishfn · `TS` · call site [`src/lib/jev/client.ts`](https://github.com/anishfn/shapeshift/blob/HEAD/src/lib/jev/client.ts), read 2026-09-24</sub>
 
 - **[foreman](https://github.com/thruwire/foreman)** — A software-factory foreman that uses Jev to decide what an agent pipeline should do next.
@@ -83,7 +83,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[mu](https://github.com/qybaihe/mu)** — Coding agent and desktop app built on pi that asks Jev at 38 decision points which tool-output chunks enter the context, which stale tool results to drop, whether a rule-flagged command was asked for and whether fetched pages or MCP output carry injected instructions.
   <sub>`Project` · ★100+ · qybaihe · `TS` · `choice` · `noul` · `score` · call site [`packages/kyrn-judge/src/providers/typesafe.ts`](https://github.com/qybaihe/mu/blob/HEAD/packages/kyrn-judge/src/providers/typesafe.ts) · ⚠ `self-submitted`</sub>
 
-- **[taskuary](https://github.com/ldbumble/taskuary)** — Automate your job: local-first AI task hub. Email, Teams, Slack & reports -> one timeline -> AI triage -> your coding agents (Claude Code, Codex, Gemini) do the work, you approve. <sub>(earlier upstream description)</sub>
+- **[taskuary](https://github.com/ldbumble/taskuary)** — Local-first work assistant that turns mail, chats and tickets into tasks your coding agents do, sending nothing until you approve. With a TypeSafe key, Jev triages: nouls asked as the owner would judge, with their profile and past verdicts in the state, such as whether to make an item a task. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · ldbumble · `Py` · call site [`taskuary/jev.py`](https://github.com/ldbumble/taskuary/blob/HEAD/taskuary/jev.py), read 2026-09-22</sub>
 
 - **[ha-jev](https://github.com/AboveColin/HA-Jev)** — A Home Assistant integration: typed answers about the house as sensors, noul, choice and score actions for automations, and a conversation agent.

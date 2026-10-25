@@ -91,6 +91,10 @@ def main() -> int:
         f"{stats['primitive_signal_only_rows']} of them with no question_types"
     )
     print(
+        f"front page     {stats['review_front_page']} of the {stats['front_page_rows']} rows the README prints by name "
+        "lack a person's summary, Chinese or reading of the cited file (docs/review-queue.md#front-page)"
+    )
+    print(
         f"review queue   {stats['review_examples_dir']} under examples/, "
         f"{stats['review_single_model_name']} on one model name or host, "
         f"{stats['review_tool_selection_broad']} tool-selection on dropped keywords, "

@@ -196,6 +196,36 @@ def measured_selection(measured: list[dict], picked: list[str]) -> tuple[list[di
     return negatives, picks, others
 
 
+# Where the README prints a row by name, as front_page() names the place: a
+# pattern's key, or one of these two sections.
+START_PLACE, MEASURED_PLACE = "start-here", "measured"
+
+
+def front_page(catalog: list[dict]) -> list[tuple[str, int, dict]]:
+    """Every row the README prints by name, in the order it prints them, as
+    (place, position, row): START_HERE, then what measured_results prints,
+    then the first INLINE_PER_PATTERN rows of each pattern that the pattern
+    lists as indexed, as by_decision_pattern does. A row printed in several
+    places is here once for each.
+
+    Most readers see these rows and no others. build_review_queue.py lists
+    the ones still lacking a person's summary, Chinese or reading of the call
+    site; a slug START_HERE names that the catalogue lacks is left out, since
+    start_here() stops the README build on it.
+    """
+    by_slug = {entry["slug"]: entry for entry in catalog}
+    starts = [by_slug[slug] for slug in START_HERE if slug in by_slug]
+    shown = [(START_PLACE, index, entry) for index, entry in enumerate(starts, 1)]
+    measured = [entry for entry in catalog if is_measured(entry)]
+    printed = [entry for part in measured_selection(measured, collection_slugs("measured")) for entry in part]
+    shown += [(MEASURED_PLACE, index, entry) for index, entry in enumerate(printed, 1)]
+    by_pattern = group_by_pattern(catalog)
+    for key in PATTERN_ORDER:
+        indexed, _later = split_unindexed(by_pattern[key])
+        shown += [(key, index, entry) for index, entry in enumerate(indexed[:INLINE_PER_PATTERN], 1)]
+    return shown
+
+
 @dataclass(frozen=True)
 class Page:
     """What every section reads: the rows, one language's strings, the stats

@@ -69,7 +69,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)** — 受生物启发的智能体记忆：衰减、检索强化与巩固。零运行时依赖，基于 SQLite。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★100+ · kitfunso · `TS` · 调用点 [`src/rerankers/jev.ts`](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/rerankers/jev.ts)，2026-09-22 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
 
-- **[jegrep](https://github.com/can1357/jegrep)** — 语义 grep：用描述来找代码。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jegrep](https://github.com/can1357/jegrep)** — 不建索引、不用向量嵌入的代码语义 grep：用 Jev 的 noul 先判断每个路径、再判断读到的段落是否符合你的描述，每个都给出“是”的概率，所以阈值在各批之间可比；结果以行范围返回。作者估计，在几千个文件中做一次典型搜索约花 0.005 美元。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · can1357 · `Rs` · 调用点 [`src/jev.rs`](https://github.com/can1357/jegrep/blob/HEAD/src/jev.rs)，2026-09-22 阅读</sub>
 
 - **[jev-mcp](https://github.com/jkudish/jev-mcp)** — 现成的 Agent 判断工具箱：事实核验、内容筛查、语义排序、分类和信息提取，各自独立成工具。
@@ -78,16 +78,16 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-search](https://github.com/superagents-lab/jev-search)** — Jev 驱动的网页搜索：先选时间窗口和最佳查询改写，再分批对结果逐条用 noul 重排。
   <sub>`开源项目` · ★100+ · `TS` · `choice` · `noul` · 调用点 [`src/lib/typesafe.ts`](https://github.com/superagents-lab/jev-search/blob/HEAD/src/lib/typesafe.ts)，2026-09-22 阅读</sub>
 
-- **[jev-semgrep](https://github.com/uehaj/sys1grep)** — 按含义 grep，跨语言：Jev 给每一行按含义打分，可用 AND/OR/NOT 组合多个含义。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-semgrep](https://github.com/uehaj/sys1grep)** — 按含义 grep 的工具，现名 sys1grep：对每一行，Jev 回答一个 noul，判断这一行是否符合给定含义（例如“网络故障”），再由阈值决定是否匹配。多个含义可用 AND、OR、NOT 组合，可先用正则预筛行，含义和文本可以是不同语言。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · uehaj · `JS` · 调用点 [`semgrep.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/semgrep.mjs)，2026-09-22 阅读</sub>
 
 - **[jev-shell-history](https://github.com/mrnugget/jev-shell-history)** — Fish 风格的 zsh 历史自动建议，由 Jev 排序而不是按时间。
   <sub>`开源项目` · ★100+ · mrnugget · `TS` · 调用点 [`src/cli.ts`](https://github.com/mrnugget/jev-shell-history/blob/HEAD/src/cli.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
 
-- **[jevgrep](https://github.com/nassim-arifette/jevgrep)** — 为编码智能体提供由 Jev 驱动的语义代码搜索：通过 CLI 或 MCP 跨仓库查找某种行为，并给出精确的源码位置。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jevgrep](https://github.com/nassim-arifette/jevgrep)** — 为不知道符号名的智能体做的代码搜索：把已授权的仓库切成片段，对每个片段用一个 Jev noul 判断它是否回答了你的问题，再返回原样的代码摘录及其路径和行号；可通过命令行或本地 MCP 使用。远程调用默认关闭，需按项目开启。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · nassim-arifette · `TS` · 调用点 [`experiments/jev-contract/probe.mjs`](https://github.com/nassim-arifette/jevgrep/blob/HEAD/experiments/jev-contract/probe.mjs)，2026-09-24 阅读</sub>
 
-- **[jgrep](https://github.com/keltokhy/jgrep)** — grep，但模式是一段描述：用 Jev 按含义过滤行，约 200 毫秒处理上千行。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jgrep](https://github.com/keltokhy/jgrep)** — 以描述为模式的 grep：每一行变成一个 Jev noul，默认概率达到 0.5 即算匹配；并发判断、按输入顺序输出，所以也能用在 tail -f 上。作者在 994 条 Hacker News 标题上测得，一条描述用时 4.6 秒、花费 0.012 美元。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · keltokhy · `Py` · 调用点 [`bench/code_review.py`](https://github.com/keltokhy/jgrep/blob/HEAD/bench/code_review.py)，2026-09-22 阅读</sub>
 
 - **[neo4jev](https://github.com/jexp/neo4jev)** — 把 Jev 塞进知识图谱。每走到一个节点，判断下一条最值得走的边，再一路找下去。
@@ -99,10 +99,10 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[skillranker](https://github.com/Dicklesworthstone/skillranker)** — 用当前会话上下文给智能体的技能排序以决定下一步，带 Claude Code hook。
   <sub>`插件` · ★100+ · dicklesworthstone · `Rs` · 调用点 [`src/jev/endpoint.rs`](https://github.com/Dicklesworthstone/skillranker/blob/HEAD/src/jev/endpoint.rs)，2026-09-22 阅读</sub>
 
-- **[vector-graph-rag](https://github.com/zilliztech/vector-graph-rag)** — 纯向量检索的 Graph RAG，在多跳推理场景上达到当前最好水平。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[vector-graph-rag](https://github.com/zilliztech/vector-graph-rag)** — 把实体和关系作为向量存进 Milvus 的 Graph RAG，无需图数据库。两阶段 Jev 重排先针对查询给每条候选关系提一个 noul，再给排名靠前的关系所指向的段落打分；按作者的测试，在 MuSiQue 和 2Wiki（各 1,000 题）上平均 Recall@5 为 86.61%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · zilliztech · `Py` · 调用点 [`src/vector_graph_rag/llm/jev.py`](https://github.com/zilliztech/vector-graph-rag/blob/HEAD/src/vector_graph_rag/llm/jev.py)，2026-09-22 阅读</sub>
 
-- **[warrenduffer](https://github.com/arimanyus/warrenduffer)** — 面向印度股票的 AI 日内交易机器人：Jev 每 15 秒给 Nifty 50 排序，代码决定每笔交易的仓位并下单。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[warrenduffer](https://github.com/arimanyus/warrenduffer)** — 面向印度股票的日内交易机器人，下的是真实订单，没有模拟盘：Jev 分两轮给 Nifty 50 成分股排序，并决定止盈和离场；代码负责每笔仓位、设置止损，并在触及每日亏损上限时停止交易，经 Zerodha Kite 或 Kotak Neo 下单。回放功能可在过去某一天的数据上跑同一套循环。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · arimanyus · `TS` · 调用点 [`src/model/jev.ts`](https://github.com/arimanyus/warrenduffer/blob/HEAD/src/model/jev.ts)，2026-09-24 阅读</sub>
 
 - **[Cheshi](https://github.com/CheshiAI/Cheshi)** — 由 Jev 驱动的对话记忆：找回过去的会话，并结合原始来源重新审视当时的决策。一个 macOS 工作区。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
@@ -198,7 +198,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev.nvim](https://github.com/valentynkit/jev.nvim)** — Neovim 插件：向当前缓冲区提问，得到 quickfix 列表。Treesitter 切分函数，Jev 给每个函数打分，概率以虚拟文本显示。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · valentynkit · `Lua` · 调用点 [`lua/jev/client.lua`](https://github.com/valentynkit/jev.nvim/blob/HEAD/lua/jev/client.lua)，2026-09-24 阅读</sub>
 
-- **[Jevflix](https://github.com/ArielBubis/Jevflix)** — Jev 来挑，你来看。一个混合电影推荐器：快速的语义加关键词检索把 4,800 部电影缩小成短名单，再由 TypeSafe Jev 读懂你的请求并挑选。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[Jevflix](https://github.com/ArielBubis/Jevflix)** — 电影推荐器：FAISS 与 BM25 检索把 4,800 部电影缩成短名单，Jev 读出请求里的约束（片长、不要血腥画面）供代码过滤，再由一次覆盖最多 250 个候选的 Jev choice 选出一部影片。没有把握时，由 LLM 权衡前五名或追问一个问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arielbubis · `Py` · 调用点 [`movie_rec/jev_client.py`](https://github.com/ArielBubis/Jevflix/blob/HEAD/movie_rec/jev_client.py)，2026-09-24 阅读</sub>
 
 - **[JevGPT: Thinking Fast and Slow in Autonomous Research](https://github.com/sunyasheng/JevGPT)** — 论文 arXiv 2610.18272 的研究 Agent。GPT-5.5 规划检索并写出答案；在 BrowseComp-Plus 问答中，对每个被检查的文档区域和每个查询，Jev 回答一个 Choice（在编号的原文行中选出答案所在行）和一个 Noul（该区域是否涉及该查询），在多个文档上并行运行。GPT 拿到的是原文行。 <sub>(机翻)</sub>

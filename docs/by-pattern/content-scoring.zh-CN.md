@@ -44,7 +44,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)** — 一套循序渐进的课程：从第一次调用、逐个原语、state 形状与 criteria，一直到工单分拣和多步工作流，并对应了全部四个官方模式。
   <sub>`教程` · ★1k+ · `Py` · `choice` · `score` · `noul` · 调用点 [`models/jev/06-criteria.py`](https://github.com/daveebbelaar/ai-cookbook/blob/HEAD/models/jev/06-criteria.py)，2026-09-22 阅读</sub>
 
-- **[gptcache](https://github.com/zilliztech/GPTCache)** — 面向 LLM 的语义缓存，已完整集成主流框架。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[gptcache](https://github.com/zilliztech/GPTCache)** — 面向 LLM 调用的语义缓存。其 Jev 评估器针对一条缓存答案和一个新请求问若干 noul：任务和上下文是否一致、格式是否合适、是否缺少内容、答案是否仍然新鲜；只有最低的一项也超过阈值（示例中为 0.70）才复用答案。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★1k+ · zilliztech · `Py` · 调用点 [`gptcache/similarity_evaluation/jev.py`](https://github.com/zilliztech/GPTCache/blob/HEAD/gptcache/similarity_evaluation/jev.py)，2026-09-22 阅读</sub>
 
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — 一个 Android 回复副驾：从屏幕文本判断意图、时机和风险，OCR 与文案起草交给另外的模型。
@@ -53,13 +53,13 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[pg-jev](https://github.com/realZachi/pg-jev)** — 一个真正的 PostgreSQL 扩展，把三个原语暴露成 SQL 函数 —— 语义判断可以直接写进任意行类型的 WHERE 子句。
   <sub>`开源项目` · ★1k+ · `Py` · `sh` · `choice` · `score` · `noul` · 调用点 [`sql/jev--0.2.0.sql`](https://github.com/realZachi/pg-jev/blob/HEAD/sql/jev--0.2.0.sql)，2026-09-22 阅读</sub>
 
-- **[jev-as-a-judge](https://github.com/danielgshea/jev-as-a-judge)** — 把 Jev 当作评估器使用。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-as-a-judge](https://github.com/danielgshea/jev-as-a-judge)** — 把 Jev 当作智能体评测的评委，与 GPT-5.6 Luna、GPT-5.6 Terra 和 Claude Sonnet 4.6 比较：一个天气智能体的五次固定运行，每次评 100 遍，给出质量分和通过与否。Jev 在全部 500 次判定中都与人工标注一致，其他三者为 99.8%、96.4% 和 80.0%；只有一位审阅者、五次运行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · danielgshea · `Py` · 调用点 [`src/evals/judges/__init__.py`](https://github.com/danielgshea/jev-as-a-judge/blob/HEAD/src/evals/judges/__init__.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
-- **[jev-forge](https://github.com/zwliJay/jev-forge)** — 面向 Jev 式决策模型的开源训练与推理栈。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-forge](https://github.com/zwliJay/jev-forge)** — 并非 Jev：一套合成决策数据、训练并校准小型候选打分模型（JevForge-0.8B）、再通过兼容 Jev 的 API 提供服务的工具链，首个场景是在网页上挑选下一次点击或表单控件。其基准脚本把同一批留出的 choice、noul 和 score 问题发给真正的 Jev 作对比。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★100+ · zwlijay · `Py` · 引用文件 [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
 
-- **[jev-lint](https://github.com/mizchi/jev-lint)** — 用 Jev 打分器给代码中的文本做 lint。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-lint](https://github.com/mizchi/jev-lint)** — 检查解析器查不出的问题的 lint 工具：由 ast-grep 挑出代码，再就每处匹配向 Jev 提出该规则的一句话问题，例如上方注释是否说了代码里不成立的事，概率超过规则的阈值就报出。随附 99 条规则，出自 48 个问题；被判断的代码会发送到 API。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · mizchi · `TS` · 调用点 [`src/jev.ts`](https://github.com/mizchi/jev-lint/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
 - **[jev-review](https://github.com/NiazMorshed2007/jev-review)** — 一个本地优先的 MCP 插件，供编程智能体做持续的代码质量审查。
@@ -68,10 +68,10 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-review](https://github.com/devagrawal09/jev-review)** — 代码审查前先过一遍 Jev，把高风险改动挑出来，再交给更贵的大模型或人。带本地看板。
   <sub>`开源项目` · ★100+ · `TS` · `choice` · `score` · `noul` · 调用点 [`src/review/codebase-judgments.ts`](https://github.com/devagrawal09/jev-review/blob/HEAD/src/review/codebase-judgments.ts)，2026-09-22 阅读</sub>
 
-- **[jev-semgrep](https://github.com/uehaj/sys1grep)** — 按含义 grep，跨语言：Jev 给每一行按含义打分，可用 AND/OR/NOT 组合多个含义。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-semgrep](https://github.com/uehaj/sys1grep)** — 按含义 grep 的工具，现名 sys1grep：对每一行，Jev 回答一个 noul，判断这一行是否符合给定含义（例如“网络故障”），再由阈值决定是否匹配。多个含义可用 AND、OR、NOT 组合，可先用正则预筛行，含义和文本可以是不同语言。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · uehaj · `JS` · 调用点 [`semgrep.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/semgrep.mjs)，2026-09-22 阅读</sub>
 
-- **[jev-seo](https://github.com/AgriciDaniel/jev-seo)** — 从一个首页网址出发，对任意网站做实时 SEO 审计，由 Jev 判定，输出 PDF、XLSX 和 Markdown 报告。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-seo](https://github.com/AgriciDaniel/jev-seo)** — 从一个首页网址出发的 SEO 审计：抓取整站，检查 52 条规则和 Core Web Vitals，并就每个页面向 Jev 提出 choice、score 和 noul 问题（页面类型、搜索意图、有用程度、可信度、开头是否直奔主题）。代码只采用达到 0.80 置信度的明确答案，再给修复项排序。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · agricidaniel · `Py` · 调用点 [`jevseo/jev.py`](https://github.com/AgriciDaniel/jev-seo/blob/HEAD/jevseo/jev.py)，2026-09-24 阅读</sub>
 
 - **[jevmeter](https://github.com/ChetasLua/jevmeter)** — 给视频里的每一句话打分，并把结果渲染成一个实时仪表。
@@ -152,7 +152,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevlogs](https://github.com/reachjalil/jevlogs)** — 面向 OpenTelemetry 的开源 Jev 日志分拣：在昂贵的 LLM 分析之前先给信号打分。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · reachjalil · `JS` · 调用点 [`benchmarks/pager/run-jev-v2.mjs`](https://github.com/reachjalil/jevlogs/blob/HEAD/benchmarks/pager/run-jev-v2.mjs)，2026-09-22 阅读</sub>
 
-- **[jevmory](https://github.com/romiluz13/jevmory)** — 编程智能体的记忆：每条事实都是一句逐字引文，由 Jev 的校准置信度评级。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jevmory](https://github.com/romiluz13/jevmory)** — 编程智能体的本地记忆：钩子把会话中真正说过的话按原文引语保存；jevmory audit 针对 MEMORY.md 的每一行问 Jev：已保存的证据是支持还是反驳它，并把各行标为保留、过时、错误或无依据。只用 Python 标准库和 SQLite；评分须主动开启。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · romiluz13 · `Py` · 调用点 [`jevmory/cli.py`](https://github.com/romiluz13/jevmory/blob/HEAD/jevmory/cli.py)，2026-09-22 阅读</sub>
 
 - **[JevScout](https://github.com/hqman/JevScout)** — 在真实公司官网上找工作的编码智能体技能：Chrome 负责看和操作，Jev 为每个链接和职位打分，宿主 LLM 从不决定点哪里。 <sub>(机翻)</sub>
@@ -245,7 +245,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[decide-mcp](https://github.com/dakdevs/decide-mcp)** — 可配置的决策 MCP server，带百分比分数与偏好画像。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · dakdevs · `TS` · 调用点 [`src/config.ts`](https://github.com/dakdevs/decide-mcp/blob/HEAD/src/config.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
-- **[decision-first](https://github.com/harrymunro/decision-first)** — 一个 agent 技能：识别出有界判断步骤，优先尝试用类型化决策模型解决。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[decision-first](https://github.com/harrymunro/decision-first)** — 适用于 Claude Code、Codex、Cursor 等的智能体技能：当某一步工作是有界判断（分类、分诊、排序、路由、筛选、核验、把关）时，智能体先通过附带的脚本向 Jev 发送 noul、choice 或 score 问题，再考虑写正则或 LLM 提示，并记录每次尝试，无论是否采用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · harrymunro · `Py` · 调用点 [`skills/decision-first/scripts/ask.py`](https://github.com/harrymunro/decision-first/blob/HEAD/skills/decision-first/scripts/ask.py)，2026-09-22 阅读</sub>
 
 - **[deslop](https://github.com/yoichiojima-2/deslop)** — 给网页的广告、垃圾内容、SEO 和二手内容打分。一个基于 TypeSafe Jev 的智能体技能：每页四个概率。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
@@ -272,7 +272,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[gpt-vs-jev](https://github.com/TanayPadar/gpt-vs-jev)** — 在同一输入上对比 GPT 的生成式语言与 JEV 的结构化 Noul 决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tanaypadar · `TS` · 调用点 [`lib/jev.ts`](https://github.com/TanayPadar/gpt-vs-jev/blob/HEAD/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
-- **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — 评判智能体的每一步：通过／重试／升级／停止。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — 面向智能体开发者的网页应用：粘贴某一步的执行轨迹，由 Jev 判定为通过、重试、升级或停止。没有 TYPESAFE_API_KEY 时，本地启发式规则返回同样结构的答案，并标为演示模式。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/harnessjudge/blob/HEAD/src/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
 
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — 可观测的浏览器潜行游戏：Jev 做类型化的守卫判断，确定性代码掌管世界规则。 <sub>(项目自述)</sub> <sub>(机翻)</sub>

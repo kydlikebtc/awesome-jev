@@ -59,7 +59,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Real Python: hello-jev](https://github.com/realpython/materials/tree/master/hello-jev)** — 带对照组的教学示例：同一个问询台任务，一份是只认 Y/N 的纯 Python 写法，旁边是一个能读出意图的 Noul。
   <sub>`教程` · ★1k+ · Real Python · `Py` · `noul` · 调用点 [`hello-jev/jev_noul.py`](https://github.com/realpython/materials/blob/HEAD/hello-jev/jev_noul.py)，2026-09-22 阅读</sub>
 
-- **[shapeshift](https://github.com/anishfn/shapeshift)** — 一个能变成你想要的样子的输入框：边输入边变形为合适的界面，由 TypeSafe Jev 驱动，可离线使用。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[shapeshift](https://github.com/anishfn/shapeshift)** — 一个随输入变成合适卡片的文本框（日程、清单、计时器、分账等）。配置 TypeSafe 密钥后，一次 Jev 调用回答 14 个问题：用 choice 选卡片类型，另有若干 choice、noul 和 score，例如紧急程度、是否视频通话；日期和金额由代码解析。离线时由关键词规则作答。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★1k+ · anishfn · `TS` · 调用点 [`src/lib/jev/client.ts`](https://github.com/anishfn/shapeshift/blob/HEAD/src/lib/jev/client.ts)，2026-09-24 阅读</sub>
 
 - **[foreman](https://github.com/thruwire/foreman)** — 一个「软件工厂工头」，用 Jev 决定智能体流水线下一步该做什么。
@@ -83,7 +83,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[mu](https://github.com/qybaihe/mu)** — 基于 pi 的编程 Agent（命令行和桌面端），在 38 个决策点上问 Jev：工具输出的哪些片段进上下文、哪些过期的工具结果可以丢掉、被规则拦下的命令是不是用户要的、抓取的网页和 MCP 输出里有没有注入的指令。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · qybaihe · `TS` · `choice` · `noul` · `score` · 调用点 [`packages/kyrn-judge/src/providers/typesafe.ts`](https://github.com/qybaihe/mu/blob/HEAD/packages/kyrn-judge/src/providers/typesafe.ts) · ⚠ `作者自荐`</sub>
 
-- **[taskuary](https://github.com/ldbumble/taskuary)** — 本地优先的 AI 任务中枢：把邮件、Teams、Slack 与报表汇成一条时间线。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
+- **[taskuary](https://github.com/ldbumble/taskuary)** — 本地优先的工作助手：把邮件、聊天和工单变成任务，交给你的编程智能体去做，未经你批准什么都不会发出。配置 TypeSafe 密钥后由 Jev 分诊：状态里带上你的资料和过往判断，用 noul 按你会怎么判断来提问，例如这一项要不要建成任务。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · ldbumble · `Py` · 调用点 [`taskuary/jev.py`](https://github.com/ldbumble/taskuary/blob/HEAD/taskuary/jev.py)，2026-09-22 阅读</sub>
 
 - **[ha-jev](https://github.com/AboveColin/HA-Jev)** — 一个 Home Assistant 集成：把关于家的类型化答案变成传感器，提供可用于自动化的 noul、choice 和 score 动作，以及一个对话代理。 <sub>(机翻)</sub>

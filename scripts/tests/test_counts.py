@@ -78,6 +78,8 @@ class CountsTest(unittest.TestCase):
             "threshold_rows": 7035,
             "thresholds_recorded": 7036,
             "review_thresholds_unread": 7037,
+            "front_page_rows": 7046,
+            "review_front_page": 7047,
             "threshold_ranges": {"noul probability": {"rows": 7038, "thresholds": 7039, "low": 0.25, "high": 0.75}},
         }
         with patch.object(_stats, "compute", return_value=fake):
@@ -89,6 +91,8 @@ class CountsTest(unittest.TestCase):
             "official       7002",
             "zh hand-written 7003/7004",
             "evidence       7006 call-site, 7007 wire-shape, 7008 example-only",
+            "front page     7047 of the 7046 rows the README prints by name lack a person's summary, Chinese or "
+            "reading of the cited file (docs/review-queue.md#front-page)",
             "review queue   7009 under examples/, 7010 on one model name or host, "
             "7016 tool-selection on dropped keywords, 7029 summaries naming nothing about Jev (docs/review-queue.md)",
             "code, no cite  7011 (neither evidence nor evidence_none)",

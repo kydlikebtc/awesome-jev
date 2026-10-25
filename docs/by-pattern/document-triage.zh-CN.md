@@ -26,34 +26,34 @@ _对进来的文档、发票、表单做分类和路由。_
 
 *作者结论*是基准测试作者本人对 Jev 在其所测任务上给出的结论方向（`measurement.direction`：有利、好坏参半、不利或无定论），按作者的报告索引：属作者自述，未经本仓库复现；作者没有用文字说明结论的则不标。[docs/benchmarks.zh-CN.md](../benchmarks.zh-CN.md) 把每条基准测试的测量字段并列展示。 <sub>(机翻)</sub>
 
-- **[docjev](https://github.com/jerryjliu/docjev)** — 非常快的文档分类与切分器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[docjev](https://github.com/jerryjliu/docjev)** — 对 PDF、DOCX 和 PPTX 文件做分类和切分：LiteParse 在本地提取每页文字，然后 Jev 用一个 choice 按你的规则选出文档类别；对多文档合订本则逐页回答一个类别 choice 和一个“新文档是否从这里开始”的 noul。其报告涵盖 40 份真实 PDF。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · jerryjliu · `Py` · 调用点 [`src/jev_docs/engines/jev.py`](https://github.com/jerryjliu/docjev/blob/HEAD/src/jev_docs/engines/jev.py)，2026-09-22 阅读</sub>
 
-- **[formanator](https://github.com/timrogers/formanator)** — 从命令行和 MCP 客户端提交福利报销单。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[formanator](https://github.com/timrogers/formanator)** — 从命令行或 MCP 客户端提交 Forma 福利报销。使用 --category-provider jev 时，Jev 用一个 choice 从 Forma 允许的“福利加类别”组合（另加 no_match）中挑一个，只看商家和描述；置信度低于 0.5 或无匹配时，回退到配置好的 LLM。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · timrogers · `Rs` · 调用点 [`src/typesafe.rs`](https://github.com/timrogers/formanator/blob/HEAD/src/typesafe.rs)，2026-09-22 阅读</sub>
 
-- **[tax-doc-classifier](https://github.com/kyotofin/tax-doc-classifier)** — 基于 Jev 决策的税务文档分页分类器，在 261 种 IRS 表单上达到严格全对，每页约 $0.001。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[tax-doc-classifier](https://github.com/kyotofin/tax-doc-classifier)** — 税务文档分页分类器：每页一次请求，问 Jev 两个 choice：页面类型（7 个选项）和 IRS 表单（230 个另加“不在列表中”），五种表单的附表再用一个后续 choice 细分；选项描述由 IRS 官方 PDF 生成，代码以 0.95 为门槛。作者在 314 页已填写表单上测得严格错误为零。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · kyotofin · `TS` · 调用点 [`src/backend.ts`](https://github.com/kyotofin/tax-doc-classifier/blob/HEAD/src/backend.ts)，2026-09-22 阅读</sub>
 
-- **[doc-router](https://github.com/misbahsy/doc-router)** — 文档 OCR 路由器，按页面内容分流。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[doc-router](https://github.com/misbahsy/doc-router)** — 逐页判断 PDF 是否需要 OCR 的 Rust 库：由 Jev（默认是内置的启发式规则）根据文字层证据对每页回答一个 noul；有文字的页面在本地提取，只有其余页面经 LiteLLM 交给 OCR 模型。在作者的测试中，155 页里只有 87 页计费。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · misbahsy · `Rs` · 调用点 [`crates/doc-router-jev/src/wire.rs`](https://github.com/misbahsy/doc-router/blob/HEAD/crates/doc-router-jev/src/wire.rs)，2026-09-22 阅读</sub>
 
-- **[jev-capability-atlas](https://github.com/Zaious/jev-capability-atlas)** — 独立的、基于证据的能力地图：Jev 在哪些场景站得住、在哪些场景崩掉 —— 附真实 API 调用凭据。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-capability-atlas](https://github.com/Zaious/jev-capability-atlas)** — 独立的社区地图，以中文为主，说明哪些任务适合交给 Jev 以及原因，依据是附带真实 API 调用记录的测试集，而不是排行榜：答案就在给定文字里时很准，比如该点击哪个 DOM 元素；别处则可能失准（DAIR Emotion 上平均置信度 0.819，实际只对 48%）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ★10+ · zaious · `Py` · 调用点 [`scripts/common/jev_client.py`](https://github.com/Zaious/jev-capability-atlas/blob/HEAD/scripts/common/jev_client.py)，2026-09-22 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
 
-- **[jevmory](https://github.com/romiluz13/jevmory)** — 编程智能体的记忆：每条事实都是一句逐字引文，由 Jev 的校准置信度评级。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jevmory](https://github.com/romiluz13/jevmory)** — 编程智能体的本地记忆：钩子把会话中真正说过的话按原文引语保存；jevmory audit 针对 MEMORY.md 的每一行问 Jev：已保存的证据是支持还是反驳它，并把各行标为保留、过时、错误或无依据。只用 Python 标准库和 SQLite；评分须主动开启。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · romiluz13 · `Py` · 调用点 [`jevmory/cli.py`](https://github.com/romiluz13/jevmory/blob/HEAD/jevmory/cli.py)，2026-09-22 阅读</sub>
 
-- **[pdf-race](https://github.com/goodrahstar/pdf-race)** — Docling → Jev 对比 Docling → Gemini Flash 以及 Gemini 直接读 PDF：同样的文档、同一个计时器，按 arXiv 标准打分。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[pdf-race](https://github.com/goodrahstar/pdf-race)** — 让三条流水线在 12 篇 arXiv 论文上比赛：Docling 加 Jev、Docling 加 Gemini 3.8 Flash，以及 Gemini 直接读 PDF，每篇回答四个问题，按 arXiv 自己的元数据评分。三条都答对了 12 篇中全部的类别和标题；Jev 这条的成本是 $0.0022，另两条为 $0.036 和 $0.088。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ★10+ · goodrahstar · `JS` · 调用点 [`lib/lanes.mjs`](https://github.com/goodrahstar/pdf-race/blob/HEAD/lib/lanes.mjs)，2026-09-24 阅读</sub>
 
-- **[decision-first](https://github.com/harrymunro/decision-first)** — 一个 agent 技能：识别出有界判断步骤，优先尝试用类型化决策模型解决。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[decision-first](https://github.com/harrymunro/decision-first)** — 适用于 Claude Code、Codex、Cursor 等的智能体技能：当某一步工作是有界判断（分类、分诊、排序、路由、筛选、核验、把关）时，智能体先通过附带的脚本向 Jev 发送 noul、choice 或 score 问题，再考虑写正则或 LLM 提示，并记录每次尝试，无论是否采用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · harrymunro · `Py` · 调用点 [`skills/decision-first/scripts/ask.py`](https://github.com/harrymunro/decision-first/blob/HEAD/skills/decision-first/scripts/ask.py)，2026-09-22 阅读</sub>
 
 - **[Jev Playwright](https://github.com/arthurfiorette/jev-playwright)** — 一个 Playwright 报告器：在启动任何浏览器之前，询问 Jev 某次代码改动可能影响哪些现有端到端测试，并跳过明显无关的测试。默认会发送改动路径、补丁和测试代码；README 提醒它可能漏掉受影响的测试。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arthurfiorette · `TS` · 调用点 [`src/config.ts`](https://github.com/arthurfiorette/jev-playwright/blob/HEAD/src/config.ts)，2026-10-24 模型阅读</sub>
 
-- **[jev-boe-demo](https://github.com/Tatuck/jev-boe-demo)** — 每天把 TypeSafe 的 Jev 模型应用于西班牙官方公报（BOE）的演示。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-boe-demo](https://github.com/Tatuck/jev-boe-demo)** — 每天早上，流水线下载西班牙官方公报（BOE），对每条内容用一次调用问 Jev：一个 0–3 的 score，衡量它对普通人生活的影响（2 分起算作相关）；13 个类别 noul（住房、就业、税收等），高于 0.6 才归类；以及一个 choice，选出静态网站上作为摘要引用的段落。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tatuck · `TS` · 调用点 [`pipeline/analyze.ts`](https://github.com/Tatuck/jev-boe-demo/blob/HEAD/pipeline/analyze.ts)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
 
 - **[jev-builder](https://github.com/collapseindex/jev-builder)** — 构建 Jev 请求的网页表单：选模板、填空、复制代码。 <sub>(项目自述)</sub> <sub>(机翻)</sub>

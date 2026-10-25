@@ -50,10 +50,10 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[DeepChat: agent tool-permission review](https://github.com/ThinkInAIXYZ/deepchat)** — 从三个维度审查每次工具调用：风险等级、用户是否授权、以及一个显式的提示注入压力检查。
   <sub>`开源项目` · ★1k+ · `TS` · `choice` · `noul` · 调用点 [`src/shared/jevProtocol.ts`](https://github.com/ThinkInAIXYZ/deepchat/blob/HEAD/src/shared/jevProtocol.ts)，2026-09-22 阅读</sub>
 
-- **[atomic](https://github.com/bastani-inc/atomic)** — 可验证的编程智能体运行时：用自然语言定义智能体的流程。 <sub>(机翻)</sub>
+- **[atomic](https://github.com/bastani-inc/atomic)** — 编程智能体运行时：工作流是带版本的 TypeScript 阶段，包含可执行检查、评审关卡和人工审批。其 AI 包从 models.dev 收录 Jev，作为 5 家提供方上的 System One 决策模型，与聊天模型分开列出；README 没有说明工作流在哪里调用它。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · bastani-inc · `TS` · 调用点 [`packages/ai/src/decision-models.generated.ts`](https://github.com/bastani-inc/atomic/blob/HEAD/packages/ai/src/decision-models.generated.ts)，2026-09-24 阅读</sub>
 
-- **[grok-bot-jev](https://github.com/Bodila51/grok-bot-jev)** — 把 Jev 接到 Grok Bot 上作为廉价决策层，含用量闸门与技能模板。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[grok-bot-jev](https://github.com/Bodila51/grok-bot-jev)** — Grok Bot 的路由器：在调研、浏览、重试或启动子智能体之前，先问 Jev 这个请求需要哪种动作：复用已缓存的产物、停止失败的重试、运行确定性代码、限制调研规模、允许子智能体，或请人决定。影子模式只记日志；主动模式要靠粘贴进去的技能来执行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · bodila51 · `Py` · 调用点 [`src/jev_client.py`](https://github.com/Bodila51/grok-bot-jev/blob/HEAD/src/jev_client.py)，2026-09-22 阅读</sub>
 
 - **[Jev-cu](https://github.com/Sac-Y/Jev-cu)** — 一个 computer-use 智能体：判断该对无障碍树里哪个元素操作，并单独用一个 noul 判断这个动作是否需要用户显式确认。
@@ -62,16 +62,16 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-drone](https://github.com/RomanSlack/jev-drone)** — 拿 Jev 控无人机。底层飞控继续负责稳定和安全，Jev 只做爬升、刹车、穿越障碍这类上层判断。
   <sub>`开源项目` · ★100+ · `Py` · `choice` · `score` · `noul` · 调用点 [`tactics.py`](https://github.com/RomanSlack/jev-drone/blob/HEAD/tactics.py)，2026-09-22 阅读 · ⚠ `宣称未核实`</sub>
 
-- **[jev-gateway](https://github.com/vinilana/jev-gateway)** — 把 Jev 接进编程智能体，用于工具调用的推理判断。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-gateway](https://github.com/vinilana/jev-gateway)** — 面向 Codex、Claude Code、OpenCode 等编程智能体的本地网关。每一轮它都问 Jev 现有工具里哪个合适；Jev 有把握时就引导 LLM 调用该工具，否则请求原样放行。Jev 宕机、变慢或配置有误时，请求直接发给 LLM。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · vinilana · `TS` · 调用点 [`src/jev.ts`](https://github.com/vinilana/jev-gateway/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
-- **[jev-guard](https://github.com/leepokai/jev-guard)** — 给所有编程智能体做的自动模式：结合会话上下文给每次工具调用打风险分（拒绝／询问／放行）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-guard](https://github.com/leepokai/jev-guard)** — 给编程智能体用的安全钩子：每次工具调用前，Jev 判断这次调用可能造成多大危害、是不是用户要求的、是否在执行不可信的文字，再由代码决定拒绝、询问还是放行；调用返回后，Jev 扫描结果中的提示注入。支持 Claude Code、Codex、Cursor 等。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · leepokai · `JS` · 调用点 [`src/jev.js`](https://github.com/leepokai/jev-guard/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
 
 - **[jev-mcp](https://github.com/jkudish/jev-mcp)** — 现成的 Agent 判断工具箱：事实核验、内容筛查、语义排序、分类和信息提取，各自独立成工具。
   <sub>`插件` · ★100+ · `JS` · `choice` · `score` · `noul` · 调用点 [`src/provider.ts`](https://github.com/jkudish/jev-mcp/blob/HEAD/src/provider.ts)，2026-09-22 阅读</sub>
 
-- **[jevals](https://github.com/openlayer-ai/jevals)** — 把智能体评测与护栏做成 Jev 决策：每条 trace 一次请求，成本不到一美分的零头。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jevals](https://github.com/openlayer-ai/jevals)** — 用 Jev 问题而不是 LLM 评审来做智能体评测与护栏：每项评测把一条 trace 变成 noul、choice 或 score，例如对每个论断用一个 noul 判断工具结果是否支持它；一条 trace 的所有评测合并成一个请求发出。README 的例子用 0.33 秒、0.00006 美元跑完八项。也可在本地用 Kev 或 Laya 运行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · openlayer-ai · `Py` · 调用点 [`src/jevals/backends/typesafe.py`](https://github.com/openlayer-ai/jevals/blob/HEAD/src/jevals/backends/typesafe.py)，2026-09-22 阅读</sub>
 
 - **[mu](https://github.com/qybaihe/mu)** — 基于 pi 的编程 Agent（命令行和桌面端），在 38 个决策点上问 Jev：工具输出的哪些片段进上下文、哪些过期的工具结果可以丢掉、被规则拦下的命令是不是用户要的、抓取的网页和 MCP 输出里有没有注入的指令。 <sub>(机翻)</sub>
@@ -83,13 +83,13 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[quackd](https://github.com/rokbenko/quackd)** — 统管所有机器人的 CLI：每台机器人配一个 LLM 作大脑，由 Jev 做决策。 <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · rokbenko · `Py` · 调用点 [`quackd/agent/decision/systemone.py`](https://github.com/rokbenko/quackd/blob/HEAD/quackd/agent/decision/systemone.py)，2026-09-24 阅读</sub>
 
-- **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — 带 Jev 智能路由的 AI 智能体：把大白话请求分派给合适的专家智能体。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — 由 44 个智能体、63 个技能和 79 个钩子组成的工具包，按大白话请求分派。它的 /d 路由器请 Jev 给请求分类，并在派发前确认所选路线不会改变用户要的结果；它的自动压缩插件在上下文超过 60% 后，对每个难以判断的工具调用提三个 noul，并逐字裁剪。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · notque · `Py` · 调用点 [`plugins/jev-auto-compact/hooks/jev-auto-compact.mjs`](https://github.com/notque/vexjoy-agent/blob/HEAD/plugins/jev-auto-compact/hooks/jev-auto-compact.mjs)，2026-09-22 阅读</sub>
 
-- **[wrongstack](https://github.com/WrongStack/WrongStack)** — 一个 AI 编程智能体：读代码、改文件、跑命令、推理 bug。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[wrongstack](https://github.com/WrongStack/WrongStack)** — 开源编程智能体，自带内核、记忆、多智能体编队和权限策略，可在终端、TUI 或浏览器中使用。可选开启的 TypeSafe 服务会向 Jev 提出类型化的 choice、noul 和 score 问题，用于推荐技能和给派发分类，智能体也可以把 Jev 当作工具调用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · wrongstack · `TS` · 调用点 [`packages/core/src/typesafe/client.ts`](https://github.com/WrongStack/WrongStack/blob/HEAD/packages/core/src/typesafe/client.ts)，2026-09-22 阅读</sub>
 
-- **[youtube-sponsor-detection](https://github.com/trungdq88/youtube-sponsor-detection)** — 结合实时音频与字幕检测 YouTube 视频里的赞助片段。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[youtube-sponsor-detection](https://github.com/trungdq88/youtube-sponsor-detection)** — 跳过 YouTube 赞助口播的 Chrome 扩展：字幕按每 80 行分窗，用 Jev 的 noul 判断口播是否从这里开始，用 choice 指出是哪一行，再对短语逐个用 noul 定下切点；由代码把行号换算成秒数。音频模式每隔几秒问 Jev 口播是否正在播放。默认把握达到 70% 才跳过。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · trungdq88 · `JS` · 调用点 [`extension/lib/jev.js`](https://github.com/trungdq88/youtube-sponsor-detection/blob/HEAD/extension/lib/jev.js)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
 - **[augustus](https://github.com/24601/Augustus)** — 面向决策模型这一类别的 agent 技能：分类器、编解码器、专用 AR 头、System One。 <sub>(机翻)</sub>
@@ -101,7 +101,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[dsh-jev-interceptor](https://github.com/AskTheWay/dsh-jev-interceptor)** — 为 DeepSeek Harness 中的每一次工具调用提供毫秒级 System-1 判断——由 Jev 驱动的风险分类与证据检查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · asktheway · `TS` · 调用点 [`scripts/smoke.mjs`](https://github.com/AskTheWay/dsh-jev-interceptor/blob/HEAD/scripts/smoke.mjs)，2026-09-24 阅读</sub>
 
-- **[dsh-jev-tools](https://github.com/HorusJiang/dsh-jev-tools)** — 用 Jev 做判断而不是生成：修剪过长的工具输出、筛查抓取页面中注入的指令、为“完成”把关。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[dsh-jev-tools](https://github.com/HorusJiang/dsh-jev-tools)** — DeepSeek Harness 插件，在工具输出进入上下文之前先问 Jev：长篇读取或抓取结果里哪些段落相关（按排序保留，不卡阈值）；抓回的页面里有没有针对 AI 的指令（概率达到 0.75 时附提醒，内容原样保留）；推荐哪一个技能；以及每条“完成”声明有没有证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · horusjiang · `TS` · 调用点 [`src/config.ts`](https://github.com/HorusJiang/dsh-jev-tools/blob/HEAD/src/config.ts)，2026-09-24 阅读</sub>
 
 - **[flue-jev-demo](https://github.com/matthewp/flue-jev-demo)** — 通过 Cloudflare AI Gateway 用 Jev 做 Flue 智能体路由。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
@@ -131,10 +131,10 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-harness](https://github.com/AntonioCoppe/jev-harness)** — Jev 决策 harness：置信闸门、影子模式、配方与评测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · antoniocoppe · `TS` · 调用点 [`demos/proof/row-filter/run.ts`](https://github.com/AntonioCoppe/jev-harness/blob/HEAD/demos/proof/row-filter/run.ts)，2026-09-22 阅读</sub>
 
-- **[jev-harness](https://github.com/ismaelsoilet/jev-harness)** — 零依赖的 System One 决策框架：用 5 道语义关卡，在琐碎错误和“死循环”上替前沿 AI 智能体省下 token。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-harness](https://github.com/ismaelsoilet/jev-harness)** — 面向 AI 编码智能体的决策关卡，提供 CLI、MCP 服务器、CI 钩子以及 Python、TypeScript 和 Rust SDK：先用离线启发式规则，再可选地交给 Jev 判断：失败的测试日志是否需要动用 LLM、是否中止反复修改的循环、该用哪个模型档位和推理力度、某一步是否已完成。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · ismaelsoilet · `Py` · 调用点 [`src/jev_harness/client.py`](https://github.com/ismaelsoilet/jev-harness/blob/HEAD/src/jev_harness/client.py)，2026-09-24 阅读</sub>
 
-- **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — 开源的 macOS computer use 与原生 GUI 自动化，运行在 Apple 芯片上。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — 面向 Apple 芯片上原生 macOS 应用的 computer use 智能体：由 OmniParser CoreML、Apple Vision OCR 和辅助功能标签在本机找出窗口里的控件，再由 Jev 根据观察到的文字（从不看像素）用 choice 选下一步动作。输入前有防护检查，基准测试核对的是实际结果，而不是 Jev 的 DONE 判断。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · jcpsimmons · `JS` · 调用点 [`src/providers.mjs`](https://github.com/jcpsimmons/jev-macos-loop/blob/HEAD/src/providers.mjs)，2026-09-22 阅读</sub>
 
 - **[Jev-Moderation-Bot](https://github.com/brainstormity/Jev-Moderation-Bot)** — 一个 Discord 审核机器人：用 Choice 给每条消息定级、用 Noul 表示封禁紧急度，管理员一旦赦免，该消息会作为「安全先例」注入后续请求。
@@ -311,7 +311,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-preflight](https://github.com/muse0509/jev-preflight)** — 给 Claude Code 的有界 Jev 风险检查：八个风险维度、一次请求。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · muse0509 · `Go` · 调用点 [`internal/jev/client.go`](https://github.com/muse0509/jev-preflight/blob/HEAD/internal/jev/client.go)，2026-09-22 阅读</sub>
 
-- **[jev-resilience](https://github.com/Vicente-MD/jev-resilience)** — 给 Spring WebFlux 的非阻塞 Starter，实现一个语义熔断器来检测静默故障。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-resilience](https://github.com/Vicente-MD/jev-resilience)** — 面向 WebFlux 的 Spring Boot Starter：标注了 @SemanticCircuitBreaker 的方法会把每个响应体发给 Jev，用一个 noul 判断这个 HTTP 200 是否掩盖了错误、堆栈信息或维护通知；超过阈值（示例中为 0.85）就抛出熔断器可以计数的异常。失败即放行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · vicente-md · `Java` · 调用点 [`src/main/java/ai/jev/resilience/client/dto/JevRequest.java`](https://github.com/Vicente-MD/jev-resilience/blob/HEAD/src/main/java/ai/jev/resilience/client/dto/JevRequest.java)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
 - **[jev-secret-detection](https://github.com/teyhouse/jev-secret-detection)** — 衡量 Jev 在文件片段中识别真实密钥凭据的能力。 <sub>(项目自述)</sub> <sub>(机翻)</sub>

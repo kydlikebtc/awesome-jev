@@ -204,7 +204,10 @@ turn red, and writes nothing (the runbook is in
   decide: a project's own GitHub description rarely does, and a row with code
   whose summary names nothing about Jev and that has no `notes` is listed in
   the [review queue](docs/review-queue.md#generic-summary) (TypeSafe AI's own
-  rows aside).
+  rows aside). The rows the README prints by name, which most readers see and
+  no others, open the queue in [a section of their own](docs/review-queue.md#front-page)
+  until each has a summary and Chinese a person wrote and a person's reading
+  of its cited file: the best place to start.
 - **`summary_source`** — whose words `summary` is. Wrote it yourself? Set
   `curated`; lint then warns about marketing words and emoji in it. Pasted the
   repository's own GitHub description? Leave the field out: the weekly refresh
