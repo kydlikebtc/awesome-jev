@@ -308,7 +308,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 它也一直是那些给出模式建议的关键词规则（`scripts/classify.py`）安放无法归类的描述的地方，而几轮批量整理都采纳了规则的建议。所以，一个唯一模式是 `overview`、且其行没有记录 `patterns_reviewed` 的带代码项目或插件，算作尚未按模式索引，而不算作总览。目前有 <!--n:overview_unindexed-->251<!--/n--> 行是这样。两份 README、Overview 页面和站点都把它们单独列在这个标题下，[复核队列](review-queue.md#unsorted-overview)则连同规则的建议一起列出它们。对照上面的模式阅读其中一行，给它指定它体现的模式，或者保留 `overview`，然后把阅读的日期写入 `patterns_reviewed`。
 
 <!-- catalogued-overview:start -->
-目录中的**总览**：共 469 条，[逐条列出并附警示](by-pattern/overview.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)。
+目录中的**总览**：共 470 条，[逐条列出并附警示](by-pattern/overview.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)。
 <!-- catalogued-overview:end -->
 
 ---

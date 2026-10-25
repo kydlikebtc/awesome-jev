@@ -19,7 +19,7 @@ Rows a script has singled out for a person to read. Each entry is a machine sign
 | [Benchmark measurements nobody has read against the report · 人和模型都还没有对照报告读过的基准测试测量](#measurement-unread) | 27 |
 | [Interfaces of alternatives nobody has read in the cited files · 人和模型都还没有在所引文件中读过的替代实现接口](#wire-unread) | 14 |
 | [Thresholds nobody has read in the cited file · 人和模型都还没有在所引文件中读过的阈值](#thresholds-unread) | 31 |
-| [Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对](#model-read) | 148 |
+| [Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对](#model-read) | 149 |
 
 <a id="front-page"></a>
 
@@ -890,6 +890,7 @@ To take a row off, check what the model read or wrote, correct anything it got w
 | [building-with-typesafe-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#building-with-typesafe-jev) |  | `call site` 2026-10-24 · `question_types` · `summary` |
 | [decis](https://kydlikebtc.github.io/awesome-jev/?lang=en#decis) |  | `call site` 2026-10-24 · `summary` |
 | [decision-first](https://kydlikebtc.github.io/awesome-jev/?lang=en#decision-first) |  | `summary` |
+| [nace-ai-drex](https://kydlikebtc.github.io/awesome-jev/?lang=en#nace-ai-drex) |  | `call site` 2026-10-25 · `question_types` |
 | [duomind](https://kydlikebtc.github.io/awesome-jev/?lang=en#duomind) |  | `call site` 2026-10-24 · `question_types` · `summary` |
 | [flick-computer-use](https://kydlikebtc.github.io/awesome-jev/?lang=en#flick-computer-use) |  | `call site` 2026-10-24 · `question_types` · `summary` |
 | [grev](https://kydlikebtc.github.io/awesome-jev/?lang=en#grev) |  | `call site` 2026-10-24 · `summary` |
