@@ -68834,6 +68834,49 @@
     "link_status": 200
   },
   {
+    "slug": "nace-ai-drex",
+    "title": "Drex",
+    "summary": "Open-weight decision model from Nace.AI, a Qwen3.6-35B-A3B MoE with a Kev pointer head, that answers choice, score and noul questions in the System One request format over states up to 131,072 tokens; self-hosted through Nace's llama.cpp or Ollama forks, or through Nace's hosted API.",
+    "summary_zh": "Nace.AI 的开放权重决策模型：基于 Qwen3.6-35B-A3B MoE，加 Kev 指针头，按 System One 请求格式回答 choice、score、noul 问题，状态最长 131,072 tokens；可用 Nace 的 llama.cpp 或 Ollama 分支自托管，也可用 Nace 的托管 API。",
+    "url": "https://github.com/nace-ai/drex-decision-models",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "Nace.AI",
+      "url": "https://github.com/nace-ai"
+    },
+    "has_code": true,
+    "repo_license": "Apache-2.0",
+    "flags": [
+      "not-jev",
+      "self-submitted",
+      "vendor-reported"
+    ],
+    "notes": "Not Jev and not from TypeSafe. The runtime code is Apache-2.0, but the model weights use the custom Nace.AI Open RAIL-M license. Benchmark numbers on the model card are Nace's own. Submitted by someone who works at Nace.AI.",
+    "notes_zh": "不是 Jev，也不是 TypeSafe 出的。运行时代码是 Apache-2.0，但模型权重使用自定义的 Nace.AI Open RAIL-M 许可。模型卡上的基准数字由 Nace 自己公布。由 Nace.AI 员工提交。",
+    "sources": [
+      {
+        "catalog": "Hugging Face model card",
+        "url": "https://huggingface.co/nace-ai/drex-v2.0"
+      }
+    ],
+    "license": "CC0-1.0",
+    "zh_machine": true
+  },
+  {
     "slug": "nachalnik",
     "title": "nachalnik",
     "summary": "A transparent agent runtime in Rust: context, tools, permissions and requests as explicit state. Plus an MCP bridge and a terminal agent.",
