@@ -15137,6 +15137,62 @@
     "link_status": 200
   },
   {
+    "slug": "goutoujunshi-jev-chat",
+    "title": "狗头军师 Jev Chat",
+    "summary": "Chat-reply assistant (desktop overlay, Android floating assistant, iOS keyboard) built on Jev Android. From the visible chat or a screenshot it asks Jev the literal question, the other person's intent, a danger level, whether to reply now and the best action, then has Jev pick among drafted replies.",
+    "summary_source": "model-written",
+    "summary_zh": "聊天回复助手（桌面悬浮窗、Android 悬浮助手、iOS 键盘），基于 Jev Android。它根据可见对话或截图向 Jev 询问字面问题、对方意图、危险程度、是否现在回复以及最佳行动，再让 Jev 在起草的回复中挑选。",
+    "url": "https://github.com/shengjidaguai-china/goutoujunshi-jev-chat",
+    "kind": "project",
+    "patterns": [
+      "intent-routing",
+      "content-scoring",
+      "search-ranking"
+    ],
+    "question_types": [
+      "choice",
+      "score",
+      "noul"
+    ],
+    "platforms": [
+      "typesafe-api",
+      "openrouter"
+    ],
+    "author": {
+      "name": "shengjidaguai-china",
+      "url": "https://github.com/shengjidaguai-china"
+    },
+    "repo_license": "MIT",
+    "languages": [
+      "kotlin"
+    ],
+    "flags": [
+      "third-party-api-key"
+    ],
+    "evidence": {
+      "path": "integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt",
+      "matched": [
+        "put(\"true_intent\", choice(",
+        "put(\"danger_level\", score(",
+        "put(\"should_reply_now\", noul("
+      ],
+      "model_read_on": "2026-10-26"
+    },
+    "notes": "Builds on the catalogued jev-chat/jev-chat-jarvis and its Mac and Windows siblings. The queue cited the settings file (Prefs.kt); this row cites the question file. Strategy can go to Jev (TypeSafe or OpenRouter) or DeepSeek; replies need a DeepSeek or OpenRouter key. Sending stays manual; all platforms are previews. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-26; a maintainer has not yet read the call site.",
+    "notes_zh": "基于已收录的 jev-chat/jev-chat-jarvis 及其 Mac、Windows 版本。发现队列引用的是设置文件（Prefs.kt）；本条目改引构造问题的文件。策略判断可交给 Jev（经 TypeSafe 或 OpenRouter）或 DeepSeek；生成回复需要 DeepSeek 或 OpenRouter 密钥。发送始终由用户手动完成；各平台均为预览版。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-26 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-26",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
+  },
+  {
     "slug": "gpt-vs-jev",
     "title": "gpt-vs-jev",
     "summary": "Compare GPT generated language with JEV structured Noul decisions on the same input.",
@@ -29162,6 +29218,56 @@
     ],
     "checked": "2026-10-21",
     "link_status": 200
+  },
+  {
+    "slug": "jev-doc-search",
+    "title": "jev-doc-search",
+    "summary": "Tutorial for finding the page that answers a question in a long PDF with Jev's `Choice`: one option per page for short documents, and for long ones a walk down a PageIndex tree, one small `Choice` per level over section titles and summaries, so neither the 255-option nor the 32k-token limit is hit.",
+    "summary_source": "model-written",
+    "summary_zh": "教程：用 Jev 的 `Choice` 在长 PDF 中找到回答问题的那一页。短文档每页一个选项；长文档则沿 PageIndex 树逐层向下，每层对章节标题和摘要做一次小规模 `Choice`，从而避开 255 个选项和 32k token 的上限。",
+    "url": "https://github.com/VectifyAI/jev-doc-search",
+    "kind": "tutorial",
+    "patterns": [
+      "search-ranking"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "VectifyAI",
+      "url": "https://github.com/VectifyAI"
+    },
+    "repo_license": "Apache-2.0",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "third-party-api-key"
+    ],
+    "evidence": {
+      "path": "page_search.py",
+      "matched": [
+        "typesafe = TypeSafeClient(model=\"jev-1.13.0\", retry=RetryPolicy(max_retries=5, backoff_initial=1.0, backoff_max=20.0))",
+        "instructions=\"Which page contains the answer to the question?\","
+      ],
+      "model_read_on": "2026-10-26"
+    },
+    "notes": "Published by VectifyAI, which makes PageIndex; the tree search needs a PageIndex API key. The cited file is the flat page search; tree_search.py holds the tree walk. The README gives no accuracy figures. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-26; a maintainer has not yet read the call site.",
+    "notes_zh": "由开发 PageIndex 的 VectifyAI 发布；树搜索需要 PageIndex API 密钥。所引文件是平铺式页面搜索，树的逐层搜索在 tree_search.py 中。README 没有给出准确率数字。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-26 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-26",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
   },
   {
     "slug": "jev-docs",
@@ -53072,6 +53178,62 @@
     "link_status": 200
   },
   {
+    "slug": "jev4pg",
+    "title": "jev4pg",
+    "summary": "Natural-language SQL and 41 semantic operators for PostgreSQL. Filtering, extraction, ranking, matching and verification go to Jev in bounded batches with validated answers; a choice option needs 0.55 and a noul 0.8 to count. The authors report 98% accuracy against 92% for pg-jev's request path.",
+    "summary_source": "model-written",
+    "summary_zh": "为 PostgreSQL 提供自然语言 SQL 和 41 个语义算子。过滤、抽取、排序、匹配和核验以有上限的批次交给 Jev，答案须先通过校验；choice 选项需达 0.55、noul 需达 0.8 才算成立。作者报告其准确率为 98%，pg-jev 的请求路径为 92%。",
+    "url": "https://github.com/Sheltercosmo/jev4pg",
+    "kind": "project",
+    "patterns": [
+      "classification",
+      "data-extraction",
+      "search-ranking"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "platforms": [
+      "typesafe-api",
+      "postgresql"
+    ],
+    "author": {
+      "name": "Sheltercosmo",
+      "url": "https://github.com/Sheltercosmo"
+    },
+    "repo_license": "Apache-2.0",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "sdd/generic/jev.py",
+      "matched": [
+        "def __init__(self, db, backend, model=\"jev-1.13.0\"):",
+        "raise ValueError(\"Unsupported Jev primitive\")",
+        "def selected(answer, threshold=0.55):",
+        "def affirmed(answer, threshold=0.8):"
+      ],
+      "model_read_on": "2026-10-26"
+    },
+    "notes": "Previously published as JevSDSQL and jevsd-pg. The cited file is the shared decision layer; each operator builds its own questions. The comparison with pg-jev (catalogued) is the authors' own paired semantic-filtering benchmark. A choice below 0.55 raises DecisionUncertain for review. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-26; a maintainer has not yet read the call site.",
+    "notes_zh": "曾以 JevSDSQL 和 jevsd-pg 之名发布。所引文件是共享的决策层，各算子自行构造问题。与 pg-jev（已收录）的对比来自作者自己的成对语义过滤基准。choice 低于 0.55 时会抛出 DecisionUncertain 交人复核。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-26 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-26",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
+  },
+  {
     "slug": "jevai-org-apps-gallery",
     "title": "jevai.org community app gallery",
     "summary": "Thirty-six community builds curated from social posts: browser agents, spreadsheet tooling, inbox search by intent, ad blocking with judgement, games and robotics.",
@@ -57859,6 +58021,54 @@
     "link_status": 200
   },
   {
+    "slug": "jevlint-codegirl-007",
+    "title": "Jevlint (codegirl-007)",
+    "summary": "Linter that checks code against plain-language rules: Tree-sitter extracts each code unit and Jev answers one `choice` per rule (pass, fail, optionally skip or abstain); a failure is reported only when its confidence reaches the rule's floor. Other backends: OpenAI, OpenRouter, Cloudflare.",
+    "summary_source": "model-written",
+    "summary_zh": "按自然语言规则检查代码的 linter：用 Tree-sitter 提取每个代码单元，Jev 对每条规则回答一个 `choice`（通过、失败，可选跳过或弃权），只有置信度达到该规则的下限时才报告失败。也支持 OpenAI、OpenRouter 和 Cloudflare 后端。",
+    "url": "https://github.com/codegirl-007/jevlint",
+    "kind": "project",
+    "patterns": [
+      "output-validation"
+    ],
+    "question_types": [
+      "choice"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "codegirl-007",
+      "url": "https://github.com/codegirl-007"
+    },
+    "repo_license": "MIT",
+    "languages": [
+      "go"
+    ],
+    "evidence": {
+      "path": "internal/evaluation/client.go",
+      "matched": [
+        "cacheKeyVersion     = \"typesafe-evaluation-v1\"",
+        "answerTypeChoice    = \"choice\"",
+        "criterionFail       = \"The code violates the rule, and no explicit exception applies.\""
+      ],
+      "model_read_on": "2026-10-26"
+    },
+    "notes": "The discovery queue cited the TypeSafe provider (internal/evaluation/typesafe.go); this row cites the file that builds the questions. Each rule's minConfidence floor is the user's setting, not a constant in the code. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-26; a maintainer has not yet read the call site.",
+    "notes_zh": "发现队列引用的是 TypeSafe 提供商文件（internal/evaluation/typesafe.go）；本条目改引构造问题的文件。每条规则的 minConfidence 下限由用户设置，代码里没有固定常量。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-26 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-26",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
+  },
+  {
     "slug": "jevlogs",
     "title": "jevlogs",
     "summary": "Open-source Jev log triage for OpenTelemetry. Score the signal before expensive LLM analysis.",
@@ -62624,6 +62834,54 @@
     "link_status": 200
   },
   {
+    "slug": "jiwo",
+    "title": "jiwo",
+    "summary": "Open decision models on Qwen3.5 (jiwo-0.8b and jiwo-4b) that answer Jev's POST /v1/systemone request with a probability for every option in one forward pass, generating no text. The author reports public Decision Index 0.3 scores of 29.58 and 46.06 and a median request of about 50 ms on one H100.",
+    "summary_source": "model-written",
+    "summary_zh": "基于 Qwen3.5 的开源决策模型（jiwo-0.8b 和 jiwo-4b），以一次前向计算回答 Jev 的 POST /v1/systemone 请求，为每个选项给出概率，不生成文本。作者报告公开 Decision Index 0.3 得分分别为 29.58 和 46.06，在单张 H100 上请求中位耗时约 50 ms。",
+    "url": "https://github.com/jiwidi/jiwo",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "jiwidi",
+      "url": "https://github.com/jiwidi"
+    },
+    "repo_license": "MIT",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev",
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "src/jiwo/cli.py",
+      "matched": [
+        "SERVE_HELP = \"Serve a model over HTTP (POST /v1/systemone). The settings come from the JIWO_* environment variables.\""
+      ],
+      "kind": "wire-shape",
+      "model_read_on": "2026-10-26"
+    },
+    "notes": "Not Jev: open models answering in Jev's request shape, so thresholds tuned on Jev do not transfer. The README says it is an independent project that TypeSafe does not endorse. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-26; a maintainer has not yet read the call site.",
+    "notes_zh": "并非 Jev：这是按 Jev 请求格式作答的开源模型，在 Jev 上调好的阈值不能照搬。README 说明这是独立项目，未获 TypeSafe 认可。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-26 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-26",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
+  },
+  {
     "slug": "jlink",
     "title": "jlink",
     "summary": "Record linkage for economists: write the match rule in plain English, get a probability per pair, audit it, cite it. Python, CLI, Stata and R.",
@@ -65601,6 +65859,55 @@
     ],
     "checked": "2026-10-21",
     "link_status": 200
+  },
+  {
+    "slug": "lichen",
+    "title": "Lichen",
+    "summary": "Drop-in, API-compatible replacement for Jev that runs open-weight models locally behind the same /v1/systemone endpoint, images allowed in the state. The author reports 204 to 207 of 231 public JevBench decisions with gemma-4-26B-A4B on a 24 GB laptop GPU, against 200 for Jev 1.13.",
+    "summary_source": "model-written",
+    "summary_zh": "可直接替换 Jev 的 API 兼容实现，在本地用开放权重模型提供同样的 /v1/systemone 接口，state 中还可包含图片。作者报告在 24 GB 笔记本 GPU 上用 gemma-4-26B-A4B 答对 231 个公开 JevBench 决策中的 204 至 207 个，Jev 1.13 为 200 个。",
+    "url": "https://github.com/Mushroom-Systems/lichen",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "Mushroom-Systems",
+      "url": "https://github.com/Mushroom-Systems"
+    },
+    "repo_license": "MIT",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev",
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "bench/ask_jev.py",
+      "matched": [
+        "URL = os.environ.get(\"SYSTEMONE_URL\", \"https://api.typesafe.ai/v1/systemone\")",
+        "body = json.dumps({\"state\": case[\"state\"], \"model\": \"jev-latest\","
+      ],
+      "kind": "wire-shape",
+      "model_read_on": "2026-10-26"
+    },
+    "notes": "Not Jev: open models answering in Jev's request shape, so thresholds tuned on Jev do not transfer. The cited script sends the same cases to Jev's hosted API, or to Lichen when SYSTEMONE_URL is set, for the comparison. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-26; a maintainer has not yet read the call site.",
+    "notes_zh": "并非 Jev：这是按 Jev 请求格式作答的开源模型，在 Jev 上调好的阈值不能照搬。所引脚本会把同样的用例发给 Jev 的托管 API；设置 SYSTEMONE_URL 后则发给 Lichen，用于对比。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-26 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-26",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
   },
   {
     "slug": "limpet",
@@ -69343,6 +69650,55 @@
         "source": "goal_threshold: float = 0.5"
       }
     ]
+  },
+  {
+    "slug": "neohorse",
+    "title": "NeoHorse",
+    "summary": "TokenRhythm's open-weight model family for agent workflows. NeoHorse-Jev-4B, built on NeoHorse-1-4B, answers Choice, Noul and Score by prefill-only inference behind a /v1/systemone-shaped runtime for vLLM, SGLang or Python. The authors report 77.70 across six text benchmark groups.",
+    "summary_source": "model-written",
+    "summary_zh": "TokenRhythm 面向智能体工作流的开放权重模型系列。基于 NeoHorse-1-4B 的 NeoHorse-Jev-4B 通过仅预填充推理回答 Choice、Noul 和 Score，运行时沿用 /v1/systemone 的请求格式，可用 vLLM、SGLang 或 Python 部署。作者报告其在六组文本基准上平均得分 77.70。",
+    "url": "https://github.com/TokenRhythm/NeoHorse",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "TokenRhythm",
+      "url": "https://github.com/TokenRhythm"
+    },
+    "repo_license": "Apache-2.0",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev",
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "jev/infer/sglang/jev_runtime/schema.py",
+      "matched": [
+        "\"\"\"TypeSafe-compatible request/response shapes (POST /v1/systemone) mapped onto the single pointer primitive.",
+        "model: str = \"neohorse-jev\""
+      ],
+      "kind": "wire-shape",
+      "model_read_on": "2026-10-26"
+    },
+    "notes": "Not Jev: open models answering in Jev's request shape, so thresholds tuned on Jev do not transfer. The comparison table ranks it against other open decision models (Open-Jev-9B, Kev-4B, Laya), not against Jev. The runtime's request schema is vendored from Kev (catalogued as jaredpalmer-kev). Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-26; a maintainer has not yet read the call site.",
+    "notes_zh": "并非 Jev：这是按 Jev 请求格式作答的开源模型，在 Jev 上调好的阈值不能照搬。其对比表把它与其他开源决策模型（Open-Jev-9B、Kev-4B、Laya）比较，而不是与 Jev 比较。运行时的请求模式沿用自 Kev（已收录为 jaredpalmer-kev）。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-26 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-26",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
   },
   {
     "slug": "netlify-ai-gateway-jev",
@@ -73788,6 +74144,55 @@
     ],
     "checked": "2026-10-21",
     "link_status": 200
+  },
+  {
+    "slug": "phocinae-largha",
+    "title": "Phocinae-Largha-150M-v1",
+    "summary": "A 144.3M-parameter bilingual (English and Chinese) typed decision model fine-tuned from mmBERT-small, answering noul, choice and score with zero output tokens through a /v1/systemone-compatible server, and runnable on CPU. The card leads with 0.791 typed accuracy in English and 0.848 in Chinese.",
+    "summary_source": "model-written",
+    "summary_zh": "一个 144.3M 参数的中英双语类型化决策模型，由 mmBERT-small 微调而来，通过兼容 /v1/systemone 的服务器以零输出 token 回答 noul、choice 和 score，可在 CPU 上运行。模型卡以英文类型化准确率 0.791、中文 0.848 为首要数字。",
+    "url": "https://github.com/Phocinae/Phocinae-Largha-150M-v1",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "Phocinae",
+      "url": "https://github.com/Phocinae"
+    },
+    "repo_license": "Apache-2.0",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev",
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "tools/check_server_documented_api.py",
+      "matched": [
+        "POST /v1/systemone/permute",
+        "POST /v1/systemone/batch"
+      ],
+      "kind": "wire-shape",
+      "model_read_on": "2026-10-26"
+    },
+    "notes": "Not Jev: open models answering in Jev's request shape, so thresholds tuned on Jev do not transfer. The cited script checks the API of phocinae-server, the separate runtime. The card says an earlier 0.906 headline came from a partly seen split, the Chinese figure is in-mix, and JevBench's public set gives 126 of 231. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-26; a maintainer has not yet read the call site.",
+    "notes_zh": "并非 Jev：这是按 Jev 请求格式作答的开源模型，在 Jev 上调好的阈值不能照搬。所引脚本检查独立运行时 phocinae-server 的 API。模型卡说明，此前的头条数字 0.906 来自部分见过的划分，中文数字属于训练分布内，在 JevBench 公开集 231 题中答对 126 题。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-26 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-26",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
   },
   {
     "slug": "pi-agent-foreman",
@@ -83564,6 +83969,55 @@
     "flags": [
       "single-commit"
     ]
+  },
+  {
+    "slug": "strands-decider",
+    "title": "Strands Decider",
+    "summary": "Open decision model for Strands Agents workflows: a 2B Qwen3.5 model, plus Gemma 4 sizes up to 26B-A4B, served behind a /v1/systemone-shaped endpoint and answering noul, choice and score with a confidence. The authors report 180 of 231 public JevBench tasks for the 2B and 207 for the 26B-A4B.",
+    "summary_source": "model-written",
+    "summary_zh": "面向 Strands Agents 工作流的开源决策模型：一个 2B 的 Qwen3.5 模型，另有最大到 26B-A4B 的 Gemma 4 版本，通过 /v1/systemone 格式的接口提供服务，回答 noul、choice 和 score 并附带置信度。作者报告 2B 版本在 231 个公开 JevBench 任务中答对 180 个，26B-A4B 答对 207 个。",
+    "url": "https://github.com/strands-labs/strands-decider",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "strands-labs",
+      "url": "https://github.com/strands-labs"
+    },
+    "repo_license": "Apache-2.0",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev",
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "examples/strands/_client.py",
+      "matched": [
+        "f\"{self.url}/v1/systemone\", data=body, headers={\"content-type\": \"application/json\"}",
+        "MODEL_ID = \"hobson-latest\""
+      ],
+      "kind": "wire-shape",
+      "model_read_on": "2026-10-26"
+    },
+    "notes": "Not Jev: open models answering in Jev's request shape, so thresholds tuned on Jev do not transfer. The cited file is the client its Strands examples use; it sends `model: hobson-latest`, which the server ignores. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-26; a maintainer has not yet read the call site.",
+    "notes_zh": "并非 Jev：这是按 Jev 请求格式作答的开源模型，在 Jev 上调好的阈值不能照搬。所引文件是其 Strands 示例使用的客户端；它发送 `model: hobson-latest`，服务器会忽略该值。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-26 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-26",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
   },
   {
     "slug": "stuntd",
@@ -98093,6 +98547,56 @@
     "notes_zh": "由作者本人提交。作者说明项目和本条目都借助 Claude Code 编写，这个标记记录的就是这一说明。从不调用 Jev API，也不使用它的输出。闸门的数字来自带读取记录和误放上界的留出集，负结果保留在 docs/measurements.md。",
     "checked": "2026-10-21",
     "link_status": 200
+  },
+  {
+    "slug": "xerj",
+    "title": "XERJ",
+    "summary": "Local-first search engine and MCP server in one Rust binary. Its optional `rerank` stage asks Jev one `noul` per top hit (does `document` answer the query in the state?) and re-sorts by the probabilities. The authors report FiQA nDCG@10 rising from 0.24 to 0.36, about $0.64 for 648 searches.",
+    "summary_source": "model-written",
+    "summary_zh": "一个本地优先的搜索引擎兼 MCP 服务器，打包为单个 Rust 二进制文件。可选的 `rerank` 阶段对每条靠前结果向 Jev 提一个 `noul`（`document` 是否回答了 state 中的查询？），再按概率重新排序。作者报告 FiQA 上的 nDCG@10 从 0.24 升至 0.36，总共 648 次搜索花费约 0.64 美元。",
+    "url": "https://github.com/xerj-org/xerj",
+    "kind": "project",
+    "patterns": [
+      "search-ranking"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "xerj-org",
+      "url": "https://github.com/xerj-org"
+    },
+    "repo_license": "Apache-2.0",
+    "languages": [
+      "rust"
+    ],
+    "flags": [
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "engine/crates/xerj-rerank/src/lib.rs",
+      "matched": [
+        "pub const DEFAULT_ENDPOINT: &'static str = \"https://api.typesafe.ai/v1/systemone\";",
+        "\"type\": \"noul\","
+      ],
+      "model_read_on": "2026-10-26"
+    },
+    "notes": "The queue cited a test double (scripts/bench/lib/jev_stub.py); this row cites the provider client. Reranking needs a TypeSafe key and sends the top hits' text to TypeSafe. XERJ's own /v1/systemone answer (xerj-history-vote-1) is not Jev. The authors found the probabilities uncalibrated (ECE 0.10–0.31). Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-26; a maintainer has not yet read the call site.",
+    "notes_zh": "发现队列引用的是测试替身（scripts/bench/lib/jev_stub.py）；本条目改引提供商客户端。重排需要 TypeSafe 密钥，并会把靠前结果的文本发送给 TypeSafe。XERJ 自己对 /v1/systemone 的回答（xerj-history-vote-1）并不是 Jev。作者发现这些概率未经校准（ECE 0.10–0.31）。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-26 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-26",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
   },
   {
     "slug": "xtags",
