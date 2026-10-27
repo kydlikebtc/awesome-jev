@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 135 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 136 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 130 · wire shape 1 · example only 0 · independent reports 11 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 131 · wire shape 1 · example only 0 · independent reports 11 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -346,6 +346,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevkit](https://github.com/ariel-frischer/jevkit)** — Fast Rust CLI for TypeSafe Jev: typed decisions, offline linting before you pay <sub>(upstream description)</sub>
   <sub>`Project` · ariel-frischer · `Rs` · call site [`src/auth.rs`](https://github.com/ariel-frischer/jevkit/blob/HEAD/src/auth.rs), read 2026-09-22</sub>
+
+- **[Jevlint (codegirl-007)](https://github.com/codegirl-007/jevlint)** — Linter that checks code against plain-language rules: Tree-sitter extracts each code unit and Jev answers one `choice` per rule (pass, fail, optionally skip or abstain); a failure is reported only when its confidence reaches the rule's floor. Other backends: OpenAI, OpenRouter, Cloudflare. <sub>(written by a model)</sub>
+  <sub>`Project` · codegirl-007 · `Go` · `choice` · call site [`internal/evaluation/client.go`](https://github.com/codegirl-007/jevlint/blob/HEAD/internal/evaluation/client.go), read by a model 2026-10-26</sub>
 
 - **[jevsume](https://github.com/unownone/jevsume)** — ATS-friendly resume review powered by Jev (TypeSafe System One). The frontend extracts resume text the way a parser would, then a Cloudflare Worker runs typed JEV questions and composes a JevScore. <sub>(upstream description)</sub>
   <sub>`Project` · unownone · `TS` · call site [`packages/jev/http.ts`](https://github.com/unownone/jevsume/blob/HEAD/packages/jev/http.ts), read 2026-09-22 · ⚠ `no licence`</sub>

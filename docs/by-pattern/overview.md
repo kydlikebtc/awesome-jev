@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 470 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 475 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 373 · wire shape 58 · example only 0 · independent reports 23 · negative results 1 · no file cited 39. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 373 · wire shape 63 · example only 0 · independent reports 23 · negative results 1 · no file cited 39. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -464,11 +464,20 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevsbistro](https://github.com/andrewsilber/JevsBistro)** — 3D restaurant service simulator for benchmarking low-latency decision models <sub>(upstream description)</sub>
   <sub>`Benchmark` · andrewsilber · `TS` · call site [`src/jev/protocol.ts`](https://github.com/andrewsilber/JevsBistro/blob/HEAD/src/jev/protocol.ts), read 2026-09-22</sub>
 
+- **[jiwo](https://github.com/jiwidi/jiwo)** — Open decision models on Qwen3.5 (jiwo-0.8b and jiwo-4b) that answer Jev's POST /v1/systemone request with a probability for every option in one forward pass, generating no text. The author reports public Decision Index 0.3 scores of 29.58 and 46.06 and a median request of about 50 ms on one H100. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · jiwidi · `Py` · cited file [`src/jiwo/cli.py`](https://github.com/jiwidi/jiwo/blob/HEAD/src/jiwo/cli.py), read by a model 2026-10-26 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[kojev](https://github.com/ItisNoMatter/kojev)** — Kotlin Multiplatform client for Jev that returns your own enum/sealed types instead of string keys. <sub>(upstream description)</sub>
   <sub>`SDK` · itisnomatter · `Kt` · call site [`src/commonTest/kotlin/io/github/itisnomatter/kojev/JevClientTest.kt`](https://github.com/ItisNoMatter/kojev/blob/HEAD/src/commonTest/kotlin/io/github/itisnomatter/kojev/JevClientTest.kt), read 2026-09-22</sub>
 
 - **[kunobi-jev](https://github.com/kunobi-ninja/kunobi-decision)** — Rust client for the TypeSafe System One API (Jev) <sub>(upstream description)</sub>
   <sub>`SDK` · kunobi-ninja · `Rs` · call site [`src/client/mod.rs`](https://github.com/kunobi-ninja/kunobi-decision/blob/HEAD/src/client/mod.rs), read 2026-09-22</sub>
+
+- **[Lichen](https://github.com/Mushroom-Systems/lichen)** — Drop-in, API-compatible replacement for Jev that runs open-weight models locally behind the same /v1/systemone endpoint, images allowed in the state. The author reports 204 to 207 of 231 public JevBench decisions with gemma-4-26B-A4B on a 24 GB laptop GPU, against 200 for Jev 1.13. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · Mushroom-Systems · `Py` · cited file [`bench/ask_jev.py`](https://github.com/Mushroom-Systems/lichen/blob/HEAD/bench/ask_jev.py), read by a model 2026-10-26 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
+- **[NeoHorse](https://github.com/TokenRhythm/NeoHorse)** — TokenRhythm's open-weight model family for agent workflows. NeoHorse-Jev-4B, built on NeoHorse-1-4B, answers Choice, Noul and Score by prefill-only inference behind a /v1/systemone-shaped runtime for vLLM, SGLang or Python. The authors report 77.70 across six text benchmark groups. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · TokenRhythm · `Py` · cited file [`jev/infer/sglang/jev_runtime/schema.py`](https://github.com/TokenRhythm/NeoHorse/blob/HEAD/jev/infer/sglang/jev_runtime/schema.py), read by a model 2026-10-26 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[Ollaya](https://github.com/ollaya-dev/ollaya)** — Runs open decision models locally the way Ollama runs LLMs: pull a model by name and serve it behind a /v1/systemone-compatible daemon, so the TypeSafe SDK works unchanged. The README reports 0.724 typed-decision accuracy for its recommended winnow:e4b against TypeSafe's 0.738 for Jev. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · ollaya-dev · `Py` · cited file [`convert/ollaya_convert/bench_public.py`](https://github.com/ollaya-dev/ollaya/blob/HEAD/convert/ollaya_convert/bench_public.py), read by a model 2026-10-24 · ⚠ `not Jev itself` `vendor numbers`</sub>
@@ -482,6 +491,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[origin-civilization](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION)** — AI life-and-civilization simulation: TypeSafe Jev makes every decision (typed, probabilistic, auditable); LLMs plan — OpenAI-compatible APIs, local models (Ollama, LM Studio), Claude Code, Codex. <sub>(upstream description)</sub>
   <sub>`Benchmark` · jacquesgariepy · `TS` · call site [`legacy/source/providers.js`](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION/blob/HEAD/legacy/source/providers.js), read 2026-09-22</sub>
 
+- **[Phocinae-Largha-150M-v1](https://github.com/Phocinae/Phocinae-Largha-150M-v1)** — A 144.3M-parameter bilingual (English and Chinese) typed decision model fine-tuned from mmBERT-small, answering noul, choice and score with zero output tokens through a /v1/systemone-compatible server, and runnable on CPU. The card leads with 0.791 typed accuracy in English and 0.848 in Chinese. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · Phocinae · `Py` · cited file [`tools/check_server_documented_api.py`](https://github.com/Phocinae/Phocinae-Largha-150M-v1/blob/HEAD/tools/check_server_documented_api.py), read by a model 2026-10-26 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[RSI-Jev](https://github.com/Shanghua-Gao/RSI-Jev)** — An agent loop that proposes hypotheses, pre-registers predictions, trains and retires open decision models answering noul, choice and score in the /v1/systemone shape; 496 experiments written up, failures included. The author reports 65.64 on the public Decision Index 0.3 set for the 27B VL model. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · shanghua-gao · `Py` · cited file [`rsijev/contract.py`](https://github.com/Shanghua-Gao/RSI-Jev/blob/HEAD/rsijev/contract.py), read by a model 2026-10-24 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
@@ -490,6 +502,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[snap](https://github.com/emnlmn/snap)** — Typed decisions from unstructured state: one forward pass, zero generated text. Local, deterministic, Jev-compatible. Not affiliated with typesafe.ai. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · emnlmn · `Rs` · cited file [`src/api.rs`](https://github.com/emnlmn/snap/blob/HEAD/src/api.rs), read 2026-09-24 · ⚠ `not Jev itself`</sub>
+
+- **[Strands Decider](https://github.com/strands-labs/strands-decider)** — Open decision model for Strands Agents workflows: a 2B Qwen3.5 model, plus Gemma 4 sizes up to 26B-A4B, served behind a /v1/systemone-shaped endpoint and answering noul, choice and score with a confidence. The authors report 180 of 231 public JevBench tasks for the 2B and 207 for the 26B-A4B. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · strands-labs · `Py` · cited file [`examples/strands/_client.py`](https://github.com/strands-labs/strands-decider/blob/HEAD/examples/strands/_client.py), read by a model 2026-10-26 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)** — First independent head-to-head benchmark of System One decision models (Laya vs Jev) on byte-identical inputs <sub>(upstream description)</sub>
   <sub>`Benchmark` · instax-dutta · `Py` · call site [`runners/jev_runner.py`](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py), read 2026-09-22</sub>

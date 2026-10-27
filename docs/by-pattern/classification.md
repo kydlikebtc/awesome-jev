@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 126 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 127 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 116 · wire shape 1 · example only 0 · independent reports 11 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 117 · wire shape 1 · example only 0 · independent reports 11 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -318,6 +318,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-triage](https://github.com/cephalization/jev-triage)** — Uses typeful jev, zero sync to pull and sync large repositories for issue triage <sub>(earlier upstream description)</sub>
   <sub>`Project` · cephalization · `TS` · call site [`apps/api/src/worker/typesafe.ts`](https://github.com/cephalization/jev-triage/blob/HEAD/apps/api/src/worker/typesafe.ts), read 2026-09-22</sub>
+
+- **[jev4pg](https://github.com/Sheltercosmo/jev4pg)** — Natural-language SQL and 41 semantic operators for PostgreSQL. Filtering, extraction, ranking, matching and verification go to Jev in bounded batches with validated answers; a choice option needs 0.55 and a noul 0.8 to count. The authors report 98% accuracy against 92% for pg-jev's request path. <sub>(written by a model)</sub>
+  <sub>`Project` · Sheltercosmo · `Py` · `choice` · `noul` · call site [`sdd/generic/jev.py`](https://github.com/Sheltercosmo/jev4pg/blob/HEAD/sdd/generic/jev.py), read by a model 2026-10-26 · ⚠ `vendor numbers`</sub>
 
 - **[Jevatar](https://github.com/AppChainAI/Jevatar)** — An AI companion that replies only with facial expressions. Jev (TypeSafe System One) judges your message and picks 1 of 14 moods; blobatar morphs its face. React + Vite + Bun. <sub>(upstream description)</sub>
   <sub>`Project` · appchainai · `TS` · call site [`server.ts`](https://github.com/AppChainAI/Jevatar/blob/HEAD/server.ts), read 2026-09-24</sub>

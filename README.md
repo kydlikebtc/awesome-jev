@@ -12,7 +12,7 @@
   <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="docs/assets/readme-cover-en-light-mobile.svg">
   <source media="(max-width: 767px)" srcset="docs/assets/readme-cover-en-dark-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-en-dark.svg">
-  <img src="docs/assets/readme-cover-en-light.svg" alt="awesome-jev — Jev Decision Atlas: 1,255 public resources, 1,205 dated HTTP 2xx link records, and 1,102 call-site citation records. Counts describe saved records, not current link availability or passed runtime and performance tests." width="100%">
+  <img src="docs/assets/readme-cover-en-light.svg" alt="awesome-jev — Jev Decision Atlas: 1,265 public resources, 1,205 dated HTTP 2xx link records, and 1,107 call-site citation records. Counts describe saved records, not current link availability or passed runtime and performance tests." width="100%">
 </picture>
 </a>
 
@@ -123,15 +123,15 @@ All 18 patterns have at least one catalogue entry. Coverage does not imply runti
 
 | Decision pattern | Decision pattern |
 | :--- | :--- |
-| [Tool selection](#tool-selection) · **236** | [Intent routing](#intent-routing) · **38** |
+| [Tool selection](#tool-selection) · **236** | [Intent routing](#intent-routing) · **39** |
 | [Context compaction](#context-compaction) · **37** | [Safety gating](#safety-gating) · **142** |
-| [Output validation](#output-validation) · **135** | [Retry control](#retry-control) · **8** |
+| [Output validation](#output-validation) · **136** | [Retry control](#retry-control) · **8** |
 | [Human escalation](#human-escalation) · **73** | [Model routing](#model-routing) · **49** |
-| [Speculative fan-out](#speculative-fan-out) · **34** | [Search & ranking](#search--ranking) · **67** |
-| [Structured extraction](#structured-extraction) · **17** | [Classification](#classification) · **126** |
+| [Speculative fan-out](#speculative-fan-out) · **34** | [Search & ranking](#search--ranking) · **71** |
+| [Structured extraction](#structured-extraction) · **18** | [Classification](#classification) · **127** |
 | [ML feature extraction](#ml-feature-extraction) · **8** | [Document triage](#document-triage) · **22** |
-| [Support triage](#support-triage) · **9** | [Content scoring](#content-scoring) · **164** |
-| [Recommendation](#recommendation) · **2** | [Overview](#overview) · **470** |
+| [Support triage](#support-triage) · **9** | [Content scoring](#content-scoring) · **165** |
+| [Recommendation](#recommendation) · **2** | [Overview](#overview) · **475** |
 
 ## Measured, not claimed
 
@@ -309,7 +309,7 @@ _Classify what the user wants and send the request down the right branch._
   One text box that turns into the right card as you type (event, checklist, timer, bill split and more). With a TypeSafe key one Jev call answers 14 questions: which card, plus choices, nouls and scores such as urgency or video call; code parses dates and amounts. Offline, keyword rules answer. <sub>(written by a model)</sub><br>
   <sub>`Project` · ★1k+ · anishfn · `TS` · [call site](https://github.com/anishfn/shapeshift/blob/HEAD/src/lib/jev/client.ts), read 2026-09-24</sub>
 
-**10 of 38** shown · [all 38 on one page →](docs/by-pattern/intent-routing.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en)
+**10 of 39** shown · [all 39 on one page →](docs/by-pattern/intent-routing.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en)
 
 <sub>[↑ Pattern index](#pattern-index)</sub>
 
@@ -459,7 +459,7 @@ _Check a model's output against a rubric before it reaches a user._
 
   **Caveats:** `no licence`
 
-**10 of 135** shown · [all 135 on one page →](docs/by-pattern/output-validation.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en)
+**10 of 136** shown · [all 136 on one page →](docs/by-pattern/output-validation.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en)
 
 <sub>[↑ Pattern index](#pattern-index)</sub>
 
@@ -715,7 +715,7 @@ _Score or re-rank candidates from a cheaper retrieval step._
   One Score per candidate file to pre-brief code review — measured twice, then removed: more billed input for essentially no wall-clock gain, and offline replay showed the candidate list could not reach where review findings land.<br>
   <sub>`Benchmark` · ★1k+ · `Go` · `score` · author's conclusion: unfavourable (author-stated, not reproduced here)</sub>
 
-**10 of 67** shown · [all 67 on one page →](docs/by-pattern/search-ranking.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en)
+**10 of 71** shown · [all 71 on one page →](docs/by-pattern/search-ranking.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en)
 
 <sub>[↑ Pattern index](#pattern-index)</sub>
 
@@ -765,7 +765,7 @@ _Pull typed fields out of messy text by choosing among candidates rather than ge
   Standard-library CLI that hands an agent's small judgments to Jev within a 280 ms advisory budget: choose (a choice), check (a noul on whether evidence shows a claim), score, a batch of at most 32, and purify, a noul per passage keeping only relevant original lines. Fails open; the agent decides. <sub>(written by a model)</sub><br>
   <sub>`Project` · logicrw · `Py` · [call site](https://github.com/logicrw/ask-jev/blob/HEAD/scripts/jev_context.py), read 2026-09-24</sub>
 
-**10 of 17** shown · [all 17 on one page →](docs/by-pattern/data-extraction.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en)
+**10 of 18** shown · [all 18 on one page →](docs/by-pattern/data-extraction.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en)
 
 <sub>[↑ Pattern index](#pattern-index)</sub>
 
@@ -817,7 +817,7 @@ _Put an item into a taxonomy, including deep hierarchies walked with probabiliti
 
   **Caveats:** `no licence`
 
-**10 of 126** shown · [all 126 on one page →](docs/by-pattern/classification.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en)
+**10 of 127** shown · [all 127 on one page →](docs/by-pattern/classification.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en)
 
 <sub>[↑ Pattern index](#pattern-index)</sub>
 
@@ -1015,7 +1015,7 @@ _Score quality, risk or relevance on an ordered scale._
 
   **Caveats:** `not Jev itself`
 
-**10 of 164** shown · [all 164 on one page →](docs/by-pattern/content-scoring.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en)
+**10 of 165** shown · [all 165 on one page →](docs/by-pattern/content-scoring.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en)
 
 <sub>[↑ Pattern index](#pattern-index)</sub>
 
@@ -1083,7 +1083,7 @@ _Surveys the model or the space rather than one pattern._
   The vendor's own taxonomy: five headline categories, nineteen industry groups, and ten decision shapes from classification through to structured data extraction.<br>
   <sub>`Official docs`</sub>
 
-**10 of 470** shown · [all 470 on one page →](docs/by-pattern/overview.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en)
+**10 of 475** shown · [all 475 on one page →](docs/by-pattern/overview.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en)
 
 #### Not yet indexed by pattern
 
@@ -1101,14 +1101,14 @@ The same rows grouped by what you will find when you open the link.
 | **SDK** | **99** | Client libraries, official and community. |
 | **Integration** | **35** | A gateway, framework or platform route to the model. |
 | **Snippet** | **4** | Small runnable examples in this repository. |
-| **Project** | **670** | An application or library that calls Jev in anger. |
+| **Project** | **674** | An application or library that calls Jev in anger. |
 | **Plugin** | **241** | Editor, agent and MCP integrations you can install. |
-| **Tutorial** | **11** | Step-by-step material with code. |
+| **Tutorial** | **12** | Step-by-step material with code. |
 | **Benchmark** | **72** | Measurement. Check whether it is independent or vendor-reported. |
 | **Article** | **14** | Explainers, analysis and launch coverage. |
 | **Video** | **3** | Walkthroughs and reviews. |
 | **Discussion** | **2** | Threads worth reading, including the sceptical ones. |
-| **Jev-like alternative** | **73** | Independent reimplementations. These do NOT call Jev. |
+| **Jev-like alternative** | **78** | Independent reimplementations. These do NOT call Jev. |
 
 ## Also in this repo
 
@@ -1117,7 +1117,7 @@ The parts that are not the catalog.
 <details>
 <summary><b>Preview the searchable catalogue</b></summary>
 
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=f3be0a97051f276b" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=65cb6f8d666fda49" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
 
 <sub>Filter by clicking a bar. Two more views: <a href="https://kydlikebtc.github.io/awesome-jev/?view=prims">primitives</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat">compatibility</a>. Every filter and entry is a shareable URL. Also as plain pages: <a href="https://kydlikebtc.github.io/awesome-jev/patterns/">one per pattern</a> · <a href="https://kydlikebtc.github.io/awesome-jev/new.html">what's new each week</a> (<a href="https://kydlikebtc.github.io/awesome-jev/feed.xml">Atom feed</a>).</sub>
 
@@ -1144,17 +1144,17 @@ The parts that are not the catalog.
 
 ## What is verified, and what is not
 
-- **Link checks** — 1205 rows carry an HTTP 2xx response and a `checked` date; 50 carry no dated success record. Dates vary by row and a past success does not guarantee availability today. Stars and licences are repository metadata snapshots.
+- **Link checks** — 1205 rows carry an HTTP 2xx response and a `checked` date; 60 carry no dated success record. Dates vary by row and a past success does not guarantee availability today. Stars and licences are repository metadata snapshots.
 
 - **Source and code review** — `evidence.path` cites the file read, `evidence.read_on` records the reported review date, `evidence.model_read_on` a model's reading, shown apart, and `evidence_none` explains missing file evidence. Reading a call site is separate from running it. Summaries include source descriptions and machine translations; see the [method and its limits](docs/method.md).
 
-- **Whose words the summaries are** — 756 summaries are the linked project's own GitHub description, word for word, and are marked *(upstream description)*; 23 are marked *(earlier upstream description)*: taken from one that no longer reads the same. Those words are their authors'. 11 summaries are marked as written for this catalogue by a person, 148 were written for it by a model and are marked *(written by a model)*, and 317 carry no record either way. The weekly refresh compares each summary with its repository's description and labels a match; only a person marks a summary as a person's.
+- **Whose words the summaries are** — 756 summaries are the linked project's own GitHub description, word for word, and are marked *(upstream description)*; 23 are marked *(earlier upstream description)*: taken from one that no longer reads the same. Those words are their authors'. 11 summaries are marked as written for this catalogue by a person, 158 were written for it by a model and are marked *(written by a model)*, and 317 carry no record either way. The weekly refresh compares each summary with its repository's description and labels a match; only a person marks a summary as a person's.
 
-- **Who wrote the Chinese** — 191 of 1255 rows have a Chinese summary a person wrote; a model translated the other 1064, and each of those carries `zh_machine` and is marked *(机翻)* in the Chinese README, on the Chinese pattern pages and in the site's Chinese view. The [translation queue](docs/zh-queue.md) lists machine translations for a person to replace: every one on the most-starred rows, then, most-starred first, others flagged by at least one of three text signals a script computes (much shorter than the English, a number from the English missing, mostly ASCII). A signal is a comparison, not a verdict on a translation, and no row in the READMEs, the pattern pages or the site shows one. To take some, see [Claim a translation](CONTRIBUTING.md#claim-a-translation); only a translation of your own takes `zh_machine` off.
+- **Who wrote the Chinese** — 191 of 1265 rows have a Chinese summary a person wrote; a model translated the other 1074, and each of those carries `zh_machine` and is marked *(机翻)* in the Chinese README, on the Chinese pattern pages and in the site's Chinese view. The [translation queue](docs/zh-queue.md) lists machine translations for a person to replace: every one on the most-starred rows, then, most-starred first, others flagged by at least one of three text signals a script computes (much shorter than the English, a number from the English missing, mostly ASCII). A signal is a comparison, not a verdict on a translation, and no row in the READMEs, the pattern pages or the site shows one. To take some, see [Claim a translation](CONTRIBUTING.md#claim-a-translation); only a translation of your own takes `zh_machine` off.
 
-- **Call-site text checks** — 1102 rows record in `evidence` a file where the project calls Jev, and strings matched in it. Another 69 record a file that shows a project speaking Jev's request shape rather than building on Jev (every `alternative`, whether it serves that shape or sends Jev the same request to compare, and adapters backed by other models), and 0 only an example the project ships; `evidence.kind` says which. The weekly [claims job](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) checks that those strings remain on the default branch and reports missing text or files. These counts measure recorded evidence, **not latest CI passes**. A text match does not prove that a call executes, the API is compatible, or the result is correct. Citations a script marks for a person to re-read are listed in the [review queue](docs/review-queue.md).
+- **Call-site text checks** — 1107 rows record in `evidence` a file where the project calls Jev, and strings matched in it. Another 74 record a file that shows a project speaking Jev's request shape rather than building on Jev (every `alternative`, whether it serves that shape or sends Jev the same request to compare, and adapters backed by other models), and 0 only an example the project ships; `evidence.kind` says which. The weekly [claims job](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) checks that those strings remain on the default branch and reports missing text or files. These counts measure recorded evidence, **not latest CI passes**. A text match does not prove that a call executes, the API is compatible, or the result is correct. Citations a script marks for a person to re-read are listed in the [review queue](docs/review-queue.md).
 
-- **Which primitives** — 111 rows name in `question_types` the primitives a person read the code calling, and 23 more the primitives a model read there, on rows whose call site only a model has read (`evidence.model_read_on`). Apart from those, 661 rows carry `primitives_seen`, a machine text signal: the weekly refresh found a primitive's request or answer shape (`"type": "choice"`, `Noul(`, `.noul`) in the one file the row cites. A shape in a file is not a call, and 610 of those rows carry no `question_types`, so the signal is all that is recorded about their primitives. No filter, count or rule here reads the signal as a primitive claim.
+- **Which primitives** — 111 rows name in `question_types` the primitives a person read the code calling, and 28 more the primitives a model read there, on rows whose call site only a model has read (`evidence.model_read_on`). Apart from those, 661 rows carry `primitives_seen`, a machine text signal: the weekly refresh found a primitive's request or answer shape (`"type": "choice"`, `Noul(`, `.noul`) in the one file the row cites. A shape in a file is not a call, and 610 of those rows carry no `question_types`, so the signal is all that is recorded about their primitives. No filter, count or rule here reads the signal as a primitive claim.
 
 - **Runtime and performance not independently tested here** — treat every catalogue entry as untested by this repository, including entries without `code-untested`. Linked benchmarks describe their authors' measurements; this catalogue has not reproduced them. Repository build checks and package smoke tests do not exercise those integrations or the live Jev API, and inclusion is not a security review.
 
@@ -1206,7 +1206,7 @@ One entry per example, validated against a JSON Schema on every push.
 
 | File | What it is |
 | --- | --- |
-| [`catalog.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json) | 1255 entries |
+| [`catalog.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json) | 1265 entries |
 | [`retired.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json) | 14 retired |
 | [`compat.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/compat.json) | The platform matrix behind `docs/compatibility.md` |
 | [`patterns.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/patterns.json) | The decision taxonomy both generators and the MCP server read |

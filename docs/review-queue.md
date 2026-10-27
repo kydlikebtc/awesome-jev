@@ -19,7 +19,7 @@ Rows a script has singled out for a person to read. Each entry is a machine sign
 | [Benchmark measurements nobody has read against the report · 人和模型都还没有对照报告读过的基准测试测量](#measurement-unread) | 27 |
 | [Interfaces of alternatives nobody has read in the cited files · 人和模型都还没有在所引文件中读过的替代实现接口](#wire-unread) | 14 |
 | [Thresholds nobody has read in the cited file · 人和模型都还没有在所引文件中读过的阈值](#thresholds-unread) | 31 |
-| [Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对](#model-read) | 149 |
+| [Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对](#model-read) | 159 |
 
 <a id="front-page"></a>
 
@@ -912,6 +912,7 @@ To take a row off, check what the model read or wrote, correct anything it got w
 | [jev-browse](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-browse) |  | `call site` 2026-10-24 · `summary` |
 | [jev-calibrated-narrative-coding](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-calibrated-narrative-coding) |  | `summary` |
 | [jev-code-reviewer](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-code-reviewer) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [jev-doc-search](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-doc-search) |  | `call site` 2026-10-26 · `question_types` · `summary` |
 | [jev-enforce](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-enforce) |  | `call site` 2026-10-24 · `question_types` · `summary` |
 | [jev-kit](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-kit) |  | `call site` 2026-10-24 · `question_types` · `summary` |
 | [jev-lint-ckorhonen](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-lint-ckorhonen) |  | `call site` 2026-10-24 · `question_types` · `summary` |
@@ -919,21 +920,30 @@ To take a row off, check what the model read or wrote, correct anything it got w
 | [jev-resilience](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-resilience) |  | `summary` |
 | [jev-style](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-style) |  | `call site` 2026-10-24 · `summary` |
 | [jev-triage-boldbug1](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-triage-boldbug1) |  | `summary` |
+| [jev4pg](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev4pg) |  | `call site` 2026-10-26 · `question_types` · `summary` |
 | [jevembed](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevembed) |  | `call site` 2026-10-24 · `summary` |
 | [jevflix](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevflix) |  | `summary` |
 | [jevgrep-dzhng](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevgrep-dzhng) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [jevlint-codegirl-007](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevlint-codegirl-007) |  | `call site` 2026-10-26 · `question_types` · `summary` |
 | [jevry](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevry) |  | `call site` 2026-10-24 · `question_types` · `summary` |
 | [jevstiller](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevstiller) |  | `call site` 2026-10-24 · `question_types` · `summary` |
 | [jevswiftsdk](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevswiftsdk) |  | `summary` |
 | [jevtpp](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevtpp) |  | `call site` 2026-10-24 · `summary` |
+| [jiwo](https://kydlikebtc.github.io/awesome-jev/?lang=en#jiwo) |  | `call site` 2026-10-26 · `summary` |
+| [lichen](https://kydlikebtc.github.io/awesome-jev/?lang=en#lichen) |  | `call site` 2026-10-26 · `summary` |
+| [neohorse](https://kydlikebtc.github.io/awesome-jev/?lang=en#neohorse) |  | `call site` 2026-10-26 · `summary` |
 | [ollaya](https://kydlikebtc.github.io/awesome-jev/?lang=en#ollaya) |  | `call site` 2026-10-24 · `summary` |
 | [onejev](https://kydlikebtc.github.io/awesome-jev/?lang=en#onejev) |  | `call site` 2026-10-24 · `summary` |
+| [phocinae-largha](https://kydlikebtc.github.io/awesome-jev/?lang=en#phocinae-largha) |  | `call site` 2026-10-26 · `summary` |
 | [quicksilver](https://kydlikebtc.github.io/awesome-jev/?lang=en#quicksilver) |  | `call site` 2026-10-24 · `question_types` · `summary` |
 | [rsi-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#rsi-jev) |  | `call site` 2026-10-24 · `summary` |
+| [strands-decider](https://kydlikebtc.github.io/awesome-jev/?lang=en#strands-decider) |  | `call site` 2026-10-26 · `summary` |
 | [tiershift](https://kydlikebtc.github.io/awesome-jev/?lang=en#tiershift) |  | `summary` |
 | [typesafe-ai-php](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-ai-php) |  | `call site` 2026-10-24 · `summary` |
 | [typesafe-client-haileyok](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-client-haileyok) |  | `call site` 2026-10-24 · `question_types` · `summary` |
 | [vibecheck-jlowin](https://kydlikebtc.github.io/awesome-jev/?lang=en#vibecheck-jlowin) |  | `call site` 2026-10-24 · `question_types` · `summary` |
 | [vllm-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#vllm-jev) |  | `call site` 2026-10-24 · `summary` |
 | [x402check](https://kydlikebtc.github.io/awesome-jev/?lang=en#x402check) |  | `call site` 2026-10-24 · `question_types` · `summary` |
+| [xerj](https://kydlikebtc.github.io/awesome-jev/?lang=en#xerj) |  | `call site` 2026-10-26 · `question_types` · `summary` |
 | [yao-agents](https://kydlikebtc.github.io/awesome-jev/?lang=en#yao-agents) |  | `call site` 2026-10-24 · `summary` |
+| [goutoujunshi-jev-chat](https://kydlikebtc.github.io/awesome-jev/?lang=en#goutoujunshi-jev-chat) |  | `call site` 2026-10-26 · `question_types` · `summary` |

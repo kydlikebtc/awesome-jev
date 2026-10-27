@@ -4,11 +4,11 @@
 
 _Classify what the user wants and send the request down the right branch._
 
-Every catalogued example of this decision — 38 of them. The same rows, with caveats, are in [the index](../../README.md#intent-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 39 of them. The same rows, with caveats, are in [the index](../../README.md#intent-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#intent-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 27 · wire shape 0 · example only 0 · independent reports 2 · negative results 0 · no file cited 11. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 28 · wire shape 0 · example only 0 · independent reports 2 · negative results 0 · no file cited 11. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -139,6 +139,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Using TypeSafe Jev with the AI SDK](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk)** — The richest Vercel walkthrough: single and multi-question calls, probability-threshold routing, and unit tests with a mock evaluation model.
   <sub>`Tutorial` · `TS` · `noul` · `choice` · `score`</sub>
+
+- **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — Chat-reply assistant (desktop overlay, Android floating assistant, iOS keyboard) built on Jev Android. From the visible chat or a screenshot it asks Jev the literal question, the other person's intent, a danger level, whether to reply now and the best action, then has Jev pick among drafted replies. <sub>(written by a model)</sub>
+  <sub>`Project` · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · call site [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt), read by a model 2026-10-26 · ⚠ `3rd-party key`</sub>
 
 - **[Jev router: how model routing works, and 16 routers compared](https://madewithjev.com/jev-router)** — Explains a router that asks Jev which model, tool or skill the next turn needs before anything is spent, why routing down and back up can cost more than not routing, and compares 16 routers for Claude Code, Codex and OpenRouter.
   <sub>`Article` · Jon Kraayenbrink · ⚠ `self-submitted`</sub>

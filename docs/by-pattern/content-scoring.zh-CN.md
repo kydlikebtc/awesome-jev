@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 164 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 165 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 155 · 接口形态 5 · 仅示例 0 · 独立报告 9 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 156 · 接口形态 5 · 仅示例 0 · 独立报告 9 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -517,6 +517,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[zcode-jev](https://github.com/Zahrannnn/zcode-jev)** — 给编程智能体的类型化判断层：从需求文档到发布的各道闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · zahrannnn · `TS` · 调用点 [`src/backends/jev.ts`](https://github.com/Zahrannnn/zcode-jev/blob/HEAD/src/backends/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
+
+- **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — 聊天回复助手（桌面悬浮窗、Android 悬浮助手、iOS 键盘），基于 Jev Android。它根据可见对话或截图向 Jev 询问字面问题、对方意图、危险程度、是否现在回复以及最佳行动，再让 Jev 在起草的回复中挑选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · 调用点 [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-10-26 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[jevai.org community showcase cases](https://www.jevai.org/cases)** — 九个社区演练场景：意图路由、发票分类、新闻过滤、商品打标、内容审核、主张核验、CSV 校验等。
   <sub>`开源项目` · ⚠ `宣称未核实`</sub>

@@ -4,11 +4,11 @@
 
 _对来自廉价检索步骤的候选做打分或重排。_
 
-这个决策的全部已收录例子 —— 共 67 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 71 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#search-ranking)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#search-ranking)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 63 · 接口形态 0 · 仅示例 0 · 独立报告 6 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 67 · 接口形态 0 · 仅示例 0 · 独立报告 6 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -177,6 +177,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-bfs](https://github.com/komikat/jev-bfs)** — 用 Jev 直接排序来跑维基百科链接竞速，带实时终端显示。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · komikat · `Py` · 调用点 [`jev_bfs/core.py`](https://github.com/komikat/jev-bfs/blob/HEAD/jev_bfs/core.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
+- **[jev-doc-search](https://github.com/VectifyAI/jev-doc-search)** — 教程：用 Jev 的 `Choice` 在长 PDF 中找到回答问题的那一页。短文档每页一个选项；长文档则沿 PageIndex 树逐层向下，每层对章节标题和摘要做一次小规模 `Choice`，从而避开 255 个选项和 32k token 的上限。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`教程` · VectifyAI · `Py` · `choice` · 调用点 [`page_search.py`](https://github.com/VectifyAI/jev-doc-search/blob/HEAD/page_search.py)，2026-10-26 模型阅读 · ⚠ `需第三方密钥`</sub>
+
 - **[jev-nlgrep](https://github.com/YehuiTang0316/jev-nlgrep)** — 用自然语言 grep 按含义搜索代码与文本。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · yehuitang0316 · `TS` · 调用点 [`src/jev.ts`](https://github.com/YehuiTang0316/jev-nlgrep/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
@@ -197,6 +200,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev.nvim](https://github.com/valentynkit/jev.nvim)** — Neovim 插件：向当前缓冲区提问，得到 quickfix 列表。Treesitter 切分函数，Jev 给每个函数打分，概率以虚拟文本显示。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · valentynkit · `Lua` · 调用点 [`lua/jev/client.lua`](https://github.com/valentynkit/jev.nvim/blob/HEAD/lua/jev/client.lua)，2026-09-24 阅读</sub>
+
+- **[jev4pg](https://github.com/Sheltercosmo/jev4pg)** — 为 PostgreSQL 提供自然语言 SQL 和 41 个语义算子。过滤、抽取、排序、匹配和核验以有上限的批次交给 Jev，答案须先通过校验；choice 选项需达 0.55、noul 需达 0.8 才算成立。作者报告其准确率为 98%，pg-jev 的请求路径为 92%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · Sheltercosmo · `Py` · `choice` · `noul` · 调用点 [`sdd/generic/jev.py`](https://github.com/Sheltercosmo/jev4pg/blob/HEAD/sdd/generic/jev.py)，2026-10-26 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[Jevflix](https://github.com/ArielBubis/Jevflix)** — 电影推荐器：FAISS 与 BM25 检索把 4,800 部电影缩成短名单，Jev 读出请求里的约束（片长、不要血腥画面）供代码过滤，再由一次覆盖最多 250 个候选的 Jev choice 选出一部影片。没有把握时，由 LLM 权衡前五名或追问一个问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arielbubis · `Py` · 调用点 [`movie_rec/jev_client.py`](https://github.com/ArielBubis/Jevflix/blob/HEAD/movie_rec/jev_client.py)，2026-09-24 阅读</sub>
@@ -230,6 +236,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[typesafe-mod](https://github.com/BeLazy167/typesafe-mod)** — Claude Code 模组：把决策路由给 Jev，逐会话给已安装技能排序。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · belazy167 · `TS` · 调用点 [`hooks/suggest.ts`](https://github.com/BeLazy167/typesafe-mod/blob/HEAD/hooks/suggest.ts)，2026-09-22 阅读</sub>
+
+- **[XERJ](https://github.com/xerj-org/xerj)** — 一个本地优先的搜索引擎兼 MCP 服务器，打包为单个 Rust 二进制文件。可选的 `rerank` 阶段对每条靠前结果向 Jev 提一个 `noul`（`document` 是否回答了 state 中的查询？），再按概率重新排序。作者报告 FiQA 上的 nDCG@10 从 0.24 升至 0.36，总共 648 次搜索花费约 0.64 美元。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · xerj-org · `Rs` · `noul` · 调用点 [`engine/crates/xerj-rerank/src/lib.rs`](https://github.com/xerj-org/xerj/blob/HEAD/engine/crates/xerj-rerank/src/lib.rs)，2026-10-26 模型阅读 · ⚠ `厂商自报数据`</sub>
+
+- **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — 聊天回复助手（桌面悬浮窗、Android 悬浮助手、iOS 键盘），基于 Jev Android。它根据可见对话或截图向 Jev 询问字面问题、对方意图、危险程度、是否现在回复以及最佳行动，再让 Jev 在起草的回复中挑选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · 调用点 [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-10-26 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 ---
 

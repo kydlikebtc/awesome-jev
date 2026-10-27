@@ -17,7 +17,7 @@ list by list below.
 | Source | URL | Rows |
 | --- | --- | --- |
 | Sibling directories linking the row's repository (one `owner/name` item per list, read weekly) | [each list, below](#sibling-directories-linking-catalogued-repositories) | 1122 |
-| sibling-list aggregate (docs/sibling-lists.txt) | <https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt> | 1084 |
+| sibling-list aggregate (docs/sibling-lists.txt) | <https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt> | 1094 |
 | GitHub code search | <https://github.com/search> | 51 |
 | TypeSafe AI docs index | <https://docs.typesafe.ai/llms.txt> | 36 |
 | author submission | various | 23 |
@@ -137,9 +137,9 @@ repository established.
 | `docs/`, `README*.md`                     | CC0-1.0, quoted summaries aside (below)                   |
 
 <!-- row-licences:start -->
-756 of the 1255 summaries in `catalog.json` are the linked project's own GitHub description, word for word apart from letter case, spacing and a final full stop (`summary_source: upstream-description`), and 23 more were taken from such a description and no longer match it (`upstream-description-stale`). The projects' authors wrote those words and the copyright in them is theirs: this repository does not dedicate them under `CC0-1.0`. 779 of their Chinese counterparts are machine translations of them (`zh_machine`); the Chinese of such a row translates the project's words, and this repository does not dedicate it under `CC0-1.0` either. The READMEs, the pattern pages and the site mark each such summary *(upstream description)* or *(earlier upstream description)*.
+756 of the 1265 summaries in `catalog.json` are the linked project's own GitHub description, word for word apart from letter case, spacing and a final full stop (`summary_source: upstream-description`), and 23 more were taken from such a description and no longer match it (`upstream-description-stale`). The projects' authors wrote those words and the copyright in them is theirs: this repository does not dedicate them under `CC0-1.0`. 779 of their Chinese counterparts are machine translations of them (`zh_machine`); the Chinese of such a row translates the project's words, and this repository does not dedicate it under `CC0-1.0` either. The READMEs, the pattern pages and the site mark each such summary *(upstream description)* or *(earlier upstream description)*.
 
-11 summaries are marked `curated`: written for this catalogue by a person. 148 are marked `model-written`: written for it by a model, and marked *(written by a model)* wherever they are shown. The other 317 carry no `summary_source`, so where their words come from is not recorded row by row.
+11 summaries are marked `curated`: written for this catalogue by a person. 158 are marked `model-written`: written for it by a model, and marked *(written by a model)* wherever they are shown. The other 317 carry no `summary_source`, so where their words come from is not recorded row by row.
 
 Every row's `license` field is `CC0-1.0`. It covers the row's structured metadata (slug, kind, patterns, flags, dates, counts, evidence records and the rest) and any text written for this catalogue, not a summary labelled as the project's own description or the Chinese translation of one.
 <!-- row-licences:end -->
@@ -157,9 +157,9 @@ Declared licences across the catalog's linked repositories:
 <!-- licences:start -->
 | Licence | Repositories |
 | --- | --- |
-| MIT | 768 |
+| MIT | 772 |
 | None declared | 191 |
-| Apache-2.0 | 146 |
+| Apache-2.0 | 152 |
 | NOASSERTION (non-standard terms) | 49 |
 | AGPL-3.0 | 8 |
 | GPL-3.0 | 6 |

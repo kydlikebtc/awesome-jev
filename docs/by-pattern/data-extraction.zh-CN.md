@@ -4,11 +4,11 @@
 
 _从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不是生成。_
 
-这个决策的全部已收录例子 —— 共 17 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#结构化抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 18 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#结构化抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#data-extraction)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#data-extraction)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 13 · 接口形态 0 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 14 · 接口形态 0 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -67,6 +67,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-mcp-dispatcher](https://github.com/abhishekashokvkumar/jev-mcp-dispatcher)** — 完全由 Jev 驱动的自然语言 MCP 工具分发器，不用通用 LLM。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · abhishekashokvkumar · `Py` · 调用点 [`jev_mcp_dispatcher.py`](https://github.com/abhishekashokvkumar/jev-mcp-dispatcher/blob/HEAD/jev_mcp_dispatcher.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+
+- **[jev4pg](https://github.com/Sheltercosmo/jev4pg)** — 为 PostgreSQL 提供自然语言 SQL 和 41 个语义算子。过滤、抽取、排序、匹配和核验以有上限的批次交给 Jev，答案须先通过校验；choice 选项需达 0.55、noul 需达 0.8 才算成立。作者报告其准确率为 98%，pg-jev 的请求路径为 92%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · Sheltercosmo · `Py` · `choice` · `noul` · 调用点 [`sdd/generic/jev.py`](https://github.com/Sheltercosmo/jev4pg/blob/HEAD/sdd/generic/jev.py)，2026-10-26 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jeveryword](https://github.com/jkrup/jeveryword)** — 用 Jev 做文本抽取：字段抽取、PII 检测与逐字引文。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jkrup · `JS` · 调用点 [`src/client.mjs`](https://github.com/jkrup/jeveryword/blob/HEAD/src/client.mjs)，2026-09-22 阅读</sub>

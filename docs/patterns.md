@@ -105,7 +105,7 @@ parallel against one ingest of the state.
 agree with themselves. Fix the taxonomy first.
 
 <!-- catalogued-intent-routing:start -->
-**Intent routing** in the catalogue: 38 rows, [each listed with its caveats](by-pattern/intent-routing.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en).
+**Intent routing** in the catalogue: 39 rows, [each listed with its caveats](by-pattern/intent-routing.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en).
 <!-- catalogued-intent-routing:end -->
 
 ---
@@ -169,7 +169,7 @@ says the output is weak; it does not say how to fix it. Pair it with a generativ
 critique for the cases it rejects.
 
 <!-- catalogued-output-validation:start -->
-**Output validation** in the catalogue: 135 rows, [each listed with its caveats](by-pattern/output-validation.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en).
+**Output validation** in the catalogue: 136 rows, [each listed with its caveats](by-pattern/output-validation.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en).
 <!-- catalogued-output-validation:end -->
 
 ---
@@ -268,7 +268,7 @@ line-granular search.
 does not replace an index over a large corpus.
 
 <!-- catalogued-search-ranking:start -->
-**Search & ranking** in the catalogue: 67 rows, [each listed with its caveats](by-pattern/search-ranking.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en).
+**Search & ranking** in the catalogue: 71 rows, [each listed with its caveats](by-pattern/search-ranking.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en).
 <!-- catalogued-search-ranking:end -->
 
 ---
@@ -289,7 +289,7 @@ and date comparison are named weak spots — resolve and validate dates in code
 after the model names the parts.
 
 <!-- catalogued-data-extraction:start -->
-**Structured extraction** in the catalogue: 17 rows, [each listed with its caveats](by-pattern/data-extraction.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en).
+**Structured extraction** in the catalogue: 18 rows, [each listed with its caveats](by-pattern/data-extraction.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en).
 <!-- catalogued-data-extraction:end -->
 
 ---
@@ -307,7 +307,7 @@ lets you fall back to a coarser level instead of guessing a fine one.
 **When not to:** when your taxonomy has overlapping leaves. Fix the taxonomy.
 
 <!-- catalogued-classification:start -->
-**Classification** in the catalogue: 126 rows, [each listed with its caveats](by-pattern/classification.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en).
+**Classification** in the catalogue: 127 rows, [each listed with its caveats](by-pattern/classification.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en).
 <!-- catalogued-classification:end -->
 
 ---
@@ -374,7 +374,7 @@ your "scale" is really unordered categories wearing a number.
 rankable, which makes this the pattern for populating review queues worst-first.
 
 <!-- catalogued-content-scoring:start -->
-**Content scoring** in the catalogue: 164 rows, [each listed with its caveats](by-pattern/content-scoring.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en).
+**Content scoring** in the catalogue: 165 rows, [each listed with its caveats](by-pattern/content-scoring.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en).
 <!-- catalogued-content-scoring:end -->
 
 ---
@@ -414,7 +414,7 @@ suggestion. Read one against the patterns above, give it the ones it shows or
 keep `overview`, and set `patterns_reviewed` to the date you read it.
 
 <!-- catalogued-overview:start -->
-**Overview** in the catalogue: 470 rows, [each listed with its caveats](by-pattern/overview.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en).
+**Overview** in the catalogue: 475 rows, [each listed with its caveats](by-pattern/overview.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en).
 <!-- catalogued-overview:end -->
 
 ---

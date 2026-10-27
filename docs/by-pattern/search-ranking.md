@@ -4,11 +4,11 @@
 
 _Score or re-rank candidates from a cheaper retrieval step._
 
-Every catalogued example of this decision — 67 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 71 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#search-ranking): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 63 · wire shape 0 · example only 0 · independent reports 6 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 67 · wire shape 0 · example only 0 · independent reports 6 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -177,6 +177,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-bfs](https://github.com/komikat/jev-bfs)** — Wikipedia link races with direct Jev ranking and a live terminal display. <sub>(upstream description)</sub>
   <sub>`Project` · komikat · `Py` · call site [`jev_bfs/core.py`](https://github.com/komikat/jev-bfs/blob/HEAD/jev_bfs/core.py), read 2026-09-22 · ⚠ `one commit`</sub>
 
+- **[jev-doc-search](https://github.com/VectifyAI/jev-doc-search)** — Tutorial for finding the page that answers a question in a long PDF with Jev's `Choice`: one option per page for short documents, and for long ones a walk down a PageIndex tree, one small `Choice` per level over section titles and summaries, so neither the 255-option nor the 32k-token limit is hit. <sub>(written by a model)</sub>
+  <sub>`Tutorial` · VectifyAI · `Py` · `choice` · call site [`page_search.py`](https://github.com/VectifyAI/jev-doc-search/blob/HEAD/page_search.py), read by a model 2026-10-26 · ⚠ `3rd-party key`</sub>
+
 - **[jev-nlgrep](https://github.com/YehuiTang0316/jev-nlgrep)** — Search code and text by meaning with natural-language grep, powered by Jev. <sub>(upstream description)</sub>
   <sub>`Project` · yehuitang0316 · `TS` · call site [`src/jev.ts`](https://github.com/YehuiTang0316/jev-nlgrep/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
@@ -197,6 +200,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev.nvim](https://github.com/valentynkit/jev.nvim)** — Neovim: ask the buffer a question, get a quickfix list. Treesitter splits functions, Jev scores each one, probabilities land as virtual text <sub>(upstream description)</sub>
   <sub>`Plugin` · valentynkit · `Lua` · call site [`lua/jev/client.lua`](https://github.com/valentynkit/jev.nvim/blob/HEAD/lua/jev/client.lua), read 2026-09-24</sub>
+
+- **[jev4pg](https://github.com/Sheltercosmo/jev4pg)** — Natural-language SQL and 41 semantic operators for PostgreSQL. Filtering, extraction, ranking, matching and verification go to Jev in bounded batches with validated answers; a choice option needs 0.55 and a noul 0.8 to count. The authors report 98% accuracy against 92% for pg-jev's request path. <sub>(written by a model)</sub>
+  <sub>`Project` · Sheltercosmo · `Py` · `choice` · `noul` · call site [`sdd/generic/jev.py`](https://github.com/Sheltercosmo/jev4pg/blob/HEAD/sdd/generic/jev.py), read by a model 2026-10-26 · ⚠ `vendor numbers`</sub>
 
 - **[Jevflix](https://github.com/ArielBubis/Jevflix)** — Movie recommender: FAISS and BM25 search narrow 4,800 films to a shortlist, Jev reads the request's constraints (runtime, no graphic content) for code to filter on, and one Jev choice over at most 250 candidates picks a film. If unsure, an LLM weighs the top five or asks one question. <sub>(written by a model)</sub>
   <sub>`Project` · arielbubis · `Py` · call site [`movie_rec/jev_client.py`](https://github.com/ArielBubis/Jevflix/blob/HEAD/movie_rec/jev_client.py), read 2026-09-24</sub>
@@ -230,6 +236,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[typesafe-mod](https://github.com/BeLazy167/typesafe-mod)** — Claude Code mod that routes decisions to TypeSafe's Jev model: ranks installed skills per prompt, and answers the agent's own this-or-that questions when confident. <sub>(upstream description)</sub>
   <sub>`Plugin` · belazy167 · `TS` · call site [`hooks/suggest.ts`](https://github.com/BeLazy167/typesafe-mod/blob/HEAD/hooks/suggest.ts), read 2026-09-22</sub>
+
+- **[XERJ](https://github.com/xerj-org/xerj)** — Local-first search engine and MCP server in one Rust binary. Its optional `rerank` stage asks Jev one `noul` per top hit (does `document` answer the query in the state?) and re-sorts by the probabilities. The authors report FiQA nDCG@10 rising from 0.24 to 0.36, about $0.64 for 648 searches. <sub>(written by a model)</sub>
+  <sub>`Project` · xerj-org · `Rs` · `noul` · call site [`engine/crates/xerj-rerank/src/lib.rs`](https://github.com/xerj-org/xerj/blob/HEAD/engine/crates/xerj-rerank/src/lib.rs), read by a model 2026-10-26 · ⚠ `vendor numbers`</sub>
+
+- **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — Chat-reply assistant (desktop overlay, Android floating assistant, iOS keyboard) built on Jev Android. From the visible chat or a screenshot it asks Jev the literal question, the other person's intent, a danger level, whether to reply now and the best action, then has Jev pick among drafted replies. <sub>(written by a model)</sub>
+  <sub>`Project` · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · call site [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt), read by a model 2026-10-26 · ⚠ `3rd-party key`</sub>
 
 ---
 

@@ -4,11 +4,11 @@
 
 _判断用户意图，把请求分流到正确的分支。_
 
-这个决策的全部已收录例子 —— 共 38 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 39 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#intent-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#intent-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 27 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 28 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -139,6 +139,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Using TypeSafe Jev with the AI SDK](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk)** — Vercel 最完整的实操指南：单问题与多问题调用、按概率阈值路由，以及用 mock evaluation 模型写单元测试。
   <sub>`教程` · `TS` · `noul` · `choice` · `score`</sub>
+
+- **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — 聊天回复助手（桌面悬浮窗、Android 悬浮助手、iOS 键盘），基于 Jev Android。它根据可见对话或截图向 Jev 询问字面问题、对方意图、危险程度、是否现在回复以及最佳行动，再让 Jev 在起草的回复中挑选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · 调用点 [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-10-26 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[Jev router: how model routing works, and 16 routers compared](https://madewithjev.com/jev-router)** — 讲解用 Jev 在花钱之前判断下一轮该用哪个模型、工具或 skill 的路由器，说明先降级再升级为什么可能比不路由更贵，并对比了 16 个面向 Claude Code、Codex 和 OpenRouter 的路由器。 <sub>(机翻)</sub>
   <sub>`文章` · Jon Kraayenbrink · ⚠ `作者自荐`</sub>

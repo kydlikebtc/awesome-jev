@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 470 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 475 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 373 · 接口形态 58 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 39。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 373 · 接口形态 63 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 39。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -464,11 +464,20 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevsbistro](https://github.com/andrewsilber/JevsBistro)** — 用于低延迟决策模型基准测试的 3D 餐厅服务模拟器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · andrewsilber · `TS` · 调用点 [`src/jev/protocol.ts`](https://github.com/andrewsilber/JevsBistro/blob/HEAD/src/jev/protocol.ts)，2026-09-22 阅读</sub>
 
+- **[jiwo](https://github.com/jiwidi/jiwo)** — 基于 Qwen3.5 的开源决策模型（jiwo-0.8b 和 jiwo-4b），以一次前向计算回答 Jev 的 POST /v1/systemone 请求，为每个选项给出概率，不生成文本。作者报告公开 Decision Index 0.3 得分分别为 29.58 和 46.06，在单张 H100 上请求中位耗时约 50 ms。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · jiwidi · `Py` · 引用文件 [`src/jiwo/cli.py`](https://github.com/jiwidi/jiwo/blob/HEAD/src/jiwo/cli.py)，2026-10-26 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
 - **[kojev](https://github.com/ItisNoMatter/kojev)** — Jev 的 Kotlin 多平台客户端：返回你自己的枚举／密封类型，而不是字符串。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · itisnomatter · `Kt` · 调用点 [`src/commonTest/kotlin/io/github/itisnomatter/kojev/JevClientTest.kt`](https://github.com/ItisNoMatter/kojev/blob/HEAD/src/commonTest/kotlin/io/github/itisnomatter/kojev/JevClientTest.kt)，2026-09-22 阅读</sub>
 
 - **[kunobi-jev](https://github.com/kunobi-ninja/kunobi-decision)** — System One API 的 Rust 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · kunobi-ninja · `Rs` · 调用点 [`src/client/mod.rs`](https://github.com/kunobi-ninja/kunobi-decision/blob/HEAD/src/client/mod.rs)，2026-09-22 阅读</sub>
+
+- **[Lichen](https://github.com/Mushroom-Systems/lichen)** — 可直接替换 Jev 的 API 兼容实现，在本地用开放权重模型提供同样的 /v1/systemone 接口，state 中还可包含图片。作者报告在 24 GB 笔记本 GPU 上用 gemma-4-26B-A4B 答对 231 个公开 JevBench 决策中的 204 至 207 个，Jev 1.13 为 200 个。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · Mushroom-Systems · `Py` · 引用文件 [`bench/ask_jev.py`](https://github.com/Mushroom-Systems/lichen/blob/HEAD/bench/ask_jev.py)，2026-10-26 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
+- **[NeoHorse](https://github.com/TokenRhythm/NeoHorse)** — TokenRhythm 面向智能体工作流的开放权重模型系列。基于 NeoHorse-1-4B 的 NeoHorse-Jev-4B 通过仅预填充推理回答 Choice、Noul 和 Score，运行时沿用 /v1/systemone 的请求格式，可用 vLLM、SGLang 或 Python 部署。作者报告其在六组文本基准上平均得分 77.70。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · TokenRhythm · `Py` · 引用文件 [`jev/infer/sglang/jev_runtime/schema.py`](https://github.com/TokenRhythm/NeoHorse/blob/HEAD/jev/infer/sglang/jev_runtime/schema.py)，2026-10-26 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[Ollaya](https://github.com/ollaya-dev/ollaya)** — 像 Ollama 运行大模型那样在本地运行开源决策模型：按名称拉取模型，通过兼容 /v1/systemone 的守护进程提供服务，TypeSafe SDK 无需修改即可使用。README 报告其推荐模型 winnow:e4b 的类型化决策准确率为 0.724，TypeSafe 报告 Jev 为 0.738。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ollaya-dev · `Py` · 引用文件 [`convert/ollaya_convert/bench_public.py`](https://github.com/ollaya-dev/ollaya/blob/HEAD/convert/ollaya_convert/bench_public.py)，2026-10-24 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
@@ -482,6 +491,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[origin-civilization](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION)** — AI 生命与文明模拟：每个决策都由 Jev 做出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · jacquesgariepy · `TS` · 调用点 [`legacy/source/providers.js`](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION/blob/HEAD/legacy/source/providers.js)，2026-09-22 阅读</sub>
 
+- **[Phocinae-Largha-150M-v1](https://github.com/Phocinae/Phocinae-Largha-150M-v1)** — 一个 144.3M 参数的中英双语类型化决策模型，由 mmBERT-small 微调而来，通过兼容 /v1/systemone 的服务器以零输出 token 回答 noul、choice 和 score，可在 CPU 上运行。模型卡以英文类型化准确率 0.791、中文 0.848 为首要数字。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · Phocinae · `Py` · 引用文件 [`tools/check_server_documented_api.py`](https://github.com/Phocinae/Phocinae-Largha-150M-v1/blob/HEAD/tools/check_server_documented_api.py)，2026-10-26 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
 - **[RSI-Jev](https://github.com/Shanghua-Gao/RSI-Jev)** — 一个由 Agent 驱动的研究循环：提出假设、预先登记预测，然后训练并淘汰开源决策模型。这些模型按 /v1/systemone 格式回答 noul、choice 和 score。496 个实验全部写成记录，失败的也包括在内。作者报告 27B 视觉语言模型在公开的 Decision Index 0.3 集上得分 65.64。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · shanghua-gao · `Py` · 引用文件 [`rsijev/contract.py`](https://github.com/Shanghua-Gao/RSI-Jev/blob/HEAD/rsijev/contract.py)，2026-10-24 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
@@ -490,6 +502,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[snap](https://github.com/emnlmn/snap)** — 从非结构化状态得到类型化决策：一次前向传播、零生成文本。本地、确定性、兼容 Jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · emnlmn · `Rs` · 引用文件 [`src/api.rs`](https://github.com/emnlmn/snap/blob/HEAD/src/api.rs)，2026-09-24 阅读 · ⚠ `并非 Jev 本身`</sub>
+
+- **[Strands Decider](https://github.com/strands-labs/strands-decider)** — 面向 Strands Agents 工作流的开源决策模型：一个 2B 的 Qwen3.5 模型，另有最大到 26B-A4B 的 Gemma 4 版本，通过 /v1/systemone 格式的接口提供服务，回答 noul、choice 和 score 并附带置信度。作者报告 2B 版本在 231 个公开 JevBench 任务中答对 180 个，26B-A4B 答对 207 个。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · strands-labs · `Py` · 引用文件 [`examples/strands/_client.py`](https://github.com/strands-labs/strands-decider/blob/HEAD/examples/strands/_client.py)，2026-10-26 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)** — 首个独立的 System One 决策模型横评（Laya 对比 Jev）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · instax-dutta · `Py` · 调用点 [`runners/jev_runner.py`](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py)，2026-09-22 阅读</sub>
