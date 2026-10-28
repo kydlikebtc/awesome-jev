@@ -113,6 +113,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[is-malicious](https://github.com/luantak/is-malicious)** — 代码库扫描器，帮你避免运行恶意代码。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · luantak · `TS` · 调用点 [`src/jev.ts`](https://github.com/luantak/is-malicious/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
+- **[JEV Safety Gateway](https://github.com/dark-hxx/jev-safety-gateway)** — 位于 nginx 与 OpenAI 兼容大模型后端之间的反向代理：取出每个请求中的用户输入，用一个 noul 让 Jev 判断是否安全，拦截有害请求、放行正常请求；可在多个 API 密钥之间轮换。文档以中文为主。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · dark-hxx · `Go` · `noul` · 调用点 [`internal/jev/client.go`](https://github.com/dark-hxx/jev-safety-gateway/blob/HEAD/internal/jev/client.go)，2026-10-24 模型阅读</sub>
+
 - **[jev-belay](https://github.com/valentynkit/jev-belay)** — Claude Code 的 Stop 钩子：在未经验证的“完成”之前拦下——读取会话记录找证据，只问 Jev 一次，其余情况一律放行。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · valentynkit · `JS` · 调用点 [`belay.mjs`](https://github.com/valentynkit/jev-belay/blob/HEAD/belay.mjs)，2026-09-24 阅读</sub>
 
@@ -125,14 +128,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — Claude Code 的 PreToolUse 门禁：先用正则硬规则和只读白名单，再用一个 Noul 和一个 Choice 判定放行、询问或拒绝，明确安全的命令无需权限确认。附 Codex、Cursor、OpenCode 适配和 review-router GitHub Action。 <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · eugeniughelbur · `Py` · `noul` · `choice` · 调用点 [`jev_gate.py`](https://github.com/eugeniughelbur/jev-engineering/blob/HEAD/jev_gate.py)，2026-09-28 阅读 · ⚠ `作者自荐`</sub>
 
-- **[jev-guard](https://github.com/klauswg/jev-guard)** — 面向交易所充值与提现的实时风险分诊网关——Jev（TypeSafe System One）只负责分诊，裁决另有机制。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10+ · klauswg · `Java` · 调用点 [`src/main/java/com/jevguard/eval/EvalRunner.java`](https://github.com/klauswg/jev-guard/blob/HEAD/src/main/java/com/jevguard/eval/EvalRunner.java)，2026-09-24 阅读</sub>
-
 - **[jev-harness](https://github.com/AntonioCoppe/jev-harness)** — Jev 决策 harness：置信闸门、影子模式、配方与评测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · antoniocoppe · `TS` · 调用点 [`demos/proof/row-filter/run.ts`](https://github.com/AntonioCoppe/jev-harness/blob/HEAD/demos/proof/row-filter/run.ts)，2026-09-22 阅读</sub>
 
 - **[jev-harness](https://github.com/ismaelsoilet/jev-harness)** — 面向 AI 编码智能体的决策关卡，提供 CLI、MCP 服务器、CI 钩子以及 Python、TypeScript 和 Rust SDK：先用离线启发式规则，再可选地交给 Jev 判断：失败的测试日志是否需要动用 LLM、是否中止反复修改的循环、该用哪个模型档位和推理力度、某一步是否已完成。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · ismaelsoilet · `Py` · 调用点 [`src/jev_harness/client.py`](https://github.com/ismaelsoilet/jev-harness/blob/HEAD/src/jev_harness/client.py)，2026-09-24 阅读</sub>
+
+- **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — 一套 Claude Code 工具包：PreToolUse 守卫先用免费的代码预筛放行约 93% 的工具调用，其余交给 Jev 判断（放行、警告、改写或拦截，出错时默认放行）；还能为子 Agent 选择合适的规格，并把 Jev 接入文件搜索、浏览和代码审阅。作者报告浏览器任务 9/9 成功，Claude 花费仅 0.0008 美元。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · jonathanavis96 · `Py` · `choice` · `noul` · 调用点 [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — 面向 Apple 芯片上原生 macOS 应用的 computer use 智能体：由 OmniParser CoreML、Apple Vision OCR 和辅助功能标签在本机找出窗口里的控件，再由 Jev 根据观察到的文字（从不看像素）用 choice 选下一步动作。输入前有防护检查，基准测试核对的是实际结果，而不是 Jev 的 DONE 判断。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · jcpsimmons · `JS` · 调用点 [`src/providers.mjs`](https://github.com/jcpsimmons/jev-macos-loop/blob/HEAD/src/providers.mjs)，2026-09-22 阅读</sub>
@@ -172,6 +175,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[toolgate](https://github.com/RiskAverseTech/toolgate)** — 面向 AI 智能体的开源自动模式：一个校准过的工具调用防火墙。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · riskaversetech · `TS` · 调用点 [`src/backends/typesafe.ts`](https://github.com/RiskAverseTech/toolgate/blob/HEAD/src/backends/typesafe.ts)，2026-09-22 阅读</sub>
+
+- **[x402check](https://github.com/caiovicentino/jev-risk-check-provider)** — 面向 x402 Agent 和钱包的付款前风险检查服务：结合制裁名单、钓鱼情报、交易模拟和盗币工具包指纹，再用 Jev 的多个 noul、一个 choice 和一个 score 检查 Agent 所依据的内容里有没有被注入的指令。结论以签名证明的形式给出。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · caiovicentino · `TS` · `noul` · `choice` · `score` · 调用点 [`src/jev.ts`](https://github.com/caiovicentino/jev-risk-check-provider/blob/HEAD/src/jev.ts)，2026-10-24 模型阅读 · ⚠ `营销内容`</sub>
 
 - **[actiongate-jev](https://github.com/omkarghugarkar007/actiongate-jev)** — 开源的智能体工具调用授权网关：确定性策略加 Jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · omkarghugarkar007 · `TS` · 调用点 [`packages/decision-provider/src/typesafe-jev.ts`](https://github.com/omkarghugarkar007/actiongate-jev/blob/HEAD/packages/decision-provider/src/typesafe-jev.ts)，2026-09-22 阅读</sub>
@@ -245,9 +251,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
   <sub>`开源项目` · Really Artificial · `JS` · `choice` · `score` · `noul` · 调用点 [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs)，2026-09-22 阅读 · ⚠ `疑似 AI 生成`</sub>
 
-- **[JEV Safety Gateway](https://github.com/dark-hxx/jev-safety-gateway)** — 位于 nginx 与 OpenAI 兼容大模型后端之间的反向代理：取出每个请求中的用户输入，用一个 noul 让 Jev 判断是否安全，拦截有害请求、放行正常请求；可在多个 API 密钥之间轮换。文档以中文为主。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · dark-hxx · `Go` · `noul` · 调用点 [`internal/jev/client.go`](https://github.com/dark-hxx/jev-safety-gateway/blob/HEAD/internal/jev/client.go)，2026-10-24 模型阅读</sub>
-
 - **[jev-agent-authorization](https://github.com/kinde-starter-kits/jev-agent-authorization)** — 面向 MCP 工具调用的 Jev 智能体授权：结合 Kinde 的身份与权限，以及 Jev 的类型化校准决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · kinde-starter-kits · `TS` · 调用点 [`convex/jev/client.ts`](https://github.com/kinde-starter-kits/jev-agent-authorization/blob/HEAD/convex/jev/client.ts)，2026-09-24 阅读</sub>
 
@@ -284,11 +287,11 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-guard](https://github.com/CMaintz/jev-guard)** — 在 LLM 智能体的工具调用执行前，交给 TypeSafe AI 的 Jev 审核——放行、阻止或挂起，不确定时安全失败。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · cmaintz · `TS` · 调用点 [`src/providers/typesafe.ts`](https://github.com/CMaintz/jev-guard/blob/HEAD/src/providers/typesafe.ts)，2026-09-24 阅读 · ⚠ `已归档`</sub>
 
+- **[jev-guard](https://github.com/klauswg/jev-guard)** — 面向交易所充值与提现的实时风险分诊网关——Jev（TypeSafe System One）只负责分诊，裁决另有机制。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · klauswg · `Java` · 调用点 [`src/main/java/com/jevguard/eval/EvalRunner.java`](https://github.com/klauswg/jev-guard/blob/HEAD/src/main/java/com/jevguard/eval/EvalRunner.java)，2026-09-24 阅读</sub>
+
 - **[jev-guard](https://github.com/muratcakmak/jev-guard)** — 为 Claude Code 提供概率评分的护栏：拒绝违反规则的修改和未经要求的部署，并把文档路由到合适的位置。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · muratcakmak · `TS` · 调用点 [`scripts/jev-lint.ts`](https://github.com/muratcakmak/jev-guard/blob/HEAD/scripts/jev-lint.ts)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
-
-- **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — 一套 Claude Code 工具包：PreToolUse 守卫先用免费的代码预筛放行约 93% 的工具调用，其余交给 Jev 判断（放行、警告、改写或拦截，出错时默认放行）；还能为子 Agent 选择合适的规格，并把 Jev 接入文件搜索、浏览和代码审阅。作者报告浏览器任务 9/9 成功，Claude 花费仅 0.0008 美元。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · jonathanavis96 · `Py` · `choice` · `noul` · 调用点 [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jev-logtriage](https://github.com/jyatesdotdev/jev-logtriage)** — 由 Jev 判断一批日志是否值得处理：类型化问题、置信闸门，不执行任何动作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jyatesdotdev · `Py` · 调用点 [`logtriage/cli.py`](https://github.com/jyatesdotdev/jev-logtriage/blob/HEAD/logtriage/cli.py)，2026-09-22 阅读</sub>
@@ -445,9 +448,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[wakegate](https://github.com/shitianfang/wakegate)** — 在唤醒一个休眠智能体之前，先问 Jev 这次唤醒是否值得一次完整的 LLM 轮次。失败时默认放行。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · shitianfang · `TS` · 调用点 [`src/index.ts`](https://github.com/shitianfang/wakegate/blob/HEAD/src/index.ts)，2026-09-22 阅读</sub>
-
-- **[x402check](https://github.com/caiovicentino/jev-risk-check-provider)** — 面向 x402 Agent 和钱包的付款前风险检查服务：结合制裁名单、钓鱼情报、交易模拟和盗币工具包指纹，再用 Jev 的多个 noul、一个 choice 和一个 score 检查 Agent 所依据的内容里有没有被注入的指令。结论以签名证明的形式给出。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · caiovicentino · `TS` · `noul` · `choice` · `score` · 调用点 [`src/jev.ts`](https://github.com/caiovicentino/jev-risk-check-provider/blob/HEAD/src/jev.ts)，2026-10-24 模型阅读 · ⚠ `营销内容`</sub>
 
 - **[XavierJev](https://github.com/liu-x27/XavierJev)** — Jev 形状的本地决策层：是非、选择和量表问题都从本地模型单个 token 的 logprob 读出答案；附带一个在留出命令集上测量过的 Claude Code 权限闸门。 <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · Xinyu Liu · `TS` · `noul` · `choice` · `score` · 引用文件 [`src/gate.ts`](https://github.com/liu-x27/XavierJev/blob/HEAD/src/gate.ts)，2026-09-25 阅读 · ⚠ `并非 Jev 本身` `疑似 AI 生成`</sub>

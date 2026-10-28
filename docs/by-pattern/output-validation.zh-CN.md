@@ -71,6 +71,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-review](https://github.com/NiazMorshed2007/jev-review)** — 一个本地优先的 MCP 插件，供编程智能体做持续的代码质量审查。
   <sub>`插件` · ★100+ · niazmorshed2007 · `TS` · 调用点 [`src/jev/client.ts`](https://github.com/NiazMorshed2007/jev-review/blob/HEAD/src/jev/client.ts)，2026-09-22 阅读</sub>
 
+- **[Jevlint (codegirl-007)](https://github.com/codegirl-007/jevlint)** — 按自然语言规则检查代码的 linter：用 Tree-sitter 提取每个代码单元，Jev 对每条规则回答一个 `choice`（通过、失败，可选跳过或弃权），只有置信度达到该规则的下限时才报告失败。也支持 OpenAI、OpenRouter 和 Cloudflare 后端。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · codegirl-007 · `Go` · `choice` · 调用点 [`internal/evaluation/client.go`](https://github.com/codegirl-007/jevlint/blob/HEAD/internal/evaluation/client.go)，2026-10-26 模型阅读</sub>
+
 - **[perch: semantic code linting](https://github.com/lakeday-org/perch)** — 先用 tree-sitter 找出并排序方法，再把用户自写的 YAML 规则编译成 noul；严重度取评分量表的期望值，而不是概率最高的那一档。
   <sub>`开源项目` · ★100+ · `JS` · `choice` · `score` · `noul` · 调用点 [`src/cli.js`](https://github.com/lakeday-org/perch/blob/HEAD/src/cli.js)，2026-09-22 阅读</sub>
 
@@ -125,11 +128,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-e2e](https://github.com/perixtar/jev-e2e)** — 为网页应用编写自然语言的端到端测试，由 Jev 与 Playwright 驱动。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · perixtar · `TS` · 调用点 [`src/runner.ts`](https://github.com/perixtar/jev-e2e/blob/HEAD/src/runner.ts)，2026-09-24 阅读</sub>
 
+- **[jev-enforce](https://github.com/erkamyaman/jev-enforce)** — 一个 Claude Code 插件，按你的 CLAUDE.md 或 AGENTS.md 检查每次回复和每次文件编辑：每条规则对应一个 Jev noul，全部放在一个请求里；违反的规则会通过 Stop 或 PostToolUse 钩子被引用回去，让 Claude 在同一轮内修正。也提供可用于 CI 的命令行工具。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · erkamyaman · `TS` · `noul` · 调用点 [`dist/src/jev.js`](https://github.com/erkamyaman/jev-enforce/blob/HEAD/dist/src/jev.js)，2026-10-24 模型阅读</sub>
+
 - **[jev-feels](https://github.com/Qew7/jev-feels)** — 把语义决策变成普通 Ruby —— feels?、decide、score，以及 Rails 校验与模式匹配。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · qew7 · `Rb` · 调用点 [`lib/jev/client.rb`](https://github.com/Qew7/jev-feels/blob/HEAD/lib/jev/client.rb)，2026-09-22 阅读</sub>
 
 - **[jev-libero](https://github.com/Dimweaker/jev-libero)** — 精细的机器人控制，带物理预览与可配置的 LIBERO 任务。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · dimweaker · `Py` · 调用点 [`src/jev_libero/client.py`](https://github.com/Dimweaker/jev-libero/blob/HEAD/src/jev_libero/client.py)，2026-09-22 阅读</sub>
+
+- **[jev-lint](https://github.com/ckorhonen/jev-lint)** — 面向编程 Agent 的模糊 linter：Agent 写完文件后，团队用自然语言写的每条规则都作为一个 Jev noul 来问，约 0.3 秒后 Agent 就能知道自己违反了哪些规则。可以从仓库自动生成规则；也可改用 Cloudflare 或 OpenAI 作为评判。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · ckorhonen · `TS` · `noul` · 调用点 [`src/jev.ts`](https://github.com/ckorhonen/jev-lint/blob/HEAD/src/jev.ts)，2026-10-24 模型阅读</sub>
 
 - **[jev-pref](https://github.com/doeixd/jev-pref)** — 把 AGENTS.md 里的偏好变成一个由 Jev 驱动的快速 AI linter。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · doeixd · `JS` · 调用点 [`packages/jev-pref/src/config.js`](https://github.com/doeixd/jev-pref/blob/HEAD/packages/jev-pref/src/config.js)，2026-09-22 阅读</sub>
@@ -149,8 +158,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-spec](https://github.com/nozomi-koborinai/jev-spec)** — 每次提交都检查规格漂移：用 Jev 对照你的 Markdown 规格检查代码。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · nozomi-koborinai · `TS` · 调用点 [`src/evaluator/jev-evaluator.ts`](https://github.com/nozomi-koborinai/jev-spec/blob/HEAD/src/evaluator/jev-evaluator.ts)，2026-09-22 阅读</sub>
 
-- **[jev-suite](https://github.com/klauswg/jev-suite)** — 基于 Jev（TypeSafe System One）的四个决策质量工具：Jev 回答结构化问题，最终决定权留在确定性代码手里。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10+ · klauswg · `Java` · 调用点 [`jev-fidelity/src/main/java/com/jevsuite/fidelity/eval/EvalRunner.java`](https://github.com/klauswg/jev-suite/blob/HEAD/jev-fidelity/src/main/java/com/jevsuite/fidelity/eval/EvalRunner.java)，2026-09-24 阅读</sub>
+- **[jev-subtitle-translator](https://github.com/GeekLinkDev/jev-subtitle-translator)** — 用结构化 LLM 输出翻译 SRT 字幕，并让 Jev 检查每一条译文。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · geeklinkdev · `Py` · 调用点 [`src/jev_subtitle_translator/cli.py`](https://github.com/GeekLinkDev/jev-subtitle-translator/blob/HEAD/src/jev_subtitle_translator/cli.py)，2026-09-24 阅读</sub>
 
 - **[jevlint](https://github.com/iamtoomas/JevLint)** — 可配置的语义 lint，带文件级 NOUL 判断与一个「魔法字符串」插件。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · huntedman · `TS` · 调用点 [`src/jev-client.ts`](https://github.com/iamtoomas/JevLint/blob/HEAD/src/jev-client.ts)，2026-09-22 阅读</sub>
@@ -242,7 +251,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-align](https://github.com/caiovicentino/jev-align)** — 面向 LLM 回复与智能体计划的校准对齐验证器，由 Jev 驱动。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · caiovicentino · `JS` · 调用点 [`src/jev.mjs`](https://github.com/caiovicentino/jev-align/blob/HEAD/src/jev.mjs)，2026-09-24 阅读</sub>
 
-- **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — 实验性的逐次调用 GPT 模型路由，通过 Jev 与一个本地 Rescue 层为 Codex 服务。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — 实验性的逐次调用 GPT 模型路由，通过 Jev 与一个本地 Rescue 层为 Codex 服务。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · minilv · `TS` · 调用点 [`src/jev-adapter.ts`](https://github.com/miniLV/Jev-Auto-Router/blob/HEAD/src/jev-adapter.ts)，2026-09-22 阅读</sub>
 
 - **[jev-behavior-study](https://github.com/RINNECODER/jev-behavior-study)** — 独立的 Jev 1.13.0 行为研究：报告、受控提示实验、原始结果与离线验证。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
@@ -269,9 +278,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-decisions](https://github.com/bojansandhaus/jev-decisions-hermes)** — 给 Hermes 及其他智能体的 Jev 决策插件：工具风险审查与人工批准。 <sub>(机翻)</sub>
   <sub>`插件` · bojansandhaus · `Py` · 调用点 [`jev_client.py`](https://github.com/bojansandhaus/jev-decisions-hermes/blob/HEAD/jev_client.py)，2026-09-22 阅读</sub>
 
-- **[jev-enforce](https://github.com/erkamyaman/jev-enforce)** — 一个 Claude Code 插件，按你的 CLAUDE.md 或 AGENTS.md 检查每次回复和每次文件编辑：每条规则对应一个 Jev noul，全部放在一个请求里；违反的规则会通过 Stop 或 PostToolUse 钩子被引用回去，让 Claude 在同一轮内修正。也提供可用于 CI 的命令行工具。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · erkamyaman · `TS` · `noul` · 调用点 [`dist/src/jev.js`](https://github.com/erkamyaman/jev-enforce/blob/HEAD/dist/src/jev.js)，2026-10-24 模型阅读</sub>
-
 - **[jev-enterprise-decision-fabric](https://github.com/ghubnab99/jev-enterprise-decision-fabric)** — 让大量语义决策走同一条经过验证的路径的架构，附带标注数据集。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ghubnab99 · `C#` · 调用点 [`src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs`](https://github.com/ghubnab99/jev-enterprise-decision-fabric/blob/HEAD/src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs)，2026-09-22 阅读</sub>
 
@@ -289,9 +295,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-labs](https://github.com/copyleftdev/jev-labs)** — 绝不自信地犯错：围绕 Jev 的 TLA+ 验证共识内核。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · copyleftdev · `Py` · 调用点 [`consensus/rust/consensus-kernel/src/jev.rs`](https://github.com/copyleftdev/jev-labs/blob/HEAD/consensus/rust/consensus-kernel/src/jev.rs)，2026-09-22 阅读</sub>
-
-- **[jev-lint](https://github.com/ckorhonen/jev-lint)** — 面向编程 Agent 的模糊 linter：Agent 写完文件后，团队用自然语言写的每条规则都作为一个 Jev noul 来问，约 0.3 秒后 Agent 就能知道自己违反了哪些规则。可以从仓库自动生成规则；也可改用 Cloudflare 或 OpenAI 作为评判。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · ckorhonen · `TS` · `noul` · 调用点 [`src/jev.ts`](https://github.com/ckorhonen/jev-lint/blob/HEAD/src/jev.ts)，2026-10-24 模型阅读</sub>
 
 - **[jev-lm](https://github.com/y0usaf/jev-lm)** — 输出层就是 Jev 的词级语言模型：n-gram 起草，Noul 做分块校验。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · y0usaf · `TS` · 调用点 [`python/jev_lm/api.py`](https://github.com/y0usaf/jev-lm/blob/HEAD/python/jev_lm/api.py)，2026-09-22 阅读</sub>
@@ -323,8 +326,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-shadcn-lint-eval](https://github.com/blas0/jev-shadcn-lint-eval)** — 给某 lint 工具做的二次评估：用 Jev 评判 linter 的判断。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · blas0 · `JS` · 调用点 [`run-rule-cases.mjs`](https://github.com/blas0/jev-shadcn-lint-eval/blob/HEAD/run-rule-cases.mjs)，2026-09-22 阅读</sub>
 
-- **[jev-subtitle-translator](https://github.com/GeekLinkDev/jev-subtitle-translator)** — 用结构化 LLM 输出翻译 SRT 字幕，并让 Jev 检查每一条译文。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · geeklinkdev · `Py` · 调用点 [`src/jev_subtitle_translator/cli.py`](https://github.com/GeekLinkDev/jev-subtitle-translator/blob/HEAD/src/jev_subtitle_translator/cli.py)，2026-09-24 阅读</sub>
+- **[jev-suite](https://github.com/klauswg/jev-suite)** — 基于 Jev（TypeSafe System One）的四个决策质量工具：Jev 回答结构化问题，最终决定权留在确定性代码手里。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · klauswg · `Java` · 调用点 [`jev-fidelity/src/main/java/com/jevsuite/fidelity/eval/EvalRunner.java`](https://github.com/klauswg/jev-suite/blob/HEAD/jev-fidelity/src/main/java/com/jevsuite/fidelity/eval/EvalRunner.java)，2026-09-24 阅读</sub>
 
 - **[jev-the-janitor](https://github.com/kylehovance-ai/jev-the-janitor)** — 由 Jev 驱动的 Markdown 知识库清洁工：Jev 对每篇笔记投票，你的代码负责归档。 <sub>(机翻)</sub>
   <sub>`开源项目` · kylehovance-ai · `Py` · 调用点 [`janitor/client.py`](https://github.com/kylehovance-ai/jev-the-janitor/blob/HEAD/janitor/client.py)，2026-09-22 阅读</sub>
@@ -346,9 +349,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevkit](https://github.com/ariel-frischer/jevkit)** — 用 Rust 写的快速 CLI：类型化决策，付费之前先离线 lint。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ariel-frischer · `Rs` · 调用点 [`src/auth.rs`](https://github.com/ariel-frischer/jevkit/blob/HEAD/src/auth.rs)，2026-09-22 阅读</sub>
-
-- **[Jevlint (codegirl-007)](https://github.com/codegirl-007/jevlint)** — 按自然语言规则检查代码的 linter：用 Tree-sitter 提取每个代码单元，Jev 对每条规则回答一个 `choice`（通过、失败，可选跳过或弃权），只有置信度达到该规则的下限时才报告失败。也支持 OpenAI、OpenRouter 和 Cloudflare 后端。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · codegirl-007 · `Go` · `choice` · 调用点 [`internal/evaluation/client.go`](https://github.com/codegirl-007/jevlint/blob/HEAD/internal/evaluation/client.go)，2026-10-26 模型阅读</sub>
 
 - **[jevsume](https://github.com/unownone/jevsume)** — 由 Jev 驱动的 ATS 友好简历评审。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · unownone · `TS` · 调用点 [`packages/jev/http.ts`](https://github.com/unownone/jevsume/blob/HEAD/packages/jev/http.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

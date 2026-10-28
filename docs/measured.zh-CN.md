@@ -78,6 +78,10 @@
   在 DSPy 工作流中对 Jev 决策做可复现的校准与选择性风险基准。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · ★10+ · jmanhype · `Py` · [调用点](https://github.com/jmanhype/jev-dspy-lab/blob/HEAD/src/jev_dspy_lab/live.py)，2026-09-22 阅读</sub>
 
+- **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)**<br>
+  在 2000 封钓鱼邮件上对比 Jev 与一个轻量 LLM：准确率、校准度、延迟、成本。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★10+ · anisselbd · `Py` · [调用点](https://github.com/anisselbd/jev-phishing-bench/blob/HEAD/run_jev.py)，2026-09-22 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
+
 - **[jev-rag-benchmark](https://github.com/erendikmenn/jev-rag-benchmark)**<br>
   可复现的基准：衡量 Jev 在 RAG 里的重排质量、延迟与成本。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · ★10+ · erendikmenn · `Py` · [调用点](https://github.com/erendikmenn/jev-rag-benchmark/blob/HEAD/src/jev_rag_benchmark/rerankers.py)，2026-09-22 阅读 · 作者结论：有利（作者自述，未经本仓库复现）</sub>
@@ -279,10 +283,6 @@
 - **[jev-orderby-bench](https://github.com/yodablocks/jev-orderby-bench)**<br>
   按 Jev 概率做 ORDER BY 能否给出站得住脚的排序？独立的排序、校准与不变量实测。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · yodablocks · `Py` · [调用点](https://github.com/yodablocks/jev-orderby-bench/blob/HEAD/harness/client.py)，2026-09-22 阅读</sub>
-
-- **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)**<br>
-  在 2000 封钓鱼邮件上对比 Jev 与一个轻量 LLM：准确率、校准度、延迟、成本。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · anisselbd · `Py` · [调用点](https://github.com/anisselbd/jev-phishing-bench/blob/HEAD/run_jev.py)，2026-09-22 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
 
 - **[jev-play-ping-pong](https://github.com/Icohen007/jev-play-ping-pong)**<br>
   让 Jev 实时玩浏览器乒乓球：结构化遥测与类型化决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>

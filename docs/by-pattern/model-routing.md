@@ -63,6 +63,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — Claude Code PreToolUse gate: regex hard rules and a read-only allowlist first, then one Noul and one Choice decide allow, ask or deny, so clearly safe commands skip the permission prompt. Codex, Cursor and OpenCode adapters, plus a review-router GitHub Action.
   <sub>`Plugin` · ★10+ · eugeniughelbur · `Py` · `noul` · `choice` · call site [`jev_gate.py`](https://github.com/eugeniughelbur/jev-engineering/blob/HEAD/jev_gate.py), read 2026-09-28 · ⚠ `self-submitted`</sub>
 
+- **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — Claude Code kit: a PreToolUse guard where a free pre-filter passes about 93% of tool calls and Jev judges the rest (allow, warn, rewrite or block; fails open), sub-agent sizing, and Jev wired into file search, browsing and review. The author reports 9/9 browser runs at 0.0008 USD of Claude spend. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · jonathanavis96 · `Py` · `choice` · `noul` · call site [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py), read by a model 2026-10-24 · ⚠ `vendor numbers`</sub>
+
+- **[jev-opus](https://github.com/WXK-AI/jev-opus)** — Runs Claude Code on Opus 5.5 with Jev re-picking the effort level when a prompt arrives and after every tool batch (up after a failing test, back down once it passes), sent as per-message effort statements so the prompt cache survives. Works as a local gateway or a headless driver. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · wxk-ai · `TS` · call site [`dist/config.js`](https://github.com/WXK-AI/jev-opus/blob/HEAD/dist/config.js), read by a model 2026-10-24</sub>
+
 - **[jev-router](https://github.com/prismhq/jev-router)** — Open-source LLM router that uses TypeSafe's Jev to pick a model, on top of LiteLLM <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · prismhq · `Py` · call site [`jev_router/deciders.py`](https://github.com/prismhq/jev-router/blob/HEAD/jev_router/deciders.py), read 2026-09-22 · ⚠ `one commit`</sub>
 
@@ -74,6 +80,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevonian](https://github.com/xinyao27/jevonian)** — A local endpoint between a coding agent and its providers that routes each turn to the most cost-effective capable model, manages quota and cache, and logs every routing decision to a local ledger.
   <sub>`Project` · ★10+ · xinyao27 · `TS` · call site [`src/brain.ts`](https://github.com/xinyao27/jevonian/blob/HEAD/src/brain.ts), read 2026-09-24</sub>
+
+- **[Jevstiller](https://github.com/tomerglick57/Jevstiller)** — Proxy in front of a repeated Jev classification call: it forwards to Jev at first, trains a small local model on Jev's own answers and probabilities, and answers locally once it agrees with Jev on held-out traffic. The author reports 61.7% of Banking77 answered locally at 99.4% agreement. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · tomerglick57 · `Py` · `choice` · `noul` · call site [`jevstiller/teachers/jev.py`](https://github.com/tomerglick57/Jevstiller/blob/HEAD/jevstiller/teachers/jev.py), read by a model 2026-10-24 · ⚠ `vendor numbers`</sub>
 
 - **[pi-jev](https://github.com/iefnaf/pi-jev)** — Pi extension suite powered by Jev: selective context compaction and model routing <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · iefnaf · `TS` · call site [`src/vendor/fast-jev-compaction/request.ts`](https://github.com/iefnaf/pi-jev/blob/HEAD/src/vendor/fast-jev-compaction/request.ts), read 2026-09-24</sub>
@@ -111,7 +120,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev Switch](https://github.com/ARCJ137442/jev-switch)** — Lightweight gateway that serves POST /v1/systemone and routes each call through an editable graph of upstreams (TypeSafe, Vercel, OpenRouter, Laya or a local server) with priorities and failover. Rust daemon with a React console, Tauri desktop app and Docker image. Chinese-first docs. <sub>(written by a model)</sub>
   <sub>`Project` · arcj137442 · `Rs` · `TS` · call site [`rs/crates/jev-switch-daemon/src/admin.rs`](https://github.com/ARCJ137442/jev-switch/blob/HEAD/rs/crates/jev-switch-daemon/src/admin.rs), read by a model 2026-10-24</sub>
 
-- **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — Jev Auto Router (Jev Router): experimental per-call GPT model routing for Codex via TypeSafe Jev and a local Responses proxy, with independent task verification. <sub>(upstream description)</sub>
+- **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — Jev Auto Router (Jev Router): experimental per-call GPT model routing for Codex via TypeSafe Jev and a local Responses proxy, with independent task verification. <sub>(earlier upstream description)</sub>
   <sub>`Plugin` · minilv · `TS` · call site [`src/jev-adapter.ts`](https://github.com/miniLV/Jev-Auto-Router/blob/HEAD/src/jev-adapter.ts), read 2026-09-22</sub>
 
 - **[jev-codex-bridge](https://github.com/ansidium/jev-codex-bridge)** — Model and reasoning routing for Codex Desktop and CLI, with a Windows service and validated updates <sub>(earlier upstream description)</sub>
@@ -126,9 +135,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-harness-router](https://github.com/JoacoMarc/jev-harness-router)** — Per-turn router for agent harnesses: one 350ms Jev call picks the model tier, effort, tools and skill, behind a hard deadline with a regex fallback. Claude Agent SDK adapter included. <sub>(upstream description)</sub>
   <sub>`SDK` · joacomarc · `TS` · call site [`src/jev.ts`](https://github.com/JoacoMarc/jev-harness-router/blob/HEAD/src/jev.ts), read 2026-09-24</sub>
 
-- **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — Claude Code kit: a PreToolUse guard where a free pre-filter passes about 93% of tool calls and Jev judges the rest (allow, warn, rewrite or block; fails open), sub-agent sizing, and Jev wired into file search, browsing and review. The author reports 9/9 browser runs at 0.0008 USD of Claude spend. <sub>(written by a model)</sub>
-  <sub>`Plugin` · jonathanavis96 · `Py` · `choice` · `noul` · call site [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py), read by a model 2026-10-24 · ⚠ `vendor numbers`</sub>
-
 - **[jev-model-router](https://github.com/az9713/jev-model-router)** — Jev (TypeSafe) model router on the Vercel AI Gateway <sub>(upstream description)</sub>
   <sub>`Project` · az9713 · `JS` · call site [`probe.mjs`](https://github.com/az9713/jev-model-router/blob/HEAD/probe.mjs), read 2026-09-24 · ⚠ `no licence`</sub>
 
@@ -138,17 +144,11 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-model-router](https://github.com/satviksinha/jev-model-router)** — Model router for Claude Code using Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · satviksinha · `TS` · call site [`scripts/check-jev.mjs`](https://github.com/satviksinha/jev-model-router/blob/HEAD/scripts/check-jev.mjs), read 2026-09-24</sub>
 
-- **[jev-opus](https://github.com/WXK-AI/jev-opus)** — Runs Claude Code on Opus 5.5 with Jev re-picking the effort level when a prompt arrives and after every tool batch (up after a failing test, back down once it passes), sent as per-message effort statements so the prompt cache survives. Works as a local gateway or a headless driver. <sub>(written by a model)</sub>
-  <sub>`Plugin` · wxk-ai · `TS` · call site [`dist/config.js`](https://github.com/WXK-AI/jev-opus/blob/HEAD/dist/config.js), read by a model 2026-10-24</sub>
-
 - **[jev-smart-router](https://github.com/rmosleydb/jev-smart-router)** — JEV Smart Router — a Databricks App that uses TypeSafe JEV to pick which model answers each message, then runs inference on the chosen Databricks Foundation Model API endpoint. <sub>(upstream description)</sub>
   <sub>`Project` · rmosleydb · `Py` · call site [`src/app.py`](https://github.com/rmosleydb/jev-smart-router/blob/HEAD/src/app.py), read 2026-09-24</sub>
 
 - **[jev-synthetic-survey](https://github.com/jjd-lab/jev-synthetic-survey)** — Jev vs GPT-4.1 as synthetic survey respondents on Twin-2K-500. How you ask mattered more than which model you used. <sub>(upstream description)</sub>
   <sub>`Project` · jjd-lab · `Py` · call site [`scripts/twin2k/jev_client.py`](https://github.com/jjd-lab/jev-synthetic-survey/blob/HEAD/scripts/twin2k/jev_client.py), read 2026-09-22</sub>
-
-- **[Jevstiller](https://github.com/tomerglick57/Jevstiller)** — Proxy in front of a repeated Jev classification call: it forwards to Jev at first, trains a small local model on Jev's own answers and probabilities, and answers locally once it agrees with Jev on held-out traffic. The author reports 61.7% of Banking77 answered locally at 99.4% agreement. <sub>(written by a model)</sub>
-  <sub>`Project` · tomerglick57 · `Py` · `choice` · `noul` · call site [`jevstiller/teachers/jev.py`](https://github.com/tomerglick57/Jevstiller/blob/HEAD/jevstiller/teachers/jev.py), read by a model 2026-10-24 · ⚠ `vendor numbers`</sub>
 
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — The LangChain integration: a classifier plus experimental middleware for model routing and for gating risky tool calls before they run.
   <sub>`Integration` · `Py` · `choice` · `score` · `noul` · ⚠ `early access`</sub>

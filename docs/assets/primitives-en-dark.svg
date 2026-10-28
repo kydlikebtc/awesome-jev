@@ -12,7 +12,7 @@
 <text x="26" y="198" class="d">read by a person</text>
 <text x="204" y="198" class="c" text-anchor="end">90 rows</text>
 <text x="26" y="218" class="k">text signal only</text>
-<text x="204" y="218" class="k" text-anchor="end">437 rows</text>
+<text x="204" y="218" class="k" text-anchor="end">445 rows</text>
 <rect x="233" y="58" width="206" height="172" rx="3" fill="none" stroke="#30363d"/>
 <rect x="233" y="58" width="206" height="2" fill="#3fb950"/>
 <text x="247" y="90" class="g">▮</text>
@@ -23,7 +23,7 @@
 <text x="247" y="198" class="d">read by a person</text>
 <text x="425" y="198" class="c" text-anchor="end">54 rows</text>
 <text x="247" y="218" class="k">text signal only</text>
-<text x="425" y="218" class="k" text-anchor="end">220 rows</text>
+<text x="425" y="218" class="k" text-anchor="end">229 rows</text>
 <rect x="454" y="58" width="206" height="172" rx="3" fill="none" stroke="#30363d"/>
 <rect x="454" y="58" width="206" height="2" fill="#f85149"/>
 <text x="468" y="90" class="g">◐</text>
@@ -34,7 +34,7 @@
 <text x="468" y="198" class="d">read by a person</text>
 <text x="646" y="198" class="c" text-anchor="end">81 rows</text>
 <text x="468" y="218" class="k">text signal only</text>
-<text x="646" y="218" class="k" text-anchor="end">438 rows</text>
+<text x="646" y="218" class="k" text-anchor="end">446 rows</text>
 <text x="12" y="252" class="k">read by a person: rows whose question_types a person recorded from the code</text>
 <text x="12" y="269" class="k">text signal only: its shape is in the cited file (primitives_seen); no reading records it</text>
 </svg>

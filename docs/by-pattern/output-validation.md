@@ -71,6 +71,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-review](https://github.com/NiazMorshed2007/jev-review)** — A local-first MCP plugin for continuous code-quality review by coding agents.
   <sub>`Plugin` · ★100+ · niazmorshed2007 · `TS` · call site [`src/jev/client.ts`](https://github.com/NiazMorshed2007/jev-review/blob/HEAD/src/jev/client.ts), read 2026-09-22</sub>
 
+- **[Jevlint (codegirl-007)](https://github.com/codegirl-007/jevlint)** — Linter that checks code against plain-language rules: Tree-sitter extracts each code unit and Jev answers one `choice` per rule (pass, fail, optionally skip or abstain); a failure is reported only when its confidence reaches the rule's floor. Other backends: OpenAI, OpenRouter, Cloudflare. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · codegirl-007 · `Go` · `choice` · call site [`internal/evaluation/client.go`](https://github.com/codegirl-007/jevlint/blob/HEAD/internal/evaluation/client.go), read by a model 2026-10-26</sub>
+
 - **[perch: semantic code linting](https://github.com/lakeday-org/perch)** — Tree-sitter finds and ranks methods, then user-authored YAML rules compile into nouls, with severity read as the rubric's expected value rather than the top band.
   <sub>`Project` · ★100+ · `JS` · `choice` · `score` · `noul` · call site [`src/cli.js`](https://github.com/lakeday-org/perch/blob/HEAD/src/cli.js), read 2026-09-22</sub>
 
@@ -125,11 +128,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-e2e](https://github.com/perixtar/jev-e2e)** — Natural-language end-to-end tests for web apps, powered by Jev and Playwright. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · perixtar · `TS` · call site [`src/runner.ts`](https://github.com/perixtar/jev-e2e/blob/HEAD/src/runner.ts), read 2026-09-24</sub>
 
+- **[jev-enforce](https://github.com/erkamyaman/jev-enforce)** — Claude Code plugin that checks every reply and file edit against your CLAUDE.md or AGENTS.md: one Jev noul per rule in a single request, and broken rules are quoted back as a Stop or PostToolUse block so Claude fixes them in the same turn. Also a CLI for CI. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · erkamyaman · `TS` · `noul` · call site [`dist/src/jev.js`](https://github.com/erkamyaman/jev-enforce/blob/HEAD/dist/src/jev.js), read by a model 2026-10-24</sub>
+
 - **[jev-feels](https://github.com/Qew7/jev-feels)** — Semantic decisions as ordinary Ruby — feels?, decide, score, Rails validations and pattern matching powered by Jev
   <sub>`Project` · ★10+ · qew7 · `Rb` · call site [`lib/jev/client.rb`](https://github.com/Qew7/jev-feels/blob/HEAD/lib/jev/client.rb), read 2026-09-22</sub>
 
 - **[jev-libero](https://github.com/Dimweaker/jev-libero)** — Fine-grained robot control with Jev, physics previews, and configurable LIBERO tasks. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · dimweaker · `Py` · call site [`src/jev_libero/client.py`](https://github.com/Dimweaker/jev-libero/blob/HEAD/src/jev_libero/client.py), read 2026-09-22</sub>
+
+- **[jev-lint](https://github.com/ckorhonen/jev-lint)** — Fuzzy linter for coding agents: after an agent writes a file, each of the team's plain-language rules is asked as a Jev noul, and about 0.3 s later the agent hears which rules it broke. Can generate rules from the repository; Cloudflare and OpenAI judges as alternatives. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · ckorhonen · `TS` · `noul` · call site [`src/jev.ts`](https://github.com/ckorhonen/jev-lint/blob/HEAD/src/jev.ts), read by a model 2026-10-24</sub>
 
 - **[jev-pref](https://github.com/doeixd/jev-pref)** — Turn your AGENTS.md preferences into a fast, Jev-powered AI linter. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · doeixd · `JS` · call site [`packages/jev-pref/src/config.js`](https://github.com/doeixd/jev-pref/blob/HEAD/packages/jev-pref/src/config.js), read 2026-09-22</sub>
@@ -149,8 +158,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-spec](https://github.com/nozomi-koborinai/jev-spec)** — ⚡ Catch spec drift on every commit: check your code against your Markdown specs with TypeSafe AI's Jev model. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · nozomi-koborinai · `TS` · call site [`src/evaluator/jev-evaluator.ts`](https://github.com/nozomi-koborinai/jev-spec/blob/HEAD/src/evaluator/jev-evaluator.ts), read 2026-09-22</sub>
 
-- **[jev-suite](https://github.com/klauswg/jev-suite)** — Four decision-quality tools on Jev (TypeSafe System One): Jev answers structured questions, deterministic code keeps the final say. <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · klauswg · `Java` · call site [`jev-fidelity/src/main/java/com/jevsuite/fidelity/eval/EvalRunner.java`](https://github.com/klauswg/jev-suite/blob/HEAD/jev-fidelity/src/main/java/com/jevsuite/fidelity/eval/EvalRunner.java), read 2026-09-24</sub>
+- **[jev-subtitle-translator](https://github.com/GeekLinkDev/jev-subtitle-translator)** — Translate SRT subtitles with structured LLM output and check every translation with Jev. <sub>(upstream description)</sub>
+  <sub>`Project` · ★10+ · geeklinkdev · `Py` · call site [`src/jev_subtitle_translator/cli.py`](https://github.com/GeekLinkDev/jev-subtitle-translator/blob/HEAD/src/jev_subtitle_translator/cli.py), read 2026-09-24</sub>
 
 - **[jevlint](https://github.com/iamtoomas/JevLint)** — Configurable semantic linting powered by Jev, with file-level NOUL judgments and a magic-strings plugin. <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · huntedman · `TS` · call site [`src/jev-client.ts`](https://github.com/iamtoomas/JevLint/blob/HEAD/src/jev-client.ts), read 2026-09-22</sub>
@@ -242,7 +251,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-align](https://github.com/caiovicentino/jev-align)** — Calibrated alignment verifier for LLM responses and agent plans — powered by Jev <sub>(upstream description)</sub>
   <sub>`Project` · caiovicentino · `JS` · call site [`src/jev.mjs`](https://github.com/caiovicentino/jev-align/blob/HEAD/src/jev.mjs), read 2026-09-24</sub>
 
-- **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — Jev Auto Router (Jev Router): experimental per-call GPT model routing for Codex via TypeSafe Jev and a local Responses proxy, with independent task verification. <sub>(upstream description)</sub>
+- **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — Jev Auto Router (Jev Router): experimental per-call GPT model routing for Codex via TypeSafe Jev and a local Responses proxy, with independent task verification. <sub>(earlier upstream description)</sub>
   <sub>`Plugin` · minilv · `TS` · call site [`src/jev-adapter.ts`](https://github.com/miniLV/Jev-Auto-Router/blob/HEAD/src/jev-adapter.ts), read 2026-09-22</sub>
 
 - **[jev-behavior-study](https://github.com/RINNECODER/jev-behavior-study)** — Independent Jev 1.13.0 behavior study: report, controlled prompt experiments, raw results, and offline verification. <sub>(upstream description)</sub>
@@ -269,9 +278,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-decisions](https://github.com/bojansandhaus/jev-decisions-hermes)** — Jev Decisions Plugin for Hermes (and other AI Agents): tool risk reviews, human approval recommendations, evidence checks, and a local decision journal.
   <sub>`Plugin` · bojansandhaus · `Py` · call site [`jev_client.py`](https://github.com/bojansandhaus/jev-decisions-hermes/blob/HEAD/jev_client.py), read 2026-09-22</sub>
 
-- **[jev-enforce](https://github.com/erkamyaman/jev-enforce)** — Claude Code plugin that checks every reply and file edit against your CLAUDE.md or AGENTS.md: one Jev noul per rule in a single request, and broken rules are quoted back as a Stop or PostToolUse block so Claude fixes them in the same turn. Also a CLI for CI. <sub>(written by a model)</sub>
-  <sub>`Plugin` · erkamyaman · `TS` · `noul` · call site [`dist/src/jev.js`](https://github.com/erkamyaman/jev-enforce/blob/HEAD/dist/src/jev.js), read by a model 2026-10-24</sub>
-
 - **[jev-enterprise-decision-fabric](https://github.com/ghubnab99/jev-enterprise-decision-fabric)** — Architecture for running many semantic decisions through one validated path, with a labelled 111-case benchmark comparing TypeSafe Jev against a Claude baseline, and a dashboard for inspecting any single decision. Experimental, not production. <sub>(upstream description)</sub>
   <sub>`Benchmark` · ghubnab99 · `C#` · call site [`src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs`](https://github.com/ghubnab99/jev-enterprise-decision-fabric/blob/HEAD/src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs), read 2026-09-22</sub>
 
@@ -289,9 +295,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-labs](https://github.com/copyleftdev/jev-labs)** — Never confidently wrong: a TLA+-verified consensus kernel around TypeSafe's Jev, run through 1,680 chaos-tested pharmacy decisions with zero wrong verdicts. Film, code, and every captured call. <sub>(upstream description)</sub>
   <sub>`Project` · copyleftdev · `Py` · call site [`consensus/rust/consensus-kernel/src/jev.rs`](https://github.com/copyleftdev/jev-labs/blob/HEAD/consensus/rust/consensus-kernel/src/jev.rs), read 2026-09-22</sub>
-
-- **[jev-lint](https://github.com/ckorhonen/jev-lint)** — Fuzzy linter for coding agents: after an agent writes a file, each of the team's plain-language rules is asked as a Jev noul, and about 0.3 s later the agent hears which rules it broke. Can generate rules from the repository; Cloudflare and OpenAI judges as alternatives. <sub>(written by a model)</sub>
-  <sub>`Plugin` · ckorhonen · `TS` · `noul` · call site [`src/jev.ts`](https://github.com/ckorhonen/jev-lint/blob/HEAD/src/jev.ts), read by a model 2026-10-24</sub>
 
 - **[jev-lm](https://github.com/y0usaf/jev-lm)** — A word-level language model whose output layer is Jev: n-gram drafter, Noul chunk verification, bits-per-token eval <sub>(upstream description)</sub>
   <sub>`Project` · y0usaf · `TS` · call site [`python/jev_lm/api.py`](https://github.com/y0usaf/jev-lm/blob/HEAD/python/jev_lm/api.py), read 2026-09-22</sub>
@@ -323,8 +326,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-shadcn-lint-eval](https://github.com/blas0/jev-shadcn-lint-eval)** — A small second eval for shadcn-ui/lint that uses TypeSafe's Jev to judge the linter's own output. <sub>(upstream description)</sub>
   <sub>`Project` · blas0 · `JS` · call site [`run-rule-cases.mjs`](https://github.com/blas0/jev-shadcn-lint-eval/blob/HEAD/run-rule-cases.mjs), read 2026-09-22</sub>
 
-- **[jev-subtitle-translator](https://github.com/GeekLinkDev/jev-subtitle-translator)** — Translate SRT subtitles with structured LLM output and check every translation with Jev. <sub>(upstream description)</sub>
-  <sub>`Project` · geeklinkdev · `Py` · call site [`src/jev_subtitle_translator/cli.py`](https://github.com/GeekLinkDev/jev-subtitle-translator/blob/HEAD/src/jev_subtitle_translator/cli.py), read 2026-09-24</sub>
+- **[jev-suite](https://github.com/klauswg/jev-suite)** — Four decision-quality tools on Jev (TypeSafe System One): Jev answers structured questions, deterministic code keeps the final say. <sub>(upstream description)</sub>
+  <sub>`Project` · klauswg · `Java` · call site [`jev-fidelity/src/main/java/com/jevsuite/fidelity/eval/EvalRunner.java`](https://github.com/klauswg/jev-suite/blob/HEAD/jev-fidelity/src/main/java/com/jevsuite/fidelity/eval/EvalRunner.java), read 2026-09-24</sub>
 
 - **[jev-the-janitor](https://github.com/kylehovance-ai/jev-the-janitor)** — A janitor for markdown vaults powered by TypeSafe Jev: Jev votes on each note, your code files it, you review the low-confidence pile.
   <sub>`Project` · kylehovance-ai · `Py` · call site [`janitor/client.py`](https://github.com/kylehovance-ai/jev-the-janitor/blob/HEAD/janitor/client.py), read 2026-09-22</sub>
@@ -346,9 +349,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevkit](https://github.com/ariel-frischer/jevkit)** — Fast Rust CLI for TypeSafe Jev: typed decisions, offline linting before you pay <sub>(upstream description)</sub>
   <sub>`Project` · ariel-frischer · `Rs` · call site [`src/auth.rs`](https://github.com/ariel-frischer/jevkit/blob/HEAD/src/auth.rs), read 2026-09-22</sub>
-
-- **[Jevlint (codegirl-007)](https://github.com/codegirl-007/jevlint)** — Linter that checks code against plain-language rules: Tree-sitter extracts each code unit and Jev answers one `choice` per rule (pass, fail, optionally skip or abstain); a failure is reported only when its confidence reaches the rule's floor. Other backends: OpenAI, OpenRouter, Cloudflare. <sub>(written by a model)</sub>
-  <sub>`Project` · codegirl-007 · `Go` · `choice` · call site [`internal/evaluation/client.go`](https://github.com/codegirl-007/jevlint/blob/HEAD/internal/evaluation/client.go), read by a model 2026-10-26</sub>
 
 - **[jevsume](https://github.com/unownone/jevsume)** — ATS-friendly resume review powered by Jev (TypeSafe System One). The frontend extracts resume text the way a parser would, then a Cloudflare Worker runs typed JEV questions and composes a JevScore. <sub>(upstream description)</sub>
   <sub>`Project` · unownone · `TS` · call site [`packages/jev/http.ts`](https://github.com/unownone/jevsume/blob/HEAD/packages/jev/http.ts), read 2026-09-22 · ⚠ `no licence`</sub>

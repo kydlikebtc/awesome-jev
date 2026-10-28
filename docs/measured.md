@@ -78,6 +78,10 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   Reproducible calibration and selective-risk benchmarks for Jev/TypeSafe decisions in DSPy workflows <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · ★10+ · jmanhype · `Py` · [call site](https://github.com/jmanhype/jev-dspy-lab/blob/HEAD/src/jev_dspy_lab/live.py), read 2026-09-22</sub>
 
+- **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)**<br>
+  Jev (TypeSafe) vs Claude Haiku 4.5 on 2 000 phishing emails: accuracy, calibration, latency, cost. Reproducible benchmark. <sub>(earlier upstream description)</sub><br>
+  <sub>`Benchmark` · ★10+ · anisselbd · `Py` · [call site](https://github.com/anisselbd/jev-phishing-bench/blob/HEAD/run_jev.py), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
+
 - **[jev-rag-benchmark](https://github.com/erendikmenn/jev-rag-benchmark)**<br>
   Reproducible benchmark for measuring Jev reranking quality, latency, and cost in RAG <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · ★10+ · erendikmenn · `Py` · [call site](https://github.com/erendikmenn/jev-rag-benchmark/blob/HEAD/src/jev_rag_benchmark/rerankers.py), read 2026-09-22 · author's conclusion: favourable (author-stated, not reproduced here)</sub>
@@ -281,10 +285,6 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[jev-orderby-bench](https://github.com/yodablocks/jev-orderby-bench)**<br>
   Does ORDER BY over a Jev probability put rows in a defensible order? Independent ranking, calibration and invariant measurements of TypeSafe AI's Jev: passes six pre-registered gates on 360 labeled rows, fails four of six on graded product relevance. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · yodablocks · `Py` · [call site](https://github.com/yodablocks/jev-orderby-bench/blob/HEAD/harness/client.py), read 2026-09-22</sub>
-
-- **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)**<br>
-  Jev (TypeSafe) vs Claude Haiku 4.5 on 2 000 phishing emails: accuracy, calibration, latency, cost. Reproducible benchmark. <sub>(earlier upstream description)</sub><br>
-  <sub>`Benchmark` · anisselbd · `Py` · [call site](https://github.com/anisselbd/jev-phishing-bench/blob/HEAD/run_jev.py), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
 
 - **[jev-play-ping-pong](https://github.com/Icohen007/jev-play-ping-pong)**<br>
   Jev plays browser table tennis in real time: structured telemetry, typed decisions, ordinary Chrome inputs, and auditable evidence. <sub>(upstream description)</sub><br>

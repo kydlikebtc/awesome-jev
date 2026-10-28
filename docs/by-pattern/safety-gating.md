@@ -113,6 +113,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[is-malicious](https://github.com/luantak/is-malicious)** — A codebase scanner that helps you not run malicous code <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · luantak · `TS` · call site [`src/jev.ts`](https://github.com/luantak/is-malicious/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
+- **[JEV Safety Gateway](https://github.com/dark-hxx/jev-safety-gateway)** — Reverse proxy between nginx and an OpenAI-compatible LLM backend that extracts each request's user input, asks Jev a noul on whether it is safe, and blocks harmful requests while passing the rest through; rotates over several API keys. Chinese-first docs. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · dark-hxx · `Go` · `noul` · call site [`internal/jev/client.go`](https://github.com/dark-hxx/jev-safety-gateway/blob/HEAD/internal/jev/client.go), read by a model 2026-10-24</sub>
+
 - **[jev-belay](https://github.com/valentynkit/jev-belay)** — Claude Code Stop hook that blocks an unverified done: reads the transcript for evidence, asks Jev once, fails open on everything else <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · valentynkit · `JS` · call site [`belay.mjs`](https://github.com/valentynkit/jev-belay/blob/HEAD/belay.mjs), read 2026-09-24</sub>
 
@@ -125,14 +128,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-engineering](https://github.com/eugeniughelbur/jev-engineering)** — Claude Code PreToolUse gate: regex hard rules and a read-only allowlist first, then one Noul and one Choice decide allow, ask or deny, so clearly safe commands skip the permission prompt. Codex, Cursor and OpenCode adapters, plus a review-router GitHub Action.
   <sub>`Plugin` · ★10+ · eugeniughelbur · `Py` · `noul` · `choice` · call site [`jev_gate.py`](https://github.com/eugeniughelbur/jev-engineering/blob/HEAD/jev_gate.py), read 2026-09-28 · ⚠ `self-submitted`</sub>
 
-- **[jev-guard](https://github.com/klauswg/jev-guard)** — Real-time risk triage gateway for exchange deposits and withdrawals — Jev (TypeSafe System One) handles triage only; adjudication stays in deterministic code. <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · klauswg · `Java` · call site [`src/main/java/com/jevguard/eval/EvalRunner.java`](https://github.com/klauswg/jev-guard/blob/HEAD/src/main/java/com/jevguard/eval/EvalRunner.java), read 2026-09-24</sub>
-
 - **[jev-harness](https://github.com/AntonioCoppe/jev-harness)** — Decision harness for TypeSafe Jev — confidence gates, shadow mode, recipes, and evals. Claude CLI 48.9s → Jev 1.3s on the same row-filter job. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · antoniocoppe · `TS` · call site [`demos/proof/row-filter/run.ts`](https://github.com/AntonioCoppe/jev-harness/blob/HEAD/demos/proof/row-filter/run.ts), read 2026-09-22</sub>
 
 - **[jev-harness](https://github.com/ismaelsoilet/jev-harness)** — Decision gates for AI coding agents (CLI, MCP server, CI hook; Python, TypeScript and Rust SDKs): offline heuristics first, then optional Jev judgments on whether a failing test log needs the LLM, whether to abort a fix loop, which model tier and reasoning effort to use, and if a step is done. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · ismaelsoilet · `Py` · call site [`src/jev_harness/client.py`](https://github.com/ismaelsoilet/jev-harness/blob/HEAD/src/jev_harness/client.py), read 2026-09-24</sub>
+
+- **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — Claude Code kit: a PreToolUse guard where a free pre-filter passes about 93% of tool calls and Jev judges the rest (allow, warn, rewrite or block; fails open), sub-agent sizing, and Jev wired into file search, browsing and review. The author reports 9/9 browser runs at 0.0008 USD of Claude spend. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · jonathanavis96 · `Py` · `choice` · `noul` · call site [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py), read by a model 2026-10-24 · ⚠ `vendor numbers`</sub>
 
 - **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — Computer-use agent for native macOS apps on Apple silicon: OmniParser CoreML, Apple Vision OCR and accessibility labels find a window's controls locally, and Jev picks the next action with a choice from the observed text, never pixels. Input is guarded, and benchmarks check results, not Jev's DONE. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · jcpsimmons · `JS` · call site [`src/providers.mjs`](https://github.com/jcpsimmons/jev-macos-loop/blob/HEAD/src/providers.mjs), read 2026-09-22</sub>
@@ -172,6 +175,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[toolgate](https://github.com/RiskAverseTech/toolgate)** — Open auto mode for AI agents — a calibrated tool-call firewall powered by TypeSafe Jev. Ships as a Claude Code hook <sub>(earlier upstream description)</sub>
   <sub>`Plugin` · ★10+ · riskaversetech · `TS` · call site [`src/backends/typesafe.ts`](https://github.com/RiskAverseTech/toolgate/blob/HEAD/src/backends/typesafe.ts), read 2026-09-22</sub>
+
+- **[x402check](https://github.com/caiovicentino/jev-risk-check-provider)** — Pre-payment risk-check provider for x402 agents and wallets: sanctions lists, phishing feeds, transaction simulation and drainer-kit fingerprints, plus Jev nouls, a choice and a score that read what the agent acted on for injected instructions. Verdicts are signed attestations. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · caiovicentino · `TS` · `noul` · `choice` · `score` · call site [`src/jev.ts`](https://github.com/caiovicentino/jev-risk-check-provider/blob/HEAD/src/jev.ts), read by a model 2026-10-24 · ⚠ `marketing`</sub>
 
 - **[actiongate-jev](https://github.com/omkarghugarkar007/actiongate-jev)** — Open-source Jev tool-calling authorization gateway for AI agents: deterministic policy, exact-action single-use permits, MCP and HTTP enforcement. <sub>(upstream description)</sub>
   <sub>`Plugin` · omkarghugarkar007 · `TS` · call site [`packages/decision-provider/src/typesafe-jev.ts`](https://github.com/omkarghugarkar007/actiongate-jev/blob/HEAD/packages/decision-provider/src/typesafe-jev.ts), read 2026-09-22</sub>
@@ -245,9 +251,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
 
-- **[JEV Safety Gateway](https://github.com/dark-hxx/jev-safety-gateway)** — Reverse proxy between nginx and an OpenAI-compatible LLM backend that extracts each request's user input, asks Jev a noul on whether it is safe, and blocks harmful requests while passing the rest through; rotates over several API keys. Chinese-first docs. <sub>(written by a model)</sub>
-  <sub>`Project` · dark-hxx · `Go` · `noul` · call site [`internal/jev/client.go`](https://github.com/dark-hxx/jev-safety-gateway/blob/HEAD/internal/jev/client.go), read by a model 2026-10-24</sub>
-
 - **[jev-agent-authorization](https://github.com/kinde-starter-kits/jev-agent-authorization)** — Jev agent authorization for MCP tool calls: Kinde identity and permissions plus Jev's typed, calibrated decisions, checked server-side before every call runs <sub>(upstream description)</sub>
   <sub>`Plugin` · kinde-starter-kits · `TS` · call site [`convex/jev/client.ts`](https://github.com/kinde-starter-kits/jev-agent-authorization/blob/HEAD/convex/jev/client.ts), read 2026-09-24</sub>
 
@@ -284,11 +287,11 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-guard](https://github.com/CMaintz/jev-guard)** — Vets an LLM agent's tool calls through TypeSafe AI's Jev before they run — allow, block, or hold, failing safe on uncertainty. <sub>(upstream description)</sub>
   <sub>`Project` · cmaintz · `TS` · call site [`src/providers/typesafe.ts`](https://github.com/CMaintz/jev-guard/blob/HEAD/src/providers/typesafe.ts), read 2026-09-24 · ⚠ `archived`</sub>
 
+- **[jev-guard](https://github.com/klauswg/jev-guard)** — Real-time risk triage gateway for exchange deposits and withdrawals — Jev (TypeSafe System One) handles triage only; adjudication stays in deterministic code. <sub>(upstream description)</sub>
+  <sub>`Project` · klauswg · `Java` · call site [`src/main/java/com/jevguard/eval/EvalRunner.java`](https://github.com/klauswg/jev-guard/blob/HEAD/src/main/java/com/jevguard/eval/EvalRunner.java), read 2026-09-24</sub>
+
 - **[jev-guard](https://github.com/muratcakmak/jev-guard)** — Probability-scored guardrails for Claude Code: deny rule-breaking edits and unasked-for deploys, route your docs into each prompt, and check the final answer against the turn's own evidence. <sub>(upstream description)</sub>
   <sub>`Plugin` · muratcakmak · `TS` · call site [`scripts/jev-lint.ts`](https://github.com/muratcakmak/jev-guard/blob/HEAD/scripts/jev-lint.ts), read 2026-09-24 · ⚠ `one commit`</sub>
-
-- **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — Claude Code kit: a PreToolUse guard where a free pre-filter passes about 93% of tool calls and Jev judges the rest (allow, warn, rewrite or block; fails open), sub-agent sizing, and Jev wired into file search, browsing and review. The author reports 9/9 browser runs at 0.0008 USD of Claude spend. <sub>(written by a model)</sub>
-  <sub>`Plugin` · jonathanavis96 · `Py` · `choice` · `noul` · call site [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py), read by a model 2026-10-24 · ⚠ `vendor numbers`</sub>
 
 - **[jev-logtriage](https://github.com/jyatesdotdev/jev-logtriage)** — Jev decides whether a batch of logs is worth acting on. Typed questions, confidence gates, nothing executed. <sub>(upstream description)</sub>
   <sub>`Project` · jyatesdotdev · `Py` · call site [`logtriage/cli.py`](https://github.com/jyatesdotdev/jev-logtriage/blob/HEAD/logtriage/cli.py), read 2026-09-22</sub>
@@ -445,9 +448,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[wakegate](https://github.com/shitianfang/wakegate)** — Ask Jev whether a sleeping agent's wakeup is worth a full LLM turn before you resume it. A fail-open wake gate for long-running agents on Workers, Durable Objects and Node. <sub>(upstream description)</sub>
   <sub>`Project` · shitianfang · `TS` · call site [`src/index.ts`](https://github.com/shitianfang/wakegate/blob/HEAD/src/index.ts), read 2026-09-22</sub>
-
-- **[x402check](https://github.com/caiovicentino/jev-risk-check-provider)** — Pre-payment risk-check provider for x402 agents and wallets: sanctions lists, phishing feeds, transaction simulation and drainer-kit fingerprints, plus Jev nouls, a choice and a score that read what the agent acted on for injected instructions. Verdicts are signed attestations. <sub>(written by a model)</sub>
-  <sub>`Project` · caiovicentino · `TS` · `noul` · `choice` · `score` · call site [`src/jev.ts`](https://github.com/caiovicentino/jev-risk-check-provider/blob/HEAD/src/jev.ts), read by a model 2026-10-24 · ⚠ `marketing`</sub>
 
 - **[XavierJev](https://github.com/liu-x27/XavierJev)** — A local decision layer in Jev's shape: yes/no, choice and rubric questions read off one token's logprobs from a local model, with a Claude Code permission gate measured on held-out command sets.
   <sub>`Jev-like alternative` · Xinyu Liu · `TS` · `noul` · `choice` · `score` · cited file [`src/gate.ts`](https://github.com/liu-x27/XavierJev/blob/HEAD/src/gate.ts), read 2026-09-25 · ⚠ `not Jev itself` `AI-written`</sub>
