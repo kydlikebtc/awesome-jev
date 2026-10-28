@@ -3727,6 +3727,37 @@
     }
   },
   {
+    "slug": "awesome-ai-quant",
+    "title": "awesome-ai-quant",
+    "summary": "Curated reading map for AI engineers entering quantitative finance: trading agents, LLM factor mining, decision models in markets, tabular FMs — each entry annotated with why AI engineers should care.",
+    "summary_zh": "AI 工程师进量化金融的阅读地图：交易 Agent、LLM 因子挖掘、市场中的决策模型、表格基础模型——每条标注 AI 视角注释。",
+    "url": "https://github.com/vicfei/awesome-ai-quant",
+    "kind": "tutorial",
+    "patterns": [
+      "overview"
+    ],
+    "author": {
+      "name": "vicfei",
+      "url": "https://github.com/vicfei"
+    },
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/vicfei/awesome-ai-quant"
+      }
+    ],
+    "license": "CC0-1.0",
+    "repo_license": "CC0-1.0",
+    "has_code": true,
+    "languages": [
+      "python"
+    ],
+    "evidence_none": "no-jev-call-site",
+    "flags": [
+      "self-submitted"
+    ]
+  },
+  {
     "slug": "awesome-jev",
     "title": "awesome-jev",
     "summary": "TypeSafe System One / Jev community directory — GitHub projects & posts around typed decisions (typesafe.ai)",
