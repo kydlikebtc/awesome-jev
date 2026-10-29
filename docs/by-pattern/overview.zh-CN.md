@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 475 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 481 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 373 · 接口形态 63 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 39。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 373 · 接口形态 68 · 仅示例 0 · 独立报告 23 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -359,8 +359,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[audio-jevlike](https://github.com/alperiox/audio-jevlike)** — Prosodia：原生面向音频、形似 Jev 的决策模型——直接从语音给出校准的类型化决策，无需语音识别。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · alperiox · `Py` · 引用文件 [`space/prosodia/evaluation/baselines.py`](https://github.com/alperiox/audio-jevlike/blob/HEAD/space/prosodia/evaluation/baselines.py)，2026-09-24 阅读 · ⚠ `并非 Jev 本身` `无许可证`</sub>
 
+- **[awesome-ai-quant](https://github.com/vicfei/awesome-ai-quant)** — AI 工程师进量化金融的阅读地图：交易 Agent、LLM 因子挖掘、市场中的决策模型、表格基础模型——每条标注 AI 视角注释。
+  <sub>`教程` · vicfei · `Py` · ⚠ `作者自荐`</sub>
+
 - **[awesome-jev-prompts](https://github.com/vicfei/awesome-jev-prompts)** — Jev 类型化决策的问题设计模式库：51 条、9 大分类（选择/评分/判定/路由/护栏/校准/具身多模态/反模式等），中英双语，每条按四级验证政策标注来源（documented/community-observed/derived/measured）；带日期化生态编年史与每日 CI 链接检查。
   <sub>`教程` · vicfei · `Py` · ⚠ `作者自荐`</sub>
+
+- **[Bud Decision Studio](https://github.com/BudEcosystem/Bud-Decision-Studio)** — 适用于 macOS、Windows 和 Linux 的桌面应用：自动安装本地引擎，运行 Kev、Laya、Lev 等 11 个开源决策模型，对外提供 TypeSafe 的 /v1/systemone 接口以及 OpenRouter 和 Vercel 网关的路由，并带有试验场、评估、决策历史和训练功能。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · BudEcosystem · `Py` · 引用文件 [`basal/server.py`](https://github.com/BudEcosystem/Bud-Decision-Studio/blob/HEAD/basal/server.py)，2026-10-28 模型阅读 · ⚠ `并非 Jev 本身` `无许可证`</sub>
 
 - **[Build Your Own JEV Locally: Run a 100% Private AI Agent on Your Machine](https://medium.com/coding-nexus/build-your-own-jev-locally-run-a-100-private-ai-agent-on-your-machine-bb98126d394a)** — 标题误导：它并没有在跑 Jev，而是用开源 LLM 加受约束的 next-token 打分，自己搭一个 Jev-like 决策引擎。
   <sub>`Jev 替代实现` · DataScience Nexus · `Py` · ⚠ `并非 Jev 本身` `代码未实测` `付费墙`</sub>
@@ -482,6 +488,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev4mellea](https://github.com/SoundBlaster/Jev4Mellea)** — 给 Mellea 的 Jev 适配器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · soundblaster · `Py` · 调用点 [`src/mellea_jev/providers/typesafe.py`](https://github.com/SoundBlaster/Jev4Mellea/blob/HEAD/src/mellea_jev/providers/typesafe.py)，2026-09-22 阅读</sub>
 
+- **[Jeva](https://github.com/LiQiiiii/Jeva)** — 来自新加坡国立大学的研究型 System One 模型（Jeva-4B）。编码器分别读取 state 和每个选项，因此选项顺序不影响结果，选项计算可以缓存，并显式给出“无合适选项”的概率。其 Python 方法 `system_one` 接受 Jev 式的 state 以及 Choice、Noul、Score 问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · LiQiiiii · `Py` · 引用文件 [`src/jeva/inference.py`](https://github.com/LiQiiiii/Jeva/blob/HEAD/src/jeva/inference.py)，2026-10-28 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
 - **[jevclient](https://github.com/AboveColin/jevclient)** — Jev 的异步 Python 客户端：类型化问题进，概率与选择出，没有散文需要解析。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · abovecolin · `Py` · 调用点 [`jevclient/const.py`](https://github.com/AboveColin/jevclient/blob/HEAD/jevclient/const.py)，2026-09-22 阅读</sub>
 
@@ -503,8 +512,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[kunobi-jev](https://github.com/kunobi-ninja/kunobi-decision)** — System One API 的 Rust 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · kunobi-ninja · `Rs` · 调用点 [`src/client/mod.rs`](https://github.com/kunobi-ninja/kunobi-decision/blob/HEAD/src/client/mod.rs)，2026-09-22 阅读</sub>
 
+- **[laya-php](https://github.com/marcreichel/laya-php)** — 面向 Laya（开源多语言决策引擎）的 PHP 8.4 和 Laravel SDK：把一个决策写成带枚举的只读类，laya-serve 的 /v1/systemone 接口就会返回填好的类型化对象，每个答案附带置信度。还提供用于测试的假实现、缓存、事件和批量预测。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · marcreichel · `PHP` · 引用文件 [`src/Laya.php`](https://github.com/marcreichel/laya-php/blob/HEAD/src/Laya.php)，2026-10-28 模型阅读 · ⚠ `并非 Jev 本身`</sub>
+
 - **[OpenJev](https://github.com/xingwudao/OpenJev)** — OpenJev：受 Jev 启发、基于 TypeSafe.ai 理念的独立 System One 决策 API，提供 choice、score、noul 原语、本地模拟服务器以及 Python 和 TypeScript SDK。真实推理尚在计划中，与 TypeSafe AI 无关。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · xingwudao · `Py` · 引用文件 [`sdk/python/openjev/__init__.py`](https://github.com/xingwudao/OpenJev/blob/HEAD/sdk/python/openjev/__init__.py)，2026-09-24 阅读 · ⚠ `并非 Jev 本身` `无许可证`</sub>
+
+- **[OpenJev (alanhuangyoo)](https://github.com/alanhuangyoo/OpenJev)** — 开源决策模型（OpenJev-1.7B、4B 和 8B；Python 包 wev-ai），通过本地的 POST /v1/systemone 提供服务，训练方法是在真实网站上蒸馏浏览器智能体的类型化请求。除了 choice、是非题和 score，它还能为浏览器智能体选择下一步操作和元素。作者报告 4B 版本在 153 个真实任务中完成 39 到 41 个。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · alanhuangyoo · `Py` · 引用文件 [`wev/serve.py`](https://github.com/alanhuangyoo/OpenJev/blob/HEAD/wev/serve.py)，2026-10-28 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[origin-civilization](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION)** — AI 生命与文明模拟：每个决策都由 Jev 做出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · jacquesgariepy · `TS` · 调用点 [`legacy/source/providers.js`](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION/blob/HEAD/legacy/source/providers.js)，2026-09-22 阅读</sub>
@@ -514,6 +529,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[snap](https://github.com/emnlmn/snap)** — 从非结构化状态得到类型化决策：一次前向传播、零生成文本。本地、确定性、兼容 Jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · emnlmn · `Rs` · 引用文件 [`src/api.rs`](https://github.com/emnlmn/snap/blob/HEAD/src/api.rs)，2026-09-24 阅读 · ⚠ `并非 Jev 本身`</sub>
+
+- **[StartLux-Decision](https://github.com/StartLuxLabs/StartLux-Decision)** — StartLux 的开源决策模型（0.8B 到 27B，分 Instant 和 AutoThink 两类），以及在 vLLM、llama.cpp 或 MLX 上回答 choice、noul 和 score 的推理引擎与 HTTP 服务器，接口兼容 /v1/systemone。AutoThink 只在最高概率低于门槛时才进行推理。作者报告其在 Decision Index 0.3.2 排行榜上位列第一。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · StartLuxLabs · `Py` · 引用文件 [`v1/startlux_decision/jevfmt.py`](https://github.com/StartLuxLabs/StartLux-Decision/blob/HEAD/v1/startlux_decision/jevfmt.py)，2026-10-28 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)** — 首个独立的 System One 决策模型横评（Laya 对比 Jev）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · instax-dutta · `Py` · 调用点 [`runners/jev_runner.py`](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py)，2026-09-22 阅读</sub>

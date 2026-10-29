@@ -4,11 +4,11 @@
 
 _把大量问题（包括推测性的）打包进一次请求，再由代码挑出真正用得上的答案。_
 
-这个决策的全部已收录例子 —— 共 34 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#并行扇出)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 35 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#并行扇出)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#fan-out)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#fan-out)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 26 · 接口形态 1 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 7。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 27 · 接口形态 1 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 7。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -111,6 +111,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-switchboard](https://github.com/ZIJIAN004/jev-switchboard)** — 给并行编程智能体的 JEV 门控语义通信层。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zijian004 · `JS` · 调用点 [`src/jev.mjs`](https://github.com/ZIJIAN004/jev-switchboard/blob/HEAD/src/jev.mjs)，2026-09-22 阅读</sub>
+
+- **[jevcrawl](https://github.com/RayenMlayeh/jevcrawl)** — 为智能体的问题爬取网站的 MCP 服务器和命令行工具。每个页面发一次 Jev 请求：对每个文本块问一个 `noul`（它是否有助于回答目标问题？），对每个链接问两个（是否直接通向答案页，或通向相关栏目）；最后再用一个 `noul` 判断保留的摘录是否已完整回答问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · RayenMlayeh · `Py` · `noul` · 调用点 [`jevcrawl/decide/questions.py`](https://github.com/RayenMlayeh/jevcrawl/blob/HEAD/jevcrawl/decide/questions.py)，2026-10-28 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jevswiftsdk](https://github.com/NSStudent/JevSwiftSDK)** — 独立、非官方、零依赖的 System One API Swift SDK：choice、noul 和 score 问题都映射为 Swift 类型（比如对枚举的 choice），具名批量问题一次调用作答并逐个校验答案，支持按策略重试和取消。支持 iOS 15+、macOS 12+ 和 Linux。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · nsstudent · `Swift` · 调用点 [`Sources/JevSwiftSDK/Configuration.swift`](https://github.com/NSStudent/JevSwiftSDK/blob/HEAD/Sources/JevSwiftSDK/Configuration.swift)，2026-09-22 阅读</sub>

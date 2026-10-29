@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 475 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 481 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 373 · wire shape 63 · example only 0 · independent reports 23 · negative results 1 · no file cited 39. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 373 · wire shape 68 · example only 0 · independent reports 23 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -359,8 +359,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[audio-jevlike](https://github.com/alperiox/audio-jevlike)** — Prosodia: an audio-native Jev-shaped decision model — typed calibrated decisions from speech, no ASR <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · alperiox · `Py` · cited file [`space/prosodia/evaluation/baselines.py`](https://github.com/alperiox/audio-jevlike/blob/HEAD/space/prosodia/evaluation/baselines.py), read 2026-09-24 · ⚠ `not Jev itself` `no licence`</sub>
 
+- **[awesome-ai-quant](https://github.com/vicfei/awesome-ai-quant)** — Curated reading map for AI engineers entering quantitative finance: trading agents, LLM factor mining, decision models in markets, tabular FMs — each entry annotated with why AI engineers should care.
+  <sub>`Tutorial` · vicfei · `Py` · ⚠ `self-submitted`</sub>
+
 - **[awesome-jev-prompts](https://github.com/vicfei/awesome-jev-prompts)** — Question-design pattern library for Jev typed decisions: 51 entries / 9 categories (choice, score, noul, routing, guardrails, calibration, embodied & multimodal, anti-patterns), bilingual EN/中文, each entry sourced under a four-level verification policy.
   <sub>`Tutorial` · vicfei · `Py` · ⚠ `self-submitted`</sub>
+
+- **[Bud Decision Studio](https://github.com/BudEcosystem/Bud-Decision-Studio)** — Desktop app for macOS, Windows and Linux that installs a local engine and runs eleven open decision models (Kev, Laya, Lev and others) behind TypeSafe's /v1/systemone API and the OpenRouter and Vercel gateway routes, with a playground, evaluation, decision history and a trainer. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · BudEcosystem · `Py` · cited file [`basal/server.py`](https://github.com/BudEcosystem/Bud-Decision-Studio/blob/HEAD/basal/server.py), read by a model 2026-10-28 · ⚠ `not Jev itself` `no licence`</sub>
 
 - **[Build Your Own JEV Locally: Run a 100% Private AI Agent on Your Machine](https://medium.com/coding-nexus/build-your-own-jev-locally-run-a-100-private-ai-agent-on-your-machine-bb98126d394a)** — Despite the title, this does not run Jev. It builds a Jev-like decision engine from an open LLM using constrained next-token scoring.
   <sub>`Jev-like alternative` · DataScience Nexus · `Py` · ⚠ `not Jev itself` `code untested` `paywall`</sub>
@@ -482,6 +488,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev4mellea](https://github.com/SoundBlaster/Jev4Mellea)** — Jev adapter for Mellea <sub>(upstream description)</sub>
   <sub>`Integration` · soundblaster · `Py` · call site [`src/mellea_jev/providers/typesafe.py`](https://github.com/SoundBlaster/Jev4Mellea/blob/HEAD/src/mellea_jev/providers/typesafe.py), read 2026-09-22</sub>
 
+- **[Jeva](https://github.com/LiQiiiii/Jeva)** — Research System One model from the National University of Singapore (Jeva-4B). The encoder reads the state and each option separately, so option order does not matter, options can be cached and a null answer is explicit. Its Python `system_one` takes Jev-style Choice, Noul and Score questions. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · LiQiiiii · `Py` · cited file [`src/jeva/inference.py`](https://github.com/LiQiiiii/Jeva/blob/HEAD/src/jeva/inference.py), read by a model 2026-10-28 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[jevclient](https://github.com/AboveColin/jevclient)** — Async Python client for TypeSafe Jev. Typed questions in, probabilities and choices out, no prose to parse. <sub>(upstream description)</sub>
   <sub>`SDK` · abovecolin · `Py` · call site [`jevclient/const.py`](https://github.com/AboveColin/jevclient/blob/HEAD/jevclient/const.py), read 2026-09-22</sub>
 
@@ -503,8 +512,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[kunobi-jev](https://github.com/kunobi-ninja/kunobi-decision)** — Rust client for the TypeSafe System One API (Jev) <sub>(upstream description)</sub>
   <sub>`SDK` · kunobi-ninja · `Rs` · call site [`src/client/mod.rs`](https://github.com/kunobi-ninja/kunobi-decision/blob/HEAD/src/client/mod.rs), read 2026-09-22</sub>
 
+- **[laya-php](https://github.com/marcreichel/laya-php)** — PHP 8.4 and Laravel SDK for Laya, the open multilingual decision engine: describe a decision as a readonly class with enums, and laya-serve's /v1/systemone endpoint answers it as a typed object with a confidence per answer. It adds a fake for tests, caching, events and batch prediction. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · marcreichel · `PHP` · cited file [`src/Laya.php`](https://github.com/marcreichel/laya-php/blob/HEAD/src/Laya.php), read by a model 2026-10-28 · ⚠ `not Jev itself`</sub>
+
 - **[OpenJev](https://github.com/xingwudao/OpenJev)** — OpenJev: an independent Jev-inspired System One decision API based on TypeSafe.ai concepts. Choice, score and noul primitives, local mock server, Python and TypeScript SDKs. Real inference planned; not affiliated with TypeSafe AI. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · xingwudao · `Py` · cited file [`sdk/python/openjev/__init__.py`](https://github.com/xingwudao/OpenJev/blob/HEAD/sdk/python/openjev/__init__.py), read 2026-09-24 · ⚠ `not Jev itself` `no licence`</sub>
+
+- **[OpenJev (alanhuangyoo)](https://github.com/alanhuangyoo/OpenJev)** — Open decision models (OpenJev-1.7B, 4B, 8B; package wev-ai) behind POST /v1/systemone, distilled from a browser agent's typed requests on live sites. Besides choice, yes/no and score, they pick a browser agent's next operation and element. The author reports 39 to 41 of 153 live tasks for the 4B. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · alanhuangyoo · `Py` · cited file [`wev/serve.py`](https://github.com/alanhuangyoo/OpenJev/blob/HEAD/wev/serve.py), read by a model 2026-10-28 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[origin-civilization](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION)** — AI life-and-civilization simulation: TypeSafe Jev makes every decision (typed, probabilistic, auditable); LLMs plan — OpenAI-compatible APIs, local models (Ollama, LM Studio), Claude Code, Codex. <sub>(upstream description)</sub>
   <sub>`Benchmark` · jacquesgariepy · `TS` · call site [`legacy/source/providers.js`](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION/blob/HEAD/legacy/source/providers.js), read 2026-09-22</sub>
@@ -514,6 +529,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[snap](https://github.com/emnlmn/snap)** — Typed decisions from unstructured state: one forward pass, zero generated text. Local, deterministic, Jev-compatible. Not affiliated with typesafe.ai. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · emnlmn · `Rs` · cited file [`src/api.rs`](https://github.com/emnlmn/snap/blob/HEAD/src/api.rs), read 2026-09-24 · ⚠ `not Jev itself`</sub>
+
+- **[StartLux-Decision](https://github.com/StartLuxLabs/StartLux-Decision)** — StartLux's open decision models (0.8B to 27B) with an engine and HTTP server answering choice, noul and score behind a /v1/systemone-compatible API on vLLM, llama.cpp or MLX. AutoThink reasons only below a probability gate. The authors report ranking first on Decision Index 0.3.2. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · StartLuxLabs · `Py` · cited file [`v1/startlux_decision/jevfmt.py`](https://github.com/StartLuxLabs/StartLux-Decision/blob/HEAD/v1/startlux_decision/jevfmt.py), read by a model 2026-10-28 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)** — First independent head-to-head benchmark of System One decision models (Laya vs Jev) on byte-identical inputs <sub>(upstream description)</sub>
   <sub>`Benchmark` · instax-dutta · `Py` · call site [`runners/jev_runner.py`](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py), read 2026-09-22</sub>

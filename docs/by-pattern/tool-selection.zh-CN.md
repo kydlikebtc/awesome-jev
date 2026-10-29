@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 236 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 239 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 228 · 接口形态 4 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 231 · 接口形态 4 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -426,6 +426,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[computer-use-jev](https://github.com/paulsmith/computer-use-jev)** — 以 Jev 为决策者的 macOS computer use。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · paulsmith · `Go` · 调用点 [`typesafe/client.go`](https://github.com/paulsmith/computer-use-jev/blob/HEAD/typesafe/client.go)，2026-09-22 阅读</sub>
 
+- **[deepseek-harness-jev (luobosibing2)](https://github.com/luobosibing2/dsh-jev-plugin)** — DeepSeek Harness 插件，提供 12 项需手动开启的功能，用 Jev 作为判断模型：技能选择和 glob 结果排序（每个候选一个 `noul`）、完成度与目标检查、偏离提醒、插话路由、工具输出和测试日志过滤，以及对单个工作区操作的审批。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · luobosibing2 · `TS` · `noul` · 调用点 [`packages/jev/src/selection.ts`](https://github.com/luobosibing2/dsh-jev-plugin/blob/HEAD/packages/jev/src/selection.ts)，2026-10-28 模型阅读</sub>
+
 - **[deepseek-harness-jev-pre-compaction](https://github.com/wjw66/deepseek-harness-jev-pre-compaction)** — 给 DeepSeek Harness 的压缩前顾问，在标准压缩流程之前运行。 <sub>(机翻)</sub>
   <sub>`开源项目` · wjw66 · `TS` · 调用点 [`src/jev/protocol.ts`](https://github.com/wjw66/deepseek-harness-jev-pre-compaction/blob/HEAD/src/jev/protocol.ts)，2026-09-22 阅读</sub>
 
@@ -618,6 +621,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-turbo](https://github.com/sightmap/jev-turbo)** — 由 Jev 驱动的语义化浏览器操作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · sightmap · `Go` · 调用点 [`explore/jev.go`](https://github.com/sightmap/jev-turbo/blob/HEAD/explore/jev.go)，2026-09-22 阅读</sub>
 
+- **[jev-ui-test](https://github.com/buer2233/jev-ui-test)** — 基于 jev-ultrafast 分支改造的 UI 自动化测试框架：用例以自然语言 YAML 编写并由 pytest 执行，Jev 为每一步选出操作和目标；语义断言对页面上的每条原子陈述问一个 `noul`，通过阈值留在测试代码里。作者报告每次操作决策的中位耗时为 458 毫秒。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · buer2233 · `Py` · `noul` · 调用点 [`jev_ultrafast/framework/judge.py`](https://github.com/buer2233/jev-ui-test/blob/HEAD/jev_ultrafast/framework/judge.py)，2026-10-28 模型阅读 · ⚠ `厂商自报数据`</sub>
+
 - **[jev-voice-control](https://github.com/chris-wozniczek/jev-voice-control)** — 用语音控制 Mac：语音 → Jev 类型化决策 → macOS 自动化。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · chris-wozniczek · `Swift` · 调用点 [`Sources/JevVoice/Agent/JevStepPlanner.swift`](https://github.com/chris-wozniczek/jev-voice-control/blob/HEAD/Sources/JevVoice/Agent/JevStepPlanner.swift)，2026-09-22 阅读</sub>
 
@@ -662,6 +668,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[langchain-skill-router](https://github.com/deyna256/langchain-skill-router)** — 为 LangChain 与 deepagents 智能体按轮选择技能：由快速的裁判挑出本轮需要的少数技能，让上百个技能的目录不必塞进提示词。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · deyna256 · `Py` · 调用点 [`src/langchain_skill_router/providers/jev.py`](https://github.com/deyna256/langchain-skill-router/blob/HEAD/src/langchain_skill_router/providers/jev.py)，2026-09-24 阅读</sub>
+
+- **[LLM Debugger](https://github.com/mohsen1/llm-debugger-vscode-extension)** — 通过实际运行代码来调试的 VS Code 扩展。每次暂停时，Jev 用一个 `choice` 选出下一步动作（单步、继续、设断点、求值、结束），并回答两个 `noul`：是否已找到出错的行，当前这一行是否就是出错处。只有需要断点位置、表达式和最终修复时才调用生成模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · mohsen1 · `TS` · `choice` · `noul` · 调用点 [`src/agent/strategies/jev.ts`](https://github.com/mohsen1/llm-debugger-vscode-extension/blob/HEAD/src/agent/strategies/jev.ts)，2026-10-28 模型阅读 · ⚠ `需第三方密钥` `厂商自报数据`</sub>
 
 - **[macos-computer-use-kit](https://github.com/Sur-Cai/macos-computer-use-kit)** — 面向 macOS AI 智能体的、以辅助功能为先的电脑操作工具包，可选配 Jev（TypeSafe System One）语义护栏。 <sub>(机翻)</sub>
   <sub>`插件` · sur-cai · `Py` · 调用点 [`src/macos_computer_use/jev.py`](https://github.com/Sur-Cai/macos-computer-use-kit/blob/HEAD/src/macos_computer_use/jev.py)，2026-09-24 阅读</sub>

@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 236 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 239 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 228 · wire shape 4 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 231 · wire shape 4 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -426,6 +426,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[computer-use-jev](https://github.com/paulsmith/computer-use-jev)** — macOS computer use driven by Jev (TypeSafe System One) as the decision maker <sub>(upstream description)</sub>
   <sub>`Project` · paulsmith · `Go` · call site [`typesafe/client.go`](https://github.com/paulsmith/computer-use-jev/blob/HEAD/typesafe/client.go), read 2026-09-22</sub>
 
+- **[deepseek-harness-jev (luobosibing2)](https://github.com/luobosibing2/dsh-jev-plugin)** — DeepSeek Harness plugin with twelve opt-in features using Jev as the judgment model: skill selection and glob-result ranking (one `noul` per candidate), completion and goal checks, drift reminders, interjection routing, tool-output and test-log filtering, and approval of single workspace operations. <sub>(written by a model)</sub>
+  <sub>`Plugin` · luobosibing2 · `TS` · `noul` · call site [`packages/jev/src/selection.ts`](https://github.com/luobosibing2/dsh-jev-plugin/blob/HEAD/packages/jev/src/selection.ts), read by a model 2026-10-28</sub>
+
 - **[deepseek-harness-jev-pre-compaction](https://github.com/wjw66/deepseek-harness-jev-pre-compaction)** — A pre-compaction advisor for DeepSeek Harness. Runs before the standard `compaction-basic` backend, using TypeSafe JEV to safely prune low-value tool results from model context. Original session events stay in the append-only log; only the model-visible view is replaced with compact markers or
   <sub>`Project` · wjw66 · `TS` · call site [`src/jev/protocol.ts`](https://github.com/wjw66/deepseek-harness-jev-pre-compaction/blob/HEAD/src/jev/protocol.ts), read 2026-09-22</sub>
 
@@ -618,6 +621,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-turbo](https://github.com/sightmap/jev-turbo)** — Jev-powered semantic browser use <sub>(upstream description)</sub>
   <sub>`Project` · sightmap · `Go` · call site [`explore/jev.go`](https://github.com/sightmap/jev-turbo/blob/HEAD/explore/jev.go), read 2026-09-22</sub>
 
+- **[jev-ui-test](https://github.com/buer2233/jev-ui-test)** — UI test framework, a fork of jev-ultrafast: natural-language YAML cases run by pytest, Jev picks each step's action and target, and semantic assertions ask one `noul` per atomic claim about the page, with thresholds left in test code. The author reports a 458 ms median per action decision. <sub>(written by a model)</sub>
+  <sub>`Project` · buer2233 · `Py` · `noul` · call site [`jev_ultrafast/framework/judge.py`](https://github.com/buer2233/jev-ui-test/blob/HEAD/jev_ultrafast/framework/judge.py), read by a model 2026-10-28 · ⚠ `vendor numbers`</sub>
+
 - **[jev-voice-control](https://github.com/chris-wozniczek/jev-voice-control)** — Control your Mac by voice. Speech → Jev (TypeSafe AI System One model) typed decisions → macOS actions. Menu-bar Swift app. <sub>(upstream description)</sub>
   <sub>`Project` · chris-wozniczek · `Swift` · call site [`Sources/JevVoice/Agent/JevStepPlanner.swift`](https://github.com/chris-wozniczek/jev-voice-control/blob/HEAD/Sources/JevVoice/Agent/JevStepPlanner.swift), read 2026-09-22</sub>
 
@@ -662,6 +668,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[langchain-skill-router](https://github.com/deyna256/langchain-skill-router)** — Per-turn skill selection for LangChain and deepagents agents: a fast judge picks the few skills a turn needs, so a catalog of hundreds stays out of the prompt. <sub>(upstream description)</sub>
   <sub>`Plugin` · deyna256 · `Py` · call site [`src/langchain_skill_router/providers/jev.py`](https://github.com/deyna256/langchain-skill-router/blob/HEAD/src/langchain_skill_router/providers/jev.py), read 2026-09-24</sub>
+
+- **[LLM Debugger](https://github.com/mohsen1/llm-debugger-vscode-extension)** — VS Code extension that debugs by running the code. At each pause Jev picks the next action as a `choice` (step, continue, breakpoint, evaluate, finish) and answers two `noul`s: is the faulty line found, and is it this one. A generation model supplies only locations, expressions and the fix. <sub>(written by a model)</sub>
+  <sub>`Plugin` · mohsen1 · `TS` · `choice` · `noul` · call site [`src/agent/strategies/jev.ts`](https://github.com/mohsen1/llm-debugger-vscode-extension/blob/HEAD/src/agent/strategies/jev.ts), read by a model 2026-10-28 · ⚠ `3rd-party key` `vendor numbers`</sub>
 
 - **[macos-computer-use-kit](https://github.com/Sur-Cai/macos-computer-use-kit)** — AX-first computer use for AI agents on macOS with optional Jev (TypeSafe System One) semantic guards: calibrated target/input judgments before an irreversible action, decisions kept in code. Accessibility-tree targeting, window-scoped input, clipboard-safe paste, read-back verification…
   <sub>`Plugin` · sur-cai · `Py` · call site [`src/macos_computer_use/jev.py`](https://github.com/Sur-Cai/macos-computer-use-kit/blob/HEAD/src/macos_computer_use/jev.py), read 2026-09-24</sub>
