@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 239 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 240 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 231 · wire shape 4 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 232 · wire shape 4 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -223,10 +223,10 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Plugin` · ★10+ · zhangxaochen · `TS` · call site [`lib/typesafe-client.d.ts`](https://github.com/zhangxaochen/dsh-jev/blob/HEAD/lib/typesafe-client.d.ts), read 2026-09-24</sub>
 
 - **[ego-jev](https://github.com/jiangkoumo/ego-decision-layer)** — Drive the ego lite browser with Jev (TypeSafe System One): one indexed element table in, one operation + target out, single process. ~2x faster than a per-step LLM loop in our measurements.
-  <sub>`Project` · ★10+ · jiangkoumo · `JS` · call site [`scripts/ego-jev.mjs`](https://github.com/jiangkoumo/ego-decision-layer/blob/HEAD/scripts/ego-jev.mjs), read 2026-09-22</sub>
+  <sub>`Project` · ★10+ · jiangkoumo · `JS` · call site [`scripts/decider-loop.mjs`](https://github.com/jiangkoumo/ego-decision-layer/blob/HEAD/scripts/decider-loop.mjs), read 2026-09-22</sub>
 
 - **[ego-jev](https://github.com/ZephyrDeng/ego-jev)** — Jev (TypeSafe System One) inner loop for ego-browser — one ~0.4s typed decision per DOM step instead of an LLM turn. Agent skill for ego lite.
-  <sub>`Plugin` · ★10+ · zephyrdeng · `JS` · call site [`skills/ego-jev/scripts/jev-loop.mjs`](https://github.com/ZephyrDeng/ego-jev/blob/HEAD/skills/ego-jev/scripts/jev-loop.mjs), read 2026-09-24</sub>
+  <sub>`Plugin` · ★10+ · zephyrdeng · `JS` · call site [`skills/ego-jev/scripts/jev-loop.ts`](https://github.com/ZephyrDeng/ego-jev/blob/HEAD/skills/ego-jev/scripts/jev-loop.ts), read 2026-09-24</sub>
 
 - **[eutrya](https://github.com/hellozenstrategist-lab/eutrya)** — Jev-native AI security harness for autonomous research, multi-agent swarms, persistent hunt boards, and long-running agent workflows. CLI-first, open source, and built for authorized security research. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · hellozenstrategist-lab · `JS` · call site [`bin/eutrya.mjs`](https://github.com/hellozenstrategist-lab/eutrya/blob/HEAD/bin/eutrya.mjs), read 2026-09-24</sub>
@@ -308,9 +308,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-reflex-autonomy-lab](https://github.com/khordoo/jev-reflex-autonomy-lab)** — Multi-drone autonomy lab demonstrating TypeSafe Jev reflex decisions with optional System 2 strategy guidance.
   <sub>`Project` · ★10+ · khordoo · `TS` · call site [`lib/reflex/jev-server.ts`](https://github.com/khordoo/jev-reflex-autonomy-lab/blob/HEAD/lib/reflex/jev-server.ts), read 2026-09-22</sub>
-
-- **[jev-reviewer](https://github.com/choxos/jev-reviewer)** — Data extraction for systematic reviews, quoted from the papers. Ask a trial report and its supplements your extraction form or a RoB 2, ROBINS-I, QUADAS-2 or TIDieR template; Jev points at the lines, every answer is a verbatim quote with its page, you check it and export the table. Files stay i
-  <sub>`Project` · ★10+ · choxos · `JS` · call site [`docs/jev.js`](https://github.com/choxos/jev-reviewer/blob/HEAD/docs/jev.js), read 2026-09-22</sub>
 
 - **[jev-robot-control](https://github.com/openroboto-ai/jev-robot-control)** — Jev against two LLMs on direct Cartesian control of an xArm7 in MuJoCo — intent, movement and gripper each step — with recorded responses, trajectories and replays. One seed-0 trial per controller, not a success rate.
   <sub>`Benchmark` · ★10+ · openroboto-ai · `Py` · call site [`incremental-comparisons/20260919-193012-198478-0/sources/incremental_policy.py`](https://github.com/openroboto-ai/jev-robot-control/blob/HEAD/incremental-comparisons/20260919-193012-198478-0/sources/incremental_policy.py), read 2026-09-24 · author's conclusion: inconclusive (author-stated, not reproduced here) · ⚠ `one commit`</sub>
@@ -408,6 +405,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[agi-jev-containment](https://github.com/carlosedm10/agi-jev-containment)** — AGI JEV Detection — local AI agent monitor: chain-level malicious-agent detection (TypeSafe Jev + Sentinel), escalate-only L1–L5 containment, Neo4j forensics, AngryRobot dashboard. HackSpain 2026. <sub>(upstream description)</sub>
   <sub>`Project` · carlosedm10 · `Py` · call site [`backend/app/classification/jev.py`](https://github.com/carlosedm10/agi-jev-containment/blob/HEAD/backend/app/classification/jev.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[arc-cua](https://github.com/shhivv/arc-cua)** — macOS action loop for computer-use agents: a planner hands off a bounded desktop subtask, and Jev picks each next UI operation and target from what the window exposes, as `choice` questions, with one more `choice` per success criterion; literal text only ever comes from the planner. <sub>(written by a model)</sub>
+  <sub>`Project` · shhivv · `Py` · `choice` · call site [`src/arc_cua/policies/typesafe.py`](https://github.com/shhivv/arc-cua/blob/HEAD/src/arc_cua/policies/typesafe.py), read by a model 2026-10-29</sub>
+
 - **[aside-jev](https://github.com/himomohi/aside-jev)** — Aside agents decide with TypeSafe Jev (System One: Choice/Score/Noul). Not a Cua binding — Jev is the model, Aside is the browser runtime. <sub>(upstream description)</sub>
   <sub>`SDK` · himomohi · `Py` · call site [`src/aside_jev/jev.py`](https://github.com/himomohi/aside-jev/blob/HEAD/src/aside_jev/jev.py), read 2026-09-22</sub>
 
@@ -433,7 +433,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · wjw66 · `TS` · call site [`src/jev/protocol.ts`](https://github.com/wjw66/deepseek-harness-jev-pre-compaction/blob/HEAD/src/jev/protocol.ts), read 2026-09-22</sub>
 
 - **[dsh-jev-prune](https://github.com/yangyu666/dsh-jev-prune)** — Jev-judged context compaction for DeepSeek Harness: semantic tool-result pruning + deterministic receipt compaction <sub>(upstream description)</sub>
-  <sub>`Project` · yangyu666 · `JS` · call site [`jev.js`](https://github.com/yangyu666/dsh-jev-prune/blob/HEAD/jev.js), read 2026-09-22</sub>
+  <sub>`Project` · yangyu666 · `JS` · call site [`src/jev.js`](https://github.com/yangyu666/dsh-jev-prune/blob/HEAD/src/jev.js), read 2026-09-22</sub>
 
 - **[dsh-jev-verify](https://github.com/xienda/dsh-jev-verify)** — Jev (TypeSafe System One) decision tools + live verification benchmark for DeepSeek Harness: jev_decision (choice/score/noul) and jev_verify, honest by design. <sub>(earlier upstream description)</sub>
   <sub>`Benchmark` · xienda · `JS` · call site [`lib/index.js`](https://github.com/xienda/dsh-jev-verify/blob/HEAD/lib/index.js), read 2026-09-22</sub>
@@ -464,6 +464,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev Civilizations](https://github.com/JonesSteven/jev_civilization)** — Small strategy game with a live demo: four tribes run their own lives while you only change the environment. Each turn Jev picks one action per tribe as a choice over the moves that are actually legal, a plain game engine works out the results, and an inspector shows what Jev was told. <sub>(written by a model)</sub>
   <sub>`Project` · jonessteven · `TS` · `choice` · call site [`scripts/probe-jev.ts`](https://github.com/JonesSteven/jev_civilization/blob/HEAD/scripts/probe-jev.ts), read by a model 2026-10-24</sub>
+
+- **[Jev GUI Delegate](https://github.com/YUTA-fywoo/jev-gui-delegate)** — Windows and Chrome GUI delegation prototype for Codex: a local controller runs a task contract step by step, and when a control must be picked by meaning it asks Jev one `choice` over the observed controls plus no_match, wait, reobserve and ask_astra exits, then checks the result. <sub>(written by a model)</sub>
+  <sub>`Project` · YUTA-fywoo · `Py` · `choice` · call site [`gui_delegate/controller.py`](https://github.com/YUTA-fywoo/jev-gui-delegate/blob/HEAD/gui_delegate/controller.py), read by a model 2026-10-29 · ⚠ `no licence` `vendor numbers`</sub>
 
 - **[jev-A-share-trader](https://github.com/Eric-Zhou-0302/jev-A-share-trader)** — A Jev-powered technical analysis workspace for China A-shares, supporting AKShare/Tushare, market scans, and Buy/Hold/Sell assessments with time horizons and traceable evidence. <sub>(upstream description)</sub>
   <sub>`Project` · eric-zhou-0302 · `Py` · call site [`src/jev_trader/jev.py`](https://github.com/Eric-Zhou-0302/jev-A-share-trader/blob/HEAD/src/jev_trader/jev.py), read 2026-09-24</sub>

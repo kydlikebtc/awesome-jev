@@ -4,11 +4,11 @@
 
 _Score or re-rank candidates from a cheaper retrieval step._
 
-Every catalogued example of this decision — 73 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 75 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#search-ranking): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 69 · wire shape 0 · example only 0 · independent reports 6 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 71 · wire shape 0 · example only 0 · independent reports 6 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -58,7 +58,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · ★10k+ · xerj-org · `Rs` · `noul` · call site [`engine/crates/xerj-rerank/src/lib.rs`](https://github.com/xerj-org/xerj/blob/HEAD/engine/crates/xerj-rerank/src/lib.rs), read by a model 2026-10-26 · ⚠ `vendor numbers`</sub>
 
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — An Android reply co-pilot that judges intent, timing and risk from on-screen text, while separate models handle OCR and drafting.
-  <sub>`Project` · ★1k+ · `Java` · `choice` · `score` · `noul` · call site [`app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/jev-chat/jev-chat-jarvis/blob/HEAD/app/src/main/java/com/jev/probe/jev/JevQuestions.kt), read 2026-09-22</sub>
+  <sub>`Project` · ★1k+ · `Java` · `choice` · `score` · `noul` · call site [`cn/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/jev-chat/jev-chat-jarvis/blob/HEAD/cn/app/src/main/java/com/jev/probe/jev/JevQuestions.kt), read 2026-09-22</sub>
 
 - **[jevgrep (dzhng)](https://github.com/dzhng/jevgrep)** — CLI and agent skill that finds code by asking what it does: `jg "How are telemetry events recorded?" ./repo` has Jev judge relevance across folders, files and declarations and returns files and verbatim excerpts. The author reports the same 8 of 10 SWE-bench tasks solved at ~30% lower cost. <sub>(written by a model)</sub>
   <sub>`Project` · ★1k+ · dzhng · `TS` · `noul` · call site [`packages/core/test-node/provider-protocol.mjs`](https://github.com/dzhng/jevgrep/blob/HEAD/packages/core/test-node/provider-protocol.mjs), read by a model 2026-10-24 · ⚠ `vendor numbers`</sub>
@@ -85,7 +85,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · ★100+ · `TS` · `choice` · `noul` · call site [`src/lib/typesafe.ts`](https://github.com/superagents-lab/jev-search/blob/HEAD/src/lib/typesafe.ts), read 2026-09-22</sub>
 
 - **[jev-semgrep](https://github.com/uehaj/sys1grep)** — grep by meaning, now named sys1grep: for every line Jev answers a noul on whether the line matches a meaning, such as network failure, and a threshold decides. Meanings combine with AND, OR and NOT, a regex can prefilter lines, and the meaning and the text can be in different languages. <sub>(written by a model)</sub>
-  <sub>`Project` · ★100+ · uehaj · `JS` · call site [`semgrep.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/semgrep.mjs), read 2026-09-22</sub>
+  <sub>`Project` · ★100+ · uehaj · `JS` · call site [`serve.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/serve.mjs), read 2026-09-22</sub>
 
 - **[jev-shell-history](https://github.com/mrnugget/jev-shell-history)** — Fish-style zsh history autosuggestions, ranked by Jev rather than by recency.
   <sub>`Project` · ★100+ · mrnugget · `TS` · call site [`src/cli.ts`](https://github.com/mrnugget/jev-shell-history/blob/HEAD/src/cli.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
@@ -240,8 +240,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[pijev](https://github.com/tonyzdev/pijev)** — PiJev: a terminal coding agent with Jev in the loop — Jev ranks the repository's files before the first call, picks skills and triages failures; your coding model writes the code. Built on Pi. <sub>(upstream description)</sub>
   <sub>`Project` · tonyzdev · `TS` · call site [`src/jev.ts`](https://github.com/tonyzdev/pijev/blob/HEAD/src/jev.ts), read 2026-09-24</sub>
 
+- **[RikkaHub Plus · Lantern](https://github.com/MiaoWuNYA/rikkahub-sillytavern-android)** — Android chat client for SillyTavern-style character roleplay, a Kotlin fork of RikkaHub. Optional Jev decisioning asks a `noul` per stored memory (is it relevant to this conversation?) in place of embedding search, and gives the main model a `judge` tool for yes/no, choice and score questions. <sub>(written by a model)</sub>
+  <sub>`Project` · MiaoWuNYA · `Kt` · `noul` · `choice` · `score` · call site [`app/src/main/java/me/rerere/rikkahub/data/ai/jev/JevPrompts.kt`](https://github.com/MiaoWuNYA/rikkahub-sillytavern-android/blob/HEAD/app/src/main/java/me/rerere/rikkahub/data/ai/jev/JevPrompts.kt), read by a model 2026-10-29 · ⚠ `3rd-party key`</sub>
+
 - **[sift](https://github.com/tylergibbs1/sift)** — Chrome extension that re-ranks Google results with TypeSafe Jev and folds away sales pages and SEO filler. <sub>(upstream description)</sub>
   <sub>`Plugin` · tylergibbs1 · `TS` · call site [`src/jev/client.ts`](https://github.com/tylergibbs1/sift/blob/HEAD/src/jev/client.ts), read 2026-09-24 · ⚠ `one commit`</sub>
+
+- **[SiftRank](https://github.com/noperator/siftrank)** — Go CLI and library that ranks large collections of text against a prompt over repeated randomized batches. With `--provider jev`, each batch becomes one Jev request with a `noul` per pair of items (should this one rank ahead of that one?), and the summed probabilities order the batch. <sub>(written by a model)</sub>
+  <sub>`Project` · noperator · `Go` · `noul` · call site [`pkg/siftrank/jev_provider.go`](https://github.com/noperator/siftrank/blob/HEAD/pkg/siftrank/jev_provider.go), read by a model 2026-10-29</sub>
 
 - **[typesafe-as-a-judge](https://github.com/E-FL/typesafe-as-a-judge)** — Unofficial community MCP plugin for Codex and Claude Code using TypeSafe Jev for bounded routing, ranking, extraction, verification, and escalation <sub>(upstream description)</sub>
   <sub>`Plugin` · e-fl · `JS` · call site [`server/judge.mjs`](https://github.com/E-FL/typesafe-as-a-judge/blob/HEAD/server/judge.mjs), read 2026-09-22</sub>

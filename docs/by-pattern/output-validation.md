@@ -149,9 +149,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-recruiter](https://github.com/skeptrunedev/jev-recruiter)** — A Jev powered LinkedIn recruiting agent. Watch it browse relevant profiles, save links, and review evidence against your hiring brief. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · skeptrunedev · `Py` · call site [`jev_ultrafast/decision_provider.py`](https://github.com/skeptrunedev/jev-recruiter/blob/HEAD/jev_ultrafast/decision_provider.py), read 2026-09-22</sub>
 
-- **[jev-reviewer](https://github.com/choxos/jev-reviewer)** — Data extraction for systematic reviews, quoted from the papers. Ask a trial report and its supplements your extraction form or a RoB 2, ROBINS-I, QUADAS-2 or TIDieR template; Jev points at the lines, every answer is a verbatim quote with its page, you check it and export the table. Files stay i
-  <sub>`Project` · ★10+ · choxos · `JS` · call site [`docs/jev.js`](https://github.com/choxos/jev-reviewer/blob/HEAD/docs/jev.js), read 2026-09-22</sub>
-
 - **[jev-security-scan](https://github.com/win4r/jev-security-scan)** — 使用 TypeSafe Jev 审查 Skill 与 MCP 可疑行为 \| Review Agent Skills and MCP code with Jev, static evidence, and explicit coverage gaps <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · win4r · `Py` · call site [`scripts/jev_client.py`](https://github.com/win4r/jev-security-scan/blob/HEAD/scripts/jev_client.py), read 2026-09-24 · ⚠ `one commit`</sub>
 
@@ -211,6 +208,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[agent-handoff-gate](https://github.com/zsoXi/agent-handoff-gate)** — An experimental protocol for evidence-aware agent handoffs, bounded worker continuation, and TypeSafe/Jev-assisted review, with reproducible evaluation. <sub>(earlier upstream description)</sub>
   <sub>`Benchmark` · zsoxi · `Py` · call site [`tools/build_benchmark_prompts.py`](https://github.com/zsoXi/agent-handoff-gate/blob/HEAD/tools/build_benchmark_prompts.py), read 2026-09-22 · ⚠ `one commit` `archived`</sub>
+
+- **[arc-cua](https://github.com/shhivv/arc-cua)** — macOS action loop for computer-use agents: a planner hands off a bounded desktop subtask, and Jev picks each next UI operation and target from what the window exposes, as `choice` questions, with one more `choice` per success criterion; literal text only ever comes from the planner. <sub>(written by a model)</sub>
+  <sub>`Project` · shhivv · `Py` · `choice` · call site [`src/arc_cua/policies/typesafe.py`](https://github.com/shhivv/arc-cua/blob/HEAD/src/arc_cua/policies/typesafe.py), read by a model 2026-10-29</sub>
 
 - **[assay-001](https://github.com/jourdanlabs/assay-001)** — ASSAY-001: independent, pre-registered verification of TypeSafe Jev's calibration and type-safety claims. Split verdict, published in full. <sub>(upstream description)</sub>
   <sub>`Project` · jourdanlabs · `Py` · call site [`harness/run.py`](https://github.com/jourdanlabs/assay-001/blob/HEAD/harness/run.py), read 2026-09-22 · ⚠ `no licence`</sub>
@@ -312,7 +312,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Plugin` · muse0509 · `Go` · call site [`internal/jev/client.go`](https://github.com/muse0509/jev-preflight/blob/HEAD/internal/jev/client.go), read 2026-09-22</sub>
 
 - **[jev-reasoning-navigator](https://github.com/AndreuVM/praxeon)** — JEV Reasoning Navigator: Cognitive supervision, loop prevention, and anti-hallucination engine for autonomous LLM agents using TypeSafe AI
-  <sub>`Project` · andreuvm · `Py` · call site [`jev_navigator/core/typesafe_client.py`](https://github.com/AndreuVM/praxeon/blob/HEAD/jev_navigator/core/typesafe_client.py), read 2026-09-24 · ⚠ `no licence`</sub>
+  <sub>`Project` · andreuvm · `Py` · call site [`praxeon/core/typesafe_client.py`](https://github.com/AndreuVM/praxeon/blob/HEAD/praxeon/core/typesafe_client.py), read 2026-09-24 · ⚠ `no licence`</sub>
 
 - **[jev-resume-analyzer](https://github.com/awun8191/jev-resume-analyzer)** — CV diagnostics and job alignment with TypeSafe Jev, React and FastAPI <sub>(upstream description)</sub>
   <sub>`Project` · awun8191 · `Py` · call site [`backend/app/gateways/typesafe.py`](https://github.com/awun8191/jev-resume-analyzer/blob/HEAD/backend/app/gateways/typesafe.py), read 2026-09-22 · ⚠ `no licence`</sub>
@@ -345,7 +345,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Benchmark` · chenmingtang830 · `TS` · call site [`jevjudge/providers.py`](https://github.com/chenmingtang830/jevarena/blob/HEAD/jevjudge/providers.py), read 2026-09-24</sub>
 
 - **[jevgate](https://github.com/Tech-Byte-Frontier/jevgate)** — Code-review gate for CI and coding agents: asks TypeSafe Jev small typed questions about functions, files, tests and docs, and reports findings with locations and probabilities <sub>(upstream description)</sub>
-  <sub>`Project` · tech-byte-frontier · `Rs` · call site [`src/auth/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/auth/provider.rs), read 2026-09-24</sub>
+  <sub>`Project` · tech-byte-frontier · `Rs` · call site [`src/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/provider.rs), read 2026-09-24</sub>
 
 - **[jevguard](https://github.com/Jhonnyr97/JevGuard)** — Claude Code + Codex CLI plugin that verifies the agent follows project rules through a System One (Jev) model <sub>(upstream description)</sub>
   <sub>`Plugin` · jhonnyr97 · `TS` · call site [`dist/bin/jevguard-hook.js`](https://github.com/Jhonnyr97/JevGuard/blob/HEAD/dist/bin/jevguard-hook.js), read 2026-09-22 · ⚠ `one commit`</sub>

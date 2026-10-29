@@ -357,7 +357,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`开源项目` · 0xarx · `TS` · 调用点 [`src/lib/typesafe.ts`](https://github.com/0xArx/jevegis/blob/HEAD/src/lib/typesafe.ts)，2026-09-22 阅读</sub>
 
 - **[jevgate](https://github.com/Tech-Byte-Frontier/jevgate)** — 面向 CI 与编码智能体的代码审查关卡：就函数、文件、测试与依赖向 TypeSafe Jev 提出小而具体的类型化问题。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · tech-byte-frontier · `Rs` · 调用点 [`src/auth/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/auth/provider.rs)，2026-09-24 阅读</sub>
+  <sub>`开源项目` · tech-byte-frontier · `Rs` · 调用点 [`src/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/provider.rs)，2026-09-24 阅读</sub>
 
 - **[JevLang](https://github.com/TimMikeladze/JevLang)** — 面向 LLM 决策的策略引擎：用 TypeScript 或 Python 一次性声明路由、关卡和动作，每个决策都可追溯。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · timmikeladze · `JS` · 调用点 [`examples/entity-alignment.js`](https://github.com/TimMikeladze/JevLang/blob/HEAD/examples/entity-alignment.js)，2026-09-24 阅读</sub>

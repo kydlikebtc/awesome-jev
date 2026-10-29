@@ -357,7 +357,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · 0xarx · `TS` · call site [`src/lib/typesafe.ts`](https://github.com/0xArx/jevegis/blob/HEAD/src/lib/typesafe.ts), read 2026-09-22</sub>
 
 - **[jevgate](https://github.com/Tech-Byte-Frontier/jevgate)** — Code-review gate for CI and coding agents: asks TypeSafe Jev small typed questions about functions, files, tests and docs, and reports findings with locations and probabilities <sub>(upstream description)</sub>
-  <sub>`Project` · tech-byte-frontier · `Rs` · call site [`src/auth/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/auth/provider.rs), read 2026-09-24</sub>
+  <sub>`Project` · tech-byte-frontier · `Rs` · call site [`src/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/provider.rs), read 2026-09-24</sub>
 
 - **[JevLang](https://github.com/TimMikeladze/JevLang)** — A policy engine for LLM decisions: declare routes, gates and actions once in TypeScript or Python, and every decision comes validated, explainable, replayable and audited. <sub>(upstream description)</sub>
   <sub>`SDK` · timmikeladze · `JS` · call site [`examples/entity-alignment.js`](https://github.com/TimMikeladze/JevLang/blob/HEAD/examples/entity-alignment.js), read 2026-09-24</sub>

@@ -12,18 +12,18 @@ table regenerated like the first half, each reading in it dated on its own.
 <!-- shape:start -->
 |  |  |
 | --- | --- |
-| Entries | 1276 |
-| Carrying code | 1244 |
+| Entries | 1285 |
+| Carrying code | 1253 |
 | Official (TypeSafe AI's own) | 36 |
-| Links with a dated 2xx response record | 1262 |
+| Links with a dated 2xx response record | 1261 |
 | Most recent successful link-check date (dates vary by row) | 2026-10-28 |
-| Rows whose latest successful check is on that date | 1255 of 1276 |
-| Rows citing a file where the project calls Jev (`evidence`; not a CI pass count) | 1112 |
-| Rows citing a file that speaks Jev's request shape rather than building on Jev (`evidence.kind` `wire-shape`) | 79 |
+| Rows whose latest successful check is on that date | 1255 of 1285 |
+| Rows citing a file where the project calls Jev (`evidence`; not a CI pass count) | 1119 |
+| Rows citing a file that speaks Jev's request shape rather than building on Jev (`evidence.kind` `wire-shape`) | 81 |
 | Rows citing only an example the project ships (`evidence.kind` `example-only`) | 0 |
 | Rows with code citing no file and giving no reason (neither `evidence` nor `evidence_none`) | 0 |
 | Rows naming the primitives a person read the code calling (`question_types`) | 111 |
-| Rows naming the primitives a model read the code calling (`question_types` on a row whose call site only a model has read, since 2026-10-24) | 33 |
+| Rows naming the primitives a model read the code calling (`question_types` on a row whose call site only a model has read, since 2026-10-24) | 41 |
 | Machine text signal: rows whose cited file contains a primitive's request or answer shape (`primitives_seen`; not a reading, never counted as `question_types`) | 692 |
 | Of those, rows with no `question_types`: the text signal is all that is recorded about their primitives | 615 |
 | Rows the README prints by name (*Start here*, the first reports under *Measured, not claimed*, the first rows of each pattern) still lacking a person's summary, Chinese or reading of the cited file ([review queue](review-queue.md#front-page)) | 63 of 135 |
@@ -34,26 +34,26 @@ table regenerated like the first half, each reading in it dated on its own.
 | Benchmark rows indexing their own author's measurement (`measurement`: task, datasets, comparators, the author's direction; author-stated, not reproduced here; [side by side](benchmarks.md)) | 27 |
 | Machine signal: of those, measurements nobody has read against the author's report, neither a person nor a model ([review queue](review-queue.md#measurement-unread)) | 27 |
 | Of those measured rows, measurements only a model has read against the report (`measurement.model_read_on`; [review queue](review-queue.md#model-read)) | 0 |
-| Rows recording thresholds their cited file compares a Jev answer with (`observed_thresholds`: each a constant written in that file; what one project chose, not a recommendation) | 33 |
+| Rows recording thresholds their cited file compares a Jev answer with (`observed_thresholds`: each a constant written in that file; what one project chose, not a recommendation) | 35 |
 | Machine signal: of those, rows with a threshold nobody has read in the file, neither a person nor a model ([review queue](review-queue.md#thresholds-unread)) | 31 |
-| Of those rows, rows whose thresholds were all read, some only by a model (`model_read_on`; [review queue](review-queue.md#model-read)) | 2 |
+| Of those rows, rows whose thresholds were all read, some only by a model (`model_read_on`; [review queue](review-queue.md#model-read)) | 4 |
 | Negative results: rows whose own author measured Jev for the use and concluded against it (a benchmark's `measurement.direction` unfavourable, the `negative-result` flag on any other row; author-stated, not reproduced here; [listed below](#negative-results)) | 5 |
 | Patterns covered | 18 of 18 |
-| Rows whose `patterns` are exactly what the keyword rules suggest for their summary (agreement with the rules, not a review: any review of these rows was not recorded) | 689 of 1276 |
+| Rows whose `patterns` are exactly what the keyword rules suggest for their summary (agreement with the rules, not a review: any review of these rows was not recorded) | 689 of 1285 |
 | Rows whose patterns a person recorded reading (`patterns_reviewed`) | 1 |
-| Rows whose patterns only a model recorded reading (`patterns_model_read_on`, since 2026-10-24; shown as a model's reading; [review queue](review-queue.md#model-read)) | 0 |
-| Rows whose call site only a model recorded reading (`evidence.model_read_on`; [review queue](review-queue.md#model-read)) | 63 |
+| Rows whose patterns only a model recorded reading (`patterns_model_read_on`, since 2026-10-24; shown as a model's reading; [review queue](review-queue.md#model-read)) | 10 |
+| Rows whose call site only a model recorded reading (`evidence.model_read_on`; [review queue](review-queue.md#model-read)) | 73 |
 | Alternatives whose interface records were read in every cited file, some only by a model (`wire.source[].model_read_on`; [review queue](review-queue.md#model-read)) | 0 |
 | Overview rows that are projects or plugins with code, listed apart as not yet indexed by pattern ([review queue](review-queue.md#unsorted-overview)) | 251 |
-| Summaries that are the project's own GitHub description (`summary_source` `upstream-description`) | 752 of 1276 |
+| Summaries that are the project's own GitHub description (`summary_source` `upstream-description`) | 752 of 1285 |
 | Summaries taken from that description that no longer match it (`upstream-description-stale`) | 27 |
 | Summaries marked as written for this catalogue by a person (`curated`) | 11 |
-| Summaries marked as written for this catalogue by a model (`model-written`, since 2026-10-24) | 168 |
-| Chinese summaries hand-written | 192 of 1276 |
-| Rows recording GitHub's creation date, last push and default-branch commit count for their repository (`repo_created_at`, `repo_pushed_at`, `repo_commits`; GitHub's facts at the last weekly refresh, not a judgement of upkeep) | 1190 of 1276 |
+| Summaries marked as written for this catalogue by a model (`model-written`, since 2026-10-24) | 178 |
+| Chinese summaries hand-written | 192 of 1285 |
+| Rows recording GitHub's creation date, last push and default-branch commit count for their repository (`repo_created_at`, `repo_pushed_at`, `repo_commits`; GitHub's facts at the last weekly refresh, not a judgement of upkeep) | 1189 of 1285 |
 | Rows flagged `single-commit`: one commit on the default branch (the refresh sets and clears it from `repo_commits`) | 86 |
-| Rows with a GitHub repository that at least one sibling directory links (`sources` citations, from the lists' READMEs at the last weekly read; a count of mentions, not a review) | 1181 of 1201 |
-| Retired links | 14 |
+| Rows with a GitHub repository that at least one sibling directory links (`sources` citations, from the lists' READMEs at the last weekly read; a count of mentions, not a review) | 1180 of 1210 |
+| Retired links | 15 |
 <!-- shape:end -->
 
 ### When each repository was last pushed
@@ -68,7 +68,7 @@ counts behind the same refresh are on the site and in the MCP server's rows.
 | Month of the last push (UTC) | Rows |
 | --- | --- |
 | 2026-10 | 486 |
-| 2026-09 | 704 |
+| 2026-09 | 703 |
 <!-- pushed:end -->
 
 ### How many sibling directories link each repository
@@ -83,11 +83,11 @@ project, and a repository no list links is not thereby worse.
 <!-- cited-by:start -->
 | Sibling directories linking the repository | Rows |
 | --- | --- |
-| 0 | 20 |
+| 0 | 30 |
 | 1 | 24 |
 | 2 | 92 |
 | 3–5 | 469 |
-| 6–10 | 357 |
+| 6–10 | 356 |
 | 11–20 | 175 |
 | 21 or more | 64 |
 <!-- cited-by:end -->
@@ -121,12 +121,12 @@ Empty kinds:
 
 Thin — under 2.5% of the catalogue:
 
-- `recommendation` (2 of 1276) — The first example is a movie recommender: retrieval narrows the field, and Jev parses the request and chooses from the shortlist.
-- `retry-control` (8 of 1276) — Most apparent matches are false positives: an HTTP client advertising "observable retries" is not a retry decision. The first real one was a semantic circuit breaker asking whether an HTTP 200 is a silent failure.
-- `feature-extraction` (8 of 1276)
-- `support-triage` (9 of 1276)
-- `data-extraction` (18 of 1276)
-- `document-triage` (22 of 1276)
+- `recommendation` (2 of 1285) — The first example is a movie recommender: retrieval narrows the field, and Jev parses the request and chooses from the shortlist.
+- `retry-control` (8 of 1285) — Most apparent matches are false positives: an HTTP client advertising "observable retries" is not a retry decision. The first real one was a semantic circuit breaker asking whether an HTTP 200 is a silent failure.
+- `feature-extraction` (8 of 1285)
+- `support-triage` (9 of 1285)
+- `data-extraction` (17 of 1285)
+- `document-triage` (22 of 1285)
 <!-- gaps:end -->
 
 Two holes are in the research rather than the ecosystem: **Reddit** produced
@@ -208,9 +208,9 @@ writes the table.
 <!-- watch:start -->
 | Question | Now | Recent change | How it is tracked |
 | --- | --- | --- | --- |
-| Whether independent benchmarks accumulate, and whether they keep landing on "cheap but comparable" rather than "better". | **72** independent reports ([on the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en)); directions their authors state, not reproduced here: favourable 1, mixed 13, unfavourable 3, inconclusive 1, none recorded 54; 18 of these 18 directions not yet read against the report by a person ([review queue](review-queue.md#measurement-unread)) | +0 since the 2026-10-21 snapshot (then 72) | Benchmark rows not flagged vendor-reported, and the directions their authors state in the rows' measurement: author-stated, not reproduced here. A row without a measurement, or whose measurement states none, counts as none recorded. |
+| Whether independent benchmarks accumulate, and whether they keep landing on "cheap but comparable" rather than "better". | **73** independent reports ([on the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en)); directions their authors state, not reproduced here: favourable 1, mixed 13, unfavourable 3, inconclusive 1, none recorded 55; 18 of these 18 directions not yet read against the report by a person ([review queue](review-queue.md#measurement-unread)) | +1 since the 2026-10-21 snapshot (then 72) | Benchmark rows not flagged vendor-reported, and the directions their authors state in the rows' measurement: author-stated, not reproduced here. A row without a measurement, or whose measurement states none, counts as none recorded. |
 | Whether the option-ordering sensitivity reproduces. If it does, option order becomes part of everyone's prompt-freezing discipline. | [Probing Jev's behaviour with repeated API calls](https://kydlikebtc.github.io/awesome-jev/?lang=en#ahastudio-til-jev-probing) (caveats: `no-license`, `unverified-claims`), [pijev](https://kydlikebtc.github.io/awesome-jev/?lang=en#pijev-typellm). No independent reproduction is recorded: one listed row reports the effect, the other averages answers over option orderings to guard against it. (read by a model, not yet by a person, 2026-09-28) | — (a reading, dated in the cell before) | Rows listed in watch.json as reporting or addressing option-order sensitivity; no field in the catalogue records it, so a new such row counts only once someone adds it there. |
 | Whether a paper appears. | None linked: the documentation's index links no paper, and its AI primer names the training path (RLCD) without linking one. (read by a model, not yet by a person, 2026-10-11; [source](https://docs.typesafe.ai/introduction/machine-learning-primer)) | — (a reading, dated in the cell before) | A reading at the source: whether the vendor's documentation links a paper on the training method. |
-| Whether the alternatives converge on the wire format well enough that patterns really do become portable, calibration aside. | **54** of the 78 alternatives citing a file ([on the site](https://kydlikebtc.github.io/awesome-jev/?k=alternative&lang=en)) | +16 since the 2026-10-21 snapshot (then 38) | A proxy: of the kind: alternative rows citing a file, those whose evidence.matched strings include /v1/systemone. It says the endpoint path is the same, not that the request or answer shapes match, and nothing about calibration. |
+| Whether the alternatives converge on the wire format well enough that patterns really do become portable, calibration aside. | **55** of the 80 alternatives citing a file ([on the site](https://kydlikebtc.github.io/awesome-jev/?k=alternative&lang=en)) | +17 since the 2026-10-21 snapshot (then 38) | A proxy: of the kind: alternative rows citing a file, those whose evidence.matched strings include /v1/systemone. It says the endpoint path is the same, not that the request or answer shapes match, and nothing about calibration. |
 | Whether rate limits and pricing settle. | Not yet: the models page still warns that rate limits are adjusting dynamically and can change without notice. (read by a model, not yet by a person, 2026-10-11; [source](https://docs.typesafe.ai/models)) | — (a reading, dated in the cell before) | A reading at the source: whether the vendor's models page still says its limits can change without notice. |
 <!-- watch:end -->
