@@ -6,8 +6,9 @@ One JSON file per weekly refresh, named by the UTC date it ran
 [`metadata.yml`](../.github/workflows/metadata.yml) just before that refresh's
 commit. Each holds every number `_stats.compute()` published that day; rows
 per kind, pattern, flag, language and declared licence; the value of each
-question [`watch.json`](../watch.json) counts; and each row's slug, stars,
-licence and flags.
+question [`watch.json`](../watch.json) counts; since 2026-10-30, the
+discovery queue's candidates in each state (to read, held, parked, ...); and
+each row's slug, stars, licence and flags.
 
 These are generated data, not a source of truth: `catalog.json` is, and
 nothing reads a snapshot back into it. Do not edit or add files here by hand.
@@ -30,7 +31,7 @@ this repository's own, and public once committed.
 [`metadata.yml`](../.github/workflows/metadata.yml) 在该次刷新提交之前运行
 [`scripts/snapshot_stats.py`](../scripts/snapshot_stats.py) 写入。每个文件记录当天
 `_stats.compute()` 公布的全部数字；按类型、模式、标记、语言和声明的许可证统计的行数；
-[`watch.json`](../watch.json) 所计数的每个问题的值；以及每一行的
+[`watch.json`](../watch.json) 所计数的每个问题的值；自 2026-10-30 起，发现队列各状态（待读、等人看、暂缓等）的候选数；以及每一行的
 slug、star、许可证和标记。
 
 这些是生成的数据，不是事实来源：事实来源是 `catalog.json`，任何快照都不会被读回其中。请不要手动编辑或添加这里的文件。
