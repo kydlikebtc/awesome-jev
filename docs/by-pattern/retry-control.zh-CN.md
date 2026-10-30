@@ -37,7 +37,7 @@ _判断失败的步骤是否值得重试。_
   <sub>`开源项目` · Really Artificial · `JS` · `choice` · `score` · `noul` · 调用点 [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs)，2026-09-22 阅读 · ⚠ `疑似 AI 生成`</sub>
 
 - **[jev-reasoning-navigator](https://github.com/AndreuVM/praxeon)** — JEV 推理导航器：面向自主 LLM 智能体的认知监督、防止循环与反幻觉引擎。 <sub>(机翻)</sub>
-  <sub>`开源项目` · andreuvm · `Py` · 调用点 [`jev_navigator/core/typesafe_client.py`](https://github.com/AndreuVM/praxeon/blob/HEAD/jev_navigator/core/typesafe_client.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
+  <sub>`开源项目` · andreuvm · `Py` · 调用点 [`praxeon/core/typesafe_client.py`](https://github.com/AndreuVM/praxeon/blob/HEAD/praxeon/core/typesafe_client.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
 
 - **[jev-resilience](https://github.com/Vicente-MD/jev-resilience)** — 面向 WebFlux 的 Spring Boot Starter：标注了 @SemanticCircuitBreaker 的方法会把每个响应体发给 Jev，用一个 noul 判断这个 HTTP 200 是否掩盖了错误、堆栈信息或维护通知；超过阈值（示例中为 0.85）就抛出熔断器可以计数的异常。失败即放行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · vicente-md · `Java` · 调用点 [`src/main/java/ai/jev/resilience/client/dto/JevRequest.java`](https://github.com/Vicente-MD/jev-resilience/blob/HEAD/src/main/java/ai/jev/resilience/client/dto/JevRequest.java)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

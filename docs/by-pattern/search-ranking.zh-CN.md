@@ -4,11 +4,11 @@
 
 _对来自廉价检索步骤的候选做打分或重排。_
 
-这个决策的全部已收录例子 —— 共 73 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 75 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#search-ranking)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#search-ranking)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 69 · 接口形态 0 · 仅示例 0 · 独立报告 6 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 71 · 接口形态 0 · 仅示例 0 · 独立报告 6 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -58,7 +58,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`开源项目` · ★10k+ · xerj-org · `Rs` · `noul` · 调用点 [`engine/crates/xerj-rerank/src/lib.rs`](https://github.com/xerj-org/xerj/blob/HEAD/engine/crates/xerj-rerank/src/lib.rs)，2026-10-26 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — 一个 Android 回复副驾：从屏幕文本判断意图、时机和风险，OCR 与文案起草交给另外的模型。
-  <sub>`开源项目` · ★1k+ · `Java` · `choice` · `score` · `noul` · 调用点 [`app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/jev-chat/jev-chat-jarvis/blob/HEAD/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-09-22 阅读</sub>
+  <sub>`开源项目` · ★1k+ · `Java` · `choice` · `score` · `noul` · 调用点 [`cn/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/jev-chat/jev-chat-jarvis/blob/HEAD/cn/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-09-22 阅读</sub>
 
 - **[jevgrep (dzhng)](https://github.com/dzhng/jevgrep)** — 一个命令行工具和 Agent 技能，用“这段代码做什么”来找代码：`jg "遥测事件是如何记录的？" ./repo` 让 Jev 在目录、文件和声明层面判断相关性，返回相关文件、阅读线索和原文摘录。作者报告在 10 个 SWE-bench 任务上同样解决 8 个，成本约低 30%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★1k+ · dzhng · `TS` · `noul` · 调用点 [`packages/core/test-node/provider-protocol.mjs`](https://github.com/dzhng/jevgrep/blob/HEAD/packages/core/test-node/provider-protocol.mjs)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
@@ -85,7 +85,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`开源项目` · ★100+ · `TS` · `choice` · `noul` · 调用点 [`src/lib/typesafe.ts`](https://github.com/superagents-lab/jev-search/blob/HEAD/src/lib/typesafe.ts)，2026-09-22 阅读</sub>
 
 - **[jev-semgrep](https://github.com/uehaj/sys1grep)** — 按含义 grep 的工具，现名 sys1grep：对每一行，Jev 回答一个 noul，判断这一行是否符合给定含义（例如“网络故障”），再由阈值决定是否匹配。多个含义可用 AND、OR、NOT 组合，可先用正则预筛行，含义和文本可以是不同语言。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★100+ · uehaj · `JS` · 调用点 [`semgrep.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/semgrep.mjs)，2026-09-22 阅读</sub>
+  <sub>`开源项目` · ★100+ · uehaj · `JS` · 调用点 [`serve.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/serve.mjs)，2026-09-22 阅读</sub>
 
 - **[jev-shell-history](https://github.com/mrnugget/jev-shell-history)** — Fish 风格的 zsh 历史自动建议，由 Jev 排序而不是按时间。
   <sub>`开源项目` · ★100+ · mrnugget · `TS` · 调用点 [`src/cli.ts`](https://github.com/mrnugget/jev-shell-history/blob/HEAD/src/cli.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
@@ -240,8 +240,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[pijev](https://github.com/tonyzdev/pijev)** — PiJev：Jev 参与循环的终端编码智能体——在第一次调用前由 Jev 给仓库文件排序，并挑选技能。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tonyzdev · `TS` · 调用点 [`src/jev.ts`](https://github.com/tonyzdev/pijev/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>
 
+- **[RikkaHub Plus · Lantern](https://github.com/MiaoWuNYA/rikkahub-sillytavern-android)** — 面向 SillyTavern 式角色扮演的 Android 聊天客户端，是 RikkaHub 的 Kotlin 分支。可选的 Jev 决策功能对每条记忆问一个 `noul`（它与当前对话是否相关？），以此代替嵌入检索；还给主模型一个 `judge` 工具，用于是非、选择和评分问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · MiaoWuNYA · `Kt` · `noul` · `choice` · `score` · 调用点 [`app/src/main/java/me/rerere/rikkahub/data/ai/jev/JevPrompts.kt`](https://github.com/MiaoWuNYA/rikkahub-sillytavern-android/blob/HEAD/app/src/main/java/me/rerere/rikkahub/data/ai/jev/JevPrompts.kt)，2026-10-29 模型阅读 · ⚠ `需第三方密钥`</sub>
+
 - **[sift](https://github.com/tylergibbs1/sift)** — 用 TypeSafe Jev 重排 Google 搜索结果的 Chrome 扩展，并收起销售页面和 SEO 填充内容。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · tylergibbs1 · `TS` · 调用点 [`src/jev/client.ts`](https://github.com/tylergibbs1/sift/blob/HEAD/src/jev/client.ts)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[SiftRank](https://github.com/noperator/siftrank)** — 按提示词给大量文本排序的 Go 命令行工具和库，做法是反复随机分批比较。使用 `--provider jev` 时，每批成为一次 Jev 请求，每对条目问一个 `noul`（这一条是否应排在那一条之前？），按概率之和给该批排序。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · noperator · `Go` · `noul` · 调用点 [`pkg/siftrank/jev_provider.go`](https://github.com/noperator/siftrank/blob/HEAD/pkg/siftrank/jev_provider.go)，2026-10-29 模型阅读</sub>
 
 - **[typesafe-as-a-judge](https://github.com/E-FL/typesafe-as-a-judge)** — 给 Codex 与 Claude Code 的非官方社区 MCP 插件，用 Jev 做有界路由。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · e-fl · `JS` · 调用点 [`server/judge.mjs`](https://github.com/E-FL/typesafe-as-a-judge/blob/HEAD/server/judge.mjs)，2026-09-22 阅读</sub>

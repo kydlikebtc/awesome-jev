@@ -149,9 +149,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-recruiter](https://github.com/skeptrunedev/jev-recruiter)** — 由 Jev 驱动的领英招聘智能体：浏览相关档案并保存链接。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · skeptrunedev · `Py` · 调用点 [`jev_ultrafast/decision_provider.py`](https://github.com/skeptrunedev/jev-recruiter/blob/HEAD/jev_ultrafast/decision_provider.py)，2026-09-22 阅读</sub>
 
-- **[jev-reviewer](https://github.com/choxos/jev-reviewer)** — 系统综述的数据抽取：让 Jev 从论文及其补充材料里按抽取表取值，并附原文引用。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10+ · choxos · `JS` · 调用点 [`docs/jev.js`](https://github.com/choxos/jev-reviewer/blob/HEAD/docs/jev.js)，2026-09-22 阅读</sub>
-
 - **[jev-security-scan](https://github.com/win4r/jev-security-scan)** — 使用 TypeSafe Jev 审查 Skill 与 MCP 的可疑行为，结合静态证据并明确标注覆盖范围。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · win4r · `Py` · 调用点 [`scripts/jev_client.py`](https://github.com/win4r/jev-security-scan/blob/HEAD/scripts/jev_client.py)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
 
@@ -211,6 +208,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[agent-handoff-gate](https://github.com/zsoXi/agent-handoff-gate)** — 面向证据感知的智能体交接与有界工作续跑的实验性协议。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · zsoxi · `Py` · 调用点 [`tools/build_benchmark_prompts.py`](https://github.com/zsoXi/agent-handoff-gate/blob/HEAD/tools/build_benchmark_prompts.py)，2026-09-22 阅读 · ⚠ `仅一次提交` `已归档`</sub>
+
+- **[arc-cua](https://github.com/shhivv/arc-cua)** — 面向计算机操作智能体的 macOS 动作循环：规划方交出一个有边界的桌面子任务，Jev 以 `choice` 问题从窗口实际提供的元素中选出下一步界面操作及其目标，并对每条成功标准再问一个 `choice`；字面文本只来自规划方。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · shhivv · `Py` · `choice` · 调用点 [`src/arc_cua/policies/typesafe.py`](https://github.com/shhivv/arc-cua/blob/HEAD/src/arc_cua/policies/typesafe.py)，2026-10-29 模型阅读</sub>
 
 - **[assay-001](https://github.com/jourdanlabs/assay-001)** — ASSAY-001：对 Jev 校准度与类型安全宣称的独立、预注册验证。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jourdanlabs · `Py` · 调用点 [`harness/run.py`](https://github.com/jourdanlabs/assay-001/blob/HEAD/harness/run.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
@@ -312,7 +312,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`插件` · muse0509 · `Go` · 调用点 [`internal/jev/client.go`](https://github.com/muse0509/jev-preflight/blob/HEAD/internal/jev/client.go)，2026-09-22 阅读</sub>
 
 - **[jev-reasoning-navigator](https://github.com/AndreuVM/praxeon)** — JEV 推理导航器：面向自主 LLM 智能体的认知监督、防止循环与反幻觉引擎。 <sub>(机翻)</sub>
-  <sub>`开源项目` · andreuvm · `Py` · 调用点 [`jev_navigator/core/typesafe_client.py`](https://github.com/AndreuVM/praxeon/blob/HEAD/jev_navigator/core/typesafe_client.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
+  <sub>`开源项目` · andreuvm · `Py` · 调用点 [`praxeon/core/typesafe_client.py`](https://github.com/AndreuVM/praxeon/blob/HEAD/praxeon/core/typesafe_client.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
 
 - **[jev-resume-analyzer](https://github.com/awun8191/jev-resume-analyzer)** — 用 Jev、React 与 FastAPI 做简历诊断与岗位匹配。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · awun8191 · `Py` · 调用点 [`backend/app/gateways/typesafe.py`](https://github.com/awun8191/jev-resume-analyzer/blob/HEAD/backend/app/gateways/typesafe.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
@@ -345,7 +345,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`基准测试` · chenmingtang830 · `TS` · 调用点 [`jevjudge/providers.py`](https://github.com/chenmingtang830/jevarena/blob/HEAD/jevjudge/providers.py)，2026-09-24 阅读</sub>
 
 - **[jevgate](https://github.com/Tech-Byte-Frontier/jevgate)** — 面向 CI 与编码智能体的代码审查关卡：就函数、文件、测试与依赖向 TypeSafe Jev 提出小而具体的类型化问题。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · tech-byte-frontier · `Rs` · 调用点 [`src/auth/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/auth/provider.rs)，2026-09-24 阅读</sub>
+  <sub>`开源项目` · tech-byte-frontier · `Rs` · 调用点 [`src/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/provider.rs)，2026-09-24 阅读</sub>
 
 - **[jevguard](https://github.com/Jhonnyr97/JevGuard)** — Claude Code 与 Codex CLI 插件：用 System One 判断校验智能体是否遵守项目规则。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · jhonnyr97 · `TS` · 调用点 [`dist/bin/jevguard-hook.js`](https://github.com/Jhonnyr97/JevGuard/blob/HEAD/dist/bin/jevguard-hook.js)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>

@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 481 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 485 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 373 · wire shape 68 · example only 0 · independent reports 23 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 375 · wire shape 70 · example only 0 · independent reports 24 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -75,7 +75,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Integration` · ★10k+ · `TS` · `choice` · `score` · `noul` · call site [`packages/ai/typesafe/src/TypeSafeDecisionModel.ts`](https://github.com/Effect-TS/effect/blob/HEAD/packages/ai/typesafe/src/TypeSafeDecisionModel.ts), read 2026-09-22</sub>
 
 - **[ai](https://github.com/vercel/ai)** — The AI Toolkit for TypeScript. From the creators of Next.js, the AI SDK is a free open-source library for building AI-powered applications and agents <sub>(upstream description)</sub>
-  <sub>`SDK` · ★10k+ · vercel · `TS` · call site [`examples/ai-functions/src/evaluate/typesafe-ai/basic.ts`](https://github.com/vercel/ai/blob/HEAD/examples/ai-functions/src/evaluate/typesafe-ai/basic.ts), read 2026-09-22</sub>
+  <sub>`SDK` · ★10k+ · vercel · `TS` · call site [`examples/ai-functions/src/decide/typesafe-ai/basic.ts`](https://github.com/vercel/ai/blob/HEAD/examples/ai-functions/src/decide/typesafe-ai/basic.ts), read 2026-09-22</sub>
 
 - **[laya](https://github.com/NandhaKishorM/laya)** — A reimplementation of the System One interface, not Jev: its own non-autoregressive checkpoints answer typed choice, score and noul questions over text or JSON in one forward pass, 33 ms for one question on a T4 by the author's measurement, in 100+ languages, with a router that picks the checkpoint. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · ★10k+ · nandhakishorm · `Py` · cited file [`laya-ts/src/shortlist.ts`](https://github.com/NandhaKishorM/laya/blob/HEAD/laya-ts/src/shortlist.ts), read 2026-09-24 · ⚠ `not Jev itself`</sub>
@@ -249,7 +249,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Jev-like alternative` · ★10+ · lawrence3699 · `Py` · cited file [`jev_style/client.py`](https://github.com/lawrence3699/jev-style/blob/HEAD/jev_style/client.py), read by a model 2026-10-24 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[jev4k](https://github.com/pambrose/jev4k)** — A Kotlin DSL and client for TypeSafe's Jev model <sub>(earlier upstream description)</sub>
-  <sub>`SDK` · ★10+ · pambrose · `Kt` · call site [`src/main/kotlin/com/pambrose/jev4k/JevConfig.kt`](https://github.com/pambrose/jev4k/blob/HEAD/src/main/kotlin/com/pambrose/jev4k/JevConfig.kt), read 2026-09-22</sub>
+  <sub>`SDK` · ★10+ · pambrose · `Kt` · call site [`src/commonMain/kotlin/com/pambrose/jev4k/JevConfig.kt`](https://github.com/pambrose/jev4k/blob/HEAD/src/commonMain/kotlin/com/pambrose/jev4k/JevConfig.kt), read 2026-09-22</sub>
 
 - **[jev_local](https://github.com/Argos1111/jev_local)** — Replicating Jev with a local LLM <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · ★10+ · argos1111 · `Py` · cited file [`tools/verify_api.py`](https://github.com/Argos1111/jev_local/blob/HEAD/tools/verify_api.py), read 2026-09-24 · ⚠ `not Jev itself` `no licence`</sub>
@@ -333,7 +333,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`SDK` · ★10+ · twister915 · `Rs` · call site [`examples/tsg/main.rs`](https://github.com/Twister915/typesafe-ai/blob/HEAD/examples/tsg/main.rs), read 2026-09-22</sub>
 
 - **[typesafe-ai-benchmark](https://github.com/iammrduncan/inference-benchmarks)** — A gateway that mimics the structured-output shape, used to benchmark against it.
-  <sub>`Benchmark` · ★10+ · iammrduncan · `TS` · call site [`packages/demos/lib/jev.ts`](https://github.com/iammrduncan/inference-benchmarks/blob/HEAD/packages/demos/lib/jev.ts), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
+  <sub>`Benchmark` · ★10+ · iammrduncan · `TS` · call site [`packages/decisions/src/jev.ts`](https://github.com/iammrduncan/inference-benchmarks/blob/HEAD/packages/decisions/src/jev.ts), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
 
 - **[typesafe-ai-php](https://github.com/sanmai/typesafe-ai-php)** — PHP SDK for Jev: a TypeSafeClient, a fluent SystemOneRequest builder for state and typed questions, and a SystemOneResult keyed by question ID. PHP 8.2+, installed with Composer. <sub>(written by a model)</sub>
   <sub>`SDK` · ★10+ · sanmai · `PHP` · call site [`src/TypeSafeClient.php`](https://github.com/sanmai/typesafe-ai-php/blob/HEAD/src/TypeSafeClient.php), read by a model 2026-10-24</sub>
@@ -377,6 +377,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[chat2jev](https://github.com/Chandler-Sun/chat2jev)** — Convert legacy chat completion API request to Typesafe jev API <sub>(upstream description)</sub>
   <sub>`SDK` · chandler-sun · `TS` · call site [`src/lib/typesafe.ts`](https://github.com/Chandler-Sun/chat2jev/blob/HEAD/src/lib/typesafe.ts), read 2026-09-24</sub>
 
+- **[CLM (Contrastive Language Models)](https://github.com/contrastive-lm/clm)** — CLM-8B, a System One model trained contrastively to connect states with actions, served behind a TypeSafe-compatible API that takes Jev's `noul`, `choice` and `score` questions unchanged. State and action embeddings are cached separately, and a second endpoint ranks candidate answers. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · contrastive-lm · `Py` · cited file [`src/clm/server.py`](https://github.com/contrastive-lm/clm/blob/HEAD/src/clm/server.py), read by a model 2026-10-29 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
+- **[Convex Coding Evals](https://github.com/convex/convex-evals)** — Convex's coding benchmark adds a decision-model track: 108 multiple-choice questions on Convex knowledge, four options each, covering 90 of its 112 coding evals. Jev answers each as one `choice` through OpenRouter's decisions endpoint; language models answer them through chat completions. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · convex · `TS` · `choice` · call site [`runner/decisions/providers.ts`](https://github.com/convex/convex-evals/blob/HEAD/runner/decisions/providers.ts), read by a model 2026-10-29</sub>
+
 - **[cu-Jev](https://github.com/dtunai/cu-Jev)** — cuda-Jev — a CUDA-native Jev System One decision inference engine. Jev compatible API, examples, and reproducible benchmarks. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · dtunai · `C` · cited file [`python/cujev/systemone.py`](https://github.com/dtunai/cu-Jev/blob/HEAD/python/cujev/systemone.py), read 2026-09-24 · ⚠ `not Jev itself`</sub>
 
@@ -389,11 +395,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[decision-circuits](https://github.com/Barneyjm/decision-circuits)** — Decision circuits: typed questions to a System One model, calibrated probabilities back, gates in code. Zero-dependency Python SDK with LangChain, OpenAI Agents, and Claude Agent SDK integrations. <sub>(upstream description)</sub>
   <sub>`SDK` · barneyjm · `Py` · call site [`examples/02_jev_backend.py`](https://github.com/Barneyjm/decision-circuits/blob/HEAD/examples/02_jev_backend.py), read 2026-09-24</sub>
 
+- **[DeepOpen](https://github.com/deepopen-com/deepopen)** — Python SDK that runs Laya's open encoder checkpoints locally on Jev-style `noul`, `choice` and `score` questions over text or JSON. A router picks the English, multilingual or typed-decisions checkpoint; the repository adds question templates and Banking77 and CLINC150 intent-classification recipes. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · deepopen-com · `Py` · cited file [`deepopen/agent.py`](https://github.com/deepopen-com/deepopen/blob/HEAD/deepopen/agent.py), read by a model 2026-10-29 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[go-system-one](https://github.com/rcarmo/go-system-one)** — when a gopher met Jev <sub>(upstream description)</sub>
   <sub>`SDK` · rcarmo · `Go` · call site [`docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py`](https://github.com/rcarmo/go-system-one/blob/HEAD/docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py), read 2026-09-24</sub>
 
 - **[hunch-js](https://github.com/steven-shoemaker/hunch-js)** — Jev judgments as TypeScript functions over arrays: classify, score, check, where, extract, pick, rank, verify. LLMs propose, Jev decides. <sub>(upstream description)</sub>
   <sub>`SDK` · steven-shoemaker · `TS` · call site [`src/gateway.ts`](https://github.com/steven-shoemaker/hunch-js/blob/HEAD/src/gateway.ts), read 2026-09-24</sub>
+
+- **[Instructor for PHP](https://github.com/cognesy/instructor-php)** — PHP monorepo for structured LLM output whose Polyglot package has a typed Decision API: `Decision::using('typesafe')` sends Jev `noul`, `choice` and `score` questions and returns typed answers with probabilities and confidence. The same API has drivers for other System One providers. <sub>(written by a model)</sub>
+  <sub>`SDK` · cognesy · `PHP` · `noul` · `choice` · `score` · call site [`packages/polyglot/src/Decision/Drivers/TypeSafe/TypesafeRequestAdapter.php`](https://github.com/cognesy/instructor-php/blob/HEAD/packages/polyglot/src/Decision/Drivers/TypeSafe/TypesafeRequestAdapter.php), read by a model 2026-10-29</sub>
 
 - **[jear](https://github.com/iJ03l/jear)** — Jev-routed client for NEAR AI Cloud inference and IronClaw agents. <sub>(upstream description)</sub>
   <sub>`SDK` · ij03l · `Rs` · call site [`src/jev_wire.rs`](https://github.com/iJ03l/jear/blob/HEAD/src/jev_wire.rs), read 2026-09-22</sub>
@@ -1446,7 +1458,7 @@ Projects and plugins with code, 251 of them, whose only pattern is `overview` an
   <sub>`Plugin` · mattn · `C` · call site [`jev.c`](https://github.com/mattn/sqlite3-jev/blob/HEAD/jev.c), read 2026-09-24 · ⚠ `one commit`</sub>
 
 - **[system-one-chess](https://github.com/dperezcabrera/ai-chess-lab)** — Chess against Jev, TypeSafe AI's System One model, through OpenRouter. Built with the pico framework. <sub>(upstream description)</sub>
-  <sub>`Project` · dperezcabrera · `Py` · call site [`system_one_chess/jev.py`](https://github.com/dperezcabrera/ai-chess-lab/blob/HEAD/system_one_chess/jev.py), read 2026-09-22</sub>
+  <sub>`Project` · dperezcabrera · `Py` · call site [`ai_chess_lab/jev.py`](https://github.com/dperezcabrera/ai-chess-lab/blob/HEAD/ai_chess_lab/jev.py), read 2026-09-22</sub>
 
 - **[systemone-lite](https://github.com/fritzprix/systemone-lite)** — Toy local System One–style decision API (Jev-shaped). Not affiliated with TypeSafe. <sub>(upstream description)</sub>
   <sub>`Project` · fritzprix · `Py` · call site [`scripts/jevbench_eval.py`](https://github.com/fritzprix/systemone-lite/blob/HEAD/scripts/jevbench_eval.py), read 2026-09-22</sub>

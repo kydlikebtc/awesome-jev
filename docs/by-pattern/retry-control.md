@@ -37,7 +37,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
 
 - **[jev-reasoning-navigator](https://github.com/AndreuVM/praxeon)** — JEV Reasoning Navigator: Cognitive supervision, loop prevention, and anti-hallucination engine for autonomous LLM agents using TypeSafe AI
-  <sub>`Project` · andreuvm · `Py` · call site [`jev_navigator/core/typesafe_client.py`](https://github.com/AndreuVM/praxeon/blob/HEAD/jev_navigator/core/typesafe_client.py), read 2026-09-24 · ⚠ `no licence`</sub>
+  <sub>`Project` · andreuvm · `Py` · call site [`praxeon/core/typesafe_client.py`](https://github.com/AndreuVM/praxeon/blob/HEAD/praxeon/core/typesafe_client.py), read 2026-09-24 · ⚠ `no licence`</sub>
 
 - **[jev-resilience](https://github.com/Vicente-MD/jev-resilience)** — Spring Boot starter for WebFlux: methods marked @SemanticCircuitBreaker send each response body to Jev with a noul on whether an HTTP 200 hides an error, a stack trace or a maintenance notice; above the threshold (0.85 in its example) it raises an exception a circuit breaker can count. Fails open. <sub>(written by a model)</sub>
   <sub>`Plugin` · vicente-md · `Java` · call site [`src/main/java/ai/jev/resilience/client/dto/JevRequest.java`](https://github.com/Vicente-MD/jev-resilience/blob/HEAD/src/main/java/ai/jev/resilience/client/dto/JevRequest.java), read 2026-09-22 · ⚠ `no licence`</sub>

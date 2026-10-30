@@ -1568,7 +1568,7 @@
     "repo_pushed_at": "2026-10-28T04:56:13Z",
     "repo_commits": 9319,
     "evidence": {
-      "path": "examples/ai-functions/src/evaluate/typesafe-ai/basic.ts",
+      "path": "examples/ai-functions/src/decide/typesafe-ai/basic.ts",
       "matched": [
         "jev-latest"
       ],
@@ -2521,6 +2521,56 @@
     ],
     "checked": "2026-10-28",
     "link_status": 200
+  },
+  {
+    "slug": "arc-cua",
+    "title": "arc-cua",
+    "summary": "macOS action loop for computer-use agents: a planner hands off a bounded desktop subtask, and Jev picks each next UI operation and target from what the window exposes, as `choice` questions, with one more `choice` per success criterion; literal text only ever comes from the planner.",
+    "summary_source": "model-written",
+    "summary_zh": "面向计算机操作智能体的 macOS 动作循环：规划方交出一个有边界的桌面子任务，Jev 以 `choice` 问题从窗口实际提供的元素中选出下一步界面操作及其目标，并对每条成功标准再问一个 `choice`；字面文本只来自规划方。",
+    "url": "https://github.com/shhivv/arc-cua",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "output-validation"
+    ],
+    "patterns_model_read_on": "2026-10-29",
+    "question_types": [
+      "choice"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "shhivv",
+      "url": "https://github.com/shhivv"
+    },
+    "repo_license": "MIT",
+    "languages": [
+      "python"
+    ],
+    "evidence": {
+      "path": "src/arc_cua/policies/typesafe.py",
+      "matched": [
+        "base_url: str = \"https://api.typesafe.ai/v1/systemone\",",
+        "class TypeSafeJevPolicy(ChoicePolicy):",
+        "return self._post({\"model\": self.model, \"state\": state, \"questions\": questions})"
+      ],
+      "model_read_on": "2026-10-29"
+    },
+    "notes": "The repository also ships arc-driver, a macOS driver for agents that uses no decision model. The questions are built in src/arc_cua/policies/choice.py, and any provider that answers typed choice questions can stand in for Jev. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-29; a maintainer has not yet read the call site.",
+    "notes_zh": "该仓库还附带 arc-driver：一个供智能体使用的 macOS 驱动，不使用任何决策模型。问题在 src/arc_cua/policies/choice.py 中构造，任何能回答类型化 choice 问题的提供方都可以替代 Jev。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-29 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-29",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
   },
   {
     "slug": "arize-decision-models-vs-llm-judges",
@@ -7205,6 +7255,56 @@
     "link_status": 200
   },
   {
+    "slug": "clm",
+    "title": "CLM (Contrastive Language Models)",
+    "summary": "CLM-8B, a System One model trained contrastively to connect states with actions, served behind a TypeSafe-compatible API that takes Jev's `noul`, `choice` and `score` questions unchanged. State and action embeddings are cached separately, and a second endpoint ranks candidate answers.",
+    "summary_source": "model-written",
+    "summary_zh": "对比语言模型（CLM）：CLM-8B 是以对比学习目标训练、把 state 与动作联系起来的 System One 模型，部署在兼容 TypeSafe 的 API 之后，原样接受 Jev 的 `noul`、`choice` 和 `score` 问题。state 与动作的嵌入分开缓存，另有一个端点给候选答案排序。",
+    "url": "https://github.com/contrastive-lm/clm",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "patterns_model_read_on": "2026-10-29",
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "contrastive-lm",
+      "url": "https://github.com/contrastive-lm"
+    },
+    "repo_license": "Apache-2.0",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev",
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "src/clm/server.py",
+      "matched": [
+        "@app.post(\"/v1/systemone\")",
+        "Question / Answer objects follow the TypeSafe wire schema (noul / choice /"
+      ],
+      "kind": "wire-shape",
+      "model_read_on": "2026-10-29"
+    },
+    "notes": "Not Jev: open models answering in Jev's request shape, so thresholds tuned on Jev do not transfer. The authors report CLM-8B on par with Jev on computer-use, gaming and tool-calling tasks at as little as a ninth of the latency, and 87.6% on Terminal-Bench 2.1 as a fine-tuned verifier. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-29; a maintainer has not yet read the call site.",
+    "notes_zh": "并非 Jev：这是按 Jev 请求格式作答的开源模型，在 Jev 上调好的阈值不能照搬。作者报告 CLM-8B 在计算机操作、游戏和工具调用任务上与 Jev 相当，延迟最低只有其九分之一；经微调后作为验证器，在 Terminal-Bench 2.1 上达到 87.6%。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-29 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-29",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
+  },
+  {
     "slug": "cloudflare-workers-ai-jev",
     "title": "Jev on Cloudflare Workers AI",
     "summary": "Workers AI binding and REST samples asking a noul, a choice and a score in one call, with the full response including per-answer confidence.",
@@ -8057,6 +8157,55 @@
     ],
     "checked": "2026-10-28",
     "link_status": 200
+  },
+  {
+    "slug": "convex-evals",
+    "title": "Convex Coding Evals",
+    "summary": "Convex's coding benchmark adds a decision-model track: 108 multiple-choice questions on Convex knowledge, four options each, covering 90 of its 112 coding evals. Jev answers each as one `choice` through OpenRouter's decisions endpoint; language models answer them through chat completions.",
+    "summary_source": "model-written",
+    "summary_zh": "Convex 的编程基准新增了决策模型赛道：108 道关于 Convex 知识的选择题，每题四个选项，覆盖其 112 个编程评测中的 90 个。Jev 通过 OpenRouter 的决策端点，以一个 `choice` 回答每道题；语言模型则通过聊天补全接口回答同样的问题。",
+    "url": "https://github.com/convex/convex-evals",
+    "kind": "benchmark",
+    "patterns": [
+      "overview"
+    ],
+    "patterns_model_read_on": "2026-10-29",
+    "question_types": [
+      "choice"
+    ],
+    "platforms": [
+      "openrouter"
+    ],
+    "author": {
+      "name": "convex",
+      "url": "https://github.com/convex"
+    },
+    "repo_license": "Apache-2.0",
+    "languages": [
+      "typescript"
+    ],
+    "evidence": {
+      "path": "runner/decisions/providers.ts",
+      "matched": [
+        "openrouterDecisions: \"https://openrouter.ai/api/alpha/decisions\",",
+        "type: \"choice\",",
+        "instructions: presented.input.question,"
+      ],
+      "model_read_on": "2026-10-29"
+    },
+    "notes": "The decision track has its own score and leaderboard, and the README says a correct choice does not show a model can write working Convex code. Hosted runs pin typesafe/jev-1.13 and use three option orderings. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-29; a maintainer has not yet read the call site.",
+    "notes_zh": "决策赛道有独立的分数和排行榜；README 说明，选对答案并不代表模型能写出可用的 Convex 代码。托管运行固定使用 typesafe/jev-1.13，并采用三种选项排列。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-29 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-29",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
   },
   {
     "slug": "cookbook-autoformat",
@@ -10405,6 +10554,56 @@
     ]
   },
   {
+    "slug": "deepopen",
+    "title": "DeepOpen",
+    "summary": "Python SDK that runs Laya's open encoder checkpoints locally on Jev-style `noul`, `choice` and `score` questions over text or JSON. A router picks the English, multilingual or typed-decisions checkpoint; the repository adds question templates and Banking77 and CLINC150 intent-classification recipes.",
+    "summary_source": "model-written",
+    "summary_zh": "在本地用 Laya 的开源编码器检查点回答 Jev 式 `noul`、`choice` 和 `score` 问题的 Python SDK，输入可以是文本或 JSON。路由器在英语、多语言和类型化决策三个检查点之间选择；仓库还提供问题模板，以及 Banking77 和 CLINC150 意图分类的训练方案。",
+    "url": "https://github.com/deepopen-com/deepopen",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "patterns_model_read_on": "2026-10-29",
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "deepopen-com",
+      "url": "https://github.com/deepopen-com"
+    },
+    "repo_license": "Apache-2.0",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev",
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "deepopen/agent.py",
+      "matched": [
+        "\"\"\"High-level inference runtime for laya System 1 decision models.\"\"\"",
+        "def system_one(self, state: Union[str, dict, list], questions: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:"
+      ],
+      "kind": "wire-shape",
+      "model_read_on": "2026-10-29"
+    },
+    "notes": "Not Jev: open models answering in Jev's request shape, so thresholds tuned on Jev do not transfer. The SDK and model derive from NandhaKishorM/laya (row laya-nandhakishorm). The authors report 94.12% on Banking77 (best of three seeds) and 98.02% on CLINC150 (four-encoder ensemble). Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-29; a maintainer has not yet read the call site.",
+    "notes_zh": "并非 Jev：这是按 Jev 请求格式作答的开源模型，在 Jev 上调好的阈值不能照搬。SDK 和模型源自 NandhaKishorM/laya（条目 laya-nandhakishorm）。作者报告 Banking77 准确率为 94.12%（三个随机种子中最好的一次），CLINC150 为 98.02%（四个编码器集成）。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-29 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-29",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
+  },
+  {
     "slug": "deepseek-harness-jev-pre-compaction",
     "title": "deepseek-harness-jev-pre-compaction",
     "summary": "A pre-compaction advisor for DeepSeek Harness. Runs before the standard `compaction-basic` backend, using TypeSafe JEV to safely prune low-value tool results from model context. Original session events stay in the append-only log; only the model-visible view is replaced with compact markers or ",
@@ -12051,7 +12250,7 @@
     "repo_pushed_at": "2026-10-06T13:36:05Z",
     "repo_commits": 59,
     "evidence": {
-      "path": "jev.js",
+      "path": "src/jev.js",
       "matched": [
         "api.typesafe.ai",
         "jev-latest",
@@ -12911,7 +13110,7 @@
     "repo_pushed_at": "2026-10-28T07:27:43Z",
     "repo_commits": 113,
     "evidence": {
-      "path": "scripts/ego-jev.mjs",
+      "path": "scripts/decider-loop.mjs",
       "matched": [
         "api.typesafe.ai",
         "jev-latest"
@@ -13086,7 +13285,7 @@
     ],
     "license": "CC0-1.0",
     "evidence": {
-      "path": "skills/ego-jev/scripts/jev-loop.mjs",
+      "path": "skills/ego-jev/scripts/jev-loop.ts",
       "matched": [
         "api.typesafe.ai",
         "typesafe-ai/jev",
@@ -17488,6 +17687,72 @@
     ]
   },
   {
+    "slug": "hey-jev",
+    "title": "Hey Jev",
+    "summary": "macOS voice assistant: local Whisper transcribes a command, then one Jev request asks every question at once (category, compound or not, target, app, action, volume level) as `choice`, `noul` and `score` questions; code runs the action through AppleScript, and only general questions reach an LLM.",
+    "summary_source": "model-written",
+    "summary_zh": "macOS 语音助手：本地 Whisper 转写指令后，一次 Jev 请求同时问完所有问题（请求类别、是否复合、目标、应用、动作、音量级别），题型有 `choice`、`noul` 和 `score`；代码通过 AppleScript 执行动作，只有常识性问题才交给 LLM。",
+    "url": "https://github.com/henryklunaris/hey-jev",
+    "kind": "project",
+    "patterns": [
+      "intent-routing",
+      "fan-out"
+    ],
+    "patterns_model_read_on": "2026-10-29",
+    "question_types": [
+      "choice",
+      "noul",
+      "score"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "henryklunaris",
+      "url": "https://github.com/henryklunaris"
+    },
+    "repo_license": "unknown",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "no-license",
+      "third-party-api-key"
+    ],
+    "evidence": {
+      "path": "siri.py",
+      "matched": [
+        "r = requests.post(\"https://api.typesafe.ai/v1/systemone\", json={\"model\": \"jev-latest\", \"state\": text, \"questions\": questions or QUESTIONS},",
+        "\"compound\": {\"type\": \"noul\", \"instructions\": \"Does the request contain more than one distinct action?\"},",
+        "GATE = 0.65"
+      ],
+      "model_read_on": "2026-10-29"
+    },
+    "observed_thresholds": [
+      {
+        "question_type": "choice",
+        "compares": "confidence",
+        "value": 0.65,
+        "decision": "at or above: act on the chosen category, target or action",
+        "source": "GATE = 0.65",
+        "model_read_on": "2026-10-29"
+      }
+    ],
+    "notes": "Below the 0.65 gate it asks you to say it again, and gives up after two tries. A compound request gets a second Jev call that asks the same questions for each part. Replies are spoken by Fish Audio and questions go to Claude Haiku through OpenRouter, so those keys are needed too. The repository has no LICENSE file. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-29; a maintainer has not yet read the call site.",
+    "notes_zh": "置信度低于 0.65 时它会请你再说一遍，连续两次就放弃。复合请求会触发第二次 Jev 调用，对每一部分重问同样的问题。回复由 Fish Audio 朗读，常识问题经 OpenRouter 交给 Claude Haiku，因此还需要这两项服务的密钥。该仓库没有 LICENSE 文件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-29 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-29",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
+  },
+  {
     "slug": "himalaya-jev-mail-classify",
     "title": "himalaya-jev-mail-classify",
     "summary": "Label and prioritise Gmail with a language model. Reads mail through himalaya, classifies each thread with Jev (TypeSafe) over OpenRouter, and applies Gmail labels and colours. Dry run by default, idempotent, no state file.",
@@ -18755,6 +19020,56 @@
     ],
     "checked": "2026-10-28",
     "link_status": 200
+  },
+  {
+    "slug": "instructor-php",
+    "title": "Instructor for PHP",
+    "summary": "PHP monorepo for structured LLM output whose Polyglot package has a typed Decision API: `Decision::using('typesafe')` sends Jev `noul`, `choice` and `score` questions and returns typed answers with probabilities and confidence. The same API has drivers for other System One providers.",
+    "summary_source": "model-written",
+    "summary_zh": "面向结构化 LLM 输出的 PHP 单体仓库，其中的 Polyglot 包提供类型化的 Decision API：用 `Decision::using('typesafe')` 向 Jev 发送 `noul`、`choice` 和 `score` 问题，返回带有概率和置信度的类型化答案。同一套 API 也有面向其他 System One 提供方的驱动。",
+    "url": "https://github.com/cognesy/instructor-php",
+    "kind": "sdk",
+    "patterns": [
+      "overview"
+    ],
+    "patterns_model_read_on": "2026-10-29",
+    "question_types": [
+      "noul",
+      "choice",
+      "score"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "cognesy",
+      "url": "https://github.com/cognesy"
+    },
+    "repo_license": "MIT",
+    "languages": [
+      "php"
+    ],
+    "evidence": {
+      "path": "packages/polyglot/src/Decision/Drivers/TypeSafe/TypesafeRequestAdapter.php",
+      "matched": [
+        "final readonly class TypesafeRequestAdapter implements DecisionRequestAdapter",
+        "$this->encoder = $encoder ?? new SystemOneRequestEncoder('TypeSafe');"
+      ],
+      "model_read_on": "2026-10-29"
+    },
+    "notes": "The request body comes from the shared System One encoder (packages/polyglot/src/Decision/Drivers/SystemOne/SystemOneRequestEncoder.php), and the bundled typesafe preset selects jev-latest. The registry's other drivers (classifier.dev, Cloudflare Clef, Fastino, Jeff, Laya, Perplexity, Respan) do not call Jev. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-29; a maintainer has not yet read the call site.",
+    "notes_zh": "请求体由共用的 System One 编码器生成（packages/polyglot/src/Decision/Drivers/SystemOne/SystemOneRequestEncoder.php），内置的 typesafe 预设选用 jev-latest。注册表中的其他驱动（classifier.dev、Cloudflare Clef、Fastino、Jeff、Laya、Perplexity、Respan）并不调用 Jev。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-29 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-29",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
   },
   {
     "slug": "interlinked-cli",
@@ -26756,7 +27071,7 @@
     "checked": "2026-10-28",
     "link_status": 200,
     "evidence": {
-      "path": "app/src/main/java/com/jev/probe/jev/JevQuestions.kt",
+      "path": "cn/app/src/main/java/com/jev/probe/jev/JevQuestions.kt",
       "matched": [
         "noul",
         "choice",
@@ -34462,6 +34777,59 @@
     "flags": [
       "single-commit"
     ]
+  },
+  {
+    "slug": "jev-gui-delegate",
+    "title": "Jev GUI Delegate",
+    "summary": "Windows and Chrome GUI delegation prototype for Codex: a local controller runs a task contract step by step, and when a control must be picked by meaning it asks Jev one `choice` over the observed controls plus no_match, wait, reobserve and ask_astra exits, then checks the result.",
+    "summary_source": "model-written",
+    "summary_zh": "面向 Codex 的 Windows 与 Chrome 图形界面委派原型：本地控制器按任务契约逐步执行；需要按语义挑选控件时，向 Jev 发一个 `choice`，选项是观察到的控件，外加 no_match、wait、reobserve 和 ask_astra 等出口，随后核对结果。",
+    "url": "https://github.com/YUTA-fywoo/jev-gui-delegate",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "patterns_model_read_on": "2026-10-29",
+    "question_types": [
+      "choice"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "YUTA-fywoo",
+      "url": "https://github.com/YUTA-fywoo"
+    },
+    "repo_license": "unknown",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "no-license",
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "gui_delegate/controller.py",
+      "matched": [
+        "from jev_client import JevClient,BridgeError",
+        "\"questions\":{\"next\":{\"type\":\"choice\",\"instructions\":decision_policy.INSTRUCTIONS,\"criteria\":criteria}}}",
+        "if not decision_policy.passes(a,thresholds):raise Stop('LOW_CONFIDENCE')"
+      ],
+      "model_read_on": "2026-10-29"
+    },
+    "notes": "The controller acts only when the answer passes the probability, confidence and margin thresholds in gui_delegate/decision_policy.py (the author's uncalibrated engineering defaults); settings.json pins jev-1.13.0. The author reports about 90% fewer main-model tokens, cached input included, over two runs of four synthetic tasks. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-29; a maintainer has not yet read the call site.",
+    "notes_zh": "只有答案通过 gui_delegate/decision_policy.py 中的概率、置信度和差距阈值时，控制器才会行动；作者称这些阈值是工程初始值，未经校准。settings.json 固定使用 jev-1.13.0。作者报告，在四项合成任务的两轮测试中，主模型 token（含缓存输入）减少约 90%。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-29 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-29",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
   },
   {
     "slug": "jev-harness",
@@ -43369,7 +43737,7 @@
     ],
     "license": "CC0-1.0",
     "evidence": {
-      "path": "jev_navigator/core/typesafe_client.py",
+      "path": "praxeon/core/typesafe_client.py",
       "matched": [
         "typesafe_sdk",
         "system_one",
@@ -45144,87 +45512,6 @@
       "no-license"
     ],
     "checked": "2026-10-28",
-    "link_status": 200
-  },
-  {
-    "slug": "jev-reviewer",
-    "title": "jev-reviewer",
-    "summary": "Data extraction for systematic reviews, quoted from the papers. Ask a trial report and its supplements your extraction form or a RoB 2, ROBINS-I, QUADAS-2 or TIDieR template; Jev points at the lines, every answer is a verbatim quote with its page, you check it and export the table. Files stay i",
-    "summary_zh": "系统综述的数据抽取：让 Jev 从论文及其补充材料里按抽取表取值，并附原文引用。",
-    "zh_machine": true,
-    "url": "https://github.com/choxos/jev-reviewer",
-    "kind": "project",
-    "patterns": [
-      "tool-selection",
-      "output-validation",
-      "data-extraction"
-    ],
-    "platforms": [
-      "typesafe-api"
-    ],
-    "author": {
-      "name": "choxos",
-      "url": "https://github.com/choxos"
-    },
-    "has_code": true,
-    "stars": 47,
-    "repo_license": "MIT",
-    "repo_created_at": "2026-09-18T14:47:00Z",
-    "repo_pushed_at": "2026-09-19T20:45:13Z",
-    "repo_commits": 53,
-    "evidence": {
-      "path": "docs/jev.js",
-      "matched": [
-        "api.typesafe.ai",
-        "jev-1.13",
-        "/v1/systemone"
-      ],
-      "read_on": "2026-09-22"
-    },
-    "first_seen": "2026-09-22",
-    "sources": [
-      {
-        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
-        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
-      },
-      {
-        "catalog": "cobanov/awesome-jev",
-        "url": "https://github.com/cobanov/awesome-jev"
-      },
-      {
-        "catalog": "heyjunpenn/awesome-jev",
-        "url": "https://github.com/heyjunpenn/awesome-jev"
-      },
-      {
-        "catalog": "jqueryscript/awesome-jev",
-        "url": "https://github.com/jqueryscript/awesome-jev"
-      },
-      {
-        "catalog": "jtnkminimal/awesome-jev",
-        "url": "https://github.com/jtnkminimal/awesome-jev"
-      },
-      {
-        "catalog": "Li-Evan/awesome-jev",
-        "url": "https://github.com/Li-Evan/awesome-jev"
-      },
-      {
-        "catalog": "logicrw/awesome-jev-projects",
-        "url": "https://github.com/logicrw/awesome-jev-projects"
-      },
-      {
-        "catalog": "Omrigotlieb/awesome-jev",
-        "url": "https://github.com/Omrigotlieb/awesome-jev"
-      },
-      {
-        "catalog": "valentynkit/awesome-jev-typesafe",
-        "url": "https://github.com/valentynkit/awesome-jev-typesafe"
-      }
-    ],
-    "license": "CC0-1.0",
-    "languages": [
-      "javascript"
-    ],
-    "checked": "2026-10-14",
     "link_status": 200
   },
   {
@@ -47092,7 +47379,7 @@
     "repo_pushed_at": "2026-10-27T16:36:29Z",
     "repo_commits": 279,
     "evidence": {
-      "path": "semgrep.mjs",
+      "path": "serve.mjs",
       "matched": [
         "api.typesafe.ai",
         "jev-latest",
@@ -54563,7 +54850,7 @@
     "repo_pushed_at": "2026-10-25T20:13:57Z",
     "repo_commits": 16,
     "evidence": {
-      "path": "src/main/kotlin/com/pambrose/jev4k/JevConfig.kt",
+      "path": "src/commonMain/kotlin/com/pambrose/jev4k/JevConfig.kt",
       "matched": [
         "api.typesafe.ai",
         "jev-latest"
@@ -57922,7 +58209,7 @@
     ],
     "license": "CC0-1.0",
     "evidence": {
-      "path": "src/auth/provider.rs",
+      "path": "src/provider.rs",
       "matched": [
         "api.typesafe.ai"
       ],
@@ -65616,6 +65903,76 @@
     ],
     "checked": "2026-10-28",
     "link_status": 200
+  },
+  {
+    "slug": "keel",
+    "title": "Keel",
+    "summary": "macOS coding workspace in Rust for Claude Code, Codex and other coding agents. For a fresh task, an opt-in Jev selector asks one `choice` over the installed provider/model routes plus `escalate`, and a `noul` per route (does it directly help?); the host validates the pick or falls back.",
+    "summary_source": "model-written",
+    "summary_zh": "本地优先的 macOS 编程工作区（Rust），运行 Claude Code、Codex 等编程智能体。对新任务，可选的 Jev 选择器用一个 `choice` 在已安装的提供方与模型路线及 `escalate` 之间选择，并对每条路线问一个 `noul`（它是否直接有助于完成任务？）；宿主校验所选路线，不通过则回退。",
+    "url": "https://github.com/codejunkie99/keel",
+    "kind": "project",
+    "patterns": [
+      "model-routing"
+    ],
+    "patterns_model_read_on": "2026-10-29",
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "codejunkie99",
+      "url": "https://github.com/codejunkie99"
+    },
+    "repo_license": "MIT",
+    "languages": [
+      "rust"
+    ],
+    "evidence": {
+      "path": "crates/jev-core/src/lib.rs",
+      "matched": [
+        "const ENDPOINT: &str = \"https://api.typesafe.ai/v1/systemone\";",
+        "Which prepared, eligible candidate best advances the current task? Choose escalate if none applies.",
+        "\"type\": \"noul\",",
+        "min_confidence: 0.35,",
+        "min_fit: 0.8,"
+      ],
+      "model_read_on": "2026-10-29"
+    },
+    "observed_thresholds": [
+      {
+        "question_type": "choice",
+        "compares": "confidence",
+        "value": 0.35,
+        "decision": "below: fall back to the ordinary coding route",
+        "source": "min_confidence: 0.35,",
+        "model_read_on": "2026-10-29"
+      },
+      {
+        "question_type": "noul",
+        "compares": "probability",
+        "value": 0.8,
+        "decision": "below (fit of the chosen route): fall back to the ordinary route",
+        "source": "min_fit: 0.8,",
+        "model_read_on": "2026-10-29"
+      }
+    ],
+    "notes": "Jev is opt-in: the default selector is a local Laya model on Core ML, and a third mode skips the selector. The cited file pins jev-1.13.0, and the engine prepares the routes in crates/engine/src/jev_routing.rs. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-29; a maintainer has not yet read the call site.",
+    "notes_zh": "Jev 需手动开启：默认选择器是通过 Core ML 运行的本地 Laya 模型，第三种模式不调用选择器。所引文件固定使用 jev-1.13.0，引擎在 crates/engine/src/jev_routing.rs 中准备候选路线。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-29 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-29",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
   },
   {
     "slug": "killmyidea",
@@ -81561,6 +81918,60 @@
     }
   },
   {
+    "slug": "rikkahub-sillytavern-android",
+    "title": "RikkaHub Plus · Lantern",
+    "summary": "Android chat client for SillyTavern-style character roleplay, a Kotlin fork of RikkaHub. Optional Jev decisioning asks a `noul` per stored memory (is it relevant to this conversation?) in place of embedding search, and gives the main model a `judge` tool for yes/no, choice and score questions.",
+    "summary_source": "model-written",
+    "summary_zh": "面向 SillyTavern 式角色扮演的 Android 聊天客户端，是 RikkaHub 的 Kotlin 分支。可选的 Jev 决策功能对每条记忆问一个 `noul`（它与当前对话是否相关？），以此代替嵌入检索；还给主模型一个 `judge` 工具，用于是非、选择和评分问题。",
+    "url": "https://github.com/MiaoWuNYA/rikkahub-sillytavern-android",
+    "kind": "project",
+    "patterns": [
+      "search-ranking"
+    ],
+    "patterns_model_read_on": "2026-10-29",
+    "question_types": [
+      "noul",
+      "choice",
+      "score"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "MiaoWuNYA",
+      "url": "https://github.com/MiaoWuNYA"
+    },
+    "repo_license": "AGPL-3.0",
+    "languages": [
+      "kotlin"
+    ],
+    "flags": [
+      "third-party-api-key"
+    ],
+    "evidence": {
+      "path": "app/src/main/java/me/rerere/rikkahub/data/ai/jev/JevPrompts.kt",
+      "matched": [
+        "fun memoryRelevance(memoryContent: String): JevQuestion = JevQuestion(",
+        "type = JevQuestion.TYPE_NOUL,",
+        "fun memoryRelevanceBatch(memories: List<String>): Map<String, JevQuestion> ="
+      ],
+      "model_read_on": "2026-10-29"
+    },
+    "notes": "Memories above 0.5 relevance probability are injected, per the README and the cited file, and the judge tool marks an answer below the user's confidence threshold as unreliable. Requests go to api.typesafe.ai with jev-latest unless the user changes them (JevModels.kt); the tool is in data/ai/tools/JudgeTool.kt. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-29; a maintainer has not yet read the call site.",
+    "notes_zh": "据 README 和所引文件，相关概率高于 0.5 的记忆会被注入；judge 工具会把低于用户所设置信度阈值的答案标为不可靠。请求默认发往 api.typesafe.ai，使用 jev-latest，用户可以修改（JevModels.kt）；该工具位于 data/ai/tools/JudgeTool.kt。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-29 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-29",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
+  },
+  {
     "slug": "risc-jev",
     "title": "risc-jev",
     "summary": "I tortured Jev into being a RISC-V CPU.",
@@ -84464,6 +84875,55 @@
     "flags": [
       "single-commit"
     ]
+  },
+  {
+    "slug": "siftrank",
+    "title": "SiftRank",
+    "summary": "Go CLI and library that ranks large collections of text against a prompt over repeated randomized batches. With `--provider jev`, each batch becomes one Jev request with a `noul` per pair of items (should this one rank ahead of that one?), and the summed probabilities order the batch.",
+    "summary_source": "model-written",
+    "summary_zh": "按提示词给大量文本排序的 Go 命令行工具和库，做法是反复随机分批比较。使用 `--provider jev` 时，每批成为一次 Jev 请求，每对条目问一个 `noul`（这一条是否应排在那一条之前？），按概率之和给该批排序。",
+    "url": "https://github.com/noperator/siftrank",
+    "kind": "project",
+    "patterns": [
+      "search-ranking"
+    ],
+    "patterns_model_read_on": "2026-10-29",
+    "question_types": [
+      "noul"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "noperator",
+      "url": "https://github.com/noperator"
+    },
+    "repo_license": "MIT",
+    "languages": [
+      "go"
+    ],
+    "evidence": {
+      "path": "pkg/siftrank/jev_provider.go",
+      "matched": [
+        "cfg.BaseURL = \"https://api.typesafe.ai/v1\"",
+        "Type: \"noul\",",
+        "Instructions: fmt.Sprintf(\"Under the following ranking criterion, should candidate %q rank ahead of candidate %q? \"+"
+      ],
+      "model_read_on": "2026-10-29"
+    },
+    "notes": "OpenAI's Chat Completions API stays the default provider. With Jev the reasoning-effort and relevance options are refused, and SiftRank estimates each request's tokens to keep it inside Jev's context limits. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-29; a maintainer has not yet read the call site.",
+    "notes_zh": "默认提供方仍是 OpenAI 的 Chat Completions API。使用 Jev 时不支持推理强度和相关性说明选项；SiftRank 会估算每次请求的 token 数，使其不超出 Jev 的上下文限制。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-29 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-29",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false
   },
   {
     "slug": "simple-jev",
@@ -88216,7 +88676,7 @@
     "repo_pushed_at": "2026-10-02T08:03:08Z",
     "repo_commits": 138,
     "evidence": {
-      "path": "system_one_chess/jev.py",
+      "path": "ai_chess_lab/jev.py",
       "matched": [
         "/v1/systemone",
         "system_one"
@@ -91629,7 +92089,7 @@
     "repo_pushed_at": "2026-10-18T01:49:03Z",
     "repo_commits": 67,
     "evidence": {
-      "path": "packages/demos/lib/jev.ts",
+      "path": "packages/decisions/src/jev.ts",
       "matched": [
         "api.typesafe.ai",
         "jev-latest",

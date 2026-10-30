@@ -310,6 +310,89 @@
     "notes_zh": "2026-09-24 退役：仓库在 API 和网页上都返回 404，而作者账号仍然存在 —— 已删除或转为私有。保留于此，以便这条引用仍可检索。"
   },
   {
+    "slug": "jev-reviewer",
+    "title": "jev-reviewer",
+    "summary": "Data extraction for systematic reviews, quoted from the papers. Ask a trial report and its supplements your extraction form or a RoB 2, ROBINS-I, QUADAS-2 or TIDieR template; Jev points at the lines, every answer is a verbatim quote with its page, you check it and export the table. Files stay i",
+    "summary_zh": "系统综述的数据抽取：让 Jev 从论文及其补充材料里按抽取表取值，并附原文引用。",
+    "zh_machine": true,
+    "url": "https://github.com/choxos/jev-reviewer",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "output-validation",
+      "data-extraction"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "choxos",
+      "url": "https://github.com/choxos"
+    },
+    "has_code": true,
+    "stars": 47,
+    "repo_license": "MIT",
+    "repo_created_at": "2026-09-18T14:47:00Z",
+    "repo_pushed_at": "2026-09-19T20:45:13Z",
+    "repo_commits": 53,
+    "evidence": {
+      "path": "docs/jev.js",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-1.13",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "cobanov/awesome-jev",
+        "url": "https://github.com/cobanov/awesome-jev"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "jqueryscript/awesome-jev",
+        "url": "https://github.com/jqueryscript/awesome-jev"
+      },
+      {
+        "catalog": "jtnkminimal/awesome-jev",
+        "url": "https://github.com/jtnkminimal/awesome-jev"
+      },
+      {
+        "catalog": "Li-Evan/awesome-jev",
+        "url": "https://github.com/Li-Evan/awesome-jev"
+      },
+      {
+        "catalog": "logicrw/awesome-jev-projects",
+        "url": "https://github.com/logicrw/awesome-jev-projects"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      },
+      {
+        "catalog": "valentynkit/awesome-jev-typesafe",
+        "url": "https://github.com/valentynkit/awesome-jev-typesafe"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "javascript"
+    ],
+    "checked": "2026-10-28",
+    "link_status": 404,
+    "notes": "Retired 2026-10-29: the repository has not resolved in any weekly check since 2026-10-19 (last on 2026-10-28) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-10-29 退役：自 2026-10-19 起每周检查都无法访问该仓库（最近一次为 2026-10-28）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
     "slug": "jev-scout",
     "title": "jev-scout",
     "summary": "Zero-hallucination open-source repo and crate scout powered by TypeSafe AI Jev System One scoring",
