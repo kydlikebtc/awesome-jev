@@ -86,11 +86,23 @@ class FileTest(unittest.TestCase):
     def test_the_about_lines_say_what_parks_a_candidate_and_that_it_decides_nothing(self):
         about = " ".join(df.ABOUT)
         self.assertIn("one commit or none, no star, no README", about)
+        self.assertIn(df.QUIET, about)
         self.assertIn("Parked is not declined", about)
         self.assertIn("never an entry here", about)
 
 
 class RuleTest(unittest.TestCase):
+    def test_a_small_candidate_is_parked_after_four_quiet_weeks_of_the_queue(self):
+        small = {**GOOD, "stars": 2, "commits": 4, "pushed": "2026-10-01"}
+        self.assertEqual(df.parked(small, "2026-10-29"), [df.QUIET])
+        self.assertEqual(df.parked(small, "2026-10-28"), [], "27 days is not four weeks")
+        self.assertEqual(df.parked(small), [], "without the queue's date the rule does not apply")
+        self.assertEqual(df.parked({**small, "stars": 3}, "2026-12-01"), [], "3 stars is not small")
+        self.assertEqual(df.parked({**small, "commits": 5}, "2026-12-01"), [], "5 commits is not small")
+        self.assertEqual(df.parked({**small, "stars": 0}, "2026-12-01"), [df.QUIET])
+        self.assertEqual(df.parked({**small, "stars": 0, "commits": 1}, "2026-12-01"), ["one commit or none", "no star"],
+                         "two weak counts say more than the quiet rule")
+
     def test_two_weak_counts_park_a_candidate_and_one_does_not(self):
         self.assertEqual(df.parked({**GOOD, "stars": 0, "commits": 1}), ["one commit or none", "no star"])
         self.assertEqual(df.parked({**GOOD, "commits": 0, "readme": False}), ["one commit or none", "no README"])
@@ -216,7 +228,7 @@ class MainTest(unittest.TestCase):
             "acme/quiet": {**GOOD, "stars": 7},
         })
         self.assertIn("2 of 3 candidate(s) read, 1 not answered (1 keep last week's facts); "
-                      "1 to read, 1 parked, 1 settled under the name GitHub now gives", out)
+                      "1 to read, 0 held, 1 parked, 1 settled under the name GitHub now gives", out)
 
     def test_a_candidate_settled_under_its_new_name_is_still_read_so_the_rename_is_kept(self):
         self.run_main({"acme/old-name": {**GOOD, "name": "acme/renamed"}})

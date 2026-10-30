@@ -220,7 +220,9 @@ class ReviewQueuePageTest(unittest.TestCase):
         self.assertIn("机翻", text.split("\n\n")[2])
 
     def test_an_empty_signal_says_so(self):
-        text = queue.render([entry("plain", path="src/app.py", matched=["system_one", "typesafe_sdk"])])
+        # docs/held.txt is not this fixture's: with nothing held, every section is empty.
+        with patch.object(queue, "HELD", pathlib.Path(tempfile.gettempdir()) / "no-held.txt"):
+            text = queue.render([entry("plain", path="src/app.py", matched=["system_one", "typesafe_sdk"])])
         self.assertEqual(text.count("Nothing is on this list. · 此列表为空。"), len(queue.SECTIONS))
 
     def test_outside_text_cannot_break_the_table(self):

@@ -5,7 +5,8 @@ A candidate is a repository .discover/seen.json records as calls-jev. It is
 catalogued when a row in catalog.json links to it, catalogued and since
 retired when only retired.json does, declined when docs/declined.txt names it,
 and otherwise still to read, or parked when .discover/facts.json says it is
-weak on two counts (since 2026-10-24). No network.
+weak on two counts (since 2026-10-24), or held when docs/held.txt names it
+(since 2026-10-30). No network.
 """
 
 from __future__ import annotations
@@ -130,7 +131,7 @@ class RenderTest(unittest.TestCase):
     def test_counts_and_order(self):
         body = self.body()
         self.assertIn(
-            "**3** to read · **0** parked · **4** catalogued · **1** declined · **1** catalogued and since retired", body
+            "**3** to read · **0** held · **0** parked · **4** catalogued · **1** declined · **1** catalogued and since retired", body
         )
         opened = re.findall(r"^- \[ \] \[([^\]]+)\]", body, re.M)
         self.assertEqual(opened, ["alpha/early", "aaa/newest", "zeta/late"], "oldest read first, then by name")
@@ -159,7 +160,7 @@ class RenderTest(unittest.TestCase):
         # Principle f: the description is read by people in either language,
         # and the Chinese is marked as model-written.
         body = self.body()
-        self.assertIn("待读 **3** · 暂缓 **0** · 已收录 **4** · 已拒收 **1** · 收录后已退役 **1** <sub>(机翻)</sub>", body)
+        self.assertIn("待读 **3** · 等人看 **0** · 暂缓 **0** · 已收录 **4** · 已拒收 **1** · 收录后已退役 **1** <sub>(机翻)</sub>", body)
         self.assertIn("本描述里的中文（包括下面的标题和计数）都由模型写成。 <sub>(机翻)</sub>", body)
         settled = qs.render(qs.derive({"no/thanks": v("2026-09-24")}, CATALOG, RETIRED, DECLINED))
         self.assertIn("没有待读的候选：迄今每个候选都已收录或已拒收。 <sub>(机翻)</sub>", settled)
@@ -278,8 +279,8 @@ class FactsTest(unittest.TestCase):
 
     def test_the_parked_section_says_nothing_was_decided(self):
         body = qs.render(self.derive())
-        self.assertIn("**5** to read · **3** parked · **1** catalogued · **1** declined", body)
-        self.assertIn("待读 **5** · 暂缓 **3** · ", body)
+        self.assertIn("**5** to read · **0** held · **3** parked · **1** catalogued · **1** declined", body)
+        self.assertIn("待读 **5** · 等人看 **0** · 暂缓 **3** · ", body)
         start = body.index("<summary>Parked · 暂缓 (3)</summary>")
         self.assertLess(body.index("### To read · 待读"), start)
         self.assertLess(start, body.index("<summary>Catalogued · 已收录 (1)</summary>"))
@@ -310,8 +311,8 @@ class FactsTest(unittest.TestCase):
             qs.render(qs.derive(SEEN, CATALOG, RETIRED, DECLINED)),
         )
         settled = qs.render(qs.derive({"one/commit": v("2026-09-03")}, [], [], {}, {"one/commit": f(0, 1)}))
-        self.assertIn("Nothing to read but the parked candidates below.", settled)
-        self.assertIn("除了下面暂缓的候选，没有待读的。 <sub>(机翻)</sub>", settled)
+        self.assertIn("Nothing to read but the held and parked candidates below.", settled)
+        self.assertIn("除了下面等人看和暂缓的候选，没有待读的。 <sub>(机翻)</sub>", settled)
         self.assertNotIn("claim owner/name", settled)
 
     def test_same_facts_same_bytes_whatever_their_order(self):
@@ -321,6 +322,97 @@ class FactsTest(unittest.TestCase):
             facts = dict(rng.sample(list(self.FACTS.items()), len(self.FACTS)))
             seen = dict(rng.sample(list(self.SEEN.items()), len(self.SEEN)))
             self.assertEqual(qs.render(qs.derive(seen, self.CATALOG, [], self.DECLINED, facts)), body)
+
+
+class HeldTest(unittest.TestCase):
+    """Since 2026-10-30: a candidate in docs/held.txt was read by someone who
+    left it for a person, so it waits under its own heading, out of the way of
+    the drafting runs, and a small candidate quiet for four weeks is parked."""
+
+    SEEN = {
+        "big/unsure": v("2026-10-01"),
+        "small/unsure": v("2026-10-01"),
+        "plain/open": v("2026-10-01"),
+        "no/thanks": v("2026-10-01"),
+        "listed/now": v("2026-10-01"),
+        "small/quiet": v("2026-10-01"),
+        "small/busy": v("2026-10-29"),
+        "three/stars": v("2026-10-01"),
+    }
+    FACTS = {
+        "big/unsure": f(900, 400),
+        "small/unsure": f(1, 2, "2026-09-01"),
+        "plain/open": f(50, 50),
+        "small/quiet": f(2, 4, "2026-10-01"),
+        "small/busy": f(2, 4, "2026-10-02"),
+        "three/stars": f(3, 4, "2026-09-01"),
+    }
+    HELD = {
+        "big/unsure": "README does not mention Jev | needs @code search",
+        "small/unsure": "",
+        "no/thanks": "held, then declined",
+        "listed/now": "held, then catalogued",
+    }
+    CATALOG = [entry("listed-now", "https://github.com/listed/now")]
+    DECLINED = {"no/thanks": "not a decision example"}
+
+    def derive(self, held=None):
+        return {c.repo: c for c in qs.derive(
+            self.SEEN, self.CATALOG, [], self.DECLINED, self.FACTS, self.HELD if held is None else held,
+        )}
+
+    def test_a_hold_beats_to_read_and_parked_but_not_a_row_or_a_decline(self):
+        got = self.derive()
+        self.assertEqual((got["big/unsure"].state, got["big/unsure"].reason),
+                         ("held", "README does not mention Jev | needs @code search"))
+        self.assertEqual(got["small/unsure"].state, "held", "held even when its figures would park it")
+        self.assertEqual(got["no/thanks"].state, "declined")
+        self.assertEqual(got["listed/now"].state, "catalogued")
+        self.assertEqual(self.derive(held={})["big/unsure"].state, "open")
+
+    def test_a_small_candidate_quiet_for_four_weeks_of_the_queue_is_parked(self):
+        got = self.derive()
+        # The queue's date is its newest verdict, 2026-10-29: 28 days after 10-01.
+        self.assertEqual((got["small/quiet"].state, got["small/quiet"].reason), ("parked", df.QUIET))
+        self.assertEqual(got["small/busy"].state, "open", "pushed 27 days before the queue's date")
+        self.assertEqual(got["three/stars"].state, "open", "three stars is not small")
+        self.assertEqual(got["plain/open"].state, "open")
+        self.assertEqual(df.parked(f(2, 4, "2026-01-01")), [], "no date, no quiet rule")
+
+    def test_the_held_section_sits_between_to_read_and_parked_and_asks_nothing(self):
+        body = qs.render(list(self.derive().values()))
+        self.assertIn("**3** to read · **2** held · **1** parked · ", body)
+        self.assertIn("待读 **3** · 等人看 **2** · 暂缓 **1** · ", body)
+        start = body.index("<summary>Held for a person · 等人看 (2)</summary>")
+        self.assertLess(body.index("### To read · 待读"), start)
+        self.assertLess(start, body.index("<summary>Parked · 暂缓 (1)</summary>"))
+        section = body[start:body.index("</details>", start)]
+        self.assertIn(qs.HELD_EN, section)
+        self.assertIn(qs.HELD_ZH, section)
+        self.assertNotIn("- [ ] ", section, "no box: it waits on a decision, which lands in the files")
+        held = re.findall(r"^- \[([^\]]+)\]\(https://github.com/[^)]+\) · held: ", section, re.M)
+        self.assertEqual(held, ["big/unsure", "small/unsure"], "strongest first")
+        line = next(line for line in section.splitlines() if "[big/unsure]" in line)
+        self.assertNotIn("@code", line, "a reason is outside text, made inert")
+        self.assertIn(" · ★900 · 400 commits · last push 2026-10-01 · read by script 2026-10-01", line)
+        self.assertIn("[small/unsure](https://github.com/small/unsure) · held: no reason given · ", body)
+        self.assertNotIn("[ ] [big/unsure]", body)
+
+    def test_the_command_reads_docs_held_txt(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            (root / "docs").mkdir()
+            (root / "catalog.json").write_text("[]")
+            (root / "retired.json").write_text("[]")
+            (root / "docs" / "held.txt").write_text(
+                "# comment\nBig/Unsure  # left for a person\nsome-row  # a row, not a candidate\n"
+            )
+            ds.write(root / ".discover" / "seen.json", {"big/unsure": v("2026-10-01")})
+            out, err = io.StringIO(), io.StringIO()
+            with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+                self.assertEqual(qs.main(["--root", str(root)]), 0)
+            self.assertIn("0 open, 1 held, 0 parked", err.getvalue())
+            self.assertIn("[big/unsure](https://github.com/big/unsure) · held: left for a person", out.getvalue())
 
 
 class CommandTest(unittest.TestCase):
@@ -349,7 +441,7 @@ class CommandTest(unittest.TestCase):
         self.assertEqual(out, "")
         self.assertEqual(target.read_text(encoding="utf-8"), qs.body(qs.derive(SEEN, CATALOG, RETIRED, DECLINED)))
         self.assertIn(
-            "discovery queue: 9 candidate(s) among 11 verdict(s): 3 open, 0 parked, 4 catalogued, 1 retired, 1 declined",
+            "discovery queue: 9 candidate(s) among 11 verdict(s): 3 open, 0 held, 0 parked, 4 catalogued, 1 retired, 1 declined",
             err,
         )
         self.assertIn(f"wrote {target}", err)
@@ -388,7 +480,7 @@ class CommandTest(unittest.TestCase):
         path.write_text(json.dumps(data))
         code, out, err = self.run_main()
         self.assertEqual(code, 0, err)
-        self.assertIn("discovery queue: 9 candidate(s) among 11 verdict(s): 2 open, 1 parked, ", err)
+        self.assertIn("discovery queue: 9 candidate(s) among 11 verdict(s): 2 open, 0 held, 1 parked, ", err)
         self.assertIn("::warning title=Discovery facts left out::.discover/facts.json: 1 entry", err)
         self.assertIn("[zeta/late](https://github.com/zeta/late) · ★3 · 9 commits", out)
 
