@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 166 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 167 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 157 · 接口形态 5 · 仅示例 0 · 独立报告 9 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 158 · 接口形态 5 · 仅示例 0 · 独立报告 9 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -289,6 +289,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[instruct-jev](https://github.com/ctaxnagomi/instruct-jev)** — INSTRUCT_JEV：Jev／System One 指令语料库（choice／noul／score）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ctaxnagomi · `Py` · 调用点 [`DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py`](https://github.com/ctaxnagomi/instruct-jev/blob/HEAD/DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py)，2026-09-22 阅读</sub>
+
+- **[Jev Chat Jarvis (iOS keyboard)](https://github.com/jev-chat/jev-chat-jarvis-ios)** — Jev Chat Jarvis 的 iOS 键盘版：在任意聊天 App 中复制一条消息，自定义键盘就会显示 Jev 对其意图（`choice`）和风险（`score`）的判断，以及由 Jev 用另一道 `choice` 排序的候选回复，点一下即可插入。可选的扩展通过本地 OCR 读取屏幕。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · jev-chat · `Swift` · `choice` · `score` · 调用点 [`Shared/JevJudge.swift`](https://github.com/jev-chat/jev-chat-jarvis-ios/blob/HEAD/Shared/JevJudge.swift)，2026-10-30 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[JEV Trading Command Center](https://github.com/mars-tw/jev-trading-command-center)** — 带 3D 指挥中心界面的模拟交易研究应用。针对一个 USDT 合约标的，它向 Jev 询问接下来 1 到 4 根 K 线的方向（做多、做空或不交易），用一个 `score` 评估入场质量，再用三个 `noul` 判断是否为有效形态、是否有陷阱风险、风险是否可接受；每次模拟开仓都由代码依据这些答案把关。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · mars-tw · `Py` · `choice` · `score` · `noul` · 调用点 [`scanner/jev_client.py`](https://github.com/mars-tw/jev-trading-command-center/blob/HEAD/scanner/jev_client.py)，2026-10-28 模型阅读</sub>

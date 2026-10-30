@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 75 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 76 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -141,6 +141,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   <sub>`Benchmark` · convex · `TS` · `choice` · [call site](https://github.com/convex/convex-evals/blob/HEAD/runner/decisions/providers.ts), read by a model 2026-10-29</sub>
 
   > The decision track has its own score and leaderboard, and the README says a correct choice does not show a model can write working Convex code. Hosted runs pin typesafe/jev-1.13 and use three option orderings. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-29; a maintainer has not yet read the call site.
+
+- **[Decision Index](https://github.com/apolinario/decision-index)**<br>
+  Reproduction kit for the Decision Index, a leaderboard of typed decision engines (Jev and open models answering choice and noul questions) on 37 public benchmarks, scored chance-corrected. Its http engine sends each request unchanged to any /v1/systemone server; jev-1.13.0 is the reference. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · apolinario · `Py` · [call site](https://github.com/apolinario/decision-index/blob/HEAD/decision_index/engines/http.py), read by a model 2026-10-30</sub>
+
+  > Not affiliated with TypeSafe. The queue cited a constants file; this row cites the http engine, which docs/engines.md says drives Jev through TypeSafe's hosted API. The live board is 0.4; the kit runs the public 0.3 suite. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-30; a maintainer has not yet read the call site.
 
 - **[Decision Models as Guardrails](https://dm-as-guardrails.raxitlabs.com)**<br>
   Asks Jev 1.13.0, Jev 1.14.0 and 17 other systems, Bedrock Guardrails among them, the same 9,975 labelled guardrail checks in six suites. Jev answers each as a noul; 0.5 or more blocks, nothing tuned per model. Reports balanced accuracy with 95% intervals and USD per 1,000 checks at list price.<br>

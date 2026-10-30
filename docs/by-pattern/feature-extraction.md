@@ -4,11 +4,11 @@
 
 _Turn free text into numeric features for a classical downstream model._
 
-Every catalogued example of this decision — 8 of them. The same rows, with caveats, are in [the index](../../README.md#ml-feature-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=feature-extraction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 9 of them. The same rows, with caveats, are in [the index](../../README.md#ml-feature-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=feature-extraction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#feature-extraction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 1 · call site 7 · wire shape 0 · example only 0 · independent reports 0 · negative results 0 · no file cited 1. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 1 · call site 8 · wire shape 0 · example only 0 · independent reports 0 · negative results 0 · no file cited 1. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -49,6 +49,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[tiershift](https://github.com/iamvatsalpatel/tiershift)** — Model router that starts each request on the cheapest tier and lifts it only when Jev's signals (multi-step reasoning, difficulty, stakes, safety) cross a YAML policy. On its author's 120 prompts it matched the flagship's quality at 40% less cost; the fast model alone did as well at 3% of the cost. <sub>(written by a model)</sub>
   <sub>`Project` · iamvatsalpatel · `TS` · call site [`bench/experiments/gate-experiment.ts`](https://github.com/iamvatsalpatel/tiershift/blob/HEAD/bench/experiments/gate-experiment.ts), read 2026-09-22</sub>
+
+- **[Truffler](https://github.com/kieranklaassen/truffler)** — Intent search for Rails apps: on save, Truffler asks Jev the noul, choice and score questions declared for a record and stores each answer as a number, a named-dimension embedding that search weighs by intent. On request Jev also reranks top results into Strong, Possible and Unlikely. <sub>(written by a model)</sub>
+  <sub>`Integration` · kieranklaassen · `Rb` · `noul` · `choice` · `score` · call site [`lib/truffler/questions.rb`](https://github.com/kieranklaassen/truffler/blob/HEAD/lib/truffler/questions.rb), read by a model 2026-10-30</sub>
 
 ---
 

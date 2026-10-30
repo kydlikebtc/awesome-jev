@@ -4,11 +4,11 @@
 
 _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 
-这个决策的全部已收录例子 —— 共 38 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#上下文压缩)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 39 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#上下文压缩)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#context-compaction)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#context-compaction)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 38 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 2 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 39 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 2 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -118,6 +118,9 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 
 - **[jselect](https://github.com/keltokhy/jselect)** — 在 token 预算内给 AI 挑出有用证据：快速、带来源链接的上下文选择器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · keltokhy · `Py` · 调用点 [`src/jselect/judge.py`](https://github.com/keltokhy/jselect/blob/HEAD/src/jselect/judge.py)，2026-09-22 阅读</sub>
+
+- **[optim-jev](https://github.com/Oqura-ai/optim-jev)** — Claude Code 插件（也支持 Codex），包含三个向 Jev 提问的工具：jev-compacter 在压缩上下文时判断哪些过期的工具调用和输出可以丢弃，jev-router 为每个子智能体选择模型和推理强度，jev-skills 为每条提示只发送一份简短且相关的技能列表，而不是整个目录。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · Oqura-ai · `Py` · `noul` · 调用点 [`src/optim_jev/tools/jev_compacter/jev.py`](https://github.com/Oqura-ai/optim-jev/blob/HEAD/src/optim_jev/tools/jev_compacter/jev.py)，2026-10-30 模型阅读</sub>
 
 - **[pi-fast-jev-compaction](https://github.com/KamilPostrozny/pi-fast-jev-compaction)** — 给 pi 的快速 JEV 压缩扩展。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · kamilpostrozny · `TS` · 调用点 [`extensions/fast-jev-core.ts`](https://github.com/KamilPostrozny/pi-fast-jev-compaction/blob/HEAD/extensions/fast-jev-core.ts)，2026-09-22 阅读</sub>

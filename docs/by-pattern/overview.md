@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 485 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 489 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 375 · wire shape 70 · example only 0 · independent reports 24 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 376 · wire shape 73 · example only 0 · independent reports 25 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -389,6 +389,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[decido](https://github.com/yairshy/decido)** — Probabilistic decisions for Python. Use Jev or bring your own provider; crawl with Playwright. <sub>(upstream description)</sub>
   <sub>`Integration` · yairshy · `Py` · call site [`src/decido/providers/typesafe.py`](https://github.com/yairshy/decido/blob/HEAD/src/decido/providers/typesafe.py), read 2026-09-22</sub>
 
+- **[Decision Index](https://github.com/apolinario/decision-index)** — Reproduction kit for the Decision Index, a leaderboard of typed decision engines (Jev and open models answering choice and noul questions) on 37 public benchmarks, scored chance-corrected. Its http engine sends each request unchanged to any /v1/systemone server; jev-1.13.0 is the reference. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · apolinario · `Py` · call site [`decision_index/engines/http.py`](https://github.com/apolinario/decision-index/blob/HEAD/decision_index/engines/http.py), read by a model 2026-10-30</sub>
+
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)** — Open benchmark runtime for document-grounded decision models <sub>(upstream description)</sub>
   <sub>`Benchmark` · hanno-labs · `Py` · call site [`src/decision_bench/models/jev_openrouter.py`](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py), read 2026-09-24</sub>
 
@@ -400,6 +403,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[go-system-one](https://github.com/rcarmo/go-system-one)** — when a gopher met Jev <sub>(upstream description)</sub>
   <sub>`SDK` · rcarmo · `Go` · call site [`docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py`](https://github.com/rcarmo/go-system-one/blob/HEAD/docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py), read 2026-09-24</sub>
+
+- **[gutsy](https://github.com/kouhxp/gutsy)** — Local decision model gutsy-0.8b (a Qwen3.5-0.8B fine-tune, GGUF on llama.cpp) that answers yes/no, choice and score with calibrated probabilities on an ordinary CPU, behind /v1/systemone and the /api/alpha/decisions and /v1/decisions paths. The author reports a validation calibration error of 0.022. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · kouhxp · `Py` · cited file [`gutsy-inference/gutsy_inference/server.py`](https://github.com/kouhxp/gutsy/blob/HEAD/gutsy-inference/gutsy_inference/server.py), read by a model 2026-10-30 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[hunch-js](https://github.com/steven-shoemaker/hunch-js)** — Jev judgments as TypeScript functions over arrays: classify, score, check, where, extract, pick, rank, verify. LLMs propose, Jev decides. <sub>(upstream description)</sub>
   <sub>`SDK` · steven-shoemaker · `TS` · call site [`src/gateway.ts`](https://github.com/steven-shoemaker/hunch-js/blob/HEAD/src/gateway.ts), read 2026-09-24</sub>
@@ -526,6 +532,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[laya-php](https://github.com/marcreichel/laya-php)** — PHP 8.4 and Laravel SDK for Laya, the open multilingual decision engine: describe a decision as a readonly class with enums, and laya-serve's /v1/systemone endpoint answers it as a typed object with a confidence per answer. It adds a fake for tests, caching, events and batch prediction. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · marcreichel · `PHP` · cited file [`src/Laya.php`](https://github.com/marcreichel/laya-php/blob/HEAD/src/Laya.php), read by a model 2026-10-28 · ⚠ `not Jev itself`</sub>
+
+- **[lev](https://github.com/Abhinavexists/lev)** — Interfaze's open System One model (Qwen3.5-4B, LoRA) and its levbench harness: one forward pass answers yes/no, choice and score from logits, served behind /v1/systemone for TypeSafe clients. The authors report 74.3% macro accuracy on 13 S1Bench subsets, against 76.1% for Jev in the same harness. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · Abhinavexists · `Py` · cited file [`packages/lev/src/lev/server.py`](https://github.com/Abhinavexists/lev/blob/HEAD/packages/lev/src/lev/server.py), read by a model 2026-10-30 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
+- **[Mica](https://github.com/akivet/mica)** — HTTP server for Mica v0.5 4B, an open decision model that answers noul, choice and score with a probability per answer behind /v1/systemone, on INT8 CUDA or llama.cpp GGUF, with an abstain threshold for unsure cases. The author reports 97.3% of answers unchanged when options are shuffled. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · akivet · `Py` · cited file [`mica/server.py`](https://github.com/akivet/mica/blob/HEAD/mica/server.py), read by a model 2026-10-30 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[OpenJev](https://github.com/xingwudao/OpenJev)** — OpenJev: an independent Jev-inspired System One decision API based on TypeSafe.ai concepts. Choice, score and noul primitives, local mock server, Python and TypeScript SDKs. Real inference planned; not affiliated with TypeSafe AI. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · xingwudao · `Py` · cited file [`sdk/python/openjev/__init__.py`](https://github.com/xingwudao/OpenJev/blob/HEAD/sdk/python/openjev/__init__.py), read 2026-09-24 · ⚠ `not Jev itself` `no licence`</sub>

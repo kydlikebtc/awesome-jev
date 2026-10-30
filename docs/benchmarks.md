@@ -6,7 +6,7 @@
 
 Every `kind: benchmark` row that carries a `measurement`: what its own author measured, indexed field by field from the author's report. This repository measured and re-ran none of it. A **direction** is the author's own conclusion about Jev for that task, author-stated and not reproduced here, and is left blank where the author states none in words. Task, dataset and comparator names are recorded as the author names them.
 
-**73** benchmark rows; **27** carry a measurement. Of those, a person has read **0** against their report (`measurement.read_on`) and only a model **0** (`measurement.model_read_on`); a script or a model filled in the other **27** and nobody has read them back. The review queue lists [the unread rows](review-queue.md#measurement-unread) and [those only a model has read](review-queue.md#model-read). How the fields were first filled in: [docs/method.md](method.md). Field rules: [CONTRIBUTING](../CONTRIBUTING.md#field-rules).
+**74** benchmark rows; **27** carry a measurement. Of those, a person has read **0** against their report (`measurement.read_on`) and only a model **0** (`measurement.model_read_on`); a script or a model filled in the other **27** and nobody has read them back. The review queue lists [the unread rows](review-queue.md#measurement-unread) and [those only a model has read](review-queue.md#model-read). How the fields were first filled in: [docs/method.md](method.md). Field rules: [CONTRIBUTING](../CONTRIBUTING.md#field-rules).
 
 ## Direction by decision pattern
 
@@ -27,7 +27,7 @@ Benchmark rows per decision pattern, by the direction their authors state. A row
 | Document triage | · | 1 | · | · | 1 | · |
 | Support triage | · | · | · | · | 1 | · |
 | Content scoring | · | 2 | 1 | · | · | 6 |
-| Overview | · | 3 | · | · | 2 | 19 |
+| Overview | · | 3 | · | · | 2 | 20 |
 
 ## By comparator
 

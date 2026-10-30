@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 485 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 489 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 375 · 接口形态 70 · 仅示例 0 · 独立报告 24 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 376 · 接口形态 73 · 仅示例 0 · 独立报告 25 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -389,6 +389,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[decido](https://github.com/yairshy/decido)** — 给 Python 的概率式决策：可用 Jev 也可自带 provider，配合 Playwright 抓取。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · yairshy · `Py` · 调用点 [`src/decido/providers/typesafe.py`](https://github.com/yairshy/decido/blob/HEAD/src/decido/providers/typesafe.py)，2026-09-22 阅读</sub>
 
+- **[Decision Index](https://github.com/apolinario/decision-index)** — Decision Index 的复现工具包。Decision Index 是类型化决策引擎（Jev 以及回答 choice 和 noul 问题的开源模型）的排行榜，涵盖 37 个公开基准，按扣除随机水平的方式计分。其 http 引擎把每个请求原样发给任何 /v1/systemone 服务器；参考模型为 jev-1.13.0。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · apolinario · `Py` · 调用点 [`decision_index/engines/http.py`](https://github.com/apolinario/decision-index/blob/HEAD/decision_index/engines/http.py)，2026-10-30 模型阅读</sub>
+
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)** — 面向基于文档的决策模型的开放基准运行框架。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · hanno-labs · `Py` · 调用点 [`src/decision_bench/models/jev_openrouter.py`](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py)，2026-09-24 阅读</sub>
 
@@ -400,6 +403,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[go-system-one](https://github.com/rcarmo/go-system-one)** — 当地鼠遇上 Jev：一个 Go 语言的 System One 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · rcarmo · `Go` · 调用点 [`docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py`](https://github.com/rcarmo/go-system-one/blob/HEAD/docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py)，2026-09-24 阅读</sub>
+
+- **[gutsy](https://github.com/kouhxp/gutsy)** — 本地决策模型 gutsy-0.8b（基于 Qwen3.5-0.8B 微调，以 GGUF 格式在 llama.cpp 上运行），在普通 CPU 上用校准过的概率回答是非题、choice 和 score，接口为 /v1/systemone 以及 /api/alpha/decisions 和 /v1/decisions 路径。作者报告其验证集校准误差为 0.022。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · kouhxp · `Py` · 引用文件 [`gutsy-inference/gutsy_inference/server.py`](https://github.com/kouhxp/gutsy/blob/HEAD/gutsy-inference/gutsy_inference/server.py)，2026-10-30 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[hunch-js](https://github.com/steven-shoemaker/hunch-js)** — 把 Jev 判断变成作用于数组的 TypeScript 函数：classify、score、check、where、extract、pick、rank、verify。LLM 提议，Jev 决定。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · steven-shoemaker · `TS` · 调用点 [`src/gateway.ts`](https://github.com/steven-shoemaker/hunch-js/blob/HEAD/src/gateway.ts)，2026-09-24 阅读</sub>
@@ -526,6 +532,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[laya-php](https://github.com/marcreichel/laya-php)** — 面向 Laya（开源多语言决策引擎）的 PHP 8.4 和 Laravel SDK：把一个决策写成带枚举的只读类，laya-serve 的 /v1/systemone 接口就会返回填好的类型化对象，每个答案附带置信度。还提供用于测试的假实现、缓存、事件和批量预测。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · marcreichel · `PHP` · 引用文件 [`src/Laya.php`](https://github.com/marcreichel/laya-php/blob/HEAD/src/Laya.php)，2026-10-28 模型阅读 · ⚠ `并非 Jev 本身`</sub>
+
+- **[lev](https://github.com/Abhinavexists/lev)** — Interfaze 的开源 System One 模型（Qwen3.5-4B 加 LoRA）及 levbench 评测工具：一次前向计算即可从 logits 中读出是非题、choice 和 score 的答案，通过 /v1/systemone 为任何 TypeSafe 客户端提供服务。作者报告其在 13 个 S1Bench 子集上的宏平均准确率为 74.3%，同一评测工具下 Jev 为 76.1%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · Abhinavexists · `Py` · 引用文件 [`packages/lev/src/lev/server.py`](https://github.com/Abhinavexists/lev/blob/HEAD/packages/lev/src/lev/server.py)，2026-10-30 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
+- **[Mica](https://github.com/akivet/mica)** — Mica v0.5 4B 的 HTTP 服务器。Mica 是开源决策模型，通过 /v1/systemone 回答 noul、choice 和 score，并给出每个答案的概率，可在 INT8 CUDA 或 llama.cpp GGUF 上运行，还可设置弃权阈值来标出不确定的情况。作者报告打乱选项顺序后 97.3% 的答案保持不变。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · akivet · `Py` · 引用文件 [`mica/server.py`](https://github.com/akivet/mica/blob/HEAD/mica/server.py)，2026-10-30 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[OpenJev](https://github.com/xingwudao/OpenJev)** — OpenJev：受 Jev 启发、基于 TypeSafe.ai 理念的独立 System One 决策 API，提供 choice、score、noul 原语、本地模拟服务器以及 Python 和 TypeScript SDK。真实推理尚在计划中，与 TypeSafe AI 无关。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · xingwudao · `Py` · 引用文件 [`sdk/python/openjev/__init__.py`](https://github.com/xingwudao/OpenJev/blob/HEAD/sdk/python/openjev/__init__.py)，2026-09-24 阅读 · ⚠ `并非 Jev 本身` `无许可证`</sub>

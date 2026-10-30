@@ -8,7 +8,7 @@
 
 所有带 `measurement` 的 `kind: benchmark` 行：作者本人测了什么，按作者的报告逐项索引。这些测量本仓库一项都没有做过或重跑过。**结论方向**是作者本人对 Jev 在该任务上的结论，属作者自述、未经本仓库复现；作者没有用文字说明结论的，这一栏留空。
 
-共 **73** 条基准测试行；其中 **27** 条带测量字段。这些行里，**0** 条已由人对照报告核读（`measurement.read_on`），**0** 条只有模型读过（`measurement.model_read_on`）；其余 **27** 条由脚本或模型填写，还没有人或模型读回核对。复核队列列出了[未读的行](review-queue.md#measurement-unread)和[只有模型读过的行](review-queue.md#model-read)。这些字段最初如何填写：[docs/method.md](method.md)。字段规则：[CONTRIBUTING](../CONTRIBUTING.md#field-rules)。
+共 **74** 条基准测试行；其中 **27** 条带测量字段。这些行里，**0** 条已由人对照报告核读（`measurement.read_on`），**0** 条只有模型读过（`measurement.model_read_on`）；其余 **27** 条由脚本或模型填写，还没有人或模型读回核对。复核队列列出了[未读的行](review-queue.md#measurement-unread)和[只有模型读过的行](review-queue.md#model-read)。这些字段最初如何填写：[docs/method.md](method.md)。字段规则：[CONTRIBUTING](../CONTRIBUTING.md#field-rules)。
 
 ## 按决策模式看结论方向
 
@@ -29,7 +29,7 @@
 | 文档分拣 | · | 1 | · | · | 1 | · |
 | 工单分拣 | · | · | · | · | 1 | · |
 | 内容评分 | · | 2 | 1 | · | · | 6 |
-| 总览 | · | 3 | · | · | 2 | 19 |
+| 总览 | · | 3 | · | · | 2 | 20 |
 
 ## 按对比对象
 
