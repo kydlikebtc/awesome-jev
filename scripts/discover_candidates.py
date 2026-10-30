@@ -112,6 +112,16 @@ DECLINED = ROOT / "docs" / "declined.txt"
 # they describe.
 WORKERS = 8
 
+# Same preference verify_claims.py applies. A fixture called fake_jev.py
+# proves the request shape, not that anything ever calls the API — and a
+# fake is exactly the evidence that would embarrass this catalog later.
+# scripts/model_draft.py asks the same of the file a model cites.
+TEST_PATH = re.compile(
+    r"(^|/)(tests?|spec|__tests__|fixtures?)/|\.(test|spec)\.[a-z]+$"
+    r"|_test\.[a-z]+$|test_[^/]*$|fake[_-]|mock[_-]",
+    re.I,
+)
+
 # A candidate is judged by the signals verify_claims.py proposes evidence by,
 # _github.strong_signals(): an import, the endpoint or a model name is proof, a
 # bare primitive name is not, because "choice" and "score" are ordinary words.
@@ -166,14 +176,7 @@ def inspect(slug: str) -> dict:
         )
     ]
     hinted = [p for p in paths if re.search(r"jev|typesafe", p, re.I)]
-    # Same preference verify_claims.py applies. A fixture called fake_jev.py
-    # proves the request shape, not that anything ever calls the API — and a
-    # fake is exactly the evidence that would embarrass this catalog later.
-    testy = re.compile(
-        r"(^|/)(tests?|spec|__tests__|fixtures?)/|\.(test|spec)\.[a-z]+$"
-        r"|_test\.[a-z]+$|test_[^/]*$|fake[_-]|mock[_-]",
-        re.I,
-    )
+    testy = TEST_PATH
     best: tuple[int, str, list[str]] | None = None
 
     def scan(candidates: list[str]) -> None:
