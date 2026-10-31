@@ -361,14 +361,18 @@ def catalogued_block(key: str, n: int, lang: str) -> str:
 
     name, site = label(PATTERN_LABELS, key, lang), site_link(key, lang)
     page = f"by-pattern/{page_name(key, lang)}"
+    # A practice review (docs/practice/, build_practice.py), where one is written.
+    practice = (ROOT / "docs" / "practice" / f"{key}.md").exists()
     if lang == "zh":
+        review = f" · [实践综述（模型撰写，附中文要点）](practice/{key}.md)" if practice else ""
         if not n:
-            return f"目录中的**{name}**：暂无条目 · [站点筛选]({site})。"
-        return f"目录中的**{name}**：共 {n} 条，[逐条列出并附警示]({page}) · [站点筛选]({site})。"
+            return f"目录中的**{name}**：暂无条目 · [站点筛选]({site}){review}。"
+        return f"目录中的**{name}**：共 {n} 条，[逐条列出并附警示]({page}) · [站点筛选]({site}){review}。"
+    review = f" · [how projects do it, written by a model](practice/{key}.md)" if practice else ""
     if not n:
-        return f"**{name}** in the catalogue: no rows yet · [the site's filter]({site})."
+        return f"**{name}** in the catalogue: no rows yet · [the site's filter]({site}){review}."
     rows = "1 row, [listed with its caveats]" if n == 1 else f"{n} rows, [each listed with its caveats]"
-    return f"**{name}** in the catalogue: {rows}({page}) · [the site's filter]({site})."
+    return f"**{name}** in the catalogue: {rows}({page}) · [the site's filter]({site}){review}."
 
 
 def pattern_blocks(s: dict, patterns: list[dict], lang: str) -> dict[str, str]:

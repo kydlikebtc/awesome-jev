@@ -47,7 +47,7 @@ class GitattributesTest(unittest.TestCase):
             "docs/status.md", "docs/sources.md", "docs/patterns.md", "docs/patterns.zh-CN.md", "docs/compatibility.md",
             "llms.txt",
             "site/index.html", "examples/README.md", "skills/awesome-jev/SKILL.md", "src/awesome_jev_mcp/README.md",
-            "catalog.json", "CONTRIBUTING.md",
+            "catalog.json", "CONTRIBUTING.md", *tracked("docs/practice"),
         ]
         marked = [path for path, value in attribute(*paths).items() if value != "unspecified"]
         self.assertEqual(marked, [])

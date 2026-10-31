@@ -45,6 +45,7 @@ GENERATORS = (
         "the generated values in docs/status.md, docs/sources.md, docs/patterns.md, docs/patterns.zh-CN.md, llms.txt, "
         "skills/awesome-jev/SKILL.md and examples/README.md",
     ),
+    ("build_practice.py", "the generated blocks in docs/practice/, the practice reviews"),
     ("build_compat.py", "the generated tables in docs/compatibility.md"),
     ("build_review_queue.py", "docs/review-queue.md, the rows a script marks for a person to read"),
     ("build_benchmarks.py", "docs/benchmarks.md and docs/benchmarks.zh-CN.md, the benchmark rows' measurements side by side"),
@@ -69,6 +70,7 @@ OUTPUTS = (
     "docs/sources.md",
     "docs/patterns.md",
     "docs/patterns.zh-CN.md",
+    "docs/practice",
     "docs/compatibility.md",
     "docs/review-queue.md",
     "docs/benchmarks.md",
