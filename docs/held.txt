@@ -27,6 +27,8 @@ uu889/laya-opencv  # a workbench for local Laya models with Jev as one interface
 yongld/multi-uav-jev  # sends its questions only to a local NeoHorse-Jev-4B endpoint (catalogued as neohorse), never to Jev: decline? (#72)
 benmagnifico/drivejev  # its own POST /predict model service; neither calls Jev nor takes its request shape: decline? (#72)
 chigwell/typesafe.pro  # a third-party gateway forwarding /v1/systemone with pooled keys and anonymous access, not run by TypeSafe: list it or not? (#72)
+hotchpotch/bekko-system-one  # small System One models (17M to 400M) with their own Python and ONNX API, benchmarked against Jev 1.13; the queue's file exports ONNX and calls no Jev, and no /v1/systemone server was found: an alternative without Jev's wire shape, or decline? (2026-10-31)
+interfazeai/lev  # the same code as the catalogued lev row (Abhinavexists/lev): a second URL on that row, or decline as a duplicate? (#72, 2026-10-31)
 
 # Rows, as of 2026-10-30
 metis  # #28 proposes legacy/metis-triage/src/metis_triage/_triage.py: the integration may have been retired upstream (#71)
