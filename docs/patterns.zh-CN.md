@@ -52,7 +52,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用：** 挑工具需要先拟定计划时，或者难点在于参数时。这里只选择*用哪个*；参数仍需别的东西来填。
 
 <!-- catalogued-tool-selection:start -->
-目录中的**工具选择**：共 241 条，[逐条列出并附警示](by-pattern/tool-selection.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)。
+目录中的**工具选择**：共 241 条，[逐条列出并附警示](by-pattern/tool-selection.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh) · [实践综述（模型撰写，附中文要点）](practice/tool-selection.md)。
 <!-- catalogued-tool-selection:end -->
 
 ---
@@ -98,7 +98,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用 —— 这一条请仔细读：** 概率性的闸门是**纵深防御，不是安全边界**。任何真正具有破坏性或不可逆的操作，都需要确定性的规则、权限系统或人。用决策模型去拦住粗心，而不是去围堵对抗：输入由攻击者挑选，一个 99% 的情况下都正确的模型，正是攻击者会去试探剩下那 1% 的模型。厂商的能力参差文档把对抗性内容列为已知弱项。
 
 <!-- catalogued-safety-gating:start -->
-目录中的**安全闸门**：共 145 条，[逐条列出并附警示](by-pattern/safety-gating.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)。
+目录中的**安全闸门**：共 145 条，[逐条列出并附警示](by-pattern/safety-gating.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh) · [实践综述（模型撰写，附中文要点）](practice/safety-gating.md)。
 <!-- catalogued-safety-gating:end -->
 
 ---
@@ -282,7 +282,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **注：** 只支持 2–10 级。带校准置信度的有序量表可以排序，这让它成为按最差优先填充复核队列的那个模式。
 
 <!-- catalogued-content-scoring:start -->
-目录中的**内容评分**：共 167 条，[逐条列出并附警示](by-pattern/content-scoring.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)。
+目录中的**内容评分**：共 167 条，[逐条列出并附警示](by-pattern/content-scoring.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh) · [实践综述（模型撰写，附中文要点）](practice/content-scoring.md)。
 <!-- catalogued-content-scoring:end -->
 
 ---

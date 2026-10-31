@@ -717,9 +717,45 @@ def needs_person(catalog: list[dict], path: pathlib.Path | None = None) -> Secti
     )
 
 
+def experimental(catalog: list[dict]) -> Section:
+    marked = sorted((e for e in catalog if e.get("experimental_seen")), key=lambda e: e["slug"])
+    return Section(
+        key="experimental",
+        title_en="Cited file shows an experimental Jev feature",
+        title_zh="所引文件出现 Jev 的实验性功能",
+        about_en=(
+            "The weekly refresh found the request shape of one of Jev's experimental features in the file the "
+            "row cites (`experimental_seen`, scripts/verify_claims.py): a Box question (Jev 1.14), or the "
+            "images or long-context opt-in header. A text signal about that file, not a reading: it does not "
+            "say the code uses the feature. Box is not one of the three primitives the catalogue counts, "
+            "filters and picks between, so nothing else shows these rows apart."
+        ),
+        about_zh=(
+            "每周刷新在该行引用的文件里发现了 Jev 某项实验性功能的请求结构（`experimental_seen`，"
+            "scripts/verify_claims.py）：Box 问题（Jev 1.14），或图像、长上下文的启用请求头。"
+            "这是关于该文件的文本信号，不是阅读结论，不说明代码确实使用了该功能。Box 不在目录统计、"
+            "筛选和选择器所覆盖的三个原语之内，因此其他地方都不会单独列出这些行。"
+        ),
+        leave_en=(
+            "Nothing takes a row off but the file: the signal goes when the file no longer shows the shape. "
+            "Read it to say in `notes` what the project does with the feature; when Box leaves the "
+            "experimental tier, this list is where its rows are."
+        ),
+        leave_zh=(
+            "只有文件本身能让行移出：文件里不再出现该结构时，信号就会消失。读过之后，可以在 `notes` "
+            "里写明项目如何使用该功能；Box 结束实验阶段时，它的行就在这张表里。"
+        ),
+        columns=(("Row", "行"), ("Kind", "类型"), ("Cited file", "引用的文件"), ("Shows", "出现")),
+        rows=tuple(
+            (row_link(e), cell(e["kind"]), file_link(e), " ".join(cell(x) for x in e["experimental_seen"]))
+            for e in marked
+        ),
+    )
+
+
 SECTIONS = (
     needs_person, front_page, examples_dir, single_model_name, tool_selection_broad_words, unsorted_overview, generic_summary,
-    measurement_unread, wire_unread, thresholds_unread, model_read,
+    measurement_unread, wire_unread, thresholds_unread, experimental, model_read,
 )
 
 HEADER = (

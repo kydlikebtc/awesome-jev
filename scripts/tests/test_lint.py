@@ -83,6 +83,7 @@ FULL = {
         "model_read_on": "2026-08-31",
     },
     "primitives_seen": ["choice", "noul"],
+    "experimental_seen": ["box", "images"],
     # A threshold the cited file compares an answer with (I26): its source is
     # one of evidence.matched, and every item field is here.
     "observed_thresholds": [
@@ -266,7 +267,7 @@ class EntryInvariantTest(FindingsAssertions):
                 self.assertOnly(
                     lint_row(
                         row(
-                            FULL, evidence=DROP, primitives_seen=DROP, observed_thresholds=DROP,
+                            FULL, evidence=DROP, primitives_seen=DROP, experimental_seen=DROP, observed_thresholds=DROP,
                             url=url, repo=DROP, **NO_REPO_FACTS,
                         )
                     ),
@@ -274,11 +275,11 @@ class EntryInvariantTest(FindingsAssertions):
                     "demo-row: claims primitives but carries neither evidence nor evidence_none",
                     "python3 scripts/verify_claims.py --discover --only demo-row",
                 )
-        self.assertClean(lint_row(row(FULL, evidence=DROP, primitives_seen=DROP, observed_thresholds=DROP, evidence_none="docs-page")))
+        self.assertClean(lint_row(row(FULL, evidence=DROP, primitives_seen=DROP, experimental_seen=DROP, observed_thresholds=DROP, evidence_none="docs-page")))
 
     def test_code_in_a_github_repository_needs_evidence_or_a_reason(self):
         # I17: keyed on question_types alone, 34 rows with code carried neither.
-        plain = row(FULL, question_types=DROP, evidence=DROP, primitives_seen=DROP, observed_thresholds=DROP)
+        plain = row(FULL, question_types=DROP, evidence=DROP, primitives_seen=DROP, experimental_seen=DROP, observed_thresholds=DROP)
         for where in ({}, {"url": "https://example.com/demo-row"}):
             with self.subTest(**where):
                 message = self.assertOnly(
@@ -319,17 +320,25 @@ class EntryInvariantTest(FindingsAssertions):
         for extra in (without_code, {"evidence_none": "docs-page"}):
             with self.subTest(extra=sorted(extra)):
                 self.assertOnly(
-                    lint_row(row(FULL, evidence=DROP, observed_thresholds=DROP, **extra)),
+                    lint_row(row(FULL, evidence=DROP, observed_thresholds=DROP, experimental_seen=DROP, **extra)),
                     "error",
                     "demo-row: has primitives_seen but no evidence",
+                    "verify_claims.py --write-signals",
+                )
+                # K3: its sibling for the experimental features, on the same rule.
+                self.assertOnly(
+                    lint_row(row(FULL, evidence=DROP, observed_thresholds=DROP, primitives_seen=DROP, **extra)),
+                    "error",
+                    "demo-row: has experimental_seen but no evidence",
                     "verify_claims.py --write-signals",
                 )
 
     def test_thresholds_stand_on_the_file_evidence_cites(self):
         # I26: each observed threshold is text in the cited file, re-read weekly
         # as one of evidence.matched; without a file there is nothing to stand on.
-        without_code = {"question_types": DROP, "has_code": False, "languages": DROP, "primitives_seen": DROP}
-        for extra in (without_code, {"evidence_none": "docs-page", "primitives_seen": DROP}):
+        signals = {"primitives_seen": DROP, "experimental_seen": DROP}
+        without_code = {"question_types": DROP, "has_code": False, "languages": DROP, **signals}
+        for extra in (without_code, {"evidence_none": "docs-page", **signals}):
             with self.subTest(extra=sorted(extra)):
                 self.assertOnly(
                     lint_row(row(FULL, evidence=DROP, **extra)),
@@ -459,7 +468,7 @@ class EntryInvariantTest(FindingsAssertions):
         self.assertClean(
             lint_row(
                 row(
-                    FULL, kind="alternative", measurement=DROP, evidence=DROP, primitives_seen=DROP,
+                    FULL, kind="alternative", measurement=DROP, evidence=DROP, primitives_seen=DROP, experimental_seen=DROP,
                     observed_thresholds=DROP, evidence_none="docs-page",
                 )
             )
@@ -496,7 +505,7 @@ class EntryInvariantTest(FindingsAssertions):
         # Neither the flag nor the rule applies without a cited file, and a
         # malformed `evidence` is the schema's to report, not a crash here.
         self.assertClean(lint_row(row(MINIMAL, flags=["shadow-mode-only"])))
-        errors, warnings = lint_row(row(FULL, evidence="shadow.py", primitives_seen=DROP, observed_thresholds=DROP))
+        errors, warnings = lint_row(row(FULL, evidence="shadow.py", primitives_seen=DROP, experimental_seen=DROP, observed_thresholds=DROP))
         self.assertTrue(errors)
         self.assertFalse([w for w in warnings if "shadow" in w], warnings)
 

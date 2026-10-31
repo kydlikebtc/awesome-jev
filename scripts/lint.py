@@ -108,6 +108,9 @@ ALTERNATIVE_EVIDENCE_KIND = "wire-shape"
 # about primitives: every rule below that asks what a row claims reads
 # question_types, and none reads this.
 PRIMITIVES_SEEN = "primitives_seen"
+# Its sibling for Jev's experimental features (Box, the opt-in headers), since
+# 2026-10-31; the same rules, the same writer.
+EXPERIMENTAL_SEEN = "experimental_seen"
 
 # GitHub's own facts about the linked repository, as the weekly refresh records
 # them (scripts/refresh_metadata.py): two UTC timestamps and the default
@@ -395,12 +398,13 @@ def check_entry_invariants(
         )
     if entry.get("evidence") and entry.get("evidence_none"):
         report.err(path, f"{slug}: has both evidence and evidence_none; they are exclusive")
-    if PRIMITIVES_SEEN in entry and not entry.get("evidence"):
-        report.err(
-            path,
-            f"{slug}: has {PRIMITIVES_SEEN} but no evidence: it is a text signal about the file "
-            "evidence cites, written by verify_claims.py --write-signals; remove it",
-        )
+    for field in (PRIMITIVES_SEEN, EXPERIMENTAL_SEEN):
+        if field in entry and not entry.get("evidence"):
+            report.err(
+                path,
+                f"{slug}: has {field} but no evidence: it is a text signal about the file "
+                "evidence cites, written by verify_claims.py --write-signals; remove it",
+            )
     evidence = entry.get("evidence")
     if (
         entry.get("kind") == "alternative"

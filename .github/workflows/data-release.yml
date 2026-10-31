@@ -1,0 +1,61 @@
+# A monthly data release (D2, since 2026-10-31): on the 1st, tag main as
+# catalog-<YYYY-MM>, named for the month that just ended, and publish a GitHub
+# Release with catalog.json, retired.json and the entry schema attached, so a
+# reader can pin and cite a fixed copy. The notes (scripts/data_release.py) say
+# which rows arrived and which were retired since the previous catalog-* tag.
+#
+# A month that already has its tag is left alone, so a re-run or a dispatch
+# never makes a second release. These tags never start publish.yml, which
+# only takes awesome-jev-mcp-v*. The watchdog allows a monthly job 32 days
+# between successes (scripts/watchdog.py).
+#
+# Injection review: no `github.event.*` value reaches a `run:` block. The tag
+# is computed from the date, and the notes are read from a file the script
+# wrote, never interpolated into a shell.
+name: data-release
+
+on:
+  schedule:
+    # 09:00 UTC on the 1st of each month, after the month's last daily rows.
+    - cron: "0 9 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Tag and publish the month's catalogue data
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # The previous catalog-* tag, and the files as they were at it.
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Tag and release the month that ended
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          month=$(date -u -d "$(date -u +%Y-%m-01) -1 day" +%Y-%m)
+          tag="catalog-$month"
+          if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+            echo "$tag exists; nothing to do"
+            exit 0
+          fi
+          previous=$(git tag --list 'catalog-*' --sort=-v:refname | head -n 1)
+          python3 scripts/data_release.py --tag "$tag" ${previous:+--previous "$previous"} > /tmp/notes.md
+          gh release create "$tag" catalog.json retired.json schema/entry.schema.json \
+            --target "$(git rev-parse HEAD)" \
+            --title "Catalogue data to the end of $month" \
+            --notes-file /tmp/notes.md
+          echo "released $tag"

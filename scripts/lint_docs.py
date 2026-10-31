@@ -43,7 +43,9 @@ GENERATED = {
     "docs/benchmarks.md", "docs/benchmarks.zh-CN.md", "docs/zh-queue.md", "examples/index.json",
     "docs/shape.md", "docs/shape.zh-CN.md",
 }
-GENERATED_DIRS = ("docs/by-pattern/",)
+# docs/monthly/ is build_monthly.py's: each month's report, its figures taken
+# from history/ snapshots and written once, so they stay that month's.
+GENERATED_DIRS = ("docs/by-pattern/", "docs/monthly/")
 # Generated pages that quote other people's files verbatim: the review queue
 # prints each row's `evidence.matched`, which is whatever text a project's code
 # contains (`jev-1.13` inside a `jev-1.13.0`, say). Those are quotations, not

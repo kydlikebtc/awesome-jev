@@ -279,6 +279,23 @@ def model_read_counts(catalog: list[dict]) -> dict[str, int]:
     }
 
 
+def model_checks(path: pathlib.Path = ROOT / "docs" / "model-checks.json") -> dict | None:
+    """The newest month's check of model readings by a person (T1,
+    scripts/model_sample.py): {"month", "sampled", "agreed"}, or None before
+    the first. A count of agreements with a model's reading, never a reading."""
+    if not path.exists():
+        return None
+    checks = [c for c in json.loads(path.read_text(encoding="utf-8")).get("checks") or [] if c.get("rows")]
+    if not checks:
+        return None
+    latest = max(checks, key=lambda c: c["month"])
+    return {
+        "month": latest["month"],
+        "sampled": len(latest["rows"]),
+        "agreed": sum(1 for answer in latest["rows"].values() if answer == "agree"),
+    }
+
+
 # summary_source values whose words are not a person's: the project's own
 # GitHub description, as it reads now or once did, and a summary a model wrote
 # that no person has checked since.
@@ -583,6 +600,7 @@ def compute() -> dict:
         # tier every surface shows apart, and docs/review-queue.md#model-read
         # lists for a person to check.
         "model_read": model_read_counts(catalog),
+        "model_checks": model_checks(),
         "patterns_rule_identical": sum(1 for e in catalog if patterns_match_rules(e)),
         "overview_unindexed": sum(1 for e in catalog if not_indexed_by_pattern(e)),
         # A row with question_types additionally asserts *which* primitives.
@@ -600,6 +618,10 @@ def compute() -> dict:
         "primitive_signal_only_rows": sum(
             1 for e in catalog if e.get("primitives_seen") and not e.get("question_types")
         ),
+        # Experimental features (Box, opt-in headers) seen in the cited file,
+        # kept apart from the three primitives (`experimental_seen`, since
+        # 2026-10-31): a text signal, like primitives_seen.
+        "experimental_rows": sum(1 for e in catalog if e.get("experimental_seen")),
         "primitive_layers": primitive_layers(catalog),
         # Thresholds a row's cited file compares a Jev answer with
         # (observed_thresholds, scripts/thresholds.py): observations of what

@@ -70,6 +70,24 @@ class VerdictTest(unittest.TestCase):
             with self.subTest(words=words):
                 self.assertIn(words, watchdog.problem(item, NOW))
 
+    def test_a_monthly_job_gets_a_month(self):
+        self.assertEqual(watchdog.allowed_days("data-release.yml"), watchdog.MONTHLY_DAYS)
+        self.assertEqual(watchdog.allowed_days("claims.yml"), watchdog.MAX_DAYS)
+        self.assertEqual(watchdog.allowed_days("watchdog.yml"), watchdog.MAX_DAYS)
+        monthly = dict(seen("data-release.yml", success=run(20), latest=run(20)), allowed=32)
+        self.assertIsNone(watchdog.problem(monthly, NOW))
+        late = dict(monthly, success=run(33), latest=run(33))
+        self.assertEqual(watchdog.problem(late, NOW), "no run of it has succeeded in the last 32 days")
+
+    def test_a_new_job_that_has_not_run_yet_is_not_stopped(self):
+        created = (NOW - dt.timedelta(days=3)).isoformat().replace("+00:00", "Z")
+        fresh = dict(seen("data-release.yml"), allowed=32, created=created)
+        self.assertIsNone(watchdog.problem(fresh, NOW))
+        self.assertEqual(watchdog.problem(dict(fresh, latest=run(1, "failure")), NOW),
+                         "no run of it has ever succeeded", "a run that failed is not new")
+        old = (NOW - dt.timedelta(days=40)).isoformat().replace("+00:00", "Z")
+        self.assertEqual(watchdog.problem(dict(fresh, created=old), NOW), "no run of it has ever succeeded")
+
     def test_the_body_quotes_dates_not_ages(self):
         found = [(seen("claims.yml", success=run(4), latest=run(4)), None),
                  (seen(latest=run(5, "failure")), "no run of it has ever succeeded")]

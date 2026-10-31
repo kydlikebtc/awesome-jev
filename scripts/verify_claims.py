@@ -52,6 +52,14 @@ this script ever writes; the weekly metadata run calls it and commits the
 result with the other mechanical facts. Nothing reads `primitives_seen` in place
 of `question_types`.
 
+The same read records, in `experimental_seen` (since 2026-10-31), which of
+Jev's experimental features the file's text shows (EXPERIMENTAL_SHAPES): a
+Box question (Jev 1.14), and the images and long-context opt-in headers. Box
+is not one of the three primitives the catalogue counts, filters and picks
+between, so it is kept apart from primitives_seen rather than added to it;
+docs/review-queue.md#experimental lists the rows that show one, for a person
+to read when Box leaves the experimental tier.
+
 An `alternative` row's `wire` record cites the files its interface was read in
 (wire.source: path and matched strings, as evidence does; scripts/wire.py).
 Each of those files is re-read the same way and reported on its own line,
@@ -170,6 +178,55 @@ def ts_sdk_helpers(body: str) -> set[str]:
     return found
 
 
+# Jev's experimental features (K3, 2026-10-31), as the official SDKs spell
+# them: typesafe-ai/typesafe-sdk-js src/types.ts (`BoxQuestion { type: "box" }`,
+# `BoxResponse.box.{top,bottom,left,right}`) and the Python SDK's `Box`. Each
+# pattern's match names its feature by the dictionary key. Bare `Box(` is
+# Jetpack Compose and gym.spaces too, so the Python constructor counts only
+# when the file imports Box from typesafe_sdk; `.box` alone is a property of
+# half the UI code on GitHub, so only a box answer's edges count.
+EXPERIMENTAL = ("box", "images", "long-context")
+EXPERIMENTAL_SHAPES = {
+    "box": (
+        re.compile(rf"""(?<![\w$.])(?:{_QUOTE}type{_QUOTE}|type)\s*:\s*{_QUOTE}box{_QUOTE}"""),
+        re.compile(rf"""(?:{_QUOTE}type{_QUOTE}|:type)\s*=>\s*{_QUOTE}box{_QUOTE}"""),
+        re.compile(r"""\.box\.(?:top|bottom|left|right)\b"""),
+    ),
+    "images": (re.compile(r"TypeSafe-Danger-Zone-Images", re.IGNORECASE),),
+    "long-context": (re.compile(r"TypeSafe-Danger-Zone-Long-Context", re.IGNORECASE),),
+}
+PY_SDK_IMPORT = re.compile(r"""\bfrom\s+typesafe_sdk(?:\.[\w.]+)?\s+import\s+(\([^)]*\)|[^\n;]+)""")
+
+
+def sdk_box(body: str) -> bool:
+    """The file builds a Box question with an SDK: box() imported from
+    @typesafe-ai/sdk and called, or Box imported from typesafe_sdk and called."""
+    for match in TS_SDK_IMPORT.finditer(body):
+        for part in match.group(1).split(","):
+            words = part.split()
+            if len(words) in (1, 3) and words[0] == "box" and re.search(
+                rf"(?<![\w$.]){re.escape(words[-1])}\s*\(", body
+            ):
+                return True
+    for match in PY_SDK_IMPORT.finditer(body):
+        for part in match.group(1).strip("()").split(","):
+            words = part.split()
+            if len(words) in (1, 3) and words[0] == "Box" and re.search(
+                rf"(?<![\w.]){re.escape(words[-1])}\(", body
+            ):
+                return True
+    return False
+
+
+def experimental_signals(body: str) -> list[str]:
+    """The experimental features whose shape (EXPERIMENTAL_SHAPES, sdk_box) the
+    text contains, in EXPERIMENTAL order. A text signal about this one file."""
+    found = {name for name, patterns in EXPERIMENTAL_SHAPES.items() if any(p.search(body) for p in patterns)}
+    if sdk_box(body):
+        found.add("box")
+    return [name for name in EXPERIMENTAL if name in found]
+
+
 def primitive_signals(body: str) -> list[str]:
     """The primitives whose shape (PRIMITIVE_SHAPES, ts_sdk_helpers) the text
     contains, in PRIMITIVES order. A text signal about this one file, not a reading."""
@@ -227,6 +284,7 @@ def read_claim(slug: str, repo: str, evidence: dict) -> dict:
             "status": "ok",
             "detail": f"{repo}@HEAD:{evidence['path']}",
             "primitive_signals": primitive_signals(body),
+            "experimental_signals": experimental_signals(body),
         }
 
     branch = default_branch(repo)
@@ -268,6 +326,7 @@ def read_claim(slug: str, repo: str, evidence: dict) -> dict:
             "matched": list(evidence["matched"]),
             "proposed": rewrite(evidence["matched"], body, pins[-1]),
             "primitive_signals": primitive_signals(body),
+            "experimental_signals": experimental_signals(body),
         }
     if missing:
         return {
@@ -280,6 +339,7 @@ def read_claim(slug: str, repo: str, evidence: dict) -> dict:
         "status": "ok",
         "detail": f"{repo}@{branch}:{evidence['path']}",
         "primitive_signals": primitive_signals(body),
+        "experimental_signals": experimental_signals(body),
     }
 
 
@@ -588,26 +648,52 @@ UNSEEN = ("claim-gone", "path-gone", "repo-gone")
 READ = ("ok", VERSION_MOVED)
 
 
-def seen_after(result: dict) -> list[str] | None:
-    """What a row's primitives_seen should be after this read; None to leave it."""
+EXPERIMENTAL_SEEN = "experimental_seen"
+
+
+def seen_after(result: dict, signals: str = "primitive_signals") -> list[str] | None:
+    """What a row's primitives_seen (or, with signals="experimental_signals",
+    its experimental_seen) should be after this read; None to leave it."""
     if result["status"] in READ:
-        return list(result.get("primitive_signals") or [])
+        return list(result.get(signals) or [])
     if result["status"] in UNSEEN:
         return []
     return None
 
 
-def with_seen(entry: dict, seen: list[str]) -> dict:
-    """A copy of the row carrying `seen` right after `evidence`, or none when
-    `seen` is empty. Every other key keeps its place and value."""
+def with_seen(entry: dict, seen: list[str], field: str = SEEN) -> dict:
+    """A copy of the row carrying `seen` in `field`, or no `field` when `seen`
+    is empty. primitives_seen goes right after `evidence`; experimental_seen
+    after the last of `evidence`, primitives_seen and observed_thresholds the
+    row has, the schema's order. Every other key keeps its place and value."""
+    after = "evidence"
+    if field != SEEN:
+        after = next((key for key in ("observed_thresholds", SEEN) if key in entry), "evidence")
     out: dict = {}
     for key, value in entry.items():
-        if key == SEEN:
+        if key == field:
             continue
         out[key] = value
-        if key == "evidence" and seen:
-            out[SEEN] = list(seen)
+        if key == after and seen:
+            out[field] = list(seen)
     return out
+
+
+def apply_experimental(catalog: list[dict], results: list[dict]) -> tuple[list[dict], list[str]]:
+    """The catalogue with each read row's experimental_seen brought up to
+    date, and one log line per row whose value changed."""
+    by_slug = {r["slug"]: r for r in results}
+    rows, lines = [], []
+    for entry in catalog:
+        result = by_slug.get(entry.get("slug"))
+        seen = seen_after(result, "experimental_signals") if result else None
+        old = list(entry.get(EXPERIMENTAL_SEEN) or [])
+        if seen is None or seen == old:
+            rows.append(entry)
+            continue
+        lines.append(f"  {'+' if seen else '-'} {entry['slug']}: experimental {', '.join(seen or old)}")
+        rows.append(with_seen(entry, seen, EXPERIMENTAL_SEEN))
+    return rows, lines
 
 
 def apply_signals(catalog: list[dict], results: list[dict]) -> tuple[list[dict], dict[str, list[str]]]:
@@ -649,14 +735,18 @@ def write_signals(catalog: list[dict], todo: list[dict]) -> int:
     with ThreadPoolExecutor(max_workers=WORKERS) as pool:
         results = list(pool.map(check, todo))
     rows, outcome = apply_signals(catalog, results)
+    rows, experimental = apply_experimental(rows, results)
     for kind in ("added", "changed", "removed", "unread"):
         for line in outcome[kind]:
             print(line)
+    for line in experimental:
+        print(line)
     counts = (
         f"primitive text signals: {len(results)} row(s) with evidence; "
         f"{len(outcome['added'])} added, {len(outcome['changed'])} changed, "
         f"{len(outcome['removed'])} removed, {len(outcome['unchanged'])} unchanged; "
-        f"{len(outcome['unread'])} not read (GitHub rate limit or no repository)"
+        f"{len(outcome['unread'])} not read (GitHub rate limit or no repository); "
+        f"experimental features: {len(experimental)} row(s) changed"
     )
     step_summary(
         "## Primitive text signals\n\n"

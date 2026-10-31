@@ -18,7 +18,8 @@ behind it.
 | Thursday 06:00 | `discover.yml`: new candidates from the sibling lists; rewrites the queue | issue #14 |
 | Thursday 14:37 | weekly upkeep task: the judgement work #14, #28 and #32 leave, and at most 10 drafted rows | one draft pull request |
 | Every day but Thursday, 00:33 | daily drafting task: at most 15 drafted rows | one rolling draft pull request a week |
-| Every day 07:30 | `watchdog.yml`: every scheduled workflow succeeded within 8 days, and a row entered `catalog.json` within 10 | an issue labelled `watchdog` |
+| Every day 07:30 | `watchdog.yml`: every scheduled workflow succeeded within 8 days (32 for a monthly one), and a row entered `catalog.json` within 10 | an issue labelled `watchdog` |
+| The 1st, 09:00 | `data-release.yml`: tags main `catalog-<YYYY-MM>` for the month that ended and publishes a Release with `catalog.json`, `retired.json` and the schema | the Release |
 | Friday | the owner merges the week's two drafting pull requests | |
 
 The two tasks are scheduled Claude Code tasks in the owner's Claude project,
@@ -95,12 +96,69 @@ returns to "To read" by itself.
   snapshot in `history/` records the queue's counts, and the "Over time" table
   in [docs/shape.md](docs/shape.md) shows "Candidates to read" from them.
 
+## When Jev ships a version
+
+What PR #46 did by hand for Jev 1.14 (2026-10-15), as a list. Read the
+vendor's announcement, [models](https://docs.typesafe.ai/models) and each
+changed docs page first; write down only what they say, dated.
+
+1. `compat.json`: add the new version to the `model` cell of each surface whose
+   own docs name it, and say in `notes` what an alias points to and on which
+   date it was read. Nothing else needs the version typed in: the call-site
+   signals (`_github.version_signals`), the MCP server's model-string hint and
+   the claims issue's "now pins" lines all read it from here
+   (`tests/test_model_release.py`). Never add a gateway id because the native
+   API has it.
+2. Limits and opt-ins: the `limits` rows in `compat.json` and
+   [docs/compatibility.md](docs/compatibility.md) for any new header, input
+   or context size.
+3. The prose that names versions: the README strings
+   (`scripts/readme/strings.py`, both languages), `skills/awesome-jev/SKILL.md`,
+   [docs/patterns.md](docs/patterns.md) and the examples under `examples/`.
+4. A new question type: the three primitives (Choice, Score, Noul) are what
+   the schema's `question_types`, the counts, the filters and the picker
+   cover. A new one first goes in `experimental_seen`
+   (`scripts/verify_claims.py`, `EXPERIMENTAL_SHAPES`, read from the official
+   SDKs' types), as Box did on 2026-10-31, and is listed in
+   [docs/review-queue.md#experimental](docs/review-queue.md#experimental).
+   Making it a fourth primitive is a schema change across every surface:
+   decide it when the vendor drops "experimental".
+5. After the next Tuesday's claims run: rows whose cited file moved its pin
+   are reported as `version-moved`, counted per version.
+   `python3 scripts/verify_claims.py --propose-version-rewrite` prints their
+   new `evidence.matched`; apply it without touching `read_on`.
+6. `python3 scripts/check.py --fix`, then one pull request for all of it.
+
 ## Monthly and quarterly
 
-- From 2026-12-03, on the first Thursday of each month, the weekly upkeep
-  picks 20 model-read rows at random for the owner to mark agree or disagree
-  (T1). The agreement rate goes into the next pull request, then
-  [docs/status.md](docs/status.md).
+- **Every week, overview rows (K2).** The weekly upkeep files a batch of twenty
+  overview rows from [docs/review-queue.md#unsorted-overview](docs/review-queue.md#unsorted-overview)
+  under their patterns, reading each cited file, and records it as a model's
+  reading (`patterns_model_read_on`, never `patterns_reviewed`). A row it
+  cannot place stays `overview`.
+- **The report (D1).** On the first Thursday of a month, from 2026-11-05, the
+  weekly upkeep writes the month before's report,
+  `python3 scripts/build_monthly.py --month <YYYY-MM>`, into
+  [docs/monthly/](docs/monthly/README.md) and puts it in its pull request. A
+  report is written once from the snapshots in `history/` and never
+  regenerated. Announcing it anywhere is the owner's decision.
+- **The data release (D2).** On the 1st, `data-release.yml` tags and
+  publishes the month's data on its own. A month already tagged is left alone;
+  run it from its Actions page to retry.
+- **The model check (T1).** From 2026-12-03, on the first Thursday of each
+  month, the weekly upkeep runs `python3 scripts/model_sample.py --month
+  <YYYY-MM>` and puts the sample it prints, twenty of the rows only a model
+  has read, in front of the owner to mark agree or disagree. The answers go into
+  [docs/model-checks.json](docs/model-checks.json) (`--check` validates it),
+  and [docs/status.md](docs/status.md) shows the newest month's count. An
+  agreement is not a reading: a row gets `evidence.read_on` only when the owner
+  says they read the file. Below 18 of 20, drafting pauses until the method is
+  fixed.
+- **Practice reviews (K1).** [docs/practice/](docs/practice/README.md) has one
+  review per pattern written so far, its prose a model's and labelled so, its
+  tables generated by `scripts/build_practice.py`. When a recommended row
+  leaves the catalogue or its pattern, the build fails and the page needs a
+  new pick.
 - The plan is reviewed each quarter, first at the end of January 2027.
 
 ## What only the owner can do

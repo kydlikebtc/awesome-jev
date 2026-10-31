@@ -381,6 +381,21 @@
         }
       }
     },
+    "experimental_seen": {
+      "description": "Machine text signal, not a person's reading: Jev's experimental features whose request shape scripts/verify_claims.py found written in the one file evidence.path cites (since 2026-10-31). `box`: a Box question (Jev 1.14; a `\"type\": \"box\"` field, the TypeScript SDK's box() or the Python SDK's Box imported and called, or a box answer's edges read). `images`: the TypeSafe-Danger-Zone-Images opt-in header. `long-context`: the TypeSafe-Danger-Zone-Long-Context opt-in header. It does not say the code uses them. Written only by `verify_claims.py --write-signals` in the weekly metadata run, on the same rules as primitives_seen. Do not edit it by hand. Only on a row with evidence.",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "box",
+          "images",
+          "long-context"
+        ]
+      }
+    },
     "evidence_none": {
       "description": "Why this row carries no machine-checkable evidence — a documentation page, a video, a paywalled article, or code that does not touch Jev. Required instead of evidence when no file can be cited and question_types is set, or has_code is true and url or repo is a GitHub repository. `removed-upstream` means the project removed its Jev integration on purpose; the row stays because why it was removed is the useful part, and notes cite the change. `no-jev-call-site` means the repository's code neither calls Jev nor speaks its request shape — an independent reimplementation with its own interface, or tooling about Jev — so there is no file whose strings would show a relationship to Jev.",
       "type": "string",
