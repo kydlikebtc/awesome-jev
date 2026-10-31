@@ -317,6 +317,21 @@
         ]
       }
     },
+    "experimental_seen": {
+      "description": "Machine text signal, not a person's reading: Jev's experimental features whose request shape scripts/verify_claims.py found written in the one file evidence.path cites (since 2026-10-31). `box`: a Box question (Jev 1.14; a `\"type\": \"box\"` field, the TypeScript SDK's box() or the Python SDK's Box imported and called, or a box answer's edges read). `images`: the TypeSafe-Danger-Zone-Images opt-in header. `long-context`: the TypeSafe-Danger-Zone-Long-Context opt-in header. It does not say the code uses them. Written only by `verify_claims.py --write-signals` in the weekly metadata run, on the same rules as primitives_seen. Do not edit it by hand. Only on a row with evidence.",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "box",
+          "images",
+          "long-context"
+        ]
+      }
+    },
     "observed_thresholds": {
       "description": "Thresholds the file evidence.path cites compares a Jev answer with: each a constant written in that file, as a model or a person read it there. An observation, not a recommendation: a threshold is one project's policy for what being wrong costs it, tuned (if at all) on its own data and model version, and a noul probability is not a choice confidence. source must be one of evidence.matched, so scripts/verify_claims.py re-reads it every week, and value must be written in it. Only on a row with evidence, never on a not-jev row (its answers are another model's) or on this repository's own examples. scripts/thresholds.py holds the rules; docs/review-queue.md lists the rows no person has read.",
       "type": "array",

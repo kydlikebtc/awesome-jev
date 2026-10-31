@@ -95,6 +95,39 @@ returns to "To read" by itself.
   snapshot in `history/` records the queue's counts, and the "Over time" table
   in [docs/shape.md](docs/shape.md) shows "Candidates to read" from them.
 
+## When Jev ships a version
+
+What PR #46 did by hand for Jev 1.14 (2026-10-15), as a list. Read the
+vendor's announcement, [models](https://docs.typesafe.ai/models) and each
+changed docs page first; write down only what they say, dated.
+
+1. `compat.json`: add the new version to the `model` cell of each surface whose
+   own docs name it, and say in `notes` what an alias points to and on which
+   date it was read. Nothing else needs the version typed in: the call-site
+   signals (`_github.version_signals`), the MCP server's model-string hint and
+   the claims issue's "now pins" lines all read it from here
+   (`tests/test_model_release.py`). Never add a gateway id because the native
+   API has it.
+2. Limits and opt-ins: the `limits` rows in `compat.json` and
+   [docs/compatibility.md](docs/compatibility.md) for any new header, input
+   or context size.
+3. The prose that names versions: the README strings
+   (`scripts/readme/strings.py`, both languages), `skills/awesome-jev/SKILL.md`,
+   [docs/patterns.md](docs/patterns.md) and the examples under `examples/`.
+4. A new question type: the three primitives (Choice, Score, Noul) are what
+   the schema's `question_types`, the counts, the filters and the picker
+   cover. A new one first goes in `experimental_seen`
+   (`scripts/verify_claims.py`, `EXPERIMENTAL_SHAPES`, read from the official
+   SDKs' types), as Box did on 2026-10-31, and is listed in
+   [docs/review-queue.md#experimental](docs/review-queue.md#experimental).
+   Making it a fourth primitive is a schema change across every surface:
+   decide it when the vendor drops "experimental".
+5. After the next Tuesday's claims run: rows whose cited file moved its pin
+   are reported as `version-moved`, counted per version.
+   `python3 scripts/verify_claims.py --propose-version-rewrite` prints their
+   new `evidence.matched`; apply it without touching `read_on`.
+6. `python3 scripts/check.py --fix`, then one pull request for all of it.
+
 ## Monthly and quarterly
 
 - From 2026-12-03, on the first Thursday of each month, the weekly upkeep

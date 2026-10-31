@@ -272,7 +272,8 @@ class WriteSignalsTest(unittest.TestCase):
         self.assertEqual(
             last,
             "primitive text signals: 7 row(s) with evidence; 2 added, 1 changed, 2 removed, "
-            "1 unchanged; 1 not read (GitHub rate limit or no repository)",
+            "1 unchanged; 1 not read (GitHub rate limit or no repository); "
+            "experimental features: 0 row(s) changed",
         )
         for line in ("  + added: choice, noul", "  ~ changed: noul -> score, noul",
                      "  - emptied: score (no shape in the file)", "  - gone: choice (claim-gone)"):
@@ -446,6 +447,70 @@ class SurfaceTest(unittest.TestCase):
                 self.assertEqual(len(re.findall(rf"\b{key}:", page)), 2, "one string per language")
         for about in re.findall(r'prims_signal_about: "([^"]+)"', page):
             self.assertIsNone(self.NOT_FOR_A_SIGNAL.search(about.replace("确认调用", "")), about)
+
+
+class ExperimentalTest(unittest.TestCase):
+    """experimental_seen (K3, 2026-10-31): Box and the opt-in headers, kept
+    apart from the three primitives the catalogue counts."""
+
+    def test_each_feature_as_the_sdks_and_the_wire_spell_it(self):
+        cases = {
+            '{"type": "box", "instructions": "the dog"}': ["box"],
+            "questions = {'dog': {'type': 'box'}}": ["box"],
+            '{\\"type\\":\\"box\\"}': ["box"],
+            "%{:type => 'box'}": ["box"],
+            "const { top, left } = answers.dog.box; x = answers.dog.box.top": ["box"],
+            'import { box, noul } from "@typesafe-ai/sdk";\nq = { dog: box("The dog") }': ["box"],
+            'import { box as locate } from "@typesafe-ai/sdk";\nlocate("the dog")': ["box"],
+            "from typesafe_sdk import Box, Noul\nq = Box(instructions='the dog')": ["box"],
+            "from typesafe_sdk.questions import (\n    Choice,\n    Box,\n)\nBox()": ["box"],
+            'headers["TypeSafe-Danger-Zone-Images"] = "true"': ["images"],
+            "'typesafe-danger-zone-long-context': 'true', 'TypeSafe-Danger-Zone-Images': 'true'": [
+                "images", "long-context"],
+        }
+        for text, expected in cases.items():
+            with self.subTest(text=text):
+                self.assertEqual(vc.experimental_signals(text), expected)
+
+    def test_what_is_not_box(self):
+        for text in (
+            "Box(modifier = Modifier.fillMaxSize())",  # Jetpack Compose
+            "from gym.spaces import Box\nBox(low=0, high=1)",
+            'import { box } from "@typesafe-ai/sdk";',  # imported, never called
+            "import type { box } from '@typesafe-ai/sdk'; box()",
+            "element.box = rect; style.box",
+            "a word: box, a box, the Box",
+        ):
+            with self.subTest(text=text):
+                self.assertEqual(vc.experimental_signals(text), [])
+
+    def test_kept_apart_from_the_primitives(self):
+        self.assertNotIn("box", vc.PRIMITIVES)
+        self.assertEqual(vc.primitive_signals('{"type": "box"}'), [])
+        schema = json.loads((SCRIPTS.parent / "schema" / "entry.schema.json").read_text())
+        self.assertEqual(tuple(schema["properties"]["experimental_seen"]["items"]["enum"]), vc.EXPERIMENTAL)
+
+    def test_the_weekly_run_writes_it_after_primitives_seen(self):
+        rows = [
+            base_row("both", primitives_seen=["noul"]),
+            base_row("alone"),
+            base_row("dropped", experimental_seen=["images"]),
+        ]
+        files = Files({
+            ("a/both", "HEAD", "src/x.py"): body('a.noul {"type": "box"}'),
+            ("a/alone", "HEAD", "src/x.py"): body("TypeSafe-Danger-Zone-Images: true"),
+            ("a/dropped", "HEAD", "src/x.py"): body("no header any more"),
+        })
+        run = MainRun(self, rows, files)
+        code, out, _ = run("--write-signals")
+        self.assertEqual(code, 0)
+        written = run.rows()
+        self.assertEqual(list(written["both"])[-2:], ["primitives_seen", "experimental_seen"])
+        self.assertEqual(written["both"]["experimental_seen"], ["box"])
+        self.assertEqual(list(written["alone"])[-2:], ["evidence", "experimental_seen"])
+        self.assertNotIn("experimental_seen", written["dropped"])
+        self.assertIn("  - dropped: experimental images", out)
+        self.assertTrue(out.strip().splitlines()[-1].endswith("experimental features: 3 row(s) changed"))
 
 
 class OnlyTheWeeklyRunWritesTest(unittest.TestCase):
