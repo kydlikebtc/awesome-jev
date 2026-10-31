@@ -35,7 +35,7 @@
 # file paths from a candidate's tree land in the comment as Markdown text
 # (neutralised by inert() and code_span()), never in a shell. The description
 # holds repository names shape-checked by discover_seen.py, catalogue slugs, and
-# the reasons in docs/declined.txt, also passed through inert(). The issue's
+# the reasons in docs/declined.txt and docs/held.txt, also passed through inert(). The issue's
 # current description is compared in the shell, never evaluated.
 name: discover
 

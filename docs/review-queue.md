@@ -1,4 +1,4 @@
-<!-- Written by scripts/build_review_queue.py from catalog.json. Edit those, not this file. -->
+<!-- Written by scripts/build_review_queue.py from catalog.json and docs/held.txt. Edit those, not this file. -->
 
 # Review queue · 复核队列
 
@@ -10,6 +10,7 @@ Rows a script has singled out for a person to read. Each entry is a machine sign
 
 | Signal · 信号 | Rows · 行数 |
 | --- | --- |
+| [Held for a person: read, not settled · 等人看：读过、未定](#needs-person) | 30 |
 | [Rows the README shows, still lacking a person's summary, Chinese or reading · README 展示、仍缺人写摘要、人写中文或人读所引文件的行](#front-page) | 64 |
 | [Evidence read from an examples directory · 证据取自 examples 目录](#examples-dir) | 22 |
 | [Evidence resting on one model name or the API host · 证据只靠一个模型名或 API 主机](#single-model-name) | 76 |
@@ -20,6 +21,51 @@ Rows a script has singled out for a person to read. Each entry is a machine sign
 | [Interfaces of alternatives nobody has read in the cited files · 人和模型都还没有在所引文件中读过的替代实现接口](#wire-unread) | 14 |
 | [Thresholds nobody has read in the cited file · 人和模型都还没有在所引文件中读过的阈值](#thresholds-unread) | 31 |
 | [Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对](#model-read) | 189 |
+
+<a id="needs-person"></a>
+
+## Held for a person: read, not settled · 等人看：读过、未定
+
+Unlike every other section, these are not a rule's matches: someone (often a scheduled AI run) read a row or a discovery candidate, could not settle it, and wrote it into [`docs/held.txt`](held.txt) with the reason, rows first, then candidates. A held candidate waits under its own heading in the discovery issue instead of at the top of those to read. The bots' own lists are in their issues: links that died (`links`), cited files and strings that moved (`claims`, #28) and the weekly refresh's changes (`metadata`, #32).
+
+和其他各节不同，这些不是规则的命中：有人（通常是定时运行的 AI）读过某一行或某个发现候选，拿不准，把它连同原因写进了 [`docs/held.txt`](held.txt)，先列目录行，再列候选。被搁置的候选在发现 issue 里单列一节，不再排在待读的最前面。机器人自己的清单在各自的 issue 里：失效的链接（`links`）、移动了的引用文件和字符串（`claims`，#28）、每周刷新的变化（`metadata`，#32）。
+
+To take one off, decide it: change or retire the row, add the candidate's row or decline it in `docs/declined.txt`, or conclude nothing needs doing. Then delete its line in `docs/held.txt` in the same pull request.
+
+移出方法：做出决定。修改或退役该行，为候选添加一行或在 `docs/declined.txt` 中拒收它，或者认定什么都不用做。然后在同一个 pull request 里删去 `docs/held.txt` 中的对应行。
+
+| Held · 搁置项 | What · 类型 | Reason given · 原因 |
+| --- | --- | --- |
+| [metis](https://kydlikebtc.github.io/awesome-jev/?lang=en#metis) | row · 目录行 | #28 proposes legacy/metis-triage/src/metis_triage/_triage.py: the integration may have been retired upstream (#71) |
+| [oh-my-pi](https://kydlikebtc.github.io/awesome-jev/?lang=en#oh-my-pi) | row · 目录行 | #28 proposes a test file, packages/ai/test/auth-gateway-systemone.test.ts, not the integration (#71) |
+| [openwork](https://kydlikebtc.github.io/awesome-jev/?lang=en#openwork) | row · 目录行 | #28 proposes an eval helper, not the CI review script the row cites; also may not be a not-jev alternative (#71) |
+| [pi-verdict](https://kydlikebtc.github.io/awesome-jev/?lang=en#pi-verdict) | row · 目录行 | #28 proposes research/jev-classifier-model.md, a Markdown note, not code (#71) |
+| [agentgateway-guardrail](https://kydlikebtc.github.io/awesome-jev/?lang=en#agentgateway-guardrail) | row · 目录行 | cited path gone with no proposal: the integration may have moved or been removed (#71) |
+| [eliza](https://kydlikebtc.github.io/awesome-jev/?lang=en#eliza) | row · 目录行 | cited path gone with no proposal, and the README is silent on Jev (#64, #71) |
+| [inbox-zero-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#inbox-zero-jev) | row · 目录行 | cited path gone with no proposal: the integration may have moved or been removed (#71) |
+| [jev-block-android-ad](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-block-android-ad) | row · 目录行 | cited path gone with no proposal: the integration may have moved or been removed (#71) |
+| [jevernetes](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevernetes) | row · 目录行 | cited path gone with no proposal: the integration may have moved or been removed (#71) |
+| [jevonian](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevonian) | row · 目录行 | cited path gone with no proposal: the integration may have moved or been removed (#71) |
+| [opencode-zen-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#opencode-zen-jev) | row · 目录行 | cited path gone with no proposal: the integration may have moved or been removed (#71) |
+| [pi-agent-foreman](https://kydlikebtc.github.io/awesome-jev/?lang=en#pi-agent-foreman) | row · 目录行 | cited path gone with no proposal: the integration may have moved or been removed (#71) |
+| [smithers](https://kydlikebtc.github.io/awesome-jev/?lang=en#smithers) | row · 目录行 | cited path gone with no proposal, and the README is silent on Jev (#64, #71) |
+| [ai](https://kydlikebtc.github.io/awesome-jev/?lang=en#ai) | row · 目录行 | cited file gone and the README is silent on Jev (#64) |
+| [jev-semgrep](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-semgrep) | row · 目录行 | evidence.path still names the tool before its rename to sys1grep (#64) |
+| [deep-searcher](https://kydlikebtc.github.io/awesome-jev/?lang=en#deep-searcher) | row · 目录行 | may not be a not-jev alternative (#64) |
+| [vectorize-io/hindsight](https://github.com/vectorize-io/hindsight) | candidate · 候选 | README does not mention Jev and the queue gives no call-site path; finding one needs code search (#71) |
+| [tbphp/gpt-load](https://github.com/tbphp/gpt-load) | candidate · 候选 | README does not mention Jev and the queue gives no call-site path; finding one needs code search (#71) |
+| [http4k/http4k](https://github.com/http4k/http4k) | candidate · 候选 | README does not mention Jev and the queue gives no call-site path; finding one needs code search (#71) |
+| [autonomous-ai/openharness](https://github.com/autonomous-ai/openharness) | candidate · 候选 | README does not mention Jev and the queue gives no call-site path; finding one needs code search (#71) |
+| [byalex33/changelog.earth](https://github.com/byalex33/changelog.earth) | candidate · 候选 | README does not mention Jev and the queue gives no call-site path; finding one needs code search (#71) |
+| [danieljvdm/effect-agent](https://github.com/danieljvdm/effect-agent) | candidate · 候选 | now yielded-dev/agent; README does not mention Jev and the queue gives no call-site path (#71) |
+| [hackclub/ai](https://github.com/hackclub/ai) | candidate · 候选 | README does not mention Jev and the queue gives no call-site path; finding one needs code search (#71) |
+| [arize-ai/openinference](https://github.com/arize-ai/openinference) | candidate · 候选 | its TypeSafe instrumentor is already the package on the langfuse-typesafe-observability row: its own row, or a repo field on that one? (#71) |
+| [taeold/djev-run](https://github.com/taeold/djev-run) | candidate · 候选 | a deployment recipe for djev, which is catalogued: a row of its own? (#71) |
+| [togethercomputer/tev1](https://github.com/togethercomputer/tev1) | candidate · 候选 | answers with a letter outside Jev's wire shape and calls Jev only as a baseline: decline? (#67) |
+| [uu889/laya-opencv](https://github.com/uu889/laya-opencv) | candidate · 候选 | a workbench for local Laya models with Jev as one interface; its questions live in recipe files that need a closer read (#69) |
+| [yongld/multi-uav-jev](https://github.com/yongld/multi-uav-jev) | candidate · 候选 | sends its questions only to a local NeoHorse-Jev-4B endpoint (catalogued as neohorse), never to Jev: decline? (#72) |
+| [benmagnifico/drivejev](https://github.com/benmagnifico/drivejev) | candidate · 候选 | its own POST /predict model service; neither calls Jev nor takes its request shape: decline? (#72) |
+| [chigwell/typesafe.pro](https://github.com/chigwell/typesafe.pro) | candidate · 候选 | a third-party gateway forwarding /v1/systemone with pooled keys and anonymous access, not run by TypeSafe: list it or not? (#72) |
 
 <a id="front-page"></a>
 

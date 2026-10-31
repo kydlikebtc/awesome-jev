@@ -175,15 +175,15 @@ Rows per pattern recording each of the 6 most recorded languages; the rest share
 
 ## Over time
 
-The catalogue's counts at each weekly refresh, from the snapshots in `history/` (generated data, never a source): 5 since 2026-09-30, the newest 5 shown. A count is what was catalogued on that day, not how the ecosystem grew; a dash is a count that snapshot did not record.
+The catalogue's counts at each weekly refresh, from the snapshots in `history/` (generated data, never a source): 5 since 2026-09-30, the newest 5 shown. A count is what was catalogued on that day, not how the ecosystem grew; a dash is a count that snapshot did not record. Candidates to read is the discovery queue's "To read" (issue #14), recorded since 2026-10-30: when it grows, drafting is behind discovery.
 
-| Snapshot | Entries | With code | Rows citing a call site | Independent reports | Negative results | Alternatives | No licence declared |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 2026-09-30 | 1210 | 1182 | 1076 | 71 | 5 | 58 | 198 |
-| 2026-10-08 | 1214 | 1185 | 1078 | 71 | 5 | 59 | 197 |
-| 2026-10-14 | 1217 | 1186 | 1079 | 72 | 5 | 59 | 196 |
-| 2026-10-21 | 1218 | 1187 | 1079 | 72 | 5 | 60 | 194 |
-| 2026-10-28 | 1265 | 1233 | 1107 | 72 | 5 | 78 | 192 |
+| Snapshot | Entries | With code | Rows citing a call site | Independent reports | Negative results | Alternatives | No licence declared | Candidates to read |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 2026-09-30 | 1210 | 1182 | 1076 | 71 | 5 | 58 | 198 | — |
+| 2026-10-08 | 1214 | 1185 | 1078 | 71 | 5 | 59 | 197 | — |
+| 2026-10-14 | 1217 | 1186 | 1079 | 72 | 5 | 59 | 196 | — |
+| 2026-10-21 | 1218 | 1187 | 1079 | 72 | 5 | 60 | 194 | — |
+| 2026-10-28 | 1265 | 1233 | 1107 | 72 | 5 | 78 | 192 | — |
 
 ---
 

@@ -9,6 +9,10 @@
 # of them are healthy again. A daily edit would notify no one; a daily comment
 # would teach everyone to mute it.
 #
+# Since 2026-10-30 the same issue also opens when no row has entered
+# catalog.json in ten days (its newest first_seen): the drafting tasks run
+# outside GitHub (MAINTAINING.md) and report only through rows that get merged.
+#
 # It cannot report its own silence. It is the one scheduled workflow with no
 # issue of its own, and its runs are on the Actions page beside the others.
 #
@@ -60,7 +64,7 @@ jobs:
           existing=$(gh issue list --state open --label watchdog --json number --jq '.[0].number')
           if [ "$CODE" = "0" ]; then
             if [ -n "$existing" ]; then
-              gh issue close "$existing" --comment "Every scheduled workflow has succeeded within the last 8 days again."
+              gh issue close "$existing" --comment "Every scheduled workflow has succeeded within the last 8 days, and a row has entered catalog.json within 10."
             else
               echo "every scheduled workflow is healthy"
             fi
@@ -80,8 +84,8 @@ jobs:
           fi
 
           gh label create watchdog --color b60205 \
-            --description "A scheduled workflow stopped running or succeeding" 2>/dev/null || true
-          gh issue create --title "A scheduled workflow has stopped succeeding" \
+            --description "A scheduled workflow stopped succeeding, or rows stopped arriving" 2>/dev/null || true
+          gh issue create --title "Scheduled work has stopped" \
             --label watchdog --body-file /tmp/body.md \
-            || gh issue create --title "A scheduled workflow has stopped succeeding" \
+            || gh issue create --title "Scheduled work has stopped" \
                  --body-file /tmp/body.md

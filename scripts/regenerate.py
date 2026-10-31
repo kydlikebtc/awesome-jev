@@ -2,8 +2,9 @@
 """Run every generator, so a tree's generated files match its sources.
 
 The sources are catalog.json, retired.json, compat.json, patterns.json,
-taxonomy.json, collections.json, watch.json and picker.json, the example
-code under examples/, and the weekly refresh's snapshots in history/.
+taxonomy.json, collections.json, watch.json and picker.json, docs/held.txt,
+the example code under examples/, and the weekly refresh's snapshots in
+history/.
 Everything listed in OUTPUTS below is derived from them, whole or in marked
 blocks, and is never edited by hand.
 

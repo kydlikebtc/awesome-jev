@@ -547,8 +547,9 @@ the pull request that adds the row or the decline is what ticks it. Those
 waiting to be read come strongest first, by GitHub's figures from the weekly
 refresh (`.discover/facts.json`): most stars, then most commits, then the
 latest push. A candidate weak on at least two counts (one commit or none, no
-star, no README) is listed apart as parked. That is not a decline: read one if
-you like, and it moves back once a refresh finds it stronger. Each
+star, no README), or a small one nobody has pushed to for four weeks (under 3
+stars and 5 commits), is listed apart as parked. That is not a decline: read
+one if you like, and it moves back once a refresh finds it stronger. Each
 week's new candidates arrive as a comment, a task list with one box per
 repository, its call site, and under it the command that reads that one
 repository again:
@@ -601,6 +602,17 @@ candidate it finds nothing to read.
 
 Read one and decided it does not belong? Add it to `docs/declined.txt` with a
 reason, and the weekly run stops proposing it.
+
+Read one and could not decide? Add it to `docs/held.txt` with the reason, as
+`owner/name  # why`. The same file takes a catalogued row you could not settle,
+as `slug  # why` (a proposed path that is only a test, a call site gone with
+nothing to replace it). Holding decides nothing: a held candidate is listed
+under its own heading in the discovery issue, out of the way of those to read,
+and [`docs/review-queue.md`](docs/review-queue.md#needs-person) lists every
+line for a person. Whoever settles one deletes its line in the same pull
+request. The scheduled AI runs that draft rows use this file for what they
+skip and cannot settle; [`MAINTAINING.md`](MAINTAINING.md) is their routine,
+and `scripts/model_draft.py` starts and checks each row they write.
 
 The script's own verdicts (which repositories it read, on what date, and what
 it found in the files it read) are kept in `.discover/seen.json`, so the weekly

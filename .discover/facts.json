@@ -3,7 +3,7 @@
     "GitHub's figures, not anyone's verdict: what the weekly refresh read about each repository still to read in the discovery queue.",
     "stars; commits on the default branch; pushed, the day of the last push; readme, whether one sits at the top of the tree; archived;",
     "name, only when GitHub now gives the repository another owner/name; missing, alone, when GitHub found no such repository.",
-    "scripts/queue_sync.py orders the queue by them and parks a candidate with 2 or more of: one commit or none, no star, no README. Parked is not declined.",
+    "scripts/queue_sync.py orders the queue by them and parks a candidate with 2 or more of: one commit or none, no star, no README, or one under 3 stars and 5 commits, no push in 28 days. Parked is not declined.",
     "A person's decision is a row in catalog.json or a line in docs/declined.txt, never an entry here.",
     "Written by scripts/discover_facts.py, run and committed by .github/workflows/metadata.yml."
   ],

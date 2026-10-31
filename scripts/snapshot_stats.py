@@ -14,6 +14,10 @@ history/<date>.json, named by the UTC date it runs, holding
     weekly refresh moves, so a later reader can say which rows changed;
   * `watch`: the value of each question watch.json counts (scripts/watch.py),
     which docs/status.md's "What to watch" states its recent change against;
+  * `queue` (since 2026-10-30): the discovery queue's candidates in each state
+    (to read, held, parked, ...), as scripts/queue_sync.py derives them from the
+    files this refresh commits, so whether drafting keeps pace with discovery
+    is a line in docs/shape.md rather than a guess;
 
 under a header that says it is generated. Only metadata.yml runs it, after the
 refresh and before its commit, so every snapshot is the state that refresh
@@ -48,6 +52,7 @@ import tempfile
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import _stats  # noqa: E402
+import queue_sync  # noqa: E402
 import watch  # noqa: E402
 
 ROOT = _stats.ROOT
@@ -59,6 +64,7 @@ ABOUT = [
     "named by the UTC date it ran; a later file never rewrites an earlier one.",
     "stats: every number _stats.compute() published that day. counts: rows per kind, pattern, flag, language and "
     "declared licence (_stats.shape()). watch: each question watch.json counts, as scripts/watch.py counted it. "
+    "queue: discovery candidates in each state, as scripts/queue_sync.py derived them (since 2026-10-30). "
     "rows: each row's slug, stars, repo_license and flags.",
     "Stars are GitHub's count at the refresh: a popularity signal, not a quality verdict.",
 ]
@@ -79,11 +85,13 @@ def row_facts(entry: dict) -> dict:
 
 
 def snapshot(catalog: list[dict], patterns: list[dict], compat: dict, schema: dict, *, date: str,
-             stats: dict, watched: dict | None = None) -> dict:
-    """One snapshot, from the files it is handed, compute()'s stats and
-    watch.values() (left out when None)."""
+             stats: dict, watched: dict | None = None, queue: dict | None = None) -> dict:
+    """One snapshot, from the files it is handed, compute()'s stats,
+    watch.values() and queue_sync.counts() (each left out when None)."""
     shape = _stats.shape(catalog, patterns, compat, schema)
     extra = {} if watched is None else {"watch": watched}
+    if queue is not None:
+        extra["queue"] = queue
     return {
         "generated": True,
         "source": SOURCE,
@@ -128,6 +136,9 @@ def problems(name: str, payload: object) -> list[str]:
     watched = payload.get("watch", {})
     if not isinstance(watched, dict) or not all(isinstance(k, str) and isinstance(v, int) for k, v in watched.items()):
         found.append(f"{name}: watch must map question ids to counts")
+    queue = payload.get("queue", {})
+    if not isinstance(queue, dict) or not all(k in queue_sync.STATES and isinstance(v, int) for k, v in queue.items()):
+        found.append(f"{name}: queue must map the discovery queue's states to counts")
     rows = payload.get("rows")
     slugs = [r.get("slug") for r in rows] if isinstance(rows, list) and all(isinstance(r, dict) for r in rows) else None
     if slugs is None or slugs != sorted(set(slugs)) or any(set(r) - set(ROW_FIELDS) for r in rows):
@@ -190,7 +201,9 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     catalog, _retired, patterns, compat, schema = _stats.load()
     watched = watch.values(watch.load(), catalog)
-    text = render(snapshot(catalog, patterns, compat, schema, date=date, stats=_stats.compute(), watched=watched))
+    queue = queue_sync.counts(queue_sync.derive(*queue_sync.read_files(ROOT)))
+    text = render(snapshot(catalog, patterns, compat, schema, date=date, stats=_stats.compute(), watched=watched,
+                           queue=queue))
     path = args.history / f"{date}.json"
     before = path.read_text(encoding="utf-8") if path.exists() else None
     if before != text:

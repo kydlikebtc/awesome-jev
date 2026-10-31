@@ -3,7 +3,9 @@
 
 Every entry on the page is a machine signal: a path, a string or a combination
 of fields matched a rule. None is a finding about the row, and nothing here is
-written back into catalog.json. Whoever reads a row records the decision in that
+written back into catalog.json. The one exception opens the page: since
+2026-10-30, what someone read and left for a person in docs/held.txt
+(scripts/held.py), listed as it stands there. Whoever reads a row records the decision in that
 row, as each section says, and the row leaves the page at the next regeneration.
 
 Lint could warn once per row instead, but dozens or hundreds of warnings on
@@ -33,6 +35,8 @@ from dataclasses import dataclass
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import _stats  # noqa: E402
+import held  # noqa: E402
+from _github import repo_of  # noqa: E402
 from classify import classify_broad, suggest  # noqa: E402
 from evidence_url import evidence_url  # noqa: E402
 from measurements import model_read as measurements_model_read  # noqa: E402
@@ -46,6 +50,7 @@ import wire  # noqa: E402
 
 ROOT = _stats.ROOT
 OUT = ROOT / "docs" / "review-queue.md"
+HELD = ROOT / "docs" / "held.txt"
 SITE = "https://kydlikebtc.github.io/awesome-jev/"
 
 
@@ -659,12 +664,68 @@ def front_page(catalog: list[dict]) -> Section:
     )
 
 
+def needs_person(catalog: list[dict], path: pathlib.Path | None = None) -> Section:
+    candidates, slugs = held.load(path or HELD)
+    by_slug = {e["slug"]: e for e in catalog if isinstance(e, dict) and "slug" in e}
+    by_repo = {}
+    for entry in catalog:
+        repo = repo_of(entry) if isinstance(entry, dict) else None
+        if repo:
+            by_repo.setdefault(repo.lower(), entry["slug"])
+    rows = []
+    for slug, reason in slugs.items():
+        if slug in by_slug:
+            rows.append((row_link(by_slug[slug]), "row · 目录行", esc(reason)))
+        else:
+            rows.append((cell(slug), "row, not in `catalog.json`: delete the line · 不在目录中，删去此行", esc(reason)))
+    for repo, reason in candidates.items():
+        where = f"[{repo}](https://github.com/{repo})"
+        if repo in by_repo:
+            rows.append((where, f"candidate, since catalogued as `{by_repo[repo]}`: delete the line · 已收录，删去此行",
+                         esc(reason)))
+        else:
+            rows.append((where, "candidate · 候选", esc(reason)))
+    return Section(
+        key="needs-person",
+        title_en="Held for a person: read, not settled",
+        title_zh="等人看：读过、未定",
+        about_en=(
+            "Unlike every other section, these are not a rule's matches: someone (often a scheduled AI run) read "
+            "a row or a discovery candidate, could not settle it, and wrote it into "
+            "[`docs/held.txt`](held.txt) with the reason, rows first, then candidates. A held candidate waits under "
+            "its own heading in the discovery issue instead of at the top of those to read. The bots' own lists "
+            "are in their issues: links that died (`links`), cited files and strings that moved (`claims`, #28) and "
+            "the weekly refresh's changes (`metadata`, #32)."
+        ),
+        about_zh=(
+            "和其他各节不同，这些不是规则的命中：有人（通常是定时运行的 AI）读过某一行或某个发现候选，拿不准，"
+            "把它连同原因写进了 [`docs/held.txt`](held.txt)，先列目录行，再列候选。被搁置的候选在发现 issue 里"
+            "单列一节，不再排在待读的最前面。机器人自己的清单在各自的 issue 里：失效的链接（`links`）、"
+            "移动了的引用文件和字符串（`claims`，#28）、每周刷新的变化（`metadata`，#32）。"
+        ),
+        leave_en=(
+            "To take one off, decide it: change or retire the row, add the candidate's row or decline it in "
+            "`docs/declined.txt`, or conclude nothing needs doing. Then delete its line in `docs/held.txt` in the "
+            "same pull request."
+        ),
+        leave_zh=(
+            "移出方法：做出决定。修改或退役该行，为候选添加一行或在 `docs/declined.txt` 中拒收它，"
+            "或者认定什么都不用做。然后在同一个 pull request 里删去 `docs/held.txt` 中的对应行。"
+        ),
+        columns=(("Held", "搁置项"), ("What", "类型"), ("Reason given", "原因")),
+        rows=tuple(rows),
+    )
+
+
 SECTIONS = (
-    front_page, examples_dir, single_model_name, tool_selection_broad_words, unsorted_overview, generic_summary,
+    needs_person, front_page, examples_dir, single_model_name, tool_selection_broad_words, unsorted_overview, generic_summary,
     measurement_unread, wire_unread, thresholds_unread, model_read,
 )
 
-HEADER = "<!-- Written by scripts/build_review_queue.py from catalog.json. Edit those, not this file. -->"
+HEADER = (
+    "<!-- Written by scripts/build_review_queue.py from catalog.json and docs/held.txt. "
+    "Edit those, not this file. -->"
+)
 PROVENANCE = (
     "<sub>The Chinese on this page is model-written and has not been reviewed by a person. · "
     "本页中文由模型撰写（机翻），未经人工审校。</sub>"

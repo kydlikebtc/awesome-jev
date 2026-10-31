@@ -1,5 +1,6 @@
 """The watchdog (A4, 2026-10-24): scripts/watchdog.py's verdicts on each
-scheduled workflow, and watchdog.yml's issue step, run as GitHub runs it
+scheduled workflow and, since 2026-10-30 (E2), on rows reaching catalog.json,
+and watchdog.yml's issue step, run as GitHub runs it
 (`bash -e`, no pipefail) with a stub `gh` on PATH. Also the links workflow,
 which since the same day reports dead links through an issue and goes red only
 when the sweep crashes. No network."""
@@ -9,6 +10,7 @@ from __future__ import annotations
 import contextlib
 import datetime as dt
 import io
+import json
 import os
 import pathlib
 import stat
@@ -77,13 +79,31 @@ class VerdictTest(unittest.TestCase):
         self.assertIn("| never | 2026-10-19, failure ([run](https://x/run)) | no run of it has ever succeeded |", rows[0])
         self.assertIn("| 2026-10-20 |", rows[1])
         self.assertNotIn("days ago", body)
-        self.assertIn("1 of 2 need a person", body)
+        self.assertIn("1 of 2 need a person. -->", body)
+        self.assertNotIn("| Rows |", body, "without intake()'s answer the body is as it was")
+
+    def test_rows_arriving_within_ten_days_are_healthy(self):
+        rows = [{"slug": "a", "first_seen": "2026-10-01"}, {"slug": "b", "first_seen": "2026-10-14"}, {"slug": "c"}]
+        self.assertEqual(watchdog.intake(rows, NOW), ("2026-10-14", None))
+        newest, why = watchdog.intake(rows[:1] + rows[2:], NOW)
+        self.assertEqual(newest, "2026-10-01")
+        self.assertIn("no row has entered catalog.json in 10 days", why)
+        self.assertEqual(watchdog.intake([], NOW), ("never", "no row in catalog.json has a first_seen date"))
+
+    def test_the_body_says_when_rows_stopped(self):
+        found = [(seen("claims.yml", success=run(4), latest=run(4)), None)]
+        body = watchdog.markdown(found, ("2026-10-01", "no row has entered catalog.json in 10 days: x"))
+        self.assertIn("| [catalog.json](https://github.com/kydlikebtc/awesome-jev/blob/main/catalog.json) "
+                      "| 2026-10-01 | no row has entered catalog.json in 10 days: x |", body)
+        self.assertIn("0 of 1 need a person; so do the rows. -->", body)
 
 
 class MainTest(unittest.TestCase):
-    def run_main(self, answers: dict[str, dict]) -> tuple[int, str, str]:
+    def run_main(self, answers: dict[str, dict], newest: str = "2026-10-20") -> tuple[int, str, str]:
         with tempfile.TemporaryDirectory() as tmp:
             body = pathlib.Path(tmp) / "body.md"
+            catalog = pathlib.Path(tmp) / "catalog.json"
+            catalog.write_text(json.dumps([{"slug": "a", "first_seen": newest}]))
             out = io.StringIO()
 
             def look(name, repo):
@@ -92,6 +112,7 @@ class MainTest(unittest.TestCase):
                 return answers[name]
 
             with mock.patch.object(watchdog, "scheduled", return_value=sorted(answers)), \
+                 mock.patch.object(watchdog, "CATALOG", catalog), \
                  mock.patch.object(watchdog, "look", look), \
                  mock.patch.object(watchdog.dt, "datetime", wraps=dt.datetime) as clock, \
                  mock.patch.dict(os.environ, {"GITHUB_STEP_SUMMARY": ""}), \
@@ -103,8 +124,18 @@ class MainTest(unittest.TestCase):
     def test_healthy_is_exit_0(self):
         code, out, body = self.run_main({"claims.yml": seen("claims.yml", success=run(2), latest=run(2))})
         self.assertEqual(code, 0)
-        self.assertTrue(out.rstrip().endswith("watchdog: 1 scheduled workflow(s), 0 need a person"))
+        self.assertTrue(out.rstrip().endswith(
+            "watchdog: 1 scheduled workflow(s), 0 need a person; newest row 2026-10-20"))
         self.assertIn("| nothing |", body)
+        self.assertIn("| 2026-10-20 | nothing |", body)
+
+    def test_no_row_in_ten_days_is_exit_1_with_every_workflow_healthy(self):
+        code, out, body = self.run_main({"claims.yml": seen("claims.yml", success=run(2), latest=run(2))},
+                                        newest="2026-10-13")
+        self.assertEqual(code, 1)
+        self.assertIn("STOP catalog.json", out)
+        self.assertTrue(out.rstrip().endswith("newest row 2026-10-13, stalled"))
+        self.assertIn("| 2026-10-13 | no row has entered catalog.json in 10 days", body)
 
     def test_a_stopped_workflow_is_exit_1(self):
         code, out, _ = self.run_main({
@@ -151,7 +182,7 @@ class IssueStepTest(unittest.TestCase):
     def test_a_stopped_workflow_opens_one_issue(self):
         calls = self.run_step("1")
         self.assertEqual(len(calls), 1)
-        self.assertTrue(calls[0].startswith("issue create --title A scheduled workflow has stopped succeeding --label watchdog"))
+        self.assertTrue(calls[0].startswith("issue create --title Scheduled work has stopped --label watchdog"))
 
     def test_an_open_issue_is_rewritten_only_when_it_would_change(self):
         self.assertEqual(self.run_step("1", existing="40", current="an older body"),

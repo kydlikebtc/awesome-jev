@@ -19,8 +19,9 @@ still to read, and this file keeps them:
 
 queue_sync.py orders the candidates to read by them (most stars first, then
 most commits, then the latest push) and parks the weakest: a candidate with at
-least PARK_AT of the weak facts in WEAK, or one GitHub no longer finds.
-Parked is not declined. Nothing is decided about a parked candidate: it stays
+least PARK_AT of the weak facts in WEAK, one GitHub no longer finds, or, since
+2026-10-30, a small one nobody has pushed to for QUIET_DAYS (fewer than
+SMALL_STARS stars and SMALL_COMMITS commits). Parked is not declined. Nothing is decided about a parked candidate: it stays
 in the issue under its own heading, anyone may still read it, and the first
 refresh that finds it stronger puts it back among those to read. A person's
 decision is still only a row in catalog.json or a line in docs/declined.txt.
@@ -75,13 +76,23 @@ WEAK = {
 }
 PARK_AT = 2
 MISSING = "GitHub finds no such repository"
+# A small candidate nobody has pushed to for four weeks is parked as well,
+# whatever its other counts: it had a month to grow, and in October the queue
+# gained about 120 candidates a week while 40 to 50 rows a week were drafted
+# (the long-term plan croa approved on 2026-10-30). The four weeks run to the queue's own
+# date, the newest verdict in .discover/seen.json, so the same files still
+# give the same queue.
+SMALL_STARS = 3
+SMALL_COMMITS = 5
+QUIET_DAYS = 28
+QUIET = f"under {SMALL_STARS} stars and {SMALL_COMMITS} commits, no push in {QUIET_DAYS} days"
 
 ABOUT = [
     "GitHub's figures, not anyone's verdict: what the weekly refresh read about each repository still to read in the discovery queue.",
     "stars; commits on the default branch; pushed, the day of the last push; readme, whether one sits at the top of the tree; archived;",
     "name, only when GitHub now gives the repository another owner/name; missing, alone, when GitHub found no such repository.",
     f"scripts/queue_sync.py orders the queue by them and parks a candidate with {PARK_AT} or more of: "
-    + ", ".join(WEAK) + ". Parked is not declined.",
+    + ", ".join(WEAK) + f", or one {QUIET}. Parked is not declined.",
     "A person's decision is a row in catalog.json or a line in docs/declined.txt, never an entry here.",
     "Written by scripts/discover_facts.py, run and committed by .github/workflows/metadata.yml.",
 ]
@@ -185,16 +196,23 @@ def write(path: pathlib.Path | str, facts: dict[str, dict]) -> None:
         raise
 
 
-def parked(facts: dict | None) -> list[str]:
+def parked(facts: dict | None, as_of: str | None = None) -> list[str]:
     """Why a candidate is parked, or [] when it is not. A candidate with no
     facts yet (found since the last refresh) is not parked: nothing says it
-    is weak."""
+    is weak. as_of (YYYY-MM-DD) is the queue's date; without one, no candidate
+    is parked for being quiet."""
     if not facts:
         return []
     if facts.get("missing"):
         return [MISSING]
     weak = [name for name, test in WEAK.items() if test(facts)]
-    return weak if len(weak) >= PARK_AT else []
+    if len(weak) >= PARK_AT:
+        return weak
+    if as_of and facts["stars"] < SMALL_STARS and facts["commits"] < SMALL_COMMITS:
+        idle = dt.date.fromisoformat(as_of) - dt.date.fromisoformat(facts["pushed"])
+        if idle.days >= QUIET_DAYS:
+            return [QUIET]
+    return []
 
 
 def rank(facts: dict | None) -> tuple:
@@ -297,9 +315,10 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     root = pathlib.Path(args.root)
     # Reports any entry of either file it leaves out.
-    seen, catalog, retired, declined, before = queue_sync.read_files(root)
+    seen, catalog, retired, declined, before, held = queue_sync.read_files(root)
     # Under the name the sibling lists cite, so a candidate settled under the
-    # name GitHub now gives it is read again, and its rename kept.
+    # name GitHub now gives it is read again, and its rename kept. Held
+    # candidates are read too: the queue shows their figures beside them.
     repos = [c.repo for c in queue_sync.derive(seen, catalog, retired, declined) if c.state == "open"]
     if not token():
         print("discovery facts: no GITHUB_TOKEN, so nothing is read and last week's facts stand", file=sys.stderr)
@@ -311,12 +330,13 @@ def main(argv: list[str] | None = None) -> int:
     report_dropped("this run's facts", dropped)
     write(root / ".discover" / "facts.json", facts)
 
-    states = [c.state for c in queue_sync.derive(seen, catalog, retired, declined, facts) if c.repo in set(repos)]
+    states = [c.state for c in queue_sync.derive(seen, catalog, retired, declined, facts, held) if c.repo in set(repos)]
+    waiting = states.count("open") + states.count("held") + states.count("parked")
     print(
         f"discovery facts: {len(found)} of {len(repos)} candidate(s) read, {unread} not answered"
         f" ({sum(1 for r in repos if r not in found and r in before)} keep last week's facts);"
-        f" {states.count('open')} to read, {states.count('parked')} parked,"
-        f" {len(states) - states.count('open') - states.count('parked')} settled under the name GitHub now gives"
+        f" {states.count('open')} to read, {states.count('held')} held, {states.count('parked')} parked,"
+        f" {len(states) - waiting} settled under the name GitHub now gives"
     )
     log_usage()
     return 0

@@ -1,0 +1,47 @@
+# Held for a person: what someone read, could not settle, and left for a
+# person to decide. One per line, with the reason after a `#`:
+#
+#   owner/name  # why — a discovery candidate (an owner/name, as in declined.txt)
+#   slug        # why — a catalogued row (its slug in catalog.json)
+#
+# Holding decides nothing. A held candidate stays in the discovery queue under
+# its own heading, so the scheduled drafting runs stop reading past it; a held
+# row stays in the catalogue as it is. docs/review-queue.md#needs-person lists
+# every line here, and the person who settles one (a row added or changed, a
+# line in declined.txt, or nothing to do) deletes its line in the same pull
+# request. A line whose candidate is catalogued or declined is shown as settled
+# until someone deletes it.
+
+# Candidates, as of 2026-10-30
+vectorize-io/hindsight  # README does not mention Jev and the queue gives no call-site path; finding one needs code search (#71)
+tbphp/gpt-load  # README does not mention Jev and the queue gives no call-site path; finding one needs code search (#71)
+http4k/http4k  # README does not mention Jev and the queue gives no call-site path; finding one needs code search (#71)
+autonomous-ai/openharness  # README does not mention Jev and the queue gives no call-site path; finding one needs code search (#71)
+byalex33/changelog.earth  # README does not mention Jev and the queue gives no call-site path; finding one needs code search (#71)
+danieljvdm/effect-agent  # now yielded-dev/agent; README does not mention Jev and the queue gives no call-site path (#71)
+hackclub/ai  # README does not mention Jev and the queue gives no call-site path; finding one needs code search (#71)
+arize-ai/openinference  # its TypeSafe instrumentor is already the package on the langfuse-typesafe-observability row: its own row, or a repo field on that one? (#71)
+taeold/djev-run  # a deployment recipe for djev, which is catalogued: a row of its own? (#71)
+togethercomputer/tev1  # answers with a letter outside Jev's wire shape and calls Jev only as a baseline: decline? (#67)
+uu889/laya-opencv  # a workbench for local Laya models with Jev as one interface; its questions live in recipe files that need a closer read (#69)
+yongld/multi-uav-jev  # sends its questions only to a local NeoHorse-Jev-4B endpoint (catalogued as neohorse), never to Jev: decline? (#72)
+benmagnifico/drivejev  # its own POST /predict model service; neither calls Jev nor takes its request shape: decline? (#72)
+chigwell/typesafe.pro  # a third-party gateway forwarding /v1/systemone with pooled keys and anonymous access, not run by TypeSafe: list it or not? (#72)
+
+# Rows, as of 2026-10-30
+metis  # #28 proposes legacy/metis-triage/src/metis_triage/_triage.py: the integration may have been retired upstream (#71)
+oh-my-pi  # #28 proposes a test file, packages/ai/test/auth-gateway-systemone.test.ts, not the integration (#71)
+openwork  # #28 proposes an eval helper, not the CI review script the row cites; also may not be a not-jev alternative (#71)
+pi-verdict  # #28 proposes research/jev-classifier-model.md, a Markdown note, not code (#71)
+agentgateway-guardrail  # cited path gone with no proposal: the integration may have moved or been removed (#71)
+eliza  # cited path gone with no proposal, and the README is silent on Jev (#64, #71)
+inbox-zero-jev  # cited path gone with no proposal: the integration may have moved or been removed (#71)
+jev-block-android-ad  # cited path gone with no proposal: the integration may have moved or been removed (#71)
+jevernetes  # cited path gone with no proposal: the integration may have moved or been removed (#71)
+jevonian  # cited path gone with no proposal: the integration may have moved or been removed (#71)
+opencode-zen-jev  # cited path gone with no proposal: the integration may have moved or been removed (#71)
+pi-agent-foreman  # cited path gone with no proposal: the integration may have moved or been removed (#71)
+smithers  # cited path gone with no proposal, and the README is silent on Jev (#64, #71)
+ai  # cited file gone and the README is silent on Jev (#64)
+jev-semgrep  # evidence.path still names the tool before its rename to sys1grep (#64)
+deep-searcher  # may not be a not-jev alternative (#64)

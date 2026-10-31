@@ -116,8 +116,10 @@ class ReadmeAgreesTest(unittest.TestCase):
 
 
 class QueueTest(unittest.TestCase):
-    def test_the_page_opens_with_it(self):
-        self.assertIs(queue.SECTIONS[0], queue.front_page)
+    def test_the_page_opens_with_it_after_what_is_held_for_a_person(self):
+        # docs/held.txt's lines come first since 2026-10-30: they wait on a
+        # decision, not on a reading.
+        self.assertEqual(queue.SECTIONS[:2], (queue.needs_person, queue.front_page))
         self.assertEqual(queue.front_page([]).key, "front-page")
 
     def test_rows_in_readme_order_once_each_with_every_place_they_are_printed(self):
