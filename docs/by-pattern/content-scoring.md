@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 167 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 171 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 158 · wire shape 5 · example only 0 · independent reports 9 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 162 · wire shape 5 · example only 0 · independent reports 10 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -293,6 +293,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev Chat Jarvis (iOS keyboard)](https://github.com/jev-chat/jev-chat-jarvis-ios)** — iOS keyboard version of Jev Chat Jarvis: copy a message in any chat app and the custom keyboard shows Jev's read of its intent (a `choice`) and risk (a `score`), plus drafted replies that Jev ranks with another `choice`; one tap inserts a reply. An optional extension reads the screen by local OCR. <sub>(written by a model)</sub>
   <sub>`Project` · jev-chat · `Swift` · `choice` · `score` · call site [`Shared/JevJudge.swift`](https://github.com/jev-chat/jev-chat-jarvis-ios/blob/HEAD/Shared/JevJudge.swift), read by a model 2026-10-30 · ⚠ `3rd-party key`</sub>
 
+- **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)** — Weekly go-to-market experiments with Jev, each tested against Claude: lead triage and routing, deal risk, reply triage, MEDDPICC fields from call summaries, duplicate accounts and closed-lost reactivation, plus an MCP server. A shared client subtracts a measured score bias of 0.30 before rounding. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · deepdave98 · `Py` · `noul` · `choice` · `score` · call site [`common/jev.py`](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py), read by a model 2026-10-31 · ⚠ `no licence`</sub>
+
 - **[JEV Trading Command Center](https://github.com/mars-tw/jev-trading-command-center)** — Paper-trading research app with a 3D command center. For a USDT futures symbol it asks Jev the direction for the next 1 to 4 bars (long, short or no trade), a `score` for entry quality and three `noul`s (valid setup, trap risk, acceptable risk); code gates every simulated entry on the answers. <sub>(written by a model)</sub>
   <sub>`Project` · mars-tw · `Py` · `choice` · `score` · `noul` · call site [`scanner/jev_client.py`](https://github.com/mars-tw/jev-trading-command-center/blob/HEAD/scanner/jev_client.py), read by a model 2026-10-28</sub>
 
@@ -383,6 +386,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-trace-classifier](https://github.com/sypherin/jev-trace-classifier)** — Application of TypeSafe Jev (noul judgment primitive) on the collusion.wiki corpus: agent vs human page authorship, head-to-head vs local Qwen3.8-Flash-Next <sub>(upstream description)</sub>
   <sub>`Benchmark` · sypherin · `Py` · call site [`jev_client.py`](https://github.com/sypherin/jev-trace-classifier/blob/HEAD/jev_client.py), read 2026-09-22</sub>
 
+- **[jev-trader](https://github.com/buberlo/jev-trader)** — Paper-trading market-making system that asks Jev six judgments in one call per 300 ms block: market regime and direction (choice), whether flow is toxic and liquidity thin (yes/no), how good quoting conditions are and how urgent cutting inventory is (score). Code applies policy and risk vetoes. <sub>(written by a model)</sub>
+  <sub>`Project` · buberlo · `Py` · `choice` · `noul` · `score` · call site [`src/jev_trader/judgment/client.py`](https://github.com/buberlo/jev-trader/blob/HEAD/src/jev_trader/judgment/client.py), read by a model 2026-10-31</sub>
+
 - **[jev-ui](https://github.com/etweisberg/jev-ui)** — React components that resolve which component to render, how to order a list, and whether to show an affordance — from calibrated judgments returned by TypeSafe's Jev. <sub>(upstream description)</sub>
   <sub>`Project` · etweisberg · `TS` · call site [`packages/jev-ui/src/transport/live.ts`](https://github.com/etweisberg/jev-ui/blob/HEAD/packages/jev-ui/src/transport/live.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
@@ -400,6 +406,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevchess](https://github.com/choxos/jevchess)** — Jev, TypeSafe's System One model, plays chess against any OpenRouter LLM, Stockfish and you. One-page web app with live moves, Jev's move probabilities, saved games and win rates. <sub>(upstream description)</sub>
   <sub>`Project` · choxos · `JS` · call site [`docs/chess-ai.js`](https://github.com/choxos/jevchess/blob/HEAD/docs/chess-ai.js), read 2026-09-22</sub>
+
+- **[jevclip](https://github.com/cclank/jevclip)** — Cuts video from its subtitles: Jev reads each ~20-second segment and answers five questions (which of eight kinds of talk it is, information density 0–3, unfounded claims, whether it stands alone, whether it fits your focus); code keeps, ranks and cuts a 3-minute highlight and a trimmed full cut. <sub>(written by a model)</sub>
+  <sub>`Project` · cclank · `Py` · `choice` · `score` · `noul` · call site [`jevclip/jev.py`](https://github.com/cclank/jevclip/blob/HEAD/jevclip/jev.py), read by a model 2026-10-31</sub>
 
 - **[jevmetrics](https://github.com/ishantanu/jevmetrics)** — An experimental OpenTelemetry Collector processor that asks Jev how operationally valuable each metric instrument is, from its metadata, then applies deterministic policy to decide what to keep.
   <sub>`Project` · ishantanu · `Go` · call site [`internal/evaluator/jev.go`](https://github.com/ishantanu/jevmetrics/blob/HEAD/internal/evaluator/jev.go), read 2026-09-24</sub>
@@ -526,6 +535,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[zcode-jev](https://github.com/Zahrannnn/zcode-jev)** — Typed judgment layer for coding agents — gates from PRD to ship. Jev-ready, provider-agnostic. <sub>(upstream description)</sub>
   <sub>`Integration` · zahrannnn · `TS` · call site [`src/backends/jev.ts`](https://github.com/Zahrannnn/zcode-jev/blob/HEAD/src/backends/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
+
+- **[弦外之音 JevGuide](https://github.com/nisaka520/jevguide)** — Android accessibility app that reads a WeChat chat on screen and asks Jev eight questions in one request: the other person's intent, emotion and urgency, whether a reply is needed or risky, what to do, which reply style fits, and a relationship-progress score. A chat model drafts three replies. <sub>(written by a model)</sub>
+  <sub>`Project` · nisaka520 · `Kt` · `choice` · `score` · `noul` · call site [`app/src/main/java/io/github/nisaka520/jevguide/Prompt.kt`](https://github.com/nisaka520/jevguide/blob/HEAD/app/src/main/java/io/github/nisaka520/jevguide/Prompt.kt), read by a model 2026-10-31 · ⚠ `3rd-party key`</sub>
 
 - **[jevai.org community showcase cases](https://www.jevai.org/cases)** — Nine worked community scenarios: intent routing, invoice classification, news filtering, product tagging, moderation, claim verification, CSV validation and more.
   <sub>`Project` · ⚠ `unverified claims`</sub>

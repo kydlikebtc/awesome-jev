@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 145 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 146 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 139 · wire shape 2 · example only 0 · independent reports 10 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 140 · wire shape 2 · example only 0 · independent reports 10 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -430,6 +430,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[siege](https://github.com/vnmoorthy/siege)** — SIEGE: 200 people vs one agent. A typed action gate (TypeSafe System One) that learns from every breach, evaluated by W&B Weave, hardened by a defender loop. Built at CoreWeave Hacks: Agent Loops 2026. <sub>(upstream description)</sub>
   <sub>`Project` · vnmoorthy · `TS` · call site [`backend/app/gate.py`](https://github.com/vnmoorthy/siege/blob/HEAD/backend/app/gate.py), read 2026-09-22</sub>
+
+- **[skimmer](https://github.com/dorkitude/skimmer)** — CLI that cuts pages, files and lists down to what serves a goal: each ~2,000-character chunk or list item gets one Jev yes/no, does this help with the goal, and only kept parts come back, in order. An optional second question flags text trying to steer the reader: a filter, not a security boundary. <sub>(written by a model)</sub>
+  <sub>`Project` · dorkitude · `Go` · `noul` · call site [`internal/jev/client.go`](https://github.com/dorkitude/skimmer/blob/HEAD/internal/jev/client.go), read by a model 2026-10-31</sub>
 
 - **[sloppy-jevs-extension](https://github.com/neddes/sloppy-jevs-extension)** — Open-source Chrome extension that filters AI-generated prose and ads with Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · neddes · `JS` · call site [`background.js`](https://github.com/neddes/sloppy-jevs-extension/blob/HEAD/background.js), read 2026-09-22</sub>

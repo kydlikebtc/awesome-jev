@@ -4,11 +4,11 @@
 
 _在输出到达用户前，按评分标准检查模型产出。_
 
-这个决策的全部已收录例子 —— 共 139 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 141 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#output-validation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#output-validation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 134 · 接口形态 1 · 仅示例 0 · 独立报告 11 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 136 · 接口形态 1 · 仅示例 0 · 独立报告 11 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -248,6 +248,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jackalope](https://github.com/Jackalope-Dev/jackalope)** — 面向编程智能体、并行 Git worktree 与代码审查的桌面工作区。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jackalope-dev · `Rs` · 调用点 [`apps/desktop/src-tauri/src/commands/jev.rs`](https://github.com/Jackalope-Dev/jackalope/blob/HEAD/apps/desktop/src-tauri/src/commands/jev.rs)，2026-09-22 阅读</sub>
 
+- **[jeff](https://github.com/Alurith/jeff)** — 只读的 Go 命令行工具，在本地或 CI 中用 Jev 按规则检查源文件：每条规则（失败路径完整性、未声明的副作用、重复的策略、名称与行为矛盾）对每个文件是一个是非题，由规则自带的阈值决定通过、失败或无法判定。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · Alurith · `Go` · `noul` · 调用点 [`internal/typesafe/client.go`](https://github.com/Alurith/jeff/blob/HEAD/internal/typesafe/client.go)，2026-10-31 模型阅读</sub>
+
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
   <sub>`开源项目` · Really Artificial · `JS` · `choice` · `score` · `noul` · 调用点 [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs)，2026-09-22 阅读 · ⚠ `疑似 AI 生成`</sub>
 
@@ -358,6 +361,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevkit](https://github.com/ariel-frischer/jevkit)** — 用 Rust 写的快速 CLI：类型化决策，付费之前先离线 lint。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ariel-frischer · `Rs` · 调用点 [`src/auth.rs`](https://github.com/ariel-frischer/jevkit/blob/HEAD/src/auth.rs)，2026-09-22 阅读</sub>
+
+- **[jevreel](https://github.com/DeepAleph/jevreel)** — 无需向量嵌入的视频搜索 MCP 服务器和智能体技能：把视频帧排成每张六十帧、带标注的缩略图拼版，由 Jev 对每张拼版回答一个是非题（是否出现在这一分钟）和一个“在哪里”的 choice，再在完整帧上复核最佳时间窗。智能体得到时刻、时间点和概率。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · DeepAleph · `Py` · `noul` · `choice` · `score` · 调用点 [`src/jevreel/judge.py`](https://github.com/DeepAleph/jevreel/blob/HEAD/src/jevreel/judge.py)，2026-10-31 模型阅读</sub>
 
 - **[jevsume](https://github.com/unownone/jevsume)** — 由 Jev 驱动的 ATS 友好简历评审。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · unownone · `TS` · 调用点 [`packages/jev/http.ts`](https://github.com/unownone/jevsume/blob/HEAD/packages/jev/http.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

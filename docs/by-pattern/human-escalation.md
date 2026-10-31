@@ -4,11 +4,11 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 73 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 74 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#human-escalation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 58 · wire shape 5 · example only 0 · independent reports 10 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 59 · wire shape 5 · example only 0 · independent reports 10 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -200,6 +200,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevbus](https://github.com/zkjoie/jevbus)** — A streaming event bus whose routing, subscription and consumption are decided by a probabilistic judge. The reference judge is TypeSafe AI's Jev (System One) model: send it a payload and a set of typed questions, get back calibrated probabilities instead of prose. <sub>(upstream description)</sub>
   <sub>`Project` · zkjoie · `Rs` · call site [`src/jev/http.rs`](https://github.com/zkjoie/jevbus/blob/HEAD/src/jev/http.rs), read 2026-09-22</sub>
+
+- **[Jevline](https://github.com/tsale/jevline)** — Scopes an incident from security telemetry: from one confirmed-malicious process, it asks Jev of every process, account, host, address or domain the logs link to whether it belongs to the same incident, and follows what joins round by round. Answers near the threshold are marked for analyst review. <sub>(written by a model)</sub>
+  <sub>`Project` · tsale · `TS` · `noul` · call site [`engine/src/jev.ts`](https://github.com/tsale/jevline/blob/HEAD/engine/src/jev.ts), read by a model 2026-10-31</sub>
 
 - **[luce](https://github.com/scienthoon/luce)** — Luce: a recipe for calibrated decision models — a sentence about your task in, a small model that answers typed questions with honest probabilities out (init → synth → train → eval → serve) <sub>(upstream description)</sub>
   <sub>`Project` · scienthoon · `Py` · call site [`scripts/jev_eval.mjs`](https://github.com/scienthoon/luce/blob/HEAD/scripts/jev_eval.mjs), read 2026-09-22</sub>

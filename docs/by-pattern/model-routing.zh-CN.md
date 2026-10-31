@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 52 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 53 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 45 · 接口形态 1 · 仅示例 0 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 46 · 接口形态 1 · 仅示例 0 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -101,6 +101,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Building a Harness with Jev](https://www.langchain.com/blog/building-a-harness-with-jev)** — LangChain 的讲解兼集成实操：三种问题类型，加上模型路由、以及在高风险工具调用执行前拦截它。
   <sub>`文章` · Sydney Runkle, Hunter Lovell · `Py` · ⚠ `厂商自报数据`</sub>
+
+- **[Claude Model Router](https://github.com/alexei-led/claude-router)** — Claude Code 模组：根据分类器的建议为每一轮对话和每个子智能体选择模型和推理强度。默认分类器是 Jev：一个 choice 判断档位，另一个判断本轮的活动类型，每隔几次请求重新询问。也可以改用 Clef、OpenAI 或本地 Ollama 模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · alexei-led · `JS` · `choice` · 调用点 [`lib/classifier-apis.mjs`](https://github.com/alexei-led/claude-router/blob/HEAD/lib/classifier-apis.mjs)，2026-10-31 模型阅读</sub>
 
 - **[Claude x Jev](https://github.com/charlesdove977/claude-x-jev)** — Claude Code 技能及配套命令：由 Jev（经 OpenRouter）负责分拣，Claude 负责写作。可以批量分类、核查或打分，只把不确定的条目交给 Claude，核对 Claude 的草稿，并用 PreToolUse 钩子把关工具调用，询问该调用能否撤销、是否服务于当前任务。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · charlesdove977 · `Py` · `choice` · `noul` · `score` · 调用点 [`skill/scripts/jev.py`](https://github.com/charlesdove977/claude-x-jev/blob/HEAD/skill/scripts/jev.py)，2026-10-30 模型阅读 · ⚠ `营销内容`</sub>

@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 139 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 141 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 134 · wire shape 1 · example only 0 · independent reports 11 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 136 · wire shape 1 · example only 0 · independent reports 11 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -248,6 +248,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jackalope](https://github.com/Jackalope-Dev/jackalope)** — A desktop workspace for coding agents, parallel Git worktrees, and code review. <sub>(upstream description)</sub>
   <sub>`Project` · jackalope-dev · `Rs` · call site [`apps/desktop/src-tauri/src/commands/jev.rs`](https://github.com/Jackalope-Dev/jackalope/blob/HEAD/apps/desktop/src-tauri/src/commands/jev.rs), read 2026-09-22</sub>
 
+- **[jeff](https://github.com/Alurith/jeff)** — Read-only Go CLI that checks source files against rules with Jev, locally or in CI: each rule (failure-path integrity, undisclosed side effects, duplicated policy, names contradicting behaviour) is a yes/no question per file, and the rule's thresholds decide pass, fail or inconclusive. <sub>(written by a model)</sub>
+  <sub>`Project` · Alurith · `Go` · `noul` · call site [`internal/typesafe/client.go`](https://github.com/Alurith/jeff/blob/HEAD/internal/typesafe/client.go), read by a model 2026-10-31</sub>
+
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
 
@@ -358,6 +361,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevkit](https://github.com/ariel-frischer/jevkit)** — Fast Rust CLI for TypeSafe Jev: typed decisions, offline linting before you pay <sub>(upstream description)</sub>
   <sub>`Project` · ariel-frischer · `Rs` · call site [`src/auth.rs`](https://github.com/ariel-frischer/jevkit/blob/HEAD/src/auth.rs), read 2026-09-22</sub>
+
+- **[jevreel](https://github.com/DeepAleph/jevreel)** — MCP server and agent skill that searches video without embeddings: frames go onto labelled contact sheets of sixty, Jev judges every sheet with a yes/no (is it in this minute) plus a choice of where, and the best windows are re-checked on full frames. Agents get moments, times and probabilities. <sub>(written by a model)</sub>
+  <sub>`Plugin` · DeepAleph · `Py` · `noul` · `choice` · `score` · call site [`src/jevreel/judge.py`](https://github.com/DeepAleph/jevreel/blob/HEAD/src/jevreel/judge.py), read by a model 2026-10-31</sub>
 
 - **[jevsume](https://github.com/unownone/jevsume)** — ATS-friendly resume review powered by Jev (TypeSafe System One). The frontend extracts resume text the way a parser would, then a Cloudflare Worker runs typed JEV questions and composes a JevScore. <sub>(upstream description)</sub>
   <sub>`Project` · unownone · `TS` · call site [`packages/jev/http.ts`](https://github.com/unownone/jevsume/blob/HEAD/packages/jev/http.ts), read 2026-09-22 · ⚠ `no licence`</sub>

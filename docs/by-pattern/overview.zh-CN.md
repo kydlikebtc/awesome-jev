@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 489 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 492 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 376 · 接口形态 73 · 仅示例 0 · 独立报告 25 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 377 · 接口形态 75 · 仅示例 0 · 独立报告 25 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -356,6 +356,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[antigravity-mcp-semantic-search-with-typesafeai](https://github.com/greenyamao/Antigravity-mcp-semantic-search-with-TypeSafeAi)** — 给 AI 编程助手的快速语义代码搜索与 diff 合理性审查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · greenyamao · `Py` · 调用点 [`mcp_server.py`](https://github.com/greenyamao/Antigravity-mcp-semantic-search-with-TypeSafeAi/blob/HEAD/mcp_server.py)，2026-09-22 阅读</sub>
 
+- **[arbiter](https://github.com/0xBakeer/arbiter)** — 在你自己的 GPU 或 Mac 上运行类型化决策模型的服务层：目前提供 Laya 的三个检查点并按请求路由，接口为兼容 Jev 的 /v1/systemone，附带微批处理、演练页面、MCP 服务器和 Claude Code 插件。作者在 GB10 上测得单个问题 20.9 毫秒、五十个问题 152 毫秒。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · 0xBakeer · `Py` · 引用文件 [`server/app.py`](https://github.com/0xBakeer/arbiter/blob/HEAD/server/app.py)，2026-10-31 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
 - **[audio-jevlike](https://github.com/alperiox/audio-jevlike)** — Prosodia：原生面向音频、形似 Jev 的决策模型——直接从语音给出校准的类型化决策，无需语音识别。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · alperiox · `Py` · 引用文件 [`space/prosodia/evaluation/baselines.py`](https://github.com/alperiox/audio-jevlike/blob/HEAD/space/prosodia/evaluation/baselines.py)，2026-09-24 阅读 · ⚠ `并非 Jev 本身` `无许可证`</sub>
 
@@ -538,6 +541,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Mica](https://github.com/akivet/mica)** — Mica v0.5 4B 的 HTTP 服务器。Mica 是开源决策模型，通过 /v1/systemone 回答 noul、choice 和 score，并给出每个答案的概率，可在 INT8 CUDA 或 llama.cpp GGUF 上运行，还可设置弃权阈值来标出不确定的情况。作者报告打乱选项顺序后 97.3% 的答案保持不变。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · akivet · `Py` · 引用文件 [`mica/server.py`](https://github.com/akivet/mica/blob/HEAD/mica/server.py)，2026-10-30 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
+- **[OpenDecider](https://github.com/manjunathshiva/opendecider)** — 开源的 System 1 决策模型（从 nano 到 large，以开源模型为教师蒸馏到 Qwen3 上），用校准过的概率回答 choice、score 和 noul，并通过可直接替换的 /v1/systemone 提供服务，Jev 客户端和 TypeSafe SDK 只需改基础 URL 即可使用。作者报告 small 得分 0.735，Jev 1.13 为 0.730。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · manjunathshiva · `Py` · 引用文件 [`opendecider/serve.py`](https://github.com/manjunathshiva/opendecider/blob/HEAD/opendecider/serve.py)，2026-10-31 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[OpenJev](https://github.com/xingwudao/OpenJev)** — OpenJev：受 Jev 启发、基于 TypeSafe.ai 理念的独立 System One 决策 API，提供 choice、score、noul 原语、本地模拟服务器以及 Python 和 TypeScript SDK。真实推理尚在计划中，与 TypeSafe AI 无关。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · xingwudao · `Py` · 引用文件 [`sdk/python/openjev/__init__.py`](https://github.com/xingwudao/OpenJev/blob/HEAD/sdk/python/openjev/__init__.py)，2026-09-24 阅读 · ⚠ `并非 Jev 本身` `无许可证`</sub>
@@ -756,7 +762,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ## 尚未按模式索引
 
-带代码的项目或插件，共 251 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
+带代码的项目或插件，共 252 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
 
 - **[typesafe-ai/skills](https://github.com/typesafe-ai/skills)** ⭐ — Claude Code 插件背后的官方技能仓库，里面的 SKILL.md 教会智能体如何使用 System One API。
   <sub>`插件` · ★1k+ · `sh`</sub>
@@ -1213,6 +1219,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-anotacao-sentencas](https://github.com/lab-dados/jev-anotacao-sentencas)** — Jev 与两个大模型在结构化句子标注上的对比（葡萄牙语）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · lab-dados · `Py` · 调用点 [`src/jevtest/clientes.py`](https://github.com/lab-dados/jev-anotacao-sentencas/blob/HEAD/src/jevtest/clientes.py)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
+
+- **[jev-anything](https://github.com/grandamenium/jev-anything)** — 面向 Codex 和 Claude Code 的智能体技能：让编程智能体在写代码之前先设计一个边界清晰的 Jev 决策（分类器、路由器、评分器或护栏），包括决策约定、判定标准、后备方案和评估计划，再生成 Python 或 TypeScript 客户端以及盲标注调优流程。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · grandamenium · `Py` · `noul` · `choice` · `score` · 调用点 [`scaffolding/jev_client.py`](https://github.com/grandamenium/jev-anything/blob/HEAD/scaffolding/jev_client.py)，2026-10-31 模型阅读</sub>
 
 - **[jev-arena-nanojev](https://github.com/liao96312/jev-arena-nanojev)** — 完全本地的 NanoJev 网格决策游戏实验场，支持中文界面与多关卡。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · liao96312 · `Py` · 调用点 [`nanojev_adapter/typesafe_client.py`](https://github.com/liao96312/jev-arena-nanojev/blob/HEAD/nanojev_adapter/typesafe_client.py)，2026-09-22 阅读</sub>

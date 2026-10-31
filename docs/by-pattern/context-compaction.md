@@ -4,11 +4,11 @@
 
 _Decide which tool calls and results still matter so stale context can be dropped._
 
-Every catalogued example of this decision — 39 of them. The same rows, with caveats, are in [the index](../../README.md#context-compaction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 41 of them. The same rows, with caveats, are in [the index](../../README.md#context-compaction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#context-compaction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 39 · wire shape 0 · example only 0 · independent reports 2 · negative results 2 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 41 · wire shape 0 · example only 0 · independent reports 2 · negative results 2 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -107,6 +107,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-compaction](https://github.com/Waxmell114514/jev-compaction)** — A context compactor that can only score, never write — so an agent's memory can't hold a fact the transcript never contained. Working demo, runs offline. <sub>(upstream description)</sub>
   <sub>`Project` · waxmell114514 · `Py` · call site [`jevctx/jev.py`](https://github.com/Waxmell114514/jev-compaction/blob/HEAD/jevctx/jev.py), read 2026-09-24</sub>
 
+- **[jev-compaction-plus](https://github.com/cth9191/jev-compaction-plus)** — Claude Code compaction by Jev instead of a summary: for every old tool result Jev answers whether the assistant still needs it word for word; kept results stay verbatim and dropped ones move to a drawer file Claude can read back. A fork of fast-jev-compaction with three fixes for huge sessions. <sub>(written by a model)</sub>
+  <sub>`Plugin` · cth9191 · `TS` · `noul` · call site [`hooks/fast-jev.ts`](https://github.com/cth9191/jev-compaction-plus/blob/HEAD/hooks/fast-jev.ts), read by a model 2026-10-31</sub>
+
 - **[jev-docs](https://github.com/chenrui333/jev-docs)** — Community-maintained history of Jev / TypeSafe System One APIs, SDKs, agent guidance, and engineering best practices. <sub>(upstream description)</sub>
   <sub>`SDK` · chenrui333 · `Py` · call site [`src/jev_docs/sync.py`](https://github.com/chenrui333/jev-docs/blob/HEAD/src/jev_docs/sync.py), read 2026-09-22</sub>
 
@@ -139,6 +142,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[pi-jev-context-curator](https://github.com/Shashank-H/pi-jev-context-curator)** — A Jev based context curator for pi <sub>(upstream description)</sub>
   <sub>`Plugin` · shashank-h · `TS` · call site [`extensions/curator-jev/config.ts`](https://github.com/Shashank-H/pi-jev-context-curator/blob/HEAD/extensions/curator-jev/config.ts), read 2026-09-24</sub>
+
+- **[skimmer](https://github.com/dorkitude/skimmer)** — CLI that cuts pages, files and lists down to what serves a goal: each ~2,000-character chunk or list item gets one Jev yes/no, does this help with the goal, and only kept parts come back, in order. An optional second question flags text trying to steer the reader: a filter, not a security boundary. <sub>(written by a model)</sub>
+  <sub>`Project` · dorkitude · `Go` · `noul` · call site [`internal/jev/client.go`](https://github.com/dorkitude/skimmer/blob/HEAD/internal/jev/client.go), read by a model 2026-10-31</sub>
 
 - **[smoking-extraction-benchmark](https://github.com/vclic/smoking-extraction-benchmark)** — Synthetic smoking-history extraction benchmark comparing TypeSafe Jev and OpenAI structured outputs, with reproducible accuracy, cost, and latency results. <sub>(upstream description)</sub>
   <sub>`Benchmark` · vclic · `Py` · call site [`smoking_eval/providers.py`](https://github.com/vclic/smoking-extraction-benchmark/blob/HEAD/smoking_eval/providers.py), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>

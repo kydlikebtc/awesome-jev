@@ -4,11 +4,11 @@
 
 _Score or re-rank candidates from a cheaper retrieval step._
 
-Every catalogued example of this decision — 77 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 81 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#search-ranking): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 73 · wire shape 0 · example only 0 · independent reports 6 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 77 · wire shape 0 · example only 0 · independent reports 6 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -192,6 +192,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[every](https://github.com/sufianetaouil/every)** — Ask a yes/no question of every function in a codebase. Ranked answers in seconds, for cents. Grep whose pattern is a question, powered by TypeSafe Jev. <sub>(upstream description)</sub>
   <sub>`Project` · sufianetaouil · `Py` · call site [`reference/probe_jev.py`](https://github.com/sufianetaouil/every/blob/HEAD/reference/probe_jev.py), read 2026-09-22</sub>
 
+- **[Jev Account Filter](https://github.com/caiweihan/jev-account-filter)** — Screens video-platform accounts (Douyin, Kuaishou, YouTube, Bilibili) as dataset sources: from an account's titles, thumbnails, name and bio, one Jev request picks its category, the probability it is relevant, each video's relevance and the best video. Sign-language creators are the tested case. <sub>(written by a model)</sub>
+  <sub>`Project` · caiweihan · `Py` · `choice` · `noul` · call site [`account_filter/screening/classifier.py`](https://github.com/caiweihan/jev-account-filter/blob/HEAD/account_filter/screening/classifier.py), read by a model 2026-10-31</sub>
+
 - **[Jev Chat Jarvis (iOS keyboard)](https://github.com/jev-chat/jev-chat-jarvis-ios)** — iOS keyboard version of Jev Chat Jarvis: copy a message in any chat app and the custom keyboard shows Jev's read of its intent (a `choice`) and risk (a `score`), plus drafted replies that Jev ranks with another `choice`; one tap inserts a reply. An optional extension reads the screen by local OCR. <sub>(written by a model)</sub>
   <sub>`Project` · jev-chat · `Swift` · `choice` · `score` · call site [`Shared/JevJudge.swift`](https://github.com/jev-chat/jev-chat-jarvis-ios/blob/HEAD/Shared/JevJudge.swift), read by a model 2026-10-30 · ⚠ `3rd-party key`</sub>
 
@@ -234,11 +237,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[JevPDF](https://github.com/kylemclaren/jevpdf)** — Searches a PDF by meaning. pdf.js extracts each page's lines in the browser and Jev answers one Noul per line ("does this line answer the query?"), at most 16 lines per request with the page text as shared state. Lines at p ≥ 0.55 are highlighted in probability order; only text is sent to Jev.
   <sub>`Project` · kylemclaren · `TS` · `noul` · call site [`src/lib/jev-config.ts`](https://github.com/kylemclaren/jevpdf/blob/HEAD/src/lib/jev-config.ts), read 2026-09-23 · ⚠ `self-submitted`</sub>
 
+- **[jevreel](https://github.com/DeepAleph/jevreel)** — MCP server and agent skill that searches video without embeddings: frames go onto labelled contact sheets of sixty, Jev judges every sheet with a yes/no (is it in this minute) plus a choice of where, and the best windows are re-checked on full frames. Agents get moments, times and probabilities. <sub>(written by a model)</sub>
+  <sub>`Plugin` · DeepAleph · `Py` · `noul` · `choice` · `score` · call site [`src/jevreel/judge.py`](https://github.com/DeepAleph/jevreel/blob/HEAD/src/jevreel/judge.py), read by a model 2026-10-31</sub>
+
 - **[jfind](https://github.com/religa/jfind)** — Find files by describing them in plain English: find(1) with a semantic --like predicate, answered by TypeSafe.ai's jev model <sub>(upstream description)</sub>
   <sub>`Project` · religa · `Py` · call site [`src/jfind/matcher.py`](https://github.com/religa/jfind/blob/HEAD/src/jfind/matcher.py), read 2026-09-24</sub>
 
 - **[llama-index-jev](https://github.com/WiktorB2004/llama-index-jev)** — LlamaIndex reranker + router powered by TypeSafe Jev — typed scores/choices, cheaper than LLM-as-judge.
   <sub>`Project` · wiktorb2004 · `Py` · call site [`packages/llama-index-postprocessor-jev/llama_index/postprocessor/jev/openrouter.py`](https://github.com/WiktorB2004/llama-index-jev/blob/HEAD/packages/llama-index-postprocessor-jev/llama_index/postprocessor/jev/openrouter.py), read 2026-09-22</sub>
+
+- **[NucleiSniper](https://github.com/MorDavid/NucleiSniper)** — Nuclei pipeline in one script that fingerprints each target, has Jev score every Nuclei template's relevance to it on a 0–4 rubric in batches, then runs all templates highest-scoring first so likely findings surface sooner. Batches over Jev's token limit are split automatically. <sub>(written by a model)</sub>
+  <sub>`Project` · MorDavid · `Py` · `score` · call site [`NucleiSniper.py`](https://github.com/MorDavid/NucleiSniper/blob/HEAD/NucleiSniper.py), read by a model 2026-10-31</sub>
 
 - **[pijev](https://github.com/tonyzdev/pijev)** — PiJev: a terminal coding agent with Jev in the loop — Jev ranks the repository's files before the first call, picks skills and triages failures; your coding model writes the code. Built on Pi. <sub>(upstream description)</sub>
   <sub>`Project` · tonyzdev · `TS` · call site [`src/jev.ts`](https://github.com/tonyzdev/pijev/blob/HEAD/src/jev.ts), read 2026-09-24</sub>
@@ -251,6 +260,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[SiftRank](https://github.com/noperator/siftrank)** — Go CLI and library that ranks large collections of text against a prompt over repeated randomized batches. With `--provider jev`, each batch becomes one Jev request with a `noul` per pair of items (should this one rank ahead of that one?), and the summed probabilities order the batch. <sub>(written by a model)</sub>
   <sub>`Project` · noperator · `Go` · `noul` · call site [`pkg/siftrank/jev_provider.go`](https://github.com/noperator/siftrank/blob/HEAD/pkg/siftrank/jev_provider.go), read by a model 2026-10-29</sub>
+
+- **[skimmer](https://github.com/dorkitude/skimmer)** — CLI that cuts pages, files and lists down to what serves a goal: each ~2,000-character chunk or list item gets one Jev yes/no, does this help with the goal, and only kept parts come back, in order. An optional second question flags text trying to steer the reader: a filter, not a security boundary. <sub>(written by a model)</sub>
+  <sub>`Project` · dorkitude · `Go` · `noul` · call site [`internal/jev/client.go`](https://github.com/dorkitude/skimmer/blob/HEAD/internal/jev/client.go), read by a model 2026-10-31</sub>
 
 - **[Truffler](https://github.com/kieranklaassen/truffler)** — Intent search for Rails apps: on save, Truffler asks Jev the noul, choice and score questions declared for a record and stores each answer as a number, a named-dimension embedding that search weighs by intent. On request Jev also reranks top results into Strong, Possible and Unlikely. <sub>(written by a model)</sub>
   <sub>`Integration` · kieranklaassen · `Rb` · `noul` · `choice` · `score` · call site [`lib/truffler/questions.rb`](https://github.com/kieranklaassen/truffler/blob/HEAD/lib/truffler/questions.rb), read by a model 2026-10-30</sub>

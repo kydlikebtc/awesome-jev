@@ -4,7 +4,7 @@
 
 本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。
 
-本目录收录的全部独立测量报告和负面结果 —— 共 76 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
+本目录收录的全部独立测量报告和负面结果 —— 共 77 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
@@ -165,6 +165,14 @@
 - **[ego-jev-ultrafast](https://github.com/shikaizhong-design/ego-jev-ultrafast)**<br>
   Jev 驱动你的轻量浏览器：每步一次类型化选择请求，单文件零依赖。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · shikaizhong-design · `JS` · [调用点](https://github.com/shikaizhong-design/ego-jev-ultrafast/blob/HEAD/jego.js)，2026-09-22 阅读</sub>
+
+- **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)**<br>
+  每周一个的市场销售（GTM）实验，均用 Jev 完成并与 Claude 对比：线索分拣和路由、交易风险、回复分拣、从通话摘要中提取 MEDDPICC 字段、重复账户识别、已流失交易的重新激活，另有一个 MCP 服务器。共享客户端在取整前减去实测的 0.30 分数偏差。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · deepdave98 · `Py` · `noul` · `choice` · `score` · [调用点](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py)，2026-10-31 模型阅读</sub>
+
+  **注意:** `无许可证`
+
+  > 本条目引用 common/jev.py，即第 03 周起各实验共用的客户端。仓库中没有 LICENSE 文件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-31 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[jev-acento](https://github.com/marcosmartinez/jev-acento)**<br>
   Jev 听得懂你的口音吗？一项预先注册的、针对 TypeSafe AI Jev 西班牙语表现的审计——准确率、校准与 token 成本。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>

@@ -4,11 +4,11 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 73 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 74 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#human-escalation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#human-escalation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 58 · 接口形态 5 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 59 · 接口形态 5 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -200,6 +200,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevbus](https://github.com/zkjoie/jevbus)** — 一个流式事件总线：路由、订阅与消费都由概率决策决定。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zkjoie · `Rs` · 调用点 [`src/jev/http.rs`](https://github.com/zkjoie/jevbus/blob/HEAD/src/jev/http.rs)，2026-09-22 阅读</sub>
+
+- **[Jevline](https://github.com/tsale/jevline)** — 基于安全遥测数据划定事件范围：从一个已确认恶意的进程出发，针对日志所关联的每个进程、账户、主机、地址或域名，询问 Jev 它是否属于同一事件，并逐轮追踪新加入的部分。接近阈值的答案会标记出来交由分析师复核。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · tsale · `TS` · `noul` · 调用点 [`engine/src/jev.ts`](https://github.com/tsale/jevline/blob/HEAD/engine/src/jev.ts)，2026-10-31 模型阅读</sub>
 
 - **[luce](https://github.com/scienthoon/luce)** — Luce：一份校准决策模型的配方 —— 输入一句任务描述，产出一个小模型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · scienthoon · `Py` · 调用点 [`scripts/jev_eval.mjs`](https://github.com/scienthoon/luce/blob/HEAD/scripts/jev_eval.mjs)，2026-09-22 阅读</sub>

@@ -4,11 +4,11 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 145 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 146 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#safety-gating)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#safety-gating)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 139 · 接口形态 2 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 140 · 接口形态 2 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -430,6 +430,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[siege](https://github.com/vnmoorthy/siege)** — SIEGE：200 人对战一个智能体，一道会学习的类型化动作闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · vnmoorthy · `TS` · 调用点 [`backend/app/gate.py`](https://github.com/vnmoorthy/siege/blob/HEAD/backend/app/gate.py)，2026-09-22 阅读</sub>
+
+- **[skimmer](https://github.com/dorkitude/skimmer)** — 把网页、文件和列表精简到只剩与目标相关部分的命令行工具：每个约 2,000 字符的片段或列表项向 Jev 提一个是非题——它对目标有没有帮助，只按原顺序返回保留的部分。可选的第二个问题会标出试图操纵读者的文本，但这只是过滤器，不是安全边界。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · dorkitude · `Go` · `noul` · 调用点 [`internal/jev/client.go`](https://github.com/dorkitude/skimmer/blob/HEAD/internal/jev/client.go)，2026-10-31 模型阅读</sub>
 
 - **[sloppy-jevs-extension](https://github.com/neddes/sloppy-jevs-extension)** — 开源 Chrome 扩展：用 Jev 过滤 AI 生成的文字与广告。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · neddes · `JS` · 调用点 [`background.js`](https://github.com/neddes/sloppy-jevs-extension/blob/HEAD/background.js)，2026-09-22 阅读</sub>

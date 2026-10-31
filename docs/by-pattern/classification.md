@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 129 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 134 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 119 · wire shape 1 · example only 0 · independent reports 11 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 124 · wire shape 1 · example only 0 · independent reports 11 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -241,6 +241,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[hush](https://github.com/emreozyoruk/hush)** — Issue triage that stays quiet when it isn't sure. Calibrated labels, spam and duplicate detection — with abstention. <sub>(upstream description)</sub>
   <sub>`Project` · emreozyoruk · `JS` · call site [`src/jev.js`](https://github.com/emreozyoruk/hush/blob/HEAD/src/jev.js), read 2026-09-22</sub>
 
+- **[Jev Account Filter](https://github.com/caiweihan/jev-account-filter)** — Screens video-platform accounts (Douyin, Kuaishou, YouTube, Bilibili) as dataset sources: from an account's titles, thumbnails, name and bio, one Jev request picks its category, the probability it is relevant, each video's relevance and the best video. Sign-language creators are the tested case. <sub>(written by a model)</sub>
+  <sub>`Project` · caiweihan · `Py` · `choice` · `noul` · call site [`account_filter/screening/classifier.py`](https://github.com/caiweihan/jev-account-filter/blob/HEAD/account_filter/screening/classifier.py), read by a model 2026-10-31</sub>
+
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
 
@@ -328,6 +331,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-trace-classifier](https://github.com/sypherin/jev-trace-classifier)** — Application of TypeSafe Jev (noul judgment primitive) on the collusion.wiki corpus: agent vs human page authorship, head-to-head vs local Qwen3.8-Flash-Next <sub>(upstream description)</sub>
   <sub>`Benchmark` · sypherin · `Py` · call site [`jev_client.py`](https://github.com/sypherin/jev-trace-classifier/blob/HEAD/jev_client.py), read 2026-09-22</sub>
 
+- **[jev-trader](https://github.com/buberlo/jev-trader)** — Paper-trading market-making system that asks Jev six judgments in one call per 300 ms block: market regime and direction (choice), whether flow is toxic and liquidity thin (yes/no), how good quoting conditions are and how urgent cutting inventory is (score). Code applies policy and risk vetoes. <sub>(written by a model)</sub>
+  <sub>`Project` · buberlo · `Py` · `choice` · `noul` · `score` · call site [`src/jev_trader/judgment/client.py`](https://github.com/buberlo/jev-trader/blob/HEAD/src/jev_trader/judgment/client.py), read by a model 2026-10-31</sub>
+
 - **[jev-triage](https://github.com/cephalization/jev-triage)** — Uses typeful jev, zero sync to pull and sync large repositories for issue triage <sub>(earlier upstream description)</sub>
   <sub>`Project` · cephalization · `TS` · call site [`apps/api/src/worker/typesafe.ts`](https://github.com/cephalization/jev-triage/blob/HEAD/apps/api/src/worker/typesafe.ts), read 2026-09-22</sub>
 
@@ -337,11 +343,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevbench](https://github.com/GautamTalksDev/jevbench)** — Preregistered, bias-corrected test of TypeSafe Jev's calibration under human disagreement (ChaosNLI, 100 labels per item) <sub>(upstream description)</sub>
   <sub>`Benchmark` · Gautam Khosla · `Py` · `choice` · `noul` · call site [`jevbench/clients/jev.py`](https://github.com/GautamTalksDev/jevbench/blob/HEAD/jevbench/clients/jev.py) · author's conclusion: mixed (author-stated, not reproduced here) · ⚠ `AI-written` `self-submitted`</sub>
 
+- **[jevclip](https://github.com/cclank/jevclip)** — Cuts video from its subtitles: Jev reads each ~20-second segment and answers five questions (which of eight kinds of talk it is, information density 0–3, unfounded claims, whether it stands alone, whether it fits your focus); code keeps, ranks and cuts a 3-minute highlight and a trimmed full cut. <sub>(written by a model)</sub>
+  <sub>`Project` · cclank · `Py` · `choice` · `score` · `noul` · call site [`jevclip/jev.py`](https://github.com/cclank/jevclip/blob/HEAD/jevclip/jev.py), read by a model 2026-10-31</sub>
+
 - **[jeveryword](https://github.com/jkrup/jeveryword)** — Text extraction with Jev: field extraction, PII detection and exact quotes, built on TypeSafe's Jev. <sub>(upstream description)</sub>
   <sub>`Project` · jkrup · `JS` · call site [`src/client.mjs`](https://github.com/jkrup/jeveryword/blob/HEAD/src/client.mjs), read 2026-09-22</sub>
 
 - **[JevEye](https://github.com/Adityakhalkar/JevEye)** — Ask Jev about an image. A CNN reports what it sees with a calibrated confidence or an abstention; Jev judges what it means. <sub>(upstream description)</sub>
   <sub>`Project` · adityakhalkar · `TS` · call site [`src/lib/jev.ts`](https://github.com/Adityakhalkar/JevEye/blob/HEAD/src/lib/jev.ts), read 2026-09-24</sub>
+
+- **[Jevline](https://github.com/tsale/jevline)** — Scopes an incident from security telemetry: from one confirmed-malicious process, it asks Jev of every process, account, host, address or domain the logs link to whether it belongs to the same incident, and follows what joins round by round. Answers near the threshold are marked for analyst review. <sub>(written by a model)</sub>
+  <sub>`Project` · tsale · `TS` · `noul` · call site [`engine/src/jev.ts`](https://github.com/tsale/jevline/blob/HEAD/engine/src/jev.ts), read by a model 2026-10-31</sub>
 
 - **[jevmod](https://github.com/ohernandezdev/jevmod)** — Moderation for communities and apps, powered by Jev (TypeSafe): probabilities per category, thresholds you own. Discord/Telegram/Reddit bots, CLI, Python, npm, HTTP API, MCP. <sub>(upstream description)</sub>
   <sub>`Plugin` · ohernandezdev · `Py` · call site [`jevmod/judge.py`](https://github.com/ohernandezdev/jevmod/blob/HEAD/jevmod/judge.py), read 2026-09-24</sub>
@@ -399,6 +411,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[watfile](https://github.com/jexp/watfile)** — Text/PDF - File categorization and sorting with Typesafe AI Jev or local calibrated decision model <sub>(upstream description)</sub>
   <sub>`Project` · jexp · `Py` · call site [`src/watfile/classifier/jev.py`](https://github.com/jexp/watfile/blob/HEAD/src/watfile/classifier/jev.py), read 2026-09-22 · ⚠ `no licence`</sub>
+
+- **[弦外之音 JevGuide](https://github.com/nisaka520/jevguide)** — Android accessibility app that reads a WeChat chat on screen and asks Jev eight questions in one request: the other person's intent, emotion and urgency, whether a reply is needed or risky, what to do, which reply style fits, and a relationship-progress score. A chat model drafts three replies. <sub>(written by a model)</sub>
+  <sub>`Project` · nisaka520 · `Kt` · `choice` · `score` · `noul` · call site [`app/src/main/java/io/github/nisaka520/jevguide/Prompt.kt`](https://github.com/nisaka520/jevguide/blob/HEAD/app/src/main/java/io/github/nisaka520/jevguide/Prompt.kt), read by a model 2026-10-31 · ⚠ `3rd-party key`</sub>
 
 - **[言外 Yanwai](https://github.com/yirc99/yanwai)** — LSPosed/Xposed module for WeChat on Android: for a chat message and its context it asks Jev, in two rounds of `choice` questions, the sender's emotion (ten options), the chat scene and what reply the conversation is waiting for; an LLM then drafts replies or new topics. It never sends messages. <sub>(written by a model)</sub>
   <sub>`Project` · yirc99 · `Kt` · `choice` · call site [`app/src/main/java/dev/jev/wechatmood/analysis/JevProtocol.kt`](https://github.com/yirc99/yanwai/blob/HEAD/app/src/main/java/dev/jev/wechatmood/analysis/JevProtocol.kt), read by a model 2026-10-30 · ⚠ `no licence` `3rd-party key`</sub>

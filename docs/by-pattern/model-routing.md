@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 52 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 53 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 45 · wire shape 1 · example only 0 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 46 · wire shape 1 · example only 0 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -101,6 +101,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Building a Harness with Jev](https://www.langchain.com/blog/building-a-harness-with-jev)** — LangChain's explainer and integration walkthrough: the three question types, plus model routing and gating risky tool calls before they run.
   <sub>`Article` · Sydney Runkle, Hunter Lovell · `Py` · ⚠ `vendor numbers`</sub>
+
+- **[Claude Model Router](https://github.com/alexei-led/claude-router)** — Claude Code mod that picks the model and effort for each turn and each subagent from a classifier's advice. Jev is the default classifier: one choice for the tier and one for the turn's activity, re-asked every few requests. Clef, OpenAI or a local Ollama model can stand in. <sub>(written by a model)</sub>
+  <sub>`Plugin` · alexei-led · `JS` · `choice` · call site [`lib/classifier-apis.mjs`](https://github.com/alexei-led/claude-router/blob/HEAD/lib/classifier-apis.mjs), read by a model 2026-10-31</sub>
 
 - **[Claude x Jev](https://github.com/charlesdove977/claude-x-jev)** — Claude Code skill and commands in which Jev, through OpenRouter, sorts and Claude writes: classify, check or score batches, send only unsure items to Claude, verify Claude's drafts, and gate tool calls with a PreToolUse hook that asks whether a call can be undone and whether it serves the task. <sub>(written by a model)</sub>
   <sub>`Plugin` · charlesdove977 · `Py` · `choice` · `noul` · `score` · call site [`skill/scripts/jev.py`](https://github.com/charlesdove977/claude-x-jev/blob/HEAD/skill/scripts/jev.py), read by a model 2026-10-30 · ⚠ `marketing`</sub>

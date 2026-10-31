@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 489 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 492 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 376 · wire shape 73 · example only 0 · independent reports 25 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 377 · wire shape 75 · example only 0 · independent reports 25 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -356,6 +356,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[antigravity-mcp-semantic-search-with-typesafeai](https://github.com/greenyamao/Antigravity-mcp-semantic-search-with-TypeSafeAi)** — Fast semantic code search & diff sanity auditor for AI coding assistants (Antigravity, Cursor, Claude Code) powered by TypeSafe System One. <sub>(upstream description)</sub>
   <sub>`Benchmark` · greenyamao · `Py` · call site [`mcp_server.py`](https://github.com/greenyamao/Antigravity-mcp-semantic-search-with-TypeSafeAi/blob/HEAD/mcp_server.py), read 2026-09-22</sub>
 
+- **[arbiter](https://github.com/0xBakeer/arbiter)** — Serving layer for typed-decision models on your GPU or Mac: Laya's three checkpoints today, routed per request, behind a Jev-compatible /v1/systemone, with micro-batching, a playground, an MCP server and a Claude Code plugin. The author measured one question in 20.9 ms and fifty in 152 ms on a GB10. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · 0xBakeer · `Py` · cited file [`server/app.py`](https://github.com/0xBakeer/arbiter/blob/HEAD/server/app.py), read by a model 2026-10-31 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[audio-jevlike](https://github.com/alperiox/audio-jevlike)** — Prosodia: an audio-native Jev-shaped decision model — typed calibrated decisions from speech, no ASR <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · alperiox · `Py` · cited file [`space/prosodia/evaluation/baselines.py`](https://github.com/alperiox/audio-jevlike/blob/HEAD/space/prosodia/evaluation/baselines.py), read 2026-09-24 · ⚠ `not Jev itself` `no licence`</sub>
 
@@ -538,6 +541,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Mica](https://github.com/akivet/mica)** — HTTP server for Mica v0.5 4B, an open decision model that answers noul, choice and score with a probability per answer behind /v1/systemone, on INT8 CUDA or llama.cpp GGUF, with an abstain threshold for unsure cases. The author reports 97.3% of answers unchanged when options are shuffled. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · akivet · `Py` · cited file [`mica/server.py`](https://github.com/akivet/mica/blob/HEAD/mica/server.py), read by a model 2026-10-30 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
+- **[OpenDecider](https://github.com/manjunathshiva/opendecider)** — Open System 1 decision models (nano to large, distilled onto Qwen3) answering choice, score and noul with calibrated probabilities, served behind a drop-in /v1/systemone so Jev clients and TypeSafe's SDK work by changing the base URL. The author reports 0.735 for small against 0.730 for Jev 1.13. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · manjunathshiva · `Py` · cited file [`opendecider/serve.py`](https://github.com/manjunathshiva/opendecider/blob/HEAD/opendecider/serve.py), read by a model 2026-10-31 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[OpenJev](https://github.com/xingwudao/OpenJev)** — OpenJev: an independent Jev-inspired System One decision API based on TypeSafe.ai concepts. Choice, score and noul primitives, local mock server, Python and TypeScript SDKs. Real inference planned; not affiliated with TypeSafe AI. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · xingwudao · `Py` · cited file [`sdk/python/openjev/__init__.py`](https://github.com/xingwudao/OpenJev/blob/HEAD/sdk/python/openjev/__init__.py), read 2026-09-24 · ⚠ `not Jev itself` `no licence`</sub>
@@ -756,7 +762,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 251 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 252 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[typesafe-ai/skills](https://github.com/typesafe-ai/skills)** ⭐ — The official agent-skills repository behind the Claude Code plugin, holding the SKILL.md that teaches an agent the System One API.
   <sub>`Plugin` · ★1k+ · `sh`</sub>
@@ -1213,6 +1219,9 @@ Projects and plugins with code, 251 of them, whose only pattern is `overview` an
 
 - **[jev-anotacao-sentencas](https://github.com/lab-dados/jev-anotacao-sentencas)** — Jev (TypeSafe) vs. Gemini 3.8 Flash vs. GPT-5.6 Luna na anotação estruturada de sentenças do TJSP: qualidade, tempo e custo <sub>(upstream description)</sub>
   <sub>`Project` · lab-dados · `Py` · call site [`src/jevtest/clientes.py`](https://github.com/lab-dados/jev-anotacao-sentencas/blob/HEAD/src/jevtest/clientes.py), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
+
+- **[jev-anything](https://github.com/grandamenium/jev-anything)** — Agent skill for Codex and Claude Code that makes the coding agent design one bounded Jev decision (classifier, router, scorer or guardrail) before writing code: contract, criteria, fallback and an evaluation plan, then a Python or TypeScript client and a blind-label tuning loop. <sub>(written by a model)</sub>
+  <sub>`Plugin` · grandamenium · `Py` · `noul` · `choice` · `score` · call site [`scaffolding/jev_client.py`](https://github.com/grandamenium/jev-anything/blob/HEAD/scaffolding/jev_client.py), read by a model 2026-10-31</sub>
 
 - **[jev-arena-nanojev](https://github.com/liao96312/jev-arena-nanojev)** — 完全本地的 NanoJev 网格决策游戏实验场，支持中文 Pygame、多关卡与 GTX 1660S 训练 <sub>(upstream description)</sub>
   <sub>`Project` · liao96312 · `Py` · call site [`nanojev_adapter/typesafe_client.py`](https://github.com/liao96312/jev-arena-nanojev/blob/HEAD/nanojev_adapter/typesafe_client.py), read 2026-09-22</sub>

@@ -4,11 +4,11 @@
 
 _判断用户意图，把请求分流到正确的分支。_
 
-这个决策的全部已收录例子 —— 共 41 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 42 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#intent-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#intent-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 30 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 31 · 接口形态 0 · 仅示例 0 · 独立报告 3 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -130,6 +130,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev on Netlify AI Gateway](https://www.netlify.com/changelog/typesafe-jev-ai-gateway/)** — 在 Netlify function 里零配置调用：直接用官方 SDK，不需要 API key、baseURL 或 provider 配置，按 Netlify credits 计费。
   <sub>`平台集成` · `TS` · `choice`</sub>
+
+- **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)** — 每周一个的市场销售（GTM）实验，均用 Jev 完成并与 Claude 对比：线索分拣和路由、交易风险、回复分拣、从通话摘要中提取 MEDDPICC 字段、重复账户识别、已流失交易的重新激活，另有一个 MCP 服务器。共享客户端在取整前减去实测的 0.30 分数偏差。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · deepdave98 · `Py` · `noul` · `choice` · `score` · 调用点 [`common/jev.py`](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py)，2026-10-31 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[jev-eval](https://github.com/Shogo-nfrealmusic/jev-eval)** — 第三方在相同条件下对比 Jev 与两款 LLM：为面向日本游客的摄影服务路由预订咨询，共六十条四种语言的合成消息。 <sub>(机翻)</sub>
   <sub>`基准测试` · shogo-nfrealmusic · `TS` · 调用点 [`src/jev.ts`](https://github.com/Shogo-nfrealmusic/jev-eval/blob/HEAD/src/jev.ts)，2026-09-24 阅读 · ⚠ `无许可证`</sub>

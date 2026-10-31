@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 129 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 134 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 119 · 接口形态 1 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 124 · 接口形态 1 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -241,6 +241,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[hush](https://github.com/emreozyoruk/hush)** — 不确定时保持沉默的 issue 分拣：校准过的标签，含垃圾与重复检测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · emreozyoruk · `JS` · 调用点 [`src/jev.js`](https://github.com/emreozyoruk/hush/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
 
+- **[Jev Account Filter](https://github.com/caiweihan/jev-account-filter)** — 把视频平台账号（抖音、快手、YouTube、哔哩哔哩）作为数据集来源进行筛选：根据账号的视频标题、封面缩略图、名称和简介，用一次 Jev 请求判断其类别、相关概率、每个视频的相关度以及最佳视频。手语创作者是已验证的场景。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · caiweihan · `Py` · `choice` · `noul` · 调用点 [`account_filter/screening/classifier.py`](https://github.com/caiweihan/jev-account-filter/blob/HEAD/account_filter/screening/classifier.py)，2026-10-31 模型阅读</sub>
+
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
   <sub>`开源项目` · Really Artificial · `JS` · `choice` · `score` · `noul` · 调用点 [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs)，2026-09-22 阅读 · ⚠ `疑似 AI 生成`</sub>
 
@@ -328,6 +331,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-trace-classifier](https://github.com/sypherin/jev-trace-classifier)** — 把 Jev 的 noul 原语应用到一个共谋语料库上。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · sypherin · `Py` · 调用点 [`jev_client.py`](https://github.com/sypherin/jev-trace-classifier/blob/HEAD/jev_client.py)，2026-09-22 阅读</sub>
 
+- **[jev-trader](https://github.com/buberlo/jev-trader)** — 模拟盘做市系统：每个 300 毫秒的区块用一次调用向 Jev 提出六个判断——市场状态和方向（choice）、成交流是否有毒、流动性是否偏薄（是非题）、报价环境好坏以及减仓的紧迫程度（score）。由代码执行策略和硬性风控否决。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · buberlo · `Py` · `choice` · `noul` · `score` · 调用点 [`src/jev_trader/judgment/client.py`](https://github.com/buberlo/jev-trader/blob/HEAD/src/jev_trader/judgment/client.py)，2026-10-31 模型阅读</sub>
+
 - **[jev-triage](https://github.com/cephalization/jev-triage)** — 拉取并同步大型仓库以做 issue 分拣。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · cephalization · `TS` · 调用点 [`apps/api/src/worker/typesafe.ts`](https://github.com/cephalization/jev-triage/blob/HEAD/apps/api/src/worker/typesafe.ts)，2026-09-22 阅读</sub>
 
@@ -337,11 +343,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevbench](https://github.com/GautamTalksDev/jevbench)** — 对 TypeSafe Jev 在人类意见分歧下的校准进行预注册、经偏差校正的测试（ChaosNLI，每条 100 个人工标注） <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · Gautam Khosla · `Py` · `choice` · `noul` · 调用点 [`jevbench/clients/jev.py`](https://github.com/GautamTalksDev/jevbench/blob/HEAD/jevbench/clients/jev.py) · 作者结论：好坏参半（作者自述，未经本仓库复现） · ⚠ `疑似 AI 生成` `作者自荐`</sub>
 
+- **[jevclip](https://github.com/cclank/jevclip)** — 根据字幕剪辑视频：Jev 逐段阅读约 20 秒的片段并回答五个问题（属于八类内容中的哪一类、信息密度 0–3 分、有无缺乏依据的说法、脱离前文能否看懂、是否切合你的关注点）；由代码取舍、排序，剪出 3 分钟高亮版和去水完整版。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · cclank · `Py` · `choice` · `score` · `noul` · 调用点 [`jevclip/jev.py`](https://github.com/cclank/jevclip/blob/HEAD/jevclip/jev.py)，2026-10-31 模型阅读</sub>
+
 - **[jeveryword](https://github.com/jkrup/jeveryword)** — 用 Jev 做文本抽取：字段抽取、PII 检测与逐字引文。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jkrup · `JS` · 调用点 [`src/client.mjs`](https://github.com/jkrup/jeveryword/blob/HEAD/src/client.mjs)，2026-09-22 阅读</sub>
 
 - **[JevEye](https://github.com/Adityakhalkar/JevEye)** — 向 Jev 询问一张图片：CNN 报告它看到了什么（带校准置信度或选择弃权），再由 Jev 判断这意味着什么。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · adityakhalkar · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/Adityakhalkar/JevEye/blob/HEAD/src/lib/jev.ts)，2026-09-24 阅读</sub>
+
+- **[Jevline](https://github.com/tsale/jevline)** — 基于安全遥测数据划定事件范围：从一个已确认恶意的进程出发，针对日志所关联的每个进程、账户、主机、地址或域名，询问 Jev 它是否属于同一事件，并逐轮追踪新加入的部分。接近阈值的答案会标记出来交由分析师复核。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · tsale · `TS` · `noul` · 调用点 [`engine/src/jev.ts`](https://github.com/tsale/jevline/blob/HEAD/engine/src/jev.ts)，2026-10-31 模型阅读</sub>
 
 - **[jevmod](https://github.com/ohernandezdev/jevmod)** — 面向社区和应用的内容审核，由 Jev（TypeSafe）驱动：按类别给出概率，阈值由你掌控。支持 Discord。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ohernandezdev · `Py` · 调用点 [`jevmod/judge.py`](https://github.com/ohernandezdev/jevmod/blob/HEAD/jevmod/judge.py)，2026-09-24 阅读</sub>
@@ -399,6 +411,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[watfile](https://github.com/jexp/watfile)** — 用 Jev 或本地校准决策模型给文本与 PDF 分类归档。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jexp · `Py` · 调用点 [`src/watfile/classifier/jev.py`](https://github.com/jexp/watfile/blob/HEAD/src/watfile/classifier/jev.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+
+- **[弦外之音 JevGuide](https://github.com/nisaka520/jevguide)** — 面向微信的 Android 无障碍应用：读取屏幕上的聊天内容，在一次请求中向 Jev 提出八个问题——对方的意图、情绪和着急程度，是否需要回复、回复是否有风险，该怎么做，适合哪种回复风格，以及关系进展（攻略度）评分。随后由聊天模型起草三条回复。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · nisaka520 · `Kt` · `choice` · `score` · `noul` · 调用点 [`app/src/main/java/io/github/nisaka520/jevguide/Prompt.kt`](https://github.com/nisaka520/jevguide/blob/HEAD/app/src/main/java/io/github/nisaka520/jevguide/Prompt.kt)，2026-10-31 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[言外 Yanwai](https://github.com/yirc99/yanwai)** — Android 上的微信 LSPosed/Xposed 模块：针对一条聊天消息及其前文，分两轮用 `choice` 问题向 Jev 询问发送者的情绪（十个选项）、聊天场景以及对话在等待怎样的回应；随后由 LLM 起草回复或新话题。它从不自动发送消息。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · yirc99 · `Kt` · `choice` · 调用点 [`app/src/main/java/dev/jev/wechatmood/analysis/JevProtocol.kt`](https://github.com/yirc99/yanwai/blob/HEAD/app/src/main/java/dev/jev/wechatmood/analysis/JevProtocol.kt)，2026-10-30 模型阅读 · ⚠ `无许可证` `需第三方密钥`</sub>

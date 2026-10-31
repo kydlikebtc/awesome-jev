@@ -4,11 +4,11 @@
 
 _Pull typed fields out of messy text by choosing among candidates rather than generating them._
 
-Every catalogued example of this decision — 18 of them. The same rows, with caveats, are in [the index](../../README.md#structured-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 19 of them. The same rows, with caveats, are in [the index](../../README.md#structured-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#data-extraction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 14 · wire shape 0 · example only 0 · independent reports 1 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 15 · wire shape 0 · example only 0 · independent reports 2 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -58,6 +58,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[ask-jev](https://github.com/logicrw/ask-jev)** — Standard-library CLI that hands an agent's small judgments to Jev within a 280 ms advisory budget: choose (a choice), check (a noul on whether evidence shows a claim), score, a batch of at most 32, and purify, a noul per passage keeping only relevant original lines. Fails open; the agent decides. <sub>(written by a model)</sub>
   <sub>`Project` · logicrw · `Py` · call site [`scripts/jev_context.py`](https://github.com/logicrw/ask-jev/blob/HEAD/scripts/jev_context.py), read 2026-09-24</sub>
+
+- **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)** — Weekly go-to-market experiments with Jev, each tested against Claude: lead triage and routing, deal risk, reply triage, MEDDPICC fields from call summaries, duplicate accounts and closed-lost reactivation, plus an MCP server. A shared client subtracts a measured score bias of 0.30 before rounding. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · deepdave98 · `Py` · `noul` · `choice` · `score` · call site [`common/jev.py`](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py), read by a model 2026-10-31 · ⚠ `no licence`</sub>
 
 - **[jev-data-questions](https://github.com/narulaskaran/jev-data-questions)** — Bring a dataset and see the right chart: the UI inspects the CSV's shape and proposes insights, and Jev fills in the values.
   <sub>`Project` · narulaskaran · `TS` · call site [`src/server/jev.ts`](https://github.com/narulaskaran/jev-data-questions/blob/HEAD/src/server/jev.ts), read 2026-09-24 · ⚠ `no licence`</sub>
