@@ -16,6 +16,9 @@ one when
 - it is not `active`: disabled by hand, or by GitHub for inactivity; or
 - no run of it, scheduled or dispatched, has succeeded in the last MAX_DAYS
   days: a week, and a day of slack for GitHub starting scheduled runs late.
+  A job whose every cron names a day of the month (data-release.yml, since
+  2026-10-31) is monthly, and gets MONTHLY_DAYS instead. A job GitHub created
+  within that span that has not run at all yet is new, not stopped.
 
 A workflow is found by its file, so a new scheduled job is watched from its
 first day without editing anything here.
@@ -62,6 +65,8 @@ WORKFLOWS = ROOT / ".github" / "workflows"
 # This workflow runs the check; it cannot report its own silence.
 OWN = "watchdog.yml"
 MAX_DAYS = 8
+MONTHLY_DAYS = 32
+CRON = re.compile(r"""^\s*-\s*cron:\s*["']([^"']+)["']""", re.MULTILINE)
 CATALOG = ROOT / "catalog.json"
 INTAKE_DAYS = 10
 SCHEDULE = re.compile(r"^  schedule:\s*$", re.MULTILINE)
@@ -74,6 +79,18 @@ def scheduled(directory: pathlib.Path = WORKFLOWS) -> list[str]:
         for path in sorted(directory.glob("*.yml"))
         if path.name != OWN and SCHEDULE.search(path.read_text(encoding="utf-8"))
     ]
+
+
+def allowed_days(name: str, directory: pathlib.Path = WORKFLOWS) -> int:
+    """MONTHLY_DAYS for a workflow whose every cron names a day of the month,
+    MAX_DAYS for any other."""
+    crons = CRON.findall((directory / name).read_text(encoding="utf-8"))
+    monthly = bool(crons) and all(len(c.split()) == 5 and c.split()[2] != "*" for c in crons)
+    return MONTHLY_DAYS if monthly else MAX_DAYS
+
+
+def stamp(value: str) -> dt.datetime:
+    return dt.datetime.fromisoformat(value.replace("Z", "+00:00"))
 
 
 def when(run: dict) -> dt.datetime:
@@ -105,6 +122,8 @@ def look(name: str, repo: str) -> dict:
         "url": f"https://github.com/{repo}/actions/workflows/{name}",
         "latest": (latest.get("workflow_runs") or [None])[0],
         "success": (success.get("workflow_runs") or [None])[0],
+        "created": workflow.get("created_at"),
+        "allowed": allowed_days(name),
     }
 
 
@@ -115,11 +134,15 @@ def problem(seen: dict, now: dt.datetime) -> str | None:
             return ("GitHub turned its schedule off after 60 days without repository activity; "
                     "enable it on its Actions page")
         return f"it is {seen['state'].replace('_', ' ')}; enable it on its Actions page"
+    allowed = seen.get("allowed", MAX_DAYS)
     if seen["success"] is None:
+        created = seen.get("created")
+        if seen.get("latest") is None and created and (now - stamp(created)).total_seconds() / 86_400 <= allowed:
+            return None  # new: its first scheduled run is still to come
         return "no run of it has ever succeeded"
     age = (now - when(seen["success"])).total_seconds() / 86_400
-    if age > MAX_DAYS:
-        return f"no run of it has succeeded in the last {MAX_DAYS} days"
+    if age > allowed:
+        return f"no run of it has succeeded in the last {allowed} days"
     return None
 
 
@@ -179,8 +202,8 @@ def markdown(found: list[tuple[dict, str | None]], arrived: tuple[str, str | Non
         "For a workflow, open the newest run, fix what stopped it, then run it again from its",
         "Actions page (Run workflow). For rows, merge the drafting pull requests waiting, or",
         "see MAINTAINING.md for the tasks. This issue closes itself on the first day every",
-        f"scheduled workflow has succeeded within {MAX_DAYS} days and a row has arrived within",
-        f"{INTAKE_DAYS}, and its description is rewritten whenever what it says changes.",
+        f"scheduled workflow has succeeded within {MAX_DAYS} days ({MONTHLY_DAYS} for a monthly one) and a",
+        f"row has arrived within {INTAKE_DAYS}, and its description is rewritten whenever what it says changes.",
         "",
         f"<!-- Written by scripts/watchdog.py; {broken} of {len(found)} need a person"
         + ("; so do the rows" if stalled else "") + ". -->",
