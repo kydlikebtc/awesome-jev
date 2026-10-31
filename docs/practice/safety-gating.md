@@ -11,10 +11,10 @@ A gate asks whether something an agent is about to do (a shell command, a tool c
 <!-- readings:start -->
 |  | Rows |
 | --- | ---: |
-| Filed under this pattern | 145 |
-| Citing one file in their repository (`evidence`) | 141 |
+| Filed under this pattern | 146 |
+| Citing one file in their repository (`evidence`) | 142 |
 | Of those, the file read by a person (`evidence.read_on`) | 133 |
-| Of those, read only by a model (`evidence.model_read_on`) | 6 |
+| Of those, read only by a model (`evidence.model_read_on`) | 7 |
 | Of those, no reading recorded (a script's match only) | 2 |
 <!-- readings:end -->
 
@@ -41,9 +41,9 @@ A gate asks whether something an agent is about to do (a shell command, a tool c
 | --- | ---: | ---: | ---: |
 | `choice` | 13 | 4 | 46 |
 | `score` | 11 | 3 | 31 |
-| `noul` | 16 | 6 | 62 |
+| `noul` | 16 | 7 | 62 |
 
-Primitives recorded together on one row (`question_types`, a person's or a model's reading): `choice` + `score` + `noul` 11 · `choice` + `noul` 6 · `noul` 3 · `score` + `noul` 2 · `score` 1.
+Primitives recorded together on one row (`question_types`, a person's or a model's reading): `choice` + `score` + `noul` 11 · `choice` + `noul` 6 · `noul` 4 · `score` + `noul` 2 · `score` 1.
 <!-- primitives:end -->
 
 Noul carries the hazards: each is a proposition that is true or false of the action, and its probability is what a threshold reads. Choice carries the verdict when there is one (allow, ask, deny; safe, unsafe, unsure). Score appears where a project wants a severity on a scale; agentgateway-guardrail asks three Score questions on a shared severity scale and blocks when two or more cross the line. Many rows record all three, usually because the same project also gates, routes and scores elsewhere.
