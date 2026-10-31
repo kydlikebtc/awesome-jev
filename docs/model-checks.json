@@ -1,0 +1,7 @@
+{
+  "about": [
+    "A person's monthly check of rows only a model has read (T1, since 2026-12). Each month scripts/model_sample.py picks 20 such rows at random; the person marks each agree or disagree with what the model recorded (the summary, patterns and primitives against the cited file).",
+    "Agreeing is not reading the call site: evidence.read_on is set only when the person says they read the file. docs/status.md prints the latest month's count. Validated by python3 scripts/model_sample.py --check."
+  ],
+  "checks": []
+}

@@ -68,6 +68,12 @@ def table(header: list[str], rows: list[list[str]]) -> str:
 # ---- status.md -------------------------------------------------------------
 
 
+def model_check_cell(check: dict | None) -> str:
+    if not check:
+        return "not yet sampled"
+    return f"{check['agreed']} of {check['sampled']} ({check['month']})"
+
+
 def shape_block(s: dict) -> str:
     return table(
         ["", ""],
@@ -86,6 +92,7 @@ def shape_block(s: dict) -> str:
             ["Rows naming the primitives a model read the code calling (`question_types` on a row whose call site only a model has read, since 2026-10-24)", s["primitive_rows_model"]],
             ["Machine text signal: rows whose cited file contains a primitive's request or answer shape (`primitives_seen`; not a reading, never counted as `question_types`)", s["primitive_signal_rows"]],
             ["Of those, rows with no `question_types`: the text signal is all that is recorded about their primitives", s["primitive_signal_only_rows"]],
+            ["Machine text signal: rows whose cited file uses an experimental Jev feature, Box or an opt-in header (`experimental_seen`; not one of the three primitives; [review queue](review-queue.md#experimental))", s["experimental_rows"]],
             ["Rows the README prints by name (*Start here*, the first reports under *Measured, not claimed*, the first rows of each pattern) still lacking a person's summary, Chinese or reading of the cited file ([review queue](review-queue.md#front-page))", f"{s['review_front_page']} of {s['front_page_rows']}"],
             ["Machine signal: evidence under an examples directory, not yet judged ([review queue](review-queue.md#examples-dir))", s["review_examples_dir"]],
             ["Machine signal: evidence resting on one model name or the API host ([review queue](review-queue.md#single-model-name))", s["review_single_model_name"]],
@@ -103,6 +110,7 @@ def shape_block(s: dict) -> str:
             ["Rows whose patterns a person recorded reading (`patterns_reviewed`)", s["patterns_reviewed"]],
             ["Rows whose patterns only a model recorded reading (`patterns_model_read_on`, since 2026-10-24; shown as a model's reading; [review queue](review-queue.md#model-read))", s["model_read"]["patterns"]],
             ["Rows whose call site only a model recorded reading (`evidence.model_read_on`; [review queue](review-queue.md#model-read))", s["model_read"]["evidence"]],
+            ["Of a monthly sample of those rows, how many a person agreed with (`scripts/model_sample.py`, [docs/model-checks.json](model-checks.json); agreeing is not reading the file)", model_check_cell(s["model_checks"])],
             ["Alternatives whose interface records were read in every cited file, some only by a model (`wire.source[].model_read_on`; [review queue](review-queue.md#model-read))", s["model_read"]["wire"]],
             ["Overview rows that are projects or plugins with code, listed apart as not yet indexed by pattern ([review queue](review-queue.md#unsorted-overview))", s["overview_unindexed"]],
             ["Summaries that are the project's own GitHub description (`summary_source` `upstream-description`)", f"{s['summary_upstream']} of {s['entries']}"],
