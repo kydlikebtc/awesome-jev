@@ -664,9 +664,11 @@ def seen_after(result: dict, signals: str = "primitive_signals") -> list[str] | 
 def with_seen(entry: dict, seen: list[str], field: str = SEEN) -> dict:
     """A copy of the row carrying `seen` in `field`, or no `field` when `seen`
     is empty. primitives_seen goes right after `evidence`; experimental_seen
-    right after primitives_seen when the row has it, else after `evidence`.
-    Every other key keeps its place and value."""
-    after = "evidence" if field == SEEN or SEEN not in entry else SEEN
+    after the last of `evidence`, primitives_seen and observed_thresholds the
+    row has, the schema's order. Every other key keeps its place and value."""
+    after = "evidence"
+    if field != SEEN:
+        after = next((key for key in ("observed_thresholds", SEEN) if key in entry), "evidence")
     out: dict = {}
     for key, value in entry.items():
         if key == field:

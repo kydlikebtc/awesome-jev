@@ -20,8 +20,8 @@ Rows a script has singled out for a person to read. Each entry is a machine sign
 | [Benchmark measurements nobody has read against the report · 人和模型都还没有对照报告读过的基准测试测量](#measurement-unread) | 27 |
 | [Interfaces of alternatives nobody has read in the cited files · 人和模型都还没有在所引文件中读过的替代实现接口](#wire-unread) | 14 |
 | [Thresholds nobody has read in the cited file · 人和模型都还没有在所引文件中读过的阈值](#thresholds-unread) | 31 |
-| [Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对](#model-read) | 189 |
 | [Cited file shows an experimental Jev feature · 所引文件出现 Jev 的实验性功能](#experimental) | 0 |
+| [Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对](#model-read) | 189 |
 
 <a id="needs-person"></a>
 
@@ -825,6 +825,20 @@ To take a row off, read the cited file against every item: correct `question_typ
 | [omp-jevens-classifier](https://kydlikebtc.github.io/awesome-jev/?lang=en#omp-jevens-classifier) |  | `choice probability 0.8` `noul probability 0.9` `noul probability 0.55` | [`jev.ts`](https://github.com/STRML/omp-jevens-classifier/blob/HEAD/jev.ts) |
 | [river-run-typesafe](https://kydlikebtc.github.io/awesome-jev/?lang=en#river-run-typesafe) |  | `noul probability 0.5` | [`typesafe_pilot/pilot.py`](https://github.com/ashaazami/river-run-typesafe/blob/HEAD/typesafe_pilot/pilot.py) |
 
+<a id="experimental"></a>
+
+## Cited file shows an experimental Jev feature · 所引文件出现 Jev 的实验性功能
+
+The weekly refresh found the request shape of one of Jev's experimental features in the file the row cites (`experimental_seen`, scripts/verify_claims.py): a Box question (Jev 1.14), or the images or long-context opt-in header. A text signal about that file, not a reading: it does not say the code uses the feature. Box is not one of the three primitives the catalogue counts, filters and picks between, so nothing else shows these rows apart.
+
+每周刷新在该行引用的文件里发现了 Jev 某项实验性功能的请求结构（`experimental_seen`，scripts/verify_claims.py）：Box 问题（Jev 1.14），或图像、长上下文的启用请求头。这是关于该文件的文本信号，不是阅读结论，不说明代码确实使用了该功能。Box 不在目录统计、筛选和选择器所覆盖的三个原语之内，因此其他地方都不会单独列出这些行。
+
+Nothing takes a row off but the file: the signal goes when the file no longer shows the shape. Read it to say in `notes` what the project does with the feature; when Box leaves the experimental tier, this list is where its rows are.
+
+只有文件本身能让行移出：文件里不再出现该结构时，信号就会消失。读过之后，可以在 `notes` 里写明项目如何使用该功能；Box 结束实验阶段时，它的行就在这张表里。
+
+Nothing is on this list. · 此列表为空。
+
 <a id="model-read"></a>
 
 ## Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对
@@ -1028,17 +1042,3 @@ To take a row off, check what the model read or wrote, correct anything it got w
 | [truffler](https://kydlikebtc.github.io/awesome-jev/?lang=en#truffler) |  | `call site` 2026-10-30 · `question_types` · `summary` |
 | [typesafe-client-haileyok](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-client-haileyok) |  | `call site` 2026-10-24 · `question_types` · `summary` |
 | [yanwai](https://kydlikebtc.github.io/awesome-jev/?lang=en#yanwai) |  | `call site` 2026-10-30 · `question_types` · `summary` |
-
-<a id="experimental"></a>
-
-## Cited file shows an experimental Jev feature · 所引文件出现 Jev 的实验性功能
-
-The weekly refresh found the request shape of one of Jev's experimental features in the file the row cites (`experimental_seen`, scripts/verify_claims.py): a Box question (Jev 1.14), or the images or long-context opt-in header. A text signal about that file, not a reading: it does not say the code uses the feature. Box is not one of the three primitives the catalogue counts, filters and picks between, so nothing else shows these rows apart.
-
-每周刷新在该行引用的文件里发现了 Jev 某项实验性功能的请求结构（`experimental_seen`，scripts/verify_claims.py）：Box 问题（Jev 1.14），或图像、长上下文的启用请求头。这是关于该文件的文本信号，不是阅读结论，不说明代码确实使用了该功能。Box 不在目录统计、筛选和选择器所覆盖的三个原语之内，因此其他地方都不会单独列出这些行。
-
-Nothing takes a row off but the file: the signal goes when the file no longer shows the shape. Read it to say in `notes` what the project does with the feature; when Box leaves the experimental tier, this list is where its rows are.
-
-只有文件本身能让行移出：文件里不再出现该结构时，信号就会消失。读过之后，可以在 `notes` 里写明项目如何使用该功能；Box 结束实验阶段时，它的行就在这张表里。
-
-Nothing is on this list. · 此列表为空。

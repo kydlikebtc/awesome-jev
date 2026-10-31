@@ -755,7 +755,7 @@ def experimental(catalog: list[dict]) -> Section:
 
 SECTIONS = (
     needs_person, front_page, examples_dir, single_model_name, tool_selection_broad_words, unsorted_overview, generic_summary,
-    measurement_unread, wire_unread, thresholds_unread, model_read, experimental,
+    measurement_unread, wire_unread, thresholds_unread, experimental, model_read,
 )
 
 HEADER = (
