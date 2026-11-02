@@ -32,6 +32,7 @@ interfazeai/lev  # the same code as the catalogued lev row (Abhinavexists/lev): 
 notxf1le/choosekit  # a TypeScript library that scores a fixed set of choices from any model's log probabilities (llama.cpp, Ollama, OpenRouter), inspired by Jev; it calls no Jev and has its own choose() API, not /v1/systemone: an alternative without Jev's wire shape, or decline? (2026-11-01)
 thusinh1969/BrighTO_Router  # a self-hosted Rust LLM gateway whose /v1/systemone and /v1/decisions routes forward Jev-shaped requests to Jev-compatible backends (Ollaya/Laya, Quyết); no route to api.typesafe.ai was found and the queue's file is a Portal browser test: a gateway row, an alternative, or decline? (2026-11-01)
 Joe-rq/ReJev  # trains its own 2B Jev-style decision model (MiniCPM5-2B with LoRA) with no /v1/systemone server; src/train/jev_api_eval.py sends its holdout to Jev for comparison, but the comparison's records (exp005) are left out of the repository: a benchmark row, an alternative without Jev's wire shape, or decline? (2026-11-01)
+masonlee39/multi-agent  # now masonlee39/orchvia; its README does not mention Jev and the queue gives no call-site path; finding one needs code search (2026-11-02)
 
 # Rows, as of 2026-10-30
 metis  # #28 proposes legacy/metis-triage/src/metis_triage/_triage.py: the integration may have been retired upstream (#71)
