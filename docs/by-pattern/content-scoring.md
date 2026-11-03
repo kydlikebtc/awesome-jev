@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 171 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 176 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 162 · wire shape 5 · example only 0 · independent reports 10 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 167 · wire shape 5 · example only 0 · independent reports 10 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -293,6 +293,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev Chat Jarvis (iOS keyboard)](https://github.com/jev-chat/jev-chat-jarvis-ios)** — iOS keyboard version of Jev Chat Jarvis: copy a message in any chat app and the custom keyboard shows Jev's read of its intent (a `choice`) and risk (a `score`), plus drafted replies that Jev ranks with another `choice`; one tap inserts a reply. An optional extension reads the screen by local OCR. <sub>(written by a model)</sub>
   <sub>`Project` · jev-chat · `Swift` · `choice` · `score` · call site [`Shared/JevJudge.swift`](https://github.com/jev-chat/jev-chat-jarvis-ios/blob/HEAD/Shared/JevJudge.swift), read by a model 2026-10-30 · ⚠ `3rd-party key`</sub>
 
+- **[Jev Highlight Cutter](https://github.com/gnipbao/jev-highlight-cutter)** — Agent skill and Python CLI that cuts long interviews, podcasts and streams into a highlight reel of a target length: Jev scores each transcript window on information value, hook, completeness, emotion and taste fit, plus yes/no gates, and FFmpeg cuts the chosen clips locally. <sub>(written by a model)</sub>
+  <sub>`Plugin` · gnipbao · `Py` · `score` · `noul` · call site [`scripts/jev.py`](https://github.com/gnipbao/jev-highlight-cutter/blob/HEAD/scripts/jev.py), read by a model 2026-11-02</sub>
+
 - **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)** — Weekly go-to-market experiments with Jev, each tested against Claude: lead triage and routing, deal risk, reply triage, MEDDPICC fields from call summaries, duplicate accounts and closed-lost reactivation, plus an MCP server. A shared client subtracts a measured score bias of 0.30 before rounding. <sub>(written by a model)</sub>
   <sub>`Benchmark` · deepdave98 · `Py` · `noul` · `choice` · `score` · call site [`common/jev.py`](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py), read by a model 2026-10-31 · ⚠ `no licence`</sub>
 
@@ -316,6 +319,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-compaction](https://github.com/picaye/jev-compaction)** — Context compaction for Hermes sessions that never summarises: every tool call is scored by TypeSafe's Jev model, stale calls are dropped, everything kept stays verbatim. <sub>(upstream description)</sub>
   <sub>`Project` · picaye · `JS` · call site [`hermes-compact.mjs`](https://github.com/picaye/jev-compaction/blob/HEAD/hermes-compact.mjs), read 2026-09-22</sub>
+
+- **[jev-datafusion](https://github.com/parable-work/jev-datafusion)** — Rust crate that registers Jev as SQL functions in Apache DataFusion: noul, choice, score and a multi-question ask run per row, so one query can score every ticket or route a year of email at warehouse scale. Works with TypeSafe, OpenRouter or any /v1/systemone endpoint. <sub>(written by a model)</sub>
+  <sub>`Integration` · parable-work · `Rs` · `noul` · `choice` · `score` · call site [`src/provider.rs`](https://github.com/parable-work/jev-datafusion/blob/HEAD/src/provider.rs), read by a model 2026-11-03</sub>
 
 - **[jev-decision-lab](https://github.com/jlov7/jev-decision-lab)** — A local lab for seeing what TypeSafe's Jev judgment model does on realistic business cases: typed answers, probabilities, policy in code, receipts. <sub>(upstream description)</sub>
   <sub>`Project` · jlov7 · `Py` · call site [`jev_lab/adapters.py`](https://github.com/jlov7/jev-decision-lab/blob/HEAD/jev_lab/adapters.py), read 2026-09-22</sub>
@@ -361,6 +367,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-paper-judge](https://github.com/JacobLinCool/jev-paper-judge)** — Feedback on your paper in seconds. <sub>(upstream description)</sub>
   <sub>`Project` · jacoblincool · `TS` · call site [`scripts/lib/typesafe.mjs`](https://github.com/JacobLinCool/jev-paper-judge/blob/HEAD/scripts/lib/typesafe.mjs), read 2026-09-22</sub>
+
+- **[jev-remix-cutter](https://github.com/gnipbao/jev-remix-cutter)** — Agent skill and Python CLI that cuts a licensed remix from video: shot detection, beat or narration slots, Jev judging how well each shot fits each slot, constrained casting, local rendering and a review page, with originality and footage-licence reports. <sub>(written by a model)</sub>
+  <sub>`Plugin` · gnipbao · `Py` · call site [`_vendor/jevkit/jev.py`](https://github.com/gnipbao/jev-remix-cutter/blob/HEAD/_vendor/jevkit/jev.py), read by a model 2026-11-02</sub>
 
 - **[jev-rl](https://github.com/Bring-AI/jev-rl)** — JEV Reinforcement Learning: four classic games trained with JEV-powered rewards, reproducible experiments and checkpoint replays. <sub>(upstream description)</sub>
   <sub>`Project` · bring-ai · `Py` · call site [`src/jev_reward/judges.py`](https://github.com/Bring-AI/jev-rl/blob/HEAD/src/jev_reward/judges.py), read 2026-09-24</sub>
@@ -409,6 +418,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevclip](https://github.com/cclank/jevclip)** — Cuts video from its subtitles: Jev reads each ~20-second segment and answers five questions (which of eight kinds of talk it is, information density 0–3, unfounded claims, whether it stands alone, whether it fits your focus); code keeps, ranks and cuts a 3-minute highlight and a trimmed full cut. <sub>(written by a model)</sub>
   <sub>`Project` · cclank · `Py` · `choice` · `score` · `noul` · call site [`jevclip/jev.py`](https://github.com/cclank/jevclip/blob/HEAD/jevclip/jev.py), read by a model 2026-10-31</sub>
+
+- **[Jevflake](https://github.com/KranzL/Jevflake)** — dbt package (with a Terraform module) that lets Snowflake ask Jev about table rows: it sets up external access to api.typesafe.ai and creates SQL functions jev_noul, jev_choice, jev_score and jev_ask, plus dbt macros and tests so answers are stored once, reused and checked. <sub>(written by a model)</sub>
+  <sub>`Integration` · KranzL · `Py` · `noul` · `choice` · `score` · call site [`macros/setup/handler.sql`](https://github.com/KranzL/Jevflake/blob/HEAD/macros/setup/handler.sql), read by a model 2026-11-02</sub>
 
 - **[jevmetrics](https://github.com/ishantanu/jevmetrics)** — An experimental OpenTelemetry Collector processor that asks Jev how operationally valuable each metric instrument is, from its metadata, then applies deterministic policy to decide what to keep.
   <sub>`Project` · ishantanu · `Go` · call site [`internal/evaluator/jev.go`](https://github.com/ishantanu/jevmetrics/blob/HEAD/internal/evaluator/jev.go), read 2026-09-24</sub>
@@ -484,6 +496,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[shady-town](https://github.com/tpaulshippy/shady-town)** — Shady Town: social-deduction party game for the living room TV, moderated by TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · tpaulshippy · `Rb` · call site [`lib/shady_town/evaluator.rb`](https://github.com/tpaulshippy/shady-town/blob/HEAD/lib/shady_town/evaluator.rb), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
+
+- **[Slop Filter](https://github.com/adamnroman/slop-filter)** — Chrome and Firefox extension that hides AI-written posts and comments on X, LinkedIn, Reddit and YouTube: Jev answers 30 narrow yes/no questions about how each text is written, code counts punctuation and stock words, and weights fitted to your own labels combine them into one score. <sub>(written by a model)</sub>
+  <sub>`Plugin` · adamnroman · `JS` · `noul` · call site [`src/jev-client.js`](https://github.com/adamnroman/slop-filter/blob/HEAD/src/jev-client.js), read by a model 2026-11-01</sub>
 
 - **[sloppy-jevs-extension](https://github.com/neddes/sloppy-jevs-extension)** — Open-source Chrome extension that filters AI-generated prose and ads with Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · neddes · `JS` · call site [`background.js`](https://github.com/neddes/sloppy-jevs-extension/blob/HEAD/background.js), read 2026-09-22</sub>

@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 77 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 78 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -361,6 +361,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[padflow-jev-evals](https://github.com/zsavage8/padflow-jev-evals)**<br>
   Typed-decision benchmark from PadFlow (land development SaaS): schemas, anonymized labeled rows, and a runner for confidence-calibrated models like TypeSafe Jev. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · zsavage8 · `Py` · [call site](https://github.com/zsavage8/padflow-jev-evals/blob/HEAD/scripts/run_baseline.py), read 2026-09-22</sub>
+
+- **[RLCDAlignBench (Just Ask Jev)](https://github.com/sumleo/rlcdalignbench)**<br>
+  Benchmark and paper code (arXiv 2609.29429) testing Jev as a zero-shot detector of AI alignment failures: 7,193 labelled model outputs across 44 benchmarks and ten failure types, from sycophancy and jailbreaks to reward hacking. Each sample goes to Jev in one request with a set of typed questions. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · sumleo · `Py` · `noul` · `choice` · `score` · [call site](https://github.com/sumleo/rlcdalignbench/blob/HEAD/code/run_jev.py), read by a model 2026-11-01</sub>
+
+  > A generic question reached a median AUROC of 0.886 zero-shot, per the authors. The data is gated on Hugging Face under CC BY-NC 4.0 and contains harmful model outputs; the code is MIT. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-01; a maintainer has not yet read the call site.
 
 - **[smoking-extraction-benchmark](https://github.com/vclic/smoking-extraction-benchmark)**<br>
   Synthetic smoking-history extraction benchmark comparing TypeSafe Jev and OpenAI structured outputs, with reproducible accuracy, cost, and latency results. <sub>(upstream description)</sub><br>

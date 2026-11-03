@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 134 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 144 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 124 · wire shape 1 · example only 0 · independent reports 11 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 134 · wire shape 1 · example only 0 · independent reports 11 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -18,6 +18,7 @@ What TypeSafe AI publishes itself (rows marked `official`), filed under this pat
 - [Cookbook: Hierarchical classification](https://docs.typesafe.ai/cookbooks/hierarchical_classification) <sub>`Official docs` · `Py` · `choice`</sub>
 - [Cookbook: Knowledge graph entity alignment](https://docs.typesafe.ai/cookbooks/entity_alignment) <sub>`Official docs` · `Py` · `score`</sub>
 - [Cookbook: Structure recovery](https://docs.typesafe.ai/cookbooks/autoformat) <sub>`Official docs` · `Py`</sub>
+- [WorkflowEvals](https://github.com/typesafe-ai/workflowevals) <sub>`Benchmark` · `Py` · `noul` · `choice` · `score` · ⚠ `vendor numbers`</sub>
 
 ## Examples in this repository
 
@@ -42,6 +43,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Cookbook: Structure recovery](https://docs.typesafe.ai/cookbooks/autoformat)** ⭐ — Reconstructs Markdown from plain text that lost its formatting, in two requests: one restitches hard-wrapped lines, one classifies every block.
   <sub>`Official docs` · `Py`</sub>
+
+- **[WorkflowEvals](https://github.com/typesafe-ai/workflowevals)** ⭐ — TypeSafe's code for reproducing its WorkflowEvals site: four business workflows (invoice approval and fraud triage, customer-service routing and actions, agent-run action selection, security-alert triage), 705 cases scored against OpenAI, Anthropic and consensus references. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · typesafe-ai · `Py` · `noul` · `choice` · `score` · call site [`core/clients.py`](https://github.com/typesafe-ai/workflowevals/blob/HEAD/core/clients.py), read by a model 2026-11-02 · ⚠ `vendor numbers`</sub>
 
 - **[Inbox Zero: seven email decisions](https://github.com/elie222/inbox-zero)** — Seven distinct email decisions, each with its own separately chosen threshold, falling back to the normal LLM on any error.
   <sub>`Project` · ★10k+ · `TS` · `choice` · `noul` · call site [`apps/web/utils/decision-model/typesafe.ts`](https://github.com/elie222/inbox-zero/blob/HEAD/apps/web/utils/decision-model/typesafe.ts), read 2026-09-22</sub>
@@ -232,6 +236,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[guard-jev](https://github.com/NorbertBodziony/guard-jev)** — A text-moderation demo: one systemOne call screens seven Noul hazards and one severity Score in parallel, and the verdict is computed in code from policy thresholds.
   <sub>`Project` · norbertbodziony · `TS` · call site [`app/api/moderate/route.ts`](https://github.com/NorbertBodziony/guard-jev/blob/HEAD/app/api/moderate/route.ts), read 2026-09-24 · ⚠ `one commit` `no licence`</sub>
 
+- **[Gut](https://github.com/vinibrsl/gut)** — Elixir DSL for LLM decisions: Gut.feel(subject, question, choices) returns one of your Elixir values, such as the team that should handle a ticket. Its Jev adapter asks the question as one Choice through ReqLLM; other adapters use any ReqLLM model, Ollama or your own code. <sub>(written by a model)</sub>
+  <sub>`SDK` · vinibrsl · `Ex` · `choice` · call site [`lib/gut/req_llm/jev.ex`](https://github.com/vinibrsl/gut/blob/HEAD/lib/gut/req_llm/jev.ex), read by a model 2026-11-02</sub>
+
 - **[himalaya-jev-mail-classify](https://github.com/initrd/himalaya-jev-mail-classify)** — Label and prioritise Gmail with a language model. Reads mail through himalaya, classifies each thread with Jev (TypeSafe) over OpenRouter, and applies Gmail labels and colours. Dry run by default, idempotent, no state file. <sub>(upstream description)</sub>
   <sub>`Project` · initrd · `Py` · call site [`mail_classify.py`](https://github.com/initrd/himalaya-jev-mail-classify/blob/HEAD/mail_classify.py), read 2026-09-24</sub>
 
@@ -247,6 +254,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
 
+- **[Jev Guard](https://github.com/gulbaki/jev-llm-guard)** — Guardrail for text an LLM app handles, whether user input, retrieved content, tool output or model output: Jev answers a noul for each of the ten OWASP LLM Top 10 risks, plus the attack type and a severity score, and a versioned local policy turns them into allow, review or block. <sub>(written by a model)</sub>
+  <sub>`Project` · gulbaki · `JS` · `noul` · `choice` · `score` · call site [`src/guard.js`](https://github.com/gulbaki/jev-llm-guard/blob/HEAD/src/guard.js), read by a model 2026-11-03</sub>
+
 - **[Jev Playwright](https://github.com/arthurfiorette/jev-playwright)** — Playwright reporter that asks Jev which existing end-to-end tests a code change could affect and skips the clearly unrelated ones before any browser starts. Sends changed paths, patches and test bodies by default; its README warns it can miss affected tests. <sub>(written by a model)</sub>
   <sub>`Project` · arthurfiorette · `TS` · call site [`src/config.ts`](https://github.com/arthurfiorette/jev-playwright/blob/HEAD/src/config.ts), read by a model 2026-10-24</sub>
 
@@ -261,6 +271,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-clean](https://github.com/Kunyanli230/jev-clean)** — decision-first data cleaning system powered by Jev <sub>(upstream description)</sub>
   <sub>`Project` · kunyanli230 · `Py` · call site [`src/idac/typesafe_client.py`](https://github.com/Kunyanli230/jev-clean/blob/HEAD/src/idac/typesafe_client.py), read 2026-09-24</sub>
+
+- **[jev-datafusion](https://github.com/parable-work/jev-datafusion)** — Rust crate that registers Jev as SQL functions in Apache DataFusion: noul, choice, score and a multi-question ask run per row, so one query can score every ticket or route a year of email at warehouse scale. Works with TypeSafe, OpenRouter or any /v1/systemone endpoint. <sub>(written by a model)</sub>
+  <sub>`Integration` · parable-work · `Rs` · `noul` · `choice` · `score` · call site [`src/provider.rs`](https://github.com/parable-work/jev-datafusion/blob/HEAD/src/provider.rs), read by a model 2026-11-03</sub>
 
 - **[jev-document-classification](https://github.com/Charlyhno-eng/jev-document-classification)** — JEV Document Classification enables the rapid and cost-effective classification of text-based documents using AI, leveraging TypeSafe's "System One" model. <sub>(upstream description)</sub>
   <sub>`Project` · charlyhno-eng · `TS` · call site [`server/classification-cache.ts`](https://github.com/Charlyhno-eng/jev-document-classification/blob/HEAD/server/classification-cache.ts), read 2026-09-22</sub>
@@ -289,11 +302,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-linkedin-slop-filter](https://github.com/Arpit-Khandelwal/jev-linkedin-slop-filter)** — Slams a BAIT, CORP or BRAG stamp onto LinkedIn engagement-bait, judged live by Jev (TypeSafe System One). <sub>(upstream description)</sub>
   <sub>`Project` · arpit-khandelwal · `JS` · call site [`server/jev.js`](https://github.com/Arpit-Khandelwal/jev-linkedin-slop-filter/blob/HEAD/server/jev.js), read 2026-09-24</sub>
 
+- **[jev-linkmap](https://github.com/stas4000/jev-linkmap)** — Rebuilds a website's internal links: code crawls the site and shortlists 15 similar pages per page with anchor phrases already in its copy, then one Jev request per page asks, for each target, whether to link (yes/no) and which phrase is the anchor (choice). <sub>(written by a model)</sub>
+  <sub>`Project` · stas4000 · `Py` · `noul` · `choice` · call site [`jev_linkmap/jev.py`](https://github.com/stas4000/jev-linkmap/blob/HEAD/jev_linkmap/jev.py), read by a model 2026-11-01</sub>
+
 - **[jev-logtriage](https://github.com/jyatesdotdev/jev-logtriage)** — Jev decides whether a batch of logs is worth acting on. Typed questions, confidence gates, nothing executed. <sub>(upstream description)</sub>
   <sub>`Project` · jyatesdotdev · `Py` · call site [`logtriage/cli.py`](https://github.com/jyatesdotdev/jev-logtriage/blob/HEAD/logtriage/cli.py), read 2026-09-22</sub>
 
 - **[jev-mail](https://github.com/muhammedilyasy/jev-mail)** — Chrome extension that triages Gmail with TypeSafe's Jev model: category, priority, spam % and reply % on every email. <sub>(upstream description)</sub>
   <sub>`Plugin` · muhammedilyasy · `JS` · call site [`src/common/jev.js`](https://github.com/muhammedilyasy/jev-mail/blob/HEAD/src/common/jev.js), read 2026-09-24</sub>
+
+- **[Jev-Mail](https://github.com/vynnlee/jev-mail)** — Gmail inbox classifier that runs on Google Apps Script and is managed from a CLI: for each thread Jev judges whether it needs action, whether it deserves a star and which configured category it belongs to, and the worker labels, stars or archives it. Ambiguous answers stay in the inbox. <sub>(written by a model)</sub>
+  <sub>`Project` · vynnlee · `TS` · `noul` · `choice` · call site [`src/gas/worker.ts`](https://github.com/vynnlee/jev-mail/blob/HEAD/src/gas/worker.ts), read by a model 2026-11-03</sub>
 
 - **[jev-mcp-server](https://github.com/wangkuangkuang/jev-mcp-server)** — MCP server for Jev (TypeSafe System One): the three official question types — choice, score, noul — plus batch classify. Calibrated probabilities, ~0.5s, <$0.001/call. <sub>(upstream description)</sub>
   <sub>`Plugin` · wangkuangkuang · `Py` · call site [`src/jev_mcp_server/config.py`](https://github.com/wangkuangkuang/jev-mcp-server/blob/HEAD/src/jev_mcp_server/config.py), read 2026-09-22</sub>
@@ -352,11 +371,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[JevEye](https://github.com/Adityakhalkar/JevEye)** — Ask Jev about an image. A CNN reports what it sees with a calibrated confidence or an abstention; Jev judges what it means. <sub>(upstream description)</sub>
   <sub>`Project` · adityakhalkar · `TS` · call site [`src/lib/jev.ts`](https://github.com/Adityakhalkar/JevEye/blob/HEAD/src/lib/jev.ts), read 2026-09-24</sub>
 
+- **[Jevflake](https://github.com/KranzL/Jevflake)** — dbt package (with a Terraform module) that lets Snowflake ask Jev about table rows: it sets up external access to api.typesafe.ai and creates SQL functions jev_noul, jev_choice, jev_score and jev_ask, plus dbt macros and tests so answers are stored once, reused and checked. <sub>(written by a model)</sub>
+  <sub>`Integration` · KranzL · `Py` · `noul` · `choice` · `score` · call site [`macros/setup/handler.sql`](https://github.com/KranzL/Jevflake/blob/HEAD/macros/setup/handler.sql), read by a model 2026-11-02</sub>
+
 - **[Jevline](https://github.com/tsale/jevline)** — Scopes an incident from security telemetry: from one confirmed-malicious process, it asks Jev of every process, account, host, address or domain the logs link to whether it belongs to the same incident, and follows what joins round by round. Answers near the threshold are marked for analyst review. <sub>(written by a model)</sub>
   <sub>`Project` · tsale · `TS` · `noul` · call site [`engine/src/jev.ts`](https://github.com/tsale/jevline/blob/HEAD/engine/src/jev.ts), read by a model 2026-10-31</sub>
 
 - **[jevmod](https://github.com/ohernandezdev/jevmod)** — Moderation for communities and apps, powered by Jev (TypeSafe): probabilities per category, thresholds you own. Discord/Telegram/Reddit bots, CLI, Python, npm, HTTP API, MCP. <sub>(upstream description)</sub>
   <sub>`Plugin` · ohernandezdev · `Py` · call site [`jevmod/judge.py`](https://github.com/ohernandezdev/jevmod/blob/HEAD/jevmod/judge.py), read 2026-09-24</sub>
+
+- **[jevotron](https://github.com/ai4curation/jevotron)** — Command-line field-level anomaly detection for CSV, JSON, text, SQLite and DuckDB: Jev labels each field of each entry NORMAL or ANOMALY, or with your own classes, given optional guidance and exemplars, and the output is a review queue sorted by confidence. SQLite caching reuses past answers. <sub>(written by a model)</sub>
+  <sub>`Project` · ai4curation · `Py` · `choice` · call site [`src/jevotron/client.py`](https://github.com/ai4curation/jevotron/blob/HEAD/src/jevotron/client.py), read by a model 2026-11-03</sub>
 
 - **[JevT++](https://github.com/wiatrM/jevtpp)** — C++20 library that turns runtime text, JSON or objects into enums, booleans and scores through compile-time schemas, with full distributions and explicit abstention. Runs local Laya models in-process (ONNX Runtime or ggml) or Jev through an opt-in remote backend; latency metrics and a Mario demo. <sub>(written by a model)</sub>
   <sub>`SDK` · wiatrm · `C++` · call site [`include/jevt/remote.hpp`](https://github.com/wiatrM/jevtpp/blob/HEAD/include/jevt/remote.hpp), read by a model 2026-10-24</sub>
@@ -388,11 +413,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[one-system](https://github.com/rawwerks/one-system)** — Use local and hosted classifiers aka decision models aka Jev-like models, all through a single TypeSafe API <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · rawwerks · `TS` · cited file [`examples/public_release_review.py`](https://github.com/rawwerks/one-system/blob/HEAD/examples/public_release_review.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
 
+- **[patrol-jev](https://github.com/patrol-jev/patrol-jev)** — Web app for Korean district-office street patrols: photos go in and a patrol log comes out as text or an .hwpx file. Claude or OpenAI turns each photo into text; Jev files it under one of four log sections, reads whether an address plate shows and judges whether two photos are the same spot. <sub>(written by a model)</sub>
+  <sub>`Project` · patrol-jev · `TS` · `choice` · `noul` · call site [`src/core/jev.ts`](https://github.com/patrol-jev/patrol-jev/blob/HEAD/src/core/jev.ts), read by a model 2026-11-02 · ⚠ `3rd-party key`</sub>
+
 - **[progressgate](https://github.com/AshutoshVJTI/progressgate)** — Detect semantic stagnation in AI agent loops <sub>(upstream description)</sub>
   <sub>`Project` · ashutoshvjti · `TS` · call site [`experiments/jev-client.ts`](https://github.com/AshutoshVJTI/progressgate/blob/HEAD/experiments/jev-client.ts), read 2026-09-22</sub>
 
 - **[pulselane](https://github.com/ndolinschi/pulselane)** — PulseLane — clinic triage decisions via TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/pulselane/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
+
+- **[Slop Filter](https://github.com/adamnroman/slop-filter)** — Chrome and Firefox extension that hides AI-written posts and comments on X, LinkedIn, Reddit and YouTube: Jev answers 30 narrow yes/no questions about how each text is written, code counts punctuation and stock words, and weights fitted to your own labels combine them into one score. <sub>(written by a model)</sub>
+  <sub>`Plugin` · adamnroman · `JS` · `noul` · call site [`src/jev-client.js`](https://github.com/adamnroman/slop-filter/blob/HEAD/src/jev-client.js), read by a model 2026-11-01</sub>
 
 - **[tab-bouncer](https://github.com/MANISH007700/tab-bouncer)** — Chrome extension that closes the tabs you don't need, judged by TypeSafe's Jev in one call. Tell it what you're doing; it shows the rest the door. <sub>(upstream description)</sub>
   <sub>`Plugin` · manish007700 · `JS` · call site [`judge.js`](https://github.com/MANISH007700/tab-bouncer/blob/HEAD/judge.js), read 2026-09-24</sub>

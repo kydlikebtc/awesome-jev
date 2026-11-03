@@ -4,11 +4,11 @@
 
 _Pack many questions — including speculative ones — into one request and let code pick what mattered._
 
-Every catalogued example of this decision — 36 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 38 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#fan-out): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 28 · wire shape 1 · example only 0 · independent reports 1 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 30 · wire shape 1 · example only 0 · independent reports 1 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -106,6 +106,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev on Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/)** — Workers AI binding and REST samples asking a noul, a choice and a score in one call, with the full response including per-answer confidence.
   <sub>`Integration` · `TS` · `sh` · `noul` · `choice` · `score`</sub>
 
+- **[jev-datafusion](https://github.com/parable-work/jev-datafusion)** — Rust crate that registers Jev as SQL functions in Apache DataFusion: noul, choice, score and a multi-question ask run per row, so one query can score every ticket or route a year of email at warehouse scale. Works with TypeSafe, OpenRouter or any /v1/systemone endpoint. <sub>(written by a model)</sub>
+  <sub>`Integration` · parable-work · `Rs` · `noul` · `choice` · `score` · call site [`src/provider.rs`](https://github.com/parable-work/jev-datafusion/blob/HEAD/src/provider.rs), read by a model 2026-11-03</sub>
+
 - **[jev-fanout-bench](https://github.com/blowxian/jev-fanout-bench)** — Measured: asking TypeSafe Jev N questions in one call bills the state once. 2,976 real requests, raw data, exact billing check. <sub>(upstream description)</sub>
   <sub>`Benchmark` · blowxian · `Py` · call site [`bench.py`](https://github.com/blowxian/jev-fanout-bench/blob/HEAD/bench.py), read 2026-09-24</sub>
 
@@ -114,6 +117,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-switchboard](https://github.com/ZIJIAN004/jev-switchboard)** — A JEV-gated semantic communication layer for parallel coding agents. <sub>(upstream description)</sub>
   <sub>`Project` · zijian004 · `JS` · call site [`src/jev.mjs`](https://github.com/ZIJIAN004/jev-switchboard/blob/HEAD/src/jev.mjs), read 2026-09-22</sub>
+
+- **[Jevaro](https://github.com/columnar-tech/jevaro)** — Python batching proxy that asks Jev the same questions about many states in one client request, either concurrently or packed several to a call, and streams the answers back in input order as Apache Arrow, with Python and JavaScript readers for pandas, Polars or DuckDB. <sub>(written by a model)</sub>
+  <sub>`Project` · columnar-tech · `Py` · `JS` · `choice` · `noul` · `score` · call site [`jevaro-server/src/jevaro_server/app.py`](https://github.com/columnar-tech/jevaro/blob/HEAD/jevaro-server/src/jevaro_server/app.py), read by a model 2026-11-02</sub>
 
 - **[jevcrawl](https://github.com/RayenMlayeh/jevcrawl)** — MCP server and CLI that crawls a website for an agent's question. Per page, one Jev request asks a `noul` for every text block (does it help answer the goal?) and two for every link (leads to the answer, or to a section about it); a last `noul` asks whether the kept excerpts fully answer the goal. <sub>(written by a model)</sub>
   <sub>`Project` · RayenMlayeh · `Py` · `noul` · call site [`jevcrawl/decide/questions.py`](https://github.com/RayenMlayeh/jevcrawl/blob/HEAD/jevcrawl/decide/questions.py), read by a model 2026-10-28 · ⚠ `vendor numbers`</sub>

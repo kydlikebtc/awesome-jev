@@ -4,11 +4,11 @@
 
 _对来自廉价检索步骤的候选做打分或重排。_
 
-这个决策的全部已收录例子 —— 共 81 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 82 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#search-ranking)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#search-ranking)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 77 · 接口形态 0 · 仅示例 0 · 独立报告 6 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 78 · 接口形态 0 · 仅示例 0 · 独立报告 6 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -197,6 +197,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev Chat Jarvis (iOS keyboard)](https://github.com/jev-chat/jev-chat-jarvis-ios)** — Jev Chat Jarvis 的 iOS 键盘版：在任意聊天 App 中复制一条消息，自定义键盘就会显示 Jev 对其意图（`choice`）和风险（`score`）的判断，以及由 Jev 用另一道 `choice` 排序的候选回复，点一下即可插入。可选的扩展通过本地 OCR 读取屏幕。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jev-chat · `Swift` · `choice` · `score` · 调用点 [`Shared/JevJudge.swift`](https://github.com/jev-chat/jev-chat-jarvis-ios/blob/HEAD/Shared/JevJudge.swift)，2026-10-30 模型阅读 · ⚠ `需第三方密钥`</sub>
+
+- **[Jev Graph Search](https://github.com/Emlembow/jev-graph-search)** — 为 AI 智能体在本地 Obsidian 库或 Logseq 文件夹中查找笔记和段落：先在本机生成候选短名单，再就每个候选向 Jev 提一个相关性是非题并据此排序，返回原文段落及其出处。提供命令行工具和智能体技能两种形式。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · Emlembow · `JS` · `noul` · 调用点 [`src/jev.js`](https://github.com/Emlembow/jev-graph-search/blob/HEAD/src/jev.js)，2026-11-03 模型阅读</sub>
 
 - **[jev-assist](https://github.com/glud123/jev-assist)** — 别让昂贵的主模型干「grep 加猜」的粗活 —— 让 Jev 先把整个仓库排一遍序。 <sub>(机翻)</sub>
   <sub>`开源项目` · glud123 · `JS` · 调用点 [`scripts/jev.mjs`](https://github.com/glud123/jev-assist/blob/HEAD/scripts/jev.mjs)，2026-09-22 阅读</sub>

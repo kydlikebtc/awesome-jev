@@ -4,11 +4,11 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 74 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 77 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#human-escalation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 59 · wire shape 5 · example only 0 · independent reports 10 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 62 · wire shape 5 · example only 0 · independent reports 10 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -150,8 +150,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Example: confidence-gated escalation](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/02-confidence-gate/main.py)** — Routing with an act-or-escalate gate, where the policy function is deliberately left unimplemented because the thresholds are yours to choose.
   <sub>`Snippet` · `Py` · `choice` · call site [`examples/02-confidence-gate/main.py`](https://github.com/kydlikebtc/awesome-jev/blob/HEAD/examples/02-confidence-gate/main.py), read 2026-09-22 · ⚠ `code untested`</sub>
 
+- **[Gatekeeper](https://github.com/AgriciDaniel/gatekeeper)** — Claude Code hook that decides which agent or skill should handle a prompt before the AI picks one: YAML rulebooks settle what code can, Jev answers which handler owns the rest as a Choice, and confidence bands turn that into route, suggest, confirm, escalate, block or allow. <sub>(written by a model)</sub>
+  <sub>`Plugin` · AgriciDaniel · `Py` · `choice` · `noul` · call site [`gatekeeper/jev.py`](https://github.com/AgriciDaniel/gatekeeper/blob/HEAD/gatekeeper/jev.py), read by a model 2026-11-01</sub>
+
 - **[grok-jev-guard](https://github.com/0xwhrari/grok-jev-guard)** — A typed preflight and approval layer for Grok Bot: local policy owns the hard boundaries, Jev judges the ambiguous cases, and Grok Bot executes within the envelope it gets back.
   <sub>`Project` · 0xwhrari · `Py` · call site [`src/grok_jev_guard/jev.py`](https://github.com/0xwhrari/grok-jev-guard/blob/HEAD/src/grok_jev_guard/jev.py), read 2026-09-24 · ⚠ `one commit`</sub>
+
+- **[jev-apply](https://github.com/theadaply/jev-apply)** — Job-application skill for CLI agents with a memory of your answers: Jev picks which saved answer fills each field of a Greenhouse, Ashby or Lever form, with an explicit none-of-these exit, and below a confidence threshold the field goes back to you instead of being guessed. <sub>(written by a model)</sub>
+  <sub>`Plugin` · theadaply · `JS` · `choice` · `noul` · call site [`src/jev/client.mjs`](https://github.com/theadaply/jev-apply/blob/HEAD/src/jev/client.mjs), read by a model 2026-11-03</sub>
 
 - **[jev-asks-until-sure](https://github.com/mintannn/jev-asks-until-sure)** — A twenty-questions guesser that keeps asking until Jev's calibrated confidence crosses a threshold — or gives up and says so <sub>(upstream description)</sub>
   <sub>`Project` · mintannn · `TS` · call site [`lib/jev.ts`](https://github.com/mintannn/jev-asks-until-sure/blob/HEAD/lib/jev.ts), read 2026-09-22</sub>
@@ -203,6 +209,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jevline](https://github.com/tsale/jevline)** — Scopes an incident from security telemetry: from one confirmed-malicious process, it asks Jev of every process, account, host, address or domain the logs link to whether it belongs to the same incident, and follows what joins round by round. Answers near the threshold are marked for analyst review. <sub>(written by a model)</sub>
   <sub>`Project` · tsale · `TS` · `noul` · call site [`engine/src/jev.ts`](https://github.com/tsale/jevline/blob/HEAD/engine/src/jev.ts), read by a model 2026-10-31</sub>
+
+- **[jevotron](https://github.com/ai4curation/jevotron)** — Command-line field-level anomaly detection for CSV, JSON, text, SQLite and DuckDB: Jev labels each field of each entry NORMAL or ANOMALY, or with your own classes, given optional guidance and exemplars, and the output is a review queue sorted by confidence. SQLite caching reuses past answers. <sub>(written by a model)</sub>
+  <sub>`Project` · ai4curation · `Py` · `choice` · call site [`src/jevotron/client.py`](https://github.com/ai4curation/jevotron/blob/HEAD/src/jevotron/client.py), read by a model 2026-11-03</sub>
 
 - **[luce](https://github.com/scienthoon/luce)** — Luce: a recipe for calibrated decision models — a sentence about your task in, a small model that answers typed questions with honest probabilities out (init → synth → train → eval → serve) <sub>(upstream description)</sub>
   <sub>`Project` · scienthoon · `Py` · call site [`scripts/jev_eval.mjs`](https://github.com/scienthoon/luce/blob/HEAD/scripts/jev_eval.mjs), read 2026-09-22</sub>

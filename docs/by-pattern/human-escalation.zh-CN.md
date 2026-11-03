@@ -4,11 +4,11 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 74 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 77 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#human-escalation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#human-escalation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 59 · 接口形态 5 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 62 · 接口形态 5 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -150,8 +150,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Example: confidence-gated escalation](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/02-confidence-gate/main.py)** — 带「自动执行或转人工」闸门的路由；策略函数刻意留空 —— 阈值该定在哪，是你的决定。
   <sub>`代码片段` · `Py` · `choice` · 调用点 [`examples/02-confidence-gate/main.py`](https://github.com/kydlikebtc/awesome-jev/blob/HEAD/examples/02-confidence-gate/main.py)，2026-09-22 阅读 · ⚠ `代码未实测`</sub>
 
+- **[Gatekeeper](https://github.com/AgriciDaniel/gatekeeper)** — Claude Code 钩子，在 AI 自行挑选之前决定由哪个智能体或技能处理一条提示：YAML 规则手册先处理代码能判定的部分，其余的由 Jev 以 Choice 回答归哪个处理者，再按置信区间转成转交、建议、确认、上报、拦截或放行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · AgriciDaniel · `Py` · `choice` · `noul` · 调用点 [`gatekeeper/jev.py`](https://github.com/AgriciDaniel/gatekeeper/blob/HEAD/gatekeeper/jev.py)，2026-11-01 模型阅读</sub>
+
 - **[grok-jev-guard](https://github.com/0xwhrari/grok-jev-guard)** — Grok Bot 的类型化预检与审批层：硬性边界由本地策略掌控，模糊情况交给 Jev 判断，Grok Bot 只在返回的范围内执行。 <sub>(机翻)</sub>
   <sub>`开源项目` · 0xwhrari · `Py` · 调用点 [`src/grok_jev_guard/jev.py`](https://github.com/0xwhrari/grok-jev-guard/blob/HEAD/src/grok_jev_guard/jev.py)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[jev-apply](https://github.com/theadaply/jev-apply)** — 面向命令行智能体的求职申请技能，会记住你的答案：Jev 为 Greenhouse、Ashby 或 Lever 表单的每个字段挑选合适的已存答案，并始终提供“都不合适”的出口；置信度低于阈值时，该字段交回给你，而不是去猜。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · theadaply · `JS` · `choice` · `noul` · 调用点 [`src/jev/client.mjs`](https://github.com/theadaply/jev-apply/blob/HEAD/src/jev/client.mjs)，2026-11-03 模型阅读</sub>
 
 - **[jev-asks-until-sure](https://github.com/mintannn/jev-asks-until-sure)** — 二十个问题猜谜：一直问下去，直到 Jev 的校准置信度越过阈值。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · mintannn · `TS` · 调用点 [`lib/jev.ts`](https://github.com/mintannn/jev-asks-until-sure/blob/HEAD/lib/jev.ts)，2026-09-22 阅读</sub>
@@ -203,6 +209,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jevline](https://github.com/tsale/jevline)** — 基于安全遥测数据划定事件范围：从一个已确认恶意的进程出发，针对日志所关联的每个进程、账户、主机、地址或域名，询问 Jev 它是否属于同一事件，并逐轮追踪新加入的部分。接近阈值的答案会标记出来交由分析师复核。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tsale · `TS` · `noul` · 调用点 [`engine/src/jev.ts`](https://github.com/tsale/jevline/blob/HEAD/engine/src/jev.ts)，2026-10-31 模型阅读</sub>
+
+- **[jevotron](https://github.com/ai4curation/jevotron)** — 命令行字段级异常检测工具，支持 CSV、JSON、文本、SQLite 和 DuckDB：Jev 结合可选的指导说明和示例，为每条记录的每个字段标注 NORMAL 或 ANOMALY，或你自定义的类别，输出按置信度排序的复核队列。SQLite 缓存会复用以往的判断结果。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ai4curation · `Py` · `choice` · 调用点 [`src/jevotron/client.py`](https://github.com/ai4curation/jevotron/blob/HEAD/src/jevotron/client.py)，2026-11-03 模型阅读</sub>
 
 - **[luce](https://github.com/scienthoon/luce)** — Luce：一份校准决策模型的配方 —— 输入一句任务描述，产出一个小模型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · scienthoon · `Py` · 调用点 [`scripts/jev_eval.mjs`](https://github.com/scienthoon/luce/blob/HEAD/scripts/jev_eval.mjs)，2026-09-22 阅读</sub>

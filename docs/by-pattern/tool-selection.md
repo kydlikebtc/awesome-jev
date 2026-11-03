@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 241 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 250 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 233 · wire shape 4 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 242 · wire shape 4 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -453,6 +453,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[gg-friggin-ez](https://github.com/ItisShikhar/gg-friggin-ez)** — Fast, drop-in multilingual profanity and toxicity screener for Node.js, powered by System 1 models like TypeSafe AI Jev and Laya. Catches leetspeak, character spacing, and romanized profanity across languages including Kannada, Telugu, Tamil, Hindi, and Bengali. ~50-500ms latency. <sub>(upstream description)</sub>
   <sub>`Project` · itisshikhar · `TS` · call site [`demo/js/models.js`](https://github.com/ItisShikhar/gg-friggin-ez/blob/HEAD/demo/js/models.js), read 2026-09-22</sub>
 
+- **[gpui-agent](https://github.com/stolinski/gpui-agent)** — Lets Jev drive a native GPUI app toward a goal: the runner reads GPUI's accessibility tree, asks Jev one Choice over the actions the snapshot supports (click, type a supplied value, scroll), sends real native input and stops on a check, a limit or low confidence. <sub>(written by a model)</sub>
+  <sub>`Project` · stolinski · `Rs` · `Py` · `TS` · `choice` · call site [`python/gpui_agent/jev.py`](https://github.com/stolinski/gpui-agent/blob/HEAD/python/gpui_agent/jev.py), read by a model 2026-11-01</sub>
+
 - **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — Web app for agent builders: paste the trace of one agent step and Jev judges it as ok, retry, escalate or stop. Without a TYPESAFE_API_KEY, local heuristics return answers of the same shape, labelled as demo mode. <sub>(written by a model)</sub>
   <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/harnessjudge/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
 
@@ -467,6 +470,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev GUI Delegate](https://github.com/YUTA-fywoo/jev-gui-delegate)** — Windows and Chrome GUI delegation prototype for Codex: a local controller runs a task contract step by step, and when a control must be picked by meaning it asks Jev one `choice` over the observed controls plus no_match, wait, reobserve and ask_astra exits, then checks the result. <sub>(written by a model)</sub>
   <sub>`Project` · YUTA-fywoo · `Py` · `choice` · call site [`gui_delegate/controller.py`](https://github.com/YUTA-fywoo/jev-gui-delegate/blob/HEAD/gui_delegate/controller.py), read by a model 2026-10-29 · ⚠ `no licence` `vendor numbers`</sub>
+
+- **[JEV Jornada](https://github.com/caio-moliveira/workshop-jev)** — Workshop sales agent in LangGraph, in Portuguese, whose decisions (three guardrail nouls, a choice of which of seven queries answers the question, three nouls checking the reply is faithful) go to Jev, to an OpenAI or Anthropic LLM, or both, comparing accuracy, latency, tokens and cost. <sub>(written by a model)</sub>
+  <sub>`Project` · caio-moliveira · `Py` · `noul` · `choice` · call site [`backend/app/providers/jev.py`](https://github.com/caio-moliveira/workshop-jev/blob/HEAD/backend/app/providers/jev.py), read by a model 2026-11-03 · ⚠ `no licence` `3rd-party key`</sub>
 
 - **[jev-A-share-trader](https://github.com/Eric-Zhou-0302/jev-A-share-trader)** — A Jev-powered technical analysis workspace for China A-shares, supporting AKShare/Tushare, market scans, and Buy/Hold/Sell assessments with time horizons and traceable evidence. <sub>(upstream description)</sub>
   <sub>`Project` · eric-zhou-0302 · `Py` · call site [`src/jev_trader/jev.py`](https://github.com/Eric-Zhou-0302/jev-A-share-trader/blob/HEAD/src/jev_trader/jev.py), read 2026-09-24</sub>
@@ -537,6 +543,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-flappy-bird](https://github.com/hosseintoussi/jev-flappy-bird)** — A live demo of TypeSafe's Jev model playing Flappy Bird, one flap-or-wait decision at a time. <sub>(upstream description)</sub>
   <sub>`Project` · hosseintoussi · `TS` · call site [`server/jev.ts`](https://github.com/hosseintoussi/jev-flappy-bird/blob/HEAD/server/jev.ts), read 2026-09-24</sub>
 
+- **[jev-for-all](https://github.com/emirbartu/jev-for-all)** — Connects Jev to OpenCode, Claude Code, Hermes and pi through one shared decision contract: Jev picks the model tier from the first prompt, which skill to load and which tools a step needs, and can start a lean session without skills or MCP servers. It does nothing when Jev is slow or unsure. <sub>(written by a model)</sub>
+  <sub>`Plugin` · emirbartu · `TS` · `choice` · `noul` · call site [`src/jev.ts`](https://github.com/emirbartu/jev-for-all/blob/HEAD/src/jev.ts), read by a model 2026-11-02</sub>
+
 - **[jev-for-engineers](https://github.com/Foadsf/jev-for-engineers)** — Eight minimal working examples of TypeSafe's Jev (a System One model) applied to mechanical and electrical engineering: CAD/CAE/CAM routing, FEM result triage, DFM screening, BOM alignment, hallucination-proof extraction. Zero dependencies. <sub>(upstream description)</sub>
   <sub>`Project` · foadsf · `Py` · call site [`jev.py`](https://github.com/Foadsf/jev-for-engineers/blob/HEAD/jev.py), read 2026-09-22</sub>
 
@@ -597,6 +606,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-routing](https://github.com/nekowasabi/jev-routing)** — Go Jev harness for Claude Code, Codex, and Grok Build. No npx. Not an MCP server. <sub>(upstream description)</sub>
   <sub>`Plugin` · nekowasabi · `Go` · call site [`internal/jev/jev.go`](https://github.com/nekowasabi/jev-routing/blob/HEAD/internal/jev/jev.go), read 2026-09-22 · ⚠ `archived`</sub>
 
+- **[jev-sim-use](https://github.com/Ryu0118/jev-sim-use)** — Navigator for the iOS Simulator and Android devices built on sim-use: given a goal, each step is one Jev request asking which on-screen operation and target come next, whether that step finishes the goal and whether a tap is irreversible. When unsure it stops and leaves a session for your agent. <sub>(written by a model)</sub>
+  <sub>`Project` · Ryu0118 · `Swift` · `choice` · `noul` · call site [`Sources/JevSimUseKit/Agent/JevStepPlanner.swift`](https://github.com/Ryu0118/jev-sim-use/blob/HEAD/Sources/JevSimUseKit/Agent/JevStepPlanner.swift), read by a model 2026-11-03</sub>
+
 - **[jev-skill-router](https://github.com/himomohi/jev-skill-router)** — Keep skill catalogs outside the main LLM context. Jev selects relevant skills through one read-only MCP tool. <sub>(upstream description)</sub>
   <sub>`Plugin` · himomohi · `Py` · call site [`src/jev_skill_router/jev.py`](https://github.com/himomohi/jev-skill-router/blob/HEAD/src/jev_skill_router/jev.py), read 2026-09-24</sub>
 
@@ -651,6 +663,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevcumber](https://github.com/RubyBrewsday/jevcumber)** — Write Cucumber tests with just the .feature file. No step definitions — Jev (TypeSafe AI) resolves each Gherkin step and Playwright runs it. <sub>(upstream description)</sub>
   <sub>`Project` · rubybrewsday · `TS` · call site [`src/resolver.ts`](https://github.com/RubyBrewsday/jevcumber/blob/HEAD/src/resolver.ts), read 2026-09-24</sub>
 
+- **[JevDo](https://github.com/yinhong-zhou/jevdo)** — Loop for DeepSeek Harness (DSH) in which Jev decides each step: run a saved, validated Action (a command or script bound to a project), call the main model, ask for clarification or finish. The main model handles new problems and saves reusable Actions for later sessions. <sub>(written by a model)</sub>
+  <sub>`Project` · yinhong-zhou · `TS` · `choice` · call site [`src/decision.ts`](https://github.com/yinhong-zhou/jevdo/blob/HEAD/src/decision.ts), read by a model 2026-11-01</sub>
+
 - **[jevdroid](https://github.com/antiyro/jevdroid)** — A typed Python framework for controlling Android over ADB with Jev. <sub>(upstream description)</sub>
   <sub>`Project` · antiyro · `Py` · call site [`src/jevdroid/providers/http.py`](https://github.com/antiyro/jevdroid/blob/HEAD/src/jevdroid/providers/http.py), read 2026-09-22</sub>
 
@@ -666,8 +681,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevshield](https://github.com/lgy1027/jevshield)** — Sub-100ms security gate for AI agent tool calls, powered by TypeSafe's Jev (System-1) decision model. Single-request Choice/Noul/Score evaluation, dual-factor blocking matrix, calibrated-confidence routing, fail-closed parsing, zero-config local fallback. LangChain-ready. <sub>(upstream description)</sub>
   <sub>`Project` · lgy1027 · `Py` · call site [`jevshield/client.py`](https://github.com/lgy1027/jevshield/blob/HEAD/jevshield/client.py), read 2026-09-22</sub>
 
+- **[Jevspresso](https://github.com/statelyai/jevspresso)** — Simulated espresso bar where an XState machine models what the bar can physically do and Jev picks the next barista action from the events the machine accepts right now, through @xstate/jev. Orders are typed in plain English, and you can break the equipment and watch Jev cope. <sub>(written by a model)</sub>
+  <sub>`Project` · statelyai · `TS` · `choice` · call site [`src/lib/jev.ts`](https://github.com/statelyai/jevspresso/blob/HEAD/src/lib/jev.ts), read by a model 2026-11-01 · ⚠ `no licence`</sub>
+
 - **[JevTest](https://github.com/CorieW/JevTest)** — Bounded exploratory browser testing with Jev, deterministic assertions, and replayable evidence. <sub>(upstream description)</sub>
   <sub>`Project` · coriew · `TS` · call site [`src/jev.ts`](https://github.com/CorieW/JevTest/blob/HEAD/src/jev.ts), read 2026-09-24 · ⚠ `one commit` `no licence`</sub>
+
+- **[jevwright](https://github.com/Ice-Hazymoon/jevwright)** — Browser tests for business flows written as the steps a user takes: Jev picks the control each step means on the live page, the path is recorded, and later runs replay it without a model. Your code, not the model, decides pass or fail, through declared requests, verify callbacks and invariants. <sub>(written by a model)</sub>
+  <sub>`Project` · Ice-Hazymoon · `TS` · `choice` · call site [`src/models.ts`](https://github.com/Ice-Hazymoon/jevwright/blob/HEAD/src/models.ts), read by a model 2026-11-03</sub>
 
 - **[langchain-skill-router](https://github.com/deyna256/langchain-skill-router)** — Per-turn skill selection for LangChain and deepagents agents: a fast judge picks the few skills a turn needs, so a catalog of hundreds stays out of the prompt. <sub>(upstream description)</sub>
   <sub>`Plugin` · deyna256 · `Py` · call site [`src/langchain_skill_router/providers/jev.py`](https://github.com/deyna256/langchain-skill-router/blob/HEAD/src/langchain_skill_router/providers/jev.py), read 2026-09-24</sub>
@@ -677,6 +698,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[macos-computer-use-kit](https://github.com/Sur-Cai/macos-computer-use-kit)** — AX-first computer use for AI agents on macOS with optional Jev (TypeSafe System One) semantic guards: calibrated target/input judgments before an irreversible action, decisions kept in code. Accessibility-tree targeting, window-scoped input, clipboard-safe paste, read-back verification…
   <sub>`Plugin` · sur-cai · `Py` · call site [`src/macos_computer_use/jev.py`](https://github.com/Sur-Cai/macos-computer-use-kit/blob/HEAD/src/macos_computer_use/jev.py), read 2026-09-24</sub>
+
+- **[omo-jev-plugin](https://github.com/brianhong-dev/omo-jev-plugin)** — Plugin for the OmO and senpi coding agents that asks Jev which loaded skill and next tool fit the task, whether recent results repeat a failure and whether the work looks complete; in act mode also which model and thinking level to use and whether to block a tool call. <sub>(written by a model)</sub>
+  <sub>`Plugin` · brianhong-dev · `TS` · `noul` · `choice` · `score` · call site [`src/decision.ts`](https://github.com/brianhong-dev/omo-jev-plugin/blob/HEAD/src/decision.ts), read by a model 2026-11-01</sub>
 
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — Binary approval gate for Codex and Claude Code — every intercepted tool call is reviewed by TypeSafe JEV and composed through a versioned local policy, with scoped authorization. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · alexj11324 · `Go` · cited file [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go), read 2026-09-22 · ⚠ `not Jev itself`</sub>
@@ -704,6 +728,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[robo-harness](https://github.com/grmkris/robo-harness)** — SO-101 robot-arm agent workbench: Bun/Effect coordinator, React workbench, Python LeRobot motor owner <sub>(upstream description)</sub>
   <sub>`Project` · grmkris · `TS` · call site [`apps/server/src/decision/jev.ts`](https://github.com/grmkris/robo-harness/blob/HEAD/apps/server/src/decision/jev.ts), read 2026-09-22 · ⚠ `no licence`</sub>
+
+- **[RoboDiag Harness](https://github.com/yuebit/robodiag-harness)** — Diagnostic harness for ROS 2 robots in which Jev sorts each request into query, diagnosis, action or chat and, for a diagnosis, picks the next read-only evidence tool. Code requires a health test and a live measurement before a diagnosis ends, and a chat model explains the evidence. <sub>(written by a model)</sub>
+  <sub>`Project` · yuebit · `Py` · `choice` · call site [`robodiag_jev.py`](https://github.com/yuebit/robodiag-harness/blob/HEAD/robodiag_jev.py), read by a model 2026-11-01</sub>
 
 - **[roverlab](https://github.com/juancamiloqhz/roverlab)** — A 3D planetary rover sandbox for experimenting with autonomous decisions using TypeSafe AI. <sub>(upstream description)</sub>
   <sub>`Project` · juancamiloqhz · `TS` · call site [`server/decisions.ts`](https://github.com/juancamiloqhz/roverlab/blob/HEAD/server/decisions.ts), read 2026-09-24 · ⚠ `no licence`</sub>

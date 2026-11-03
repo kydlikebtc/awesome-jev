@@ -4,17 +4,18 @@
 
 _按意图和紧急度路由支持工单与会话。_
 
-这个决策的全部已收录例子 —— 共 9 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工单分拣)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 10 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工单分拣)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#support-triage)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#support-triage)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 1 · 调用点 4 · 接口形态 0 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 5。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 1 · 调用点 5 · 接口形态 0 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 5。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
 TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` 的行）。每一条在下文也都列出，附有摘要。 <sub>(机翻)</sub>
 
 - [Quickstart](https://docs.typesafe.ai/introduction/quickstart) <sub>`官方文档` · `Py` · `TS` · `sh` · `choice` · `score` · `noul`</sub>
+- [WorkflowEvals](https://github.com/typesafe-ai/workflowevals) <sub>`基准测试` · `Py` · `noul` · `choice` · `score` · ⚠ `厂商自报数据`</sub>
 
 ## 本仓库的示例
 
@@ -30,6 +31,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Quickstart](https://docs.typesafe.ai/introduction/quickstart)** ⭐ — 官方第一课：一条工单，一次请求里同时问一个 Choice、一个 Score 和一个 Noul，给了 Python / JS / cURL 三种写法。
   <sub>`官方文档` · `Py` · `TS` · `sh` · `choice` · `score` · `noul`</sub>
+
+- **[WorkflowEvals](https://github.com/typesafe-ai/workflowevals)** ⭐ — TypeSafe 用于复现其 WorkflowEvals 评测网站的代码：四个业务流程（发票审批与欺诈分拣、客服路由与处置、智能体运行中的动作选择、安全告警分拣），共 705 个案例，以 OpenAI、Anthropic 及共识结果为参考来评分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · typesafe-ai · `Py` · `noul` · `choice` · `score` · 调用点 [`core/clients.py`](https://github.com/typesafe-ai/workflowevals/blob/HEAD/core/clients.py)，2026-11-02 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)** — 一套循序渐进的课程：从第一次调用、逐个原语、state 形状与 criteria，一直到工单分拣和多步工作流，并对应了全部四个官方模式。
   <sub>`教程` · ★1k+ · `Py` · `choice` · `score` · `noul` · 调用点 [`models/jev/06-criteria.py`](https://github.com/daveebbelaar/ai-cookbook/blob/HEAD/models/jev/06-criteria.py)，2026-09-22 阅读</sub>

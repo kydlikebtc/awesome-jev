@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 141 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 147 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 136 · wire shape 1 · example only 0 · independent reports 11 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 142 · wire shape 1 · example only 0 · independent reports 12 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -251,8 +251,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jeff](https://github.com/Alurith/jeff)** — Read-only Go CLI that checks source files against rules with Jev, locally or in CI: each rule (failure-path integrity, undisclosed side effects, duplicated policy, names contradicting behaviour) is a yes/no question per file, and the rule's thresholds decide pass, fail or inconclusive. <sub>(written by a model)</sub>
   <sub>`Project` · Alurith · `Go` · `noul` · call site [`internal/typesafe/client.go`](https://github.com/Alurith/jeff/blob/HEAD/internal/typesafe/client.go), read by a model 2026-10-31</sub>
 
+- **[jes](https://github.com/everafterlabs/jes)** — Open-source guardrails for AI agents: policies ask a decision model whether a prompt, retrieved page, skill, subagent, tool call, tool result or response carries prompt injection, a jailbreak, a data leak or a risky action, and block at your own threshold. Secrets and PII are redacted locally first. <sub>(written by a model)</sub>
+  <sub>`Project` · everafterlabs · `Py` · `noul` · `choice` · call site [`src/jes/backend.py`](https://github.com/everafterlabs/jes/blob/HEAD/src/jes/backend.py), read by a model 2026-11-02</sub>
+
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
+
+- **[JEV Jornada](https://github.com/caio-moliveira/workshop-jev)** — Workshop sales agent in LangGraph, in Portuguese, whose decisions (three guardrail nouls, a choice of which of seven queries answers the question, three nouls checking the reply is faithful) go to Jev, to an OpenAI or Anthropic LLM, or both, comparing accuracy, latency, tokens and cost. <sub>(written by a model)</sub>
+  <sub>`Project` · caio-moliveira · `Py` · `noul` · `choice` · call site [`backend/app/providers/jev.py`](https://github.com/caio-moliveira/workshop-jev/blob/HEAD/backend/app/providers/jev.py), read by a model 2026-11-03 · ⚠ `no licence` `3rd-party key`</sub>
 
 - **[jev-agent-skill](https://github.com/yuyang2230/jev-agent-skill)** — Free typed judgments for AI agents: offload classify/screen/score/verify to Jev (TypeSafe System One) via OpenCode Zen. Claude Code / ZCode skill. 给AI代理省token的免费决策分流技能 <sub>(upstream description)</sub>
   <sub>`Plugin` · yuyang2230 · `Py` · call site [`jev.py`](https://github.com/yuyang2230/jev-agent-skill/blob/HEAD/jev.py), read 2026-09-22</sub>
@@ -350,6 +356,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevarena](https://github.com/chenmingtang830/jevarena)** — Open-source BYOK arena for Jev and other AI judges. Find failures, compare quality, cost, and latency. <sub>(upstream description)</sub>
   <sub>`Benchmark` · chenmingtang830 · `TS` · call site [`jevjudge/providers.py`](https://github.com/chenmingtang830/jevarena/blob/HEAD/jevjudge/providers.py), read 2026-09-24</sub>
 
+- **[Jevboard](https://github.com/asheehuang/jevboard)** — Windows tray tool that fixes homophone errors in Microsoft Bopomofo input before you press Enter: it reads the IME's candidates for each character position and asks Jev one Choice per position in a single request, then suggests corrections you apply with Tab. <sub>(written by a model)</sub>
+  <sub>`Project` · asheehuang · `C#` · `choice` · call site [`src/JevClient.cs`](https://github.com/asheehuang/jevboard/blob/HEAD/src/JevClient.cs), read by a model 2026-11-02</sub>
+
 - **[jevgate](https://github.com/Tech-Byte-Frontier/jevgate)** — Code-review gate for CI and coding agents: asks TypeSafe Jev small typed questions about functions, files, tests and docs, and reports findings with locations and probabilities <sub>(upstream description)</sub>
   <sub>`Project` · tech-byte-frontier · `Rs` · call site [`src/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/provider.rs), read 2026-09-24</sub>
 
@@ -361,6 +370,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevkit](https://github.com/ariel-frischer/jevkit)** — Fast Rust CLI for TypeSafe Jev: typed decisions, offline linting before you pay <sub>(upstream description)</sub>
   <sub>`Project` · ariel-frischer · `Rs` · call site [`src/auth.rs`](https://github.com/ariel-frischer/jevkit/blob/HEAD/src/auth.rs), read 2026-09-22</sub>
+
+- **[jevlint](https://github.com/Ice-Hazymoon/jevlint)** — Linter for code-review rules syntax cannot decide, each written as a plain-English yes/no question such as whether a secret reaches a log: Jev returns a probability per rule and chunk of code, reported like any linter's hits with files, lines, rule ids and exit codes. Rules are tested on fixtures. <sub>(written by a model)</sub>
+  <sub>`Project` · Ice-Hazymoon · `TS` · `noul` · `choice` · call site [`src/client.ts`](https://github.com/Ice-Hazymoon/jevlint/blob/HEAD/src/client.ts), read by a model 2026-11-03</sub>
 
 - **[jevreel](https://github.com/DeepAleph/jevreel)** — MCP server and agent skill that searches video without embeddings: frames go onto labelled contact sheets of sixty, Jev judges every sheet with a yes/no (is it in this minute) plus a choice of where, and the best windows are re-checked on full frames. Agents get moments, times and probabilities. <sub>(written by a model)</sub>
   <sub>`Plugin` · DeepAleph · `Py` · `noul` · `choice` · `score` · call site [`src/jevreel/judge.py`](https://github.com/DeepAleph/jevreel/blob/HEAD/src/jevreel/judge.py), read by a model 2026-10-31</sub>
@@ -395,6 +407,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[openclaw-typesafe-ai](https://github.com/Olli0103/openclaw-typesafe-ai)** — Optional typed TypeSafe AI Jev decisions for OpenClaw, with SecretRef credentials and strict API validation. <sub>(upstream description)</sub>
   <sub>`Project` · olli0103 · `TS` · call site [`src/client.ts`](https://github.com/Olli0103/openclaw-typesafe-ai/blob/HEAD/src/client.ts), read 2026-09-22</sub>
 
+- **[Pi Jev Guard](https://github.com/zszz3/Pi-Jev-Guide)** — Plugin for the Pi coding agent that checks tool calls before they run: local rules confirm or block risky shell commands, and Jev answers four yes/no questions per call (destructive, unauthorised upload, off task, against a rule). It also redacts credentials in tool output and asks for verification. <sub>(written by a model)</sub>
+  <sub>`Plugin` · zszz3 · `TS` · `noul` · `choice` · call site [`src/judge.ts`](https://github.com/zszz3/Pi-Jev-Guide/blob/HEAD/src/judge.ts), read by a model 2026-11-01</sub>
+
 - **[pi-jev-code](https://github.com/KamilPostrozny/pi-jev-code)** — Single-agent Pi coding coprocessor with Jev semantic gates, baseline-to-current diff review, and append-only observability telemetry. <sub>(upstream description)</sub>
   <sub>`Project` · kamilpostrozny · `TS` · call site [`src/index.ts`](https://github.com/KamilPostrozny/pi-jev-code/blob/HEAD/src/index.ts), read 2026-09-22</sub>
 
@@ -409,6 +424,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[riff](https://github.com/scale-venture-partners/riff)** — A small, fast prose linter: ruff-style rule codes for writing, backed by TypeSafe's Jev model <sub>(upstream description)</sub>
   <sub>`Project` · scale-venture-partners · `Py` · call site [`src/riff/jev.py`](https://github.com/scale-venture-partners/riff/blob/HEAD/src/riff/jev.py), read 2026-09-22</sub>
+
+- **[RLCDAlignBench (Just Ask Jev)](https://github.com/sumleo/rlcdalignbench)** — Benchmark and paper code (arXiv 2609.29429) testing Jev as a zero-shot detector of AI alignment failures: 7,193 labelled model outputs across 44 benchmarks and ten failure types, from sycophancy and jailbreaks to reward hacking. Each sample goes to Jev in one request with a set of typed questions. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · sumleo · `Py` · `noul` · `choice` · `score` · call site [`code/run_jev.py`](https://github.com/sumleo/rlcdalignbench/blob/HEAD/code/run_jev.py), read by a model 2026-11-01</sub>
 
 - **[semantic-assert](https://github.com/mondaychen/semantic-assert)** — Testing lib for asserting the real requirement. <sub>(upstream description)</sub>
   <sub>`SDK` · mondaychen · `TS` · call site [`packages/semantic-assert-typesafe/src/client.ts`](https://github.com/mondaychen/semantic-assert/blob/HEAD/packages/semantic-assert-typesafe/src/client.ts), read 2026-09-24</sub>

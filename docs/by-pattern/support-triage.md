@@ -4,17 +4,18 @@
 
 _Route support tickets and conversations by intent and urgency._
 
-Every catalogued example of this decision — 9 of them. The same rows, with caveats, are in [the index](../../README.md#support-triage); [the site](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 10 of them. The same rows, with caveats, are in [the index](../../README.md#support-triage); [the site](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#support-triage): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 1 · call site 4 · wire shape 0 · example only 0 · independent reports 1 · negative results 0 · no file cited 5. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 1 · call site 5 · wire shape 0 · example only 0 · independent reports 1 · negative results 0 · no file cited 5. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
 What TypeSafe AI publishes itself (rows marked `official`), filed under this pattern. Each is also listed below, with its summary.
 
 - [Quickstart](https://docs.typesafe.ai/introduction/quickstart) <sub>`Official docs` · `Py` · `TS` · `sh` · `choice` · `score` · `noul`</sub>
+- [WorkflowEvals](https://github.com/typesafe-ai/workflowevals) <sub>`Benchmark` · `Py` · `noul` · `choice` · `score` · ⚠ `vendor numbers`</sub>
 
 ## Examples in this repository
 
@@ -30,6 +31,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Quickstart](https://docs.typesafe.ai/introduction/quickstart)** ⭐ — The canonical first call: one support ticket, one Choice, one Score and one Noul in a single request, in Python, JS and cURL.
   <sub>`Official docs` · `Py` · `TS` · `sh` · `choice` · `score` · `noul`</sub>
+
+- **[WorkflowEvals](https://github.com/typesafe-ai/workflowevals)** ⭐ — TypeSafe's code for reproducing its WorkflowEvals site: four business workflows (invoice approval and fraud triage, customer-service routing and actions, agent-run action selection, security-alert triage), 705 cases scored against OpenAI, Anthropic and consensus references. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · typesafe-ai · `Py` · `noul` · `choice` · `score` · call site [`core/clients.py`](https://github.com/typesafe-ai/workflowevals/blob/HEAD/core/clients.py), read by a model 2026-11-02 · ⚠ `vendor numbers`</sub>
 
 - **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)** — A graded course from a first call through each primitive, state shapes and criteria, to ticket triage and a multi-step workflow, mirroring all four official patterns.
   <sub>`Tutorial` · ★1k+ · `Py` · `choice` · `score` · `noul` · call site [`models/jev/06-criteria.py`](https://github.com/daveebbelaar/ai-cookbook/blob/HEAD/models/jev/06-criteria.py), read 2026-09-22</sub>

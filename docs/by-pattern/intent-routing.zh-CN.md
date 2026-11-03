@@ -4,11 +4,11 @@
 
 _判断用户意图，把请求分流到正确的分支。_
 
-这个决策的全部已收录例子 —— 共 42 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 46 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#intent-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#intent-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 31 · 接口形态 0 · 仅示例 0 · 独立报告 3 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 35 · 接口形态 0 · 仅示例 0 · 独立报告 3 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -80,7 +80,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-voice-browser](https://github.com/moritzkremb/jev-voice-browser)** — 语音驱动的浏览器控制：目标选项每次请求都按当前实时元素列表重建，并且总是包含一个 none 选项。
   <sub>`开源项目` · ★100+ · `JS` · `choice` · `score` · `noul` · 调用点 [`src/jev.js`](https://github.com/moritzkremb/jev-voice-browser/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
 
-- **[mu](https://github.com/qybaihe/mu)** — 基于 pi 的编程 Agent（命令行和桌面端），在 38 个决策点上问 Jev：工具输出的哪些片段进上下文、哪些过期的工具结果可以丢掉、被规则拦下的命令是不是用户要的、抓取的网页和 MCP 输出里有没有注入的指令。 <sub>(机翻)</sub>
+- **[mu](https://github.com/qybaihe/mu)** — 基于 pi 的编程 Agent（命令行和桌面端），在 40 个决策点上问 Jev：工具输出的哪些片段进上下文、哪些过期的工具结果可以丢掉、被规则拦下的命令是不是用户要的、抓取的网页和 MCP 输出里有没有注入的指令。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · qybaihe · `TS` · `choice` · `noul` · `score` · 调用点 [`packages/kyrn-judge/src/providers/typesafe.ts`](https://github.com/qybaihe/mu/blob/HEAD/packages/kyrn-judge/src/providers/typesafe.ts) · ⚠ `作者自荐`</sub>
 
 - **[taskuary](https://github.com/ldbumble/taskuary)** — 本地优先的工作助手：把邮件、聊天和工单变成任务，交给你的编程智能体去做，未经你批准什么都不会发出。配置 TypeSafe 密钥后由 Jev 分诊：状态里带上你的资料和过往判断，用 noul 按你会怎么判断来提问，例如这一项要不要建成任务。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
@@ -119,6 +119,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Example: confidence-gated escalation](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/02-confidence-gate/main.py)** — 带「自动执行或转人工」闸门的路由；策略函数刻意留空 —— 阈值该定在哪，是你的决定。
   <sub>`代码片段` · `Py` · `choice` · 调用点 [`examples/02-confidence-gate/main.py`](https://github.com/kydlikebtc/awesome-jev/blob/HEAD/examples/02-confidence-gate/main.py)，2026-09-22 阅读 · ⚠ `代码未实测`</sub>
 
+- **[Gatekeeper](https://github.com/AgriciDaniel/gatekeeper)** — Claude Code 钩子，在 AI 自行挑选之前决定由哪个智能体或技能处理一条提示：YAML 规则手册先处理代码能判定的部分，其余的由 Jev 以 Choice 回答归哪个处理者，再按置信区间转成转交、建议、确认、上报、拦截或放行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · AgriciDaniel · `Py` · `choice` · `noul` · 调用点 [`gatekeeper/jev.py`](https://github.com/AgriciDaniel/gatekeeper/blob/HEAD/gatekeeper/jev.py)，2026-11-01 模型阅读</sub>
+
+- **[Gut](https://github.com/vinibrsl/gut)** — 用于 LLM 决策的 Elixir DSL：Gut.feel(subject, question, choices) 返回你给定的某个 Elixir 值，例如应处理某张工单的团队。其 Jev 适配器通过 ReqLLM 以一个 Choice 问题提问；其他适配器可用任意 ReqLLM 模型、Ollama 或你自己的代码。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · vinibrsl · `Ex` · `choice` · 调用点 [`lib/gut/req_llm/jev.ex`](https://github.com/vinibrsl/gut/blob/HEAD/lib/gut/req_llm/jev.ex)，2026-11-02 模型阅读</sub>
+
 - **[Hey Jev](https://github.com/henryklunaris/hey-jev)** — macOS 语音助手：本地 Whisper 转写指令后，一次 Jev 请求同时问完所有问题（请求类别、是否复合、目标、应用、动作、音量级别），题型有 `choice`、`noul` 和 `score`；代码通过 AppleScript 执行动作，只有常识性问题才交给 LLM。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · henryklunaris · `Py` · `choice` · `noul` · `score` · 调用点 [`siri.py`](https://github.com/henryklunaris/hey-jev/blob/HEAD/siri.py)，2026-10-29 模型阅读 · ⚠ `无许可证` `需第三方密钥`</sub>
 
@@ -134,6 +140,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)** — 每周一个的市场销售（GTM）实验，均用 Jev 完成并与 Claude 对比：线索分拣和路由、交易风险、回复分拣、从通话摘要中提取 MEDDPICC 字段、重复账户识别、已流失交易的重新激活，另有一个 MCP 服务器。共享客户端在取整前减去实测的 0.30 分数偏差。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · deepdave98 · `Py` · `noul` · `choice` · `score` · 调用点 [`common/jev.py`](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py)，2026-10-31 模型阅读 · ⚠ `无许可证`</sub>
 
+- **[Jev steer or queue](https://github.com/Larkspur-Wang/Jev_steer_or_queue)** — 面向 Claude Code（以及较弱支持的 Codex CLI）的钩子：在智能体忙碌时你又发来一条消息，由 Jev 判断该如何处理——立即引导当前任务、作为独立请求排队到本轮结束后执行，还是中断并结束本轮。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · Larkspur-Wang · `Py` · `choice` · `noul` · 调用点 [`claude-code/scripts/jev_router.py`](https://github.com/Larkspur-Wang/Jev_steer_or_queue/blob/HEAD/claude-code/scripts/jev_router.py)，2026-11-02 模型阅读</sub>
+
 - **[jev-eval](https://github.com/Shogo-nfrealmusic/jev-eval)** — 第三方在相同条件下对比 Jev 与两款 LLM：为面向日本游客的摄影服务路由预订咨询，共六十条四种语言的合成消息。 <sub>(机翻)</sub>
   <sub>`基准测试` · shogo-nfrealmusic · `TS` · 调用点 [`src/jev.ts`](https://github.com/Shogo-nfrealmusic/jev-eval/blob/HEAD/src/jev.ts)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
 
@@ -148,6 +157,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — LangChain 集成：一个分类器，外加用于模型路由、以及在高风险工具调用执行前拦截它的实验性 middleware。
   <sub>`平台集成` · `Py` · `choice` · `score` · `noul` · ⚠ `需早期访问`</sub>
+
+- **[RoboDiag Harness](https://github.com/yuebit/robodiag-harness)** — 面向 ROS 2 机器人的诊断工具：由 Jev 把每个请求分为查询、诊断、操作或闲聊，并在诊断时挑选下一个只读的取证工具。代码要求诊断结束前至少有一项健康测试和一次实时测量，再由聊天模型解释证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · yuebit · `Py` · `choice` · 调用点 [`robodiag_jev.py`](https://github.com/yuebit/robodiag-harness/blob/HEAD/robodiag_jev.py)，2026-11-01 模型阅读</sub>
 
 - **[Using TypeSafe Jev with the AI SDK](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk)** — Vercel 最完整的实操指南：单问题与多问题调用、按概率阈值路由，以及用 mock evaluation 模型写单元测试。
   <sub>`教程` · `TS` · `noul` · `choice` · `score`</sub>
