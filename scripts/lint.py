@@ -275,59 +275,70 @@ def type_ok(value: Any, expected: str) -> bool:
 
 def validate(value: Any, schema: dict, path: str) -> Findings:
     """Walk `schema` against `value` and return every mismatch as an error."""
-    report = Report()
-    if "type" in schema and not type_ok(value, schema["type"]):
-        report.err(path, f"expected {schema['type']}, got {type(value).__name__}")
-        return report.findings()
+    errors: list[str] = []
+    # The schema type each exact class always satisfies; type_ok decides the rest.
+    exact_type = {dict: "object", list: "array", str: "string", int: "integer",
+                  float: "number", bool: "boolean", type(None): "null"}
 
-    if "enum" in schema and value not in schema["enum"]:
-        allowed = ", ".join(map(str, schema["enum"]))
-        report.err(path, f"{value!r} is not one of: {allowed}")
+    def _walk(value: Any, schema: dict, path: str) -> None:
+        # One shared list for the whole walk, not a Report per node.
+        if "type" in schema:
+            expected = schema["type"]
+            if exact_type.get(type(value)) != expected and not type_ok(value, expected):
+                errors.append(f"{path}: expected {expected}, got {type(value).__name__}")
+                return
 
-    if isinstance(value, str):
-        if "minLength" in schema and len(value) < schema["minLength"]:
-            report.err(path, f"shorter than minLength {schema['minLength']}")
-        if "maxLength" in schema and len(value) > schema["maxLength"]:
-            report.err(path, f"{len(value)} chars exceeds maxLength {schema['maxLength']}")
-        if "pattern" in schema and not re.search(schema["pattern"], value):
-            report.err(path, f"{value!r} does not match {schema['pattern']}")
-        if schema.get("format") == "uri" and not URI_RE.match(value):
-            report.err(path, f"{value!r} is not a URI")
+        if "enum" in schema and value not in schema["enum"]:
+            allowed = ", ".join(map(str, schema["enum"]))
+            errors.append(f"{path}: {value!r} is not one of: {allowed}")
 
-    if isinstance(value, (int, float)) and not isinstance(value, bool):
-        if "minimum" in schema and value < schema["minimum"]:
-            report.err(path, f"{value} below minimum {schema['minimum']}")
-        if "maximum" in schema and value > schema["maximum"]:
-            report.err(path, f"{value} above maximum {schema['maximum']}")
+        # A value is at most one of str, dict, list or number, so one branch applies.
+        if isinstance(value, str):
+            if "minLength" in schema and len(value) < schema["minLength"]:
+                errors.append(f"{path}: shorter than minLength {schema['minLength']}")
+            if "maxLength" in schema and len(value) > schema["maxLength"]:
+                errors.append(f"{path}: {len(value)} chars exceeds maxLength {schema['maxLength']}")
+            if "pattern" in schema and not re.search(schema["pattern"], value):
+                errors.append(f"{path}: {value!r} does not match {schema['pattern']}")
+            if schema.get("format") == "uri" and not URI_RE.match(value):
+                errors.append(f"{path}: {value!r} is not a URI")
 
-    if isinstance(value, list):
-        if "minItems" in schema and len(value) < schema["minItems"]:
-            report.err(path, f"needs at least {schema['minItems']} item(s)")
-        if "maxItems" in schema and len(value) > schema["maxItems"]:
-            report.err(path, f"has {len(value)} items, max {schema['maxItems']}")
-        if schema.get("uniqueItems"):
-            seen: list[Any] = []
-            for item in value:
-                if item in seen:
-                    report.err(path, f"duplicate item {item!r}")
-                seen.append(item)
-        if "items" in schema:
-            for i, item in enumerate(value):
-                report.add(validate(item, schema["items"], f"{path}[{i}]"))
+        elif isinstance(value, dict):
+            props = schema.get("properties", {})
+            for key in schema.get("required", []):
+                if key not in value:
+                    errors.append(f"{path}: missing required field {key!r}")
+            if schema.get("additionalProperties") is False:
+                for key in value:
+                    if key not in props:
+                        errors.append(f"{path}: unknown field {key!r}")
+            for key, sub in props.items():
+                if key in value:
+                    _walk(value[key], sub, f"{path}.{key}")
 
-    if isinstance(value, dict):
-        props = schema.get("properties", {})
-        for key in schema.get("required", []):
-            if key not in value:
-                report.err(path, f"missing required field {key!r}")
-        if schema.get("additionalProperties") is False:
-            for key in value:
-                if key not in props:
-                    report.err(path, f"unknown field {key!r}")
-        for key, sub in props.items():
-            if key in value:
-                report.add(validate(value[key], sub, f"{path}.{key}"))
-    return report.findings()
+        elif isinstance(value, list):
+            if "minItems" in schema and len(value) < schema["minItems"]:
+                errors.append(f"{path}: needs at least {schema['minItems']} item(s)")
+            if "maxItems" in schema and len(value) > schema["maxItems"]:
+                errors.append(f"{path}: has {len(value)} items, max {schema['maxItems']}")
+            if schema.get("uniqueItems"):
+                seen: list[Any] = []
+                for item in value:
+                    if item in seen:
+                        errors.append(f"{path}: duplicate item {item!r}")
+                    seen.append(item)
+            if "items" in schema:
+                for i, item in enumerate(value):
+                    _walk(item, schema["items"], f"{path}[{i}]")
+
+        elif isinstance(value, (int, float)) and not isinstance(value, bool):
+            if "minimum" in schema and value < schema["minimum"]:
+                errors.append(f"{path}: {value} below minimum {schema['minimum']}")
+            if "maximum" in schema and value > schema["maximum"]:
+                errors.append(f"{path}: {value} above maximum {schema['maximum']}")
+
+    _walk(value, schema, path)
+    return Findings(tuple(errors))
 
 
 # --------------------------------------------------------------------------
