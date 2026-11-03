@@ -21,7 +21,9 @@ committed file can trail a merge by one bot commit that starts no Pages run.
 
 For people and search engines it writes plain pages too (scripts/site_pages.py,
 since 2026-10-24): one per decision pattern in each language, what's new week
-by week with an Atom feed in each language, and sitemap.xml.
+by week with an Atom feed in each language, and sitemap.xml; and since
+2026-11-03 the launch board's (scripts/site_products.py): one page per product
+and per maker, and the board, from launches/ and makers/.
 
 `--deploy` also writes the link-preview tags (description, og:*, twitter:card)
 into site/index.html, between its `meta` markers. They quote the catalogue
@@ -49,6 +51,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import _stats  # noqa: E402
+import launches  # noqa: E402
 import site_api  # noqa: E402
 import site_pages  # noqa: E402
 from _markers import read_block, replace_block  # noqa: E402
@@ -124,7 +127,10 @@ def page_files() -> dict[str, str]:
     retired = json.loads((ROOT / "retired.json").read_text())
     patterns = json.loads((ROOT / "patterns.json").read_text())["patterns"]
     taxonomy = json.loads((ROOT / "taxonomy.json").read_text())
-    return site_pages.pages(catalog, retired, patterns, taxonomy)
+    return site_pages.pages(
+        catalog, retired, patterns, taxonomy,
+        launch_weeks=launches.weeks(), maker_profiles=launches.makers(),
+    )
 
 
 def api_files(stats: dict) -> dict[str, str]:
@@ -168,8 +174,9 @@ def main(argv: list[str] | None = None) -> int:
     pages = page_files()
     site_pages.write_pages(SITE, pages)
     print(
-        f"wrote {sum(1 for rel in pages if rel.startswith(site_pages.PATTERN_DIR + '/'))} page(s) under "
-        f"site/{site_pages.PATTERN_DIR}/, and {', '.join(site_pages.TOP_FILES)}"
+        "wrote " + ", ".join(
+            f"{sum(1 for rel in pages if rel.startswith(d + '/'))} page(s) under site/{d}/" for d in site_pages.DIRS
+        ) + f", and {', '.join(site_pages.TOP_FILES)}"
     )
 
     if args.deploy:

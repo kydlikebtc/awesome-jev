@@ -68,6 +68,26 @@ facts and those still under 3 stars and 5 commits with no push in 28 days
 (`scripts/discover_facts.py`). Parked is not declined: a candidate that grows
 returns to "To read" by itself.
 
+## The launch board
+
+Since 2026-11-03 the site has a launch board over the catalogue
+([docs/launches.md](docs/launches.md)): a page per product and per maker, and
+a board that lists each week's new products. The pages are written with the
+others at deploy (`scripts/site_products.py`); nothing about them runs on a
+schedule yet, and they need nothing from a person.
+
+Votes are thumbs-up reactions on a GitHub Discussion per launch. Before any
+launch depends on that, `launch-votes.yml` (Run workflow, with a Discussion's
+number) checks that the workflow's own token can read a Discussion's reactions
+and each voter's account age; it writes counts to the job summary and nothing
+else. It needs Discussions turned on (below).
+
+Every rule of the board is in `scripts/launches.py`, and
+`python3 scripts/check_launches.py` holds `launches/` and `makers/` to them
+in every check run. A closed week's results are never edited by hand: a wrong
+result is fixed by a new rule version or by removing the launch with its
+reason.
+
 ## Merging
 
 1. The weekly upkeep's pull request first, then the daily rolling one. Both
@@ -165,5 +185,7 @@ changed docs page first; write down only what they say, dated.
 
 Repository settings no task can reach: the PyPI publisher for
 `awesome-jev-mcp`, approving workflow runs from forks, the repository
-description (issue #26), and the optional `TRAFFIC_TOKEN` secret the weekly
-traffic snapshot waits for.
+description (issue #26), the optional `TRAFFIC_TOKEN` secret the weekly
+traffic snapshot waits for, and turning on Discussions (Settings, General,
+Features) with a category only maintainers can post in, which the launch
+board's votes need.

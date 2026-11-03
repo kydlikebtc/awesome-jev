@@ -510,6 +510,11 @@ them. If you did, you know best whether it is right.
 
   It is a static image with no counter, and it says the project is
   catalogued, nothing about its quality.
+- **Give it a page of its own and launch it.** Every product row has a page on
+  the site, and its makers can put it on the weekly launch board, where people
+  vote ([docs/launches.md](docs/launches.md)). The confirm form above also
+  takes your product's one line (`tagline`) and a link where it runs
+  (`demo_url`), in your words.
 - **Have it removed** with the
   [Report a problem with an entry](https://github.com/kydlikebtc/awesome-jev/issues/new?template=entry-problem.yml)
   form ("This is my project and I want it removed").

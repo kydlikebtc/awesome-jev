@@ -90,11 +90,18 @@ class PagesTest(unittest.TestCase):
     def test_one_page_per_pattern_and_language_then_what_s_new_the_feeds_and_the_sitemap(self):
         expected = {"patterns/index.html", "new.html", "new.zh.html", "feed.xml", "feed.zh.xml", "sitemap.xml"}
         expected |= {f"patterns/{p['key']}{suffix}.html" for p in PATTERNS for suffix in ("", ".zh")}
+        # The launch board's (site_products.py, since 2026-11-03): a page per
+        # product (a project, plugin, SDK or integration with code that is an
+        # example of Jev; delta is flagged not-jev, the article is no product),
+        # the makers' index (none of these rows names a maker) and the board.
+        expected |= {"products/alpha.html", "products/beta.html", "products/gamma.html",
+                     "products/overview-unread.html", "makers/index.html", "launches.html", "launches.zh.html"}
         self.assertEqual(set(self.files), expected)
         self.assertEqual(
             {rel for rel in self.files if "/" not in rel and rel != "sitemap.xml"} | {"sitemap.xml"},
             set(site_pages.TOP_FILES),
         )
+        self.assertEqual({rel.split("/")[0] for rel in self.files if "/" in rel}, set(site_pages.DIRS))
 
     def test_two_builds_from_the_same_rows_in_any_order_write_the_same_bytes(self):
         shuffled = CATALOG[:]
@@ -281,8 +288,9 @@ class SitemapTest(unittest.TestCase):
     def test_the_sitemap_lists_the_app_and_every_page(self):
         files = build()
         urls = [loc.text for loc in ET.fromstring(files["sitemap.xml"]).iter(f"{SITEMAP}loc")]
-        pages = {rel for rel in files if rel.endswith(".html") and rel != "patterns/index.html"}
-        self.assertEqual(sorted(urls), sorted({site_pages.SITE_URL, site_pages.SITE_URL + "patterns/"}
+        pages = {rel for rel in files if rel.endswith(".html") and not rel.endswith("/index.html")}
+        self.assertEqual(sorted(urls), sorted({site_pages.SITE_URL, site_pages.SITE_URL + "patterns/",
+                                               site_pages.SITE_URL + "makers/"}
                                               | {site_pages.SITE_URL + rel for rel in pages}))
         self.assertEqual(len(urls), len(set(urls)))
 
@@ -399,7 +407,8 @@ class RealCatalogueTest(unittest.TestCase):
 
 class WiringTest(unittest.TestCase):
     def test_every_page_is_ignored_by_git(self):
-        for rel in (*site_pages.TOP_FILES, "patterns/index.html", "patterns/overview.zh.html"):
+        for rel in (*site_pages.TOP_FILES, "patterns/index.html", "patterns/overview.zh.html",
+                    "products/alpha.html", "makers/index.html", "makers/someone.html"):
             done = subprocess.run(["git", "check-ignore", "-q", f"site/{rel}"], cwd=ROOT)
             self.assertEqual(done.returncode, 0, f"site/{rel} is built at deploy and must never be committed")
 
@@ -407,6 +416,8 @@ class WiringTest(unittest.TestCase):
         text = (ROOT / ".github" / "workflows" / "pages.yml").read_text()
         paths = text.split("    paths:\n", 1)[1].split("\n  workflow_dispatch:", 1)[0]
         self.assertIn('      - "scripts/site_pages.py"\n', paths)
+        for path in ("scripts/site_products.py", "scripts/launches.py", "launches/**", "makers/**"):
+            self.assertIn(f'      - "{path}"\n', paths)
 
     def test_the_app_links_the_pages_and_offers_the_feeds(self):
         text = (ROOT / "site" / "index.html").read_text()

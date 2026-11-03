@@ -64,6 +64,7 @@ STRINGS = {
         "other": "中文",
         "patterns": "Decision patterns",
         "new": "What's new",
+        "launches": "Launches",
         "feed": "Feed",
         "github": "GitHub",
         "pattern_title": "{name}: public Jev examples · awesome-jev",
@@ -108,6 +109,7 @@ STRINGS = {
         "other": "English",
         "patterns": "决策模式",
         "new": "新增与退役",
+        "launches": "发布榜",
         "feed": "订阅",
         "github": "GitHub",
         "pattern_title": "{name}：Jev 公开示例 · awesome-jev",
@@ -274,6 +276,7 @@ def shell(lang: str, *, path: str, title: str, description: str, body: str,
     nav = [
         f'<a href="{base}{app_link(lang)}">{esc(s["app"])}</a>',
         f'<a href="{base}{PATTERN_DIR}/">{esc(s["patterns"])}</a>',
+        f'<a href="{base}{launches_path(lang)}">{esc(s["launches"])}</a>',
         f'<a href="{base}{new_path(lang)}">{esc(s["new"])}</a>',
         f'<a href="{base}{feed_path(lang)}">{esc(s["feed"])}</a>',
         f'<a href="{REPOSITORY}">{esc(s["github"])} ↗</a>',
@@ -311,6 +314,11 @@ def pattern_path(key: str, lang: str) -> str:
 
 def new_path(lang: str) -> str:
     return "new.html" if lang == "en" else "new.zh.html"
+
+
+def launches_path(lang: str) -> str:
+    """The launch board (site_products.py)."""
+    return "launches.html" if lang == "en" else "launches.zh.html"
 
 
 def feed_path(lang: str) -> str:
@@ -543,8 +551,14 @@ def sitemap(paths: list[str]) -> str:
     )
 
 
-def pages(catalog: list[dict], retired: list[dict], patterns: list[dict], taxonomy: dict) -> dict[str, str]:
-    """Every file this module writes: path relative to site/ → text."""
+def pages(catalog: list[dict], retired: list[dict], patterns: list[dict], taxonomy: dict, *,
+          launch_weeks: list[dict] = (), maker_profiles: dict[str, dict] | None = None) -> dict[str, str]:
+    """Every file this module writes: path relative to site/ → text. Beside
+    its own pages, the launch board's (site_products.py): one per product and
+    per maker, and the board, built from `launch_weeks` (launches/*.json) and
+    `maker_profiles` (makers/*.json)."""
+    import site_products  # it builds on this module's shell, so it is imported here
+
     labels = Labels(taxonomy)
     all_weeks = weeks(catalog, retired)
     files: dict[str, str] = {f"{PATTERN_DIR}/index.html": patterns_index(patterns, catalog)}
@@ -554,21 +568,27 @@ def pages(catalog: list[dict], retired: list[dict], patterns: list[dict], taxono
     for lang in LANGS:
         files[new_path(lang)] = new_page(all_weeks, lang, labels)
         files[feed_path(lang)] = feed(all_weeks, lang, labels)
-    listed = [""] + [f"{PATTERN_DIR}/"] + [
-        path for path in files if path.endswith(".html") and path != f"{PATTERN_DIR}/index.html"
+    files.update(site_products.pages(
+        catalog, patterns, labels, launch_weeks=list(launch_weeks), maker_profiles=maker_profiles or {},
+    ))
+    listed = [""] + [f"{PATTERN_DIR}/", f"{site_products.MAKER_DIR}/"] + [
+        path for path in files if path.endswith(".html") and not path.endswith("/index.html")
     ]
     files["sitemap.xml"] = sitemap(listed)
     return files
 
 
-# The files and the one directory pages() writes, so a rewrite can clear them.
-TOP_FILES = ("new.html", "new.zh.html", "feed.xml", "feed.zh.xml", "sitemap.xml")
+# The files and the directories pages() writes, so a rewrite can clear them.
+TOP_FILES = ("new.html", "new.zh.html", "launches.html", "launches.zh.html", "feed.xml", "feed.zh.xml", "sitemap.xml")
+DIRS = (PATTERN_DIR, "products", "makers")
 
 
 def write_pages(site: pathlib.Path, files: dict[str, str]) -> None:
-    """Replace site/patterns/ and the top-level files with `files`, so a
-    pattern that left patterns.json leaves no page behind."""
-    shutil.rmtree(site / PATTERN_DIR, ignore_errors=True)
+    """Replace the directories in DIRS and the top-level files with `files`,
+    so a pattern that left patterns.json, or a product that left the
+    catalogue, leaves no page behind."""
+    for directory in DIRS:
+        shutil.rmtree(site / directory, ignore_errors=True)
     for name in TOP_FILES:
         (site / name).unlink(missing_ok=True)
     for rel, text in files.items():
@@ -580,8 +600,11 @@ def write_pages(site: pathlib.Path, files: dict[str, str]) -> None:
 def page_problems(site: pathlib.Path, files: dict[str, str]) -> list[str]:
     """Why the pages under site/ are not what a rebuild writes, or []."""
     problems = []
-    found = {p.relative_to(site).as_posix() for p in (site / PATTERN_DIR).rglob("*") if p.is_file()} \
-        if (site / PATTERN_DIR).is_dir() else set()
+    found = {
+        p.relative_to(site).as_posix()
+        for directory in DIRS if (site / directory).is_dir()
+        for p in (site / directory).rglob("*") if p.is_file()
+    }
     found |= {name for name in TOP_FILES if (site / name).is_file()}
     for rel in sorted(set(files) - found):
         problems.append(f"site/{rel} is missing; run assemble_site.py")

@@ -88,6 +88,8 @@ JSON_FILES = (
     "collections.json",
     "picker.json",
     "schema/entry.schema.json",
+    "schema/launch.schema.json",
+    "schema/maker.schema.json",
 )
 JSON_CHECK = (
     "import json\n"
@@ -127,6 +129,10 @@ STEPS = (
         "lint", "Entries are valid against the schema and each other", ("python3", "scripts/lint.py"), base=True,
     ),
     Step("collections", "Curated entry points resolve", ("python3", "scripts/check_collections.py")),
+    Step(
+        "launches", "Launch weeks and maker profiles keep the board's rules",
+        ("python3", "scripts/check_launches.py"),
+    ),
     # Before regenerating, as in CI: no test may assume the committed
     # generated files are current, because a pull request may leave them stale.
     Step(

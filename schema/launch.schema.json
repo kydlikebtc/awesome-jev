@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/kydlikebtc/awesome-jev/schema/launch.schema.json",
+  "title": "awesome-jev launch week",
+  "description": "One week of the launch board: launches/<YYYY>-W<ww>.json, named by its ISO week (docs/launches.md). Every launch is a catalogued product (catalog.json `slug`) put forward by its maker or a hunter in a launch issue. Votes are thumbs-up reactions on the launch's GitHub Discussion; the file keeps only the counts written when the week closed, never who voted. scripts/check_launches.py holds every file to this schema and to the rules the schema cannot say (scripts/launches.py).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["week", "status", "launches"],
+  "properties": {
+    "week": {
+      "description": "ISO week, the same as the file name: Monday 00:00 UTC to Sunday 23:59 UTC.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-W[0-9]{2}$"
+    },
+    "status": {
+      "description": "`scheduled`: launches are being added and the board has not opened. `open`: the week is running; counts are hidden and launches are shown in a shuffled order. `closed`: the week ended and every launch still on the board carries its `result`.",
+      "type": "string",
+      "enum": ["scheduled", "open", "closed"]
+    },
+    "closed_on": {
+      "description": "The day the results were written. Only on a closed week.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "rules": {
+      "description": "Which weighting rule the results were counted under (scripts/launches.py RULES). Only on a closed week.",
+      "type": "string",
+      "pattern": "^v[0-9]+$"
+    },
+    "launches": {
+      "type": "array",
+      "maxItems": 60,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["product", "issue", "submitted_by", "role", "submitted_on", "tagline", "status"],
+        "properties": {
+          "product": {
+            "description": "The catalogued row's slug. A product launches at most once in 60 days.",
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "issue": {
+            "description": "The launch issue's number in this repository.",
+            "type": "integer",
+            "minimum": 1
+          },
+          "discussion": {
+            "description": "The number of the Discussion people vote on. Absent until the post exists.",
+            "type": "integer",
+            "minimum": 1
+          },
+          "submitted_by": {
+            "description": "GitHub login that opened the launch issue.",
+            "type": "string",
+            "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$"
+          },
+          "role": {
+            "description": "`maker`: submitted_by is in the product's `makers`. `hunter`: someone else put it forward; the row's makers can still claim it.",
+            "type": "string",
+            "enum": ["maker", "hunter"]
+          },
+          "submitted_on": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+          },
+          "tagline": {
+            "description": "The line shown on the board for this launch, as submitted.",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 80
+          },
+          "tagline_zh": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 60
+          },
+          "status": {
+            "description": "`scheduled`: on the board. `held`: waiting for a person, as docs/held.txt holds a candidate; not shown. `removed`: taken off the board, with the reason, which stays in the file.",
+            "type": "string",
+            "enum": ["scheduled", "held", "removed"]
+          },
+          "reason": {
+            "description": "Why a launch is held or removed. Required for both, absent otherwise.",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 300
+          },
+          "result": {
+            "description": "Written when the week closes, for each launch still scheduled.",
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["votes", "counted", "discounted", "rank"],
+            "properties": {
+              "votes": {
+                "description": "Thumbs-up reactions on the Discussion cast inside the week.",
+                "type": "integer",
+                "minimum": 0
+              },
+              "counted": {
+                "description": "The votes as weighted under `rules`; the board ranks by this.",
+                "type": "number",
+                "minimum": 0
+              },
+              "discounted": {
+                "description": "How many of `votes` counted for less than one: a maker's or the submitter's own, or an account younger than the rule allows.",
+                "type": "integer",
+                "minimum": 0
+              },
+              "rank": {
+                "description": "Place on the week's board, from 1. Ties go to the stronger evidence, then the earlier submission.",
+                "type": "integer",
+                "minimum": 1
+              },
+              "badges": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {"type": "string", "enum": ["week-1", "week-2", "week-3"]}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
