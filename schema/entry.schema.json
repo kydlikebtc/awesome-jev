@@ -56,8 +56,26 @@
       "description": "True when summary_zh was machine-translated rather than written by hand. The READMEs report the split rather than claiming every row is hand-written. It records who wrote the words, not how good they are: a translation a model wrote or drafted keeps it however a person edited it, and only a person's own translation clears it. docs/zh-queue.md lists these rows for a person to replace.",
       "type": "boolean"
     },
+    "tagline": {
+      "description": "The product's one line in its maker's words, for its page and the launch board (docs/launches.md). Set only from a maker's own submission: a launch issue, a confirm-entry issue or a pull request by a login in `makers`. Never written by a model and never copied from the repository description, which `summary` already carries.",
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 80
+    },
+    "tagline_zh": {
+      "description": "Chinese tagline. The maker's own words when they gave them; a translation sets zh_machine like summary_zh. Only beside tagline.",
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 60
+    },
     "url": {
       "description": "Canonical link for this example. The one link a reader is told to open.",
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://"
+    },
+    "demo_url": {
+      "description": "Where the product runs without installing anything, as its maker gives it (a hosted app, a playground). Shown as a link on its page; nothing from it is embedded.",
       "type": "string",
       "format": "uri",
       "pattern": "^https://"
@@ -194,6 +212,17 @@
           "type": "string",
           "format": "uri"
         }
+      }
+    },
+    "makers": {
+      "description": "GitHub logins of the people who made the product and said so here: the owner or a collaborator of its repository, checked when the launch or confirm-entry issue was read (docs/launches.md). A login here gets the row on its maker page and its votes on the product's launches are not counted. Without makers, the maker page comes from author.url.",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$"
       }
     },
     "repo": {

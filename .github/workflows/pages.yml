@@ -3,7 +3,8 @@
 # files agents read from this domain: retired.json, the entry schema, llms.txt
 # and one JSON file per decision pattern under api/v1/ (assemble_site.py); and
 # the plain pages people and search engines read: one per decision pattern,
-# what's new with its Atom feeds, and sitemap.xml (site_pages.py).
+# what's new with its Atom feeds, and sitemap.xml (site_pages.py); and the
+# launch board's pages, one per product and per maker (site_products.py).
 #
 # Injection review: no `github.event.*` value is referenced anywhere in this
 # workflow, so no attacker-controlled string can reach a `run:` block. The one
@@ -25,6 +26,8 @@ on:
       - "retired.json"
       - "schema/**"
       - "llms.txt"
+      - "launches/**"
+      - "makers/**"
       - "scripts/_stats.py"
       - "scripts/_markers.py"
       - "scripts/assemble_site.py"
@@ -38,6 +41,10 @@ on:
       - "scripts/sibling_lists.py"
       - "scripts/site_api.py"
       - "scripts/site_pages.py"
+      - "scripts/site_products.py"
+      - "scripts/launches.py"
+      - "scripts/evidence_url.py"
+      - "src/awesome_jev_mcp/evidence_url.py"
       - "scripts/thresholds.py"
       - "scripts/wire.py"
       - "src/awesome_jev_mcp/query.py"

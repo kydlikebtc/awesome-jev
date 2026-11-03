@@ -487,6 +487,26 @@ def graphql_request(query: str, variables: dict | None = None) -> dict | None:
     return None
 
 
+def graphql_mutation(query: str, variables: dict | None = None) -> dict | None:
+    """POST a GraphQL mutation once and return the whole answer, or None
+    without a token or a usable answer. Never retried: a mutation that timed
+    out may still have happened, and a second try could do it twice (two vote
+    posts for one launch). A caller that must be sure looks first, as
+    launch_week.py does, and runs again later. Raises RateLimited."""
+    if not token():
+        return None
+    payload = json.dumps({"query": query, **({"variables": variables} if variables else {})}).encode()
+    req = urllib.request.Request(f"{API}/graphql", data=payload, headers=_headers(None), method="POST")
+    status, body, _ = _request(req, "graphql")
+    if not 200 <= status < 300:
+        return None
+    try:
+        answer = json.loads(body)
+    except ValueError:
+        return None
+    return answer if isinstance(answer, dict) else None
+
+
 def graphql(query: str) -> dict | None:
     """The `data` of a read-only GraphQL query, or None. For informational
     callers — whether a custom social preview is uploaded is not exposed over

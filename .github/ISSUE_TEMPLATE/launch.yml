@@ -1,0 +1,63 @@
+name: Launch a product
+description: Put a catalogued product on next week's launch board
+labels: ["launch"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The launch board (docs/launches.md) is a weekly list of products built on
+        Jev. A launch runs Monday to Sunday (UTC); people vote with a thumbs-up on
+        its Discussion, and the week closes with a rank. Votes and the catalogue's
+        evidence are shown side by side and never added together.
+
+        A launch needs the product's row in the catalogue first. If it has none,
+        use "Add an entry", and launch it once the row is in.
+
+        Submitted by Thursday 23:59 UTC, it is on next week's board; later, the
+        week after. A check reads this issue when you open it and answers here.
+
+  - type: input
+    id: product
+    attributes:
+      label: Product
+      description: The row's slug (the part after `#` in its address on the site), or the project's GitHub URL.
+      placeholder: https://github.com/you/your-project
+    validations:
+      required: true
+
+  - type: dropdown
+    id: role
+    attributes:
+      label: Who is launching it?
+      options:
+        - "I made it, or maintain it (maker)"
+        - "Someone else made it (hunter)"
+    validations:
+      required: true
+
+  - type: input
+    id: tagline
+    attributes:
+      label: One line about it
+      description: >
+        What it does, in your own words, at most 80 characters. Say what it does,
+        not how good it is. Shown on the board and its Discussion.
+      placeholder: Routes every support ticket with one Jev choice
+    validations:
+      required: true
+
+  - type: input
+    id: tagline_zh
+    attributes:
+      label: The same line in Chinese (optional)
+      description: At most 60 characters. Leave it empty and the English line is shown.
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: The product calls Jev to decide something, and its row in the catalogue says where
+          required: true
+        - label: I will not buy votes or ask accounts to vote in bulk; a launch found gamed is removed, with the reason kept
+          required: true

@@ -120,6 +120,11 @@ FULL = {
     "flags": ["unverified-claims"],
     "notes": "Performance claims are the author's own.",
     "notes_zh": "demo",
+    # A maker's own words and demo (L3 of the launch board, docs/launches.md).
+    "tagline": "Routes demo tickets with one Choice call",
+    "tagline_zh": "用一次 Choice 调用分派工单",
+    "demo_url": "https://someone.github.io/demo-row/",
+    "makers": ["someone"],
 }
 
 # An alternative that records the interface it offers (I48): `wire` belongs

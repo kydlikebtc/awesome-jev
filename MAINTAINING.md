@@ -68,6 +68,50 @@ facts and those still under 3 stars and 5 commits with no push in 28 days
 (`scripts/discover_facts.py`). Parked is not declined: a candidate that grows
 returns to "To read" by itself.
 
+## The launch board
+
+Since 2026-11-03 the site has a launch board over the catalogue
+([docs/launches.md](docs/launches.md)): a page per product and per maker, a
+page per closed week, a badge per product that placed, and the board itself.
+The pages are written with the others at deploy (`scripts/site_products.py`).
+
+A week goes like this:
+
+1. **Any day:** someone opens a launch issue (the "Launch a product" form).
+   `launch-intake.yml` answers it with a comment from
+   `scripts/launch_intake.py`: ready for a week, held for a person and why,
+   or not launched and what to change. It only comments.
+2. **Friday, before the merge:** `python3 scripts/launch_intake.py --collect
+   <next week>`, with a token in `GITHUB_TOKEN` for the reads, takes every open
+   launch issue, writes `launches/<week>.json`, and adds a confirmed maker's
+   login and line to their row. Read what it held: confirm a maker by adding
+   them to the row's `makers` and setting the launch's role to `maker` and
+   status to `scheduled` (dropping `reason`), or leave it held. It reaches
+   `main` with the Friday merge like any other row change.
+3. **Monday 00:05 UTC:** `launch-week.yml` runs `scripts/launch_week.py
+   --monday`. It closes last week (reads the votes, holds a launch whose votes
+   look like a ring of new accounts, ranks the rest, writes the counts) and
+   opens this week (one vote post per launch in the `Launches` category),
+   then pushes the week files to `main` the way `metadata.yml` pushes its
+   refresh, checks first, and rebuilds the site. With nothing on file it
+   does nothing and still succeeds, so the watchdog sees it run.
+4. **After a close:** a launch the close held for a ring waits for a person:
+   set it to `removed` and say why in `reason`, or back to `scheduled`
+   (dropping `reason`, adding `"cleared_by": "<your login>"` so a recount
+   leaves it be), then run `python3 scripts/launch_week.py --close
+   <week>`, which counts the week again, and commit the file. Close the
+   week's launch issues once its file is on `main`.
+
+`launch-votes.yml` (Run workflow, with a Discussion's number) reads one post's
+votes into the job summary and writes nothing else: the check, before the
+first week, that the workflow's token can read reactions and account ages.
+
+Every rule of the board is in `scripts/launches.py`, and
+`python3 scripts/check_launches.py` holds `launches/` and `makers/` to them
+in every check run. A closed week's results are never edited by hand: a wrong
+result is fixed by a new rule version or by removing the launch with its
+reason.
+
 ## Merging
 
 1. The weekly upkeep's pull request first, then the daily rolling one. Both
@@ -165,5 +209,8 @@ changed docs page first; write down only what they say, dated.
 
 Repository settings no task can reach: the PyPI publisher for
 `awesome-jev-mcp`, approving workflow runs from forks, the repository
-description (issue #26), and the optional `TRAFFIC_TOKEN` secret the weekly
-traffic snapshot waits for.
+description (issue #26), the optional `TRAFFIC_TOKEN` secret the weekly
+traffic snapshot waits for, and turning on Discussions (Settings, General,
+Features) with a category named `Launches` in the Announcement format, where
+only maintainers start a discussion and anyone can react: the launch board's
+vote posts go there, and opening a week fails without it.

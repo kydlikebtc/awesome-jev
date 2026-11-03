@@ -56,6 +56,28 @@ body:
         What the summary, the patterns, the primitives the code calls or the flags get
         wrong, and what is true instead. Say what the project does, not how good it is.
 
+  - type: input
+    id: tagline
+    attributes:
+      label: Your product's one line (optional)
+      description: >
+        In your own words, at most 80 characters, for its page and the launch board
+        (docs/launches.md). Only a maker's words are used here; nobody writes one for you.
+      placeholder: Routes every support ticket with one Jev choice
+
+  - type: input
+    id: tagline_zh
+    attributes:
+      label: The same line in Chinese (optional)
+      description: At most 60 characters. Leave it empty and none is shown.
+
+  - type: input
+    id: demo_url
+    attributes:
+      label: Where it runs without installing anything (optional)
+      description: A hosted app or playground, https only. Shown as a link; nothing from it is embedded.
+      placeholder: https://
+
   - type: checkboxes
     id: confirm
     attributes:

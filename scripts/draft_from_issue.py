@@ -86,15 +86,18 @@ CAVEAT_CHOICES = {
 }
 
 
-def parse_form(body: str) -> dict[str, str]:
-    """The form's answers by field name. Only the first heading of each name
-    starts its field, so a heading typed inside an answer stays in that answer."""
+def parse_form(body: str, fields: dict[str, str] | None = None) -> dict[str, str]:
+    """The form's answers by field name (`fields` maps a heading to its name;
+    this form's FIELDS unless another form's are given). Only the first heading
+    of each name starts its field, so a heading typed inside an answer stays in
+    that answer."""
+    fields = FIELDS if fields is None else fields
     sections: dict[str, list[str]] = {}
     current = None
     for line in (body or "").replace("\r\n", "\n").split("\n"):
         heading = re.fullmatch(r"### (.+?)\s*", line)
-        if heading and FIELDS.get(heading.group(1)) and FIELDS[heading.group(1)] not in sections:
-            current = FIELDS[heading.group(1)]
+        if heading and fields.get(heading.group(1)) and fields[heading.group(1)] not in sections:
+            current = fields[heading.group(1)]
             sections[current] = []
         elif current:
             sections[current].append(line)

@@ -460,7 +460,7 @@ class RunnerTest(unittest.TestCase):
         run = FakeRun(check.Options(ci=True), codes={"scripts/lint.py": 1}, event="pull_request")
         out = run.out.getvalue()
         self.assertEqual(out.count("::group::"), out.count("::endgroup::"))
-        self.assertIn("::group::[2/16] lint — ", out)
+        self.assertIn("::group::[2/17] lint — ", out)
         self.assertIn("::error title=Check failed (lint)::", out)
         self.assertIn("Rerun it alone: python3 scripts/check.py --only lint", out)
         self.assertIn(

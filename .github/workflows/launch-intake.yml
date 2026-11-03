@@ -1,0 +1,70 @@
+# Answers a launch issue (the "Launch a product" form) with an automatic check:
+# ready for a week, held for a person and why, or not launched and what to
+# change (scripts/launch_intake.py; L10, L11 and T3 of the 2026-11-03
+# launch-board plan, docs/launches.md).
+#
+# Anyone can open an issue, so this job can only read and comment, like
+# new-entry.yml: it checks out the default branch (an `issues` event always
+# runs the workflow as it is there), reads public facts about the repository
+# and the account, and writes one comment, which a later run rewrites. It
+# commits nothing; the week's file is written by `launch_intake.py --collect`
+# and reaches `main` in a reviewed pull request.
+#
+# Injection review: no `github.event.*` value reaches a `run:` block. The
+# script reads the event payload from the file GitHub writes
+# ($GITHUB_EVENT_PATH); the number it comments on is one it parsed and
+# checked; the dispatched number is passed through `env:` and checked as
+# digits before use.
+name: launch-intake
+
+on:
+  issues:
+    types: [opened, edited]
+  workflow_dispatch:
+    inputs:
+      issue:
+        description: The number of a launch issue to check again
+        required: true
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: launch-intake-${{ github.event.issue.number || inputs.issue }}
+
+jobs:
+  check:
+    name: Check the launch
+    # The form applies the label; an issue without it is not a launch.
+    if: github.event_name == 'workflow_dispatch' || (github.event.issue.state == 'open' && contains(github.event.issue.labels.*.name, 'launch'))
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Check the launch the issue asks for
+        id: read
+        env:
+          # Public reads only; the budget is the workflow token's.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE: ${{ inputs.issue }}
+        run: |
+          if [ -n "$ISSUE" ]; then
+            case "$ISSUE" in *[!0-9]*) echo "issue must be a number"; exit 1;; esac
+            python3 scripts/launch_intake.py --issue "$ISSUE" --out /tmp/comment.md
+          else
+            python3 scripts/launch_intake.py --event "$GITHUB_EVENT_PATH" --out /tmp/comment.md
+          fi
+
+      - name: Comment on the issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUMBER: ${{ steps.read.outputs.number }}
+        run: |
+          # A second run rewrites the first run's comment rather than adding one.
+          gh issue comment "$NUMBER" --edit-last --body-file /tmp/comment.md 2>/dev/null \
+            || gh issue comment "$NUMBER" --body-file /tmp/comment.md

@@ -19,6 +19,15 @@ site/api/
 site/patterns/
 site/new.html
 site/new.zh.html
+# ... and the launch board's: a page per product, per maker and per closed week,
+# the badges, and the board
+# (scripts/site_products.py).
+site/products/
+site/makers/
+site/weeks/
+site/badges/
+site/launches.html
+site/launches.zh.html
 site/feed.xml
 site/feed.zh.xml
 site/sitemap.xml
