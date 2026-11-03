@@ -9,7 +9,9 @@ network.
 
 from __future__ import annotations
 
+import contextlib
 import datetime as dt
+import io
 import json
 import pathlib
 import sys
@@ -23,6 +25,7 @@ sys.path.insert(0, str(ROOT / "tests"))
 import check_launches  # noqa: E402
 import launch_intake  # noqa: E402
 import launch_week  # noqa: E402
+import launches  # noqa: E402
 import site_pages  # noqa: E402
 from test_launches import CATALOG, LAUNCH_SCHEMA, MAKER_SCHEMA, build, launch, row, week  # noqa: E402
 
@@ -217,8 +220,8 @@ class CollectTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = pathlib.Path(tmp)
             (root / "catalog.json").write_text(json.dumps(CATALOG))
-            code = launch_intake.main(["--collect", "2026-W47", "--root", tmp], lookup=FakeLookup(),
-                                      issues_for=lambda repo: [issue()])
+            code = launch_intake.main(["--collect", "2026-W47", "--live", "--root", tmp], lookup=FakeLookup(),
+                                      issues_for=lambda repo: [issue()], comments_for=None)
             self.assertEqual(code, 0)
             data = json.loads((root / "launches" / "2026-W47.json").read_text())
             self.assertEqual(data["launches"][0]["product"], "alpha")
@@ -226,6 +229,53 @@ class CollectTest(unittest.TestCase):
             self.assertEqual(alpha["tagline"], "Routes tickets with one Choice")
             self.assertEqual(launch_intake.main(["--collect", "47", "--root", tmp], lookup=FakeLookup(),
                                                 issues_for=lambda repo: []), 2)
+
+    def test_by_default_it_collects_with_the_facts_the_check_comment_recorded(self):
+        # The workflow's check, with a token, reads GitHub and records what it read.
+        org_row = row("orgwork", url="https://github.com/acme/orgwork",
+                      author={"name": "Acme", "url": "https://github.com/acme"})
+        catalog = CATALOG + [org_row]
+        live = FakeLookup(repos={"acme/orgwork": {"owner": {"login": "acme", "type": "Organization"}, "fork": False,
+                                                  "description": "not kept"}},
+                          users={"dev": {"created_at": "2019-05-01T00:00:00Z", "name": "not kept"}},
+                          members={("acme", "dev")})
+        recorder = launch_intake.Recorder(live)
+        opened = issue(number=82, login="dev", product="orgwork", tagline="--> <b>@x</b>")
+        result = launch_intake.assess(opened, catalog, [], lookup=recorder)
+        text = launch_intake.comment(result, recorder.facts)
+        self.assertEqual(result["verdict"], "ready")
+        hidden = text.splitlines()[1]
+        self.assertTrue(hidden.startswith("<!-- launch-intake-facts {") and hidden.endswith("} -->"), hidden)
+        self.assertEqual(hidden.count("-->"), 1)
+        self.assertNotIn("not kept", hidden)
+        bot = {"user": {"login": "github-actions[bot]"}, "body": text}
+        forged = {"user": {"login": "dev"}, "body": text.replace('"fork": false', '"fork": true')}
+        self.assertEqual(launch_intake.recorded_facts([bot, forged]), recorder.facts)
+        self.assertIsNone(launch_intake.recorded_facts([forged]))
+
+        # The Friday task, with no token, collects from that comment: the same verdict.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            (root / "catalog.json").write_text(json.dumps(catalog))
+            comments = {82: [bot], 83: []}
+            stray = issue(number=83, login="h", role=launch_intake.HUNTER, product="beta")
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                code = launch_intake.main(["--collect", "2026-W47", "--root", tmp], lookup=FakeLookup(users={"dev": None}),
+                                          issues_for=lambda repo: [opened, stray],
+                                          comments_for=lambda repo, number: comments[number])
+            self.assertEqual(code, 0)
+            data = json.loads((root / "launches" / "2026-W47.json").read_text())
+            self.assertEqual([(x["product"], x["role"], x["status"]) for x in data["launches"]],
+                             [("orgwork", "maker", "scheduled")])
+            self.assertIn("#83: no check comment", out.getvalue())
+            done = next(r for r in json.loads((root / "catalog.json").read_text()) if r["slug"] == "orgwork")
+            self.assertEqual(done["makers"], ["acme", "dev"])
+
+    def test_a_fact_the_comment_did_not_record_holds_the_launch(self):
+        result = launch_intake.assess(issue(), CATALOG, [], lookup=launch_intake.Recorded({}))
+        self.assertEqual(result["verdict"], "held")
+        self.assertIn("could not be read", result["launch"]["reason"])
 
 
 # --------------------------------------------------------------------------
@@ -483,6 +533,17 @@ class WeekPagesTest(unittest.TestCase):
         self.assertIn('<a href="weeks/2026-W46.html">2026-W46: 2 launches, closed 2026-11-16</a>', board)
         self.assertIn('href="weeks/2026-W46.zh.html"', self.files["launches.zh.html"])
         self.assertIn("下周上榜", self.files["products/gamma.html"])
+
+    def test_the_board_thanks_hunters(self):
+        board = self.files["launches.html"]
+        self.assertIn('<a href="https://github.com/h" rel="noopener">h</a>: 1 launched, 0 in a top three', board)
+        self.assertNotIn('github.com/o"', board.split("<h2>Hunters</h2>")[1], "a maker's own launch is not hunting")
+        weeks = [CLOSED, dict(CLOSED, week="2026-W45", launches=[
+            launch("alpha", role="hunter", submitted_by="Z",
+                   result={"votes": 1, "counted": 1, "discounted": 0, "rank": 1, "badges": ["week-1"]}),
+            launch("beta", role="hunter", submitted_by="H",
+                   result={"votes": 0, "counted": 0, "discounted": 0, "rank": 2})]), NEXT]
+        self.assertEqual(launches.hunters(weeks), [("h", 2, 0), ("Z", 1, 1)])
 
     def test_the_week_pages_are_in_the_sitemap_and_link_only_what_is_served(self):
         self.assertIn("weeks/2026-W46.html", self.files["sitemap.xml"])
