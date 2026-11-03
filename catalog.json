@@ -72115,8 +72115,8 @@
   {
     "slug": "mu",
     "title": "mu",
-    "summary": "Coding agent and desktop app built on pi that asks Jev at 38 decision points which tool-output chunks enter the context, which stale tool results to drop, whether a rule-flagged command was asked for and whether fetched pages or MCP output carry injected instructions.",
-    "summary_zh": "基于 pi 的编程 Agent（命令行和桌面端），在 38 个决策点上问 Jev：工具输出的哪些片段进上下文、哪些过期的工具结果可以丢掉、被规则拦下的命令是不是用户要的、抓取的网页和 MCP 输出里有没有注入的指令。",
+    "summary": "Coding agent and desktop app built on pi that asks Jev at 40 decision points which tool-output chunks enter the context, which stale tool results to drop, whether a rule-flagged command was asked for and whether fetched pages or MCP output carry injected instructions.",
+    "summary_zh": "基于 pi 的编程 Agent（命令行和桌面端），在 40 个决策点上问 Jev：工具输出的哪些片段进上下文、哪些过期的工具结果可以丢掉、被规则拦下的命令是不是用户要的、抓取的网页和 MCP 输出里有没有注入的指令。",
     "zh_machine": true,
     "url": "https://github.com/qybaihe/mu",
     "kind": "project",
@@ -72166,7 +72166,7 @@
     "flags": [
       "self-submitted"
     ],
-    "notes": "Pre-release (0.1.x). Every decision point acts on its verdicts by default and can be switched to shadow or off; a local judge, a classifier or any LLM can replace Jev per point. The desktop app in desktop/ is Apache-2.0 (from AionUi); the rest is MIT.",
+    "notes": "Each decision point can be active, shadow or off; a local judge (mude 1.0), a classifier or any LLM can replace Jev per point. MIT; the files the desktop app in desktop/ took from AionUi stay Apache-2.0.",
     "sources": [
       {
         "catalog": "author submission",
