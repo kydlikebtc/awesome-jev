@@ -32,8 +32,8 @@ form.
 | Stage | What it adds | State |
 | --- | --- | --- |
 | Product and maker pages | A page per product and per maker; the board lists what is new each week | Built (2026-11-03) |
-| Reading votes | [`launch-votes.yml`](../.github/workflows/launch-votes.yml) reads a Discussion's thumbs-up, run by hand | Built (2026-11-03) |
-| Open launches | The launch form and its check, a vote post per launch, the Monday close, week pages and badges | Built (2026-11-03); waits for Discussions to be turned on |
+| Reading votes | [`launch-votes.yml`](../.github/workflows/launch-votes.yml) reads a Discussion's thumbs-up, run by hand | Built (2026-11-03); read the votes on a test post the same day |
+| Open launches | The launch form and its check, a vote post per launch, the Monday close, week pages and badges | Built (2026-11-03); Discussions and the `Launches` category turned on the same day |
 | Daily board | A board per day instead of per week | Once a week holds enough launches |
 
 Until the first week opens, the board lists the products that entered the

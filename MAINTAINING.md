@@ -106,7 +106,14 @@ A week goes like this:
 
 `launch-votes.yml` (Run workflow, with a Discussion's number) reads one post's
 votes into the job summary and writes nothing else: the check, before the
-first week, that the workflow's token can read reactions and account ages.
+first week, that the workflow's token can read reactions and account ages
+(passed 2026-11-03 on #82). `launch-probe.yml` (Run workflow) starts one
+discussion in `Launches` and deletes it at once: the check that the same
+token may post where only maintainers may. If it reports that the token may
+not, switch the category's format from Announcement to Open-ended discussion
+and run it again: the Monday run only takes a post for a launch's vote post
+when `github-actions` or the owner started it, so posts others start there
+are never counted. If the deletion fails, the job says which post to delete.
 
 Every rule of the board is in `scripts/launches.py`, and
 `python3 scripts/check_launches.py` holds `launches/` and `makers/` to them
