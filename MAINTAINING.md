@@ -227,4 +227,4 @@ description (issue #26), the optional `TRAFFIC_TOKEN` secret the weekly
 traffic snapshot waits for, and turning on Discussions (Settings, General,
 Features) with a category named `Launches` in the Announcement format, where
 only maintainers start a discussion and anyone can react: the launch board's
-vote posts go there, and opening a week fails without it.
+vote posts go there, and opening a week fails without it (both turned on 2026-11-03).

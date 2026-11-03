@@ -95,7 +95,8 @@ class PagesTest(unittest.TestCase):
         # example of Jev; delta is flagged not-jev, the article is no product),
         # the makers' index (none of these rows names a maker) and the board.
         expected |= {"products/alpha.html", "products/beta.html", "products/gamma.html",
-                     "products/overview-unread.html", "makers/index.html", "launches.html", "launches.zh.html"}
+                     "products/overview-unread.html", "makers/index.html", "launches.html", "launches.zh.html",
+                     "launches.xml", "launches.zh.xml"}
         self.assertEqual(set(self.files), expected)
         self.assertEqual(
             {rel for rel in self.files if "/" not in rel and rel != "sitemap.xml"} | {"sitemap.xml"},
@@ -405,6 +406,7 @@ class RealCatalogueTest(unittest.TestCase):
     def test_the_feeds_parse(self):
         for lang in site_pages.LANGS:
             ET.fromstring(self.files[site_pages.feed_path(lang)])
+            ET.fromstring(self.files[site_pages.launch_feed_path(lang)])
         ET.fromstring(self.files["sitemap.xml"])
 
 

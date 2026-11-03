@@ -44,6 +44,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import _github  # noqa: E402
 import discover_candidates  # noqa: E402
 import discover_drafts  # noqa: E402
+import launches  # noqa: E402
 from lint import DRAFT_FIELD, FLAGS_NEEDING_NOTES  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -213,6 +214,11 @@ def repository(url: str) -> str | None:
     return discover_candidates.only_slug(f"{match.group(1)}/{match.group(2)}") if match else None
 
 
+# Said under a catalogued product (the launch board, docs/launches.md).
+LAUNCH_LINE = (f"It can launch on the weekly board: [submit a launch]({launches.query.LAUNCH_FORM}), "
+               f"or read [how the board works]({launches.query.LAUNCHES_DOC}) first.")
+
+
 def find_row(rows: list[dict], slug: str) -> dict | None:
     return next((row for row in rows if (_github.repo_of(row) or "").lower() == slug), None)
 
@@ -245,6 +251,9 @@ def comment(issue: dict, *, read=None, today: dt.date | None = None) -> str:
             lines.append("The form says this is your own project, and the row does not say so yet. A "
                          "maintainer adds the `self-submitted` flag with this issue as its source, so every "
                          "surface discloses it.")
+        if launches.is_product(listed):
+            lines.append("")
+            lines.append(LAUNCH_LINE)
         return "\n".join(head + lines + [""])
     gone = find_row(retired, slug)
     if gone:
@@ -308,6 +317,9 @@ def comment(issue: dict, *, read=None, today: dt.date | None = None) -> str:
         "`python3 scripts/check.py --fix` and open a pull request: the template's first checklist is "
         f"what one row needs, and `Closes #{issue['number']}` in its description closes this issue when "
         "the row lands. Or leave it here, and a maintainer will.",
+        "",
+        f"Once the row is in the catalogue, the product can also launch on the weekly board: "
+        f"[how the board works]({launches.query.LAUNCHES_DOC}).",
         "",
     ])
 

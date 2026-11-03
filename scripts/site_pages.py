@@ -12,6 +12,7 @@ either. Since 2026-10-24 the deploy also writes, from the files it publishes:
   patterns/<key>.zh.html       the same rows in Chinese
   new.html, new.zh.html        rows added and retired, week by week
   feed.xml, feed.zh.xml        the same weeks as Atom feeds
+  launches.xml, launches.zh.xml the launch board's closed weeks as Atom feeds
   sitemap.xml                  the app and every page above
 
 Rows come in the order the API and the MCP server give them
@@ -325,6 +326,11 @@ def feed_path(lang: str) -> str:
     return "feed.xml" if lang == "en" else "feed.zh.xml"
 
 
+def launch_feed_path(lang: str) -> str:
+    """The launch board's weekly results as Atom (site_products.launch_feed)."""
+    return "launches.xml" if lang == "en" else "launches.zh.xml"
+
+
 class Labels:
     """taxonomy.json's names for kinds, flags and summary sources."""
 
@@ -579,7 +585,8 @@ def pages(catalog: list[dict], retired: list[dict], patterns: list[dict], taxono
 
 
 # The files and the directories pages() writes, so a rewrite can clear them.
-TOP_FILES = ("new.html", "new.zh.html", "launches.html", "launches.zh.html", "feed.xml", "feed.zh.xml", "sitemap.xml")
+TOP_FILES = ("new.html", "new.zh.html", "launches.html", "launches.zh.html", "feed.xml", "feed.zh.xml",
+             "launches.xml", "launches.zh.xml", "sitemap.xml")
 DIRS = (PATTERN_DIR, "products", "makers", "weeks", "badges")
 
 

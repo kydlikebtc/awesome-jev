@@ -137,6 +137,11 @@ BOARD = {
         "hunters_note": "People who put someone else's product on the board, by how many of those launches ran a "
                         "closed week, then how many placed in its top three. Thanks, not a score.",
         "hunter_item": "{n} launched, {top} in a top three",
+        "feed": "Each week's results as a feed (Atom)",
+        "feed_title": "awesome-jev Launches: weekly results",
+        "feed_subtitle": "Each closed week of the launch board: its launches by rank, their votes and their "
+                         "evidence. A rank is a count of votes, not this catalogue's recommendation.",
+        "feed_item": "#{rank} {title}: {tagline} ({votes} votes, {counted} counted; evidence: {tier})",
         "daily": "The board moves from one a week to one a day after {need} weeks in a row with at least {n} "
                  "launches each. Weeks in a row so far: {streak}.",
         "daily_due": "{streak} weeks in a row have had at least {n} launches each: the daily board is due.",
@@ -176,6 +181,10 @@ BOARD = {
         "hunters_note": "把别人的产品带上榜的人，按他们发布、并跑完一周的 Launch 数排序，再看其中进过前三的数。"
                         "这是致谢，不是评分。",
         "hunter_item": "发布 {n} 个，{top} 个进过前三",
+        "feed": "订阅每周结果（Atom）",
+        "feed_title": "awesome-jev 发布榜：每周结果",
+        "feed_subtitle": "发布榜每个已收榜的周：按名次排列的 Launch、票数和证据。名次只是票数的排序，不是本目录的推荐。",
+        "feed_item": "第 {rank} 名 {title}：{tagline}（{votes} 票，计 {counted} 票；证据：{tier}）",
         "daily": "连续 {need} 周、每周至少 {n} 个 Launch 之后，周榜改为日榜。目前已连续 {streak} 周。",
         "daily_due": "已连续 {streak} 周、每周至少 {n} 个 Launch：该改成日榜了。",
     },
@@ -196,6 +205,10 @@ def maker_path(login: str) -> str:
 
 def launches_path(lang: str) -> str:
     return sp.launches_path(lang)
+
+
+def launch_feed_path(lang: str) -> str:
+    return sp.launch_feed_path(lang)
 
 
 def week_path(week: str, lang: str) -> str:
@@ -458,7 +471,8 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
     body = [
         f"      <h1>{esc(b['h1'])}</h1>",
         f'      <p class="lede">{esc(b["lede"])}</p>',
-        f'      <p><a href="{esc(HOW_TO_LAUNCH)}" rel="noopener">{esc(b["how"])} ↗</a></p>',
+        f'      <p><a href="{esc(HOW_TO_LAUNCH)}" rel="noopener">{esc(b["how"])} ↗</a> · '
+        f'<a href="{esc(launch_feed_path(lang))}" type="application/atom+xml">{esc(b["feed"])}</a></p>',
     ]
     running = next((w for w in reversed(all_weeks) if w.get("status") == "open"), None)
     closed = next((w for w in reversed(all_weeks) if w.get("status") == "closed"), None)
@@ -529,6 +543,57 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
         body.append(f"      <p>{esc(b['nothing_new'])}</p>")
     return sp.shell(lang, path=path, title=b["title"], description=b["lede"], body="\n".join(body),
                     alternates={code: launches_path(code) for code in sp.LANGS})
+
+
+FEED_WEEKS = 26
+
+
+def launch_feed(all_weeks: list[dict], lang: str, *, rows: dict[str, dict]) -> str:
+    """The weekly results as an Atom feed (L19 of the 2026-11-03 plan): one
+    entry per closed week, newest first, its launches by rank with their
+    votes and evidence, linking the week's page. Anyone can follow it in a
+    feed reader, or turn it into email with a service of their own; the board
+    sends nothing itself. Dates are the weeks' own, so two builds agree."""
+    b = BOARD[lang]
+    closed = sorted((w for w in all_weeks if w.get("status") == "closed"), key=lambda w: w["week"], reverse=True)
+    shown = closed[:FEED_WEEKS]
+    url = sp.SITE_URL + launch_feed_path(lang)
+    # Before the first closed week the feed is as new as the newest product.
+    updated = max((w.get("closed_on", "") for w in shown), default="") or max(
+        (str(r.get("first_seen") or "") for r in rows.values()), default="") or "1970-01-01"
+    lines = [
+        '<?xml version="1.0" encoding="utf-8"?>',
+        f'<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{sp.STRINGS[lang]["html_lang"]}">',
+        f"  <title>{esc(b['feed_title'])}</title>",
+        f"  <subtitle>{esc(b['feed_subtitle'])}</subtitle>",
+        f"  <id>{url}</id>",
+        f'  <link rel="self" type="application/atom+xml" href="{url}" />',
+        f'  <link rel="alternate" type="text/html" href="{sp.SITE_URL}{launches_path(lang)}" />',
+        f"  <updated>{sp.stamp(updated)}</updated>",
+        f"  <author><name>awesome-jev</name><uri>{sp.REPOSITORY}</uri></author>",
+    ]
+    for week in shown:
+        on = sorted((x for x in week.get("launches") or [] if x.get("status") == "scheduled" and x["product"] in rows),
+                    key=lambda x: x["result"]["rank"])
+        items = []
+        for launch in on:
+            row, result = rows[launch["product"]], launch["result"]
+            tagline = launch.get("tagline_zh") if lang == "zh" and launch.get("tagline_zh") else launch["tagline"]
+            text = b["feed_item"].format(rank=result["rank"], title=row.get("title") or launch["product"],
+                                         tagline=tagline, votes=result["votes"], counted=result["counted"],
+                                         tier=TIER_WORDS[launches.tier(row)][0 if lang == "en" else 1])
+            items.append(f'<li><a href="{esc(sp.SITE_URL + product_path(launch["product"]))}">{esc(text)}</a></li>')
+        page = sp.SITE_URL + week_path(week["week"], lang)
+        lines += [
+            "  <entry>",
+            f"    <title>{esc(b['week_h1'].format(week=week['week']))}</title>",
+            f"    <id>{page}</id>",
+            f'    <link rel="alternate" type="text/html" href="{page}" />',
+            f"    <updated>{sp.stamp(week.get('closed_on', '1970-01-01'))}</updated>",
+            f'    <content type="html">{esc("<ol>" + "".join(items) + "</ol>")}</content>',
+            "  </entry>",
+        ]
+    return "\n".join(lines + ["</feed>", ""])
 
 
 def week_page(week: dict, lang: str, *, rows: dict[str, dict]) -> str:
@@ -615,6 +680,7 @@ def pages(catalog: list[dict], patterns: list[dict], labels: sp.Labels, *,
     files[f"{MAKER_DIR}/index.html"] = makers_index(by_login, maker_profiles)
     for lang in sp.LANGS:
         files[launches_path(lang)] = board_page(lang, catalog=catalog, rows=rows, all_weeks=launch_weeks, labels=labels)
+        files[launch_feed_path(lang)] = launch_feed(launch_weeks, lang, rows=rows)
         for week in launch_weeks:
             if week.get("status") == "closed":
                 files[week_path(week["week"], lang)] = week_page(week, lang, rows=rows)

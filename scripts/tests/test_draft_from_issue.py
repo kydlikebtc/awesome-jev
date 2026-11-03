@@ -121,6 +121,7 @@ class CommentTest(unittest.TestCase):
         self.assertIn("**Call site:** [`src/jev_client.py`](https://github.com/acme/jev-tool/blob/HEAD/src/jev_client.py)", text)
         self.assertIn("`api.typesafe.ai`, `jev-latest`", text)
         self.assertIn("`Closes #99`", text)
+        self.assertIn("can also launch on the weekly board", text)
         row = drafted(body())
         errors, _ = lint_row(row)
         self.assertTrue(any("is a discovery draft, not a row" in e for e in errors), errors)
@@ -206,6 +207,7 @@ class CommentTest(unittest.TestCase):
         self.assertNotIn("self-submitted", text)
         text = dfi.comment(issue(body(url=url, boxes=(dfi.OWN,))), read=never, today=TODAY)
         self.assertIn("adds the `self-submitted` flag with this issue as its source", text)
+        self.assertEqual(dfi.LAUNCH_LINE in text, dfi.launches.is_product(row))
 
     def test_retired_and_declined_say_why(self):
         retired = json.loads((ROOT / "retired.json").read_text())[0]

@@ -30,6 +30,8 @@ site/launches.html
 site/launches.zh.html
 site/feed.xml
 site/feed.zh.xml
+site/launches.xml
+site/launches.zh.xml
 site/sitemap.xml
 # Rendered at deploy by scripts/render_images.py, from the data above.
 site/stats.json
