@@ -2,7 +2,7 @@
 
 [English](launch-engine.md)
 
-发布榜（[launches.zh-CN.md](launches.zh-CN.md)）由几份脚本组成，读一个目录文件，再加上每个公开 GitHub 仓库都有的四样东西：Issues 收提交，Discussions 收投票，Actions 每周收榜，Pages 展示榜单。不需要服务器、数据库或付费服务。这一页写给想在另一个目录上搭同样榜单的人。在有单独的模板仓库之前，这一页就是模板；建模板仓库要由仓库主人来做。
+发布榜（[launches.zh-CN.md](launches.zh-CN.md)）由几份脚本组成，读一个目录文件，再加上每个公开 GitHub 仓库都有的四样东西：Issues 收提交，Discussions 收投票，Actions 每周收榜，Pages 展示榜单。不需要服务器、数据库或付费服务。这一页写给想在另一个目录上搭同样榜单的人。这一页就是模板：按 2026-11-03 的决定，不另建模板仓库（[launches.zh-CN.md](launches.zh-CN.md#已定的事2026-11-03)）。
 
 ## 榜单要用到每一行的哪些字段
 

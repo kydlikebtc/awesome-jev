@@ -35,6 +35,7 @@ form.
 | Reading votes | [`launch-votes.yml`](../.github/workflows/launch-votes.yml) reads a Discussion's thumbs-up, run by hand | Built (2026-11-03); read the votes on a test post the same day |
 | Open launches | The launch form and its check, a vote post per launch, the Monday close, week pages and badges | Built (2026-11-03); Discussions and the `Launches` category turned on the same day |
 | For agents | The MCP server's `launch_board` and `top_launches` tools, and [`api/v1/launches.json`](https://kydlikebtc.github.io/awesome-jev/api/v1/launches.json) on the site | Built (2026-11-03) |
+| Weekly results feed | Each closed week as an Atom entry: [`launches.xml`](https://kydlikebtc.github.io/awesome-jev/launches.xml) ([中文](https://kydlikebtc.github.io/awesome-jev/launches.zh.xml)) | Built (2026-11-03) |
 | Daily board | A board per day instead of per week | After 4 closed weeks in a row with at least 20 launches each; the board page counts the run |
 
 Until the first week opens, the board lists the products that entered the
@@ -141,6 +142,36 @@ from a shortlist and writes the pick and the reasons in `docs/award/<year>.md`.
 Votes order a shortlist; the evidence decides who may be on it. The script
 never picks.
 
+## Decisions (2026-11-03)
+
+The owner asked for the board's open questions to be settled without waiting
+on them. Each is settled here and can be reopened in an issue.
+
+- **Name.** The board is "awesome-jev Launches" ("awesome-jev 发布榜"). It
+  keeps the catalogue's name, so there is nothing new to register, and it
+  borrows no other product's name.
+- **An email newsletter: no; a feed instead.** Each closed week is an entry in
+  [`launches.xml`](https://kydlikebtc.github.io/awesome-jev/launches.xml) ([中文](https://kydlikebtc.github.io/awesome-jev/launches.zh.xml)),
+  linked from the board. A feed reader follows it, and anyone who wants email
+  can turn the feed into one with a service of their own. A newsletter would
+  need a mailing service, a list of addresses to keep and a sender who speaks
+  for the project; the board keeps none of those.
+- **Comments on the site (giscus): no.** The site loads no script from another
+  host, and each launch's vote post in Discussions is already the place to talk
+  about it. The product page links that post.
+- **The MCP registry: after the package is on PyPI.** A registry entry points
+  at a published package, and publishing `awesome-jev-mcp` is the owner's step
+  ([MAINTAINING.md](../MAINTAINING.md#what-only-the-owner-can-do)).
+- **A separate template repository: no.** [launch-engine.md](launch-engine.md)
+  lists what to copy and what to change; a second repository would be one more
+  copy to keep in step.
+- **Reaching makers: only inside this repository.** The board writes to nobody
+  elsewhere and runs no social account. Makers meet it where they already are:
+  the README links it, the new-entry bot's comment says a catalogued product
+  can launch, and every product has a page.
+- **More reviewers: not yet.** One maintainer reads launches while a week has
+  a handful; the question comes back when a week passes 20.
+
 ## What is never done
 
 - No ranking is sold, and no launch is placed above another for money.
@@ -161,7 +192,7 @@ never picks.
 | `scripts/launch_intake.py` | checks a launch issue, and collects a week's launches | |
 | `scripts/launch_week.py` | opens a week and closes the one before | |
 | `scripts/launch_votes.py` | reads one Discussion's votes | |
-| `scripts/site_products.py` | the product, maker, week and board pages, and the badges | |
+| `scripts/site_products.py` | the product, maker, week and board pages, the badges and the weekly results feed | |
 | `src/awesome_jev_mcp/query.py` | what the MCP server's launch tools and `api/v1/launches.json` answer | |
 | `scripts/award.py` | the year's award shortlists, one per pattern | |
 | [launch-engine.md](launch-engine.md) | how to run this board for another catalogue | |

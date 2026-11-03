@@ -426,6 +426,29 @@ class PagesTest(unittest.TestCase):
         self.assertIn("2026-W47: on the board this week", gamma)
         self.assertNotIn("2026-W46", gamma)  # its removed launch is not shown
 
+    def test_the_weekly_results_feed_has_a_closed_week_s_ranking(self):
+        import xml.etree.ElementTree as ET
+
+        atom = "{http://www.w3.org/2005/Atom}"
+        files = build(weeks=[CLOSED, OPEN])
+        self.assertIn('href="launches.xml" type="application/atom+xml"', files["launches.html"])
+        self.assertIn('href="launches.zh.xml" type="application/atom+xml"', files["launches.zh.html"])
+        feed = ET.fromstring(files["launches.xml"])
+        entries = feed.findall(f"{atom}entry")
+        self.assertEqual([e.findtext(f"{atom}title") for e in entries], ["Launches of 2026-W46"])  # not the open week
+        self.assertEqual(feed.findtext(f"{atom}updated"), "2026-11-16T00:00:00Z")
+        self.assertEqual(entries[0].find(f"{atom}link").get("href"),
+                         "https://kydlikebtc.github.io/awesome-jev/weeks/2026-W46.html")
+        content = entries[0].findtext(f"{atom}content")
+        self.assertLess(content.index("#1 Alpha"), content.index("#2 Beta"))
+        self.assertIn("4 votes, 3.5 counted; evidence: a model read the call site", content)
+        self.assertNotIn("Gamma", content)  # removed
+        zh = ET.fromstring(files["launches.zh.xml"])
+        self.assertIn("第 1 名 Alpha", zh.find(f"{atom}entry").findtext(f"{atom}content"))
+        # Before any week closes the feed is valid and empty.
+        empty = ET.fromstring(build()["launches.xml"])
+        self.assertEqual(empty.findall(f"{atom}entry"), [])
+
     def test_no_text_becomes_markup(self):
         hostile = "<script>alert(1)</script>"
         files = build(catalog=[row("alpha", title=hostile, summary=hostile, tagline=hostile, makers=["o"])],

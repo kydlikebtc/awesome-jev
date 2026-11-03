@@ -23,6 +23,7 @@
 | 读取投票 | [`launch-votes.yml`](../.github/workflows/launch-votes.yml) 手动运行，读取一个 Discussion 上的点赞 | 已完成（2026-11-03）；当天在测试帖上读到了投票 |
 | 开放发布 | 发布表单和自动检查、每个 Launch 一个投票帖、周一收榜、周榜页和徽章 | 已完成（2026-11-03）；当天已开启 Discussions 并建好 `Launches` 分类 |
 | 给 Agent 用 | MCP 服务器的 `launch_board`、`top_launches` 工具，站点上的 [`api/v1/launches.json`](https://kydlikebtc.github.io/awesome-jev/api/v1/launches.json) | 已完成（2026-11-03） |
+| 每周结果订阅 | 每个已收榜的周一条 Atom：[`launches.zh.xml`](https://kydlikebtc.github.io/awesome-jev/launches.zh.xml)（[English](https://kydlikebtc.github.io/awesome-jev/launches.xml)） | 已完成（2026-11-03） |
 | 日榜 | 从周榜改为日榜 | 连续 4 周、每周至少 20 个 Launch 之后；榜单页会显示已连续几周 |
 
 第一周开榜之前，榜单列出最新一周进入目录的产品，先按谁读过调用点、再按星标排序。这是排序，不是排名。
@@ -74,6 +75,18 @@ Agent 不用看页面也能读榜。MCP 服务器的 `launch_board()` 返回本�
 
 Jev 在 2026-09-15 进入早期访问，所以发布榜的一年从 9 月 15 日算到下一年 9 月 14 日。从 2027-09-15 起，每年这一天给每种决策模式颁一个奖。`python3 scripts/award.py --year 2027` 从这一年已收榜的周里，为每种模式列出候选名单：只收有人或模型读过调用点的产品，每个产品取它最好的那一周，先按名次、再按计入票数排序，最多三个。获奖者由人从名单里选出，选择和理由写进 `docs/award/<年份>.md`。票数决定名单的顺序，证据决定谁能进名单。脚本从不替人选。
 
+## 已定的事（2026-11-03）
+
+仓库主人让这些悬而未决的问题直接定下来，不必等仓库主人确认。下面每一条都已定，想改可以开 issue 重新讨论。
+
+- **名字。** 发布榜叫"awesome-jev 发布榜"（英文 "awesome-jev Launches"）。沿用目录的名字，不用另外注册什么，也不借用别的产品的名字。
+- **邮件简报：不做，改为订阅源。** 每个已收榜的周是 [`launches.zh.xml`](https://kydlikebtc.github.io/awesome-jev/launches.zh.xml)（[English](https://kydlikebtc.github.io/awesome-jev/launches.xml)）里的一条，榜单页上有链接。用阅读器订阅即可；想收邮件的人可以用自己的服务把订阅源转成邮件。做邮件简报需要邮件服务、要保管一份邮箱名单、还要有人代表项目发信，这些发布榜都不保留。
+- **站内评论（giscus）：不做。** 站点不加载其他网站的脚本，每个 Launch 在 Discussions 里的投票帖本身就是讨论的地方，产品页上有链接。
+- **MCP Registry：等包发布到 PyPI 之后。** Registry 的条目指向一个已发布的包，而发布 `awesome-jev-mcp` 要由仓库主人来做（[MAINTAINING.md](../MAINTAINING.md#what-only-the-owner-can-do)）。
+- **单独的模板仓库：不建。** [launch-engine.zh-CN.md](launch-engine.zh-CN.md) 写清了要复制什么、改什么；再建一个仓库只是多一份要同步的副本。
+- **联系 Maker：只在本仓库里。** 发布榜不在别处给任何人发消息，也不开社交账号。Maker 在他们本来就会经过的地方看到它：README 有链接，新条目机器人的评论会说已收录的产品可以发布，每个产品都有自己的页面。
+- **增加审核人：暂不。** 每周只有几个 Launch 时一位维护者就读得过来；等哪一周超过 20 个再议。
+
 ## 绝不做的事
 
 - 不出售排名，不因为钱把一个 Launch 排到另一个前面。
@@ -92,7 +105,7 @@ Jev 在 2026-09-15 进入早期访问，所以发布榜的一年从 9 月 15 日
 | `scripts/launch_intake.py` | 检查发布 issue，汇总一周的 Launch | |
 | `scripts/launch_week.py` | 开本周的榜，收上周的榜 | |
 | `scripts/launch_votes.py` | 读取一个 Discussion 的投票 | |
-| `scripts/site_products.py` | 产品页、Maker 页、周榜页、榜单页和徽章 | |
+| `scripts/site_products.py` | 产品页、Maker 页、周榜页、榜单页、徽章和每周结果订阅 | |
 | `src/awesome_jev_mcp/query.py` | MCP 服务器的发布榜工具和 `api/v1/launches.json` 的内容 | |
 | `scripts/award.py` | 年度奖每种模式的候选名单 | |
 | [launch-engine.zh-CN.md](launch-engine.zh-CN.md) | 怎样为另一个目录运行这套发布榜 | |

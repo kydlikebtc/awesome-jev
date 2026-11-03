@@ -6,9 +6,9 @@ The launch board ([launches.md](launches.md)) is a handful of scripts over a
 catalogue file and four things every public GitHub repository already has:
 Issues for submissions, Discussions for votes, Actions for the weekly close,
 Pages for the board. No server, no database, nothing paid. This page is for
-someone who wants the same board over another catalogue. It is the template
-until there is a separate template repository, which would be the owner's
-step to take.
+someone who wants the same board over another catalogue. It is the template:
+there is no separate template repository, by a decision of 2026-11-03
+([launches.md](launches.md#decisions-2026-11-03)).
 
 ## What the board needs from each row
 
