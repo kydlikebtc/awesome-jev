@@ -61,7 +61,8 @@ A product launches at most once in 60 days.
   it, and then adds them to `makers`. Anyone else who says they made it is
   held until a maintainer confirms it.
 - A **hunter** is anyone else who puts a product forward. The launch credits
-  them; the product's makers can still claim it.
+  them; the product's makers can still claim it. The board thanks hunters by
+  how many of their launches ran a week, and how many of those placed.
 - Rows the discovery pipeline adds on its own have no launch until someone
   launches them.
 
@@ -99,6 +100,9 @@ Weeks are ISO weeks: Monday 00:00 UTC to Sunday 23:59 UTC.
    accounts is held for a person instead of ranked. The top three with a vote
    counted get a badge, an image on the site for their README
    (`badges/<slug>.svg`), and the week gets its own page.
+
+Each month's report ([docs/monthly/](monthly/), written in the first week of
+the next) lists the weeks that ended in the month with their top three.
 
 ## How votes count (rules v1)
 

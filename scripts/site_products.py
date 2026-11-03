@@ -49,6 +49,8 @@ LAUNCH_ISSUE = f"{sp.REPOSITORY}/issues/new?template=launch.yml"
 DISCUSSION = f"{sp.REPOSITORY}/discussions/{{n}}"
 # How many products a "same pattern" list shows, and a maker list per maker.
 SAME_PATTERN = 5
+# How many hunters the board lists (L21).
+HUNTERS = 10
 
 # Both languages: a product or maker page carries the two side by side.
 WORDS = {
@@ -131,6 +133,10 @@ BOARD = {
         "removed_note": "Taken off the board, with the reason kept in the week's file.",
         "board": "The board",
         "badge": "Badge for a README",
+        "hunters": "Hunters",
+        "hunters_note": "People who put someone else's product on the board, by how many of those launches ran a "
+                        "closed week, then how many placed in its top three. Thanks, not a score.",
+        "hunter_item": "{n} launched, {top} in a top three",
     },
     "zh": {
         "title": "发布榜 · awesome-jev",
@@ -163,6 +169,10 @@ BOARD = {
         "removed_note": "从榜上撤下的 Launch，原因留在当周的文件里。",
         "board": "发布榜",
         "badge": "README 徽章",
+        "hunters": "Hunter",
+        "hunters_note": "把别人的产品带上榜的人，按他们发布、并跑完一周的 Launch 数排序，再看其中进过前三的数。"
+                        "这是致谢，不是评分。",
+        "hunter_item": "发布 {n} 个，{top} 个进过前三",
     },
 }
 
@@ -482,6 +492,14 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
             text = b["past_item"].format(week=w["week"], n=n, closed=w.get("closed_on", ""))
             body.append(f'        <li><a href="{esc(week_path(w["week"], lang))}">{esc(text)}</a></li>')
         body.append("      </ul>")
+    hunted = launches.hunters(all_weeks)
+    if hunted:
+        body += [f"      <h2>{esc(b['hunters'])}</h2>", f'      <p class="note">{esc(b["hunters_note"])}</p>',
+                 "      <ol>"]
+        for login, n, top in hunted[:HUNTERS]:
+            body.append(f'        <li><a href="https://github.com/{esc(login)}" rel="noopener">{esc(login)}</a>: '
+                        f'{esc(b["hunter_item"].format(n=n, top=top))}</li>')
+        body.append("      </ol>")
     week, fresh = launches.new_this_week(catalog)
     if week:
         body += [f"      <h2>{esc(b['new'].format(week=week))}</h2>", f'      <p class="note">{esc(b["new_note"])}</p>']

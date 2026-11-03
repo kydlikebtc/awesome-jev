@@ -37,7 +37,7 @@
 ## 谁来发布
 
 - **Maker**：这一行 `makers` 里的 GitHub 登录名；没有 `makers` 时，取 `author.url` 里的登录名。发布 issue 的检查还认仓库所有者、以及拥有仓库的组织的公开成员，并把他们加进 `makers`。其他自称 Maker 的人先挂起，等维护者确认。
-- **Hunter**：替别人发布产品的人。Launch 会记下他们，产品的 Maker 之后仍可认领。
+- **Hunter**：替别人发布产品的人。Launch 会记下他们，产品的 Maker 之后仍可认领。榜单按他们带上榜并跑完一周的 Launch 数、以及其中进过前三的数致谢。
 - 发现管线自动收录的行，在有人发布之前没有 Launch。
 
 Maker 可以提一个 pull request，添加 `makers/<login>.json`（[schema](../schema/maker.schema.json)），在自己的页面上写名字、链接和中英文各一句介绍。页面上列出的产品始终来自目录。
@@ -53,6 +53,8 @@ Maker 还可以通过 [confirm-entry 表单](https://github.com/kydlikebtc/aweso
 3. 周一 00:05 UTC 开榜：每个 Launch 在仓库的 `Launches` Discussions 里有一个帖子，在帖子上点赞就是投票。
 4. 开榜期间，榜单按随机顺序展示，不显示票数，免得大家只给排在前面的投票。（Discussion 自己会显示点赞数，榜单不重复显示。）
 5. 下一个周一收榜：统计票数，结果写入当周文件。票数主要来自新账号的 Launch 先挂起等人看，不参与排名。至少计到一票的前三名获得徽章，即站点上一张可以放进 README 的图片（`badges/<slug>.svg`），这一周也有了自己的页面。
+
+每个月的月报（[docs/monthly/](monthly/)，在下个月第一周写成）列出当月结束的每一周和它的前三名。
 
 ## 怎么计票（规则 v1）
 

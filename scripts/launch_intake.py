@@ -32,10 +32,19 @@ same way, and writes the week's file (and, for a maker the check confirmed,
 their login and line onto the row) into the working tree, for a person to
 review in the Friday merge. It never posts anything.
 
+The three facts the check reads from GitHub (the repository, the account's age,
+an organisation's public members) need a token that can read any repository
+and account, which the workflow has and the scheduled task that collects on
+Fridays does not. So the comment records the facts it was given, in a hidden
+line, and `--collect` assesses each issue again against today's catalogue and
+weeks with the facts recorded in that issue's latest check comment, which only
+github-actions[bot] can have written. `--live` reads GitHub instead. An issue
+with no such comment is reported, not collected.
+
 Usage:
   python3 scripts/launch_intake.py --event "$GITHUB_EVENT_PATH" --out comment.md
   python3 scripts/launch_intake.py --issue 81 --out comment.md
-  python3 scripts/launch_intake.py --collect 2026-W47
+  python3 scripts/launch_intake.py --collect 2026-W47 [--live]
 """
 
 from __future__ import annotations
@@ -59,6 +68,8 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://kydlikebtc.github.io/awesome-jev/"
 NEW_ENTRY = "https://github.com/kydlikebtc/awesome-jev/issues/new?template=new-entry.yml"
 MARKER = "<!-- written by scripts/launch_intake.py -->"
+FACTS = re.compile(r"^<!-- launch-intake-facts (\{.*\}) -->$", re.MULTILINE)
+BOT = "github-actions[bot]"
 LABEL = "launch"
 
 # The form's headings, as GitHub renders an issue form.
@@ -104,6 +115,75 @@ class Lookup:
     def public_member(self, org: str, login: str) -> bool:
         status, _ = _github.api_fetch(f"/orgs/{org}/public_members/{login}")
         return status == 204
+
+
+class Recorder(Lookup):
+    """Another lookup's answers, kept as the facts a comment records: only the
+    fields the check uses, so the hidden line stays short."""
+
+    def __init__(self, inner: Lookup):
+        self.inner = inner
+        self.facts: dict = {"repos": {}, "users": {}, "members": {}}
+
+    def repo(self, full_name):
+        data = self.inner.repo(full_name)
+        kept = None if data is None else {
+            "fork": bool(data.get("fork")),
+            "parent": {"full_name": ((data.get("parent") or {}).get("full_name"))},
+            "owner": {k: (data.get("owner") or {}).get(k) for k in ("login", "type")},
+        }
+        self.facts["repos"][full_name] = kept
+        return kept
+
+    def user(self, login):
+        data = self.inner.user(login)
+        kept = None if data is None else {"created_at": data.get("created_at")}
+        self.facts["users"][login] = kept
+        return kept
+
+    def public_member(self, org, login):
+        member = self.inner.public_member(org, login)
+        self.facts["members"][f"{org}/{login}"] = member
+        return member
+
+
+class Recorded(Lookup):
+    """Answers from the facts a check comment recorded. A fact it did not
+    record reads as unreadable, which holds the launch for a person."""
+
+    def __init__(self, facts: dict):
+        self.facts = facts
+
+    def repo(self, full_name):
+        return (self.facts.get("repos") or {}).get(full_name)
+
+    def user(self, login):
+        return (self.facts.get("users") or {}).get(login)
+
+    def public_member(self, org, login):
+        return (self.facts.get("members") or {}).get(f"{org}/{login}") is True
+
+
+def facts_line(facts: dict) -> str:
+    """The hidden line: JSON whose `>` is escaped, so no value can close the
+    HTML comment it sits in."""
+    return f"<!-- launch-intake-facts {json.dumps(facts, sort_keys=True).replace('>', chr(92) + 'u003e')} -->"
+
+
+def recorded_facts(comments: list[dict]) -> dict | None:
+    """The facts in the newest check comment, or None when there is none.
+    Only a comment github-actions[bot] wrote counts: anyone can type the line."""
+    for item in reversed(comments):
+        if (item.get("user") or {}).get("login") != BOT or not str(item.get("body") or "").startswith(MARKER):
+            continue
+        match = FACTS.search(item["body"])
+        if match:
+            try:
+                facts = json.loads(match.group(1))
+            except ValueError:
+                return None
+            return facts if isinstance(facts, dict) else None
+    return None
 
 
 # --------------------------------------------------------------------------
@@ -260,8 +340,8 @@ def assess(issue: dict, catalog: list[dict], all_weeks: list[dict], *, lookup: L
 # --------------------------------------------------------------------------
 
 
-def comment(result: dict) -> str:
-    lines = [MARKER, ""]
+def comment(result: dict, facts: dict | None = None) -> str:
+    lines = [MARKER] + ([facts_line(facts)] if facts is not None else []) + [""]
     week = result.get("week")
     span = ""
     if week:
@@ -298,11 +378,13 @@ def comment(result: dict) -> str:
 
 
 def collect(week: str, issues: list[dict], catalog: list[dict], all_weeks: list[dict], *,
-            lookup: Lookup) -> tuple[dict, list[str], list[str]]:
+            lookup: Lookup | Callable[[dict], Lookup | None]) -> tuple[dict, list[str], list[str]]:
     """The week's file with every open launch issue for it added, the rows a
     confirmed maker's launch fills in (their login on `makers`, their line as
     the row's `tagline` when it has none), and a line per issue saying what
-    happened to it. Launches already on the file stay as they are."""
+    happened to it. Launches already on the file stay as they are. `lookup`
+    is one Lookup for every issue, or a function giving each issue its own
+    (its recorded facts), None when it has none."""
     current = next((w for w in all_weeks if w.get("week") == week), None)
     data = json.loads(json.dumps(current)) if current else {"week": week, "status": "scheduled", "launches": []}
     if data.get("status") != "scheduled":
@@ -311,8 +393,12 @@ def collect(week: str, issues: list[dict], catalog: list[dict], all_weeks: list[
     changed: list[str] = []
     notes: list[str] = []
     for issue in sorted(issues, key=lambda i: i.get("number") or 0):
-        result = assess(issue, catalog, all_weeks, lookup=lookup)
         number = issue.get("number")
+        own = lookup if isinstance(lookup, Lookup) else lookup(issue)
+        if own is None:
+            notes.append(f"#{number}: no check comment from {BOT} to collect from; run launch-intake on it")
+            continue
+        result = assess(issue, catalog, all_weeks, lookup=own)
         if result["verdict"] == "collected" or result["week"] != week:
             continue
         if result["verdict"] == "refused":
@@ -361,19 +447,27 @@ def open_issues(repo: str) -> list[dict]:
     return out
 
 
+def issue_comments(repo: str, number: int) -> list[dict]:
+    found = _github.api_get(f"/repos/{repo}/issues/{number}/comments?per_page=100")
+    return found if isinstance(found, list) else []
+
+
 def write_json(path: pathlib.Path, data, *, indent: int = 2) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=indent) + "\n", encoding="utf-8")
 
 
 def main(argv: list[str] | None = None, *, lookup: Lookup | None = None,
-         issues_for: Callable[[str], list[dict]] = open_issues) -> int:
+         issues_for: Callable[[str], list[dict]] = open_issues,
+         comments_for: Callable[[str, int], list[dict]] = issue_comments) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     source = parser.add_mutually_exclusive_group(required=True)
     source.add_argument("--event", metavar="FILE", help="the `issues` event payload ($GITHUB_EVENT_PATH)")
     source.add_argument("--issue", metavar="NUMBER", help="read this issue from the API instead")
     source.add_argument("--collect", metavar="WEEK", help="write every open launch issue for WEEK into its file")
     parser.add_argument("--out", metavar="FILE", help="with --event or --issue: write the comment here")
+    parser.add_argument("--live", action="store_true",
+                        help="with --collect: read GitHub's facts again instead of those each check comment recorded")
     parser.add_argument("--root", default=str(ROOT), help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
     lookup = lookup or Lookup()
@@ -389,7 +483,12 @@ def main(argv: list[str] | None = None, *, lookup: Lookup | None = None,
             print(f"error: --collect takes an ISO week like 2026-W47, not {week!r}", file=sys.stderr)
             return 2
         try:
-            data, changed, notes = collect(week, issues_for(repo), catalog, all_weeks, lookup=lookup)
+            def recorded(issue: dict) -> Lookup | None:
+                facts = recorded_facts(comments_for(repo, issue["number"]))
+                return Recorded(facts) if facts is not None else None
+
+            data, changed, notes = collect(week, issues_for(repo), catalog, all_weeks,
+                                           lookup=lookup if args.live else recorded)
         except ValueError as exc:
             print(f"error: {exc}", file=sys.stderr)
             return 1
@@ -414,8 +513,9 @@ def main(argv: list[str] | None = None, *, lookup: Lookup | None = None,
     if not isinstance(issue.get("number"), int) or "pull_request" in issue:
         print("error: no issue to answer", file=sys.stderr)
         return 2
-    result = assess(issue, catalog, all_weeks, lookup=lookup)
-    pathlib.Path(args.out).write_text(comment(result), encoding="utf-8")
+    recorder = Recorder(lookup)
+    result = assess(issue, catalog, all_weeks, lookup=recorder)
+    pathlib.Path(args.out).write_text(comment(result, recorder.facts), encoding="utf-8")
     output = os.environ.get("GITHUB_OUTPUT")
     if output:
         with open(output, "a", encoding="utf-8") as handle:

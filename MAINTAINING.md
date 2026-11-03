@@ -82,9 +82,11 @@ A week goes like this:
    `scripts/launch_intake.py`: ready for a week, held for a person and why,
    or not launched and what to change. It only comments.
 2. **Friday, before the merge:** `python3 scripts/launch_intake.py --collect
-   <next week>`, with a token in `GITHUB_TOKEN` for the reads, takes every open
-   launch issue, writes `launches/<week>.json`, and adds a confirmed maker's
-   login and line to their row. Read what it held: confirm a maker by adding
+   <next week>` (the daily task runs it on Fridays) takes every open launch
+   issue, checks it again against today's catalogue with the facts its check
+   comment recorded (`--live` reads GitHub again instead, with a token),
+   writes `launches/<week>.json`, and adds a confirmed maker's login and line
+   to their row. Read what it held: confirm a maker by adding
    them to the row's `makers` and setting the launch's role to `maker` and
    status to `scheduled` (dropping `reason`), or leave it held. It reaches
    `main` with the Friday merge like any other row change.

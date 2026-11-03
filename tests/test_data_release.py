@@ -178,6 +178,37 @@ class MonthlyTest(unittest.TestCase):
         self.assertIn("- `gone`: Retired 2026-11-12: the repository went away.", text)
         self.assertNotIn("#earlier", text)
 
+    def test_the_month_s_closed_launch_weeks_with_their_top_three(self):
+        self.assertIn("No launch week closed this month.", self.render())
+
+        def launched(slug, rank, counted, **extra):
+            return {"product": slug, "issue": rank, "submitted_by": "o", "role": "maker", "submitted_on": "2026-11-01",
+                    "tagline": f"{slug} @all [x](y)", "status": "scheduled",
+                    "result": {"votes": 9, "counted": counted, "discounted": 0, "rank": rank}, **extra}
+
+        weeks = [
+            # Sunday 2026-11-22: in November.
+            {"week": "2026-W47", "status": "closed", "closed_on": "2026-11-23", "rules": "v1", "launches": [
+                launched("small", 2, 3.0), launched("big", 1, 7.5), launched("late", 4, 1.0), launched("bench", 3, 2.0),
+                {"product": "earlier", "issue": 9, "submitted_by": "o", "role": "maker", "submitted_on": "2026-11-01",
+                 "tagline": "x", "status": "removed", "reason": "a ring"}]},
+            # Sunday 2026-11-29 but still open; Sunday 2026-12-06: December.
+            {"week": "2026-W48", "status": "open", "launches": []},
+            {"week": "2026-W49", "status": "closed", "closed_on": "2026-12-07", "rules": "v1", "launches": []},
+        ]
+        text = build_monthly.render("2026-11", self.HISTORY, self.CATALOG, self.RETIRED, written="2026-12-03",
+                                    launch_weeks=weeks)
+        section = text.split("## Launches · 发布榜: 1")[1]
+        self.assertIn("### [2026-W47](https://kydlikebtc.github.io/awesome-jev/weeks/2026-W47.html): "
+                      "4 launches, rules v1, 1 removed", section)
+        self.assertIn("1. [big](https://kydlikebtc.github.io/awesome-jev/products/big.html): big @\u200ball "
+                      "\\[x\\]\\(y\\) · 9 votes, 7.5 counted · evidence: model", section)
+        self.assertLess(section.index("[big]"), section.index("[small]"))
+        self.assertLess(section.index("[small]"), section.index("[bench]"))
+        self.assertNotIn("[late]", section, "the top three only")
+        self.assertNotIn("2026-W48", section)
+        self.assertNotIn("2026-W49", section)
+
     def test_written_once(self):
         with tempfile.TemporaryDirectory() as tmp:
             folder = pathlib.Path(tmp)

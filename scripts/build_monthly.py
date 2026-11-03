@@ -12,7 +12,10 @@ page once a month, for the month before, from
   * catalog.json and retired.json: the rows whose `first_seen` falls in the
     month, and the rows retired in it (the date their notes give);
   * the end snapshot's star counts, so the "most starred" list is the month's,
-    not today's.
+    not today's;
+  * launches/*.json: the launch weeks whose Sunday falls in the month and that
+    have closed, each with its top three (L17 of the 2026-11-03 launch-board
+    plan, docs/launches.md). Votes stay apart from the evidence here too.
 
 A report is dated and written once: running it again for a month that has a
 report refuses unless --force, and regenerate.py never rewrites one, since a
@@ -39,6 +42,7 @@ import urllib.parse
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
+import launches  # noqa: E402
 import snapshot_stats  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -146,8 +150,44 @@ def entry_line(entry: dict, stars: int | None) -> list[str]:
     return out
 
 
+def plain(text: str) -> str:
+    """A maker's line, inert in Markdown: no link, no formatting, no @mention."""
+    return re.sub(r"([\\`*_{}\[\]<>()#+!|~])", r"\\\1", " ".join(str(text).split())).replace("@", "@\u200b")
+
+
+def launch_section(month: str, launch_weeks: list[dict], catalog: list[dict]) -> list[str]:
+    """The month's closed launch weeks, by their Sunday, each with its top three."""
+    rows = {e["slug"]: e for e in catalog}
+    closed = [w for w in launch_weeks if w.get("status") == "closed"
+              and launches.week_days(w["week"])[1].isoformat()[:7] == month]
+    out = [f"## Launches · 发布榜: {len(closed)}", ""]
+    if not closed:
+        return out + ["No launch week closed this month. · 本月没有收榜的周。"]
+    out += [
+        "The top three of each week that ended in the month, by counted votes (docs/launches.md). A rank is a "
+        "count of votes, not this catalogue's recommendation; the evidence is the catalogue's own record. · "
+        "当月结束的每一周的前三名，按计入的票数排序。名次只是票数的排序，不是本目录的推荐；证据来自目录自己的记录。",
+        "",
+    ]
+    for week in sorted(closed, key=lambda w: w["week"]):
+        on = [x for x in week.get("launches") or [] if x.get("status") == "scheduled" and x.get("result")]
+        removed = sum(1 for x in week.get("launches") or [] if x.get("status") == "removed")
+        page = f"{SITE}weeks/{week['week']}.html"
+        out.append(f"### [{week['week']}]({page}): {len(on)} launches, rules {week.get('rules', '?')}"
+                   + (f", {removed} removed" if removed else ""))
+        out.append("")
+        for x in sorted(on, key=lambda x: x["result"]["rank"])[:3]:
+            r = x["result"]
+            tier = launches.tier(rows.get(x["product"], {}))
+            page_of = f"[{x['product']}]({SITE}products/{urllib.parse.quote(x['product'])}.html)"
+            out.append(f"{r['rank']}. {page_of}: {plain(x['tagline'])} · {r['votes']} votes, "
+                       f"{r['counted']} counted · evidence: {tier}")
+        out.append("")
+    return out
+
+
 def render(month: str, history: list[tuple[str, dict]], catalog: list[dict], retired: list[dict],
-           *, written: str) -> str:
+           *, written: str, launch_weeks: list[dict] = ()) -> str:
     start, end = snapshots_for(history, month)
     if end is None:
         raise ValueError(f"history/ has no snapshot dated in {month}: run this after the month's last weekly refresh")
@@ -215,6 +255,7 @@ def render(month: str, history: list[tuple[str, dict]], catalog: list[dict], ret
         out.append(f"- `{e['slug']}`: {(e.get('notes') or '').split('. ')[0].strip()}.")
     if not gone:
         out.append("None this month. · 本月没有。")
+    out += [""] + launch_section(month, list(launch_weeks), catalog)
     return "\n".join(out).rstrip("\n") + "\n"
 
 
@@ -252,7 +293,8 @@ def main(argv: list[str] | None = None) -> int:
     retired = json.loads((args.root / "retired.json").read_text(encoding="utf-8"))
     try:
         text = render(args.month, snapshot_stats.load_history(args.history), catalog, retired,
-                      written=dt.datetime.now(dt.timezone.utc).date().isoformat())
+                      written=dt.datetime.now(dt.timezone.utc).date().isoformat(),
+                      launch_weeks=launches.weeks(args.root / "launches"))
     except ValueError as err:
         print(f"error: {err}", file=sys.stderr)
         return 1

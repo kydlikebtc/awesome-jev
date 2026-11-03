@@ -315,6 +315,28 @@ def makers(directory: pathlib.Path = MAKER_DIR) -> dict[str, dict]:
     return {login_key(k): v for k, v in load_dir(directory).items() if isinstance(v, dict)}
 
 
+def hunters(all_weeks: list[dict]) -> list[tuple[str, int, int]]:
+    """(login, launches, top three) for everyone who launched someone else's
+    product in a closed week, most launches first, then most placings, then by
+    login (L21). A launch that was held or removed is not counted."""
+    shown: dict[str, str] = {}
+    counts: dict[str, list[int]] = {}
+    for week in all_weeks:
+        if week.get("status") != "closed":
+            continue
+        for launch in week.get("launches") or []:
+            if launch.get("status") != "scheduled" or launch.get("role") != "hunter":
+                continue
+            key = login_key(str(launch.get("submitted_by") or ""))
+            if not key:
+                continue
+            shown.setdefault(key, launch["submitted_by"])
+            tally = counts.setdefault(key, [0, 0])
+            tally[0] += 1
+            tally[1] += 1 if (launch.get("result") or {}).get("badges") else 0
+    return sorted(((shown[k], n, top) for k, (n, top) in counts.items()), key=lambda h: (-h[1], -h[2], login_key(h[0])))
+
+
 def launched(all_weeks: list[dict]) -> dict[str, list[tuple[str, dict]]]:
     """For each product slug, its launches on the board (week, launch), oldest
     first. Held and removed launches are not shown anywhere but the file."""
