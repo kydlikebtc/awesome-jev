@@ -101,7 +101,10 @@ class PagesTest(unittest.TestCase):
             {rel for rel in self.files if "/" not in rel and rel != "sitemap.xml"} | {"sitemap.xml"},
             set(site_pages.TOP_FILES),
         )
-        self.assertEqual({rel.split("/")[0] for rel in self.files if "/" in rel}, set(site_pages.DIRS))
+        # Every directory a build writes is one the writer clears. A closed
+        # launch week adds weeks/ and badges/ (tests/test_launches.py).
+        self.assertEqual({rel.split("/")[0] for rel in self.files if "/" in rel},
+                         set(site_pages.DIRS) - {"weeks", "badges"})
 
     def test_two_builds_from_the_same_rows_in_any_order_write_the_same_bytes(self):
         shuffled = CATALOG[:]

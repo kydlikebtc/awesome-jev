@@ -19,21 +19,26 @@ nothing here is affiliated with TypeSafe AI.
 
 The board's pages are on the site: [Launches](https://kydlikebtc.github.io/awesome-jev/launches.html)
 ([中文](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)), one page per
-product (`products/<slug>.html`) and one per maker (`makers/<login>.html`).
-The rules below are code: [`scripts/launches.py`](../scripts/launches.py).
+product (`products/<slug>.html`), one per maker (`makers/<login>.html`) and one
+per closed week (`weeks/<week>.html`). The rules below are code:
+[`scripts/launches.py`](../scripts/launches.py).
+
+To launch a product, open the
+[Launch a product](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml)
+form.
 
 ## Where it stands
 
 | Stage | What it adds | State |
 | --- | --- | --- |
 | Product and maker pages | A page per product and per maker; the board lists what is new each week | Built (2026-11-03) |
-| Reading votes | [`launch-votes.yml`](../.github/workflows/launch-votes.yml) reads a Discussion's thumbs-up, run by hand | Built; waits for Discussions to be turned on |
-| Open launches | The launch form, a vote post per launch, an hourly count, the weekly close | Next |
+| Reading votes | [`launch-votes.yml`](../.github/workflows/launch-votes.yml) reads a Discussion's thumbs-up, run by hand | Built (2026-11-03) |
+| Open launches | The launch form and its check, a vote post per launch, the Monday close, week pages and badges | Built (2026-11-03); waits for Discussions to be turned on |
 | Daily board | A board per day instead of per week | Once a week holds enough launches |
 
-Until launches open, the board lists the products that entered the catalogue
-in the newest week, ordered by who read the call site and then by stars. That
-is an order, not a ranking.
+Until the first week opens, the board lists the products that entered the
+catalogue in the newest week, ordered by who read the call site and then by
+stars. That is an order, not a ranking.
 
 ## What can launch
 
@@ -51,8 +56,10 @@ A product launches at most once in 60 days.
 ## Who launches it
 
 - A **maker** is a GitHub login in the row's `makers`, or, when the row names
-  none, the login in its `author.url`. A maker is the repository's owner or a
-  collaborator, checked when their issue is read.
+  none, the login in its `author.url`. The check on a launch issue also takes
+  the repository's owner, and a public member of the organisation that owns
+  it, and then adds them to `makers`. Anyone else who says they made it is
+  held until a maintainer confirms it.
 - A **hunter** is anyone else who puts a product forward. The launch credits
   them; the product's makers can still claim it.
 - Rows the discovery pipeline adds on its own have no launch until someone
@@ -72,18 +79,26 @@ or a pull request. A tagline is the maker's own words; a model never writes one.
 
 Weeks are ISO weeks: Monday 00:00 UTC to Sunday 23:59 UTC.
 
-1. A launch is submitted by Thursday 23:59 UTC for the next week. Its checks
-   run when it is submitted; what a check cannot settle is held for a person,
-   as discovery candidates are ([docs/held.txt](held.txt)).
-2. The week's launches and any new rows they need reach `main` with the
-   owner's Friday merge.
-3. On Monday the week opens. Each launch has a GitHub Discussion; a vote is a
-   thumbs-up on its post.
+1. A launch is submitted with the form by Thursday 23:59 UTC for the next
+   week (later, the week after). A check answers the issue at once: ready,
+   held for a person and why, or not launched and what to change. It holds a
+   launch whose maker it cannot confirm, whose repository is a fork or has
+   had no push for 60 days, or whose submitter's account is younger than 30
+   days; a person decides those, as discovery candidates are decided
+   ([docs/held.txt](held.txt)).
+2. On Friday the week's launches are written to
+   `launches/<YYYY>-W<ww>.json` ([schema](../schema/launch.schema.json)) and
+   reach `main` with the owner's merge. The board lists them under next week.
+3. On Monday at 00:05 UTC the week opens: each launch gets a post in the
+   repository's `Launches` Discussions, and a vote is a thumbs-up on it.
 4. While the week runs, the board shows its launches in a shuffled order and
-   without counts, so nobody votes for whatever is on top.
-5. When the week closes, its votes are counted and the results are written to
-   `launches/<YYYY>-W<ww>.json` ([schema](../schema/launch.schema.json)). The
-   top three with a vote counted get a badge.
+   without counts, so nobody votes for whatever is on top. (A Discussion shows
+   its own reactions; the board does not repeat them.)
+5. The next Monday the week closes: its votes are counted and the results
+   written to the week's file. A launch whose votes come mostly from new
+   accounts is held for a person instead of ranked. The top three with a vote
+   counted get a badge, an image on the site for their README
+   (`badges/<slug>.svg`), and the week gets its own page.
 
 ## How votes count (rules v1)
 
@@ -115,12 +130,14 @@ many were discounted. It never keeps who voted.
 | Path | What it holds | Written by |
 | --- | --- | --- |
 | `catalog.json` | the products, with `makers`, `tagline`, `tagline_zh`, `demo_url` | contributors and makers |
-| `launches/<YYYY>-W<ww>.json` | one week: its launches, their status and, once closed, their results | the launch workflows |
+| `launches/<YYYY>-W<ww>.json` | one week: its launches, their status and, once closed, their results | the launch scripts |
 | `makers/<login>.json` | a maker's own profile, optional | that maker |
 | `scripts/launches.py` | every rule above | |
 | `scripts/check_launches.py` | holds `launches/` and `makers/` to those rules | |
+| `scripts/launch_intake.py` | checks a launch issue, and collects a week's launches | |
+| `scripts/launch_week.py` | opens a week and closes the one before | |
 | `scripts/launch_votes.py` | reads one Discussion's votes | |
-| `scripts/site_products.py` | the product, maker and board pages | |
+| `scripts/site_products.py` | the product, maker, week and board pages, and the badges | |
 
 `python3 scripts/check_launches.py` runs with the other checks
 (`python3 scripts/check.py`).

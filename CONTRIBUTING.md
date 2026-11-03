@@ -512,7 +512,9 @@ them. If you did, you know best whether it is right.
   catalogued, nothing about its quality.
 - **Give it a page of its own and launch it.** Every product row has a page on
   the site, and its makers can put it on the weekly launch board, where people
-  vote ([docs/launches.md](docs/launches.md)). The confirm form above also
+  vote, with the
+  [Launch a product](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml)
+  form ([docs/launches.md](docs/launches.md)). The confirm form above also
   takes your product's one line (`tagline`) and a link where it runs
   (`demo_url`), in your words.
 - **Have it removed** with the

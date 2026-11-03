@@ -1,0 +1,93 @@
+# Closes last week's launch board and opens this week's, early every Monday
+# (scripts/launch_week.py; L12 and L13 of the 2026-11-03 launch-board plan,
+# docs/launches.md). Closing reads each launch's thumbs-up votes, holds any
+# that look like a ring of new accounts for a person, ranks the rest and
+# writes the counts (never who voted) into launches/<week>.json. Opening
+# creates each launch's vote post in the `Launches` Discussion category and
+# writes its number.
+#
+# It does nothing, and succeeds, when there is no week to close or open, so
+# the watchdog sees it run every week before the first launch. With launches
+# on file and Discussions still off, opening fails and says why.
+#
+# Like metadata.yml, it commits what it wrote and pushes it to main, rebasing
+# onto anything pushed meanwhile; if that does not apply cleanly it never
+# forces, and leaves the commit on a branch for a person. It runs the checks
+# on its commit before pushing, and then asks pages.yml to rebuild the board.
+#
+# Injection review: no `github.event.*` value reaches a `run:` block, and the
+# workflow takes no inputs.
+name: launch-week
+
+on:
+  schedule:
+    # Mondays 00:05 UTC: a week runs Monday 00:00 to Sunday 23:59 UTC.
+    - cron: "5 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  discussions: write
+  actions: write
+
+concurrency:
+  group: launch-week
+  cancel-in-progress: false
+
+jobs:
+  week:
+    name: Close last week and open this one
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Close and open the weeks that are due
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/launch_week.py --monday
+
+      - name: Commit what changed
+        id: commit
+        if: always()
+        run: |
+          git add -A launches
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "launches: close last week, open this week"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # always(): a post made before a later one failed is still committed,
+      # so the next run finds its number on file. Only a commit that passes
+      # the checks is pushed.
+      - name: Run the checks on that commit before pushing it
+        id: checks
+        if: always() && steps.commit.outputs.changed == 'true'
+        run: python3 scripts/check.py --ci --quick
+
+      - name: Push to main, or fall back to a branch if main moved
+        id: land
+        if: always() && steps.checks.outcome == 'success'
+        run: |
+          if git pull -q --rebase origin main && git push -q origin HEAD:main; then
+            echo "landed=main" >> "$GITHUB_OUTPUT"
+          else
+            git rebase --abort 2>/dev/null || true
+            branch="launches/week-$(date -u +%Y-%m-%d)"
+            git push -q -u origin "HEAD:refs/heads/$branch" --force
+            echo "landed=$branch" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Rebuild the site with the board
+        if: always() && steps.land.outputs.landed == 'main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run pages.yml --ref main

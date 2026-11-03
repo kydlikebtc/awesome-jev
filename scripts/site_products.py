@@ -10,7 +10,11 @@ one page per product, one per maker, and the board itself.
   makers/index.html          every maker with a product
   makers/<login>.html        one maker's products and launches (login in lower case)
   launches.html, .zh.html    the board: the week running, the last week closed,
-                             and the products new this week
+                             next week's launches, the past weeks, and the
+                             products new this week
+  weeks/<week>.html, .zh.html  a closed week's ranking, and the launches
+                             removed from it with their reasons (L15)
+  badges/<slug>.svg          a product's latest badge, for its README (L13)
 
 A product is a row scripts/launches.py is_product() admits: a project, plugin,
 SDK or integration with code that is an example of deciding with Jev. Every
@@ -26,7 +30,6 @@ the same bytes.
 
 from __future__ import annotations
 
-import hashlib
 import pathlib
 import sys
 
@@ -39,6 +42,8 @@ from site_api import query  # noqa: E402
 
 PRODUCT_DIR = "products"
 MAKER_DIR = "makers"
+WEEK_DIR = "weeks"
+BADGE_DIR = "badges"
 HOW_TO_LAUNCH = f"{sp.REPOSITORY}/blob/main/docs/launches.md"
 LAUNCH_ISSUE = f"{sp.REPOSITORY}/issues/new?template=launch.yml"
 DISCUSSION = f"{sp.REPOSITORY}/discussions/{{n}}"
@@ -72,6 +77,7 @@ WORDS = {
     "rank": ("#{rank} of the week · {votes} votes, {counted} counted", "当周第 {rank} 名 · {votes} 票，计 {counted} 票"),
     "open_week": ("on the board this week; counts are shown when the week closes",
                   "本周在榜；票数在收榜后公布"),
+    "next_week": ("on the board next week", "下周上榜"),
     "products_by": ("Products", "产品"),
     "no_profile": ("Built from the catalogue; this maker has not added a profile.",
                    "根据目录生成；这位 Maker 还没有添加自我介绍。"),
@@ -112,6 +118,19 @@ BOARD = {
         "vote": "Vote",
         "page": "Product page",
         "evidence": "Evidence",
+        "next": "Next week: {week}",
+        "next_note": "Launches accepted for next week, in no particular order. Their vote posts open on Monday {monday}.",
+        "past": "Past weeks",
+        "past_item": "{week}: {n} launches, closed {closed}",
+        "week_title": "Launches of {week} · awesome-jev",
+        "week_h1": "Launches of {week}",
+        "week_lede": "Monday {monday} to Sunday {sunday} (UTC), closed on {closed} and counted under rules {rules}. "
+                     "A rank is a count of votes, not this catalogue's recommendation; the evidence beside each "
+                     "launch is the catalogue's own record.",
+        "removed": "Removed from this week",
+        "removed_note": "Taken off the board, with the reason kept in the week's file.",
+        "board": "The board",
+        "badge": "Badge for a README",
     },
     "zh": {
         "title": "发布榜 · awesome-jev",
@@ -132,6 +151,18 @@ BOARD = {
         "vote": "投票",
         "page": "产品页",
         "evidence": "证据",
+        "next": "下周：{week}",
+        "next_note": "已接受、下周上榜的 Launch，不分先后。投票帖在 {monday}（周一）开放。",
+        "past": "往期",
+        "past_item": "{week}：{n} 个 Launch，{closed} 收榜",
+        "week_title": "{week} 发布榜 · awesome-jev",
+        "week_h1": "{week} 发布榜",
+        "week_lede": "{monday}（周一）至 {sunday}（周日，UTC），{closed} 收榜，按规则 {rules} 计票。"
+                     "名次只是票数的排序，不是本目录的推荐；每个 Launch 旁的证据来自目录自己的记录。",
+        "removed": "本周下榜",
+        "removed_note": "从榜上撤下的 Launch，原因留在当周的文件里。",
+        "board": "发布榜",
+        "badge": "README 徽章",
     },
 }
 
@@ -150,6 +181,14 @@ def maker_path(login: str) -> str:
 
 def launches_path(lang: str) -> str:
     return sp.launches_path(lang)
+
+
+def week_path(week: str, lang: str) -> str:
+    return f"{WEEK_DIR}/{week}.html" if lang == "en" else f"{WEEK_DIR}/{week}.zh.html"
+
+
+def badge_path(slug: str) -> str:
+    return f"{BADGE_DIR}/{slug}.svg"
 
 
 def both(key: str, sep: str = " · ") -> str:
@@ -209,14 +248,18 @@ def launch_line(week: str, launch: dict, weeks_by_id: dict[str, dict]) -> str:
     """One launch of a product: its week and, once closed, its rank and votes."""
     status = (weeks_by_id.get(week) or {}).get("status")
     result = launch.get("result")
+    label = esc(week)
     if status == "closed" and result:
         en = WORDS["rank"][0].format(rank=result["rank"], votes=result["votes"], counted=result["counted"])
         zh = WORDS["rank"][1].format(rank=result["rank"], votes=result["votes"], counted=result["counted"])
+        label = f'<a href="../{esc(week_path(week, "en"))}">{esc(week)}</a>'
+    elif status == "scheduled":
+        en, zh = WORDS["next_week"]
     else:
         en, zh = WORDS["open_week"]
     link = (f' · <a href="{esc(DISCUSSION.format(n=launch["discussion"]))}" rel="noopener">GitHub</a>'
             if isinstance(launch.get("discussion"), int) else "")
-    return f'{esc(week)}: {esc(en)} <span lang="zh-CN">{esc(zh)}</span>{link}'
+    return f'{label}: {esc(en)} <span lang="zh-CN">{esc(zh)}</span>{link}'
 
 
 def same_pattern(row: dict, products: list[dict]) -> list[dict]:
@@ -368,13 +411,9 @@ def makers_index(by_login: dict[str, list[dict]], profiles: dict[str, dict]) -> 
     return sp.shell("en", path=path, title=WORDS["makers_title"][0], description=en, body="\n".join(body))
 
 
-def shuffled(launch_list: list[dict], week: str) -> list[dict]:
-    """A running week's launches in an order fixed by the week and the slugs,
-    so no launch sits on top because it came first and two builds agree."""
-    return sorted(launch_list, key=lambda x: hashlib.sha256(f"{week}:{x['product']}".encode()).hexdigest())
-
-
-def board_item(launch: dict, row: dict, lang: str, *, result: dict | None) -> list[str]:
+def board_item(launch: dict, row: dict, lang: str, *, result: dict | None, base: str = "") -> list[str]:
+    """One launch on a board list. `base` leads every link to the site's root
+    ("../" from a week page)."""
     b = BOARD[lang]
     tagline = launch.get("tagline_zh") if lang == "zh" and launch.get("tagline_zh") else launch.get("tagline", "")
     meta = []
@@ -382,12 +421,14 @@ def board_item(launch: dict, row: dict, lang: str, *, result: dict | None) -> li
         meta.append(f"#{result['rank']}")
         meta.append(esc(b["votes"].format(votes=result["votes"], counted=result["counted"])))
     meta.append(f'{esc(b["evidence"])}: {tier_html(row, lang)}')
-    links = [f'<a href="{esc(product_path(row["slug"]))}">{esc(b["page"])}</a>']
+    links = [f'<a href="{esc(base + product_path(row["slug"]))}">{esc(b["page"])}</a>']
+    if result and result.get("badges"):
+        links.append(f'<a href="{esc(base + badge_path(row["slug"]))}">{esc(b["badge"])}</a>')
     if isinstance(launch.get("discussion"), int) and not result:
         links.append(f'<a href="{esc(DISCUSSION.format(n=launch["discussion"]))}" rel="noopener">{esc(b["vote"])} ↗</a>')
     return [
         f'        <li id="{esc(row["slug"])}">',
-        f'          <h3><a href="{esc(product_path(row["slug"]))}">{esc(row["title"])}</a></h3>',
+        f'          <h3><a href="{esc(base + product_path(row["slug"]))}">{esc(row["title"])}</a></h3>',
         f"          <p>{esc(tagline)}</p>",
         f'          <p class="meta">{" · ".join(meta)}</p>',
         f'          <p class="more">{" · ".join(links)}</p>',
@@ -410,17 +451,37 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
         on = [x for x in running.get("launches") or [] if x.get("status") == "scheduled" and x["product"] in rows]
         body += [f"      <h2>{esc(b['running'].format(week=running['week']))}</h2>",
                  f'      <p class="note">{esc(b["running_note"])}</p>', '      <ol class="rows">']
-        for launch in shuffled(on, running["week"]):
+        for launch in launches.shuffled(on, running["week"]):
             body += board_item(launch, rows[launch["product"]], lang, result=None)
         body.append("      </ol>")
     if closed:
         on = [x for x in closed.get("launches") or [] if x.get("status") == "scheduled" and x["product"] in rows]
-        body += [f"      <h2>{esc(b['closed'].format(week=closed['week']))}</h2>", '      <ol class="rows">']
+        body += [f'      <h2><a href="{esc(week_path(closed["week"], lang))}">'
+                 f"{esc(b['closed'].format(week=closed['week']))}</a></h2>", '      <ol class="rows">']
         for launch in sorted(on, key=lambda x: x["result"]["rank"]):
             body += board_item(launch, rows[launch["product"]], lang, result=launch["result"])
         body.append("      </ol>")
+    coming = next((w for w in all_weeks if w.get("status") == "scheduled"
+                   and (not running or w["week"] > running["week"])), None)
+    if coming:
+        on = [x for x in coming.get("launches") or [] if x.get("status") == "scheduled" and x["product"] in rows]
+        if on:
+            monday, _ = launches.week_days(coming["week"])
+            body += [f"      <h2>{esc(b['next'].format(week=coming['week']))}</h2>",
+                     f'      <p class="note">{esc(b["next_note"].format(monday=monday))}</p>', '      <ol class="rows">']
+            for launch in launches.shuffled(on, coming["week"]):
+                body += board_item(launch, rows[launch["product"]], lang, result=None)
+            body.append("      </ol>")
     if not running and not closed:
         body.append(f'      <p class="note">{esc(b["no_launch"])}</p>')
+    past = [w for w in reversed(all_weeks) if w.get("status") == "closed"]
+    if past:
+        body += [f"      <h2>{esc(b['past'])}</h2>", "      <ul>"]
+        for w in past:
+            n = sum(1 for x in w.get("launches") or [] if x.get("status") == "scheduled")
+            text = b["past_item"].format(week=w["week"], n=n, closed=w.get("closed_on", ""))
+            body.append(f'        <li><a href="{esc(week_path(w["week"], lang))}">{esc(text)}</a></li>')
+        body.append("      </ul>")
     week, fresh = launches.new_this_week(catalog)
     if week:
         body += [f"      <h2>{esc(b['new'].format(week=week))}</h2>", f'      <p class="note">{esc(b["new_note"])}</p>']
@@ -441,6 +502,67 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
         body.append(f"      <p>{esc(b['nothing_new'])}</p>")
     return sp.shell(lang, path=path, title=b["title"], description=b["lede"], body="\n".join(body),
                     alternates={code: launches_path(code) for code in sp.LANGS})
+
+
+def week_page(week: dict, lang: str, *, rows: dict[str, dict]) -> str:
+    """A closed week: its ranking, and what was removed from it and why."""
+    b = BOARD[lang]
+    monday, sunday = launches.week_days(week["week"])
+    lede = b["week_lede"].format(monday=monday, sunday=sunday, closed=week.get("closed_on", ""),
+                                 rules=week.get("rules", ""))
+    body = [
+        f'      <p><a href="../{esc(launches_path(lang))}">{esc(b["board"])}</a></p>',
+        f"      <h1>{esc(b['week_h1'].format(week=week['week']))}</h1>",
+        f'      <p class="lede">{esc(lede)}</p>',
+        '      <ol class="rows">',
+    ]
+    on = [x for x in week.get("launches") or [] if x.get("status") == "scheduled" and x["product"] in rows]
+    for launch in sorted(on, key=lambda x: x["result"]["rank"]):
+        body += board_item(launch, rows[launch["product"]], lang, result=launch["result"], base="../")
+    body.append("      </ol>")
+    removed = [x for x in week.get("launches") or [] if x.get("status") == "removed"]
+    if removed:
+        body += [f"      <h2>{esc(b['removed'])}</h2>", f'      <p class="note">{esc(b["removed_note"])}</p>', "      <ul>"]
+        for launch in removed:
+            body.append(f"        <li>{esc(launch['product'])}: {esc(launch.get('reason', ''))}</li>")
+        body.append("      </ul>")
+    path = week_path(week["week"], lang)
+    return sp.shell(lang, path=path, title=b["week_title"].format(week=week["week"]), description=lede,
+                    body="\n".join(body), alternates={code: week_path(week["week"], code) for code in sp.LANGS})
+
+
+BADGE_TEXT = {"week-1": "#1", "week-2": "#2", "week-3": "#3"}
+
+
+def badge_svg(badge: str, week: str) -> str:
+    """A small plain badge: no script, no font or image from anywhere."""
+    left, right = "awesome-jev launches", f"{BADGE_TEXT[badge]} of {week}"
+    lw, rw = 7 * len(left) + 12, 7 * len(right) + 12
+    width = lw + rw
+    label = f"{left}: {right}"
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="20" role="img" aria-label="{esc(label)}">'
+        f"<title>{esc(label)}</title>"
+        f'<rect width="{lw}" height="20" fill="#20252c"/>'
+        f'<rect x="{lw}" width="{rw}" height="20" fill="#b8892e"/>'
+        '<g fill="#fff" font-family="Verdana,DejaVu Sans,sans-serif" font-size="11">'
+        f'<text x="6" y="14">{esc(left)}</text>'
+        f'<text x="{lw + 6}" y="14">{esc(right)}</text>'
+        "</g></svg>\n"
+    )
+
+
+def badges(launch_weeks: list[dict]) -> dict[str, tuple[str, str]]:
+    """Each product's latest badge, as (badge, week)."""
+    out: dict[str, tuple[str, str]] = {}
+    for week in sorted(launch_weeks, key=lambda w: str(w.get("week"))):
+        if week.get("status") != "closed":
+            continue
+        for launch in week.get("launches") or []:
+            got = (launch.get("result") or {}).get("badges") or []
+            if launch.get("status") == "scheduled" and got:
+                out[launch["product"]] = (got[0], week["week"])
+    return out
 
 
 def pages(catalog: list[dict], patterns: list[dict], labels: sp.Labels, *,
@@ -466,4 +588,10 @@ def pages(catalog: list[dict], patterns: list[dict], labels: sp.Labels, *,
     files[f"{MAKER_DIR}/index.html"] = makers_index(by_login, maker_profiles)
     for lang in sp.LANGS:
         files[launches_path(lang)] = board_page(lang, catalog=catalog, rows=rows, all_weeks=launch_weeks, labels=labels)
+        for week in launch_weeks:
+            if week.get("status") == "closed":
+                files[week_path(week["week"], lang)] = week_page(week, lang, rows=rows)
+    for slug, (badge, week) in badges(launch_weeks).items():
+        if slug in rows:
+            files[badge_path(slug)] = badge_svg(badge, week)
     return files

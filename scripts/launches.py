@@ -35,6 +35,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import pathlib
 import re
@@ -73,8 +74,11 @@ TIERS = ("person", "model", "file", "none")
 #   own:       votes from the product's makers and the launch's submitter
 #   young_days: an account younger than this when it voted ...
 #   young:     ... counts this much
+#   ring_votes, ring_share: a launch with at least ring_votes votes, at least
+#              ring_share of them from such young (or unreadable) accounts, is
+#              held for a person when the week closes instead of ranked (L14)
 RULES = {
-    "v1": {"own": 0.0, "young_days": 30, "young": 0.5},
+    "v1": {"own": 0.0, "young_days": 30, "young": 0.5, "ring_votes": 10, "ring_share": 0.5},
 }
 CURRENT_RULES = "v1"
 
@@ -216,6 +220,47 @@ def weigh(votes: list[dict], *, own: Iterable[str], week: str, rules: str = CURR
             discounted += 1
         counted += weight
     return {"votes": n, "counted": round(counted, 2), "discounted": discounted}
+
+
+def young_votes(votes: list[dict], *, own: Iterable[str], week: str, rules: str = CURRENT_RULES) -> tuple[int, int]:
+    """(votes from accounts younger than the rule allows or of unreadable age,
+    votes) among those weigh() counts, the product's own left out of both."""
+    rule = RULES[rules]
+    monday, sunday = week_days(week)
+    mine = {login_key(x) for x in own}
+    seen: set[str] = set()
+    young = n = 0
+    for vote in sorted(votes, key=lambda v: (str(v.get("at")), str(v.get("login")))):
+        login = login_key(str(vote.get("login") or ""))
+        cast = day(vote.get("at"))
+        if not login or login in seen or not cast or not monday <= cast <= sunday:
+            continue
+        seen.add(login)
+        if login in mine:
+            continue
+        n += 1
+        born = day(vote.get("account_created"))
+        if born is None or (cast - born).days < rule["young_days"]:
+            young += 1
+    return young, n
+
+
+def ring(votes: list[dict], *, own: Iterable[str], week: str, rules: str = CURRENT_RULES) -> str | None:
+    """Why a launch's votes look like a ring of new accounts, or None (L14).
+    A heuristic: it holds the launch for a person, who decides."""
+    rule = RULES[rules]
+    young, n = young_votes(votes, own=own, week=week, rules=rules)
+    if n >= rule["ring_votes"] and young >= rule["ring_share"] * n:
+        return (f"{young} of {n} votes came from accounts younger than {rule['young_days']} days "
+                "or of unknown age; held for a person before it ranks")
+    return None
+
+
+def shuffled(launch_list: list[dict], week: str) -> list[dict]:
+    """A running week's launches in an order fixed by the week and the slugs,
+    so no launch sits on top because it came first and two builds agree. The
+    board and the order the vote posts are created in both use it."""
+    return sorted(launch_list, key=lambda x: hashlib.sha256(f"{week}:{x['product']}".encode()).hexdigest())
 
 
 def rank(launches: list[dict], catalog: dict[str, dict]) -> list[dict]:

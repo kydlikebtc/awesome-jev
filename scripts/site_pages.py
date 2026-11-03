@@ -580,7 +580,7 @@ def pages(catalog: list[dict], retired: list[dict], patterns: list[dict], taxono
 
 # The files and the directories pages() writes, so a rewrite can clear them.
 TOP_FILES = ("new.html", "new.zh.html", "launches.html", "launches.zh.html", "feed.xml", "feed.zh.xml", "sitemap.xml")
-DIRS = (PATTERN_DIR, "products", "makers")
+DIRS = (PATTERN_DIR, "products", "makers", "weeks", "badges")
 
 
 def write_pages(site: pathlib.Path, files: dict[str, str]) -> None:

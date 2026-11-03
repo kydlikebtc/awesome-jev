@@ -420,7 +420,7 @@ class PagesTest(unittest.TestCase):
 
     def test_a_product_page_lists_its_launches(self):
         text = build(weeks=[CLOSED, OPEN])["products/alpha.html"]
-        self.assertIn("2026-W46: #1 of the week · 4 votes, 3.5 counted", text)
+        self.assertIn('<a href="../weeks/2026-W46.html">2026-W46</a>: #1 of the week · 4 votes, 3.5 counted', text)
         self.assertIn("discussions/7", text)
         gamma = build(weeks=[CLOSED, OPEN])["products/gamma.html"]
         self.assertIn("2026-W47: on the board this week", gamma)

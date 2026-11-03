@@ -2,8 +2,8 @@
 # the job summary (scripts/launch_votes.py; L2 of the 2026-11-03 launch-board
 # plan, docs/launches.md). Run by hand only, from the Actions page: it is the
 # check that the workflow's own token can read a Discussion's reactions and
-# each voter's account age before any launch depends on it. Later, the weekly
-# close (still to come) reads every launch the same way.
+# each voter's account age before any launch depends on it. The weekly close
+# (launch-week.yml, scripts/launch_week.py) reads every launch the same way.
 #
 # It writes nothing anywhere but the job summary, and the summary carries
 # counts, never who voted.

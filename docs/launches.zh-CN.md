@@ -11,18 +11,20 @@
 
 名次只是票数的排序，不是本目录的推荐。这里的一切都与 TypeSafe AI 无关。
 
-榜单页面在站点上：[发布榜](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)（[English](https://kydlikebtc.github.io/awesome-jev/launches.html)），每个产品一页（`products/<slug>.html`），每位 Maker 一页（`makers/<login>.html`）。下面的规则都写在代码里：[`scripts/launches.py`](../scripts/launches.py)。
+榜单页面在站点上：[发布榜](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)（[English](https://kydlikebtc.github.io/awesome-jev/launches.html)），每个产品一页（`products/<slug>.html`），每位 Maker 一页（`makers/<login>.html`），每个已收榜的周一页（`weeks/<week>.html`）。下面的规则都写在代码里：[`scripts/launches.py`](../scripts/launches.py)。
+
+发布产品请用 [Launch a product](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml) 表单。
 
 ## 进度
 
 | 阶段 | 加了什么 | 状态 |
 | --- | --- | --- |
 | 产品页和 Maker 页 | 每个产品、每位 Maker 一页；榜单列出每周新收录的产品 | 已完成（2026-11-03） |
-| 读取投票 | [`launch-votes.yml`](../.github/workflows/launch-votes.yml) 手动运行，读取一个 Discussion 上的点赞 | 已完成；等开启 Discussions |
-| 开放发布 | 发布表单、每个 Launch 一个投票帖、每小时统计、每周收榜 | 下一步 |
+| 读取投票 | [`launch-votes.yml`](../.github/workflows/launch-votes.yml) 手动运行，读取一个 Discussion 上的点赞 | 已完成（2026-11-03） |
+| 开放发布 | 发布表单和自动检查、每个 Launch 一个投票帖、周一收榜、周榜页和徽章 | 已完成（2026-11-03）；等开启 Discussions |
 | 日榜 | 从周榜改为日榜 | 等每周的 Launch 足够多 |
 
-开放发布之前，榜单列出最新一周进入目录的产品，先按谁读过调用点、再按星标排序。这是排序，不是排名。
+第一周开榜之前，榜单列出最新一周进入目录的产品，先按谁读过调用点、再按星标排序。这是排序，不是排名。
 
 ## 什么可以发布
 
@@ -34,7 +36,7 @@
 
 ## 谁来发布
 
-- **Maker**：这一行 `makers` 里的 GitHub 登录名；没有 `makers` 时，取 `author.url` 里的登录名。Maker 是仓库的所有者或协作者，在读他们的 issue 时核对。
+- **Maker**：这一行 `makers` 里的 GitHub 登录名；没有 `makers` 时，取 `author.url` 里的登录名。发布 issue 的检查还认仓库所有者、以及拥有仓库的组织的公开成员，并把他们加进 `makers`。其他自称 Maker 的人先挂起，等维护者确认。
 - **Hunter**：替别人发布产品的人。Launch 会记下他们，产品的 Maker 之后仍可认领。
 - 发现管线自动收录的行，在有人发布之前没有 Launch。
 
@@ -46,11 +48,11 @@ Maker 还可以通过 [confirm-entry 表单](https://github.com/kydlikebtc/aweso
 
 周按 ISO 周计算：周一 00:00 UTC 到周日 23:59 UTC。
 
-1. 下一周的 Launch 在周四 23:59 UTC 前提交。提交时自动检查；检查拿不准的交给人决定，和发现候选的做法一样（[docs/held.txt](held.txt)）。
-2. 本周的 Launch 和它们需要的新行，随 owner 周五的合并进入 `main`。
-3. 周一开榜。每个 Launch 有一个 GitHub Discussion，在帖子上点赞就是投票。
-4. 开榜期间，榜单按随机顺序展示，不显示票数，免得大家只给排在前面的投票。
-5. 收榜时统计票数，结果写入 `launches/<YYYY>-W<ww>.json`（[schema](../schema/launch.schema.json)）。至少计到一票的前三名获得徽章。
+1. 用表单在周四 23:59 UTC 前提交，进入下一周（之后提交的进入再下一周）。检查会马上回复这个 issue：可以上榜、挂起等人决定（附原因），或者暂不能发布（附要改什么）。确认不了 Maker 身份、仓库是 fork 或 60 天没有推送、提交者账号不满 30 天的，都会挂起，由人决定，和发现候选的做法一样（[docs/held.txt](held.txt)）。
+2. 周五把这一周的 Launch 写进 `launches/<YYYY>-W<ww>.json`（[schema](../schema/launch.schema.json)），随 owner 的合并进入 `main`。榜单在"下周"下面列出它们。
+3. 周一 00:05 UTC 开榜：每个 Launch 在仓库的 `Launches` Discussions 里有一个帖子，在帖子上点赞就是投票。
+4. 开榜期间，榜单按随机顺序展示，不显示票数，免得大家只给排在前面的投票。（Discussion 自己会显示点赞数，榜单不重复显示。）
+5. 下一个周一收榜：统计票数，结果写入当周文件。票数主要来自新账号的 Launch 先挂起等人看，不参与排名。至少计到一票的前三名获得徽章，即站点上一张可以放进 README 的图片（`badges/<slug>.svg`），这一周也有了自己的页面。
 
 ## 怎么计票（规则 v1）
 
@@ -74,11 +76,13 @@ Maker 还可以通过 [confirm-entry 表单](https://github.com/kydlikebtc/aweso
 | 路径 | 内容 | 由谁写 |
 | --- | --- | --- |
 | `catalog.json` | 产品，含 `makers`、`tagline`、`tagline_zh`、`demo_url` | 贡献者和 Maker |
-| `launches/<YYYY>-W<ww>.json` | 一周：它的 Launch、状态，收榜后的结果 | 发布工作流 |
+| `launches/<YYYY>-W<ww>.json` | 一周：它的 Launch、状态，收榜后的结果 | 发布脚本 |
 | `makers/<login>.json` | Maker 自己的介绍，可选 | Maker 本人 |
 | `scripts/launches.py` | 上面所有规则 | |
 | `scripts/check_launches.py` | 按这些规则校验 `launches/` 和 `makers/` | |
+| `scripts/launch_intake.py` | 检查发布 issue，汇总一周的 Launch | |
+| `scripts/launch_week.py` | 开本周的榜，收上周的榜 | |
 | `scripts/launch_votes.py` | 读取一个 Discussion 的投票 | |
-| `scripts/site_products.py` | 产品页、Maker 页和榜单页 | |
+| `scripts/site_products.py` | 产品页、Maker 页、周榜页、榜单页和徽章 | |
 
 `python3 scripts/check_launches.py` 和其他检查一起运行（`python3 scripts/check.py`）。

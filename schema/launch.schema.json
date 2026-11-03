@@ -80,6 +80,11 @@
             "type": "string",
             "enum": ["scheduled", "held", "removed"]
           },
+          "cleared_by": {
+            "description": "The maintainer who read the votes the ring check held (scripts/launches.py ring) and let the launch stand. A recount then leaves it to the person's decision.",
+            "type": "string",
+            "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$"
+          },
           "reason": {
             "description": "Why a launch is held or removed. Required for both, absent otherwise.",
             "type": "string",
