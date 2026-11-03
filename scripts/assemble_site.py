@@ -137,7 +137,9 @@ def api_files(stats: dict) -> dict[str, str]:
     """site/api/v1/, built from the root files the site publishes."""
     catalog = json.loads((ROOT / "catalog.json").read_text())
     patterns = json.loads((ROOT / "patterns.json").read_text())["patterns"]
-    return site_api.api_files(catalog, patterns, stats, site_url=SITE_URL, published=PUBLISHED)
+    return site_api.api_files(
+        catalog, patterns, stats, site_url=SITE_URL, published=PUBLISHED, launch_weeks=launches.weeks(),
+    )
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -163,10 +165,12 @@ def main(argv: list[str] | None = None) -> int:
 
     files = api_files(stats)
     site_api.write_api(SITE, files)
-    sizes = {rel: len(text.encode("utf-8")) for rel, text in files.items() if rel != site_api.INDEX}
+    sizes = {
+        rel: len(text.encode("utf-8")) for rel, text in files.items() if rel not in (site_api.INDEX, site_api.LAUNCHES)
+    }
     largest = max(sizes, key=lambda rel: (sizes[rel], rel))
     print(
-        f"wrote site/{site_api.API_DIR}/: index.json and {len(sizes)} pattern file(s), "
+        f"wrote site/{site_api.API_DIR}/: index.json, launches.json and {len(sizes)} pattern file(s), "
         f"{sum(stats['by_pattern'].values())} row(s) in all (a row can sit under several patterns); "
         f"largest {largest.rsplit('/', 1)[1]} at {sizes[largest]:,} bytes"
     )

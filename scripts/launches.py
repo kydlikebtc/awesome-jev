@@ -35,7 +35,6 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
-import hashlib
 import json
 import pathlib
 import re
@@ -64,10 +63,9 @@ QUIET_DAYS = 60
 # A product launches at most once in this many days.
 RELAUNCH_DAYS = 60
 
-# Evidence tiers, strongest first: a person read the call site; only a model
-# did; a script found Jev's request or answer in the cited file and nobody has
-# read it; no file is cited.
-TIERS = ("person", "model", "file", "none")
+# Evidence tiers, strongest first (query.LAUNCH_TIERS, which the MCP server's
+# launch tools and the site's api/v1/launches.json read too).
+TIERS = query.LAUNCH_TIERS
 
 # How votes count. A rule is never changed in place: a new one gets the next
 # name, and a closed week records the one it was counted under.
@@ -83,6 +81,12 @@ RULES = {
 CURRENT_RULES = "v1"
 
 BADGES = ("week-1", "week-2", "week-3")
+
+# When the board moves from one a week to one a day (L16 of the 2026-11-03
+# plan): after DAILY_WEEKS closed weeks in a row with at least DAILY_LAUNCHES
+# launches on the board each. Until then a day's board would be nearly empty.
+DAILY_WEEKS = 4
+DAILY_LAUNCHES = 20
 
 LOGIN = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$")
 GITHUB_PROFILE = re.compile(r"^https://github\.com/([A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?)/?$")
@@ -107,10 +111,8 @@ def is_product(row: dict) -> bool:
 
 
 def tier(row: dict) -> str:
-    """The evidence tier the board shows for a row (TIERS)."""
-    if query.evidence_kind(row) is None:
-        return "none"
-    return query.read_by(row.get("evidence")) or "file"
+    """The evidence tier the board shows for a row (TIERS; query.launch_tier)."""
+    return query.launch_tier(row)
 
 
 def day(value: object) -> dt.date | None:
@@ -259,8 +261,9 @@ def ring(votes: list[dict], *, own: Iterable[str], week: str, rules: str = CURRE
 def shuffled(launch_list: list[dict], week: str) -> list[dict]:
     """A running week's launches in an order fixed by the week and the slugs,
     so no launch sits on top because it came first and two builds agree. The
-    board and the order the vote posts are created in both use it."""
-    return sorted(launch_list, key=lambda x: hashlib.sha256(f"{week}:{x['product']}".encode()).hexdigest())
+    board and the order the vote posts are created in both use it, and so do
+    the MCP server and api/v1/launches.json (query.launch_order)."""
+    return query.launch_order(launch_list, week)
 
 
 def rank(launches: list[dict], catalog: dict[str, dict]) -> list[dict]:
@@ -335,6 +338,25 @@ def hunters(all_weeks: list[dict]) -> list[tuple[str, int, int]]:
             tally[0] += 1
             tally[1] += 1 if (launch.get("result") or {}).get("badges") else 0
     return sorted(((shown[k], n, top) for k, (n, top) in counts.items()), key=lambda h: (-h[1], -h[2], login_key(h[0])))
+
+
+def daily_streak(all_weeks: list[dict]) -> int:
+    """How many closed weeks in a row, ending with the newest closed one, had
+    at least DAILY_LAUNCHES launches on the board. A week with no file breaks
+    the run like a short one. DAILY_WEEKS of them means the daily board is due
+    (L16)."""
+    closed = sorted((w for w in all_weeks if w.get("status") == "closed" and WEEK.match(str(w.get("week")))),
+                    key=lambda w: w["week"], reverse=True)
+    streak, expected = 0, None
+    for week in closed:
+        monday, _ = week_days(week["week"])
+        if expected is not None and monday != expected:
+            break
+        if sum(1 for x in week.get("launches") or [] if x.get("status") == "scheduled") < DAILY_LAUNCHES:
+            break
+        streak += 1
+        expected = monday - dt.timedelta(days=7)
+    return streak
 
 
 def launched(all_weeks: list[dict]) -> dict[str, list[tuple[str, dict]]]:

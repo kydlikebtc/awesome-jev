@@ -22,7 +22,8 @@
 | 产品页和 Maker 页 | 每个产品、每位 Maker 一页；榜单列出每周新收录的产品 | 已完成（2026-11-03） |
 | 读取投票 | [`launch-votes.yml`](../.github/workflows/launch-votes.yml) 手动运行，读取一个 Discussion 上的点赞 | 已完成（2026-11-03）；当天在测试帖上读到了投票 |
 | 开放发布 | 发布表单和自动检查、每个 Launch 一个投票帖、周一收榜、周榜页和徽章 | 已完成（2026-11-03）；当天已开启 Discussions 并建好 `Launches` 分类 |
-| 日榜 | 从周榜改为日榜 | 等每周的 Launch 足够多 |
+| 给 Agent 用 | MCP 服务器的 `launch_board`、`top_launches` 工具，站点上的 [`api/v1/launches.json`](https://kydlikebtc.github.io/awesome-jev/api/v1/launches.json) | 已完成（2026-11-03） |
+| 日榜 | 从周榜改为日榜 | 连续 4 周、每周至少 20 个 Launch 之后；榜单页会显示已连续几周 |
 
 第一周开榜之前，榜单列出最新一周进入目录的产品，先按谁读过调用点、再按星标排序。这是排序，不是排名。
 
@@ -56,6 +57,8 @@ Maker 还可以通过 [confirm-entry 表单](https://github.com/kydlikebtc/aweso
 
 每个月的月报（[docs/monthly/](monthly/)，在下个月第一周写成）列出当月结束的每一周和它的前三名。
 
+Agent 不用看页面也能读榜。MCP 服务器的 `launch_board()` 返回本周（随机顺序、不显示票数）、上周（已排名）和下周；`top_launches(pattern=…)` 返回名次最好的产品，每个产品只出现一次，取它最好的那一周。站点在 `api/v1/launches.json` 提供每一周的原始文件和榜单上的样子。两者都和页面一样，把每个 Launch 的证据和标记放在票数旁边。
+
 ## 怎么计票（规则 v1）
 
 - 每个 GitHub 账号一票，必须在本周内投出。
@@ -86,5 +89,7 @@ Maker 还可以通过 [confirm-entry 表单](https://github.com/kydlikebtc/aweso
 | `scripts/launch_week.py` | 开本周的榜，收上周的榜 | |
 | `scripts/launch_votes.py` | 读取一个 Discussion 的投票 | |
 | `scripts/site_products.py` | 产品页、Maker 页、周榜页、榜单页和徽章 | |
+| `src/awesome_jev_mcp/query.py` | MCP 服务器的发布榜工具和 `api/v1/launches.json` 的内容 | |
+| `.github/workflows/launch-probe.yml` | 手动运行：工作流能否在 `Launches` 分类发帖 | |
 
 `python3 scripts/check_launches.py` 和其他检查一起运行（`python3 scripts/check.py`）。

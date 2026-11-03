@@ -584,6 +584,22 @@ class WeekPagesTest(unittest.TestCase):
         self.assertIn('href="weeks/2026-W46.zh.html"', self.files["launches.zh.html"])
         self.assertIn("下周上榜", self.files["products/gamma.html"])
 
+    def test_the_board_says_how_far_the_daily_board_is(self):
+        self.assertIn("after 4 weeks in a row with at least 20 launches each. Weeks in a row so far: 0.",
+                      self.files["launches.html"])
+        self.assertIn("目前已连续 0 周", self.files["launches.zh.html"])
+
+        def closed(name, n):
+            return week(name, "closed", [launch(f"p{i}", result={"votes": 0, "counted": 0, "discounted": 0, "rank": i + 1})
+                                         for i in range(n)] + [launch("x", status="held", reason="held")])
+
+        full = [closed("2026-W41", 25), closed("2026-W43", 20), closed("2026-W44", 30), closed("2026-W45", 20),
+                closed("2026-W46", 21), NEXT]
+        self.assertEqual(launches.daily_streak(full), 4)
+        self.assertEqual(launches.daily_streak(full[:-2] + [closed("2026-W46", 19)]), 0)
+        self.assertEqual(launches.daily_streak(full[:3]), 2)  # 2026-W42 has no file: the run stops there
+        self.assertEqual(launches.daily_streak([NEXT]), 0)
+
     def test_the_board_thanks_hunters(self):
         board = self.files["launches.html"]
         self.assertIn('<a href="https://github.com/h" rel="noopener">h</a>: 1 launched, 0 in a top three', board)

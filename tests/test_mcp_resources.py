@@ -228,9 +228,12 @@ class RegistrationTest(unittest.TestCase):
             with self.subTest(uri=uri):
                 self.assertEqual(set(re.findall(r"{(\w+)}", uri)), set(inspect.signature(entry["fn"]).parameters))
 
-    def test_the_tools_are_still_the_five(self):
-        self.assertEqual(sorted(self.server.mcp.tools),
-                         ["check_model_string", "compatibility", "get_example", "list_patterns", "search_examples"])
+    def test_the_tools_are_the_five_and_the_two_launch_tools(self):
+        tools = ["check_model_string", "compatibility", "get_example", "launch_board", "list_patterns",
+                 "search_examples", "top_launches"]
+        self.assertEqual(sorted(self.server.mcp.tools), tools)
+        workflow = (ROOT / ".github" / "workflows" / "publish.yml").read_text()
+        self.assertIn(f"assert tools == {json.dumps(tools)}, tools", workflow)
 
     def read(self, uri: str, **params) -> dict:
         text = self.server.mcp.resources[uri]["fn"](**params)

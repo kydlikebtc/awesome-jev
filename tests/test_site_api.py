@@ -77,6 +77,9 @@ def build(rows=ROWS, patterns=PATTERNS, stats=STATS) -> dict[str, str]:
     return site_api.api_files(rows, patterns, stats, site_url=SITE_URL, published=PUBLISHED)
 
 
+PATTERN_DIR = f"{site_api.API_DIR}/patterns/"
+
+
 def parsed(files: dict[str, str]) -> dict[str, dict]:
     return {rel: json.loads(text) for rel, text in files.items()}
 
@@ -87,7 +90,7 @@ class ShapeTest(unittest.TestCase):
         self.index = self.files["api/v1/index.json"]
 
     def test_one_file_per_pattern_and_an_index(self):
-        expected = {"api/v1/index.json"} | {f"api/v1/patterns/{p['key']}.json" for p in PATTERNS}
+        expected = {"api/v1/index.json", "api/v1/launches.json"} | {f"api/v1/patterns/{p['key']}.json" for p in PATTERNS}
         self.assertEqual(set(self.files), expected)
 
     def test_the_index_lists_the_patterns_in_the_taxonomy_order(self):
@@ -124,8 +127,9 @@ class ShapeTest(unittest.TestCase):
         tools = self.files["api/v1/patterns/tool-selection.json"]
         self.assertEqual([e["slug"] for e in tools["entries"]], ["clone", "gate", "router"])
         self.assertEqual(tools["entries"][0]["caveats"], ["not-jev"])
-        for body in self.files.values():
-            self.assertEqual(body["not_examples"], sorted(package_query.DISQUALIFYING))
+        for rel, body in self.files.items():
+            if rel != site_api.LAUNCHES:
+                self.assertEqual(body["not_examples"], sorted(package_query.DISQUALIFYING))
 
     def test_counts_match_a_count_over_the_rows(self):
         counts = Counter(p for e in ROWS for p in e["patterns"])
@@ -188,7 +192,7 @@ class ContractTest(unittest.TestCase):
             self.assertLessEqual(self.INDEX_PATTERN, set(item), item["key"])
         tools = files["api/v1/patterns/tool-selection.json"]
         for rel, body in files.items():
-            if rel != site_api.INDEX:
+            if rel.startswith(PATTERN_DIR):
                 self.assertLessEqual(self.PATTERN_FILE, set(body), rel)
         (served,) = [e for e in tools["entries"] if e["slug"] == "full"]
         self.assertLessEqual(self.ROW, set(served))
@@ -206,7 +210,7 @@ class ContractTest(unittest.TestCase):
         # Row dates are the catalogue's; outside the rows the only date is
         # last_sweep, so two deploys of the same data serve the same bytes.
         for rel, text in build().items():
-            if rel == site_api.INDEX:
+            if not rel.startswith(PATTERN_DIR):
                 continue
             head = {k: v for k, v in json.loads(text).items() if k != "entries"}
             self.assertEqual(re.findall(r"\d{4}-\d{2}-\d{2}", json.dumps(head)), ["2001-02-03"], rel)
@@ -238,7 +242,7 @@ class RealCatalogueTest(unittest.TestCase):
             self.assertEqual(len(body["entries"]), self.stats["by_pattern"][p["key"]], p["key"])
 
     def test_the_rows_carry_the_compact_fields_and_no_others(self):
-        seen = {key for rel, body in self.files.items() if rel != site_api.INDEX for e in body["entries"] for key in e}
+        seen = {key for rel, body in self.files.items() if rel.startswith(PATTERN_DIR) for e in body["entries"] for key in e}
         self.assertEqual(seen, self.fields)
 
     def test_the_index_points_at_pages(self):

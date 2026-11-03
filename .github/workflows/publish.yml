@@ -127,7 +127,7 @@ jobs:
           import asyncio
           from awesome_jev_mcp import server
           tools = sorted(tool.name for tool in asyncio.run(server.mcp.list_tools()))
-          assert tools == ["check_model_string", "compatibility", "get_example", "list_patterns", "search_examples"], tools
+          assert tools == ["check_model_string", "compatibility", "get_example", "launch_board", "list_patterns", "search_examples", "top_launches"], tools
           resources = sorted(str(r.uri) for r in asyncio.run(server.mcp.list_resources()))
           assert resources == ["awesome-jev://collections", "awesome-jev://flags"], resources
           templates = sorted(t.uri_template for t in asyncio.run(server.mcp.list_resource_templates()))
