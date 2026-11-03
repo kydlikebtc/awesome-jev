@@ -52,8 +52,8 @@ import launch_votes  # noqa: E402
 import launches as L  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SITE = "https://kydlikebtc.github.io/awesome-jev/"
-DOCS = "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/launches.md"
+SITE = L.query.SITE
+DOCS = L.query.LAUNCHES_DOC
 CATEGORY = "Launches"
 MAX_PAGES = 10
 

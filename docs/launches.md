@@ -129,6 +129,18 @@ each closed week records the rule it was counted under.
 The repository keeps the counts only: how many votes, how many counted, how
 many were discounted. It never keeps who voted.
 
+## The year's decision award
+
+Jev entered early access on 2026-09-15, so the board's year runs from 15
+September to the 14th of the next September. On each anniversary, from
+2027-09-15, every decision pattern gets an award. `python3 scripts/award.py
+--year 2027` draws up one shortlist per pattern from the year's closed weeks:
+products whose call site a person or a model read, each at its best week,
+ordered by rank and then counted votes, three at most. A person picks the award
+from a shortlist and writes the pick and the reasons in `docs/award/<year>.md`.
+Votes order a shortlist; the evidence decides who may be on it. The script
+never picks.
+
 ## What is never done
 
 - No ranking is sold, and no launch is placed above another for money.
@@ -151,6 +163,8 @@ many were discounted. It never keeps who voted.
 | `scripts/launch_votes.py` | reads one Discussion's votes | |
 | `scripts/site_products.py` | the product, maker, week and board pages, and the badges | |
 | `src/awesome_jev_mcp/query.py` | what the MCP server's launch tools and `api/v1/launches.json` answer | |
+| `scripts/award.py` | the year's award shortlists, one per pattern | |
+| [launch-engine.md](launch-engine.md) | how to run this board for another catalogue | |
 | `.github/workflows/launch-probe.yml` | by hand: whether the workflow may post in `Launches` | |
 
 `python3 scripts/check_launches.py` runs with the other checks

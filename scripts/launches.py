@@ -35,17 +35,31 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import importlib.util
 import json
 import pathlib
 import re
 import sys
 from typing import Iterable
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-
-from site_api import query  # noqa: E402
-
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+QUERY = ROOT / "src" / "awesome_jev_mcp" / "query.py"
+
+
+def _load_query():
+    """src/awesome_jev_mcp/query.py by its path, under the name site_api.py
+    loads it by, so both share one module. Standard library only: the board's
+    rules need nothing else from this repository (docs/launch-engine.md)."""
+    name = "awesome_jev_query"
+    if name not in sys.modules:
+        spec = importlib.util.spec_from_file_location(name, QUERY)
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[name] = module
+        spec.loader.exec_module(module)
+    return sys.modules[name]
+
+
+query = _load_query()
 LAUNCH_DIR = ROOT / "launches"
 MAKER_DIR = ROOT / "makers"
 LAUNCH_SCHEMA = ROOT / "schema" / "launch.schema.json"

@@ -65,8 +65,8 @@ import launches as L  # noqa: E402
 from draft_from_issue import fence, find_row, insert_after, one_line, parse_form, repository, ticked  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SITE = "https://kydlikebtc.github.io/awesome-jev/"
-NEW_ENTRY = "https://github.com/kydlikebtc/awesome-jev/issues/new?template=new-entry.yml"
+SITE = L.query.SITE
+NEW_ENTRY = f"{L.query.REPOSITORY_URL}/issues/new?template=new-entry.yml"
 MARKER = "<!-- written by scripts/launch_intake.py -->"
 FACTS = re.compile(r"^<!-- launch-intake-facts (\{.*\}) -->$", re.MULTILINE)
 BOT = "github-actions[bot]"
@@ -368,7 +368,7 @@ def comment(result: dict, facts: dict | None = None) -> str:
         lines += ["", "What goes into the week's file:", "", f"{tick}json", text, tick]
     if result.get("row"):
         lines += ["", f"The product's page: {SITE}products/{result['row']}.html"]
-    lines += ["", "How the board works: https://github.com/kydlikebtc/awesome-jev/blob/main/docs/launches.md", ""]
+    lines += ["", f"How the board works: {L.query.LAUNCHES_DOC}", ""]
     return "\n".join(lines)
 
 

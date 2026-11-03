@@ -837,9 +837,14 @@ def model_string_check(compat: dict, model: str) -> dict[str, Any]:
 # api/v1/launches.json and scripts/launches.py read one set of rules: whose
 # evidence a launch shows, and the order a running week is listed in.
 
+# Where the board lives. A fork running the board for another catalogue
+# changes these two (and _github.SELF); every launch address derives from them
+# (docs/launch-engine.md).
 SITE = "https://kydlikebtc.github.io/awesome-jev/"
-LAUNCHES_DOC = "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/launches.md"
-DISCUSSION = "https://github.com/kydlikebtc/awesome-jev/discussions/"
+REPOSITORY_URL = "https://github.com/kydlikebtc/awesome-jev"
+LAUNCHES_DOC = f"{REPOSITORY_URL}/blob/main/docs/launches.md"
+DISCUSSION = f"{REPOSITORY_URL}/discussions/"
+LAUNCH_FORM = f"{REPOSITORY_URL}/issues/new?template=launch.yml"
 
 # Evidence tiers, strongest first: a person read the call site; only a model
 # did; a script found Jev's request or answer in the cited file and nobody
@@ -978,8 +983,7 @@ def launch_board(weeks: list[dict], rows: list[dict], flags: list[dict], *, toda
                 "No launch week is on file around this day yet. The board opens a week each Monday "
                 "00:00 UTC once launches are submitted for it."
             )
-    answer = {**views, "submit": "https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml",
-              "note": LAUNCH_NOTE}
+    answer = {**views, "submit": LAUNCH_FORM, "note": LAUNCH_NOTE}
     shown = [x for v in views.values() if isinstance(v, dict) for x in v.get("launches", [])]
     return _with_glossary(answer, flags, (x.get("caveats") or [] for x in shown))
 

@@ -70,6 +70,10 @@ Agent 不用看页面也能读榜。MCP 服务器的 `launch_board()` 返回本�
 
 仓库只保存数字：多少票、计入多少、打了折扣的有多少。从不保存谁投了票。
 
+## 年度决策奖
+
+Jev 在 2026-09-15 进入早期访问，所以发布榜的一年从 9 月 15 日算到下一年 9 月 14 日。从 2027-09-15 起，每年这一天给每种决策模式颁一个奖。`python3 scripts/award.py --year 2027` 从这一年已收榜的周里，为每种模式列出候选名单：只收有人或模型读过调用点的产品，每个产品取它最好的那一周，先按名次、再按计入票数排序，最多三个。获奖者由人从名单里选出，选择和理由写进 `docs/award/<年份>.md`。票数决定名单的顺序，证据决定谁能进名单。脚本从不替人选。
+
 ## 绝不做的事
 
 - 不出售排名，不因为钱把一个 Launch 排到另一个前面。
@@ -90,6 +94,8 @@ Agent 不用看页面也能读榜。MCP 服务器的 `launch_board()` 返回本�
 | `scripts/launch_votes.py` | 读取一个 Discussion 的投票 | |
 | `scripts/site_products.py` | 产品页、Maker 页、周榜页、榜单页和徽章 | |
 | `src/awesome_jev_mcp/query.py` | MCP 服务器的发布榜工具和 `api/v1/launches.json` 的内容 | |
+| `scripts/award.py` | 年度奖每种模式的候选名单 | |
+| [launch-engine.zh-CN.md](launch-engine.zh-CN.md) | 怎样为另一个目录运行这套发布榜 | |
 | `.github/workflows/launch-probe.yml` | 手动运行：工作流能否在 `Launches` 分类发帖 | |
 
 `python3 scripts/check_launches.py` 和其他检查一起运行（`python3 scripts/check.py`）。
