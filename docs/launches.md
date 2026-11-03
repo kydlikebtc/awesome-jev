@@ -32,9 +32,10 @@ form.
 | Stage | What it adds | State |
 | --- | --- | --- |
 | Product and maker pages | A page per product and per maker; the board lists what is new each week | Built (2026-11-03) |
-| Reading votes | [`launch-votes.yml`](../.github/workflows/launch-votes.yml) reads a Discussion's thumbs-up, run by hand | Built (2026-11-03) |
-| Open launches | The launch form and its check, a vote post per launch, the Monday close, week pages and badges | Built (2026-11-03); waits for Discussions to be turned on |
-| Daily board | A board per day instead of per week | Once a week holds enough launches |
+| Reading votes | [`launch-votes.yml`](../.github/workflows/launch-votes.yml) reads a Discussion's thumbs-up, run by hand | Built (2026-11-03); read the votes on a test post the same day |
+| Open launches | The launch form and its check, a vote post per launch, the Monday close, week pages and badges | Built (2026-11-03); Discussions and the `Launches` category turned on the same day |
+| For agents | The MCP server's `launch_board` and `top_launches` tools, and [`api/v1/launches.json`](https://kydlikebtc.github.io/awesome-jev/api/v1/launches.json) on the site | Built (2026-11-03) |
+| Daily board | A board per day instead of per week | After 4 closed weeks in a row with at least 20 launches each; the board page counts the run |
 
 Until the first week opens, the board lists the products that entered the
 catalogue in the newest week, ordered by who read the call site and then by
@@ -104,6 +105,13 @@ Weeks are ISO weeks: Monday 00:00 UTC to Sunday 23:59 UTC.
 Each month's report ([docs/monthly/](monthly/), written in the first week of
 the next) lists the weeks that ended in the month with their top three.
 
+Agents read the board without the pages. The MCP server's `launch_board()`
+returns the running week (shuffled, no counts), the last closed week (ranked)
+and the next one, and `top_launches(pattern=…)` the products that placed best,
+each once at its best week. The site serves every week as filed, and as the
+board shows it, at `api/v1/launches.json`. Both carry each launch's evidence
+and caveats beside its votes, as the pages do.
+
 ## How votes count (rules v1)
 
 - One vote per GitHub account, cast inside the week.
@@ -120,6 +128,18 @@ each closed week records the rule it was counted under.
 
 The repository keeps the counts only: how many votes, how many counted, how
 many were discounted. It never keeps who voted.
+
+## The year's decision award
+
+Jev entered early access on 2026-09-15, so the board's year runs from 15
+September to the 14th of the next September. On each anniversary, from
+2027-09-15, every decision pattern gets an award. `python3 scripts/award.py
+--year 2027` draws up one shortlist per pattern from the year's closed weeks:
+products whose call site a person or a model read, each at its best week,
+ordered by rank and then counted votes, three at most. A person picks the award
+from a shortlist and writes the pick and the reasons in `docs/award/<year>.md`.
+Votes order a shortlist; the evidence decides who may be on it. The script
+never picks.
 
 ## What is never done
 
@@ -142,6 +162,10 @@ many were discounted. It never keeps who voted.
 | `scripts/launch_week.py` | opens a week and closes the one before | |
 | `scripts/launch_votes.py` | reads one Discussion's votes | |
 | `scripts/site_products.py` | the product, maker, week and board pages, and the badges | |
+| `src/awesome_jev_mcp/query.py` | what the MCP server's launch tools and `api/v1/launches.json` answer | |
+| `scripts/award.py` | the year's award shortlists, one per pattern | |
+| [launch-engine.md](launch-engine.md) | how to run this board for another catalogue | |
+| `.github/workflows/launch-probe.yml` | by hand: whether the workflow may post in `Launches` | |
 
 `python3 scripts/check_launches.py` runs with the other checks
 (`python3 scripts/check.py`).

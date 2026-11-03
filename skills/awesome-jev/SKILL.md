@@ -109,6 +109,10 @@ If the MCP server is available, prefer it over guessing:
   its rows (`evidence`: documentation pages, cited files by kind, independent
   reports, negative results, rows citing no file) — reports counted, not a
   verdict
+- `launch_board()` and `top_launches(pattern=…)` — the weekly launch board:
+  what people are launching and voting for. A launch's votes and its evidence
+  are shown side by side; a rank is a count of votes, not a recommendation, so
+  read `evidence` and `caveats` before relying on a product
 
 It also serves resources, for a client that reads them:
 

@@ -32,6 +32,7 @@ import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
+import launches  # noqa: E402
 import site_api  # noqa: E402
 import site_pages  # noqa: E402
 from assemble_site import (  # noqa: E402
@@ -111,14 +112,15 @@ def main(argv: list[str] | None = None) -> int:
     patterns = json.loads((ROOT / "site" / "patterns.json").read_text())["patterns"]
     problems = site_api.api_problems(
         ROOT / "site", catalog, patterns, current,
-        site_url=SITE_URL, published=PUBLISHED,
+        site_url=SITE_URL, published=PUBLISHED, launch_weeks=launches.weeks(),
     )
     if problems:
         for problem in problems:
             print(f"error: {problem}", file=sys.stderr)
         return 1
     print(
-        f"site/{site_api.INDEX} and {len(patterns)} pattern file(s) match a rebuild from site/catalog.json; "
+        f"site/{site_api.INDEX}, launches.json and {len(patterns)} pattern file(s) match a rebuild from "
+        "site/catalog.json and launches/; "
         "each holds as many rows as stats.json's by_pattern counts"
     )
 

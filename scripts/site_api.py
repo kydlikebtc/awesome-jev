@@ -9,6 +9,9 @@ per decision pattern, so the Pages deploy writes
                                 rows file under it, its file's URL and size,
                                 plus links to the other published files
   api/v1/patterns/<key>.json    every row filed under that pattern
+  api/v1/launches.json          every launch week on file (launches/), as
+                                filed and as the board shows it
+                                (query.launches_api; docs/launches.md)
 
 beside the site. A row is shaped exactly as the MCP server's search returns it
 (`compact()` in src/awesome_jev_mcp/query.py) and in the same order
@@ -57,6 +60,7 @@ BY_PATH = ("src/awesome_jev_mcp/query.py",)
 API_VERSION = 1
 API_DIR = f"api/v{API_VERSION}"
 INDEX = f"{API_DIR}/index.json"
+LAUNCHES = f"{API_DIR}/launches.json"
 
 ABOUT = (
     "The awesome-jev catalogue split by decision pattern, for agents that cannot read "
@@ -104,11 +108,14 @@ def pattern_rows(catalog: list[dict], key: str) -> list[dict]:
 
 
 def api_files(
-    catalog: list[dict], patterns: list[dict], stats: dict, *, site_url: str, published: tuple[str, ...]
+    catalog: list[dict], patterns: list[dict], stats: dict, *, site_url: str, published: tuple[str, ...],
+    launch_weeks: list[dict] = (),
 ) -> dict[str, str]:
     """Every file under site/api/v1/: path relative to site/ → text.
-    `published` names the other files the site serves, linked from the index."""
+    `published` names the other files the site serves, linked from the index;
+    `launch_weeks` are launches/'s weeks (launches.weeks())."""
     files: dict[str, str] = {}
+    files[LAUNCHES] = dump({"api_version": API_VERSION, **query.launches_api(list(launch_weeks), catalog)})
     listed = []
     not_examples = sorted(query.DISQUALIFYING)
     for item in query.pattern_counts(catalog, patterns)["patterns"]:
@@ -143,6 +150,12 @@ def api_files(
             # verdict (list_patterns carries the same note).
             "evidence_note": query.EVIDENCE_NOTE,
             "patterns": listed,
+            "launches": {
+                "url": site_url + LAUNCHES,
+                "bytes": len(files[LAUNCHES].encode("utf-8")),
+                "weeks": len(json.loads(files[LAUNCHES])["weeks"]),
+                "about": "The launch board's weeks, as filed and as shown (docs/launches.md).",
+            },
             "files": {name: site_url + name for name in published},
             "repository": REPOSITORY,
         },
@@ -169,12 +182,13 @@ def api_problems(
     *,
     site_url: str,
     published: tuple[str, ...],
+    launch_weeks: list[dict] = (),
 ) -> list[str]:
     """Why site/api/v1/ is not what the catalogue gives, or []: every file a
     rebuild would write and no other, each equal to it once parsed, the index's
     sizes those of the files, the index's keys patterns.json's, and every
     pattern file holding as many rows as stats.json's by_pattern counts."""
-    expected = api_files(catalog, patterns, stats, site_url=site_url, published=published)
+    expected = api_files(catalog, patterns, stats, site_url=site_url, published=published, launch_weeks=launch_weeks)
     base = site / API_DIR
     found = {p.relative_to(site).as_posix() for p in base.rglob("*") if p.is_file()} if base.is_dir() else set()
     problems = [f"site/{rel} is missing; run assemble_site.py" for rel in sorted(set(expected) - found)]

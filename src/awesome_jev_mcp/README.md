@@ -59,6 +59,8 @@ never starts.
 | `list_patterns`      | The decision taxonomy, with how many examples exist for each and what is recorded about them (reports counted, not a verdict). |
 | `compatibility`      | Model string, field names, request shape and env var per platform, and how many catalogued rows record it. |
 | `check_model_string` | "Is `typesafe/jev-1` real?" — it is not, and that matters.         |
+| `launch_board`       | The weekly launch board: the running week (shuffled, no counts until it closes), the last closed week ranked, the next week. Each launch carries its votes and its catalogue evidence side by side, never added together. |
+| `top_launches`       | "Which safety-gating products placed best?" — each product once, at its best week. A rank is a count of votes, not a recommendation. |
 
 ## Resources
 

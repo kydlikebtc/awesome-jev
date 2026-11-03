@@ -23,8 +23,13 @@ already opened or closed. Turning Discussions on and adding the `Launches`
 category (maintainers only) is the owner's; until then opening a week with
 launches on it fails, and says so.
 
+`--probe` (launch-probe.yml, by hand) starts one discussion in the category
+and deletes it at once: the check that the workflow's own token may post in a
+category only maintainers can start discussions in, before a Monday needs it.
+
 Usage:
   python3 scripts/launch_week.py --monday                # what launch-week.yml runs
+  python3 scripts/launch_week.py --probe                 # what launch-probe.yml runs
   python3 scripts/launch_week.py --open 2026-W47
   python3 scripts/launch_week.py --close 2026-W46 [--on 2026-11-23]   # or count it again
 """
@@ -47,8 +52,8 @@ import launch_votes  # noqa: E402
 import launches as L  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SITE = "https://kydlikebtc.github.io/awesome-jev/"
-DOCS = "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/launches.md"
+SITE = L.query.SITE
+DOCS = L.query.LAUNCHES_DOC
 CATEGORY = "Launches"
 MAX_PAGES = 10
 
@@ -67,7 +72,7 @@ query($owner: String!, $name: String!, $category: ID!, $after: String) {
   repository(owner: $owner, name: $name) {
     discussions(first: 100, after: $after, categoryId: $category) {
       pageInfo { hasNextPage endCursor }
-      nodes { number body }
+      nodes { number body author { login } }
     }
   }
 }
@@ -76,10 +81,25 @@ query($owner: String!, $name: String!, $category: ID!, $after: String) {
 CREATE = """
 mutation($repository: ID!, $category: ID!, $title: String!, $body: String!) {
   createDiscussion(input: {repositoryId: $repository, categoryId: $category, title: $title, body: $body}) {
-    discussion { number url }
+    discussion { id number url }
   }
 }
 """
+
+DELETE = """
+mutation($id: ID!) {
+  deleteDiscussion(input: {id: $id}) {
+    discussion { number }
+  }
+}
+"""
+
+PROBE_TITLE = "Probe: can the launch-week workflow post here? (deleted at once)"
+PROBE_BODY = (
+    "launch-probe.yml started this discussion to check that the workflow's own token may start one in "
+    "the `Launches` category, and deletes it straight away. If you can still read it, the deletion "
+    "failed: a maintainer can delete it by hand. How the board works: " + DOCS
+)
 
 Ask = Callable[[str, dict], "dict | None"]
 
@@ -174,9 +194,17 @@ def category(repository: str, ask: Ask) -> tuple[str, str]:
                     "in which only maintainers can start a discussion (MAINTAINING.md)")
 
 
+# Who may have made a vote post: the workflow's token, or the owner running
+# this by hand. A post anyone else started is never taken for one, marker or
+# not, so the category stays safe even in a format anyone can post in.
+POSTERS = {"github-actions", "github-actions[bot]"}
+
+
 def existing_posts(repository: str, category_id: str, ask: Ask) -> dict[tuple[str, str], int]:
-    """The vote posts already in the category, by (week, slug)."""
+    """The vote posts already in the category, by (week, slug): posts with a
+    launch marker started by POSTERS or the repository's owner."""
     owner, name = repository.split("/", 1)
+    posters = POSTERS | {owner.lower()}
     found: dict[tuple[str, str], int] = {}
     after = None
     for _ in range(MAX_PAGES):
@@ -186,7 +214,8 @@ def existing_posts(repository: str, category_id: str, ask: Ask) -> dict[tuple[st
             raise WeekError("could not list the Launches category's discussions")
         for node in page.get("nodes") or []:
             match = MARKER.search(node.get("body") or "")
-            if match:
+            author = str(((node.get("author") or {}).get("login")) or "").lower()
+            if match and author in posters:
                 found.setdefault((match.group(1), match.group(2)), node["number"])
         if not (page.get("pageInfo") or {}).get("hasNextPage"):
             break
@@ -215,9 +244,8 @@ def open_week(data: dict, rows: dict[str, dict], *, repository: str, ask: Ask, m
                 answer = mutate(CREATE, {"repository": repo_id, "category": category_id, "title": title, "body": body})
                 created = (((answer or {}).get("data") or {}).get("createDiscussion") or {}).get("discussion")
                 if not created:
-                    errors = "; ".join(str(e.get("message")) for e in (answer or {}).get("errors") or [])
                     # Write what was opened so far; the next run finds this one if it was made after all.
-                    raise WeekError(f"could not create the post for {launch['product']}: {errors or 'no answer'}")
+                    raise WeekError(f"could not create the post for {launch['product']}: {_errors(answer)}")
                 number = created["number"]
                 notes.append(f"{launch['product']}: post #{number} created")
             else:
@@ -225,6 +253,32 @@ def open_week(data: dict, rows: dict[str, dict], *, repository: str, ask: Ask, m
             launch["discussion"] = number
     data["status"] = "open"
     return notes
+
+
+def _errors(answer: dict | None) -> str:
+    return "; ".join(str(e.get("message")) for e in (answer or {}).get("errors") or []) or "no answer"
+
+
+def probe(repository: str, *, ask: Ask, mutate: Ask) -> list[str]:
+    """Start a discussion in the Launches category and delete it: whether the
+    token running this may post vote posts there. Raises WeekError when it may
+    not, or when the post it made could not be deleted."""
+    repo_id, category_id = category(repository, ask)
+    answer = mutate(CREATE, {"repository": repo_id, "category": category_id, "title": PROBE_TITLE, "body": PROBE_BODY})
+    made = (((answer or {}).get("data") or {}).get("createDiscussion") or {}).get("discussion")
+    if not made:
+        raise WeekError(
+            f"could not start a discussion in the {CATEGORY} category ({_errors(answer)}). If it is in "
+            "Announcement format, the workflow's token may not count as a maintainer there; MAINTAINING.md "
+            "says what to do"
+        )
+    gone = mutate(DELETE, {"id": made["id"]})
+    if not (((gone or {}).get("data") or {}).get("deleteDiscussion") or {}).get("discussion"):
+        raise WeekError(
+            f"started #{made['number']} in {CATEGORY}, so posting works, but could not delete it "
+            f"({_errors(gone)}); a maintainer deletes it by hand: {made.get('url')}"
+        )
+    return [f"started and deleted #{made['number']}: this token can post vote posts in the {CATEGORY} category"]
 
 
 # --------------------------------------------------------------------------
@@ -314,6 +368,8 @@ def main(argv: list[str] | None = None, *, ask: Ask = _github.graphql_request,
     action.add_argument("--monday", action="store_true", help="close last week and open this one, as needed")
     action.add_argument("--open", metavar="WEEK", help="open a scheduled week")
     action.add_argument("--close", metavar="WEEK", help="close an open week, or count a closed one again")
+    action.add_argument("--probe", action="store_true",
+                        help="start a discussion in the Launches category and delete it (launch-probe.yml)")
     parser.add_argument("--on", metavar="DAY", help="today, UTC (default: the clock)")
     parser.add_argument("--repo", default=os.environ.get("GITHUB_REPOSITORY") or _github.SELF)
     parser.add_argument("--root", default=str(ROOT), help=argparse.SUPPRESS)
@@ -326,7 +382,9 @@ def main(argv: list[str] | None = None, *, ask: Ask = _github.graphql_request,
     if week and not L.WEEK.match(week):
         parser.error(f"not an ISO week: {week!r}")
     try:
-        if args.monday:
+        if args.probe:
+            done = probe(args.repo, ask=ask, mutate=mutate)
+        elif args.monday:
             done = monday(root, today, repository=args.repo, ask=ask, mutate=mutate)
         else:
             data = load_week(root, week)

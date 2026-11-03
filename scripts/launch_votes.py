@@ -32,7 +32,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import _github  # noqa: E402
 import launches  # noqa: E402
 
-REPOSITORY = "kydlikebtc/awesome-jev"
+REPOSITORY = _github.SELF
 PAGE = 100
 # The most pages read for one Discussion: 2,000 votes. A launch past that has
 # outgrown this way of counting (docs/launches.md, "When it stops scaling").

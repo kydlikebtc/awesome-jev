@@ -292,8 +292,10 @@ class FakeGitHub:
     """GraphQL answers for one repository: its categories, the posts in
     Launches, and each post's reactions."""
 
-    def __init__(self, *, posts=None, reactions=None, enabled=True, categories=("Launches",), fail_on=None):
+    def __init__(self, *, posts=None, reactions=None, enabled=True, categories=("Launches",), fail_on=None,
+                 authors=None):
         self.posts = dict(posts or {})  # number -> body
+        self.authors = dict(authors or {})  # number -> login, github-actions when not given
         self.reactions = reactions or {}  # number -> [node]
         self.enabled, self.categories = enabled, categories
         self.created: list[dict] = []
@@ -303,7 +305,8 @@ class FakeGitHub:
         if "discussionCategories" in query:
             return repo_answer(self.enabled, self.categories)
         if "discussions(" in query:
-            nodes = [{"number": n, "body": b} for n, b in sorted(self.posts.items())]
+            nodes = [{"number": n, "body": b, "author": {"login": self.authors.get(n, "github-actions")}}
+                     for n, b in sorted(self.posts.items())]
             return {"data": {"repository": {"discussions": {"pageInfo": {"hasNextPage": False}, "nodes": nodes}}}}
         if "reactions(" in query:
             nodes = self.reactions.get(variables["number"], [])
@@ -356,6 +359,16 @@ class OpenTest(unittest.TestCase):
         self.assertEqual(data["launches"][0]["discussion"], 5)
         self.assertEqual(len(gh.created), 1)
 
+    def test_a_post_only_counts_as_found_when_the_workflow_or_the_owner_started_it(self):
+        gh = FakeGitHub(posts={5: "<!-- launch 2026-W47 alpha -->", 6: "<!-- launch 2026-W47 beta -->",
+                               7: "<!-- launch 2026-W47 alpha -->"},
+                        authors={5: "someone", 6: "O"})
+        data = self.scheduled()
+        launch_week.open_week(data, ROWS, repository="o/r", ask=gh.ask, mutate=gh.mutate)
+        self.assertEqual({x["product"]: x.get("discussion") for x in data["launches"]},
+                         {"alpha": 7, "beta": 6, "gamma": None})
+        self.assertEqual(gh.created, [])
+
     def test_a_failed_post_keeps_what_was_made_and_the_week_scheduled(self):
         gh, data = FakeGitHub(fail_on="2026-W47 beta"), self.scheduled()
         with self.assertRaises(launch_week.WeekError):
@@ -381,6 +394,43 @@ class OpenTest(unittest.TestCase):
         self.assertIn("@​all \\[x\\]\\(javascript:y\\) \\<b\\>", text)
         self.assertNotIn("@all", text)
         self.assertTrue(title.startswith("Alpha · "))
+
+
+class ProbeTest(unittest.TestCase):
+    @staticmethod
+    def github(create=True, delete=True):
+        calls = []
+
+        def mutate(query, variables):
+            calls.append((query, variables))
+            if "createDiscussion" in query:
+                return ({"data": {"createDiscussion": {"discussion": {"id": "D1", "number": 9, "url": "https://x/9"}}}}
+                        if create else {"errors": [{"message": "FORBIDDEN"}]})
+            return {"data": {"deleteDiscussion": {"discussion": {"number": 9}}}} if delete else None
+
+        return calls, mutate
+
+    def test_the_probe_starts_one_discussion_in_launches_and_deletes_it(self):
+        calls, mutate = self.github()
+        notes = launch_week.probe("o/r", ask=FakeGitHub().ask, mutate=mutate)
+        self.assertEqual([("createDiscussion" in q, v.get("category"), v.get("id")) for q, v in calls],
+                         [(True, "C-Launches", None), (False, None, "D1")])
+        self.assertIn("can post vote posts", notes[0])
+
+    def test_a_refused_post_or_a_failed_deletion_says_what_a_person_does(self):
+        for create, delete, words in ((False, True, "FORBIDDEN"), (True, False, "deletes it by hand: https://x/9")):
+            calls, mutate = self.github(create, delete)
+            with self.subTest(words=words), self.assertRaises(launch_week.WeekError) as caught:
+                launch_week.probe("o/r", ask=FakeGitHub().ask, mutate=mutate)
+            self.assertIn(words, str(caught.exception))
+            self.assertEqual(len(calls), 1 if not create else 2)
+
+    def test_the_probe_workflow_is_by_hand_and_writes_nothing(self):
+        text = (ROOT / ".github" / "workflows" / "launch-probe.yml").read_text()
+        self.assertIn("on:\n  workflow_dispatch:\n\npermissions:\n  contents: read\n  discussions: write\n", text)
+        self.assertIn("run: python3 scripts/launch_week.py --probe", text)
+        self.assertNotIn("git ", text.split("jobs:", 1)[1])
+        self.assertNotIn("github.event.", text.split("jobs:", 1)[1])
 
 
 class CloseTest(unittest.TestCase):
@@ -533,6 +583,22 @@ class WeekPagesTest(unittest.TestCase):
         self.assertIn('<a href="weeks/2026-W46.html">2026-W46: 2 launches, closed 2026-11-16</a>', board)
         self.assertIn('href="weeks/2026-W46.zh.html"', self.files["launches.zh.html"])
         self.assertIn("下周上榜", self.files["products/gamma.html"])
+
+    def test_the_board_says_how_far_the_daily_board_is(self):
+        self.assertIn("after 4 weeks in a row with at least 20 launches each. Weeks in a row so far: 0.",
+                      self.files["launches.html"])
+        self.assertIn("目前已连续 0 周", self.files["launches.zh.html"])
+
+        def closed(name, n):
+            return week(name, "closed", [launch(f"p{i}", result={"votes": 0, "counted": 0, "discounted": 0, "rank": i + 1})
+                                         for i in range(n)] + [launch("x", status="held", reason="held")])
+
+        full = [closed("2026-W41", 25), closed("2026-W43", 20), closed("2026-W44", 30), closed("2026-W45", 20),
+                closed("2026-W46", 21), NEXT]
+        self.assertEqual(launches.daily_streak(full), 4)
+        self.assertEqual(launches.daily_streak(full[:-2] + [closed("2026-W46", 19)]), 0)
+        self.assertEqual(launches.daily_streak(full[:3]), 2)  # 2026-W42 has no file: the run stops there
+        self.assertEqual(launches.daily_streak([NEXT]), 0)
 
     def test_the_board_thanks_hunters(self):
         board = self.files["launches.html"]

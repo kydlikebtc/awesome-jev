@@ -137,6 +137,9 @@ BOARD = {
         "hunters_note": "People who put someone else's product on the board, by how many of those launches ran a "
                         "closed week, then how many placed in its top three. Thanks, not a score.",
         "hunter_item": "{n} launched, {top} in a top three",
+        "daily": "The board moves from one a week to one a day after {need} weeks in a row with at least {n} "
+                 "launches each. Weeks in a row so far: {streak}.",
+        "daily_due": "{streak} weeks in a row have had at least {n} launches each: the daily board is due.",
     },
     "zh": {
         "title": "发布榜 · awesome-jev",
@@ -173,6 +176,8 @@ BOARD = {
         "hunters_note": "把别人的产品带上榜的人，按他们发布、并跑完一周的 Launch 数排序，再看其中进过前三的数。"
                         "这是致谢，不是评分。",
         "hunter_item": "发布 {n} 个，{top} 个进过前三",
+        "daily": "连续 {need} 周、每周至少 {n} 个 Launch 之后，周榜改为日榜。目前已连续 {streak} 周。",
+        "daily_due": "已连续 {streak} 周、每周至少 {n} 个 Launch：该改成日榜了。",
     },
 }
 
@@ -492,6 +497,10 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
             text = b["past_item"].format(week=w["week"], n=n, closed=w.get("closed_on", ""))
             body.append(f'        <li><a href="{esc(week_path(w["week"], lang))}">{esc(text)}</a></li>')
         body.append("      </ul>")
+        streak = launches.daily_streak(all_weeks)
+        key = "daily_due" if streak >= launches.DAILY_WEEKS else "daily"
+        line = b[key].format(need=launches.DAILY_WEEKS, n=launches.DAILY_LAUNCHES, streak=streak)
+        body.append(f'      <p class="note">{esc(line)}</p>')
     hunted = launches.hunters(all_weeks)
     if hunted:
         body += [f"      <h2>{esc(b['hunters'])}</h2>", f'      <p class="note">{esc(b["hunters_note"])}</p>',

@@ -54,6 +54,17 @@ first time it is asked for, by the same ladder but apart from the five: a
 source without it costs the prompt its skeleton, not the server its catalogue.
 The prompt names the rung that served it, as every result names the
 catalogue's.
+
+## The launch board climbs on its own too
+
+The launch weeks (launches/<week>.json, docs/launches.md) are many small files
+that change every Monday, so they climb a ladder of their own, the first time
+a launch tool is asked: AWESOME_JEV_CATALOG's `launches/` directory when it
+has one, a checkout's `launches/` (none there means no week on file yet), the
+site's api/v1/launches.json, which holds every week as filed, revalidated like
+the rest, then the cache. The wheel bundles no weeks: a snapshot of a board
+that changes weekly would be stale on arrival. The launch tools name the rung
+that answered in `launch_data`.
 """
 
 from __future__ import annotations
@@ -70,6 +81,9 @@ from typing import Any, NamedTuple
 FILES = ("catalog.json", "compat.json", "patterns.json", "taxonomy.json", "collections.json")
 EXAMPLES = "examples/index.json"
 RAW = "https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/"
+SITE = "https://kydlikebtc.github.io/awesome-jev/"
+LAUNCHES = "api/v1/launches.json"
+LAUNCH_DIR = "launches"
 
 # Long enough for a megabyte on a slow line, short enough that a hung GitHub
 # does not hold an MCP client's startup open until it gives up on us.
@@ -144,8 +158,8 @@ def _find_checkout(start: pathlib.Path | str | None = None) -> pathlib.Path | No
     return None
 
 
-def _fetch(files: tuple[str, ...] = FILES) -> tuple[dict[str, Any], bool] | None:
-    """Fetch every one of `files`, revalidating against the cached ETags.
+def _fetch(files: tuple[str, ...] = FILES, base: str = RAW) -> tuple[dict[str, Any], bool] | None:
+    """Fetch every one of `files` from `base`, revalidating against the cached ETags.
 
     Returns the payload and whether anything actually changed, or None if any
     file could not be had — a partial fetch is discarded rather than mixed with
@@ -162,7 +176,7 @@ def _fetch(files: tuple[str, ...] = FILES) -> tuple[dict[str, Any], bool] | None
     changed = False
 
     for name in files:
-        request = urllib.request.Request(RAW + name)
+        request = urllib.request.Request(base + name)
         if etags.get(name) and (cache / name).exists():
             request.add_header("If-None-Match", etags[name])
         try:
@@ -284,6 +298,48 @@ def load_examples(checkout_from: pathlib.Path | str | None = None) -> tuple[dict
         return None, f"no source had {EXAMPLES}"
     payload, source, detail = found
     return payload[EXAMPLES], ("STALE — " if source in DEGRADED else "") + detail
+
+
+def _read_weeks(path: pathlib.Path) -> list[dict] | None:
+    """The launch weeks in a `launches/` directory that parse, by file name,
+    or None when there is no such directory."""
+    if not path.is_dir():
+        return None
+    weeks = []
+    for file in sorted(path.glob("*.json")):
+        try:
+            week = json.loads(file.read_text())
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(week, dict):
+            weeks.append(week)
+    return weeks
+
+
+def _api_weeks(payload: dict[str, Any] | None) -> list[dict] | None:
+    body = (payload or {}).get(LAUNCHES)
+    weeks = body.get("weeks") if isinstance(body, dict) else None
+    return [w for w in weeks if isinstance(w, dict)] if isinstance(weeks, list) else None
+
+
+def load_launches(checkout_from: pathlib.Path | str | None = None) -> tuple[list[dict] | None, str]:
+    """The launch weeks by their own ladder (see the module docstring): the
+    weeks, or None, and a line saying which rung served them, beginning STALE
+    for the cache."""
+    if override := os.environ.get("AWESOME_JEV_CATALOG"):
+        weeks = _read_weeks(pathlib.Path(override) / LAUNCH_DIR)
+        if weeks is not None:
+            return weeks, f"from AWESOME_JEV_CATALOG={override}"
+    if checkout := _find_checkout(checkout_from):
+        return _read_weeks(checkout / LAUNCH_DIR) or [], f"from the repository at {checkout}"
+    if result := _fetch((LAUNCHES,), SITE):
+        weeks = _api_weeks(result[0])
+        if weeks is not None:
+            return weeks, "fetched from the site" if result[1] else "revalidated against the site"
+    weeks = _api_weeks(_read_dir(cache_dir(), (LAUNCHES,)))
+    if weeks is not None:
+        return weeks, "STALE — the site is unreachable, serving the last launch weeks fetched to this machine"
+    return None, f"no source had the launch weeks: no checkout, and {SITE + LAUNCHES} could not be read"
 
 
 def _unpack(payload: dict[str, Any], source: str, detail: str) -> Loaded:

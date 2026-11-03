@@ -1,0 +1,36 @@
+# Checks, by hand, that this workflow's own token may start a discussion in
+# the `Launches` category, which only maintainers may post in (Announcement
+# format): it starts one and deletes it at once (scripts/launch_week.py
+# --probe; docs/launches.md). launch-week.yml posts each launch's vote post
+# there every Monday with the same token, so this answers before a Monday has
+# to. Run it from the Actions page after changing the category.
+#
+# It writes nothing to the repository. If the deletion fails, the job fails
+# and its summary links the post for a maintainer to delete.
+#
+# Injection review: no `github.event.*` value reaches a `run:` block, and the
+# workflow takes no inputs.
+name: launch-probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  discussions: write
+
+jobs:
+  probe:
+    name: Start and delete one discussion in Launches
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Probe the category
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/launch_week.py --probe

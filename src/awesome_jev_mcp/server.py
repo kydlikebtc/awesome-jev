@@ -26,6 +26,13 @@ Three design choices worth knowing:
   beats the cache, and the snapshot in the wheel is the last resort rather than
   the default.
 
+Two tools read the launch board (docs/launches.md) rather than the catalogue:
+`launch_board` (the running week, the last closed one, the next one) and
+`top_launches` (the best-placed products, optionally under one pattern).
+Votes and evidence travel side by side and are never added together, and the
+weeks come by their own ladder (`data.load_launches`), named in
+`launch_data`.
+
 Beside the tools, four resources hand an agent what it would otherwise piece
 together from several calls: `awesome-jev://flags` (what each caveat means),
 `awesome-jev://collections` and `awesome-jev://collections/{id}` (the curated
@@ -57,6 +64,7 @@ working tree rather than the published catalogue.
 
 from __future__ import annotations
 
+import datetime as dt
 import functools
 import importlib.metadata
 import json
@@ -65,7 +73,7 @@ from typing import Any, Literal
 
 from mcp.server import MCPServer
 
-from .data import load, load_examples
+from .data import load, load_examples, load_launches
 from .prompts import wire_pattern_text
 from .query import (
     collection_detail,
@@ -73,10 +81,12 @@ from .query import (
     compat_lookup,
     find_example,
     flag_list,
+    launch_board as board_answer,
     model_string_check,
     pattern_counts,
     pattern_listing,
     search,
+    top_launches as top_answer,
 )
 
 # Also read on this module by name (tests, and anyone who imported them from
@@ -408,6 +418,56 @@ def check_model_string(model: str) -> dict[str, Any]:
         model: the string you are about to send, e.g. "typesafe-ai/jev"
     """
     return model_string_check(COMPAT, model)
+
+
+@functools.cache
+def _launch_weeks() -> tuple[list[dict] | None, str]:
+    """The launch weeks and the line naming their source, read once."""
+    return load_launches()
+
+
+def _with_launches(answer_for) -> dict[str, Any]:
+    weeks, line = _launch_weeks()
+    if weeks is None:
+        return {"error": line, "launch_data": line}
+    return {**answer_for(weeks), "launch_data": line}
+
+
+@tool
+def launch_board(week: str = "") -> dict[str, Any]:
+    """The launch board: products with a Jev decision inside, put forward by
+    their makers for a week, voted on with a thumbs-up on GitHub.
+
+    Without `week`: the week running now (UTC), with its launches in a fixed
+    shuffled order and no counts until it closes; the last closed week,
+    ranked, with each launch's votes; and next week's launches when any are
+    lined up. Each launch carries its catalogue evidence (who read the call
+    site) and caveats beside its votes, never added together, and the link to
+    vote on it.
+
+    Args:
+        week: an ISO week such as "2026-W47", for that week alone
+    """
+    return _with_launches(
+        lambda weeks: board_answer(weeks, CATALOG, FLAGS, today=dt.datetime.now(dt.timezone.utc).date(), week=week)
+    )
+
+
+@tool
+def top_launches(pattern: str = "", limit: int = 10) -> dict[str, Any]:
+    """The products that placed best on the launch board across every closed
+    week, each once at its best week: the best rank, then the most counted
+    votes. With `pattern`, only products filed under that decision pattern
+    ("which safety-gating products did people vote for?").
+
+    A rank is a count of votes, not this catalogue's recommendation: read
+    each product's `evidence` and `caveats` before relying on it.
+
+    Args:
+        pattern: a pattern key from list_patterns(), e.g. "safety-gating"
+        limit: how many products, at most 50
+    """
+    return _with_launches(lambda weeks: top_answer(weeks, CATALOG, PATTERNS, FLAGS, pattern=pattern, limit=limit))
 
 
 @resource("awesome-jev://flags")
