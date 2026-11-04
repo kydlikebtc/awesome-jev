@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 155 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 156 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 149 · wire shape 2 · example only 0 · independent reports 11 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 150 · wire shape 2 · example only 0 · independent reports 11 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -232,6 +232,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[dsh-jev-decide](https://github.com/nanami-0713/dsh-jev-decide)** — DSH plugin: register TypeSafe Jev (System One decision model) as an agent tool — jev_decide returns calibrated probabilities (noul/choice/score) for routing/triage/guardrail judgments, no text generation. 把 TypeSafe Jev 决策模型注册为 DSH agent 工具 <sub>(upstream description)</sub>
   <sub>`Plugin` · nanami-0713 · `JS` · call site [`lib/index.js`](https://github.com/nanami-0713/dsh-jev-decide/blob/HEAD/lib/index.js), read 2026-09-22</sub>
+
+- **[dsh-plugin-jev](https://github.com/cyberofficial/dsh-plugin-jev)** — Plugin for the DSH Web GUI that gives its agent a jev_ask tool for judgement calls and guards shell commands: before one runs, Jev scores how dangerous it is and whether its effects can be undone, on top of user-written blocked-command rules. Monitor mode by default; enforce blocks. <sub>(written by a model)</sub>
+  <sub>`Plugin` · cyberofficial · `JS` · `choice` · `noul` · `score` · call site [`lib/index.js`](https://github.com/cyberofficial/dsh-plugin-jev/blob/HEAD/lib/index.js), read by a model 2026-11-04 · ⚠ `no licence`</sub>
 
 - **[ego-jev-ultrafast](https://github.com/shikaizhong-design/ego-jev-ultrafast)** — Jev drives your Ego Lite browser: one typed-choice request per step. Single-file, zero-dependency port of browser-use/jev-ultrafast with multi-model benchmarks and extra guardrails. Unofficial. <sub>(upstream description)</sub>
   <sub>`Benchmark` · shikaizhong-design · `JS` · call site [`jego.js`](https://github.com/shikaizhong-design/ego-jev-ultrafast/blob/HEAD/jego.js), read 2026-09-22</sub>

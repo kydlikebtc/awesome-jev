@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 147 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 150 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 142 · wire shape 1 · example only 0 · independent reports 12 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 145 · wire shape 1 · example only 0 · independent reports 12 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -260,6 +260,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[JEV Jornada](https://github.com/caio-moliveira/workshop-jev)** — Workshop sales agent in LangGraph, in Portuguese, whose decisions (three guardrail nouls, a choice of which of seven queries answers the question, three nouls checking the reply is faithful) go to Jev, to an OpenAI or Anthropic LLM, or both, comparing accuracy, latency, tokens and cost. <sub>(written by a model)</sub>
   <sub>`Project` · caio-moliveira · `Py` · `noul` · `choice` · call site [`backend/app/providers/jev.py`](https://github.com/caio-moliveira/workshop-jev/blob/HEAD/backend/app/providers/jev.py), read by a model 2026-11-03 · ⚠ `no licence` `3rd-party key`</sub>
 
+- **[Jev Workflows](https://github.com/integrate-your-mind/jev-codex-plugin)** — Codex and Claude Code plugin whose MCP tools put an agent's small judgements to Jev: classify a decision among the candidates it has, diagnose a failed command from its evidence, check whether evidence supports a completion claim and each acceptance criterion, or ask typed questions about one state. <sub>(written by a model)</sub>
+  <sub>`Plugin` · integrate-your-mind · `TS` · `choice` · `noul` · `score` · call site [`source/jev-workflows/src/contracts.ts`](https://github.com/integrate-your-mind/jev-codex-plugin/blob/HEAD/source/jev-workflows/src/contracts.ts), read by a model 2026-11-04</sub>
+
 - **[jev-agent-skill](https://github.com/yuyang2230/jev-agent-skill)** — Free typed judgments for AI agents: offload classify/screen/score/verify to Jev (TypeSafe System One) via OpenCode Zen. Claude Code / ZCode skill. 给AI代理省token的免费决策分流技能 <sub>(upstream description)</sub>
   <sub>`Plugin` · yuyang2230 · `Py` · call site [`jev.py`](https://github.com/yuyang2230/jev-agent-skill/blob/HEAD/jev.py), read 2026-09-22</sub>
 
@@ -359,6 +362,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jevboard](https://github.com/asheehuang/jevboard)** — Windows tray tool that fixes homophone errors in Microsoft Bopomofo input before you press Enter: it reads the IME's candidates for each character position and asks Jev one Choice per position in a single request, then suggests corrections you apply with Tab. <sub>(written by a model)</sub>
   <sub>`Project` · asheehuang · `C#` · `choice` · call site [`src/JevClient.cs`](https://github.com/asheehuang/jevboard/blob/HEAD/src/JevClient.cs), read by a model 2026-11-02</sub>
 
+- **[Jevflow](https://github.com/parth1811/jevflow)** — Claude Code plugin that holds the agent to a phased plan, each phase with a definition of done and a check. At each stop it runs them and asks Jev which phase the work is in, how far it got, and whether it is stuck, off goal or claiming done early; a tested policy says go on, next phase or done. <sub>(written by a model)</sub>
+  <sub>`Plugin` · parth1811 · `Py` · `choice` · `noul` · `score` · call site [`plugin/jevflow/judge.py`](https://github.com/parth1811/jevflow/blob/HEAD/plugin/jevflow/judge.py), read by a model 2026-11-04</sub>
+
 - **[jevgate](https://github.com/Tech-Byte-Frontier/jevgate)** — Code-review gate for CI and coding agents: asks TypeSafe Jev small typed questions about functions, files, tests and docs, and reports findings with locations and probabilities <sub>(upstream description)</sub>
   <sub>`Project` · tech-byte-frontier · `Rs` · call site [`src/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/provider.rs), read 2026-09-24</sub>
 
@@ -436,6 +442,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[stepwarden](https://github.com/getexcited/stepwarden)** — Every tool call your agent makes, checked before it runs. A Claude Code plugin that uses TypeSafe AI's Jev to verify each pending tool call against the session plan, then allows it, asks you, or blocks it. Proof of concept <sub>(upstream description)</sub>
   <sub>`Plugin` · getexcited · `TS` · call site [`lib/jev.ts`](https://github.com/getexcited/stepwarden/blob/HEAD/lib/jev.ts), read 2026-09-22 · ⚠ `one commit`</sub>
+
+- **[stingray](https://github.com/nanako0129/stingray)** — Claude Code Stop hook that catches turns that stop half-done: Jev judges whether the turn did nothing, declared an action its tool calls do not back, promised to watch work that is not running, or answered in the wrong language, and the hook blocks the stop with a fixed nudge. <sub>(written by a model)</sub>
+  <sub>`Plugin` · nanako0129 · `sh` · `noul` · call site [`hooks/stingray.sh`](https://github.com/nanako0129/stingray/blob/HEAD/hooks/stingray.sh), read by a model 2026-11-04</sub>
 
 - **[system-one-playground](https://github.com/DonaldMurillo/system-one-playground)** — Readable scripting, semantic code checks, a Go System One client, and Studio. <sub>(upstream description)</sub>
   <sub>`Project` · donaldmurillo · `Go` · call site [`typesafe/client.go`](https://github.com/DonaldMurillo/system-one-playground/blob/HEAD/typesafe/client.go), read 2026-09-22</sub>

@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 59 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 62 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 52 · 接口形态 1 · 仅示例 0 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 55 · 接口形态 1 · 仅示例 0 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -135,6 +135,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-codex-pilot](https://github.com/Charlyhno-eng/jev-codex-pilot)** — 带 JEV 模型路由、上下文优化与看板自动化的 Codex 覆盖层。 <sub>(机翻)</sub>
   <sub>`插件` · charlyhno-eng · `TS` · `choice` · `score` · `noul` · 调用点 [`src/core/hooks/jev-client.ts`](https://github.com/Charlyhno-eng/jev-codex-pilot/blob/HEAD/src/core/hooks/jev-client.ts)，2026-09-24 阅读</sub>
 
+- **[jev-demo](https://github.com/soyjorgepilo/jev-demo)** — 三个西班牙语演示，展示同一模式：Jev 决策、代码执行。Jira 工单分诊，按结果直接应用、标记复核或升级；预检扫描先标出有问题的函数，再只让 Claude 解释这些函数；PR 路由把每个 pull request 分给规则、Haiku 或 Sonnet。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · soyjorgepilo · `TS` · `choice` · `noul` · `score` · 调用点 [`shared/jev.ts`](https://github.com/soyjorgepilo/jev-demo/blob/HEAD/shared/jev.ts)，2026-11-04 模型阅读 · ⚠ `无许可证` `需第三方密钥`</sub>
+
 - **[jev-for-all](https://github.com/emirbartu/jev-for-all)** — 通过一套共享的决策约定把 Jev 接入 OpenCode、Claude Code、Hermes 和 pi：Jev 根据首条提示选择模型档位，判断该加载哪个技能、某一步需要哪些工具，并可启动不带技能和 MCP 服务器的精简会话。Jev 响应慢或拿不准时，它什么也不做。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · emirbartu · `TS` · `choice` · `noul` · 调用点 [`src/jev.ts`](https://github.com/emirbartu/jev-for-all/blob/HEAD/src/jev.ts)，2026-11-02 模型阅读</sub>
 
@@ -152,6 +155,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-model-router](https://github.com/satviksinha/jev-model-router)** — 为 Claude Code 打造的模型路由器，基于 Jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · satviksinha · `TS` · 调用点 [`scripts/check-jev.mjs`](https://github.com/satviksinha/jev-model-router/blob/HEAD/scripts/check-jev.mjs)，2026-09-24 阅读</sub>
+
+- **[jev-pilot](https://github.com/akramovic1/jev-pilot)** — Claude Code 插件，在每一轮开始前就提示词询问 Jev：需要多大的推理力度、子智能体该用哪个模型和力度、应直接做、委派还是并行，以及适用哪一个技能。工具调用屡次失败时，它会把力度上调一次。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · akramovic1 · `TS` · `choice` · `noul` · 调用点 [`hooks/model-router.policy.ts`](https://github.com/akramovic1/jev-pilot/blob/HEAD/hooks/model-router.policy.ts)，2026-11-04 模型阅读</sub>
 
 - **[jev-router (dirien)](https://github.com/dirien/jev-router)** — 面向 Claude Code 和 Codex CLI 的本地直通代理：每当人写一条消息，Jev 就判断这项工作需要哪一档模型（一个 Choice），并可选用是非题守护高风险操作和试图指定路由的文字；同一会话内只升不降，以保护提示缓存。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · dirien · `JS` · `choice` · `noul` · 调用点 [`src/jev.mjs`](https://github.com/dirien/jev-router/blob/HEAD/src/jev.mjs)，2026-11-02 模型阅读</sub>
@@ -179,6 +185,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[optim-jev](https://github.com/Oqura-ai/optim-jev)** — Claude Code 插件（也支持 Codex），包含三个向 Jev 提问的工具：jev-compacter 在压缩上下文时判断哪些过期的工具调用和输出可以丢弃，jev-router 为每个子智能体选择模型和推理强度，jev-skills 为每条提示只发送一份简短且相关的技能列表，而不是整个目录。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · Oqura-ai · `Py` · `noul` · 调用点 [`src/optim_jev/tools/jev_compacter/jev.py`](https://github.com/Oqura-ai/optim-jev/blob/HEAD/src/optim_jev/tools/jev_compacter/jev.py)，2026-10-30 模型阅读</sub>
+
+- **[pi-jev-model-router](https://github.com/da-vinci-noob/pi-jev-model-router)** — pi 编程智能体的扩展，为每个请求选择模型：Jev 判断工作类型，为其复杂度和应得的模型能力打分，并判断是否需要深度推理；代码再把这些组合成一个档位，并结合花费上限和已用预算加以权衡。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · da-vinci-noob · `TS` · `choice` · `noul` · `score` · 调用点 [`extensions/pi-jev-model-router/jev.ts`](https://github.com/da-vinci-noob/pi-jev-model-router/blob/HEAD/extensions/pi-jev-model-router/jev.ts)，2026-11-04 模型阅读</sub>
 
 - **[pi-shift-router](https://github.com/green-dalii/pi-shift-router)** — pi 编程智能体的扩展，把每一轮对话分配给快速档或高能力档模型，并在限流或额度耗尽时自动切换。其判定器可以是 Jev 这样的决策模型：一个选择题决定档位，一个是非题决定是否把任务交给子智能体。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · green-dalii · `TS` · `choice` · `noul` · 调用点 [`src/judge.ts`](https://github.com/green-dalii/pi-shift-router/blob/HEAD/src/judge.ts)，2026-11-03 模型阅读</sub>

@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 144 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 146 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 134 · wire shape 1 · example only 0 · independent reports 11 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 136 · wire shape 1 · example only 0 · independent reports 12 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -227,6 +227,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[discoprint](https://github.com/lirantal/discoprint)** — Classify an artist's discography by theme, mood, and lyrical complexity with Jev (TypeSafe AI), and view it as a colorful terminal dashboard <sub>(upstream description)</sub>
   <sub>`Project` · lirantal · `JS` · call site [`src/jev.ts`](https://github.com/lirantal/discoprint/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
+- **[DMB: decision-model benchmark](https://github.com/nibzard/decision-model-benchmark)** — Benchmark of APIs that pick one option from a list with a confidence: Jev, LLMs with structured output and deterministic baselines, on accuracy, latency, cost, failures and confidence. The author reports jev-latest at 79.2% on Banking77, 88.6% on CLINC150 and 48.3% micro F1 on NLU++. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · nibzard · `Py` · `choice` · call site [`src/dmb/contenders/jev.py`](https://github.com/nibzard/decision-model-benchmark/blob/HEAD/src/dmb/contenders/jev.py), read by a model 2026-11-04 · ⚠ `no licence`</sub>
+
 - **[dsh-jev-decide](https://github.com/nanami-0713/dsh-jev-decide)** — DSH plugin: register TypeSafe Jev (System One decision model) as an agent tool — jev_decide returns calibrated probabilities (noul/choice/score) for routing/triage/guardrail judgments, no text generation. 把 TypeSafe Jev 决策模型注册为 DSH agent 工具 <sub>(upstream description)</sub>
   <sub>`Plugin` · nanami-0713 · `JS` · call site [`lib/index.js`](https://github.com/nanami-0713/dsh-jev-decide/blob/HEAD/lib/index.js), read 2026-09-22</sub>
 
@@ -442,6 +445,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[watfile](https://github.com/jexp/watfile)** — Text/PDF - File categorization and sorting with Typesafe AI Jev or local calibrated decision model <sub>(upstream description)</sub>
   <sub>`Project` · jexp · `Py` · call site [`src/watfile/classifier/jev.py`](https://github.com/jexp/watfile/blob/HEAD/src/watfile/classifier/jev.py), read 2026-09-22 · ⚠ `no licence`</sub>
+
+- **[xscout](https://github.com/ethan-ab/xscout-jev)** — Watches X for the updates that matter to one profile: Jev classifies each post's topic and speaker, checks exclusions, scores significance and relevance and picks the actions that apply, then deterministic rules add momentum and send big, trending or notable alerts to Slack with a drafting prompt. <sub>(written by a model)</sub>
+  <sub>`Project` · ethan-ab · `TS` · `choice` · `noul` · `score` · call site [`src/jev.ts`](https://github.com/ethan-ab/xscout-jev/blob/HEAD/src/jev.ts), read by a model 2026-11-04 · ⚠ `3rd-party key`</sub>
 
 - **[弦外之音 JevGuide](https://github.com/nisaka520/jevguide)** — Android accessibility app that reads a WeChat chat on screen and asks Jev eight questions in one request: the other person's intent, emotion and urgency, whether a reply is needed or risky, what to do, which reply style fits, and a relationship-progress score. A chat model drafts three replies. <sub>(written by a model)</sub>
   <sub>`Project` · nisaka520 · `Kt` · `choice` · `score` · `noul` · call site [`app/src/main/java/io/github/nisaka520/jevguide/Prompt.kt`](https://github.com/nisaka520/jevguide/blob/HEAD/app/src/main/java/io/github/nisaka520/jevguide/Prompt.kt), read by a model 2026-10-31 · ⚠ `3rd-party key`</sub>

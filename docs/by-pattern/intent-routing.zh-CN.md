@@ -4,11 +4,11 @@
 
 _判断用户意图，把请求分流到正确的分支。_
 
-这个决策的全部已收录例子 —— 共 46 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 48 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#intent-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#intent-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 35 · 接口形态 0 · 仅示例 0 · 独立报告 3 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 37 · 接口形态 0 · 仅示例 0 · 独立报告 4 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -17,6 +17,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - [Demo: Smart home assistant](https://docs.typesafe.ai/demos/smart-home) <sub>`官方文档` · `Py`</sub>
 - [Pattern: Confidence-gated routing](https://docs.typesafe.ai/patterns/confidence-routing) <sub>`官方文档` · `Py`</sub>
 - [Pattern: Intent routing](https://docs.typesafe.ai/patterns/intent-routing) <sub>`官方文档` · `Py` · `choice`</sub>
+- [TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai) <sub>`插件` · `TS` · `choice` · `noul` · `score`</sub>
 
 ## 本仓库的示例
 
@@ -40,6 +41,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Pattern: Intent routing](https://docs.typesafe.ai/patterns/intent-routing)** ⭐ — 对进来的请求做分类，路由到足够用的最便宜那个处理方：确定性代码、专用 LLM、或人。
   <sub>`官方文档` · `Py` · `choice`</sub>
+
+- **[TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai)** ⭐ — TypeSafe 官方的 n8n 社区节点。Evaluate 就每个条目向 Jev 提出类型化问题并写入答案；Route 按一个答案把条目送往对应输出，低置信度的选择题可走后备输出，两个是非题阈值之间的可走“不确定”输出。AI Agent 可把它当作工具使用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · typesafe-ai · `TS` · `choice` · `noul` · `score` · 调用点 [`nodes/TypeSafeAi/api.ts`](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/api.ts)，2026-11-04 模型阅读</sub>
 
 - **[AutoGPT TypeSafe blocks](https://github.com/Significant-Gravitas/AutoGPT/tree/master/autogpt_platform/backend/backend/blocks/typesafe)** — 七个生产级 block（choice/score/yes-no/ask-many/route/pick-best/filter），带 UTF-8 字节预算、逐字报文留存和十一个测试文件。
   <sub>`开源项目` · ★100k+ · `Py` · `choice` · `score` · `noul` · 调用点 [`autogpt_platform/backend/backend/blocks/typesafe/_client.py`](https://github.com/Significant-Gravitas/AutoGPT/blob/HEAD/autogpt_platform/backend/backend/blocks/typesafe/_client.py)，2026-09-22 阅读</sub>
@@ -115,6 +119,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[A deep dive into Jev, TypeSafe's System One model](https://flaviocopes.com/jev/)** — 技术密度最高的独立讲解：JS / Python / AI SDK 三种代码、三种应答结构、进阶模式，还诚实列出了模型的失效场景。
   <sub>`教程` · Flavio Copes · `JS` · `Py` · `TS` · `choice` · `score` · `noul`</sub>
+
+- **[DMB: decision-model benchmark](https://github.com/nibzard/decision-model-benchmark)** — 针对“从列表中选一项并给出置信度”这类 API 的基准测试：比较 Jev、带结构化输出的 LLM 和确定性基线的准确率、延迟、成本、失败率和置信度。作者报告 jev-latest 在 Banking77 上为 79.2%，CLINC150 上为 88.6%，NLU++ 上微平均 F1 为 48.3%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · nibzard · `Py` · `choice` · 调用点 [`src/dmb/contenders/jev.py`](https://github.com/nibzard/decision-model-benchmark/blob/HEAD/src/dmb/contenders/jev.py)，2026-11-04 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[Example: confidence-gated escalation](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/02-confidence-gate/main.py)** — 带「自动执行或转人工」闸门的路由；策略函数刻意留空 —— 阈值该定在哪，是你的决定。
   <sub>`代码片段` · `Py` · `choice` · 调用点 [`examples/02-confidence-gate/main.py`](https://github.com/kydlikebtc/awesome-jev/blob/HEAD/examples/02-confidence-gate/main.py)，2026-09-22 阅读 · ⚠ `代码未实测`</sub>

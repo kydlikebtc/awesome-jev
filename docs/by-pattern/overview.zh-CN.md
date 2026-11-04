@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 502 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 505 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 382 · 接口形态 80 · 仅示例 0 · 独立报告 25 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 383 · 接口形态 82 · 仅示例 0 · 独立报告 26 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -377,6 +377,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[can-jev-bayes](https://github.com/TomRichner/can-jev-bayes)** — Jev 会贝叶斯吗？把 TypeSafe AI 的 Jev 与贝叶斯最优策略对比，并测试它能否有效使用贝叶斯推理。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · tomrichner · `Py` · 调用点 [`src/jevbandits/client.py`](https://github.com/TomRichner/can-jev-bayes/blob/HEAD/src/jevbandits/client.py)，2026-09-24 阅读</sub>
 
+- **[CARVE](https://github.com/futurixai-and-quantum-works/carve-jev)** — 基于 Qwen3.8-27B、用 vLLM 部署的开源类 Jev 模型系列：每个问题只生成一个 token，只对映射到各选项的候选字母打分，并通过兼容 TypeSafe 的 /v1/systemone 服务回答是非题、选择题和打分题。不同配置在零样本速度和少样本准确率之间取舍。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · futurixai-and-quantum-works · `Py` · 引用文件 [`src/carve/server.py`](https://github.com/futurixai-and-quantum-works/carve-jev/blob/HEAD/src/carve/server.py)，2026-11-04 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
 - **[chat2jev](https://github.com/Chandler-Sun/chat2jev)** — 把传统的 chat completion API 请求转换为 TypeSafe Jev API 请求。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · chandler-sun · `TS` · 调用点 [`src/lib/typesafe.ts`](https://github.com/Chandler-Sun/chat2jev/blob/HEAD/src/lib/typesafe.ts)，2026-09-24 阅读</sub>
 
@@ -569,8 +572,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[OpenJev (alanhuangyoo)](https://github.com/alanhuangyoo/OpenJev)** — 开源决策模型（OpenJev-1.7B、4B 和 8B；Python 包 wev-ai），通过本地的 POST /v1/systemone 提供服务，训练方法是在真实网站上蒸馏浏览器智能体的类型化请求。除了 choice、是非题和 score，它还能为浏览器智能体选择下一步操作和元素。作者报告 4B 版本在 153 个真实任务中完成 39 到 41 个。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · alanhuangyoo · `Py` · 引用文件 [`wev/serve.py`](https://github.com/alanhuangyoo/OpenJev/blob/HEAD/wev/serve.py)，2026-10-28 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
+- **[OpenJevSwift](https://github.com/algorythm-canada/openjevswift)** — OpenJev 决策服务的原生 Swift 移植：一个 openjev 程序即可在 Mac 上通过 OpenJev 的 /v1/systemone API 提供 MLX 上的 DiffusionGemma 26B-A4B 或 JevK5，或 Core ML 上的 Verdict 或 Laya；同一套库也能在 iPhone 或 Mac 应用内回答是非题、选择题和打分题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · algorythm-canada · `Swift` · 引用文件 [`Sources/OpenJevCore/Engine/SystemOneService.swift`](https://github.com/algorythm-canada/openjevswift/blob/HEAD/Sources/OpenJevCore/Engine/SystemOneService.swift)，2026-11-04 模型阅读 · ⚠ `并非 Jev 本身`</sub>
+
 - **[origin-civilization](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION)** — AI 生命与文明模拟：每个决策都由 Jev 做出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · jacquesgariepy · `TS` · 调用点 [`legacy/source/providers.js`](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION/blob/HEAD/legacy/source/providers.js)，2026-09-22 阅读</sub>
+
+- **[ProbabilityBench](https://github.com/ishida-lab/probabilitybench)** — 把模型报告的概率与精确真值对比的基准测试：在模拟的文本世界（同行评审、隐蔽传输、信用风险）中，正面结果的概率是已知的。其示例通过 OpenRouter 向 Jev 1.13 和其他决策模型提出是非题，并按 KL 散度与成本评分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · ishida-lab · `Py` · `noul` · 调用点 [`examples/decision_models.py`](https://github.com/ishida-lab/probabilitybench/blob/HEAD/examples/decision_models.py)，2026-11-04 模型阅读</sub>
 
 - **[s1_ruby](https://github.com/innocentdiaz/s1_ruby)** — 把 S1 模型的“测量”（以及随之而来的坍缩）变成 Ruby 的一个基本操作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · innocentdiaz · `Rb` · 调用点 [`lib/s1/providers/typesafe.rb`](https://github.com/innocentdiaz/s1_ruby/blob/HEAD/lib/s1/providers/typesafe.rb)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>

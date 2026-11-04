@@ -4,11 +4,11 @@
 
 _按意图和紧急度路由支持工单与会话。_
 
-这个决策的全部已收录例子 —— 共 10 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工单分拣)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 12 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工单分拣)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#support-triage)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#support-triage)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 1 · 调用点 5 · 接口形态 0 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 5。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 1 · 调用点 7 · 接口形态 0 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 5。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -53,8 +53,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jev on Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/)** — Workers AI binding 与 REST 示例：一次调用同时问 noul、choice、score，并给出含逐答案置信度的完整响应。
   <sub>`平台集成` · `TS` · `sh` · `noul` · `choice` · `score`</sub>
 
+- **[jev-demo](https://github.com/soyjorgepilo/jev-demo)** — 三个西班牙语演示，展示同一模式：Jev 决策、代码执行。Jira 工单分诊，按结果直接应用、标记复核或升级；预检扫描先标出有问题的函数，再只让 Claude 解释这些函数；PR 路由把每个 pull request 分给规则、Haiku 或 Sonnet。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · soyjorgepilo · `TS` · `choice` · `noul` · `score` · 调用点 [`shared/jev.ts`](https://github.com/soyjorgepilo/jev-demo/blob/HEAD/shared/jev.ts)，2026-11-04 模型阅读 · ⚠ `无许可证` `需第三方密钥`</sub>
+
 - **[jev-triage](https://github.com/boldbug1/jev-triage)** — 按紧急程度给消息排序的 Go 命令行工具：每条消息发一次 Jev 请求，问一个类型 choice（bug、计费、功能请求、账户、其他）、一个 0–3 的紧急程度 score，以及一个“发信人是否显得沮丧”的 noul。类别置信度低于 0.8 的消息放进人工复核列表。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · boldbug1 · `Go` · 调用点 [`main.go`](https://github.com/boldbug1/jev-triage/blob/HEAD/main.go)，2026-09-24 阅读</sub>
+
+- **[jevelry](https://github.com/backant-io/jevelry)** — 命令行、终端界面和库，把给 Jev 的问题写成名为 jevel 的小文件；自带十七个，覆盖工单、issue、pull request、日志、告警和失败的测试。每个答案的确定程度被转换为执行、标记给人看或回退，所有决策都会记录，以便按实际结果调整阈值。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · backant-io · `TS` · `choice` · `noul` · `score` · 调用点 [`src/ask.ts`](https://github.com/backant-io/jevelry/blob/HEAD/src/ask.ts)，2026-11-04 模型阅读</sub>
 
 - **[Support-routing benchmark: 100 held-out cases](https://decisionmodelhub.com/benchmarks/support-routing)** — 在 100 条留出的虚构客服消息上，将 Jev 与 Clef、Clef Flash、OpenAI 的 Decisions API 以及 GPT-6 Luna 结构化输出基线进行对比：每条消息路由到五个团队标签之一；所有用例和各模型的作答记录均可下载。 <sub>(机翻)</sub>
   <sub>`基准测试` · DecisionModelHub · ⚠ `作者自荐`</sub>

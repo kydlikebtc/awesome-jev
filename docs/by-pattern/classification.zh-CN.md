@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 144 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 146 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 134 · 接口形态 1 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 136 · 接口形态 1 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -227,6 +227,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[discoprint](https://github.com/lirantal/discoprint)** — 用 Jev 按主题、情绪与歌词复杂度给一位艺人的全部作品分类，并可视化呈现。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · lirantal · `JS` · 调用点 [`src/jev.ts`](https://github.com/lirantal/discoprint/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
+- **[DMB: decision-model benchmark](https://github.com/nibzard/decision-model-benchmark)** — 针对“从列表中选一项并给出置信度”这类 API 的基准测试：比较 Jev、带结构化输出的 LLM 和确定性基线的准确率、延迟、成本、失败率和置信度。作者报告 jev-latest 在 Banking77 上为 79.2%，CLINC150 上为 88.6%，NLU++ 上微平均 F1 为 48.3%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · nibzard · `Py` · `choice` · 调用点 [`src/dmb/contenders/jev.py`](https://github.com/nibzard/decision-model-benchmark/blob/HEAD/src/dmb/contenders/jev.py)，2026-11-04 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[dsh-jev-decide](https://github.com/nanami-0713/dsh-jev-decide)** — DSH 插件：把 Jev 注册成一个智能体工具。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · nanami-0713 · `JS` · 调用点 [`lib/index.js`](https://github.com/nanami-0713/dsh-jev-decide/blob/HEAD/lib/index.js)，2026-09-22 阅读</sub>
 
@@ -442,6 +445,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[watfile](https://github.com/jexp/watfile)** — 用 Jev 或本地校准决策模型给文本与 PDF 分类归档。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jexp · `Py` · 调用点 [`src/watfile/classifier/jev.py`](https://github.com/jexp/watfile/blob/HEAD/src/watfile/classifier/jev.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+
+- **[xscout](https://github.com/ethan-ab/xscout-jev)** — 按一份个人配置监视 X 上重要的动态：Jev 对每条帖子判断话题和发帖人、检查排除条件、为重要性和相关性打分并选出适用的行动，再由确定性规则结合热度，把“重大”“趋势”或“值得注意”的提醒连同起草提示词发到 Slack。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ethan-ab · `TS` · `choice` · `noul` · `score` · 调用点 [`src/jev.ts`](https://github.com/ethan-ab/xscout-jev/blob/HEAD/src/jev.ts)，2026-11-04 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[弦外之音 JevGuide](https://github.com/nisaka520/jevguide)** — 面向微信的 Android 无障碍应用：读取屏幕上的聊天内容，在一次请求中向 Jev 提出八个问题——对方的意图、情绪和着急程度，是否需要回复、回复是否有风险，该怎么做，适合哪种回复风格，以及关系进展（攻略度）评分。随后由聊天模型起草三条回复。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · nisaka520 · `Kt` · `choice` · `score` · `noul` · 调用点 [`app/src/main/java/io/github/nisaka520/jevguide/Prompt.kt`](https://github.com/nisaka520/jevguide/blob/HEAD/app/src/main/java/io/github/nisaka520/jevguide/Prompt.kt)，2026-10-31 模型阅读 · ⚠ `需第三方密钥`</sub>

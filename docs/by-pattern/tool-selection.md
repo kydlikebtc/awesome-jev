@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 250 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 253 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 242 · wire shape 4 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 245 · wire shape 4 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -438,6 +438,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[dsh-jev-verify](https://github.com/xienda/dsh-jev-verify)** — Jev (TypeSafe System One) decision tools + live verification benchmark for DeepSeek Harness: jev_decision (choice/score/noul) and jev_verify, honest by design. <sub>(earlier upstream description)</sub>
   <sub>`Benchmark` · xienda · `JS` · call site [`lib/index.js`](https://github.com/xienda/dsh-jev-verify/blob/HEAD/lib/index.js), read 2026-09-22</sub>
 
+- **[dsh-plugin-jev](https://github.com/cyberofficial/dsh-plugin-jev)** — Plugin for the DSH Web GUI that gives its agent a jev_ask tool for judgement calls and guards shell commands: before one runs, Jev scores how dangerous it is and whether its effects can be undone, on top of user-written blocked-command rules. Monitor mode by default; enforce blocks. <sub>(written by a model)</sub>
+  <sub>`Plugin` · cyberofficial · `JS` · `choice` · `noul` · `score` · call site [`lib/index.js`](https://github.com/cyberofficial/dsh-plugin-jev/blob/HEAD/lib/index.js), read by a model 2026-11-04 · ⚠ `no licence`</sub>
+
 - **[ego-jev-ultrafast](https://github.com/shikaizhong-design/ego-jev-ultrafast)** — Jev drives your Ego Lite browser: one typed-choice request per step. Single-file, zero-dependency port of browser-use/jev-ultrafast with multi-model benchmarks and extra guardrails. Unofficial. <sub>(upstream description)</sub>
   <sub>`Benchmark` · shikaizhong-design · `JS` · call site [`jego.js`](https://github.com/shikaizhong-design/ego-jev-ultrafast/blob/HEAD/jego.js), read 2026-09-22</sub>
 
@@ -473,6 +476,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[JEV Jornada](https://github.com/caio-moliveira/workshop-jev)** — Workshop sales agent in LangGraph, in Portuguese, whose decisions (three guardrail nouls, a choice of which of seven queries answers the question, three nouls checking the reply is faithful) go to Jev, to an OpenAI or Anthropic LLM, or both, comparing accuracy, latency, tokens and cost. <sub>(written by a model)</sub>
   <sub>`Project` · caio-moliveira · `Py` · `noul` · `choice` · call site [`backend/app/providers/jev.py`](https://github.com/caio-moliveira/workshop-jev/blob/HEAD/backend/app/providers/jev.py), read by a model 2026-11-03 · ⚠ `no licence` `3rd-party key`</sub>
+
+- **[Jev Workflows](https://github.com/integrate-your-mind/jev-codex-plugin)** — Codex and Claude Code plugin whose MCP tools put an agent's small judgements to Jev: classify a decision among the candidates it has, diagnose a failed command from its evidence, check whether evidence supports a completion claim and each acceptance criterion, or ask typed questions about one state. <sub>(written by a model)</sub>
+  <sub>`Plugin` · integrate-your-mind · `TS` · `choice` · `noul` · `score` · call site [`source/jev-workflows/src/contracts.ts`](https://github.com/integrate-your-mind/jev-codex-plugin/blob/HEAD/source/jev-workflows/src/contracts.ts), read by a model 2026-11-04</sub>
 
 - **[jev-A-share-trader](https://github.com/Eric-Zhou-0302/jev-A-share-trader)** — A Jev-powered technical analysis workspace for China A-shares, supporting AKShare/Tushare, market scans, and Buy/Hold/Sell assessments with time horizons and traceable evidence. <sub>(upstream description)</sub>
   <sub>`Project` · eric-zhou-0302 · `Py` · call site [`src/jev_trader/jev.py`](https://github.com/Eric-Zhou-0302/jev-A-share-trader/blob/HEAD/src/jev_trader/jev.py), read 2026-09-24</sub>
@@ -581,6 +587,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-physical-ai](https://github.com/robokrunch/jev-physical-ai)** — Putting TypeSafe's Jev to work on robots, fleets, and edge hardware — real measured numbers, honestly caveated. <sub>(upstream description)</sub>
   <sub>`Project` · robokrunch · `Py` · call site [`code/demo-a.py`](https://github.com/robokrunch/jev-physical-ai/blob/HEAD/code/demo-a.py), read 2026-09-22</sub>
+
+- **[jev-pilot](https://github.com/akramovic1/jev-pilot)** — Claude Code plugin that asks Jev about each prompt before the turn: which reasoning effort it needs, which model and effort a subagent should get, whether to work directly, delegate or run in parallel, and which one skill applies. It raises effort once when tool calls keep failing. <sub>(written by a model)</sub>
+  <sub>`Plugin` · akramovic1 · `TS` · `choice` · `noul` · call site [`hooks/model-router.policy.ts`](https://github.com/akramovic1/jev-pilot/blob/HEAD/hooks/model-router.policy.ts), read by a model 2026-11-04</sub>
 
 - **[jev-play-ping-pong](https://github.com/Icohen007/jev-play-ping-pong)** — Jev plays browser table tennis in real time: structured telemetry, typed decisions, ordinary Chrome inputs, and auditable evidence. <sub>(upstream description)</sub>
   <sub>`Benchmark` · icohen007 · `JS` · call site [`src/typesafe.mjs`](https://github.com/Icohen007/jev-play-ping-pong/blob/HEAD/src/typesafe.mjs), read 2026-09-22</sub>

@@ -4,7 +4,7 @@
 
 本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。
 
-本目录收录的全部独立测量报告和负面结果 —— 共 78 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
+本目录收录的全部独立测量报告和负面结果 —— 共 80 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
@@ -157,6 +157,14 @@
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)**<br>
   面向基于文档的决策模型的开放基准运行框架。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · hanno-labs · `Py` · [调用点](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py)，2026-09-24 阅读</sub>
+
+- **[DMB: decision-model benchmark](https://github.com/nibzard/decision-model-benchmark)**<br>
+  针对“从列表中选一项并给出置信度”这类 API 的基准测试：比较 Jev、带结构化输出的 LLM 和确定性基线的准确率、延迟、成本、失败率和置信度。作者报告 jev-latest 在 Banking77 上为 79.2%，CLINC150 上为 88.6%，NLU++ 上微平均 F1 为 48.3%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · nibzard · `Py` · `choice` · [调用点](https://github.com/nibzard/decision-model-benchmark/blob/HEAD/src/dmb/contenders/jev.py)，2026-11-04 模型阅读</sub>
+
+  **注意:** `无许可证`
+
+  > 2026-09-29 的扩展测试只测了 Jev；更早的试点还测了 LLM（Gemini 3.8 Flash 在银行意图上得分更高）。作者提醒，结果只适用于所测的端点、设置和数据集。仓库没有 LICENSE 文件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-04 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[dsh-jev-verify](https://github.com/xienda/dsh-jev-verify)**<br>
   给 DeepSeek Harness 的 Jev 决策工具与实时验证基准。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub><br>
@@ -357,6 +365,12 @@
 - **[padflow-jev-evals](https://github.com/zsavage8/padflow-jev-evals)**<br>
   来自某土地开发 SaaS 的类型化决策基准：schema、匿名标注数据与运行器。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · zsavage8 · `Py` · [调用点](https://github.com/zsavage8/padflow-jev-evals/blob/HEAD/scripts/run_baseline.py)，2026-09-22 阅读</sub>
+
+- **[ProbabilityBench](https://github.com/ishida-lab/probabilitybench)**<br>
+  把模型报告的概率与精确真值对比的基准测试：在模拟的文本世界（同行评审、隐蔽传输、信用风险）中，正面结果的概率是已知的。其示例通过 OpenRouter 向 Jev 1.13 和其他决策模型提出是非题，并按 KL 散度与成本评分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ishida-lab · `Py` · `noul` · [调用点](https://github.com/ishida-lab/probabilitybench/blob/HEAD/examples/decision_models.py)，2026-11-04 模型阅读</sub>
+
+  > 示例通过 OpenRouter 的 Decisions API 为每个模型发送 2,700 个请求，每个请求附 25 个带标签的样例。README 本身不公布分数，请看 arXiv 论文。这些世界是合成机制，并非真实评审或信贷的模型。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-04 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[RLCDAlignBench (Just Ask Jev)](https://github.com/sumleo/rlcdalignbench)**<br>
   基准数据集和论文代码（arXiv 2609.29429），检验 Jev 作为零样本检测器识别 AI 对齐失败的能力：涵盖 44 个基准、十类失败（从谄媚、越狱到奖励投机）的 7,193 条已标注模型输出。每个样本以一次请求发给 Jev，附带一组类型化问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>

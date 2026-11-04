@@ -4,11 +4,11 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 77 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 79 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#human-escalation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 62 · wire shape 5 · example only 0 · independent reports 10 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 64 · wire shape 5 · example only 0 · independent reports 10 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -20,6 +20,7 @@ What TypeSafe AI publishes itself (rows marked `official`), filed under this pat
 - [Cookbook: Self-consistency with choices](https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook) <sub>`Official docs` · `Py` · `choice`</sub>
 - [Cookbook: Self-consistency with nouls](https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook) <sub>`Official docs` · `Py` · `noul`</sub>
 - [Pattern: Confidence-gated routing](https://docs.typesafe.ai/patterns/confidence-routing) <sub>`Official docs` · `Py`</sub>
+- [TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai) <sub>`Plugin` · `TS` · `choice` · `noul` · `score`</sub>
 - [Confidence](https://docs.typesafe.ai/confidence) <sub>`Official docs`</sub>
 
 ## Examples in this repository
@@ -53,6 +54,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Pattern: Confidence-gated routing](https://docs.typesafe.ai/patterns/confidence-routing)** ⭐ — Treat confidence as a second axis: the answer tells you what, the confidence tells you whether to act on it.
   <sub>`Official docs` · `Py`</sub>
+
+- **[TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai)** ⭐ — TypeSafe's own n8n community node. Evaluate asks Jev typed questions about each item and adds the answers; Route sends each item to an output by one answer, with a fallback output for low-confidence choices and an uncertain one between two noul thresholds. AI Agents can use it as a tool. <sub>(written by a model)</sub>
+  <sub>`Plugin` · typesafe-ai · `TS` · `choice` · `noul` · `score` · call site [`nodes/TypeSafeAi/api.ts`](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/api.ts), read by a model 2026-11-04</sub>
 
 - **[Confidence](https://docs.typesafe.ai/confidence)** ⭐ — How Choice and Score confidence is derived from probabilities, how Noul differs, and how to tune thresholds for the question and application.
   <sub>`Official docs`</sub>
@@ -206,6 +210,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevbus](https://github.com/zkjoie/jevbus)** — A streaming event bus whose routing, subscription and consumption are decided by a probabilistic judge. The reference judge is TypeSafe AI's Jev (System One) model: send it a payload and a set of typed questions, get back calibrated probabilities instead of prose. <sub>(upstream description)</sub>
   <sub>`Project` · zkjoie · `Rs` · call site [`src/jev/http.rs`](https://github.com/zkjoie/jevbus/blob/HEAD/src/jev/http.rs), read 2026-09-22</sub>
+
+- **[jevelry](https://github.com/backant-io/jevelry)** — CLI, TUI and library keeping questions for Jev in small files called jevels; seventeen ship, for tickets, issues, pull requests, logs, alerts and failing tests. Each answer's certainty becomes act, mark for a person, or fall back, and every decision is logged so thresholds can be tuned on outcomes. <sub>(written by a model)</sub>
+  <sub>`Project` · backant-io · `TS` · `choice` · `noul` · `score` · call site [`src/ask.ts`](https://github.com/backant-io/jevelry/blob/HEAD/src/ask.ts), read by a model 2026-11-04</sub>
 
 - **[Jevline](https://github.com/tsale/jevline)** — Scopes an incident from security telemetry: from one confirmed-malicious process, it asks Jev of every process, account, host, address or domain the logs link to whether it belongs to the same incident, and follows what joins round by round. Answers near the threshold are marked for analyst review. <sub>(written by a model)</sub>
   <sub>`Project` · tsale · `TS` · `noul` · call site [`engine/src/jev.ts`](https://github.com/tsale/jevline/blob/HEAD/engine/src/jev.ts), read by a model 2026-10-31</sub>

@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 59 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 62 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 52 · wire shape 1 · example only 0 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 55 · wire shape 1 · example only 0 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -135,6 +135,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-codex-pilot](https://github.com/Charlyhno-eng/jev-codex-pilot)** — Smart Codex overlay with JEV model routing, context optimization & Kanban automation. Reduce tokens, keep control
   <sub>`Plugin` · charlyhno-eng · `TS` · `choice` · `score` · `noul` · call site [`src/core/hooks/jev-client.ts`](https://github.com/Charlyhno-eng/jev-codex-pilot/blob/HEAD/src/core/hooks/jev-client.ts), read 2026-09-24</sub>
 
+- **[jev-demo](https://github.com/soyjorgepilo/jev-demo)** — Three Spanish-language demos of one pattern, Jev decides and code acts: Jira ticket triage that applies, marks for review or escalates; a pre-flight pass that flags functions before Claude explains only those; and a PR router sending each pull request to rules, Haiku or Sonnet. <sub>(written by a model)</sub>
+  <sub>`Project` · soyjorgepilo · `TS` · `choice` · `noul` · `score` · call site [`shared/jev.ts`](https://github.com/soyjorgepilo/jev-demo/blob/HEAD/shared/jev.ts), read by a model 2026-11-04 · ⚠ `no licence` `3rd-party key`</sub>
+
 - **[jev-for-all](https://github.com/emirbartu/jev-for-all)** — Connects Jev to OpenCode, Claude Code, Hermes and pi through one shared decision contract: Jev picks the model tier from the first prompt, which skill to load and which tools a step needs, and can start a lean session without skills or MCP servers. It does nothing when Jev is slow or unsure. <sub>(written by a model)</sub>
   <sub>`Plugin` · emirbartu · `TS` · `choice` · `noul` · call site [`src/jev.ts`](https://github.com/emirbartu/jev-for-all/blob/HEAD/src/jev.ts), read by a model 2026-11-02</sub>
 
@@ -152,6 +155,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-model-router](https://github.com/satviksinha/jev-model-router)** — Model router for Claude Code using Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · satviksinha · `TS` · call site [`scripts/check-jev.mjs`](https://github.com/satviksinha/jev-model-router/blob/HEAD/scripts/check-jev.mjs), read 2026-09-24</sub>
+
+- **[jev-pilot](https://github.com/akramovic1/jev-pilot)** — Claude Code plugin that asks Jev about each prompt before the turn: which reasoning effort it needs, which model and effort a subagent should get, whether to work directly, delegate or run in parallel, and which one skill applies. It raises effort once when tool calls keep failing. <sub>(written by a model)</sub>
+  <sub>`Plugin` · akramovic1 · `TS` · `choice` · `noul` · call site [`hooks/model-router.policy.ts`](https://github.com/akramovic1/jev-pilot/blob/HEAD/hooks/model-router.policy.ts), read by a model 2026-11-04</sub>
 
 - **[jev-router (dirien)](https://github.com/dirien/jev-router)** — Local pass-through proxy for Claude Code and the Codex CLI: on each message a person writes, Jev picks the model tier the work needs (a Choice), with optional yes/no guards for risky operations and routing claims; within a session it only moves up, to protect the prompt cache. <sub>(written by a model)</sub>
   <sub>`Plugin` · dirien · `JS` · `choice` · `noul` · call site [`src/jev.mjs`](https://github.com/dirien/jev-router/blob/HEAD/src/jev.mjs), read by a model 2026-11-02</sub>
@@ -179,6 +185,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[optim-jev](https://github.com/Oqura-ai/optim-jev)** — Claude Code plugin (Codex too) with three Jev tools: jev-compacter asks which stale tool calls and outputs can be dropped when context is compacted, jev-router picks a model and effort for each subagent, and jev-skills sends a short relevant skill list per prompt instead of the whole catalog. <sub>(written by a model)</sub>
   <sub>`Plugin` · Oqura-ai · `Py` · `noul` · call site [`src/optim_jev/tools/jev_compacter/jev.py`](https://github.com/Oqura-ai/optim-jev/blob/HEAD/src/optim_jev/tools/jev_compacter/jev.py), read by a model 2026-10-30</sub>
+
+- **[pi-jev-model-router](https://github.com/da-vinci-noob/pi-jev-model-router)** — Extension for the pi coding agent that picks the model for each request: Jev names the kind of work, scores its complexity and the capability it deserves, and says whether it needs deep reasoning, while code composes those into a tier and weighs it against the spend caps and the budget used so far. <sub>(written by a model)</sub>
+  <sub>`Plugin` · da-vinci-noob · `TS` · `choice` · `noul` · `score` · call site [`extensions/pi-jev-model-router/jev.ts`](https://github.com/da-vinci-noob/pi-jev-model-router/blob/HEAD/extensions/pi-jev-model-router/jev.ts), read by a model 2026-11-04</sub>
 
 - **[pi-shift-router](https://github.com/green-dalii/pi-shift-router)** — Extension for the pi coding agent that routes each turn between a fast and a smart model tier, with failover on rate limits and exhausted quotas. Its judge can be a decision model such as Jev: one choice picks the tier and one noul decides whether to hand the task to subagents. <sub>(written by a model)</sub>
   <sub>`Plugin` · green-dalii · `TS` · `choice` · `noul` · call site [`src/judge.ts`](https://github.com/green-dalii/pi-shift-router/blob/HEAD/src/judge.ts), read by a model 2026-11-03</sub>

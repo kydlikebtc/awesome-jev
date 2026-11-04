@@ -4,11 +4,11 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 77 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 79 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#human-escalation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#human-escalation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 62 · 接口形态 5 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 64 · 接口形态 5 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -20,6 +20,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - [Cookbook: Self-consistency with choices](https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook) <sub>`官方文档` · `Py` · `choice`</sub>
 - [Cookbook: Self-consistency with nouls](https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook) <sub>`官方文档` · `Py` · `noul`</sub>
 - [Pattern: Confidence-gated routing](https://docs.typesafe.ai/patterns/confidence-routing) <sub>`官方文档` · `Py`</sub>
+- [TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai) <sub>`插件` · `TS` · `choice` · `noul` · `score`</sub>
 - [Confidence](https://docs.typesafe.ai/confidence) <sub>`官方文档`</sub>
 
 ## 本仓库的示例
@@ -53,6 +54,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Pattern: Confidence-gated routing](https://docs.typesafe.ai/patterns/confidence-routing)** ⭐ — 把 confidence 当作第二个维度：答案告诉你「是什么」，置信度告诉你「该不该照它执行」。
   <sub>`官方文档` · `Py`</sub>
+
+- **[TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai)** ⭐ — TypeSafe 官方的 n8n 社区节点。Evaluate 就每个条目向 Jev 提出类型化问题并写入答案；Route 按一个答案把条目送往对应输出，低置信度的选择题可走后备输出，两个是非题阈值之间的可走“不确定”输出。AI Agent 可把它当作工具使用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · typesafe-ai · `TS` · `choice` · `noul` · `score` · 调用点 [`nodes/TypeSafeAi/api.ts`](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/api.ts)，2026-11-04 模型阅读</sub>
 
 - **[Confidence](https://docs.typesafe.ai/confidence)** ⭐ — Choice 和 Score 的 confidence 如何从概率推导、Noul 有何不同，以及如何针对问题与应用调节阈值。 <sub>(机翻)</sub>
   <sub>`官方文档`</sub>
@@ -206,6 +210,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevbus](https://github.com/zkjoie/jevbus)** — 一个流式事件总线：路由、订阅与消费都由概率决策决定。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zkjoie · `Rs` · 调用点 [`src/jev/http.rs`](https://github.com/zkjoie/jevbus/blob/HEAD/src/jev/http.rs)，2026-09-22 阅读</sub>
+
+- **[jevelry](https://github.com/backant-io/jevelry)** — 命令行、终端界面和库，把给 Jev 的问题写成名为 jevel 的小文件；自带十七个，覆盖工单、issue、pull request、日志、告警和失败的测试。每个答案的确定程度被转换为执行、标记给人看或回退，所有决策都会记录，以便按实际结果调整阈值。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · backant-io · `TS` · `choice` · `noul` · `score` · 调用点 [`src/ask.ts`](https://github.com/backant-io/jevelry/blob/HEAD/src/ask.ts)，2026-11-04 模型阅读</sub>
 
 - **[Jevline](https://github.com/tsale/jevline)** — 基于安全遥测数据划定事件范围：从一个已确认恶意的进程出发，针对日志所关联的每个进程、账户、主机、地址或域名，询问 Jev 它是否属于同一事件，并逐轮追踪新加入的部分。接近阈值的答案会标记出来交由分析师复核。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tsale · `TS` · `noul` · 调用点 [`engine/src/jev.ts`](https://github.com/tsale/jevline/blob/HEAD/engine/src/jev.ts)，2026-10-31 模型阅读</sub>

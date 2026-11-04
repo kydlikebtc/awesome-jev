@@ -4,11 +4,11 @@
 
 _Route support tickets and conversations by intent and urgency._
 
-Every catalogued example of this decision — 10 of them. The same rows, with caveats, are in [the index](../../README.md#support-triage); [the site](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 12 of them. The same rows, with caveats, are in [the index](../../README.md#support-triage); [the site](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#support-triage): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 1 · call site 5 · wire shape 0 · example only 0 · independent reports 1 · negative results 0 · no file cited 5. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 1 · call site 7 · wire shape 0 · example only 0 · independent reports 1 · negative results 0 · no file cited 5. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -53,8 +53,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev on Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/)** — Workers AI binding and REST samples asking a noul, a choice and a score in one call, with the full response including per-answer confidence.
   <sub>`Integration` · `TS` · `sh` · `noul` · `choice` · `score`</sub>
 
+- **[jev-demo](https://github.com/soyjorgepilo/jev-demo)** — Three Spanish-language demos of one pattern, Jev decides and code acts: Jira ticket triage that applies, marks for review or escalates; a pre-flight pass that flags functions before Claude explains only those; and a PR router sending each pull request to rules, Haiku or Sonnet. <sub>(written by a model)</sub>
+  <sub>`Project` · soyjorgepilo · `TS` · `choice` · `noul` · `score` · call site [`shared/jev.ts`](https://github.com/soyjorgepilo/jev-demo/blob/HEAD/shared/jev.ts), read by a model 2026-11-04 · ⚠ `no licence` `3rd-party key`</sub>
+
 - **[jev-triage](https://github.com/boldbug1/jev-triage)** — Go command-line tool that sorts messages by urgency: one Jev request per message asks a choice of kind (bug, billing, feature request, account, other), a 0–3 urgency score and a noul on whether the sender sounds frustrated. Below 0.8 category confidence a message goes to a review-by-hand list. <sub>(written by a model)</sub>
   <sub>`Project` · boldbug1 · `Go` · call site [`main.go`](https://github.com/boldbug1/jev-triage/blob/HEAD/main.go), read 2026-09-24</sub>
+
+- **[jevelry](https://github.com/backant-io/jevelry)** — CLI, TUI and library keeping questions for Jev in small files called jevels; seventeen ship, for tickets, issues, pull requests, logs, alerts and failing tests. Each answer's certainty becomes act, mark for a person, or fall back, and every decision is logged so thresholds can be tuned on outcomes. <sub>(written by a model)</sub>
+  <sub>`Project` · backant-io · `TS` · `choice` · `noul` · `score` · call site [`src/ask.ts`](https://github.com/backant-io/jevelry/blob/HEAD/src/ask.ts), read by a model 2026-11-04</sub>
 
 - **[Support-routing benchmark: 100 held-out cases](https://decisionmodelhub.com/benchmarks/support-routing)** — Compares Jev with Clef, Clef Flash, OpenAI's Decisions API and a GPT-6 Luna structured-output baseline on 100 held-out fictional support messages, each routed to one of five team labels; every case and recorded answer can be downloaded.
   <sub>`Benchmark` · DecisionModelHub · ⚠ `self-submitted`</sub>

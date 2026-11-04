@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 78 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 80 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -159,6 +159,14 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)**<br>
   Open benchmark runtime for document-grounded decision models <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · hanno-labs · `Py` · [call site](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py), read 2026-09-24</sub>
+
+- **[DMB: decision-model benchmark](https://github.com/nibzard/decision-model-benchmark)**<br>
+  Benchmark of APIs that pick one option from a list with a confidence: Jev, LLMs with structured output and deterministic baselines, on accuracy, latency, cost, failures and confidence. The author reports jev-latest at 79.2% on Banking77, 88.6% on CLINC150 and 48.3% micro F1 on NLU++. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · nibzard · `Py` · `choice` · [call site](https://github.com/nibzard/decision-model-benchmark/blob/HEAD/src/dmb/contenders/jev.py), read by a model 2026-11-04</sub>
+
+  **Caveats:** `no licence`
+
+  > The expanded 2026-09-29 run tested only Jev; an earlier pilot also ran LLMs (Gemini 3.8 Flash scored higher on banking). The author warns the results apply only to the endpoints, settings and datasets tested. No LICENSE file. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-04; a maintainer has not yet read the call site.
 
 - **[dsh-jev-verify](https://github.com/xienda/dsh-jev-verify)**<br>
   Jev (TypeSafe System One) decision tools + live verification benchmark for DeepSeek Harness: jev_decision (choice/score/noul) and jev_verify, honest by design. <sub>(earlier upstream description)</sub><br>
@@ -361,6 +369,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[padflow-jev-evals](https://github.com/zsavage8/padflow-jev-evals)**<br>
   Typed-decision benchmark from PadFlow (land development SaaS): schemas, anonymized labeled rows, and a runner for confidence-calibrated models like TypeSafe Jev. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · zsavage8 · `Py` · [call site](https://github.com/zsavage8/padflow-jev-evals/blob/HEAD/scripts/run_baseline.py), read 2026-09-22</sub>
+
+- **[ProbabilityBench](https://github.com/ishida-lab/probabilitybench)**<br>
+  Benchmark of reported probabilities against exact ground truth: simulated text worlds (peer review, covert transfer, credit risk) whose positive-outcome probability is known. Its example asks Jev 1.13 and other decision models a noul over OpenRouter and scores KL divergence against cost. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ishida-lab · `Py` · `noul` · [call site](https://github.com/ishida-lab/probabilitybench/blob/HEAD/examples/decision_models.py), read by a model 2026-11-04</sub>
+
+  > The example sends 2,700 requests per model (25 labelled examples each) through OpenRouter's Decisions API. The README publishes no scores of its own; see the arXiv paper. The worlds are synthetic mechanisms, not models of real review or credit. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-04; a maintainer has not yet read the call site.
 
 - **[RLCDAlignBench (Just Ask Jev)](https://github.com/sumleo/rlcdalignbench)**<br>
   Benchmark and paper code (arXiv 2609.29429) testing Jev as a zero-shot detector of AI alignment failures: 7,193 labelled model outputs across 44 benchmarks and ten failure types, from sycophancy and jailbreaks to reward hacking. Each sample goes to Jev in one request with a set of typed questions. <sub>(written by a model)</sub><br>

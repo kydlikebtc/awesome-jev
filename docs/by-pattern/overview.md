@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 502 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 505 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 382 · wire shape 80 · example only 0 · independent reports 25 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 383 · wire shape 82 · example only 0 · independent reports 26 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -377,6 +377,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[can-jev-bayes](https://github.com/TomRichner/can-jev-bayes)** — Jev Bayes, No? Testing TypeSafe AI's Jev against Bayesian-optimal strategies, and testing if Jev can effectivly use Bayesian priors. <sub>(upstream description)</sub>
   <sub>`Benchmark` · tomrichner · `Py` · call site [`src/jevbandits/client.py`](https://github.com/TomRichner/can-jev-bayes/blob/HEAD/src/jevbandits/client.py), read 2026-09-24</sub>
 
+- **[CARVE](https://github.com/futurixai-and-quantum-works/carve-jev)** — Open Jev-like model family on Qwen3.8-27B served by vLLM: each question is answered with one output token by scoring only the candidate letters mapped to its options, behind a TypeSafe-compatible /v1/systemone server for noul, choice and score. Profiles trade zero-shot speed for few-shot accuracy. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · futurixai-and-quantum-works · `Py` · cited file [`src/carve/server.py`](https://github.com/futurixai-and-quantum-works/carve-jev/blob/HEAD/src/carve/server.py), read by a model 2026-11-04 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[chat2jev](https://github.com/Chandler-Sun/chat2jev)** — Convert legacy chat completion API request to Typesafe jev API <sub>(upstream description)</sub>
   <sub>`SDK` · chandler-sun · `TS` · call site [`src/lib/typesafe.ts`](https://github.com/Chandler-Sun/chat2jev/blob/HEAD/src/lib/typesafe.ts), read 2026-09-24</sub>
 
@@ -569,8 +572,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[OpenJev (alanhuangyoo)](https://github.com/alanhuangyoo/OpenJev)** — Open decision models (OpenJev-1.7B, 4B, 8B; package wev-ai) behind POST /v1/systemone, distilled from a browser agent's typed requests on live sites. Besides choice, yes/no and score, they pick a browser agent's next operation and element. The author reports 39 to 41 of 153 live tasks for the 4B. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · alanhuangyoo · `Py` · cited file [`wev/serve.py`](https://github.com/alanhuangyoo/OpenJev/blob/HEAD/wev/serve.py), read by a model 2026-10-28 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
+- **[OpenJevSwift](https://github.com/algorythm-canada/openjevswift)** — Native Swift port of the OpenJev decision server: one openjev binary serves DiffusionGemma 26B-A4B or JevK5 on MLX, or Verdict or Laya on Core ML, behind OpenJev's /v1/systemone API on a Mac, and the same libraries answer noul, choice and score questions inside an iPhone or Mac app. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · algorythm-canada · `Swift` · cited file [`Sources/OpenJevCore/Engine/SystemOneService.swift`](https://github.com/algorythm-canada/openjevswift/blob/HEAD/Sources/OpenJevCore/Engine/SystemOneService.swift), read by a model 2026-11-04 · ⚠ `not Jev itself`</sub>
+
 - **[origin-civilization](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION)** — AI life-and-civilization simulation: TypeSafe Jev makes every decision (typed, probabilistic, auditable); LLMs plan — OpenAI-compatible APIs, local models (Ollama, LM Studio), Claude Code, Codex. <sub>(upstream description)</sub>
   <sub>`Benchmark` · jacquesgariepy · `TS` · call site [`legacy/source/providers.js`](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION/blob/HEAD/legacy/source/providers.js), read 2026-09-22</sub>
+
+- **[ProbabilityBench](https://github.com/ishida-lab/probabilitybench)** — Benchmark of reported probabilities against exact ground truth: simulated text worlds (peer review, covert transfer, credit risk) whose positive-outcome probability is known. Its example asks Jev 1.13 and other decision models a noul over OpenRouter and scores KL divergence against cost. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · ishida-lab · `Py` · `noul` · call site [`examples/decision_models.py`](https://github.com/ishida-lab/probabilitybench/blob/HEAD/examples/decision_models.py), read by a model 2026-11-04</sub>
 
 - **[s1_ruby](https://github.com/innocentdiaz/s1_ruby)** — Makes S1-model 'measurement' (and the collapse that follows it) a Ruby primitive. <sub>(upstream description)</sub>
   <sub>`SDK` · innocentdiaz · `Rb` · call site [`lib/s1/providers/typesafe.rb`](https://github.com/innocentdiaz/s1_ruby/blob/HEAD/lib/s1/providers/typesafe.rb), read 2026-09-24 · ⚠ `one commit`</sub>

@@ -4,11 +4,11 @@
 
 _在输出到达用户前，按评分标准检查模型产出。_
 
-这个决策的全部已收录例子 —— 共 147 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 150 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#output-validation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#output-validation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 142 · 接口形态 1 · 仅示例 0 · 独立报告 12 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 145 · 接口形态 1 · 仅示例 0 · 独立报告 12 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -260,6 +260,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[JEV Jornada](https://github.com/caio-moliveira/workshop-jev)** — 工作坊用的 LangGraph 销售智能体（葡萄牙语）：其中的决策（三个护栏是非题、一个从七个查询中选出能回答问题者的选择题、三个检查回复是否忠实的是非题）交给 Jev、OpenAI 或 Anthropic 的 LLM，或两者同时处理，并对比准确率、延迟、token 和成本。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · caio-moliveira · `Py` · `noul` · `choice` · 调用点 [`backend/app/providers/jev.py`](https://github.com/caio-moliveira/workshop-jev/blob/HEAD/backend/app/providers/jev.py)，2026-11-03 模型阅读 · ⚠ `无许可证` `需第三方密钥`</sub>
 
+- **[Jev Workflows](https://github.com/integrate-your-mind/jev-codex-plugin)** — 面向 Codex 和 Claude Code 的插件，通过 MCP 工具把智能体的小判断交给 Jev：在现有候选中对决策分类，根据证据诊断失败的命令，检查证据是否支持“已完成”的说法及每条验收标准，或就同一状态提出类型化问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · integrate-your-mind · `TS` · `choice` · `noul` · `score` · 调用点 [`source/jev-workflows/src/contracts.ts`](https://github.com/integrate-your-mind/jev-codex-plugin/blob/HEAD/source/jev-workflows/src/contracts.ts)，2026-11-04 模型阅读</sub>
+
 - **[jev-agent-skill](https://github.com/yuyang2230/jev-agent-skill)** — 给 AI 智能体的免费类型化判断：把分类／筛查／打分／校验卸载给 Jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · yuyang2230 · `Py` · 调用点 [`jev.py`](https://github.com/yuyang2230/jev-agent-skill/blob/HEAD/jev.py)，2026-09-22 阅读</sub>
 
@@ -359,6 +362,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jevboard](https://github.com/asheehuang/jevboard)** — Windows 系统匣工具，在按 Enter 之前修正微软注音的同音字错误：读取输入法为每个字位提供的候选，在一次请求中为每个字位向 Jev 提一个 Choice 问题，再给出修改建议，按 Tab 套用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · asheehuang · `C#` · `choice` · 调用点 [`src/JevClient.cs`](https://github.com/asheehuang/jevboard/blob/HEAD/src/JevClient.cs)，2026-11-02 模型阅读</sub>
 
+- **[Jevflow](https://github.com/parth1811/jevflow)** — Claude Code 插件，让智能体按一份分阶段计划工作，每个阶段都有完成标准和检查。每次智能体想停下时，它运行这些检查并询问 Jev：工作处于哪个阶段、进展到哪一步、是否卡住、偏离目标或过早宣称完成；再由经过测试的策略决定继续、进入下一阶段还是结束。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · parth1811 · `Py` · `choice` · `noul` · `score` · 调用点 [`plugin/jevflow/judge.py`](https://github.com/parth1811/jevflow/blob/HEAD/plugin/jevflow/judge.py)，2026-11-04 模型阅读</sub>
+
 - **[jevgate](https://github.com/Tech-Byte-Frontier/jevgate)** — 面向 CI 与编码智能体的代码审查关卡：就函数、文件、测试与依赖向 TypeSafe Jev 提出小而具体的类型化问题。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tech-byte-frontier · `Rs` · 调用点 [`src/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/provider.rs)，2026-09-24 阅读</sub>
 
@@ -436,6 +442,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[stepwarden](https://github.com/getexcited/stepwarden)** — 智能体的每一次工具调用在执行前都过一遍检查的 Claude Code 插件。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · getexcited · `TS` · 调用点 [`lib/jev.ts`](https://github.com/getexcited/stepwarden/blob/HEAD/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[stingray](https://github.com/nanako0129/stingray)** — Claude Code 的 Stop 钩子，拦截做到一半就停下的轮次：由 Jev 判断这一轮是否什么都没做、宣称了工具调用无法佐证的操作、承诺监看并未运行的工作，或用错了回复语言，钩子随后以一段固定提示阻止停止。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · nanako0129 · `sh` · `noul` · 调用点 [`hooks/stingray.sh`](https://github.com/nanako0129/stingray/blob/HEAD/hooks/stingray.sh)，2026-11-04 模型阅读</sub>
 
 - **[system-one-playground](https://github.com/DonaldMurillo/system-one-playground)** — 可读的脚本、语义代码检查、一个 Go System One 客户端与配套 Studio。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · donaldmurillo · `Go` · 调用点 [`typesafe/client.go`](https://github.com/DonaldMurillo/system-one-playground/blob/HEAD/typesafe/client.go)，2026-09-22 阅读</sub>

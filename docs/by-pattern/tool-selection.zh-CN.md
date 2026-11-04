@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 250 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 253 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 242 · 接口形态 4 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 245 · 接口形态 4 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -438,6 +438,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[dsh-jev-verify](https://github.com/xienda/dsh-jev-verify)** — 给 DeepSeek Harness 的 Jev 决策工具与实时验证基准。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · xienda · `JS` · 调用点 [`lib/index.js`](https://github.com/xienda/dsh-jev-verify/blob/HEAD/lib/index.js)，2026-09-22 阅读</sub>
 
+- **[dsh-plugin-jev](https://github.com/cyberofficial/dsh-plugin-jev)** — DSH Web GUI 的插件：为其智能体提供 jev_ask 工具，用于需要判断的场合，并守护 shell 命令：命令运行前，在用户编写的禁止命令规则之外，由 Jev 评估其危险程度以及后果能否撤销。默认只监控，开启 enforce 才会拦截。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · cyberofficial · `JS` · `choice` · `noul` · `score` · 调用点 [`lib/index.js`](https://github.com/cyberofficial/dsh-plugin-jev/blob/HEAD/lib/index.js)，2026-11-04 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[ego-jev-ultrafast](https://github.com/shikaizhong-design/ego-jev-ultrafast)** — Jev 驱动你的轻量浏览器：每步一次类型化选择请求，单文件零依赖。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · shikaizhong-design · `JS` · 调用点 [`jego.js`](https://github.com/shikaizhong-design/ego-jev-ultrafast/blob/HEAD/jego.js)，2026-09-22 阅读</sub>
 
@@ -473,6 +476,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[JEV Jornada](https://github.com/caio-moliveira/workshop-jev)** — 工作坊用的 LangGraph 销售智能体（葡萄牙语）：其中的决策（三个护栏是非题、一个从七个查询中选出能回答问题者的选择题、三个检查回复是否忠实的是非题）交给 Jev、OpenAI 或 Anthropic 的 LLM，或两者同时处理，并对比准确率、延迟、token 和成本。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · caio-moliveira · `Py` · `noul` · `choice` · 调用点 [`backend/app/providers/jev.py`](https://github.com/caio-moliveira/workshop-jev/blob/HEAD/backend/app/providers/jev.py)，2026-11-03 模型阅读 · ⚠ `无许可证` `需第三方密钥`</sub>
+
+- **[Jev Workflows](https://github.com/integrate-your-mind/jev-codex-plugin)** — 面向 Codex 和 Claude Code 的插件，通过 MCP 工具把智能体的小判断交给 Jev：在现有候选中对决策分类，根据证据诊断失败的命令，检查证据是否支持“已完成”的说法及每条验收标准，或就同一状态提出类型化问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · integrate-your-mind · `TS` · `choice` · `noul` · `score` · 调用点 [`source/jev-workflows/src/contracts.ts`](https://github.com/integrate-your-mind/jev-codex-plugin/blob/HEAD/source/jev-workflows/src/contracts.ts)，2026-11-04 模型阅读</sub>
 
 - **[jev-A-share-trader](https://github.com/Eric-Zhou-0302/jev-A-share-trader)** — 由 Jev 驱动的中国 A 股技术分析工作台，支持 AKShare/Tushare、市场扫描以及买入/持有/卖出建议。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · eric-zhou-0302 · `Py` · 调用点 [`src/jev_trader/jev.py`](https://github.com/Eric-Zhou-0302/jev-A-share-trader/blob/HEAD/src/jev_trader/jev.py)，2026-09-24 阅读</sub>
@@ -581,6 +587,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-physical-ai](https://github.com/robokrunch/jev-physical-ai)** — 把 Jev 用在机器人、机群与边缘硬件上 —— 附真实实测数字。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · robokrunch · `Py` · 调用点 [`code/demo-a.py`](https://github.com/robokrunch/jev-physical-ai/blob/HEAD/code/demo-a.py)，2026-09-22 阅读</sub>
+
+- **[jev-pilot](https://github.com/akramovic1/jev-pilot)** — Claude Code 插件，在每一轮开始前就提示词询问 Jev：需要多大的推理力度、子智能体该用哪个模型和力度、应直接做、委派还是并行，以及适用哪一个技能。工具调用屡次失败时，它会把力度上调一次。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · akramovic1 · `TS` · `choice` · `noul` · 调用点 [`hooks/model-router.policy.ts`](https://github.com/akramovic1/jev-pilot/blob/HEAD/hooks/model-router.policy.ts)，2026-11-04 模型阅读</sub>
 
 - **[jev-play-ping-pong](https://github.com/Icohen007/jev-play-ping-pong)** — 让 Jev 实时玩浏览器乒乓球：结构化遥测与类型化决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · icohen007 · `JS` · 调用点 [`src/typesafe.mjs`](https://github.com/Icohen007/jev-play-ping-pong/blob/HEAD/src/typesafe.mjs)，2026-09-22 阅读</sub>
