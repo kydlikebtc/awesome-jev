@@ -18,6 +18,7 @@ import datetime as dt
 import hashlib
 import re
 from typing import Any
+from urllib.parse import quote
 
 # Flags that change whether a row is an example at all, as opposed to a caveat
 # about its quality. An agent looking for "how do I do X" should not be handed
@@ -845,6 +846,25 @@ REPOSITORY_URL = "https://github.com/kydlikebtc/awesome-jev"
 LAUNCHES_DOC = f"{REPOSITORY_URL}/blob/main/docs/launches.md"
 DISCUSSION = f"{REPOSITORY_URL}/discussions/"
 LAUNCH_FORM = f"{REPOSITORY_URL}/issues/new?template=launch.yml"
+CONFIRM_FORM = f"{REPOSITORY_URL}/issues/new?template=confirm-entry.yml"
+
+
+def _prefilled(form: str, field: str, slug: str, title: str) -> str:
+    # GitHub fills an issue form's field from the address's query by the
+    # field's id, and the issue's title from `title`.
+    return f"{form}&{field}={quote(slug, safe='')}&title={quote(title, safe='')}"
+
+
+def launch_form(slug: str, title: str = "") -> str:
+    """The launch form with the product already named (L25 of the
+    2026-11-03 plan's second round): one click from a product's page."""
+    return _prefilled(LAUNCH_FORM, "product", slug, f"Launch: {title or slug}")
+
+
+def confirm_form(slug: str, title: str = "") -> str:
+    """The confirm-entry form with the row already named, for a maker to
+    confirm or correct it and add their line and a demo (L25)."""
+    return _prefilled(CONFIRM_FORM, "slug", slug, f"Confirm: {title or slug}")
 
 # Evidence tiers, strongest first: a person read the call site; only a model
 # did; a script found Jev's request or answer in the cited file and nobody
@@ -913,8 +933,12 @@ def launch_view(launch: dict, row: dict | None) -> dict[str, Any]:
         "url": row.get("url"),
         "patterns": row.get("patterns") or [],
         "evidence": launch_tier(row),
-        "page": f"{SITE}products/{slug}.html",
     })
+    if launch.get("tier_at_open") in LAUNCH_TIERS:
+        # Who had read the call site when the week opened, kept by the
+        # opening; `evidence` is the catalogue's record today.
+        out["evidence_at_open"] = launch["tier_at_open"]
+    out["page"] = f"{SITE}products/{slug}.html"
     if launch.get("discussion"):
         out["vote"] = f"{DISCUSSION}{launch['discussion']}"
     if row.get("flags"):
@@ -939,6 +963,11 @@ def week_view(week: dict, rows: dict[str, dict]) -> dict[str, Any]:
         out.update({"from": span[0].isoformat(), "to": span[1].isoformat()})
     for key in ("closed_on", "rules"):
         if week.get(key):
+            out[key] = week[key]
+    for key in ("voters", "returning_voters"):
+        # Counted when the week closed: accounts whose vote counted, and those
+        # of them who voted the week before too. Never who they were.
+        if isinstance(week.get(key), int):
             out[key] = week[key]
     if week.get("status") == "closed" and span:
         out["page"] = f"{SITE}weeks/{week['week']}.html"

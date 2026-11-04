@@ -14,9 +14,24 @@ L12, L13 and L14 of the 2026-11-03 launch-board plan. launch-week.yml runs
   create its vote post in the Discussion category named `Launches`, write the
   post's number, and mark the week open.
 
-Only counts are written, never who voted. A post is found again by a marker in
-its body before one is created, so a run that stopped halfway can simply run
-again; a mutation is sent once and never retried (_github.graphql_mutation).
+Only counts are written, never who voted. The close also counts the week's
+accounts (L28): `voters`, the accounts whose vote counted for something on
+any launch, and `returning_voters`, how many of them also voted the week
+before, read again from that week's posts. Opening writes each launch's
+evidence tier as it stood (`tier_at_open`), so the share of launches someone
+had read before they opened can be measured.
+
+`--tell` (launch-week.yml runs it once the files are on `main`) tells each
+launch's issue (L27): when its week has opened, a comment with the vote
+post's link, and the issue is closed; when the week has closed, a comment
+with the result and, for the top three, the badge's README line. A comment is
+found again by a marker before it is written, so a second run says nothing
+twice, and a comment GitHub refuses is reported, never a failure: the files
+are what count.
+
+A post is found again by a marker in its body before one is created, so a run
+that stopped halfway can simply run again; a mutation is sent once and never
+retried (_github.graphql_mutation).
 
 Nothing happens when there is nothing to do: no file for the week, or a week
 already opened or closed. Turning Discussions on and adding the `Launches`
@@ -29,6 +44,7 @@ category only maintainers can start discussions in, before a Monday needs it.
 
 Usage:
   python3 scripts/launch_week.py --monday                # what launch-week.yml runs
+  python3 scripts/launch_week.py --tell                  # then, once the files are on main
   python3 scripts/launch_week.py --probe                 # what launch-probe.yml runs
   python3 scripts/launch_week.py --open 2026-W47
   python3 scripts/launch_week.py --close 2026-W46 [--on 2026-11-23]   # or count it again
@@ -90,6 +106,34 @@ DELETE = """
 mutation($id: ID!) {
   deleteDiscussion(input: {id: $id}) {
     discussion { number }
+  }
+}
+"""
+
+ISSUE_QUERY = """
+query($owner: String!, $name: String!, $number: Int!) {
+  repository(owner: $owner, name: $name) {
+    issue(number: $number) {
+      id
+      state
+      comments(last: 50) { nodes { body author { login } } }
+    }
+  }
+}
+"""
+
+COMMENT = """
+mutation($subject: ID!, $body: String!) {
+  addComment(input: {subjectId: $subject, body: $body}) {
+    commentEdge { node { id } }
+  }
+}
+"""
+
+CLOSE_ISSUE = """
+mutation($issue: ID!) {
+  closeIssue(input: {issueId: $issue, stateReason: COMPLETED}) {
+    issue { number state }
   }
 }
 """
@@ -235,6 +279,8 @@ def open_week(data: dict, rows: dict[str, dict], *, repository: str, ask: Ask, m
         repo_id, category_id = category(repository, ask)
         posts = existing_posts(repository, category_id, ask)
         for launch in L.shuffled(on, week):
+            # The evidence as it stood when the vote post opened (L28).
+            launch.setdefault("tier_at_open", L.tier(rows[launch["product"]]))
             if launch.get("discussion"):
                 notes.append(f"{launch['product']}: post #{launch['discussion']} on file")
                 continue
@@ -251,6 +297,8 @@ def open_week(data: dict, rows: dict[str, dict], *, repository: str, ask: Ask, m
             else:
                 notes.append(f"{launch['product']}: post #{number} found")
             launch["discussion"] = number
+            # Keys in the schema's order: the post, then the tier it opened with.
+            launch["tier_at_open"] = launch.pop("tier_at_open")
     data["status"] = "open"
     return notes
 
@@ -286,12 +334,34 @@ def probe(repository: str, *, ask: Ask, mutate: Ask) -> list[str]:
 # --------------------------------------------------------------------------
 
 
+def week_voters(data: dict, rows: dict[str, dict], read: Callable[[int], list[dict]], notes: list[str]) -> set[str]:
+    """The accounts whose vote counted for something on any launch still on a
+    closed week's board, read again from its posts: a week's returning voters
+    are counted against the week before's. A post that cannot be read now is
+    left out, and said in `notes`."""
+    everyone: set[str] = set()
+    for launch in L.on_board(data):
+        if not launch.get("discussion"):
+            continue
+        row = rows.get(launch["product"], {})
+        try:
+            votes = read(launch["discussion"])
+        except launch_votes.ReadError as exc:
+            notes.append(f"{data['week']} {launch['product']}: post #{launch['discussion']} not read ({exc}); "
+                         "the returning voters are counted without it")
+            continue
+        everyone |= L.counted_voters(votes, own=L.makers_of(row) + [launch["submitted_by"]], week=data["week"],
+                                     rules=data.get("rules") or L.CURRENT_RULES)
+    return everyone
+
+
 def close_week(data: dict, rows: dict[str, dict], *, on: dt.date,
-               read: Callable[[int], list[dict]]) -> list[str]:
+               read: Callable[[int], list[dict]], before: dict | None = None) -> list[str]:
     """Count, check and rank an open week's launches, and mark it closed.
     A closed week is counted again the same way, after a person changed a
     launch's status (MAINTAINING.md). `read(number)` is a Discussion's votes.
-    Returns a line per launch."""
+    `before` is the week before's file, if any: its posts are read again to
+    count the returning voters. Returns a line per launch."""
     week = data["week"]
     if data.get("status") not in ("open", "closed"):
         raise WeekError(f"{week} is {data.get('status')}; only an open or closed week is counted")
@@ -299,6 +369,7 @@ def close_week(data: dict, rows: dict[str, dict], *, on: dt.date,
     if on <= sunday:
         raise WeekError(f"{week} runs until Sunday {sunday}; it closes after that")
     notes: list[str] = []
+    voters: set[str] = set()
     for launch in data["launches"]:
         if launch.get("status") != "scheduled":
             launch.pop("result", None)
@@ -314,6 +385,7 @@ def close_week(data: dict, rows: dict[str, dict], *, on: dt.date,
             notes.append(f"{launch['product']}: held ({why})")
             continue
         launch["result"] = {**L.weigh(votes, own=own, week=week), "rank": 1}
+        voters |= L.counted_voters(votes, own=own, week=week)
     ordered = L.rank(data["launches"], rows)
     for launch in ordered:
         r = launch["result"]
@@ -323,9 +395,110 @@ def close_week(data: dict, rows: dict[str, dict], *, on: dt.date,
     data["status"] = "closed"
     data["closed_on"] = on.isoformat()
     data["rules"] = L.CURRENT_RULES
+    # The week's accounts (L28): counted here, in memory; only the numbers stay.
+    earlier = week_voters(before, rows, read, notes) if before and before.get("status") == "closed" else set()
+    data["voters"], data["returning_voters"] = len(voters), len(voters & earlier)
+    notes.append(f"{data['voters']} accounts voted, {data['returning_voters']} of them the week before too")
     # Keys in the schema's order, so the file reads the same way every week.
-    for key in ("closed_on", "rules", "launches"):
+    for key in ("closed_on", "rules", "voters", "returning_voters", "launches"):
         data[key] = data.pop(key)
+    return notes
+
+
+# --------------------------------------------------------------------------
+# Telling each launch's issue (L27)
+# --------------------------------------------------------------------------
+
+
+def issue_marker(week: str, slug: str, stage: str) -> str:
+    return f"<!-- launch-board {week} {slug} {stage} -->"
+
+
+def opened_note(week: str, launch: dict) -> str:
+    """What a launch's issue is told when its week opens."""
+    monday, sunday = L.week_days(week)
+    return "\n".join([
+        issue_marker(week, launch["product"], "opened"),
+        f"This launch is on the board for **{week}** (Monday {monday} to Sunday {sunday}, UTC). Its vote "
+        f"post: {L.query.DISCUSSION}{launch['discussion']}",
+        "",
+        "A thumbs-up on that post is a vote, one per account (rules v1). When the week closes next Monday, "
+        "the counts are written to the board and the result is posted here.",
+        "",
+        f"The launch is on the board, so this issue is closed. How the board works: {DOCS}",
+        "",
+    ])
+
+
+def closed_note(week: str, launch: dict, on_board: int) -> str:
+    """What a launch's issue is told when its week closes."""
+    lines = [issue_marker(week, launch["product"], "closed")]
+    result = launch.get("result")
+    if launch.get("status") == "held":
+        lines += [f"**{week} closed.** This launch is held for a person before it ranks: "
+                  f"{launch.get('reason', '')}. A maintainer reads the votes and decides; the week's file "
+                  "keeps the decision."]
+    elif result:
+        lines += [f"**{week} closed.** This launch placed #{result['rank']} of {on_board}, with "
+                  f"{result['votes']} votes, {result['counted']} counted under rules v1. The week's page: "
+                  f"{SITE}weeks/{week}.html"]
+        if result.get("badges"):
+            place = result["badges"][0].split("-")[1]
+            lines += ["", "It placed in the top three, so it has a badge for its README:", "",
+                      "```markdown",
+                      f"[![awesome-jev launches: #{place} of {week}]({SITE}badges/{launch['product']}.svg)]"
+                      f"({SITE}products/{launch['product']}.html)",
+                      "```"]
+    lines += ["", f"How the board works: {DOCS}", ""]
+    return "\n".join(lines)
+
+
+def tell(number: int, mark: str, body: str, *, close: bool, repository: str, ask: Ask, mutate: Ask) -> str:
+    """Comment `body` on issue `number` unless a comment with `mark` from
+    POSTERS is there already, and close the issue when `close` and it is
+    open. Returns what was done; never raises for GitHub's answers."""
+    owner, name = repository.split("/", 1)
+    answer = ask(ISSUE_QUERY, {"owner": owner, "name": name, "number": number}) or {}
+    issue = ((answer.get("data") or {}).get("repository") or {}).get("issue")
+    if not issue or not issue.get("id"):
+        return f"#{number}: could not read the issue ({_errors(answer)})"
+    posters = POSTERS | {owner.lower()}
+    said = any(mark in str(c.get("body") or "")
+               and str(((c.get("author") or {}).get("login")) or "").lower() in posters
+               for c in ((issue.get("comments") or {}).get("nodes") or []))
+    done: list[str] = []
+    if not said:
+        sent = mutate(COMMENT, {"subject": issue["id"], "body": body})
+        if not ((sent or {}).get("data") or {}).get("addComment"):
+            return f"#{number}: could not comment ({_errors(sent)})"
+        done.append("commented")
+    if close and issue.get("state") == "OPEN":
+        shut = mutate(CLOSE_ISSUE, {"issue": issue["id"]})
+        if not ((shut or {}).get("data") or {}).get("closeIssue"):
+            return f"#{number}: {', '.join(done + ['could not close'])} ({_errors(shut)})"
+        done.append("closed")
+    return f"#{number}: {', '.join(done) or 'told before'}"
+
+
+def tell_issues(data: dict, stage: str, *, repository: str, ask: Ask, mutate: Ask) -> list[str]:
+    """Tell each launch's issue that its week opened (with the vote post, and
+    close it) or closed (with the result). A launch held before its week
+    opened is left to the person who decides it."""
+    week = data["week"]
+    notes: list[str] = []
+    on_board = len(L.on_board(data))
+    for launch in data["launches"]:
+        number = launch.get("issue")
+        if not isinstance(number, int):
+            continue
+        if stage == "opened" and launch.get("status") == "scheduled" and launch.get("discussion"):
+            body = opened_note(week, launch)
+        elif stage == "closed" and (launch.get("result") or (launch.get("status") == "held" and launch.get("discussion"))):
+            body = closed_note(week, launch, on_board)
+        else:
+            continue
+        notes.append(f"{launch['product']} " + tell(number, issue_marker(week, launch["product"], stage), body,
+                                                     close=True, repository=repository, ask=ask, mutate=mutate))
     return notes
 
 
@@ -348,7 +521,8 @@ def monday(root: pathlib.Path, today: dt.date, *, repository: str, ask: Ask, mut
     done: list[str] = []
     before = load_week(root, last)
     if before and before.get("status") == "open":
-        notes = close_week(before, rows, on=today, read=votes_reader(repository, ask))
+        earlier = load_week(root, L.week_of(today - dt.timedelta(days=14)))
+        notes = close_week(before, rows, on=today, read=votes_reader(repository, ask), before=earlier)
         save_week(root, before)
         done += [f"closed {last}"] + [f"  {n}" for n in notes]
     current = load_week(root, this)
@@ -361,6 +535,19 @@ def monday(root: pathlib.Path, today: dt.date, *, repository: str, ask: Ask, mut
     return done or [f"nothing to do: no open week {last} to close, no scheduled week {this} to open"]
 
 
+def tell_due(root: pathlib.Path, today: dt.date, *, repository: str, ask: Ask, mutate: Ask) -> list[str]:
+    """Tell the issues of this week's launches if the week is open, and of
+    last week's if it is closed (tell_issues). Each issue hears each thing
+    once, so this can run after every Monday run, and again."""
+    done: list[str] = []
+    for week, stage in ((L.week_of(today - dt.timedelta(days=7)), "closed"), (L.week_of(today), "opened")):
+        data = load_week(root, week)
+        if data and data.get("status") == ("closed" if stage == "closed" else "open"):
+            notes = tell_issues(data, stage, repository=repository, ask=ask, mutate=mutate)
+            done += [f"told the issues of {week} that it {stage}"] + [f"  {n}" for n in notes]
+    return done or ["nothing to tell: no week opened or closed this Monday"]
+
+
 def main(argv: list[str] | None = None, *, ask: Ask = _github.graphql_request,
          mutate: Ask = _github.graphql_mutation) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -370,6 +557,8 @@ def main(argv: list[str] | None = None, *, ask: Ask = _github.graphql_request,
     action.add_argument("--close", metavar="WEEK", help="close an open week, or count a closed one again")
     action.add_argument("--probe", action="store_true",
                         help="start a discussion in the Launches category and delete it (launch-probe.yml)")
+    action.add_argument("--tell", action="store_true",
+                        help="tell the issues of the week that opened and the week that closed (once each)")
     parser.add_argument("--on", metavar="DAY", help="today, UTC (default: the clock)")
     parser.add_argument("--repo", default=os.environ.get("GITHUB_REPOSITORY") or _github.SELF)
     parser.add_argument("--root", default=str(ROOT), help=argparse.SUPPRESS)
@@ -384,6 +573,8 @@ def main(argv: list[str] | None = None, *, ask: Ask = _github.graphql_request,
     try:
         if args.probe:
             done = probe(args.repo, ask=ask, mutate=mutate)
+        elif args.tell:
+            done = tell_due(root, today, repository=args.repo, ask=ask, mutate=mutate)
         elif args.monday:
             done = monday(root, today, repository=args.repo, ask=ask, mutate=mutate)
         else:
@@ -397,8 +588,10 @@ def main(argv: list[str] | None = None, *, ask: Ask = _github.graphql_request,
                 finally:
                     save_week(root, data)  # the posts made so far, even when one failed
             else:
+                monday_of, _ = L.week_days(week)
+                earlier = load_week(root, L.week_of(monday_of - dt.timedelta(days=7)))
                 # Written only once every launch is counted: a half-counted week is never kept.
-                notes = close_week(data, rows, on=today, read=votes_reader(args.repo, ask))
+                notes = close_week(data, rows, on=today, read=votes_reader(args.repo, ask), before=earlier)
                 save_week(root, data)
             done = [f"{'opened' if args.open else 'closed'} {week}"] + [f"  {n}" for n in notes]
     except (WeekError, launch_votes.ReadError) as exc:

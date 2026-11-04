@@ -57,6 +57,15 @@ def check(catalog: list[dict], launch_files: dict[str, object], maker_files: dic
             problems.append(f"{where}: rules {data['rules']!r} is not one scripts/launches.py knows")
         if closed and L.day(data.get("closed_on")) and L.day(data["closed_on"]) <= sunday:
             problems.append(f"{where}: closed_on {data['closed_on']} is not after the week's Sunday {sunday}")
+        if not closed and ("voters" in data or "returning_voters" in data):
+            problems.append(f"{where}: voters and returning_voters are counted when the week closes, and only then")
+        voters, returning = data.get("voters"), data.get("returning_voters")
+        if isinstance(voters, int) and isinstance(returning, int) and returning > voters:
+            problems.append(f"{where}: more returning voters ({returning}) than voters ({voters})")
+        if isinstance(voters, int):
+            cast = sum(int((x.get("result") or {}).get("votes") or 0) for x in data["launches"] if isinstance(x, dict))
+            if voters > cast:
+                problems.append(f"{where}: {voters} voters, but only {cast} votes on the board")
         seen_products: set[str] = set()
         ranks: list[int] = []
         for i, launch in enumerate(data["launches"]):
@@ -76,6 +85,8 @@ def check(catalog: list[dict], launch_files: dict[str, object], maker_files: dic
             submitted = L.day(launch.get("submitted_on"))
             if submitted and submitted > sunday:
                 problems.append(f"{at}: submitted_on {launch['submitted_on']} is after the week ended")
+            if "tier_at_open" in launch and status not in ("open", "closed"):
+                problems.append(f"{at}: tier_at_open is written when the week opens")
             held = launch.get("status") in ("held", "removed")
             if held != ("reason" in launch):
                 problems.append(f"{at}: a held or removed launch says why in `reason`, and only those do")

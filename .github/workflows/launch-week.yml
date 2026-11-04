@@ -14,6 +14,10 @@
 # onto anything pushed meanwhile; if that does not apply cleanly it never
 # forces, and leaves the commit on a branch for a person. It runs the checks
 # on its commit before pushing, and then asks pages.yml to rebuild the board.
+# Once the files are on main it tells each launch's issue (L27): the vote
+# post's link when its week opens, and the issue is closed; the result when
+# the week closes. Each issue hears each thing once; a comment GitHub refuses
+# is reported in the job summary and fails nothing.
 #
 # Injection review: no `github.event.*` value reaches a `run:` block, and the
 # workflow takes no inputs.
@@ -28,6 +32,7 @@ on:
 permissions:
   contents: write
   discussions: write
+  issues: write
   actions: write
 
 concurrency:
@@ -44,6 +49,11 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
+
+      # The checks below are lint's, and lint runs its node tests on this one.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
 
       - name: Close and open the weeks that are due
         env:
@@ -91,3 +101,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh workflow run pages.yml --ref main
+
+      # Only from files on main: the run's own commit once it landed, or the
+      # checkout when the run changed nothing (a rerun, which then tells any
+      # issue an earlier run could not).
+      - name: Tell each launch's issue what happened
+        if: always() && (steps.land.outputs.landed == 'main' || steps.commit.outputs.changed == 'false')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/launch_week.py --tell

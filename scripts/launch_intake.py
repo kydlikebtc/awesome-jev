@@ -29,8 +29,11 @@ anyone else by adding them to the row's `makers`.
 Like draft_from_issue.py, the job that answers an issue only comments: anyone
 can open one. `--collect WEEK` reads every open launch issue, assesses each the
 same way, and writes the week's file (and, for a maker the check confirmed,
-their login and line onto the row) into the working tree, for a person to
-review in the Friday merge. It never posts anything.
+their login and line onto the row) into the working tree. It never posts
+anything. Since L26 (2026-11-04) launch-collect.yml runs `--collect next` early
+every Friday, once the week's submissions have closed, and pushes what it
+wrote to `main` the way launch-week.yml does: a held launch is filed as held
+and waits for a person; nothing waits for a merge.
 
 The three facts the check reads from GitHub (the repository, the account's age,
 an organisation's public members) need a token that can read any repository
@@ -41,10 +44,17 @@ weeks with the facts recorded in that issue's latest check comment, which only
 github-actions[bot] can have written. `--live` reads GitHub instead. An issue
 with no such comment is reported, not collected.
 
+`--unread` lists the products about to launch whose call site nobody has
+read (evidence tier `file` or `none`): those on a week that has not opened
+and those an open launch issue names. The daily task reads them first, so a
+launch opens with at least a model's reading (L28).
+
 Usage:
   python3 scripts/launch_intake.py --event "$GITHUB_EVENT_PATH" --out comment.md
   python3 scripts/launch_intake.py --issue 81 --out comment.md
   python3 scripts/launch_intake.py --collect 2026-W47 [--live]
+  python3 scripts/launch_intake.py --collect next      # the week of the coming Monday (UTC)
+  python3 scripts/launch_intake.py --unread
 """
 
 from __future__ import annotations
@@ -89,8 +99,6 @@ CONFIRMS = (
 # The bounds of the launch schema's tagline and tagline_zh.
 TAGLINE = (3, 80)
 TAGLINE_ZH = (2, 60)
-# The cut-off: a launch opened by the end of Thursday (UTC) is for next week.
-LAST_DAY = 3  # Monday is 0
 YOUNG_DAYS = 30
 SITE_SLUG = re.compile(r"(?:#|/products/)([a-z0-9]+(?:-[a-z0-9]+)*)(?:\.html)?/?$")
 SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -200,10 +208,7 @@ def opened_at(issue: dict) -> dt.datetime | None:
 
 def target_week(opened: dt.datetime) -> str:
     """The week a launch opened at `opened` (UTC) is for."""
-    day = opened.astimezone(dt.timezone.utc).date()
-    monday = day - dt.timedelta(days=day.weekday())
-    weeks_ahead = 1 if day.weekday() <= LAST_DAY else 2
-    return L.week_of(monday + dt.timedelta(weeks=weeks_ahead))
+    return L.week_for(opened.astimezone(dt.timezone.utc).date())
 
 
 def resolve(answer: str, catalog: list[dict]) -> dict | None:
@@ -271,8 +276,8 @@ def assess(issue: dict, catalog: list[dict], all_weeks: list[dict], *, lookup: L
         if past_week == week:
             out["problems"].append(f"`{slug}` is on {week} already")
         elif 0 <= (monday - past_monday).days < L.RELAUNCH_DAYS:
-            again = past_monday + dt.timedelta(days=L.RELAUNCH_DAYS)
-            out["problems"].append(f"`{slug}` launched in {past_week}; it can launch again in the week of {again}")
+            out["problems"].append(f"`{slug}` launched in {past_week}; it can launch again in the week of "
+                                   f"Monday {L.relaunch_from(past_week)}")
 
     tagline = one_line(form.get("tagline", ""))
     tagline_zh = one_line(form.get("tagline_zh", ""))
@@ -357,11 +362,11 @@ def comment(result: dict, facts: dict | None = None) -> str:
     elif verdict == "held":
         lines += [f"Held for a person, for {span}:", ""]
         lines += [f"- {h}" for h in result["holds"]]
-        lines += ["", "A maintainer decides before Friday's merge. Nothing to do unless they ask."]
+        lines += ["", "A maintainer decides before the week opens on Monday. Nothing to do unless they ask."]
     else:
         maker = f" Confirmed as a maker: {result['maker']}." if result.get("maker") else ""
-        lines.append(f"Ready for {span}.{maker} It reaches the board with the Friday merge, and its "
-                     "Discussion opens on Monday, where a thumbs-up is a vote.")
+        lines.append(f"Ready for {span}.{maker} It is filed on the board early on Friday, and its "
+                     "Discussion opens on Monday, where a thumbs-up is a vote; the link is posted here then.")
     if result.get("launch") and verdict != "collected":
         text = json.dumps(result["launch"], ensure_ascii=False, indent=2)
         tick = fence(text)
@@ -434,6 +439,38 @@ def collect(week: str, issues: list[dict], catalog: list[dict], all_weeks: list[
     return data, changed, notes
 
 
+def unread(catalog: list[dict], all_weeks: list[dict], issues: list[dict]) -> list[tuple[str, str, str, str, str]]:
+    """(slug, tier, cited path, url, where) for each product about to launch
+    whose call site neither a person nor a model has read: on a week not yet
+    open (scheduled or held there), or named by an open launch issue not on
+    any week yet. Each product once, in the order the board would show it
+    soonest: by week, then by issue number."""
+    rows = {r["slug"]: r for r in catalog}
+    found: dict[str, tuple[str, str, str, str, str]] = {}
+
+    def note(slug: str, where: str) -> None:
+        row = rows.get(slug)
+        if row is None or slug in found or not L.is_product(row) or L.tier(row) in L.READ:
+            return
+        found[slug] = (slug, L.tier(row), str((row.get("evidence") or {}).get("path") or ""),
+                       str(row.get("url") or ""), where)
+
+    filed: set[int] = set()
+    for week in sorted(all_weeks, key=lambda w: str(w.get("week"))):
+        for launch in week.get("launches") or []:
+            if isinstance(launch.get("issue"), int):
+                filed.add(launch["issue"])
+            if week.get("status") == "scheduled" and launch.get("status") in ("scheduled", "held"):
+                note(launch["product"], f"launches/{week['week']}.json")
+    for issue in sorted(issues, key=lambda i: i.get("number") or 0):
+        if issue.get("number") in filed:
+            continue
+        row = resolve(parse_form(issue.get("body") or "", FIELDS).get("product", ""), catalog)
+        if row is not None:
+            note(row["slug"], f"issue #{issue.get('number')}")
+    return list(found.values())
+
+
 def open_issues(repo: str) -> list[dict]:
     """Every open issue labelled `launch`."""
     out: list[dict] = []
@@ -464,10 +501,14 @@ def main(argv: list[str] | None = None, *, lookup: Lookup | None = None,
     source = parser.add_mutually_exclusive_group(required=True)
     source.add_argument("--event", metavar="FILE", help="the `issues` event payload ($GITHUB_EVENT_PATH)")
     source.add_argument("--issue", metavar="NUMBER", help="read this issue from the API instead")
-    source.add_argument("--collect", metavar="WEEK", help="write every open launch issue for WEEK into its file")
+    source.add_argument("--collect", metavar="WEEK",
+                        help="write every open launch issue for WEEK into its file; `next`: the coming Monday's week")
+    source.add_argument("--unread", action="store_true",
+                        help="list the products about to launch whose call site nobody has read")
     parser.add_argument("--out", metavar="FILE", help="with --event or --issue: write the comment here")
     parser.add_argument("--live", action="store_true",
                         help="with --collect: read GitHub's facts again instead of those each check comment recorded")
+    parser.add_argument("--on", metavar="DAY", help="today, UTC, for --collect next (default: the clock)")
     parser.add_argument("--root", default=str(ROOT), help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
     lookup = lookup or Lookup()
@@ -477,8 +518,20 @@ def main(argv: list[str] | None = None, *, lookup: Lookup | None = None,
     all_weeks = L.weeks(root / "launches")
     repo = os.environ.get("GITHUB_REPOSITORY") or _github.SELF
 
+    if args.unread:
+        found = unread(catalog, all_weeks, issues_for(repo))
+        for slug, tier, path, url, where in found:
+            print(f"{slug}\t{tier}\t{path or 'no file cited'}\t{url}\t{where}")
+        print(f"{len(found)} product(s) about to launch with no reading of their call site", file=sys.stderr)
+        return 0
+
     if args.collect:
         week = args.collect.strip()
+        if week == "next":
+            today = L.day(args.on) if args.on else dt.datetime.now(dt.timezone.utc).date()
+            if today is None:
+                parser.error(f"--on takes a day like 2026-11-06, not {args.on!r}")
+            week = L.week_of(today + dt.timedelta(days=7 - today.weekday()))
         if not L.WEEK.match(week):
             print(f"error: --collect takes an ISO week like 2026-W47, not {week!r}", file=sys.stderr)
             return 2

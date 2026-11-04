@@ -7,8 +7,7 @@
 # new-entry.yml: it checks out the default branch (an `issues` event always
 # runs the workflow as it is there), reads public facts about the repository
 # and the account, and writes one comment, which a later run rewrites. It
-# commits nothing; the week's file is written by `launch_intake.py --collect`
-# and reaches `main` in a reviewed pull request.
+# commits nothing; the week's file is written on Fridays by launch-collect.yml.
 #
 # Injection review: no `github.event.*` value reaches a `run:` block. The
 # script reads the event payload from the file GitHub writes

@@ -1,0 +1,109 @@
+# Files next week's launches early every Friday, once the week's submissions
+# have closed on Thursday 23:59 UTC (scripts/launch_intake.py --collect next;
+# L26 of the launch board's second round, docs/launches.md). Each open launch
+# issue is checked again against today's catalogue with the facts its check
+# comment recorded, and written into launches/<week>.json; a maker the check
+# confirmed gets their login, and their line when the row has none, on the
+# product's row. A held launch is filed as held and waits for a person, as
+# before. Until 2026-11-04 the daily task collected into its pull request and
+# the week waited for the owner's Friday merge; now nothing waits for a merge.
+#
+# Like launch-week.yml and metadata.yml, it regenerates what the row changes
+# feed, commits, runs the checks on that commit, and pushes to main, rebasing
+# onto anything pushed meanwhile; if that does not apply cleanly it never
+# forces, and leaves the commit on a branch for a person. Then it asks
+# pages.yml to rebuild the board, which lists next week's launches.
+#
+# Injection review: no `github.event.*` value reaches a `run:` block, and the
+# workflow takes no inputs. Issue text reaches only the script, which reads it
+# as data and writes it into JSON the checks validate.
+name: launch-collect
+
+on:
+  schedule:
+    # Fridays 00:20 UTC: a launch submitted by Thursday 23:59 UTC is for next week.
+    - cron: "20 0 * * 5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+  actions: write
+
+# The same group as launch-week.yml: both write launches/ and push to main.
+concurrency:
+  group: launch-week
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    name: File next week's launches
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # The checks below are lint's, and lint runs its node tests on this one.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+
+      - name: Collect the launch issues for next week
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -o pipefail
+          python3 scripts/launch_intake.py --collect next | tee /tmp/collect.log
+
+      - name: Commit what changed
+        id: commit
+        run: |
+          # The same generators as lint.yml and metadata.yml, so a row change
+          # leaves nothing generated stale.
+          python3 scripts/regenerate.py > /dev/null
+          git add -A launches catalog.json README.md README.zh-CN.md docs llms.txt examples/index.json examples/README.md skills/awesome-jev/SKILL.md
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "launches: file next week's launches" -m "$(tail -n 1 /tmp/collect.log)"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Run the checks on that commit before pushing it
+        id: checks
+        if: steps.commit.outputs.changed == 'true'
+        run: python3 scripts/check.py --ci --quick
+
+      - name: Push to main, or fall back to a branch if main moved
+        id: land
+        if: steps.checks.outcome == 'success'
+        run: |
+          if git pull -q --rebase origin main && git push -q origin HEAD:main; then
+            echo "landed=main" >> "$GITHUB_OUTPUT"
+          else
+            git rebase --abort 2>/dev/null || true
+            branch="launches/collect-$(date -u +%Y-%m-%d)"
+            git push -q -u origin "HEAD:refs/heads/$branch" --force
+            echo "landed=$branch" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Rebuild the site with the board
+        if: steps.land.outputs.landed == 'main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run pages.yml --ref main
+
+      - name: Say what was filed
+        if: always()
+        run: |
+          {
+            echo "### Launch collection"
+            echo
+            sed 's/^/    /' /tmp/collect.log 2>/dev/null || echo "    (no log)"
+          } >> "$GITHUB_STEP_SUMMARY"

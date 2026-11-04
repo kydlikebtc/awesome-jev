@@ -24,6 +24,7 @@ sys.path.insert(0, str(ROOT / "tests"))
 
 import check_launches  # noqa: E402
 import launch_intake  # noqa: E402
+import launch_votes  # noqa: E402
 import launch_week  # noqa: E402
 import launches  # noqa: E402
 import site_pages  # noqa: E402
@@ -122,6 +123,8 @@ class AssessTest(unittest.TestCase):
         result = assess(issue(), weeks=[before])
         self.assertEqual(result["verdict"], "refused")
         self.assertIn("launched in 2026-W40", result["problems"][0])
+        # 2026-W40 began on Monday 2026-09-28; 60 days on, the first Monday is 2026-11-30.
+        self.assertIn("in the week of Monday 2026-11-30", result["problems"][0])
         long_ago = dict(before, week="2026-W30")
         self.assertEqual(assess(issue(), weeks=[long_ago])["verdict"], "ready")
 
@@ -278,6 +281,55 @@ class CollectTest(unittest.TestCase):
         self.assertIn("could not be read", result["launch"]["reason"])
 
 
+class UnreadTest(unittest.TestCase):
+    """L28: the products about to launch whose call site nobody has read, so
+    the daily task reads them before their week opens."""
+
+    CATALOG = CATALOG + [row("fileonly", evidence={"path": "x.py", "matched": ["y"]})]
+    WEEKS = [
+        week("2026-W46", "open", [launch("gamma", issue=70)]),  # open: its evidence is already on file
+        week("2026-W47", "scheduled", [
+            launch("alpha", issue=100),  # a model read it
+            launch("gamma", issue=101, status="held", reason="maker not confirmed"),
+            launch("fileonly", issue=102, status="removed", reason="withdrawn"),  # not launching here
+        ]),
+    ]
+    ISSUES = [
+        issue(number=105, product="fileonly"),
+        issue(number=101, product="gamma"),  # filed already
+        issue(number=103, product="beta"),  # a person read it
+        issue(number=104, product="nope"),  # not catalogued
+        issue(number=106, product="https://github.com/o/fileonly"),  # the same product again
+    ]
+
+    def test_each_product_once_soonest_first_and_only_what_nobody_read(self):
+        found = launch_intake.unread(self.CATALOG, self.WEEKS, self.ISSUES)
+        self.assertEqual(found, [
+            ("gamma", "none", "", "https://github.com/o/gamma", "launches/2026-W47.json"),
+            ("fileonly", "file", "x.py", "https://github.com/o/fileonly", "issue #105"),
+        ])
+
+    def test_the_command_lists_them_and_writes_nothing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            (root / "catalog.json").write_text(json.dumps(self.CATALOG))
+            (root / "launches").mkdir()
+            for w in self.WEEKS:
+                (root / "launches" / f"{w['week']}.json").write_text(json.dumps(w))
+            before = sorted(p.read_text() for p in root.rglob("*.json"))
+            out, err = io.StringIO(), io.StringIO()
+            with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+                code = launch_intake.main(["--unread", "--root", tmp], lookup=FakeLookup(),
+                                          issues_for=lambda repo: self.ISSUES)
+            self.assertEqual(code, 0)
+            self.assertEqual(out.getvalue().splitlines(), [
+                "gamma\tnone\tno file cited\thttps://github.com/o/gamma\tlaunches/2026-W47.json",
+                "fileonly\tfile\tx.py\thttps://github.com/o/fileonly\tissue #105",
+            ])
+            self.assertIn("2 product(s)", err.getvalue())
+            self.assertEqual(sorted(p.read_text() for p in root.rglob("*.json")), before)
+
+
 # --------------------------------------------------------------------------
 # Opening and closing a week
 # --------------------------------------------------------------------------
@@ -293,15 +345,26 @@ class FakeGitHub:
     Launches, and each post's reactions."""
 
     def __init__(self, *, posts=None, reactions=None, enabled=True, categories=("Launches",), fail_on=None,
-                 authors=None):
+                 authors=None, issues=None, refuse_comments=False):
         self.posts = dict(posts or {})  # number -> body
         self.authors = dict(authors or {})  # number -> login, github-actions when not given
         self.reactions = reactions or {}  # number -> [node]
         self.enabled, self.categories = enabled, categories
         self.created: list[dict] = []
         self.fail_on = fail_on
+        # Launch issues: number -> {"state", "comments": [(login, body)]}; any other number is open, uncommented.
+        self.issues = {n: dict(i) for n, i in (issues or {}).items()}
+        self.refuse_comments = refuse_comments
+
+    def issue(self, number):
+        return self.issues.setdefault(number, {"state": "OPEN", "comments": []})
 
     def ask(self, query, variables):
+        if "issue(number" in query:
+            i = self.issue(variables["number"])
+            nodes = [{"body": b, "author": {"login": who}} for who, b in i["comments"]]
+            return {"data": {"repository": {"issue": {"id": f"I{variables['number']}", "state": i["state"],
+                                                      "comments": {"nodes": nodes}}}}}
         if "discussionCategories" in query:
             return repo_answer(self.enabled, self.categories)
         if "discussions(" in query:
@@ -316,6 +379,14 @@ class FakeGitHub:
         raise AssertionError(query)
 
     def mutate(self, query, variables):
+        if "addComment" in query:
+            if self.refuse_comments:
+                return {"errors": [{"message": "Resource not accessible by integration"}]}
+            self.issue(int(variables["subject"][1:]))["comments"].append(("github-actions", variables["body"]))
+            return {"data": {"addComment": {"commentEdge": {"node": {"id": "C1"}}}}}
+        if "closeIssue" in query:
+            self.issue(int(variables["issue"][1:]))["state"] = "CLOSED"
+            return {"data": {"closeIssue": {"issue": {"number": int(variables["issue"][1:]), "state": "CLOSED"}}}}
         if self.fail_on and self.fail_on in variables["body"]:
             return {"errors": [{"message": "boom"}]}
         number = 100 + len(self.posts)
@@ -350,6 +421,16 @@ class OpenTest(unittest.TestCase):
         self.assertEqual(first["category"], "C-Launches")
         self.assertIn("A thumbs-up on this post is a vote", first["body"])
         self.assertIn("<!-- launch 2026-W47 ", first["body"])
+        self.assertEqual(check_launches.check(CATALOG, {"2026-W47": data}, {}, LAUNCH_SCHEMA, MAKER_SCHEMA), [])
+
+    def test_opening_writes_each_launch_s_evidence_as_it_stood(self):
+        gh, data = FakeGitHub(), self.scheduled()
+        launch_week.open_week(data, ROWS, repository="o/r", ask=gh.ask, mutate=gh.mutate)
+        alpha, beta, gamma = data["launches"]
+        # alpha's call site was read by a model, beta's by a person; a held launch opens nothing.
+        self.assertEqual((alpha["tier_at_open"], beta["tier_at_open"]), ("model", "person"))
+        self.assertNotIn("tier_at_open", gamma)
+        self.assertEqual(list(alpha)[-2:], ["discussion", "tier_at_open"])
         self.assertEqual(check_launches.check(CATALOG, {"2026-W47": data}, {}, LAUNCH_SCHEMA, MAKER_SCHEMA), [])
 
     def test_a_post_made_before_is_found_not_made_again(self):
@@ -450,9 +531,45 @@ class CloseTest(unittest.TestCase):
         self.assertEqual(alpha["result"], {"votes": 4, "counted": 2.5, "discounted": 2, "rank": 1, "badges": ["week-1"]})
         self.assertEqual(beta["result"], {"votes": 1, "counted": 1.0, "discounted": 0, "rank": 2, "badges": ["week-2"]})
         self.assertEqual((data["status"], data["closed_on"], data["rules"]), ("closed", "2026-11-23", "v1"))
-        self.assertEqual(list(data), ["week", "status", "closed_on", "rules", "launches"])
+        self.assertEqual(list(data), ["week", "status", "closed_on", "rules", "voters", "returning_voters", "launches"])
+        # a, b and new (half a vote is still a vote) on alpha, a again on beta; o is alpha's maker, late is late.
+        self.assertEqual((data["voters"], data["returning_voters"]), (3, 0))
         self.assertEqual(check_launches.check(CATALOG, {"2026-W47": data}, {}, LAUNCH_SCHEMA, MAKER_SCHEMA), [])
         self.assertNotIn("login", json.dumps(data))
+
+    def test_the_close_counts_the_week_s_accounts_and_who_came_back(self):
+        def vote(login, at):
+            return {"login": login, "at": at, "account_created": "2020-01-01T00:00:00Z"}
+
+        this_week, last_week = "2026-11-17T10:00:00Z", "2026-11-10T10:00:00Z"
+        votes = {
+            1: [vote("a", this_week), vote("b", this_week), vote("c", this_week)],
+            2: [vote("a", this_week), vote("d", this_week)],
+            3: [vote("b", last_week), vote("d", last_week), vote("x", last_week)],
+            4: [vote("c", last_week), vote("late", this_week)],  # late voted on last week's post this week
+        }
+        before = week("2026-W46", "closed", [
+            launch("gamma", issue=70, discussion=3, role="hunter", submitted_by="h",
+                   result={"votes": 3, "counted": 3, "discounted": 0, "rank": 1}),
+            launch("quiet", issue=71, discussion=4, result={"votes": 1, "counted": 1, "discounted": 0, "rank": 2}),
+        ], closed_on="2026-11-16", rules="v1", voters=4, returning_voters=0)
+        data = self.open_week(launch("alpha", discussion=1), launch("beta", discussion=2, role="hunter", submitted_by="h"))
+        launch_week.close_week(data, ROWS, on=dt.date(2026, 11, 23), read=lambda n: votes[n], before=before)
+        # This week a, b, c and d voted; b, c and d had voted the week before.
+        self.assertEqual((data["voters"], data["returning_voters"]), (4, 3))
+        self.assertNotIn('"a"', json.dumps(data))
+        self.assertEqual(check_launches.check(CATALOG, {"2026-W46": before, "2026-W47": data}, {}, LAUNCH_SCHEMA,
+                                              MAKER_SCHEMA), [])
+
+        # A post of the week before that cannot be read now is left out, and said.
+        def read(n):
+            if n == 4:
+                raise launch_votes.ReadError("discussion #4 not found")
+            return votes[n]
+
+        notes = launch_week.close_week(data, ROWS, on=dt.date(2026, 11, 24), read=read, before=before)
+        self.assertEqual((data["voters"], data["returning_voters"]), (4, 2))
+        self.assertTrue(any("post #4 not read" in n for n in notes), notes)
 
     def test_a_ring_of_new_accounts_is_held_for_a_person(self):
         ring = [{"login": f"n{i}", "at": "2026-11-17T10:00:00Z", "account_created": "2026-11-15T00:00:00Z"} for i in range(8)]
@@ -491,6 +608,72 @@ class CloseTest(unittest.TestCase):
             launch_week.close_week(self.open_week(), ROWS, on=dt.date(2026, 11, 22), read=lambda n: [])
 
 
+class TellTest(unittest.TestCase):
+    """L27: each launch's issue hears that its week opened, with the vote
+    post, and how it ended."""
+
+    def opened(self):
+        gh = FakeGitHub()
+        data = week("2026-W47", "scheduled", [
+            launch("alpha", issue=81), launch("beta", issue=82, role="hunter", submitted_by="h"),
+            launch("gamma", issue=83, status="held", reason="a fork"),
+        ])
+        launch_week.open_week(data, ROWS, repository="o/r", ask=gh.ask, mutate=gh.mutate)
+        return gh, data
+
+    def test_an_opened_week_tells_each_launch_s_issue_and_closes_it_once(self):
+        gh, data = self.opened()
+        notes = launch_week.tell_issues(data, "opened", repository="o/r", ask=gh.ask, mutate=gh.mutate)
+        alpha = next(x for x in data["launches"] if x["product"] == "alpha")
+        (who, text), = gh.issues[81]["comments"]
+        self.assertEqual(who, "github-actions")
+        self.assertIn(f"discussions/{alpha['discussion']}", text)
+        self.assertIn("<!-- launch-board 2026-W47 alpha opened -->", text)
+        self.assertEqual((gh.issues[81]["state"], gh.issues[82]["state"]), ("CLOSED", "CLOSED"))
+        self.assertNotIn(83, gh.issues)  # held: a person decides it, and its issue stays as it is
+        self.assertEqual(len(notes), 2)
+        again = launch_week.tell_issues(data, "opened", repository="o/r", ask=gh.ask, mutate=gh.mutate)
+        self.assertTrue(all(n.endswith("told before") for n in again), again)
+        self.assertEqual(len(gh.issues[81]["comments"]), 1)
+
+    def test_a_closed_week_tells_each_result_and_the_badge_line(self):
+        gh = FakeGitHub()
+        data = week("2026-W47", "closed", [
+            launch("alpha", issue=81, discussion=1,
+                   result={"votes": 4, "counted": 3.5, "discounted": 1, "rank": 1, "badges": ["week-1"]}),
+            launch("beta", issue=82, discussion=2, role="hunter", submitted_by="h",
+                   result={"votes": 0, "counted": 0, "discounted": 0, "rank": 2}),
+            launch("gamma", issue=83, discussion=3, status="held", reason="8 of 12 votes came from new accounts"),
+        ], closed_on="2026-11-23", rules="v1", voters=4, returning_voters=0)
+        launch_week.tell_issues(data, "closed", repository="o/r", ask=gh.ask, mutate=gh.mutate)
+        alpha, beta, gamma = (gh.issues[n]["comments"][0][1] for n in (81, 82, 83))
+        self.assertIn("placed #1 of 2, with 4 votes, 3.5 counted", alpha)
+        self.assertIn("[![awesome-jev launches: #1 of 2026-W47](https://kydlikebtc.github.io/awesome-jev/badges/"
+                      "alpha.svg)](https://kydlikebtc.github.io/awesome-jev/products/alpha.html)", alpha)
+        self.assertIn("placed #2 of 2", beta)
+        self.assertNotIn("badge", beta)
+        self.assertIn("held for a person before it ranks: 8 of 12 votes", gamma)
+
+    def test_a_comment_github_refuses_never_stops_the_week(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            (root / "catalog.json").write_text(json.dumps(CATALOG))
+            (root / "launches").mkdir()
+            (root / "launches" / "2026-W48.json").write_text(json.dumps(
+                week("2026-W48", "scheduled", [launch("beta", issue=91, role="hunter", submitted_by="h")])))
+            gh = FakeGitHub(refuse_comments=True)
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                for action in ("--monday", "--tell"):
+                    code = launch_week.main([action, "--on", "2026-11-23", "--repo", "o/r", "--root", tmp],
+                                            ask=gh.ask, mutate=gh.mutate)
+                    self.assertEqual(code, 0)
+            self.assertIn("could not comment (Resource not accessible by integration)", out.getvalue())
+            opened = json.loads((root / "launches" / "2026-W48.json").read_text())
+            self.assertEqual(opened["status"], "open")
+            self.assertEqual(gh.issues[91]["state"], "OPEN")
+
+
 class MondayTest(unittest.TestCase):
     def test_monday_closes_last_week_and_opens_this_one_and_nothing_else(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -515,16 +698,57 @@ class MondayTest(unittest.TestCase):
             self.assertEqual((opened["status"], opened["launches"][0]["discussion"]), ("open", 100))
             files = {p.stem: json.loads(p.read_text()) for p in (root / "launches").glob("*.json")}
             self.assertEqual(check_launches.check(CATALOG, files, {}, LAUNCH_SCHEMA, MAKER_SCHEMA), [])
+            self.assertEqual(gh.issues, {})  # nobody is told before the files are on main
+            launch_week.main(["--tell", "--on", "2026-11-23", "--repo", "o/r", "--root", tmp],
+                             ask=gh.ask, mutate=gh.mutate)
+            # Both launches' issues were told, and are closed: alpha's (100) its result, beta's (91) its post.
+            self.assertIn("placed #1 of 1", gh.issues[100]["comments"][0][1])
+            self.assertIn("discussions/100", gh.issues[91]["comments"][0][1])
+            self.assertEqual((gh.issues[100]["state"], gh.issues[91]["state"]), ("CLOSED", "CLOSED"))
 
     def test_the_workflow_is_weekly_writes_only_counts_and_pushes_only_a_checked_commit(self):
         text = (ROOT / ".github" / "workflows" / "launch-week.yml").read_text()
         self.assertIn('cron: "5 0 * * 1"', text)
         self.assertIn("  discussions: write\n", text)
+        self.assertIn("  issues: write\n", text)  # it tells each launch's issue, and closes it
         self.assertIn("run: python3 scripts/launch_week.py --monday", text)
+        tell = text.split("- name: Tell each launch's issue what happened\n", 1)[1]
+        self.assertTrue(tell.startswith("        if: always() && (steps.land.outputs.landed == 'main' "
+                                        "|| steps.commit.outputs.changed == 'false')\n"), tell[:120])
+        self.assertIn("run: python3 scripts/launch_week.py --tell", tell)
         self.assertIn("git add -A launches\n", text)
         self.assertIn("if: always() && steps.checks.outcome == 'success'", text)
         self.assertNotIn("--force-with-lease origin HEAD:main", text)
         self.assertNotIn("github.event.", text.split("jobs:", 1)[1])
+
+    def test_the_friday_workflow_files_next_week_and_pushes_only_a_checked_commit(self):
+        text = (ROOT / ".github" / "workflows" / "launch-collect.yml").read_text()
+        self.assertIn('cron: "20 0 * * 5"', text)  # Friday, after Thursday 23:59 UTC
+        self.assertIn("permissions:\n  contents: write\n  issues: read\n  actions: write\n", text)
+        self.assertIn("python3 scripts/launch_intake.py --collect next", text)
+        self.assertIn("set -o pipefail", text)
+        jobs = text.split("jobs:", 1)[1]
+        self.assertIn("python3 scripts/regenerate.py", jobs)
+        self.assertIn("git add -A launches catalog.json ", jobs)
+        self.assertIn("if: steps.checks.outcome == 'success'", jobs)
+        self.assertLess(jobs.index("scripts/check.py --ci --quick"), jobs.index("git push -q origin HEAD:main"))
+        self.assertNotIn("--force origin HEAD:main", jobs)
+        self.assertNotIn("github.event.", jobs)
+        self.assertIn("group: launch-week\n", text)  # never at the same time as the Monday run
+
+    def test_next_is_the_week_of_the_coming_monday(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            (root / "catalog.json").write_text(json.dumps(CATALOG))
+            (root / "launches").mkdir()
+            issues = [issue(81, created="2026-11-12T10:00:00Z")]  # a Thursday: for 2026-W47
+            with contextlib.redirect_stdout(io.StringIO()) as out:
+                code = launch_intake.main(["--collect", "next", "--on", "2026-11-13", "--root", tmp],
+                                          lookup=FakeLookup(), issues_for=lambda repo: issues,
+                                          comments_for=lambda repo, n: [])
+            self.assertEqual(code, 0)
+            self.assertIn("2026-W47: 0 launch(es) on file", out.getvalue())  # no check comment: reported
+            self.assertIn("#81: no check comment", out.getvalue())
 
     def test_the_intake_workflow_only_reads_and_comments(self):
         text = (ROOT / ".github" / "workflows" / "launch-intake.yml").read_text()
@@ -583,6 +807,25 @@ class WeekPagesTest(unittest.TestCase):
         self.assertIn('<a href="weeks/2026-W46.html">2026-W46: 2 launches, closed 2026-11-16</a>', board)
         self.assertIn('href="weeks/2026-W46.zh.html"', self.files["launches.zh.html"])
         self.assertIn("下周上榜", self.files["products/gamma.html"])
+
+    def test_a_closed_week_says_what_it_measured(self):
+        board = self.files["launches.html"]
+        last = board.split("Last week: 2026-W46", 1)[1].split("</ol>", 1)[0]
+        # Closed before its accounts were counted: that count is left out, not shown as nought.
+        self.assertNotIn("accounts voted", last)
+        self.assertIn("0 of 2 launches reached 5 counted votes. 1 of 4 votes counted for less than one.", last)
+        counted = dict(CLOSED, voters=3, returning_voters=1, launches=[
+            dict(x, tier_at_open="model") if x["product"] == "alpha" else dict(x, tier_at_open="file")
+            for x in CLOSED["launches"]])
+        files = build(weeks=[counted, NEXT])
+        line = ("3 accounts voted, 1 of them the week before too. 0 of 2 launches reached 5 counted votes. "
+                "When the week opened, a person or a model had read the call site of 1 of 2. "
+                "1 of 4 votes counted for less than one.")
+        self.assertIn(line, files["launches.html"])
+        self.assertIn(line, files["weeks/2026-W46.html"])
+        self.assertIn("3 个账号投了票，其中 1 个上周也投过。2 个 Launch 中有 0 个计入的票数达到 5。"
+                      "开榜时，2 个中有 1 个的调用点已由人或模型读过。4 票中有 1 票按不足一票计。",
+                      files["weeks/2026-W46.zh.html"])
 
     def test_the_board_says_how_far_the_daily_board_is(self):
         self.assertIn("after 4 weeks in a row with at least 20 launches each. Weeks in a row so far: 0.",

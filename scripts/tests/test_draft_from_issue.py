@@ -207,7 +207,11 @@ class CommentTest(unittest.TestCase):
         self.assertNotIn("self-submitted", text)
         text = dfi.comment(issue(body(url=url, boxes=(dfi.OWN,))), read=never, today=TODAY)
         self.assertIn("adds the `self-submitted` flag with this issue as its source", text)
-        self.assertEqual(dfi.LAUNCH_LINE in text, dfi.launches.is_product(row))
+        self.assertEqual(dfi.launch_line(row) in text, dfi.launches.is_product(row))
+        product = next(e for e in catalog if dfi.launches.is_product(e) and e.get("url", "").startswith("https://github.com/")
+                       and dfi.find_row(catalog, dfi.repository(e["url"])) is e)
+        text = dfi.comment(issue(body(url=product["url"])), read=never, today=TODAY)
+        self.assertIn(f"template=launch.yml&product={product['slug']}&title=Launch%3A%20", text)
 
     def test_retired_and_declined_say_why(self):
         retired = json.loads((ROOT / "retired.json").read_text())[0]

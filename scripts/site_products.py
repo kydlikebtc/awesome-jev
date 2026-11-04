@@ -30,6 +30,7 @@ the same bytes.
 
 from __future__ import annotations
 
+import datetime as dt
 import pathlib
 import sys
 
@@ -45,7 +46,6 @@ MAKER_DIR = "makers"
 WEEK_DIR = "weeks"
 BADGE_DIR = "badges"
 HOW_TO_LAUNCH = f"{sp.REPOSITORY}/blob/main/docs/launches.md"
-LAUNCH_ISSUE = f"{sp.REPOSITORY}/issues/new?template=launch.yml"
 DISCUSSION = f"{sp.REPOSITORY}/discussions/{{n}}"
 # How many products a "same pattern" list shows, and a maker list per maker.
 SAME_PATTERN = 5
@@ -71,6 +71,11 @@ WORDS = {
     "not_launched": ("Not launched yet.", "还没有发布过。"),
     "how": ("How a product launches", "怎样发布一个产品"),
     "launch_it": ("Launch it", "发布它"),
+    "launch_again": ("Launch it again", "再次发布"),
+    "again_from": ("It can launch again in the week of Monday {day}.", "从 {day}（周一）那一周起可以再次发布。"),
+    "claim": ("Made this? Confirm or correct its entry", "这是你做的？确认或更正条目"),
+    "claim_note": ("The same form takes the product's one line and a demo link, in its maker's own words.",
+                   "同一个表单也可以补上产品的一句话和演示链接，用 Maker 自己的话。"),
     "none_read": ("No reading of its primitives is recorded.", "没有记录原语的阅读结果。"),
     "seen": ("text signal only: the cited file contains their request or answer shape",
              "仅文本信号：引用的文件里出现了它们的请求或回答格式"),
@@ -117,6 +122,7 @@ BOARD = {
         "new_note": "Products that entered the catalogue this week, in the order of what it records: who read the "
                     "call site, then stars. An order, not a ranking. Their makers can launch them.",
         "nothing_new": "Nothing new this week.",
+        "launch_it": "Launch it",
         "vote": "Vote",
         "page": "Product page",
         "evidence": "Evidence",
@@ -145,6 +151,11 @@ BOARD = {
         "daily": "The board moves from one a week to one a day after {need} weeks in a row with at least {n} "
                  "launches each. Weeks in a row so far: {streak}.",
         "daily_due": "{streak} weeks in a row have had at least {n} launches each: the daily board is due.",
+        "m_voters": "{voters} accounts voted, {returning} of them the week before too.",
+        "m_voters_only": "{voters} accounts voted.",
+        "m_north": "{north} of {launches} launches reached {n} counted votes.",
+        "m_read": "When the week opened, a person or a model had read the call site of {read} of {known}.",
+        "m_discounted": "{discounted} of {votes} votes counted for less than one.",
     },
     "zh": {
         "title": "发布榜 · awesome-jev",
@@ -162,6 +173,7 @@ BOARD = {
         "new_note": "本周进入目录的产品，按目录记录的内容排序：先看谁读过调用点，再看星标。这是排序，不是排名。"
                     "它们的 Maker 可以发布它们。",
         "nothing_new": "本周没有新产品。",
+        "launch_it": "发布它",
         "vote": "投票",
         "page": "产品页",
         "evidence": "证据",
@@ -187,6 +199,11 @@ BOARD = {
         "feed_item": "第 {rank} 名 {title}：{tagline}（{votes} 票，计 {counted} 票；证据：{tier}）",
         "daily": "连续 {need} 周、每周至少 {n} 个 Launch 之后，周榜改为日榜。目前已连续 {streak} 周。",
         "daily_due": "已连续 {streak} 周、每周至少 {n} 个 Launch：该改成日榜了。",
+        "m_voters": "{voters} 个账号投了票，其中 {returning} 个上周也投过。",
+        "m_voters_only": "{voters} 个账号投了票。",
+        "m_north": "{launches} 个 Launch 中有 {north} 个计入的票数达到 {n}。",
+        "m_read": "开榜时，{known} 个中有 {read} 个的调用点已由人或模型读过。",
+        "m_discounted": "{votes} 票中有 {discounted} 票按不足一票计。",
     },
 }
 
@@ -301,7 +318,10 @@ def same_pattern(row: dict, products: list[dict]) -> list[dict]:
 
 
 def product_page(row: dict, *, products: list[dict], patterns: dict[str, dict], labels: sp.Labels,
-                 history: dict[str, list[tuple[str, dict]]], weeks_by_id: dict[str, dict]) -> str:
+                 history: dict[str, list[tuple[str, dict]]], weeks_by_id: dict[str, dict],
+                 today: dt.date | None = None) -> str:
+    """A product's page. `today` is the data's own newest day
+    (launches.as_of), which says whether a launched product can launch again."""
     path = product_path(row["slug"])
     base = sp.base_of(path)
     title = row["title"]
@@ -365,20 +385,32 @@ def product_page(row: dict, *, products: list[dict], patterns: dict[str, dict], 
 
     body.append(f"      <h2>{both('launches')}</h2>")
     mine = history.get(row["slug"], [])
+    how = f'<a href="{esc(HOW_TO_LAUNCH)}" rel="noopener">{both("how", " / ")}</a>'
+    form = esc(query.launch_form(row["slug"], title))
+    state, again = launches.launch_again(mine, weeks_by_id, today)
     if mine:
         body.append('      <ul class="rows">')
         body += [f"        <li>{launch_line(week, launch, weeks_by_id)}</li>" for week, launch in reversed(mine)]
         body.append("      </ul>")
-    else:
+    if not mine:
         en, zh = WORDS["not_launched"]
         body.append(f'      <p>{esc(en)} <span lang="zh-CN">{esc(zh)}</span> '
-                    f'<a href="{esc(HOW_TO_LAUNCH)}" rel="noopener">{both("how", " / ")}</a></p>')
+                    f'<a href="{form}" rel="noopener">{both("launch_it", " / ")} ↗</a> · {how}</p>')
+    elif state == "now":
+        body.append(f'      <p><a href="{form}" rel="noopener">{both("launch_again", " / ")} ↗</a> · {how}</p>')
+    elif state == "from":
+        en, zh = (text.format(day=again) for text in WORDS["again_from"])
+        body.append(f'      <p class="note">{esc(en)} <span lang="zh-CN">{esc(zh)}</span> {how}</p>')
 
     logins = launches.makers_of(row)
+    body.append(f"      <h2>{both('makers')}</h2>")
     if logins:
-        body.append(f"      <h2>{both('makers')}</h2>")
         body.append("      <p>" + ", ".join(
             f'<a href="{base}{esc(maker_path(login))}">{esc(login)}</a>' for login in logins) + "</p>")
+    body.append(f'      <p><a href="{esc(query.confirm_form(row["slug"], title))}" rel="noopener">'
+                f'{both("claim", " / ")} ↗</a></p>')
+    en, zh = WORDS["claim_note"]
+    body.append(f'      <p class="note">{esc(en)} <span lang="zh-CN">{esc(zh)}</span></p>')
 
     others = same_pattern(row, products)
     if others:
@@ -439,6 +471,26 @@ def makers_index(by_login: dict[str, list[dict]], profiles: dict[str, dict]) -> 
     return sp.shell("en", path=path, title=WORDS["makers_title"][0], description=en, body="\n".join(body))
 
 
+def measures(week: dict, lang: str) -> str:
+    """A closed week's measures in a sentence or four (L28): the accounts
+    whose vote counted and how many came back, the launches that reached
+    the north star, how many had their call site read before the week
+    opened, and the votes discounted. A count the close did not record is
+    left out, not shown as nought."""
+    b = BOARD[lang]
+    m = launches.week_measures(week)
+    parts = []
+    if m["voters"] is not None:
+        key = "m_voters_only" if m["returning_voters"] is None else "m_voters"
+        parts.append(b[key].format(voters=m["voters"], returning=m["returning_voters"]))
+    parts.append(b["m_north"].format(north=m["north_star"], launches=m["launches"], n=launches.NORTH_STAR_VOTES))
+    if m["tier_known"]:
+        parts.append(b["m_read"].format(read=m["read_at_open"], known=m["tier_known"]))
+    if m["votes"]:
+        parts.append(b["m_discounted"].format(discounted=m["discounted"], votes=m["votes"]))
+    return ("" if lang == "zh" else " ").join(parts)
+
+
 def board_item(launch: dict, row: dict, lang: str, *, result: dict | None, base: str = "") -> list[str]:
     """One launch on a board list. `base` leads every link to the site's root
     ("../" from a week page)."""
@@ -486,7 +538,8 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
     if closed:
         on = [x for x in closed.get("launches") or [] if x.get("status") == "scheduled" and x["product"] in rows]
         body += [f'      <h2><a href="{esc(week_path(closed["week"], lang))}">'
-                 f"{esc(b['closed'].format(week=closed['week']))}</a></h2>", '      <ol class="rows">']
+                 f"{esc(b['closed'].format(week=closed['week']))}</a></h2>",
+                 f'      <p class="note">{esc(measures(closed, lang))}</p>', '      <ol class="rows">']
         for launch in sorted(on, key=lambda x: x["result"]["rank"]):
             body += board_item(launch, rows[launch["product"]], lang, result=launch["result"])
         body.append("      </ol>")
@@ -523,6 +576,9 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
             body.append(f'        <li><a href="https://github.com/{esc(login)}" rel="noopener">{esc(login)}</a>: '
                         f'{esc(b["hunter_item"].format(n=n, top=top))}</li>')
         body.append("      </ol>")
+    history = launches.launched(all_weeks)
+    weeks_by_id = {w["week"]: w for w in all_weeks}
+    today = launches.as_of(catalog)
     week, fresh = launches.new_this_week(catalog)
     if week:
         body += [f"      <h2>{esc(b['new'].format(week=week))}</h2>", f'      <p class="note">{esc(b["new_note"])}</p>']
@@ -536,8 +592,11 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
                 f'          <p class="meta">{meta_line(row, labels, lang)} · {tier_html(row, lang)}</p>',
                 f"          <p>{esc(row.get('tagline') if lang == 'en' and row.get('tagline') else summary)}"
                 f"{marks(row, labels, lang) if not (lang == 'en' and row.get('tagline')) else ''}</p>",
-                "        </li>",
             ]
+            if launches.launch_again(history.get(row["slug"], []), weeks_by_id, today)[0] == "now":
+                body.append(f'          <p class="more"><a href="{esc(query.launch_form(row["slug"], row["title"]))}" '
+                            f'rel="noopener">{esc(b["launch_it"])} ↗</a></p>')
+            body.append("        </li>")
         body.append("      </ol>")
     elif week is not None:
         body.append(f"      <p>{esc(b['nothing_new'])}</p>")
@@ -606,6 +665,7 @@ def week_page(week: dict, lang: str, *, rows: dict[str, dict]) -> str:
         f'      <p><a href="../{esc(launches_path(lang))}">{esc(b["board"])}</a></p>',
         f"      <h1>{esc(b['week_h1'].format(week=week['week']))}</h1>",
         f'      <p class="lede">{esc(lede)}</p>',
+        f'      <p class="note">{esc(measures(week, lang))}</p>',
         '      <ol class="rows">',
     ]
     on = [x for x in week.get("launches") or [] if x.get("status") == "scheduled" and x["product"] in rows]
@@ -665,10 +725,12 @@ def pages(catalog: list[dict], patterns: list[dict], labels: sp.Labels, *,
     by_key = {p["key"]: p for p in patterns}
     history = launches.launched(launch_weeks)
     weeks_by_id = {w["week"]: w for w in launch_weeks}
+    today = launches.as_of(catalog)
     files: dict[str, str] = {}
     for row in products:
         files[product_path(row["slug"])] = product_page(
-            row, products=products, patterns=by_key, labels=labels, history=history, weeks_by_id=weeks_by_id)
+            row, products=products, patterns=by_key, labels=labels, history=history, weeks_by_id=weeks_by_id,
+            today=today)
     by_login: dict[str, list[dict]] = {}
     for row in products:
         for login in launches.makers_of(row):

@@ -17,6 +17,7 @@ decided here, so the three cannot drift apart:
   * who a row's makers are (makers_of)
   * the ISO weeks the board runs in (week_of, week_days)
   * how votes are weighted and a week is ranked (weigh, rank; RULES)
+  * what a closed week is measured by (week_measures, gate_streak; L28)
 
 What launches/*.json and makers/*.json may hold, beyond what the schemas can
 say, is checked by scripts/check_launches.py with these rules. It lives apart
@@ -77,6 +78,10 @@ QUIET_DAYS = 60
 # A product launches at most once in this many days.
 RELAUNCH_DAYS = 60
 
+# A launch submitted by this day of the week (Monday is 0), 23:59 UTC, is for
+# next week; later, the week after (docs/launches.md "The week").
+LAST_DAY = 3
+
 # Evidence tiers, strongest first (query.LAUNCH_TIERS, which the MCP server's
 # launch tools and the site's api/v1/launches.json read too).
 TIERS = query.LAUNCH_TIERS
@@ -101,6 +106,18 @@ BADGES = ("week-1", "week-2", "week-3")
 # launches on the board each. Until then a day's board would be nearly empty.
 DAILY_WEEKS = 4
 DAILY_LAUNCHES = 20
+
+# What the 2026-11-03 plan measures the board by (its "指标" and gate G2;
+# L28). The north star: launches a week with at least NORTH_STAR_VOTES
+# counted votes. G2: GATE_WEEKS closed weeks in a row, each with at least
+# GATE_LAUNCHES launches on the board and GATE_VOTERS accounts whose vote
+# counted. The weeks keep only the counts (voters, returning_voters,
+# tier_at_open), never who voted.
+NORTH_STAR_VOTES = 5
+GATE_WEEKS = 4
+GATE_LAUNCHES = 10
+GATE_VOTERS = 50
+READ = ("person", "model")
 
 LOGIN = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$")
 GITHUB_PROFILE = re.compile(r"^https://github\.com/([A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?)/?$")
@@ -177,6 +194,13 @@ def week_of(date: dt.date) -> str:
     return f"{year}-W{week:02d}"
 
 
+def week_for(day: dt.date) -> str:
+    """The week a launch submitted on `day` (UTC) is for: next week through
+    LAST_DAY, the week after from then on."""
+    monday = day - dt.timedelta(days=day.weekday())
+    return week_of(monday + dt.timedelta(weeks=1 if day.weekday() <= LAST_DAY else 2))
+
+
 def week_days(week: str) -> tuple[dt.date, dt.date]:
     """Monday and Sunday of an ISO week id."""
     match = WEEK.match(week)
@@ -236,6 +260,32 @@ def weigh(votes: list[dict], *, own: Iterable[str], week: str, rules: str = CURR
             discounted += 1
         counted += weight
     return {"votes": n, "counted": round(counted, 2), "discounted": discounted}
+
+
+def counted_voters(votes: list[dict], *, own: Iterable[str], week: str, rules: str = CURRENT_RULES) -> set[str]:
+    """The lower-case logins whose vote on one launch counted for something
+    under `rules`, taken as weigh() takes them: cast inside the week, once per
+    login. Only the close uses them, to count a week's accounts; no file
+    keeps them."""
+    rule = RULES[rules]
+    monday, sunday = week_days(week)
+    mine = {login_key(x) for x in own}
+    seen: set[str] = set()
+    out: set[str] = set()
+    for vote in sorted(votes, key=lambda v: (str(v.get("at")), str(v.get("login")))):
+        login = login_key(str(vote.get("login") or ""))
+        cast = day(vote.get("at"))
+        if not login or login in seen or not cast or not monday <= cast <= sunday:
+            continue
+        seen.add(login)
+        if login in mine:
+            weight = rule["own"]
+        else:
+            born = day(vote.get("account_created"))
+            weight = rule["young"] if born is None or (cast - born).days < rule["young_days"] else 1.0
+        if weight > 0:
+            out.add(login)
+    return out
 
 
 def young_votes(votes: list[dict], *, own: Iterable[str], week: str, rules: str = CURRENT_RULES) -> tuple[int, int]:
@@ -354,11 +404,14 @@ def hunters(all_weeks: list[dict]) -> list[tuple[str, int, int]]:
     return sorted(((shown[k], n, top) for k, (n, top) in counts.items()), key=lambda h: (-h[1], -h[2], login_key(h[0])))
 
 
-def daily_streak(all_weeks: list[dict]) -> int:
-    """How many closed weeks in a row, ending with the newest closed one, had
-    at least DAILY_LAUNCHES launches on the board. A week with no file breaks
-    the run like a short one. DAILY_WEEKS of them means the daily board is due
-    (L16)."""
+def on_board(week: dict) -> list[dict]:
+    """A week's launches on the board: neither held nor removed."""
+    return [x for x in week.get("launches") or [] if x.get("status") == "scheduled"]
+
+
+def _streak(all_weeks: list[dict], test) -> int:
+    """How many closed weeks in a row, ending with the newest closed one, pass
+    `test`. A week with no file breaks the run like one that fails."""
     closed = sorted((w for w in all_weeks if w.get("status") == "closed" and WEEK.match(str(w.get("week")))),
                     key=lambda w: w["week"], reverse=True)
     streak, expected = 0, None
@@ -366,11 +419,79 @@ def daily_streak(all_weeks: list[dict]) -> int:
         monday, _ = week_days(week["week"])
         if expected is not None and monday != expected:
             break
-        if sum(1 for x in week.get("launches") or [] if x.get("status") == "scheduled") < DAILY_LAUNCHES:
+        if not test(week):
             break
         streak += 1
         expected = monday - dt.timedelta(days=7)
     return streak
+
+
+def daily_streak(all_weeks: list[dict]) -> int:
+    """How many closed weeks in a row, ending with the newest closed one, had
+    at least DAILY_LAUNCHES launches on the board. A week with no file breaks
+    the run like a short one. DAILY_WEEKS of them means the daily board is due
+    (L16)."""
+    return _streak(all_weeks, lambda w: len(on_board(w)) >= DAILY_LAUNCHES)
+
+
+def gate_streak(all_weeks: list[dict]) -> int:
+    """How many closed weeks in a row, ending with the newest closed one, had
+    at least GATE_LAUNCHES launches on the board and GATE_VOTERS accounts
+    whose vote counted (G2 of the 2026-11-03 plan, met at GATE_WEEKS). A week
+    closed before the close counted its accounts fails it."""
+    return _streak(all_weeks, lambda w: len(on_board(w)) >= GATE_LAUNCHES
+                   and int(w.get("voters") or 0) >= GATE_VOTERS)
+
+
+def week_measures(week: dict) -> dict:
+    """What a closed week is measured by (L28): its launches on the board; the
+    accounts whose vote counted, and how many of them also voted the week
+    before, as the close counted them (None when it did not); how many
+    launches reached NORTH_STAR_VOTES counted votes (the plan's north star);
+    how many launches a person or a model had read when they opened, of
+    those whose tier at opening is on file; and the votes cast on the board
+    and how many of them counted for less than one."""
+    on = on_board(week)
+    known = [x for x in on if x.get("tier_at_open") in TIERS]
+    results = [x.get("result") or {} for x in on]
+    return {
+        "week": week.get("week"),
+        "launches": len(on),
+        "voters": week.get("voters"),
+        "returning_voters": week.get("returning_voters"),
+        "north_star": sum(1 for r in results if float(r.get("counted") or 0) >= NORTH_STAR_VOTES),
+        "read_at_open": sum(1 for x in known if x["tier_at_open"] in READ),
+        "tier_known": len(known),
+        "votes": sum(int(r.get("votes") or 0) for r in results),
+        "discounted": sum(int(r.get("discounted") or 0) for r in results),
+    }
+
+
+def relaunch_from(week: str) -> dt.date:
+    """The first Monday a product launched in `week` may launch again: at
+    least RELAUNCH_DAYS after that week's Monday."""
+    monday, _ = week_days(week)
+    return monday + dt.timedelta(days=-(-RELAUNCH_DAYS // 7) * 7)
+
+
+def launch_again(history: list[tuple[str, dict]], weeks_by_id: dict[str, dict],
+                 today: dt.date | None) -> tuple[str, dt.date | None]:
+    """Whether a product with these launches (launched(), oldest first) can
+    launch again: ("now", None) when it never launched, or its last week
+    closed and a launch submitted `today` would be for a week at least
+    RELAUNCH_DAYS on; ("from", Monday) when its last week closed too recently;
+    ("on", None) while its last week is still on the board. With no `today`
+    the rule cannot be read, so a closed last week counts as "now": the check
+    on the issue says if it is early."""
+    if not history:
+        return "now", None
+    last = history[-1][0]
+    if (weeks_by_id.get(last) or {}).get("status") != "closed":
+        return "on", None
+    again = relaunch_from(last)
+    if today is not None and week_days(week_for(today))[0] < again:
+        return "from", again
+    return "now", None
 
 
 def launched(all_weeks: list[dict]) -> dict[str, list[tuple[str, dict]]]:

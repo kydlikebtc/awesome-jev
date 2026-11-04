@@ -155,6 +155,22 @@ def plain(text: str) -> str:
     return re.sub(r"([\\`*_{}\[\]<>()#+!|~])", r"\\\1", " ".join(str(text).split())).replace("@", "@\u200b")
 
 
+def measured(week: dict) -> str:
+    """A closed week's measures (L28) as one line: the plan's demand, north
+    star and trust numbers, each only when the close recorded it."""
+    m = launches.week_measures(week)
+    parts = []
+    if m["voters"] is not None:
+        back = "" if m["returning_voters"] is None else f" ({m['returning_voters']} the week before too)"
+        parts.append(f"{m['voters']} accounts voted{back}")
+    parts.append(f"{m['north_star']} with at least {launches.NORTH_STAR_VOTES} counted votes")
+    if m["tier_known"]:
+        parts.append(f"{m['read_at_open']} of {m['tier_known']} read by a person or a model before opening")
+    if m["votes"]:
+        parts.append(f"{m['discounted']} of {m['votes']} votes counted for less than one")
+    return "Measured: " + "; ".join(parts) + "."
+
+
 def launch_section(month: str, launch_weeks: list[dict], catalog: list[dict]) -> list[str]:
     """The month's closed launch weeks, by their Sunday, each with its top three."""
     rows = {e["slug"]: e for e in catalog}
@@ -169,12 +185,22 @@ def launch_section(month: str, launch_weeks: list[dict], catalog: list[dict]) ->
         "当月结束的每一周的前三名，按计入的票数排序。名次只是票数的排序，不是本目录的推荐；证据来自目录自己的记录。",
         "",
     ]
+    streak = launches.gate_streak(launch_weeks)
+    out += [
+        f"Weeks in a row, ending with the newest closed one, with at least {launches.GATE_LAUNCHES} launches on "
+        f"the board and {launches.GATE_VOTERS} accounts whose vote counted: {streak}. The board aims for "
+        f"{launches.GATE_WEEKS} in a row. · 截至最新收榜的一周，连续每周至少 {launches.GATE_LAUNCHES} 个 Launch 在榜、"
+        f"至少 {launches.GATE_VOTERS} 个账号的票被计入：{streak} 周。目标是连续 {launches.GATE_WEEKS} 周。",
+        "",
+    ]
     for week in sorted(closed, key=lambda w: w["week"]):
         on = [x for x in week.get("launches") or [] if x.get("status") == "scheduled" and x.get("result")]
         removed = sum(1 for x in week.get("launches") or [] if x.get("status") == "removed")
         page = f"{SITE}weeks/{week['week']}.html"
         out.append(f"### [{week['week']}]({page}): {len(on)} launches, rules {week.get('rules', '?')}"
                    + (f", {removed} removed" if removed else ""))
+        out.append("")
+        out.append(measured(week))
         out.append("")
         for x in sorted(on, key=lambda x: x["result"]["rank"])[:3]:
             r = x["result"]

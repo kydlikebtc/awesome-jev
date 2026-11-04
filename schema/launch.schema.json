@@ -27,6 +27,16 @@
       "type": "string",
       "pattern": "^v[0-9]+$"
     },
+    "voters": {
+      "description": "How many accounts had a vote counted for something on any launch still on the board, counted when the week closed. Only on a closed week. A number: who they are is never kept.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "returning_voters": {
+      "description": "How many of `voters` also had a vote counted in the week before, read again from that week's posts when this one closed. Only on a closed week; never more than `voters`.",
+      "type": "integer",
+      "minimum": 0
+    },
     "launches": {
       "type": "array",
       "maxItems": 60,
@@ -49,6 +59,11 @@
             "description": "The number of the Discussion people vote on. Absent until the post exists.",
             "type": "integer",
             "minimum": 1
+          },
+          "tier_at_open": {
+            "description": "The product's evidence tier when its vote post opened (scripts/launches.py tier): `person` or `model` read the call site, `file`: only a script matched it, `none`: no file cited. Written when the week opens, so the share of launches someone had read before they opened can be measured.",
+            "type": "string",
+            "enum": ["person", "model", "file", "none"]
           },
           "submitted_by": {
             "description": "GitHub login that opened the launch issue.",

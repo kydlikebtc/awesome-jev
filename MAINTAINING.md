@@ -12,12 +12,14 @@ behind it.
 
 | When | What runs | Reports through |
 | --- | --- | --- |
+| Monday 00:05 | `launch-week.yml`: closes last week's launch board, opens this week's, then tells each launch's issue | its commit, the vote posts, the launch issues |
 | Monday 06:00 | `links.yml`: every row's link | an issue labelled `links`, only when a link is dead |
 | Tuesday 06:00 | `claims.yml`: every cited file still holds its `evidence.matched` | issue #28 |
 | Wednesday 06:00 | `metadata.yml`: stars, licences, repository dates, `.discover/facts.json`, history snapshots | its commit and issue #32 |
 | Thursday 06:00 | `discover.yml`: new candidates from the sibling lists; rewrites the queue | issue #14 |
 | Thursday 14:37 | weekly upkeep task: the judgement work #14, #28 and #32 leave, and at most 10 drafted rows | one draft pull request |
-| Every day but Thursday, 00:33 | daily drafting task: at most 15 drafted rows | one rolling draft pull request a week |
+| Friday 00:20 | `launch-collect.yml`: files next week's launches on `main` | its commit; held launches in the week's file |
+| Every day but Thursday, 00:33 | daily drafting task: at most 15 drafted rows, after reading the call sites of launches nobody has read | one rolling draft pull request a week |
 | Every day 07:30 | `watchdog.yml`: every scheduled workflow succeeded within 8 days (32 for a monthly one), and a row entered `catalog.json` within 10 | an issue labelled `watchdog` |
 | The 1st, 09:00 | `data-release.yml`: tags main `catalog-<YYYY-MM>` for the month that ended and publishes a Release with `catalog.json`, `retired.json` and the schema | the Release |
 | Friday | the owner merges the week's two drafting pull requests | |
@@ -81,28 +83,46 @@ A week goes like this:
    `launch-intake.yml` answers it with a comment from
    `scripts/launch_intake.py`: ready for a week, held for a person and why,
    or not launched and what to change. It only comments.
-2. **Friday, before the merge:** `python3 scripts/launch_intake.py --collect
-   <next week>` (the daily task runs it on Fridays) takes every open launch
+2. **Friday 00:20 UTC:** `launch-collect.yml` runs `python3
+   scripts/launch_intake.py --collect next`, which takes every open launch
    issue, checks it again against today's catalogue with the facts its check
    comment recorded (`--live` reads GitHub again instead, with a token),
-   writes `launches/<week>.json`, and adds a confirmed maker's login and line
-   to their row. Read what it held: confirm a maker by adding
-   them to the row's `makers` and setting the launch's role to `maker` and
-   status to `scheduled` (dropping `reason`), or leave it held. It reaches
-   `main` with the Friday merge like any other row change.
-3. **Monday 00:05 UTC:** `launch-week.yml` runs `scripts/launch_week.py
+   writes `launches/<week>.json` for the coming Monday's week, and adds a
+   confirmed maker's login and line to their row. It regenerates what the row
+   change feeds, runs the checks on that commit and pushes it to `main` the
+   way `launch-week.yml` does; if `main` moved and the rebase does not apply,
+   the commit waits on a `launches/collect-<date>` branch for a person. Until
+   2026-11-04 the daily task collected into its pull request and the week
+   waited for the Friday merge.
+3. **Friday to Sunday:** read what it held, in the week's file: confirm a
+   maker by adding them to the row's `makers` and setting the launch's role
+   to `maker` and status to `scheduled` (dropping `reason`), in a pull
+   request before Monday, or leave it held. `python3 scripts/launch_intake.py
+   --unread` lists the products about to launch whose call site nobody has
+   read; the daily task reads those first, so each launch opens with at least
+   a model's reading.
+4. **Monday 00:05 UTC:** `launch-week.yml` runs `scripts/launch_week.py
    --monday`. It closes last week (reads the votes, holds a launch whose votes
-   look like a ring of new accounts, ranks the rest, writes the counts) and
-   opens this week (one vote post per launch in the `Launches` category),
+   look like a ring of new accounts, ranks the rest, writes the counts and
+   how many accounts voted and came back) and opens this week (one vote post
+   per launch in the `Launches` category, and who had read each call site),
    then pushes the week files to `main` the way `metadata.yml` pushes its
-   refresh, checks first, and rebuilds the site. With nothing on file it
-   does nothing and still succeeds, so the watchdog sees it run.
-4. **After a close:** a launch the close held for a ring waits for a person:
+   refresh, checks first, and rebuilds the site. Once the files are on
+   `main`, `--tell` comments on each launch's issue: this week's get the link
+   to their vote post and are closed, last week's get their result (and a top
+   three the line for its badge). Each issue is told once per stage, so a
+   rerun tells nobody twice, and a comment GitHub refuses never fails the
+   week. With nothing on file it does nothing and still succeeds, so the
+   watchdog sees it run.
+5. **After a close:** a launch the close held for a ring waits for a person:
    set it to `removed` and say why in `reason`, or back to `scheduled`
    (dropping `reason`, adding `"cleared_by": "<your login>"` so a recount
    leaves it be), then run `python3 scripts/launch_week.py --close
-   <week>`, which counts the week again, and commit the file. Close the
-   week's launch issues once its file is on `main`.
+   <week>`, which counts the week again, and commit the file.
+
+What the board is measured by (docs/launches.md, "How the board is
+measured") is counted when a week opens and closes and shown on the board,
+the week's page and the monthly report; nothing else needs doing for it.
 
 `launch-votes.yml` (Run workflow, with a Discussion's number) reads one post's
 votes into the job summary and writes nothing else: the check, before the

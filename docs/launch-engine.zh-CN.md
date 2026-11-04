@@ -42,7 +42,7 @@
 | `scripts/check_launches.py` | `lint.py`（`lint.validate`，一个最小的 JSON Schema draft-07 校验器） |
 | `scripts/site_products.py` | 本站的页面外壳（`site_pages.py`）；别的站点用自己的方式渲染 `launches.weeks()` |
 
-工作流：`.github/workflows/launch-intake.yml`、`launch-week.yml`、`launch-votes.yml`、`launch-probe.yml`，以及 issue 表单 `.github/ISSUE_TEMPLATE/launch.yml`。`tests/test_launches.py`、`tests/test_launch_flow.py`、`tests/test_mcp_launches.py`、`tests/test_launch_award.py` 不联网就能测试全部内容。
+工作流：`.github/workflows/launch-intake.yml`、`launch-collect.yml`、`launch-week.yml`、`launch-votes.yml`、`launch-probe.yml`，以及 issue 表单 `.github/ISSUE_TEMPLATE/launch.yml`。`tests/test_launches.py`、`tests/test_launch_flow.py`、`tests/test_mcp_launches.py`、`tests/test_launch_award.py` 不联网就能测试全部内容。
 
 ## 要改什么
 

@@ -443,7 +443,10 @@ def launch_board(week: str = "") -> dict[str, Any]:
     ranked, with each launch's votes; and next week's launches when any are
     lined up. Each launch carries its catalogue evidence (who read the call
     site) and caveats beside its votes, never added together, and the link to
-    vote on it.
+    vote on it. Once kept, a launch also says who had read its call site when
+    its week opened (`evidence_at_open`), and a closed week how many accounts'
+    votes counted (`voters`) and how many of them voted the week before
+    (`returning_voters`): counts only, never who.
 
     Args:
         week: an ISO week such as "2026-W47", for that week alone
