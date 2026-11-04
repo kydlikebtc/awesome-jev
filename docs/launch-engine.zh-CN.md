@@ -27,7 +27,7 @@
 | 文件 | 作用 |
 | --- | --- |
 | `src/awesome_jev_mcp/query.py`（发布榜那一节） | 证据等级、随机顺序，以及 Agent 看到的一周是什么样 |
-| `scripts/launches.py` | 榜单的全部规则：产品、周、投票权重、刷票检查、排名、徽章、Hunter、日榜门槛 |
+| `scripts/launches.py` | 榜单的全部规则：产品、周、投票权重、刷票检查、排名、徽章和 README 徽章显示什么、Hunter、日榜门槛、上升最快的列表 |
 | `scripts/launch_votes.py` | 通过 GraphQL 读取一个 Discussion 的点赞和投票账号的注册时间 |
 | `scripts/launch_week.py` | 收上周的榜、开本周的榜；`--probe` 检查令牌能否发帖 |
 | `scripts/award.py` | 年度奖候选名单 |
@@ -40,7 +40,7 @@
 | --- | --- |
 | `scripts/launch_intake.py` | `draft_from_issue.py`（读 issue 表单）、`lint.py`（schema 校验） |
 | `scripts/check_launches.py` | `lint.py`（`lint.validate`，一个最小的 JSON Schema draft-07 校验器） |
-| `scripts/site_products.py` | 本站的页面外壳（`site_pages.py`）；别的站点用自己的方式渲染 `launches.weeks()` |
+| `scripts/site_products.py` | 本站的页面外壳（`site_pages.py`）；别的站点用自己的方式渲染 `launches.weeks()`。上升最快的列表需要每行星标的两份每周快照（`history/<date>.json`，本仓库由 `scripts/snapshot_stats.py` 写入，`launches.refreshes()` 读取），没有快照的话榜单就没有这个列表 |
 
 工作流：`.github/workflows/launch-intake.yml`、`launch-collect.yml`、`launch-week.yml`、`launch-votes.yml`、`launch-probe.yml`，以及 issue 表单 `.github/ISSUE_TEMPLATE/launch.yml`。`tests/test_launches.py`、`tests/test_launch_flow.py`、`tests/test_mcp_launches.py`、`tests/test_launch_award.py` 不联网就能测试全部内容。
 

@@ -74,8 +74,10 @@ returns to "To read" by itself.
 
 Since 2026-11-03 the site has a launch board over the catalogue
 ([docs/launches.md](docs/launches.md)): a page per product and per maker, a
-page per closed week, a badge per product that placed, and the board itself.
-The pages are written with the others at deploy (`scripts/site_products.py`).
+page per closed week, a README badge per product (listed, launching, then a
+top-three place), and the board itself, which also lists the products whose
+stars rose fastest between the two latest weekly refreshes (`history/`). The
+pages are written with the others at deploy (`scripts/site_products.py`).
 
 A week goes like this:
 

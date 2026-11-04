@@ -59,7 +59,7 @@ from _markers import read_block, replace_block  # noqa: E402
 ROOT = _stats.ROOT
 SITE = ROOT / "site"
 SITE_URL = "https://kydlikebtc.github.io/awesome-jev/"
-OG_IMAGE = f"{SITE_URL}img/og.png"
+OG_IMAGE = site_pages.OG_IMAGE
 
 # The five files the page fetches at runtime. The MCP server serves the same
 # five (src/awesome_jev_mcp/data.py FILES, which cannot import this module; a
@@ -130,6 +130,7 @@ def page_files() -> dict[str, str]:
     return site_pages.pages(
         catalog, retired, patterns, taxonomy,
         launch_weeks=launches.weeks(), maker_profiles=launches.makers(),
+        snapshots=launches.refreshes(),
     )
 
 

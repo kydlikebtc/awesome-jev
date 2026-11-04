@@ -46,6 +46,11 @@ from site_api import query  # noqa: E402
 
 SITE_URL = "https://kydlikebtc.github.io/awesome-jev/"
 REPOSITORY = "https://github.com/kydlikebtc/awesome-jev"
+# The site's preview card, rendered from site/card.html with live data on each
+# deploy (scripts/render_images.py). Every page names it, so a link to a
+# product, a launch week or the board previews as a card wherever it is shared.
+OG_IMAGE = f"{SITE_URL}img/og.png"
+OG_ALT = "awesome-jev: public resources for TypeSafe AI's Jev, indexed by the decision each one makes"
 LANGS = ("en", "zh")
 # The most weeks the what's-new page and the feeds list, newest first.
 WEEKS_SHOWN = 26
@@ -175,6 +180,8 @@ CSS = """
       .caveat { color: var(--alert); }
       .mark { font: 12px var(--mono); color: var(--fg-3); margin-left: 6px; }
       .more { font-size: 14px; }
+      pre { margin: 8px 0; padding: 10px 12px; background: var(--ink-2); border: 1px solid var(--rule);
+        font: 13px/1.5 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; }
       footer { margin-top: 48px; padding-top: 16px; padding-bottom: 40px; border-top: 1px solid var(--rule);
         color: var(--fg-3); font-size: 14px; }
 """
@@ -257,6 +264,17 @@ def shell(lang: str, *, path: str, title: str, description: str, body: str,
         f"<title>{esc(title)}</title>",
         f'<meta name="description" content="{esc(description)}" />',
         f'<link rel="canonical" href="{SITE_URL}{path}" />',
+        # Link previews (L31 of the launch plan's third round), as index.html
+        # has at deploy: the page's own title and description, the site's card.
+        f'<meta property="og:title" content="{esc(title)}" />',
+        f'<meta property="og:description" content="{esc(description)}" />',
+        '<meta property="og:type" content="website" />',
+        f'<meta property="og:url" content="{SITE_URL}{path}" />',
+        f'<meta property="og:image" content="{OG_IMAGE}" />',
+        '<meta property="og:image:width" content="1280" />',
+        '<meta property="og:image:height" content="640" />',
+        f'<meta property="og:image:alt" content="{esc(OG_ALT)}" />',
+        '<meta name="twitter:card" content="summary_large_image" />',
     ]
     for code, alt in (alternates or {}).items():
         head.append(f'<link rel="alternate" hreflang="{STRINGS[code]["html_lang"]}" href="{SITE_URL}{alt}" />')
@@ -558,11 +576,13 @@ def sitemap(paths: list[str]) -> str:
 
 
 def pages(catalog: list[dict], retired: list[dict], patterns: list[dict], taxonomy: dict, *,
-          launch_weeks: list[dict] = (), maker_profiles: dict[str, dict] | None = None) -> dict[str, str]:
+          launch_weeks: list[dict] = (), maker_profiles: dict[str, dict] | None = None,
+          snapshots: list[dict] = ()) -> dict[str, str]:
     """Every file this module writes: path relative to site/ → text. Beside
     its own pages, the launch board's (site_products.py): one per product and
     per maker, and the board, built from `launch_weeks` (launches/*.json) and
-    `maker_profiles` (makers/*.json)."""
+    `maker_profiles` (makers/*.json); the board's rising list reads the two
+    newest of `snapshots`, the weekly refreshes in history/, oldest first."""
     import site_products  # it builds on this module's shell, so it is imported here
 
     labels = Labels(taxonomy)
@@ -576,6 +596,7 @@ def pages(catalog: list[dict], retired: list[dict], patterns: list[dict], taxono
         files[feed_path(lang)] = feed(all_weeks, lang, labels)
     files.update(site_products.pages(
         catalog, patterns, labels, launch_weeks=list(launch_weeks), maker_profiles=maker_profiles or {},
+        snapshots=list(snapshots),
     ))
     listed = [""] + [f"{PATTERN_DIR}/", f"{site_products.MAKER_DIR}/"] + [
         path for path in files if path.endswith(".html") and not path.endswith("/index.html")

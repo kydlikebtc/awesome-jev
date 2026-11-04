@@ -425,6 +425,13 @@ def opened_note(week: str, launch: dict) -> str:
         "A thumbs-up on that post is a vote, one per account (rules v1). When the week closes next Monday, "
         "the counts are written to the board and the result is posted here.",
         "",
+        "Until then the product's README badge says \"vote this week\" and links to its page, where the vote "
+        "post is; after the week, it shows a top-three place, if any. The line, the same for every product:",
+        "",
+        "```markdown",
+        L.badge_line(launch["product"]),
+        "```",
+        "",
         f"The launch is on the board, so this issue is closed. How the board works: {DOCS}",
         "",
     ])
@@ -444,10 +451,10 @@ def closed_note(week: str, launch: dict, on_board: int) -> str:
                   f"{SITE}weeks/{week}.html"]
         if result.get("badges"):
             place = result["badges"][0].split("-")[1]
-            lines += ["", "It placed in the top three, so it has a badge for its README:", "",
+            lines += ["", f"It placed in the top three, so its README badge now says \"#{place} launch of {week}\". "
+                      "A README that has the line already shows it; otherwise, this is the line:", "",
                       "```markdown",
-                      f"[![awesome-jev launches: #{place} of {week}]({SITE}badges/{launch['product']}.svg)]"
-                      f"({SITE}products/{launch['product']}.html)",
+                      L.badge_line(launch["product"]),
                       "```"]
     lines += ["", f"How the board works: {DOCS}", ""]
     return "\n".join(lines)
