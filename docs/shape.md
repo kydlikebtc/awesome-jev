@@ -4,7 +4,7 @@
 
 <sub>[awesome-jev](../README.md) · [中文](shape.zh-CN.md)</sub>
 
-Counts that describe this catalogue as a dataset, regenerated from `catalog.json` whenever it changes; the newest link check behind them is dated **2026-10-28**. They describe what the catalogue holds, which is what reached it through the sibling directories, this repository's discovery and its contributors, not the ecosystem at large. A star band is a popularity signal, not a quality verdict, and nothing here was run or reproduced by this repository. `python3 scripts/counts.py` prints the same numbers as text; the headline figures are on [the status page](status.md).
+Counts that describe this catalogue as a dataset, regenerated from `catalog.json` whenever it changes; the newest link check behind them is dated **2026-11-04**. They describe what the catalogue holds, which is what reached it through the sibling directories, this repository's discovery and its contributors, not the ecosystem at large. A star band is a popularity signal, not a quality verdict, and nothing here was run or reproduced by this repository. `python3 scripts/counts.py` prints the same numbers as text; the headline figures are on [the status page](status.md).
 
 ## Evidence by decision pattern
 
@@ -115,17 +115,17 @@ Rows of each kind per star band, from GitHub's count at the last weekly refresh;
 | Kind | Rows | With a star count | under 10 | ★10+ | ★100+ | ★1k+ | ★10k+ | ★100k+ | Median band |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Official docs (`official-docs`) | 31 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | ★1k+ |
-| Integration (`integration`) | 38 | 25 | 8 | 6 | 1 | 4 | 5 | 1 | ★10+ |
-| Project (`project`) | 714 | 670 | 357 | 185 | 90 | 21 | 15 | 2 | under 10 |
-| Plugin (`plugin`) | 270 | 241 | 126 | 81 | 29 | 4 | 1 | 0 | under 10 |
-| SDK (`sdk`) | 102 | 98 | 75 | 17 | 5 | 0 | 1 | 0 | under 10 |
+| Integration (`integration`) | 38 | 28 | 8 | 9 | 1 | 4 | 5 | 1 | ★10+ |
+| Project (`project`) | 714 | 711 | 353 | 222 | 97 | 21 | 16 | 2 | ★10+ |
+| Plugin (`plugin`) | 270 | 270 | 124 | 110 | 31 | 4 | 1 | 0 | ★10+ |
+| SDK (`sdk`) | 102 | 101 | 74 | 20 | 6 | 0 | 1 | 0 | under 10 |
 | Snippet (`snippet`) | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-| Tutorial (`tutorial`) | 16 | 9 | 2 | 3 | 2 | 2 | 0 | 0 | ★10+ |
+| Tutorial (`tutorial`) | 16 | 13 | 2 | 7 | 2 | 2 | 0 | 0 | ★10+ |
 | Article (`article`) | 14 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | Video (`video`) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-| Benchmark (`benchmark`) | 79 | 69 | 49 | 13 | 4 | 1 | 1 | 1 | under 10 |
+| Benchmark (`benchmark`) | 79 | 76 | 49 | 19 | 5 | 1 | 1 | 1 | under 10 |
 | Discussion (`discussion`) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-| Jev-like alternative (`alternative`) | 97 | 76 | 12 | 27 | 26 | 9 | 2 | 0 | ★10+ |
+| Jev-like alternative (`alternative`) | 97 | 95 | 11 | 41 | 29 | 12 | 2 | 0 | ★10+ |
 
 ## Languages by decision pattern
 
@@ -175,7 +175,7 @@ Rows per pattern recording each of the 6 most recorded languages; the rest share
 
 ## Over time
 
-The catalogue's counts at each weekly refresh, from the snapshots in `history/` (generated data, never a source): 5 since 2026-09-30, the newest 5 shown. A count is what was catalogued on that day, not how the ecosystem grew; a dash is a count that snapshot did not record. Candidates to read is the discovery queue's "To read" (issue #14), recorded since 2026-10-30: when it grows, drafting is behind discovery.
+The catalogue's counts at each weekly refresh, from the snapshots in `history/` (generated data, never a source): 6 since 2026-09-30, the newest 6 shown. A count is what was catalogued on that day, not how the ecosystem grew; a dash is a count that snapshot did not record. Candidates to read is the discovery queue's "To read" (issue #14), recorded since 2026-10-30: when it grows, drafting is behind discovery.
 
 | Snapshot | Entries | With code | Rows citing a call site | Independent reports | Negative results | Alternatives | No licence declared | Candidates to read |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -184,6 +184,7 @@ The catalogue's counts at each weekly refresh, from the snapshots in `history/` 
 | 2026-10-14 | 1217 | 1186 | 1079 | 72 | 5 | 59 | 196 | — |
 | 2026-10-21 | 1218 | 1187 | 1079 | 72 | 5 | 60 | 194 | — |
 | 2026-10-28 | 1265 | 1233 | 1107 | 72 | 5 | 78 | 192 | — |
+| 2026-11-04 | 1370 | 1338 | 1192 | 78 | 5 | 97 | 205 | 444 |
 
 ---
 

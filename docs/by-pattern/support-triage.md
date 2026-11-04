@@ -14,8 +14,8 @@ Evidence recorded for this pattern's rows (reports counted, not a verdict; a row
 
 What TypeSafe AI publishes itself (rows marked `official`), filed under this pattern. Each is also listed below, with its summary.
 
+- [WorkflowEvals](https://github.com/typesafe-ai/workflowevals) <sub>`Benchmark` · `Py` · `noul` · `choice` · `score` · ⚠ `one commit` `vendor numbers`</sub>
 - [Quickstart](https://docs.typesafe.ai/introduction/quickstart) <sub>`Official docs` · `Py` · `TS` · `sh` · `choice` · `score` · `noul`</sub>
-- [WorkflowEvals](https://github.com/typesafe-ai/workflowevals) <sub>`Benchmark` · `Py` · `noul` · `choice` · `score` · ⚠ `vendor numbers`</sub>
 
 ## Examples in this repository
 
@@ -29,14 +29,20 @@ Code under this repository's [`examples/`](../../examples/) filed under this pat
 
 A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of the repository's default branch; the date after it is the day a person last read that file (`evidence.read_on`) or, where it says *read by a model*, the day a model did (`evidence.model_read_on`): a reading, not a run of the code. A *cited file* link is the same for a file that shows the project speaking Jev's request shape rather than building on Jev, or only an example it ships (`evidence.kind`). Neither is pinned to a commit, so it opens the file as it is now, which may differ from what was read, and stops resolving once the file moves; the weekly claims check reports that.
 
+- **[WorkflowEvals](https://github.com/typesafe-ai/workflowevals)** ⭐ — TypeSafe's code for reproducing its WorkflowEvals site: four business workflows (invoice approval and fraud triage, customer-service routing and actions, agent-run action selection, security-alert triage), 705 cases scored against OpenAI, Anthropic and consensus references. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · ★10+ · typesafe-ai · `Py` · `noul` · `choice` · `score` · call site [`core/clients.py`](https://github.com/typesafe-ai/workflowevals/blob/HEAD/core/clients.py), read by a model 2026-11-02 · ⚠ `one commit` `vendor numbers`</sub>
+
 - **[Quickstart](https://docs.typesafe.ai/introduction/quickstart)** ⭐ — The canonical first call: one support ticket, one Choice, one Score and one Noul in a single request, in Python, JS and cURL.
   <sub>`Official docs` · `Py` · `TS` · `sh` · `choice` · `score` · `noul`</sub>
 
-- **[WorkflowEvals](https://github.com/typesafe-ai/workflowevals)** ⭐ — TypeSafe's code for reproducing its WorkflowEvals site: four business workflows (invoice approval and fraud triage, customer-service routing and actions, agent-run action selection, security-alert triage), 705 cases scored against OpenAI, Anthropic and consensus references. <sub>(written by a model)</sub>
-  <sub>`Benchmark` · typesafe-ai · `Py` · `noul` · `choice` · `score` · call site [`core/clients.py`](https://github.com/typesafe-ai/workflowevals/blob/HEAD/core/clients.py), read by a model 2026-11-02 · ⚠ `vendor numbers`</sub>
-
 - **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)** — A graded course from a first call through each primitive, state shapes and criteria, to ticket triage and a multi-step workflow, mirroring all four official patterns.
   <sub>`Tutorial` · ★1k+ · `Py` · `choice` · `score` · `noul` · call site [`models/jev/06-criteria.py`](https://github.com/daveebbelaar/ai-cookbook/blob/HEAD/models/jev/06-criteria.py), read 2026-09-22</sub>
+
+- **[jev-demo](https://github.com/soyjorgepilo/jev-demo)** — Three Spanish-language demos of one pattern, Jev decides and code acts: Jira ticket triage that applies, marks for review or escalates; a pre-flight pass that flags functions before Claude explains only those; and a PR router sending each pull request to rules, Haiku or Sonnet. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · soyjorgepilo · `TS` · `choice` · `noul` · `score` · call site [`shared/jev.ts`](https://github.com/soyjorgepilo/jev-demo/blob/HEAD/shared/jev.ts), read by a model 2026-11-04 · ⚠ `one commit` `no licence` `3rd-party key`</sub>
+
+- **[jevelry](https://github.com/backant-io/jevelry)** — CLI, TUI and library keeping questions for Jev in small files called jevels; seventeen ship, for tickets, issues, pull requests, logs, alerts and failing tests. Each answer's certainty becomes act, mark for a person, or fall back, and every decision is logged so thresholds can be tuned on outcomes. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · backant-io · `TS` · `choice` · `noul` · `score` · call site [`src/ask.ts`](https://github.com/backant-io/jevelry/blob/HEAD/src/ask.ts), read by a model 2026-11-04</sub>
 
 - **[spring-ai-typesafe](https://spring.io/blog/2026/09/21/spring-ai-typesafe-structured-judgment)** — A community Spring AI starter bringing typed decisions to Java, with a builder API over the three question types.
   <sub>`Integration` · ★10+ · `Java` · `choice` · `score` · `noul` · call site [`examples/src/main/java/org/springaicommunity/typesafe/demo/JevQuickstart.java`](https://github.com/spring-ai-community/spring-ai-typesafe/blob/HEAD/examples/src/main/java/org/springaicommunity/typesafe/demo/JevQuickstart.java), read 2026-09-22</sub>
@@ -53,14 +59,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev on Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/)** — Workers AI binding and REST samples asking a noul, a choice and a score in one call, with the full response including per-answer confidence.
   <sub>`Integration` · `TS` · `sh` · `noul` · `choice` · `score`</sub>
 
-- **[jev-demo](https://github.com/soyjorgepilo/jev-demo)** — Three Spanish-language demos of one pattern, Jev decides and code acts: Jira ticket triage that applies, marks for review or escalates; a pre-flight pass that flags functions before Claude explains only those; and a PR router sending each pull request to rules, Haiku or Sonnet. <sub>(written by a model)</sub>
-  <sub>`Project` · soyjorgepilo · `TS` · `choice` · `noul` · `score` · call site [`shared/jev.ts`](https://github.com/soyjorgepilo/jev-demo/blob/HEAD/shared/jev.ts), read by a model 2026-11-04 · ⚠ `no licence` `3rd-party key`</sub>
-
 - **[jev-triage](https://github.com/boldbug1/jev-triage)** — Go command-line tool that sorts messages by urgency: one Jev request per message asks a choice of kind (bug, billing, feature request, account, other), a 0–3 urgency score and a noul on whether the sender sounds frustrated. Below 0.8 category confidence a message goes to a review-by-hand list. <sub>(written by a model)</sub>
   <sub>`Project` · boldbug1 · `Go` · call site [`main.go`](https://github.com/boldbug1/jev-triage/blob/HEAD/main.go), read 2026-09-24</sub>
-
-- **[jevelry](https://github.com/backant-io/jevelry)** — CLI, TUI and library keeping questions for Jev in small files called jevels; seventeen ship, for tickets, issues, pull requests, logs, alerts and failing tests. Each answer's certainty becomes act, mark for a person, or fall back, and every decision is logged so thresholds can be tuned on outcomes. <sub>(written by a model)</sub>
-  <sub>`Project` · backant-io · `TS` · `choice` · `noul` · `score` · call site [`src/ask.ts`](https://github.com/backant-io/jevelry/blob/HEAD/src/ask.ts), read by a model 2026-11-04</sub>
 
 - **[Support-routing benchmark: 100 held-out cases](https://decisionmodelhub.com/benchmarks/support-routing)** — Compares Jev with Clef, Clef Flash, OpenAI's Decisions API and a GPT-6 Luna structured-output baseline on 100 held-out fictional support messages, each routed to one of five team labels; every case and recorded answer can be downloaded.
   <sub>`Benchmark` · DecisionModelHub · ⚠ `self-submitted`</sub>

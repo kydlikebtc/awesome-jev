@@ -14,10 +14,10 @@ Evidence recorded for this pattern's rows (reports counted, not a verdict; a row
 
 What TypeSafe AI publishes itself (rows marked `official`), filed under this pattern. Each is also listed below, with its summary.
 
+- [TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai) <sub>`Plugin` · `TS` · `choice` · `noul` · `score`</sub>
 - [Demo: Smart home assistant](https://docs.typesafe.ai/demos/smart-home) <sub>`Official docs` · `Py`</sub>
 - [Pattern: Confidence-gated routing](https://docs.typesafe.ai/patterns/confidence-routing) <sub>`Official docs` · `Py`</sub>
 - [Pattern: Intent routing](https://docs.typesafe.ai/patterns/intent-routing) <sub>`Official docs` · `Py` · `choice`</sub>
-- [TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai) <sub>`Plugin` · `TS` · `choice` · `noul` · `score`</sub>
 
 ## Examples in this repository
 
@@ -33,6 +33,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 *Author's conclusion* is the direction a benchmark's own author states for Jev on the task they measured (`measurement.direction`: favourable, mixed, unfavourable or inconclusive), indexed from the author's report: author-stated, not reproduced here, and absent where the author states none in words. [docs/benchmarks.md](../benchmarks.md) sets every benchmark's measurement side by side.
 
+- **[TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai)** ⭐ — TypeSafe's own n8n community node. Evaluate asks Jev typed questions about each item and adds the answers; Route sends each item to an output by one answer, with a fallback output for low-confidence choices and an uncertain one between two noul thresholds. AI Agents can use it as a tool. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · typesafe-ai · `TS` · `choice` · `noul` · `score` · call site [`nodes/TypeSafeAi/api.ts`](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/api.ts), read by a model 2026-11-04</sub>
+
 - **[Demo: Smart home assistant](https://docs.typesafe.ai/demos/smart-home)** ⭐ — Runnable demo code for a smart home assistant that evaluates user requests with typed decisions.
   <sub>`Official docs` · `Py`</sub>
 
@@ -41,9 +44,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Pattern: Intent routing](https://docs.typesafe.ai/patterns/intent-routing)** ⭐ — Classify an incoming request and route it to the cheapest adequate handler: deterministic code, a specialist LLM, or a person.
   <sub>`Official docs` · `Py` · `choice`</sub>
-
-- **[TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai)** ⭐ — TypeSafe's own n8n community node. Evaluate asks Jev typed questions about each item and adds the answers; Route sends each item to an output by one answer, with a fallback output for low-confidence choices and an uncertain one between two noul thresholds. AI Agents can use it as a tool. <sub>(written by a model)</sub>
-  <sub>`Plugin` · typesafe-ai · `TS` · `choice` · `noul` · `score` · call site [`nodes/TypeSafeAi/api.ts`](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/api.ts), read by a model 2026-11-04</sub>
 
 - **[AutoGPT TypeSafe blocks](https://github.com/Significant-Gravitas/AutoGPT/tree/master/autogpt_platform/backend/backend/blocks/typesafe)** — Seven production blocks — choice, score, yes/no, ask-many, route, pick-best, filter — with a UTF-8 byte budget, verbatim wire capture and eleven test files.
   <sub>`Project` · ★100k+ · `Py` · `choice` · `score` · `noul` · call site [`autogpt_platform/backend/backend/blocks/typesafe/_client.py`](https://github.com/Significant-Gravitas/AutoGPT/blob/HEAD/autogpt_platform/backend/backend/blocks/typesafe/_client.py), read 2026-09-22</sub>
@@ -69,6 +69,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[foreman](https://github.com/thruwire/foreman)** — A software-factory foreman that uses Jev to decide what an agent pipeline should do next.
   <sub>`Project` · ★100+ · thruwire · `Py` · call site [`src/foreman/foreman/jev.py`](https://github.com/thruwire/foreman/blob/HEAD/src/foreman/foreman/jev.py), read 2026-09-22</sub>
 
+- **[Hey Jev](https://github.com/henryklunaris/hey-jev)** — macOS voice assistant: local Whisper transcribes a command, then one Jev request asks every question at once (category, compound or not, target, app, action, volume level) as `choice`, `noul` and `score` questions; code runs the action through AppleScript, and only general questions reach an LLM. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · henryklunaris · `Py` · `choice` · `noul` · `score` · call site [`siri.py`](https://github.com/henryklunaris/hey-jev/blob/HEAD/siri.py), read by a model 2026-10-29 · ⚠ `no licence` `3rd-party key`</sub>
+
 - **[hyperedit](https://github.com/kevinbadi/hyperedit)** — An AI video editor routing an editing instruction to an operation, a target clip and a track, with a keyword router as fallback.
   <sub>`Project` · ★100+ · `TS` · `choice` · `noul` · call site [`scripts/jev.js`](https://github.com/kevinbadi/hyperedit/blob/HEAD/scripts/jev.js), read 2026-09-22 · ⚠ `no licence`</sub>
 
@@ -93,11 +96,29 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — Chat-reply assistant (desktop overlay, Android floating assistant, iOS keyboard) built on Jev Android. From the visible chat or a screenshot it asks Jev the literal question, the other person's intent, a danger level, whether to reply now and the best action, then has Jev pick among drafted replies. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · call site [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt), read by a model 2026-10-26 · ⚠ `3rd-party key`</sub>
 
+- **[DMB: decision-model benchmark](https://github.com/nibzard/decision-model-benchmark)** — Benchmark of APIs that pick one option from a list with a confidence: Jev, LLMs with structured output and deterministic baselines, on accuracy, latency, cost, failures and confidence. The author reports jev-latest at 79.2% on Banking77, 88.6% on CLINC150 and 48.3% micro F1 on NLU++. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · ★10+ · nibzard · `Py` · `choice` · call site [`src/dmb/contenders/jev.py`](https://github.com/nibzard/decision-model-benchmark/blob/HEAD/src/dmb/contenders/jev.py), read by a model 2026-11-04 · ⚠ `no licence`</sub>
+
+- **[Gatekeeper](https://github.com/AgriciDaniel/gatekeeper)** — Claude Code hook that decides which agent or skill should handle a prompt before the AI picks one: YAML rulebooks settle what code can, Jev answers which handler owns the rest as a Choice, and confidence bands turn that into route, suggest, confirm, escalate, block or allow. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · AgriciDaniel · `Py` · `choice` · `noul` · call site [`gatekeeper/jev.py`](https://github.com/AgriciDaniel/gatekeeper/blob/HEAD/gatekeeper/jev.py), read by a model 2026-11-01</sub>
+
+- **[Gut](https://github.com/vinibrsl/gut)** — Elixir DSL for LLM decisions: Gut.feel(subject, question, choices) returns one of your Elixir values, such as the team that should handle a ticket. Its Jev adapter asks the question as one Choice through ReqLLM; other adapters use any ReqLLM model, Ollama or your own code. <sub>(written by a model)</sub>
+  <sub>`SDK` · ★10+ · vinibrsl · `Ex` · `choice` · call site [`lib/gut/req_llm/jev.ex`](https://github.com/vinibrsl/gut/blob/HEAD/lib/gut/req_llm/jev.ex), read by a model 2026-11-02</sub>
+
 - **[ha-jev](https://github.com/AboveColin/HA-Jev)** — A Home Assistant integration: typed answers about the house as sensors, noul, choice and score actions for automations, and a conversation agent.
   <sub>`Integration` · ★10+ · abovecolin · `Py` · `noul` · `choice` · `score` · call site [`custom_components/jev/services.py`](https://github.com/AboveColin/HA-Jev/blob/HEAD/custom_components/jev/services.py), read 2026-09-30 · ⚠ `AI-written` `self-submitted`</sub>
 
 - **[hono-jev-router](https://github.com/yusukebe/hono-jev-router)** — Routes HTTP requests by meaning — a semantic router for a web framework.
   <sub>`Project` · ★10+ · yusukebe · `TS` · call site [`src/index.ts`](https://github.com/yusukebe/hono-jev-router/blob/HEAD/src/index.ts), read 2026-09-22</sub>
+
+- **[Jev Chat Jarvis (iOS keyboard)](https://github.com/jev-chat/jev-chat-jarvis-ios)** — iOS keyboard version of Jev Chat Jarvis: copy a message in any chat app and the custom keyboard shows Jev's read of its intent (a `choice`) and risk (a `score`), plus drafted replies that Jev ranks with another `choice`; one tap inserts a reply. An optional extension reads the screen by local OCR. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · jev-chat · `Swift` · `choice` · `score` · call site [`Shared/JevJudge.swift`](https://github.com/jev-chat/jev-chat-jarvis-ios/blob/HEAD/Shared/JevJudge.swift), read by a model 2026-10-30 · ⚠ `3rd-party key`</sub>
+
+- **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)** — Weekly go-to-market experiments with Jev, each tested against Claude: lead triage and routing, deal risk, reply triage, MEDDPICC fields from call summaries, duplicate accounts and closed-lost reactivation, plus an MCP server. A shared client subtracts a measured score bias of 0.30 before rounding. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · ★10+ · deepdave98 · `Py` · `noul` · `choice` · `score` · call site [`common/jev.py`](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py), read by a model 2026-10-31 · ⚠ `no licence`</sub>
+
+- **[Jev steer or queue](https://github.com/Larkspur-Wang/Jev_steer_or_queue)** — Hook for Claude Code (and, more loosely, the Codex CLI) that asks Jev what to do with a message sent while the agent is busy: steer the running task now, queue it as a separate request for when the turn ends, or interrupt and stop the turn. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · Larkspur-Wang · `Py` · `choice` · `noul` · call site [`claude-code/scripts/jev_router.py`](https://github.com/Larkspur-Wang/Jev_steer_or_queue/blob/HEAD/claude-code/scripts/jev_router.py), read by a model 2026-11-02</sub>
 
 - **[jev-ai-sdk-form-router](https://github.com/vercel-labs/jev-ai-sdk-form-router)** — Route form submissions to the right people with Jev and AI SDK. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · vercel-labs · `TS` · call site [`components/routing-result.tsx`](https://github.com/vercel-labs/jev-ai-sdk-form-router/blob/HEAD/components/routing-result.tsx), read 2026-09-24</sub>
@@ -114,41 +135,23 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevyoumean](https://github.com/syumai/jevyoumean)** — Semantic "Did you mean?" for any CLI — wraps commands and uses TypeSafe's Jev to match subcommand typos by intent, not edit distance. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · syumai · `Go` · call site [`internal/jev/client.go`](https://github.com/syumai/jevyoumean/blob/HEAD/internal/jev/client.go), read 2026-09-22</sub>
 
+- **[RoboDiag Harness](https://github.com/yuebit/robodiag-harness)** — Diagnostic harness for ROS 2 robots in which Jev sorts each request into query, diagnosis, action or chat and, for a diagnosis, picks the next read-only evidence tool. Code requires a health test and a live measurement before a diagnosis ends, and a chat model explains the evidence. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · yuebit · `Py` · `choice` · call site [`robodiag_jev.py`](https://github.com/yuebit/robodiag-harness/blob/HEAD/robodiag_jev.py), read by a model 2026-11-01</sub>
+
 - **[typesafe-jev-workflow](https://github.com/GiesN/typesafe-jev-workflow)** — A small async LangGraph workflow: each mocked email goes to Jev as a typed Choice (invoice or general) and the graph routes it to a demo handler. Classification makes real API calls; the handlers only set a destination.
   <sub>`Project` · ★10+ · giesn · `Py` · call site [`src/typesafe_ai_langgraph/typesafe_ai_langgraph_workflow.py`](https://github.com/GiesN/typesafe-jev-workflow/blob/HEAD/src/typesafe_ai_langgraph/typesafe_ai_langgraph_workflow.py), read 2026-09-24 · ⚠ `no licence`</sub>
 
 - **[A deep dive into Jev, TypeSafe's System One model](https://flaviocopes.com/jev/)** — The densest independent explainer: code in JS, Python and the AI SDK, all three answer shapes, the advanced patterns, and an honest list of where the model fails.
   <sub>`Tutorial` · Flavio Copes · `JS` · `Py` · `TS` · `choice` · `score` · `noul`</sub>
 
-- **[DMB: decision-model benchmark](https://github.com/nibzard/decision-model-benchmark)** — Benchmark of APIs that pick one option from a list with a confidence: Jev, LLMs with structured output and deterministic baselines, on accuracy, latency, cost, failures and confidence. The author reports jev-latest at 79.2% on Banking77, 88.6% on CLINC150 and 48.3% micro F1 on NLU++. <sub>(written by a model)</sub>
-  <sub>`Benchmark` · nibzard · `Py` · `choice` · call site [`src/dmb/contenders/jev.py`](https://github.com/nibzard/decision-model-benchmark/blob/HEAD/src/dmb/contenders/jev.py), read by a model 2026-11-04 · ⚠ `no licence`</sub>
-
 - **[Example: confidence-gated escalation](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/02-confidence-gate/main.py)** — Routing with an act-or-escalate gate, where the policy function is deliberately left unimplemented because the thresholds are yours to choose.
   <sub>`Snippet` · `Py` · `choice` · call site [`examples/02-confidence-gate/main.py`](https://github.com/kydlikebtc/awesome-jev/blob/HEAD/examples/02-confidence-gate/main.py), read 2026-09-22 · ⚠ `code untested`</sub>
-
-- **[Gatekeeper](https://github.com/AgriciDaniel/gatekeeper)** — Claude Code hook that decides which agent or skill should handle a prompt before the AI picks one: YAML rulebooks settle what code can, Jev answers which handler owns the rest as a Choice, and confidence bands turn that into route, suggest, confirm, escalate, block or allow. <sub>(written by a model)</sub>
-  <sub>`Plugin` · AgriciDaniel · `Py` · `choice` · `noul` · call site [`gatekeeper/jev.py`](https://github.com/AgriciDaniel/gatekeeper/blob/HEAD/gatekeeper/jev.py), read by a model 2026-11-01</sub>
-
-- **[Gut](https://github.com/vinibrsl/gut)** — Elixir DSL for LLM decisions: Gut.feel(subject, question, choices) returns one of your Elixir values, such as the team that should handle a ticket. Its Jev adapter asks the question as one Choice through ReqLLM; other adapters use any ReqLLM model, Ollama or your own code. <sub>(written by a model)</sub>
-  <sub>`SDK` · vinibrsl · `Ex` · `choice` · call site [`lib/gut/req_llm/jev.ex`](https://github.com/vinibrsl/gut/blob/HEAD/lib/gut/req_llm/jev.ex), read by a model 2026-11-02</sub>
-
-- **[Hey Jev](https://github.com/henryklunaris/hey-jev)** — macOS voice assistant: local Whisper transcribes a command, then one Jev request asks every question at once (category, compound or not, target, app, action, volume level) as `choice`, `noul` and `score` questions; code runs the action through AppleScript, and only general questions reach an LLM. <sub>(written by a model)</sub>
-  <sub>`Project` · henryklunaris · `Py` · `choice` · `noul` · `score` · call site [`siri.py`](https://github.com/henryklunaris/hey-jev/blob/HEAD/siri.py), read by a model 2026-10-29 · ⚠ `no licence` `3rd-party key`</sub>
 
 - **[Jev AI Use Cases](https://medium.com/data-science-in-your-pocket/jev-ai-use-cases-9a87d57ac3b4)** — Walks through use case after use case — agent routing, an in-agent decision layer, ticket triage — each with a concrete option set and a sample response.
   <sub>`Tutorial` · Mehul Gupta · `Py` · `choice` · ⚠ `paywall`</sub>
 
-- **[Jev Chat Jarvis (iOS keyboard)](https://github.com/jev-chat/jev-chat-jarvis-ios)** — iOS keyboard version of Jev Chat Jarvis: copy a message in any chat app and the custom keyboard shows Jev's read of its intent (a `choice`) and risk (a `score`), plus drafted replies that Jev ranks with another `choice`; one tap inserts a reply. An optional extension reads the screen by local OCR. <sub>(written by a model)</sub>
-  <sub>`Project` · jev-chat · `Swift` · `choice` · `score` · call site [`Shared/JevJudge.swift`](https://github.com/jev-chat/jev-chat-jarvis-ios/blob/HEAD/Shared/JevJudge.swift), read by a model 2026-10-30 · ⚠ `3rd-party key`</sub>
-
 - **[Jev on Netlify AI Gateway](https://www.netlify.com/changelog/typesafe-jev-ai-gateway/)** — Zero-config access from a Netlify function: use the official SDK with no API key, base URL or provider setup, billed through Netlify credits.
   <sub>`Integration` · `TS` · `choice`</sub>
-
-- **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)** — Weekly go-to-market experiments with Jev, each tested against Claude: lead triage and routing, deal risk, reply triage, MEDDPICC fields from call summaries, duplicate accounts and closed-lost reactivation, plus an MCP server. A shared client subtracts a measured score bias of 0.30 before rounding. <sub>(written by a model)</sub>
-  <sub>`Benchmark` · deepdave98 · `Py` · `noul` · `choice` · `score` · call site [`common/jev.py`](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py), read by a model 2026-10-31 · ⚠ `no licence`</sub>
-
-- **[Jev steer or queue](https://github.com/Larkspur-Wang/Jev_steer_or_queue)** — Hook for Claude Code (and, more loosely, the Codex CLI) that asks Jev what to do with a message sent while the agent is busy: steer the running task now, queue it as a separate request for when the turn ends, or interrupt and stop the turn. <sub>(written by a model)</sub>
-  <sub>`Plugin` · Larkspur-Wang · `Py` · `choice` · `noul` · call site [`claude-code/scripts/jev_router.py`](https://github.com/Larkspur-Wang/Jev_steer_or_queue/blob/HEAD/claude-code/scripts/jev_router.py), read by a model 2026-11-02</sub>
 
 - **[jev-eval](https://github.com/Shogo-nfrealmusic/jev-eval)** — A third-party check of Jev against two LLMs under identical conditions: routing booking inquiries to a photo-shoot service for tourists in Japan, sixty synthetic messages in four languages.
   <sub>`Benchmark` · shogo-nfrealmusic · `TS` · call site [`src/jev.ts`](https://github.com/Shogo-nfrealmusic/jev-eval/blob/HEAD/src/jev.ts), read 2026-09-24 · ⚠ `no licence`</sub>
@@ -164,9 +167,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — The LangChain integration: a classifier plus experimental middleware for model routing and for gating risky tool calls before they run.
   <sub>`Integration` · `Py` · `choice` · `score` · `noul` · ⚠ `early access`</sub>
-
-- **[RoboDiag Harness](https://github.com/yuebit/robodiag-harness)** — Diagnostic harness for ROS 2 robots in which Jev sorts each request into query, diagnosis, action or chat and, for a diagnosis, picks the next read-only evidence tool. Code requires a health test and a live measurement before a diagnosis ends, and a chat model explains the evidence. <sub>(written by a model)</sub>
-  <sub>`Project` · yuebit · `Py` · `choice` · call site [`robodiag_jev.py`](https://github.com/yuebit/robodiag-harness/blob/HEAD/robodiag_jev.py), read by a model 2026-11-01</sub>
 
 - **[Using TypeSafe Jev with the AI SDK](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk)** — The richest Vercel walkthrough: single and multi-question calls, probability-threshold routing, and unit tests with a mock evaluation model.
   <sub>`Tutorial` · `TS` · `noul` · `choice` · `score`</sub>

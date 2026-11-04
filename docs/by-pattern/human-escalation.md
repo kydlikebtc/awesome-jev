@@ -14,13 +14,13 @@ Evidence recorded for this pattern's rows (reports counted, not a verdict; a row
 
 What TypeSafe AI publishes itself (rows marked `official`), filed under this pattern. Each is also listed below, with its summary.
 
+- [TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai) <sub>`Plugin` · `TS` · `choice` · `noul` · `score`</sub>
 - [Cookbook: Classification using confidence](https://docs.typesafe.ai/cookbooks/classification_using_confidence) <sub>`Official docs` · `Py` · `choice`</sub>
 - [Cookbook: Double-checking citations](https://docs.typesafe.ai/cookbooks/citation_check) <sub>`Official docs` · `Py` · `choice`</sub>
 - [Cookbook: Knowledge graph entity alignment](https://docs.typesafe.ai/cookbooks/entity_alignment) <sub>`Official docs` · `Py` · `score`</sub>
 - [Cookbook: Self-consistency with choices](https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook) <sub>`Official docs` · `Py` · `choice`</sub>
 - [Cookbook: Self-consistency with nouls](https://docs.typesafe.ai/cookbooks/consistency_noul_cookbook) <sub>`Official docs` · `Py` · `noul`</sub>
 - [Pattern: Confidence-gated routing](https://docs.typesafe.ai/patterns/confidence-routing) <sub>`Official docs` · `Py`</sub>
-- [TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai) <sub>`Plugin` · `TS` · `choice` · `noul` · `score`</sub>
 - [Confidence](https://docs.typesafe.ai/confidence) <sub>`Official docs`</sub>
 
 ## Examples in this repository
@@ -36,6 +36,9 @@ Code under this repository's [`examples/`](../../examples/) filed under this pat
 A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of the repository's default branch; the date after it is the day a person last read that file (`evidence.read_on`) or, where it says *read by a model*, the day a model did (`evidence.model_read_on`): a reading, not a run of the code. A *cited file* link is the same for a file that shows the project speaking Jev's request shape rather than building on Jev, or only an example it ships (`evidence.kind`). Neither is pinned to a commit, so it opens the file as it is now, which may differ from what was read, and stops resolving once the file moves; the weekly claims check reports that.
 
 *Author's conclusion* is the direction a benchmark's own author states for Jev on the task they measured (`measurement.direction`: favourable, mixed, unfavourable or inconclusive), indexed from the author's report: author-stated, not reproduced here, and absent where the author states none in words. [docs/benchmarks.md](../benchmarks.md) sets every benchmark's measurement side by side.
+
+- **[TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai)** ⭐ — TypeSafe's own n8n community node. Evaluate asks Jev typed questions about each item and adds the answers; Route sends each item to an output by one answer, with a fallback output for low-confidence choices and an uncertain one between two noul thresholds. AI Agents can use it as a tool. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · typesafe-ai · `TS` · `choice` · `noul` · `score` · call site [`nodes/TypeSafeAi/api.ts`](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/api.ts), read by a model 2026-11-04</sub>
 
 - **[Cookbook: Classification using confidence](https://docs.typesafe.ai/cookbooks/classification_using_confidence)** ⭐ — Classifies annual reports into 75 industry groups, then reads the answer's own confidence to decide whether to report that group or the broader division above it.
   <sub>`Official docs` · `Py` · `choice`</sub>
@@ -54,9 +57,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Pattern: Confidence-gated routing](https://docs.typesafe.ai/patterns/confidence-routing)** ⭐ — Treat confidence as a second axis: the answer tells you what, the confidence tells you whether to act on it.
   <sub>`Official docs` · `Py`</sub>
-
-- **[TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai)** ⭐ — TypeSafe's own n8n community node. Evaluate asks Jev typed questions about each item and adds the answers; Route sends each item to an output by one answer, with a fallback output for low-confidence choices and an uncertain one between two noul thresholds. AI Agents can use it as a tool. <sub>(written by a model)</sub>
-  <sub>`Plugin` · typesafe-ai · `TS` · `choice` · `noul` · `score` · call site [`nodes/TypeSafeAi/api.ts`](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/api.ts), read by a model 2026-11-04</sub>
 
 - **[Confidence](https://docs.typesafe.ai/confidence)** ⭐ — How Choice and Score confidence is derived from probabilities, how Noul differs, and how to tune thresholds for the question and application.
   <sub>`Official docs`</sub>
@@ -88,11 +88,20 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[discern](https://github.com/doeixd/discern)** — Craft Type-Safe Uncertainty-aware semantic pattern matching, control flow, and smart procedures for Effect DecisionModel and Jev <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · doeixd · `TS` · call site [`examples/headline.ts`](https://github.com/doeixd/discern/blob/HEAD/examples/headline.ts), read 2026-09-22</sub>
 
+- **[Gatekeeper](https://github.com/AgriciDaniel/gatekeeper)** — Claude Code hook that decides which agent or skill should handle a prompt before the AI picks one: YAML rulebooks settle what code can, Jev answers which handler owns the rest as a Choice, and confidence bands turn that into route, suggest, confirm, escalate, block or allow. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · AgriciDaniel · `Py` · `choice` · `noul` · call site [`gatekeeper/jev.py`](https://github.com/AgriciDaniel/gatekeeper/blob/HEAD/gatekeeper/jev.py), read by a model 2026-11-01</sub>
+
 - **[jev-agent-skill-router](https://github.com/GodsBoy/jev-agent-skill-router)** — Typed, confidence-aware agent skill routing with TypeSafe Jev. <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · godsboy · `Py` · call site [`src/jev_router/transport.py`](https://github.com/GodsBoy/jev-agent-skill-router/blob/HEAD/src/jev_router/transport.py), read 2026-09-22</sub>
 
+- **[jev-apply](https://github.com/theadaply/jev-apply)** — Job-application skill for CLI agents with a memory of your answers: Jev picks which saved answer fills each field of a Greenhouse, Ashby or Lever form, with an explicit none-of-these exit, and below a confidence threshold the field goes back to you instead of being guessed. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · theadaply · `JS` · `choice` · `noul` · call site [`src/jev/client.mjs`](https://github.com/theadaply/jev-apply/blob/HEAD/src/jev/client.mjs), read by a model 2026-11-03</sub>
+
 - **[jev-benchmarks](https://github.com/AbdelStark/jev-benchmarks)** — Probability-aware evaluation for typed decision models: calibration, selective risk, latency, and reproducible benchmarks. <sub>(upstream description)</sub>
   <sub>`Benchmark` · ★10+ · abdelstark · `Py` · call site [`src/jev_benchmarks/adapters/jev.py`](https://github.com/AbdelStark/jev-benchmarks/blob/HEAD/src/jev_benchmarks/adapters/jev.py), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
+
+- **[jev-browse](https://github.com/danielnc/jev-browse)** — Helpers for browser-harness that let Claude Code or Codex hand off a whole website sub-task in one fast_run call, with each step decided by Jev and a typed reason returned when it must stop. A port of browser-use/jev-ultrafast; the author reports 1.6–3.0x faster and 2.1–5.3x cheaper runs. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · danielnc · `Py` · call site [`jev_browse/config.py`](https://github.com/danielnc/jev-browse/blob/HEAD/jev_browse/config.py), read by a model 2026-10-24 · ⚠ `vendor numbers`</sub>
 
 - **[jev-calibrate](https://github.com/smkrv/jev-calibrate)** — Calibrate Jev questions against your own labels: tune criteria on labelled examples, confirm on a held-out set, get a verdict per question. Unofficial. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · smkrv · `TS` · call site [`src/client.ts`](https://github.com/smkrv/jev-calibrate/blob/HEAD/src/client.ts), read 2026-09-22</sub>
@@ -124,11 +133,20 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevcal](https://github.com/abhixhek/jevcal)** — Calibrate, threshold and drift-check a decision model against an LLM teacher instead of guessing a cutoff.
   <sub>`Project` · ★10+ · abhixhek · `Py` · call site [`src/jevcal/providers/typesafe.py`](https://github.com/abhixhek/jevcal/blob/HEAD/src/jevcal/providers/typesafe.py), read 2026-09-22</sub>
 
+- **[jevelry](https://github.com/backant-io/jevelry)** — CLI, TUI and library keeping questions for Jev in small files called jevels; seventeen ship, for tickets, issues, pull requests, logs, alerts and failing tests. Each answer's certainty becomes act, mark for a person, or fall back, and every decision is logged so thresholds can be tuned on outcomes. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · backant-io · `TS` · `choice` · `noul` · `score` · call site [`src/ask.ts`](https://github.com/backant-io/jevelry/blob/HEAD/src/ask.ts), read by a model 2026-11-04</sub>
+
 - **[jevflow](https://github.com/Mawfyy/jevflow)** — Probabilistic AI decisions as composable backend primitives — typed judgments (noul/score/choice), deterministic thresholds, and explainable workflows. Powered by TypeSafe's Jev, provider-agnostic. <sub>(upstream description)</sub>
   <sub>`Integration` · ★10+ · mawfyy · `TS` · call site [`packages/provider-jev/src/index.ts`](https://github.com/Mawfyy/jevflow/blob/HEAD/packages/provider-jev/src/index.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[Jevline](https://github.com/tsale/jevline)** — Scopes an incident from security telemetry: from one confirmed-malicious process, it asks Jev of every process, account, host, address or domain the logs link to whether it belongs to the same incident, and follows what joins round by round. Answers near the threshold are marked for analyst review. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · tsale · `TS` · `noul` · call site [`engine/src/jev.ts`](https://github.com/tsale/jevline/blob/HEAD/engine/src/jev.ts), read by a model 2026-10-31</sub>
+
 - **[jevmory](https://github.com/romiluz13/jevmory)** — Local memory for coding agents: hooks store what sessions actually said as verbatim quotes, and jevmory audit asks Jev, for each line of a MEMORY.md, whether stored evidence supports or contradicts it, marking it keep, stale, wrong or unsupported. Python standard library, SQLite; grading is opt-in. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · romiluz13 · `Py` · call site [`jevmory/cli.py`](https://github.com/romiluz13/jevmory/blob/HEAD/jevmory/cli.py), read 2026-09-22</sub>
+
+- **[jevotron](https://github.com/ai4curation/jevotron)** — Command-line field-level anomaly detection for CSV, JSON, text, SQLite and DuckDB: Jev labels each field of each entry NORMAL or ANOMALY, or with your own classes, given optional guidance and exemplars, and the output is a review queue sorted by confidence. SQLite caching reuses past answers. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · ai4curation · `Py` · `choice` · call site [`src/jevotron/client.py`](https://github.com/ai4curation/jevotron/blob/HEAD/src/jevotron/client.py), read by a model 2026-11-03</sub>
 
 - **[jevwire](https://github.com/Brainwires/jevwire)** — Jev decision layer for agents: MCP server, embeddable DecisionModel library, and an escalate-only Claude Code plugin (TypeSafe AI's Jev) <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · brainwires · `TS` · call site [`src/jev/client.ts`](https://github.com/Brainwires/jevwire/blob/HEAD/src/jev/client.ts), read 2026-09-22</sub>
@@ -154,23 +172,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Example: confidence-gated escalation](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/02-confidence-gate/main.py)** — Routing with an act-or-escalate gate, where the policy function is deliberately left unimplemented because the thresholds are yours to choose.
   <sub>`Snippet` · `Py` · `choice` · call site [`examples/02-confidence-gate/main.py`](https://github.com/kydlikebtc/awesome-jev/blob/HEAD/examples/02-confidence-gate/main.py), read 2026-09-22 · ⚠ `code untested`</sub>
 
-- **[Gatekeeper](https://github.com/AgriciDaniel/gatekeeper)** — Claude Code hook that decides which agent or skill should handle a prompt before the AI picks one: YAML rulebooks settle what code can, Jev answers which handler owns the rest as a Choice, and confidence bands turn that into route, suggest, confirm, escalate, block or allow. <sub>(written by a model)</sub>
-  <sub>`Plugin` · AgriciDaniel · `Py` · `choice` · `noul` · call site [`gatekeeper/jev.py`](https://github.com/AgriciDaniel/gatekeeper/blob/HEAD/gatekeeper/jev.py), read by a model 2026-11-01</sub>
-
 - **[grok-jev-guard](https://github.com/0xwhrari/grok-jev-guard)** — A typed preflight and approval layer for Grok Bot: local policy owns the hard boundaries, Jev judges the ambiguous cases, and Grok Bot executes within the envelope it gets back.
   <sub>`Project` · 0xwhrari · `Py` · call site [`src/grok_jev_guard/jev.py`](https://github.com/0xwhrari/grok-jev-guard/blob/HEAD/src/grok_jev_guard/jev.py), read 2026-09-24 · ⚠ `one commit`</sub>
-
-- **[jev-apply](https://github.com/theadaply/jev-apply)** — Job-application skill for CLI agents with a memory of your answers: Jev picks which saved answer fills each field of a Greenhouse, Ashby or Lever form, with an explicit none-of-these exit, and below a confidence threshold the field goes back to you instead of being guessed. <sub>(written by a model)</sub>
-  <sub>`Plugin` · theadaply · `JS` · `choice` · `noul` · call site [`src/jev/client.mjs`](https://github.com/theadaply/jev-apply/blob/HEAD/src/jev/client.mjs), read by a model 2026-11-03</sub>
 
 - **[jev-asks-until-sure](https://github.com/mintannn/jev-asks-until-sure)** — A twenty-questions guesser that keeps asking until Jev's calibrated confidence crosses a threshold — or gives up and says so <sub>(upstream description)</sub>
   <sub>`Project` · mintannn · `TS` · call site [`lib/jev.ts`](https://github.com/mintannn/jev-asks-until-sure/blob/HEAD/lib/jev.ts), read 2026-09-22</sub>
 
 - **[jev-block-android-ad](https://github.com/ufec/jev-block-android-ad)** — JevNoiseGate filters unwanted notifications and SMS on Android. Rather than matching keywords, an LLM decides what's noise — and only what it explicitly flags is blocked. Verification codes are matched on-device and never uploaded; anything uncertain passes through. <sub>(upstream description)</sub>
   <sub>`Project` · ufec · `Kt` · call site [`app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt`](https://github.com/ufec/jev-block-android-ad/blob/HEAD/app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt), read 2026-09-22</sub>
-
-- **[jev-browse](https://github.com/danielnc/jev-browse)** — Helpers for browser-harness that let Claude Code or Codex hand off a whole website sub-task in one fast_run call, with each step decided by Jev and a typed reason returned when it must stop. A port of browser-use/jev-ultrafast; the author reports 1.6–3.0x faster and 2.1–5.3x cheaper runs. <sub>(written by a model)</sub>
-  <sub>`Project` · danielnc · `Py` · call site [`jev_browse/config.py`](https://github.com/danielnc/jev-browse/blob/HEAD/jev_browse/config.py), read by a model 2026-10-24 · ⚠ `vendor numbers`</sub>
 
 - **[jev-calibration-audit](https://github.com/tapesymbolstate/jev-calibration-audit)** — Independent API-only calibration audit of TypeSafe AI's Jev decision model <sub>(upstream description)</sub>
   <sub>`Benchmark` · jujumilk3 · `Py` · call site [`src/jev_audit/client.py`](https://github.com/tapesymbolstate/jev-calibration-audit/blob/HEAD/src/jev_audit/client.py), read 2026-09-22 · ⚠ `one commit`</sub>
@@ -210,15 +219,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevbus](https://github.com/zkjoie/jevbus)** — A streaming event bus whose routing, subscription and consumption are decided by a probabilistic judge. The reference judge is TypeSafe AI's Jev (System One) model: send it a payload and a set of typed questions, get back calibrated probabilities instead of prose. <sub>(upstream description)</sub>
   <sub>`Project` · zkjoie · `Rs` · call site [`src/jev/http.rs`](https://github.com/zkjoie/jevbus/blob/HEAD/src/jev/http.rs), read 2026-09-22</sub>
-
-- **[jevelry](https://github.com/backant-io/jevelry)** — CLI, TUI and library keeping questions for Jev in small files called jevels; seventeen ship, for tickets, issues, pull requests, logs, alerts and failing tests. Each answer's certainty becomes act, mark for a person, or fall back, and every decision is logged so thresholds can be tuned on outcomes. <sub>(written by a model)</sub>
-  <sub>`Project` · backant-io · `TS` · `choice` · `noul` · `score` · call site [`src/ask.ts`](https://github.com/backant-io/jevelry/blob/HEAD/src/ask.ts), read by a model 2026-11-04</sub>
-
-- **[Jevline](https://github.com/tsale/jevline)** — Scopes an incident from security telemetry: from one confirmed-malicious process, it asks Jev of every process, account, host, address or domain the logs link to whether it belongs to the same incident, and follows what joins round by round. Answers near the threshold are marked for analyst review. <sub>(written by a model)</sub>
-  <sub>`Project` · tsale · `TS` · `noul` · call site [`engine/src/jev.ts`](https://github.com/tsale/jevline/blob/HEAD/engine/src/jev.ts), read by a model 2026-10-31</sub>
-
-- **[jevotron](https://github.com/ai4curation/jevotron)** — Command-line field-level anomaly detection for CSV, JSON, text, SQLite and DuckDB: Jev labels each field of each entry NORMAL or ANOMALY, or with your own classes, given optional guidance and exemplars, and the output is a review queue sorted by confidence. SQLite caching reuses past answers. <sub>(written by a model)</sub>
-  <sub>`Project` · ai4curation · `Py` · `choice` · call site [`src/jevotron/client.py`](https://github.com/ai4curation/jevotron/blob/HEAD/src/jevotron/client.py), read by a model 2026-11-03</sub>
 
 - **[luce](https://github.com/scienthoon/luce)** — Luce: a recipe for calibrated decision models — a sentence about your task in, a small model that answers typed questions with honest probabilities out (init → synth → train → eval → serve) <sub>(upstream description)</sub>
   <sub>`Project` · scienthoon · `Py` · call site [`scripts/jev_eval.mjs`](https://github.com/scienthoon/luce/blob/HEAD/scripts/jev_eval.mjs), read 2026-09-22</sub>

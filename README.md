@@ -12,7 +12,7 @@
   <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="docs/assets/readme-cover-en-light-mobile.svg">
   <source media="(max-width: 767px)" srcset="docs/assets/readme-cover-en-dark-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-en-dark.svg">
-  <img src="docs/assets/readme-cover-en-light.svg" alt="awesome-jev — Jev Decision Atlas: 1,370 public resources, 1,261 dated HTTP 2xx link records, and 1,192 call-site citation records. Counts describe saved records, not current link availability or passed runtime and performance tests." width="100%">
+  <img src="docs/assets/readme-cover-en-light.svg" alt="awesome-jev — Jev Decision Atlas: 1,370 public resources, 1,367 dated HTTP 2xx link records, and 1,192 call-site citation records. Counts describe saved records, not current link availability or passed runtime and performance tests." width="100%">
 </picture>
 </a>
 
@@ -193,6 +193,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 
   > Self-limits correctly: a use-case study, not a model leaderboard. That restraint is rarer than the numbers.
 
+- **[Convex Coding Evals](https://github.com/convex/convex-evals)**<br>
+  Convex's coding benchmark adds a decision-model track: 108 multiple-choice questions on Convex knowledge, four options each, covering 90 of its 112 coding evals. Jev answers each as one `choice` through OpenRouter's decisions endpoint; language models answer them through chat completions. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ★100+ · convex · `TS` · `choice` · [call site](https://github.com/convex/convex-evals/blob/HEAD/runner/decisions/providers.ts), read by a model 2026-10-29</sub>
+
+  > The decision track has its own score and leaderboard, and the README says a correct choice does not show a model can write working Convex code. Hosted runs pin typesafe/jev-1.13 and use three option orderings. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-29; a maintainer has not yet read the call site.
+
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)**<br>
   Biologically-inspired memory for AI agents. Decay, retrieval strengthening, consolidation. Zero runtime deps, SQLite, MCP. Benchmarked retrieval with an opt-in TypeSafe Jev reranker.<br>
   <sub>`Benchmark` · ★100+ · kitfunso · `TS` · [call site](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/rerankers/jev.ts), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
@@ -200,10 +206,6 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[jev-arena](https://github.com/NanmiCoder/jev-arena)**<br>
   An introduction to Jev with hands-on tests: Choice, Score and Noul turn natural language into typed judgements for classification, scoring and routing, compared with DeepSeek on comment labelling, speed and results, with CSV import, replay and offline reports.<br>
   <sub>`Benchmark` · ★100+ · nanmicoder · `JS` · [call site](https://github.com/NanmiCoder/jev-arena/blob/HEAD/src/backends/jev.mjs), read 2026-09-24</sub>
-
-- **[jevbench](https://github.com/fstandhartinger/jevbench)**<br>
-  Benchmark Heaven's benchmark for Jev and Jev-compatible decision models: noul, choice and score tasks, sent through a /v1/systemone adapter and scored for accuracy, calibration, latency and cost. Release v1.6.1 (2026-10-06); some inputs are sealed, so it cannot be fully rerun independently. <sub>(written by a model)</sub><br>
-  <sub>`Benchmark` · ★100+ · fstandhartinger · `Py` · [call site](https://github.com/fstandhartinger/jevbench/blob/HEAD/jevbench/adapters/typesafe.py), read 2026-09-22</sub>
 
 **10 of 80** shown: the negative results first, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path, in its order, then the first of the others in list order · [all 80 on one page, with every note →](docs/measured.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en)
 
@@ -231,6 +233,10 @@ _Which tool or action the agent should call next._
   Runnable demo code for a smart home assistant that evaluates user requests with typed decisions.<br>
   <sub>`Official docs` · `Py`</sub>
 
+- **[agent-desktop](https://github.com/vercel-labs/agent-desktop)**<br>
+  Desktop automation that reads the system accessibility tree and decides which button, menu or field to act on next.<br>
+  <sub>`Project` · ★10k+ · `Rs` · `choice` · `noul` · [call site](https://github.com/vercel-labs/agent-desktop/blob/HEAD/scripts/jev/policy.mjs), read 2026-09-24</sub>
+
 - **[ai-hedge-fund](https://github.com/virattt/ai-hedge-fund)**<br>
   Educational paper-trading and backtesting app whose investor-persona agents turn a financial snapshot into a bullish, bearish or neutral signal. With TypeSafe as provider, one Jev request per agent asks a choice of direction and a five-level score of each case's strength, mapped to the agents' JSON. <sub>(written by a model)</sub><br>
   <sub>`Integration` · ★10k+ · virattt · `Py` · [call site](https://github.com/virattt/ai-hedge-fund/blob/HEAD/hedge_fund/llm/client.py), read 2026-09-24</sub>
@@ -257,10 +263,6 @@ _Which tool or action the agent should call next._
 
   **Caveats:** `vendor numbers`
 
-- **[json-render](https://github.com/vercel-labs/json-render)**<br>
-  Vercel Labs' generative UI framework. In its Jev experiment the model does not write JSON token by token — it only picks components, props and layout.<br>
-  <sub>`Project` · ★10k+ · Vercel Labs · `TS` · `choice` · [call site](https://github.com/vercel-labs/json-render/blob/HEAD/apps/web/lib/jev/compose.ts), read 2026-09-22</sub>
-
 **10 of 253** shown · [all 253 on one page →](docs/by-pattern/tool-selection.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en)
 
 <sub>[↑ Pattern index](#pattern-index)</sub>
@@ -268,6 +270,10 @@ _Which tool or action the agent should call next._
 ### Intent routing
 
 _Classify what the user wants and send the request down the right branch._
+
+- **[TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai)** ⭐<br>
+  TypeSafe's own n8n community node. Evaluate asks Jev typed questions about each item and adds the answers; Route sends each item to an output by one answer, with a fallback output for low-confidence choices and an uncertain one between two noul thresholds. AI Agents can use it as a tool. <sub>(written by a model)</sub><br>
+  <sub>`Plugin` · ★10+ · typesafe-ai · `TS` · `choice` · `noul` · `score` · [call site](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/api.ts), read by a model 2026-11-04</sub>
 
 - **[Demo: Smart home assistant](https://docs.typesafe.ai/demos/smart-home)** ⭐<br>
   Runnable demo code for a smart home assistant that evaluates user requests with typed decisions.<br>
@@ -280,10 +286,6 @@ _Classify what the user wants and send the request down the right branch._
 - **[Pattern: Intent routing](https://docs.typesafe.ai/patterns/intent-routing)** ⭐<br>
   Classify an incoming request and route it to the cheapest adequate handler: deterministic code, a specialist LLM, or a person.<br>
   <sub>`Official docs` · `Py` · `choice`</sub>
-
-- **[TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai)** ⭐<br>
-  TypeSafe's own n8n community node. Evaluate asks Jev typed questions about each item and adds the answers; Route sends each item to an output by one answer, with a fallback output for low-confidence choices and an uncertain one between two noul thresholds. AI Agents can use it as a tool. <sub>(written by a model)</sub><br>
-  <sub>`Plugin` · typesafe-ai · `TS` · `choice` · `noul` · `score` · [call site](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/api.ts), read by a model 2026-11-04</sub>
 
 - **[AutoGPT TypeSafe blocks](https://github.com/Significant-Gravitas/AutoGPT/tree/master/autogpt_platform/backend/backend/blocks/typesafe)**<br>
   Seven production blocks — choice, score, yes/no, ask-many, route, pick-best, filter — with a UTF-8 byte budget, verbatim wire capture and eleven test files.<br>
@@ -345,6 +347,10 @@ _Decide which tool calls and results still matter so stale context can be droppe
   Plugin answering one question, should I /compact now: one Jev request asks two choices (is the latest unit of work finished; hands-on or coordination), combined in code into a score whose floor relaxes from 0.90 to 0.50 as the context fills. It hints, or compacts on Pi and Claude Code if you opt in. <sub>(written by a model)</sub><br>
   <sub>`Project` · ★100+ · kunchenguid · `TS` · [call site](https://github.com/kunchenguid/compact-adviser/blob/HEAD/packages/claude-mod/lib/judge.ts), read 2026-09-22</sub>
 
+- **[deepseek-harness-jev (luobosibing2)](https://github.com/luobosibing2/dsh-jev-plugin)**<br>
+  DeepSeek Harness plugin with twelve opt-in features using Jev as the judgment model: skill selection and glob-result ranking (one `noul` per candidate), completion and goal checks, drift reminders, interjection routing, tool-output and test-log filtering, and approval of single workspace operations. <sub>(written by a model)</sub><br>
+  <sub>`Plugin` · ★100+ · luobosibing2 · `TS` · `noul` · [call site](https://github.com/luobosibing2/dsh-jev-plugin/blob/HEAD/packages/jev/src/selection.ts), read by a model 2026-10-28</sub>
+
 - **[jev-pruner](https://github.com/tamaratran/jev-pruner)**<br>
   Trims long shell output before the model sees it, asking one Noul per chunk.<br>
   <sub>`Plugin` · ★100+ · tamaratran · `TS` · `noul` · [call site](https://github.com/tamaratran/jev-pruner/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
@@ -358,10 +364,6 @@ _Decide which tool calls and results still matter so stale context can be droppe
 - **[Quicksilver](https://github.com/UditAkhourii/quicksilver)**<br>
   Claude Code skill that hands relevance calls to Jev: one noul per file, log line or ticket ('which of these files handle auth?'), asked in parallel and sorted by probability, so Claude gets a shortlist with confidences instead of reading everything. <sub>(written by a model)</sub><br>
   <sub>`Plugin` · ★100+ · uditakhourii · `JS` · `noul` · [call site](https://github.com/UditAkhourii/quicksilver/blob/HEAD/skills/quicksilver/scripts/qs.mjs), read by a model 2026-10-24</sub>
-
-- **[Winnow](https://github.com/GhalebDweikat/winnow)**<br>
-  Context garbage collection for Claude Code: when Read, Bash or Grep dump a wall of output, each chunk is judged for relevance to the current task.<br>
-  <sub>`Plugin` · ★100+ · `Py` · `noul` · [call site](https://github.com/GhalebDweikat/winnow/blob/HEAD/sidecar/src/winnow/judge.py), read 2026-09-22</sub>
 
 **10 of 41** shown · [all 41 on one page →](docs/by-pattern/context-compaction.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en)
 
@@ -403,13 +405,13 @@ _Decide whether an action is safe to run. Defence in depth, never a security bou
   Coding-agent runtime in which workflows are versioned TypeScript stages with executable checks, review gates and human approvals. Its AI package lists Jev from models.dev as a System One decision model on five providers, apart from the chat models; the README does not say where a workflow calls it. <sub>(written by a model)</sub><br>
   <sub>`Project` · ★100+ · bastani-inc · `TS` · [call site](https://github.com/bastani-inc/atomic/blob/HEAD/packages/ai/src/decision-models.generated.ts), read 2026-09-24</sub>
 
+- **[deepseek-harness-jev (luobosibing2)](https://github.com/luobosibing2/dsh-jev-plugin)**<br>
+  DeepSeek Harness plugin with twelve opt-in features using Jev as the judgment model: skill selection and glob-result ranking (one `noul` per candidate), completion and goal checks, drift reminders, interjection routing, tool-output and test-log filtering, and approval of single workspace operations. <sub>(written by a model)</sub><br>
+  <sub>`Plugin` · ★100+ · luobosibing2 · `TS` · `noul` · [call site](https://github.com/luobosibing2/dsh-jev-plugin/blob/HEAD/packages/jev/src/selection.ts), read by a model 2026-10-28</sub>
+
 - **[grok-bot-jev](https://github.com/Bodila51/grok-bot-jev)**<br>
   Router for Grok Bot that asks Jev, before research, browsing, retries or subagents, which action a request needs: reuse a cached artifact, stop a failing retry, run deterministic code, cap research, allow a subagent or ask a person. Shadow mode only logs; active mode relies on a pasted skill. <sub>(written by a model)</sub><br>
   <sub>`Plugin` · ★100+ · bodila51 · `Py` · [call site](https://github.com/Bodila51/grok-bot-jev/blob/HEAD/src/jev_client.py), read 2026-09-22</sub>
-
-- **[Jev-cu](https://github.com/Sac-Y/Jev-cu)**<br>
-  A computer-use agent that asks which accessibility-tree element to act on, plus a separate noul for whether the action needs explicit user confirmation.<br>
-  <sub>`Project` · ★100+ · `JS` · `choice` · `noul` · [call site](https://github.com/Sac-Y/Jev-cu/blob/HEAD/scripts/jev-decide.mjs), read 2026-09-22</sub>
 
 **10 of 156** shown · [all 156 on one page →](docs/by-pattern/safety-gating.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en)
 
@@ -439,6 +441,10 @@ _Check a model's output against a rubric before it reaches a user._
   Hooks into Claude Code, Codex, OpenCode and Pi and, on every edit or turn, asks Jev one yes-or-no question per rule in AGENTS.md or CLAUDE.md, showing only the rule and the diff; a broken rule goes back to the agent to fix. On 93 replayed sessions Jev flagged 39 edits; a reviewer confirmed 10. <sub>(written by a model)</sub><br>
   <sub>`Plugin` · ★100+ · coldteadotai · `TS` · [call site](https://github.com/coldteadotai/abide/blob/HEAD/packages/cli/src/lib/jev.ts), read 2026-09-24</sub>
 
+- **[arc-cua](https://github.com/shhivv/arc-cua)**<br>
+  macOS action loop for computer-use agents: a planner hands off a bounded desktop subtask, and Jev picks each next UI operation and target from what the window exposes, as `choice` questions, with one more `choice` per success criterion; literal text only ever comes from the planner. <sub>(written by a model)</sub><br>
+  <sub>`Project` · ★100+ · shhivv · `Py` · `choice` · [call site](https://github.com/shhivv/arc-cua/blob/HEAD/src/arc_cua/policies/typesafe.py), read by a model 2026-10-29</sub>
+
 - **[atomic](https://github.com/bastani-inc/atomic)**<br>
   Coding-agent runtime in which workflows are versioned TypeScript stages with executable checks, review gates and human approvals. Its AI package lists Jev from models.dev as a System One decision model on five providers, apart from the chat models; the README does not say where a workflow calls it. <sub>(written by a model)</sub><br>
   <sub>`Project` · ★100+ · bastani-inc · `TS` · [call site](https://github.com/bastani-inc/atomic/blob/HEAD/packages/ai/src/decision-models.generated.ts), read 2026-09-24</sub>
@@ -447,19 +453,13 @@ _Check a model's output against a rubric before it reaches a user._
   Guards against a coding agent claiming it finished: reads tool output, the diff and test results, then judges whether the completion claim holds.<br>
   <sub>`Project` · ★100+ · `TS` · `noul` · `score` · [call site](https://github.com/qkal/Canny/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
+- **[deepseek-harness-jev (luobosibing2)](https://github.com/luobosibing2/dsh-jev-plugin)**<br>
+  DeepSeek Harness plugin with twelve opt-in features using Jev as the judgment model: skill selection and glob-result ranking (one `noul` per candidate), completion and goal checks, drift reminders, interjection routing, tool-output and test-log filtering, and approval of single workspace operations. <sub>(written by a model)</sub><br>
+  <sub>`Plugin` · ★100+ · luobosibing2 · `TS` · `noul` · [call site](https://github.com/luobosibing2/dsh-jev-plugin/blob/HEAD/packages/jev/src/selection.ts), read by a model 2026-10-28</sub>
+
 - **[fastbrowse](https://github.com/agent-labs-dev/fastbrowse)**<br>
   Browser agent: each page is indexed into candidate controls and Jev chooses the next one, so it cannot click what is not there; a Gemini Flash LLM plans and reads, and answers cite the page. Its maintainer recorded 99.2% on 46 tasks against 97.8% for hosted Browser Use, at under a tenth of the cost. <sub>(written by a model)</sub><br>
   <sub>`Project` · ★100+ · agent-labs-dev · `Py` · [call site](https://github.com/agent-labs-dev/fastbrowse/blob/HEAD/src/fastbrowse/clients/typesafe.py), read 2026-09-22</sub>
-
-- **[formanator](https://github.com/timrogers/formanator)**<br>
-  Submits Forma benefit claims from the command line or an MCP client. With --category-provider jev, Jev picks the benefit and category with a choice over the pairs Forma allows plus no_match, seeing only merchant and description; under 0.5 confidence or no match it falls back to the configured LLM. <sub>(written by a model)</sub><br>
-  <sub>`Plugin` · ★100+ · timrogers · `Rs` · [call site](https://github.com/timrogers/formanator/blob/HEAD/src/typesafe.rs), read 2026-09-22</sub>
-
-- **[jev-eval-agent](https://github.com/vinilana/jev-eval-agent)**<br>
-  An agent that routes evaluation work through typed decisions.<br>
-  <sub>`Project` · ★100+ · vinilana · `TS` · [call site](https://github.com/vinilana/jev-eval-agent/blob/HEAD/agent/lib/jev-router.ts), read 2026-09-22</sub>
-
-  **Caveats:** `no licence`
 
 **10 of 150** shown · [all 150 on one page →](docs/by-pattern/output-validation.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en)
 
@@ -521,6 +521,10 @@ All 8 shown · [on its own page](docs/by-pattern/retry-control.md) · [filter on
 
 _Use calibrated confidence to decide what a person must see._
 
+- **[TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai)** ⭐<br>
+  TypeSafe's own n8n community node. Evaluate asks Jev typed questions about each item and adds the answers; Route sends each item to an output by one answer, with a fallback output for low-confidence choices and an uncertain one between two noul thresholds. AI Agents can use it as a tool. <sub>(written by a model)</sub><br>
+  <sub>`Plugin` · ★10+ · typesafe-ai · `TS` · `choice` · `noul` · `score` · [call site](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/api.ts), read by a model 2026-11-04</sub>
+
 - **[Cookbook: Classification using confidence](https://docs.typesafe.ai/cookbooks/classification_using_confidence)** ⭐<br>
   Classifies annual reports into 75 industry groups, then reads the answer's own confidence to decide whether to report that group or the broader division above it.<br>
   <sub>`Official docs` · `Py` · `choice`</sub>
@@ -544,10 +548,6 @@ _Use calibrated confidence to decide what a person must see._
 - **[Pattern: Confidence-gated routing](https://docs.typesafe.ai/patterns/confidence-routing)** ⭐<br>
   Treat confidence as a second axis: the answer tells you what, the confidence tells you whether to act on it.<br>
   <sub>`Official docs` · `Py`</sub>
-
-- **[TypeSafe AI n8n node](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai)** ⭐<br>
-  TypeSafe's own n8n community node. Evaluate asks Jev typed questions about each item and adds the answers; Route sends each item to an output by one answer, with a fallback output for low-confidence choices and an uncertain one between two noul thresholds. AI Agents can use it as a tool. <sub>(written by a model)</sub><br>
-  <sub>`Plugin` · typesafe-ai · `TS` · `choice` · `noul` · `score` · [call site](https://github.com/typesafe-ai/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/api.ts), read by a model 2026-11-04</sub>
 
 - **[Confidence](https://docs.typesafe.ai/confidence)** ⭐<br>
   How Choice and Score confidence is derived from probabilities, how Noul differs, and how to tune thresholds for the question and application.<br>
@@ -653,6 +653,12 @@ _Pack many questions — including speculative ones — into one request and let
   A graded course from a first call through each primitive, state shapes and criteria, to ticket triage and a multi-step workflow, mirroring all four official patterns.<br>
   <sub>`Tutorial` · ★1k+ · `Py` · `choice` · `score` · `noul` · [call site](https://github.com/daveebbelaar/ai-cookbook/blob/HEAD/models/jev/06-criteria.py), read 2026-09-22</sub>
 
+- **[Hey Jev](https://github.com/henryklunaris/hey-jev)**<br>
+  macOS voice assistant: local Whisper transcribes a command, then one Jev request asks every question at once (category, compound or not, target, app, action, volume level) as `choice`, `noul` and `score` questions; code runs the action through AppleScript, and only general questions reach an LLM. <sub>(written by a model)</sub><br>
+  <sub>`Project` · ★100+ · henryklunaris · `Py` · `choice` · `noul` · `score` · [call site](https://github.com/henryklunaris/hey-jev/blob/HEAD/siri.py), read by a model 2026-10-29</sub>
+
+  **Caveats:** `no licence` · `3rd-party key`
+
 - **[jev-chat: a tool-calling chatbot with no LLM](https://github.com/w3cj/jev-chat)**<br>
   A chat bot that does tool calling with no language model anywhere: one request asks the request kind, the tool, and every tool's arguments at once.<br>
   <sub>`Project` · ★100+ · `TS` · `choice` · `noul` · [call site](https://github.com/w3cj/jev-chat/blob/HEAD/apps/server/src/jev/client.ts), read 2026-09-22</sub>
@@ -662,12 +668,6 @@ _Pack many questions — including speculative ones — into one request and let
   <sub>`Jev-like alternative` · ★100+ · zwlijay · `Py` · [cited file](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py), read 2026-09-22</sub>
 
   **Caveats:** `not Jev itself`
-
-- **[VideoJev](https://github.com/MCG-NJU/VideoJev)**<br>
-  Open System One video models that score temporal candidates and multiple-choice options for several queries over one shared video prefix, then return intervals, answers, and candidate probabilities without text generation.<br>
-  <sub>`Jev-like alternative` · ★100+ · Yuhan Zhu and collaborators · `Py`</sub>
-
-  **Caveats:** `not Jev itself` · `code untested` · `self-submitted`
 
 **10 of 38** shown · [all 38 on one page →](docs/by-pattern/fan-out.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en)
 
@@ -749,27 +749,29 @@ _Pull typed fields out of messy text by choosing among candidates rather than ge
 
   **Caveats:** `vendor numbers`
 
+- **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)**<br>
+  Weekly go-to-market experiments with Jev, each tested against Claude: lead triage and routing, deal risk, reply triage, MEDDPICC fields from call summaries, duplicate accounts and closed-lost reactivation, plus an MCP server. A shared client subtracts a measured score bias of 0.30 before rounding. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ★10+ · deepdave98 · `Py` · `noul` · `choice` · `score` · [call site](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py), read by a model 2026-10-31</sub>
+
+  **Caveats:** `no licence`
+
+- **[jev-apply](https://github.com/theadaply/jev-apply)**<br>
+  Job-application skill for CLI agents with a memory of your answers: Jev picks which saved answer fills each field of a Greenhouse, Ashby or Lever form, with an explicit none-of-these exit, and below a confidence threshold the field goes back to you instead of being guessed. <sub>(written by a model)</sub><br>
+  <sub>`Plugin` · ★10+ · theadaply · `JS` · `choice` · `noul` · [call site](https://github.com/theadaply/jev-apply/blob/HEAD/src/jev/client.mjs), read by a model 2026-11-03</sub>
+
+- **[jev-design](https://github.com/bilune/jev-design)**<br>
+  Experiment in having Jev design a dashboard: from a one-sentence brief like "an 18th century printed book", two staged requests of choice, score and yes/no questions pick every visual token (colour, type, radius, icons) from a catalog a person wrote, and an engine applies them to a Next.js console. <sub>(written by a model)</sub><br>
+  <sub>`Project` · ★10+ · bilune · `TS` · `choice` · `score` · `noul` · [call site](https://github.com/bilune/jev-design/blob/HEAD/src/design/jev/generate.ts), read by a model 2026-10-30</sub>
+
+  **Caveats:** `no licence`
+
 - **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)**<br>
   Computer-use agent for native macOS apps on Apple silicon: OmniParser CoreML, Apple Vision OCR and accessibility labels find a window's controls locally, and Jev picks the next action with a choice from the observed text, never pixels. Input is guarded, and benchmarks check results, not Jev's DONE. <sub>(written by a model)</sub><br>
   <sub>`Project` · ★10+ · jcpsimmons · `JS` · [call site](https://github.com/jcpsimmons/jev-macos-loop/blob/HEAD/src/providers.mjs), read 2026-09-22</sub>
 
-- **[jevfill](https://github.com/imohitmayank/jevfill)**<br>
-  A Chrome extension that fills web forms from unstructured notes with Jev: paste your details once as plain text, with no structured profile, then fill forms on demand.<br>
-  <sub>`Plugin` · ★10+ · imohitmayank · `TS` · [call site](https://github.com/imohitmayank/jevfill/blob/HEAD/src/jev/client.ts), read 2026-09-24</sub>
-
-- **[JevSpan](https://github.com/lzq-0529/jev-span)**<br>
-  Zero-shot named entity recognition for Chinese and English: code enumerates candidate spans at punctuation, and Jev choice questions nominate a window per entity type, verify each nominee (type, none, mixed or partial) and pick its exact boundary, keeping each entity's probability.<br>
-  <sub>`Project` · ★10+ · lzq-0529 · `Py` · `choice` · [call site](https://github.com/lzq-0529/jev-span/blob/HEAD/src/jevspan/jev_client.py), read 2026-09-30</sub>
-
-  **Caveats:** `AI-written` · `self-submitted`
-
-- **[smart-paste](https://github.com/nomanjack/smart-paste)**<br>
-  Fills form fields from pasted text: the form's heading, labels and your text go to TypeSafe, and it inserts the values it matches for you to review before submitting.<br>
-  <sub>`Plugin` · ★10+ · nomanjack · `JS` · [call site](https://github.com/nomanjack/smart-paste/blob/HEAD/worker.js), read 2026-09-24</sub>
-
-- **[ask-jev](https://github.com/logicrw/ask-jev)**<br>
-  Standard-library CLI that hands an agent's small judgments to Jev within a 280 ms advisory budget: choose (a choice), check (a noul on whether evidence shows a claim), score, a batch of at most 32, and purify, a noul per passage keeping only relevant original lines. Fails open; the agent decides. <sub>(written by a model)</sub><br>
-  <sub>`Project` · logicrw · `Py` · [call site](https://github.com/logicrw/ask-jev/blob/HEAD/scripts/jev_context.py), read 2026-09-24</sub>
+- **[jeveryword](https://github.com/jkrup/jeveryword)**<br>
+  Text extraction with Jev: field extraction, PII detection and exact quotes, built on TypeSafe's Jev. <sub>(upstream description)</sub><br>
+  <sub>`Project` · ★10+ · jkrup · `JS` · [call site](https://github.com/jkrup/jeveryword/blob/HEAD/src/client.mjs), read 2026-09-22</sub>
 
 **10 of 21** shown · [all 21 on one page →](docs/by-pattern/data-extraction.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en)
 
@@ -778,6 +780,12 @@ _Pull typed fields out of messy text by choosing among candidates rather than ge
 ### Classification
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
+
+- **[WorkflowEvals](https://github.com/typesafe-ai/workflowevals)** ⭐<br>
+  TypeSafe's code for reproducing its WorkflowEvals site: four business workflows (invoice approval and fraud triage, customer-service routing and actions, agent-run action selection, security-alert triage), 705 cases scored against OpenAI, Anthropic and consensus references. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ★10+ · typesafe-ai · `Py` · `noul` · `choice` · `score` · [call site](https://github.com/typesafe-ai/workflowevals/blob/HEAD/core/clients.py), read by a model 2026-11-02</sub>
+
+  **Caveats:** `one commit` · `vendor numbers`
 
 - **[Cookbook: Classification using confidence](https://docs.typesafe.ai/cookbooks/classification_using_confidence)** ⭐<br>
   Classifies annual reports into 75 industry groups, then reads the answer's own confidence to decide whether to report that group or the broader division above it.<br>
@@ -794,12 +802,6 @@ _Put an item into a taxonomy, including deep hierarchies walked with probabiliti
 - **[Cookbook: Structure recovery](https://docs.typesafe.ai/cookbooks/autoformat)** ⭐<br>
   Reconstructs Markdown from plain text that lost its formatting, in two requests: one restitches hard-wrapped lines, one classifies every block.<br>
   <sub>`Official docs` · `Py`</sub>
-
-- **[WorkflowEvals](https://github.com/typesafe-ai/workflowevals)** ⭐<br>
-  TypeSafe's code for reproducing its WorkflowEvals site: four business workflows (invoice approval and fraud triage, customer-service routing and actions, agent-run action selection, security-alert triage), 705 cases scored against OpenAI, Anthropic and consensus references. <sub>(written by a model)</sub><br>
-  <sub>`Benchmark` · typesafe-ai · `Py` · `noul` · `choice` · `score` · [call site](https://github.com/typesafe-ai/workflowevals/blob/HEAD/core/clients.py), read by a model 2026-11-02</sub>
-
-  **Caveats:** `vendor numbers`
 
 - **[Inbox Zero: seven email decisions](https://github.com/elie222/inbox-zero)**<br>
   Seven distinct email decisions, each with its own separately chosen threshold, falling back to the normal LLM on any error.<br>
@@ -853,6 +855,10 @@ _Turn free text into numeric features for a classical downstream model._
   Gives Jev vision: local Florence-2 and CLIP models find the objects in an image, video or RGB-D frame and keep their IDs across frames, then Jev answers a choice, noul or score about each relevant object (bus colour, pedestrian risk, animal motion). <sub>(written by a model)</sub><br>
   <sub>`Project` · ★10+ · charlesfeng0314 · `Py` · `choice` · `noul` · `score` · [call site](https://github.com/CharlesFeng0314/JEV_sees/blob/HEAD/jev_sees/session.py), read by a model 2026-10-24</sub>
 
+- **[Truffler](https://github.com/kieranklaassen/truffler)**<br>
+  Intent search for Rails apps: on save, Truffler asks Jev the noul, choice and score questions declared for a record and stores each answer as a number, a named-dimension embedding that search weighs by intent. On request Jev also reranks top results into Strong, Possible and Unlikely. <sub>(written by a model)</sub><br>
+  <sub>`Integration` · ★10+ · kieranklaassen · `Rb` · `noul` · `choice` · `score` · [call site](https://github.com/kieranklaassen/truffler/blob/HEAD/lib/truffler/questions.rb), read by a model 2026-10-30</sub>
+
 - **[jev-board-lab](https://github.com/WebGrga/jev-board-lab)**<br>
   Password-protected browser workbench that turns CSV rows into Jev judgments: you write at most 20 noul, choice or score questions and run them on at most 25 selected rows, each row sent as one state through a Cloudflare Worker that holds the key. The CSV stays in the browser. <sub>(written by a model)</sub><br>
   <sub>`Project` · webgrga · `JS` · [call site](https://github.com/WebGrga/jev-board-lab/blob/HEAD/worker/src/index.js), read 2026-09-22</sub>
@@ -866,10 +872,6 @@ _Turn free text into numeric features for a classical downstream model._
 - **[tiershift](https://github.com/iamvatsalpatel/tiershift)**<br>
   Model router that starts each request on the cheapest tier and lifts it only when Jev's signals (multi-step reasoning, difficulty, stakes, safety) cross a YAML policy. On its author's 120 prompts it matched the flagship's quality at 40% less cost; the fast model alone did as well at 3% of the cost. <sub>(written by a model)</sub><br>
   <sub>`Project` · iamvatsalpatel · `TS` · [call site](https://github.com/iamvatsalpatel/tiershift/blob/HEAD/bench/experiments/gate-experiment.ts), read 2026-09-22</sub>
-
-- **[Truffler](https://github.com/kieranklaassen/truffler)**<br>
-  Intent search for Rails apps: on save, Truffler asks Jev the noul, choice and score questions declared for a record and stores each answer as a number, a named-dimension embedding that search weighs by intent. On request Jev also reranks top results into Strong, Possible and Unlikely. <sub>(written by a model)</sub><br>
-  <sub>`Integration` · kieranklaassen · `Rb` · `noul` · `choice` · `score` · [call site](https://github.com/kieranklaassen/truffler/blob/HEAD/lib/truffler/questions.rb), read by a model 2026-10-30</sub>
 
 All 9 shown · [on its own page](docs/by-pattern/feature-extraction.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=feature-extraction&lang=en)
 
@@ -927,19 +929,29 @@ _Classify and route incoming documents, invoices and forms._
 
 _Route support tickets and conversations by intent and urgency._
 
+- **[WorkflowEvals](https://github.com/typesafe-ai/workflowevals)** ⭐<br>
+  TypeSafe's code for reproducing its WorkflowEvals site: four business workflows (invoice approval and fraud triage, customer-service routing and actions, agent-run action selection, security-alert triage), 705 cases scored against OpenAI, Anthropic and consensus references. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ★10+ · typesafe-ai · `Py` · `noul` · `choice` · `score` · [call site](https://github.com/typesafe-ai/workflowevals/blob/HEAD/core/clients.py), read by a model 2026-11-02</sub>
+
+  **Caveats:** `one commit` · `vendor numbers`
+
 - **[Quickstart](https://docs.typesafe.ai/introduction/quickstart)** ⭐<br>
   The canonical first call: one support ticket, one Choice, one Score and one Noul in a single request, in Python, JS and cURL.<br>
   <sub>`Official docs` · `Py` · `TS` · `sh` · `choice` · `score` · `noul`</sub>
 
-- **[WorkflowEvals](https://github.com/typesafe-ai/workflowevals)** ⭐<br>
-  TypeSafe's code for reproducing its WorkflowEvals site: four business workflows (invoice approval and fraud triage, customer-service routing and actions, agent-run action selection, security-alert triage), 705 cases scored against OpenAI, Anthropic and consensus references. <sub>(written by a model)</sub><br>
-  <sub>`Benchmark` · typesafe-ai · `Py` · `noul` · `choice` · `score` · [call site](https://github.com/typesafe-ai/workflowevals/blob/HEAD/core/clients.py), read by a model 2026-11-02</sub>
-
-  **Caveats:** `vendor numbers`
-
 - **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)**<br>
   A graded course from a first call through each primitive, state shapes and criteria, to ticket triage and a multi-step workflow, mirroring all four official patterns.<br>
   <sub>`Tutorial` · ★1k+ · `Py` · `choice` · `score` · `noul` · [call site](https://github.com/daveebbelaar/ai-cookbook/blob/HEAD/models/jev/06-criteria.py), read 2026-09-22</sub>
+
+- **[jev-demo](https://github.com/soyjorgepilo/jev-demo)**<br>
+  Three Spanish-language demos of one pattern, Jev decides and code acts: Jira ticket triage that applies, marks for review or escalates; a pre-flight pass that flags functions before Claude explains only those; and a PR router sending each pull request to rules, Haiku or Sonnet. <sub>(written by a model)</sub><br>
+  <sub>`Project` · ★10+ · soyjorgepilo · `TS` · `choice` · `noul` · `score` · [call site](https://github.com/soyjorgepilo/jev-demo/blob/HEAD/shared/jev.ts), read by a model 2026-11-04</sub>
+
+  **Caveats:** `one commit` · `no licence` · `3rd-party key`
+
+- **[jevelry](https://github.com/backant-io/jevelry)**<br>
+  CLI, TUI and library keeping questions for Jev in small files called jevels; seventeen ship, for tickets, issues, pull requests, logs, alerts and failing tests. Each answer's certainty becomes act, mark for a person, or fall back, and every decision is logged so thresholds can be tuned on outcomes. <sub>(written by a model)</sub><br>
+  <sub>`Project` · ★10+ · backant-io · `TS` · `choice` · `noul` · `score` · [call site](https://github.com/backant-io/jevelry/blob/HEAD/src/ask.ts), read by a model 2026-11-04</sub>
 
 - **[spring-ai-typesafe](https://spring.io/blog/2026/09/21/spring-ai-typesafe-structured-judgment)**<br>
   A community Spring AI starter bringing typed decisions to Java, with a builder API over the three question types.<br>
@@ -964,16 +976,6 @@ _Route support tickets and conversations by intent and urgency._
 - **[Jev on Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/)**<br>
   Workers AI binding and REST samples asking a noul, a choice and a score in one call, with the full response including per-answer confidence.<br>
   <sub>`Integration` · `TS` · `sh` · `noul` · `choice` · `score`</sub>
-
-- **[jev-demo](https://github.com/soyjorgepilo/jev-demo)**<br>
-  Three Spanish-language demos of one pattern, Jev decides and code acts: Jira ticket triage that applies, marks for review or escalates; a pre-flight pass that flags functions before Claude explains only those; and a PR router sending each pull request to rules, Haiku or Sonnet. <sub>(written by a model)</sub><br>
-  <sub>`Project` · soyjorgepilo · `TS` · `choice` · `noul` · `score` · [call site](https://github.com/soyjorgepilo/jev-demo/blob/HEAD/shared/jev.ts), read by a model 2026-11-04</sub>
-
-  **Caveats:** `no licence` · `3rd-party key`
-
-- **[jev-triage](https://github.com/boldbug1/jev-triage)**<br>
-  Go command-line tool that sorts messages by urgency: one Jev request per message asks a choice of kind (bug, billing, feature request, account, other), a 0–3 urgency score and a noul on whether the sender sounds frustrated. Below 0.8 category confidence a message goes to a review-by-hand list. <sub>(written by a model)</sub><br>
-  <sub>`Project` · boldbug1 · `Go` · [call site](https://github.com/boldbug1/jev-triage/blob/HEAD/main.go), read 2026-09-24</sub>
 
 **10 of 12** shown · [all 12 on one page →](docs/by-pattern/support-triage.md) · [filter on the site](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=en)
 
@@ -1035,15 +1037,15 @@ _Score quality, risk or relevance on an ordered scale._
 
 _Choose what to surface next, fast enough for a live conversation._
 
+- **[jev-linkmap](https://github.com/stas4000/jev-linkmap)**<br>
+  Rebuilds a website's internal links: code crawls the site and shortlists 15 similar pages per page with anchor phrases already in its copy, then one Jev request per page asks, for each target, whether to link (yes/no) and which phrase is the anchor (choice). <sub>(written by a model)</sub><br>
+  <sub>`Project` · ★10+ · stas4000 · `Py` · `noul` · `choice` · [call site](https://github.com/stas4000/jev-linkmap/blob/HEAD/jev_linkmap/jev.py), read by a model 2026-11-01</sub>
+
 - **[1 Million Emojis](https://github.com/cwdx/1-million-emojis)**<br>
   A shared 1,000 × 1,000 emoji canvas where Jev paints next to people: after each stroke one request asks a choice of emoji-and-placement options and a noul on whether the stroke looks unfinished, through Vercel AI Gateway with TypeSafe direct as fallback. <sub>(written by a model)</sub><br>
   <sub>`Project` · cwdx · `TS` · `choice` · `noul` · [call site](https://github.com/cwdx/1-million-emojis/blob/HEAD/packages/jev/src/index.ts), read by a model 2026-10-24</sub>
 
   **Caveats:** `self-submitted`
-
-- **[jev-linkmap](https://github.com/stas4000/jev-linkmap)**<br>
-  Rebuilds a website's internal links: code crawls the site and shortlists 15 similar pages per page with anchor phrases already in its copy, then one Jev request per page asks, for each target, whether to link (yes/no) and which phrase is the anchor (choice). <sub>(written by a model)</sub><br>
-  <sub>`Project` · stas4000 · `Py` · `noul` · `choice` · [call site](https://github.com/stas4000/jev-linkmap/blob/HEAD/jev_linkmap/jev.py), read by a model 2026-11-01</sub>
 
 - **[Jevflix](https://github.com/ArielBubis/Jevflix)**<br>
   Movie recommender: FAISS and BM25 search narrow 4,800 films to a shortlist, Jev reads the request's constraints (runtime, no graphic content) for code to filter on, and one Jev choice over at most 250 candidates picks a film. If unsure, an LLM weighs the top five or asks one question. <sub>(written by a model)</sub><br>
@@ -1133,7 +1135,7 @@ The parts that are not the catalog.
 <details>
 <summary><b>Preview the searchable catalogue</b></summary>
 
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=f4c4efb5ae89f059" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=35f5eb5440d4cc0d" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
 
 <sub>Filter by clicking a bar. Two more views: <a href="https://kydlikebtc.github.io/awesome-jev/?view=prims">primitives</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat">compatibility</a>. Every filter and entry is a shareable URL. Also as plain pages: <a href="https://kydlikebtc.github.io/awesome-jev/patterns/">one per pattern</a> · <a href="https://kydlikebtc.github.io/awesome-jev/new.html">what's new each week</a> (<a href="https://kydlikebtc.github.io/awesome-jev/feed.xml">Atom feed</a>). Products with code also launch on <a href="https://kydlikebtc.github.io/awesome-jev/launches.html">the weekly launch board</a> (<a href="docs/launches.md">how it works</a>).</sub>
 
@@ -1160,17 +1162,17 @@ The parts that are not the catalog.
 
 ## What is verified, and what is not
 
-- **Link checks** — 1261 rows carry an HTTP 2xx response and a `checked` date; 109 carry no dated success record. Dates vary by row and a past success does not guarantee availability today. Stars and licences are repository metadata snapshots.
+- **Link checks** — 1367 rows carry an HTTP 2xx response and a `checked` date; 3 carry no dated success record. Dates vary by row and a past success does not guarantee availability today. Stars and licences are repository metadata snapshots.
 
 - **Source and code review** — `evidence.path` cites the file read, `evidence.read_on` records the reported review date, `evidence.model_read_on` a model's reading, shown apart, and `evidence_none` explains missing file evidence. Reading a call site is separate from running it. Summaries include source descriptions and machine translations; see the [method and its limits](docs/method.md).
 
-- **Whose words the summaries are** — 752 summaries are the linked project's own GitHub description, word for word, and are marked *(upstream description)*; 27 are marked *(earlier upstream description)*: taken from one that no longer reads the same. Those words are their authors'. 11 summaries are marked as written for this catalogue by a person, 263 were written for it by a model and are marked *(written by a model)*, and 317 carry no record either way. The weekly refresh compares each summary with its repository's description and labels a match; only a person marks a summary as a person's.
+- **Whose words the summaries are** — 750 summaries are the linked project's own GitHub description, word for word, and are marked *(upstream description)*; 29 are marked *(earlier upstream description)*: taken from one that no longer reads the same. Those words are their authors'. 11 summaries are marked as written for this catalogue by a person, 263 were written for it by a model and are marked *(written by a model)*, and 317 carry no record either way. The weekly refresh compares each summary with its repository's description and labels a match; only a person marks a summary as a person's.
 
 - **Who wrote the Chinese** — 192 of 1370 rows have a Chinese summary a person wrote; a model translated the other 1178, and each of those carries `zh_machine` and is marked *(机翻)* in the Chinese README, on the Chinese pattern pages and in the site's Chinese view. The [translation queue](docs/zh-queue.md) lists machine translations for a person to replace: every one on the most-starred rows, then, most-starred first, others flagged by at least one of three text signals a script computes (much shorter than the English, a number from the English missing, mostly ASCII). A signal is a comparison, not a verdict on a translation, and no row in the READMEs, the pattern pages or the site shows one. To take some, see [Claim a translation](CONTRIBUTING.md#claim-a-translation); only a translation of your own takes `zh_machine` off.
 
 - **Call-site text checks** — 1192 rows record in `evidence` a file where the project calls Jev, and strings matched in it. Another 93 record a file that shows a project speaking Jev's request shape rather than building on Jev (every `alternative`, whether it serves that shape or sends Jev the same request to compare, and adapters backed by other models), and 0 only an example the project ships; `evidence.kind` says which. The weekly [claims job](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) checks that those strings remain on the default branch and reports missing text or files. These counts measure recorded evidence, **not latest CI passes**. A text match does not prove that a call executes, the API is compatible, or the result is correct. Citations a script marks for a person to re-read are listed in the [review queue](docs/review-queue.md).
 
-- **Which primitives** — 111 rows name in `question_types` the primitives a person read the code calling, and 112 more the primitives a model read there, on rows whose call site only a model has read (`evidence.model_read_on`). Apart from those, 692 rows carry `primitives_seen`, a machine text signal: the weekly refresh found a primitive's request or answer shape (`"type": "choice"`, `Noul(`, `.noul`) in the one file the row cites. A shape in a file is not a call, and 615 of those rows carry no `question_types`, so the signal is all that is recorded about their primitives. No filter, count or rule here reads the signal as a primitive claim.
+- **Which primitives** — 111 rows name in `question_types` the primitives a person read the code calling, and 112 more the primitives a model read there, on rows whose call site only a model has read (`evidence.model_read_on`). Apart from those, 749 rows carry `primitives_seen`, a machine text signal: the weekly refresh found a primitive's request or answer shape (`"type": "choice"`, `Noul(`, `.noul`) in the one file the row cites. A shape in a file is not a call, and 618 of those rows carry no `question_types`, so the signal is all that is recorded about their primitives. No filter, count or rule here reads the signal as a primitive claim.
 
 - **Runtime and performance not independently tested here** — treat every catalogue entry as untested by this repository, including entries without `code-untested`. Linked benchmarks describe their authors' measurements; this catalogue has not reproduced them. Repository build checks and package smoke tests do not exercise those integrations or the live Jev API, and inclusion is not a security review.
 

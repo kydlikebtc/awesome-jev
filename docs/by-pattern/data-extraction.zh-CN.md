@@ -44,11 +44,26 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev4pg](https://github.com/Sheltercosmo/jev4pg)** — 为 PostgreSQL 提供自然语言 SQL 和 41 个语义算子。过滤、抽取、排序、匹配和核验以有上限的批次交给 Jev，答案须先通过校验；choice 选项需达 0.55、noul 需达 0.8 才算成立。作者报告其准确率为 98%，pg-jev 的请求路径为 92%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · Sheltercosmo · `Py` · `choice` · `noul` · 调用点 [`sdd/generic/jev.py`](https://github.com/Sheltercosmo/jev4pg/blob/HEAD/sdd/generic/jev.py)，2026-10-26 模型阅读 · ⚠ `厂商自报数据`</sub>
 
+- **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)** — 每周一个的市场销售（GTM）实验，均用 Jev 完成并与 Claude 对比：线索分拣和路由、交易风险、回复分拣、从通话摘要中提取 MEDDPICC 字段、重复账户识别、已流失交易的重新激活，另有一个 MCP 服务器。共享客户端在取整前减去实测的 0.30 分数偏差。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · ★10+ · deepdave98 · `Py` · `noul` · `choice` · `score` · 调用点 [`common/jev.py`](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py)，2026-10-31 模型阅读 · ⚠ `无许可证`</sub>
+
+- **[jev-apply](https://github.com/theadaply/jev-apply)** — 面向命令行智能体的求职申请技能，会记住你的答案：Jev 为 Greenhouse、Ashby 或 Lever 表单的每个字段挑选合适的已存答案，并始终提供“都不合适”的出口；置信度低于阈值时，该字段交回给你，而不是去猜。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · theadaply · `JS` · `choice` · `noul` · 调用点 [`src/jev/client.mjs`](https://github.com/theadaply/jev-apply/blob/HEAD/src/jev/client.mjs)，2026-11-03 模型阅读</sub>
+
+- **[jev-design](https://github.com/bilune/jev-design)** — 让 Jev 设计仪表盘的实验：根据一句话的设计要求（例如“一本 18 世纪的印刷书”），分两轮发出 choice、score 和是非题，从人工编写的目录中选出每一个视觉参数（颜色、字体、圆角、图标），再由引擎把它们应用到一个 Next.js 控制台上。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · bilune · `TS` · `choice` · `score` · `noul` · 调用点 [`src/design/jev/generate.ts`](https://github.com/bilune/jev-design/blob/HEAD/src/design/jev/generate.ts)，2026-10-30 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)** — 面向 Apple 芯片上原生 macOS 应用的 computer use 智能体：由 OmniParser CoreML、Apple Vision OCR 和辅助功能标签在本机找出窗口里的控件，再由 Jev 根据观察到的文字（从不看像素）用 choice 选下一步动作。输入前有防护检查，基准测试核对的是实际结果，而不是 Jev 的 DONE 判断。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · jcpsimmons · `JS` · 调用点 [`src/providers.mjs`](https://github.com/jcpsimmons/jev-macos-loop/blob/HEAD/src/providers.mjs)，2026-09-22 阅读</sub>
 
+- **[jeveryword](https://github.com/jkrup/jeveryword)** — 用 Jev 做文本抽取：字段抽取、PII 检测与逐字引文。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · jkrup · `JS` · 调用点 [`src/client.mjs`](https://github.com/jkrup/jeveryword/blob/HEAD/src/client.mjs)，2026-09-22 阅读</sub>
+
 - **[jevfill](https://github.com/imohitmayank/jevfill)** — 一个 Chrome 扩展：用 Jev 根据零散的文字笔记自动填写网页表单。把个人信息以纯文本粘贴一次即可，无需结构化档案，随时按需填表。 <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · imohitmayank · `TS` · 调用点 [`src/jev/client.ts`](https://github.com/imohitmayank/jevfill/blob/HEAD/src/jev/client.ts)，2026-09-24 阅读</sub>
+
+- **[JevNext](https://github.com/bring-ai/jevnext)** — 只用普通的 Choice 调用从 Jev 得到数值：每次调用选出一个子区间或下一位小数，沿多叉树一路走到有限精度的数值，无需训练，也不需要 logits。在算术、token 计费以及 CarRacing、LunarLander 等连续游戏控制上做了演示。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · bring-ai · `Py` · `choice` · 调用点 [`src/jev_numeric/client.py`](https://github.com/bring-ai/jevnext/blob/HEAD/src/jev_numeric/client.py)，2026-11-04 模型阅读</sub>
 
 - **[JevSpan](https://github.com/lzq-0529/jev-span)** — 中英文零样本命名实体识别：代码按标点列出带精确字符位置的候选片段，由 Jev 的 choice 问题为每种实体类型提名窗口、核验每个候选（该类型、none、mixed 或 partial）并选出准确边界，每个实体都保留概率和决策过程。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · lzq-0529 · `Py` · `choice` · 调用点 [`src/jevspan/jev_client.py`](https://github.com/lzq-0529/jev-span/blob/HEAD/src/jevspan/jev_client.py)，2026-09-30 阅读 · ⚠ `疑似 AI 生成` `作者自荐`</sub>
@@ -59,29 +74,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ask-jev](https://github.com/logicrw/ask-jev)** — 只用标准库的命令行工具，在 280 毫秒的建议预算内把智能体的小判断交给 Jev：choose（choice）、check（用 noul 判断证据是否支持某个说法）、score、最多 32 题的 batch，以及 purify：对每段文字问一个 noul，只保留相关的原文行。失败即放行，由智能体做决定。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · logicrw · `Py` · 调用点 [`scripts/jev_context.py`](https://github.com/logicrw/ask-jev/blob/HEAD/scripts/jev_context.py)，2026-09-24 阅读</sub>
 
-- **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)** — 每周一个的市场销售（GTM）实验，均用 Jev 完成并与 Claude 对比：线索分拣和路由、交易风险、回复分拣、从通话摘要中提取 MEDDPICC 字段、重复账户识别、已流失交易的重新激活，另有一个 MCP 服务器。共享客户端在取整前减去实测的 0.30 分数偏差。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`基准测试` · deepdave98 · `Py` · `noul` · `choice` · `score` · 调用点 [`common/jev.py`](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py)，2026-10-31 模型阅读 · ⚠ `无许可证`</sub>
-
-- **[jev-apply](https://github.com/theadaply/jev-apply)** — 面向命令行智能体的求职申请技能，会记住你的答案：Jev 为 Greenhouse、Ashby 或 Lever 表单的每个字段挑选合适的已存答案，并始终提供“都不合适”的出口；置信度低于阈值时，该字段交回给你，而不是去猜。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · theadaply · `JS` · `choice` · `noul` · 调用点 [`src/jev/client.mjs`](https://github.com/theadaply/jev-apply/blob/HEAD/src/jev/client.mjs)，2026-11-03 模型阅读</sub>
-
 - **[jev-data-questions](https://github.com/narulaskaran/jev-data-questions)** — 带上数据集，看到合适的图表：界面检查 CSV 的结构并提出洞察，由 Jev 填入具体数值。 <sub>(机翻)</sub>
   <sub>`开源项目` · narulaskaran · `TS` · 调用点 [`src/server/jev.ts`](https://github.com/narulaskaran/jev-data-questions/blob/HEAD/src/server/jev.ts)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
-
-- **[jev-design](https://github.com/bilune/jev-design)** — 让 Jev 设计仪表盘的实验：根据一句话的设计要求（例如“一本 18 世纪的印刷书”），分两轮发出 choice、score 和是非题，从人工编写的目录中选出每一个视觉参数（颜色、字体、圆角、图标），再由引擎把它们应用到一个 Next.js 控制台上。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · bilune · `TS` · `choice` · `score` · `noul` · 调用点 [`src/design/jev/generate.ts`](https://github.com/bilune/jev-design/blob/HEAD/src/design/jev/generate.ts)，2026-10-30 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[jev-information-extraction](https://github.com/abhishekmamdapure/jev-information-extraction)** — 解析 PDF 并抽取相关信息。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abhishekmamdapure · `Py` · 调用点 [`backend/main.py`](https://github.com/abhishekmamdapure/jev-information-extraction/blob/HEAD/backend/main.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
 - **[jev-mcp-dispatcher](https://github.com/abhishekashokvkumar/jev-mcp-dispatcher)** — 完全由 Jev 驱动的自然语言 MCP 工具分发器，不用通用 LLM。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · abhishekashokvkumar · `Py` · 调用点 [`jev_mcp_dispatcher.py`](https://github.com/abhishekashokvkumar/jev-mcp-dispatcher/blob/HEAD/jev_mcp_dispatcher.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
-
-- **[jeveryword](https://github.com/jkrup/jeveryword)** — 用 Jev 做文本抽取：字段抽取、PII 检测与逐字引文。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · jkrup · `JS` · 调用点 [`src/client.mjs`](https://github.com/jkrup/jeveryword/blob/HEAD/src/client.mjs)，2026-09-22 阅读</sub>
-
-- **[JevNext](https://github.com/bring-ai/jevnext)** — 只用普通的 Choice 调用从 Jev 得到数值：每次调用选出一个子区间或下一位小数，沿多叉树一路走到有限精度的数值，无需训练，也不需要 logits。在算术、token 计费以及 CarRacing、LunarLander 等连续游戏控制上做了演示。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · bring-ai · `Py` · `choice` · 调用点 [`src/jev_numeric/client.py`](https://github.com/bring-ai/jevnext/blob/HEAD/src/jev_numeric/client.py)，2026-11-04 模型阅读</sub>
 
 - **[jevsume](https://github.com/unownone/jevsume)** — 由 Jev 驱动的 ATS 友好简历评审。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · unownone · `TS` · 调用点 [`packages/jev/http.ts`](https://github.com/unownone/jevsume/blob/HEAD/packages/jev/http.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

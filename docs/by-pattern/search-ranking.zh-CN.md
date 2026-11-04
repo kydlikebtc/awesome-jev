@@ -69,6 +69,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[pg-jev](https://github.com/realZachi/pg-jev)** — 一个真正的 PostgreSQL 扩展，把三个原语暴露成 SQL 函数 —— 语义判断可以直接写进任意行类型的 WHERE 子句。
   <sub>`开源项目` · ★1k+ · `Py` · `sh` · `choice` · `score` · `noul` · 调用点 [`sql/jev--0.2.0.sql`](https://github.com/realZachi/pg-jev/blob/HEAD/sql/jev--0.2.0.sql)，2026-09-22 阅读</sub>
 
+- **[Blink](https://github.com/ellipsis-dev/blink)** — 把 Jev 当代码库导航器。每走到一层目录，就判断哪些文件和当前问题最相关，再继续往下找。
+  <sub>`开源项目` · ★100+ · `TS` · `choice` · 调用点 [`src/search.ts`](https://github.com/ellipsis-dev/blink/blob/HEAD/src/search.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+
+- **[deepseek-harness-jev (luobosibing2)](https://github.com/luobosibing2/dsh-jev-plugin)** — DeepSeek Harness 插件，提供 12 项需手动开启的功能，用 Jev 作为判断模型：技能选择和 glob 结果排序（每个候选一个 `noul`）、完成度与目标检查、偏离提醒、插话路由、工具输出和测试日志过滤，以及对单个工作区操作的审批。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★100+ · luobosibing2 · `TS` · `noul` · 调用点 [`packages/jev/src/selection.ts`](https://github.com/luobosibing2/dsh-jev-plugin/blob/HEAD/packages/jev/src/selection.ts)，2026-10-28 模型阅读</sub>
+
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)** — 受生物启发的智能体记忆：衰减、检索强化与巩固。零运行时依赖，基于 SQLite。 <sub>(机翻)</sub>
   <sub>`基准测试` · ★100+ · kitfunso · `TS` · 调用点 [`src/rerankers/jev.ts`](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/rerankers/jev.ts)，2026-09-22 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
 
@@ -105,6 +111,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[neurolink](https://github.com/juspay/neurolink)** — 用一套 TypeScript 接口对接多家 AI 供应商，覆盖生成、流式与决策三种推理形态；决策由 TypeSafe Jev 或开源权重的 Laya 返回类型化、经过校准的判断，而非文本。 <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · juspay · `TS` · 调用点 [`src/lib/providers/typesafe.ts`](https://github.com/juspay/neurolink/blob/HEAD/src/lib/providers/typesafe.ts)，2026-09-22 阅读</sub>
 
+- **[RikkaHub Plus · Lantern](https://github.com/MiaoWuNYA/rikkahub-sillytavern-android)** — 面向 SillyTavern 式角色扮演的 Android 聊天客户端，是 RikkaHub 的 Kotlin 分支。可选的 Jev 决策功能对每条记忆问一个 `noul`（它与当前对话是否相关？），以此代替嵌入检索；还给主模型一个 `judge` 工具，用于是非、选择和评分问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · MiaoWuNYA · `Kt` · `noul` · `choice` · `score` · 调用点 [`app/src/main/java/me/rerere/rikkahub/data/ai/jev/JevPrompts.kt`](https://github.com/MiaoWuNYA/rikkahub-sillytavern-android/blob/HEAD/app/src/main/java/me/rerere/rikkahub/data/ai/jev/JevPrompts.kt)，2026-10-29 模型阅读 · ⚠ `需第三方密钥`</sub>
+
+- **[SiftRank](https://github.com/noperator/siftrank)** — 按提示词给大量文本排序的 Go 命令行工具和库，做法是反复随机分批比较。使用 `--provider jev` 时，每批成为一次 Jev 请求，每对条目问一个 `noul`（这一条是否应排在那一条之前？），按概率之和给该批排序。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · noperator · `Go` · `noul` · 调用点 [`pkg/siftrank/jev_provider.go`](https://github.com/noperator/siftrank/blob/HEAD/pkg/siftrank/jev_provider.go)，2026-10-29 模型阅读</sub>
+
 - **[skillranker](https://github.com/Dicklesworthstone/skillranker)** — 用当前会话上下文给智能体的技能排序以决定下一步，带 Claude Code hook。
   <sub>`插件` · ★100+ · dicklesworthstone · `Rs` · 调用点 [`src/jev/endpoint.rs`](https://github.com/Dicklesworthstone/skillranker/blob/HEAD/src/jev/endpoint.rs)，2026-09-22 阅读</sub>
 
@@ -117,9 +129,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — 聊天回复助手（桌面悬浮窗、Android 悬浮助手、iOS 键盘），基于 Jev Android。它根据可见对话或截图向 Jev 询问字面问题、对方意图、危险程度、是否现在回复以及最佳行动，再让 Jev 在起草的回复中挑选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · 调用点 [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-10-26 模型阅读 · ⚠ `需第三方密钥`</sub>
 
-- **[Blink](https://github.com/ellipsis-dev/blink)** — 把 Jev 当代码库导航器。每走到一层目录，就判断哪些文件和当前问题最相关，再继续往下找。
-  <sub>`开源项目` · ★10+ · `TS` · `choice` · 调用点 [`src/search.ts`](https://github.com/ellipsis-dev/blink/blob/HEAD/src/search.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
-
 - **[Cheshi](https://github.com/CheshiAI/Cheshi)** — 由 Jev 驱动的对话记忆：找回过去的会话，并结合原始来源重新审视当时的决策。一个 macOS 工作区。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · cheshiai · `C` · 调用点 [`desktop/lib/typesafe-connection.mts`](https://github.com/CheshiAI/Cheshi/blob/HEAD/desktop/lib/typesafe-connection.mts)，2026-09-24 阅读</sub>
 
@@ -128,6 +137,15 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[hermes-jev](https://github.com/keeltrace/hermes-nerve)** — 类型化的 System One 决策、排序、校验，以及可选启用的 Hermes 工具闸门。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · keeltrace · `Py` · 调用点 [`hermes_nerve/client.py`](https://github.com/keeltrace/hermes-nerve/blob/HEAD/hermes_nerve/client.py)，2026-09-22 阅读</sub>
+
+- **[Jev Account Filter](https://github.com/caiweihan/jev-account-filter)** — 把视频平台账号（抖音、快手、YouTube、哔哩哔哩）作为数据集来源进行筛选：根据账号的视频标题、封面缩略图、名称和简介，用一次 Jev 请求判断其类别、相关概率、每个视频的相关度以及最佳视频。手语创作者是已验证的场景。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · caiweihan · `Py` · `choice` · `noul` · 调用点 [`account_filter/screening/classifier.py`](https://github.com/caiweihan/jev-account-filter/blob/HEAD/account_filter/screening/classifier.py)，2026-10-31 模型阅读</sub>
+
+- **[Jev Chat Jarvis (iOS keyboard)](https://github.com/jev-chat/jev-chat-jarvis-ios)** — Jev Chat Jarvis 的 iOS 键盘版：在任意聊天 App 中复制一条消息，自定义键盘就会显示 Jev 对其意图（`choice`）和风险（`score`）的判断，以及由 Jev 用另一道 `choice` 排序的候选回复，点一下即可插入。可选的扩展通过本地 OCR 读取屏幕。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · jev-chat · `Swift` · `choice` · `score` · 调用点 [`Shared/JevJudge.swift`](https://github.com/jev-chat/jev-chat-jarvis-ios/blob/HEAD/Shared/JevJudge.swift)，2026-10-30 模型阅读 · ⚠ `需第三方密钥`</sub>
+
+- **[Jev Graph Search](https://github.com/Emlembow/jev-graph-search)** — 为 AI 智能体在本地 Obsidian 库或 Logseq 文件夹中查找笔记和段落：先在本机生成候选短名单，再就每个候选向 Jev 提一个相关性是非题并据此排序，返回原文段落及其出处。提供命令行工具和智能体技能两种形式。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · Emlembow · `JS` · `noul` · 调用点 [`src/jev.js`](https://github.com/Emlembow/jev-graph-search/blob/HEAD/src/jev.js)，2026-11-03 模型阅读</sub>
 
 - **[Jev RAG](https://github.com/aifabrice/jev-rag)** — 用 SQLite FTS5/BM25 索引本地文档，再对每个候选文段询问一个 Jev Noul，按返回的相关性概率重排，并可选生成带引用的回答。
   <sub>`开源项目` · ★10+ · aifabrice · `Py` · `noul` · 调用点 [`local_kb.py`](https://github.com/aifabrice/jev-rag/blob/HEAD/local_kb.py)，2026-09-26 阅读 · ⚠ `需第三方密钥` `疑似 AI 生成` `作者自荐`</sub>
@@ -147,11 +165,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-search-rerank-eval](https://github.com/zhuyansen/jev-search-rerank-eval)** — TypeSafe Jev 重排能否胜过向量检索？在 Agent Skills Hub 目录上做分级相关性评测（9,831 对、164 条中英文查询），并测量了“裁判循环”偏差。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ★10+ · zhuyansen · `Py` · 调用点 [`src/jse/openrouter.py`](https://github.com/zhuyansen/jev-search-rerank-eval/blob/HEAD/src/jse/openrouter.py)，2026-09-24 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
 
+- **[jevcrawl](https://github.com/RayenMlayeh/jevcrawl)** — 为智能体的问题爬取网站的 MCP 服务器和命令行工具。每个页面发一次 Jev 请求：对每个文本块问一个 `noul`（它是否有助于回答目标问题？），对每个链接问两个（是否直接通向答案页，或通向相关栏目）；最后再用一个 `noul` 判断保留的摘录是否已完整回答问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · RayenMlayeh · `Py` · `noul` · 调用点 [`jevcrawl/decide/questions.py`](https://github.com/RayenMlayeh/jevcrawl/blob/HEAD/jevcrawl/decide/questions.py)，2026-10-28 模型阅读 · ⚠ `厂商自报数据`</sub>
+
 - **[JevGPT: Thinking Fast and Slow in Autonomous Research](https://github.com/sunyasheng/JevGPT)** — 论文 arXiv 2610.18272 的研究 Agent。GPT-5.5 规划检索并写出答案；在 BrowseComp-Plus 问答中，对每个被检查的文档区域和每个查询，Jev 回答一个 Choice（在编号的原文行中选出答案所在行）和一个 Noul（该区域是否涉及该查询），在多个文档上并行运行。GPT 拿到的是原文行。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · sunyasheng · `TS` · `Py` · `choice` · `noul` · 调用点 [`runtime/pi-serini/src/extensions/jev_find_v1.ts`](https://github.com/sunyasheng/JevGPT/blob/HEAD/runtime/pi-serini/src/extensions/jev_find_v1.ts) · ⚠ `需第三方密钥` `宣称未核实` `作者自荐`</sub>
 
 - **[jevql](https://github.com/kylemclaren/jevql)** — 给 Postgres 用的语义 SQL，由 Jev 驱动。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · kylemclaren · `Go` · 调用点 [`sdk/go/jevql.go`](https://github.com/kylemclaren/jevql/blob/HEAD/sdk/go/jevql.go)，2026-09-22 阅读</sub>
+
+- **[jevreel](https://github.com/DeepAleph/jevreel)** — 无需向量嵌入的视频搜索 MCP 服务器和智能体技能：把视频帧排成每张六十帧、带标注的缩略图拼版，由 Jev 对每张拼版回答一个是非题（是否出现在这一分钟）和一个“在哪里”的 choice，再在完整帧上复核最佳时间窗。智能体得到时刻、时间点和概率。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · DeepAleph · `Py` · `noul` · `choice` · `score` · 调用点 [`src/jevreel/judge.py`](https://github.com/DeepAleph/jevreel/blob/HEAD/src/jevreel/judge.py)，2026-10-31 模型阅读</sub>
 
 - **[jevsearch](https://github.com/kylemclaren/jevsearch)** — shadcn/ui 的 ⌘K 站内搜索组件：先用本地关键词匹配立即出结果，再把前 20 条一次性发给 Jev（每个候选一个 Noul、一个选出最佳页面的 Choice、一个判断是否有页面能回答的 Noul），据此重排或剔除结果；TypeSafe 变慢或不可用时保留关键词排序。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · kylemclaren · `TS` · `noul` · `choice` · 调用点 [`src/lib/jev-search-server.ts`](https://github.com/kylemclaren/jevsearch/blob/HEAD/src/lib/jev-search-server.ts)，2026-09-23 阅读 · ⚠ `宣称未核实` `作者自荐`</sub>
@@ -159,11 +183,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jgrep (npm: jevgrep)](https://github.com/kyu1204/jgrep)** — 按代码的作用来 grep：对每个代码块、diff 块或 CSV 行问一个 Noul，输出带概率的 file:line 命中。--diff 用一条英文规则在 CI 里为 PR 把关（退出码 0 命中 / 1 干净 / 2 出错）；--tests 列出一次 diff 可能影响的测试文件。
   <sub>`开源项目` · ★10+ · kyu1204 · `TS` · `noul` · `choice` · `score` · 调用点 [`src/providers.ts`](https://github.com/kyu1204/jgrep/blob/HEAD/src/providers.ts)，2026-09-23 阅读 · ⚠ `宣称未核实` `作者自荐`</sub>
 
-- **[laya-jev-GraphRAG](https://github.com/bodepudimuneendra-netizen/laya-jev-GraphRAG)** — 一个智能体式 GraphRAG 引擎，可切换 System One 决策模型（本地 Laya 或云端 Jev）。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10+ · bodepudimuneendra-netizen · `Py` · 调用点 [`graphrag_neo4j_laya/graphrag/models/jev.py`](https://github.com/bodepudimuneendra-netizen/laya-jev-GraphRAG/blob/HEAD/graphrag_neo4j_laya/graphrag/models/jev.py)，2026-09-24 阅读</sub>
+- **[laya-jev-GraphRAG](https://github.com/bodepudimuneendra-netizen/ConsciousDB)** — 一个智能体式 GraphRAG 引擎，可切换 System One 决策模型（本地 Laya 或云端 Jev）。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · bodepudimuneendra-netizen · `Py` · 调用点 [`graphrag_neo4j_laya/graphrag/models/jev.py`](https://github.com/bodepudimuneendra-netizen/ConsciousDB/blob/HEAD/graphrag_neo4j_laya/graphrag/models/jev.py)，2026-09-24 阅读</sub>
 
 - **[milvus-model](https://github.com/milvus-io/milvus-model)** — 把 OpenAI、SentenceTransformers 等嵌入与重排模型集成进来的库，用于 Milvus 等向量数据库中的语义检索；Jev 是其中一个可用的重排器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · ★10+ · milvus-io · `Py` · 调用点 [`src/pymilvus/model/reranker/jev.py`](https://github.com/milvus-io/milvus-model/blob/HEAD/src/pymilvus/model/reranker/jev.py)，2026-09-24 阅读</sub>
+
+- **[NucleiSniper](https://github.com/MorDavid/NucleiSniper)** — 单脚本的 Nuclei 扫描流水线：先为每个目标做指纹识别，再让 Jev 按 0–4 分的评分标准分批给每个 Nuclei 模板与该目标的相关度打分，然后按得分从高到低运行全部模板，让可能的发现更早出现。超出 Jev token 上限的批次会自动拆分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · MorDavid · `Py` · `score` · 调用点 [`NucleiSniper.py`](https://github.com/MorDavid/NucleiSniper/blob/HEAD/NucleiSniper.py)，2026-10-31 模型阅读</sub>
 
 - **[oko](https://github.com/bartlomein/oko)** — 通过 MCP 为 Codex、Claude Code 与 OpenCode 做代码检索：直接给出相关源码片段，让智能体少读无关代码。 <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · bartlomein · `Rs` · 调用点 [`scripts/benchmark-public/replay/replay.py`](https://github.com/bartlomein/oko/blob/HEAD/scripts/benchmark-public/replay/replay.py)，2026-09-24 阅读 · ⚠ `宣称未核实`</sub>
@@ -174,8 +201,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[pi-jev-skill-picker](https://github.com/safzanpirani/pi-jev-skill-picker)** — 用 Jev 给当前任务的 Pi Agent 技能排序。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · safzanpirani · `TS` · 调用点 [`extensions/jev.ts`](https://github.com/safzanpirani/pi-jev-skill-picker/blob/HEAD/extensions/jev.ts)，2026-09-22 阅读</sub>
 
+- **[skimmer](https://github.com/dorkitude/skimmer)** — 把网页、文件和列表精简到只剩与目标相关部分的命令行工具：每个约 2,000 字符的片段或列表项向 Jev 提一个是非题——它对目标有没有帮助，只按原顺序返回保留的部分。可选的第二个问题会标出试图操纵读者的文本，但这只是过滤器，不是安全边界。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · dorkitude · `Go` · `noul` · 调用点 [`internal/jev/client.go`](https://github.com/dorkitude/skimmer/blob/HEAD/internal/jev/client.go)，2026-10-31 模型阅读</sub>
+
 - **[transcript-lens](https://github.com/sensahin/transcript-lens)** — 按含义浏览 YouTube 字幕：土耳其语界面、由 Jev 分析、可导出字幕，并附 Vercel 部署说明。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · sensahin · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/sensahin/transcript-lens/blob/HEAD/src/lib/jev.ts)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[Truffler](https://github.com/kieranklaassen/truffler)** — 面向 Rails 应用的意图搜索：每当记录被保存，Truffler 就向 Jev 提出为它声明的是非题、choice 和 score 问题，并把每个答案存成数值，使记录形成按名称分维的嵌入，搜索时按意图加权。用户需要时，Jev 还会把靠前结果重排为“很可能”“可能”“不太可能”三档。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`平台集成` · ★10+ · kieranklaassen · `Rb` · `noul` · `choice` · `score` · 调用点 [`lib/truffler/questions.rb`](https://github.com/kieranklaassen/truffler/blob/HEAD/lib/truffler/questions.rb)，2026-10-30 模型阅读</sub>
 
 - **[agent-seek](https://github.com/Gitmaxd/agent-seek)** — Agent Seek——为智能体提供精准的网页召回：You.com 负责发现，TypeSafe Jev 负责排序。提供 MCP 与 REST。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · gitmaxd · `Py` · 调用点 [`packages/core/rank/jev.py`](https://github.com/Gitmaxd/agent-seek/blob/HEAD/packages/core/rank/jev.py)，2026-09-24 阅读</sub>
@@ -186,20 +219,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[clay-jev-people-ranker](https://github.com/promptgtm-shared/clay-jev-people-ranker)** — 面向 Clay 的智能体技能与 Python 工作流：用 TypeSafe Jev 做线索评分、B2B 潜在客户筛选与人物搜索排序。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · promptgtm-shared · `Py` · 调用点 [`scripts/rank_clay_people.py`](https://github.com/promptgtm-shared/clay-jev-people-ranker/blob/HEAD/scripts/rank_clay_people.py)，2026-09-24 阅读</sub>
 
-- **[deepseek-harness-jev (luobosibing2)](https://github.com/luobosibing2/dsh-jev-plugin)** — DeepSeek Harness 插件，提供 12 项需手动开启的功能，用 Jev 作为判断模型：技能选择和 glob 结果排序（每个候选一个 `noul`）、完成度与目标检查、偏离提醒、插话路由、工具输出和测试日志过滤，以及对单个工作区操作的审批。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · luobosibing2 · `TS` · `noul` · 调用点 [`packages/jev/src/selection.ts`](https://github.com/luobosibing2/dsh-jev-plugin/blob/HEAD/packages/jev/src/selection.ts)，2026-10-28 模型阅读</sub>
-
 - **[every](https://github.com/sufianetaouil/every)** — 对代码库里每一个函数问一个是非问题，几秒内得到排序结果 —— 模式本身是一个问题的 grep。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · sufianetaouil · `Py` · 调用点 [`reference/probe_jev.py`](https://github.com/sufianetaouil/every/blob/HEAD/reference/probe_jev.py)，2026-09-22 阅读</sub>
-
-- **[Jev Account Filter](https://github.com/caiweihan/jev-account-filter)** — 把视频平台账号（抖音、快手、YouTube、哔哩哔哩）作为数据集来源进行筛选：根据账号的视频标题、封面缩略图、名称和简介，用一次 Jev 请求判断其类别、相关概率、每个视频的相关度以及最佳视频。手语创作者是已验证的场景。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · caiweihan · `Py` · `choice` · `noul` · 调用点 [`account_filter/screening/classifier.py`](https://github.com/caiweihan/jev-account-filter/blob/HEAD/account_filter/screening/classifier.py)，2026-10-31 模型阅读</sub>
-
-- **[Jev Chat Jarvis (iOS keyboard)](https://github.com/jev-chat/jev-chat-jarvis-ios)** — Jev Chat Jarvis 的 iOS 键盘版：在任意聊天 App 中复制一条消息，自定义键盘就会显示 Jev 对其意图（`choice`）和风险（`score`）的判断，以及由 Jev 用另一道 `choice` 排序的候选回复，点一下即可插入。可选的扩展通过本地 OCR 读取屏幕。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · jev-chat · `Swift` · `choice` · `score` · 调用点 [`Shared/JevJudge.swift`](https://github.com/jev-chat/jev-chat-jarvis-ios/blob/HEAD/Shared/JevJudge.swift)，2026-10-30 模型阅读 · ⚠ `需第三方密钥`</sub>
-
-- **[Jev Graph Search](https://github.com/Emlembow/jev-graph-search)** — 为 AI 智能体在本地 Obsidian 库或 Logseq 文件夹中查找笔记和段落：先在本机生成候选短名单，再就每个候选向 Jev 提一个相关性是非题并据此排序，返回原文段落及其出处。提供命令行工具和智能体技能两种形式。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · Emlembow · `JS` · `noul` · 调用点 [`src/jev.js`](https://github.com/Emlembow/jev-graph-search/blob/HEAD/src/jev.js)，2026-11-03 模型阅读</sub>
 
 - **[jev-assist](https://github.com/glud123/jev-assist)** — 别让昂贵的主模型干「grep 加猜」的粗活 —— 让 Jev 先把整个仓库排一遍序。 <sub>(机翻)</sub>
   <sub>`开源项目` · glud123 · `JS` · 调用点 [`scripts/jev.mjs`](https://github.com/glud123/jev-assist/blob/HEAD/scripts/jev.mjs)，2026-09-22 阅读</sub>
@@ -228,9 +249,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev.nvim](https://github.com/valentynkit/jev.nvim)** — Neovim 插件：向当前缓冲区提问，得到 quickfix 列表。Treesitter 切分函数，Jev 给每个函数打分，概率以虚拟文本显示。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · valentynkit · `Lua` · 调用点 [`lua/jev/client.lua`](https://github.com/valentynkit/jev.nvim/blob/HEAD/lua/jev/client.lua)，2026-09-24 阅读</sub>
 
-- **[jevcrawl](https://github.com/RayenMlayeh/jevcrawl)** — 为智能体的问题爬取网站的 MCP 服务器和命令行工具。每个页面发一次 Jev 请求：对每个文本块问一个 `noul`（它是否有助于回答目标问题？），对每个链接问两个（是否直接通向答案页，或通向相关栏目）；最后再用一个 `noul` 判断保留的摘录是否已完整回答问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · RayenMlayeh · `Py` · `noul` · 调用点 [`jevcrawl/decide/questions.py`](https://github.com/RayenMlayeh/jevcrawl/blob/HEAD/jevcrawl/decide/questions.py)，2026-10-28 模型阅读 · ⚠ `厂商自报数据`</sub>
-
 - **[Jevflix](https://github.com/ArielBubis/Jevflix)** — 电影推荐器：FAISS 与 BM25 检索把 4,800 部电影缩成短名单，Jev 读出请求里的约束（片长、不要血腥画面）供代码过滤，再由一次覆盖最多 250 个候选的 Jev choice 选出一部影片。没有把握时，由 LLM 权衡前五名或追问一个问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arielbubis · `Py` · 调用点 [`movie_rec/jev_client.py`](https://github.com/ArielBubis/Jevflix/blob/HEAD/movie_rec/jev_client.py)，2026-09-24 阅读</sub>
 
@@ -240,35 +258,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[JevPDF](https://github.com/kylemclaren/jevpdf)** — 按语义搜索 PDF：pdf.js 在浏览器里逐页提取文本行，Jev 对每一行回答一个 Noul（“这一行是否回答了查询？”），每批最多 16 行、共享整页文本作为 state；概率不低于 0.55 的行被高亮并按概率排序。只发送文本，API key 由服务端代理持有。 <sub>(机翻)</sub>
   <sub>`开源项目` · kylemclaren · `TS` · `noul` · 调用点 [`src/lib/jev-config.ts`](https://github.com/kylemclaren/jevpdf/blob/HEAD/src/lib/jev-config.ts)，2026-09-23 阅读 · ⚠ `作者自荐`</sub>
 
-- **[jevreel](https://github.com/DeepAleph/jevreel)** — 无需向量嵌入的视频搜索 MCP 服务器和智能体技能：把视频帧排成每张六十帧、带标注的缩略图拼版，由 Jev 对每张拼版回答一个是非题（是否出现在这一分钟）和一个“在哪里”的 choice，再在完整帧上复核最佳时间窗。智能体得到时刻、时间点和概率。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · DeepAleph · `Py` · `noul` · `choice` · `score` · 调用点 [`src/jevreel/judge.py`](https://github.com/DeepAleph/jevreel/blob/HEAD/src/jevreel/judge.py)，2026-10-31 模型阅读</sub>
-
 - **[jfind](https://github.com/religa/jfind)** — 用自然语言描述来找文件：带语义 --like 条件的 find(1)，由 TypeSafe.ai 的 jev 回答。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · religa · `Py` · 调用点 [`src/jfind/matcher.py`](https://github.com/religa/jfind/blob/HEAD/src/jfind/matcher.py)，2026-09-24 阅读</sub>
 
 - **[llama-index-jev](https://github.com/WiktorB2004/llama-index-jev)** — 由 Jev 驱动的 LlamaIndex 重排器与路由器 —— 类型化的分数与选择，比 LLM-as-judge 便宜。 <sub>(机翻)</sub>
   <sub>`开源项目` · wiktorb2004 · `Py` · 调用点 [`packages/llama-index-postprocessor-jev/llama_index/postprocessor/jev/openrouter.py`](https://github.com/WiktorB2004/llama-index-jev/blob/HEAD/packages/llama-index-postprocessor-jev/llama_index/postprocessor/jev/openrouter.py)，2026-09-22 阅读</sub>
 
-- **[NucleiSniper](https://github.com/MorDavid/NucleiSniper)** — 单脚本的 Nuclei 扫描流水线：先为每个目标做指纹识别，再让 Jev 按 0–4 分的评分标准分批给每个 Nuclei 模板与该目标的相关度打分，然后按得分从高到低运行全部模板，让可能的发现更早出现。超出 Jev token 上限的批次会自动拆分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · MorDavid · `Py` · `score` · 调用点 [`NucleiSniper.py`](https://github.com/MorDavid/NucleiSniper/blob/HEAD/NucleiSniper.py)，2026-10-31 模型阅读</sub>
-
 - **[pijev](https://github.com/tonyzdev/pijev)** — PiJev：Jev 参与循环的终端编码智能体——在第一次调用前由 Jev 给仓库文件排序，并挑选技能。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tonyzdev · `TS` · 调用点 [`src/jev.ts`](https://github.com/tonyzdev/pijev/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>
 
-- **[RikkaHub Plus · Lantern](https://github.com/MiaoWuNYA/rikkahub-sillytavern-android)** — 面向 SillyTavern 式角色扮演的 Android 聊天客户端，是 RikkaHub 的 Kotlin 分支。可选的 Jev 决策功能对每条记忆问一个 `noul`（它与当前对话是否相关？），以此代替嵌入检索；还给主模型一个 `judge` 工具，用于是非、选择和评分问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · MiaoWuNYA · `Kt` · `noul` · `choice` · `score` · 调用点 [`app/src/main/java/me/rerere/rikkahub/data/ai/jev/JevPrompts.kt`](https://github.com/MiaoWuNYA/rikkahub-sillytavern-android/blob/HEAD/app/src/main/java/me/rerere/rikkahub/data/ai/jev/JevPrompts.kt)，2026-10-29 模型阅读 · ⚠ `需第三方密钥`</sub>
-
 - **[sift](https://github.com/tylergibbs1/sift)** — 用 TypeSafe Jev 重排 Google 搜索结果的 Chrome 扩展，并收起销售页面和 SEO 填充内容。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · tylergibbs1 · `TS` · 调用点 [`src/jev/client.ts`](https://github.com/tylergibbs1/sift/blob/HEAD/src/jev/client.ts)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
-
-- **[SiftRank](https://github.com/noperator/siftrank)** — 按提示词给大量文本排序的 Go 命令行工具和库，做法是反复随机分批比较。使用 `--provider jev` 时，每批成为一次 Jev 请求，每对条目问一个 `noul`（这一条是否应排在那一条之前？），按概率之和给该批排序。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · noperator · `Go` · `noul` · 调用点 [`pkg/siftrank/jev_provider.go`](https://github.com/noperator/siftrank/blob/HEAD/pkg/siftrank/jev_provider.go)，2026-10-29 模型阅读</sub>
-
-- **[skimmer](https://github.com/dorkitude/skimmer)** — 把网页、文件和列表精简到只剩与目标相关部分的命令行工具：每个约 2,000 字符的片段或列表项向 Jev 提一个是非题——它对目标有没有帮助，只按原顺序返回保留的部分。可选的第二个问题会标出试图操纵读者的文本，但这只是过滤器，不是安全边界。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · dorkitude · `Go` · `noul` · 调用点 [`internal/jev/client.go`](https://github.com/dorkitude/skimmer/blob/HEAD/internal/jev/client.go)，2026-10-31 模型阅读</sub>
-
-- **[Truffler](https://github.com/kieranklaassen/truffler)** — 面向 Rails 应用的意图搜索：每当记录被保存，Truffler 就向 Jev 提出为它声明的是非题、choice 和 score 问题，并把每个答案存成数值，使记录形成按名称分维的嵌入，搜索时按意图加权。用户需要时，Jev 还会把靠前结果重排为“很可能”“可能”“不太可能”三档。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`平台集成` · kieranklaassen · `Rb` · `noul` · `choice` · `score` · 调用点 [`lib/truffler/questions.rb`](https://github.com/kieranklaassen/truffler/blob/HEAD/lib/truffler/questions.rb)，2026-10-30 模型阅读</sub>
+  <sub>`插件` · tylergibbs1 · `TS` · 调用点 [`src/jev/client.ts`](https://github.com/tylergibbs1/sift/blob/HEAD/src/jev/client.ts)，2026-09-24 阅读</sub>
 
 - **[typesafe-as-a-judge](https://github.com/E-FL/typesafe-as-a-judge)** — 给 Codex 与 Claude Code 的非官方社区 MCP 插件，用 Jev 做有界路由。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · e-fl · `JS` · 调用点 [`server/judge.mjs`](https://github.com/E-FL/typesafe-as-a-judge/blob/HEAD/server/judge.mjs)，2026-09-22 阅读</sub>

@@ -54,6 +54,12 @@
 
 ## 其他独立测量报告
 
+- **[Convex Coding Evals](https://github.com/convex/convex-evals)**<br>
+  Convex 的编程基准新增了决策模型赛道：108 道关于 Convex 知识的选择题，每题四个选项，覆盖其 112 个编程评测中的 90 个。Jev 通过 OpenRouter 的决策端点，以一个 `choice` 回答每道题；语言模型则通过聊天补全接口回答同样的问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★100+ · convex · `TS` · `choice` · [调用点](https://github.com/convex/convex-evals/blob/HEAD/runner/decisions/providers.ts)，2026-10-29 模型阅读</sub>
+
+  > 决策赛道有独立的分数和排行榜；README 说明，选对答案并不代表模型能写出可用的 Convex 代码。托管运行固定使用 typesafe/jev-1.13，并采用三种选项排列。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-29 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)**<br>
   受生物启发的智能体记忆：衰减、检索强化与巩固。零运行时依赖，基于 SQLite。 <sub>(机翻)</sub><br>
   <sub>`基准测试` · ★100+ · kitfunso · `TS` · [调用点](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/rerankers/jev.ts)，2026-09-22 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
@@ -65,6 +71,28 @@
 - **[jevbench](https://github.com/fstandhartinger/jevbench)**<br>
   Benchmark Heaven 维护的基准，评测 Jev 及兼容 Jev 的决策模型：通过 /v1/systemone 适配器把 noul、choice 和 score 任务发给各个系统，按准确率、校准、延迟和成本打分。当前版本 v1.6.1（2026-10-06）；部分输入是封存的，因此无法完全独立重跑。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · ★100+ · fstandhartinger · `Py` · [调用点](https://github.com/fstandhartinger/jevbench/blob/HEAD/jevbench/adapters/typesafe.py)，2026-09-22 阅读</sub>
+
+- **[Decision Index](https://github.com/apolinario/decision-index)**<br>
+  Decision Index 的复现工具包。Decision Index 是类型化决策引擎（Jev 以及回答 choice 和 noul 问题的开源模型）的排行榜，涵盖 37 个公开基准，按扣除随机水平的方式计分。其 http 引擎把每个请求原样发给任何 /v1/systemone 服务器；参考模型为 jev-1.13.0。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★10+ · apolinario · `Py` · [调用点](https://github.com/apolinario/decision-index/blob/HEAD/decision_index/engines/http.py)，2026-10-30 模型阅读</sub>
+
+  > 与 TypeSafe 无关联。发现队列引用的是常量文件；本条目改引 http 引擎，docs/engines.md 说明它通过 TypeSafe 的托管 API 运行 Jev。线上排行榜为 0.4 版；本工具包运行公开的 0.3 套件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-30 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
+- **[DMB: decision-model benchmark](https://github.com/nibzard/decision-model-benchmark)**<br>
+  针对“从列表中选一项并给出置信度”这类 API 的基准测试：比较 Jev、带结构化输出的 LLM 和确定性基线的准确率、延迟、成本、失败率和置信度。作者报告 jev-latest 在 Banking77 上为 79.2%，CLINC150 上为 88.6%，NLU++ 上微平均 F1 为 48.3%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★10+ · nibzard · `Py` · `choice` · [调用点](https://github.com/nibzard/decision-model-benchmark/blob/HEAD/src/dmb/contenders/jev.py)，2026-11-04 模型阅读</sub>
+
+  **注意:** `无许可证`
+
+  > 2026-09-29 的扩展测试只测了 Jev；更早的试点还测了 LLM（Gemini 3.8 Flash 在银行意图上得分更高）。作者提醒，结果只适用于所测的端点、设置和数据集。仓库没有 LICENSE 文件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-04 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
+- **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)**<br>
+  每周一个的市场销售（GTM）实验，均用 Jev 完成并与 Claude 对比：线索分拣和路由、交易风险、回复分拣、从通话摘要中提取 MEDDPICC 字段、重复账户识别、已流失交易的重新激活，另有一个 MCP 服务器。共享客户端在取整前减去实测的 0.30 分数偏差。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★10+ · deepdave98 · `Py` · `noul` · `choice` · `score` · [调用点](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py)，2026-10-31 模型阅读</sub>
+
+  **注意:** `无许可证`
+
+  > 本条目引用 common/jev.py，即第 03 周起各实验共用的客户端。仓库中没有 LICENSE 文件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-31 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[jev-benchmarks](https://github.com/AbdelStark/jev-benchmarks)**<br>
   面向类型化决策模型的概率感知评测：校准度、选择性风险、延迟，以及可复现的基准。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
@@ -110,6 +138,20 @@
   让三条流水线在 12 篇 arXiv 论文上比赛：Docling 加 Jev、Docling 加 Gemini 3.8 Flash，以及 Gemini 直接读 PDF，每篇回答四个问题，按 arXiv 自己的元数据评分。三条都答对了 12 篇中全部的类别和标题；Jev 这条的成本是 $0.0022，另两条为 $0.036 和 $0.088。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · ★10+ · goodrahstar · `JS` · [调用点](https://github.com/goodrahstar/pdf-race/blob/HEAD/lib/lanes.mjs)，2026-09-24 阅读</sub>
 
+- **[ProbabilityBench](https://github.com/ishida-lab/probabilitybench)**<br>
+  把模型报告的概率与精确真值对比的基准测试：在模拟的文本世界（同行评审、隐蔽传输、信用风险）中，正面结果的概率是已知的。其示例通过 OpenRouter 向 Jev 1.13 和其他决策模型提出是非题，并按 KL 散度与成本评分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★10+ · ishida-lab · `Py` · `noul` · [调用点](https://github.com/ishida-lab/probabilitybench/blob/HEAD/examples/decision_models.py)，2026-11-04 模型阅读</sub>
+
+  **注意:** `仅一次提交`
+
+  > 示例通过 OpenRouter 的 Decisions API 为每个模型发送 2,700 个请求，每个请求附 25 个带标签的样例。README 本身不公布分数，请看 arXiv 论文。这些世界是合成机制，并非真实评审或信贷的模型。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-04 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
+- **[RLCDAlignBench (Just Ask Jev)](https://github.com/sumleo/rlcdalignbench)**<br>
+  基准数据集和论文代码（arXiv 2609.29429），检验 Jev 作为零样本检测器识别 AI 对齐失败的能力：涵盖 44 个基准、十类失败（从谄媚、越狱到奖励投机）的 7,193 条已标注模型输出。每个样本以一次请求发给 Jev，附带一组类型化问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★10+ · sumleo · `Py` · `noul` · `choice` · `score` · [调用点](https://github.com/sumleo/rlcdalignbench/blob/HEAD/code/run_jev.py)，2026-11-01 模型阅读</sub>
+
+  > 据作者报告，一个通用问题在零样本下的 AUROC 中位数为 0.886。数据在 Hugging Face 上需申请访问，采用 CC BY-NC 4.0 许可，含有有害的模型输出；代码采用 MIT 许可。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-01 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
 - **[smartmoney-cub](https://github.com/myc0576/SmartMoney-Cub)**<br>
   只读的交易日志与复盘 harness：Jev 类型化判断、智能体集成，以及一个可复现的金融基准。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · ★10+ · myc0576 · `Py` · [调用点](https://github.com/myc0576/SmartMoney-Cub/blob/HEAD/src/smartmoney_cub_harness/jev/direct.py)，2026-09-22 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
@@ -136,18 +178,6 @@
   Jev 会贝叶斯吗？把 TypeSafe AI 的 Jev 与贝叶斯最优策略对比，并测试它能否有效使用贝叶斯推理。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · tomrichner · `Py` · [调用点](https://github.com/TomRichner/can-jev-bayes/blob/HEAD/src/jevbandits/client.py)，2026-09-24 阅读</sub>
 
-- **[Convex Coding Evals](https://github.com/convex/convex-evals)**<br>
-  Convex 的编程基准新增了决策模型赛道：108 道关于 Convex 知识的选择题，每题四个选项，覆盖其 112 个编程评测中的 90 个。Jev 通过 OpenRouter 的决策端点，以一个 `choice` 回答每道题；语言模型则通过聊天补全接口回答同样的问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · convex · `TS` · `choice` · [调用点](https://github.com/convex/convex-evals/blob/HEAD/runner/decisions/providers.ts)，2026-10-29 模型阅读</sub>
-
-  > 决策赛道有独立的分数和排行榜；README 说明，选对答案并不代表模型能写出可用的 Convex 代码。托管运行固定使用 typesafe/jev-1.13，并采用三种选项排列。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-29 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
-
-- **[Decision Index](https://github.com/apolinario/decision-index)**<br>
-  Decision Index 的复现工具包。Decision Index 是类型化决策引擎（Jev 以及回答 choice 和 noul 问题的开源模型）的排行榜，涵盖 37 个公开基准，按扣除随机水平的方式计分。其 http 引擎把每个请求原样发给任何 /v1/systemone 服务器；参考模型为 jev-1.13.0。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · apolinario · `Py` · [调用点](https://github.com/apolinario/decision-index/blob/HEAD/decision_index/engines/http.py)，2026-10-30 模型阅读</sub>
-
-  > 与 TypeSafe 无关联。发现队列引用的是常量文件；本条目改引 http 引擎，docs/engines.md 说明它通过 TypeSafe 的托管 API 运行 Jev。线上排行榜为 0.4 版；本工具包运行公开的 0.3 套件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-30 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
-
 - **[Decision Models as Guardrails](https://dm-as-guardrails.raxitlabs.com)**<br>
   让 Jev 1.13.0、Jev 1.14.0 及其他 17 个系统（包括 Bedrock Guardrails）回答同样的 9,975 条带标注的护栏检查，分为六个套件。Jev 以 noul 回答每条检查，概率达到 0.5 或以上即拦截，不对任何模型单独调参。报告平衡准确率（含 95% 区间）以及按公开价格计算的每 1,000 次检查的美元成本。 <sub>(机翻)</sub><br>
   <sub>`基准测试` · raxIT Labs · `Py` · `noul` · `score` · [调用点](https://github.com/raxITlabs/decision-models-as-guardrails/blob/HEAD/benchmark/goldrails_bench/systemone.py)</sub>
@@ -158,14 +188,6 @@
   面向基于文档的决策模型的开放基准运行框架。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · hanno-labs · `Py` · [调用点](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py)，2026-09-24 阅读</sub>
 
-- **[DMB: decision-model benchmark](https://github.com/nibzard/decision-model-benchmark)**<br>
-  针对“从列表中选一项并给出置信度”这类 API 的基准测试：比较 Jev、带结构化输出的 LLM 和确定性基线的准确率、延迟、成本、失败率和置信度。作者报告 jev-latest 在 Banking77 上为 79.2%，CLINC150 上为 88.6%，NLU++ 上微平均 F1 为 48.3%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · nibzard · `Py` · `choice` · [调用点](https://github.com/nibzard/decision-model-benchmark/blob/HEAD/src/dmb/contenders/jev.py)，2026-11-04 模型阅读</sub>
-
-  **注意:** `无许可证`
-
-  > 2026-09-29 的扩展测试只测了 Jev；更早的试点还测了 LLM（Gemini 3.8 Flash 在银行意图上得分更高）。作者提醒，结果只适用于所测的端点、设置和数据集。仓库没有 LICENSE 文件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-04 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
-
 - **[dsh-jev-verify](https://github.com/xienda/dsh-jev-verify)**<br>
   给 DeepSeek Harness 的 Jev 决策工具与实时验证基准。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · xienda · `JS` · [调用点](https://github.com/xienda/dsh-jev-verify/blob/HEAD/lib/index.js)，2026-09-22 阅读</sub>
@@ -173,14 +195,6 @@
 - **[ego-jev-ultrafast](https://github.com/shikaizhong-design/ego-jev-ultrafast)**<br>
   Jev 驱动你的轻量浏览器：每步一次类型化选择请求，单文件零依赖。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · shikaizhong-design · `JS` · [调用点](https://github.com/shikaizhong-design/ego-jev-ultrafast/blob/HEAD/jego.js)，2026-09-22 阅读</sub>
-
-- **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)**<br>
-  每周一个的市场销售（GTM）实验，均用 Jev 完成并与 Claude 对比：线索分拣和路由、交易风险、回复分拣、从通话摘要中提取 MEDDPICC 字段、重复账户识别、已流失交易的重新激活，另有一个 MCP 服务器。共享客户端在取整前减去实测的 0.30 分数偏差。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · deepdave98 · `Py` · `noul` · `choice` · `score` · [调用点](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py)，2026-10-31 模型阅读</sub>
-
-  **注意:** `无许可证`
-
-  > 本条目引用 common/jev.py，即第 03 周起各实验共用的客户端。仓库中没有 LICENSE 文件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-31 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[jev-acento](https://github.com/marcosmartinez/jev-acento)**<br>
   Jev 听得懂你的口音吗？一项预先注册的、针对 TypeSafe AI Jev 西班牙语表现的审计——准确率、校准与 token 成本。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
@@ -365,18 +379,6 @@
 - **[padflow-jev-evals](https://github.com/zsavage8/padflow-jev-evals)**<br>
   来自某土地开发 SaaS 的类型化决策基准：schema、匿名标注数据与运行器。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · zsavage8 · `Py` · [调用点](https://github.com/zsavage8/padflow-jev-evals/blob/HEAD/scripts/run_baseline.py)，2026-09-22 阅读</sub>
-
-- **[ProbabilityBench](https://github.com/ishida-lab/probabilitybench)**<br>
-  把模型报告的概率与精确真值对比的基准测试：在模拟的文本世界（同行评审、隐蔽传输、信用风险）中，正面结果的概率是已知的。其示例通过 OpenRouter 向 Jev 1.13 和其他决策模型提出是非题，并按 KL 散度与成本评分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · ishida-lab · `Py` · `noul` · [调用点](https://github.com/ishida-lab/probabilitybench/blob/HEAD/examples/decision_models.py)，2026-11-04 模型阅读</sub>
-
-  > 示例通过 OpenRouter 的 Decisions API 为每个模型发送 2,700 个请求，每个请求附 25 个带标签的样例。README 本身不公布分数，请看 arXiv 论文。这些世界是合成机制，并非真实评审或信贷的模型。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-04 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
-
-- **[RLCDAlignBench (Just Ask Jev)](https://github.com/sumleo/rlcdalignbench)**<br>
-  基准数据集和论文代码（arXiv 2609.29429），检验 Jev 作为零样本检测器识别 AI 对齐失败的能力：涵盖 44 个基准、十类失败（从谄媚、越狱到奖励投机）的 7,193 条已标注模型输出。每个样本以一次请求发给 Jev，附带一组类型化问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · sumleo · `Py` · `noul` · `choice` · `score` · [调用点](https://github.com/sumleo/rlcdalignbench/blob/HEAD/code/run_jev.py)，2026-11-01 模型阅读</sub>
-
-  > 据作者报告，一个通用问题在零样本下的 AUROC 中位数为 0.886。数据在 Hugging Face 上需申请访问，采用 CC BY-NC 4.0 许可，含有有害的模型输出；代码采用 MIT 许可。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-01 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[smoking-extraction-benchmark](https://github.com/vclic/smoking-extraction-benchmark)**<br>
   合成的吸烟史抽取基准：对比 Jev 与 OpenAI 结构化输出。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>

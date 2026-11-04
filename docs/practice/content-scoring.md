@@ -37,9 +37,9 @@ Content scoring puts a number or a band on something: a passage's relevance, a r
 <!-- primitives:start -->
 | Primitive | A person read the code calling it | A model read the code calling it | Only the text signal shows it |
 | --- | ---: | ---: | ---: |
-| `choice` | 14 | 11 | 56 |
-| `score` | 12 | 12 | 45 |
-| `noul` | 11 | 12 | 65 |
+| `choice` | 14 | 11 | 52 |
+| `score` | 12 | 12 | 41 |
+| `noul` | 11 | 12 | 63 |
 
 Primitives recorded together on one row (`question_types`, a person's or a model's reading): `choice` + `score` + `noul` 19 · `choice` + `score` 3 · `choice` 2 · `noul` 2 · `choice` + `noul` 1 · `score` 1 · `score` + `noul` 1.
 <!-- primitives:end -->

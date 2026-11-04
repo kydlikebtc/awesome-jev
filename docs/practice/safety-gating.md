@@ -39,9 +39,9 @@ A gate asks whether something an agent is about to do (a shell command, a tool c
 <!-- primitives:start -->
 | Primitive | A person read the code calling it | A model read the code calling it | Only the text signal shows it |
 | --- | ---: | ---: | ---: |
-| `choice` | 13 | 13 | 46 |
-| `score` | 11 | 7 | 31 |
-| `noul` | 16 | 17 | 62 |
+| `choice` | 13 | 13 | 44 |
+| `score` | 11 | 7 | 29 |
+| `noul` | 16 | 17 | 60 |
 
 Primitives recorded together on one row (`question_types`, a person's or a model's reading): `choice` + `score` + `noul` 15 · `choice` + `noul` 11 · `noul` 5 · `score` + `noul` 2 · `score` 1.
 <!-- primitives:end -->
