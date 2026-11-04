@@ -34,7 +34,7 @@ The rules, standard library only, with no other import from this repository:
 | File | What it does |
 | --- | --- |
 | `src/awesome_jev_mcp/query.py` (its launch section) | the evidence tier, the shuffled order, and what a week looks like to an agent |
-| `scripts/launches.py` | every rule of the board: products, weeks, vote weights, the ring check, ranking, badges, hunters, the daily-board streak |
+| `scripts/launches.py` | every rule of the board: products, weeks, vote weights, the ring check, ranking, badges and what a README badge says, hunters, the daily-board streak, the rising list |
 | `scripts/launch_votes.py` | reads one Discussion's thumbs-up reactions and voters' account ages over GraphQL |
 | `scripts/launch_week.py` | closes last week and opens this one; `--probe` checks the token may post |
 | `scripts/award.py` | the year's award shortlists |
@@ -48,7 +48,7 @@ fork replaces those parts with its own:
 | --- | --- |
 | `scripts/launch_intake.py` | `draft_from_issue.py` (reading the issue form), `lint.py` (the schema validator) |
 | `scripts/check_launches.py` | `lint.py` (`lint.validate`, a minimal JSON Schema draft-07 validator) |
-| `scripts/site_products.py` | this site's page shell (`site_pages.py`); another site renders `launches.weeks()` its own way |
+| `scripts/site_products.py` | this site's page shell (`site_pages.py`); another site renders `launches.weeks()` its own way. Its rising list takes two weekly snapshots of each row's stars (`history/<date>.json`, written here by `scripts/snapshot_stats.py`; `launches.refreshes()` reads them); without them the board has no rising list |
 
 The workflows: `.github/workflows/launch-intake.yml`, `launch-collect.yml`,
 `launch-week.yml`, `launch-votes.yml`, `launch-probe.yml`, and the issue form

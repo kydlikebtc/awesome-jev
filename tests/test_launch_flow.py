@@ -629,6 +629,10 @@ class TellTest(unittest.TestCase):
         self.assertEqual(who, "github-actions")
         self.assertIn(f"discussions/{alpha['discussion']}", text)
         self.assertIn("<!-- launch-board 2026-W47 alpha opened -->", text)
+        # The maker is handed the README line whose badge says "vote this week" until the week closes.
+        self.assertIn('badge says "vote this week"', text)
+        self.assertIn("[![awesome-jev](https://kydlikebtc.github.io/awesome-jev/badges/alpha.svg)]"
+                      "(https://kydlikebtc.github.io/awesome-jev/products/alpha.html)", text)
         self.assertEqual((gh.issues[81]["state"], gh.issues[82]["state"]), ("CLOSED", "CLOSED"))
         self.assertNotIn(83, gh.issues)  # held: a person decides it, and its issue stays as it is
         self.assertEqual(len(notes), 2)
@@ -648,7 +652,8 @@ class TellTest(unittest.TestCase):
         launch_week.tell_issues(data, "closed", repository="o/r", ask=gh.ask, mutate=gh.mutate)
         alpha, beta, gamma = (gh.issues[n]["comments"][0][1] for n in (81, 82, 83))
         self.assertIn("placed #1 of 2, with 4 votes, 3.5 counted", alpha)
-        self.assertIn("[![awesome-jev launches: #1 of 2026-W47](https://kydlikebtc.github.io/awesome-jev/badges/"
+        self.assertIn('its README badge now says "#1 launch of 2026-W47"', alpha)
+        self.assertIn("[![awesome-jev](https://kydlikebtc.github.io/awesome-jev/badges/"
                       "alpha.svg)](https://kydlikebtc.github.io/awesome-jev/products/alpha.html)", alpha)
         self.assertIn("placed #2 of 2", beta)
         self.assertNotIn("badge", beta)
@@ -786,7 +791,9 @@ class WeekPagesTest(unittest.TestCase):
     def test_a_closed_week_has_a_page_in_each_language_and_a_badge(self):
         for rel in ("weeks/2026-W46.html", "weeks/2026-W46.zh.html", "badges/alpha.svg"):
             self.assertIn(rel, self.files)
-        self.assertNotIn("badges/beta.svg", self.files)
+        # Every product has a badge; it says what the product's launches earned, nothing more.
+        self.assertIn("awesome-jev: listed", self.files["badges/beta.svg"])
+        self.assertIn("awesome-jev: launching 2026-W47", self.files["badges/gamma.svg"])
         page = self.files["weeks/2026-W46.html"]
         self.assertLess(page.index("products/alpha.html"), page.index("products/beta.html"))
         self.assertIn('href="../products/alpha.html"', page)
@@ -794,7 +801,7 @@ class WeekPagesTest(unittest.TestCase):
         self.assertIn("counted under rules v1", page)
         self.assertIn("gamma: a &lt;ring&gt; of new accounts", page)
         svg = self.files["badges/alpha.svg"]
-        self.assertIn("#1 of 2026-W46", svg)
+        self.assertIn("#1 launch of 2026-W46", svg)
         self.assertNotIn("<script", svg)
         self.assertNotIn("href", svg)
 

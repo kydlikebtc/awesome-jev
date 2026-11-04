@@ -509,7 +509,11 @@ them. If you did, you know best whether it is right.
   ```
 
   It is a static image with no counter, and it says the project is
-  catalogued, nothing about its quality.
+  catalogued, nothing about its quality. A product (a project, plugin, SDK or
+  integration with code) also has a badge of its own, linked to its page:
+  the page shows the line, and the picture says that it is listed, then that
+  it is launching, then a top-three place on the launch board, if it earns
+  one ([docs/launches.md](docs/launches.md#the-readme-badge)).
 - **Give it a page of its own and launch it.** Every product row has a page on
   the site, and its makers can put it on the weekly launch board, where people
   vote, with the

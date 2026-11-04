@@ -13,6 +13,9 @@ page once a month, for the month before, from
     month, and the rows retired in it (the date their notes give);
   * the end snapshot's star counts, so the "most starred" list is the month's,
     not today's;
+  * the start and end snapshots' star counts again, for the products that rose
+    fastest over the month (launches.rising, the rule the board's rising list
+    uses; L29 of the launch plan's third round);
   * launches/*.json: the launch weeks whose Sunday falls in the month and that
     have closed, each with its top three (L17 of the 2026-11-03 launch-board
     plan, docs/launches.md). Votes stay apart from the evidence here too.
@@ -212,6 +215,30 @@ def launch_section(month: str, launch_weeks: list[dict], catalog: list[dict]) ->
     return out
 
 
+def rising_section(start: dict, end: dict, catalog: list[dict]) -> list[str]:
+    """The products whose stars rose fastest from the month's first snapshot
+    to its last, by the board's rule (launches.rising)."""
+    risen = launches.rising(catalog, start, end)
+    out = [
+        f"## Rising · 上升最快: {len(risen)}",
+        "",
+        f"The products whose GitHub stars grew fastest from the {start['date']} snapshot to the {end['date']} one: "
+        f"at least {launches.RISING_MIN} stars gained, in order of the gain as a share of the stars before "
+        "(docs/launches.md). A popularity signal, not a verdict. · "
+        f"从 {start['date']} 到 {end['date']} 的快照之间 GitHub 星标涨得最快的产品：至少涨了 {launches.RISING_MIN} 个，"
+        "按涨幅占原有星标的比例排序。热度信号，不是评价。",
+        "",
+    ]
+    for item in risen:
+        e = item["row"]
+        page = f"[{e['slug']}]({SITE}products/{urllib.parse.quote(e['slug'])}.html)"
+        out.append(f"- {page} · +{item['gained']} ★ ({item['before']} → {item['after']}, "
+                   f"{launches.share(item['gained'], item['before'])}): {e.get('summary', '').strip()}")
+    if not risen:
+        out.append("None. · 无。")
+    return out
+
+
 def render(month: str, history: list[tuple[str, dict]], catalog: list[dict], retired: list[dict],
            *, written: str, launch_weeks: list[dict] = ()) -> str:
     start, end = snapshots_for(history, month)
@@ -271,6 +298,7 @@ def render(month: str, history: list[tuple[str, dict]], catalog: list[dict], ret
         out += entry_line(e, stars[e["slug"]])
     if not starred:
         out.append("None. · 无。")
+    out += [""] + rising_section(start, end, catalog)
     out += ["", f"## Measurements and negative results · 测量与负面结果: {len(measured)} · {len(negative)}", ""]
     for e in sorted({e["slug"]: e for e in measured + negative}.values(), key=lambda e: e["slug"]):
         out += entry_line(e, stars.get(e["slug"]))

@@ -14,7 +14,10 @@ These are generated data, not a source of truth: `catalog.json` is, and
 nothing reads a snapshot back into it. Do not edit or add files here by hand.
 Nothing was backfilled from git's history of `catalog.json`, because nobody
 published those numbers at the time. [`docs/shape.md`](../docs/shape.md)
-reads the files for its "Over time" table once there are three. A star count
+reads the files for its "Over time" table once there are three. Since
+2026-11-04 the launch board lists the products whose stars rose fastest
+between the two newest files, and each monthly report those of its month
+([docs/launches.md](../docs/launches.md#rising)). A star count
 is GitHub's at the refresh: a popularity signal, not a quality verdict.
 
 `traffic/` holds a second kind of snapshot, once a `TRAFFIC_TOKEN` secret
@@ -37,6 +40,7 @@ slug、star、许可证和标记。
 这些是生成的数据，不是事实来源：事实来源是 `catalog.json`，任何快照都不会被读回其中。请不要手动编辑或添加这里的文件。
 没有根据 `catalog.json` 的 git 历史回填，因为当时没有人公布过那些数字。
 [`docs/shape.zh-CN.md`](../docs/shape.zh-CN.md) 在有三份快照后会读取它们，生成「随时间的变化」表。
+自 2026-11-04 起，发布榜列出最新两份快照之间 star 涨得最快的产品，每份月报列出当月的（[docs/launches.zh-CN.md](../docs/launches.zh-CN.md#上升最快)）。
 star 数是刷新时 GitHub 的计数：热度信号，不是质量结论。
 
 在配置了 `TRAFFIC_TOKEN` secret 之后（自 2026-10-24 起），`traffic/` 存放另一种快照：

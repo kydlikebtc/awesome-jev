@@ -233,6 +233,88 @@ class MeasuresTest(unittest.TestCase):
         self.assertEqual(launches.week_days("2026-W46")[0] + dt.timedelta(days=63), dt.date(2027, 1, 11))
 
 
+def stars(date: str, **counts: int) -> dict:
+    """A weekly refresh as history/ keeps it, with only what rising() reads."""
+    return {"date": date, "rows": [{"slug": slug, "stars": n} for slug, n in counts.items()]}
+
+
+class RisingTest(unittest.TestCase):
+    """The products rising fastest between two weekly refreshes (L29)."""
+
+    def test_fastest_by_share_of_the_stars_before_once_ten_were_gained(self):
+        catalog = CATALOG + [row("big", stars=1100), row("young", first_seen="2026-11-03")]
+        before = stars("2026-10-28", alpha=5, big=1000, gamma=10, quiet=1, delta=1, essay=1)
+        after = stars("2026-11-04", alpha=40, big=1100, gamma=19, quiet=100, delta=900, essay=900, young=500)
+        risen = launches.rising(catalog, before, after)
+        self.assertEqual([(x["row"]["slug"], x["before"], x["after"], x["gained"]) for x in risen],
+                         [("alpha", 5, 40, 35), ("big", 1000, 1100, 100)])
+        # gamma gained 9; quiet's repository is quiet; delta is not-jev and essay an article;
+        # young was not in the earlier refresh, so it has no gain to show.
+
+    def test_a_tie_goes_to_the_bigger_gain_then_the_slug_and_the_list_is_cut(self):
+        catalog = [row(s) for s in ("a", "b", "c", "d")]
+        before = stars("2026-10-28", a=10, b=20, c=20, d=0)
+        after = stars("2026-11-04", a=30, b=60, c=60, d=10)
+        self.assertEqual([x["row"]["slug"] for x in launches.rising(catalog, before, after)], ["d", "b", "c", "a"])
+        self.assertEqual([x["row"]["slug"] for x in launches.rising(catalog, before, after, limit=2)], ["d", "b"])
+
+    def test_the_last_two_refreshes_are_read_and_a_broken_one_is_left_out(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = pathlib.Path(tmp)
+            for name, text in {"2026-10-21.json": json.dumps(stars("2026-10-21", alpha=1)),
+                               "2026-10-28.json": json.dumps(stars("2026-10-28", alpha=5)),
+                               "2026-11-04.json": json.dumps(stars("2026-11-04", alpha=40)),
+                               "README.md": "not a snapshot", "notes.json": "{}"}.items():
+                (folder / name).write_text(text)
+            self.assertEqual([x["date"] for x in launches.refreshes(folder)], ["2026-10-28", "2026-11-04"])
+            (folder / "2026-11-04.json").write_text("{ broken")
+            self.assertEqual([x["date"] for x in launches.refreshes(folder)], ["2026-10-28"])
+            self.assertEqual(launches.refreshes(folder / "none"), [])
+
+    def test_the_site_build_reads_the_repository_s_own_refreshes(self):
+        import assemble_site
+
+        self.assertIn("Rising in the catalogue:", assemble_site.page_files()["launches.html"])
+
+    def test_nothing_without_two_refreshes_and_a_share_reads_as_a_percentage(self):
+        self.assertEqual(launches.rising(CATALOG, None, stars("2026-11-04", alpha=40)), [])
+        self.assertEqual((launches.share(35, 5), launches.share(15, 0), launches.share(100, 1000)),
+                         ("+700%", "+1500%", "+10%"))
+
+
+class BadgeStateTest(unittest.TestCase):
+    """What a product's README badge says (L30): one address, every state."""
+
+    def state(self, *weeks: dict, slug: str = "alpha"):
+        history = launches.launched(list(weeks))
+        return launches.badge_state(history.get(slug, []), {w["week"]: w for w in weeks})
+
+    def test_listed_then_launching_then_its_place(self):
+        self.assertEqual(self.state(), ("listed", None))
+        self.assertEqual(self.state(week("2026-W46", "scheduled", [launch("alpha")])), ("scheduled", "2026-W46"))
+        self.assertEqual(self.state(week("2026-W46", "open", [launch("alpha", discussion=7)])), ("open", "2026-W46"))
+        placed = week("2026-W46", "closed", [launch("alpha", result={"votes": 4, "counted": 3.5, "discounted": 1,
+                                                                     "rank": 2, "badges": ["week-2"]})])
+        self.assertEqual(self.state(placed), ("week-2", "2026-W46"))
+        # A later launch that placed lower keeps the place; while it runs, the badge says so.
+        later = week("2027-W02", "closed", [launch("alpha", result={"votes": 0, "counted": 0, "discounted": 0,
+                                                                    "rank": 9})])
+        self.assertEqual(self.state(placed, later), ("week-2", "2026-W46"))
+        self.assertEqual(self.state(placed, week("2027-W02", "open", [launch("alpha")])), ("open", "2027-W02"))
+
+    def test_a_held_or_removed_launch_and_a_week_without_a_vote_leave_it_listed(self):
+        self.assertEqual(self.state(week("2026-W46", "closed", [launch("alpha", status="removed", reason="x")])),
+                         ("listed", None))
+        unplaced = week("2026-W46", "closed", [launch("alpha", result={"votes": 0, "counted": 0, "discounted": 0,
+                                                                       "rank": 1})])
+        self.assertEqual(self.state(unplaced), ("listed", None))
+
+    def test_the_line_is_the_same_for_every_state(self):
+        self.assertEqual(launches.badge_line("alpha"),
+                         "[![awesome-jev](https://kydlikebtc.github.io/awesome-jev/badges/alpha.svg)]"
+                         "(https://kydlikebtc.github.io/awesome-jev/products/alpha.html)")
+
+
 CLOSED = week("2026-W46", "closed", [
     launch("alpha", submitted_on="2026-11-05", discussion=7,
            result={"votes": 4, "counted": 3.5, "discounted": 1, "rank": 1, "badges": ["week-1"]}),
@@ -451,7 +533,7 @@ class PagesTest(unittest.TestCase):
 
     def test_the_board_lists_new_products_before_any_launch(self):
         files = build()
-        self.assertIn("No launch has opened yet.", files["launches.html"])
+        self.assertIn("No launch is on the board yet.", files["launches.html"])
         self.assertLess(files["launches.html"].index('id="new-beta"'), files["launches.html"].index('id="new-alpha"'))
         self.assertNotIn('id="new-quiet"', files["launches.html"])
         self.assertIn("本周新收录", files["launches.zh.html"])
@@ -518,6 +600,64 @@ class PagesTest(unittest.TestCase):
         alpha = board.split('id="new-alpha"', 1)[1].split("</li>", 1)[0]
         self.assertNotIn("launch.yml", alpha)  # on next week's board already
         self.assertIn(">发布它 ↗</a>", build()["launches.zh.html"])
+
+    def test_the_board_lists_what_is_rising_with_a_way_to_launch_or_vote(self):
+        refreshes = [stars("2026-10-21", alpha=1), stars("2026-10-28", alpha=5, beta=100, gamma=20),
+                     stars("2026-11-04", alpha=40, beta=130, gamma=70)]
+        files = site_pages.pages(CATALOG, [], PATTERNS, TAXONOMY, launch_weeks=[CLOSED, OPEN], maker_profiles={},
+                                 snapshots=refreshes)
+        board = files["launches.html"]
+        section = board.split("Rising in the catalogue: 2026-10-28 to 2026-11-04", 1)[1]
+        self.assertLess(section.index('id="rising-alpha"'), section.index('id="rising-gamma"'))
+        self.assertLess(section.index('id="rising-gamma"'), section.index('id="rising-beta"'))
+        self.assertIn("+35 stars, 5 to 40 (+700%)", section)
+        self.assertIn("a popularity signal, not a verdict", board)
+        alpha = section.split('id="rising-alpha"', 1)[1].split("</li>", 1)[0]
+        self.assertNotIn("launch.yml", alpha)  # it launched in 2026-W46 and cannot launch again yet
+        gamma = section.split('id="rising-gamma"', 1)[1].split("</li>", 1)[0]
+        self.assertIn("discussions/9", gamma)  # on the board this week: its vote post
+        self.assertIn("+50 星，20 → 70（+250%）", files["launches.zh.html"])
+        self.assertIn("目录里上升最快：2026-10-28 至 2026-11-04", files["launches.zh.html"])
+        fresh = site_pages.pages(CATALOG, [], PATTERNS, TAXONOMY, maker_profiles={}, snapshots=refreshes)
+        beta = fresh["launches.html"].split('id="rising-beta"', 1)[1].split("</li>", 1)[0]
+        self.assertIn("launch.yml&amp;product=beta", beta)
+        # Before two refreshes there is nothing to compare, so no section.
+        self.assertNotIn("Rising in the catalogue", build()["launches.html"])
+        flat = site_pages.pages(CATALOG, [], PATTERNS, TAXONOMY, maker_profiles={},
+                                snapshots=[stars("2026-10-28", alpha=5), stars("2026-11-04", alpha=6)])
+        self.assertIn("No product gained 10 stars between the two latest weekly refreshes.", flat["launches.html"])
+
+    def test_every_product_has_a_badge_and_its_page_gives_the_line(self):
+        files = build(weeks=[CLOSED, OPEN])
+        for slug in ("alpha", "beta", "gamma", "quiet"):
+            self.assertIn(f"badges/{slug}.svg", files)
+        self.assertNotIn("badges/essay.svg", files)  # not a product
+        self.assertIn("awesome-jev: #1 launch of 2026-W46", files["badges/alpha.svg"])
+        self.assertIn("awesome-jev: listed", files["badges/beta.svg"])  # second, with no vote counted: no place
+        self.assertIn("awesome-jev: vote this week", files["badges/gamma.svg"])
+        self.assertIn("awesome-jev: listed", build()["badges/alpha.svg"])
+        page = files["products/beta.html"]
+        self.assertIn('<img src="../badges/beta.svg" alt="awesome-jev" height="20" />', page)
+        self.assertIn("<pre><code>[![awesome-jev](https://kydlikebtc.github.io/awesome-jev/badges/beta.svg)]"
+                      "(https://kydlikebtc.github.io/awesome-jev/products/beta.html)</code></pre>", page)
+        for svg in (files[f"badges/{s}.svg"] for s in ("alpha", "beta", "gamma", "quiet")):
+            self.assertNotIn("<script", svg)
+            self.assertNotIn("href", svg)
+            width = int(re.search(r'width="(\d+)"', svg).group(1))
+            self.assertLess(width, 260)
+
+    def test_every_plain_page_previews_as_a_card(self):
+        files = build(weeks=[CLOSED, OPEN])
+        for rel, text in files.items():
+            if not rel.endswith(".html"):
+                continue
+            title = re.search(r"<title>(.*?)</title>", text).group(1)
+            canonical = re.search(r'<link rel="canonical" href="([^"]+)"', text).group(1)
+            self.assertIn(f'<meta property="og:title" content="{title}" />', text, rel)
+            self.assertIn(f'<meta property="og:url" content="{canonical}" />', text, rel)
+            self.assertIn('<meta property="og:image" content="https://kydlikebtc.github.io/awesome-jev/img/og.png" />',
+                          text, rel)
+            self.assertIn('<meta name="twitter:card" content="summary_large_image" />', text, rel)
 
     def test_the_weekly_results_feed_has_a_closed_week_s_ranking(self):
         import xml.etree.ElementTree as ET

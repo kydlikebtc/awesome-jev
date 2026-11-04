@@ -28,9 +28,12 @@
 | 通知每个 Launch | 周一在每个 Launch 的 issue 上贴出投票帖链接并关闭 issue；收榜时贴出结果，前三名附上徽章代码 | 已完成（2026-11-04） |
 | 产品页一键操作 | 每个产品页上的"发布它"和"这是你做的？"会打开发布表单和 confirm-entry 表单，产品已填好；榜单上的新产品也有"发布它" | 已完成（2026-11-04） |
 | 指标 | 每个已收榜的周记录有多少账号投票、多少是回头的，每个 Launch 记录开榜时谁读过调用点（[见下文](#榜单怎么衡量)） | 已完成（2026-11-04） |
+| 上升最快 | 最近两次每周刷新之间 GitHub 星标涨得最快的产品，显示在榜单上；月报列出当月的（[见下文](#上升最快)） | 已完成（2026-11-04） |
+| 每个产品一枚徽章 | 放进产品 README 的一行，图片依次显示已收录、正在发布、进过前三的名次；每个产品页都给出这一行（[见下文](#readme-徽章)） | 已完成（2026-11-04） |
+| 链接预览 | 每个产品页、Maker 页、周榜页和榜单页都指定了站点的预览卡片，链接分享到哪里都会显示卡片 | 已完成（2026-11-04） |
 | 日榜 | 从周榜改为日榜 | 连续 4 周、每周至少 20 个 Launch 之后；榜单页会显示已连续几周 |
 
-第一周开榜之前，榜单列出最新一周进入目录的产品，先按谁读过调用点、再按星标排序。这是排序，不是排名。
+第一周开榜之前，榜单列出最新一周进入目录的产品，先按谁读过调用点、再按星标排序。这是排序，不是排名。不管哪一周有没有 Launch，榜单也列出上升最快的产品（[上升最快](#上升最快)）。
 
 ## 什么可以发布
 
@@ -60,7 +63,7 @@ Maker 还可以通过 [confirm-entry 表单](https://github.com/kydlikebtc/aweso
 2. 周五一早（00:20 UTC）把这一周的 Launch 写进 `launches/<YYYY>-W<ww>.json`（[schema](../schema/launch.schema.json)）并推到 `main`，不用等合并。榜单在"下周"下面列出它们。检查挂起的 Launch 按挂起写入，由维护者在周一之前决定。
 3. 周一 00:05 UTC 开榜：每个 Launch 在仓库的 `Launches` Discussions 里有一个帖子，在帖子上点赞就是投票。Launch 的 issue 会收到帖子链接，然后关闭。
 4. 开榜期间，榜单按随机顺序展示，不显示票数，免得大家只给排在前面的投票。（Discussion 自己会显示点赞数，榜单不重复显示。）
-5. 下一个周一收榜：统计票数，结果写入当周文件。票数主要来自新账号的 Launch 先挂起等人看，不参与排名。至少计到一票的前三名获得徽章，即站点上一张可以放进 README 的图片（`badges/<slug>.svg`），这一周也有了自己的页面。每个 Launch 的 issue 会收到它的结果，前三名还会收到显示徽章的那行代码。
+5. 下一个周一收榜：统计票数，结果写入当周文件。票数主要来自新账号的 Launch 先挂起等人看，不参与排名。至少计到一票的前三名，README 徽章会显示名次（[见下文](#readme-徽章)），这一周也有了自己的页面。每个 Launch 的 issue 会收到它的结果，前三名还会收到显示徽章的那行代码。
 
 每个月的月报（[docs/monthly/](monthly/)，在下个月第一周写成）列出当月结束的每一周和它的前三名。
 
@@ -87,6 +90,22 @@ Agent 不用看页面也能读榜。MCP 服务器的 `launch_board()` 返回本�
 - **打折扣的票**：有多少票按不足一票计。
 
 连续四周、每周至少 10 个 Launch 在榜、至少 50 个账号的票被计入，说明榜单在起作用；月报会写目前已连续几周。两者的规则都在 [`scripts/launches.py`](../scripts/launches.py)（`week_measures`、`gate_streak`）。
+
+## 上升最快
+
+榜单列出最近两次每周刷新（[history/](../history/) 里的快照，每周三一份）之间 GitHub 星标涨得最快的产品：至少涨了 10 个的，按涨幅占原有星标的比例排序，再按涨了多少，最多十个。和新收录一样，沉寂的产品（60 天没有推送）不列。每份月报按同样的规则列出当月的，从当月第一份快照到最后一份。
+
+这样不管有没有 Launch，榜单每周都有内容，Hunter 也有地方下手：上升最快、可以发布的产品带"发布它"，本周在榜的带它的投票帖。星标是 GitHub 的计数，是热度信号，不是评价，也从不和票数或证据相加。上升不会得到任何奖励。规则是 [`scripts/launches.py`](../scripts/launches.py) 里的 `rising`。
+
+## README 徽章
+
+每个产品在 `badges/<slug>.svg` 有一枚徽章，产品页给出把它放进 README 的那一行，链接到产品页：
+
+```markdown
+[![awesome-jev](https://kydlikebtc.github.io/awesome-jev/badges/your-slug.svg)](https://kydlikebtc.github.io/awesome-jev/products/your-slug.html)
+```
+
+地址不变，图片会跟着变：先显示 **listed**（已收录）；排进某一周后显示 **launching 2026-W46**；那一周开榜期间显示 **vote this week**；在某一周进了前三、并且至少计到一票之后，显示名次（**#1 launch of 2026-W46**），直到之后某一周再次进前三。它随网站一起重建，不会说榜单没说的话。每个 Launch 的 issue 在开榜时会收到这一行，前三名收榜时会再收到一次。规则是 [`scripts/launches.py`](../scripts/launches.py) 里的 `badge_state`。
 
 ## 年度决策奖
 
@@ -122,7 +141,8 @@ Jev 在 2026-09-15 进入早期访问，所以发布榜的一年从 9 月 15 日
 | `scripts/launch_intake.py` | 检查发布 issue，汇总一周的 Launch，列出还没人读过的 | |
 | `scripts/launch_week.py` | 开本周的榜，收上周的榜，通知每个 Launch 的 issue | |
 | `scripts/launch_votes.py` | 读取一个 Discussion 的投票 | |
-| `scripts/site_products.py` | 产品页、Maker 页、周榜页、榜单页、徽章和每周结果订阅 | |
+| `scripts/site_products.py` | 产品页、Maker 页、周榜页、榜单页、上升最快的列表、徽章和每周结果订阅 | |
+| `history/<date>.json` | 每次每周刷新的计数和星标；上升最快的列表读最新的两份 | `metadata.yml` |
 | `src/awesome_jev_mcp/query.py` | MCP 服务器的发布榜工具和 `api/v1/launches.json` 的内容 | |
 | `scripts/award.py` | 年度奖每种模式的候选名单 | |
 | [launch-engine.zh-CN.md](launch-engine.zh-CN.md) | 怎样为另一个目录运行这套发布榜 | |

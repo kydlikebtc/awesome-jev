@@ -18,6 +18,8 @@ decided here, so the three cannot drift apart:
   * the ISO weeks the board runs in (week_of, week_days)
   * how votes are weighted and a week is ranked (weigh, rank; RULES)
   * what a closed week is measured by (week_measures, gate_streak; L28)
+  * which products rose fastest between two weekly refreshes (rising; L29)
+  * what a product's README badge says (badge_state, badge_line; L30)
 
 What launches/*.json and makers/*.json may hold, beyond what the schemas can
 say, is checked by scripts/check_launches.py with these rules. It lives apart
@@ -63,6 +65,7 @@ def _load_query():
 query = _load_query()
 LAUNCH_DIR = ROOT / "launches"
 MAKER_DIR = ROOT / "makers"
+HISTORY_DIR = ROOT / "history"
 LAUNCH_SCHEMA = ROOT / "schema" / "launch.schema.json"
 MAKER_SCHEMA = ROOT / "schema" / "maker.schema.json"
 
@@ -81,6 +84,16 @@ RELAUNCH_DAYS = 60
 # A launch submitted by this day of the week (Monday is 0), 23:59 UTC, is for
 # next week; later, the week after (docs/launches.md "The week").
 LAST_DAY = 3
+
+# Rising (L29 of the plan's third round, 2026-11-04): the products whose GitHub
+# stars grew fastest between two weekly refreshes (history/), so the board says
+# what people are starring even in a week with few launches. A product is listed
+# once it gained at least RISING_MIN stars, by its gain as a share of the stars
+# it had before, then by the gain; the board shows RISING_SHOWN. Stars are
+# GitHub's count at each refresh, a popularity signal, not a verdict, and
+# nothing is awarded for rising.
+RISING_MIN = 10
+RISING_SHOWN = 10
 
 # Evidence tiers, strongest first (query.LAUNCH_TIERS, which the MCP server's
 # launch tools and the site's api/v1/launches.json read too).
@@ -222,6 +235,34 @@ def new_this_week(catalog: list[dict]) -> tuple[str | None, list[dict]]:
     newest = week_of(max(day(r["first_seen"]) for r in products))
     rows = [r for r in products if week_of(day(r["first_seen"])) == newest and not quiet(r, today)]
     return newest, sorted(rows, key=lambda r: (TIERS.index(tier(r)), *query.sort_key(r)))
+
+
+def rising(catalog: list[dict], before: dict | None, after: dict | None, *,
+           limit: int = RISING_SHOWN) -> list[dict]:
+    """The products whose stars rose fastest from snapshot `before` to snapshot
+    `after` (two history/<date>.json payloads, older first), fastest first:
+    {"row", "before", "after", "gained"} each. A row either snapshot lacks a
+    count for, a row no longer catalogued, a quiet row and a row that is not a
+    product are left out, and so is one that gained fewer than RISING_MIN."""
+    if not before or not after:
+        return []
+    rows = {r["slug"]: r for r in catalog}
+    was = {r.get("slug"): r.get("stars") for r in before.get("rows") or []}
+    today = as_of(catalog)
+    out = []
+    for snap in after.get("rows") or []:
+        row, old, new = rows.get(snap.get("slug")), was.get(snap.get("slug")), snap.get("stars")
+        if (row is None or not is_product(row) or quiet(row, today)
+                or not isinstance(old, int) or not isinstance(new, int) or new - old < RISING_MIN):
+            continue
+        out.append({"row": row, "before": old, "after": new, "gained": new - old})
+    out.sort(key=lambda x: (-x["gained"] / max(x["before"], 1), -x["gained"], x["row"]["slug"]))
+    return out[:limit]
+
+
+def share(gained: int, before: int) -> str:
+    """A gain as a share of the stars before it, as the board prints it."""
+    return f"+{round(100 * gained / max(before, 1))}%"
 
 
 # --------------------------------------------------------------------------
@@ -377,6 +418,24 @@ def weeks(directory: pathlib.Path = LAUNCH_DIR) -> list[dict]:
     return [found[k] for k in sorted(found) if isinstance(found[k], dict)]
 
 
+def refreshes(directory: pathlib.Path = HISTORY_DIR, last: int = 2) -> list[dict]:
+    """The `last` weekly refreshes in history/ (one per Wednesday, written by
+    scripts/snapshot_stats.py), oldest first: what rising() compares. Only
+    files named by their date are read, and one that does not parse or holds
+    no rows is left out, so a broken file costs the list, never the site."""
+    if not directory.is_dir():
+        return []
+    out = []
+    for path in sorted(p for p in directory.glob("*.json") if DAY.match(p.stem))[-last:]:
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(payload, dict) and isinstance(payload.get("rows"), list):
+            out.append(payload)
+    return out
+
+
 def makers(directory: pathlib.Path = MAKER_DIR) -> dict[str, dict]:
     """The maker profiles on file that parse, by lower-case login."""
     return {login_key(k): v for k, v in load_dir(directory).items() if isinstance(v, dict)}
@@ -492,6 +551,31 @@ def launch_again(history: list[tuple[str, dict]], weeks_by_id: dict[str, dict],
     if today is not None and week_days(week_for(today))[0] < again:
         return "from", again
     return "now", None
+
+
+def badge_state(history: list[tuple[str, dict]], weeks_by_id: dict[str, dict]) -> tuple[str, str | None]:
+    """What a product's README badge says now (badges/<slug>.svg; L30 of the
+    plan's third round), from its launches (launched(), oldest first):
+    ("open", week) while its latest launch's week runs, ("scheduled", week)
+    once that launch is filed for a week that has not opened, else its latest
+    top-three badge as (badge, week), else ("listed", None). The address never
+    changes, so a maker adds the line once and the picture keeps up."""
+    if history:
+        week = history[-1][0]
+        status = (weeks_by_id.get(week) or {}).get("status")
+        if status in ("open", "scheduled"):
+            return status, week
+    for week, launch in reversed(history):
+        got = (launch.get("result") or {}).get("badges") or []
+        if (weeks_by_id.get(week) or {}).get("status") == "closed" and got:
+            return got[0], week
+    return "listed", None
+
+
+def badge_line(slug: str) -> str:
+    """The Markdown that shows a product's badge in a README, linked to its
+    page: the same line for every product and every state."""
+    return f"[![awesome-jev]({query.SITE}badges/{slug}.svg)]({query.SITE}products/{slug}.html)"
 
 
 def launched(all_weeks: list[dict]) -> dict[str, list[tuple[str, dict]]]:

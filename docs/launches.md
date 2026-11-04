@@ -40,11 +40,15 @@ form, or follow "Launch it" on the product's page, which fills the product in.
 | Telling each launch | On Monday each launch's issue gets the link to its vote post and is closed; when the week closes, its result, and a top three its badge line | Built (2026-11-04) |
 | One click from a product | "Launch it" and "Made this?" on every product page open the launch and confirm-entry forms with the product filled in; the board's new products have "Launch it" too | Built (2026-11-04) |
 | Measures | Each closed week keeps how many accounts voted and how many came back, and each launch who had read its call site when it opened ([below](#how-the-board-is-measured)) | Built (2026-11-04) |
+| Rising | The products whose GitHub stars grew fastest between the two latest weekly refreshes, on the board, and over the month in each monthly report ([below](#rising)) | Built (2026-11-04) |
+| A badge for every product | One line for a product's README whose picture says it is listed, then that it is launching, then its top-three place; every product page shows the line ([below](#the-readme-badge)) | Built (2026-11-04) |
+| Link previews | Every product, maker, week and board page names the site's preview card, so a link shared anywhere shows one | Built (2026-11-04) |
 | Daily board | A board per day instead of per week | After 4 closed weeks in a row with at least 20 launches each; the board page counts the run |
 
 Until the first week opens, the board lists the products that entered the
 catalogue in the newest week, ordered by who read the call site and then by
-stars. That is an order, not a ranking.
+stars. That is an order, not a ranking. It also lists the products rising
+fastest, whatever any week holds ([Rising](#rising)).
 
 ## What can launch
 
@@ -114,9 +118,10 @@ Weeks are ISO weeks: Monday 00:00 UTC to Sunday 23:59 UTC.
 5. The next Monday the week closes: its votes are counted and the results
    written to the week's file. A launch whose votes come mostly from new
    accounts is held for a person instead of ranked. The top three with a vote
-   counted get a badge, an image on the site for their README
-   (`badges/<slug>.svg`), and the week gets its own page. Each launch's
-   issue is told its result, and a top three the line that shows its badge.
+   counted put their place on their README badge
+   ([below](#the-readme-badge)), and the week gets its own page. Each
+   launch's issue is told its result, and a top three the line that shows
+   its badge.
 
 Each month's report ([docs/monthly/](monthly/), written in the first week of
 the next) lists the weeks that ended in the month with their top three.
@@ -167,6 +172,41 @@ run and at least 50 accounts' votes count; the monthly report says how many
 weeks in a row so far. The rules for both are in
 [`scripts/launches.py`](../scripts/launches.py) (`week_measures`,
 `gate_streak`).
+
+## Rising
+
+The board lists the products whose GitHub stars grew fastest between the two
+latest weekly refreshes (the snapshots in [history/](../history/), one each
+Wednesday): those that gained at least 10 stars, in order of the gain as a
+share of the stars they had before, then of the gain, ten at most. A quiet
+product (no push in 60 days) is left out, as from the new products. Each
+monthly report lists the same over its month, from its first snapshot to its
+last.
+
+It is there so the board says something every week, launches or not, and so
+a hunter has somewhere to start: a rising product that can launch has
+"Launch it", and one on the board this week its vote post. Stars are GitHub's
+count, a popularity signal, not a verdict, and they are never added to votes
+or evidence. Nothing is awarded for rising. The rule is `rising` in
+[`scripts/launches.py`](../scripts/launches.py).
+
+## The README badge
+
+Every product has a badge at `badges/<slug>.svg`, and its page shows the one
+line that puts it in a README, linked to the page:
+
+```markdown
+[![awesome-jev](https://kydlikebtc.github.io/awesome-jev/badges/your-slug.svg)](https://kydlikebtc.github.io/awesome-jev/products/your-slug.html)
+```
+
+The address stays the same and the picture keeps up: it says **listed**;
+once the product is filed for a week, **launching 2026-W46**; while that week
+runs, **vote this week**; after a week in which it placed in the top three
+with a vote counted, that place (**#1 launch of 2026-W46**), until a later
+week places it again. It is rebuilt with the site and says nothing the board
+does not. Each launch's issue gets the line when its week opens, and a top
+three again when it closes. The rule is `badge_state` in
+[`scripts/launches.py`](../scripts/launches.py).
 
 ## The year's decision award
 
@@ -230,7 +270,8 @@ on them. Each is settled here and can be reopened in an issue.
 | `scripts/launch_intake.py` | checks a launch issue, collects a week's launches, and lists those nobody has read | |
 | `scripts/launch_week.py` | opens a week, closes the one before, and tells each launch's issue | |
 | `scripts/launch_votes.py` | reads one Discussion's votes | |
-| `scripts/site_products.py` | the product, maker, week and board pages, the badges and the weekly results feed | |
+| `scripts/site_products.py` | the product, maker, week and board pages, the rising list, the badges and the weekly results feed | |
+| `history/<date>.json` | each weekly refresh's counts and stars; the rising list reads the two newest | `metadata.yml` |
 | `src/awesome_jev_mcp/query.py` | what the MCP server's launch tools and `api/v1/launches.json` answer | |
 | `scripts/award.py` | the year's award shortlists, one per pattern | |
 | [launch-engine.md](launch-engine.md) | how to run this board for another catalogue | |

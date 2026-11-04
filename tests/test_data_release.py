@@ -219,6 +219,28 @@ class MonthlyTest(unittest.TestCase):
         self.assertNotIn("2026-W48", section)
         self.assertNotIn("2026-W49", section)
 
+    def test_the_products_that_rose_fastest_over_the_month(self):
+        product = {"kind": "project", "has_code": True, "first_seen": "2026-09-01", "summary": "Rises."}
+        catalog = [dict(product, slug="big", summary="Big."), dict(product, slug="small"),
+                   dict(product, slug="flat"), dict(product, slug="essay", kind="article", has_code=False)]
+        history = [
+            ("2026-10-28", {**snapshot("2026-10-28", 100), "rows": [
+                {"slug": "big", "stars": 1000}, {"slug": "small", "stars": 4}, {"slug": "flat", "stars": 50},
+                {"slug": "essay", "stars": 1}]}),
+            ("2026-11-25", {**snapshot("2026-11-25", 160), "rows": [
+                {"slug": "big", "stars": 1200}, {"slug": "small", "stars": 24}, {"slug": "flat", "stars": 55},
+                {"slug": "essay", "stars": 500}]}),
+        ]
+        text = build_monthly.render("2026-11", history, catalog, [], written="2026-12-03")
+        section = text.split("## Rising · 上升最快: 2", 1)[1].split("## Measurements", 1)[0]
+        self.assertIn("from the 2026-10-28 snapshot to the 2026-11-25 one", section)
+        self.assertLess(section.index("[small]"), section.index("[big]"))
+        self.assertIn("- [big](https://kydlikebtc.github.io/awesome-jev/products/big.html) · +200 ★ "
+                      "(1000 → 1200, +20%): Big.", section)
+        self.assertNotIn("[flat]", section)  # 5 gained
+        self.assertNotIn("[essay]", section)  # not a product
+        self.assertIn("## Rising · 上升最快: 0", self.render())
+
     def test_written_once(self):
         with tempfile.TemporaryDirectory() as tmp:
             folder = pathlib.Path(tmp)

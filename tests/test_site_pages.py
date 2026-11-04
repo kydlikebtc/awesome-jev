@@ -93,19 +93,20 @@ class PagesTest(unittest.TestCase):
         # The launch board's (site_products.py, since 2026-11-03): a page per
         # product (a project, plugin, SDK or integration with code that is an
         # example of Jev; delta is flagged not-jev, the article is no product),
-        # the makers' index (none of these rows names a maker) and the board.
-        expected |= {"products/alpha.html", "products/beta.html", "products/gamma.html",
-                     "products/overview-unread.html", "makers/index.html", "launches.html", "launches.zh.html",
-                     "launches.xml", "launches.zh.xml"}
+        # the makers' index (none of these rows names a maker) and the board;
+        # and since 2026-11-04 a README badge per product.
+        products = ("alpha", "beta", "gamma", "overview-unread")
+        expected |= {f"products/{slug}.html" for slug in products} | {f"badges/{slug}.svg" for slug in products}
+        expected |= {"makers/index.html", "launches.html", "launches.zh.html", "launches.xml", "launches.zh.xml"}
         self.assertEqual(set(self.files), expected)
         self.assertEqual(
             {rel for rel in self.files if "/" not in rel and rel != "sitemap.xml"} | {"sitemap.xml"},
             set(site_pages.TOP_FILES),
         )
         # Every directory a build writes is one the writer clears. A closed
-        # launch week adds weeks/ and badges/ (tests/test_launches.py).
+        # launch week adds weeks/ (tests/test_launches.py).
         self.assertEqual({rel.split("/")[0] for rel in self.files if "/" in rel},
-                         set(site_pages.DIRS) - {"weeks", "badges"})
+                         set(site_pages.DIRS) - {"weeks"})
 
     def test_two_builds_from_the_same_rows_in_any_order_write_the_same_bytes(self):
         shuffled = CATALOG[:]

@@ -10,11 +10,15 @@ one page per product, one per maker, and the board itself.
   makers/index.html          every maker with a product
   makers/<login>.html        one maker's products and launches (login in lower case)
   launches.html, .zh.html    the board: the week running, the last week closed,
-                             next week's launches, the past weeks, and the
-                             products new this week
+                             next week's launches, the past weeks, the
+                             products new this week, and the products rising
+                             fastest between the two latest weekly refreshes
+                             (L29 of the plan's third round)
   weeks/<week>.html, .zh.html  a closed week's ranking, and the launches
                              removed from it with their reasons (L15)
-  badges/<slug>.svg          a product's latest badge, for its README (L13)
+  badges/<slug>.svg          every product's badge for its README (L13, L30):
+                             listed; then launching, while it is on the
+                             board; then its latest top-three place
 
 A product is a row scripts/launches.py is_product() admits: a project, plugin,
 SDK or integration with code that is an example of deciding with Jev. Every
@@ -76,6 +80,12 @@ WORDS = {
     "claim": ("Made this? Confirm or correct its entry", "这是你做的？确认或更正条目"),
     "claim_note": ("The same form takes the product's one line and a demo link, in its maker's own words.",
                    "同一个表单也可以补上产品的一句话和演示链接，用 Maker 自己的话。"),
+    "badge": ("Badge for its README", "README 徽章"),
+    "badge_note": ("One line for the product's README, linked to this page. The picture says that it is listed; "
+                   "while it is on the launch board, that it is launching; after a week in the top three, its "
+                   "place. It is rebuilt with the site, so the line never needs changing.",
+                   "放进产品 README 的一行，链接到本页。图片显示已收录；在发布榜上时显示正在发布；"
+                   "进过某周前三后显示名次。它随网站一起重建，这一行不用再改。"),
     "none_read": ("No reading of its primitives is recorded.", "没有记录原语的阅读结果。"),
     "seen": ("text signal only: the cited file contains their request or answer shape",
              "仅文本信号：引用的文件里出现了它们的请求或回答格式"),
@@ -117,7 +127,8 @@ BOARD = {
         "running_note": "In a shuffled order, without counts, until the week closes.",
         "closed": "Last week: {week}",
         "votes": "{votes} votes, {counted} counted",
-        "no_launch": "No launch has opened yet. The first week opens once launch posts can be voted on.",
+        "no_launch": "No launch is on the board yet. A launch submitted by Thursday 23:59 UTC opens the next "
+                     "Monday: a maker can launch a product, and anyone can hunt one, such as those rising below.",
         "new": "New in the catalogue: {week}",
         "new_note": "Products that entered the catalogue this week, in the order of what it records: who read the "
                     "call site, then stars. An order, not a ranking. Their makers can launch them.",
@@ -156,6 +167,12 @@ BOARD = {
         "m_north": "{north} of {launches} launches reached {n} counted votes.",
         "m_read": "When the week opened, a person or a model had read the call site of {read} of {known}.",
         "m_discounted": "{discounted} of {votes} votes counted for less than one.",
+        "rising": "Rising in the catalogue: {start} to {end}",
+        "rising_note": "Products whose GitHub stars grew fastest between the two latest weekly refreshes: at least "
+                       "{n} stars gained, in order of the gain as a share of the stars before. Stars are GitHub's "
+                       "count, a popularity signal, not a verdict, and nothing is awarded for rising.",
+        "rising_item": "+{gained} stars, {before} to {after} ({share})",
+        "nothing_rising": "No product gained {n} stars between the two latest weekly refreshes.",
     },
     "zh": {
         "title": "发布榜 · awesome-jev",
@@ -168,7 +185,8 @@ BOARD = {
         "running_note": "收榜前按随机顺序展示，不显示票数。",
         "closed": "上周：{week}",
         "votes": "{votes} 票，计 {counted} 票",
-        "no_launch": "还没有开榜。Launch 的投票帖可以投票之后，第一周就会开榜。",
+        "no_launch": "榜上还没有 Launch。周四 23:59 UTC 前提交的 Launch 在下周一开放：Maker 可以发布自己的产品，"
+                     "任何人也可以 hunt 别人的产品，比如下面上升最快的这些。",
         "new": "本周新收录：{week}",
         "new_note": "本周进入目录的产品，按目录记录的内容排序：先看谁读过调用点，再看星标。这是排序，不是排名。"
                     "它们的 Maker 可以发布它们。",
@@ -204,6 +222,11 @@ BOARD = {
         "m_north": "{launches} 个 Launch 中有 {north} 个计入的票数达到 {n}。",
         "m_read": "开榜时，{known} 个中有 {read} 个的调用点已由人或模型读过。",
         "m_discounted": "{votes} 票中有 {discounted} 票按不足一票计。",
+        "rising": "目录里上升最快：{start} 至 {end}",
+        "rising_note": "最近两次每周刷新之间，GitHub 星标涨得最快的产品：至少涨了 {n} 个，按涨幅占原有星标的比例排序。"
+                       "星标是 GitHub 的计数，是热度信号，不是评价；上升不会得到任何奖励。",
+        "rising_item": "+{gained} 星，{before} → {after}（{share}）",
+        "nothing_rising": "最近两次每周刷新之间，没有产品的星标涨到 {n} 个。",
     },
 }
 
@@ -412,6 +435,12 @@ def product_page(row: dict, *, products: list[dict], patterns: dict[str, dict], 
     en, zh = WORDS["claim_note"]
     body.append(f'      <p class="note">{esc(en)} <span lang="zh-CN">{esc(zh)}</span></p>')
 
+    body.append(f"      <h2>{both('badge')}</h2>")
+    body.append(f'      <p><img src="{base}{esc(badge_path(row["slug"]))}" alt="awesome-jev" height="20" /></p>')
+    body.append(f"      <pre><code>{esc(launches.badge_line(row['slug']))}</code></pre>")
+    en, zh = WORDS["badge_note"]
+    body.append(f'      <p class="note">{esc(en)} <span lang="zh-CN">{esc(zh)}</span></p>')
+
     others = same_pattern(row, products)
     if others:
         body.append(f"      <h2>{both('same')}</h2>")
@@ -517,7 +546,9 @@ def board_item(launch: dict, row: dict, lang: str, *, result: dict | None, base:
 
 
 def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_weeks: list[dict],
-               labels: sp.Labels) -> str:
+               labels: sp.Labels, snapshots: list[dict] = ()) -> str:
+    """The board. `snapshots` are the weekly refreshes in history/, oldest
+    first; the two newest say which products are rising (L29)."""
     b = BOARD[lang]
     path = launches_path(lang)
     body = [
@@ -600,8 +631,50 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
         body.append("      </ol>")
     elif week is not None:
         body.append(f"      <p>{esc(b['nothing_new'])}</p>")
+    body += rising_section(lang, catalog, list(snapshots), history=history, weeks_by_id=weeks_by_id, today=today)
     return sp.shell(lang, path=path, title=b["title"], description=b["lede"], body="\n".join(body),
                     alternates={code: launches_path(code) for code in sp.LANGS})
+
+
+def rising_section(lang: str, catalog: list[dict], snapshots: list[dict], *,
+                   history: dict[str, list[tuple[str, dict]]], weeks_by_id: dict[str, dict],
+                   today: dt.date | None) -> list[str]:
+    """The products rising fastest between the two newest weekly refreshes
+    (launches.rising), each with its evidence and, when it can launch, the
+    filled-in form, or its vote post while it is on the board. Nothing before
+    there are two refreshes."""
+    if len(snapshots) < 2:
+        return []
+    b = BOARD[lang]
+    before, after = snapshots[-2], snapshots[-1]
+    risen = launches.rising(catalog, before, after)
+    out = [f"      <h2>{esc(b['rising'].format(start=before.get('date', ''), end=after.get('date', '')))}</h2>",
+           f'      <p class="note">{esc(b["rising_note"].format(n=launches.RISING_MIN))}</p>']
+    if not risen:
+        return out + [f"      <p>{esc(b['nothing_rising'].format(n=launches.RISING_MIN))}</p>"]
+    out.append('      <ol class="rows">')
+    for item in risen:
+        row = item["row"]
+        summary = row.get("summary_zh") if lang == "zh" and row.get("summary_zh") else row.get("summary", "")
+        line = b["rising_item"].format(gained=item["gained"], before=item["before"], after=item["after"],
+                                       share=launches.share(item["gained"], item["before"]))
+        out += [
+            f'        <li id="rising-{esc(row["slug"])}">',
+            f'          <h3><a href="{esc(product_path(row["slug"]))}">{esc(row["title"])}</a></h3>',
+            f'          <p class="meta">{esc(line)} · {esc(b["evidence"])}: {tier_html(row, lang)}</p>',
+            f"          <p>{esc(row.get('tagline') if lang == 'en' and row.get('tagline') else summary)}</p>",
+        ]
+        mine = history.get(row["slug"], [])
+        state, _ = launches.launch_again(mine, weeks_by_id, today)
+        if state == "now":
+            out.append(f'          <p class="more"><a href="{esc(query.launch_form(row["slug"], row["title"]))}" '
+                       f'rel="noopener">{esc(b["launch_it"])} ↗</a></p>')
+        elif state == "on" and isinstance(mine[-1][1].get("discussion"), int):
+            out.append(f'          <p class="more"><a href="{esc(DISCUSSION.format(n=mine[-1][1]["discussion"]))}" '
+                       f'rel="noopener">{esc(b["vote"])} ↗</a></p>')
+        out.append("        </li>")
+    out.append("      </ol>")
+    return out
 
 
 FEED_WEEKS = 26
@@ -683,43 +756,66 @@ def week_page(week: dict, lang: str, *, rows: dict[str, dict]) -> str:
                     body="\n".join(body), alternates={code: week_path(week["week"], code) for code in sp.LANGS})
 
 
-BADGE_TEXT = {"week-1": "#1", "week-2": "#2", "week-3": "#3"}
+# What a product's badge says in each state (launches.badge_state), and the
+# colour behind it: the site's green for listed, its amber while the product is
+# on the board, gold for a top-three place. The words are dark on all three.
+BADGE_TEXT = {
+    "listed": ("listed", "#4ec97a"),
+    "scheduled": ("launching {week}", "#f5a524"),
+    "open": ("vote this week", "#f5a524"),
+    "week-1": ("#1 launch of {week}", "#d4a64a"),
+    "week-2": ("#2 launch of {week}", "#d4a64a"),
+    "week-3": ("#3 launch of {week}", "#d4a64a"),
+}
+# The left half is the site's mark and name, as in site/badge.svg; the right
+# half's words are given a fixed length, so the badge keeps its width in any font.
+BADGE_LEFT = 96
+# Verdana's advance at 11px for each character the words above can hold (a
+# week id brings digits, "-" and "W"), so the fixed length is the natural one
+# and no word looks stretched; anything else counts as BADGE_CHAR.
+BADGE_WIDTHS = {
+    **dict(zip("abcdefghijklmnopqrstuvwxyz", (
+        6.60, 6.74, 5.73, 6.74, 6.46, 3.77, 6.74, 6.98, 3.00, 3.77, 6.37, 3.00, 10.72,
+        6.98, 6.62, 6.74, 6.74, 4.66, 5.73, 4.33, 6.98, 6.37, 8.81, 6.37, 6.37, 5.65))),
+    **dict.fromkeys("0123456789", 6.99),
+    " ": 3.87, "#": 9.22, "-": 4.66, "W": 10.88,
+}
+BADGE_CHAR = 6.6
 
 
-def badge_svg(badge: str, week: str) -> str:
-    """A small plain badge: no script, no font or image from anywhere."""
-    left, right = "awesome-jev launches", f"{BADGE_TEXT[badge]} of {week}"
-    lw, rw = 7 * len(left) + 12, 7 * len(right) + 12
-    width = lw + rw
-    label = f"{left}: {right}"
+def badge_svg(state: str, week: str | None = None) -> str:
+    """A product's README badge in `state`: no script, no font or image from
+    anywhere. Each is its own file, so the clip path's id cannot clash."""
+    words, fill = BADGE_TEXT[state]
+    text = words.format(week=week or "")
+    length = round(sum(BADGE_WIDTHS.get(ch, BADGE_CHAR) for ch in text))
+    right = length + 12
+    width = BADGE_LEFT + right
+    label = f"awesome-jev: {text}"
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="20" role="img" aria-label="{esc(label)}">'
         f"<title>{esc(label)}</title>"
-        f'<rect width="{lw}" height="20" fill="#20252c"/>'
-        f'<rect x="{lw}" width="{rw}" height="20" fill="#b8892e"/>'
-        '<g fill="#fff" font-family="Verdana,DejaVu Sans,sans-serif" font-size="11">'
-        f'<text x="6" y="14">{esc(left)}</text>'
-        f'<text x="{lw + 6}" y="14">{esc(right)}</text>'
+        f'<clipPath id="round"><rect width="{width}" height="20" rx="3"/></clipPath>'
+        '<g clip-path="url(#round)">'
+        f'<rect width="{BADGE_LEFT}" height="20" fill="#0b0d10"/>'
+        f'<rect x="{BADGE_LEFT}" width="{right}" height="20" fill="{fill}"/>'
+        "</g>"
+        '<rect x="6" y="11" width="2.5" height="4" rx=".75" fill="#4ec97a"/>'
+        '<rect x="9.5" y="8" width="2.5" height="7" rx=".75" fill="#a9b3c0"/>'
+        '<rect x="13" y="5" width="2.5" height="10" rx=".75" fill="#f5a524"/>'
+        '<g font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="11" text-rendering="geometricPrecision">'
+        '<text x="20" y="14" fill="#e6e9ee" textLength="70" lengthAdjust="spacingAndGlyphs">awesome-jev</text>'
+        f'<text x="{BADGE_LEFT + 6}" y="14" fill="#0b0d10" textLength="{length}" '
+        f'lengthAdjust="spacingAndGlyphs">{esc(text)}</text>'
         "</g></svg>\n"
     )
 
 
-def badges(launch_weeks: list[dict]) -> dict[str, tuple[str, str]]:
-    """Each product's latest badge, as (badge, week)."""
-    out: dict[str, tuple[str, str]] = {}
-    for week in sorted(launch_weeks, key=lambda w: str(w.get("week"))):
-        if week.get("status") != "closed":
-            continue
-        for launch in week.get("launches") or []:
-            got = (launch.get("result") or {}).get("badges") or []
-            if launch.get("status") == "scheduled" and got:
-                out[launch["product"]] = (got[0], week["week"])
-    return out
-
-
 def pages(catalog: list[dict], patterns: list[dict], labels: sp.Labels, *,
-          launch_weeks: list[dict], maker_profiles: dict[str, dict]) -> dict[str, str]:
-    """Every file this module writes: path relative to site/ → text."""
+          launch_weeks: list[dict], maker_profiles: dict[str, dict],
+          snapshots: list[dict] = ()) -> dict[str, str]:
+    """Every file this module writes: path relative to site/ → text.
+    `snapshots` are the weekly refreshes in history/, oldest first."""
     products = sorted((r for r in catalog if launches.is_product(r)), key=lambda r: r["slug"])
     rows = {r["slug"]: r for r in products}
     by_key = {p["key"]: p for p in patterns}
@@ -741,12 +837,12 @@ def pages(catalog: list[dict], patterns: list[dict], labels: sp.Labels, *,
             shown, made, profile=maker_profiles.get(key), labels=labels, history=history, weeks_by_id=weeks_by_id)
     files[f"{MAKER_DIR}/index.html"] = makers_index(by_login, maker_profiles)
     for lang in sp.LANGS:
-        files[launches_path(lang)] = board_page(lang, catalog=catalog, rows=rows, all_weeks=launch_weeks, labels=labels)
+        files[launches_path(lang)] = board_page(lang, catalog=catalog, rows=rows, all_weeks=launch_weeks, labels=labels,
+                                                snapshots=list(snapshots))
         files[launch_feed_path(lang)] = launch_feed(launch_weeks, lang, rows=rows)
         for week in launch_weeks:
             if week.get("status") == "closed":
                 files[week_path(week["week"], lang)] = week_page(week, lang, rows=rows)
-    for slug, (badge, week) in badges(launch_weeks).items():
-        if slug in rows:
-            files[badge_path(slug)] = badge_svg(badge, week)
+    for row in products:
+        files[badge_path(row["slug"])] = badge_svg(*launches.badge_state(history.get(row["slug"], []), weeks_by_id))
     return files
