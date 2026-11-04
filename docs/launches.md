@@ -25,7 +25,7 @@ per closed week (`weeks/<week>.html`). The rules below are code:
 
 To launch a product, open the
 [Launch a product](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml)
-form.
+form, or follow "Launch it" on the product's page, which fills the product in.
 
 ## Where it stands
 
@@ -36,6 +36,10 @@ form.
 | Open launches | The launch form and its check, a vote post per launch, the Monday close, week pages and badges | Built (2026-11-03); Discussions and the `Launches` category turned on the same day |
 | For agents | The MCP server's `launch_board` and `top_launches` tools, and [`api/v1/launches.json`](https://kydlikebtc.github.io/awesome-jev/api/v1/launches.json) on the site | Built (2026-11-03) |
 | Weekly results feed | Each closed week as an Atom entry: [`launches.xml`](https://kydlikebtc.github.io/awesome-jev/launches.xml) ([中文](https://kydlikebtc.github.io/awesome-jev/launches.zh.xml)) | Built (2026-11-03) |
+| Filing without a merge | [`launch-collect.yml`](../.github/workflows/launch-collect.yml) files next week's launches early on Friday and pushes them to `main` | Built (2026-11-04) |
+| Telling each launch | On Monday each launch's issue gets the link to its vote post and is closed; when the week closes, its result, and a top three its badge line | Built (2026-11-04) |
+| One click from a product | "Launch it" and "Made this?" on every product page open the launch and confirm-entry forms with the product filled in; the board's new products have "Launch it" too | Built (2026-11-04) |
+| Measures | Each closed week keeps how many accounts voted and how many came back, and each launch who had read its call site when it opened ([below](#how-the-board-is-measured)) | Built (2026-11-04) |
 | Daily board | A board per day instead of per week | After 4 closed weeks in a row with at least 20 launches each; the board page counts the run |
 
 Until the first week opens, the board lists the products that entered the
@@ -76,7 +80,12 @@ catalogue.
 A maker can also give their product a `tagline` (and `tagline_zh`) and a
 `demo_url`, with the
 [confirm-entry form](https://github.com/kydlikebtc/awesome-jev/issues/new?template=confirm-entry.yml)
-or a pull request. A tagline is the maker's own words; a model never writes one.
+or a pull request; "Made this?" on the product's page opens that form with
+the row filled in. A tagline is the maker's own words; a model never writes one.
+
+After a launch, the product's page says when it can launch again: until a
+launch submitted that day would fall 60 days or more after its last week, the
+Monday of the first week it can; from then on, "Launch it again".
 
 ## The week
 
@@ -88,12 +97,17 @@ Weeks are ISO weeks: Monday 00:00 UTC to Sunday 23:59 UTC.
    launch whose maker it cannot confirm, whose repository is a fork or has
    had no push for 60 days, or whose submitter's account is younger than 30
    days; a person decides those, as discovery candidates are decided
-   ([docs/held.txt](held.txt)).
-2. On Friday the week's launches are written to
+   ([docs/held.txt](held.txt)). A product whose call site nobody has read
+   yet is read before its week opens, so every launch opens with at least a
+   model's reading.
+2. Early on Friday (00:20 UTC) the week's launches are written to
    `launches/<YYYY>-W<ww>.json` ([schema](../schema/launch.schema.json)) and
-   reach `main` with the owner's merge. The board lists them under next week.
+   pushed to `main`, with no merge to wait for. The board lists them under
+   next week. A launch the check held is filed as held, and a maintainer
+   decides it before Monday.
 3. On Monday at 00:05 UTC the week opens: each launch gets a post in the
-   repository's `Launches` Discussions, and a vote is a thumbs-up on it.
+   repository's `Launches` Discussions, and a vote is a thumbs-up on it. The
+   launch's issue gets the link to its post and is closed.
 4. While the week runs, the board shows its launches in a shuffled order and
    without counts, so nobody votes for whatever is on top. (A Discussion shows
    its own reactions; the board does not repeat them.)
@@ -101,7 +115,8 @@ Weeks are ISO weeks: Monday 00:00 UTC to Sunday 23:59 UTC.
    written to the week's file. A launch whose votes come mostly from new
    accounts is held for a person instead of ranked. The top three with a vote
    counted get a badge, an image on the site for their README
-   (`badges/<slug>.svg`), and the week gets its own page.
+   (`badges/<slug>.svg`), and the week gets its own page. Each launch's
+   issue is told its result, and a top three the line that shows its badge.
 
 Each month's report ([docs/monthly/](monthly/), written in the first week of
 the next) lists the weeks that ended in the month with their top three.
@@ -129,6 +144,29 @@ each closed week records the rule it was counted under.
 
 The repository keeps the counts only: how many votes, how many counted, how
 many were discounted. It never keeps who voted.
+
+## How the board is measured
+
+Each closed week keeps a few counts beside its results. The board shows them
+for the last week, the week's page for its week, and the monthly report for
+each week of the month:
+
+- **Accounts:** how many accounts' votes counted for something that week
+  (`voters`), and how many of them had voted the week before too
+  (`returning_voters`). As with votes, only the counts are kept.
+- **Launches with at least 5 counted votes:** the board's main measure.
+- **Read before opening:** how many launches had their call site read by a
+  person or a model when their week opened (each launch's `tier_at_open`).
+  The aim is all of them: `python3 scripts/launch_intake.py --unread` lists
+  the launches about to open that nobody has read, and the daily task reads
+  them first.
+- **Discounted votes:** how many votes counted for less than one.
+
+The board is doing its job when, four weeks in a row, at least 10 launches
+run and at least 50 accounts' votes count; the monthly report says how many
+weeks in a row so far. The rules for both are in
+[`scripts/launches.py`](../scripts/launches.py) (`week_measures`,
+`gate_streak`).
 
 ## The year's decision award
 
@@ -189,13 +227,17 @@ on them. Each is settled here and can be reopened in an issue.
 | `makers/<login>.json` | a maker's own profile, optional | that maker |
 | `scripts/launches.py` | every rule above | |
 | `scripts/check_launches.py` | holds `launches/` and `makers/` to those rules | |
-| `scripts/launch_intake.py` | checks a launch issue, and collects a week's launches | |
-| `scripts/launch_week.py` | opens a week and closes the one before | |
+| `scripts/launch_intake.py` | checks a launch issue, collects a week's launches, and lists those nobody has read | |
+| `scripts/launch_week.py` | opens a week, closes the one before, and tells each launch's issue | |
 | `scripts/launch_votes.py` | reads one Discussion's votes | |
 | `scripts/site_products.py` | the product, maker, week and board pages, the badges and the weekly results feed | |
 | `src/awesome_jev_mcp/query.py` | what the MCP server's launch tools and `api/v1/launches.json` answer | |
 | `scripts/award.py` | the year's award shortlists, one per pattern | |
 | [launch-engine.md](launch-engine.md) | how to run this board for another catalogue | |
+| `.github/workflows/launch-intake.yml` | answers each launch issue with its check | |
+| `.github/workflows/launch-collect.yml` | Fridays: files next week's launches on `main` | |
+| `.github/workflows/launch-week.yml` | Mondays: closes last week, opens this one, tells the issues | |
+| `.github/workflows/launch-votes.yml` | by hand: reads one Discussion's votes | |
 | `.github/workflows/launch-probe.yml` | by hand: whether the workflow may post in `Launches` | |
 
 `python3 scripts/check_launches.py` runs with the other checks

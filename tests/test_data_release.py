@@ -206,6 +206,16 @@ class MonthlyTest(unittest.TestCase):
         self.assertLess(section.index("[big]"), section.index("[small]"))
         self.assertLess(section.index("[small]"), section.index("[bench]"))
         self.assertNotIn("[late]", section, "the top three only")
+        # Closed before the close counted accounts: only what it recorded is measured.
+        self.assertIn("Measured: 1 with at least 5 counted votes; 0 of 36 votes counted for less than one.", section)
+        self.assertIn("50 accounts whose vote counted: 0. The board aims for 4 in a row.", section)
+        weeks[0] = dict(weeks[0], voters=12, returning_voters=4,
+                        launches=[dict(x, tier_at_open="model") for x in weeks[0]["launches"]])
+        text = build_monthly.render("2026-11", self.HISTORY, self.CATALOG, self.RETIRED, written="2026-12-03",
+                                    launch_weeks=weeks)
+        self.assertIn("Measured: 12 accounts voted (4 the week before too); 1 with at least 5 counted votes; "
+                      "4 of 4 read by a person or a model before opening; 0 of 36 votes counted for less than one.",
+                      text)
         self.assertNotIn("2026-W48", section)
         self.assertNotIn("2026-W49", section)
 

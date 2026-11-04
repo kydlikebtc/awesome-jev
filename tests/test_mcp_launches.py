@@ -111,6 +111,17 @@ class BoardTest(unittest.TestCase):
         self.assertEqual(week["page"], "https://kydlikebtc.github.io/awesome-jev/weeks/2026-W45.html")
         self.assertEqual(week["launches"][1]["evidence"], "model")
 
+    def test_a_closed_week_carries_its_accounts_and_each_launch_its_evidence_at_opening(self):
+        counted = [dict(WEEKS[0], voters=9, returning_voters=0,
+                        launches=[dict(x, tier_at_open="file") for x in WEEKS[0]["launches"]])] + WEEKS[1:]
+        week = query.launch_board(counted, ROWS, FLAGS, today=TODAY, week="2026-W45")["week"]
+        self.assertEqual((week["voters"], week["returning_voters"]), (9, 0))
+        alpha = week["launches"][0]
+        self.assertEqual((alpha["evidence_at_open"], alpha["evidence"]), ("file", "person"))
+        before = self.board(week="2026-W45")["week"]  # closed before either was kept
+        self.assertNotIn("voters", before)
+        self.assertNotIn("evidence_at_open", before["launches"][0])
+
     def test_caveats_travel_with_each_launch_and_are_explained_once(self):
         answer = self.board(week="2026-W45")
         beta = answer["week"]["launches"][1]

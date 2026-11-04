@@ -50,8 +50,8 @@ fork replaces those parts with its own:
 | `scripts/check_launches.py` | `lint.py` (`lint.validate`, a minimal JSON Schema draft-07 validator) |
 | `scripts/site_products.py` | this site's page shell (`site_pages.py`); another site renders `launches.weeks()` its own way |
 
-The workflows: `.github/workflows/launch-intake.yml`, `launch-week.yml`,
-`launch-votes.yml`, `launch-probe.yml`, and the issue form
+The workflows: `.github/workflows/launch-intake.yml`, `launch-collect.yml`,
+`launch-week.yml`, `launch-votes.yml`, `launch-probe.yml`, and the issue form
 `.github/ISSUE_TEMPLATE/launch.yml`. `tests/test_launches.py`,
 `tests/test_launch_flow.py`, `tests/test_mcp_launches.py` and
 `tests/test_launch_award.py` test all of it without the network.

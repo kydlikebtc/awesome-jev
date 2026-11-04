@@ -514,9 +514,11 @@ them. If you did, you know best whether it is right.
   the site, and its makers can put it on the weekly launch board, where people
   vote, with the
   [Launch a product](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml)
-  form ([docs/launches.md](docs/launches.md)). The confirm form above also
+  form ([docs/launches.md](docs/launches.md)); "Launch it" on the product's
+  page opens that form with the product filled in. The confirm form above also
   takes your product's one line (`tagline`) and a link where it runs
-  (`demo_url`), in your words.
+  (`demo_url`), in your words, and "Made this?" on the page opens it the same
+  way.
 - **Have it removed** with the
   [Report a problem with an entry](https://github.com/kydlikebtc/awesome-jev/issues/new?template=entry-problem.yml)
   form ("This is my project and I want it removed").

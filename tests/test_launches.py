@@ -189,6 +189,49 @@ class VotesTest(unittest.TestCase):
         ordered = launches.rank([launch("alpha", result={"counted": 0})], {r["slug"]: r for r in CATALOG})
         self.assertNotIn("badges", ordered[0]["result"])
 
+    def test_a_week_s_accounts_are_those_whose_vote_counted_for_something(self):
+        voters = launches.counted_voters(
+            [vote("a"), vote("A", at="2026-11-18T00:00:00Z"), vote("Maker"), vote("new", born="2026-11-10T00:00:00Z"),
+             vote("late", at="2026-11-23T00:00:00Z")],
+            own=["maker"], week="2026-W47",
+        )
+        # The maker's own vote counts nothing; half a vote from a new account is still a vote.
+        self.assertEqual(voters, {"a", "new"})
+
+
+class MeasuresTest(unittest.TestCase):
+    """L28: what the 2026-11-03 plan measures the board by."""
+
+    @staticmethod
+    def closed(name: str, n: int, voters: int | None, **fields) -> dict:
+        items = [launch(f"p{i}", result={"votes": 6, "counted": 6 if i < 2 else 1, "discounted": 0, "rank": i + 1},
+                        tier_at_open="model" if i == 0 else "file") for i in range(n)]
+        extra = {} if voters is None else {"voters": voters, "returning_voters": 1}
+        return week(name, "closed", items, closed_on="2026-12-01", rules="v1", **extra, **fields)
+
+    def test_a_week_is_measured_by_its_launches_accounts_north_star_and_readings(self):
+        measures = launches.week_measures(self.closed("2026-W46", 3, 12))
+        self.assertEqual(measures, {"week": "2026-W46", "launches": 3, "voters": 12, "returning_voters": 1,
+                                    "north_star": 2, "read_at_open": 1, "tier_known": 3, "votes": 18,
+                                    "discounted": 0})
+        self.assertEqual(launches.week_measures(week("2026-W47", "open", [])),
+                         {"week": "2026-W47", "launches": 0, "voters": None, "returning_voters": None,
+                          "north_star": 0, "read_at_open": 0, "tier_known": 0, "votes": 0, "discounted": 0})
+        self.assertEqual(launches.week_measures(CLOSED)["discounted"], 1)
+
+    def test_the_gate_counts_full_weeks_in_a_row(self):
+        weeks = [self.closed("2026-W45", 12, 80), self.closed("2026-W46", 10, 50), self.closed("2026-W47", 11, 60)]
+        self.assertEqual(launches.gate_streak(weeks), 3)
+        weeks[1] = self.closed("2026-W46", 10, 49)  # one voter short breaks the run
+        self.assertEqual(launches.gate_streak(weeks), 1)
+        weeks[2] = self.closed("2026-W47", 11, None)  # closed before voters were counted
+        self.assertEqual(launches.gate_streak(weeks), 0)
+        self.assertEqual(launches.gate_streak([self.closed("2026-W45", 12, 80), self.closed("2026-W47", 12, 80)]), 1)
+
+    def test_a_product_launches_again_on_the_first_monday_sixty_days_on(self):
+        self.assertEqual(launches.relaunch_from("2026-W46"), dt.date(2027, 1, 11))
+        self.assertEqual(launches.week_days("2026-W46")[0] + dt.timedelta(days=63), dt.date(2027, 1, 11))
+
 
 CLOSED = week("2026-W46", "closed", [
     launch("alpha", submitted_on="2026-11-05", discussion=7,
@@ -261,6 +304,20 @@ class CheckTest(unittest.TestCase):
         self.assertProblem(lambda f: f["2026-W47"].update(rules="v1"), "closed_on and rules")
         self.assertProblem(lambda f: f["2026-W46"].update(rules="v9"), "not one scripts/launches.py knows")
         self.assertProblem(lambda f: f["2026-W46"].update(closed_on="2026-11-15"), "not after the week's Sunday")
+
+    def test_the_week_s_accounts_are_counted_at_the_close_and_fit_its_votes(self):
+        self.assertEqual(self.problems(lambda f: f["2026-W46"].update(voters=3, returning_voters=1)), [])
+        self.assertProblem(lambda f: f["2026-W47"].update(voters=1), "counted when the week closes")
+        self.assertProblem(lambda f: f["2026-W46"].update(voters=2, returning_voters=3), "more returning voters")
+        self.assertProblem(lambda f: f["2026-W46"].update(voters=5, returning_voters=0), "only 4 votes on the board")
+
+    def test_the_tier_at_opening_is_written_when_the_week_opens(self):
+        self.assertEqual(self.problems(lambda f: f["2026-W47"]["launches"][0].update(tier_at_open="file")), [])
+        def scheduled(files):
+            files["2026-W47"]["status"] = "scheduled"
+            files["2026-W47"]["launches"][0]["tier_at_open"] = "model"
+        self.assertProblem(scheduled, "tier_at_open is written when the week opens")
+        self.assertProblem(lambda f: f["2026-W47"]["launches"][0].update(tier_at_open="maybe"), "is not one of")
 
     def test_ranks_run_from_one(self):
         self.assertProblem(lambda f: f["2026-W46"]["launches"][1]["result"].update(rank=3), "ranks are not 1 to 2")
@@ -425,6 +482,42 @@ class PagesTest(unittest.TestCase):
         gamma = build(weeks=[CLOSED, OPEN])["products/gamma.html"]
         self.assertIn("2026-W47: on the board this week", gamma)
         self.assertNotIn("2026-W46", gamma)  # its removed launch is not shown
+
+    def test_a_product_launches_and_is_claimed_in_one_click(self):
+        form = "https://github.com/kydlikebtc/awesome-jev/issues/new?template="
+        beta = build()["products/beta.html"]
+        self.assertIn(f'href="{form}launch.yml&amp;product=beta&amp;title=Launch%3A%20Beta" rel="noopener">'
+                      'Launch it / <span lang="zh-CN">发布它</span> ↗</a>', beta)
+        self.assertIn(f'href="{form}confirm-entry.yml&amp;slug=beta&amp;title=Confirm%3A%20Beta"', beta)
+        # A row with no maker on file still has the way to claim it.
+        bare = build(catalog=[row("bare", author={"name": "Someone", "url": "https://example.org"})])["products/bare.html"]
+        self.assertIn("confirm-entry.yml&amp;slug=bare", bare)
+        # A title is a query value: escaped as one, never markup.
+        odd = build(catalog=[row("odd", title='A & "B" <c>')])["products/odd.html"]
+        self.assertIn("title=Launch%3A%20A%20%26%20%22B%22%20%3Cc%3E", odd)
+
+    def test_after_a_launch_the_page_says_when_it_can_launch_again(self):
+        # The data's newest day is 2026-11-03: a launch submitted then is for 2026-W46.
+        alpha = build(weeks=[CLOSED, OPEN])["products/alpha.html"]
+        self.assertIn("It can launch again in the week of Monday 2027-01-11.", alpha)
+        self.assertNotIn("launch.yml&amp;product=alpha", alpha)
+        later = CATALOG + [row("late", first_seen="2027-01-07")]  # a launch made now is for 2027-W02
+        alpha = build(catalog=later, weeks=[CLOSED, OPEN])["products/alpha.html"]
+        self.assertIn('Launch it again / <span lang="zh-CN">再次发布</span> ↗', alpha)
+        self.assertIn("launch.yml&amp;product=alpha", alpha)
+        # While its week runs, the page sends nobody to launch it.
+        gamma = build(catalog=later, weeks=[CLOSED, OPEN])["products/gamma.html"]
+        self.assertNotIn("launch.yml&amp;product=gamma", gamma)
+        self.assertNotIn("launch again", gamma)
+
+    def test_the_new_products_can_be_launched_from_the_board(self):
+        board = build(weeks=[week("2026-W46", "scheduled", [launch("alpha")])])["launches.html"]
+        new = board.split('id="new-beta"', 1)[1].split("</li>", 1)[0]
+        self.assertIn("launch.yml&amp;product=beta&amp;title=Launch%3A%20Beta", new)
+        self.assertIn(">Launch it ↗</a>", new)
+        alpha = board.split('id="new-alpha"', 1)[1].split("</li>", 1)[0]
+        self.assertNotIn("launch.yml", alpha)  # on next week's board already
+        self.assertIn(">发布它 ↗</a>", build()["launches.zh.html"])
 
     def test_the_weekly_results_feed_has_a_closed_week_s_ranking(self):
         import xml.etree.ElementTree as ET

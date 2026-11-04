@@ -214,9 +214,12 @@ def repository(url: str) -> str | None:
     return discover_candidates.only_slug(f"{match.group(1)}/{match.group(2)}") if match else None
 
 
-# Said under a catalogued product (the launch board, docs/launches.md).
-LAUNCH_LINE = (f"It can launch on the weekly board: [submit a launch]({launches.query.LAUNCH_FORM}), "
-               f"or read [how the board works]({launches.query.LAUNCHES_DOC}) first.")
+def launch_line(row: dict) -> str:
+    """Said under a catalogued product (the launch board, docs/launches.md),
+    with the launch form's product already filled in."""
+    form = launches.query.launch_form(row["slug"], row.get("title") or "")
+    return (f"It can launch on the weekly board: [submit a launch]({form}), "
+            f"or read [how the board works]({launches.query.LAUNCHES_DOC}) first.")
 
 
 def find_row(rows: list[dict], slug: str) -> dict | None:
@@ -253,7 +256,7 @@ def comment(issue: dict, *, read=None, today: dt.date | None = None) -> str:
                          "surface discloses it.")
         if launches.is_product(listed):
             lines.append("")
-            lines.append(LAUNCH_LINE)
+            lines.append(launch_line(listed))
         return "\n".join(head + lines + [""])
     gone = find_row(retired, slug)
     if gone:
