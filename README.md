@@ -12,12 +12,14 @@
   <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="docs/assets/readme-cover-en-light-mobile.svg">
   <source media="(max-width: 767px)" srcset="docs/assets/readme-cover-en-dark-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-en-dark.svg">
-  <img src="docs/assets/readme-cover-en-light.svg" alt="awesome-jev — Jev Decision Atlas: 1,370 public resources, 1,367 dated HTTP 2xx link records, and 1,192 call-site citation records. Counts describe saved records, not current link availability or passed runtime and performance tests." width="100%">
+  <img src="docs/assets/readme-cover-en-light.svg" alt="awesome-jev — Jev Launches: 1,117 products built on Jev by 951 makers, with 1,192 call-site citation records. Counts describe saved records, not current link availability or passed runtime and performance tests." width="100%">
 </picture>
 </a>
 
 <p align="center">
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><kbd>&nbsp;<b>Explore&nbsp;the&nbsp;catalogue&nbsp;↗</b>&nbsp;</kbd></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/launches.html"><kbd>&nbsp;<b>Launch&nbsp;board&nbsp;↗</b>&nbsp;</kbd></a>
+<a href="https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml"><kbd>&nbsp;Launch&nbsp;a&nbsp;product&nbsp;</kbd></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><kbd>&nbsp;Explore&nbsp;the&nbsp;catalogue&nbsp;↗&nbsp;</kbd></a>
 <a href="https://kydlikebtc.github.io/awesome-jev/?collection=first-call&amp;lang=en"><kbd>&nbsp;First&nbsp;call&nbsp;</kbd></a>
 <a href="https://kydlikebtc.github.io/awesome-jev/?collection=build&amp;lang=en"><kbd>&nbsp;Adapt&nbsp;a&nbsp;project&nbsp;</kbd></a>
 <a href="https://kydlikebtc.github.io/awesome-jev/?collection=measured&amp;lang=en"><kbd>&nbsp;Independent&nbsp;reports&nbsp;</kbd></a>
@@ -31,30 +33,73 @@
 
 [Patterns](docs/patterns.md) · [Compatibility](docs/compatibility.md) · [Vetting](docs/vetting.md)
 
-- 01 [What this is](#what-this-is)
-- 02 [What Jev returns](#what-jev-returns)
-- 03 [Start here](#start-here)
-- 04 [Coverage](#coverage)
-- 05 [Measured, not claimed](#measured-not-claimed)
-- 06 [By decision pattern](#by-decision-pattern)
-- 07 [By resource kind](#by-resource-kind)
-- 08 [Also in this repo](#also-in-this-repo)
-- 09 [What is verified, and what is not](#what-is-verified-and-what-is-not)
-- 10 [Machine-readable data](#machine-readable-data)
-- 11 [Contributing and licence](#contributing-and-licence)
+- 01 [This week's launches](#this-weeks-launches)
+- 02 [Launch your product](#launch-your-product)
+- 03 [What this is](#what-this-is)
+- 04 [What Jev returns](#what-jev-returns)
+- 05 [Start here](#start-here)
+- 06 [Coverage](#coverage)
+- 07 [Measured, not claimed](#measured-not-claimed)
+- 08 [By decision pattern](#by-decision-pattern)
+- 09 [By resource kind](#by-resource-kind)
+- 10 [Also in this repo](#also-in-this-repo)
+- 11 [What is verified, and what is not](#what-is-verified-and-what-is-not)
+- 12 [Machine-readable data](#machine-readable-data)
+- 13 [Contributing and licence](#contributing-and-licence)
 
 </details>
 
 ---
 
+## This week's launches
+
+Products built on Jev, launched by their makers once a week, or hunted by anyone who found one. People vote with a thumbs-up on each launch's post in [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches); the week closes on Sunday 23:59 UTC with a rank. Votes say how many people cared; the evidence beside each launch says who read the code that calls Jev. The two are never added together, and a rank is not this catalogue's recommendation. [The board](https://kydlikebtc.github.io/awesome-jev/launches.html) has every week, a page per product and per maker, and the rising list.
+
+No launch is on the board yet. A launch submitted by Thursday 23:59 UTC is filed on Friday and opens the next Monday: [launch a product](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml), yours or one you found, such as those rising below.
+
+### ★ Rising: 2026-10-28 to 2026-11-04
+
+1. ★ **+35** **[jeveryword](https://kydlikebtc.github.io/awesome-jev/products/jeveryword.html)** — Text extraction with Jev: field extraction, PII detection and exact quotes, built on TypeSafe's Jev. <sub>(upstream description)</sub><br>
+  <sub>5 → 40 stars (+700%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jeveryword&title=Launch%3A%20jeveryword)</sub>
+2. ★ **+12,379** **[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — Desktop automation that reads the system accessibility tree and decides which button, menu or field to act on next.<br>
+  <sub>1,827 → 14,206 stars (+678%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=agent-desktop&title=Launch%3A%20agent-desktop)</sub>
+3. ★ **+26** **[anydecisionmodel](https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html)** — A Swift package for typed decisions from language models (probabilities, choices, and scores), with support for local MLX models and the TypeSafe Jev API. <sub>(upstream description)</sub><br>
+  <sub>24 → 50 stars (+108%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=anydecisionmodel&title=Launch%3A%20anydecisionmodel)</sub>
+4. ★ **+53** **[fastbrowse](https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html)** — Browser agent: each page is indexed into candidate controls and Jev chooses the next one, so it cannot click what is not there; a Gemini Flash LLM plans and reads, and answers cite the page. Its maintainer recorded 99.2% on 46 tasks against 97.8% for hosted Browser Use, at under a tenth of the cost. <sub>(written by a model)</sub><br>
+  <sub>120 → 173 stars (+44%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=fastbrowse&title=Launch%3A%20fastbrowse)</sub>
+5. ★ **+14** **[jev-guard](https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html)** — Security hook for coding agents: before each tool call Jev judges how much harm it could do, whether the user asked for it and whether it follows untrusted text, and code denies, asks or allows; afterwards Jev scans the result for prompt injection. For Claude Code, Codex, Cursor and more. <sub>(written by a model)</sub><br>
+  <sub>130 → 144 stars (+11%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jev-guard&title=Launch%3A%20jev-guard)</sub>
+
+<sub>The 10 products whose GitHub stars grew fastest between the two latest weekly refreshes, at least 10 stars gained, by the gain as a share of the stars before; the first 5 here. Stars are GitHub's count, a popularity signal, not a verdict, and nothing is awarded for rising. [All 10 on the board](https://kydlikebtc.github.io/awesome-jev/launches.html).</sub>
+
+## Launch your product
+
+Anything built on Jev with public code can launch: a project, plugin, SDK or integration whose row is in the catalogue ([add the row](https://github.com/kydlikebtc/awesome-jev/issues/new?template=new-entry.yml) first if it is not). Makers launch their own; anyone can hunt one they found. Nobody waits for a maintainer: every case has a rule, and the check on your issue says what it settled.
+
+| Step | When | What happens |
+| --- | --- | --- |
+| **🚀 Launch** | by Thursday 23:59 UTC | Open the [launch form](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml), or *Launch it* on the product's page, which fills it in. A check answers the issue at once: ready for next week, or what to change. |
+| **▲ Vote** | Monday to Sunday | The week opens on Monday with a post per launch in [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches). A vote is a thumbs-up on the post: one per account, a maker's own count for nothing, and an account under 30 days old counts half. |
+| **🏆 Results** | the next Monday | The votes are counted, the week is ranked, the top three get their place on their badge, and each launch's issue hears its result. A product can launch again after 60 days. |
+
+Every product has a badge that keeps itself up to date: *listed*, then *launching*, then *vote this week*, then its place in a top three. One line in your README, never changed again:
+
+[![awesome-jev](https://kydlikebtc.github.io/awesome-jev/badges/jeveryword.svg)](https://kydlikebtc.github.io/awesome-jev/products/jeveryword.html) <sub>← as it reads today for `jeveryword`</sub>
+
+```markdown
+[![awesome-jev](https://kydlikebtc.github.io/awesome-jev/badges/your-slug.svg)](https://kydlikebtc.github.io/awesome-jev/products/your-slug.html)
+```
+
+The rules in full: [how votes count](docs/launches.md#how-votes-count-rules-v2) · [the board](https://kydlikebtc.github.io/awesome-jev/launches.html) · [each week's results as a feed](https://kydlikebtc.github.io/awesome-jev/launches.xml) · [JSON for agents](https://kydlikebtc.github.io/awesome-jev/api/v1/launches.json) and the MCP server's `launch_board` and `top_launches` tools · [run the same board in your own repository](docs/launch-engine.md).
+
 ## What this is
 
 - **Jev** is a decision model from TypeSafe AI. It does not write text — you hand it state plus typed questions and it returns typed answers with calibrated confidence, fast and cheap enough to sit in an agent's inner loop.
-- **This repo** indexes public examples of using it, organised by the *decision* being made. The resource you read this week is disposable; the decision pattern is not.
-- **How to assess it:** every row names its source. Call-site citations, primitive claims and caveats are recorded where available, so you can inspect what was read and what remains untested.
+- **This repo** is a launch board over a catalogue. The board above: products built on Jev, launched by their makers once a week and voted on. Under it, the Jev Decision Atlas: every public example of using Jev this index can find, organised by the *decision* being made, which outlives any one resource. A launch needs its row; a row never needs a launch.
+- **How to assess it:** every row names its source, and call-site citations, primitive claims and caveats are recorded where available. On the board the same record sits beside the votes, so you can see what was read before you trust a rank.
 
 > [!NOTE]
-> Not the product, not an SDK, not affiliated with TypeSafe AI, and not a recommendation. Inclusion is a source record, not a runtime or performance endorsement. See [what is verified](#what-is-verified-and-what-is-not).
+> Not the product, not an SDK, not affiliated with TypeSafe AI, and not a recommendation. Inclusion is a source record and a rank is a count of votes; neither is a runtime or performance endorsement. See [what is verified](#what-is-verified-and-what-is-not).
 
 ## What Jev returns
 
@@ -1135,7 +1180,7 @@ The parts that are not the catalog.
 <details>
 <summary><b>Preview the searchable catalogue</b></summary>
 
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=0a4504d7dbb5a03b" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=aa688f13b9346002" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
 
 <sub>Filter by clicking a bar. Two more views: <a href="https://kydlikebtc.github.io/awesome-jev/?view=prims">primitives</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat">compatibility</a>. Every filter and entry is a shareable URL. Also as plain pages: <a href="https://kydlikebtc.github.io/awesome-jev/patterns/">one per pattern</a> · <a href="https://kydlikebtc.github.io/awesome-jev/new.html">what's new each week</a> (<a href="https://kydlikebtc.github.io/awesome-jev/feed.xml">Atom feed</a>). Products with code also launch on <a href="https://kydlikebtc.github.io/awesome-jev/launches.html">the weekly launch board</a> (<a href="docs/launches.md">how it works</a>).</sub>
 
@@ -1243,4 +1288,4 @@ Code in `scripts/`, `site/` and `examples/` is [MIT](LICENSE-MIT). Catalog metad
 
 ---
 
-**Jev Decision Atlas** · [↑ Back to top](#top) · [中文](README.zh-CN.md)
+**awesome-jev Launches** · over the Jev Decision Atlas · [↑ Back to top](#top) · [中文](README.zh-CN.md)

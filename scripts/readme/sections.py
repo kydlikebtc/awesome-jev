@@ -51,6 +51,7 @@ from .rows import (
     summary_of,
     unindexed_note,
 )
+from .board import LAUNCH_FORM, board_url, launch_your_product, this_weeks_launches
 from .strings import DATA_FILES, REPO_FILES, REPO_FILES_ZH, ZH_MACHINE
 
 # The handful of rows a newcomer should open, in reading order. Curated by hand
@@ -146,21 +147,26 @@ def preview_version() -> str:
 
 
 def section_nav(strings: dict, *, has_measured: bool = True) -> list[str]:
-    keys = ["about_h", "prims_h", "start_h", "coverage_h", "measured_h", "patterns_h", "kinds_h", "repo_h", "verified_h", "data_h", "contrib_h"]
+    keys = [
+        "board_h", "launch_h", "about_h", "prims_h", "start_h", "coverage_h", "measured_h", "patterns_h", "kinds_h",
+        "repo_h", "verified_h", "data_h", "contrib_h",
+    ]
     if not has_measured:
         keys.remove("measured_h")
     return [f"{n:02d} [{strings[key]}](#{anchor(strings[key])})" for n, key in enumerate(keys, 1)]
 
 
 def entry_points(strings: dict) -> list[tuple[str, str]]:
-    """Header chips: the catalogue, its three curated paths, the other language.
+    """Header chips: the launch board and its form first, then the catalogue,
+    its three curated paths, and the other language.
 
     Spaces become &nbsp; so a chip wraps as a unit on phones, never mid-label.
     """
     lang = strings["lang_code"]
     explore = "浏览资源目录 ↗" if lang == "zh" else "Explore the catalogue ↗"
     paths = [("first-call", strings["collection_first"]), ("build", strings["collection_build"]), ("measured", strings["collection_measured"])]
-    chips = [(f"{SITE}?lang={lang}", f"<b>{explore}</b>")]
+    chips = [(board_url(lang), f"<b>{strings['chip_board']}</b>"), (LAUNCH_FORM, strings["chip_launch"])]
+    chips.append((f"{SITE}?lang={lang}", explore))
     chips += [(f"{SITE}?collection={key}&amp;lang={lang}", title) for key, title in paths]
     chips.append((strings["other_readme"], strings["other_name"]))
     return [(href, title.replace(" ", "&nbsp;")) for href, title in chips]
@@ -313,11 +319,14 @@ def what_this_is(page: Page) -> list[str]:
 
     add(f"## {strings['about_h']}")
     add("")
+    # Marked line by line where a model wrote the Chinese (ZH_MACHINE), as
+    # marked() marks one string.
+    mark = " <sub>(机翻)</sub>" if page.lang == "zh" and "about_rows" in ZH_MACHINE else ""
     for (line,) in strings["about_rows"]:
-        add(f"- {line}")
+        add(f"- {line}{mark}")
     add("")
     add("> [!NOTE]")
-    add(f"> {strings['about_not']}")
+    add(f"> {marked(strings, 'about_not')}")
     add("")
     return out
 
@@ -712,13 +721,17 @@ def contributing_and_licence(page: Page) -> list[str]:
     add("---")
     add("")
     top_label = "↑ 返回顶部" if lang == "zh" else "↑ Back to top"
-    add(f"**Jev Decision Atlas** · [{top_label}](#top) · [{strings['other_name']}]({strings['other_readme']})")
+    add(f"{strings['footer_brand']} · [{top_label}](#top) · [{strings['other_name']}]({strings['other_readme']})")
     add("")
     return out
 
 
+# The board first (readme/board.py): it is what changes every week and what
+# a maker comes for. The catalogue it is built on follows.
 SECTIONS = (
     cover_and_nav,
+    this_weeks_launches,
+    launch_your_product,
     what_this_is,
     what_jev_returns,
     start_here,

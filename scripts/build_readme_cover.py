@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
-"""Generate the README hero: a theme-aware atlas card and its phone layout.
+"""Generate the README hero: a theme-aware launch-board card and its phone layout.
 
 GitHub picks the light or dark file through the README <picture>, so each
 theme is drawn for its own canvas rather than one poster serving both. Counts
 come from _stats.compute() and describe saved records, never runtime test
-passes. The SVGs are portable: system fonts only, and no external fonts,
-images, scripts or foreign objects, none of which an SVG shown as <img> may
-load anyway.
+passes. The feed on the right is the board as it stands (readme.board.hero:
+the week running, the week filed next, last week's top three, or the rising
+products), read from the files the README's first section reads, so the cover
+and the section change together. The SVGs are portable: system fonts only,
+and no external fonts, images, scripts or foreign objects, none of which an
+SVG shown as <img> may load anyway.
 
-Text is placed from conservative advance-width estimates, and the build fails
-when copy or a grown count would overrun its column. Fonts differ by platform,
-so a layout that merely fits on the author's machine proves nothing.
+Text is placed from conservative advance-width estimates. Copy and counts
+fail the build when they would overrun their column; a product's title or
+line, which nobody here chose, is clipped to its card instead, so a long name
+can never stop the Monday run that regenerates this cover. Fonts differ by
+platform, so a layout that merely fits on the author's machine proves nothing.
 
 Run: python3 scripts/build_readme_cover.py [--check]
 """
@@ -18,6 +23,8 @@ Run: python3 scripts/build_readme_cover.py [--check]
 from __future__ import annotations
 
 import argparse
+import json
+import math
 import sys
 import unicodedata
 from html import escape
@@ -40,43 +47,41 @@ MONO = "ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',m
 MARK_INK = "#0b0d10"
 MARK_BARS = ((7, 20, 6, "#4ec97a"), (13.5, 14, 12, "#a9b3c0"), (20, 8, 18, "#f5a524"))
 # Primer colours, as in the other README figures, under the brand accents.
+# `tiers` colours a card's evidence bar: a person read the call site, a model
+# did, or only a script matched text (or nothing is cited).
 THEMES = {
     "light": {
         "canvas": "#f6f8fa", "panel": "#ffffff", "fg": "#1f2328", "muted": "#59636e",
         "faint": "#656d76", "rule": "#d1d9e0", "grid": "#1f2328", "grid_opacity": ".05",
-        "accent": "#a15c00", "joint": "#e59a1a", "answers": ("#a15c00", "#6e7781", "#1a7f37"),
+        "accent": "#a15c00", "joint": "#e59a1a", "tiers": {"person": "#1a7f37", "model": "#6e7781", "file": "#a15c00"},
         "mark_edge": MARK_INK,
     },
     "dark": {
         "canvas": "#0b0d10", "panel": "#121821", "fg": "#e6edf3", "muted": "#9198a1",
         "faint": "#8b949e", "rule": "#30363d", "grid": "#ffffff", "grid_opacity": ".045",
-        "accent": "#f5a524", "joint": "#f5a524", "answers": ("#f5a524", "#a9b3c0", "#4ec97a"),
+        "accent": "#f5a524", "joint": "#f5a524", "tiers": {"person": "#4ec97a", "model": "#a9b3c0", "file": "#f5a524"},
         # The ink tile would vanish into an ink canvas without an edge.
         "mark_edge": "#3d444d",
     },
 }
 COPY = {
     "en": {
-        "eyebrow": "community index",
-        "title": "Jev Decision Atlas",
-        "lede": ("Find Jev examples by task.", "Inspect the evidence before you build."),
-        "labels": ("public resources", "dated 2xx links", "call-site records"),
-        "diagram": "ONE STATE · TYPED QUESTIONS",
-        "state_note": "text · JSON",
-        "answers": ("category", "ordinal", "probability"),
+        "eyebrow": "weekly launch board",
+        "title": "Jev Launches",
+        "lede": ("Products built on Jev, launched weekly.", "Vote, then read the evidence."),
+        "labels": ("products", "makers", "call-site records"),
     },
     "zh": {
-        "eyebrow": "社区目录",
-        "title": "Jev 决策图谱",
-        "lede": ("按场景发现 Jev 用法，", "沿证据判断是否适合你的项目。"),
-        "labels": ("公开资源", "带日期的 2xx 链接", "调用点记录"),
-        "diagram": "一个状态 · 多个类型化问题",
-        "state_note": "文本 · JSON",
-        "answers": ("类别", "等级", "概率"),
+        "eyebrow": "每周发布榜",
+        "title": "Jev 发布榜",
+        "lede": ("用 Jev 做的产品，每周发布一次。", "投票之后，再看证据。"),
+        "labels": ("产品", "Maker", "调用点记录"),
     },
 }
-METRICS = ("entries", "link_ok", "call_site_rows")
-PRIMITIVES = ("choice", "score", "noul")
+METRICS = ("products", "makers", "call_site_rows")
+# How many cards the feed draws (readme.board.HERO_CARDS hands over as many).
+CARDS = 3
+VOTE, STAR = "▲", "★"
 # Advance widths in em. Measured against SF, Helvetica, Arial and Menlo, and
 # against Verdana standing in for DejaVu Sans, the widest common Linux
 # fallback: every line on the current covers fits under all of them. BOLD
@@ -120,14 +125,14 @@ def description(lang: str, stats: dict) -> str:
     """Keep the record/verification distinction available to screen readers."""
     if lang == "zh":
         return (
-            f"Jev 决策图谱：{stats['entries']:,} 条公开资源、"
-            f"{stats['link_ok']:,} 条带日期的 HTTP 2xx 链接记录、"
+            f"Jev 发布榜：{stats['products']:,} 个用 Jev 做的产品、"
+            f"{stats['makers']:,} 位 Maker、"
             f"{stats['call_site_rows']:,} 条调用点引用记录。"
             "数字来自保存的记录，不代表当前链接可用或运行与性能测试通过。"
         )
     return (
-        f"Jev Decision Atlas: {stats['entries']:,} public resources, "
-        f"{stats['link_ok']:,} dated HTTP 2xx link records, and "
+        f"Jev Launches: {stats['products']:,} products built on Jev by "
+        f"{stats['makers']:,} makers, with "
         f"{stats['call_site_rows']:,} call-site citation records. "
         "Counts describe saved records, not current link availability or passed runtime and performance tests."
     )
@@ -163,6 +168,20 @@ def fit(what: str, text: str, x: float, limit: float, size: float, *, mono: bool
     check(what, text, x, text_width(text, size, mono=mono, bold=bold, tracking=tracking), limit)
 
 
+def clip(text: str, size: float, limit: float, *, mono: bool = False, bold: bool = False, tracking: float = 0.0) -> str:
+    """`text` cut to `limit` pixels at `size`, with an ellipsis where cut: for
+    the words nobody here chose (a product's title and line), which must never
+    fail the build. Whitespace runs become one space, as SVG draws them."""
+    text = " ".join(text.split())
+    if text_width(text, size, mono=mono, bold=bold, tracking=tracking) <= limit:
+        return text
+    for end in range(len(text) - 1, 0, -1):
+        cut = text[:end].rstrip() + "…"
+        if text_width(cut, size, mono=mono, bold=bold, tracking=tracking) <= limit:
+            return cut
+    return "…"
+
+
 def text(x: float, y: float, content: str, size: float, cls: str = "", **attrs: object) -> str:
     extra = "".join(f' {name.replace("_", "-")}="{escape(str(value))}"' for name, value in attrs.items())
     css = f' class="{cls}"' if cls else ""
@@ -174,7 +193,7 @@ def opening(lang: str, stats: dict, c: dict, width: int, height: int, fade: tupl
     x1, y1, x2, y2 = fade
     return [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title description">',
-        '<title id="title">awesome-jev · Jev Decision Atlas</title>',
+        '<title id="title">awesome-jev · Jev Launches</title>',
         f'<desc id="description">{escape(description(lang, stats))}</desc>',
         f'<style>text{{font-family:{SANS};fill:{c["fg"]}}}.mono{{font-family:{MONO}}}'
         f'.muted{{fill:{c["muted"]}}}.faint{{fill:{c["faint"]}}}.accent{{fill:{c["accent"]}}}</style>',
@@ -229,71 +248,88 @@ def counts(x0: int, y: int, pitch: int, limit: int, stats: dict, s: dict, *, num
     return out
 
 
-def icon(name: str, x: float, y: float, c: dict, color: str) -> str:
-    """What each answer looks like: one of several, a level, a point on 0–1."""
-    if name == "choice":
-        return "".join(
-            f'<circle cx="{x + i * 15}" cy="{y}" r="4.5" fill="{color if i == 1 else "none"}" '
-            f'stroke="{color if i == 1 else c["faint"]}" stroke-width="1.5"/>'
-            for i in range(4)
-        )
-    if name == "score":
-        return "".join(
-            f'<rect x="{x - 4 + i * 11}" y="{y + 3 - i * 3}" width="7" height="{4 + i * 3}" rx="1.5" '
-            + (f'fill="{color}"/>' if i < 3 else f'fill="none" stroke="{c["faint"]}" stroke-width="1.2"/>')
-            for i in range(5)
-        )
-    return (
-        f'<rect x="{x - 4}" y="{y - 2.5}" width="52" height="5" rx="2.5" fill="{c["rule"]}"/>'
-        f'<rect x="{x - 4}" y="{y - 2.5}" width="34" height="5" rx="2.5" fill="{color}"/>'
-        f'<circle cx="{x + 30}" cy="{y}" r="5.5" fill="{c["panel"]}" stroke="{color}" stroke-width="2"/>'
-    )
+def mark(kind: str, cx: float, cy: float, color: str, scale: float = 1.0) -> str:
+    """The vote mark (a triangle: a thumbs-up counts as one) or the star mark
+    (a rising product), drawn, so no font decides what a reader sees."""
+    if kind == STAR:
+        points = []
+        for index in range(10):
+            radius = (7.5 if index % 2 == 0 else 3.2) * scale
+            angle = math.radians(-90 + index * 36)
+            points.append(f"{cx + radius * math.cos(angle):.1f},{cy + radius * math.sin(angle):.1f}")
+        return f'<polygon points="{" ".join(points)}" fill="{color}"/>'
+    half, tall = 7.5 * scale, 12 * scale
+    return f'<path d="M{cx} {cy - tall / 2}l{half} {tall}h-{2 * half}z" fill="{color}"/>'
 
 
-def diagram(x: int, right: int, s: dict, c: dict) -> list[str]:
-    """One state fanning out to the three typed answers: shapes, never sample values."""
-    rows, mid, trunk, left = (148, 232, 316), 232, x + 150, x + 184
-    fit("diagram heading", s["diagram"], x, right, 16, mono=True, tracking=1.6)
-    fit("state label", "state", x + 8, x + 108, 20, mono=True)
-    fit("state note", s["state_note"], x + 8, x + 108, 15)
-    out = [
-        text(x, 73, s["diagram"], 16, "mono faint", letter_spacing=1.6),
-        f'<path d="M{x + 116} {mid}H{trunk}M{trunk} {rows[0] + 12}V{rows[2] - 12}M{trunk} {rows[0] + 12}q0 -12 12 -12H{left}'
-        f'M{trunk} {mid}H{left}M{trunk} {rows[2] - 12}q0 12 12 12H{left}" fill="none" stroke="{c["rule"]}" stroke-width="2"/>',
-        f'<circle cx="{trunk}" cy="{mid}" r="4" fill="{c["joint"]}"/>',
-        f'<rect x="{x}" y="{mid - 34}" width="116" height="68" rx="10" fill="{c["panel"]}" stroke="{c["rule"]}"/>',
-        text(x + 58, mid - 2, "state", 20, "mono", font_weight=600, text_anchor="middle"),
-        text(x + 58, mid + 21, s["state_note"], 15, "faint", text_anchor="middle"),
-    ]
-    for name, kind, y, color in zip(PRIMITIVES, s["answers"], rows, c["answers"]):
-        fit(f"{name} name", name, left + 22, right - 90, 20, mono=True)
-        fit(f"{name} type", kind, left + 22, right - 90, 16)
-        out += [
-            f'<rect x="{left}" y="{y - 30}" width="{right - left}" height="60" rx="10" fill="{c["panel"]}" stroke="{c["rule"]}"/>',
-            f'<rect x="{left}" y="{y - 14}" width="3" height="28" rx="1.5" fill="{color}"/>',
-            text(left + 22, y - 3, name, 20, "mono", font_weight=600),
-            text(left + 22, y + 19, kind, 16, "muted"),
-            icon(name, right - 78, y, c, color),
-        ]
+def tier_color(tier: str | None, c: dict) -> str | None:
+    """The evidence bar's colour: who read the call site (readme.board hands
+    launches.tier over), or none for a card that is not a product."""
+    if tier is None:
+        return None
+    return c["tiers"].get(tier, c["tiers"]["file"])
+
+
+def card(x: float, y: float, width: float, height: float, item: dict, c: dict) -> list[str]:
+    """One card of the feed: a vote box (the mark, and the count where the
+    board shows one), the product's title and line, its rank once the week
+    closed, and a bar in the colour of its evidence tier."""
+    box, pad = 60, 16
+    out = [f'<rect x="{x}" y="{y}" width="{width}" height="{height}" rx="10" fill="{c["panel"]}" stroke="{c["rule"]}"/>']
+    color = tier_color(item.get("tier"), c)
+    if color:
+        out.append(f'<rect x="{x}" y="{y + 18}" width="3" height="{height - 36}" rx="1.5" fill="{color}"/>')
+    bx, by, bh = x + pad, y + 10, height - 20
+    out.append(f'<rect x="{bx}" y="{by}" width="{box}" height="{bh}" rx="8" fill="{c["canvas"]}" stroke="{c["rule"]}"/>')
+    cx = bx + box / 2
+    if item.get("count") is None:
+        out.append(mark(item["mark"], cx, by + bh / 2, c["accent"]))
+    else:
+        out.append(mark(item["mark"], cx, by + 15, c["accent"]))
+        count = clip(str(item["count"]), 13, box - 6, mono=True, bold=True, tracking=-0.5)
+        out.append(text(cx, by + bh - 9, count, 13, "mono accent", font_weight=600, text_anchor="middle", letter_spacing=-0.5))
+    tx, limit = bx + box + 14, x + width - pad
+    title_limit = limit
+    if item.get("rank"):
+        out.append(text(limit, y + 30, item["rank"], 14, "mono accent", font_weight=600, text_anchor="end"))
+        title_limit = limit - text_width(item["rank"], 14, mono=True, bold=True) - 10
+    out.append(text(tx, y + 30, clip(item["title"], 18, title_limit - tx, mono=True, bold=True), 18, "mono", font_weight=600))
+    out.append(text(tx, y + 52, clip(item["line"], 14, limit - tx), 14, "muted"))
     return out
 
 
-def strip(top: int, left: int, right: int, s: dict, c: dict) -> list[str]:
-    """The diagram folded into one row for phones."""
-    fit("diagram heading", s["diagram"], left + 20, right - 20, 16, mono=True, tracking=1.4)
+def feed(x: int, right: int, c: dict, cards: dict) -> list[str]:
+    """The board's feed: its heading, CARDS cards and a footer."""
+    width, top, pitch, height = right - x, 96, 86, 72
+    out = [text(x, 73, clip(cards["heading"], 16, width, mono=True, tracking=1.6), 16, "mono faint", letter_spacing=1.6)]
+    for index, item in enumerate(cards["cards"][:CARDS]):
+        out += card(x, top + index * pitch, width, height, item, c)
+    out.append(text(x, 383, clip(cards["footer"], 12, width, mono=True, tracking=1), 12, "mono faint", letter_spacing=1))
+    return out
+
+
+def feed_strip(top: int, left: int, right: int, c: dict, cards: dict) -> list[str]:
+    """The feed folded into one panel for phones: the heading, then one line
+    per card (mark, count, rank, title, line), clipped at the panel's edge."""
+    width, edge = right - left, right - 20
     out = [
-        f'<rect x="{left}" y="{top}" width="{right - left}" height="132" rx="12" fill="{c["panel"]}" stroke="{c["rule"]}"/>',
-        text(left + 20, top + 34, s["diagram"], 16, "mono faint", letter_spacing=1.4),
+        f'<rect x="{left}" y="{top}" width="{width}" height="132" rx="12" fill="{c["panel"]}" stroke="{c["rule"]}"/>',
+        text(left + 20, top + 32, clip(cards["heading"], 13, width - 40, mono=True, tracking=1.2), 13, "mono faint", letter_spacing=1.2),
     ]
-    for index, (name, kind, color) in enumerate(zip(PRIMITIVES, s["answers"], c["answers"])):
-        x = left + 20 + index * 172
-        fit(f"{name} name", name, x + 16, min(x + 164, right - 20), 22, mono=True)
-        fit(f"{name} type", kind, x + 16, min(x + 164, right - 20), 18)
-        out += [
-            f'<rect x="{x}" y="{top + 58}" width="3" height="48" rx="1.5" fill="{color}"/>',
-            text(x + 16, top + 78, name, 22, "mono", font_weight=600),
-            text(x + 16, top + 104, kind, 18, "muted"),
-        ]
+    for index, item in enumerate(cards["cards"][:CARDS]):
+        x, y = left + 20, top + 60 + index * 26
+        out.append(mark(item["mark"], x + 6, y - 5, c["accent"], scale=0.7))
+        x += 22
+        lead = " ".join(str(part) for part in (item.get("count"), item.get("rank")) if part)
+        if lead:
+            lead = clip(lead, 14, 90, mono=True, bold=True)
+            out.append(text(x, y, lead, 14, "mono accent", font_weight=600))
+            x += text_width(lead, 14, mono=True, bold=True) + 10
+        title = clip(item["title"], 15, min(220, edge - x), mono=True, bold=True)
+        out.append(text(x, y, title, 15, "mono", font_weight=600))
+        x += text_width(title, 15, mono=True, bold=True) + 10
+        if edge - x > 40:
+            out.append(text(x, y, clip(item["line"], 13, edge - x), 13, "muted"))
     return out
 
 
@@ -303,63 +339,76 @@ def palette(theme: str) -> dict:
     return THEMES[theme]
 
 
-def cover(lang: str, theme: str, stats: dict | None = None) -> str:
-    """Desktop card: identity and counts on the left, the decision diagram right."""
+def hero_feed() -> dict[str, dict]:
+    """The feed in both languages, from the catalogue and the board's files
+    (readme.board.hero). Imported here, not at the top: readme.sections
+    imports this module."""
+    from readme.board import hero
+
+    catalog = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))
+    return {lang: hero(catalog, lang) for lang in COPY}
+
+
+def cover(lang: str, theme: str, stats: dict | None = None, cards: dict | None = None) -> str:
+    """Desktop card: identity and counts on the left, the launch feed right."""
     c, s = palette(theme), COPY[lang]
     stats = compute() if stats is None else stats
+    cards = hero_feed()[lang] if cards is None else cards
     left, limit = 60, 680
     out = opening(lang, stats, c, WIDTH, HEIGHT, (0, 0, 1, 0))
     out += brand(left, 50, s, c, limit)
     out += headline(left, limit, s, title=(64, -1.6, 172), lede=(27, 225, 37))
     out.append(f'<path d="M{left} 306H{limit - 40}" stroke="{c["rule"]}"/>')
     out += counts(left, 362, 202, limit, stats, s, number=36, label=19)
-    out += diagram(712, WIDTH - 60, s, c)
+    out += feed(712, WIDTH - 60, c, cards)
     out.append("</svg>\n")
     return "\n".join(out)
 
 
-def mobile_cover(lang: str, theme: str, stats: dict | None = None) -> str:
+def mobile_cover(lang: str, theme: str, stats: dict | None = None, cards: dict | None = None) -> str:
     """Phone layout: recomposed and stacked rather than shrunk to unreadable type."""
     c, s = palette(theme), COPY[lang]
     stats = compute() if stats is None else stats
+    cards = hero_feed()[lang] if cards is None else cards
     left, limit = 36, MOBILE_WIDTH - 36
     out = opening(lang, stats, c, MOBILE_WIDTH, MOBILE_HEIGHT, (0, 1, 1, 0))
     out += brand(left, 36, s, c, limit)
     out += headline(left, limit, s, title=(54, -1.4, 146), lede=(26, 196, 36))
     out.append(f'<path d="M{left} 272H{limit}" stroke="{c["rule"]}"/>')
     out += counts(left, 322, 180, limit, stats, s, number=34, label=19)
-    out += strip(392, left, limit, s, c)
+    out += feed_strip(392, left, limit, c, cards)
     out.append("</svg>\n")
     return "\n".join(out)
 
 
-def rendered_covers(stats: dict | None = None) -> dict[str, str]:
+def rendered_covers(stats: dict | None = None, feeds: dict[str, dict] | None = None) -> dict[str, str]:
     """Return deterministic asset contents with a single consistent stats read."""
     stats = compute() if stats is None else stats
+    feeds = hero_feed() if feeds is None else feeds
     return {
-        Path(asset_path(lang, theme, mobile=mobile)).name: render(lang, theme, stats)
+        Path(asset_path(lang, theme, mobile=mobile)).name: render(lang, theme, stats, feeds[lang])
         for lang in COPY
         for theme in THEMES
         for mobile, render in ((False, cover), (True, mobile_cover))
     }
 
 
-def write_covers(stats: dict | None = None, out_dir: Path = OUT) -> list[Path]:
+def write_covers(stats: dict | None = None, out_dir: Path = OUT, feeds: dict[str, dict] | None = None) -> list[Path]:
     """Write all cover assets; build_readme.main can share its own stats snapshot."""
     out_dir.mkdir(parents=True, exist_ok=True)
     paths = []
-    for filename, content in rendered_covers(stats).items():
+    for filename, content in rendered_covers(stats, feeds).items():
         path = out_dir / filename
         path.write_text(content, encoding="utf-8")
         paths.append(path)
     return paths
 
 
-def stale_covers(stats: dict | None = None, out_dir: Path = OUT) -> list[str]:
+def stale_covers(stats: dict | None = None, out_dir: Path = OUT, feeds: dict[str, dict] | None = None) -> list[str]:
     """Names of cover files that are missing or differ from a fresh render."""
     return sorted(
         filename
-        for filename, content in rendered_covers(stats).items()
+        for filename, content in rendered_covers(stats, feeds).items()
         if not (out_dir / filename).exists() or (out_dir / filename).read_text(encoding="utf-8") != content
     )
 

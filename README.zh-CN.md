@@ -12,12 +12,14 @@
   <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="docs/assets/readme-cover-zh-light-mobile.svg">
   <source media="(max-width: 767px)" srcset="docs/assets/readme-cover-zh-dark-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-zh-dark.svg">
-  <img src="docs/assets/readme-cover-zh-light.svg" alt="awesome-jev — Jev 决策图谱：1,370 条公开资源、1,367 条带日期的 HTTP 2xx 链接记录、1,192 条调用点引用记录。数字来自保存的记录，不代表当前链接可用或运行与性能测试通过。" width="100%">
+  <img src="docs/assets/readme-cover-zh-light.svg" alt="awesome-jev — Jev 发布榜：1,117 个用 Jev 做的产品、951 位 Maker、1,192 条调用点引用记录。数字来自保存的记录，不代表当前链接可用或运行与性能测试通过。" width="100%">
 </picture>
 </a>
 
 <p align="center">
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><kbd>&nbsp;<b>浏览资源目录&nbsp;↗</b>&nbsp;</kbd></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/launches.zh.html"><kbd>&nbsp;<b>发布榜&nbsp;↗</b>&nbsp;</kbd></a>
+<a href="https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml"><kbd>&nbsp;发布产品&nbsp;</kbd></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><kbd>&nbsp;浏览资源目录&nbsp;↗&nbsp;</kbd></a>
 <a href="https://kydlikebtc.github.io/awesome-jev/?collection=first-call&amp;lang=zh"><kbd>&nbsp;第一次调用&nbsp;</kbd></a>
 <a href="https://kydlikebtc.github.io/awesome-jev/?collection=build&amp;lang=zh"><kbd>&nbsp;改造现有项目&nbsp;</kbd></a>
 <a href="https://kydlikebtc.github.io/awesome-jev/?collection=measured&amp;lang=zh"><kbd>&nbsp;独立测量报告&nbsp;</kbd></a>
@@ -31,30 +33,74 @@
 
 [决策模式](docs/patterns.zh-CN.md) · [兼容性](docs/compatibility.md) · [核查指南](docs/vetting.md)
 
-- 01 [这是什么](#这是什么)
-- 02 [Jev 返回什么](#jev-返回什么)
-- 03 [从这里开始](#从这里开始)
-- 04 [覆盖度](#覆盖度)
-- 05 [实测，而非宣称](#实测而非宣称)
-- 06 [按决策模式](#按决策模式)
-- 07 [按资源形态](#按资源形态)
-- 08 [本仓库还有什么](#本仓库还有什么)
-- 09 [哪些经过核实，哪些没有](#哪些经过核实哪些没有)
-- 10 [机器可读数据](#机器可读数据)
-- 11 [参与贡献与许可](#参与贡献与许可)
+- 01 [本周发布榜](#本周发布榜)
+- 02 [发布你的产品](#发布你的产品)
+- 03 [这是什么](#这是什么)
+- 04 [Jev 返回什么](#jev-返回什么)
+- 05 [从这里开始](#从这里开始)
+- 06 [覆盖度](#覆盖度)
+- 07 [实测，而非宣称](#实测而非宣称)
+- 08 [按决策模式](#按决策模式)
+- 09 [按资源形态](#按资源形态)
+- 10 [本仓库还有什么](#本仓库还有什么)
+- 11 [哪些经过核实，哪些没有](#哪些经过核实哪些没有)
+- 12 [机器可读数据](#机器可读数据)
+- 13 [参与贡献与许可](#参与贡献与许可)
 
 </details>
 
 ---
 
+## 本周发布榜
+
+用 Jev 做出来的产品，由 Maker 每周发布一次，任何人也可以推荐（hunt）自己发现的产品。大家在每个 Launch 的 [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches) 帖子上点赞投票，每周日 23:59 UTC 收榜、排名。票数说明有多少人关心；每个 Launch 旁边的证据说明谁读过它调用 Jev 的代码。两者从不相加，名次也不是本目录的推荐。[发布榜](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)上有每一周、每个产品和每位 Maker 的页面，以及上升榜。 <sub>(机翻)</sub>
+
+榜上还没有 Launch。周四 23:59 UTC 前提交的 Launch 周五登记、下周一开榜：[发布一个产品](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml)，自己做的或你发现的都行，比如下面上升最快的这些。 <sub>(机翻)</sub>
+
+### ★ 上升最快：2026-10-28 至 2026-11-04
+
+1. ★ **+35** **[jeveryword](https://kydlikebtc.github.io/awesome-jev/products/jeveryword.html)** — 用 Jev 做文本抽取：字段抽取、PII 检测与逐字引文。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
+  <sub>5 → 40 星（+700%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jeveryword&title=Launch%3A%20jeveryword)</sub>
+2. ★ **+12,379** **[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — 桌面自动化。读系统无障碍树，判断下一步该点哪个按钮、菜单或输入框。<br>
+  <sub>1,827 → 14,206 星（+678%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=agent-desktop&title=Launch%3A%20agent-desktop)</sub>
+3. ★ **+26** **[anydecisionmodel](https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html)** — 一个 Swift 包：从语言模型获取类型化决策（概率、选择与分数）。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
+  <sub>24 → 50 星（+108%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=anydecisionmodel&title=Launch%3A%20anydecisionmodel)</sub>
+4. ★ **+53** **[fastbrowse](https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html)** — 浏览器智能体：每个页面被索引成候选控件，由 Jev 选出下一步，因此不会点击页面上没有的东西；规划和阅读由 Gemini Flash 负责，答案引用页面原文。维护者记录的 46 个任务中成功率为 99.2%，托管版 Browser Use 为 97.8%，而成本不到其十分之一。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>120 → 173 星（+44%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=fastbrowse&title=Launch%3A%20fastbrowse)</sub>
+5. ★ **+14** **[jev-guard](https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html)** — 给编程智能体用的安全钩子：每次工具调用前，Jev 判断这次调用可能造成多大危害、是不是用户要求的、是否在执行不可信的文字，再由代码决定拒绝、询问还是放行；调用返回后，Jev 扫描结果中的提示注入。支持 Claude Code、Codex、Cursor 等。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>130 → 144 星（+11%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jev-guard&title=Launch%3A%20jev-guard)</sub>
+
+<sub>最近两次每周刷新之间，GitHub 星标涨得最快的 10 个产品：至少涨了 10 个，按涨幅占原有星标的比例排序，这里列前 5 个。星标是 GitHub 的计数，是热度信号，不是评价；上升不会得到任何奖励。[发布榜上的全部 10 个](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)。 <sub>(机翻)</sub></sub>
+
+## 发布你的产品
+
+任何用 Jev 做的、代码公开的东西都可以发布：项目、插件、SDK 或集成，只要它的条目在目录里（没有就先[添加条目](https://github.com/kydlikebtc/awesome-jev/issues/new?template=new-entry.yml)）。Maker 发布自己的产品；任何人都可以推荐自己发现的产品。没有一步需要等维护者：每种情况都有规则，issue 上的检查会告诉你它的判定。 <sub>(机翻)</sub>
+
+| 步骤 | 时间 | 会发生什么 |
+| --- | --- | --- |
+| **🚀 发布** | 周四 23:59 UTC 前 | 打开[发布表单](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml)，或在产品页点「发布它」，表单会自动填好。检查会立刻在 issue 上回复：下周上榜，或者需要改什么。 |
+| **▲ 投票** | 周一到周日 | 周一开榜，每个 Launch 在 [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches) 里有一个帖子。投票就是在帖子上点赞：每个账号一票，Maker 自己的票不计，注册不满 30 天的账号算半票。 |
+| **🏆 结果** | 下周一 | 计票、排名，前三名的徽章显示名次，每个 Launch 的 issue 都会收到结果。60 天后可以再次发布。 |
+<sub>(机翻)</sub>
+
+每个产品都有一枚自动更新的徽章：已收录，然后是发布中、本周投票，再到前三名的名次。在你的 README 里放一行，之后不用再改： <sub>(机翻)</sub>
+
+[![awesome-jev](https://kydlikebtc.github.io/awesome-jev/badges/jeveryword.svg)](https://kydlikebtc.github.io/awesome-jev/products/jeveryword.html) <sub>← `jeveryword` 今天的样子</sub>
+
+```markdown
+[![awesome-jev](https://kydlikebtc.github.io/awesome-jev/badges/your-slug.svg)](https://kydlikebtc.github.io/awesome-jev/products/your-slug.html)
+```
+
+完整规则：[怎么计票](docs/launches.zh-CN.md#怎么计票规则-v2) · [发布榜](https://kydlikebtc.github.io/awesome-jev/launches.zh.html) · [每周结果订阅](https://kydlikebtc.github.io/awesome-jev/launches.zh.xml) · [给智能体的 JSON](https://kydlikebtc.github.io/awesome-jev/api/v1/launches.json) 以及 MCP 服务器的 `launch_board`、`top_launches` 工具 · [在你自己的仓库里跑同一套发布榜](docs/launch-engine.zh-CN.md)。 <sub>(机翻)</sub>
+
 ## 这是什么
 
-- **Jev** 是 TypeSafe AI 的决策模型。它不生成文本 —— 你给它状态和类型化问题，它返回带校准置信度的类型化答案，快且便宜到可以放进智能体的内层循环。
-- **本仓库**收集它的公开使用例子，按所做的**决策**组织。你这周读的那篇资料是一次性的，决策模式不是。
-- **如何判断可信度：**每一行都写明来源；有依据时记录调用点、原语声明和注意事项，方便你查看读过什么，以及哪些部分仍未实测。
+- **Jev** 是 TypeSafe AI 的决策模型。它不生成文本 —— 你给它状态和类型化问题，它返回带校准置信度的类型化答案，快且便宜到可以放进智能体的内层循环。 <sub>(机翻)</sub>
+- **本仓库**是目录之上的一个发布榜。上面的榜：用 Jev 做的产品，由 Maker 每周发布一次、大家投票。榜的下面是 Jev 决策图谱：这个索引能找到的每一个 Jev 公开用例，按所做的**决策**组织 —— 资料会过时，决策模式不会。发布需要先有条目；条目不需要发布。 <sub>(机翻)</sub>
+- **如何判断可信度：**每一行都写明来源；有依据时记录调用点、原语声明和注意事项。榜上同一份记录就放在票数旁边，信一个名次之前先看看读过什么。 <sub>(机翻)</sub>
 
 > [!NOTE]
-> 不是产品本身，不是 SDK，与 TypeSafe AI 无隶属关系，也不构成推荐。收录是一份来源记录，不代表运行验证或性能背书。详见[哪些经过核实](#哪些经过核实哪些没有)。
+> 不是产品本身，不是 SDK，与 TypeSafe AI 无隶属关系，也不构成推荐。收录是一份来源记录，名次只是票数的计数；两者都不代表运行验证或性能背书。详见[哪些经过核实](#哪些经过核实哪些没有)。 <sub>(机翻)</sub>
 
 ## Jev 返回什么
 
@@ -1135,7 +1181,7 @@ _介绍模型或整个领域，而非单一模式。_
 <details>
 <summary><b>查看可搜索站点预览</b></summary>
 
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=0a4504d7dbb5a03b" alt="可搜索的 Jev 目录：精选路径、筛选排序、带日期的来源证据与条目卡片" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=aa688f13b9346002" alt="可搜索的 Jev 目录：精选路径、筛选排序、带日期的来源证据与条目卡片" width="760"></a>
 
 <sub>点击条形即可筛选。另有两个视图：<a href="https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh">三个原语</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh">兼容性矩阵</a>。每个筛选条件和每个条目都是可分享的 URL。也有静态页面：<a href="https://kydlikebtc.github.io/awesome-jev/patterns/">每个模式一页</a> · <a href="https://kydlikebtc.github.io/awesome-jev/new.zh.html">每周新增与退役</a>（<a href="https://kydlikebtc.github.io/awesome-jev/feed.zh.xml">Atom 订阅</a>）。有代码的产品还可以上<a href="https://kydlikebtc.github.io/awesome-jev/launches.zh.html">每周发布榜</a>（<a href="docs/launches.zh-CN.md">规则说明</a>）。</sub>
 
@@ -1243,4 +1289,4 @@ _介绍模型或整个领域，而非单一模式。_
 
 ---
 
-**Jev Decision Atlas** · [↑ 返回顶部](#top) · [English](README.md)
+**awesome-jev 发布榜** · 建在 Jev 决策图谱之上 · [↑ 返回顶部](#top) · [English](README.md)

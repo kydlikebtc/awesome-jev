@@ -60,15 +60,15 @@ TARGETS = (
     (
         "og.png", "card.html?mode=live", (1280, 640),
         (
-            'data-mode="live"', "Jev Decision Atlas", "indexed examples",
-            "link checked · 2xx", "call-site cited",
+            'data-mode="live"', "Jev Launches", "products built on Jev",
+            "makers with a page", "call-site cited",
         ),
     ),
     (
         "card.png", "card.html", (1280, 640),
         (
-            'data-mode="durable"', "Jev Decision Atlas", "Browse by task",
-            "Check link status", "Read call-site citations",
+            'data-mode="durable"', "Jev Launches", "Launch a product",
+            "Vote with a thumbs-up", "Read the evidence",
         ),
     ),
     ("site-en.png", "index.html?lang=en", (1200, 900), ("Tool selection",)),

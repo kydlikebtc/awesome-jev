@@ -798,7 +798,12 @@ class MondayTest(unittest.TestCase):
         self.assertTrue(tell.startswith("        if: always() && (steps.land.outputs.landed == 'main' "
                                         "|| steps.commit.outputs.changed == 'false')\n"), tell[:120])
         self.assertIn("run: python3 scripts/launch_week.py --tell", tell)
-        self.assertIn("git add -A launches\n", text)
+        # The READMEs open with the board, so the week's commit regenerates
+        # them (and what else the week files feed) before the strict checks.
+        jobs = text.split("jobs:", 1)[1]
+        self.assertEqual(jobs.count("python3 scripts/regenerate.py"), 2)  # the commit, and each retry
+        self.assertEqual(jobs.count("git add -A launches catalog.json README.md README.zh-CN.md "), 2)
+        self.assertLess(jobs.index("scripts/regenerate.py"), jobs.index("git add -A launches"))
         self.assertIn("if: always() && steps.checks.outcome == 'success'", text)
         self.assertNotIn("--force-with-lease origin HEAD:main", text)
         self.assertNotIn("github.event.", text.split("jobs:", 1)[1])

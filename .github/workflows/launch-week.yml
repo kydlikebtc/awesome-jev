@@ -11,7 +11,11 @@
 # on file and Discussions still off, opening fails and says why.
 #
 # Like metadata.yml, it commits what it wrote and pushes it to main, rebasing
-# onto anything pushed meanwhile. It never forces. If the commit no longer
+# onto anything pushed meanwhile. Both READMEs open with the board (the week
+# running, the week filed next, last week's top three; scripts/readme/board.py)
+# and their cover draws the same cards, so the commit carries them regenerated:
+# the checks it runs are strict on a scheduled run and would refuse a week file
+# whose README still said the week before. It never forces. If the commit no longer
 # applies, it runs the week again from the new tip of main, which is safe
 # because a vote post is found by its marker before one is made and a closed
 # week counts again the same way, up to three times; then it fails, and
@@ -69,11 +73,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/launch_week.py --monday
 
-      - name: Commit what changed
+      - name: Commit what changed, with the READMEs the week files feed
         id: commit
         if: always()
         run: |
-          git add -A launches
+          python3 scripts/regenerate.py > /dev/null
+          git add -A launches catalog.json README.md README.zh-CN.md docs llms.txt examples/index.json examples/README.md skills/awesome-jev/SKILL.md
           if git diff --cached --quiet; then
             echo "nothing changed"
             echo "changed=false" >> "$GITHUB_OUTPUT"
@@ -109,7 +114,8 @@ jobs:
             git fetch -q origin main
             git reset -q --hard origin/main
             python3 scripts/launch_week.py --monday
-            git add -A launches
+            python3 scripts/regenerate.py > /dev/null
+            git add -A launches catalog.json README.md README.zh-CN.md docs llms.txt examples/index.json examples/README.md skills/awesome-jev/SKILL.md
             if git diff --cached --quiet; then
               echo "main already has the weeks as written"
               echo "landed=main" >> "$GITHUB_OUTPUT"
