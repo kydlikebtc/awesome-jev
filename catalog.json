@@ -1331,16 +1331,16 @@
   },
   {
     "slug": "agentgateway-guardrail",
-    "title": "agentgateway: CI-validated LLM guardrail",
-    "summary": "Three Score questions on a shared severity scale, blocking the request when two or more cross the line, and failing closed.",
-    "summary_zh": "三个共用同一严重度量表的 Score 问题，两项以上越线即拦截请求，并且失败时默认关闭。",
+    "title": "agentgateway: Jev and OpenAI guardrail",
+    "summary": "Three yes-or-no questions (jailbreak, harmful content, secret disclosure) on each request and each response, rejected with HTTP 403 at a probability of 0.5 or more and blocked on any evaluation error; the gateway sends half the evaluations to Jev as Nouls and half to OpenAI.",
+    "summary_zh": "对每个请求和每条回复提出三个是非问题（越狱、有害内容、泄露机密），概率达到 0.5 即以 HTTP 403 拒绝，评估出错时同样拦截；网关把一半评估以 Noul 形式发给 Jev，另一半发给 OpenAI。",
     "url": "https://github.com/agentgateway/agentgateway",
     "kind": "project",
     "patterns": [
       "safety-gating"
     ],
     "question_types": [
-      "score"
+      "noul"
     ],
     "languages": [
       "rust"
@@ -1391,14 +1391,16 @@
     "checked": "2026-11-04",
     "link_status": 200,
     "evidence": {
-      "path": "examples/llm-guardrail-jev/guardrail.ts",
+      "path": "examples/llm-guardrail-jev-openai/guardrail.ts",
       "matched": [
-        "jev-latest",
-        "choice",
-        "score"
+        "client.decisions.create",
+        "type: \"predicate\"",
+        "const threshold = 0.5"
       ],
-      "read_on": "2026-09-22"
-    }
+      "model_read_on": "2026-11-05"
+    },
+    "summary_source": "model-written",
+    "zh_machine": true
   },
   {
     "slug": "agi-jev-containment",
@@ -5834,7 +5836,7 @@
     "repo_pushed_at": "2026-10-04T22:42:31Z",
     "repo_commits": 18,
     "evidence": {
-      "path": "server.mjs",
+      "path": "lib/coach.mjs",
       "matched": [
         "api.typesafe.ai",
         "jev-latest",
@@ -11008,7 +11010,7 @@
       "path": "providers/typesafe-api.mjs",
       "matched": [
         "@typesafe-ai/sdk",
-        "jev-latest",
+        "jev-1.14",
         "systemOne"
       ],
       "read_on": "2026-09-24"
@@ -11028,7 +11030,7 @@
     "summary_zh": "深度研究工具：在 Milvus 等向量数据库中检索私有数据，再用 LLM 推理作答。它的评测把 LLM 自己做出的停止检索决定，与 Jev 就已收集的上下文是否足以作答给出的 noul 相比较，共 100 道题。",
     "zh_machine": true,
     "url": "https://github.com/zilliztech/deep-searcher",
-    "kind": "alternative",
+    "kind": "benchmark",
     "patterns": [
       "overview"
     ],
@@ -11052,7 +11054,6 @@
         "jev-1.13",
         "/v1/systemone"
       ],
-      "kind": "wire-shape",
       "read_on": "2026-09-22"
     },
     "first_seen": "2026-09-22",
@@ -11094,11 +11095,8 @@
     "languages": [
       "python"
     ],
-    "flags": [
-      "not-jev"
-    ],
-    "notes": "Self-describes as an alternative or reimplementation. The call site found may be an evaluation baseline rather than the product. A compatible wire format implies nothing about compatible calibration.",
-    "notes_zh": "自述为替代品或复现实现。扫描到的调用点可能只是评测基线而非产品本身。协议兼容不代表校准兼容。",
+    "notes": "Calls Jev only in an evaluation: on 100 2WikiMultiHopQA queries a Jev Noul replaces the LLM's own decision to stop searching, and evaluation/jev_stopping/README.md publishes the comparison (recall, rounds, latency, cost). Kind changed from alternative to benchmark on 2026-11-05 by an AI assistant; a maintainer has not yet read the report.",
+    "notes_zh": "只在评测中调用 Jev：在 100 道 2WikiMultiHopQA 题上，用 Jev 的一个 Noul 代替 LLM 自己做出的停止检索决定，并在 evaluation/jev_stopping/README.md 中公布对比结果（召回率、轮数、延迟、成本）。2026-11-05 由 AI 助手把类别从替代品改为基准；维护者尚未亲自阅读该报告。",
     "checked": "2026-11-04",
     "link_status": 200
   },
@@ -14073,66 +14071,6 @@
     "link_status": 200
   },
   {
-    "slug": "eliza",
-    "title": "eliza",
-    "summary": "Open source agentic operating system",
-    "summary_source": "upstream-description",
-    "summary_zh": "开源的智能体操作系统。",
-    "zh_machine": true,
-    "url": "https://github.com/elizaOS/eliza",
-    "kind": "project",
-    "patterns": [
-      "overview"
-    ],
-    "platforms": [
-      "typesafe-api"
-    ],
-    "author": {
-      "name": "elizaos",
-      "url": "https://github.com/elizaos"
-    },
-    "has_code": true,
-    "stars": 19768,
-    "repo_license": "MIT",
-    "repo_created_at": "2024-07-09T07:55:40Z",
-    "repo_pushed_at": "2026-11-04T12:54:18Z",
-    "repo_commits": 35605,
-    "evidence": {
-      "path": "packages/agent/src/services/typesafe/client.ts",
-      "matched": [
-        "api.typesafe.ai",
-        "/v1/systemone",
-        "systemOne"
-      ],
-      "read_on": "2026-09-22"
-    },
-    "first_seen": "2026-09-22",
-    "sources": [
-      {
-        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
-        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
-      },
-      {
-        "catalog": "BeatAPI/awesome-jev",
-        "url": "https://github.com/BeatAPI/awesome-jev"
-      },
-      {
-        "catalog": "logicrw/awesome-jev-projects",
-        "url": "https://github.com/logicrw/awesome-jev-projects"
-      },
-      {
-        "catalog": "yibie/awesome-jev",
-        "url": "https://github.com/yibie/awesome-jev"
-      }
-    ],
-    "license": "CC0-1.0",
-    "languages": [
-      "typescript"
-    ],
-    "checked": "2026-11-04",
-    "link_status": 200
-  },
-  {
     "slug": "embodied-jev",
     "title": "embodied-jev",
     "summary": "MuJoCo workbench where a model drives a Franka arm through carry, stack and obstacle tasks. With Jev, each step is a choice among the controller's actions, given text state and detected coordinates; physics judges success. Two Jev carry runs ended in 89 and 88 steps, both dropping the block.",
@@ -15321,7 +15259,7 @@
     "repo_pushed_at": "2026-11-04T13:48:03Z",
     "repo_commits": 493,
     "evidence": {
-      "path": "src/fastbrowse/clients/typesafe.py",
+      "path": "crates/fastbrowse-clients/src/system_one.rs",
       "matched": [
         "api.typesafe.ai",
         "/v1/systemone"
@@ -15385,6 +15323,7 @@
     ],
     "license": "CC0-1.0",
     "languages": [
+      "rust",
       "python"
     ],
     "checked": "2026-11-04",
@@ -15922,7 +15861,7 @@
     "repo_pushed_at": "2026-10-15T12:59:56Z",
     "repo_commits": 44,
     "evidence": {
-      "path": "src/foreman/foreman/jev.py",
+      "path": "src/foreman/decision_models/jev.py",
       "matched": [
         "typesafe_sdk",
         "jev-latest",
@@ -18341,7 +18280,7 @@
       "matched": [
         "api.typesafe.ai",
         "typesafe/jev",
-        "jev-latest"
+        "jev-1.14"
       ],
       "read_on": "2026-09-22"
     },
@@ -18961,10 +18900,10 @@
     "repo_pushed_at": "2026-11-04T10:57:36Z",
     "repo_commits": 1735,
     "evidence": {
-      "path": "src/rerankers/jev.ts",
+      "path": "src/infra/rerankers/endpoint.ts",
       "matched": [
         "api.typesafe.ai",
-        "jev-latest",
+        "/v1/systemone",
         "jev-1.13"
       ],
       "read_on": "2026-09-22"
@@ -19519,7 +19458,7 @@
       "overview"
     ],
     "platforms": [
-      "typesafe-api"
+      "openrouter"
     ],
     "author": {
       "name": "carldaws",
@@ -19582,13 +19521,13 @@
     ],
     "license": "CC0-1.0",
     "evidence": {
-      "path": "lib/hunch/configuration.rb",
+      "path": "lib/hunch/backends/system_one.rb",
       "matched": [
-        "api.typesafe.ai",
-        "jev-latest",
-        "/v1/systemone"
+        "class SystemOne",
+        "\"questions\" =>",
+        "Net::HTTP::Post.new(uri)"
       ],
-      "read_on": "2026-09-24"
+      "model_read_on": "2026-11-05"
     },
     "zh_machine": true,
     "languages": [
@@ -20042,14 +19981,14 @@
     "checked": "2026-11-04",
     "link_status": 200,
     "evidence": {
-      "path": "apps/web/utils/decision-model/typesafe.ts",
+      "path": "apps/web/utils/decision-model/decision-model.ts",
       "matched": [
         "api.typesafe.ai",
         "/v1/systemone",
-        "noul",
-        "choice"
+        "createSystemOneDecisionModel",
+        "falling back to LLM"
       ],
-      "read_on": "2026-09-22"
+      "model_read_on": "2026-11-05"
     }
   },
   {
@@ -20902,7 +20841,7 @@
           "path": "kev/serve.py",
           "matched": [
             "@app.post(\"/v1/systemone\")",
-            "hybrid Qwen3.5 checkpoints run on MLX by default"
+            "on Apple Silicon a hybrid checkpoint runs on MLX"
           ]
         },
         {
@@ -23036,8 +22975,9 @@
       "path": "src/jev_align/jev.py",
       "matched": [
         "typesafe_sdk",
-        "jev-1.13",
-        "system_one"
+        "system_one",
+        "TypeSafeClient",
+        "DEFAULT_JEV_MODEL"
       ],
       "read_on": "2026-09-22"
     },
@@ -24417,12 +24357,14 @@
     "repo_pushed_at": "2026-10-27T14:30:48Z",
     "repo_commits": 56,
     "evidence": {
-      "path": "src/jev-adapter.ts",
+      "path": "src/codex-router/jev.ts",
       "matched": [
-        "jev-latest",
-        "jev-1.13"
+        "buildJevRequest",
+        "createJevTransport",
+        "type: \"choice\"",
+        "type: \"score\""
       ],
-      "read_on": "2026-09-22"
+      "model_read_on": "2026-11-05"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -25380,70 +25322,6 @@
     "link_status": 200
   },
   {
-    "slug": "jev-block-android-ad",
-    "title": "jev-block-android-ad",
-    "summary": "JevNoiseGate filters unwanted notifications and SMS on Android. Rather than matching keywords, an LLM decides what's noise — and only what it explicitly flags is blocked. Verification codes are matched on-device and never uploaded; anything uncertain passes through.",
-    "summary_source": "upstream-description",
-    "summary_zh": "Android 上的通知与短信过滤：不是匹配关键词，而是由模型判断。",
-    "zh_machine": true,
-    "url": "https://github.com/ufec/jev-block-android-ad",
-    "kind": "project",
-    "patterns": [
-      "safety-gating",
-      "output-validation",
-      "human-escalation"
-    ],
-    "platforms": [
-      "typesafe-api"
-    ],
-    "author": {
-      "name": "ufec",
-      "url": "https://github.com/ufec"
-    },
-    "has_code": true,
-    "stars": 8,
-    "repo_license": "MIT",
-    "repo_created_at": "2026-09-18T15:54:10Z",
-    "repo_pushed_at": "2026-10-16T07:14:59Z",
-    "repo_commits": 23,
-    "evidence": {
-      "path": "app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt",
-      "matched": [
-        "TypeSafeClient"
-      ],
-      "read_on": "2026-09-22"
-    },
-    "first_seen": "2026-09-22",
-    "sources": [
-      {
-        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
-        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
-      },
-      {
-        "catalog": "AbdelStark/awesome-typesafe-jev",
-        "url": "https://github.com/AbdelStark/awesome-typesafe-jev"
-      },
-      {
-        "catalog": "hellogumbo/awesome-jev",
-        "url": "https://github.com/hellogumbo/awesome-jev"
-      },
-      {
-        "catalog": "logicrw/awesome-jev-projects",
-        "url": "https://github.com/logicrw/awesome-jev-projects"
-      },
-      {
-        "catalog": "Omrigotlieb/awesome-jev",
-        "url": "https://github.com/Omrigotlieb/awesome-jev"
-      }
-    ],
-    "license": "CC0-1.0",
-    "languages": [
-      "kotlin"
-    ],
-    "checked": "2026-11-04",
-    "link_status": 200
-  },
-  {
     "slug": "jev-board-lab",
     "title": "jev-board-lab",
     "summary": "Password-protected browser workbench that turns CSV rows into Jev judgments: you write at most 20 noul, choice or score questions and run them on at most 25 selected rows, each row sent as one state through a Cloudflare Worker that holds the key. The CSV stays in the browser.",
@@ -25957,63 +25835,6 @@
       "javascript"
     ],
     "checked": "2026-11-04",
-    "link_status": 200
-  },
-  {
-    "slug": "jev-browse-kyrylosyzonenko",
-    "title": "jev-browse",
-    "summary": "Drives a real browser with Jev making every decision — each click, which of your texts goes in which box, and when the goal is reached — while agent-browser performs the actions.",
-    "summary_zh": "驱动真实浏览器，每个决定都由 Jev 做出——点哪里、把你的哪段文字填进哪个输入框、目标何时达成——由 agent-browser 执行操作。",
-    "url": "https://github.com/kyrylosyzonenko/jev-browse",
-    "kind": "project",
-    "patterns": [
-      "tool-selection"
-    ],
-    "platforms": [
-      "typesafe-api"
-    ],
-    "author": {
-      "name": "kyrylosyzonenko",
-      "url": "https://github.com/kyrylosyzonenko"
-    },
-    "has_code": true,
-    "official": false,
-    "stars": 3,
-    "repo_license": "MIT",
-    "repo_created_at": "2026-09-16T19:45:33Z",
-    "repo_pushed_at": "2026-09-17T08:37:17Z",
-    "repo_commits": 4,
-    "published": "2026-09-16",
-    "first_seen": "2026-09-24",
-    "sources": [
-      {
-        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
-        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
-      },
-      {
-        "catalog": "heyjunpenn/awesome-jev",
-        "url": "https://github.com/heyjunpenn/awesome-jev"
-      },
-      {
-        "catalog": "Omrigotlieb/awesome-jev",
-        "url": "https://github.com/Omrigotlieb/awesome-jev"
-      }
-    ],
-    "license": "CC0-1.0",
-    "evidence": {
-      "path": "jev-browse.mjs",
-      "matched": [
-        "@typesafe-ai/sdk",
-        "systemOne",
-        "TypeSafeClient"
-      ],
-      "read_on": "2026-09-24"
-    },
-    "zh_machine": true,
-    "languages": [
-      "javascript"
-    ],
-    "checked": "2026-10-21",
     "link_status": 200
   },
   {
@@ -30080,7 +29901,7 @@
       "path": "src/router.mjs",
       "matched": [
         "@typesafe-ai/sdk",
-        "jev-1.13",
+        "jev-1.14",
         "systemOne"
       ],
       "read_on": "2026-09-24"
@@ -32723,9 +32544,9 @@
     "evidence": {
       "path": "src/jev_docs/sync.py",
       "matched": [
-        "api.typesafe.ai",
         "@typesafe-ai/sdk",
-        "jev-latest"
+        "jev-1.13",
+        "system_one"
       ],
       "read_on": "2026-09-22"
     },
@@ -37004,7 +36825,7 @@
       "path": "src/providers/typesafe.ts",
       "matched": [
         "api.typesafe.ai",
-        "jev-1.13",
+        "jev-latest",
         "/v1/systemone"
       ],
       "read_on": "2026-09-24"
@@ -38679,8 +38500,8 @@
       "path": "client.go",
       "matched": [
         "api.typesafe.ai",
-        "jev-latest",
-        "jev-1.13"
+        "/v1/systemone",
+        "systemOne"
       ],
       "read_on": "2026-09-24"
     },
@@ -39363,7 +39184,7 @@
       "matched": [
         "api.typesafe.ai",
         "typesafe/jev",
-        "jev-latest"
+        "jev-1.14"
       ],
       "read_on": "2026-09-22"
     },
@@ -41684,8 +41505,7 @@
     "evidence": {
       "path": "src/provider.ts",
       "matched": [
-        "@typesafe-ai/sdk",
-        "typesafe-ai/jev",
+        "@jkudish/jev-agent-tools",
         "jev-latest"
       ],
       "read_on": "2026-09-22"
@@ -42508,9 +42328,9 @@
   {
     "slug": "jev-mode-tiffygk",
     "title": "Jev Mode",
-    "summary": "Plugin marketplace of Claude Code and Codex skills for building with Jev: Jevaluate has an LLM rate how well a project uses Jev, Jev Sources points an agent at TypeSafe's docs, a five-level study course, and the legacy Jev Lens, whose optional check asks Jev nouls and choices about a finished state.",
+    "summary": "Plugin marketplace of Claude Code and Codex skills for building with Jev: Jevaluate has an LLM rate how well a project uses Jev, Jev Sources points an agent at TypeSafe's docs, a five-level study course, and the retired Jev Lens, whose check asks Jev nouls and choices about a finished state.",
     "summary_source": "model-written",
-    "summary_zh": "面向 Claude Code 和 Codex 的技能插件市场，用于基于 Jev 开发：Jevaluate 让 LLM 评估一个项目对 Jev 的使用质量，Jev Sources 引导智能体查阅 TypeSafe 文档，另有五级学习课程，以及已标为过时的 Jev Lens，其可选检查会就最终状态向 Jev 提出是非题和选择题。",
+    "summary_zh": "面向 Claude Code 和 Codex 的技能插件市场，用于基于 Jev 开发：Jevaluate 让 LLM 评估一个项目对 Jev 的使用质量，Jev Sources 引导智能体查阅 TypeSafe 文档，另有五级学习课程，以及已退役的 Jev Lens，其可选检查会就最终状态向 Jev 提出是非题和选择题。",
     "url": "https://github.com/tiffygk/jev-mode",
     "kind": "plugin",
     "patterns": [
@@ -42536,7 +42356,7 @@
       "python"
     ],
     "evidence": {
-      "path": "jev-lens/scripts/jev_check.py",
+      "path": "archive/jev-lens/scripts/jev_check.py",
       "matched": [
         "from typesafe_sdk import Choice, Noul, TypeSafeClient",
         "r = client.system_one(state=state, questions=qs, model=model)"
@@ -42547,8 +42367,8 @@
       "choice",
       "noul"
     ],
-    "notes": "Licensed under PolyForm Noncommercial 1.0.0: personal and noncommercial use only. Only Jev Lens calls Jev, and the README marks it legacy. Its ratings of community Jev projects, in ratings/, are CC0. Not affiliated with TypeSafe. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-03; a maintainer has not yet read the call site.",
-    "notes_zh": "采用 PolyForm Noncommercial 1.0.0 许可证：仅限个人和非商业用途。只有 Jev Lens 调用 Jev，README 已将其标为过时。ratings/ 中对社区 Jev 项目的评分采用 CC0。与 TypeSafe 无关联。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-03 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "notes": "Licensed under PolyForm Noncommercial 1.0.0: personal and noncommercial use only. Only Jev Lens calls Jev, and the project has retired it: since 2026-11 it is kept, unmaintained, in archive/jev-lens. Its ratings of community Jev projects, in ratings/, are CC0. Not affiliated with TypeSafe. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-03; a maintainer has not yet read the call site.",
+    "notes_zh": "采用 PolyForm Noncommercial 1.0.0 许可证：仅限个人和非商业用途。只有 Jev Lens 调用 Jev，而该项目已将其退役：自 2026-11 起它不再维护，保留在 archive/jev-lens 中。ratings/ 中对社区 Jev 项目的评分采用 CC0。与 TypeSafe 无关联。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-03 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
     "sources": [
       {
         "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
@@ -49709,71 +49529,6 @@
     "link_status": 200
   },
   {
-    "slug": "jev-runtime-security",
-    "title": "jev-runtime-security",
-    "summary": "Runtime security for AI coding agents: policy is enforced in the kernel at the system call, below the agent and anything it writes, with Jev judging the ambiguous cases.",
-    "summary_zh": "面向 AI 编码智能体的运行时安全：策略在内核的系统调用层强制执行，位于智能体及其所写的一切之下，模糊情况交给 Jev 判断。",
-    "url": "https://github.com/ringzerosec/jev-runtime-security",
-    "kind": "project",
-    "patterns": [
-      "safety-gating"
-    ],
-    "platforms": [
-      "typesafe-api"
-    ],
-    "author": {
-      "name": "ringzerosec",
-      "url": "https://github.com/ringzerosec"
-    },
-    "has_code": true,
-    "official": false,
-    "stars": 11,
-    "repo_license": "NOASSERTION",
-    "repo_created_at": "2026-09-21T12:55:55Z",
-    "repo_pushed_at": "2026-10-12T03:28:32Z",
-    "repo_commits": 35,
-    "published": "2026-09-21",
-    "first_seen": "2026-09-24",
-    "sources": [
-      {
-        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
-        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
-      },
-      {
-        "catalog": "AbdelStark/awesome-typesafe-jev",
-        "url": "https://github.com/AbdelStark/awesome-typesafe-jev"
-      },
-      {
-        "catalog": "Omrigotlieb/awesome-jev",
-        "url": "https://github.com/Omrigotlieb/awesome-jev"
-      },
-      {
-        "catalog": "tanxarx/awesome-jev",
-        "url": "https://github.com/tanxarx/awesome-jev"
-      },
-      {
-        "catalog": "yibie/awesome-jev",
-        "url": "https://github.com/yibie/awesome-jev"
-      }
-    ],
-    "license": "CC0-1.0",
-    "evidence": {
-      "path": "agent/src/scanner/jev_layer.rs",
-      "matched": [
-        "api.typesafe.ai",
-        "jev-latest",
-        "jev-1.13"
-      ],
-      "read_on": "2026-09-24"
-    },
-    "zh_machine": true,
-    "languages": [
-      "rust"
-    ],
-    "checked": "2026-10-21",
-    "link_status": 200
-  },
-  {
     "slug": "jev-rust-review",
     "title": "jev-rust-review",
     "summary": "Rust-aware code review for Claude Code and coding agents, powered by TypeSafe Jev",
@@ -50729,7 +50484,7 @@
   },
   {
     "slug": "jev-semgrep",
-    "title": "jev-semgrep",
+    "title": "sys1grep",
     "summary": "grep by meaning, now named sys1grep: for every line Jev answers a noul on whether the line matches a meaning, such as network failure, and a threshold decides. Meanings combine with AND, OR and NOT, a regex can prefilter lines, and the meaning and the text can be in different languages.",
     "summary_source": "model-written",
     "summary_zh": "按含义 grep 的工具，现名 sys1grep：对每一行，Jev 回答一个 noul，判断这一行是否符合给定含义（例如“网络故障”），再由阈值决定是否匹配。多个含义可用 AND、OR、NOT 组合，可先用正则预筛行，含义和文本可以是不同语言。",
@@ -50754,7 +50509,7 @@
     "repo_pushed_at": "2026-11-04T14:09:16Z",
     "repo_commits": 283,
     "evidence": {
-      "path": "serve.mjs",
+      "path": "sys1grep.mjs",
       "matched": [
         "api.typesafe.ai",
         "jev-latest",
@@ -52231,9 +51986,9 @@
     "evidence": {
       "path": "examples/decisions/run.mjs",
       "matched": [
-        "api.typesafe.ai",
         "@typesafe-ai/sdk",
-        "systemOne"
+        "systemOne",
+        "TypeSafeClient"
       ],
       "read_on": "2026-09-24"
     },
@@ -53879,8 +53634,7 @@
     "evidence": {
       "path": "src/jev_subtitle_translator/cli.py",
       "matched": [
-        "typesafe/jev",
-        "jev-1.13"
+        "typesafe/jev"
       ],
       "read_on": "2026-09-24"
     },
@@ -53999,7 +53753,7 @@
       "typescript"
     ],
     "evidence": {
-      "path": "rs/crates/jev-switch-daemon/src/admin.rs",
+      "path": "rs/crates/systorch-daemon/src/admin.rs",
       "matched": [
         "\"vercel\" | \"laya\" | \"typesafe\" | \"openrouter\""
       ],
@@ -61782,24 +61536,14 @@
     "repo_pushed_at": "2026-11-01T04:45:48Z",
     "repo_commits": 80,
     "evidence": {
-      "path": "jevernetes/jev.py",
+      "path": "internal/provider/provider.go",
       "matched": [
-        "api.typesafe.ai",
-        "jev-latest",
-        "/v1/systemone",
-        "event[\"importance_confidence\"] < 0.7"
+        "https://api.typesafe.ai/v1/systemone",
+        "\"type\": \"choice\"",
+        "func Request("
       ],
-      "read_on": "2026-09-22"
+      "model_read_on": "2026-11-05"
     },
-    "observed_thresholds": [
-      {
-        "question_type": "choice",
-        "compares": "confidence",
-        "value": 0.7,
-        "decision": "below, for a routine label: mark the event's importance uncertain",
-        "source": "event[\"importance_confidence\"] < 0.7"
-      }
-    ],
     "first_seen": "2026-09-22",
     "sources": [
       {
@@ -61837,7 +61581,7 @@
     ],
     "license": "CC0-1.0",
     "languages": [
-      "python"
+      "go"
     ],
     "checked": "2026-11-04",
     "link_status": 200
@@ -64347,7 +64091,7 @@
     "evidence": {
       "path": "examples/entity-alignment.js",
       "matched": [
-        "jev-1.13"
+        "jev-1.14"
       ],
       "read_on": "2026-09-24"
     },
@@ -65130,7 +64874,7 @@
     ],
     "license": "CC0-1.0",
     "evidence": {
-      "path": "backend/jevloop/decision/model.py",
+      "path": "backend/jevloop/decision/laya.py",
       "matched": [
         "api.typesafe.ai",
         "jev-latest",
@@ -66132,16 +65876,18 @@
     ],
     "license": "CC0-1.0",
     "evidence": {
-      "path": "src/brain.ts",
+      "path": "internal/brain/client.go",
       "matched": [
-        "api.typesafe.ai",
-        "typesafe-ai/jev",
-        "typesafe/jev"
+        "askSystemOne",
+        "systemOneRequest",
+        "jev-latest",
+        "Type: \"choice\""
       ],
-      "read_on": "2026-09-24"
+      "model_read_on": "2026-11-05"
     },
     "zh_machine": true,
     "languages": [
+      "go",
       "typescript"
     ],
     "checked": "2026-11-04",
@@ -70103,8 +69849,7 @@
       "path": "src/providers.ts",
       "matched": [
         "postSystemOne",
-        "TYPESAFE_API_KEY",
-        "fetchImpl(ENDPOINT"
+        "TYPESAFE_API_KEY"
       ],
       "read_on": "2026-09-23"
     },
@@ -71318,7 +71063,7 @@
       "matched": [
         "api.typesafe.ai",
         "jev-latest",
-        "/v1/systemone"
+        "system_one"
       ],
       "read_on": "2026-09-22"
     },
@@ -72398,12 +72143,12 @@
     "summary_zh": "用 MLX 在 Apple Silicon 上原生运行 Laya 的开放权重类型化决策检查点（不是 Jev），无需 PyTorch 或云端 API。choice、score 和 noul 答案来自一次前向传播：按作者的基准，英文短决策中位数 13.4 毫秒，多语言检查点 7.4 毫秒。",
     "zh_machine": true,
     "url": "https://github.com/mizorewww/laya-mlx",
-    "kind": "project",
+    "kind": "alternative",
     "patterns": [
       "overview"
     ],
     "platforms": [
-      "typesafe-api"
+      "self-hosted"
     ],
     "author": {
       "name": "mizorewww",
@@ -72416,11 +72161,13 @@
     "repo_pushed_at": "2026-10-29T10:12:39Z",
     "repo_commits": 31,
     "evidence": {
-      "path": "laya_mlx/agent.py",
+      "path": "laya_mlx/serve.py",
       "matched": [
-        "system_one"
+        "HTTP server exposing Laya over TypeSafe Jev",
+        "@app.post(\"/v1/systemone\")"
       ],
-      "read_on": "2026-09-22"
+      "model_read_on": "2026-11-05",
+      "kind": "wire-shape"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -72474,7 +72221,12 @@
       "python"
     ],
     "checked": "2026-11-04",
-    "link_status": 200
+    "link_status": 200,
+    "flags": [
+      "not-jev"
+    ],
+    "notes": "Not Jev: Laya's open checkpoints served over Jev's request shape, so thresholds tuned on Jev do not transfer. Laya is catalogued as laya. Kind changed from project to alternative on 2026-11-05 by an AI assistant that read the cited file; a maintainer has not yet read it.",
+    "notes_zh": "不是 Jev：以 Jev 的请求格式提供 Laya 的开放检查点，因此在 Jev 上调好的阈值不能直接沿用。Laya 已作为 laya 收录。2026-11-05 由 AI 助手阅读所引文件后把类别从项目改为替代品；维护者尚未亲自阅读。"
   },
   {
     "slug": "laya-nandhakishorm",
@@ -75874,7 +75626,7 @@
     "repo_pushed_at": "2026-10-04T14:19:02Z",
     "repo_commits": 10,
     "evidence": {
-      "path": "src/metis_triage/_triage.py",
+      "path": "src/metis_workflow/integrations/jev.py",
       "matched": [
         "api.typesafe.ai",
         "jev-latest",
@@ -76020,7 +75772,7 @@
     "evidence": {
       "path": "src/constants.ts",
       "matched": [
-        "typesafe/jev",
+        "api.typesafe.ai",
         "jev-latest"
       ],
       "read_on": "2026-09-22"
@@ -77139,7 +76891,7 @@
     ],
     "license": "CC0-1.0",
     "evidence": {
-      "path": "kamchatka/src/args.rs",
+      "path": "nachalnik-providers/src/system1.rs",
       "matched": [
         "typesafe/jev",
         "jev-latest",
@@ -78301,7 +78053,7 @@
     "repo_pushed_at": "2026-11-04T14:07:45Z",
     "repo_commits": 36058,
     "evidence": {
-      "path": "packages/ai/src/judgment/typesafe.ts",
+      "path": "packages/ai/src/judgment/native.ts",
       "matched": [
         "jev-latest",
         "/v1/systemone"
@@ -80015,13 +79767,14 @@
     ],
     "license": "CC0-1.0",
     "evidence": {
-      "path": "jev-guard.ts",
+      "path": "src/jev.ts",
       "matched": [
-        "api.typesafe.ai",
-        "jev-latest",
-        "/v1/systemone"
+        "askJev",
+        "/v1/systemone",
+        "type: \"noul\"",
+        "buildRequest"
       ],
-      "read_on": "2026-09-24"
+      "model_read_on": "2026-11-05"
     },
     "zh_machine": true,
     "languages": [
@@ -80137,11 +79890,13 @@
     "checked": "2026-11-04",
     "link_status": 200,
     "evidence": {
-      "path": "packages/console/app/src/routes/zen/util/provider/systemone.ts",
+      "path": "packages/console/app/src/lib/enterprise-spam.ts",
       "matched": [
-        "systemoneHelper",
-        "\"/systemone\""
-      ]
+        "opencode.ai/inference/systemone",
+        "jev-1.13",
+        "type: \"noul\""
+      ],
+      "model_read_on": "2026-11-05"
     }
   },
   {
@@ -81578,8 +81333,8 @@
     "evidence": {
       "path": "openviking/models/rerank/jev_rerank.py",
       "matched": [
-        "api.typesafe.ai",
-        "typesafe-ai/jev",
+        "jev-latest",
+        "/v1/systemone",
         "noul",
         "Noul"
       ],
@@ -81657,9 +81412,9 @@
     "summary_zh": "某协作工具的开源替代品。",
     "zh_machine": true,
     "url": "https://github.com/different-ai/openwork",
-    "kind": "alternative",
+    "kind": "project",
     "patterns": [
-      "overview"
+      "model-routing"
     ],
     "platforms": [
       "typesafe-api"
@@ -81675,12 +81430,14 @@
     "repo_pushed_at": "2026-11-04T12:37:51Z",
     "repo_commits": 6681,
     "evidence": {
-      "path": ".github/scripts/jev-test-coverage-review.mjs",
+      "path": "ee/apps/gateway/src/auto-router/jev.ts",
       "matched": [
-        "typesafe-ai/jev"
+        "/v1/systemone",
+        "createJevClient",
+        "jevRequestBody",
+        "type: \"score\""
       ],
-      "kind": "wire-shape",
-      "read_on": "2026-09-22"
+      "model_read_on": "2026-11-05"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -81717,13 +81474,13 @@
     "languages": [
       "typescript"
     ],
-    "flags": [
-      "not-jev"
-    ],
-    "notes": "Self-describes as an alternative or reimplementation. The call site found may be an evaluation baseline rather than the product. A compatible wire format implies nothing about compatible calibration.",
-    "notes_zh": "自述为替代品或复现实现。扫描到的调用点可能只是评测基线而非产品本身。协议兼容不代表校准兼容。",
+    "notes": "Its gateway's Auto route asks Jev one Score per Smart Router task and one for the thinking level, then routes the prompt; without a TypeSafe key it takes the fallback route. Listed until 2026-11-05 as an alternative to Jev: the project is an alternative to Claude Cowork that calls Jev. Evidence and kind updated by an AI assistant that read the cited file on 2026-11-05; a maintainer has not yet read the call site.",
+    "notes_zh": "它的网关在 Auto 路由中为每个 Smart Router 任务向 Jev 提一个 Score 问题，再为思考强度提一个，然后据此路由提示；没有 TypeSafe 密钥时走后备路由。2026-11-05 之前本条目被列为 Jev 的替代品：实际上该项目是 Claude Cowork 的替代品，它调用 Jev。证据与类别由 AI 助手于 2026-11-05 阅读所引文件后更新；维护者尚未亲自阅读调用点。",
     "checked": "2026-11-04",
-    "link_status": 200
+    "link_status": 200,
+    "question_types": [
+      "score"
+    ]
   },
   {
     "slug": "opik-typesafe-tracker",
@@ -82631,8 +82388,8 @@
     "evidence": {
       "path": "src/cli.js",
       "matched": [
-        "api.typesafe.ai",
         "jev-latest",
+        "systemOne",
         "noul",
         "choice"
       ],
@@ -83060,13 +82817,13 @@
     "repo_pushed_at": "2026-10-24T18:40:28Z",
     "repo_commits": 25,
     "evidence": {
-      "path": "src/typesafe.ts",
+      "path": "src/classifier.ts",
       "matched": [
-        "@typesafe-ai/sdk",
-        "jev-latest",
-        "systemOne"
+        "DEFAULT_CLASSIFIER = \"typesafe/jev-latest\"",
+        "registry.classify(",
+        "type: \"bool\""
       ],
-      "read_on": "2026-09-22"
+      "model_read_on": "2026-11-05"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -85472,13 +85229,13 @@
     "repo_pushed_at": "2026-10-30T12:23:41Z",
     "repo_commits": 184,
     "evidence": {
-      "path": "extensions/jev-adapter.ts",
+      "path": "extensions/pi-verdict.ts",
       "matched": [
-        "api.typesafe.ai",
-        "typesafe/jev",
-        "jev-latest"
+        "typesafe/jev-latest",
+        "VERDICT_QUESTIONS",
+        "classifyFor("
       ],
-      "read_on": "2026-09-22"
+      "model_read_on": "2026-11-05"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -88008,13 +87765,13 @@
     "repo_pushed_at": "2026-11-02T15:26:23Z",
     "repo_commits": 46,
     "evidence": {
-      "path": "src/riff/jev.py",
+      "path": "src/riff/backend.py",
       "matched": [
-        "typesafe_sdk",
-        "system_one",
-        "TypeSafeClient"
+        "DEFAULT_PROVIDER = \"typesafe\"",
+        "jev-latest",
+        "async def decide("
       ],
-      "read_on": "2026-09-22"
+      "model_read_on": "2026-11-05"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -89636,7 +89393,7 @@
     "repo_pushed_at": "2026-10-31T19:58:01Z",
     "repo_commits": 20,
     "evidence": {
-      "path": "src/client.rs",
+      "path": "src/adapter/adapter_kind.rs",
       "matched": [
         "api.typesafe.ai",
         "jev-latest",
@@ -90340,9 +90097,10 @@
     "evidence": {
       "path": "packages/provider-typesafe/src/index.ts",
       "matched": [
-        "this.client.systemOne(request",
-        "operation: choice(",
-        "validateNoul(answers.holds)"
+        "api.typesafe.ai",
+        "new TypeSafeClient(",
+        "validateNoul(answers.holds)",
+        "value: choice("
       ],
       "read_on": "2026-09-30"
     },
@@ -91781,17 +91539,17 @@
   {
     "slug": "slidepilot",
     "title": "slidepilot",
-    "summary": "Voice-driven semantic auto-advance for Slidev, powered by Cloudflare Agents and TypeSafe AI Jev",
-    "summary_source": "upstream-description",
-    "summary_zh": "给 Slidev 做的语音驱动语义自动翻页，由 Cloudflare Agents 与 Jev 驱动。",
+    "summary": "Voice-driven auto-advance for Slidev: at each pause a Cloudflare worker asks Cloudflare's own Clef models on Workers AI one Choice and three Nouls in Jev's request shape, and its own code decides whether to reveal the next click or slide.",
+    "summary_source": "model-written",
+    "summary_zh": "给 Slidev 做的语音自动翻页：演讲者每次停顿时，Cloudflare worker 以 Jev 的请求格式向 Cloudflare 自家在 Workers AI 上的 Clef 模型提一个 Choice 和三个 Noul，再由它自己的代码决定是否显示下一步或翻到下一页。",
     "zh_machine": true,
     "url": "https://github.com/harshil1712/slidepilot",
-    "kind": "project",
+    "kind": "alternative",
     "patterns": [
       "tool-selection"
     ],
     "platforms": [
-      "typesafe-api"
+      "cloudflare-workers-ai"
     ],
     "author": {
       "name": "harshil1712",
@@ -91806,11 +91564,13 @@
     "evidence": {
       "path": "apps/worker/src/decision.ts",
       "matched": [
-        "@typesafe-ai/sdk",
-        "jev-latest",
-        "systemOne"
+        "@cf/cloudflare/",
+        "CLEF_MODEL = \"clef-flash\"",
+        "type: \"noul\"",
+        "type: \"choice\""
       ],
-      "read_on": "2026-09-22"
+      "model_read_on": "2026-11-05",
+      "kind": "wire-shape"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -91860,7 +91620,12 @@
       "typescript"
     ],
     "checked": "2026-11-04",
-    "link_status": 200
+    "link_status": 200,
+    "flags": [
+      "not-jev"
+    ],
+    "notes": "Not Jev: until late October 2026 it called Jev through @typesafe-ai/sdk; it now sends the same request shape to Cloudflare's Clef models, so thresholds tuned on Jev do not transfer. Its GitHub description still names Jev. Kind changed by an AI assistant that read the cited file on 2026-11-05; a maintainer has not yet read it.",
+    "notes_zh": "不是 Jev：它在 2026 年 10 月下旬之前通过 @typesafe-ai/sdk 调用 Jev，现在把同样格式的请求发给 Cloudflare 的 Clef 模型，因此在 Jev 上调好的阈值不能直接沿用。它的 GitHub 简介仍写着 Jev。类别由 AI 助手于 2026-11-05 阅读所引文件后更改；维护者尚未亲自阅读。"
   },
   {
     "slug": "slo-router",
@@ -92420,7 +92185,7 @@
       "overview"
     ],
     "platforms": [
-      "typesafe-api"
+      "vercel-ai-gateway"
     ],
     "author": {
       "name": "smithersai",
@@ -92433,11 +92198,13 @@
     "repo_pushed_at": "2026-11-04T13:01:48Z",
     "repo_commits": 23049,
     "evidence": {
-      "path": "apps/server/src/jev.ts",
+      "path": "packages/smithers/agent/model/src/Evaluator.ts",
       "matched": [
-        "typesafe-ai/jev"
+        "defaultModel = \"typesafe-ai/jev\"",
+        "/v4/ai/evaluation-model",
+        "ai-evaluation-model-specification-version"
       ],
-      "read_on": "2026-09-22"
+      "model_read_on": "2026-11-05"
     },
     "first_seen": "2026-09-22",
     "sources": [
@@ -94925,8 +94692,8 @@
       "path": "runners/jev_runner.py",
       "matched": [
         "api.typesafe.ai",
-        "jev-latest",
-        "jev-1.13"
+        "jev-1.13",
+        "/v1/systemone"
       ],
       "read_on": "2026-09-22"
     },
@@ -96549,7 +96316,7 @@
         "api.typesafe.ai",
         "jev-latest",
         "/v1/systemone",
-        "doneThreshold = 0.70"
+        "doneThreshold = 0.7"
       ],
       "read_on": "2026-09-22"
     },
@@ -96559,7 +96326,7 @@
         "compares": "probability",
         "value": 0.7,
         "decision": "at or above: treat the task as done",
-        "source": "doneThreshold = 0.70"
+        "source": "doneThreshold = 0.7"
       }
     ],
     "first_seen": "2026-09-22",
@@ -98352,7 +98119,7 @@
       "path": "typed_evals/backends/jev.py",
       "matched": [
         "typesafe_sdk",
-        "jev-1.13",
+        "jev-1.14",
         "system_one"
       ],
       "read_on": "2026-09-24"
@@ -105918,7 +105685,7 @@
       "path": "systemone.go",
       "matched": [
         "api.typesafe.ai",
-        "/v1/systemone"
+        "NewSystemOneClient"
       ],
       "read_on": "2026-09-22"
     },
@@ -106373,7 +106140,7 @@
       "path": "src/vector_graph_rag/llm/jev.py",
       "matched": [
         "api.typesafe.ai",
-        "/v1/systemone"
+        "jev-latest"
       ],
       "read_on": "2026-09-22"
     },
@@ -106720,7 +106487,7 @@
       "path": "plugins/jev-auto-compact/hooks/jev-auto-compact.mjs",
       "matched": [
         "api.typesafe.ai",
-        "jev-latest",
+        "jev-1.14",
         "/v1/systemone",
         "KEEP_THRESHOLD = 0.5",
         "TOOL_THRESHOLDS = { Edit: 0.35, Write: 0.35, NotebookEdit: 0.35 }"
