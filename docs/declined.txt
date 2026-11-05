@@ -1,4 +1,6 @@
-# Candidates a person read and decided not to add. One per line:
+# Candidates read and declined: by a person, or since 2026-11-05 by the weekly
+# upkeep under the rules in MAINTAINING.md ("Candidates a run cannot settle").
+# One per line:
 #
 #   owner/name  # why — e.g. "README claims Jev, code never calls it"
 #

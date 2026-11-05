@@ -105,8 +105,9 @@ CLAIM_ZH = (
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog.json"
-# Candidates a person read and chose not to add, one `owner/name  # reason` per
-# line. Without it the weekly run would re-propose the same rejects forever.
+# Candidates read and declined (by a person, or since 2026-11-05 by the weekly
+# upkeep's rules in MAINTAINING.md), one `owner/name  # reason` per line.
+# Without it the weekly run would re-propose the same rejects forever.
 DECLINED = ROOT / "docs" / "declined.txt"
 # RECHECK_DAYS and VERDICTS live in discover_seen.py, beside the verdict file
 # they describe.
