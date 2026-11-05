@@ -12,7 +12,7 @@
   <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="docs/assets/readme-cover-zh-light-mobile.svg">
   <source media="(max-width: 767px)" srcset="docs/assets/readme-cover-zh-dark-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-zh-dark.svg">
-  <img src="docs/assets/readme-cover-zh-light.svg" alt="awesome-jev — Jev 发布榜：1,117 个用 Jev 做的产品、951 位 Maker、1,192 条调用点引用记录。数字来自保存的记录，不代表当前链接可用或运行与性能测试通过。" width="100%">
+  <img src="docs/assets/readme-cover-zh-light.svg" alt="awesome-jev — Jev 发布榜：1,118 个用 Jev 做的产品、953 位 Maker、1,195 条调用点引用记录。数字来自保存的记录，不代表当前链接可用或运行与性能测试通过。" width="100%">
 </picture>
 </a>
 
@@ -66,7 +66,7 @@
 3. ★ **+26** **[anydecisionmodel](https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html)** — 一个 Swift 包：从语言模型获取类型化决策（概率、选择与分数）。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>24 → 50 星（+108%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=anydecisionmodel&title=Launch%3A%20anydecisionmodel)</sub>
 4. ★ **+53** **[fastbrowse](https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html)** — 浏览器智能体：每个页面被索引成候选控件，由 Jev 选出下一步，因此不会点击页面上没有的东西；规划和阅读由 Gemini Flash 负责，答案引用页面原文。维护者记录的 46 个任务中成功率为 99.2%，托管版 Browser Use 为 97.8%，而成本不到其十分之一。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>120 → 173 星（+44%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=fastbrowse&title=Launch%3A%20fastbrowse)</sub>
+  <sub>120 → 173 星（+44%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=fastbrowse&title=Launch%3A%20fastbrowse)</sub>
 5. ★ **+14** **[jev-guard](https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html)** — 给编程智能体用的安全钩子：每次工具调用前，Jev 判断这次调用可能造成多大危害、是不是用户要求的、是否在执行不可信的文字，再由代码决定拒绝、询问还是放行；调用返回后，Jev 扫描结果中的提示注入。支持 Claude Code、Codex、Cursor 等。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>130 → 144 星（+11%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jev-guard&title=Launch%3A%20jev-guard)</sub>
 
@@ -113,7 +113,7 @@
 
 每个原语下方有两个互不相加的数：先是 `question_types` 记录了有人读过代码、确认调用该原语的行数；再是只有文本信号的行数 —— 每周刷新在该行所引的那一个文件中找到了它的请求或回答结构（`primitives_seen`），这并不表明代码调用了它。见[哪些经过核实](#哪些经过核实哪些没有)。 <sub>(机翻)</sub>
 
-默认输入为文本或结构化 JSON。原生 API 的 Jev 1.13 和 1.14 也支持实验性 [PNG/JPEG 图像](https://docs.typesafe.ai/images)，须发送 `TypeSafe-Danger-Zone-Images: true`；不支持音频和视频。默认每次请求 **64k** token，其中 state 加最长问题最多 **32k**。实验性请求头 `TypeSafe-Danger-Zone-Long-Context: true` 将两项限制均提高到 **262k**，但速度和准确率会降低（见[模型文档](https://docs.typesafe.ai/models)）。输出 token 免费。截至 2026-10-15，原生 `jev-preview` 指向 `jev-1.14.0`，`jev-latest` 仍指向 `jev-1.13.0`；两个固定版本 ID 均可用。[10 月 14 日公告](https://typesafe.ai/blog/jev-1-14)称 latest 约一周后切换，未给出确切切换日期。权重未公开，因此无法本地运行。跨平台差异全表见 [`docs/compatibility.md`](docs/compatibility.md)。 <sub>(机翻)</sub>
+默认输入为文本或结构化 JSON。原生 API 的 Jev 1.13 和 1.14 也支持实验性 [PNG/JPEG 图像](https://docs.typesafe.ai/images)，须发送 `TypeSafe-Danger-Zone-Images: true`；不支持音频和视频。默认每次请求 **64k** token，其中 state 加最长问题最多 **32k**。实验性请求头 `TypeSafe-Danger-Zone-Long-Context: true` 将两项限制均提高到 **262k**，但速度和准确率会降低（见[模型文档](https://docs.typesafe.ai/models)）。输出 token 免费。截至 2026-11-05，原生 `jev-latest` 和 `jev-preview` 都指向 `jev-1.14.0`，目前没有单独的预览版；两个固定版本 ID（`jev-1.14.0`、`jev-1.13.0`）均可用。权重未公开，因此无法本地运行。跨平台差异全表见 [`docs/compatibility.md`](docs/compatibility.md)。 <sub>(机翻)</sub>
 
 某个决策该用哪个原语？下图把 TypeSafe 官方的指引排成一张判断清单：自上而下，遇到第一个「是」即停。顺序与措辞出自本仓库；每一步都注明所依据的页面，列在图下。这是厂商附有来源的设计指引，不是对本目录任何条目的推荐。 <sub>(机翻)</sub>
 
@@ -169,15 +169,15 @@
 
 | 场景 | 场景 |
 | :--- | :--- |
-| [工具选择](#工具选择) · **253** | [意图路由](#意图路由) · **48** |
+| [工具选择](#工具选择) · **253** | [意图路由](#意图路由) · **54** |
 | [上下文压缩](#上下文压缩) · **41** | [安全闸门](#安全闸门) · **156** |
 | [输出校验](#输出校验) · **150** | [重试控制](#重试控制) · **8** |
-| [人工升级](#人工升级) · **79** | [模型路由](#模型路由) · **62** |
-| [并行扇出](#并行扇出) · **38** | [检索与排序](#检索与排序) · **82** |
-| [结构化抽取](#结构化抽取) · **21** | [分类](#分类) · **146** |
+| [人工升级](#人工升级) · **80** | [模型路由](#模型路由) · **69** |
+| [并行扇出](#并行扇出) · **39** | [检索与排序](#检索与排序) · **86** |
+| [结构化抽取](#结构化抽取) · **21** | [分类](#分类) · **148** |
 | [机器学习特征抽取](#机器学习特征抽取) · **9** | [文档分拣](#文档分拣) · **22** |
-| [工单分拣](#工单分拣) · **12** | [内容评分](#内容评分) · **177** |
-| [实时推荐](#实时推荐) · **3** | [总览](#总览) · **505** |
+| [工单分拣](#工单分拣) · **13** | [内容评分](#内容评分) · **179** |
+| [实时推荐](#实时推荐) · **3** | [总览](#总览) · **497** |
 
 ## 实测，而非宣称
 
@@ -239,6 +239,12 @@
 
   > 自我限定很规范：这是用例研究，不是模型排行榜。这种克制比数字本身更少见。
 
+- **[deep-searcher](https://github.com/zilliztech/deep-searcher)**<br>
+  深度研究工具：在 Milvus 等向量数据库中检索私有数据，再用 LLM 推理作答。它的评测把 LLM 自己做出的停止检索决定，与 Jev 就已收集的上下文是否足以作答给出的 noul 相比较，共 100 道题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★1k+ · zilliztech · `Py` · [调用点](https://github.com/zilliztech/deep-searcher/blob/HEAD/evaluation/jev_stopping/run_full100.py)，2026-09-22 阅读</sub>
+
+  > 只在评测中调用 Jev：在 100 道 2WikiMultiHopQA 题上，用 Jev 的一个 Noul 代替 LLM 自己做出的停止检索决定，并在 evaluation/jev_stopping/README.md 中公布对比结果（召回率、轮数、延迟、成本）。2026-11-05 由 AI 助手把类别从替代品改为基准；维护者尚未亲自阅读该报告。
+
 - **[Convex Coding Evals](https://github.com/convex/convex-evals)**<br>
   Convex 的编程基准新增了决策模型赛道：108 道关于 Convex 知识的选择题，每题四个选项，覆盖其 112 个编程评测中的 90 个。Jev 通过 OpenRouter 的决策端点，以一个 `choice` 回答每道题；语言模型则通过聊天补全接口回答同样的问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · ★100+ · convex · `TS` · `choice` · [调用点](https://github.com/convex/convex-evals/blob/HEAD/runner/decisions/providers.ts)，2026-10-29 模型阅读</sub>
@@ -247,13 +253,9 @@
 
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)**<br>
   受生物启发的智能体记忆：衰减、检索强化与巩固。零运行时依赖，基于 SQLite。 <sub>(机翻)</sub><br>
-  <sub>`基准测试` · ★100+ · kitfunso · `TS` · [调用点](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/rerankers/jev.ts)，2026-09-22 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
+  <sub>`基准测试` · ★100+ · kitfunso · `TS` · [调用点](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/infra/rerankers/endpoint.ts)，2026-11-05 模型阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
 
-- **[jev-arena](https://github.com/NanmiCoder/jev-arena)**<br>
-  Jev 模型介绍与实测：通过 Choice / Score / Noul 将自然语言转为带类型的判断与概率，用于分类、评分和路由；支持与 DeepSeek 等模型对比评论打标、速度与结果，含 CSV/Excel 导入、原速回放与离线报告。<br>
-  <sub>`基准测试` · ★100+ · nanmicoder · `JS` · [调用点](https://github.com/NanmiCoder/jev-arena/blob/HEAD/src/backends/jev.mjs)，2026-09-24 阅读</sub>
-
-已显示 **10 / 80** 条：先是负面结果，再是精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目，按该路径的顺序，再按列表顺序补上其余条目中靠前的几条 · [在单独页面查看全部 80 条及全部备注 →](docs/measured.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh) <sub>(机翻)</sub>
+已显示 **10 / 83** 条：先是负面结果，再是精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目，按该路径的顺序，再按列表顺序补上其余条目中靠前的几条 · [在单独页面查看全部 83 条及全部备注 →](docs/measured.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh) <sub>(机翻)</sub>
 
 ## 按决策模式
 
@@ -343,7 +345,7 @@ _判断用户意图，把请求分流到正确的分支。_
 
 - **[Inbox Zero: seven email decisions](https://github.com/elie222/inbox-zero)**<br>
   七个互不相同的邮件决策，每个都有自己单独设定的阈值，任何出错都回落到普通 LLM。<br>
-  <sub>`开源项目` · ★10k+ · `TS` · `choice` · `noul` · [调用点](https://github.com/elie222/inbox-zero/blob/HEAD/apps/web/utils/decision-model/typesafe.ts)，2026-09-22 阅读</sub>
+  <sub>`开源项目` · ★10k+ · `TS` · `choice` · `noul` · [调用点](https://github.com/elie222/inbox-zero/blob/HEAD/apps/web/utils/decision-model/decision-model.ts)，2026-11-05 模型阅读</sub>
 
 - **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)**<br>
   一套循序渐进的课程：从第一次调用、逐个原语、state 形状与 criteria，一直到工单分拣和多步工作流，并对应了全部四个官方模式。<br>
@@ -357,7 +359,7 @@ _判断用户意图，把请求分流到正确的分支。_
   带对照组的教学示例：同一个问询台任务，一份是只认 Y/N 的纯 Python 写法，旁边是一个能读出意图的 Noul。<br>
   <sub>`教程` · ★1k+ · Real Python · `Py` · `noul` · [调用点](https://github.com/realpython/materials/blob/HEAD/hello-jev/jev_noul.py)，2026-09-22 阅读</sub>
 
-已显示 **10 / 48** 条 · [在单独页面查看全部 48 条 →](docs/by-pattern/intent-routing.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)
+已显示 **10 / 54** 条 · [在单独页面查看全部 54 条 →](docs/by-pattern/intent-routing.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -439,9 +441,9 @@ _在执行前判断一个动作是否安全。属纵深防御，绝不是安全�
   作为审核 API 的直接替代：一次请求并行问多个 Noul，每个危害类别一个，且每条指令都带反注入前缀。<br>
   <sub>`开源项目` · ★10k+ · `Go` · `noul` · [调用点](https://github.com/Wei-Shaw/sub2api/blob/HEAD/backend/internal/pkg/typesafe/client.go)，2026-09-22 阅读</sub>
 
-- **[agentgateway: CI-validated LLM guardrail](https://github.com/agentgateway/agentgateway)**<br>
-  三个共用同一严重度量表的 Score 问题，两项以上越线即拦截请求，并且失败时默认关闭。<br>
-  <sub>`开源项目` · ★1k+ · `Rs` · `score` · [调用点](https://github.com/agentgateway/agentgateway/blob/HEAD/examples/llm-guardrail-jev/guardrail.ts)，2026-09-22 阅读</sub>
+- **[agentgateway: Jev and OpenAI guardrail](https://github.com/agentgateway/agentgateway)**<br>
+  对每个请求和每条回复提出三个是非问题（越狱、有害内容、泄露机密），概率达到 0.5 即以 HTTP 403 拒绝，评估出错时同样拦截；网关把一半评估以 Noul 形式发给 Jev，另一半发给 OpenAI。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★1k+ · `Rs` · `noul` · [调用点](https://github.com/agentgateway/agentgateway/blob/HEAD/examples/llm-guardrail-jev-openai/guardrail.ts)，2026-11-05 模型阅读</sub>
 
 - **[DeepChat: agent tool-permission review](https://github.com/ThinkInAIXYZ/deepchat)**<br>
   从三个维度审查每次工具调用：风险等级、用户是否授权、以及一个显式的提示注入压力检查。<br>
@@ -475,6 +477,10 @@ _在输出到达用户前，按评分标准检查模型产出。_
   用一次请求筛查 LLM 应用的每一条进出消息，既点明风险类型、又给「照做会造成多大危害」打分。<br>
   <sub>`官方文档` · `Py` · `noul` · `score`</sub>
 
+- **[celesto](https://github.com/CelestoAI/celesto)**<br>
+  给 AI 智能体的安全持久化计算环境。 <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★1k+ · celestoai · `Py` · [调用点](https://github.com/CelestoAI/celesto/blob/HEAD/examples/pr-review-jev/models.py)，2026-09-22 阅读</sub>
+
 - **[latitude-llm](https://github.com/latitude-dev/latitude-llm)**<br>
   面向 AI 智能体的开源可观测性平台，在调用轨迹里标出智能体出错的地方。其中一个影子提供方问 Jev 每个标记维度一个 noul，一次调用最多 11 个；所引文件看不出这些答案是否会改变任何标记，README 也没有提到 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`开源项目` · ★1k+ · latitude-dev · `TS` · [调用点](https://github.com/latitude-dev/latitude-llm/blob/HEAD/packages/platform/ai-jev/src/jev-shadow-decision-provider.ts)，2026-09-22 阅读</sub>
@@ -502,10 +508,6 @@ _在输出到达用户前，按评分标准检查模型产出。_
 - **[deepseek-harness-jev (luobosibing2)](https://github.com/luobosibing2/dsh-jev-plugin)**<br>
   DeepSeek Harness 插件，提供 12 项需手动开启的功能，用 Jev 作为判断模型：技能选择和 glob 结果排序（每个候选一个 `noul`）、完成度与目标检查、偏离提醒、插话路由、工具输出和测试日志过滤，以及对单个工作区操作的审批。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`插件` · ★100+ · luobosibing2 · `TS` · `noul` · [调用点](https://github.com/luobosibing2/dsh-jev-plugin/blob/HEAD/packages/jev/src/selection.ts)，2026-10-28 模型阅读</sub>
-
-- **[fastbrowse](https://github.com/agent-labs-dev/fastbrowse)**<br>
-  浏览器智能体：每个页面被索引成候选控件，由 Jev 选出下一步，因此不会点击页面上没有的东西；规划和阅读由 Gemini Flash 负责，答案引用页面原文。维护者记录的 46 个任务中成功率为 99.2%，托管版 Browser Use 为 97.8%，而成本不到其十分之一。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`开源项目` · ★100+ · agent-labs-dev · `Py` · [调用点](https://github.com/agent-labs-dev/fastbrowse/blob/HEAD/src/fastbrowse/clients/typesafe.py)，2026-09-22 阅读</sub>
 
 已显示 **10 / 150** 条 · [在单独页面查看全部 150 条 →](docs/by-pattern/output-validation.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)
 
@@ -607,7 +609,7 @@ _用校准置信度决定哪些情况必须由人来看。_
   把工具目录编译成问题，再从答案还原出 tool call，并为「弃权」和「需确认」两种情况定义了专门的错误类型。<br>
   <sub>`开源项目` · ★10k+ · `Py` · `choice` · [调用点](https://github.com/ComposioHQ/composio/blob/HEAD/python/providers/typesafe/composio_typesafe/provider.py)，2026-09-22 阅读</sub>
 
-已显示 **10 / 79** 条 · [在单独页面查看全部 79 条 →](docs/by-pattern/human-escalation.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)
+已显示 **10 / 80** 条 · [在单独页面查看全部 80 条 →](docs/by-pattern/human-escalation.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -631,6 +633,14 @@ _选择由哪个下游模型或档位处理请求。_
   三个可独立安装的 Claude Code 插件 —— 护栏、模型路由、技能推荐 —— 各自带 hook 和测试。<br>
   <sub>`插件` · ★10k+ · `Py` · `TS` · `choice` · `score` · `noul` · [调用点](https://github.com/davila7/claude-code-templates/blob/HEAD/scripts/jev-spike.mjs)，2026-09-22 阅读</sub>
 
+- **[oh-my-pi](https://github.com/can1357/oh-my-pi)**<br>
+  深度整合 IDE 的编程智能体。 <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★10k+ · can1357 · `TS` · [调用点](https://github.com/can1357/oh-my-pi/blob/HEAD/packages/ai/src/judgment/native.ts)，2026-11-05 模型阅读</sub>
+
+- **[openwork](https://github.com/different-ai/openwork)**<br>
+  Claude Cowork 的开源替代品，基于 opencode 构建。它的网关在 Auto 路由中为每个 Smart Router 任务向 Jev 提一个 Score 问题，再为思考强度提一个，然后按回答路由提示；没有 TypeSafe 密钥时走后备路由。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★10k+ · different-ai · `TS` · `score` · [调用点](https://github.com/different-ai/openwork/blob/HEAD/ee/apps/gateway/src/auto-router/jev.ts)，2026-11-05 模型阅读</sub>
+
 - **[hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills)**<br>
   九个 agent 技能加一个 CLI，覆盖模型路由、记忆过滤、对话轮保留、多选一技能选择和下一步动作决策。<br>
   <sub>`插件` · ★1k+ · `Py` · `choice` · `score` · `noul` · [调用点](https://github.com/kerpopule/hermes-jev-skills/blob/HEAD/jevkit/client.py)，2026-09-22 阅读</sub>
@@ -641,27 +651,17 @@ _选择由哪个下游模型或档位处理请求。_
   运行一个打过补丁的 Codex CLI：Jev 读取有限的任务上下文，用两个 choice 选出 GPT-6 下一次回复的推理力度，以及这个力度持续几次回复（1、2、5 或 10）；GPT-6 改变推理力度不会破坏提示缓存。属于实验性的参考实现。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`插件` · ★100+ · miuuyy · `JS` · [调用点](https://github.com/miuuyy/Astra-Ares/blob/HEAD/src/jev.mjs)，2026-09-24 阅读</sub>
 
+- **[distill](https://github.com/samuelfaj/distill)**<br>
+  面向 Grok、Codex 订阅及任何兼容 OpenAI 协议的模型的编程智能体 harness 和 TUI，目标是少花 token。模型档位的推理力度保持默认的 auto 时，由 Jev 为每次调用挑选推理力度；客户端默认经 OpenRouter 调用 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★100+ · samuelfaj · `Rs` · [调用点](https://github.com/samuelfaj/distill/blob/HEAD/crates/codegen/distill-workspace/src/jev/client.rs)，2026-09-22 阅读</sub>
+
 - **[jev-codex-router](https://github.com/0xNatoshi/jev-codex-router)**<br>
   先让 Jev 判断这一轮编程任务有多难，再决定模型档位、推理深度和速度模式。<br>
   <sub>`插件` · ★100+ · `JS` · `choice` · `score` · [调用点](https://github.com/0xNatoshi/jev-codex-router/blob/HEAD/server/jev_server.py)，2026-09-22 阅读</sub>
 
   **注意:** `已归档`
 
-- **[jev-eval-agent](https://github.com/vinilana/jev-eval-agent)**<br>
-  一个把评测工作通过类型化决策来路由的智能体。<br>
-  <sub>`开源项目` · ★100+ · vinilana · `TS` · [调用点](https://github.com/vinilana/jev-eval-agent/blob/HEAD/agent/lib/jev-router.ts)，2026-09-22 阅读</sub>
-
-  **注意:** `无许可证`
-
-- **[jev-review](https://github.com/devagrawal09/jev-review)**<br>
-  代码审查前先过一遍 Jev，把高风险改动挑出来，再交给更贵的大模型或人。带本地看板。<br>
-  <sub>`开源项目` · ★100+ · `TS` · `choice` · `score` · `noul` · [调用点](https://github.com/devagrawal09/jev-review/blob/HEAD/src/review/codebase-judgments.ts)，2026-09-22 阅读</sub>
-
-- **[jevrouter](https://github.com/BillionsBobby/JevRouter)**<br>
-  面向模型、工具和子智能体的路由器。<br>
-  <sub>`开源项目` · ★100+ · billionsbobby · `TS` · [调用点](https://github.com/BillionsBobby/JevRouter/blob/HEAD/functions/api/jev.js)，2026-09-22 阅读</sub>
-
-已显示 **10 / 62** 条 · [在单独页面查看全部 62 条 →](docs/by-pattern/model-routing.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)
+已显示 **10 / 69** 条 · [在单独页面查看全部 69 条 →](docs/by-pattern/model-routing.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -705,17 +705,15 @@ _把大量问题（包括推测性的）打包进一次请求，再由代码挑�
 
   **注意:** `无许可证` · `需第三方密钥`
 
+- **[jev-chat-windows](https://github.com/jev-chat/jev-chat-windows)**<br>
+  微信（Windows）旁挂回复辅助：截图加本地 OCR 读消息，Jev 判断意图，生成候选，发送永远手动。 <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★100+ · jev-chat · `Py` · [调用点](https://github.com/jev-chat/jev-chat-windows/blob/HEAD/core/jev_client.py)，2026-09-22 阅读</sub>
+
 - **[jev-chat: a tool-calling chatbot with no LLM](https://github.com/w3cj/jev-chat)**<br>
   一个完全不含语言模型的 tool calling 聊天机器人：一次请求同时问清请求类型、该调哪个工具、以及每个工具的参数。<br>
   <sub>`开源项目` · ★100+ · `TS` · `choice` · `noul` · [调用点](https://github.com/w3cj/jev-chat/blob/HEAD/apps/server/src/jev/client.ts)，2026-09-22 阅读</sub>
 
-- **[jev-forge](https://github.com/zwliJay/jev-forge)**<br>
-  并非 Jev：一套合成决策数据、训练并校准小型候选打分模型（JevForge-0.8B）、再通过兼容 Jev 的 API 提供服务的工具链，首个场景是在网页上挑选下一次点击或表单控件。其基准脚本把同一批留出的 choice、noul 和 score 问题发给真正的 Jev 作对比。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`Jev 替代实现` · ★100+ · zwlijay · `Py` · [引用文件](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py)，2026-09-22 阅读</sub>
-
-  **注意:** `并非 Jev 本身`
-
-已显示 **10 / 38** 条 · [在单独页面查看全部 38 条 →](docs/by-pattern/fan-out.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)
+已显示 **10 / 39** 条 · [在单独页面查看全部 39 条 →](docs/by-pattern/fan-out.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -751,6 +749,10 @@ _对来自廉价检索步骤的候选做打分或重排。_
   向量数据库的重排器：对每条结果问一个 Noul，把「是」的概率当作绝对相关性分数 —— 可以跨查询比较。<br>
   <sub>`开源项目` · ★10k+ · `Py` · `noul` · [调用点](https://github.com/lancedb/lancedb/blob/HEAD/python/python/lancedb/rerankers/typesafe.py)，2026-09-22 阅读</sub>
 
+- **[oh-my-pi](https://github.com/can1357/oh-my-pi)**<br>
+  深度整合 IDE 的编程智能体。 <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★10k+ · can1357 · `TS` · [调用点](https://github.com/can1357/oh-my-pi/blob/HEAD/packages/ai/src/judgment/native.ts)，2026-11-05 模型阅读</sub>
+
 - **[OpenViking: retrieval reranking](https://github.com/volcengine/OpenViking)**<br>
   单次批量请求里对每个候选文档问一个 Noul，直接把「是」的概率当相关性分数。<br>
   <sub>`开源项目` · ★10k+ · `Py` · `noul` · [调用点](https://github.com/volcengine/OpenViking/blob/HEAD/openviking/models/rerank/jev_rerank.py)，2026-09-22 阅读</sub>
@@ -761,11 +763,7 @@ _对来自廉价检索步骤的候选做打分或重排。_
 
   **注意:** `厂商自报数据`
 
-- **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)**<br>
-  一个 Android 回复副驾：从屏幕文本判断意图、时机和风险，OCR 与文案起草交给另外的模型。<br>
-  <sub>`开源项目` · ★1k+ · `Java` · `choice` · `score` · `noul` · [调用点](https://github.com/jev-chat/jev-chat-jarvis/blob/HEAD/cn/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-09-22 阅读</sub>
-
-已显示 **10 / 82** 条 · [在单独页面查看全部 82 条 →](docs/by-pattern/search-ranking.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)
+已显示 **10 / 86** 条 · [在单独页面查看全部 86 条 →](docs/by-pattern/search-ranking.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -851,7 +849,7 @@ _把条目归入分类体系，包括用概率遍历的深层层级。_
 
 - **[Inbox Zero: seven email decisions](https://github.com/elie222/inbox-zero)**<br>
   七个互不相同的邮件决策，每个都有自己单独设定的阈值，任何出错都回落到普通 LLM。<br>
-  <sub>`开源项目` · ★10k+ · `TS` · `choice` · `noul` · [调用点](https://github.com/elie222/inbox-zero/blob/HEAD/apps/web/utils/decision-model/typesafe.ts)，2026-09-22 阅读</sub>
+  <sub>`开源项目` · ★10k+ · `TS` · `choice` · `noul` · [调用点](https://github.com/elie222/inbox-zero/blob/HEAD/apps/web/utils/decision-model/decision-model.ts)，2026-11-05 模型阅读</sub>
 
 - **[json-render](https://github.com/vercel-labs/json-render)**<br>
   Vercel Labs 的生成式 UI 框架。实验里 Jev 不逐 token 写 JSON，只负责选组件、属性和布局。<br>
@@ -871,7 +869,7 @@ _把条目归入分类体系，包括用概率遍历的深层层级。_
   电脑版微信助手：由 Jev 判断每条消息的意图，DeepSeek 给出建议回复。 <sub>(机翻)</sub><br>
   <sub>`开源项目` · ★100+ · liyucheng1997 · `Kt` · [调用点](https://github.com/Liyucheng1997/332_lab-jev-chat/blob/HEAD/windows/jev_windows/jev_api.py)，2026-09-24 阅读</sub>
 
-已显示 **10 / 146** 条 · [在单独页面查看全部 146 条 →](docs/by-pattern/classification.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)
+已显示 **10 / 148** 条 · [在单独页面查看全部 148 条 →](docs/by-pattern/classification.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -1023,7 +1021,7 @@ _按意图和紧急度路由支持工单与会话。_
   Workers AI binding 与 REST 示例：一次调用同时问 noul、choice、score，并给出含逐答案置信度的完整响应。<br>
   <sub>`平台集成` · `TS` · `sh` · `noul` · `choice` · `score`</sub>
 
-已显示 **10 / 12** 条 · [在单独页面查看全部 12 条 →](docs/by-pattern/support-triage.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=zh)
+已显示 **10 / 13** 条 · [在单独页面查看全部 13 条 →](docs/by-pattern/support-triage.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -1075,7 +1073,7 @@ _在有序量表上给质量、风险或相关性打分。_
 
   **注意:** `无许可证`
 
-已显示 **10 / 177** 条 · [在单独页面查看全部 177 条 →](docs/by-pattern/content-scoring.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)
+已显示 **10 / 179** 条 · [在单独页面查看全部 179 条 →](docs/by-pattern/content-scoring.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -1108,6 +1106,10 @@ _介绍模型或整个领域，而非单一模式。_
 - **[Official agent skill for Claude Code](https://docs.typesafe.ai/agent-skill)** ⭐<br>
   把 TypeSafe 官方技能装进 Claude Code，让智能体自己写出正确的 Jev 调用，不必每次手动贴 API 结构。<br>
   <sub>`官方文档` · ★1k+ · `sh`</sub>
+
+- **[typesafe-ai/skills](https://github.com/typesafe-ai/skills)** ⭐<br>
+  Claude Code 插件背后的官方技能仓库，里面的 SKILL.md 教会智能体如何使用 System One API。<br>
+  <sub>`插件` · ★1k+ · `sh`</sub>
 
 - **[@typesafe-ai/sdk (TypeScript / JavaScript)](https://github.com/typesafe-ai/typesafe-sdk-js)** ⭐<br>
   官方 TypeScript 客户端。同时提供 ESM、CJS 和类型声明，辅助函数是小写的 choice()/score()/noul()。<br>
@@ -1143,15 +1145,11 @@ _介绍模型或整个领域，而非单一模式。_
   厂商列出的 Jev 1.13 局限：字面化理解、算术与计数、日期比较、间接指代、夹杂无关细节的长 state，以及对抗性内容。 <sub>(机翻)</sub><br>
   <sub>`官方文档`</sub>
 
-- **[Use case map](https://docs.typesafe.ai/concepts/use-case-map)** ⭐<br>
-  厂商自己的分类体系：五大类、十九个行业方向、十种决策形态（从分类一直到结构化数据抽取）。<br>
-  <sub>`官方文档`</sub>
-
-已显示 **10 / 505** 条 · [在单独页面查看全部 505 条 →](docs/by-pattern/overview.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)
+已显示 **10 / 497** 条 · [在单独页面查看全部 497 条 →](docs/by-pattern/overview.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)
 
 #### 尚未按模式索引
 
-其中 **253** 行是带代码的项目或插件。`overview` 也是关键词规则无法归类时给出的默认值，而这些行没有任何人对照决策模式阅读过的记录（`patterns_reviewed`），因此单独列出：见 [Overview 页面末尾](docs/by-pattern/overview.zh-CN.md#unindexed)、[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)，以及附有规则建议的[复核队列](docs/review-queue.md#unsorted-overview)。 <sub>(机翻)</sub>
+其中 **232** 行是带代码的项目或插件。`overview` 也是关键词规则无法归类时给出的默认值，而这些行没有任何人对照决策模式阅读过的记录（`patterns_reviewed`），因此单独列出：见 [Overview 页面末尾](docs/by-pattern/overview.zh-CN.md#unindexed)、[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)，以及附有规则建议的[复核队列](docs/review-queue.md#unsorted-overview)。 <sub>(机翻)</sub>
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -1162,17 +1160,17 @@ _介绍模型或整个领域，而非单一模式。_
 | 形态 | 例子数 | 点开会看到 |
 | --- | ---: | --- |
 | **官方文档** | **31** | 厂商文档、cookbook 与模式页。 |
-| **SDK** | **102** | 客户端库，官方与社区。 |
+| **SDK** | **103** | 客户端库，官方与社区。 |
 | **平台集成** | **38** | 接入模型的网关、框架或平台路径。 |
 | **代码片段** | **4** | 本仓库内的小型可运行样例。 |
 | **开源项目** | **714** | 真正在调用 Jev 的应用或库。 |
 | **插件** | **270** | 可安装的编辑器、智能体、MCP 集成。 |
 | **教程** | **16** | 带代码的分步教学材料。 |
-| **基准测试** | **79** | 实测。注意区分独立实测与厂商自报。 |
+| **基准测试** | **82** | 实测。注意区分独立实测与厂商自报。 |
 | **文章** | **14** | 讲解、分析与发布报道。 |
 | **视频** | **3** | 演示与评测。 |
 | **讨论** | **2** | 值得读的讨论，包括质疑的声音。 |
-| **Jev 替代实现** | **97** | 独立复现实现。它们**不**调用 Jev。 |
+| **Jev 替代实现** | **100** | 独立复现实现。它们**不**调用 Jev。 |
 
 ## 本仓库还有什么
 
@@ -1181,7 +1179,7 @@ _介绍模型或整个领域，而非单一模式。_
 <details>
 <summary><b>查看可搜索站点预览</b></summary>
 
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=aa688f13b9346002" alt="可搜索的 Jev 目录：精选路径、筛选排序、带日期的来源证据与条目卡片" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=2e5bdc8dfb83e4b6" alt="可搜索的 Jev 目录：精选路径、筛选排序、带日期的来源证据与条目卡片" width="760"></a>
 
 <sub>点击条形即可筛选。另有两个视图：<a href="https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh">三个原语</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh">兼容性矩阵</a>。每个筛选条件和每个条目都是可分享的 URL。也有静态页面：<a href="https://kydlikebtc.github.io/awesome-jev/patterns/">每个模式一页</a> · <a href="https://kydlikebtc.github.io/awesome-jev/new.zh.html">每周新增与退役</a>（<a href="https://kydlikebtc.github.io/awesome-jev/feed.zh.xml">Atom 订阅</a>）。有代码的产品还可以上<a href="https://kydlikebtc.github.io/awesome-jev/launches.zh.html">每周发布榜</a>（<a href="docs/launches.zh-CN.md">规则说明</a>）。</sub>
 
@@ -1208,17 +1206,17 @@ _介绍模型或整个领域，而非单一模式。_
 
 ## 哪些经过核实，哪些没有
 
-- **链接检查** —— 有 1367 行记录了 HTTP 2xx 响应和 `checked` 日期，另有 3 行没有带日期的成功记录。检查日期因条目而异，过去成功不保证今天仍可访问。star 数和许可证也是仓库元数据的快照。
+- **链接检查** —— 有 1363 行记录了 HTTP 2xx 响应和 `checked` 日期，另有 14 行没有带日期的成功记录。检查日期因条目而异，过去成功不保证今天仍可访问。star 数和许可证也是仓库元数据的快照。
 
 - **来源与代码阅读** —— `evidence.path` 指向所读文件，`evidence.read_on` 记录声明的阅读日期，`evidence.model_read_on` 记录模型的阅读、单独显示，`evidence_none` 解释缺少文件证据的原因。阅读调用点与运行代码是两件事。摘要包含源项目描述与机翻，详见[方法与局限](docs/method.md)。 <sub>(机翻)</sub>
 
-- **摘要是谁的文字** —— 750 条摘要的英文原文就是被链接项目自己在 GitHub 上的描述，逐字相同，这些行标为 *(项目自述)*；29 条标为 *(项目旧自述)*：英文取自项目描述，但两者已不再相同。这些文字出自项目作者，中文摘要是其译文。11 条摘要标明由人为本目录撰写，263 条由模型为本目录撰写并标为 *(模型撰写)*，317 条未作记录。每周刷新会把每条英文摘要与其仓库描述比对并标出相同者；只有人才能把摘要标为人写的。 <sub>(机翻)</sub>
+- **摘要是谁的文字** —— 746 条摘要的英文原文就是被链接项目自己在 GitHub 上的描述，逐字相同，这些行标为 *(项目自述)*；29 条标为 *(项目旧自述)*：英文取自项目描述，但两者已不再相同。这些文字出自项目作者，中文摘要是其译文。11 条摘要标明由人为本目录撰写，277 条由模型为本目录撰写并标为 *(模型撰写)*，314 条未作记录。每周刷新会把每条英文摘要与其仓库描述比对并标出相同者；只有人才能把摘要标为人写的。 <sub>(机翻)</sub>
 
-- **中文是谁写的** —— 1370 行中有 192 行的中文摘要由人撰写；其余 1178 行由模型翻译，带有 `zh_machine`，并在中文 README、中文模式页面和站点的中文视图中逐条标为 *(机翻)*。[翻译队列](docs/zh-queue.md)列出等待有人替换的机翻：先是星标最高各行的全部机翻，再按星标从高到低列出被脚本计算的三项文本信号（比英文短得多、缺少英文里的数字、大部分是 ASCII 字符）中至少一项标出的其他机翻。信号只是对照比较，不是对译文的结论，README、模式页面和站点上的各行都不显示信号。认领方法见[认领翻译](CONTRIBUTING.md#claim-a-translation)；只有你自己写的译文才能去掉 `zh_machine`。 <sub>(机翻)</sub>
+- **中文是谁写的** —— 1377 行中有 191 行的中文摘要由人撰写；其余 1186 行由模型翻译，带有 `zh_machine`，并在中文 README、中文模式页面和站点的中文视图中逐条标为 *(机翻)*。[翻译队列](docs/zh-queue.md)列出等待有人替换的机翻：先是星标最高各行的全部机翻，再按星标从高到低列出被脚本计算的三项文本信号（比英文短得多、缺少英文里的数字、大部分是 ASCII 字符）中至少一项标出的其他机翻。信号只是对照比较，不是对译文的结论，README、模式页面和站点上的各行都不显示信号。认领方法见[认领翻译](CONTRIBUTING.md#claim-a-translation)；只有你自己写的译文才能去掉 `zh_machine`。 <sub>(机翻)</sub>
 
-- **调用点文本复查** —— 有 1192 行通过 `evidence` 记录了项目调用 Jev 的文件及其中匹配的字符串。另有 93 行记录的文件只表明项目采用了 Jev 的请求结构、并非基于 Jev 构建（所有 `alternative`——无论是自己提供这种结构，还是向 Jev 发送同样的请求作对比——以及由其他模型支撑的适配器），0 行记录的只是项目附带的示例；`evidence.kind` 标明属于哪一种。每周 [claims 任务](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) 检查这些字符串是否仍在默认分支，发现文本或文件缺失时报告。这些数字是已记录的证据数量，**不是最新 CI 通过数**。文本匹配不能证明调用实际执行、API 兼容或结果正确。脚本标出、需要人重读的引用列在[复核队列](docs/review-queue.md)。 <sub>(机翻)</sub>
+- **调用点文本复查** —— 有 1195 行通过 `evidence` 记录了项目调用 Jev 的文件及其中匹配的字符串。另有 96 行记录的文件只表明项目采用了 Jev 的请求结构、并非基于 Jev 构建（所有 `alternative`——无论是自己提供这种结构，还是向 Jev 发送同样的请求作对比——以及由其他模型支撑的适配器），1 行记录的只是项目附带的示例；`evidence.kind` 标明属于哪一种。每周 [claims 任务](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) 检查这些字符串是否仍在默认分支，发现文本或文件缺失时报告。这些数字是已记录的证据数量，**不是最新 CI 通过数**。文本匹配不能证明调用实际执行、API 兼容或结果正确。脚本标出、需要人重读的引用列在[复核队列](docs/review-queue.md)。 <sub>(机翻)</sub>
 
-- **用了哪些原语** —— 有 111 行在 `question_types` 中记录了有人读代码时确认调用的原语；另有 112 行记录的是模型读代码时确认的原语，这些行的调用点只有模型读过（`evidence.model_read_on`）。此外还有 749 行带 `primitives_seen`，这是机器文本信号：每周刷新在该行所引的那一个文件中找到了某个原语的请求或回答结构（`"type": "choice"`、`Noul(`、`.noul`）。文件里出现这种结构不等于调用；其中 618 行没有 `question_types`，这个信号就是关于它们所用原语的全部记录。本目录的筛选、计数和规则都不会把它当作原语声明。 <sub>(机翻)</sub>
+- **用了哪些原语** —— 有 109 行在 `question_types` 中记录了有人读代码时确认调用的原语；另有 125 行记录的是模型读代码时确认的原语，这些行的调用点只有模型读过（`evidence.model_read_on`）。此外还有 749 行带 `primitives_seen`，这是机器文本信号：每周刷新在该行所引的那一个文件中找到了某个原语的请求或回答结构（`"type": "choice"`、`Noul(`、`.noul`）。文件里出现这种结构不等于调用；其中 618 行没有 `question_types`，这个信号就是关于它们所用原语的全部记录。本目录的筛选、计数和规则都不会把它当作原语声明。 <sub>(机翻)</sub>
 
 - **本仓库未独立验证运行与性能** —— 所有目录条目默认都未经本仓库实测，没有 `code-untested` 标签也不代表已测试。被收录的基准是原作者的测量，本目录没有独立复现。仓库构建检查与安装包冒烟测试不运行这些集成，也不调用 Jev 在线 API；收录亦不代表安全审计。
 
@@ -1250,11 +1248,15 @@ _介绍模型或整个领域，而非单一模式。_
 | 例子 | 原因 |
 | --- | --- |
 | datajev | 2026-10-24 退役：自 2026-09-29 起每周刷新都无法访问该仓库（最近一次为 2026-10-21）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。 `HTTP 404` |
+| eliza | 2026-11-05 退役：本条目所引的 TypeSafe 服务已删除，默认分支（develop）上已没有任何文件调用 Jev 或提到 TypeSafe（2026-11-05 搜索）；自 2026-10-06 起每周检查都未通过。保留于此，以便这条引用仍可检索。 |
 | jev-atlas | 2026-09-24 退役：仓库在 API 和网页上都返回 404，而作者账号仍然存在 —— 已删除或转为私有。保留于此，以便这条引用仍可检索。 `HTTP 404` |
+| jev-block-android-ad | 2026-11-05 退役：该应用现在用设备上的 Laya 模型分类消息；其 README（2026-10-16）写明已删除 TypeSafe 后端、Jev API 设置和 API Key，默认分支上也已没有任何文件调用 Jev（2026-11-05 搜索）。保留于此，以便这条引用仍可检索。 |
+| jev-browse | 2026-11-05 退役：自 2026-10-26 起每周检查都无法访问该仓库（最近一次为 2026-11-04）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。 `HTTP 404` |
 | jev-curate | 2026-10-24 退役：自 2026-10-13 起每周刷新都无法访问该仓库（最近一次为 2026-10-21）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。 `HTTP 404` |
 | jev-git | 2026-10-24 退役：自 2026-10-13 起每周刷新都无法访问该仓库（最近一次为 2026-10-21）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。 `HTTP 404` |
 | jev-mac-voice | 2026-09-24 退役：仓库在 API 和网页上都返回 404，而作者账号仍然存在 —— 已删除或转为私有。保留于此，以便这条引用仍可检索。 `HTTP 404` |
 | jev-reviewer | 2026-10-29 退役：自 2026-10-19 起每周检查都无法访问该仓库（最近一次为 2026-10-28）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。 `HTTP 404` |
+| jev-runtime-security | 2026-11-05 退役：自 2026-10-26 起每周检查都无法访问该仓库（最近一次为 2026-11-04）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。 `HTTP 404` |
 | jev-scout | 2026-10-24 退役：自 2026-10-13 起每周刷新都无法访问该仓库（最近一次为 2026-10-21）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。 `HTTP 404` |
 | jev-screen-mcp | 2026-10-24 退役：自 2026-09-29 起每周刷新都无法访问该仓库（最近一次为 2026-10-21）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。 `HTTP 404` |
 | jev-seo | 2026-10-24 退役：自 2026-10-13 起每周刷新都无法访问该仓库（最近一次为 2026-10-21）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。 `HTTP 404` |
@@ -1271,8 +1273,8 @@ _介绍模型或整个领域，而非单一模式。_
 
 | 文件 | 是什么 |
 | --- | --- |
-| [`catalog.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json) | 1370 条目 |
-| [`retired.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json) | 15 已退休 |
+| [`catalog.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json) | 1377 条目 |
+| [`retired.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json) | 19 已退休 |
 | [`compat.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/compat.json) | `docs/compatibility.md` 使用的平台兼容性数据 |
 | [`patterns.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/patterns.json) | 生成器与 MCP server 共用的决策模式分类 |
 | [`collections.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/collections.json) | 双语精选路径、推荐理由与使用限制 |

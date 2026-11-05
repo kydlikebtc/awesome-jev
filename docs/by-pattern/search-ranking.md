@@ -4,11 +4,11 @@
 
 _Score or re-rank candidates from a cheaper retrieval step._
 
-Every catalogued example of this decision — 82 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 86 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#search-ranking): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 78 · wire shape 0 · example only 0 · independent reports 6 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 82 · wire shape 0 · example only 0 · independent reports 6 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -51,6 +51,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[LanceDB TypeSafeReranker](https://github.com/lancedb/lancedb/blob/main/python/python/lancedb/rerankers/typesafe.py)** — A vector-database reranker that asks one Noul per result and uses the yes-probability as an absolute relevance score, comparable across queries.
   <sub>`Project` · ★10k+ · `Py` · `noul` · call site [`python/python/lancedb/rerankers/typesafe.py`](https://github.com/lancedb/lancedb/blob/HEAD/python/python/lancedb/rerankers/typesafe.py), read 2026-09-22</sub>
 
+- **[oh-my-pi](https://github.com/can1357/oh-my-pi)** — ⌥ Coding agent with the IDE wired in
+  <sub>`Project` · ★10k+ · can1357 · `TS` · call site [`packages/ai/src/judgment/native.ts`](https://github.com/can1357/oh-my-pi/blob/HEAD/packages/ai/src/judgment/native.ts), read by a model 2026-11-05</sub>
+
 - **[OpenViking: retrieval reranking](https://github.com/volcengine/OpenViking)** — One Noul per candidate document in a single batched request, with the yes-probability used directly as the relevance score.
   <sub>`Project` · ★10k+ · `Py` · `noul` · call site [`openviking/models/rerank/jev_rerank.py`](https://github.com/volcengine/OpenViking/blob/HEAD/openviking/models/rerank/jev_rerank.py), read 2026-09-22</sub>
 
@@ -62,6 +65,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevgrep (dzhng)](https://github.com/dzhng/jevgrep)** — CLI and agent skill that finds code by asking what it does: `jg "How are telemetry events recorded?" ./repo` has Jev judge relevance across folders, files and declarations and returns files and verbatim excerpts. The author reports the same 8 of 10 SWE-bench tasks solved at ~30% lower cost. <sub>(written by a model)</sub>
   <sub>`Project` · ★1k+ · dzhng · `TS` · `noul` · call site [`packages/core/test-node/provider-protocol.mjs`](https://github.com/dzhng/jevgrep/blob/HEAD/packages/core/test-node/provider-protocol.mjs), read by a model 2026-10-24 · ⚠ `vendor numbers`</sub>
+
+- **[memsearch](https://github.com/zilliztech/memsearch)** — Shared semantic memory for AI coding agents such as Claude Code and Codex, kept as Markdown with a Milvus index. Optional Jev reranking sends the query and every candidate in one request, a noul per passage on whether it states what the query asks, and sorts results by those probabilities. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★1k+ · zilliztech · `Py` · call site [`src/memsearch/jev_reranker.py`](https://github.com/zilliztech/memsearch/blob/HEAD/src/memsearch/jev_reranker.py), read 2026-09-22</sub>
 
 - **[no-mistakes: Jev review pre-brief, measured and retired](https://github.com/kunchenguid/no-mistakes/pull/1165)** — One Score per candidate file to pre-brief code review — measured twice, then removed: more billed input for essentially no wall-clock gain, and offline replay showed the candidate list could not reach where review findings land.
   <sub>`Benchmark` · ★1k+ · `Go` · `score` · author's conclusion: unfavourable (author-stated, not reproduced here)</sub>
@@ -76,7 +82,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Plugin` · ★100+ · luobosibing2 · `TS` · `noul` · call site [`packages/jev/src/selection.ts`](https://github.com/luobosibing2/dsh-jev-plugin/blob/HEAD/packages/jev/src/selection.ts), read by a model 2026-10-28</sub>
 
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)** — Biologically-inspired memory for AI agents. Decay, retrieval strengthening, consolidation. Zero runtime deps, SQLite, MCP. Benchmarked retrieval with an opt-in TypeSafe Jev reranker.
-  <sub>`Benchmark` · ★100+ · kitfunso · `TS` · call site [`src/rerankers/jev.ts`](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/rerankers/jev.ts), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
+  <sub>`Benchmark` · ★100+ · kitfunso · `TS` · call site [`src/infra/rerankers/endpoint.ts`](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/infra/rerankers/endpoint.ts), read by a model 2026-11-05 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
 
 - **[jegrep](https://github.com/can1357/jegrep)** — Semantic grep for code with no index or embeddings: Jev nouls judge each path, then the passages read, against your description, each a yes probability so thresholds hold across batches; hits come back as line ranges. The author puts a typical search over a few thousand files at about $0.005. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · can1357 · `Rs` · call site [`src/jev.rs`](https://github.com/can1357/jegrep/blob/HEAD/src/jev.rs), read 2026-09-22</sub>
@@ -90,9 +96,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-search](https://github.com/superagents-lab/jev-search)** — Jev-driven web search: chooses the recency window and the best query rewrite, then reranks results in batches with one noul each.
   <sub>`Project` · ★100+ · `TS` · `choice` · `noul` · call site [`src/lib/typesafe.ts`](https://github.com/superagents-lab/jev-search/blob/HEAD/src/lib/typesafe.ts), read 2026-09-22</sub>
 
-- **[jev-semgrep](https://github.com/uehaj/sys1grep)** — grep by meaning, now named sys1grep: for every line Jev answers a noul on whether the line matches a meaning, such as network failure, and a threshold decides. Meanings combine with AND, OR and NOT, a regex can prefilter lines, and the meaning and the text can be in different languages. <sub>(written by a model)</sub>
-  <sub>`Project` · ★100+ · uehaj · `JS` · call site [`serve.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/serve.mjs), read 2026-09-22</sub>
-
 - **[jev-shell-history](https://github.com/mrnugget/jev-shell-history)** — Fish-style zsh history autosuggestions, ranked by Jev rather than by recency.
   <sub>`Project` · ★100+ · mrnugget · `TS` · call site [`src/cli.ts`](https://github.com/mrnugget/jev-shell-history/blob/HEAD/src/cli.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
 
@@ -104,6 +107,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jgrep](https://github.com/keltokhy/jgrep)** — grep where the pattern is a description: each line becomes one Jev noul, matched at probability 0.5 by default, judged concurrently and printed in input order, so it works on tail -f. On 994 Hacker News titles the author measured 4.6 seconds and $0.012 for one description. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · keltokhy · `Py` · call site [`bench/code_review.py`](https://github.com/keltokhy/jgrep/blob/HEAD/bench/code_review.py), read 2026-09-22</sub>
+
+- **[kody](https://github.com/kody-hq/kody)** — Cloud home for an AI agent's memory, keys, code and automations, served over MCP from Cloudflare Workers. On paid plans, when hybrid search returns an unclear pool, Jev scores each candidate on a four-level relevance rubric and weak ones are dropped; failure or low confidence keeps the hybrid order. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★100+ · kentcdodds · `TS` · call site [`packages/worker/src/mcp/tools/search-jev-rerank.ts`](https://github.com/kody-hq/kody/blob/HEAD/packages/worker/src/mcp/tools/search-jev-rerank.ts), read 2026-09-22</sub>
 
 - **[neo4jev](https://github.com/jexp/neo4jev)** — Puts Jev inside a knowledge graph traversal: at each node it decides which edge is most worth following.
   <sub>`Project` · ★100+ · `Py` · `choice` · call site [`src/neo4jev/navigator.py`](https://github.com/jexp/neo4jev/blob/HEAD/src/neo4jev/navigator.py), read 2026-09-22</sub>
@@ -119,6 +125,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[skillranker](https://github.com/Dicklesworthstone/skillranker)** — Ranks an agent's skills for the next step using live session context, with Claude Code hooks.
   <sub>`Plugin` · ★100+ · dicklesworthstone · `Rs` · call site [`src/jev/endpoint.rs`](https://github.com/Dicklesworthstone/skillranker/blob/HEAD/src/jev/endpoint.rs), read 2026-09-22</sub>
+
+- **[sys1grep](https://github.com/uehaj/sys1grep)** — grep by meaning, now named sys1grep: for every line Jev answers a noul on whether the line matches a meaning, such as network failure, and a threshold decides. Meanings combine with AND, OR and NOT, a regex can prefilter lines, and the meaning and the text can be in different languages. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · uehaj · `JS` · call site [`sys1grep.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/sys1grep.mjs), read by a model 2026-11-05</sub>
 
 - **[vector-graph-rag](https://github.com/zilliztech/vector-graph-rag)** — Graph RAG that stores entities and relations as vectors in Milvus, no graph database. Two-stage Jev reranking asks a noul per candidate relation against the query, then scores the passages of the top relations; by the author's run, 86.61% average Recall@5 on MuSiQue and 2Wiki, 1,000 questions each. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · zilliztech · `Py` · call site [`src/vector_graph_rag/llm/jev.py`](https://github.com/zilliztech/vector-graph-rag/blob/HEAD/src/vector_graph_rag/llm/jev.py), read 2026-09-22</sub>
@@ -221,6 +230,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[every](https://github.com/sufianetaouil/every)** — Ask a yes/no question of every function in a codebase. Ranked answers in seconds, for cents. Grep whose pattern is a question, powered by TypeSafe Jev. <sub>(upstream description)</sub>
   <sub>`Project` · sufianetaouil · `Py` · call site [`reference/probe_jev.py`](https://github.com/sufianetaouil/every/blob/HEAD/reference/probe_jev.py), read 2026-09-22</sub>
+
+- **[Hindsight](https://github.com/vectorize-io/hindsight)** — Agent memory server that can hand two jobs to a decision model: re-ranking a recall pool with one Noul per candidate, optionally dropping unhelpful and duplicate memories, and settling easy consolidation cases with Choice questions before the LLM sees them. <sub>(written by a model)</sub>
+  <sub>`Project` · vectorize-io · `Py` · `noul` · `choice` · call site [`hindsight-api-slim/hindsight_api/engine/decision_model.py`](https://github.com/vectorize-io/hindsight/blob/HEAD/hindsight-api-slim/hindsight_api/engine/decision_model.py), read by a model 2026-11-05</sub>
 
 - **[jev-assist](https://github.com/glud123/jev-assist)** — Don't burn your expensive main model on grep-and-guess grunt work — let jev rank the whole repo, and save the main model for reading the right files and writing the right code.
   <sub>`Project` · glud123 · `JS` · call site [`scripts/jev.mjs`](https://github.com/glud123/jev-assist/blob/HEAD/scripts/jev.mjs), read 2026-09-22</sub>

@@ -68,7 +68,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用：** 意图之间重叠得太厉害，连人工标注者都无法与自己保持一致时。先修好分类体系。
 
 <!-- catalogued-intent-routing:start -->
-目录中的**意图路由**：共 48 条，[逐条列出并附警示](by-pattern/intent-routing.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)。
+目录中的**意图路由**：共 54 条，[逐条列出并附警示](by-pattern/intent-routing.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)。
 <!-- catalogued-intent-routing:end -->
 
 ---
@@ -144,7 +144,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **注：** 挑选阈值是政策决定，不是建模决定。它应该放在配置里，并对照实测结果来复核。见 [`../examples/README.md`](../examples/README.md)。
 
 <!-- catalogued-human-escalation:start -->
-目录中的**人工升级**：共 79 条，[逐条列出并附警示](by-pattern/human-escalation.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)。
+目录中的**人工升级**：共 80 条，[逐条列出并附警示](by-pattern/human-escalation.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)。
 <!-- catalogued-human-escalation:end -->
 
 ---
@@ -160,7 +160,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用：** 当你的几个模型区别在于能力而不是成本时。在搭路由器之前，先确认便宜的那条路对简单的请求确实够用。
 
 <!-- catalogued-model-routing:start -->
-目录中的**模型路由**：共 62 条，[逐条列出并附警示](by-pattern/model-routing.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)。
+目录中的**模型路由**：共 69 条，[逐条列出并附警示](by-pattern/model-routing.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)。
 <!-- catalogued-model-routing:end -->
 
 ---
@@ -176,7 +176,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用：** 当后一个问题的措辞取决于前一个问题的答案时。那需要两次往返。
 
 <!-- catalogued-fan-out:start -->
-目录中的**并行扇出**：共 38 条，[逐条列出并附警示](by-pattern/fan-out.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)。
+目录中的**并行扇出**：共 39 条，[逐条列出并附警示](by-pattern/fan-out.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)。
 <!-- catalogued-fan-out:end -->
 
 ---
@@ -192,7 +192,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用：** 把它当作你整个检索栈的时候。它重排的是短名单；它不能替代针对大型语料的索引。
 
 <!-- catalogued-search-ranking:start -->
-目录中的**检索与排序**：共 82 条，[逐条列出并附警示](by-pattern/search-ranking.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)。
+目录中的**检索与排序**：共 86 条，[逐条列出并附警示](by-pattern/search-ranking.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)。
 <!-- catalogued-search-ranking:end -->
 
 ---
@@ -224,7 +224,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用：** 当你的分类体系里有互相重叠的叶子节点时。先修好分类体系。
 
 <!-- catalogued-classification:start -->
-目录中的**分类**：共 146 条，[逐条列出并附警示](by-pattern/classification.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)。
+目录中的**分类**：共 148 条，[逐条列出并附警示](by-pattern/classification.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)。
 <!-- catalogued-classification:end -->
 
 ---
@@ -268,7 +268,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **注：** 厂商自己的 quickstart 用的就是这个例子，所以它是文档最齐全的起点。
 
 <!-- catalogued-support-triage:start -->
-目录中的**工单分拣**：共 12 条，[逐条列出并附警示](by-pattern/support-triage.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=zh)。
+目录中的**工单分拣**：共 13 条，[逐条列出并附警示](by-pattern/support-triage.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=support-triage&lang=zh)。
 <!-- catalogued-support-triage:end -->
 
 ---
@@ -282,7 +282,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **注：** 只支持 2–10 级。带校准置信度的有序量表可以排序，这让它成为按最差优先填充复核队列的那个模式。
 
 <!-- catalogued-content-scoring:start -->
-目录中的**内容评分**：共 177 条，[逐条列出并附警示](by-pattern/content-scoring.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh) · [实践综述（模型撰写，附中文要点）](practice/content-scoring.md)。
+目录中的**内容评分**：共 179 条，[逐条列出并附警示](by-pattern/content-scoring.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh) · [实践综述（模型撰写，附中文要点）](practice/content-scoring.md)。
 <!-- catalogued-content-scoring:end -->
 
 ---
@@ -305,10 +305,10 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 
 不是一种模式。这个标签给那些介绍模型或整个领域、而不是演示某一个决策的条目 —— 发布报道、讲解文章、「Jev 是什么」之类的帖子。把它单独分开，是为了让各模式的索引保持诚实：一篇总览不是做任何事情的例子。
 
-它也一直是那些给出模式建议的关键词规则（`scripts/classify.py`）安放无法归类的描述的地方，而几轮批量整理都采纳了规则的建议。所以，一个唯一模式是 `overview`、且其行没有记录 `patterns_reviewed` 的带代码项目或插件，算作尚未按模式索引，而不算作总览。目前有 <!--n:overview_unindexed-->253<!--/n--> 行是这样。两份 README、Overview 页面和站点都把它们单独列在这个标题下，[复核队列](review-queue.md#unsorted-overview)则连同规则的建议一起列出它们。对照上面的模式阅读其中一行，给它指定它体现的模式，或者保留 `overview`，然后把阅读的日期写入 `patterns_reviewed`。
+它也一直是那些给出模式建议的关键词规则（`scripts/classify.py`）安放无法归类的描述的地方，而几轮批量整理都采纳了规则的建议。所以，一个唯一模式是 `overview`、且其行没有记录 `patterns_reviewed` 的带代码项目或插件，算作尚未按模式索引，而不算作总览。目前有 <!--n:overview_unindexed-->232<!--/n--> 行是这样。两份 README、Overview 页面和站点都把它们单独列在这个标题下，[复核队列](review-queue.md#unsorted-overview)则连同规则的建议一起列出它们。对照上面的模式阅读其中一行，给它指定它体现的模式，或者保留 `overview`，然后把阅读的日期写入 `patterns_reviewed`。
 
 <!-- catalogued-overview:start -->
-目录中的**总览**：共 505 条，[逐条列出并附警示](by-pattern/overview.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)。
+目录中的**总览**：共 497 条，[逐条列出并附警示](by-pattern/overview.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)。
 <!-- catalogued-overview:end -->
 
 ---

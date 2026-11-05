@@ -8,7 +8,7 @@ Every catalogued example of this decision — 253 of them. The same rows, with c
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 245 · wire shape 4 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 243 · wire shape 6 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -100,10 +100,10 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · ★100+ · fbddcz · `Py` · call site [`src/embodied_jev/policies.py`](https://github.com/FBddcz/embodied-jev/blob/HEAD/src/embodied_jev/policies.py), read 2026-09-22</sub>
 
 - **[fastbrowse](https://github.com/agent-labs-dev/fastbrowse)** — Browser agent: each page is indexed into candidate controls and Jev chooses the next one, so it cannot click what is not there; a Gemini Flash LLM plans and reads, and answers cite the page. Its maintainer recorded 99.2% on 46 tasks against 97.8% for hosted Browser Use, at under a tenth of the cost. <sub>(written by a model)</sub>
-  <sub>`Project` · ★100+ · agent-labs-dev · `Py` · call site [`src/fastbrowse/clients/typesafe.py`](https://github.com/agent-labs-dev/fastbrowse/blob/HEAD/src/fastbrowse/clients/typesafe.py), read 2026-09-22</sub>
+  <sub>`Project` · ★100+ · agent-labs-dev · `Rs` · `Py` · call site [`crates/fastbrowse-clients/src/system_one.rs`](https://github.com/agent-labs-dev/fastbrowse/blob/HEAD/crates/fastbrowse-clients/src/system_one.rs), read by a model 2026-11-05</sub>
 
 - **[foreman](https://github.com/thruwire/foreman)** — A software-factory foreman that uses Jev to decide what an agent pipeline should do next.
-  <sub>`Project` · ★100+ · thruwire · `Py` · call site [`src/foreman/foreman/jev.py`](https://github.com/thruwire/foreman/blob/HEAD/src/foreman/foreman/jev.py), read 2026-09-22</sub>
+  <sub>`Project` · ★100+ · thruwire · `Py` · call site [`src/foreman/decision_models/jev.py`](https://github.com/thruwire/foreman/blob/HEAD/src/foreman/decision_models/jev.py), read by a model 2026-11-05</sub>
 
 - **[hyperedit](https://github.com/kevinbadi/hyperedit)** — An AI video editor routing an editing instruction to an operation, a target clip and a track, with a keyword router as fallback.
   <sub>`Project` · ★100+ · `TS` · `choice` · `noul` · call site [`scripts/jev.js`](https://github.com/kevinbadi/hyperedit/blob/HEAD/scripts/jev.js), read 2026-09-22 · ⚠ `no licence`</sub>
@@ -382,7 +382,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · ★10+ · bewinxed · `TS` · call site [`src/jevgpt/sampler.py`](https://github.com/Bewinxed/jevgpt/blob/HEAD/src/jevgpt/sampler.py), read 2026-09-22</sub>
 
 - **[jevloop](https://github.com/parkavenue9639/jevloop)** — A Jev-driven general-purpose agent harness for faster, lower-cost execution, with built-in side-by-side experiments against LLM-only agents. <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · parkavenue9639 · `Py` · call site [`backend/jevloop/decision/model.py`](https://github.com/parkavenue9639/jevloop/blob/HEAD/backend/jevloop/decision/model.py), read 2026-09-24</sub>
+  <sub>`Project` · ★10+ · parkavenue9639 · `Py` · call site [`backend/jevloop/decision/laya.py`](https://github.com/parkavenue9639/jevloop/blob/HEAD/backend/jevloop/decision/laya.py), read by a model 2026-11-05</sub>
 
 - **[jevscape](https://github.com/Skyvern-AI/jevscape)** — RuneBench harness for TypeSafe's Jev: bounded action catalog, tick-mode controller and a live dashboard <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · skyvern-ai · `TS` · call site [`agents/jev/jev-client.ts`](https://github.com/Skyvern-AI/jevscape/blob/HEAD/agents/jev/jev-client.ts), read 2026-09-22 · ⚠ `no licence`</sub>
@@ -536,9 +536,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-browse](https://github.com/0x7067/jev-browse)** — Browser automation with Jev (TypeSafe) as decision model <sub>(upstream description)</sub>
   <sub>`Project` · 0x7067 · `JS` · call site [`bundled/cli.mjs`](https://github.com/0x7067/jev-browse/blob/HEAD/bundled/cli.mjs), read 2026-09-24</sub>
-
-- **[jev-browse](https://github.com/kyrylosyzonenko/jev-browse)** — Drives a real browser with Jev making every decision — each click, which of your texts goes in which box, and when the goal is reached — while agent-browser performs the actions.
-  <sub>`Project` · kyrylosyzonenko · `JS` · call site [`jev-browse.mjs`](https://github.com/kyrylosyzonenko/jev-browse/blob/HEAD/jev-browse.mjs), read 2026-09-24</sub>
 
 - **[jev-browser](https://github.com/KesavanKing/jev-browser)** — Local browser automation UI that uses TypeSafe Jev to choose bounded page actions and a text model only for field values. <sub>(upstream description)</sub>
   <sub>`Project` · kesavanking · `Py` · call site [`jev_browser/model.py`](https://github.com/KesavanKing/jev-browser/blob/HEAD/jev_browser/model.py), read 2026-09-24 · ⚠ `one commit` `no licence`</sub>
@@ -717,6 +714,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[macos-computer-use-kit](https://github.com/Sur-Cai/macos-computer-use-kit)** — AX-first computer use for AI agents on macOS with optional Jev (TypeSafe System One) semantic guards: calibrated target/input judgments before an irreversible action, decisions kept in code. Accessibility-tree targeting, window-scoped input, clipboard-safe paste, read-back verification…
   <sub>`Plugin` · sur-cai · `Py` · call site [`src/macos_computer_use/jev.py`](https://github.com/Sur-Cai/macos-computer-use-kit/blob/HEAD/src/macos_computer_use/jev.py), read 2026-09-24</sub>
 
+- **[multi-uav-jev](https://github.com/yongld/multi-uav-jev)** — Not Jev: a MuJoCo simulation of a drone fleet in which each aircraft's worker sends Jev-shaped Choice questions about its next manoeuvre, worded for its role (track, block, intercept, support), to a local NeoHorse-Jev-4B endpoint; deterministic code keeps navigation, braking and separation. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · yongld · `Py` · `choice` · cited file [`sim/duel_tactics.py`](https://github.com/yongld/multi-uav-jev/blob/HEAD/sim/duel_tactics.py), read by a model 2026-11-05 · ⚠ `not Jev itself`</sub>
+
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — Binary approval gate for Codex and Claude Code — every intercepted tool call is reviewed by TypeSafe JEV and composed through a versioned local policy, with scoped authorization. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · alexj11324 · `Go` · cited file [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go), read 2026-09-22 · ⚠ `not Jev itself`</sub>
 
@@ -750,8 +750,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[s1s](https://github.com/cpaczek/s1s)** — System One Search: navigate and trace code with TypeSafe judgments and repository evidence <sub>(upstream description)</sub>
   <sub>`Project` · cpaczek · `TS` · call site [`src/client.ts`](https://github.com/cpaczek/s1s/blob/HEAD/src/client.ts), read 2026-09-22</sub>
 
-- **[slidepilot](https://github.com/harshil1712/slidepilot)** — Voice-driven semantic auto-advance for Slidev, powered by Cloudflare Agents and TypeSafe AI Jev <sub>(upstream description)</sub>
-  <sub>`Project` · harshil1712 · `TS` · call site [`apps/worker/src/decision.ts`](https://github.com/harshil1712/slidepilot/blob/HEAD/apps/worker/src/decision.ts), read 2026-09-22</sub>
+- **[slidepilot](https://github.com/harshil1712/slidepilot)** — Voice-driven auto-advance for Slidev: at each pause a Cloudflare worker asks Cloudflare's own Clef models on Workers AI one Choice and three Nouls in Jev's request shape, and its own code decides whether to reveal the next click or slide. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · harshil1712 · `TS` · cited file [`apps/worker/src/decision.ts`](https://github.com/harshil1712/slidepilot/blob/HEAD/apps/worker/src/decision.ts), read by a model 2026-11-05 · ⚠ `not Jev itself`</sub>
 
 - **[snake-jev](https://github.com/siroccomask/snake-jev)** — Snake controlled by parallel Jev assessments, with one API call per game tick. <sub>(upstream description)</sub>
   <sub>`Project` · siroccomask · `Py` · call site [`jev_controller.py`](https://github.com/siroccomask/snake-jev/blob/HEAD/jev_controller.py), read 2026-09-22 · ⚠ `one commit`</sub>

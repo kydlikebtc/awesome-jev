@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 80 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 83 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -54,6 +54,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 
 ## Other independent reports
 
+- **[deep-searcher](https://github.com/zilliztech/deep-searcher)**<br>
+  Deep-research tool that searches private data in a vector database such as Milvus and reasons over it with an LLM. Its evaluation compares the LLM's own decision to stop searching with a Jev noul on whether the gathered context is enough to answer, over 100 questions. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ★1k+ · zilliztech · `Py` · [call site](https://github.com/zilliztech/deep-searcher/blob/HEAD/evaluation/jev_stopping/run_full100.py), read 2026-09-22</sub>
+
+  > Calls Jev only in an evaluation: on 100 2WikiMultiHopQA queries a Jev Noul replaces the LLM's own decision to stop searching, and evaluation/jev_stopping/README.md publishes the comparison (recall, rounds, latency, cost). Kind changed from alternative to benchmark on 2026-11-05 by an AI assistant; a maintainer has not yet read the report.
+
 - **[Convex Coding Evals](https://github.com/convex/convex-evals)**<br>
   Convex's coding benchmark adds a decision-model track: 108 multiple-choice questions on Convex knowledge, four options each, covering 90 of its 112 coding evals. Jev answers each as one `choice` through OpenRouter's decisions endpoint; language models answer them through chat completions. <sub>(written by a model)</sub><br>
   <sub>`Benchmark` · ★100+ · convex · `TS` · `choice` · [call site](https://github.com/convex/convex-evals/blob/HEAD/runner/decisions/providers.ts), read by a model 2026-10-29</sub>
@@ -62,7 +68,7 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)**<br>
   Biologically-inspired memory for AI agents. Decay, retrieval strengthening, consolidation. Zero runtime deps, SQLite, MCP. Benchmarked retrieval with an opt-in TypeSafe Jev reranker.<br>
-  <sub>`Benchmark` · ★100+ · kitfunso · `TS` · [call site](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/rerankers/jev.ts), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
+  <sub>`Benchmark` · ★100+ · kitfunso · `TS` · [call site](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/infra/rerankers/endpoint.ts), read by a model 2026-11-05 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
 
 - **[jev-arena](https://github.com/NanmiCoder/jev-arena)**<br>
   An introduction to Jev with hands-on tests: Choice, Score and Noul turn natural language into typed judgements for classification, scoring and routing, compared with DeepSeek on comment labelling, speed and results, with CSV import, replay and offline reports.<br>
@@ -177,6 +183,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[can-jev-bayes](https://github.com/TomRichner/can-jev-bayes)**<br>
   Jev Bayes, No? Testing TypeSafe AI's Jev against Bayesian-optimal strategies, and testing if Jev can effectivly use Bayesian priors. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · tomrichner · `Py` · [call site](https://github.com/TomRichner/can-jev-bayes/blob/HEAD/src/jevbandits/client.py), read 2026-09-24</sub>
+
+- **[choosekit](https://github.com/notxf1le/choosekit)**<br>
+  TypeScript library that scores a fixed set of choices from a model's log probabilities through llama.cpp, Ollama or OpenRouter. Its benchmarks put Jev 1.13 at 53.6% on a 1,000-question SuperGPQA sample, and level with a local Qwen 3.8 27B on SemIf's 144 cases at 96.53%. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · notxf1le · `TS` · `JS` · `choice` · [call site](https://github.com/notxf1le/choosekit/blob/HEAD/benchmarks/run-supergpqa.mjs), read by a model 2026-11-05</sub>
+
+  > choosekit itself calls no Jev: Jev 1.13 runs through OpenRouter's Decisions API only in the benchmark scripts, as the hosted comparison. The README notes that the SemIf latencies include different transport overhead. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-05; a maintainer has not yet read the call site.
 
 - **[Decision Models as Guardrails](https://dm-as-guardrails.raxitlabs.com)**<br>
   Asks Jev 1.13.0, Jev 1.14.0 and 17 other systems, Bedrock Guardrails among them, the same 9,975 labelled guardrail checks in six suites. Jev answers each as a noul; 0.5 or more blocks, nothing tuned per model. Reports balanced accuracy with 95% intervals and USD per 1,000 checks at list price.<br>
@@ -393,6 +405,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)**<br>
   First independent head-to-head benchmark of System One decision models (Laya vs Jev) on byte-identical inputs <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · instax-dutta · `Py` · [call site](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py), read 2026-09-22</sub>
+
+- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)**<br>
+  Together AI fine-tuned Qwen3.5-4B to answer decisions with one option letter. In a paired rerun of three public Jev benchmarks it scored 50.6% on phishing against Jev 1.13's 62.9%, 93.3% on tool risk for both, and 96.3% against 100% on ticket routing. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · togethercomputer · `Py` · `choice` · [call site](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py), read by a model 2026-11-05</sub>
+
+  > Jev runs only as the baseline: typesafe/jev-1.13 through OpenRouter's Decisions API, one Choice per request, on items from anisselbd/jev-phishing-bench, themsquared/jev-benchmark and WallerChen/jev-measured. The results and raw responses are in evaluation/public-third-party/. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-05; a maintainer has not yet read the call site.
 
 - **[typesafe-jev-calibrate-for-code-review](https://github.com/Selmar/typesafe-jev-calibrate-for-code-review)**<br>
   About calibrating Jev for code reviews <sub>(upstream description)</sub><br>

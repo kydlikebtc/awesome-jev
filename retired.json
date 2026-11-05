@@ -59,6 +59,67 @@
     "notes_zh": "2026-10-24 退役：自 2026-09-29 起每周刷新都无法访问该仓库（最近一次为 2026-10-21）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
   },
   {
+    "slug": "eliza",
+    "title": "eliza",
+    "summary": "Open source agentic operating system",
+    "summary_source": "upstream-description",
+    "summary_zh": "开源的智能体操作系统。",
+    "zh_machine": true,
+    "url": "https://github.com/elizaOS/eliza",
+    "kind": "project",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "elizaos",
+      "url": "https://github.com/elizaos"
+    },
+    "has_code": true,
+    "stars": 19768,
+    "repo_license": "MIT",
+    "repo_created_at": "2024-07-09T07:55:40Z",
+    "repo_pushed_at": "2026-11-04T12:54:18Z",
+    "repo_commits": 35605,
+    "evidence": {
+      "path": "packages/agent/src/services/typesafe/client.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "/v1/systemone",
+        "systemOne"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "BeatAPI/awesome-jev",
+        "url": "https://github.com/BeatAPI/awesome-jev"
+      },
+      {
+        "catalog": "logicrw/awesome-jev-projects",
+        "url": "https://github.com/logicrw/awesome-jev-projects"
+      },
+      {
+        "catalog": "yibie/awesome-jev",
+        "url": "https://github.com/yibie/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "checked": "2026-11-04",
+    "notes": "Retired 2026-11-05: the TypeSafe service the row cited is gone, and no file on the default branch (develop) calls Jev or names TypeSafe any more (searched 2026-11-05); its claim had failed in every weekly check since 2026-10-06. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-05 退役：本条目所引的 TypeSafe 服务已删除，默认分支（develop）上已没有任何文件调用 Jev 或提到 TypeSafe（2026-11-05 搜索）；自 2026-10-06 起每周检查都未通过。保留于此，以便这条引用仍可检索。"
+  },
+  {
     "slug": "jev-atlas",
     "title": "jev-atlas",
     "summary": "Map where Jev and System One models actually belong in your project, test the strongest ideas, then implement them. A skill for Claude Code and Codex.",
@@ -94,6 +155,130 @@
     "link_status": 404,
     "notes": "Retired 2026-09-24: the repository returns 404 on both the API and the web while its owner's account still exists — deleted or made private. Kept here so the reference stays searchable.",
     "notes_zh": "2026-09-24 退役：仓库在 API 和网页上都返回 404，而作者账号仍然存在 —— 已删除或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "jev-block-android-ad",
+    "title": "jev-block-android-ad",
+    "summary": "JevNoiseGate filters unwanted notifications and SMS on Android. Rather than matching keywords, an LLM decides what's noise — and only what it explicitly flags is blocked. Verification codes are matched on-device and never uploaded; anything uncertain passes through.",
+    "summary_source": "upstream-description",
+    "summary_zh": "Android 上的通知与短信过滤：不是匹配关键词，而是由模型判断。",
+    "zh_machine": true,
+    "url": "https://github.com/ufec/jev-block-android-ad",
+    "kind": "project",
+    "patterns": [
+      "safety-gating",
+      "output-validation",
+      "human-escalation"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ufec",
+      "url": "https://github.com/ufec"
+    },
+    "has_code": true,
+    "stars": 8,
+    "repo_license": "MIT",
+    "repo_created_at": "2026-09-18T15:54:10Z",
+    "repo_pushed_at": "2026-10-16T07:14:59Z",
+    "repo_commits": 23,
+    "evidence": {
+      "path": "app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt",
+      "matched": [
+        "TypeSafeClient"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "AbdelStark/awesome-typesafe-jev",
+        "url": "https://github.com/AbdelStark/awesome-typesafe-jev"
+      },
+      {
+        "catalog": "hellogumbo/awesome-jev",
+        "url": "https://github.com/hellogumbo/awesome-jev"
+      },
+      {
+        "catalog": "logicrw/awesome-jev-projects",
+        "url": "https://github.com/logicrw/awesome-jev-projects"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "kotlin"
+    ],
+    "checked": "2026-11-04",
+    "notes": "Retired 2026-11-05: the app now classifies messages with a Laya model on the device; its README (2026-10-16) says the TypeSafe backend, the Jev API settings and the API key were removed, and no file on its default branch calls Jev (searched 2026-11-05). Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-05 退役：该应用现在用设备上的 Laya 模型分类消息；其 README（2026-10-16）写明已删除 TypeSafe 后端、Jev API 设置和 API Key，默认分支上也已没有任何文件调用 Jev（2026-11-05 搜索）。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "jev-browse-kyrylosyzonenko",
+    "title": "jev-browse",
+    "summary": "Drives a real browser with Jev making every decision — each click, which of your texts goes in which box, and when the goal is reached — while agent-browser performs the actions.",
+    "summary_zh": "驱动真实浏览器，每个决定都由 Jev 做出——点哪里、把你的哪段文字填进哪个输入框、目标何时达成——由 agent-browser 执行操作。",
+    "url": "https://github.com/kyrylosyzonenko/jev-browse",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "kyrylosyzonenko",
+      "url": "https://github.com/kyrylosyzonenko"
+    },
+    "has_code": true,
+    "official": false,
+    "stars": 3,
+    "repo_license": "MIT",
+    "repo_created_at": "2026-09-16T19:45:33Z",
+    "repo_pushed_at": "2026-09-17T08:37:17Z",
+    "repo_commits": 4,
+    "published": "2026-09-16",
+    "first_seen": "2026-09-24",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "evidence": {
+      "path": "jev-browse.mjs",
+      "matched": [
+        "@typesafe-ai/sdk",
+        "systemOne",
+        "TypeSafeClient"
+      ],
+      "read_on": "2026-09-24"
+    },
+    "zh_machine": true,
+    "languages": [
+      "javascript"
+    ],
+    "checked": "2026-11-04",
+    "link_status": 404,
+    "notes": "Retired 2026-11-05: the repository has not resolved in any weekly check since 2026-10-26 (last on 2026-11-04) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-05 退役：自 2026-10-26 起每周检查都无法访问该仓库（最近一次为 2026-11-04）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
   },
   {
     "slug": "jev-curate",
@@ -391,6 +576,73 @@
     "link_status": 404,
     "notes": "Retired 2026-10-29: the repository has not resolved in any weekly check since 2026-10-19 (last on 2026-10-28) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
     "notes_zh": "2026-10-29 退役：自 2026-10-19 起每周检查都无法访问该仓库（最近一次为 2026-10-28）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "jev-runtime-security",
+    "title": "jev-runtime-security",
+    "summary": "Runtime security for AI coding agents: policy is enforced in the kernel at the system call, below the agent and anything it writes, with Jev judging the ambiguous cases.",
+    "summary_zh": "面向 AI 编码智能体的运行时安全：策略在内核的系统调用层强制执行，位于智能体及其所写的一切之下，模糊情况交给 Jev 判断。",
+    "url": "https://github.com/ringzerosec/jev-runtime-security",
+    "kind": "project",
+    "patterns": [
+      "safety-gating"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ringzerosec",
+      "url": "https://github.com/ringzerosec"
+    },
+    "has_code": true,
+    "official": false,
+    "stars": 11,
+    "repo_license": "NOASSERTION",
+    "repo_created_at": "2026-09-21T12:55:55Z",
+    "repo_pushed_at": "2026-10-12T03:28:32Z",
+    "repo_commits": 35,
+    "published": "2026-09-21",
+    "first_seen": "2026-09-24",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "AbdelStark/awesome-typesafe-jev",
+        "url": "https://github.com/AbdelStark/awesome-typesafe-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      },
+      {
+        "catalog": "tanxarx/awesome-jev",
+        "url": "https://github.com/tanxarx/awesome-jev"
+      },
+      {
+        "catalog": "yibie/awesome-jev",
+        "url": "https://github.com/yibie/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "evidence": {
+      "path": "agent/src/scanner/jev_layer.rs",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "jev-1.13"
+      ],
+      "read_on": "2026-09-24"
+    },
+    "zh_machine": true,
+    "languages": [
+      "rust"
+    ],
+    "checked": "2026-11-04",
+    "link_status": 404,
+    "notes": "Retired 2026-11-05: the repository has not resolved in any weekly check since 2026-10-26 (last on 2026-11-04) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-05 退役：自 2026-10-26 起每周检查都无法访问该仓库（最近一次为 2026-11-04）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
   },
   {
     "slug": "jev-scout",

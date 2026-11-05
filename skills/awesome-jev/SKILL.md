@@ -56,12 +56,11 @@ It requires an image and the same opt-in header; combine with Noul for presence
 when needed. The catalogue's primitive filters and picker still cover the three
 core primitives, Choice, Score and Noul.
 
-**Native versions, checked 2026-10-15:** `jev-1.14.0` and `jev-1.13.0` are
-accepted; `jev-preview` points to 1.14 and `jev-latest` still points to 1.13.
-The [October 14 announcement](https://typesafe.ai/blog/jev-1-14) said latest
-would move about a week later, without an exact switch date. Recheck
-[models](https://docs.typesafe.ai/models) before relying on an alias. This says
-nothing about a gateway's support for the new version or experimental features.
+**Native versions, checked 2026-11-05:** `jev-1.14.0` and `jev-1.13.0` are
+accepted; `jev-latest` and `jev-preview` both point to 1.14, and there is no
+separate preview build. Recheck [models](https://docs.typesafe.ai/models) before
+relying on an alias. This says nothing about a gateway's support for the new
+version or experimental features.
 
 **It cannot be run locally.** No weights are published. Anything claiming to run
 Jev locally is a different model with a compatible wire format, and a compatible
@@ -173,14 +172,14 @@ all must not depend on the list.
 
 **Thresholds are policy, not modelling.** They depend on what being wrong costs.
 One catalogued production system, Inbox Zero, chooses a separate threshold for
-each of its email decisions. The <!--n:threshold_rows-->35<!--/n--> rows that
+each of its email decisions. The <!--n:threshold_rows-->34<!--/n--> rows that
 so far record a constant their cited file compares a Jev answer with (a first
 reading, not every row whose file has one) cut a `noul` probability anywhere
 from <!--n:threshold_noul_low-->0.2<!--/n--> to <!--n:threshold_noul_high-->0.9<!--/n-->
 and a `choice` confidence from <!--n:threshold_choice_low-->0.3<!--/n--> to <!--n:threshold_choice_high-->0.9<!--/n-->.
 Those are what each project chose, not recommendations: `get_example` returns a
 row's `observed_thresholds` with the text in its file each one stands on, and no
-person has yet checked them on <!--n:thresholds_unchecked-->35<!--/n--> of those rows,
+person has yet checked them on <!--n:thresholds_unchecked-->34<!--/n--> of those rows,
 which a model read. A threshold tuned on a `noul` probability is not a `choice`
 confidence.
 

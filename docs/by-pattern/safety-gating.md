@@ -8,7 +8,7 @@ Every catalogued example of this decision — 156 of them. The same rows, with c
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 150 · wire shape 2 · example only 0 · independent reports 11 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 149 · wire shape 3 · example only 0 · independent reports 12 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -44,8 +44,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[sub2api: Jev as a moderation endpoint](https://github.com/Wei-Shaw/sub2api)** — Drops in as a moderation API by asking many parallel Noul questions in one request, one per hazard category, with an anti-injection prefix on every instruction.
   <sub>`Project` · ★10k+ · `Go` · `noul` · call site [`backend/internal/pkg/typesafe/client.go`](https://github.com/Wei-Shaw/sub2api/blob/HEAD/backend/internal/pkg/typesafe/client.go), read 2026-09-22</sub>
 
-- **[agentgateway: CI-validated LLM guardrail](https://github.com/agentgateway/agentgateway)** — Three Score questions on a shared severity scale, blocking the request when two or more cross the line, and failing closed.
-  <sub>`Project` · ★1k+ · `Rs` · `score` · call site [`examples/llm-guardrail-jev/guardrail.ts`](https://github.com/agentgateway/agentgateway/blob/HEAD/examples/llm-guardrail-jev/guardrail.ts), read 2026-09-22</sub>
+- **[agentgateway: Jev and OpenAI guardrail](https://github.com/agentgateway/agentgateway)** — Three yes-or-no questions (jailbreak, harmful content, secret disclosure) on each request and each response, rejected with HTTP 403 at a probability of 0.5 or more and blocked on any evaluation error; the gateway sends half the evaluations to Jev as Nouls and half to OpenAI. <sub>(written by a model)</sub>
+  <sub>`Project` · ★1k+ · `Rs` · `noul` · call site [`examples/llm-guardrail-jev-openai/guardrail.ts`](https://github.com/agentgateway/agentgateway/blob/HEAD/examples/llm-guardrail-jev-openai/guardrail.ts), read by a model 2026-11-05</sub>
 
 - **[DeepChat: agent tool-permission review](https://github.com/ThinkInAIXYZ/deepchat)** — Reviews each tool call on three axes — risk level, whether the user authorised it, and an explicit prompt-injection pressure check.
   <sub>`Project` · ★1k+ · `TS` · `choice` · `noul` · call site [`src/shared/jevProtocol.ts`](https://github.com/ThinkInAIXYZ/deepchat/blob/HEAD/src/shared/jevProtocol.ts), read 2026-09-22</sub>
@@ -170,9 +170,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-router (dirien)](https://github.com/dirien/jev-router)** — Local pass-through proxy for Claude Code and the Codex CLI: on each message a person writes, Jev picks the model tier the work needs (a Choice), with optional yes/no guards for risky operations and routing claims; within a session it only moves up, to protect the prompt cache. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · dirien · `JS` · `choice` · `noul` · call site [`src/jev.mjs`](https://github.com/dirien/jev-router/blob/HEAD/src/jev.mjs), read by a model 2026-11-02</sub>
 
-- **[jev-runtime-security](https://github.com/ringzerosec/jev-runtime-security)** — Runtime security for AI coding agents: policy is enforced in the kernel at the system call, below the agent and anything it writes, with Jev judging the ambiguous cases.
-  <sub>`Project` · ★10+ · ringzerosec · `Rs` · call site [`agent/src/scanner/jev_layer.rs`](https://github.com/ringzerosec/jev-runtime-security/blob/HEAD/agent/src/scanner/jev_layer.rs), read 2026-09-24</sub>
-
 - **[jev-security-scan](https://github.com/win4r/jev-security-scan)** — 使用 TypeSafe Jev 审查 Skill 与 MCP 可疑行为 \| Review Agent Skills and MCP code with Jev, static evidence, and explicit coverage gaps <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · win4r · `Py` · call site [`scripts/jev_client.py`](https://github.com/win4r/jev-security-scan/blob/HEAD/scripts/jev_client.py), read 2026-09-24 · ⚠ `one commit`</sub>
 
@@ -207,7 +204,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · ★10+ · mejiasd3v · `JS` · call site [`index.ts`](https://github.com/mejiasd3v/pi-jev-router/blob/HEAD/index.ts), read 2026-09-22</sub>
 
 - **[pi-verdict](https://github.com/jesset/pi-verdict)** — A minimal permission gate for Pi in the style of Claude Code's auto mode <sub>(upstream description)</sub>
-  <sub>`Plugin` · ★10+ · jesset · `TS` · call site [`extensions/jev-adapter.ts`](https://github.com/jesset/pi-verdict/blob/HEAD/extensions/jev-adapter.ts), read 2026-09-22</sub>
+  <sub>`Plugin` · ★10+ · jesset · `TS` · call site [`extensions/pi-verdict.ts`](https://github.com/jesset/pi-verdict/blob/HEAD/extensions/pi-verdict.ts), read by a model 2026-11-05</sub>
 
 - **[RLCDAlignBench (Just Ask Jev)](https://github.com/sumleo/rlcdalignbench)** — Benchmark and paper code (arXiv 2609.29429) testing Jev as a zero-shot detector of AI alignment failures: 7,193 labelled model outputs across 44 benchmarks and ten failure types, from sycophancy and jailbreaks to reward hacking. Each sample goes to Jev in one request with a set of typed questions. <sub>(written by a model)</sub>
   <sub>`Benchmark` · ★10+ · sumleo · `Py` · `noul` · `choice` · `score` · call site [`code/run_jev.py`](https://github.com/sumleo/rlcdalignbench/blob/HEAD/code/run_jev.py), read by a model 2026-11-01</sub>
@@ -284,6 +281,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[guard-jev](https://github.com/NorbertBodziony/guard-jev)** — A text-moderation demo: one systemOne call screens seven Noul hazards and one severity Score in parallel, and the verdict is computed in code from policy thresholds.
   <sub>`Project` · norbertbodziony · `TS` · call site [`app/api/moderate/route.ts`](https://github.com/NorbertBodziony/guard-jev/blob/HEAD/app/api/moderate/route.ts), read 2026-09-24 · ⚠ `one commit` `no licence`</sub>
 
+- **[guardrails-md](https://github.com/berget-ai/guardrails-md)** — Not Jev by default: a gate for opencode, pi and Claude Code that asks a System One model three Noul questions about each bash command (destructive, leaks credentials, breaks the repository's GUARDRAILS.md) and blocks it above 0.7, failing closed, using Berget's berget/bev. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · berget-ai · `TS` · `noul` · cited file [`core.ts`](https://github.com/berget-ai/guardrails-md/blob/HEAD/core.ts), read by a model 2026-11-05 · ⚠ `not Jev itself`</sub>
+
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — Observable browser stealth game: Jev makes typed guard judgments while deterministic code owns the world. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts), read 2026-09-22</sub>
 
@@ -301,9 +301,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-benchmark](https://github.com/themsquared/jev-benchmark)** — Reproducible benchmark for TypeSafe AI's Jev on agent tool-call risk classification: accuracy, latency, and whether the confidence score is worth routing on. <sub>(upstream description)</sub>
   <sub>`Benchmark` · themsquared · `Py` · call site [`bench.py`](https://github.com/themsquared/jev-benchmark/blob/HEAD/bench.py), read 2026-09-24</sub>
-
-- **[jev-block-android-ad](https://github.com/ufec/jev-block-android-ad)** — JevNoiseGate filters unwanted notifications and SMS on Android. Rather than matching keywords, an LLM decides what's noise — and only what it explicitly flags is blocked. Verification codes are matched on-device and never uploaded; anything uncertain passes through. <sub>(upstream description)</sub>
-  <sub>`Project` · ufec · `Kt` · call site [`app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt`](https://github.com/ufec/jev-block-android-ad/blob/HEAD/app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt), read 2026-09-22</sub>
 
 - **[jev-carryforward](https://github.com/dharun-cohere/jev-carryforward)** — What your last session knew, scored against what this one is doing. MCP server: a per-project ledger written as things happen, recalled per task with TypeSafe's Jev evaluation model via Vercel AI Gateway. <sub>(upstream description)</sub>
   <sub>`Plugin` · dharundp6 · `TS` · call site [`src/gateway.ts`](https://github.com/dharun-cohere/jev-carryforward/blob/HEAD/src/gateway.ts), read 2026-09-22</sub>
@@ -423,7 +420,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · codealive-ai · `TS` · call site [`jev-moderation.ts`](https://github.com/CodeAlive-AI/mastra-jev-moderation/blob/HEAD/jev-moderation.ts), read 2026-09-22</sub>
 
 - **[nachalnik](https://github.com/ljedrz/nachalnik)** — A transparent agent runtime in Rust: context, tools, permissions and requests as explicit state. Plus an MCP bridge and a terminal agent. <sub>(upstream description)</sub>
-  <sub>`Plugin` · ljedrz · `Rs` · call site [`kamchatka/src/args.rs`](https://github.com/ljedrz/nachalnik/blob/HEAD/kamchatka/src/args.rs), read 2026-09-24</sub>
+  <sub>`Plugin` · ljedrz · `Rs` · call site [`nachalnik-providers/src/system1.rs`](https://github.com/ljedrz/nachalnik/blob/HEAD/nachalnik-providers/src/system1.rs), read by a model 2026-11-05</sub>
 
 - **[omp-jevens-classifier](https://github.com/STRML/omp-jevens-classifier)** — Jev-powered model-judged permission gate for OMP (TypeSafe System One) <sub>(upstream description)</sub>
   <sub>`Project` · strml · `TS` · call site [`jev.ts`](https://github.com/STRML/omp-jevens-classifier/blob/HEAD/jev.ts), read 2026-09-22 · ⚠ `archived`</sub>
@@ -435,7 +432,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · olli0103 · `TS` · call site [`src/client.ts`](https://github.com/Olli0103/openclaw-typesafe-ai/blob/HEAD/src/client.ts), read 2026-09-22</sub>
 
 - **[opencode-jev-guard](https://github.com/CogFlux/opencode-jev-guard)** — OpenCode 2 plugin that sends every shell command (local or via FarHand) to TypeSafe's Jev and asks you first when it leaves files outside the project, installs software globally, changes global settings, is harmful or exposes private data <sub>(upstream description)</sub>
-  <sub>`Plugin` · cogflux · `TS` · call site [`jev-guard.ts`](https://github.com/CogFlux/opencode-jev-guard/blob/HEAD/jev-guard.ts), read 2026-09-24</sub>
+  <sub>`Plugin` · cogflux · `TS` · call site [`src/jev.ts`](https://github.com/CogFlux/opencode-jev-guard/blob/HEAD/src/jev.ts), read by a model 2026-11-05</sub>
 
 - **[openrouter-jev-mcp](https://github.com/ctmx/openrouter-jev-mcp)** — High-speed System One Jev AI decision gateway and MCP server powered by OpenRouter <sub>(upstream description)</sub>
   <sub>`Plugin` · ctmx · `Py` · call site [`examples/demo_typesafe_sdk.py`](https://github.com/ctmx/openrouter-jev-mcp/blob/HEAD/examples/demo_typesafe_sdk.py), read 2026-09-22</sub>
@@ -475,6 +472,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[switchboard](https://github.com/aniruddh-krovvidi/switchboard)** — Guardrail + model router for LLM gateways on TypeSafe's Jev (System One model), with an independent accuracy/calibration/latency evaluation. Stdlib Python. <sub>(upstream description)</sub>
   <sub>`Project` · aniruddh-krovvidi · `Py` · call site [`jev.py`](https://github.com/aniruddh-krovvidi/switchboard/blob/HEAD/jev.py), read 2026-09-24 · ⚠ `no licence`</sub>
+
+- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)** — Together AI fine-tuned Qwen3.5-4B to answer decisions with one option letter. In a paired rerun of three public Jev benchmarks it scored 50.6% on phishing against Jev 1.13's 62.9%, 93.3% on tool risk for both, and 96.3% against 100% on ticket routing. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · togethercomputer · `Py` · `choice` · call site [`evaluation/public-third-party/run.py`](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py), read by a model 2026-11-05</sub>
 
 - **[toolgate](https://github.com/ndolinschi/toolgate)** — Agent tool/MCP call gate — allow / ask_human / deny via TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/toolgate/blob/HEAD/src/lib/jev.ts), read 2026-09-24 · ⚠ `one commit` `no licence`</sub>

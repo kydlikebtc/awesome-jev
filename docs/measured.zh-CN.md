@@ -4,7 +4,7 @@
 
 本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。
 
-本目录收录的全部独立测量报告和负面结果 —— 共 80 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
+本目录收录的全部独立测量报告和负面结果 —— 共 83 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
@@ -54,6 +54,12 @@
 
 ## 其他独立测量报告
 
+- **[deep-searcher](https://github.com/zilliztech/deep-searcher)**<br>
+  深度研究工具：在 Milvus 等向量数据库中检索私有数据，再用 LLM 推理作答。它的评测把 LLM 自己做出的停止检索决定，与 Jev 就已收集的上下文是否足以作答给出的 noul 相比较，共 100 道题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★1k+ · zilliztech · `Py` · [调用点](https://github.com/zilliztech/deep-searcher/blob/HEAD/evaluation/jev_stopping/run_full100.py)，2026-09-22 阅读</sub>
+
+  > 只在评测中调用 Jev：在 100 道 2WikiMultiHopQA 题上，用 Jev 的一个 Noul 代替 LLM 自己做出的停止检索决定，并在 evaluation/jev_stopping/README.md 中公布对比结果（召回率、轮数、延迟、成本）。2026-11-05 由 AI 助手把类别从替代品改为基准；维护者尚未亲自阅读该报告。
+
 - **[Convex Coding Evals](https://github.com/convex/convex-evals)**<br>
   Convex 的编程基准新增了决策模型赛道：108 道关于 Convex 知识的选择题，每题四个选项，覆盖其 112 个编程评测中的 90 个。Jev 通过 OpenRouter 的决策端点，以一个 `choice` 回答每道题；语言模型则通过聊天补全接口回答同样的问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · ★100+ · convex · `TS` · `choice` · [调用点](https://github.com/convex/convex-evals/blob/HEAD/runner/decisions/providers.ts)，2026-10-29 模型阅读</sub>
@@ -62,7 +68,7 @@
 
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)**<br>
   受生物启发的智能体记忆：衰减、检索强化与巩固。零运行时依赖，基于 SQLite。 <sub>(机翻)</sub><br>
-  <sub>`基准测试` · ★100+ · kitfunso · `TS` · [调用点](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/rerankers/jev.ts)，2026-09-22 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
+  <sub>`基准测试` · ★100+ · kitfunso · `TS` · [调用点](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/infra/rerankers/endpoint.ts)，2026-11-05 模型阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
 
 - **[jev-arena](https://github.com/NanmiCoder/jev-arena)**<br>
   Jev 模型介绍与实测：通过 Choice / Score / Noul 将自然语言转为带类型的判断与概率，用于分类、评分和路由；支持与 DeepSeek 等模型对比评论打标、速度与结果，含 CSV/Excel 导入、原速回放与离线报告。<br>
@@ -177,6 +183,12 @@
 - **[can-jev-bayes](https://github.com/TomRichner/can-jev-bayes)**<br>
   Jev 会贝叶斯吗？把 TypeSafe AI 的 Jev 与贝叶斯最优策略对比，并测试它能否有效使用贝叶斯推理。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · tomrichner · `Py` · [调用点](https://github.com/TomRichner/can-jev-bayes/blob/HEAD/src/jevbandits/client.py)，2026-09-24 阅读</sub>
+
+- **[choosekit](https://github.com/notxf1le/choosekit)**<br>
+  一个 TypeScript 库，通过 llama.cpp、Ollama 或 OpenRouter，用模型的对数概率给一组固定选项打分。它的基准测试中，Jev 1.13 在 1,000 题的 SuperGPQA 样本上得 53.6%，在 SemIf 的 144 个用例上与本地 Qwen 3.8 27B 同为 96.53%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · notxf1le · `TS` · `JS` · `choice` · [调用点](https://github.com/notxf1le/choosekit/blob/HEAD/benchmarks/run-supergpqa.mjs)，2026-11-05 模型阅读</sub>
+
+  > choosekit 本身不调用 Jev：只有基准脚本通过 OpenRouter 的 Decisions API 运行 Jev 1.13，作为托管对照。README 说明 SemIf 的延迟数据包含不同的传输开销。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-05 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[Decision Models as Guardrails](https://dm-as-guardrails.raxitlabs.com)**<br>
   让 Jev 1.13.0、Jev 1.14.0 及其他 17 个系统（包括 Bedrock Guardrails）回答同样的 9,975 条带标注的护栏检查，分为六个套件。Jev 以 noul 回答每条检查，概率达到 0.5 或以上即拦截，不对任何模型单独调参。报告平衡准确率（含 95% 区间）以及按公开价格计算的每 1,000 次检查的美元成本。 <sub>(机翻)</sub><br>
@@ -389,6 +401,12 @@
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)**<br>
   首个独立的 System One 决策模型横评（Laya 对比 Jev）。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · instax-dutta · `Py` · [调用点](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py)，2026-09-22 阅读</sub>
+
+- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)**<br>
+  Together AI 微调 Qwen3.5-4B，用一个选项字母回答决策问题。在对三个公开 Jev 基准的配对重跑中，它在钓鱼邮件上得 50.6%，Jev 1.13 为 62.9%；工具风险上两者都是 93.3%；工单路由上为 96.3%，Jev 为 100%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · togethercomputer · `Py` · `choice` · [调用点](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py)，2026-11-05 模型阅读</sub>
+
+  > Jev 只作为基线：通过 OpenRouter 的 Decisions API 调用 typesafe/jev-1.13，每次请求一个 Choice 问题，题目来自 anisselbd/jev-phishing-bench、themsquared/jev-benchmark 和 WallerChen/jev-measured。结果和原始响应在 evaluation/public-third-party/。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-05 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[typesafe-jev-calibrate-for-code-review](https://github.com/Selmar/typesafe-jev-calibrate-for-code-review)**<br>
   关于为代码审查校准 Jev 的研究。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
