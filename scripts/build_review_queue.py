@@ -4,8 +4,8 @@
 Every entry on the page is a machine signal: a path, a string or a combination
 of fields matched a rule. None is a finding about the row, and nothing here is
 written back into catalog.json. The one exception opens the page: since
-2026-10-30, what someone read and left for a person in docs/held.txt
-(scripts/held.py), listed as it stands there. Whoever reads a row records the decision in that
+2026-10-30, what a run read and could not settle in docs/held.txt
+(scripts/held.py), listed as it stands there until the weekly upkeep settles it. Whoever reads a row records the decision in that
 row, as each section says, and the row leaves the page at the next regeneration.
 
 Lint could warn once per row instead, but dozens or hundreds of warnings on
@@ -687,29 +687,33 @@ def needs_person(catalog: list[dict], path: pathlib.Path | None = None) -> Secti
             rows.append((where, "candidate · 候选", esc(reason)))
     return Section(
         key="needs-person",
-        title_en="Held for a person: read, not settled",
-        title_zh="等人看：读过、未定",
+        title_en="Held for the weekly upkeep: read, not settled yet",
+        title_zh="等每周维护：读过、未定",
         about_en=(
             "Unlike every other section, these are not a rule's matches: someone (often a scheduled AI run) read "
             "a row or a discovery candidate, could not settle it, and wrote it into "
-            "[`docs/held.txt`](held.txt) with the reason, rows first, then candidates. A held candidate waits under "
+            "[`docs/held.txt`](held.txt) with the reason, rows first, then candidates. The next weekly upkeep "
+            "settles each line by the rules in [MAINTAINING.md](../MAINTAINING.md#candidates-a-run-cannot-settle-docsheldtxt), "
+            "so nothing here waits for a person. A held candidate waits under "
             "its own heading in the discovery issue instead of at the top of those to read. The bots' own lists "
             "are in their issues: links that died (`links`), cited files and strings that moved (`claims`, #28) and "
             "the weekly refresh's changes (`metadata`, #32)."
         ),
         about_zh=(
             "和其他各节不同，这些不是规则的命中：有人（通常是定时运行的 AI）读过某一行或某个发现候选，拿不准，"
-            "把它连同原因写进了 [`docs/held.txt`](held.txt)，先列目录行，再列候选。被搁置的候选在发现 issue 里"
+            "把它连同原因写进了 [`docs/held.txt`](held.txt)，先列目录行，再列候选。下一次每周维护按 "
+            "[MAINTAINING.md](../MAINTAINING.md#candidates-a-run-cannot-settle-docsheldtxt) 里的规则逐行处理，"
+            "这里没有哪一项要等人。被搁置的候选在发现 issue 里"
             "单列一节，不再排在待读的最前面。机器人自己的清单在各自的 issue 里：失效的链接（`links`）、"
             "移动了的引用文件和字符串（`claims`，#28）、每周刷新的变化（`metadata`，#32）。"
         ),
         leave_en=(
-            "To take one off, decide it: change or retire the row, add the candidate's row or decline it in "
+            "The weekly upkeep takes one off by deciding it: change or retire the row, add the candidate's row or decline it in "
             "`docs/declined.txt`, or conclude nothing needs doing. Then delete its line in `docs/held.txt` in the "
             "same pull request."
         ),
         leave_zh=(
-            "移出方法：做出决定。修改或退役该行，为候选添加一行或在 `docs/declined.txt` 中拒收它，"
+            "每周维护做出决定后移出：修改或退役该行，为候选添加一行或在 `docs/declined.txt` 中拒收它，"
             "或者认定什么都不用做。然后在同一个 pull request 里删去 `docs/held.txt` 中的对应行。"
         ),
         columns=(("Held", "搁置项"), ("What", "类型"), ("Reason given", "原因")),

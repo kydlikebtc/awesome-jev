@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""What someone read, could not settle, and left for a person: `docs/held.txt`.
+"""What a run read and could not settle yet: `docs/held.txt`.
 
 The scheduled drafting runs read the discovery queue from the top, and until
 2026-10-30 the top of it was the same fourteen candidates every day: each run
@@ -14,8 +14,10 @@ docs/declined.txt: an owner/name is a discovery candidate, anything else a
 catalogued row's slug. Holding decides nothing. scripts/queue_sync.py lists
 held candidates under their own heading instead of among those to read, and
 docs/review-queue.md#needs-person (scripts/build_review_queue.py) lists every
-line. A person's decision is still a row in catalog.json or a line in
-docs/declined.txt; whoever makes it deletes the line here.
+line. A decision is still a row in catalog.json or a line in
+docs/declined.txt; whoever makes it deletes the line here. Since 2026-11-05
+that is the next weekly upkeep, by the rules in MAINTAINING.md ("Candidates a
+run cannot settle"), because the owner asked that no step wait for a person.
 """
 
 from __future__ import annotations

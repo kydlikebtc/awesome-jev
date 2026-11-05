@@ -111,8 +111,8 @@ class CountsTest(unittest.TestCase):
             "favourable 7031, mixed 7032, not stated 7033), 7034 read by nobody",
             "thresholds     7036 constants on 7035 rows compared with a Jev answer (observed_thresholds; "
             "observations, not recommendations), 7037 rows read by nobody: noul probability 0.25–0.75 (7038 rows)",
-            "next changes at 7,100 entries",
-            "  7,000+ public resources for Jev",
+            "it states no count, so it changes only when reworded",
+            "  Public resources for Jev",
         ):
             self.assertIn(line, text)
 

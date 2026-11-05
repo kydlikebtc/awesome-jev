@@ -1,19 +1,22 @@
 # Closes last week's launch board and opens this week's, early every Monday
 # (scripts/launch_week.py; L12 and L13 of the 2026-11-03 launch-board plan,
-# docs/launches.md). Closing reads each launch's thumbs-up votes, holds any
-# that look like a ring of new accounts for a person, ranks the rest and
-# writes the counts (never who voted) into launches/<week>.json. Opening
-# creates each launch's vote post in the `Launches` Discussion category and
-# writes its number.
+# docs/launches.md). Closing reads each launch's thumbs-up votes, weighs them
+# (since rules v2, votes that look like a ring of new accounts count for
+# nothing, and nobody is asked), ranks the launches and writes the counts
+# (never who voted) into launches/<week>.json. Opening creates each launch's
+# vote post in the `Launches` Discussion category and writes its number.
 #
 # It does nothing, and succeeds, when there is no week to close or open, so
 # the watchdog sees it run every week before the first launch. With launches
 # on file and Discussions still off, opening fails and says why.
 #
 # Like metadata.yml, it commits what it wrote and pushes it to main, rebasing
-# onto anything pushed meanwhile; if that does not apply cleanly it never
-# forces, and leaves the commit on a branch for a person. It runs the checks
-# on its commit before pushing, and then asks pages.yml to rebuild the board.
+# onto anything pushed meanwhile. It never forces. If the commit no longer
+# applies, it runs the week again from the new tip of main, which is safe
+# because a vote post is found by its marker before one is made and a closed
+# week counts again the same way, up to three times; then it fails, and
+# retry.yml runs it once more. It runs the checks on its commit before
+# pushing, and then asks pages.yml to rebuild the board.
 # Once the files are on main it tells each launch's issue (L27): the vote
 # post's link when its week opens, and the issue is closed; the result when
 # the week closes. Each issue hears each thing once; a comment GitHub refuses
@@ -27,6 +30,12 @@ on:
   schedule:
     # Mondays 00:05 UTC: a week runs Monday 00:00 to Sunday 23:59 UTC.
     - cron: "5 0 * * 1"
+    # The same at 06:05 and 12:05. A run with nothing left to do does nothing,
+    # so these matter only when the first run failed twice (retry.yml) and the
+    # daily task has fixed the cause since: the week then opens the same day,
+    # with nobody to run it by hand.
+    - cron: "5 6 * * 1"
+    - cron: "5 12 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -83,18 +92,34 @@ jobs:
         if: always() && steps.commit.outputs.changed == 'true'
         run: python3 scripts/check.py --ci --quick
 
-      - name: Push to main, or fall back to a branch if main moved
+      - name: Push to main, running the week again from the new main if it moved
         id: land
         if: always() && steps.checks.outcome == 'success'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git pull -q --rebase origin main && git push -q origin HEAD:main; then
-            echo "landed=main" >> "$GITHUB_OUTPUT"
-          else
+          for attempt in 1 2 3; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then
+              echo "landed=main" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
             git rebase --abort 2>/dev/null || true
-            branch="launches/week-$(date -u +%Y-%m-%d)"
-            git push -q -u origin "HEAD:refs/heads/$branch" --force
-            echo "landed=$branch" >> "$GITHUB_OUTPUT"
-          fi
+            echo "main moved and the commit no longer applies (attempt $attempt): running the week again from the new main"
+            sleep $((attempt * 15))
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            python3 scripts/launch_week.py --monday
+            git add -A launches
+            if git diff --cached --quiet; then
+              echo "main already has the weeks as written"
+              echo "landed=main" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            git commit -q -m "launches: close last week, open this week"
+            python3 scripts/check.py --ci --quick
+          done
+          echo "::error title=The weeks are not on main::main kept moving during three attempts. retry.yml runs this once more, from the tip of main."
+          exit 1
 
       - name: Rebuild the site with the board
         if: always() && steps.land.outputs.landed == 'main'

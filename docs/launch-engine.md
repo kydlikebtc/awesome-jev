@@ -37,7 +37,7 @@ The rules, standard library only, with no other import from this repository:
 | `scripts/launches.py` | every rule of the board: products, weeks, vote weights, the ring check, ranking, badges and what a README badge says, hunters, the daily-board streak, the rising list |
 | `scripts/launch_votes.py` | reads one Discussion's thumbs-up reactions and voters' account ages over GraphQL |
 | `scripts/launch_week.py` | closes last week and opens this one; `--probe` checks the token may post |
-| `scripts/award.py` | the year's award shortlists |
+| `scripts/award.py` | the year's award: a shortlist per pattern, whose first is the award, written once the year has ended (`--due`) |
 | `scripts/_github.py` | the GitHub client the three above use (token, GraphQL query and mutation, job summary) |
 | `schema/launch.schema.json`, `schema/maker.schema.json` | the week file and the maker profile |
 
@@ -51,8 +51,11 @@ fork replaces those parts with its own:
 | `scripts/site_products.py` | this site's page shell (`site_pages.py`); another site renders `launches.weeks()` its own way. Its rising list takes two weekly snapshots of each row's stars (`history/<date>.json`, written here by `scripts/snapshot_stats.py`; `launches.refreshes()` reads them); without them the board has no rising list |
 
 The workflows: `.github/workflows/launch-intake.yml`, `launch-collect.yml`,
-`launch-week.yml`, `launch-votes.yml`, `launch-probe.yml`, and the issue form
-`.github/ISSUE_TEMPLATE/launch.yml`. `tests/test_launches.py`,
+`launch-week.yml`, `launch-votes.yml`, `launch-probe.yml`, `award.yml` and
+`retry.yml` (a failed run once more), and the issue form
+`.github/ISSUE_TEMPLATE/launch.yml`. None of them waits for a person: each
+case the intake or the close could not settle has a rule (docs/launches.md,
+"Decisions (2026-11-05)"). `tests/test_launches.py`,
 `tests/test_launch_flow.py`, `tests/test_mcp_launches.py` and
 `tests/test_launch_award.py` test all of it without the network.
 

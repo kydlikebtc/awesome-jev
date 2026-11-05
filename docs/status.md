@@ -44,7 +44,7 @@ table regenerated like the first half, each reading in it dated on its own.
 | Rows whose patterns a person recorded reading (`patterns_reviewed`) | 1 |
 | Rows whose patterns only a model recorded reading (`patterns_model_read_on`, since 2026-10-24; shown as a model's reading; [review queue](review-queue.md#model-read)) | 10 |
 | Rows whose call site only a model recorded reading (`evidence.model_read_on`; [review queue](review-queue.md#model-read)) | 158 |
-| Of a monthly sample of those rows, how many a person agreed with (`scripts/model_sample.py`, [docs/model-checks.json](model-checks.json); agreeing is not reading the file) | not yet sampled |
+| Of a monthly sample of those rows, how many the month's check agreed with, and whether a person or a second model reading checked (`scripts/model_sample.py`, [docs/model-checks.json](model-checks.json); agreeing is not reading the file) | not yet sampled |
 | Alternatives whose interface records were read in every cited file, some only by a model (`wire.source[].model_read_on`; [review queue](review-queue.md#model-read)) | 0 |
 | Overview rows that are projects or plugins with code, listed apart as not yet indexed by pattern ([review queue](review-queue.md#unsorted-overview)) | 253 |
 | Summaries that are the project's own GitHub description (`summary_source` `upstream-description`) | 750 of 1370 |

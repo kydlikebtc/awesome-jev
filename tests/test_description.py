@@ -3,9 +3,10 @@
 The GitHub repository description is the one published sentence CI cannot
 rewrite: editing it needs admin rights no workflow token has. It used to quote
 the exact entry count, so every merged row turned `main` red until someone ran
-`gh repo edit` by hand. It now states the count floored to the hundred, shared
-with the site's og:description, and a separate push-only workflow files an
-issue carrying the exact command instead of failing lint. No network here.
+`gh repo edit` by hand; then the count floored to the hundred, which still
+changed about weekly. Since 2026-11-05 it states no count, shared with the
+site's og:description, and a separate push-only workflow files an issue
+carrying the exact command instead of failing lint. No network here.
 """
 
 from __future__ import annotations
@@ -44,12 +45,13 @@ class PublicCountTest(unittest.TestCase):
         self.assertEqual(_stats.next_public_change(1300), 1400)
         self.assertEqual(_stats.next_public_change(42), 43)
 
-    def test_pitch_changes_only_across_a_hundred(self):
-        self.assertEqual(_stats.pitch_public({"entries": 1201}), _stats.pitch_public({"entries": 1299}))
-        self.assertNotEqual(_stats.pitch_public({"entries": 1299}), _stats.pitch_public({"entries": 1300}))
-        pitch = _stats.pitch_public({"entries": 1207})
-        self.assertTrue(pitch.startswith("1,200+ public resources for Jev"), pitch)
-        self.assertNotIn("1207", pitch)
+    def test_the_pitch_states_no_count(self):
+        # Since 2026-11-05: a count, even floored, changed weekly and waited for an admin.
+        pitches = {_stats.pitch_public({"entries": n}) for n in (42, 1201, 1299, 1300, 99999)}
+        self.assertEqual(len(pitches), 1)
+        pitch = pitches.pop()
+        self.assertTrue(pitch.startswith("Public resources for Jev"), pitch)
+        self.assertNotRegex(pitch, r"\d{2,}")
         self.assertNotIn("verified examples", pitch)
 
     def test_site_meta_description_is_the_same_rounded_sentence(self):
@@ -114,10 +116,10 @@ class CheckDescriptionTest(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertIn("status=match", self.status())
         self.assertFalse(self.report.exists())
-        self.assertIn("1,200+", out)
+        self.assertIn("the pitch states no count", out)
 
-    def test_adding_a_row_within_the_hundred_is_not_drift(self):
-        code, _ = self.run_check({"description": _stats.pitch_public({"entries": 1250})})
+    def test_adding_rows_is_never_drift(self):
+        code, _ = self.run_check({"description": _stats.pitch_public({"entries": 4321})})
         self.assertEqual(code, 0)
 
     def test_drift_for_a_person_exits_non_zero_with_the_command(self):
@@ -188,13 +190,13 @@ class WorkflowWiringTest(unittest.TestCase):
         # No event payload reaches a shell.
         self.assertNotIn("github.event", text.split("\non:")[1])
 
-    def test_counts_previews_the_rounded_description(self):
+    def test_counts_previews_the_description(self):
         out = subprocess.run(
             [sys.executable, str(ROOT / "scripts" / "counts.py")], capture_output=True, text=True, check=True
         ).stdout
         entries = len(__import__("json").loads((ROOT / "catalog.json").read_text()))
         self.assertIn(_stats.pitch_public({"entries": entries}), out)
-        self.assertIn(f"{_stats.next_public_change(entries):,}", out)
+        self.assertIn("it states no count", out)
 
 
 class IssueStepsTest(unittest.TestCase):
@@ -278,7 +280,8 @@ class IssueStepsTest(unittest.TestCase):
         self.assertIn("#7 already carries this command", out)
 
     def test_a_changed_fix_is_commented(self):
-        stale = check_description.issue_body("x", _stats.pitch_public({"entries": 1107}), 1107)
+        # The fix an earlier wording asked for (before 2026-11-05 the pitch carried a count).
+        stale = check_description.issue_body("x", "1,100+ public resources for Jev, TypeSafe AI's System One", 1107)
         self.assertNotIn(self.fix, stale)
         calls, _ = self.run_step("Open or update the description issue", existing="7", seen=stale)
         self.assertEqual(self.verbs(calls), ["label create", "issue list", "issue view", "issue comment"])

@@ -93,11 +93,11 @@ class VerdictTest(unittest.TestCase):
                  (seen(latest=run(5, "failure")), "no run of it has ever succeeded")]
         body = watchdog.markdown(found)
         rows = [line for line in body.splitlines() if line.startswith("| [")]
-        self.assertTrue(rows[0].startswith("| [links]("), "the one that needs a person comes first")
+        self.assertTrue(rows[0].startswith("| [links]("), "the one that needs attention comes first")
         self.assertIn("| never | 2026-10-19, failure ([run](https://x/run)) | no run of it has ever succeeded |", rows[0])
         self.assertIn("| 2026-10-20 |", rows[1])
         self.assertNotIn("days ago", body)
-        self.assertIn("1 of 2 need a person. -->", body)
+        self.assertIn("1 of 2 need attention. -->", body)
         self.assertNotIn("| Rows |", body, "without intake()'s answer the body is as it was")
 
     def test_rows_arriving_within_ten_days_are_healthy(self):
@@ -113,7 +113,7 @@ class VerdictTest(unittest.TestCase):
         body = watchdog.markdown(found, ("2026-10-01", "no row has entered catalog.json in 10 days: x"))
         self.assertIn("| [catalog.json](https://github.com/kydlikebtc/awesome-jev/blob/main/catalog.json) "
                       "| 2026-10-01 | no row has entered catalog.json in 10 days: x |", body)
-        self.assertIn("0 of 1 need a person; so do the rows. -->", body)
+        self.assertIn("0 of 1 need attention; so do the rows. -->", body)
 
 
 class MainTest(unittest.TestCase):
@@ -143,7 +143,7 @@ class MainTest(unittest.TestCase):
         code, out, body = self.run_main({"claims.yml": seen("claims.yml", success=run(2), latest=run(2))})
         self.assertEqual(code, 0)
         self.assertTrue(out.rstrip().endswith(
-            "watchdog: 1 scheduled workflow(s), 0 need a person; newest row 2026-10-20"))
+            "watchdog: 1 scheduled workflow(s), 0 need attention; newest row 2026-10-20"))
         self.assertIn("| nothing |", body)
         self.assertIn("| 2026-10-20 | nothing |", body)
 

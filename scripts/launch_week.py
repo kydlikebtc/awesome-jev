@@ -6,10 +6,10 @@ L12, L13 and L14 of the 2026-11-03 launch-board plan. launch-week.yml runs
 
 - **close** last week, if it is open: read each launch's thumbs-up votes from
   its Discussion (launch_votes.py), weigh them under the current rules
-  (launches.weigh), hold any launch whose votes look like a ring of new
-  accounts for a person (launches.ring, L14), rank the rest (launches.rank,
-  with badges for the top three), and write the results, `closed_on` and
-  `rules` into launches/<week>.json;
+  (launches.weigh; a launch whose votes look like a ring of new accounts
+  counts those votes as nothing under v2, launches.ring, L14), rank them
+  (launches.rank, with badges for the top three), and write the results,
+  `closed_on` and `rules` into launches/<week>.json;
 - **open** this week, if it is scheduled: for each launch on the board, find or
   create its vote post in the Discussion category named `Launches`, write the
   post's number, and mark the week open.
@@ -358,10 +358,13 @@ def week_voters(data: dict, rows: dict[str, dict], read: Callable[[int], list[di
 def close_week(data: dict, rows: dict[str, dict], *, on: dt.date,
                read: Callable[[int], list[dict]], before: dict | None = None) -> list[str]:
     """Count, check and rank an open week's launches, and mark it closed.
-    A closed week is counted again the same way, after a person changed a
-    launch's status (MAINTAINING.md). `read(number)` is a Discussion's votes.
-    `before` is the week before's file, if any: its posts are read again to
-    count the returning voters. Returns a line per launch."""
+    A closed week can be counted again the same way. `read(number)` is a
+    Discussion's votes. `before` is the week before's file, if any: its posts
+    are read again to count the returning voters. Returns a line per launch.
+
+    Since rule v2 (2026-11-05) nothing is held for a person: a launch whose
+    votes look like a ring of new accounts ranks with the rest, those votes
+    counted as nothing, and its result says `ring`. Under v1 it was held."""
     week = data["week"]
     if data.get("status") not in ("open", "closed"):
         raise WeekError(f"{week} is {data.get('status')}; only an open or closed week is counted")
@@ -377,14 +380,22 @@ def close_week(data: dict, rows: dict[str, dict], *, on: dt.date,
         row = rows.get(launch["product"], {})
         own = L.makers_of(row) + [launch["submitted_by"]]
         votes = read(launch["discussion"]) if launch.get("discussion") else []
-        # A person who read the votes and let the launch stand has the last word.
-        why = None if launch.get("cleared_by") else L.ring(votes, own=own, week=week)
+        # Under v1 a ring was held, and a person who read the votes and let
+        # the launch stand had the last word; a rule with `ring_young` (v2 on)
+        # settles it in weigh() instead.
+        settles = "ring_young" in L.RULES[L.CURRENT_RULES]
+        why = None if launch.get("cleared_by") or settles else L.ring(votes, own=own, week=week)
         if why:
             launch["status"], launch["reason"] = "held", why
             launch.pop("result", None)
             notes.append(f"{launch['product']}: held ({why})")
             continue
-        launch["result"] = {**L.weigh(votes, own=own, week=week), "rank": 1}
+        result = L.weigh(votes, own=own, week=week)
+        ringed = result.pop("ring", False)
+        launch["result"] = {**result, "rank": 1}
+        if ringed:
+            launch["result"]["ring"] = True
+            notes.append(f"{launch['product']}: {L.ring(votes, own=own, week=week)}")
         voters |= L.counted_voters(votes, own=own, week=week)
     ordered = L.rank(data["launches"], rows)
     for launch in ordered:
@@ -437,7 +448,7 @@ def opened_note(week: str, launch: dict) -> str:
     ])
 
 
-def closed_note(week: str, launch: dict, on_board: int) -> str:
+def closed_note(week: str, launch: dict, on_board: int, rules: str = L.CURRENT_RULES) -> str:
     """What a launch's issue is told when its week closes."""
     lines = [issue_marker(week, launch["product"], "closed")]
     result = launch.get("result")
@@ -447,8 +458,13 @@ def closed_note(week: str, launch: dict, on_board: int) -> str:
                   "keeps the decision."]
     elif result:
         lines += [f"**{week} closed.** This launch placed #{result['rank']} of {on_board}, with "
-                  f"{result['votes']} votes, {result['counted']} counted under rules v1. The week's page: "
+                  f"{result['votes']} votes, {result['counted']} counted under rules {rules}. The week's page: "
                   f"{SITE}weeks/{week}.html"]
+        if result.get("ring"):
+            young = L.RULES.get(rules, L.RULES[L.CURRENT_RULES])["young_days"]
+            lines += ["", f"Most of its votes came from accounts younger than {young} days or of unknown age, "
+                      "which looks like a ring, so under these rules those votes counted for nothing and it "
+                      "ranked by the others."]
         if result.get("badges"):
             place = result["badges"][0].split("-")[1]
             lines += ["", f"It placed in the top three, so its README badge now says \"#{place} launch of {week}\". "
@@ -501,7 +517,7 @@ def tell_issues(data: dict, stage: str, *, repository: str, ask: Ask, mutate: As
         if stage == "opened" and launch.get("status") == "scheduled" and launch.get("discussion"):
             body = opened_note(week, launch)
         elif stage == "closed" and (launch.get("result") or (launch.get("status") == "held" and launch.get("discussion"))):
-            body = closed_note(week, launch, on_board)
+            body = closed_note(week, launch, on_board, data.get("rules") or L.CURRENT_RULES)
         else:
             continue
         notes.append(f"{launch['product']} " + tell(number, issue_marker(week, launch["product"], stage), body,

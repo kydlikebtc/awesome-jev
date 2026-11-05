@@ -9,22 +9,31 @@ writes one comment that says one of three things:
 
 - **not launched**, and what to change: the product is not catalogued, is not
   a product (an article, an alternative, a row flagged as no example),
-  launched less than 60 days before the week, or the line is out of bounds;
-- **held for a person**, and why: the person says they made it and the check
-  could not confirm it (L11), the repository is a fork (T3), the product has
-  had no push for 60 days (T2), or the account opening the issue is younger
-  than 30 days or its age cannot be read;
-- **ready**: the launch as it will be written into launches/<week>.json.
+  launched less than 60 days before the week, the line is out of bounds, the
+  repository has had no push for 60 days (T2), or it is a fork with fewer than
+  FORK_COMMITS commits of its own (T3);
+- **ready**, for a week: the launch as it will be written into
+  launches/<week>.json. A maker the check cannot confirm (L11) launches as a
+  hunter, and an account younger than 30 days launches in the first week
+  after it turns 30;
+- **not read yet**: GitHub did not answer for the repository or the account,
+  so the Friday filing reads it again.
+
+Until 2026-11-05 a fork, a quiet repository, an unconfirmed maker and a young
+account were held for a person. The owner asked that no step of the board
+wait for one, so each now has the rule above, and nothing is held.
 
 A launch submitted by Thursday 23:59 UTC is for the next ISO week; later, for
 the week after. The day comes from the issue's own `created_at`, so the answer
-does not depend on when the check runs.
+does not depend on when the check runs. A launch that missed its week (it
+could not be read that Friday, or no filing ran) goes on the next one.
 
 Who counts as a maker: a login in the row's `makers` (or the login in its
-author.url when it names none), the repository's owner, or a public member of
-the organisation that owns it. A repository's collaborator list needs that
-repository's own push access, which no token here has; a maintainer confirms
-anyone else by adding them to the row's `makers`.
+author.url when it names none), the repository's owner, a public member of
+the organisation that owns it, or one of its MAKER_TOP most active
+contributors with at least MAKER_COMMITS commits (GitHub's public
+contributors list). A repository's collaborator list needs that repository's
+own push access, which no token here has.
 
 Like draft_from_issue.py, the job that answers an issue only comments: anyone
 can open one. `--collect WEEK` reads every open launch issue, assesses each the
@@ -32,17 +41,18 @@ same way, and writes the week's file (and, for a maker the check confirmed,
 their login and line onto the row) into the working tree. It never posts
 anything. Since L26 (2026-11-04) launch-collect.yml runs `--collect next` early
 every Friday, once the week's submissions have closed, and pushes what it
-wrote to `main` the way launch-week.yml does: a held launch is filed as held
-and waits for a person; nothing waits for a merge.
+wrote to `main` the way launch-week.yml does; nothing waits for a merge or a
+person.
 
-The three facts the check reads from GitHub (the repository, the account's age,
-an organisation's public members) need a token that can read any repository
-and account, which the workflow has and the scheduled task that collects on
-Fridays does not. So the comment records the facts it was given, in a hidden
-line, and `--collect` assesses each issue again against today's catalogue and
-weeks with the facts recorded in that issue's latest check comment, which only
-github-actions[bot] can have written. `--live` reads GitHub instead. An issue
-with no such comment is reported, not collected.
+The facts the check reads from GitHub (the repository, the account's age, an
+organisation's public members, the repository's top contributors and, for a
+fork, how far it is ahead of its parent) need a token that can read any
+repository and account. The comment records the facts it was given, in a
+hidden line, and `--collect` assesses each issue again against today's
+catalogue and weeks with the facts recorded in that issue's latest check
+comment, which only github-actions[bot] can have written, and reads GitHub for
+any fact the comment does not hold (launch-collect.yml has the token).
+`--live` reads every fact from GitHub instead.
 
 `--unread` lists the products about to launch whose call site nobody has
 read (evidence tier `file` or `none`): those on a week that has not opened
@@ -66,6 +76,7 @@ import os
 import pathlib
 import re
 import sys
+import urllib.parse
 from typing import Callable
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
@@ -100,6 +111,12 @@ CONFIRMS = (
 TAGLINE = (3, 80)
 TAGLINE_ZH = (2, 60)
 YOUNG_DAYS = 30
+# Who else counts as a maker: one of the repository's MAKER_TOP most active
+# contributors, with at least MAKER_COMMITS commits.
+MAKER_TOP = 3
+MAKER_COMMITS = 5
+# A fork launches once it has this many commits its parent does not.
+FORK_COMMITS = 10
 SITE_SLUG = re.compile(r"(?:#|/products/)([a-z0-9]+(?:-[a-z0-9]+)*)(?:\.html)?/?$")
 SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
@@ -110,7 +127,7 @@ SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
 class Lookup:
-    """The three facts the check reads from GitHub. Tests pass their own."""
+    """The facts the check reads from GitHub. Tests pass their own."""
 
     def repo(self, full_name: str) -> dict | None:
         data = _github.api_get(f"/repos/{full_name}")
@@ -124,6 +141,28 @@ class Lookup:
         status, _ = _github.api_fetch(f"/orgs/{org}/public_members/{login}")
         return status == 204
 
+    def contributors(self, full_name: str) -> list | None:
+        """[[login, commits], ...]: the repository's MAKER_TOP most active
+        contributors, or None when GitHub does not say."""
+        data = _github.api_get(f"/repos/{full_name}/contributors?per_page={MAKER_TOP}")
+        if not isinstance(data, list):
+            return None
+        return [[str(c.get("login") or ""), int(c.get("contributions") or 0)] for c in data[:MAKER_TOP]
+                if isinstance(c, dict)]
+
+    def ahead(self, fork: dict) -> int | None:
+        """How many commits a fork's default branch has that its parent's does
+        not, or None when GitHub does not say. `fork` is the repository as
+        repo() gives it."""
+        parent = fork.get("parent") or {}
+        owner = ((fork.get("owner") or {}).get("login")) or ""
+        if not (parent.get("full_name") and parent.get("default_branch") and fork.get("default_branch") and owner):
+            return None
+        base, head = (urllib.parse.quote(parent["default_branch"], safe=""),
+                      urllib.parse.quote(f"{owner}:{fork['default_branch']}", safe=":"))
+        data = _github.api_get(f"/repos/{parent['full_name']}/compare/{base}...{head}")
+        return data.get("ahead_by") if isinstance(data, dict) and isinstance(data.get("ahead_by"), int) else None
+
 
 class Recorder(Lookup):
     """Another lookup's answers, kept as the facts a comment records: only the
@@ -131,14 +170,16 @@ class Recorder(Lookup):
 
     def __init__(self, inner: Lookup):
         self.inner = inner
-        self.facts: dict = {"repos": {}, "users": {}, "members": {}}
+        self.facts: dict = {"repos": {}, "users": {}, "members": {}, "contributors": {}, "ahead": {}}
 
     def repo(self, full_name):
         data = self.inner.repo(full_name)
         kept = None if data is None else {
             "fork": bool(data.get("fork")),
-            "parent": {"full_name": ((data.get("parent") or {}).get("full_name"))},
+            "parent": {k: ((data.get("parent") or {}).get(k)) for k in ("full_name", "default_branch")},
             "owner": {k: (data.get("owner") or {}).get(k) for k in ("login", "type")},
+            "default_branch": data.get("default_branch"),
+            "pushed_at": data.get("pushed_at"),
         }
         self.facts["repos"][full_name] = kept
         return kept
@@ -154,22 +195,53 @@ class Recorder(Lookup):
         self.facts["members"][f"{org}/{login}"] = member
         return member
 
+    def contributors(self, full_name):
+        found = self.inner.contributors(full_name)
+        self.facts["contributors"][full_name] = found
+        return found
+
+    def ahead(self, fork):
+        found = self.inner.ahead(fork)
+        name = str(((fork.get("parent") or {}).get("full_name")) or "")
+        self.facts["ahead"][f"{name}..{((fork.get('owner') or {}).get('login')) or ''}"] = found
+        return found
+
 
 class Recorded(Lookup):
     """Answers from the facts a check comment recorded. A fact it did not
-    record reads as unreadable, which holds the launch for a person."""
+    record, or recorded as unreadable, is asked of `fallback` (GitHub, in the
+    workflow), and reads as unreadable when there is none."""
 
-    def __init__(self, facts: dict):
+    def __init__(self, facts: dict, fallback: Lookup | None = None):
         self.facts = facts
+        self.fallback = fallback
+
+    def _get(self, kind: str, key: str):
+        found = (self.facts.get(kind) or {}).get(key)
+        return found
 
     def repo(self, full_name):
-        return (self.facts.get("repos") or {}).get(full_name)
+        found = self._get("repos", full_name)
+        return found if found is not None or self.fallback is None else self.fallback.repo(full_name)
 
     def user(self, login):
-        return (self.facts.get("users") or {}).get(login)
+        found = self._get("users", login)
+        return found if found is not None or self.fallback is None else self.fallback.user(login)
 
     def public_member(self, org, login):
-        return (self.facts.get("members") or {}).get(f"{org}/{login}") is True
+        found = self._get("members", f"{org}/{login}")
+        if found is None and self.fallback is not None:
+            return self.fallback.public_member(org, login)
+        return found is True
+
+    def contributors(self, full_name):
+        found = self._get("contributors", full_name)
+        return found if found is not None or self.fallback is None else self.fallback.contributors(full_name)
+
+    def ahead(self, fork):
+        name = str(((fork.get("parent") or {}).get("full_name")) or "")
+        found = self._get("ahead", f"{name}..{((fork.get('owner') or {}).get('login')) or ''}")
+        return found if found is not None or self.fallback is None else self.fallback.ahead(fork)
 
 
 def facts_line(facts: dict) -> str:
@@ -225,7 +297,7 @@ def resolve(answer: str, catalog: list[dict]) -> dict | None:
     return find_row(catalog, full) if full else None
 
 
-def confirm_maker(login: str, row: dict, repo: dict | None, lookup: Lookup) -> str | None:
+def confirm_maker(login: str, row: dict, full: str | None, repo: dict | None, lookup: Lookup) -> str | None:
     """How `login` is confirmed as one of the row's makers, or None."""
     if L.login_key(login) in {L.login_key(m) for m in L.makers_of(row)}:
         return "named as a maker on the row"
@@ -234,25 +306,54 @@ def confirm_maker(login: str, row: dict, repo: dict | None, lookup: Lookup) -> s
         return "owns the repository"
     if owner.get("type") == "Organization" and owner.get("login") and lookup.public_member(owner["login"], login):
         return f"a public member of {owner['login']}"
+    for name, commits in (lookup.contributors(full) or [])[:MAKER_TOP] if full else []:
+        if L.login_key(str(name)) == L.login_key(login) and int(commits or 0) >= MAKER_COMMITS:
+            return f"one of the repository's {MAKER_TOP} most active contributors ({commits} commits)"
     return None
 
 
-def assess(issue: dict, catalog: list[dict], all_weeks: list[dict], *, lookup: Lookup) -> dict:
+def first_week_from(day: dt.date) -> str:
+    """The ISO week of the first Monday on or after `day`."""
+    return L.week_of(day + dt.timedelta(days=(7 - day.weekday()) % 7))
+
+
+def relaunch_problems(slug: str, week: str, all_weeks: list[dict]) -> list[str]:
+    monday, _ = L.week_days(week)
+    out = []
+    for past_week, _launch in L.launched(all_weeks).get(slug, []):
+        past_monday, _ = L.week_days(past_week)
+        if past_week == week:
+            out.append(f"`{slug}` is on {week} already")
+        elif 0 <= (monday - past_monday).days < L.RELAUNCH_DAYS:
+            out.append(f"`{slug}` launched in {past_week}; it can launch again in the week of "
+                       f"Monday {L.relaunch_from(past_week)}")
+    return out
+
+
+def assess(issue: dict, catalog: list[dict], all_weeks: list[dict], *, lookup: Lookup,
+           not_before: str | None = None) -> dict:
     """What the check makes of one launch issue:
 
-    {"verdict": "ready" | "held" | "refused" | "collected", "week": ..., "row": slug or None,
-     "problems": [...], "holds": [...], "maker": how the maker was confirmed or None,
-     "launch": the launch item, or None when refused}"""
+    {"verdict": "ready" | "unread" | "refused" | "collected", "week": ..., "row": slug or None,
+     "problems": [...], "notes": [...], "unread": [...], "maker": how the maker was confirmed or None,
+     "launch": the launch item, or None unless ready}
+
+    Nothing is held for a person (since 2026-11-05): each case the check used
+    to hold has a rule (the module's docstring). `not_before` is the week the
+    Friday filing is filling: a launch whose own week has passed goes on it."""
     form = parse_form(issue.get("body") or "", FIELDS)
     login = str((issue.get("user") or {}).get("login") or "")
     opened = opened_at(issue)
-    out: dict = {"verdict": "refused", "week": None, "row": None, "problems": [], "holds": [],
+    out: dict = {"verdict": "refused", "week": None, "row": None, "problems": [], "notes": [], "unread": [],
                  "maker": None, "launch": None}
     if not login or opened is None:
         out["problems"].append("the issue has no author or no date, so nothing can be checked")
         return out
-    week = out["week"] = target_week(opened)
-    monday, _ = L.week_days(week)
+    week = target_week(opened)
+    if not_before and week < not_before:
+        out["notes"].append(f"its own week, {week}, passed before it was filed, so it goes on {not_before}")
+        week = not_before
+    out["week"] = week
     for existing in all_weeks:
         for launch in existing.get("launches") or []:
             if launch.get("issue") == issue.get("number"):
@@ -271,13 +372,7 @@ def assess(issue: dict, catalog: list[dict], all_weeks: list[dict], *, lookup: L
             f"`{slug}` is a {row.get('kind')} row" + ("" if row.get("has_code") else " without code")
             + (" flagged as not an example of deciding with Jev" if set(row.get("flags") or []) & L.query.DISQUALIFYING else "")
             + f"; only {', '.join(L.BOARD_KINDS)} rows with code launch")
-    for past_week, _launch in L.launched(all_weeks).get(slug, []):
-        past_monday, _ = L.week_days(past_week)
-        if past_week == week:
-            out["problems"].append(f"`{slug}` is on {week} already")
-        elif 0 <= (monday - past_monday).days < L.RELAUNCH_DAYS:
-            out["problems"].append(f"`{slug}` launched in {past_week}; it can launch again in the week of "
-                                   f"Monday {L.relaunch_from(past_week)}")
+    out["problems"] += relaunch_problems(slug, week, all_weeks)
 
     tagline = one_line(form.get("tagline", ""))
     tagline_zh = one_line(form.get("tagline_zh", ""))
@@ -296,31 +391,57 @@ def assess(issue: dict, catalog: list[dict], all_weeks: list[dict], *, lookup: L
 
     full = _github.repo_of(row)
     repo = lookup.repo(full) if full else None
+    if full and repo is None:
+        out["unread"].append(f"the repository {full}")
+    # T2: a product people can use now. GitHub's own last push when it was
+    # read, so a maker who pushes and edits the issue is checked again at
+    # once; the row's weekly fact otherwise.
+    pushed = L.day((repo or {}).get("pushed_at")) or L.day(row.get("repo_pushed_at"))
+    if pushed and (opened.date() - pushed).days > L.QUIET_DAYS:
+        out["problems"].append(
+            f"the repository has had no push since {pushed}, more than {L.QUIET_DAYS} days before this issue; "
+            "a launch is for a product in use. After a push, edit the issue and the check runs again")
+    # T3: a fork launches once it is more than a copy.
+    if repo and repo.get("fork"):
+        parent = ((repo.get("parent") or {}).get("full_name")) or "another repository"
+        ahead = lookup.ahead(repo)
+        if ahead is None:
+            out["unread"].append(f"how far the fork is ahead of {parent}")
+        elif ahead < FORK_COMMITS:
+            out["problems"].append(
+                f"the repository is a fork of {parent} with {ahead} commit(s) of its own; a fork launches once it "
+                f"has {FORK_COMMITS}. If {parent} is catalogued, launch it instead")
+        else:
+            out["notes"].append(f"a fork of {parent} with {ahead} commits of its own")
+    if out["problems"]:
+        return out
+
     role = "hunter"
     if role_answer == MAKER:
-        how = confirm_maker(login, row, repo, lookup)
+        how = confirm_maker(login, row, full, repo, lookup)
         if how:
             role, out["maker"] = "maker", how
         else:
-            # Filed as a hunter's until a person confirms it: a maker launch's
-            # submitter is always on the row's makers (check_launches.py).
-            out["holds"].append(
-                f"{login} says they made it, and the check could not confirm it (not on the row's makers, "
-                "not the repository's owner, not a public member of its organisation); a maintainer who "
-                "confirms it adds them to the row's `makers` and sets the role to maker")
-    if full and repo is None:
-        out["holds"].append(f"the repository {full} could not be read, so whether it is a fork is unknown")
-    elif repo and repo.get("fork"):
-        parent = ((repo.get("parent") or {}).get("full_name")) or "another repository"
-        out["holds"].append(f"the repository is a fork of {parent}; a person checks it is more than a copy")
-    if L.quiet(row, L.as_of(catalog)):
-        out["holds"].append(f"the repository has had no push for more than {L.QUIET_DAYS} days")
+            out["notes"].append(
+                f"{login} says they made it, and the check could not confirm it (not on the row's makers, not "
+                f"the repository's owner, not a public member of its organisation, not one of its {MAKER_TOP} "
+                f"most active contributors), so it launches as a hunter's. The vote post says who launched it")
     user = lookup.user(login)
     born = L.day((user or {}).get("created_at"))
     if born is None:
-        out["holds"].append(f"the age of the account {login} could not be read")
+        out["unread"].append(f"the age of the account {login}")
     elif (opened.date() - born).days < YOUNG_DAYS:
-        out["holds"].append(f"the account {login} is younger than {YOUNG_DAYS} days")
+        later = first_week_from(born + dt.timedelta(days=YOUNG_DAYS))
+        if later > week:
+            out["notes"].append(f"the account {login} is younger than {YOUNG_DAYS} days, so the launch waits "
+                                f"for {later}, the first week after it turns {YOUNG_DAYS} days old")
+            week = out["week"] = later
+            out["problems"] += relaunch_problems(slug, week, all_weeks)
+            if out["problems"]:
+                return out
+    if out["unread"]:
+        out["verdict"] = "unread"
+        return out
 
     launch: dict = {
         "product": slug,
@@ -332,11 +453,9 @@ def assess(issue: dict, catalog: list[dict], all_weeks: list[dict], *, lookup: L
     }
     if tagline_zh:
         launch["tagline_zh"] = tagline_zh
-    launch["status"] = "held" if out["holds"] else "scheduled"
-    if out["holds"]:
-        launch["reason"] = ("; ".join(out["holds"]))[:300]
+    launch["status"] = "scheduled"
     out["launch"] = launch
-    out["verdict"] = "held" if out["holds"] else "ready"
+    out["verdict"] = "ready"
     return out
 
 
@@ -359,14 +478,18 @@ def comment(result: dict, facts: dict | None = None) -> str:
         lines += ["This is an automatic check, and it cannot put the launch on the board yet:", ""]
         lines += [f"- {p}" for p in result["problems"]]
         lines += ["", "Edit the issue to fix it, and the check runs again."]
-    elif verdict == "held":
-        lines += [f"Held for a person, for {span}:", ""]
-        lines += [f"- {h}" for h in result["holds"]]
-        lines += ["", "A maintainer decides before the week opens on Monday. Nothing to do unless they ask."]
+    elif verdict == "unread":
+        lines += ["This is an automatic check, and GitHub did not answer for:", ""]
+        lines += [f"- {u}" for u in result["unread"]]
+        lines += ["", f"The filing early on Friday reads it again and puts the launch on {span} if it passes. "
+                  "Nothing to do."]
     else:
         maker = f" Confirmed as a maker: {result['maker']}." if result.get("maker") else ""
         lines.append(f"Ready for {span}.{maker} It is filed on the board early on Friday, and its "
                      "Discussion opens on Monday, where a thumbs-up is a vote; the link is posted here then.")
+    if result.get("notes") and verdict in ("ready", "unread"):
+        lines += ["", "Settled by the board's rules, with nobody to wait for:", ""]
+        lines += [f"- {n}" for n in result["notes"]]
     if result.get("launch") and verdict != "collected":
         text = json.dumps(result["launch"], ensure_ascii=False, indent=2)
         tick = fence(text)
@@ -387,9 +510,10 @@ def collect(week: str, issues: list[dict], catalog: list[dict], all_weeks: list[
     """The week's file with every open launch issue for it added, the rows a
     confirmed maker's launch fills in (their login on `makers`, their line as
     the row's `tagline` when it has none), and a line per issue saying what
-    happened to it. Launches already on the file stay as they are. `lookup`
-    is one Lookup for every issue, or a function giving each issue its own
-    (its recorded facts), None when it has none."""
+    happened to it. Launches already on the file stay as they are, and an
+    issue whose own week passed unfiled goes on this one. `lookup` is one
+    Lookup for every issue, or a function giving each issue its own (its
+    recorded facts, GitHub for the rest), None when it has none."""
     current = next((w for w in all_weeks if w.get("week") == week), None)
     data = json.loads(json.dumps(current)) if current else {"week": week, "status": "scheduled", "launches": []}
     if data.get("status") != "scheduled":
@@ -403,11 +527,15 @@ def collect(week: str, issues: list[dict], catalog: list[dict], all_weeks: list[
         if own is None:
             notes.append(f"#{number}: no check comment from {BOT} to collect from; run launch-intake on it")
             continue
-        result = assess(issue, catalog, all_weeks, lookup=own)
+        result = assess(issue, catalog, all_weeks, lookup=own, not_before=week)
         if result["verdict"] == "collected" or result["week"] != week:
             continue
         if result["verdict"] == "refused":
             notes.append(f"#{number}: not launched ({'; '.join(result['problems'])})")
+            continue
+        if result["verdict"] == "unread":
+            notes.append(f"#{number}: GitHub did not answer for {'; '.join(result['unread'])}; "
+                         "the next Friday's filing tries again")
             continue
         launch = result["launch"]
         if any(x.get("product") == launch["product"] for x in data["launches"]):
@@ -418,7 +546,7 @@ def collect(week: str, issues: list[dict], catalog: list[dict], all_weeks: list[
             continue
         data["launches"].append(launch)
         notes.append(f"#{number}: {launch['product']} {launch['status']}"
-                     + (f" ({launch['reason']})" if launch.get("reason") else ""))
+                     + (f" ({'; '.join(result['notes'])})" if result.get("notes") else ""))
         if result.get("maker"):
             row = rows[launch["product"]]
             before = json.dumps(row, sort_keys=True)
@@ -507,7 +635,7 @@ def main(argv: list[str] | None = None, *, lookup: Lookup | None = None,
                         help="list the products about to launch whose call site nobody has read")
     parser.add_argument("--out", metavar="FILE", help="with --event or --issue: write the comment here")
     parser.add_argument("--live", action="store_true",
-                        help="with --collect: read GitHub's facts again instead of those each check comment recorded")
+                        help="with --collect: read every fact from GitHub again, not first from each check comment")
     parser.add_argument("--on", metavar="DAY", help="today, UTC, for --collect next (default: the clock)")
     parser.add_argument("--root", default=str(ROOT), help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
@@ -536,9 +664,10 @@ def main(argv: list[str] | None = None, *, lookup: Lookup | None = None,
             print(f"error: --collect takes an ISO week like 2026-W47, not {week!r}", file=sys.stderr)
             return 2
         try:
-            def recorded(issue: dict) -> Lookup | None:
-                facts = recorded_facts(comments_for(repo, issue["number"]))
-                return Recorded(facts) if facts is not None else None
+            def recorded(issue: dict) -> Lookup:
+                # The facts the issue's check comment recorded, and GitHub for
+                # any it did not (an issue the check never answered: all of them).
+                return Recorded(recorded_facts(comments_for(repo, issue["number"])) or {}, fallback=lookup)
 
             data, changed, notes = collect(week, issues_for(repo), catalog, all_weeks,
                                            lookup=lookup if args.live else recorded)

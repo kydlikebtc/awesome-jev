@@ -78,6 +78,7 @@ class ProblemsTest(unittest.TestCase):
         self.assertEqual(self.problems(
             check("2026-12", {"r01": "agree", "r02": "disagree"}, notes={"r02": "it calls the API, not Jev"}),
             check("2027-01", {"r03": "agree"}),
+            check("2027-02", {"r04": "agree"}, by="weekly upkeep", checker="model"),
         ), [])
 
     def test_what_it_refuses(self):
@@ -85,8 +86,10 @@ class ProblemsTest(unittest.TestCase):
             check("2026-13", {"r01": "yes"}),
             check("2027-01", {"r01": "agree", "nope": "agree"}, by="", on="soon", notes={"r09": "x"}),
             check("2027-01", {}),
+            check("2027-02", {"r04": "agree"}, checker="robot"),
         ))
         for text in ("month must be YYYY-MM", "answer must be one of agree, disagree",
+                     "`checker` must be one of person, model",
                      "r01 was sampled in an earlier month", "nope is in neither", "`by` names",
                      "`on` must be the date", "notes must map sampled slugs", "2027-01 is checked twice",
                      "rows must map 1 to 20"):
@@ -111,9 +114,19 @@ class StatusTest(unittest.TestCase):
                 check("2026-12", {"d": "agree"}),
             ]}))
             latest = _stats.model_checks(path)
-        self.assertEqual(latest, {"month": "2027-01", "sampled": 3, "agreed": 2})
-        self.assertEqual(build_docs.model_check_cell(latest), "2 of 3 (2027-01)")
+        self.assertEqual(latest, {"month": "2027-01", "sampled": 3, "agreed": 2, "checker": "person"})
+        self.assertEqual(build_docs.model_check_cell(latest), "2 of 3 (2027-01, checked by a person)")
         self.assertEqual(build_docs.model_check_cell(None), "not yet sampled")
+
+    def test_a_model_s_check_says_so(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = pathlib.Path(tmp) / "model-checks.json"
+            path.write_text(json.dumps({"checks": [
+                check("2026-12", {"a": "agree", "b": "agree"}, by="weekly upkeep", checker="model"),
+            ]}))
+            latest = _stats.model_checks(path)
+        self.assertEqual(latest["checker"], "model")
+        self.assertEqual(build_docs.model_check_cell(latest), "2 of 2 (2026-12, checked by a second model reading)")
 
 
 if __name__ == "__main__":

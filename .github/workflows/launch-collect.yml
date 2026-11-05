@@ -2,17 +2,20 @@
 # have closed on Thursday 23:59 UTC (scripts/launch_intake.py --collect next;
 # L26 of the launch board's second round, docs/launches.md). Each open launch
 # issue is checked again against today's catalogue with the facts its check
-# comment recorded, and written into launches/<week>.json; a maker the check
-# confirmed gets their login, and their line when the row has none, on the
-# product's row. A held launch is filed as held and waits for a person, as
-# before. Until 2026-11-04 the daily task collected into its pull request and
-# the week waited for the owner's Friday merge; now nothing waits for a merge.
+# comment recorded (GitHub, with this token, for any it did not record), and
+# written into launches/<week>.json; a maker the check confirmed gets their
+# login, and their line when the row has none, on the product's row. Until
+# 2026-11-04 the daily task collected into its pull request and the week
+# waited for the owner's Friday merge; since 2026-11-05 nothing is held for a
+# person either: every case the check used to hold has a rule.
 #
 # Like launch-week.yml and metadata.yml, it regenerates what the row changes
 # feed, commits, runs the checks on that commit, and pushes to main, rebasing
-# onto anything pushed meanwhile; if that does not apply cleanly it never
-# forces, and leaves the commit on a branch for a person. Then it asks
-# pages.yml to rebuild the board, which lists next week's launches.
+# onto anything pushed meanwhile. It never forces. If the commit no longer
+# applies, it files the week again from the new tip of main, which is safe
+# because filing only writes files, up to three times; then it fails, and
+# retry.yml runs it once more. Then it asks pages.yml to rebuild the board,
+# which lists next week's launches.
 #
 # Injection review: no `github.event.*` value reaches a `run:` block, and the
 # workflow takes no inputs. Issue text reaches only the script, which reads it
@@ -23,6 +26,12 @@ on:
   schedule:
     # Fridays 00:20 UTC: a launch submitted by Thursday 23:59 UTC is for next week.
     - cron: "20 0 * * 5"
+    # The same at 06:20 and 12:20. Filing the same issues again changes
+    # nothing, so these matter only when the first run failed twice
+    # (retry.yml) and the daily task has fixed the cause since, or a launch
+    # was edited to pass in the meantime.
+    - cron: "20 6 * * 5"
+    - cron: "20 12 * * 5"
   workflow_dispatch:
 
 permissions:
@@ -80,18 +89,35 @@ jobs:
         if: steps.commit.outputs.changed == 'true'
         run: python3 scripts/check.py --ci --quick
 
-      - name: Push to main, or fall back to a branch if main moved
+      - name: Push to main, filing again from the new main if it moved
         id: land
         if: steps.checks.outcome == 'success'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git pull -q --rebase origin main && git push -q origin HEAD:main; then
-            echo "landed=main" >> "$GITHUB_OUTPUT"
-          else
+          for attempt in 1 2 3; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then
+              echo "landed=main" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
             git rebase --abort 2>/dev/null || true
-            branch="launches/collect-$(date -u +%Y-%m-%d)"
-            git push -q -u origin "HEAD:refs/heads/$branch" --force
-            echo "landed=$branch" >> "$GITHUB_OUTPUT"
-          fi
+            echo "main moved and the commit no longer applies (attempt $attempt): filing again from the new main"
+            sleep $((attempt * 15))
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            python3 scripts/launch_intake.py --collect next | tee /tmp/collect.log
+            python3 scripts/regenerate.py > /dev/null
+            git add -A launches catalog.json README.md README.zh-CN.md docs llms.txt examples/index.json examples/README.md skills/awesome-jev/SKILL.md
+            if git diff --cached --quiet; then
+              echo "main already has the week as filed"
+              echo "landed=main" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            git commit -q -m "launches: file next week's launches" -m "$(tail -n 1 /tmp/collect.log)"
+            python3 scripts/check.py --ci --quick
+          done
+          echo "::error title=Next week's launches are not on main::main kept moving during three attempts. retry.yml runs this once more, from the tip of main."
+          exit 1
 
       - name: Rebuild the site with the board
         if: steps.land.outputs.landed == 'main'

@@ -45,10 +45,12 @@ def issue(number: int = 81, login: str = "o", created: str = "2026-11-12T10:00:0
 
 
 class FakeLookup(launch_intake.Lookup):
-    def __init__(self, repos=None, users=None, members=()):
+    def __init__(self, repos=None, users=None, members=(), contributors=None, ahead=None):
         self.repos = repos if repos is not None else {}
         self.users = users if users is not None else {}
         self.members = set(members)
+        self.top = contributors if contributors is not None else {}
+        self.forks = ahead if ahead is not None else {}
 
     def repo(self, full_name):
         return self.repos.get(full_name, {"owner": {"login": full_name.split("/")[0], "type": "User"}, "fork": False})
@@ -58,6 +60,12 @@ class FakeLookup(launch_intake.Lookup):
 
     def public_member(self, org, login):
         return (org, login) in self.members
+
+    def contributors(self, full_name):
+        return self.top.get(full_name, [])
+
+    def ahead(self, fork):
+        return self.forks.get(fork["parent"]["full_name"])
 
 
 def assess(i: dict, *, weeks=(), catalog=CATALOG, lookup=None) -> dict:
@@ -136,26 +144,69 @@ class AssessTest(unittest.TestCase):
         result = assess(issue(login="dev", product="orgwork"), catalog=catalog, lookup=lookup)
         self.assertEqual((result["verdict"], result["maker"]), ("ready", "a public member of acme"))
         stranger = assess(issue(login="stranger", product="orgwork"), catalog=catalog, lookup=lookup)
-        self.assertEqual(stranger["verdict"], "held")
-        # Filed as a hunter's until a person confirms it.
-        self.assertEqual(stranger["launch"]["role"], "hunter")
-        self.assertIn("says they made it", stranger["launch"]["reason"])
+        # Nobody is asked: a maker the check cannot confirm launches as a hunter, and the comment says why.
+        self.assertEqual((stranger["verdict"], stranger["launch"]["role"]), ("ready", "hunter"))
+        self.assertEqual(stranger["launch"]["status"], "scheduled")
+        self.assertNotIn("reason", stranger["launch"])
+        self.assertIn("says they made it", stranger["notes"][0])
+        self.assertIn("launches as a hunter's", launch_intake.comment(stranger))
+
+    def test_a_top_contributor_with_enough_commits_is_a_maker(self):
+        top = FakeLookup(contributors={"o/alpha": [["lead", 120], ["helper", 4]]})
+        lead = assess(issue(login="lead"), lookup=top)
+        self.assertEqual((lead["verdict"], lead["launch"]["role"]), ("ready", "maker"))
+        self.assertIn("most active contributors (120 commits)", lead["maker"])
+        helper = assess(issue(login="helper"), lookup=top)  # 4 commits: too few
+        self.assertEqual(helper["launch"]["role"], "hunter")
 
     def test_a_hunter_needs_no_confirming(self):
         result = assess(issue(login="h", role=launch_intake.HUNTER))
         self.assertEqual((result["verdict"], result["launch"]["role"]), ("ready", "hunter"))
 
-    def test_a_fork_a_quiet_repository_and_a_new_account_are_held(self):
-        fork = FakeLookup(repos={"o/alpha": {"owner": {"login": "o", "type": "User"}, "fork": True,
-                                             "parent": {"full_name": "up/alpha"}}})
-        result = assess(issue(), lookup=fork)
-        self.assertEqual(result["verdict"], "held")
-        self.assertIn("fork of up/alpha", result["launch"]["reason"])
-        self.assertIn("no push", assess(issue(product="quiet", role=launch_intake.HUNTER, login="h"))["launch"]["reason"])
+    def test_a_fork_launches_once_it_has_commits_of_its_own(self):
+        fork = {"o/alpha": {"owner": {"login": "o", "type": "User"}, "fork": True, "default_branch": "main",
+                            "parent": {"full_name": "up/alpha", "default_branch": "main"}}}
+        copy = assess(issue(), lookup=FakeLookup(repos=fork, ahead={"up/alpha": 3}))
+        self.assertEqual(copy["verdict"], "refused")
+        self.assertIn("fork of up/alpha with 3 commit(s) of its own", copy["problems"][0])
+        grown = assess(issue(), lookup=FakeLookup(repos=fork, ahead={"up/alpha": 40}))
+        self.assertEqual(grown["verdict"], "ready")
+        self.assertIn("40 commits of its own", grown["notes"][0])
+        unknown = assess(issue(), lookup=FakeLookup(repos=fork))
+        self.assertEqual(unknown["verdict"], "unread")
+        self.assertIn("ahead of up/alpha", unknown["unread"][0])
+
+    def test_a_quiet_repository_is_refused_until_it_moves(self):
+        quiet = assess(issue(product="quiet", role=launch_intake.HUNTER, login="h"))
+        self.assertEqual(quiet["verdict"], "refused")
+        self.assertIn("no push since", quiet["problems"][0])
+        # GitHub's own last push, when it was read, counts over the row's weekly fact.
+        pushed = FakeLookup(repos={"o/quiet": {"owner": {"login": "o", "type": "User"}, "fork": False,
+                                               "pushed_at": "2026-11-11T08:00:00Z"}})
+        self.assertEqual(assess(issue(product="quiet", role=launch_intake.HUNTER, login="h"), lookup=pushed)["verdict"],
+                         "ready")
+
+    def test_a_new_account_launches_in_the_first_week_after_it_turns_thirty_days(self):
         young = FakeLookup(users={"o": {"created_at": "2026-11-01T00:00:00Z"}})
-        self.assertIn("younger than 30 days", assess(issue(), lookup=young)["launch"]["reason"])
-        unknown = FakeLookup(users={"o": None})
-        self.assertIn("could not be read", assess(issue(), lookup=unknown)["launch"]["reason"])
+        result = assess(issue(), lookup=young)
+        # 2026-11-01 plus 30 days is Wednesday 2026-12-01; the next Monday, 2026-12-07, starts 2026-W50.
+        self.assertEqual((result["verdict"], result["week"]), ("ready", "2026-W50"))
+        self.assertIn("waits for 2026-W50", result["notes"][0])
+        self.assertIn("Ready for **2026-W50**", launch_intake.comment(result))
+        old_enough = FakeLookup(users={"o": {"created_at": "2026-10-01T00:00:00Z"}})
+        self.assertEqual(assess(issue(), lookup=old_enough)["week"], "2026-W47")
+
+    def test_what_github_does_not_answer_is_read_again_on_friday(self):
+        for lookup, words in ((FakeLookup(users={"o": None}), "the age of the account o"),
+                              (FakeLookup(repos={"o/alpha": None}), "the repository o/alpha")):
+            with self.subTest(words=words):
+                result = assess(issue(), lookup=lookup)
+                self.assertEqual(result["verdict"], "unread")
+                self.assertIn(words, result["unread"])
+                self.assertIsNone(result["launch"])
+                text = launch_intake.comment(result)
+                self.assertIn("GitHub did not answer for", text)
+                self.assertIn("reads it again", text)
 
     def test_an_issue_already_on_a_week_says_so(self):
         on = week("2026-W47", "scheduled", [launch("alpha", issue=81)])
@@ -269,16 +320,35 @@ class CollectTest(unittest.TestCase):
                                           comments_for=lambda repo, number: comments[number])
             self.assertEqual(code, 0)
             data = json.loads((root / "launches" / "2026-W47.json").read_text())
+            # #82 from its recorded facts (GitHub, here, could not read dev); #83, which the check never
+            # answered, from GitHub.
             self.assertEqual([(x["product"], x["role"], x["status"]) for x in data["launches"]],
-                             [("orgwork", "maker", "scheduled")])
-            self.assertIn("#83: no check comment", out.getvalue())
+                             [("orgwork", "maker", "scheduled"), ("beta", "hunter", "scheduled")])
             done = next(r for r in json.loads((root / "catalog.json").read_text()) if r["slug"] == "orgwork")
             self.assertEqual(done["makers"], ["acme", "dev"])
 
-    def test_a_fact_the_comment_did_not_record_holds_the_launch(self):
-        result = launch_intake.assess(issue(), CATALOG, [], lookup=launch_intake.Recorded({}))
-        self.assertEqual(result["verdict"], "held")
-        self.assertIn("could not be read", result["launch"]["reason"])
+    def test_a_fact_the_comment_did_not_record_is_read_from_github(self):
+        alone = launch_intake.assess(issue(), CATALOG, [], lookup=launch_intake.Recorded({}))
+        self.assertEqual(alone["verdict"], "unread")
+        both = launch_intake.assess(issue(), CATALOG, [], lookup=launch_intake.Recorded({}, fallback=FakeLookup()))
+        self.assertEqual(both["verdict"], "ready")
+        # A fact recorded as unreadable is asked again too.
+        unreadable = {"repos": {"o/alpha": None}, "users": {"o": None}}
+        again = launch_intake.assess(issue(), CATALOG, [], lookup=launch_intake.Recorded(unreadable, fallback=FakeLookup()))
+        self.assertEqual(again["verdict"], "ready")
+
+    def test_a_launch_that_missed_its_week_goes_on_the_next_one(self):
+        # Opened on Monday 2026-11-02, so for 2026-W46; nothing filed it, and the filing for 2026-W47 takes it.
+        late = issue(number=77, created="2026-11-02T09:00:00Z")
+        data, _, notes = launch_intake.collect("2026-W47", [late], json.loads(json.dumps(CATALOG)), [],
+                                               lookup=FakeLookup())
+        self.assertEqual([x["issue"] for x in data["launches"]], [77])
+        self.assertTrue(any("2026-W46, passed" in n for n in notes), notes)
+        # Unread on the Friday: said, and not filed.
+        data, _, notes = launch_intake.collect("2026-W47", [issue()], json.loads(json.dumps(CATALOG)), [],
+                                               lookup=FakeLookup(users={"o": None}))
+        self.assertEqual(data["launches"], [])
+        self.assertTrue(any("tries again" in n for n in notes), notes)
 
 
 class UnreadTest(unittest.TestCase):
@@ -530,7 +600,7 @@ class CloseTest(unittest.TestCase):
         alpha, beta = data["launches"]
         self.assertEqual(alpha["result"], {"votes": 4, "counted": 2.5, "discounted": 2, "rank": 1, "badges": ["week-1"]})
         self.assertEqual(beta["result"], {"votes": 1, "counted": 1.0, "discounted": 0, "rank": 2, "badges": ["week-2"]})
-        self.assertEqual((data["status"], data["closed_on"], data["rules"]), ("closed", "2026-11-23", "v1"))
+        self.assertEqual((data["status"], data["closed_on"], data["rules"]), ("closed", "2026-11-23", "v2"))
         self.assertEqual(list(data), ["week", "status", "closed_on", "rules", "voters", "returning_voters", "launches"])
         # a, b and new (half a vote is still a vote) on alpha, a again on beta; o is alpha's maker, late is late.
         self.assertEqual((data["voters"], data["returning_voters"]), (3, 0))
@@ -571,33 +641,40 @@ class CloseTest(unittest.TestCase):
         self.assertEqual((data["voters"], data["returning_voters"]), (4, 2))
         self.assertTrue(any("post #4 not read" in n for n in notes), notes)
 
-    def test_a_ring_of_new_accounts_is_held_for_a_person(self):
+    def test_a_ring_of_new_accounts_counts_for_nothing_and_nobody_is_asked(self):
         ring = [{"login": f"n{i}", "at": "2026-11-17T10:00:00Z", "account_created": "2026-11-15T00:00:00Z"} for i in range(8)]
         ring += [{"login": f"old{i}", "at": "2026-11-17T10:00:00Z", "account_created": "2020-01-01"} for i in range(4)]
+        beta_votes = [{"login": f"b{i}", "at": "2026-11-17T10:00:00Z", "account_created": "2020-01-01"} for i in range(5)]
         data = self.open_week(launch("alpha", discussion=1), launch("beta", discussion=2, role="hunter", submitted_by="h"))
-        launch_week.close_week(data, ROWS, on=dt.date(2026, 11, 23), read=lambda n: ring if n == 1 else [])
+        notes = launch_week.close_week(data, ROWS, on=dt.date(2026, 11, 23), read=lambda n: ring if n == 1 else beta_votes)
         alpha, beta = data["launches"]
-        self.assertEqual(alpha["status"], "held")
-        self.assertIn("8 of 12 votes", alpha["reason"])
-        self.assertNotIn("result", alpha)
+        # Under v1 alpha would be held; under v2 its 8 young votes count nothing and it ranks by its 4 others.
+        self.assertEqual(alpha["status"], "scheduled")
+        self.assertEqual(alpha["result"], {"votes": 12, "counted": 4.0, "discounted": 8, "rank": 2, "ring": True,
+                                           "badges": ["week-2"]})
         self.assertEqual(beta["result"]["rank"], 1)
-        self.assertNotIn("badges", beta["result"])  # no vote counted, no badge
+        self.assertTrue(any("8 of 12 votes" in n and "counted for nothing" in n for n in notes), notes)
+        # Only the old accounts' votes count as voters: nobody of the ring.
+        self.assertEqual(data["voters"], 9)
         self.assertEqual(check_launches.check(CATALOG, {"2026-W47": data}, {}, LAUNCH_SCHEMA, MAKER_SCHEMA), [])
+        note = launch_week.closed_note("2026-W47", alpha, 2, data["rules"])
+        self.assertIn("counted under rules v2", note)
+        self.assertIn("looks like a ring", note)
 
-    def test_a_closed_week_is_counted_again_after_a_person_decides(self):
+    def test_under_v1_a_ring_was_held_and_a_person_s_decision_stands(self):
         ring = [{"login": f"n{i}", "at": "2026-11-17T10:00:00Z", "account_created": "2026-11-15"} for i in range(10)]
+        self.assertIn("held for a person", launches.ring(ring, own=[], week="2026-W47", rules="v1"))
+        self.assertFalse(launches.rings(ring, own=[], week="2026-W47", rules="v1"))
+        self.assertTrue(launches.rings(ring, own=[], week="2026-W47", rules="v2"))
+        self.assertEqual(launches.weigh(ring, own=[], week="2026-W47", rules="v1")["counted"], 5.0)
+        self.assertEqual(launches.weigh(ring, own=[], week="2026-W47", rules="v2"),
+                         {"votes": 10, "counted": 0.0, "discounted": 10, "ring": True})
+        # A removed launch still drops out of a recount.
         data = self.open_week(launch("alpha", discussion=1), launch("beta", discussion=2, role="hunter", submitted_by="h"))
         launch_week.close_week(data, ROWS, on=dt.date(2026, 11, 23), read=lambda n: ring if n == 1 else [])
         alpha = data["launches"][0]
-        self.assertEqual(alpha["status"], "held")
-        # A person read the votes and let it stand: the recount ranks it.
-        alpha.update(status="scheduled", cleared_by="kyd")
-        del alpha["reason"]
-        launch_week.close_week(data, ROWS, on=dt.date(2026, 11, 24), read=lambda n: ring if n == 1 else [])
-        self.assertEqual((alpha["status"], alpha["result"]["rank"]), ("scheduled", 1))
-        self.assertEqual(check_launches.check(CATALOG, {"2026-W47": data}, {}, LAUNCH_SCHEMA, MAKER_SCHEMA), [])
-        # Or removed it: the recount drops its result and ranks the rest.
         alpha.update(status="removed", reason="a ring of new accounts")
+        alpha.pop("result", None)
         launch_week.close_week(data, ROWS, on=dt.date(2026, 11, 24), read=lambda n: ring if n == 1 else [])
         self.assertNotIn("result", alpha)
         self.assertEqual(data["launches"][1]["result"]["rank"], 1)
@@ -741,6 +818,51 @@ class MondayTest(unittest.TestCase):
         self.assertNotIn("github.event.", jobs)
         self.assertIn("group: launch-week\n", text)  # never at the same time as the Monday run
 
+    def test_a_failed_friday_or_monday_has_two_more_runs_the_same_day(self):
+        week = (ROOT / ".github" / "workflows" / "launch-week.yml").read_text()
+        collect = (ROOT / ".github" / "workflows" / "launch-collect.yml").read_text()
+        for cron in ('cron: "5 0 * * 1"', 'cron: "5 6 * * 1"', 'cron: "5 12 * * 1"'):
+            self.assertIn(cron, week)
+        for cron in ('cron: "20 0 * * 5"', 'cron: "20 6 * * 5"', 'cron: "20 12 * * 5"'):
+            self.assertIn(cron, collect)
+
+    def test_a_moved_main_is_worked_again_from_its_tip_never_left_on_a_branch(self):
+        for name in ("launch-week.yml", "launch-collect.yml", "award.yml"):
+            with self.subTest(name=name):
+                jobs = (ROOT / ".github" / "workflows" / name).read_text().split("jobs:", 1)[1]
+                self.assertIn("for attempt in 1 2 3; do", jobs)
+                self.assertIn("git reset -q --hard origin/main", jobs)
+                self.assertNotIn("HEAD:refs/heads/", jobs)
+                self.assertNotIn("--force", jobs)
+                # Each attempt checks its commit before the loop pushes it again.
+                loop = jobs.split("for attempt in 1 2 3; do", 1)[1]
+                self.assertIn("python3 scripts/check.py --ci --quick", loop)
+
+    def test_retry_runs_a_failed_run_on_main_once_and_never_a_pull_request(self):
+        text = (ROOT / ".github" / "workflows" / "retry.yml").read_text()
+        on = text.split("\non:", 1)[1].split("\npermissions:", 1)[0]
+        listed = set(on.split("workflows: [", 1)[1].split("]", 1)[0].split(", "))
+        names = {}
+        for path in (ROOT / ".github" / "workflows").glob("*.yml"):
+            body = path.read_text()
+            names[body.split("\nname: ", 1)[1].split("\n", 1)[0].strip()] = body
+        # Every workflow is watched but these: itself, a release (a tag, which is
+        # never published twice) and the two probes run by hand. A new workflow
+        # goes on one list or the other.
+        self.assertEqual(listed, set(names) - {"retry", "publish", "launch-probe", "launch-votes"})
+        condition = text.split("if: >-", 1)[1].split("runs-on:", 1)[0]
+        for clause in ("github.event.workflow_run.conclusion == 'failure'",
+                       "github.event.workflow_run.run_attempt == 1",
+                       "github.event.workflow_run.event != 'pull_request'",
+                       "github.event.workflow_run.event != 'pull_request_target'",
+                       "github.event.workflow_run.head_branch == 'main'"):
+            self.assertIn(clause, condition)
+        self.assertIn("permissions:\n  actions: write\n", text)
+        run = text.split("run: |", 1)[1]
+        self.assertNotIn("${{", run, "event values reach the shell only through env")
+        self.assertIn("case \"$RUN_ID\" in ''|*[!0-9]*)", run)
+        self.assertIn('gh run rerun "$RUN_ID" --failed', run)
+
     def test_next_is_the_week_of_the_coming_monday(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = pathlib.Path(tmp)
@@ -752,8 +874,10 @@ class MondayTest(unittest.TestCase):
                                           lookup=FakeLookup(), issues_for=lambda repo: issues,
                                           comments_for=lambda repo, n: [])
             self.assertEqual(code, 0)
-            self.assertIn("2026-W47: 0 launch(es) on file", out.getvalue())  # no check comment: reported
-            self.assertIn("#81: no check comment", out.getvalue())
+            # No check comment: the filing reads GitHub itself, and nobody is asked.
+            self.assertIn("2026-W47: 1 launch(es) on file", out.getvalue())
+            self.assertIn("#81: alpha scheduled", out.getvalue())
+            self.assertNotIn("no check comment", out.getvalue())
 
     def test_the_intake_workflow_only_reads_and_comments(self):
         text = (ROOT / ".github" / "workflows" / "launch-intake.yml").read_text()
