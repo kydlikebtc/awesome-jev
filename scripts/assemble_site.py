@@ -84,8 +84,8 @@ def stats_payload() -> dict:
 
 def meta_block(s: dict) -> str:
     """Link-preview tags. og:description is the same sentence as the GitHub
-    repository description — both come from _stats.pitch_public, with the count
-    floored to the hundred — so a link to the site and a link to the repo can
+    repository description — both come from _stats.pitch_public, which states
+    no count since 2026-11-05 — so a link to the site and a link to the repo can
     no longer describe different catalogues. The image alt keeps the exact
     count, because the card it describes is rendered with live data."""
     text = html.escape(_stats.pitch_public(s), quote=True)
@@ -188,8 +188,8 @@ def main(argv: list[str] | None = None) -> int:
         index = SITE / "index.html"
         index.write_text(fill_meta(index.read_text(), stats))
         print(
-            f"wrote link-preview tags into site/index.html: {_stats.public_count(stats['entries'])} "
-            f"in the description, {stats['entries']} in the image alt"
+            "wrote link-preview tags into site/index.html: no count in the description, "
+            f"{stats['entries']} in the image alt"
         )
     return 0
 

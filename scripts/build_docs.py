@@ -71,7 +71,8 @@ def table(header: list[str], rows: list[list[str]]) -> str:
 def model_check_cell(check: dict | None) -> str:
     if not check:
         return "not yet sampled"
-    return f"{check['agreed']} of {check['sampled']} ({check['month']})"
+    by = ", checked by a second model reading" if check.get("checker") == "model" else ", checked by a person"
+    return f"{check['agreed']} of {check['sampled']} ({check['month']}{by})"
 
 
 def shape_block(s: dict) -> str:
@@ -110,7 +111,7 @@ def shape_block(s: dict) -> str:
             ["Rows whose patterns a person recorded reading (`patterns_reviewed`)", s["patterns_reviewed"]],
             ["Rows whose patterns only a model recorded reading (`patterns_model_read_on`, since 2026-10-24; shown as a model's reading; [review queue](review-queue.md#model-read))", s["model_read"]["patterns"]],
             ["Rows whose call site only a model recorded reading (`evidence.model_read_on`; [review queue](review-queue.md#model-read))", s["model_read"]["evidence"]],
-            ["Of a monthly sample of those rows, how many a person agreed with (`scripts/model_sample.py`, [docs/model-checks.json](model-checks.json); agreeing is not reading the file)", model_check_cell(s["model_checks"])],
+            ["Of a monthly sample of those rows, how many the month's check agreed with, and whether a person or a second model reading checked (`scripts/model_sample.py`, [docs/model-checks.json](model-checks.json); agreeing is not reading the file)", model_check_cell(s["model_checks"])],
             ["Alternatives whose interface records were read in every cited file, some only by a model (`wire.source[].model_read_on`; [review queue](review-queue.md#model-read))", s["model_read"]["wire"]],
             ["Overview rows that are projects or plugins with code, listed apart as not yet indexed by pattern ([review queue](review-queue.md#unsorted-overview))", s["overview_unindexed"]],
             ["Summaries that are the project's own GitHub description (`summary_source` `upstream-description`)", f"{s['summary_upstream']} of {s['entries']}"],

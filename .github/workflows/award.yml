@@ -1,0 +1,92 @@
+# The year's decision award (L23 of the 2026-11-03 launch-board plan,
+# docs/launches.md), written by itself: on the 15th of each month,
+# scripts/award.py --due checks whether Jev's anniversary (15 September) has
+# passed since the last award, and if the year just ended has no
+# docs/award/<year>.md yet, writes it. The award is the first of each
+# pattern's shortlist, by rank and then counted votes among products whose
+# call site a person or a model read; no person picks it (2026-11-05, when the
+# owner asked that no step of the board wait for one). The first falls on
+# 2027-09-15. On every other month it does nothing and succeeds, so the
+# watchdog sees it run (32 days for a monthly job, scripts/watchdog.py).
+#
+# Like launch-collect.yml, it commits, runs the checks on that commit, and
+# pushes to main, rebasing onto anything pushed meanwhile. It never forces;
+# if the commit no longer applies it writes the award again from the new tip
+# of main, up to three times, and then fails, and retry.yml runs it once more.
+#
+# Injection review: no `github.event.*` value reaches a `run:` block, and the
+# workflow takes no inputs.
+name: award
+
+on:
+  schedule:
+    # 09:00 UTC on the 15th: on and after 15 September, the award year has ended.
+    - cron: "0 9 15 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: award
+  cancel-in-progress: false
+
+jobs:
+  award:
+    name: Write the year's award when it is due
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # The checks below are lint's, and lint runs its node tests on this one.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+
+      - name: Write the award if it is due
+        id: write
+        run: |
+          python3 scripts/award.py --due | tee /tmp/award.log
+          git add -A docs/award
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "award: the year's decision award" -m "$(tail -n 1 /tmp/award.log)"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Run the checks on that commit before pushing it
+        id: checks
+        if: steps.write.outputs.changed == 'true'
+        run: python3 scripts/check.py --ci --quick
+
+      - name: Push to main, writing it again from the new main if it moved
+        if: steps.checks.outcome == 'success'
+        run: |
+          for attempt in 1 2 3; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "main moved and the commit no longer applies (attempt $attempt): writing it again from the new main"
+            sleep $((attempt * 15))
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            python3 scripts/award.py --due | tee /tmp/award.log
+            git add -A docs/award
+            if git diff --cached --quiet; then
+              echo "main already has the award"
+              exit 0
+            fi
+            git commit -q -m "award: the year's decision award" -m "$(tail -n 1 /tmp/award.log)"
+            python3 scripts/check.py --ci --quick
+          done
+          echo "::error title=The award is not on main::main kept moving during three attempts. retry.yml runs this once more."
+          exit 1

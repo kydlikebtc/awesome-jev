@@ -38,7 +38,8 @@ still has to check, and `lint.py` refuses the row until it is gone. A
 repository already catalogued, retired or declined gets a reply saying which
 row, or why. The workflow only comments: it commits nothing and opens no pull
 request, since anyone can open an issue. Complete the draft yourself, or leave
-it for a maintainer.
+it: the daily drafting run reads the issue's repository, adds the row as a
+model's reading in its pull request, and answers the issue.
 
 ### Generated files are optional
 
@@ -152,15 +153,20 @@ network. `python3 scripts/check.py` runs it too, without an author.
 Every change lands through a pull request, the maintainer's own included.
 Maintainers and agent sessions (Claude, Codex and the like) push a `claude/*`
 or `codex/*` branch and open a pull request from it, and do not push to `main`
-directly. The only commits made straight to `main` are the two bots':
-`github-actions[bot]`'s weekly `metadata` refresh and `lint`'s `regenerate`
-job. Neither ever force-pushes `main`; when it moves underneath one of them,
-the bot rebases or leaves its commit on a branch.
+directly. The only commits made straight to `main` are the bots':
+`github-actions[bot]`'s weekly `metadata` refresh, `lint`'s `regenerate` job,
+and the launch board's Friday filing, Monday close and yearly award
+(`launch-collect`, `launch-week`, `award`). None ever force-pushes `main`;
+when it moves underneath one of them, the bot rebases, does its work again
+from the new `main`, or leaves its commit on a branch. The two drafting tasks
+merge their own pull requests once their checks pass
+([MAINTAINING.md](MAINTAINING.md#merging)), and the daily one reads yours.
 
 GitHub may hold the checks on your first pull request here until a maintainer
 clicks **Approve and run**. That is GitHub's safeguard for first-time
 contributors to a repository, not a verdict on your change, and it stops once
-you have had a pull request merged.
+you have had a pull request merged. The daily run checks such a pull request
+locally in the meantime.
 
 ## Numbers in prose
 
@@ -493,8 +499,8 @@ them. If you did, you know best whether it is right.
 
 - **Confirm or correct it** with the
   [Confirm or correct your own project's entry](https://github.com/kydlikebtc/awesome-jev/issues/new?template=confirm-entry.yml)
-  form. A maintainer checks what you say against the code, applies it, and
-  records where it came from: a source `{"catalog": "author correction",
+  form. The daily drafting run checks what you say against the code, applies
+  it, and records where it came from: a source `{"catalog": "author correction",
   "url": <the issue>}` when your words changed the row, or `author
   confirmation` when you confirmed it as written, and a `notes` sentence
   ("Confirmed by its maintainer in issue #…"). The row does not take the
@@ -622,10 +628,12 @@ as `slug  # why` (a proposed path that is only a test, a call site gone with
 nothing to replace it). Holding decides nothing: a held candidate is listed
 under its own heading in the discovery issue, out of the way of those to read,
 and [`docs/review-queue.md`](docs/review-queue.md#needs-person) lists every
-line for a person. Whoever settles one deletes its line in the same pull
-request. The scheduled AI runs that draft rows use this file for what they
-skip and cannot settle; [`MAINTAINING.md`](MAINTAINING.md) is their routine,
-and `scripts/model_draft.py` starts and checks each row they write.
+line. The next weekly upkeep settles each line by the rules in
+[`MAINTAINING.md`](MAINTAINING.md#candidates-a-run-cannot-settle-docsheldtxt)
+and deletes it in its pull request; anyone who settles one first deletes its
+line in theirs. The scheduled AI runs that draft rows use this file for what
+they skip and cannot settle; [`MAINTAINING.md`](MAINTAINING.md) is their
+routine, and `scripts/model_draft.py` starts and checks each row they write.
 
 The script's own verdicts (which repositories it read, on what date, and what
 it found in the files it read) are kept in `.discover/seen.json`, so the weekly

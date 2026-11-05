@@ -11,9 +11,9 @@ That is precisely the failure mode the catalogue exists to argue against, so it
 gets the same treatment as everything else: a number that is asserted in public
 has to be re-derivable from the data.
 
-Since 2026-09-27 the sentence is `_stats.pitch_public()`, which states the
-count floored to the hundred, so it goes stale only when the catalogue crosses
-a hundred or the wording changes, not with every merged row. And drift is
+Since 2026-09-27 the sentence is `_stats.pitch_public()`. It stated the count
+floored to the hundred until 2026-11-05, and states none since, so it goes
+stale only when its wording changes, never with the catalogue. And drift is
 reported rather than failed: fixing it needs admin rights on the repository,
 which no workflow token holds, and a check that turns `main` red over something
 CI cannot fix teaches everyone to ignore red. `.github/workflows/description.yml`
@@ -78,9 +78,8 @@ def issue_body(published: str, expected: str, entries: int) -> str:
             "",
             f"**Expected:** {expected}",
             "",
-            f"The catalogue holds {entries:,} entries. The pitch states "
-            f"{_stats.public_count(entries)} and next changes at "
-            f"{_stats.next_public_change(entries):,} entries, or when its wording is edited.",
+            f"The catalogue holds {entries:,} entries. The pitch states no count, so it "
+            "changes only when its wording is edited.",
             "",
             "Run this once, as a repository admin:",
             "",
@@ -127,10 +126,7 @@ def main(argv: list[str] | None = None) -> int:
 
     description = (data.get("description") or "").strip()
     if description == expected:
-        print(
-            f"description matches the catalogue: {stats['entries']} entries, "
-            f"published as {_stats.public_count(stats['entries'])}"
-        )
+        print(f"description matches the catalogue's pitch ({stats['entries']} entries; the pitch states no count)")
         set_output("status", "match")
         return 0
 

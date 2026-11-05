@@ -11,7 +11,7 @@ this queue instead, rewritten by the same run from files in the repository:
   catalog.json         catalogued: a row's url or repo is that repository
   retired.json         catalogued, and retired since
   docs/declined.txt    a person read it and decided against it
-  docs/held.txt        someone read it and left it for a person (scripts/held.py)
+  docs/held.txt        a run read it and left it for the weekly upkeep (scripts/held.py)
   .discover/facts.json GitHub's figures for each candidate still to read
 
 Nothing here is stored. Each candidate's state is derived from those files on
@@ -32,10 +32,11 @@ catalogued, retired or declined under the name GitHub now gives it (a renamed
 or transferred repository) takes that state; until the refresh has read it,
 it stays to read under the name the sibling lists cite.
 
-Since 2026-10-30 a candidate listed in docs/held.txt is held: someone read it
-and could not settle it, so it waits for a person under its own heading
-instead of at the top of those to read, where every drafting run would read
-it again. And a small candidate nobody has pushed to for four weeks is parked
+Since 2026-10-30 a candidate listed in docs/held.txt is held: a run read it
+and could not settle it, so it waits under its own heading instead of at the
+top of those to read, where every drafting run would read it again. Since
+2026-11-05 the next weekly upkeep settles it by the rules in MAINTAINING.md,
+and nobody else is waited for. And a small candidate nobody has pushed to for four weeks is parked
 too (discover_facts.QUIET), counted to the queue's own date, the newest
 verdict in .discover/seen.json, so the same files still give the same text.
 
@@ -111,7 +112,7 @@ INTRO_ZH = (
 # INTRO_ZH says).
 TITLES = {
     "open": ("To read", "待读"),
-    "held": ("Held for a person", "等人看"),
+    "held": ("Held for the weekly upkeep", "等每周维护"),
     "parked": ("Parked", "暂缓"),
     "catalogued": ("Catalogued", "已收录"),
     "declined": ("Declined", "已拒收"),
@@ -242,15 +243,18 @@ PARKED_ZH = (
     "这不是拒收：想读照样可以读，刷新发现它变强后会移回待读。 <sub>(机翻)</sub>"
 )
 HELD_EN = (
-    "Read by someone who could not settle it and left it for a person, with the reason "
+    "Read by a run that could not settle it, with the reason "
     "[`docs/held.txt`](https://github.com/kydlikebtc/awesome-jev/blob/main/docs/held.txt) "
-    "gives. Nothing is decided: the person who decides adds the row or declines it, and "
-    "deletes the line there."
+    "gives. Nothing is decided yet: the next weekly upkeep settles each one by the rules in "
+    "[MAINTAINING.md](https://github.com/kydlikebtc/awesome-jev/blob/main/MAINTAINING.md#candidates-a-run-cannot-settle-docsheldtxt), "
+    "adding the row or declining it, and deletes the line there."
 )
 HELD_ZH = (
-    "有人读过、拿不准，留给人来决定，原因见 "
+    "某次运行读过、拿不准，原因见 "
     "[`docs/held.txt`](https://github.com/kydlikebtc/awesome-jev/blob/main/docs/held.txt)。"
-    "这里什么都没有决定：做决定的人添加该行或拒收它，并删去那里的对应行。 <sub>(机翻)</sub>"
+    "这里还没有决定：下一次每周维护按 "
+    "[MAINTAINING.md](https://github.com/kydlikebtc/awesome-jev/blob/main/MAINTAINING.md#candidates-a-run-cannot-settle-docsheldtxt) "
+    "里的规则逐个处理，添加该行或拒收它，并删去那里的对应行。 <sub>(机翻)</sub>"
 )
 
 
@@ -290,7 +294,7 @@ def render(candidates: list[Candidate], *, open_shown: int = OPEN_SHOWN, done_sh
         lines += more(len(by["open"]) - min(open_shown, len(by["open"]))) + [""]
     elif by["held"] or by["parked"]:
         lines += ["Nothing to read but the held and parked candidates below.", "",
-                  "除了下面等人看和暂缓的候选，没有待读的。 <sub>(机翻)</sub>", ""]
+                  "除了下面等每周维护和暂缓的候选，没有待读的。 <sub>(机翻)</sub>", ""]
     elif candidates:
         lines += ["Nothing to read: every candidate so far is catalogued or declined.", "",
                   "没有待读的候选：迄今每个候选都已收录或已拒收。 <sub>(机翻)</sub>", ""]

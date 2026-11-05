@@ -91,12 +91,12 @@
             "maxLength": 60
           },
           "status": {
-            "description": "`scheduled`: on the board. `held`: waiting for a person, as docs/held.txt holds a candidate; not shown. `removed`: taken off the board, with the reason, which stays in the file.",
+            "description": "`scheduled`: on the board. `held`: waiting for a person, as docs/held.txt holds a candidate; not shown. Since 2026-11-05 neither the launch check nor the close holds a launch, each case having its rule, so `held` is only in older files. `removed`: taken off the board, with the reason, which stays in the file.",
             "type": "string",
             "enum": ["scheduled", "held", "removed"]
           },
           "cleared_by": {
-            "description": "The maintainer who read the votes the ring check held (scripts/launches.py ring) and let the launch stand. A recount then leaves it to the person's decision.",
+            "description": "Under rules v1, the maintainer who read the votes the ring check held (scripts/launches.py ring) and let the launch stand; a recount then leaves it to the person's decision. From v2 the rule settles a ring and nobody clears one.",
             "type": "string",
             "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$"
           },
@@ -131,6 +131,11 @@
                 "description": "Place on the week's board, from 1. Ties go to the stronger evidence, then the earlier submission.",
                 "type": "integer",
                 "minimum": 1
+              },
+              "ring": {
+                "description": "Present, and true, when most of the votes came from accounts younger than the rule allows or of unknown age (scripts/launches.py ring). From rules v2 those votes count as nothing (`ring_young`) and the launch ranks by the rest; no person decides.",
+                "type": "boolean",
+                "enum": [true]
               },
               "badges": {
                 "type": "array",

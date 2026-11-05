@@ -80,12 +80,48 @@ class AwardTest(unittest.TestCase):
             self.assertEqual(sorted(p.name for p in root.rglob("*") if p.is_file() and p.parent == root),
                              ["catalog.json", "patterns.json"])
         text = out.getvalue()
-        self.assertIn("# Decision award 2027: shortlists", text)
+        self.assertIn("# Decision award 2027\n", text)
+        # The award is the first of each shortlist, said with its reason; nobody picks it.
+        self.assertIn("**Award: [Beta](https://kydlikebtc.github.io/awesome-jev/products/beta.html).** Its best week "
+                      "was 2026-W46, where it placed #1 with 9 counted votes", text)
+        self.assertIn("a person read its call site", text)
         self.assertIn("2. [Alpha](https://kydlikebtc.github.io/awesome-jev/products/alpha.html): #1 in 2026-W50, "
                       "3 votes, 3 counted; evidence: model", text)
         self.assertIn("## Safety gating (`safety-gating`)", text)
         with self.assertRaises(SystemExit), contextlib.redirect_stderr(io.StringIO()):
             award.main(["--year", "2026"])
+
+    def test_the_award_is_written_once_when_its_anniversary_has_passed(self):
+        self.assertEqual([award.due_year(dt.date(*d)) for d in ((2027, 9, 14), (2027, 9, 15), (2028, 3, 1))],
+                         [None, 2027, 2027])
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            (root / "catalog.json").write_text(json.dumps(ROWS))
+            (root / "patterns.json").write_text(json.dumps({"patterns": PATTERNS}))
+            (root / "launches").mkdir()
+            for w in WEEKS:
+                (root / "launches" / f"{w['week']}.json").write_text(json.dumps(w))
+            path = root / "docs" / "award" / "2027.md"
+            with contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(award.main(["--due", "--on", "2027-08-15", "--root", tmp]), 0)
+                self.assertFalse(path.exists())  # not due yet
+                self.assertEqual(award.main(["--due", "--on", "2027-09-15", "--root", tmp]), 0)
+            written = path.read_text()
+            self.assertTrue(written.startswith("# Decision award 2027\n"))
+            path.write_text("kept")
+            with contextlib.redirect_stdout(io.StringIO()) as out:
+                award.main(["--due", "--on", "2027-10-15", "--root", tmp])
+            self.assertEqual(path.read_text(), "kept")  # written once, never again
+            self.assertIn("2027's is written", out.getvalue())
+
+    def test_the_workflow_runs_monthly_and_pushes_only_a_checked_commit(self):
+        text = (ROOT / ".github" / "workflows" / "award.yml").read_text()
+        self.assertIn('cron: "0 9 15 * *"', text)
+        self.assertIn("python3 scripts/award.py --due", text)
+        jobs = text.split("jobs:", 1)[1]
+        self.assertLess(jobs.index("scripts/check.py --ci --quick"), jobs.index("git push -q origin HEAD:main"))
+        self.assertNotIn("--force", jobs)
+        self.assertNotIn("github.event.", jobs)
 
 
 class EngineTest(unittest.TestCase):

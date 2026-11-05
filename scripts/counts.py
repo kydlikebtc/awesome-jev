@@ -145,11 +145,8 @@ def main() -> int:
     # The repository description is the one published sentence CI cannot rewrite
     # (description.yml files an issue when it drifts), so every run, a pull
     # request's included, shows what it should say once this tree is on main. It
-    # changes only when the count crosses a hundred or pitch_public() is reworded.
-    print(
-        "\nrepository description once merged (count floored to the hundred; "
-        f"next changes at {_stats.next_public_change(stats['entries']):,} entries):"
-    )
+    # states no count, so it changes only when pitch_public() is reworded.
+    print("\nrepository description once merged (it states no count, so it changes only when reworded):")
     print(f"  {_stats.pitch_public(stats)}")
 
     block("by pattern (! = gap)", shape["by_pattern"], list(shape["by_pattern"]))

@@ -105,12 +105,18 @@ TIERS = query.LAUNCH_TIERS
 #   young_days: an account younger than this when it voted ...
 #   young:     ... counts this much
 #   ring_votes, ring_share: a launch with at least ring_votes votes, at least
-#              ring_share of them from such young (or unreadable) accounts, is
-#              held for a person when the week closes instead of ranked (L14)
+#              ring_share of them from such young (or unreadable) accounts,
+#              looks like a ring of new accounts (L14). Under v1 the close held
+#              it for a person instead of ranking it.
+#   ring_young: from v2 (2026-11-05, when the owner asked that no step of the
+#              board wait for a person): such a launch ranks with the rest, and
+#              its young (or unreadable) accounts' votes count this much
+#              instead of `young`. The result says so (`ring`).
 RULES = {
     "v1": {"own": 0.0, "young_days": 30, "young": 0.5, "ring_votes": 10, "ring_share": 0.5},
+    "v2": {"own": 0.0, "young_days": 30, "young": 0.5, "ring_votes": 10, "ring_share": 0.5, "ring_young": 0.0},
 }
-CURRENT_RULES = "v1"
+CURRENT_RULES = "v2"
 
 BADGES = ("week-1", "week-2", "week-3")
 
@@ -276,10 +282,14 @@ def weigh(votes: list[dict], *, own: Iterable[str], week: str, rules: str = CURR
     A vote is {"login", "at", "account_created"} (timestamps, as the Discussion
     reader writes them). Only votes cast inside the week count at all; a login
     counts once. `own` are the logins whose votes are the product's own (its
-    makers and the submitter)."""
+    makers and the submitter). When the votes look like a ring and the rule
+    settles one itself (rings), the young accounts' votes count `ring_young`
+    and the answer carries `"ring": true`."""
     rule = RULES[rules]
     monday, sunday = week_days(week)
     mine = {login_key(x) for x in own}
+    ringed = rings(votes, own=own, week=week, rules=rules)
+    young_weight = rule["ring_young"] if ringed else rule["young"]
     seen: set[str] = set()
     counted = 0.0
     n = discounted = 0
@@ -296,11 +306,14 @@ def weigh(votes: list[dict], *, own: Iterable[str], week: str, rules: str = CURR
         else:
             born = day(vote.get("account_created"))
             if born is None or (cast - born).days < rule["young_days"]:
-                weight = rule["young"]
+                weight = young_weight
         if weight < 1:
             discounted += 1
         counted += weight
-    return {"votes": n, "counted": round(counted, 2), "discounted": discounted}
+    out = {"votes": n, "counted": round(counted, 2), "discounted": discounted}
+    if ringed:
+        out["ring"] = True
+    return out
 
 
 def counted_voters(votes: list[dict], *, own: Iterable[str], week: str, rules: str = CURRENT_RULES) -> set[str]:
@@ -311,6 +324,7 @@ def counted_voters(votes: list[dict], *, own: Iterable[str], week: str, rules: s
     rule = RULES[rules]
     monday, sunday = week_days(week)
     mine = {login_key(x) for x in own}
+    young_weight = rule["ring_young"] if rings(votes, own=own, week=week, rules=rules) else rule["young"]
     seen: set[str] = set()
     out: set[str] = set()
     for vote in sorted(votes, key=lambda v: (str(v.get("at")), str(v.get("login")))):
@@ -323,7 +337,7 @@ def counted_voters(votes: list[dict], *, own: Iterable[str], week: str, rules: s
             weight = rule["own"]
         else:
             born = day(vote.get("account_created"))
-            weight = rule["young"] if born is None or (cast - born).days < rule["young_days"] else 1.0
+            weight = young_weight if born is None or (cast - born).days < rule["young_days"] else 1.0
         if weight > 0:
             out.add(login)
     return out
@@ -354,13 +368,25 @@ def young_votes(votes: list[dict], *, own: Iterable[str], week: str, rules: str 
 
 def ring(votes: list[dict], *, own: Iterable[str], week: str, rules: str = CURRENT_RULES) -> str | None:
     """Why a launch's votes look like a ring of new accounts, or None (L14).
-    A heuristic: it holds the launch for a person, who decides."""
+    A heuristic. Under v1 the close held such a launch for a person; under a
+    rule with `ring_young` (v2 on) nobody is asked: weigh() counts those votes
+    as `ring_young` and the launch ranks with the rest."""
     rule = RULES[rules]
     young, n = young_votes(votes, own=own, week=week, rules=rules)
     if n >= rule["ring_votes"] and young >= rule["ring_share"] * n:
+        if "ring_young" in rule:
+            return (f"{young} of {n} votes came from accounts younger than {rule['young_days']} days "
+                    "or of unknown age, so those counted for nothing")
         return (f"{young} of {n} votes came from accounts younger than {rule['young_days']} days "
                 "or of unknown age; held for a person before it ranks")
     return None
+
+
+def rings(votes: list[dict], *, own: Iterable[str], week: str, rules: str = CURRENT_RULES) -> bool:
+    """Whether `rules` settles a ring itself (it has `ring_young`, v2 on) and
+    these votes look like one: then weigh() counts the young accounts' votes
+    as `ring_young`."""
+    return "ring_young" in RULES[rules] and ring(votes, own=own, week=week, rules=rules) is not None
 
 
 def shuffled(launch_list: list[dict], week: str) -> list[dict]:

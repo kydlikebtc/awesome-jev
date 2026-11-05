@@ -47,7 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # 1 means a workflow needs a person, which the issue says; 2 means
+          # 1 means a workflow needs attention, which the issue says; 2 means
           # the API could not be read, so nothing was judged and the run fails.
           code=0
           python3 scripts/watchdog.py --markdown /tmp/body.md || code=$?

@@ -1,5 +1,5 @@
-# Held for a person: what someone read, could not settle, and left for a
-# person to decide. One per line, with the reason after a `#`:
+# Held for the weekly upkeep: what a run read and could not settle yet. One
+# per line, with the reason after a `#`:
 #
 #   owner/name  # why — a discovery candidate (an owner/name, as in declined.txt)
 #   slug        # why — a catalogued row (its slug in catalog.json)
@@ -7,10 +7,11 @@
 # Holding decides nothing. A held candidate stays in the discovery queue under
 # its own heading, so the scheduled drafting runs stop reading past it; a held
 # row stays in the catalogue as it is. docs/review-queue.md#needs-person lists
-# every line here, and the person who settles one (a row added or changed, a
-# line in declined.txt, or nothing to do) deletes its line in the same pull
-# request. A line whose candidate is catalogued or declined is shown as settled
-# until someone deletes it.
+# every line here. Since 2026-11-05 the next weekly upkeep settles each line by
+# the rules in MAINTAINING.md ("Candidates a run cannot settle"): a row added
+# or changed, a line in declined.txt, or nothing to do, and deletes its line in
+# the same pull request. Nobody else is waited for. A line whose candidate is
+# catalogued or declined is shown as settled until the upkeep deletes it.
 
 # Candidates, as of 2026-10-30
 vectorize-io/hindsight  # README does not mention Jev and the queue gives no call-site path; finding one needs code search (#71)

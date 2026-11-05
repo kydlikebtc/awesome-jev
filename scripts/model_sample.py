@@ -8,22 +8,27 @@ readings hold up was never measured. Once a month a person checks a sample:
     python3 scripts/model_sample.py --month 2026-12
 
 prints 20 rows picked at random among those whose call site only a model has
-read, never one an earlier month sampled, as a Markdown table to send the
-person: each row's link, its cited file, its summary, and the patterns and
-primitives the model recorded, with a column to mark agree or disagree. The
-pick is seeded by the month, so running it again prints the same rows.
+read, never one an earlier month sampled, as a Markdown table: each row's
+link, its cited file, its summary, and the patterns and primitives the model
+recorded, with a column to mark agree or disagree. The pick is seeded by the
+month, so running it again prints the same rows.
 
-The person's answers go into docs/model-checks.json, one object per month:
+The answers go into docs/model-checks.json, one object per month:
 
-    {"month": "2026-12", "by": "croa", "on": "2026-12-04",
+    {"month": "2026-12", "by": "weekly upkeep", "checker": "model", "on": "2026-12-03",
      "rows": {"<slug>": "agree", "<slug>": "disagree"},
      "notes": {"<slug>": "why, for a disagreement"}}
 
+Since 2026-11-05, when the owner asked that no step wait for a person, the
+weekly upkeep checks the sample itself, with a second reading of each cited
+file made before it looks at what the row says, and records it as
+`"checker": "model"`. A person can still check a month instead (`"checker":
+"person"`, `by` their login; a check without `checker` is a person's).
 `--check` validates that file (lint-style, exit 1 on a problem), and
-docs/status.md prints the latest month's count (scripts/_stats.py,
-model_checks()). Agreeing with a row is not reading its call site: a row moves
-to a person's reading (`evidence.read_on`) only when the person says they read
-the file.
+docs/status.md prints the latest month's count and who checked it
+(scripts/_stats.py, model_checks()). Agreeing with a row is not reading its
+call site: a row moves to a person's reading (`evidence.read_on`) only when a
+person says they read the file, and never from a model's check.
 """
 
 from __future__ import annotations
@@ -47,6 +52,8 @@ SITE = "https://kydlikebtc.github.io/awesome-jev/"
 SIZE = 20
 MONTH = re.compile(r"^\d{4}-(0[1-9]|1[0-2])$")
 ANSWERS = ("agree", "disagree")
+# Who checked a month: a person, or a second model reading (since 2026-11-05).
+CHECKERS = ("person", "model")
 
 
 def model_only(entry: dict) -> bool:
@@ -112,7 +119,9 @@ def problems(data: object, slugs: set[str]) -> list[str]:
             found.append(f"{where}: {month} is checked twice")
         months.add(month)
         if not check.get("by"):
-            found.append(f"{where}: `by` names the person who checked")
+            found.append(f"{where}: `by` names who checked: a person's login, or the task that ran a model's check")
+        if check.get("checker", "person") not in CHECKERS:
+            found.append(f"{where}: `checker` must be one of {', '.join(CHECKERS)}")
         try:
             dt.date.fromisoformat(str(check.get("on")))
         except ValueError:

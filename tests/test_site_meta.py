@@ -129,7 +129,8 @@ class AssembleTest(unittest.TestCase):
         self.assertEqual(outside_meta(after), outside_meta(before))
         stats = _stats.compute()
         self.assertEqual(assemble_site.meta_body(after), " ".join(assemble_site.meta_block(stats).split()))
-        self.assertIn(_stats.public_count(stats["entries"]), out)
+        self.assertIn("no count in the description", out)
+        self.assertIn(f"{stats['entries']} in the image alt", out)
         code, out = self.run_main(check_site_data.main, ["--deploy"])
         self.assertEqual(code, 0, out)
         # And the filled file is exactly what must never be committed.

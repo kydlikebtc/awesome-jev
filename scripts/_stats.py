@@ -280,9 +280,11 @@ def model_read_counts(catalog: list[dict]) -> dict[str, int]:
 
 
 def model_checks(path: pathlib.Path = ROOT / "docs" / "model-checks.json") -> dict | None:
-    """The newest month's check of model readings by a person (T1,
-    scripts/model_sample.py): {"month", "sampled", "agreed"}, or None before
-    the first. A count of agreements with a model's reading, never a reading."""
+    """The newest month's check of model readings (T1,
+    scripts/model_sample.py): {"month", "sampled", "agreed", "checker"}, or
+    None before the first. `checker` is "person" or, since 2026-11-05, "model"
+    (a second model reading). A count of agreements with a model's reading,
+    never a reading."""
     if not path.exists():
         return None
     checks = [c for c in json.loads(path.read_text(encoding="utf-8")).get("checks") or [] if c.get("rows")]
@@ -293,6 +295,7 @@ def model_checks(path: pathlib.Path = ROOT / "docs" / "model-checks.json") -> di
         "month": latest["month"],
         "sampled": len(latest["rows"]),
         "agreed": sum(1 for answer in latest["rows"].values() if answer == "agree"),
+        "checker": latest.get("checker", "person"),
     }
 
 
@@ -686,13 +689,15 @@ def compute() -> dict:
 
 
 def public_count(entries: int) -> str:
-    """The catalogue size as the public pitch states it: floored to the hundred.
+    """The catalogue size floored to the hundred, as the social preview's
+    "800+" states it.
 
-    The repository description quotes this, and CI cannot edit that description
-    (it needs admin rights no workflow token holds), so an exact count went
-    stale with every merged row. A floor stays true as the catalogue grows and
-    changes once per hundred, like the social preview's "800+". Below a hundred
-    the floor would say nothing, so the count is exact there.
+    The repository description quoted this from 2026-09-27 to 2026-11-05: CI
+    cannot edit that description (it needs admin rights no workflow token
+    holds), and a floor changes once per hundred rather than with every row.
+    At a hundred drafted rows a week that was still weekly, so the description
+    now states no count (pitch_public). Below a hundred the floor would say
+    nothing, so the count is exact there.
     """
     if entries < 100:
         return str(entries)
@@ -709,10 +714,15 @@ def next_public_change(entries: int) -> int:
 def pitch_public(stats: dict) -> str:
     """The one-line description used by the GitHub repository and the site's
     meta tags. One function, so the two cannot drift into different sentences.
-    The count is public_count()'s floor; README, status.md and llms.txt carry
-    the exact figure."""
+
+    It states no count since 2026-11-05. Its floor to the hundred changed about
+    once a week once a hundred rows a week were drafted, and each change waited
+    for an admin to edit the description by hand, which the owner asked that
+    nothing wait for. README, status.md and llms.txt carry the exact figure.
+    `stats` is kept for the callers, which pass the catalogue's."""
+    del stats
     return (
-        f"{public_count(stats['entries'])} public resources for Jev, TypeSafe AI's System One "
+        "Public resources for Jev, TypeSafe AI's System One "
         "decision model, indexed by decision pattern. Source citations, dated link "
         "checks and scheduled call-site text checks; runtime and performance are "
         "not independently tested here. EN/中文, JSON schema and platform compatibility."

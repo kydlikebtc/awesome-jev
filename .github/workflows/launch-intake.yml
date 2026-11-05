@@ -1,7 +1,9 @@
 # Answers a launch issue (the "Launch a product" form) with an automatic check:
-# ready for a week, held for a person and why, or not launched and what to
+# ready for a week (with what the board's rules settled), not read yet (what
+# GitHub did not answer, read again on Friday), or not launched and what to
 # change (scripts/launch_intake.py; L10, L11 and T3 of the 2026-11-03
-# launch-board plan, docs/launches.md).
+# launch-board plan, docs/launches.md). Since 2026-11-05 it holds nothing for
+# a person: every case it used to hold has a rule.
 #
 # Anyone can open an issue, so this job can only read and comment, like
 # new-entry.yml: it checks out the default branch (an `issues` event always

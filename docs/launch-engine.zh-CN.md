@@ -30,7 +30,7 @@
 | `scripts/launches.py` | 榜单的全部规则：产品、周、投票权重、刷票检查、排名、徽章和 README 徽章显示什么、Hunter、日榜门槛、上升最快的列表 |
 | `scripts/launch_votes.py` | 通过 GraphQL 读取一个 Discussion 的点赞和投票账号的注册时间 |
 | `scripts/launch_week.py` | 收上周的榜、开本周的榜；`--probe` 检查令牌能否发帖 |
-| `scripts/award.py` | 年度奖候选名单 |
+| `scripts/award.py` | 年度奖：每种模式一份候选名单，第一名即获奖者，这一年结束后写出（`--due`） |
 | `scripts/_github.py` | 上面三个脚本用的 GitHub 客户端（令牌、GraphQL 查询和变更、任务摘要） |
 | `schema/launch.schema.json`、`schema/maker.schema.json` | 周文件和 Maker 介绍的格式 |
 
@@ -42,7 +42,7 @@
 | `scripts/check_launches.py` | `lint.py`（`lint.validate`，一个最小的 JSON Schema draft-07 校验器） |
 | `scripts/site_products.py` | 本站的页面外壳（`site_pages.py`）；别的站点用自己的方式渲染 `launches.weeks()`。上升最快的列表需要每行星标的两份每周快照（`history/<date>.json`，本仓库由 `scripts/snapshot_stats.py` 写入，`launches.refreshes()` 读取），没有快照的话榜单就没有这个列表 |
 
-工作流：`.github/workflows/launch-intake.yml`、`launch-collect.yml`、`launch-week.yml`、`launch-votes.yml`、`launch-probe.yml`，以及 issue 表单 `.github/ISSUE_TEMPLATE/launch.yml`。`tests/test_launches.py`、`tests/test_launch_flow.py`、`tests/test_mcp_launches.py`、`tests/test_launch_award.py` 不联网就能测试全部内容。
+工作流：`.github/workflows/launch-intake.yml`、`launch-collect.yml`、`launch-week.yml`、`launch-votes.yml`、`launch-probe.yml`、`award.yml` 和 `retry.yml`（失败的运行再跑一次），以及 issue 表单 `.github/ISSUE_TEMPLATE/launch.yml`。这些都不等人：收件检查或收榜拿不准的情况都有规则（docs/launches.zh-CN.md，“已定的事（2026-11-05）”）。`tests/test_launches.py`、`tests/test_launch_flow.py`、`tests/test_mcp_launches.py`、`tests/test_launch_award.py` 不联网就能测试全部内容。
 
 ## 要改什么
 

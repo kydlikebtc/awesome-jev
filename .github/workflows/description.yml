@@ -7,6 +7,8 @@
 # merged row until someone fixed the description by hand; lint.yml stays
 # read-only and its badge now reflects only drift CI can fix itself. Pull
 # requests see the would-be description in the counts step of lint.yml instead.
+# Since 2026-11-05 the sentence states no count, so it drifts only when its
+# wording changes, and an admin edits it once per wording, not once a week.
 #
 # Injection review: no `github.event.*` value reaches a `run:` block. The issue
 # body is read from a file the script wrote, never interpolated into a shell.

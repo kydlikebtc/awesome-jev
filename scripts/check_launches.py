@@ -76,7 +76,9 @@ def check(catalog: list[dict], launch_files: dict[str, object], maker_files: dic
             row = rows.get(slug)
             if row is None:
                 problems.append(f"{at}: product {slug!r} is not in catalog.json")
-            elif not L.is_product(row):
+            elif not L.is_product(row) and launch.get("status") != "removed":
+                # A removed launch may name a row since found not to be a
+                # product (its call site read, MAINTAINING.md): its reason says so.
                 problems.append(f"{at}: {slug} is a {row.get('kind')} row without code or flagged "
                                 f"as no example; only {', '.join(L.BOARD_KINDS)} rows with code launch")
             if slug in seen_products:

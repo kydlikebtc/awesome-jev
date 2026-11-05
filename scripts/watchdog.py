@@ -25,11 +25,13 @@ first day without editing anything here.
 
 Since 2026-10-30 it also watches the one job no workflow does: drafting rows.
 The daily and weekly drafting tasks run outside GitHub (MAINTAINING.md), and
-what they report through is rows reaching catalog.json, merged on Fridays. So
-the issue also opens when the newest `first_seen` in catalog.json is more than
-INTAKE_DAYS old: a week of drafting and a Friday merge, with a weekend's slack
-for a merge made a day or two late. Then either the tasks have stopped or their
-pull requests are waiting for a person, and nothing else would say so. Only a successful run counts: one
+what they report through is rows reaching catalog.json. Until 2026-11-05 the
+owner merged their pull requests on Fridays; since then each task merges its
+own once its checks pass. So the issue also opens when the newest `first_seen`
+in catalog.json is more than INTAKE_DAYS old, as it did when a week of
+drafting waited for a Friday merge. Then the tasks have stopped, or their pull
+requests could not pass their checks, and nothing else would say so. The daily
+task reads this issue first and fixes what it names. Only a successful run counts: one
 that went red, was cancelled or is still queued says nothing about whether the
 job can do its work.
 
@@ -128,7 +130,7 @@ def look(name: str, repo: str) -> dict:
 
 
 def problem(seen: dict, now: dt.datetime) -> str | None:
-    """Why this workflow needs a person, or None when it is healthy."""
+    """Why this workflow needs attention, or None when it is healthy."""
     if seen["state"] != "active":
         if seen["state"] == "disabled_inactivity":
             return ("GitHub turned its schedule off after 60 days without repository activity; "
@@ -147,14 +149,14 @@ def problem(seen: dict, now: dt.datetime) -> str | None:
 
 
 def intake(catalog: list, now: dt.datetime) -> tuple[str, str | None]:
-    """The newest `first_seen` in the catalogue, and why that needs a person
+    """The newest `first_seen` in the catalogue, and why that needs attention
     (or None when a row arrived within INTAKE_DAYS)."""
     newest = max((str(e.get("first_seen") or "") for e in catalog if isinstance(e, dict)), default="")
     if not newest:
         return "never", "no row in catalog.json has a first_seen date"
     if (now.date() - dt.date.fromisoformat(newest)).days > INTAKE_DAYS:
         return newest, (f"no row has entered catalog.json in {INTAKE_DAYS} days: the drafting tasks "
-                        "may have stopped, or their pull requests are waiting to be merged (MAINTAINING.md)")
+                        "may have stopped, or their pull requests cannot pass their checks (MAINTAINING.md)")
     return newest, None
 
 
@@ -166,7 +168,7 @@ def run_cell(run: dict | None) -> str:
 
 
 def table(found: list[tuple[dict, str | None]]) -> list[str]:
-    """One row per scheduled workflow, the ones that need a person first."""
+    """One row per scheduled workflow, the ones that need attention first."""
     rows = [item for item in found if item[1]] + [item for item in found if not item[1]]
     lines = ["| Workflow | Last success | Newest run | Needs |", "| --- | --- | --- | --- |"]
     for seen, why in rows:
@@ -199,13 +201,14 @@ def markdown(found: list[tuple[dict, str | None]], arrived: tuple[str, str | Non
         *table(found),
         "",
         *(intake_lines(arrived) + [""] if arrived else []),
-        "For a workflow, open the newest run, fix what stopped it, then run it again from its",
-        "Actions page (Run workflow). For rows, merge the drafting pull requests waiting, or",
-        "see MAINTAINING.md for the tasks. This issue closes itself on the first day every",
+        "The daily drafting task reads this issue first (MAINTAINING.md, \"When something stops\").",
+        "For a workflow, it opens the newest run, fixes what stopped it in its pull request, and the",
+        "next scheduled run picks the fix up. For rows, it finds the drafting pull requests that",
+        "could not merge and fixes them. This issue closes itself on the first day every",
         f"scheduled workflow has succeeded within {MAX_DAYS} days ({MONTHLY_DAYS} for a monthly one) and a",
         f"row has arrived within {INTAKE_DAYS}, and its description is rewritten whenever what it says changes.",
         "",
-        f"<!-- Written by scripts/watchdog.py; {broken} of {len(found)} need a person"
+        f"<!-- Written by scripts/watchdog.py; {broken} of {len(found)} need attention"
         + ("; so do the rows" if stalled else "") + ". -->",
         "",
     ])
@@ -238,7 +241,7 @@ def main(argv: list[str] | None = None) -> int:
         pathlib.Path(args.markdown).write_text(body, encoding="utf-8")
     _github.step_summary("## Scheduled workflows\n\n" + "\n".join(table(found))
                          + "\n\n## Rows\n\n" + "\n".join(intake_lines(arrived)))
-    print(f"watchdog: {len(found)} scheduled workflow(s), {broken} need a person; "
+    print(f"watchdog: {len(found)} scheduled workflow(s), {broken} need attention; "
           f"newest row {arrived[0]}{', stalled' if arrived[1] else ''}")
     return 1 if broken or arrived[1] else 0
 

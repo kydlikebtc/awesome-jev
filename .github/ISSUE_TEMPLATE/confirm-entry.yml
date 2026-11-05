@@ -7,8 +7,9 @@ body:
       value: |
         A row here is written from a project's code and pages by someone who did not
         write them. If you did, you know best whether it is right. Confirm it, or say
-        what is wrong: a maintainer checks it against the code, applies it, and
-        records in the row that it came from you, with this issue as the source.
+        what is wrong: the daily run (an AI assistant that keeps this list) checks
+        it against the code, applies it, records in the row that it came from you,
+        with this issue as the source, and answers here.
 
         To have a row removed, use "Report a problem with an entry" instead.
 

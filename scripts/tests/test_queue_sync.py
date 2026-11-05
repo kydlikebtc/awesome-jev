@@ -160,7 +160,7 @@ class RenderTest(unittest.TestCase):
         # Principle f: the description is read by people in either language,
         # and the Chinese is marked as model-written.
         body = self.body()
-        self.assertIn("待读 **3** · 等人看 **0** · 暂缓 **0** · 已收录 **4** · 已拒收 **1** · 收录后已退役 **1** <sub>(机翻)</sub>", body)
+        self.assertIn("待读 **3** · 等每周维护 **0** · 暂缓 **0** · 已收录 **4** · 已拒收 **1** · 收录后已退役 **1** <sub>(机翻)</sub>", body)
         self.assertIn("本描述里的中文（包括下面的标题和计数）都由模型写成。 <sub>(机翻)</sub>", body)
         settled = qs.render(qs.derive({"no/thanks": v("2026-09-24")}, CATALOG, RETIRED, DECLINED))
         self.assertIn("没有待读的候选：迄今每个候选都已收录或已拒收。 <sub>(机翻)</sub>", settled)
@@ -280,7 +280,7 @@ class FactsTest(unittest.TestCase):
     def test_the_parked_section_says_nothing_was_decided(self):
         body = qs.render(self.derive())
         self.assertIn("**5** to read · **0** held · **3** parked · **1** catalogued · **1** declined", body)
-        self.assertIn("待读 **5** · 等人看 **0** · 暂缓 **3** · ", body)
+        self.assertIn("待读 **5** · 等每周维护 **0** · 暂缓 **3** · ", body)
         start = body.index("<summary>Parked · 暂缓 (3)</summary>")
         self.assertLess(body.index("### To read · 待读"), start)
         self.assertLess(start, body.index("<summary>Catalogued · 已收录 (1)</summary>"))
@@ -312,7 +312,7 @@ class FactsTest(unittest.TestCase):
         )
         settled = qs.render(qs.derive({"one/commit": v("2026-09-03")}, [], [], {}, {"one/commit": f(0, 1)}))
         self.assertIn("Nothing to read but the held and parked candidates below.", settled)
-        self.assertIn("除了下面等人看和暂缓的候选，没有待读的。 <sub>(机翻)</sub>", settled)
+        self.assertIn("除了下面等每周维护和暂缓的候选，没有待读的。 <sub>(机翻)</sub>", settled)
         self.assertNotIn("claim owner/name", settled)
 
     def test_same_facts_same_bytes_whatever_their_order(self):
@@ -382,8 +382,8 @@ class HeldTest(unittest.TestCase):
     def test_the_held_section_sits_between_to_read_and_parked_and_asks_nothing(self):
         body = qs.render(list(self.derive().values()))
         self.assertIn("**3** to read · **2** held · **1** parked · ", body)
-        self.assertIn("待读 **3** · 等人看 **2** · 暂缓 **1** · ", body)
-        start = body.index("<summary>Held for a person · 等人看 (2)</summary>")
+        self.assertIn("待读 **3** · 等每周维护 **2** · 暂缓 **1** · ", body)
+        start = body.index("<summary>Held for the weekly upkeep · 等每周维护 (2)</summary>")
         self.assertLess(body.index("### To read · 待读"), start)
         self.assertLess(start, body.index("<summary>Parked · 暂缓 (1)</summary>"))
         section = body[start:body.index("</details>", start)]

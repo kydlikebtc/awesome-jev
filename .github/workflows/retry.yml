@@ -1,0 +1,48 @@
+# Runs a failed workflow run on main once more, by itself (2026-11-05: the
+# owner asked that no step wait for a person). Most failures here are
+# passing ones: an API that did not answer, a rate limit, main moving under a
+# push three times running. A run that fails a second time is left failed:
+# the watchdog files its issue (scripts/watchdog.py), and the daily task
+# reads it and fixes the cause in its pull request.
+#
+# Only the workflows below, only runs on main that are not pull requests
+# (code from a fork never gets a second run from here), and only a first
+# attempt, so nothing loops. `gh run rerun --failed` runs the failed jobs of
+# the same run again, at the same commit; the jobs that push rebase onto the
+# tip of main, or start again from it, when main moved.
+#
+# Injection review: no `github.event.*` value reaches a `run:` block except
+# through `env:`, and the run id is checked as digits before use.
+name: retry
+
+on:
+  workflow_run:
+    workflows: [award, claims, data-release, description, discover, launch-collect, launch-intake, launch-week, links, lint, metadata, new-entry, pages, watchdog]
+    types: [completed]
+
+permissions:
+  actions: write
+
+jobs:
+  retry:
+    name: Run the failed jobs once more
+    if: >-
+      github.event.workflow_run.conclusion == 'failure'
+      && github.event.workflow_run.run_attempt == 1
+      && github.event.workflow_run.event != 'pull_request'
+      && github.event.workflow_run.event != 'pull_request_target'
+      && github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Re-run the failed jobs after a pause
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          REPO: ${{ github.repository }}
+        run: |
+          case "$RUN_ID" in ''|*[!0-9]*) echo "not a run id"; exit 1;; esac
+          # A passing failure (an API that did not answer) is often still
+          # there a minute later.
+          sleep 180
+          gh run rerun "$RUN_ID" --failed --repo "$REPO"
+          echo "re-ran the failed jobs of run $RUN_ID" >> "$GITHUB_STEP_SUMMARY"

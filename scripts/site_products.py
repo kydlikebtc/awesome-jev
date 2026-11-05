@@ -127,6 +127,7 @@ BOARD = {
         "running_note": "In a shuffled order, without counts, until the week closes.",
         "closed": "Last week: {week}",
         "votes": "{votes} votes, {counted} counted",
+        "ring": "most votes came from new accounts, which counted for nothing",
         "no_launch": "No launch is on the board yet. A launch submitted by Thursday 23:59 UTC opens the next "
                      "Monday: a maker can launch a product, and anyone can hunt one, such as those rising below.",
         "new": "New in the catalogue: {week}",
@@ -185,6 +186,7 @@ BOARD = {
         "running_note": "收榜前按随机顺序展示，不显示票数。",
         "closed": "上周：{week}",
         "votes": "{votes} 票，计 {counted} 票",
+        "ring": "多数票来自新账号，这些票不计",
         "no_launch": "榜上还没有 Launch。周四 23:59 UTC 前提交的 Launch 在下周一开放：Maker 可以发布自己的产品，"
                      "任何人也可以 hunt 别人的产品，比如下面上升最快的这些。",
         "new": "本周新收录：{week}",
@@ -529,6 +531,8 @@ def board_item(launch: dict, row: dict, lang: str, *, result: dict | None, base:
     if result:
         meta.append(f"#{result['rank']}")
         meta.append(esc(b["votes"].format(votes=result["votes"], counted=result["counted"])))
+        if result.get("ring"):
+            meta.append(esc(b["ring"]))
     meta.append(f'{esc(b["evidence"])}: {tier_html(row, lang)}')
     links = [f'<a href="{esc(base + product_path(row["slug"]))}">{esc(b["page"])}</a>']
     if result and result.get("badges"):

@@ -16,12 +16,16 @@ draws up a shortlist from that year's closed launch weeks:
   rank, then the most counted votes, then the later week;
 - the first SHORTLIST of them.
 
-Votes order a shortlist; the evidence decides who may be on it. The award
-itself is a person's choice from the shortlist, written with its reasons in
-docs/award/<year>.md. This script never writes that file, and never picks.
+Votes order a shortlist; the evidence decides who may be on it. The award is
+the first of each shortlist, by that same order, and the file says so for each
+pattern: no person picks (2026-11-05, when the owner asked that no step of the
+board wait for one). award.yml runs `--due` on the 15th of each month; on or
+after the anniversary it writes docs/award/<year>.md, once, and pushes it.
 
 Run:
-  python3 scripts/award.py --year 2027        # the shortlists, as Markdown
+  python3 scripts/award.py --year 2027           # the shortlists and the awards, as Markdown
+  python3 scripts/award.py --year 2027 --write   # the same, into docs/award/2027.md
+  python3 scripts/award.py --due                 # --write for the year just ended, if due and not written
 """
 
 from __future__ import annotations
@@ -91,23 +95,36 @@ def shortlists(year: int, all_weeks: list[dict], catalog: list[dict], patterns: 
     return out
 
 
+READER = {"person": "a person", "model": "a model"}
+
+
 def render(year: int, lists: dict[str, list[dict]], patterns: list[dict]) -> str:
     first, last = year_days(year)
     lines = [
-        f"# Decision award {year}: shortlists",
+        f"# Decision award {year}",
         "",
         f"The launch board's year from {first} to {last}, drawn up by `scripts/award.py --year {year}` from the "
         "closed launch weeks on file. One shortlist per decision pattern: products a person or a model read the "
-        "call site of, each at its best week, by rank and then counted votes. The award is a person's choice from "
-        "a shortlist, with reasons; a place here is not a recommendation.",
+        "call site of, each at its best week, by rank and then counted votes. The award is the first of each "
+        "shortlist, by that order; no person picks it. A place here is a count of votes among products whose code "
+        "someone read, not this catalogue's recommendation.",
         "",
     ]
     for p in patterns:
         lines += [f"## {p['en']} (`{p['key']}`)", ""]
         entries = lists.get(p["key"]) or []
         if not entries:
-            lines += ["No eligible launch this year.", ""]
+            lines += ["No eligible launch this year, so no award.", ""]
             continue
+        top = entries[0]
+        lines += [
+            f"**Award: [{top['title']}]({launches.query.SITE}products/{top['product']}.html).** "
+            f"Its best week was {top['week']}, where it placed #{top['rank']} with {top['counted']} counted votes, "
+            f"the best of the products filed under this pattern; {READER[top['evidence']]} read its call site.",
+            "",
+            "Shortlist:",
+            "",
+        ]
         for i, e in enumerate(entries, start=1):
             lines.append(
                 f"{i}. [{e['title']}]({launches.query.SITE}products/"
@@ -118,18 +135,47 @@ def render(year: int, lists: dict[str, list[dict]], patterns: list[dict]) -> str
     return "\n".join(lines)
 
 
+def due_year(today: dt.date) -> int | None:
+    """The award year whose anniversary has passed by `today` (the year just
+    ended), or None before the first."""
+    month, day = ANNIVERSARY
+    year = today.year if (today.month, today.day) >= (month, day) else today.year - 1
+    return year if year >= FIRST_YEAR else None
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    parser.add_argument("--year", type=int, required=True, help=f"the award year, from {FIRST_YEAR}")
+    which = parser.add_mutually_exclusive_group(required=True)
+    which.add_argument("--year", type=int, help=f"the award year, from {FIRST_YEAR}")
+    which.add_argument("--due", action="store_true",
+                       help="write the award for the year just ended, if its anniversary has passed and it is not written")
+    parser.add_argument("--write", action="store_true", help="with --year: write docs/award/<year>.md")
+    parser.add_argument("--on", metavar="DAY", help="today, for --due (default: the clock, UTC)")
     parser.add_argument("--root", default=str(ROOT), help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
+    root = pathlib.Path(args.root)
+    if args.due:
+        today = launches.day(args.on) if args.on else dt.datetime.now(dt.timezone.utc).date()
+        if today is None:
+            parser.error(f"--on takes a day like 2027-09-15, not {args.on!r}")
+        year = due_year(today)
+        if year is None or (root / "docs" / "award" / f"{year}.md").exists():
+            print(f"no award is due on {today}" + (f": {year}'s is written" if year else ""))
+            return 0
+        args.year, args.write = year, True
     if args.year < FIRST_YEAR:
         parser.error(f"the first award year is {FIRST_YEAR}")
-    root = pathlib.Path(args.root)
     catalog = json.loads((root / "catalog.json").read_text(encoding="utf-8"))
     patterns = json.loads((root / "patterns.json").read_text(encoding="utf-8"))["patterns"]
     all_weeks = launches.weeks(root / "launches")
-    print(render(args.year, shortlists(args.year, all_weeks, catalog, patterns), patterns))
+    text = render(args.year, shortlists(args.year, all_weeks, catalog, patterns), patterns)
+    if args.write:
+        path = root / "docs" / "award" / f"{args.year}.md"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text + "\n", encoding="utf-8")
+        print(f"wrote {path.relative_to(root)}")
+    else:
+        print(text)
     return 0
 
 
