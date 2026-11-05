@@ -141,6 +141,10 @@ A week goes like this, with no step for a person:
 3. **Friday to Sunday:** `python3 scripts/launch_intake.py --unread` lists the
    products about to launch whose call site nobody has read; the daily task
    reads those first, so each launch opens with at least a model's reading.
+   When the code turns out not to call Jev, the same pull request flags the
+   row `not-jev` (an `alternative` when it speaks Jev's request shape), sets
+   the launch to `removed` with that reason in the week's file, and the task
+   tells the launch's issue why.
 4. **Monday 00:05 UTC:** `launch-week.yml` runs `scripts/launch_week.py
    --monday`. It closes last week (reads the votes, counts under rules v2
    the votes of a launch that look like a ring of new accounts as nothing and

@@ -363,6 +363,9 @@ class CheckTest(unittest.TestCase):
         self.assertProblem(lambda f: f["2026-W47"]["launches"].append(launch("nope")), "not in catalog.json")
         self.assertProblem(lambda f: f["2026-W47"]["launches"].append(launch("essay")), "only project")
         self.assertProblem(lambda f: f["2026-W47"]["launches"].append(launch("delta")), "only project")
+        # A launch removed because its row turned out not to be a product says so, and passes.
+        self.assertEqual(self.problems(lambda f: f["2026-W47"]["launches"].append(
+            launch("delta", status="removed", reason="its code does not call Jev"))), [])
 
     def test_a_product_is_on_a_week_once(self):
         self.assertProblem(lambda f: f["2026-W47"]["launches"].append(launch("quiet")), "twice")
