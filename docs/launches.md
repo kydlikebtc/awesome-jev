@@ -44,6 +44,7 @@ form, or follow "Launch it" on the product's page, which fills the product in.
 | A badge for every product | One line for a product's README whose picture says it is listed, then that it is launching, then its top-three place; every product page shows the line ([below](#the-readme-badge)) | Built (2026-11-04) |
 | Link previews | Every product, maker, week and board page names the site's preview card, so a link shared anywhere shows one | Built (2026-11-04) |
 | Nothing waits for a person | Every case the launch check and the close used to hold for a maintainer has a rule ([below](#decisions-2026-11-05)); a failed run tries again by itself; the award is written by its rule | Built (2026-11-05) |
+| The README leads with it | Both READMEs open with the board as a feed (the week running, the week filed next, last week's top three, the rising list) and how to launch; the cover draws the same cards. Friday's and Monday's commits regenerate them | Built (2026-11-05) |
 | Daily board | A board per day instead of per week | After 4 closed weeks in a row with at least 20 launches each; the board page counts the run |
 
 Until the first week opens, the board lists the products that entered the

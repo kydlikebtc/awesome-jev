@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="560" viewBox="0 0 600 560" role="img" aria-labelledby="title description">
-<title id="title">awesome-jev · Jev Decision Atlas</title>
-<desc id="description">Jev Decision Atlas: 1,370 public resources, 1,367 dated HTTP 2xx link records, and 1,192 call-site citation records. Counts describe saved records, not current link availability or passed runtime and performance tests.</desc>
+<title id="title">awesome-jev · Jev Launches</title>
+<desc id="description">Jev Launches: 1,117 products built on Jev by 951 makers, with 1,192 call-site citation records. Counts describe saved records, not current link availability or passed runtime and performance tests.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#e6edf3}.mono{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}.muted{fill:#9198a1}.faint{fill:#8b949e}.accent{fill:#f5a524}</style>
 <defs>
 <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity=".045"/></pattern>
@@ -11,26 +11,29 @@
 <rect x=".5" y=".5" width="599" height="559" rx="16" fill="#0b0d10" stroke="#30363d"/>
 <g clip-path="url(#card)"><rect width="600" height="560" fill="url(#grid)" mask="url(#reveal)"/></g>
 <g transform="translate(36 36)"><rect x=".5" y=".5" width="31" height="31" rx="7" fill="#0b0d10" stroke="#3d444d"/><rect x="7" y="20" width="5" height="6" rx="1.5" fill="#4ec97a"/><rect x="13.5" y="14" width="5" height="12" rx="1.5" fill="#a9b3c0"/><rect x="20" y="8" width="5" height="18" rx="1.5" fill="#f5a524"/></g>
-<text x="82" y="59" font-size="18"><tspan class="mono" font-size="22" font-weight="600">awesome-jev</tspan><tspan class="faint" dx="12">·</tspan><tspan class="muted" dx="10">community index</tspan></text>
-<text x="33" y="146" font-size="54" font-weight="600" letter-spacing="-1.4">Jev Decision Atlas</text>
-<text x="36" y="196" font-size="26" class="muted">Find Jev examples by task.</text>
-<text x="36" y="232" font-size="26" class="accent" font-weight="500">Inspect the evidence before you build.</text>
+<text x="82" y="59" font-size="18"><tspan class="mono" font-size="22" font-weight="600">awesome-jev</tspan><tspan class="faint" dx="12">·</tspan><tspan class="muted" dx="10">weekly launch board</tspan></text>
+<text x="33" y="146" font-size="54" font-weight="600" letter-spacing="-1.4">Jev Launches</text>
+<text x="36" y="196" font-size="26" class="muted">Products built on Jev, launched weekly.</text>
+<text x="36" y="232" font-size="26" class="accent" font-weight="500">Vote, then read the evidence.</text>
 <path d="M36 272H564" stroke="#30363d"/>
-<text x="36" y="322" font-size="34" class="mono accent" font-weight="600" letter-spacing="-1">1,370</text>
-<text x="36" y="355" font-size="19" class="muted">public resources</text>
-<text x="216" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,367</text>
-<text x="216" y="355" font-size="19" class="muted">dated 2xx links</text>
+<text x="36" y="322" font-size="34" class="mono accent" font-weight="600" letter-spacing="-1">1,117</text>
+<text x="36" y="355" font-size="19" class="muted">products</text>
+<text x="216" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">951</text>
+<text x="216" y="355" font-size="19" class="muted">makers</text>
 <text x="396" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,192</text>
 <text x="396" y="355" font-size="19" class="muted">call-site records</text>
 <rect x="36" y="392" width="528" height="132" rx="12" fill="#121821" stroke="#30363d"/>
-<text x="56" y="426" font-size="16" class="mono faint" letter-spacing="1.4">ONE STATE · TYPED QUESTIONS</text>
-<rect x="56" y="450" width="3" height="48" rx="1.5" fill="#f5a524"/>
-<text x="72" y="470" font-size="22" class="mono" font-weight="600">choice</text>
-<text x="72" y="496" font-size="18" class="muted">category</text>
-<rect x="228" y="450" width="3" height="48" rx="1.5" fill="#a9b3c0"/>
-<text x="244" y="470" font-size="22" class="mono" font-weight="600">score</text>
-<text x="244" y="496" font-size="18" class="muted">ordinal</text>
-<rect x="400" y="450" width="3" height="48" rx="1.5" fill="#4ec97a"/>
-<text x="416" y="470" font-size="22" class="mono" font-weight="600">noul</text>
-<text x="416" y="496" font-size="18" class="muted">probability</text>
+<text x="56" y="424" font-size="13" class="mono faint" letter-spacing="1.2">RISING · STARS GAINED THIS WEEK</text>
+<polygon points="62.0,441.8 63.3,445.2 67.0,445.4 64.1,447.7 65.1,451.2 62.0,449.2 58.9,451.2 59.9,447.7 57.0,445.4 60.7,445.2" fill="#f5a524"/>
+<text x="78" y="452" font-size="14" class="mono accent" font-weight="600">+35</text>
+<text x="114.03999999999999" y="452" font-size="15" class="mono" font-weight="600">jeveryword</text>
+<text x="217.04" y="452" font-size="13" class="muted">Text extraction with Jev: field extraction, PII…</text>
+<polygon points="62.0,467.8 63.3,471.2 67.0,471.4 64.1,473.7 65.1,477.2 62.0,475.2 58.9,477.2 59.9,473.7 57.0,471.4 60.7,471.2" fill="#f5a524"/>
+<text x="78" y="478" font-size="14" class="mono accent" font-weight="600">+12.4k</text>
+<text x="140.07999999999998" y="478" font-size="15" class="mono" font-weight="600">agent-desktop</text>
+<text x="270.98" y="478" font-size="13" class="muted">Desktop automation that reads the syste…</text>
+<polygon points="62.0,493.8 63.3,497.2 67.0,497.4 64.1,499.7 65.1,503.2 62.0,501.2 58.9,503.2 59.9,499.7 57.0,497.4 60.7,497.2" fill="#f5a524"/>
+<text x="78" y="504" font-size="14" class="mono accent" font-weight="600">+26</text>
+<text x="114.03999999999999" y="504" font-size="15" class="mono" font-weight="600">anydecisionmodel</text>
+<text x="272.84000000000003" y="504" font-size="13" class="muted">A Swift package for typed decisions fr…</text>
 </svg>

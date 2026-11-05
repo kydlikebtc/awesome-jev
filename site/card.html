@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=1280, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#0b0d10" />
-    <title>Jev Decision Atlas — awesome-jev share card</title>
+    <title>Jev Launches — awesome-jev share card</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="fonts/fonts.css" />
     <!--
@@ -103,32 +103,32 @@
     </style>
   </head>
   <body>
-    <main class="card" aria-label="awesome-jev: Jev Decision Atlas">
+    <main class="card" aria-label="awesome-jev: Jev Launches">
       <div class="brand">
         <div class="wordmark"><img src="favicon.svg" alt="" />awesome-jev</div>
-        <span class="brand-note">TypeSafe AI's Jev · EN / 中文</span>
+        <span class="brand-note">weekly launch board · TypeSafe AI's Jev · EN / 中文</span>
       </div>
-      <h1>Jev Decision Atlas</h1>
-      <p class="intro">Find Jev examples by task.<br /><strong>Inspect the evidence.</strong></p>
-      <ul class="evidence" aria-label="Catalogue evidence">
+      <h1>Jev Launches</h1>
+      <p class="intro">Products built on Jev, launched weekly.<br /><strong>Vote, then read the evidence.</strong></p>
+      <ul class="evidence" aria-label="The board in three steps">
         <li>
-          <span class="count" data-stat="entries"></span>
-          <span class="label" data-label="indexed">Browse by task</span>
-          <span class="detail">Find the decision you need.</span>
+          <span class="count" data-stat="products"></span>
+          <span class="label" data-label="indexed">Launch a product</span>
+          <span class="detail">By Thursday; on the board on Monday.</span>
         </li>
         <li>
-          <span class="count" data-stat="link_ok"></span>
-          <span class="label" data-label="links">Check link status</span>
-          <span class="detail">See the latest link-check date.</span>
+          <span class="count" data-stat="makers"></span>
+          <span class="label" data-label="links">Vote with a thumbs-up</span>
+          <span class="detail">One per account, inside the week.</span>
         </li>
         <li>
           <span class="count" data-stat="call_site_rows"></span>
-          <span class="label" data-label="citations">Read call-site citations</span>
-          <span class="detail">Follow the source evidence.</span>
+          <span class="label" data-label="citations">Read the evidence</span>
+          <span class="detail">Who read the call site, beside every rank.</span>
         </li>
       </ul>
       <div class="foot">
-        <span>Index &amp; source checks · code and benchmarks not reproduced</span>
+        <span>Votes and evidence side by side, never added · code and benchmarks not reproduced</span>
         <span class="signal" data-stamp>kydlikebtc / awesome-jev</span>
       </div>
     </main>
@@ -148,8 +148,8 @@
             }
             el.textContent = value.toLocaleString("en-US");
           }
-          document.querySelector('[data-label="indexed"]').textContent = "indexed examples";
-          document.querySelector('[data-label="links"]').textContent = "link checked · 2xx";
+          document.querySelector('[data-label="indexed"]').textContent = "products built on Jev";
+          document.querySelector('[data-label="links"]').textContent = "makers with a page";
           document.querySelector('[data-label="citations"]').textContent = "call-site cited";
           document.querySelector("[data-stamp]").textContent = `Latest check: ${stats.last_sweep}`;
         }

@@ -112,7 +112,7 @@ class CountsTest(unittest.TestCase):
             "thresholds     7036 constants on 7035 rows compared with a Jev answer (observed_thresholds; "
             "observations, not recommendations), 7037 rows read by nobody: noul probability 0.25–0.75 (7038 rows)",
             "it states no count, so it changes only when reworded",
-            "  Public resources for Jev",
+            "  Launch what you built on Jev",
         ):
             self.assertIn(line, text)
 

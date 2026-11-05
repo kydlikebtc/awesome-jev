@@ -17,8 +17,22 @@ import build_readme
 import build_readme_cover as cover
 from readme import sections
 
-STATS = {"entries": 12_345, "link_ok": 12_001, "call_site_rows": 9_876}
+STATS = {"products": 12_345, "makers": 12_001, "call_site_rows": 9_876}
 SVG_NS = "{http://www.w3.org/2000/svg}"
+# A feed as readme.board.hero hands one over, with words nobody here chose:
+# a title and a line far too long for any card, and Chinese ones.
+FEED = {
+    "heading": "THIS WEEK · 2026-W46 · VOTES OPEN",
+    "footer": "VOTES AND EVIDENCE SIDE BY SIDE · NEVER ADDED",
+    "cards": [
+        {"mark": "▲", "count": None, "rank": None, "title": "agent-desktop",
+         "line": "Reads the accessibility tree and decides the next click", "tier": "person"},
+        {"mark": "▲", "count": "1,234", "rank": "#1", "title": "x" * 200, "line": "y " * 200, "tier": "model"},
+        {"mark": "★", "count": "+56", "rank": None, "title": "星标涨得最快的产品，名字很长很长很长很长很长很长",
+         "line": "一句话", "tier": None},
+    ],
+}
+FEEDS = {"en": FEED, "zh": FEED}
 
 
 def github_pick(
@@ -149,6 +163,80 @@ class CoverAssetTests(unittest.TestCase):
             )
 
 
+class FeedTests(unittest.TestCase):
+    """The feed on the cover is the board as it stands, and nothing in it can
+    stop the Monday run that regenerates the cover."""
+
+    def test_a_products_words_are_clipped_never_failed(self):
+        for lang in ("en", "zh"):
+            for render in (cover.cover, cover.mobile_cover):
+                svg = render(lang, "light", STATS, FEED)
+                self.assertIn("agent-desktop", svg)
+                self.assertIn("…", svg)
+                self.assertNotIn("x" * 60, svg)
+                self.assertIn("1,234", svg)
+                self.assertIn("#1", svg)
+                self.assertIn(FEED["heading"], svg)
+
+    def test_clip_keeps_what_fits_and_cuts_the_rest(self):
+        self.assertEqual(cover.clip("short", 14, 500), "short")
+        self.assertEqual(cover.clip("two  words\nhere", 14, 500), "two words here")
+        cut = cover.clip("a sentence that goes on for far too long to fit", 14, 120)
+        self.assertTrue(cut.endswith("…"))
+        self.assertLessEqual(cover.text_width(cut, 14), 120)
+        self.assertEqual(cover.clip("wide", 14, 1), "…")
+
+    def test_the_feed_comes_from_the_board_files(self):
+        from readme import board
+
+        feeds = cover.hero_feed()
+        for lang in ("en", "zh"):
+            with self.subTest(lang=lang):
+                self.assertEqual(set(feeds[lang]), {"heading", "cards", "footer"})
+                self.assertLessEqual(len(feeds[lang]["cards"]), board.HERO_CARDS)
+                self.assertEqual(board.HERO_CARDS, cover.CARDS)
+                for item in feeds[lang]["cards"]:
+                    self.assertEqual(set(item), {"mark", "count", "rank", "title", "line", "tier"})
+                self.assertIn(feeds[lang]["heading"], cover.cover(lang, "dark", STATS, feeds[lang]))
+
+    def test_the_states_of_the_board(self):
+        from readme import board
+
+        row = {"slug": "alpha", "title": "Alpha", "summary": "Decides with Jev.", "summary_zh": "用 Jev 决定。",
+               "url": "https://github.com/o/alpha", "kind": "project", "patterns": ["safety-gating"], "has_code": True}
+        launch = {"product": "alpha", "status": "scheduled", "tagline": "One line", "issue": 1,
+                  "submitted_by": "someone", "role": "hunter", "submitted_on": "2026-11-05"}
+        running = {"week": "2026-W46", "status": "open", "launches": [{**launch, "discussion": 7}]}
+        closed = {"week": "2026-W45", "status": "closed", "launches": [
+            {**launch, "result": {"votes": 42, "counted": 40, "discounted": 2, "rank": 1}}]}
+        cases = [
+            ([running], "THIS WEEK · 2026-W46 · VOTES OPEN", {"mark": "▲", "count": None, "rank": None}),
+            ([closed], "LAST WEEK · 2026-W45 · RESULTS", {"mark": "▲", "count": "40", "rank": "#1"}),
+            ([{**running, "status": "scheduled"}], "NEXT WEEK · 2026-W46 · FILED", {"mark": "▲", "count": None, "rank": None}),
+        ]
+        for weeks, heading, expected in cases:
+            with self.subTest(heading=heading), patch.object(board.launches, "weeks", return_value=weeks), \
+                    patch.object(board.launches, "refreshes", return_value=[]):
+                feed = board.hero([row], "en")
+                self.assertEqual(feed["heading"], heading)
+                self.assertEqual(len(feed["cards"]), 1)
+                self.assertEqual({k: feed["cards"][0][k] for k in expected}, expected)
+                self.assertEqual((feed["cards"][0]["title"], feed["cards"][0]["line"]), ("Alpha", "One line"))
+        with patch.object(board.launches, "weeks", return_value=[]), \
+                patch.object(board.launches, "refreshes", return_value=[]):
+            feed = board.hero([row], "zh")
+            self.assertEqual(feed["heading"], board.HERO["zh"]["steps"])
+            self.assertEqual([c["tier"] for c in feed["cards"]], [None, None, None])
+        before = {"date": "2026-10-28", "rows": [{"slug": "alpha", "stars": 10}]}
+        after = {"date": "2026-11-04", "rows": [{"slug": "alpha", "stars": 60}]}
+        with patch.object(board.launches, "weeks", return_value=[]), \
+                patch.object(board.launches, "refreshes", return_value=[before, after]):
+            feed = board.hero([row], "en")
+            self.assertEqual(feed["heading"], board.HERO["en"]["rising"])
+            self.assertEqual(feed["cards"][0]["count"], "+50")
+            self.assertEqual(feed["cards"][0]["mark"], "★")
+
+
 class HeroSelectionTests(unittest.TestCase):
     MODES = ("auto", "light", "dark")
 
@@ -243,6 +331,8 @@ class ReadmeHeaderTests(unittest.TestCase):
         self.assertEqual(
             [href for href, _ in chips],
             [
+                f"{build_readme.SITE}launches.html",
+                "https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml",
                 f"{build_readme.SITE}?lang=en",
                 f"{build_readme.SITE}?collection=first-call&amp;lang=en",
                 f"{build_readme.SITE}?collection=build&amp;lang=en",
@@ -266,7 +356,7 @@ class ReadmeHeaderTests(unittest.TestCase):
             head = self.header(strings)
             described = cover.description(strings["lang_code"], STATS)
             self.assertIn(f'alt="awesome-jev — {described}"', head)
-        self.assertIn("12,345 public resources", cover.description("en", STATS))
+        self.assertIn("12,345 products", cover.description("en", STATS))
         self.assertIn("not current link availability", cover.description("en", STATS))
 
 

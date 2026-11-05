@@ -341,6 +341,28 @@ def front_page(catalog: list[dict]) -> list[dict]:
     return list(rows.values())
 
 
+def load_launches():
+    """scripts/launches.py on first use, as load_query loads query.py: the
+    board's rules say which rows are products and who their makers are."""
+    import launches
+
+    return launches
+
+
+def products(catalog: list[dict]) -> list[dict]:
+    """The rows that can launch (launches.is_product): a project, plugin, SDK
+    or integration with code that is an example of deciding with Jev."""
+    rules = load_launches()
+    return [e for e in catalog if rules.is_product(e)]
+
+
+def makers(catalog: list[dict]) -> set[str]:
+    """The GitHub logins with a maker page on the site: each product's
+    `makers`, or the login in its author.url, one page per login."""
+    rules = load_launches()
+    return {rules.login_key(login) for e in products(catalog) for login in rules.makers_of(e)}
+
+
 def tool_selection_broad_only(entry: dict) -> bool:
     """Machine signal: the row carries tool-selection, the keyword rules as
     they stood until 2026-09-27 suggest it for the row's summary and title,
@@ -556,6 +578,11 @@ def compute() -> dict:
         # single row is stamped; this is how many rows it actually covers.
         "sweep_coverage": swept.count(last_sweep),
         "retired": len(retired),
+        # The launch board's two headline counts (docs/launches.md): the rows
+        # that can launch, and the makers with a page, by GitHub login. The
+        # README cover shows them beside the call-site records.
+        "products": len(products(catalog)),
+        "makers": len(makers(catalog)),
         # Evidence counts recorded citations, not successful CI checks or
         # executed integrations. CI results do not live in catalog.json. One
         # count per evidence.kind: a file speaking Jev's request shape, or an
@@ -719,11 +746,13 @@ def pitch_public(stats: dict) -> str:
     once a week once a hundred rows a week were drafted, and each change waited
     for an admin to edit the description by hand, which the owner asked that
     nothing wait for. README, status.md and llms.txt carry the exact figure.
+    Since the same day it leads with the launch board, as the README does.
     `stats` is kept for the callers, which pass the catalogue's."""
     del stats
     return (
-        "Public resources for Jev, TypeSafe AI's System One "
-        "decision model, indexed by decision pattern. Source citations, dated link "
-        "checks and scheduled call-site text checks; runtime and performance are "
-        "not independently tested here. EN/中文, JSON schema and platform compatibility."
+        "Launch what you built on Jev, TypeSafe AI's System One decision model: "
+        "a weekly board where makers launch and people vote, over an index of "
+        "public Jev examples by decision pattern, with source citations, dated "
+        "link checks and call-site text checks; runtime and performance are not "
+        "independently tested here. EN/中文, JSON schema, platform matrix."
     )

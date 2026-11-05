@@ -126,6 +126,14 @@ top-three place), and the board itself, which also lists the products whose
 stars rose fastest between the two latest weekly refreshes (`history/`). The
 pages are written with the others at deploy (`scripts/site_products.py`).
 
+Both READMEs open with the board (`scripts/readme/board.py` reads
+`launches/` and `history/`): the week running, the week filed next, last
+week's top three and the rising list, as a feed, and the README cover draws
+the same cards. So the two commits that change those files, Friday's filing
+and Monday's open, regenerate the READMEs before their checks, as the
+weekly refresh already does; a week file pushed without them would fail the
+next strict check.
+
 A week goes like this, with no step for a person:
 
 1. **Any day:** someone opens a launch issue (the "Launch a product" form).
@@ -161,8 +169,9 @@ A week goes like this, with no step for a person:
    marks its result, ranks the launches, writes the counts and how many
    accounts voted and came back) and opens this week (one vote post per
    launch in the `Launches` category, and who had read each call site), then
-   pushes the week files to `main`, checks first, running the week again from
-   the new `main` if it moved, and rebuilds the site. Once the files are on
+   pushes the week files and the regenerated READMEs to `main`, checks
+   first, running the week again from the new `main` if it moved, and
+   rebuilds the site. Once the files are on
    `main`, `--tell` comments on each launch's issue: this week's get the link
    to their vote post and are closed, last week's get their result (and a top
    three the line for its badge). Each issue is told once per stage, so a

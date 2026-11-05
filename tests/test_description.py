@@ -50,9 +50,11 @@ class PublicCountTest(unittest.TestCase):
         pitches = {_stats.pitch_public({"entries": n}) for n in (42, 1201, 1299, 1300, 99999)}
         self.assertEqual(len(pitches), 1)
         pitch = pitches.pop()
-        self.assertTrue(pitch.startswith("Public resources for Jev"), pitch)
+        # Since the same day it leads with the launch board, as the README does.
+        self.assertTrue(pitch.startswith("Launch what you built on Jev"), pitch)
         self.assertNotRegex(pitch, r"\d{2,}")
         self.assertNotIn("verified examples", pitch)
+        self.assertLessEqual(len(pitch), 350, "GitHub cuts a repository description at 350 characters")
 
     def test_site_meta_description_is_the_same_rounded_sentence(self):
         meta = assemble_site.meta_block({"entries": 1207})

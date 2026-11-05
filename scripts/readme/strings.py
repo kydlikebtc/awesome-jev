@@ -37,20 +37,114 @@ EN = {
             "fast and cheap enough to sit in an agent's inner loop.",
         ),
         (
-            "**This repo** indexes public examples of using it, organised by the *decision* being "
-            "made. The resource you read this week is disposable; the decision pattern is not.",
+            "**This repo** is a launch board over a catalogue. The board above: products built on Jev, "
+            "launched by their makers once a week and voted on. Under it, the Jev Decision Atlas: every "
+            "public example of using Jev this index can find, organised by the *decision* being made, "
+            "which outlives any one resource. A launch needs its row; a row never needs a launch.",
         ),
         (
-            "**How to assess it:** every row names its source. Call-site citations, primitive "
-            "claims and caveats are recorded where available, so you can inspect what was read "
-            "and what remains untested.",
+            "**How to assess it:** every row names its source, and call-site citations, primitive "
+            "claims and caveats are recorded where available. On the board the same record sits beside "
+            "the votes, so you can see what was read before you trust a rank.",
         ),
     ],
     "about_not": (
         "Not the product, not an SDK, not affiliated with TypeSafe AI, and not a recommendation. "
-        "Inclusion is a source record, not a runtime or performance endorsement. "
-        "See [what is verified](#what-is-verified-and-what-is-not)."
+        "Inclusion is a source record and a rank is a count of votes; neither is a runtime or "
+        "performance endorsement. See [what is verified](#what-is-verified-and-what-is-not)."
     ),
+    # ---- the launch board (scripts/readme/board.py) ----
+    "chip_board": "Launch board ↗",
+    "chip_launch": "Launch a product",
+    "footer_brand": "**awesome-jev Launches** · over the Jev Decision Atlas",
+    "board_h": "This week's launches",
+    "board_intro": (
+        "Products built on Jev, launched by their makers once a week, or hunted by anyone who found one. "
+        "People vote with a thumbs-up on each launch's post in [Discussions]({discussions}); the week closes "
+        "on Sunday 23:59 UTC with a rank. Votes say how many people cared; the evidence beside each launch "
+        "says who read the code that calls Jev. The two are never added together, and a rank is not this "
+        "catalogue's recommendation. [The board]({board}) has every week, a page per product and per maker, "
+        "and the rising list."
+    ),
+    "board_running_h": "▲ This week: {week}",
+    "board_running_note": (
+        "In a shuffled order and without counts until the week closes, so nobody votes for whatever is on top."
+    ),
+    "board_next_h": "Next week: {week}",
+    "board_next_note": (
+        "Filed for next week, in no particular order. Their vote posts open on Monday {monday} at 00:05 UTC."
+    ),
+    "board_closed_h": "🏆 Last week: {week}",
+    "board_closed_more": (
+        "Every launch of {week}, with the votes discounted and why: [the week's page]({page}) · "
+        "[results feed]({feed})"
+    ),
+    "board_empty": (
+        "No launch is on the board yet. A launch submitted by Thursday 23:59 UTC is filed on Friday and opens "
+        "the next Monday: [launch a product]({form}), yours or one you found, such as those rising below."
+    ),
+    "board_rising_h": "★ Rising: {start} to {end}",
+    "board_rising_note": (
+        "The {shown} products whose GitHub stars grew fastest between the two latest weekly refreshes, at least "
+        "{n} stars gained, by the gain as a share of the stars before; the first {listed} here. Stars are "
+        "GitHub's count, a popularity signal, not a verdict, and nothing is awarded for rising. "
+        "[All {shown} on the board]({board})."
+    ),
+    "board_rising_none": "No product gained {n} stars between the two latest weekly refreshes.",
+    "board_stars": "{before} → {after} stars ({share})",
+    "board_launch_it": "Launch it ↗",
+    "board_again": "can launch again from {day}",
+    "board_on": "on the board in {week}",
+    "board_vote": "Vote ↗",
+    "board_votes": "{votes} votes, {counted} counted",
+    "board_ring": "most from new accounts, which counted for nothing",
+    "board_maker": "launched by its maker {who}",
+    "board_hunter": "hunted by {who}",
+    "tiers": {
+        "person": "👤 a person read the call site",
+        "model": "🤖 a model read the call site, no person yet",
+        "file": "🔍 text match only, nobody has read it",
+        "none": "no file cited",
+    },
+    "launch_h": "Launch your product",
+    "launch_intro": (
+        "Anything built on Jev with public code can launch: a project, plugin, SDK or integration whose row "
+        "is in the catalogue ([add the row]({entry}) first if it is not). Makers launch their own; anyone can "
+        "hunt one they found. Nobody waits for a maintainer: every case has a rule, and the check on your "
+        "issue says what it settled."
+    ),
+    "th_step": "Step",
+    "th_when": "When",
+    "th_what_happens": "What happens",
+    "launch_steps": [
+        (
+            "🚀 Launch", "by Thursday 23:59 UTC",
+            "Open the [launch form]({form}), or *Launch it* on the product's page, which fills it in. A check "
+            "answers the issue at once: ready for next week, or what to change.",
+        ),
+        (
+            "▲ Vote", "Monday to Sunday",
+            "The week opens on Monday with a post per launch in [Discussions]({discussions}). A vote is a "
+            "thumbs-up on the post: one per account, a maker's own count for nothing, and an account under "
+            "30 days old counts half.",
+        ),
+        (
+            "🏆 Results", "the next Monday",
+            "The votes are counted, the week is ranked, the top three get their place on their badge, and "
+            "each launch's issue hears its result. A product can launch again after 60 days.",
+        ),
+    ],
+    "launch_badge": (
+        "Every product has a badge that keeps itself up to date: *listed*, then *launching*, then *vote this "
+        "week*, then its place in a top three. One line in your README, never changed again:"
+    ),
+    "launch_badge_live": "as it reads today for `{slug}`",
+    "launch_more": (
+        "The rules in full: [how votes count]({rules}) · [the board]({board}) · [each week's results as a "
+        "feed]({feed}) · [JSON for agents]({api}) and the MCP server's `launch_board` and `top_launches` "
+        "tools · [run the same board in your own repository]({engine})."
+    ),
+    "launch_rules_anchor": "how-votes-count-rules-v2",
     # ---- primitives ----
     "prims_h": "What Jev returns",
     "prims_intro": (
@@ -374,19 +468,98 @@ ZH = {
             "它返回带校准置信度的类型化答案，快且便宜到可以放进智能体的内层循环。",
         ),
         (
-            "**本仓库**收集它的公开使用例子，按所做的**决策**组织。"
-            "你这周读的那篇资料是一次性的，决策模式不是。",
+            "**本仓库**是目录之上的一个发布榜。上面的榜：用 Jev 做的产品，由 Maker 每周发布一次、大家投票。"
+            "榜的下面是 Jev 决策图谱：这个索引能找到的每一个 Jev 公开用例，按所做的**决策**组织 —— "
+            "资料会过时，决策模式不会。发布需要先有条目；条目不需要发布。",
         ),
         (
-            "**如何判断可信度：**每一行都写明来源；有依据时记录调用点、原语声明和注意事项，"
-            "方便你查看读过什么，以及哪些部分仍未实测。",
+            "**如何判断可信度：**每一行都写明来源；有依据时记录调用点、原语声明和注意事项。"
+            "榜上同一份记录就放在票数旁边，信一个名次之前先看看读过什么。",
         ),
     ],
     "about_not": (
         "不是产品本身，不是 SDK，与 TypeSafe AI 无隶属关系，也不构成推荐。"
-        "收录是一份来源记录，不代表运行验证或性能背书。"
+        "收录是一份来源记录，名次只是票数的计数；两者都不代表运行验证或性能背书。"
         "详见[哪些经过核实](#哪些经过核实哪些没有)。"
     ),
+    # ---- 发布榜（scripts/readme/board.py）----
+    "chip_board": "发布榜 ↗",
+    "chip_launch": "发布产品",
+    "footer_brand": "**awesome-jev 发布榜** · 建在 Jev 决策图谱之上",
+    "board_h": "本周发布榜",
+    "board_intro": (
+        "用 Jev 做出来的产品，由 Maker 每周发布一次，任何人也可以推荐（hunt）自己发现的产品。"
+        "大家在每个 Launch 的 [Discussions]({discussions}) 帖子上点赞投票，每周日 23:59 UTC 收榜、排名。"
+        "票数说明有多少人关心；每个 Launch 旁边的证据说明谁读过它调用 Jev 的代码。两者从不相加，"
+        "名次也不是本目录的推荐。[发布榜]({board})上有每一周、每个产品和每位 Maker 的页面，以及上升榜。"
+    ),
+    "board_running_h": "▲ 本周：{week}",
+    "board_running_note": "收榜前按随机顺序展示、不显示票数，免得大家都投最上面那个。",
+    "board_next_h": "下周：{week}",
+    "board_next_note": "已登记、下周上榜的 Launch，不分先后。投票帖在 {monday}（周一）00:05 UTC 开放。",
+    "board_closed_h": "🏆 上周：{week}",
+    "board_closed_more": "{week} 的全部 Launch、被折算的票和原因：[当周页面]({page}) · [结果订阅]({feed})",
+    "board_empty": (
+        "榜上还没有 Launch。周四 23:59 UTC 前提交的 Launch 周五登记、下周一开榜："
+        "[发布一个产品]({form})，自己做的或你发现的都行，比如下面上升最快的这些。"
+    ),
+    "board_rising_h": "★ 上升最快：{start} 至 {end}",
+    "board_rising_note": (
+        "最近两次每周刷新之间，GitHub 星标涨得最快的 {shown} 个产品：至少涨了 {n} 个，按涨幅占原有星标的比例排序，"
+        "这里列前 {listed} 个。星标是 GitHub 的计数，是热度信号，不是评价；上升不会得到任何奖励。"
+        "[发布榜上的全部 {shown} 个]({board})。"
+    ),
+    "board_rising_none": "最近两次每周刷新之间，没有产品的星标涨到 {n} 个。",
+    "board_stars": "{before} → {after} 星（{share}）",
+    "board_launch_it": "发布它 ↗",
+    "board_again": "{day} 起可再次发布",
+    "board_on": "{week} 在榜",
+    "board_vote": "投票 ↗",
+    "board_votes": "{votes} 票，计 {counted} 票",
+    "board_ring": "多数票来自新账号，这些票不计",
+    "board_maker": "Maker {who} 发布",
+    "board_hunter": "{who} 推荐",
+    "tiers": {
+        "person": "👤 有人读过调用点",
+        "model": "🤖 模型读过调用点，尚无人复核",
+        "file": "🔍 仅文本匹配，还没有人读过",
+        "none": "没有引用文件",
+    },
+    "launch_h": "发布你的产品",
+    "launch_intro": (
+        "任何用 Jev 做的、代码公开的东西都可以发布：项目、插件、SDK 或集成，只要它的条目在目录里"
+        "（没有就先[添加条目]({entry})）。Maker 发布自己的产品；任何人都可以推荐自己发现的产品。"
+        "没有一步需要等维护者：每种情况都有规则，issue 上的检查会告诉你它的判定。"
+    ),
+    "th_step": "步骤",
+    "th_when": "时间",
+    "th_what_happens": "会发生什么",
+    "launch_steps": [
+        (
+            "🚀 发布", "周四 23:59 UTC 前",
+            "打开[发布表单]({form})，或在产品页点「发布它」，表单会自动填好。检查会立刻在 issue 上回复："
+            "下周上榜，或者需要改什么。",
+        ),
+        (
+            "▲ 投票", "周一到周日",
+            "周一开榜，每个 Launch 在 [Discussions]({discussions}) 里有一个帖子。投票就是在帖子上点赞："
+            "每个账号一票，Maker 自己的票不计，注册不满 30 天的账号算半票。",
+        ),
+        (
+            "🏆 结果", "下周一",
+            "计票、排名，前三名的徽章显示名次，每个 Launch 的 issue 都会收到结果。60 天后可以再次发布。",
+        ),
+    ],
+    "launch_badge": (
+        "每个产品都有一枚自动更新的徽章：已收录，然后是发布中、本周投票，再到前三名的名次。"
+        "在你的 README 里放一行，之后不用再改："
+    ),
+    "launch_badge_live": "`{slug}` 今天的样子",
+    "launch_more": (
+        "完整规则：[怎么计票]({rules}) · [发布榜]({board}) · [每周结果订阅]({feed}) · [给智能体的 JSON]({api}) "
+        "以及 MCP 服务器的 `launch_board`、`top_launches` 工具 · [在你自己的仓库里跑同一套发布榜]({engine})。"
+    ),
+    "launch_rules_anchor": "怎么计票规则-v2",
     "prims_h": "Jev 返回什么",
     "prims_intro": (
         "三个核心原语：Choice、Score 和 Noul。下面的模式使用它们；Noul 返回概率，没有单独的 confidence 字段。"
@@ -655,6 +828,11 @@ ZH_MACHINE = frozenset(
         "call_site_note", "measured_more", "measured_page_intro", "repo_skill_division", "direction_note",
         "measured_more_negative", "negative_note", "pattern_evidence", "design_link", "design_link_overview",
         "official_intro", "official_none", "examples_intro", "examples_none", "picker_intro", "picker_sources",
+        # The launch board's sections (2026-11-05): about_rows is marked line
+        # by line in sections.what_this_is, launch_steps under its table.
+        "about_rows", "about_not", "board_intro", "board_running_note", "board_next_note", "board_closed_more",
+        "board_empty", "board_rising_note", "board_rising_none", "launch_intro", "launch_steps", "launch_badge",
+        "launch_more",
     }
 )
 
