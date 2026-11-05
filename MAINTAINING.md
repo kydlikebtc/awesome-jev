@@ -49,7 +49,13 @@ A model read it, and every surface says so (the C2 tier, since 2026-10-24):
 The tasks start each row with `python3 scripts/model_draft.py OWNER/NAME PATH`
 and check it with `python3 scripts/model_draft.py --check FILE` before adding
 it. The draft carries what a script knows; `--check` holds the finished row to
-the schema, lint's rules, the tier above, and the cited file at HEAD.
+the schema, lint's rules, the tier above, and the cited file at HEAD. When the
+queue names no file, or only a test or a settings file, `python3
+scripts/find_calls.py OWNER/NAME` lists the files in the candidate's default
+branch that hold a call-site string, so the row can cite the one that builds
+the real request. The tasks' sandbox cannot list another repository's files
+through the API, and the script needs none: it reads a shallow clone and runs
+nothing in it.
 
 A person who later reads a row's call site sets `evidence.read_on` (and may
 rewrite the summary as `curated`); the row then leaves
@@ -71,10 +77,14 @@ decision and its reason where the rule says, and deletes the line in its pull
 request:
 
 1. **No call site found.** It searches the candidate's default branch for the
-   call-site strings `scripts/_github.py` knows. A file that calls Jev: it
-   drafts the row from that file. None: it declines the candidate in
-   [docs/declined.txt](docs/declined.txt), "no Jev call site in its code
-   (searched YYYY-MM-DD)".
+   call-site strings `scripts/_github.py` knows: `python3
+   scripts/find_calls.py owner/name` clones the branch one commit deep and
+   lists every code file holding one, the project's own files before its
+   tests. A file that calls Jev: it drafts the row from that file. None: it
+   declines the candidate in [docs/declined.txt](docs/declined.txt), "no Jev
+   call site in its code (searched YYYY-MM-DD)". A clone GitHub refuses
+   because the repository is gone or private: declined, "repository gone or
+   private (YYYY-MM-DD)".
 2. **The same code as a catalogued row** (a fork, a mirror, a renamed copy, a
    package another row already carries): declined, "covered by the
    catalogued row `<slug>`".
