@@ -4479,6 +4479,7 @@
     "patterns": [
       "overview"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
@@ -5003,6 +5004,7 @@
     "patterns": [
       "overview"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "languages": [
       "go"
     ],
@@ -6402,8 +6404,9 @@
     "url": "https://github.com/CelestoAI/celesto",
     "kind": "project",
     "patterns": [
-      "overview"
+      "output-validation"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
@@ -12011,8 +12014,9 @@
     "url": "https://github.com/samuelfaj/distill",
     "kind": "project",
     "patterns": [
-      "overview"
+      "model-routing"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
@@ -28729,8 +28733,10 @@
     "url": "https://github.com/jev-chat/jev-chat-jarvis-mac",
     "kind": "project",
     "patterns": [
-      "overview"
+      "intent-routing",
+      "content-scoring"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
@@ -28816,8 +28822,11 @@
     "url": "https://github.com/jev-chat/jev-chat-windows",
     "kind": "project",
     "patterns": [
-      "overview"
+      "intent-routing",
+      "content-scoring",
+      "fan-out"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
@@ -32832,6 +32841,7 @@
     "patterns": [
       "overview"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
@@ -51921,6 +51931,7 @@
     "patterns": [
       "overview"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "question_types": [
       "choice",
       "score",
@@ -71138,8 +71149,9 @@
     "url": "https://github.com/kody-hq/kody",
     "kind": "plugin",
     "patterns": [
-      "overview"
+      "search-ranking"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
@@ -71543,6 +71555,7 @@
     "patterns": [
       "overview"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
@@ -72059,6 +72072,7 @@
     "patterns": [
       "overview"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
@@ -75734,8 +75748,9 @@
     "url": "https://github.com/zilliztech/memsearch",
     "kind": "plugin",
     "patterns": [
-      "overview"
+      "search-ranking"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
@@ -78380,8 +78395,10 @@
     "url": "https://github.com/can1357/oh-my-pi",
     "kind": "project",
     "patterns": [
-      "overview"
+      "model-routing",
+      "search-ranking"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
@@ -81883,6 +81900,7 @@
     "patterns": [
       "overview"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "languages": [
       "python"
     ],
@@ -86983,6 +87001,7 @@
     "patterns": [
       "overview"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
@@ -87975,6 +87994,7 @@
     "patterns": [
       "overview"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
@@ -92624,8 +92644,10 @@
     "url": "https://github.com/smithersai/smithers",
     "kind": "project",
     "patterns": [
-      "overview"
+      "model-routing",
+      "intent-routing"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "vercel-ai-gateway"
     ],
@@ -105566,6 +105588,7 @@
     "patterns": [
       "overview"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "languages": [
       "shell"
     ],
@@ -106690,8 +106713,9 @@
     "url": "https://github.com/vellum-ai/vellum-assistant",
     "kind": "project",
     "patterns": [
-      "overview"
+      "intent-routing"
     ],
+    "patterns_model_read_on": "2026-11-05",
     "platforms": [
       "typesafe-api"
     ],
