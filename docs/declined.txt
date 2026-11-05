@@ -10,3 +10,13 @@
 
 nickthompson480/typesafe-ai-playground  # an earlier two-commit copy of the same playground, continued at TypeSafeAI/typesafe-playground (catalogued)
 antting/jev-accounts-hub  # a multi-account pooling gateway for the API, not a decision example; pooling accounts likely works around the vendor's limits
+tbphp/gpt-load  # a gateway that pools access to the API, not a decision example: it pools API keys and subscription accounts behind one access key (weekly upkeep 2026-11-05, rule 5)
+chigwell/typesafe.pro  # a gateway that pools access to the API, not a decision example: a third-party /v1/systemone forwarder with pooled keys and anonymous access (weekly upkeep 2026-11-05, rule 5)
+hackclub/ai  # a gateway that pools access to the API, not a decision example: a proxy that serves members from the organisation's one API key (weekly upkeep 2026-11-05, rule 5)
+arize-ai/openinference  # covered by the catalogued row `langfuse-typesafe-observability`, which already cites its TypeSafe instrumentor package (weekly upkeep 2026-11-05, rule 2)
+interfazeai/lev  # covered by the catalogued row `lev`: the same code as Abhinavexists/lev (weekly upkeep 2026-11-05, rule 2)
+taeold/djev-run  # covered by the catalogued row `djev`: a Cloud Run deployment recipe for that server (weekly upkeep 2026-11-05, rule 2)
+byalex33/changelog.earth  # no Jev call site in its code (searched 2026-11-05): archived editions keep scores Jev gave, but the pipeline now checks that it uses Groq only (weekly upkeep, rule 1)
+benmagnifico/drivejev  # compares with Jev but publishes no results: its demo can hand the wheel to cloud Jev through OpenRouter beside its own model, and docs/evaluation.md has no Jev rows (weekly upkeep 2026-11-05, rule 4)
+Joe-rq/ReJev  # compares with Jev but publishes no results: src/train/jev_api_eval.py sends its holdout to Jev, and the records (exp005) are left out of the repository (weekly upkeep 2026-11-05, rule 4)
+hotchpotch/bekko-system-one  # does not call Jev or take its request shape: small models with their own Python and ONNX API; Jev 1.13 appears only in its benchmark tables (weekly upkeep 2026-11-05, rule 6)
