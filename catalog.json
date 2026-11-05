@@ -81815,9 +81815,9 @@
   {
     "slug": "openwork",
     "title": "openwork",
-    "summary": "The open-source alternative to Claude Cowork (powered by opencode)",
-    "summary_source": "upstream-description",
-    "summary_zh": "某协作工具的开源替代品。",
+    "summary": "Open-source alternative to Claude Cowork, built on opencode. Its gateway's Auto route asks Jev one Score per Smart Router task and one for the thinking level, then routes the prompt by the answers; without a TypeSafe key it takes the fallback route.",
+    "summary_source": "model-written",
+    "summary_zh": "Claude Cowork 的开源替代品，基于 opencode 构建。它的网关在 Auto 路由中为每个 Smart Router 任务向 Jev 提一个 Score 问题，再为思考强度提一个，然后按回答路由提示；没有 TypeSafe 密钥时走后备路由。",
     "zh_machine": true,
     "url": "https://github.com/different-ai/openwork",
     "kind": "project",
@@ -81882,8 +81882,8 @@
     "languages": [
       "typescript"
     ],
-    "notes": "Its gateway's Auto route asks Jev one Score per Smart Router task and one for the thinking level, then routes the prompt; without a TypeSafe key it takes the fallback route. Listed until 2026-11-05 as an alternative to Jev: the project is an alternative to Claude Cowork that calls Jev. Evidence and kind updated by an AI assistant that read the cited file on 2026-11-05; a maintainer has not yet read the call site.",
-    "notes_zh": "它的网关在 Auto 路由中为每个 Smart Router 任务向 Jev 提一个 Score 问题，再为思考强度提一个，然后据此路由提示；没有 TypeSafe 密钥时走后备路由。2026-11-05 之前本条目被列为 Jev 的替代品：实际上该项目是 Claude Cowork 的替代品，它调用 Jev。证据与类别由 AI 助手于 2026-11-05 阅读所引文件后更新；维护者尚未亲自阅读调用点。",
+    "notes": "Listed until 2026-11-05 as an alternative to Jev: the project is an alternative to Claude Cowork that calls Jev. Summary, evidence and kind updated by an AI assistant that read the cited file on 2026-11-05; a maintainer has not yet read the call site.",
+    "notes_zh": "2026-11-05 之前本条目被列为 Jev 的替代品：实际上该项目是 Claude Cowork 的替代品，它调用 Jev。摘要、证据与类别由 AI 助手于 2026-11-05 阅读所引文件后更新；维护者尚未亲自阅读调用点。",
     "checked": "2026-11-04",
     "link_status": 200,
     "question_types": [
@@ -102923,8 +102923,8 @@
       "python",
       "typescript"
     ],
-    "notes": "Checked 2026-10-15: jev-preview points to jev-1.14.0; jev-latest to jev-1.13.0. The October 14 announcement (https://typesafe.ai/blog/jev-1-14) plans the latest switch about a week later. TypeSafe-Danger-Zone-Long-Context: true raises both limits to 262k on 1.13/1.14. Images: https://docs.typesafe.ai/images; enable with TypeSafe-Danger-Zone-Images: true.",
-    "notes_zh": "2026-10-15 核对：jev-preview 指向 jev-1.14.0，jev-latest 指向 jev-1.13.0。10 月 14 日公告（https://typesafe.ai/blog/jev-1-14）计划约一周后切换 latest。1.13/1.14 均可通过 TypeSafe-Danger-Zone-Long-Context: true 把两个上限提高至 262k。图像见 https://docs.typesafe.ai/images，需开启 TypeSafe-Danger-Zone-Images: true。",
+    "notes": "Checked 2026-11-05: jev-latest and jev-preview both point to jev-1.14.0, with no separate preview build. TypeSafe-Danger-Zone-Long-Context: true raises both limits to 262k on 1.13/1.14. Images: https://docs.typesafe.ai/images; enable with TypeSafe-Danger-Zone-Images: true.",
+    "notes_zh": "2026-11-05 核对：jev-latest 和 jev-preview 都指向 jev-1.14.0，目前没有单独的预览版。1.13/1.14 均可通过 TypeSafe-Danger-Zone-Long-Context: true 把两个上限提高至 262k。图像见 https://docs.typesafe.ai/images，需开启 TypeSafe-Danger-Zone-Images: true。",
     "first_seen": "2026-09-22",
     "sources": [
       {

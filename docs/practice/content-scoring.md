@@ -11,10 +11,10 @@ Content scoring puts a number or a band on something: a passage's relevance, a r
 <!-- readings:start -->
 |  | Rows |
 | --- | ---: |
-| Filed under this pattern | 177 |
-| Citing one file in their repository (`evidence`) | 173 |
-| Of those, the file read by a person (`evidence.read_on`) | 158 |
-| Of those, read only by a model (`evidence.model_read_on`) | 15 |
+| Filed under this pattern | 179 |
+| Citing one file in their repository (`evidence`) | 175 |
+| Of those, the file read by a person (`evidence.read_on`) | 159 |
+| Of those, read only by a model (`evidence.model_read_on`) | 16 |
 | Of those, no reading recorded (a script's match only) | 0 |
 <!-- readings:end -->
 
@@ -37,9 +37,9 @@ Content scoring puts a number or a band on something: a passage's relevance, a r
 <!-- primitives:start -->
 | Primitive | A person read the code calling it | A model read the code calling it | Only the text signal shows it |
 | --- | ---: | ---: | ---: |
-| `choice` | 14 | 11 | 52 |
-| `score` | 12 | 12 | 41 |
-| `noul` | 11 | 12 | 63 |
+| `choice` | 14 | 11 | 54 |
+| `score` | 12 | 12 | 43 |
+| `noul` | 11 | 12 | 64 |
 
 Primitives recorded together on one row (`question_types`, a person's or a model's reading): `choice` + `score` + `noul` 19 · `choice` + `score` 3 · `choice` 2 · `noul` 2 · `choice` + `noul` 1 · `score` 1 · `score` + `noul` 1.
 <!-- primitives:end -->

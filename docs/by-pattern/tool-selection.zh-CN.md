@@ -8,7 +8,7 @@ _智能体下一步该调用哪个工具或动作。_
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 245 · 接口形态 4 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 243 · 接口形态 6 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -100,10 +100,10 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`开源项目` · ★100+ · fbddcz · `Py` · 调用点 [`src/embodied_jev/policies.py`](https://github.com/FBddcz/embodied-jev/blob/HEAD/src/embodied_jev/policies.py)，2026-09-22 阅读</sub>
 
 - **[fastbrowse](https://github.com/agent-labs-dev/fastbrowse)** — 浏览器智能体：每个页面被索引成候选控件，由 Jev 选出下一步，因此不会点击页面上没有的东西；规划和阅读由 Gemini Flash 负责，答案引用页面原文。维护者记录的 46 个任务中成功率为 99.2%，托管版 Browser Use 为 97.8%，而成本不到其十分之一。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★100+ · agent-labs-dev · `Py` · 调用点 [`src/fastbrowse/clients/typesafe.py`](https://github.com/agent-labs-dev/fastbrowse/blob/HEAD/src/fastbrowse/clients/typesafe.py)，2026-09-22 阅读</sub>
+  <sub>`开源项目` · ★100+ · agent-labs-dev · `Rs` · `Py` · 调用点 [`crates/fastbrowse-clients/src/system_one.rs`](https://github.com/agent-labs-dev/fastbrowse/blob/HEAD/crates/fastbrowse-clients/src/system_one.rs)，2026-11-05 模型阅读</sub>
 
 - **[foreman](https://github.com/thruwire/foreman)** — 一个「软件工厂工头」，用 Jev 决定智能体流水线下一步该做什么。
-  <sub>`开源项目` · ★100+ · thruwire · `Py` · 调用点 [`src/foreman/foreman/jev.py`](https://github.com/thruwire/foreman/blob/HEAD/src/foreman/foreman/jev.py)，2026-09-22 阅读</sub>
+  <sub>`开源项目` · ★100+ · thruwire · `Py` · 调用点 [`src/foreman/decision_models/jev.py`](https://github.com/thruwire/foreman/blob/HEAD/src/foreman/decision_models/jev.py)，2026-11-05 模型阅读</sub>
 
 - **[hyperedit](https://github.com/kevinbadi/hyperedit)** — 一个 AI 视频编辑器：把编辑指令路由到具体操作、目标片段和轨道，并以关键词路由作为兜底。
   <sub>`开源项目` · ★100+ · `TS` · `choice` · `noul` · 调用点 [`scripts/jev.js`](https://github.com/kevinbadi/hyperedit/blob/HEAD/scripts/jev.js)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
@@ -382,7 +382,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`开源项目` · ★10+ · bewinxed · `TS` · 调用点 [`src/jevgpt/sampler.py`](https://github.com/Bewinxed/jevgpt/blob/HEAD/src/jevgpt/sampler.py)，2026-09-22 阅读</sub>
 
 - **[jevloop](https://github.com/parkavenue9639/jevloop)** — 由 Jev 驱动的通用智能体框架，追求更快、更低成本的执行，并内置与纯 LLM 智能体的并排对比实验。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10+ · parkavenue9639 · `Py` · 调用点 [`backend/jevloop/decision/model.py`](https://github.com/parkavenue9639/jevloop/blob/HEAD/backend/jevloop/decision/model.py)，2026-09-24 阅读</sub>
+  <sub>`开源项目` · ★10+ · parkavenue9639 · `Py` · 调用点 [`backend/jevloop/decision/laya.py`](https://github.com/parkavenue9639/jevloop/blob/HEAD/backend/jevloop/decision/laya.py)，2026-11-05 模型阅读</sub>
 
 - **[jevscape](https://github.com/Skyvern-AI/jevscape)** — 给 Jev 的 RuneBench harness：有界动作目录、tick 模式控制器与实时看板。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · skyvern-ai · `TS` · 调用点 [`agents/jev/jev-client.ts`](https://github.com/Skyvern-AI/jevscape/blob/HEAD/agents/jev/jev-client.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
@@ -536,9 +536,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-browse](https://github.com/0x7067/jev-browse)** — 以 Jev（TypeSafe）作为决策模型的浏览器自动化。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · 0x7067 · `JS` · 调用点 [`bundled/cli.mjs`](https://github.com/0x7067/jev-browse/blob/HEAD/bundled/cli.mjs)，2026-09-24 阅读</sub>
-
-- **[jev-browse](https://github.com/kyrylosyzonenko/jev-browse)** — 驱动真实浏览器，每个决定都由 Jev 做出——点哪里、把你的哪段文字填进哪个输入框、目标何时达成——由 agent-browser 执行操作。 <sub>(机翻)</sub>
-  <sub>`开源项目` · kyrylosyzonenko · `JS` · 调用点 [`jev-browse.mjs`](https://github.com/kyrylosyzonenko/jev-browse/blob/HEAD/jev-browse.mjs)，2026-09-24 阅读</sub>
 
 - **[jev-browser](https://github.com/KesavanKing/jev-browser)** — 本地浏览器自动化界面：用 TypeSafe Jev 选择有界的页面操作，只在需要填写字段时才调用文本模型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · kesavanking · `Py` · 调用点 [`jev_browser/model.py`](https://github.com/KesavanKing/jev-browser/blob/HEAD/jev_browser/model.py)，2026-09-24 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
@@ -717,6 +714,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[macos-computer-use-kit](https://github.com/Sur-Cai/macos-computer-use-kit)** — 面向 macOS AI 智能体的、以辅助功能为先的电脑操作工具包，可选配 Jev（TypeSafe System One）语义护栏。 <sub>(机翻)</sub>
   <sub>`插件` · sur-cai · `Py` · 调用点 [`src/macos_computer_use/jev.py`](https://github.com/Sur-Cai/macos-computer-use-kit/blob/HEAD/src/macos_computer_use/jev.py)，2026-09-24 阅读</sub>
 
+- **[multi-uav-jev](https://github.com/yongld/multi-uav-jev)** — 不是 Jev：一个 MuJoCo 无人机编队仿真，每架飞机的工作线程按自身角色（跟踪、拦阻、截击、支援）措辞，把关于下一个机动动作的 Jev 格式 Choice 问题发给本地 NeoHorse-Jev-4B 端点；导航、制动和间隔保持仍由确定性代码负责。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · yongld · `Py` · `choice` · 引用文件 [`sim/duel_tactics.py`](https://github.com/yongld/multi-uav-jev/blob/HEAD/sim/duel_tactics.py)，2026-11-05 模型阅读 · ⚠ `并非 Jev 本身`</sub>
+
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — 给 Codex 与 Claude Code 的二值批准闸门：每次被拦截的工具调用都要审查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · alexj11324 · `Go` · 引用文件 [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
 
@@ -750,8 +750,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[s1s](https://github.com/cpaczek/s1s)** — System One 搜索：用类型化判断与仓库证据导航与追踪代码。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · cpaczek · `TS` · 调用点 [`src/client.ts`](https://github.com/cpaczek/s1s/blob/HEAD/src/client.ts)，2026-09-22 阅读</sub>
 
-- **[slidepilot](https://github.com/harshil1712/slidepilot)** — 给 Slidev 做的语音驱动语义自动翻页，由 Cloudflare Agents 与 Jev 驱动。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · harshil1712 · `TS` · 调用点 [`apps/worker/src/decision.ts`](https://github.com/harshil1712/slidepilot/blob/HEAD/apps/worker/src/decision.ts)，2026-09-22 阅读</sub>
+- **[slidepilot](https://github.com/harshil1712/slidepilot)** — 给 Slidev 做的语音自动翻页：演讲者每次停顿时，Cloudflare worker 以 Jev 的请求格式向 Cloudflare 自家在 Workers AI 上的 Clef 模型提一个 Choice 和三个 Noul，再由它自己的代码决定是否显示下一步或翻到下一页。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · harshil1712 · `TS` · 引用文件 [`apps/worker/src/decision.ts`](https://github.com/harshil1712/slidepilot/blob/HEAD/apps/worker/src/decision.ts)，2026-11-05 模型阅读 · ⚠ `并非 Jev 本身`</sub>
 
 - **[snake-jev](https://github.com/siroccomask/snake-jev)** — 由并行 Jev 判断控制的贪吃蛇，每个游戏 tick 一次 API 调用。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · siroccomask · `Py` · 调用点 [`jev_controller.py`](https://github.com/siroccomask/snake-jev/blob/HEAD/jev_controller.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>

@@ -35,6 +35,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Cookbook: Guardrails for LLMs](https://docs.typesafe.ai/cookbooks/llm_guardrails)** ⭐ — 用一次请求筛查 LLM 应用的每一条进出消息，既点明风险类型、又给「照做会造成多大危害」打分。
   <sub>`官方文档` · `Py` · `noul` · `score`</sub>
 
+- **[celesto](https://github.com/CelestoAI/celesto)** — 给 AI 智能体的安全持久化计算环境。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★1k+ · celestoai · `Py` · 调用点 [`examples/pr-review-jev/models.py`](https://github.com/CelestoAI/celesto/blob/HEAD/examples/pr-review-jev/models.py)，2026-09-22 阅读</sub>
+
 - **[latitude-llm](https://github.com/latitude-dev/latitude-llm)** — 面向 AI 智能体的开源可观测性平台，在调用轨迹里标出智能体出错的地方。其中一个影子提供方问 Jev 每个标记维度一个 noul，一次调用最多 11 个；所引文件看不出这些答案是否会改变任何标记，README 也没有提到 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★1k+ · latitude-dev · `TS` · 调用点 [`packages/platform/ai-jev/src/jev-shadow-decision-provider.ts`](https://github.com/latitude-dev/latitude-llm/blob/HEAD/packages/platform/ai-jev/src/jev-shadow-decision-provider.ts)，2026-09-22 阅读</sub>
 
@@ -57,7 +60,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`插件` · ★100+ · luobosibing2 · `TS` · `noul` · 调用点 [`packages/jev/src/selection.ts`](https://github.com/luobosibing2/dsh-jev-plugin/blob/HEAD/packages/jev/src/selection.ts)，2026-10-28 模型阅读</sub>
 
 - **[fastbrowse](https://github.com/agent-labs-dev/fastbrowse)** — 浏览器智能体：每个页面被索引成候选控件，由 Jev 选出下一步，因此不会点击页面上没有的东西；规划和阅读由 Gemini Flash 负责，答案引用页面原文。维护者记录的 46 个任务中成功率为 99.2%，托管版 Browser Use 为 97.8%，而成本不到其十分之一。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★100+ · agent-labs-dev · `Py` · 调用点 [`src/fastbrowse/clients/typesafe.py`](https://github.com/agent-labs-dev/fastbrowse/blob/HEAD/src/fastbrowse/clients/typesafe.py)，2026-09-22 阅读</sub>
+  <sub>`开源项目` · ★100+ · agent-labs-dev · `Rs` · `Py` · 调用点 [`crates/fastbrowse-clients/src/system_one.rs`](https://github.com/agent-labs-dev/fastbrowse/blob/HEAD/crates/fastbrowse-clients/src/system_one.rs)，2026-11-05 模型阅读</sub>
 
 - **[formanator](https://github.com/timrogers/formanator)** — 从命令行或 MCP 客户端提交 Forma 福利报销。使用 --category-provider jev 时，Jev 用一个 choice 从 Forma 允许的“福利加类别”组合（另加 no_match）中挑一个，只看商家和描述；置信度低于 0.5 或无匹配时，回退到配置好的 LLM。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · timrogers · `Rs` · 调用点 [`src/typesafe.rs`](https://github.com/timrogers/formanator/blob/HEAD/src/typesafe.rs)，2026-09-22 阅读</sub>
@@ -129,7 +132,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`插件` · ★10+ · integrate-your-mind · `TS` · `choice` · `noul` · `score` · 调用点 [`source/jev-workflows/src/contracts.ts`](https://github.com/integrate-your-mind/jev-codex-plugin/blob/HEAD/source/jev-workflows/src/contracts.ts)，2026-11-04 模型阅读</sub>
 
 - **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — 实验性的逐次调用 GPT 模型路由，通过 Jev 与一个本地 Rescue 层为 Codex 服务。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · ★10+ · minilv · `TS` · 调用点 [`src/jev-adapter.ts`](https://github.com/miniLV/Jev-Auto-Router/blob/HEAD/src/jev-adapter.ts)，2026-09-22 阅读</sub>
+  <sub>`插件` · ★10+ · minilv · `TS` · 调用点 [`src/codex-router/jev.ts`](https://github.com/miniLV/Jev-Auto-Router/blob/HEAD/src/codex-router/jev.ts)，2026-11-05 模型阅读</sub>
 
 - **[jev-belay](https://github.com/valentynkit/jev-belay)** — Claude Code 的 Stop 钩子：在未经验证的“完成”之前拦下——读取会话记录找证据，只问 Jev 一次，其余情况一律放行。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · valentynkit · `JS` · 调用点 [`belay.mjs`](https://github.com/valentynkit/jev-belay/blob/HEAD/belay.mjs)，2026-09-24 阅读</sub>
@@ -302,9 +305,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-bench](https://github.com/TheWayWithin/jev-bench)** — 引用的来源真的这么说了吗？一个包含 42 条论断的基准：Jev（TypeSafe System One）对比 GPT 与 Claude 等模型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · thewaywithin · `Py` · 调用点 [`run.py`](https://github.com/TheWayWithin/jev-bench/blob/HEAD/run.py)，2026-09-24 阅读</sub>
 
-- **[jev-block-android-ad](https://github.com/ufec/jev-block-android-ad)** — Android 上的通知与短信过滤：不是匹配关键词，而是由模型判断。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ufec · `Kt` · 调用点 [`app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt`](https://github.com/ufec/jev-block-android-ad/blob/HEAD/app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt)，2026-09-22 阅读</sub>
-
 - **[jev-browser-pilot](https://github.com/aidil2105/jev-browser-pilot)** — 给浏览器与桌面自动化的有界决策层：只做决策的模型负责选择。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · aidil2105 · `Py` · 调用点 [`src/jev_pilot/providers/jev.py`](https://github.com/aidil2105/jev-browser-pilot/blob/HEAD/src/jev_pilot/providers/jev.py)，2026-09-22 阅读</sub>
 
@@ -435,7 +435,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`插件` · allebee · `Py` · 调用点 [`src/pytest_jev/judge.py`](https://github.com/allebee/pytest-jev/blob/HEAD/src/pytest_jev/judge.py)，2026-09-22 阅读</sub>
 
 - **[riff](https://github.com/scale-venture-partners/riff)** — 小而快的文风 linter：ruff 式的规则编码，由 Jev 支撑。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · scale-venture-partners · `Py` · 调用点 [`src/riff/jev.py`](https://github.com/scale-venture-partners/riff/blob/HEAD/src/riff/jev.py)，2026-09-22 阅读</sub>
+  <sub>`开源项目` · scale-venture-partners · `Py` · 调用点 [`src/riff/backend.py`](https://github.com/scale-venture-partners/riff/blob/HEAD/src/riff/backend.py)，2026-11-05 模型阅读</sub>
 
 - **[semantic-assert](https://github.com/mondaychen/semantic-assert)** — 用来断言“真实需求”的测试库。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · mondaychen · `TS` · 调用点 [`packages/semantic-assert-typesafe/src/client.ts`](https://github.com/mondaychen/semantic-assert/blob/HEAD/packages/semantic-assert-typesafe/src/client.ts)，2026-09-24 阅读</sub>

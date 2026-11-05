@@ -4,11 +4,11 @@
 
 _对来自廉价检索步骤的候选做打分或重排。_
 
-这个决策的全部已收录例子 —— 共 82 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 86 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#search-ranking)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#search-ranking)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 78 · 接口形态 0 · 仅示例 0 · 独立报告 6 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 82 · 接口形态 0 · 仅示例 0 · 独立报告 6 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -51,6 +51,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[LanceDB TypeSafeReranker](https://github.com/lancedb/lancedb/blob/main/python/python/lancedb/rerankers/typesafe.py)** — 向量数据库的重排器：对每条结果问一个 Noul，把「是」的概率当作绝对相关性分数 —— 可以跨查询比较。
   <sub>`开源项目` · ★10k+ · `Py` · `noul` · 调用点 [`python/python/lancedb/rerankers/typesafe.py`](https://github.com/lancedb/lancedb/blob/HEAD/python/python/lancedb/rerankers/typesafe.py)，2026-09-22 阅读</sub>
 
+- **[oh-my-pi](https://github.com/can1357/oh-my-pi)** — 深度整合 IDE 的编程智能体。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10k+ · can1357 · `TS` · 调用点 [`packages/ai/src/judgment/native.ts`](https://github.com/can1357/oh-my-pi/blob/HEAD/packages/ai/src/judgment/native.ts)，2026-11-05 模型阅读</sub>
+
 - **[OpenViking: retrieval reranking](https://github.com/volcengine/OpenViking)** — 单次批量请求里对每个候选文档问一个 Noul，直接把「是」的概率当相关性分数。
   <sub>`开源项目` · ★10k+ · `Py` · `noul` · 调用点 [`openviking/models/rerank/jev_rerank.py`](https://github.com/volcengine/OpenViking/blob/HEAD/openviking/models/rerank/jev_rerank.py)，2026-09-22 阅读</sub>
 
@@ -62,6 +65,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevgrep (dzhng)](https://github.com/dzhng/jevgrep)** — 一个命令行工具和 Agent 技能，用“这段代码做什么”来找代码：`jg "遥测事件是如何记录的？" ./repo` 让 Jev 在目录、文件和声明层面判断相关性，返回相关文件、阅读线索和原文摘录。作者报告在 10 个 SWE-bench 任务上同样解决 8 个，成本约低 30%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★1k+ · dzhng · `TS` · `noul` · 调用点 [`packages/core/test-node/provider-protocol.mjs`](https://github.com/dzhng/jevgrep/blob/HEAD/packages/core/test-node/provider-protocol.mjs)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
+
+- **[memsearch](https://github.com/zilliztech/memsearch)** — 供 Claude Code、Codex 等 AI 编程智能体共用的语义记忆，以 Markdown 文件保存，用 Milvus 建索引。可选的 Jev 重排把查询和全部候选放进一次请求，对每段候选提一个 noul，问它是否陈述了查询要找的信息，再按这些概率排序。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★1k+ · zilliztech · `Py` · 调用点 [`src/memsearch/jev_reranker.py`](https://github.com/zilliztech/memsearch/blob/HEAD/src/memsearch/jev_reranker.py)，2026-09-22 阅读</sub>
 
 - **[no-mistakes: Jev review pre-brief, measured and retired](https://github.com/kunchenguid/no-mistakes/pull/1165)** — 为代码审查预选上下文：每个候选文件问一个 Score —— 测了两次后被移除：计费输入明显增加、耗时几乎没有收益；离线回放还表明，候选列表根本够不到审查发现实际所在的位置。
   <sub>`基准测试` · ★1k+ · `Go` · `score` · 作者结论：不利（作者自述，未经本仓库复现）</sub>
@@ -76,7 +82,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`插件` · ★100+ · luobosibing2 · `TS` · `noul` · 调用点 [`packages/jev/src/selection.ts`](https://github.com/luobosibing2/dsh-jev-plugin/blob/HEAD/packages/jev/src/selection.ts)，2026-10-28 模型阅读</sub>
 
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)** — 受生物启发的智能体记忆：衰减、检索强化与巩固。零运行时依赖，基于 SQLite。 <sub>(机翻)</sub>
-  <sub>`基准测试` · ★100+ · kitfunso · `TS` · 调用点 [`src/rerankers/jev.ts`](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/rerankers/jev.ts)，2026-09-22 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
+  <sub>`基准测试` · ★100+ · kitfunso · `TS` · 调用点 [`src/infra/rerankers/endpoint.ts`](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/infra/rerankers/endpoint.ts)，2026-11-05 模型阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
 
 - **[jegrep](https://github.com/can1357/jegrep)** — 不建索引、不用向量嵌入的代码语义 grep：用 Jev 的 noul 先判断每个路径、再判断读到的段落是否符合你的描述，每个都给出“是”的概率，所以阈值在各批之间可比；结果以行范围返回。作者估计，在几千个文件中做一次典型搜索约花 0.005 美元。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · can1357 · `Rs` · 调用点 [`src/jev.rs`](https://github.com/can1357/jegrep/blob/HEAD/src/jev.rs)，2026-09-22 阅读</sub>
@@ -90,9 +96,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-search](https://github.com/superagents-lab/jev-search)** — Jev 驱动的网页搜索：先选时间窗口和最佳查询改写，再分批对结果逐条用 noul 重排。
   <sub>`开源项目` · ★100+ · `TS` · `choice` · `noul` · 调用点 [`src/lib/typesafe.ts`](https://github.com/superagents-lab/jev-search/blob/HEAD/src/lib/typesafe.ts)，2026-09-22 阅读</sub>
 
-- **[jev-semgrep](https://github.com/uehaj/sys1grep)** — 按含义 grep 的工具，现名 sys1grep：对每一行，Jev 回答一个 noul，判断这一行是否符合给定含义（例如“网络故障”），再由阈值决定是否匹配。多个含义可用 AND、OR、NOT 组合，可先用正则预筛行，含义和文本可以是不同语言。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★100+ · uehaj · `JS` · 调用点 [`serve.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/serve.mjs)，2026-09-22 阅读</sub>
-
 - **[jev-shell-history](https://github.com/mrnugget/jev-shell-history)** — Fish 风格的 zsh 历史自动建议，由 Jev 排序而不是按时间。
   <sub>`开源项目` · ★100+ · mrnugget · `TS` · 调用点 [`src/cli.ts`](https://github.com/mrnugget/jev-shell-history/blob/HEAD/src/cli.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
 
@@ -104,6 +107,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jgrep](https://github.com/keltokhy/jgrep)** — 以描述为模式的 grep：每一行变成一个 Jev noul，默认概率达到 0.5 即算匹配；并发判断、按输入顺序输出，所以也能用在 tail -f 上。作者在 994 条 Hacker News 标题上测得，一条描述用时 4.6 秒、花费 0.012 美元。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · keltokhy · `Py` · 调用点 [`bench/code_review.py`](https://github.com/keltokhy/jgrep/blob/HEAD/bench/code_review.py)，2026-09-22 阅读</sub>
+
+- **[kody](https://github.com/kody-hq/kody)** — AI 智能体的云端之家：记忆、密钥、代码和自动化都通过 Cloudflare Workers 上的 MCP 提供。付费方案下，当混合检索返回的候选难分高下时，Jev 按四级相关性评分给每个候选打分，弱匹配被去掉；调用失败或置信度过低时保留原来的混合排序。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★100+ · kentcdodds · `TS` · 调用点 [`packages/worker/src/mcp/tools/search-jev-rerank.ts`](https://github.com/kody-hq/kody/blob/HEAD/packages/worker/src/mcp/tools/search-jev-rerank.ts)，2026-09-22 阅读</sub>
 
 - **[neo4jev](https://github.com/jexp/neo4jev)** — 把 Jev 塞进知识图谱。每走到一个节点，判断下一条最值得走的边，再一路找下去。
   <sub>`开源项目` · ★100+ · `Py` · `choice` · 调用点 [`src/neo4jev/navigator.py`](https://github.com/jexp/neo4jev/blob/HEAD/src/neo4jev/navigator.py)，2026-09-22 阅读</sub>
@@ -119,6 +125,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[skillranker](https://github.com/Dicklesworthstone/skillranker)** — 用当前会话上下文给智能体的技能排序以决定下一步，带 Claude Code hook。
   <sub>`插件` · ★100+ · dicklesworthstone · `Rs` · 调用点 [`src/jev/endpoint.rs`](https://github.com/Dicklesworthstone/skillranker/blob/HEAD/src/jev/endpoint.rs)，2026-09-22 阅读</sub>
+
+- **[sys1grep](https://github.com/uehaj/sys1grep)** — 按含义 grep 的工具，现名 sys1grep：对每一行，Jev 回答一个 noul，判断这一行是否符合给定含义（例如“网络故障”），再由阈值决定是否匹配。多个含义可用 AND、OR、NOT 组合，可先用正则预筛行，含义和文本可以是不同语言。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · uehaj · `JS` · 调用点 [`sys1grep.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/sys1grep.mjs)，2026-11-05 模型阅读</sub>
 
 - **[vector-graph-rag](https://github.com/zilliztech/vector-graph-rag)** — 把实体和关系作为向量存进 Milvus 的 Graph RAG，无需图数据库。两阶段 Jev 重排先针对查询给每条候选关系提一个 noul，再给排名靠前的关系所指向的段落打分；按作者的测试，在 MuSiQue 和 2Wiki（各 1,000 题）上平均 Recall@5 为 86.61%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · zilliztech · `Py` · 调用点 [`src/vector_graph_rag/llm/jev.py`](https://github.com/zilliztech/vector-graph-rag/blob/HEAD/src/vector_graph_rag/llm/jev.py)，2026-09-22 阅读</sub>
@@ -221,6 +230,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[every](https://github.com/sufianetaouil/every)** — 对代码库里每一个函数问一个是非问题，几秒内得到排序结果 —— 模式本身是一个问题的 grep。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · sufianetaouil · `Py` · 调用点 [`reference/probe_jev.py`](https://github.com/sufianetaouil/every/blob/HEAD/reference/probe_jev.py)，2026-09-22 阅读</sub>
+
+- **[Hindsight](https://github.com/vectorize-io/hindsight)** — 智能体记忆服务器，可以把两件事交给决策模型：对召回候选逐条提一个 Noul 问题来重排，并可选地剔除无用和重复的记忆；在 LLM 处理之前，先用 Choice 问题判定简单的整合情形。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · vectorize-io · `Py` · `noul` · `choice` · 调用点 [`hindsight-api-slim/hindsight_api/engine/decision_model.py`](https://github.com/vectorize-io/hindsight/blob/HEAD/hindsight-api-slim/hindsight_api/engine/decision_model.py)，2026-11-05 模型阅读</sub>
 
 - **[jev-assist](https://github.com/glud123/jev-assist)** — 别让昂贵的主模型干「grep 加猜」的粗活 —— 让 Jev 先把整个仓库排一遍序。 <sub>(机翻)</sub>
   <sub>`开源项目` · glud123 · `JS` · 调用点 [`scripts/jev.mjs`](https://github.com/glud123/jev-assist/blob/HEAD/scripts/jev.mjs)，2026-09-22 阅读</sub>

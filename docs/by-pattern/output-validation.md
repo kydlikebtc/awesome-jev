@@ -35,6 +35,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Cookbook: Guardrails for LLMs](https://docs.typesafe.ai/cookbooks/llm_guardrails)** ⭐ — Screens every message in and out of an LLM app in one request, naming hazards and scoring how much harm complying would do.
   <sub>`Official docs` · `Py` · `noul` · `score`</sub>
 
+- **[celesto](https://github.com/CelestoAI/celesto)** — Secure and persistent computer for AI agents -- build your own Grokbot, and Muse.
+  <sub>`Project` · ★1k+ · celestoai · `Py` · call site [`examples/pr-review-jev/models.py`](https://github.com/CelestoAI/celesto/blob/HEAD/examples/pr-review-jev/models.py), read 2026-09-22</sub>
+
 - **[latitude-llm](https://github.com/latitude-dev/latitude-llm)** — Open-source observability for AI agents that flags where agents fail in their traces. A shadow provider asks Jev one noul per flagger dimension, at most 11 per call; the cited file does not show whether those answers change any flag, and the README does not mention Jev. <sub>(written by a model)</sub>
   <sub>`Project` · ★1k+ · latitude-dev · `TS` · call site [`packages/platform/ai-jev/src/jev-shadow-decision-provider.ts`](https://github.com/latitude-dev/latitude-llm/blob/HEAD/packages/platform/ai-jev/src/jev-shadow-decision-provider.ts), read 2026-09-22</sub>
 
@@ -57,7 +60,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Plugin` · ★100+ · luobosibing2 · `TS` · `noul` · call site [`packages/jev/src/selection.ts`](https://github.com/luobosibing2/dsh-jev-plugin/blob/HEAD/packages/jev/src/selection.ts), read by a model 2026-10-28</sub>
 
 - **[fastbrowse](https://github.com/agent-labs-dev/fastbrowse)** — Browser agent: each page is indexed into candidate controls and Jev chooses the next one, so it cannot click what is not there; a Gemini Flash LLM plans and reads, and answers cite the page. Its maintainer recorded 99.2% on 46 tasks against 97.8% for hosted Browser Use, at under a tenth of the cost. <sub>(written by a model)</sub>
-  <sub>`Project` · ★100+ · agent-labs-dev · `Py` · call site [`src/fastbrowse/clients/typesafe.py`](https://github.com/agent-labs-dev/fastbrowse/blob/HEAD/src/fastbrowse/clients/typesafe.py), read 2026-09-22</sub>
+  <sub>`Project` · ★100+ · agent-labs-dev · `Rs` · `Py` · call site [`crates/fastbrowse-clients/src/system_one.rs`](https://github.com/agent-labs-dev/fastbrowse/blob/HEAD/crates/fastbrowse-clients/src/system_one.rs), read by a model 2026-11-05</sub>
 
 - **[formanator](https://github.com/timrogers/formanator)** — Submits Forma benefit claims from the command line or an MCP client. With --category-provider jev, Jev picks the benefit and category with a choice over the pairs Forma allows plus no_match, seeing only merchant and description; under 0.5 confidence or no match it falls back to the configured LLM. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · timrogers · `Rs` · call site [`src/typesafe.rs`](https://github.com/timrogers/formanator/blob/HEAD/src/typesafe.rs), read 2026-09-22</sub>
@@ -129,7 +132,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Plugin` · ★10+ · integrate-your-mind · `TS` · `choice` · `noul` · `score` · call site [`source/jev-workflows/src/contracts.ts`](https://github.com/integrate-your-mind/jev-codex-plugin/blob/HEAD/source/jev-workflows/src/contracts.ts), read by a model 2026-11-04</sub>
 
 - **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — Jev Auto Router (Jev Router): experimental per-call GPT model routing for Codex via TypeSafe Jev and a local Responses proxy, with independent task verification. <sub>(earlier upstream description)</sub>
-  <sub>`Plugin` · ★10+ · minilv · `TS` · call site [`src/jev-adapter.ts`](https://github.com/miniLV/Jev-Auto-Router/blob/HEAD/src/jev-adapter.ts), read 2026-09-22</sub>
+  <sub>`Plugin` · ★10+ · minilv · `TS` · call site [`src/codex-router/jev.ts`](https://github.com/miniLV/Jev-Auto-Router/blob/HEAD/src/codex-router/jev.ts), read by a model 2026-11-05</sub>
 
 - **[jev-belay](https://github.com/valentynkit/jev-belay)** — Claude Code Stop hook that blocks an unverified done: reads the transcript for evidence, asks Jev once, fails open on everything else <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · valentynkit · `JS` · call site [`belay.mjs`](https://github.com/valentynkit/jev-belay/blob/HEAD/belay.mjs), read 2026-09-24</sub>
@@ -302,9 +305,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-bench](https://github.com/TheWayWithin/jev-bench)** — Does the cited source actually say it? A 42-claim benchmark: Jev (TypeSafe System One) against GPT-5.4, Claude Sonnet 5 and Gemini 3.1 Pro. <sub>(upstream description)</sub>
   <sub>`Benchmark` · thewaywithin · `Py` · call site [`run.py`](https://github.com/TheWayWithin/jev-bench/blob/HEAD/run.py), read 2026-09-24</sub>
 
-- **[jev-block-android-ad](https://github.com/ufec/jev-block-android-ad)** — JevNoiseGate filters unwanted notifications and SMS on Android. Rather than matching keywords, an LLM decides what's noise — and only what it explicitly flags is blocked. Verification codes are matched on-device and never uploaded; anything uncertain passes through. <sub>(upstream description)</sub>
-  <sub>`Project` · ufec · `Kt` · call site [`app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt`](https://github.com/ufec/jev-block-android-ad/blob/HEAD/app/src/main/kotlin/me/ethanxu/jevnoisegate/app/ProxyProbe.kt), read 2026-09-22</sub>
-
 - **[jev-browser-pilot](https://github.com/aidil2105/jev-browser-pilot)** — A bounded decision layer for browser and desktop automation: a decision-only model picks one next step; the code owns perception, content, actuation and verification. <sub>(upstream description)</sub>
   <sub>`Project` · aidil2105 · `Py` · call site [`src/jev_pilot/providers/jev.py`](https://github.com/aidil2105/jev-browser-pilot/blob/HEAD/src/jev_pilot/providers/jev.py), read 2026-09-22</sub>
 
@@ -435,7 +435,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Plugin` · allebee · `Py` · call site [`src/pytest_jev/judge.py`](https://github.com/allebee/pytest-jev/blob/HEAD/src/pytest_jev/judge.py), read 2026-09-22</sub>
 
 - **[riff](https://github.com/scale-venture-partners/riff)** — A small, fast prose linter: ruff-style rule codes for writing, backed by TypeSafe's Jev model <sub>(upstream description)</sub>
-  <sub>`Project` · scale-venture-partners · `Py` · call site [`src/riff/jev.py`](https://github.com/scale-venture-partners/riff/blob/HEAD/src/riff/jev.py), read 2026-09-22</sub>
+  <sub>`Project` · scale-venture-partners · `Py` · call site [`src/riff/backend.py`](https://github.com/scale-venture-partners/riff/blob/HEAD/src/riff/backend.py), read by a model 2026-11-05</sub>
 
 - **[semantic-assert](https://github.com/mondaychen/semantic-assert)** — Testing lib for asserting the real requirement. <sub>(upstream description)</sub>
   <sub>`SDK` · mondaychen · `TS` · call site [`packages/semantic-assert-typesafe/src/client.ts`](https://github.com/mondaychen/semantic-assert/blob/HEAD/packages/semantic-assert-typesafe/src/client.ts), read 2026-09-24</sub>

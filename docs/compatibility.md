@@ -68,12 +68,11 @@ alias moves when a release ships, and the answers behind it can change with no
 change on your side. The response reports the versioned ID that actually
 answered, so log it.
 
-As checked on 2026-10-15, native `jev-preview` points to `jev-1.14.0` and
-`jev-latest` still points to `jev-1.13.0`. Both pinned IDs remain accepted.
-The [October 14 announcement](https://typesafe.ai/blog/jev-1-14) said latest
-would move about a week later, without an exact switch date. These aliases
-and experimental capabilities are documented for the native API; do not infer
-support through another gateway from this update.
+As checked on 2026-11-05, native `jev-latest` and `jev-preview` both point to
+`jev-1.14.0`, and there is no separate preview build. Both pinned IDs
+(`jev-1.14.0`, `jev-1.13.0`) remain accepted. These aliases and experimental
+capabilities are documented for the native API; do not infer support through
+another gateway from this update.
 
 `typesafe/jev-1` does not exist on any surface. It appears in no documentation
 and is the single most repeated fabrication about this model.
@@ -194,12 +193,12 @@ but not in CI".
 <!-- notes:start -->
 | Surface | Worth knowing | Catalogued examples |
 | --- | --- | --- |
-| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | The reference surface. A model-assisted documentation check on 2026-10-15 covered only the native API: jev-preview points to jev-1.14.0; jev-latest still points to jev-1.13.0. Other surfaces retain the matrix's 2026-09-22 reading date. | [1226](https://kydlikebtc.github.io/awesome-jev/?platform=typesafe-native&lang=en) · `typesafe-api` (coarse) |
-| [Vercel AI SDK evaluation API](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk) | The one surface that renames the primitive. Needs AI SDK 7.0.105 or newer. | [33](https://kydlikebtc.github.io/awesome-jev/?platform=vercel-eval&lang=en) · `vercel-ai-gateway`, `vercel-ai-sdk` (coarse) |
-| [Vercel AI Gateway (TypeSafe-compatible)](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe) | Same gateway as the row above, different route, different spelling. Pick one and stay on it. | [31](https://kydlikebtc.github.io/awesome-jev/?platform=vercel-compat&lang=en) · `vercel-ai-gateway` (coarse) |
+| [TypeSafe API (direct) ⭐](https://docs.typesafe.ai/api) | The reference surface. A model-assisted documentation check on 2026-11-05 covered only the native API: jev-latest and jev-preview both point to jev-1.14.0, and there is no separate preview build. Other surfaces retain the matrix's 2026-09-22 reading date. | [1223](https://kydlikebtc.github.io/awesome-jev/?platform=typesafe-native&lang=en) · `typesafe-api` (coarse) |
+| [Vercel AI SDK evaluation API](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk) | The one surface that renames the primitive. Needs AI SDK 7.0.105 or newer. | [34](https://kydlikebtc.github.io/awesome-jev/?platform=vercel-eval&lang=en) · `vercel-ai-gateway`, `vercel-ai-sdk` (coarse) |
+| [Vercel AI Gateway (TypeSafe-compatible)](https://vercel.com/docs/ai-gateway/sdks-and-apis/typesafe) | Same gateway as the row above, different route, different spelling. Pick one and stay on it. | [32](https://kydlikebtc.github.io/awesome-jev/?platform=vercel-compat&lang=en) · `vercel-ai-gateway` (coarse) |
 | [@ai-sdk/typesafe-ai](https://ai-sdk.dev/providers/ai-sdk-providers/typesafe-ai) | Note the env var: TYPESAFE_AI_API_KEY, not TYPESAFE_API_KEY. | [2](https://kydlikebtc.github.io/awesome-jev/?platform=ai-sdk-direct&lang=en) · `vercel-ai-sdk` (coarse) |
-| [Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/) | The envelope differs: state and questions sit inside an `input` object. A native client cannot be ported by swapping the URL. | [2](https://kydlikebtc.github.io/awesome-jev/?platform=cloudflare&lang=en) · `cloudflare-workers-ai` |
-| [OpenRouter](https://openrouter.ai/typesafe) | Note the tilde on the alias. The listing page carries no code sample, so the request shape was left unrecorded rather than guessed. | [38](https://kydlikebtc.github.io/awesome-jev/?platform=openrouter&lang=en) · `openrouter` |
+| [Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/) | The envelope differs: state and questions sit inside an `input` object. A native client cannot be ported by swapping the URL. | [3](https://kydlikebtc.github.io/awesome-jev/?platform=cloudflare&lang=en) · `cloudflare-workers-ai` |
+| [OpenRouter](https://openrouter.ai/typesafe) | Note the tilde on the alias. The listing page carries no code sample, so the request shape was left unrecorded rather than guessed. | [42](https://kydlikebtc.github.io/awesome-jev/?platform=openrouter&lang=en) · `openrouter` |
 | [LiteLLM pass-through](https://docs.litellm.ai/docs/pass_through/typesafe) | Exposes the native path, so the official SDK works by changing only the base URL. | [1](https://kydlikebtc.github.io/awesome-jev/?platform=litellm&lang=en) · `litellm` |
 | [Bifrost](https://github.com/maximhq/bifrost/tree/dev/core/providers/typesafe) | One-to-one pass-through of the native API. | [1](https://kydlikebtc.github.io/awesome-jev/?platform=bifrost&lang=en) · `bifrost` |
 | [AI/ML API](https://docs.aimlapi.com/api-references/decision-models/typesafe/jev) | A third endpoint path. Top-level envelope like native, but not at the native path. | [1](https://kydlikebtc.github.io/awesome-jev/?platform=aimlapi&lang=en) · `aimlapi` |
@@ -269,7 +268,7 @@ has, the row is also listed in [review-queue.md](review-queue.md#wire-unread).
 | [von](https://kydlikebtc.github.io/awesome-jev/?lang=en#von) <sub>wfzyx/von</sub> ★100+ | open weights | `wfzyx/von` | `POST /v1/systemone` | top level | `noul` | `noul` | `confidence` | — | [link](https://github.com/wfzyx/von#empirical-benchmark) | [`src/von/server.py`](https://github.com/wfzyx/von/blob/HEAD/src/von/server.py) · [`src/von/types.py`](https://github.com/wfzyx/von/blob/HEAD/src/von/types.py) · [`src/von/backends/option_marker_backend.py`](https://github.com/wfzyx/von/blob/HEAD/src/von/backends/option_marker_backend.py) (not yet read by a person) | **not Jev itself**: A compatible API does not imply compatible calibration, so thresholds do not transfer. · archived |
 | [WaterSheep](https://kydlikebtc.github.io/awesome-jev/?lang=en#watersheep) <sub>SamratDuttaOfficial/WaterSheep</sub> ★10+ | open weights | `answerdotai/ModernBERT-base` | `POST /v1/systemone` | top level | `noul` | `noul` | `confidence` | — | — | [`watersheep/cli.py`](https://github.com/SamratDuttaOfficial/WaterSheep/blob/HEAD/watersheep/cli.py) · [`watersheep/infer.py`](https://github.com/SamratDuttaOfficial/WaterSheep/blob/HEAD/watersheep/infer.py) · [`README.md`](https://github.com/SamratDuttaOfficial/WaterSheep/blob/HEAD/README.md) (read by a person on 2026-10-03) | **not Jev itself**: A compatible API does not imply compatible calibration, so thresholds do not transfer. · self-submitted |
 
-82 more `alternative` rows carry no `wire` record: no one has recorded an interface from their files yet, or their files show none.
+85 more `alternative` rows carry no `wire` record: no one has recorded an interface from their files yet, or their files show none.
 <!-- alternatives:end -->
 
 ---

@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 62 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 69 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 55 · 接口形态 1 · 仅示例 0 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 61 · 接口形态 1 · 仅示例 1 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -39,11 +39,20 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[claude-code-templates: three Jev plugins](https://github.com/davila7/claude-code-templates)** — 三个可独立安装的 Claude Code 插件 —— 护栏、模型路由、技能推荐 —— 各自带 hook 和测试。
   <sub>`插件` · ★10k+ · `Py` · `TS` · `choice` · `score` · `noul` · 调用点 [`scripts/jev-spike.mjs`](https://github.com/davila7/claude-code-templates/blob/HEAD/scripts/jev-spike.mjs)，2026-09-22 阅读</sub>
 
+- **[oh-my-pi](https://github.com/can1357/oh-my-pi)** — 深度整合 IDE 的编程智能体。 <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10k+ · can1357 · `TS` · 调用点 [`packages/ai/src/judgment/native.ts`](https://github.com/can1357/oh-my-pi/blob/HEAD/packages/ai/src/judgment/native.ts)，2026-11-05 模型阅读</sub>
+
+- **[openwork](https://github.com/different-ai/openwork)** — Claude Cowork 的开源替代品，基于 opencode 构建。它的网关在 Auto 路由中为每个 Smart Router 任务向 Jev 提一个 Score 问题，再为思考强度提一个，然后按回答路由提示；没有 TypeSafe 密钥时走后备路由。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10k+ · different-ai · `TS` · `score` · 调用点 [`ee/apps/gateway/src/auto-router/jev.ts`](https://github.com/different-ai/openwork/blob/HEAD/ee/apps/gateway/src/auto-router/jev.ts)，2026-11-05 模型阅读</sub>
+
 - **[hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills)** — 九个 agent 技能加一个 CLI，覆盖模型路由、记忆过滤、对话轮保留、多选一技能选择和下一步动作决策。
   <sub>`插件` · ★1k+ · `Py` · `choice` · `score` · `noul` · 调用点 [`jevkit/client.py`](https://github.com/kerpopule/hermes-jev-skills/blob/HEAD/jevkit/client.py)，2026-09-22 阅读 · ⚠ `实测后未采用`</sub>
 
 - **[Astra-Ares](https://github.com/miuuyy/Astra-Ares)** — 运行一个打过补丁的 Codex CLI：Jev 读取有限的任务上下文，用两个 choice 选出 GPT-6 下一次回复的推理力度，以及这个力度持续几次回复（1、2、5 或 10）；GPT-6 改变推理力度不会破坏提示缓存。属于实验性的参考实现。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · miuuyy · `JS` · 调用点 [`src/jev.mjs`](https://github.com/miuuyy/Astra-Ares/blob/HEAD/src/jev.mjs)，2026-09-24 阅读</sub>
+
+- **[distill](https://github.com/samuelfaj/distill)** — 面向 Grok、Codex 订阅及任何兼容 OpenAI 协议的模型的编程智能体 harness 和 TUI，目标是少花 token。模型档位的推理力度保持默认的 auto 时，由 Jev 为每次调用挑选推理力度；客户端默认经 OpenRouter 调用 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · samuelfaj · `Rs` · 调用点 [`crates/codegen/distill-workspace/src/jev/client.rs`](https://github.com/samuelfaj/distill/blob/HEAD/crates/codegen/distill-workspace/src/jev/client.rs)，2026-09-22 阅读</sub>
 
 - **[jev-codex-router](https://github.com/0xNatoshi/jev-codex-router)** — 先让 Jev 判断这一轮编程任务有多难，再决定模型档位、推理深度和速度模式。
   <sub>`插件` · ★100+ · `JS` · `choice` · `score` · 调用点 [`server/jev_server.py`](https://github.com/0xNatoshi/jev-codex-router/blob/HEAD/server/jev_server.py)，2026-09-22 阅读 · ⚠ `已归档`</sub>
@@ -60,6 +69,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Keel](https://github.com/codejunkie99/keel)** — 本地优先的 macOS 编程工作区（Rust），运行 Claude Code、Codex 等编程智能体。对新任务，可选的 Jev 选择器用一个 `choice` 在已安装的提供方与模型路线及 `escalate` 之间选择，并对每条路线问一个 `noul`（它是否直接有助于完成任务？）；宿主校验所选路线，不通过则回退。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · codejunkie99 · `Rs` · `choice` · `noul` · 调用点 [`crates/jev-core/src/lib.rs`](https://github.com/codejunkie99/keel/blob/HEAD/crates/jev-core/src/lib.rs)，2026-10-29 模型阅读</sub>
 
+- **[smithers](https://github.com/smithersai/smithers)** — Smithers：用简单 TypeScript 配置定义工作流的智能体工作流框架。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · smithersai · `TS` · 调用点 [`packages/smithers/agent/model/src/Evaluator.ts`](https://github.com/smithersai/smithers/blob/HEAD/packages/smithers/agent/model/src/Evaluator.ts)，2026-11-05 模型阅读</sub>
+
 - **[a3m-router](https://github.com/Das-rebel/a3m-router)** — 自适应的多模型 LLM 路由器——覆盖 80 多个提供方，用 Jev System One 单次完成路由决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · das-rebel · `TS` · 调用点 [`dist/routing/jev/remote.d.ts`](https://github.com/Das-rebel/a3m-router/blob/HEAD/dist/routing/jev/remote.d.ts)，2026-09-24 阅读</sub>
 
@@ -73,7 +85,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`开源项目` · ★10+ · suenot · `JS` · `choice` · `noul` · 调用点 [`src/router.mjs`](https://github.com/suenot/codex-jev-router/blob/HEAD/src/router.mjs)，2026-09-24 阅读 · ⚠ `疑似 AI 生成` `作者自荐`</sub>
 
 - **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — 实验性的逐次调用 GPT 模型路由，通过 Jev 与一个本地 Rescue 层为 Codex 服务。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · ★10+ · minilv · `TS` · 调用点 [`src/jev-adapter.ts`](https://github.com/miniLV/Jev-Auto-Router/blob/HEAD/src/jev-adapter.ts)，2026-09-22 阅读</sub>
+  <sub>`插件` · ★10+ · minilv · `TS` · 调用点 [`src/codex-router/jev.ts`](https://github.com/miniLV/Jev-Auto-Router/blob/HEAD/src/codex-router/jev.ts)，2026-11-05 模型阅读</sub>
 
 - **[jev-demo](https://github.com/soyjorgepilo/jev-demo)** — 三个西班牙语演示，展示同一模式：Jev 决策、代码执行。Jira 工单分诊，按结果直接应用、标记复核或升级；预检扫描先标出有问题的函数，再只让 Claude 解释这些函数；PR 路由把每个 pull request 分给规则、Haiku 或 Sonnet。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · soyjorgepilo · `TS` · `choice` · `noul` · `score` · 调用点 [`shared/jev.ts`](https://github.com/soyjorgepilo/jev-demo/blob/HEAD/shared/jev.ts)，2026-11-04 模型阅读 · ⚠ `仅一次提交` `无许可证` `需第三方密钥`</sub>
@@ -112,7 +124,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`开源项目` · ★10+ · yinhong-zhou · `TS` · `choice` · 调用点 [`src/decision.ts`](https://github.com/yinhong-zhou/jevdo/blob/HEAD/src/decision.ts)，2026-11-01 模型阅读</sub>
 
 - **[jevonian](https://github.com/xinyao27/jevonian)** — 位于编码智能体与各模型提供方之间的本地端点：把每一轮路由到性价比最高且能胜任的模型，管理配额与缓存，并把每次路由决策记入本地账本。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10+ · xinyao27 · `TS` · 调用点 [`src/brain.ts`](https://github.com/xinyao27/jevonian/blob/HEAD/src/brain.ts)，2026-09-24 阅读</sub>
+  <sub>`开源项目` · ★10+ · xinyao27 · `Go` · `TS` · 调用点 [`internal/brain/client.go`](https://github.com/xinyao27/jevonian/blob/HEAD/internal/brain/client.go)，2026-11-05 模型阅读</sub>
 
 - **[Jevstiller](https://github.com/tomerglick57/Jevstiller)** — 放在重复性 Jev 分类调用前面的代理：起初全部转发给 Jev，用 Jev 自己的答案和概率训练一个本地小模型，等它在留出流量上与 Jev 足够一致后改为本地作答。作者报告 Banking77 上有 61.7% 的消息由本地回答，与 Jev 的一致率为 99.4%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · tomerglick57 · `Py` · `choice` · `noul` · 调用点 [`jevstiller/teachers/jev.py`](https://github.com/tomerglick57/Jevstiller/blob/HEAD/jevstiller/teachers/jev.py)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
@@ -150,8 +162,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[dsh-plugin-jev-effort-selector](https://github.com/justhalfbit/dsh-plugin-jev-effort-selector)** — DeepSeek Harness (DSH) 推理等级自动选择插件：由 Jev System One 模型判断每条消息值多少思考量，按模型声明的等级自动推导档位，上下文信封让「继续」这类追问继承话题深度，低置信度向上取，任何失败都静默沿用原等级。 \| Jev-driven reasoning effort per message: per-model ladders derived from what each model advertises, a fixed-size context envelope so follow-ups inherit topic depth…
   <sub>`插件` · justhalfbit · `JS` · 调用点 [`lib/client.js`](https://github.com/justhalfbit/dsh-plugin-jev-effort-selector/blob/HEAD/lib/client.js)，2026-09-24 阅读</sub>
 
+- **[Harness](https://github.com/autonomous-ai/openharness)** — 在多台机器上并排运行 Claude Code、Codex 等编码智能体的指挥中心。它的 ⌘B 路由器通过 OpenRouter 的 Decisions API，在一次请求里用 Choice 问题询问 Jev 1.13：新任务该交给哪个会话、哪个项目和哪个智能体。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · autonomous-ai · `TS` · `choice` · 调用点 [`cli/src/lib/jev/jevClient.ts`](https://github.com/autonomous-ai/openharness/blob/HEAD/cli/src/lib/jev/jevClient.ts)，2026-11-05 模型阅读</sub>
+
 - **[hermes-jev-router](https://github.com/ussyverse/hermes-jev-router)** — 实验性 Hermes 插件：带预算与能力约束的 Jev 辅助模型路由方案。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ussyverse · `Py` · 调用点 [`jev.py`](https://github.com/ussyverse/hermes-jev-router/blob/HEAD/jev.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[Hindsight](https://github.com/vectorize-io/hindsight)** — 智能体记忆服务器，可以把两件事交给决策模型：对召回候选逐条提一个 Noul 问题来重排，并可选地剔除无用和重复的记忆；在 LLM 处理之前，先用 Choice 问题判定简单的整合情形。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · vectorize-io · `Py` · `noul` · `choice` · 调用点 [`hindsight-api-slim/hindsight_api/engine/decision_model.py`](https://github.com/vectorize-io/hindsight/blob/HEAD/hindsight-api-slim/hindsight_api/engine/decision_model.py)，2026-11-05 模型阅读</sub>
 
 - **[janus](https://github.com/FirasSX914/Janus)** — 先在你自己的数据上衡量何时该用 Jev、何时该用别的模型，再据此路由。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · firassx914 · `Py` · 调用点 [`experiments/run_jev.py`](https://github.com/FirasSX914/Janus/blob/HEAD/experiments/run_jev.py)，2026-09-22 阅读</sub>
@@ -160,7 +178,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`教程` · Mehul Gupta · `Py` · `choice` · ⚠ `付费墙`</sub>
 
 - **[Jev Switch](https://github.com/ARCJ137442/SysTorch)** — 一个轻量的 Jev 协议网关：对外提供 POST /v1/systemone，并按可编辑的路由图把每次调用转发到上游（TypeSafe、Vercel、OpenRouter、Laya 或本地服务），支持优先级和故障切换。Rust 守护进程，附带 React 控制台、Tauri 桌面应用和 Docker 镜像。文档以中文为主。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · arcj137442 · `Rs` · `TS` · 调用点 [`rs/crates/jev-switch-daemon/src/admin.rs`](https://github.com/ARCJ137442/SysTorch/blob/HEAD/rs/crates/jev-switch-daemon/src/admin.rs)，2026-10-24 模型阅读</sub>
+  <sub>`开源项目` · arcj137442 · `Rs` · `TS` · 调用点 [`rs/crates/systorch-daemon/src/admin.rs`](https://github.com/ARCJ137442/SysTorch/blob/HEAD/rs/crates/systorch-daemon/src/admin.rs)，2026-10-24 模型阅读</sub>
 
 - **[jev-codex-bridge](https://github.com/ansidium/jev-codex-bridge)** — 为 Codex 桌面版与 CLI 做模型和推理力度路由，附带 Windows 服务与经过验证的更新。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ansidium · `JS` · 调用点 [`src/router.mjs`](https://github.com/ansidium/jev-codex-bridge/blob/HEAD/src/router.mjs)，2026-09-24 阅读</sub>
@@ -209,6 +227,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[XavierJev](https://github.com/liu-x27/XavierJev)** — Jev 形状的本地决策层：是非、选择和量表问题都从本地模型单个 token 的 logprob 读出答案；附带一个在留出命令集上测量过的 Claude Code 权限闸门。 <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · Xinyu Liu · `TS` · `noul` · `choice` · `score` · 引用文件 [`src/gate.ts`](https://github.com/liu-x27/XavierJev/blob/HEAD/src/gate.ts)，2026-09-25 阅读 · ⚠ `并非 Jev 本身` `疑似 AI 生成`</sub>
+
+- **[Yielded Agent](https://github.com/yielded-dev/agent)** — 基于 Effect 与 Effect AI 的 TypeScript 持久化智能体线程运行时。它的 AutoModel 在创建线程时通过 Decision.classify 询问决策模型：应用描述的哪个模型配置合适，并在之后的运行中沿用这一选择；文档示例使用 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · yielded-dev · `TS` · `choice` · 引用文件 [`docs/snippets/travel-planner/auto-model.ts`](https://github.com/yielded-dev/agent/blob/HEAD/docs/snippets/travel-planner/auto-model.ts)，2026-11-05 模型阅读</sub>
 
 - **[Jev router: how model routing works, and 16 routers compared](https://madewithjev.com/jev-router)** — 讲解用 Jev 在花钱之前判断下一轮该用哪个模型、工具或 skill 的路由器，说明先降级再升级为什么可能比不路由更贵，并对比了 16 个面向 Claude Code、Codex 和 OpenRouter 的路由器。 <sub>(机翻)</sub>
   <sub>`文章` · Jon Kraayenbrink · ⚠ `作者自荐`</sub>
