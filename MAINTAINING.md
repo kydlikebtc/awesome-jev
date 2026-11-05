@@ -203,9 +203,10 @@ reason.
    `python3 scripts/lint.py` and
    `python3 scripts/review_pr.py --base origin/main --offline`, with a call
    site the run read itself, is merged by the run; otherwise the run comments
-   what to change. A pull request from a fork may get no CI until GitHub's
-   approval for a contributor new to GitHub, so no red cross does not mean it
-   passed: the run checks it locally either way. A pull request from someone
+   what to change. A first pull request from a fork gets no CI until a
+   maintainer approves its workflows, so no red cross does not mean it passed:
+   the run's local checks stand in for that CI, and it checks every outside
+   pull request locally either way. A pull request from someone
    else that changes scripts, workflows, `src/` or `tests/` is never merged by
    a task, because merged code runs with this repository's tokens: the run
    says so in a comment and leaves it open for the owner, whenever they like.
@@ -232,9 +233,8 @@ reason.
   weekly upkeep names it rather than fixes it again.
 - A `regenerate/*` or `metadata/refresh-*` branch: `lint.yml` and
   `metadata.yml` leave their commit there when `main` moved under them and
-  the rebase failed. The daily task opens a pull request from it, merges it on
-  green (or closes it when `main` already has what it holds), and deletes the
-  branch.
+  the rebase failed. The daily task opens a pull request from it and merges it
+  on green, or closes it when `main` already has what it holds.
 - #14's "To read" count keeps growing: the drafting pace is below what
   discovery finds (about 120 candidates a week in October 2026). Each weekly
   snapshot in `history/` records the queue's counts, and the "Over time" table
@@ -325,9 +325,10 @@ setting. Each is done, or is optional; none recurs.
 - The repository description: `_stats.pitch_public()`, which states no count
   since 2026-11-05, so it changes only when its wording does. When it does,
   `description.yml` keeps one issue with the `gh repo edit` command.
-- Approval for workflow runs from forks: GitHub asks for it only for
-  contributors new to GitHub (Settings, Actions, General), so most first pull
-  requests run their checks at once.
+- Approval for workflow runs from forks stays GitHub's default, for
+  first-time contributors (Settings, Actions, General). It is a security
+  setting and is left as it is: such a pull request's CI waits for the
+  owner's click, and the daily run checks it locally without waiting.
 - Optional: the PyPI publisher for `awesome-jev-mcp` (`publish.yml`, Trusted
   Publishing), and the `TRAFFIC_TOKEN` secret the weekly traffic snapshot
   waits for. Nothing else depends on either.

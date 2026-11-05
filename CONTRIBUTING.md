@@ -137,9 +137,8 @@ Jev the way the row says, and a clean card is not an approval.
 
 The card runs the base branch's copy of `scripts/`, not your pull request's,
 so a pull request that edits the checks is still judged by the ones on `main`.
-On a first pull request from an account new to GitHub it runs only after a
-maintainer clicks **Approve and run** (see *How changes reach `main`*). To see
-the same card before you push:
+On a first pull request it runs only after a maintainer clicks **Approve and
+run** (see *How changes reach `main`*). To see the same card before you push:
 
 ```bash
 GITHUB_TOKEN=$(gh auth token) python3 scripts/review_pr.py --author <your GitHub login>
@@ -163,10 +162,10 @@ from the new `main`, or leaves its commit on a branch. The two drafting tasks
 merge their own pull requests once their checks pass
 ([MAINTAINING.md](MAINTAINING.md#merging)), and the daily one reads yours.
 
-GitHub holds the checks on a first pull request from an account that is new
-to GitHub until a maintainer clicks **Approve and run** (since 2026-11-05;
-before that, on anyone's first pull request here). That is GitHub's safeguard,
-not a verdict on your change, and the daily run checks such a pull request
+GitHub may hold the checks on your first pull request here until a maintainer
+clicks **Approve and run**. That is GitHub's safeguard for first-time
+contributors to a repository, not a verdict on your change, and it stops once
+you have had a pull request merged. The daily run checks such a pull request
 locally in the meantime.
 
 ## Numbers in prose
