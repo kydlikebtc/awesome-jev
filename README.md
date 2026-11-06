@@ -54,7 +54,62 @@
 
 ## This week's launches
 
-No launch is on the board yet. A launch submitted by Thursday 23:59 UTC is filed on Friday and opens the next Monday: [launch a product](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml), yours or one you found, such as those rising below.
+### Next week: 2026-W46
+
+Filed for next week, in no particular order. Their vote posts open on Monday 2026-11-09.
+
+<table>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
+<td>
+
+**[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — Desktop automation: Jev picks the button, menu or field to act on next<br>
+<sub>hunted by [kydlikebtc](https://github.com/kydlikebtc) · 👤 a person read the call site</sub>
+
+</td>
+<td align="center" width="80"><b>▲</b><br><sub>opens<br>11-09</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jeveryword.html"><img src="https://github.com/jkrup.png?size=96" width="48" height="48" alt="jeveryword"></a></td>
+<td>
+
+**[jeveryword](https://kydlikebtc.github.io/awesome-jev/products/jeveryword.html)** — Extracts fields, PII and exact quotes from text with Jev<br>
+<sub>hunted by [kydlikebtc](https://github.com/kydlikebtc) · 👤 a person read the call site</sub>
+
+</td>
+<td align="center" width="80"><b>▲</b><br><sub>opens<br>11-09</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html"><img src="https://github.com/agent-labs-dev.png?size=96" width="48" height="48" alt="fastbrowse"></a></td>
+<td>
+
+**[fastbrowse](https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html)** — Browser agent: Jev chooses the next control from those on the page<br>
+<sub>hunted by [kydlikebtc](https://github.com/kydlikebtc) · 🤖 a model read the call site, no person yet</sub>
+
+</td>
+<td align="center" width="80"><b>▲</b><br><sub>opens<br>11-09</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html"><img src="https://github.com/mattt.png?size=96" width="48" height="48" alt="anydecisionmodel"></a></td>
+<td>
+
+**[anydecisionmodel](https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html)** — Swift package for typed choices, scores and probabilities from Jev or MLX<br>
+<sub>hunted by [kydlikebtc](https://github.com/kydlikebtc) · 👤 a person read the call site</sub>
+
+</td>
+<td align="center" width="80"><b>▲</b><br><sub>opens<br>11-09</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html"><img src="https://github.com/leepokai.png?size=96" width="48" height="48" alt="jev-guard"></a></td>
+<td>
+
+**[jev-guard](https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html)** — Hook for coding agents: Jev judges each tool call's risk before it runs<br>
+<sub>hunted by [kydlikebtc](https://github.com/kydlikebtc) · 👤 a person read the call site</sub>
+
+</td>
+<td align="center" width="80"><b>▲</b><br><sub>opens<br>11-09</sub></td>
+</tr>
+</table>
 
 Products built on Jev, launched by their makers once a week, or hunted by anyone who found one. People vote with a thumbs-up on each launch's post in [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches); the week closes on Sunday 23:59 UTC with a rank. Votes say how many people cared; the evidence beside each launch says who read the code that calls Jev. The two are never added together, and a rank is not this catalogue's recommendation. [The board](https://kydlikebtc.github.io/awesome-jev/launches.html) has every week, a page per product and per maker, and the rising list.
 
@@ -66,7 +121,7 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <td>
 
 **[jeveryword](https://kydlikebtc.github.io/awesome-jev/products/jeveryword.html)** — Text extraction with Jev: field extraction, PII detection and exact quotes, built on TypeSafe's Jev. <sub>(upstream description)</sub><br>
-<sub>5 → 40 stars (+700%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jeveryword&title=Launch%3A%20jeveryword)</sub>
+<sub>5 → 40 stars (+700%) · 👤 a person read the call site · on the board in 2026-W46</sub>
 
 </td>
 <td align="center" width="80"><b>★&nbsp;+35</b><br><sub>stars</sub></td>
@@ -76,7 +131,7 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <td>
 
 **[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — Desktop automation that reads the system accessibility tree and decides which button, menu or field to act on next.<br>
-<sub>1,827 → 14,206 stars (+678%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=agent-desktop&title=Launch%3A%20agent-desktop)</sub>
+<sub>1,827 → 14,206 stars (+678%) · 👤 a person read the call site · on the board in 2026-W46</sub>
 
 </td>
 <td align="center" width="80"><b>★&nbsp;+12,379</b><br><sub>stars</sub></td>
@@ -86,7 +141,7 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <td>
 
 **[anydecisionmodel](https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html)** — A Swift package for typed decisions from language models (probabilities, choices, and scores), with support for local MLX models and the TypeSafe Jev API. <sub>(upstream description)</sub><br>
-<sub>24 → 50 stars (+108%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=anydecisionmodel&title=Launch%3A%20anydecisionmodel)</sub>
+<sub>24 → 50 stars (+108%) · 👤 a person read the call site · on the board in 2026-W46</sub>
 
 </td>
 <td align="center" width="80"><b>★&nbsp;+26</b><br><sub>stars</sub></td>
@@ -96,7 +151,7 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <td>
 
 **[fastbrowse](https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html)** — Browser agent: each page is indexed into candidate controls and Jev chooses the next one, so it cannot click what is not there; a Gemini Flash LLM plans and reads, and answers cite the page. Its maintainer recorded 99.2% on 46 tasks against 97.8% for hosted Browser Use, at under a tenth of the cost. <sub>(written by a model)</sub><br>
-<sub>120 → 173 stars (+44%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=fastbrowse&title=Launch%3A%20fastbrowse)</sub>
+<sub>120 → 173 stars (+44%) · 🤖 a model read the call site, no person yet · on the board in 2026-W46</sub>
 
 </td>
 <td align="center" width="80"><b>★&nbsp;+53</b><br><sub>stars</sub></td>
@@ -106,7 +161,7 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <td>
 
 **[jev-guard](https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html)** — Security hook for coding agents: before each tool call Jev judges how much harm it could do, whether the user asked for it and whether it follows untrusted text, and code denies, asks or allows; afterwards Jev scans the result for prompt injection. For Claude Code, Codex, Cursor and more. <sub>(written by a model)</sub><br>
-<sub>130 → 144 stars (+11%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jev-guard&title=Launch%3A%20jev-guard)</sub>
+<sub>130 → 144 stars (+11%) · 👤 a person read the call site · on the board in 2026-W46</sub>
 
 </td>
 <td align="center" width="80"><b>★&nbsp;+14</b><br><sub>stars</sub></td>
@@ -124,7 +179,7 @@ Anything built on Jev with public code can launch: a project, plugin, SDK or int
   <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="docs/assets/launch-week-en-light-mobile.svg">
   <source media="(max-width: 767px)" srcset="docs/assets/launch-week-en-dark-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/launch-week-en-dark.svg">
-  <img src="docs/assets/launch-week-en-light.svg" alt="How a launch week runs: launch by Thursday 23:59 UTC, filed on Friday, vote from Monday to Sunday, results the next Monday. Now: TAKING LAUNCHES FOR NEXT WEEK." width="100%">
+  <img src="docs/assets/launch-week-en-light.svg" alt="How a launch week runs: launch by Thursday 23:59 UTC, filed on Friday, vote from Monday to Sunday, results the next Monday. Now: 2026-W46 FILED · OPENS MONDAY 2026-11-09." width="100%">
 </picture>
 
 | Step | When | What happens |
@@ -135,7 +190,7 @@ Anything built on Jev with public code can launch: a project, plugin, SDK or int
 
 Every product has a badge that keeps itself up to date: *listed*, then *launching*, then *vote this week*, then its place in a top three. One line in your README, never changed again:
 
-[![awesome-jev](https://kydlikebtc.github.io/awesome-jev/badges/jeveryword.svg)](https://kydlikebtc.github.io/awesome-jev/products/jeveryword.html) <sub>← as it reads today for `jeveryword`</sub>
+[![awesome-jev](https://kydlikebtc.github.io/awesome-jev/badges/agent-desktop.svg)](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html) <sub>← as it reads today for `agent-desktop`</sub>
 
 ```markdown
 [![awesome-jev](https://kydlikebtc.github.io/awesome-jev/badges/your-slug.svg)](https://kydlikebtc.github.io/awesome-jev/products/your-slug.html)

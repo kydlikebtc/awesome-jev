@@ -22,27 +22,24 @@
 <text x="262" y="395" font-size="19" class="muted">Maker</text>
 <text x="464" y="362" font-size="36" class="mono" font-weight="600" letter-spacing="-1">1,206</text>
 <text x="464" y="395" font-size="19" class="muted">调用点记录</text>
-<text x="712" y="73" font-size="16" class="mono faint" letter-spacing="1.6">上升最快 · 本周星标</text>
+<text x="712" y="73" font-size="16" class="mono faint" letter-spacing="1.6">下周 · 2026-W46 · 已登记</text>
 <rect x="712" y="96" width="428" height="72" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
 <rect x="712" y="114" width="3" height="36" rx="1.5" fill="#1a7f37"/>
 <rect x="728" y="106" width="60" height="52" rx="8" fill="#f6f8fa" stroke="#d1d9e0"/>
-<polygon points="758.0,113.5 759.9,118.4 765.1,118.7 761.0,122.0 762.4,127.1 758.0,124.2 753.6,127.1 755.0,122.0 750.9,118.7 756.1,118.4" fill="#a15c00"/>
-<text x="758.0" y="149" font-size="13" class="mono accent" font-weight="600" text-anchor="middle" letter-spacing="-0.5">+35</text>
-<text x="802" y="126" font-size="18" class="mono" font-weight="600">jeveryword</text>
-<text x="802" y="148" font-size="14" class="muted">用 Jev 做文本抽取：字段抽取、PII 检测与逐字…</text>
+<path d="M758.0 126.0l7.5 12.0h-15.0z" fill="#a15c00"/>
+<text x="802" y="126" font-size="18" class="mono" font-weight="600">agent-desktop</text>
+<text x="802" y="148" font-size="14" class="muted">桌面自动化：由 Jev 选出下一步要操作的按钮、…</text>
 <rect x="712" y="182" width="428" height="72" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
 <rect x="712" y="200" width="3" height="36" rx="1.5" fill="#1a7f37"/>
 <rect x="728" y="192" width="60" height="52" rx="8" fill="#f6f8fa" stroke="#d1d9e0"/>
-<polygon points="758.0,199.5 759.9,204.4 765.1,204.7 761.0,208.0 762.4,213.1 758.0,210.2 753.6,213.1 755.0,208.0 750.9,204.7 756.1,204.4" fill="#a15c00"/>
-<text x="758.0" y="235" font-size="13" class="mono accent" font-weight="600" text-anchor="middle" letter-spacing="-0.5">+12.4k</text>
-<text x="802" y="212" font-size="18" class="mono" font-weight="600">agent-desktop</text>
-<text x="802" y="234" font-size="14" class="muted">桌面自动化。读系统无障碍树，判断下一步该点哪…</text>
+<path d="M758.0 212.0l7.5 12.0h-15.0z" fill="#a15c00"/>
+<text x="802" y="212" font-size="18" class="mono" font-weight="600">jeveryword</text>
+<text x="802" y="234" font-size="14" class="muted">用 Jev 从文本中抽取字段、PII 和逐字引文</text>
 <rect x="712" y="268" width="428" height="72" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
-<rect x="712" y="286" width="3" height="36" rx="1.5" fill="#1a7f37"/>
+<rect x="712" y="286" width="3" height="36" rx="1.5" fill="#6e7781"/>
 <rect x="728" y="278" width="60" height="52" rx="8" fill="#f6f8fa" stroke="#d1d9e0"/>
-<polygon points="758.0,285.5 759.9,290.4 765.1,290.7 761.0,294.0 762.4,299.1 758.0,296.2 753.6,299.1 755.0,294.0 750.9,290.7 756.1,290.4" fill="#a15c00"/>
-<text x="758.0" y="321" font-size="13" class="mono accent" font-weight="600" text-anchor="middle" letter-spacing="-0.5">+26</text>
-<text x="802" y="298" font-size="18" class="mono" font-weight="600">anydecisionmodel</text>
-<text x="802" y="320" font-size="14" class="muted">一个 Swift 包：从语言模型获取类型化决策（概…</text>
+<path d="M758.0 298.0l7.5 12.0h-15.0z" fill="#a15c00"/>
+<text x="802" y="298" font-size="18" class="mono" font-weight="600">fastbrowse</text>
+<text x="802" y="320" font-size="14" class="muted">浏览器智能体：由 Jev 从页面上已有的控件中选…</text>
 <text x="712" y="383" font-size="12" class="mono faint" letter-spacing="1">票数与证据并列 · 从不相加</text>
 </svg>

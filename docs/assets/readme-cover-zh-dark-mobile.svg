@@ -23,17 +23,14 @@
 <text x="396" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,206</text>
 <text x="396" y="355" font-size="19" class="muted">调用点记录</text>
 <rect x="36" y="392" width="528" height="132" rx="12" fill="#121821" stroke="#30363d"/>
-<text x="56" y="424" font-size="13" class="mono faint" letter-spacing="1.2">上升最快 · 本周星标</text>
-<polygon points="62.0,441.8 63.3,445.2 67.0,445.4 64.1,447.7 65.1,451.2 62.0,449.2 58.9,451.2 59.9,447.7 57.0,445.4 60.7,445.2" fill="#f5a524"/>
-<text x="78" y="452" font-size="14" class="mono accent" font-weight="600">+35</text>
-<text x="114.03999999999999" y="452" font-size="15" class="mono" font-weight="600">jeveryword</text>
-<text x="217.04" y="452" font-size="13" class="muted">用 Jev 做文本抽取：字段抽取、PII 检测与逐字引文。</text>
-<polygon points="62.0,467.8 63.3,471.2 67.0,471.4 64.1,473.7 65.1,477.2 62.0,475.2 58.9,477.2 59.9,473.7 57.0,471.4 60.7,471.2" fill="#f5a524"/>
-<text x="78" y="478" font-size="14" class="mono accent" font-weight="600">+12.4k</text>
-<text x="140.07999999999998" y="478" font-size="15" class="mono" font-weight="600">agent-desktop</text>
-<text x="270.98" y="478" font-size="13" class="muted">桌面自动化。读系统无障碍树，判断下一步该…</text>
-<polygon points="62.0,493.8 63.3,497.2 67.0,497.4 64.1,499.7 65.1,503.2 62.0,501.2 58.9,503.2 59.9,499.7 57.0,497.4 60.7,497.2" fill="#f5a524"/>
-<text x="78" y="504" font-size="14" class="mono accent" font-weight="600">+26</text>
-<text x="114.03999999999999" y="504" font-size="15" class="mono" font-weight="600">anydecisionmodel</text>
-<text x="272.84000000000003" y="504" font-size="13" class="muted">一个 Swift 包：从语言模型获取类型化决策…</text>
+<text x="56" y="424" font-size="13" class="mono faint" letter-spacing="1.2">下周 · 2026-W46 · 已登记</text>
+<path d="M62 442.8l5.25 8.399999999999999h-10.5z" fill="#f5a524"/>
+<text x="78" y="452" font-size="15" class="mono" font-weight="600">agent-desktop</text>
+<text x="208.9" y="452" font-size="13" class="muted">桌面自动化：由 Jev 选出下一步要操作的按钮、菜单或…</text>
+<path d="M62 468.8l5.25 8.399999999999999h-10.5z" fill="#f5a524"/>
+<text x="78" y="478" font-size="15" class="mono" font-weight="600">jeveryword</text>
+<text x="181.0" y="478" font-size="13" class="muted">用 Jev 从文本中抽取字段、PII 和逐字引文</text>
+<path d="M62 494.8l5.25 8.399999999999999h-10.5z" fill="#f5a524"/>
+<text x="78" y="504" font-size="15" class="mono" font-weight="600">fastbrowse</text>
+<text x="181.0" y="504" font-size="13" class="muted">浏览器智能体：由 Jev 从页面上已有的控件中选出下一步</text>
 </svg>

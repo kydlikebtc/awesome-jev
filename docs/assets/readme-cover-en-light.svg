@@ -22,27 +22,24 @@
 <text x="262" y="395" font-size="19" class="muted">makers</text>
 <text x="464" y="362" font-size="36" class="mono" font-weight="600" letter-spacing="-1">1,206</text>
 <text x="464" y="395" font-size="19" class="muted">call-site records</text>
-<text x="712" y="73" font-size="16" class="mono faint" letter-spacing="1.6">RISING · STARS GAINED THIS WEEK</text>
+<text x="712" y="73" font-size="16" class="mono faint" letter-spacing="1.6">NEXT WEEK · 2026-W46 · FILED</text>
 <rect x="712" y="96" width="428" height="72" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
 <rect x="712" y="114" width="3" height="36" rx="1.5" fill="#1a7f37"/>
 <rect x="728" y="106" width="60" height="52" rx="8" fill="#f6f8fa" stroke="#d1d9e0"/>
-<polygon points="758.0,113.5 759.9,118.4 765.1,118.7 761.0,122.0 762.4,127.1 758.0,124.2 753.6,127.1 755.0,122.0 750.9,118.7 756.1,118.4" fill="#a15c00"/>
-<text x="758.0" y="149" font-size="13" class="mono accent" font-weight="600" text-anchor="middle" letter-spacing="-0.5">+35</text>
-<text x="802" y="126" font-size="18" class="mono" font-weight="600">jeveryword</text>
-<text x="802" y="148" font-size="14" class="muted">Text extraction with Jev: field extraction, P…</text>
+<path d="M758.0 126.0l7.5 12.0h-15.0z" fill="#a15c00"/>
+<text x="802" y="126" font-size="18" class="mono" font-weight="600">agent-desktop</text>
+<text x="802" y="148" font-size="14" class="muted">Desktop automation: Jev picks the button, m…</text>
 <rect x="712" y="182" width="428" height="72" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
 <rect x="712" y="200" width="3" height="36" rx="1.5" fill="#1a7f37"/>
 <rect x="728" y="192" width="60" height="52" rx="8" fill="#f6f8fa" stroke="#d1d9e0"/>
-<polygon points="758.0,199.5 759.9,204.4 765.1,204.7 761.0,208.0 762.4,213.1 758.0,210.2 753.6,213.1 755.0,208.0 750.9,204.7 756.1,204.4" fill="#a15c00"/>
-<text x="758.0" y="235" font-size="13" class="mono accent" font-weight="600" text-anchor="middle" letter-spacing="-0.5">+12.4k</text>
-<text x="802" y="212" font-size="18" class="mono" font-weight="600">agent-desktop</text>
-<text x="802" y="234" font-size="14" class="muted">Desktop automation that reads the system ac…</text>
+<path d="M758.0 212.0l7.5 12.0h-15.0z" fill="#a15c00"/>
+<text x="802" y="212" font-size="18" class="mono" font-weight="600">jeveryword</text>
+<text x="802" y="234" font-size="14" class="muted">Extracts fields, PII and exact quotes from…</text>
 <rect x="712" y="268" width="428" height="72" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
-<rect x="712" y="286" width="3" height="36" rx="1.5" fill="#1a7f37"/>
+<rect x="712" y="286" width="3" height="36" rx="1.5" fill="#6e7781"/>
 <rect x="728" y="278" width="60" height="52" rx="8" fill="#f6f8fa" stroke="#d1d9e0"/>
-<polygon points="758.0,285.5 759.9,290.4 765.1,290.7 761.0,294.0 762.4,299.1 758.0,296.2 753.6,299.1 755.0,294.0 750.9,290.7 756.1,290.4" fill="#a15c00"/>
-<text x="758.0" y="321" font-size="13" class="mono accent" font-weight="600" text-anchor="middle" letter-spacing="-0.5">+26</text>
-<text x="802" y="298" font-size="18" class="mono" font-weight="600">anydecisionmodel</text>
-<text x="802" y="320" font-size="14" class="muted">A Swift package for typed decisions from l…</text>
+<path d="M758.0 298.0l7.5 12.0h-15.0z" fill="#a15c00"/>
+<text x="802" y="298" font-size="18" class="mono" font-weight="600">fastbrowse</text>
+<text x="802" y="320" font-size="14" class="muted">Browser agent: Jev chooses the next contro…</text>
 <text x="712" y="383" font-size="12" class="mono faint" letter-spacing="1">VOTES AND EVIDENCE SIDE BY SIDE · NEVER ADDED</text>
 </svg>
