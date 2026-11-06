@@ -95,13 +95,15 @@ class CoverLayoutError(ValueError):
     """Copy or a count no longer fits its column on the cover."""
 
 
-def asset_path(lang: str, theme: str, *, mobile: bool = False) -> str:
-    """Repository-relative path, as the README <picture> references it."""
-    name = f"readme-cover-{lang}-{theme}{'-mobile' if mobile else ''}.svg"
+def asset_path(lang: str, theme: str, *, mobile: bool = False, stem: str = "readme-cover") -> str:
+    """Repository-relative path, as the README <picture> references it. `stem`
+    names the figure: the cover, or another drawn with a phone layout too
+    (build_readme_week.STEM)."""
+    name = f"{stem}-{lang}-{theme}{'-mobile' if mobile else ''}.svg"
     return (OUT / name).relative_to(ROOT).as_posix()
 
 
-def picture_sources(lang: str) -> list[tuple[str, str]]:
+def picture_sources(lang: str, stem: str = "readme-cover") -> list[tuple[str, str]]:
     """<source> media and files for the README <picture>, fallback excluded.
 
     When a reader fixes their GitHub theme, GitHub's <themed-picture> replaces
@@ -114,10 +116,10 @@ def picture_sources(lang: str) -> list[tuple[str, str]]:
     """
     narrow, wide = f"(max-width: {HERO_BREAKPOINT - 1}px)", f"(min-width: {HERO_BREAKPOINT}px)"
     return [
-        (f"{wide} and (prefers-color-scheme: light)", asset_path(lang, "light")),
-        (f"{narrow} and (prefers-color-scheme: light)", asset_path(lang, "light", mobile=True)),
-        (narrow, asset_path(lang, "dark", mobile=True)),
-        ("(prefers-color-scheme: dark)", asset_path(lang, "dark")),
+        (f"{wide} and (prefers-color-scheme: light)", asset_path(lang, "light", stem=stem)),
+        (f"{narrow} and (prefers-color-scheme: light)", asset_path(lang, "light", mobile=True, stem=stem)),
+        (narrow, asset_path(lang, "dark", mobile=True, stem=stem)),
+        ("(prefers-color-scheme: dark)", asset_path(lang, "dark", stem=stem)),
     ]
 
 

@@ -54,8 +54,8 @@ EN = {
         "performance endorsement. See [what is verified](#what-is-verified-and-what-is-not)."
     ),
     # ---- the launch board (scripts/readme/board.py) ----
-    "chip_board": "Launch board ↗",
-    "chip_launch": "Launch a product",
+    "chip_board": "▲ Launch board ↗",
+    "chip_launch": "🚀 Launch a product",
     "footer_brand": "**awesome-jev Launches** · over the Jev Decision Atlas",
     "board_h": "This week's launches",
     "board_intro": (
@@ -100,6 +100,12 @@ EN = {
     "board_ring": "most from new accounts, which counted for nothing",
     "board_maker": "launched by its maker {who}",
     "board_hunter": "hunted by {who}",
+    # The feed's right-hand box (readme.board.box): under the vote mark, the
+    # medal or the stars.
+    "box_vote": "VOTE",
+    "box_opens": "opens<br>{day}",
+    "box_votes": "votes",
+    "box_stars": "stars",
     "tiers": {
         "person": "👤 a person read the call site",
         "model": "🤖 a model read the call site, no person yet",
@@ -380,6 +386,7 @@ EN = {
     "retired_h": "Retired links",
     "retired_intro": "Links that stopped resolving, kept so a dead reference stays searchable instead of vanishing.",
     "th_why": "Why",
+    "pattern_fold": "{n} more examples",
     "pattern_more": "**{shown} of {n}** shown · [all {n} on one page →]({page}) · [filter on the site]({site})",
     "pattern_all": "All {n} shown · [on its own page]({page}) · [filter on the site]({site})",
     "unindexed_h": "Not yet indexed by pattern",
@@ -482,8 +489,8 @@ ZH = {
         "详见[哪些经过核实](#哪些经过核实哪些没有)。"
     ),
     # ---- 发布榜（scripts/readme/board.py）----
-    "chip_board": "发布榜 ↗",
-    "chip_launch": "发布产品",
+    "chip_board": "▲ 发布榜 ↗",
+    "chip_launch": "🚀 发布产品",
     "footer_brand": "**awesome-jev 发布榜** · 建在 Jev 决策图谱之上",
     "board_h": "本周发布榜",
     "board_intro": (
@@ -518,6 +525,10 @@ ZH = {
     "board_ring": "多数票来自新账号，这些票不计",
     "board_maker": "Maker {who} 发布",
     "board_hunter": "{who} 推荐",
+    "box_vote": "投票",
+    "box_opens": "{day}<br>开榜",
+    "box_votes": "票",
+    "box_stars": "星标",
     "tiers": {
         "person": "👤 有人读过调用点",
         "model": "🤖 模型读过调用点，尚无人复核",
@@ -757,6 +768,7 @@ ZH = {
     "retired_h": "已退休的链接",
     "retired_intro": "已无法访问的链接。保留下来，让失效的引用仍可被搜索到，而不是凭空消失。",
     "th_why": "原因",
+    "pattern_fold": "展开另外 {n} 条",
     "pattern_more": "已显示 **{shown} / {n}** 条 · [在单独页面查看全部 {n} 条 →]({page}) · [在站点上筛选]({site})",
     "pattern_all": "已显示全部 {n} 条 · [单独页面]({page}) · [在站点上筛选]({site})",
     "unindexed_h": "尚未按模式索引",

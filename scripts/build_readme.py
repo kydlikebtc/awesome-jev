@@ -41,6 +41,7 @@ from collections import Counter
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import build_readme_cover  # noqa: E402
+import build_readme_week  # noqa: E402
 from readme.pages import (  # noqa: E402
     PAGES_DIR,
     render_measured_page,
@@ -105,9 +106,11 @@ def main() -> int:
     retired = json.loads(RETIRED.read_text())
 
     try:
-        # Covers first: all eight render before any is written, so a cover
-        # layout error stops the build before it has touched a file.
+        # Figures first: each set renders whole before any file is written,
+        # so a layout error stops the build before it has touched a file.
+        build_readme_week.rendered()
         build_readme_cover.write_covers()
+        build_readme_week.write_figures()
         (ROOT / "README.md").write_text(render(catalog, retired, EN))
         (ROOT / "README.zh-CN.md").write_text(render(catalog, retired, ZH))
         pages = write_pattern_pages(catalog)
