@@ -48,6 +48,10 @@ VOTE, STAR = "▲", "★"
 # repository shows the awesome-jev mark instead.
 THUMB = 48
 NO_THUMB = "site/favicon.svg"
+# The right-hand box's width: without one, a table squeezes the column to its
+# narrowest unbreakable piece, and Chinese breaks between any two characters,
+# so 投票 would stand one character a line.
+BOX = 80
 
 # The cover's feed, per language: the heading over the cards for each state
 # the board can be in, the footer under them, and the three cards drawn when
@@ -190,10 +194,9 @@ def feed(items: list[tuple[dict, str, list[str], str]]) -> list[str]:
 
     The middle cell is markdown, fenced by blank lines inside the <td> so
     GitHub renders it as markdown (links, <sub>) within the HTML table; the
-    two outer cells are plain HTML. Only the picture's cell has a width,
-    since GitHub's `max-width: 100%` on images would otherwise let a table
-    squeeze the picture to a sliver; the box takes what its words need, which
-    leaves a phone's narrow screen to the product's line."""
+    two outer cells are plain HTML, each with a width: GitHub's
+    `max-width: 100%` on images would otherwise let a table squeeze the
+    picture to a sliver, and the box's words to a character a line (BOX)."""
     out = ["<table>"]
     for row, line, meta, right in items:
         out += [
@@ -205,7 +208,7 @@ def feed(items: list[tuple[dict, str, list[str], str]]) -> list[str]:
             f"<sub>{' · '.join(meta)}</sub>",
             "",
             "</td>",
-            f'<td align="center">{right}</td>',
+            f'<td align="center" width="{BOX}">{right}</td>',
             "</tr>",
         ]
     return out + ["</table>", ""]

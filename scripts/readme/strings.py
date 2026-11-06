@@ -103,7 +103,7 @@ EN = {
     # The feed's right-hand box (readme.board.box): under the vote mark, the
     # medal or the stars.
     "box_vote": "VOTE",
-    "box_opens": "opens {day}",
+    "box_opens": "opens<br>{day}",
     "box_votes": "votes",
     "box_stars": "stars",
     "tiers": {
@@ -526,7 +526,7 @@ ZH = {
     "board_maker": "Maker {who} 发布",
     "board_hunter": "{who} 推荐",
     "box_vote": "投票",
-    "box_opens": "{day} 开榜",
+    "box_opens": "{day}<br>开榜",
     "box_votes": "票",
     "box_stars": "星标",
     "tiers": {

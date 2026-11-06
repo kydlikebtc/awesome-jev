@@ -69,7 +69,7 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <sub>5 → 40 stars (+700%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jeveryword&title=Launch%3A%20jeveryword)</sub>
 
 </td>
-<td align="center"><b>★&nbsp;+35</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+35</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
@@ -79,7 +79,7 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <sub>1,827 → 14,206 stars (+678%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=agent-desktop&title=Launch%3A%20agent-desktop)</sub>
 
 </td>
-<td align="center"><b>★&nbsp;+12,379</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+12,379</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html"><img src="https://github.com/mattt.png?size=96" width="48" height="48" alt="anydecisionmodel"></a></td>
@@ -89,7 +89,7 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <sub>24 → 50 stars (+108%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=anydecisionmodel&title=Launch%3A%20anydecisionmodel)</sub>
 
 </td>
-<td align="center"><b>★&nbsp;+26</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+26</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html"><img src="https://github.com/agent-labs-dev.png?size=96" width="48" height="48" alt="fastbrowse"></a></td>
@@ -99,7 +99,7 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <sub>120 → 173 stars (+44%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=fastbrowse&title=Launch%3A%20fastbrowse)</sub>
 
 </td>
-<td align="center"><b>★&nbsp;+53</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+53</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html"><img src="https://github.com/leepokai.png?size=96" width="48" height="48" alt="jev-guard"></a></td>
@@ -109,7 +109,7 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <sub>130 → 144 stars (+11%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jev-guard&title=Launch%3A%20jev-guard)</sub>
 
 </td>
-<td align="center"><b>★&nbsp;+14</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+14</b><br><sub>stars</sub></td>
 </tr>
 </table>
 

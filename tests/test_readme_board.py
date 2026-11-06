@@ -84,9 +84,9 @@ class FeedTests(unittest.TestCase):
 
     def test_a_filed_week_says_the_monday_it_opens(self):
         text = section([FILED])
-        self.assertEqual(text.count("<b>▲</b><br><sub>opens 11-09</sub>"), 2)
+        self.assertEqual(text.count("<b>▲</b><br><sub>opens<br>11-09</sub>"), 2)
         self.assertNotIn("discussions/7", text)
-        self.assertIn("<b>▲</b><br><sub>11-09 开榜</sub>", section([FILED], strings=build_readme.ZH))
+        self.assertIn("<b>▲</b><br><sub>11-09<br>开榜</sub>", section([FILED], strings=build_readme.ZH))
 
     def test_a_closed_week_shows_medals_and_counted_votes(self):
         text = section([CLOSED])

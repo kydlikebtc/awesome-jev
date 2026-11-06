@@ -69,7 +69,7 @@
 <sub>5 → 40 星（+700%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jeveryword&title=Launch%3A%20jeveryword)</sub>
 
 </td>
-<td align="center"><b>★&nbsp;+35</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+35</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
@@ -79,7 +79,7 @@
 <sub>1,827 → 14,206 星（+678%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=agent-desktop&title=Launch%3A%20agent-desktop)</sub>
 
 </td>
-<td align="center"><b>★&nbsp;+12,379</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+12,379</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html"><img src="https://github.com/mattt.png?size=96" width="48" height="48" alt="anydecisionmodel"></a></td>
@@ -89,7 +89,7 @@
 <sub>24 → 50 星（+108%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=anydecisionmodel&title=Launch%3A%20anydecisionmodel)</sub>
 
 </td>
-<td align="center"><b>★&nbsp;+26</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+26</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html"><img src="https://github.com/agent-labs-dev.png?size=96" width="48" height="48" alt="fastbrowse"></a></td>
@@ -99,7 +99,7 @@
 <sub>120 → 173 星（+44%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=fastbrowse&title=Launch%3A%20fastbrowse)</sub>
 
 </td>
-<td align="center"><b>★&nbsp;+53</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+53</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html"><img src="https://github.com/leepokai.png?size=96" width="48" height="48" alt="jev-guard"></a></td>
@@ -109,7 +109,7 @@
 <sub>130 → 144 星（+11%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jev-guard&title=Launch%3A%20jev-guard)</sub>
 
 </td>
-<td align="center"><b>★&nbsp;+14</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+14</b><br><sub>星标</sub></td>
 </tr>
 </table>
 
