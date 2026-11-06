@@ -25,7 +25,7 @@
 | [并行扇出](by-pattern/fan-out.zh-CN.md) | 39 | 3 | 31 | 1 | 0 | 1 | 0 | 7 |
 | [检索与排序](by-pattern/search-ranking.zh-CN.md) | 87 | 3 | 83 | 0 | 0 | 6 | 1 | 4 |
 | [结构化抽取](by-pattern/data-extraction.zh-CN.md) | 22 | 4 | 18 | 0 | 0 | 2 | 0 | 4 |
-| [分类](by-pattern/classification.zh-CN.md) | 150 | 4 | 140 | 1 | 0 | 13 | 1 | 9 |
+| [分类](by-pattern/classification.zh-CN.md) | 151 | 4 | 140 | 2 | 0 | 13 | 1 | 9 |
 | [机器学习特征抽取](by-pattern/feature-extraction.zh-CN.md) | 9 | 1 | 8 | 0 | 0 | 0 | 0 | 1 |
 | [文档分拣](by-pattern/document-triage.zh-CN.md) | 22 | 0 | 21 | 0 | 0 | 2 | 0 | 1 |
 | [工单分拣](by-pattern/support-triage.zh-CN.md) | 13 | 1 | 8 | 0 | 0 | 2 | 0 | 5 |
@@ -41,7 +41,7 @@
 
 | 语言 | 行数 |
 | --- | --- |
-| `python` | 552 |
+| `python` | 553 |
 | `typescript` | 453 |
 | `javascript` | 160 |
 | `go` | 56 |
@@ -68,7 +68,7 @@
 | 只有 `typesafe-api` | 1143 |
 | 至少有一个值对应[兼容性表](compatibility.md)中的其他接入面（网关、SDK 或框架），且不含 `self-hosted` | 82 |
 | 除 `typesafe-api` 外只记录没有任何兼容性接入面对应的值（示例运行所在的主机、工具或框架，或该表未描述的路径），且不含 `self-hosted` | 52 |
-| 含 `self-hosted`，无论还记录了什么 | 92 |
+| 含 `self-hosted`，无论还记录了什么 | 93 |
 | 未记录任何值 | 23 |
 
 各行记录的每个值，以及对应它的兼容性接入面：
@@ -76,7 +76,7 @@
 | 值 | 兼容性接入面 | 行数 |
 | --- | --- | --- |
 | `typesafe-api` | `typesafe-native` | 1232 |
-| `self-hosted` | — | 92 |
+| `self-hosted` | — | 93 |
 | `openrouter` | `openrouter` | 44 |
 | `claude-code` | — | 37 |
 | `vercel-ai-gateway` | `vercel-eval`, `vercel-compat` | 33 |
@@ -127,7 +127,7 @@
 | 视频 (`video`) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | 基准测试 (`benchmark`) | 82 | 77 | 49 | 19 | 5 | 2 | 1 | 1 | 不足 10 |
 | 讨论 (`discussion`) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-| Jev 替代实现 (`alternative`) | 104 | 95 | 12 | 41 | 29 | 12 | 1 | 0 | ★10+ |
+| Jev 替代实现 (`alternative`) | 105 | 95 | 12 | 41 | 29 | 12 | 1 | 0 | ★10+ |
 
 ## 按决策模式看语言
 
@@ -146,7 +146,7 @@
 | [并行扇出](by-pattern/fan-out.zh-CN.md) | 21 | 13 | 4 | 1 | 2 | 1 | 4 |
 | [检索与排序](by-pattern/search-ranking.zh-CN.md) | 37 | 25 | 6 | 5 | 8 | 1 | 7 |
 | [结构化抽取](by-pattern/data-extraction.zh-CN.md) | 14 | 4 | 4 | 0 | 0 | 0 | 0 |
-| [分类](by-pattern/classification.zh-CN.md) | 58 | 40 | 27 | 1 | 4 | 0 | 17 |
+| [分类](by-pattern/classification.zh-CN.md) | 59 | 40 | 27 | 1 | 4 | 0 | 17 |
 | [机器学习特征抽取](by-pattern/feature-extraction.zh-CN.md) | 5 | 2 | 1 | 0 | 0 | 0 | 1 |
 | [文档分拣](by-pattern/document-triage.zh-CN.md) | 7 | 5 | 7 | 0 | 2 | 0 | 0 |
 | [工单分拣](by-pattern/support-triage.zh-CN.md) | 7 | 4 | 0 | 1 | 0 | 0 | 3 |
@@ -173,7 +173,7 @@
 
 ## 作者
 
-有 1275 行写明了作者，共 1157 位不同的作者（按显示名比较，不区分大小写）。其中 1073 位在本目录只有一行，66 位有两行，18 位有三行或更多；单个作者最多有 11 行。本页不列出任何作者的名字：它显示的是目录的集中程度，而不是谁在贡献。
+有 1276 行写明了作者，共 1158 位不同的作者（按显示名比较，不区分大小写）。其中 1074 位在本目录只有一行，66 位有两行，18 位有三行或更多；单个作者最多有 11 行。本页不列出任何作者的名字：它显示的是目录的集中程度，而不是谁在贡献。
 
 ## 随时间的变化
 

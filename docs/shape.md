@@ -23,7 +23,7 @@ What the catalogue records about the rows filed under each pattern: reports coun
 | [Speculative fan-out](by-pattern/fan-out.md) | 39 | 3 | 31 | 1 | 0 | 1 | 0 | 7 |
 | [Search & ranking](by-pattern/search-ranking.md) | 87 | 3 | 83 | 0 | 0 | 6 | 1 | 4 |
 | [Structured extraction](by-pattern/data-extraction.md) | 22 | 4 | 18 | 0 | 0 | 2 | 0 | 4 |
-| [Classification](by-pattern/classification.md) | 150 | 4 | 140 | 1 | 0 | 13 | 1 | 9 |
+| [Classification](by-pattern/classification.md) | 151 | 4 | 140 | 2 | 0 | 13 | 1 | 9 |
 | [ML feature extraction](by-pattern/feature-extraction.md) | 9 | 1 | 8 | 0 | 0 | 0 | 0 | 1 |
 | [Document triage](by-pattern/document-triage.md) | 22 | 0 | 21 | 0 | 0 | 2 | 0 | 1 |
 | [Support triage](by-pattern/support-triage.md) | 13 | 1 | 8 | 0 | 0 | 2 | 0 | 5 |
@@ -39,7 +39,7 @@ Rows recording each language (`languages`; a row may record several). 32 rows re
 
 | Language | Rows |
 | --- | --- |
-| `python` | 552 |
+| `python` | 553 |
 | `typescript` | 453 |
 | `javascript` | 160 |
 | `go` | 56 |
@@ -66,7 +66,7 @@ Rows recording each language (`languages`; a row may record several). 32 rows re
 | `typesafe-api` and nothing else | 1143 |
 | At least one value another surface in [the compatibility table](compatibility.md) stands for (a gateway, SDK or framework), and not `self-hosted` | 82 |
 | Besides `typesafe-api`, only values no compatibility surface stands for (a host, tool or framework the example runs in, or a route that table does not describe), and not `self-hosted` | 52 |
-| `self-hosted`, whatever else is recorded | 92 |
+| `self-hosted`, whatever else is recorded | 93 |
 | No value recorded | 23 |
 
 Every value rows record, with the compatibility surfaces that stand for it:
@@ -74,7 +74,7 @@ Every value rows record, with the compatibility surfaces that stand for it:
 | Value | Compatibility surface | Rows |
 | --- | --- | --- |
 | `typesafe-api` | `typesafe-native` | 1232 |
-| `self-hosted` | — | 92 |
+| `self-hosted` | — | 93 |
 | `openrouter` | `openrouter` | 44 |
 | `claude-code` | — | 37 |
 | `vercel-ai-gateway` | `vercel-eval`, `vercel-compat` | 33 |
@@ -125,7 +125,7 @@ Rows of each kind per star band, from GitHub's count at the last weekly refresh;
 | Video (`video`) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | Benchmark (`benchmark`) | 82 | 77 | 49 | 19 | 5 | 2 | 1 | 1 | under 10 |
 | Discussion (`discussion`) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-| Jev-like alternative (`alternative`) | 104 | 95 | 12 | 41 | 29 | 12 | 1 | 0 | ★10+ |
+| Jev-like alternative (`alternative`) | 105 | 95 | 12 | 41 | 29 | 12 | 1 | 0 | ★10+ |
 
 ## Languages by decision pattern
 
@@ -144,7 +144,7 @@ Rows per pattern recording each of the 6 most recorded languages; the rest share
 | [Speculative fan-out](by-pattern/fan-out.md) | 21 | 13 | 4 | 1 | 2 | 1 | 4 |
 | [Search & ranking](by-pattern/search-ranking.md) | 37 | 25 | 6 | 5 | 8 | 1 | 7 |
 | [Structured extraction](by-pattern/data-extraction.md) | 14 | 4 | 4 | 0 | 0 | 0 | 0 |
-| [Classification](by-pattern/classification.md) | 58 | 40 | 27 | 1 | 4 | 0 | 17 |
+| [Classification](by-pattern/classification.md) | 59 | 40 | 27 | 1 | 4 | 0 | 17 |
 | [ML feature extraction](by-pattern/feature-extraction.md) | 5 | 2 | 1 | 0 | 0 | 0 | 1 |
 | [Document triage](by-pattern/document-triage.md) | 7 | 5 | 7 | 0 | 2 | 0 | 0 |
 | [Support triage](by-pattern/support-triage.md) | 7 | 4 | 0 | 1 | 0 | 0 | 3 |
@@ -171,7 +171,7 @@ Rows per pattern recording each of the 6 most recorded languages; the rest share
 
 ## Authors
 
-1275 rows name an author; they name 1157 different ones, compared by display name without regard to case. 1073 of them have one row here, 66 two, and 18 three or more; the most any one author has is 11. No author is named on this page: it shows how concentrated the catalogue is, not who contributes to it.
+1276 rows name an author; they name 1158 different ones, compared by display name without regard to case. 1074 of them have one row here, 66 two, and 18 three or more; the most any one author has is 11. No author is named on this page: it shows how concentrated the catalogue is, not who contributes to it.
 
 ## Over time
 
