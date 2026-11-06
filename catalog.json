@@ -107587,6 +107587,58 @@
     "evidence_none": "docs-page"
   },
   {
+    "slug": "verdictad",
+    "title": "VerdictAD",
+    "summary": "Training-free few-shot industrial anomaly detection: Cloudflare's open Jev-style model Clef-Flash 9B answers noul questions on whether a query image and its local windows show a defect against a few normal references, and the probabilities reweight an existing detector's image score and anomaly map.",
+    "summary_source": "model-written",
+    "summary_zh": "免训练的少样本工业异常检测：开源的 Jev 风格模型 Clef-Flash 9B 以 noul 问题判断查询图及其局部窗口相对少量正常参考图是否有缺陷，再用这些概率重新加权现有检测器的图像分数和异常图，在 MVTec AD、VisA 和 MVTec LOCO AD 上评测。",
+    "zh_machine": true,
+    "url": "https://github.com/sgstq0811/VerdictAD-Jev-AD",
+    "kind": "alternative",
+    "patterns": [
+      "classification"
+    ],
+    "question_types": [
+      "noul"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "sgstq0811",
+      "url": "https://github.com/sgstq0811"
+    },
+    "has_code": true,
+    "official": false,
+    "repo_license": "Apache-2.0",
+    "evidence": {
+      "kind": "wire-shape",
+      "path": "verdictad/decider.py",
+      "matched": [
+        "Cloudflare/clef-flash",
+        "\"type\": \"noul\""
+      ],
+      "model_read_on": "2026-11-05"
+    },
+    "first_seen": "2026-11-05",
+    "flags": [
+      "self-submitted",
+      "not-jev",
+      "ai-generated"
+    ],
+    "notes": "Calls Cloudflare's open Clef-Flash 9B locally with the System One state/questions schema; it does not call hosted Jev. Code written with AI assistance (Claude Code). Paper: https://arxiv.org/abs/2611.02654",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/89"
+      }
+    ],
+    "license": "CC0-1.0"
+  },
+  {
     "slug": "vev",
     "title": "Vev",
     "summary": "Open decision models (vev-4b and vev-9b, fine-tuned from Qwen3.5) served behind POST /v1/systemone that also take images: yes/no, choice and graded questions about text, JSON or screenshots, with a probability for every answer in about 40 ms on your own GPU.",
