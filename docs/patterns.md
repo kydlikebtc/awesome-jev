@@ -307,7 +307,7 @@ lets you fall back to a coarser level instead of guessing a fine one.
 **When not to:** when your taxonomy has overlapping leaves. Fix the taxonomy.
 
 <!-- catalogued-classification:start -->
-**Classification** in the catalogue: 150 rows, [each listed with its caveats](by-pattern/classification.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en).
+**Classification** in the catalogue: 151 rows, [each listed with its caveats](by-pattern/classification.md) · [the site's filter](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en).
 <!-- catalogued-classification:end -->
 
 ---

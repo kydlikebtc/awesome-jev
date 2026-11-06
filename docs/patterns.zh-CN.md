@@ -224,7 +224,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用：** 当你的分类体系里有互相重叠的叶子节点时。先修好分类体系。
 
 <!-- catalogued-classification:start -->
-目录中的**分类**：共 150 条，[逐条列出并附警示](by-pattern/classification.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)。
+目录中的**分类**：共 151 条，[逐条列出并附警示](by-pattern/classification.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)。
 <!-- catalogued-classification:end -->
 
 ---
