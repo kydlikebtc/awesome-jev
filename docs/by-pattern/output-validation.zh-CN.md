@@ -4,11 +4,11 @@
 
 _在输出到达用户前，按评分标准检查模型产出。_
 
-这个决策的全部已收录例子 —— 共 150 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 153 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#output-validation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#output-validation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 145 · 接口形态 1 · 仅示例 0 · 独立报告 12 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 148 · 接口形态 1 · 仅示例 0 · 独立报告 12 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -254,6 +254,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[yoshi](https://github.com/compozy/yoshi)** — 给 Claude Code 和 Codex 做的上下文裁剪代理：由 Jev 判断哪些历史还需要 —— 实测而非宣称。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · compozy · `TS` · 调用点 [`benchmarks/jev-calibrate.ts`](https://github.com/compozy/yoshi/blob/HEAD/benchmarks/jev-calibrate.ts)，2026-09-22 阅读</sub>
 
+- **[adhere](https://github.com/darkmatter/adhere)** — 用来检查普通 linter 查不了的规则的 linter，规则以 Markdown 写成，附“应当”和“不应当”的示例。它询问 Jev 每个文件是否违反每条规则，报告概率高于阈值的规则并标出 Jev 指向的代码片段；adhere validate 会找出本可由普通 linter 检查或彼此矛盾的规则。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · darkmatter · `TS` · `noul` · `choice` · 调用点 [`src/providers/jev.ts`](https://github.com/darkmatter/adhere/blob/HEAD/src/providers/jev.ts)，2026-11-06 模型阅读</sub>
+
 - **[agent-gate-loop](https://github.com/Ripwords/agent-gate-loop)** — 可复用的 GitHub Action：由检查、AI 审查者与 Jev 共同把关的智能体修复循环。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ripwords · `TS` · 调用点 [`src/jev.ts`](https://github.com/Ripwords/agent-gate-loop/blob/HEAD/src/jev.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
@@ -262,6 +265,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[assay-001](https://github.com/jourdanlabs/assay-001)** — ASSAY-001：对 Jev 校准度与类型安全宣称的独立、预注册验证。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jourdanlabs · `Py` · 调用点 [`harness/run.py`](https://github.com/jourdanlabs/assay-001/blob/HEAD/harness/run.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+
+- **[atoma](https://github.com/atoma-run/atoma)** — 协调多个 AI 智能体、把一个请求变成成品的平台。其中有边界的决策由 Jev 来做：哪个智能体或已存的配方接手某项任务（并对每个候选是否合适提一个 noul），以及某个计划或结果能否获批；Jev 拿不准的答案会交回给本次运行的模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · atoma-run · `TS` · `choice` · `noul` · 调用点 [`src/core/jev.ts`](https://github.com/atoma-run/atoma/blob/HEAD/src/core/jev.ts)，2026-11-06 模型阅读</sub>
 
 - **[check-risk](https://github.com/moezubair/check-risk)** — 用确定性规则加 Jev 评估代码变更风险的 CLI 与 GitHub Action。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · moezubair · `TS` · 调用点 [`src/jev.ts`](https://github.com/moezubair/check-risk/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
@@ -280,6 +286,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Footwork](https://github.com/Tom-R-Main/Footwork)** — 经过验证的浏览器智能体：在任意 LLM 浏览器智能体前加一道便宜的 Jev 防护（经证据检查的完成判断、破坏性操作关卡）。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tom-r-main · `Py` · 调用点 [`jevdual/evals/runner.py`](https://github.com/Tom-R-Main/Footwork/blob/HEAD/jevdual/evals/runner.py)，2026-09-24 阅读</sub>
+
+- **[Gallant](https://github.com/madxmike/gallant)** — 用 Go 写的 linter，规则就是向决策模型提出的、关于文件文本的问题，以 noul、choice 或 score 作答并与置信度阈值比较。默认通过 OpenCode Zen 免费提供的 Jev 模型询问 Jev；其他提供方可接 Liquid、Cloudflare 或本地模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · madxmike · `Go` · `noul` · `choice` · `score` · 调用点 [`eval/opencode/opencode.go`](https://github.com/madxmike/gallant/blob/HEAD/eval/opencode/opencode.go)，2026-11-06 模型阅读</sub>
 
 - **[human-compiler](https://github.com/asfarsadewa/human-compiler)** — 人类语言的编译器：粘贴文本，得到诊断，由 Jev 度量。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · asfarsadewa · `TS` · 调用点 [`src/worker/index.ts`](https://github.com/asfarsadewa/human-compiler/blob/HEAD/src/worker/index.ts)，2026-09-22 阅读</sub>

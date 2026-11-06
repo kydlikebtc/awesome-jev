@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 497 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 501 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 375 · 接口形态 82 · 仅示例 0 · 独立报告 28 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 375 · 接口形态 86 · 仅示例 0 · 独立报告 28 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -506,8 +506,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[decision-circuits](https://github.com/Barneyjm/decision-circuits)** — 决策电路：向 System One 模型提出带类型的问题，拿回校准概率，关卡写在代码里。零依赖。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · barneyjm · `Py` · 调用点 [`examples/02_jev_backend.py`](https://github.com/Barneyjm/decision-circuits/blob/HEAD/examples/02_jev_backend.py)，2026-09-24 阅读</sub>
 
+- **[Flide](https://github.com/omnijev/flide)** — 为 Jev 风格决策模型提供推理的服务，对外提供 Jev 的 /v1/systemone API。它把状态已算好的缓存分叉给每个问题，使每个答案都与单独提问时一致；可服务 OneJev、Open-Jev 等开源决策模型，或 Qwen3.5、Gemma 4 聊天模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · omnijev · `Py` · 引用文件 [`plugins/onejev/flide_onejev/format.py`](https://github.com/omnijev/flide/blob/HEAD/plugins/onejev/flide_onejev/format.py)，2026-11-06 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
 - **[go-system-one](https://github.com/rcarmo/go-system-one)** — 当地鼠遇上 Jev：一个 Go 语言的 System One 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · rcarmo · `Go` · 调用点 [`docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py`](https://github.com/rcarmo/go-system-one/blob/HEAD/docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py)，2026-09-24 阅读</sub>
+
+- **[Groot 1](https://github.com/leofmarciano/groot)** — 开源的类型化决策模型（基于 mmBERT 的 482M 参数 Groot 1 和 149M 参数 Groot 1 S），使用 System One 请求格式，支持 choice、score 和 noul 问题，现有的 jev-latest 客户端可直接改指向它；以英语和葡萄牙语训练，并有纯 Bend 实现的前向计算。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · leofmarciano · `Py` · 引用文件 [`groot1/bench.py`](https://github.com/leofmarciano/groot/blob/HEAD/groot1/bench.py)，2026-11-06 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[http4k Connect: TypeSafe client](https://github.com/http4k/http4k)** — http4k Connect 中的 TypeSafe API Kotlin 客户端：SystemOne 动作把状态和 Choice、Noul 或 Score 问题发送到 /v1/systemone，默认模型为 jev-latest；另有一个模拟的 TypeSafe 服务器，在测试中应答同样的请求。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · http4k · `Kt` · 调用点 [`connect/ai/typesafe/client/src/main/kotlin/org/http4k/connect/typesafe/action/SystemOne.kt`](https://github.com/http4k/http4k/blob/HEAD/connect/ai/typesafe/client/src/main/kotlin/org/http4k/connect/typesafe/action/SystemOne.kt)，2026-11-05 模型阅读</sub>
@@ -623,6 +629,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevsbistro](https://github.com/andrewsilber/JevsBistro)** — 用于低延迟决策模型基准测试的 3D 餐厅服务模拟器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · andrewsilber · `TS` · 调用点 [`src/jev/protocol.ts`](https://github.com/andrewsilber/JevsBistro/blob/HEAD/src/jev/protocol.ts)，2026-09-22 阅读</sub>
 
+- **[Jeyzma](https://github.com/hybridgroup/jeyzma)** — 完全在浏览器里运行开源 System One 决策模型：用 TinyGo 编译成 WebAssembly 的 Go 代码通过 yzma 的 exp/decide 包运行 llama.cpp，使用 WebGPU 或 CPU，以概率回答 noul、choice 和 score 问题，并接受 TypeSafe 的 /v1/systemone 请求。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · hybridgroup · `Go` · 引用文件 [`main.go`](https://github.com/hybridgroup/jeyzma/blob/HEAD/main.go)，2026-11-06 模型阅读 · ⚠ `并非 Jev 本身`</sub>
+
 - **[kunobi-jev](https://github.com/kunobi-ninja/kunobi-decision)** — System One API 的 Rust 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · kunobi-ninja · `Rs` · 调用点 [`src/client/mod.rs`](https://github.com/kunobi-ninja/kunobi-decision/blob/HEAD/src/client/mod.rs)，2026-09-22 阅读</sub>
 
@@ -634,6 +643,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[s1_ruby](https://github.com/innocentdiaz/s1_ruby)** — 把 S1 模型的“测量”（以及随之而来的坍缩）变成 Ruby 的一个基本操作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · innocentdiaz · `Rb` · 调用点 [`lib/s1/providers/typesafe.rb`](https://github.com/innocentdiaz/s1_ruby/blob/HEAD/lib/s1/providers/typesafe.rb)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[SelfJev](https://github.com/jwuthri-cloud/selfjev)** — 自托管的决策服务：它自己的 4B 视觉模型（selfjev-4b-vision）在你的 GPU 上运行，以 Jev 的请求和回答格式在 /v1/systemone、/api/alpha/decisions 和 /v1/decisions 提供服务，Jev 客户端无需改模型名。它另加了用于多选题的 multi 类型，并提供 Python SDK。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · jwuthri-cloud · `Py` · 引用文件 [`src/selfjev/server/app.py`](https://github.com/jwuthri-cloud/selfjev/blob/HEAD/src/selfjev/server/app.py)，2026-11-06 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[snap](https://github.com/emnlmn/snap)** — 从非结构化状态得到类型化决策：一次前向传播、零生成文本。本地、确定性、兼容 Jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · emnlmn · `Rs` · 引用文件 [`src/api.rs`](https://github.com/emnlmn/snap/blob/HEAD/src/api.rs)，2026-09-24 阅读 · ⚠ `并非 Jev 本身`</sub>
