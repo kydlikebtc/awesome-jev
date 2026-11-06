@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title description">
+<title id="title">How a launch week runs</title>
+<desc id="description">How a launch week runs: launch by Thursday 23:59 UTC, filed on Friday, vote from Monday to Sunday, results the next Monday. Now: TAKING LAUNCHES FOR NEXT WEEK.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#1f2328}.mono{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}.muted{fill:#59636e}.faint{fill:#656d76}.accent{fill:#a15c00}.inv{fill:#f6f8fa}</style>
+<rect x=".5" y=".5" width="1199" height="299" rx="16" fill="#f6f8fa" stroke="#d1d9e0"/>
+<text x="60" y="62" font-size="16" class="mono faint" letter-spacing="1.6">HOW A LAUNCH WEEK RUNS</text>
+<text x="1140" y="62" font-size="16" class="mono accent" font-weight="600" text-anchor="end" letter-spacing="1.2">TAKING LAUNCHES FOR NEXT WEEK</text>
+<path d="M195.0 140H1005.0" stroke="#d1d9e0" stroke-width="3" stroke-linecap="round"/>
+<circle cx="195.0" cy="140" r="34" fill="#a15c00" fill-opacity=".14"/><circle cx="195.0" cy="140" r="26" fill="#a15c00"/>
+<path d="M195.0 130l8 9h-5v10h-6v-10h-5z" fill="#f6f8fa"/>
+<rect x="173.0" y="79" width="43.9" height="22" rx="11" fill="#a15c00"/>
+<text x="195.0" y="95" font-size="12" class="mono inv" font-weight="700" text-anchor="middle" letter-spacing="1.2">NOW</text>
+<text x="195.0" y="204" font-size="22" class="accent" font-weight="600" text-anchor="middle">Launch</text>
+<text x="195.0" y="232" font-size="15" class="mono muted" text-anchor="middle">by Thursday 23:59 UTC</text>
+<text x="195.0" y="258" font-size="14" class="faint" text-anchor="middle">the launch form, checked at once</text>
+<circle cx="465.0" cy="140" r="26" fill="#ffffff" stroke="#d1d9e0" stroke-width="2"/>
+<path d="M456.0 141l6 6l12 -13" fill="none" stroke="#656d76" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="465.0" y="204" font-size="22" font-weight="600" text-anchor="middle">Filed</text>
+<text x="465.0" y="232" font-size="15" class="mono muted" text-anchor="middle">Friday</text>
+<text x="465.0" y="258" font-size="14" class="faint" text-anchor="middle">on next week&#x27;s board</text>
+<circle cx="735.0" cy="140" r="26" fill="#ffffff" stroke="#d1d9e0" stroke-width="2"/>
+<path d="M735.0 135.0l7.5 12.0h-15.0z" fill="#656d76"/>
+<text x="735.0" y="204" font-size="22" font-weight="600" text-anchor="middle">Vote</text>
+<text x="735.0" y="232" font-size="15" class="mono muted" text-anchor="middle">Monday to Sunday</text>
+<text x="735.0" y="258" font-size="14" class="faint" text-anchor="middle">a thumbs-up on each post</text>
+<circle cx="1005.0" cy="140" r="26" fill="#ffffff" stroke="#d1d9e0" stroke-width="2"/>
+<rect x="994.0" y="138" width="6" height="10" rx="1" fill="#656d76"/><rect x="1002.0" y="131" width="6" height="17" rx="1" fill="#656d76"/><rect x="1010.0" y="141" width="6" height="7" rx="1" fill="#656d76"/>
+<text x="1005.0" y="204" font-size="22" font-weight="600" text-anchor="middle">Results</text>
+<text x="1005.0" y="232" font-size="15" class="mono muted" text-anchor="middle">the next Monday</text>
+<text x="1005.0" y="258" font-size="14" class="faint" text-anchor="middle">ranked; the top three on their badge</text>
+</svg>

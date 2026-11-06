@@ -137,11 +137,17 @@ pages are written with the others at deploy (`scripts/site_products.py`).
 
 Both READMEs open with the board (`scripts/readme/board.py` reads
 `launches/` and `history/`): the week running, the week filed next, last
-week's top three and the rising list, as a feed, and the README cover draws
-the same cards. So the two commits that change those files, Friday's filing
-and Monday's open, regenerate the READMEs before their checks, as the
-weekly refresh already does; a week file pushed without them would fail the
-next strict check.
+week's top three and the rising list, as a feed (since 2026-11-06 a table:
+the repository owner's GitHub avatar, the product and its line, and a box
+with the vote link, the day it opens, the medal and counted votes, or the
+stars gained), and the README cover draws the same cards. "Launch your
+product" opens with a figure of the week's four stations that marks where
+the board is now (`scripts/build_readme_week.py`). So the two commits that
+change those files, Friday's filing and Monday's open, regenerate the
+READMEs and figures before their checks, as the weekly refresh already
+does; a week file pushed without them would fail the next strict check.
+The site's board draws the same feed with a lettered tile in place of the
+avatar, since the site loads nothing from another host.
 
 A week goes like this, with no step for a person:
 

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title description">
+<title id="title">一周发布流程</title>
+<desc id="description">一周发布流程：周四 23:59 UTC 前发布，周五登记，周一到周日投票，下周一出结果。现在：正在接受下周的 Launch。</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#1f2328}.mono{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}.muted{fill:#59636e}.faint{fill:#656d76}.accent{fill:#a15c00}.inv{fill:#f6f8fa}</style>
+<rect x=".5" y=".5" width="1199" height="299" rx="16" fill="#f6f8fa" stroke="#d1d9e0"/>
+<text x="60" y="62" font-size="16" class="mono faint" letter-spacing="1.6">一周发布流程</text>
+<text x="1140" y="62" font-size="16" class="mono accent" font-weight="600" text-anchor="end" letter-spacing="1.2">正在接受下周的 Launch</text>
+<path d="M195.0 140H1005.0" stroke="#d1d9e0" stroke-width="3" stroke-linecap="round"/>
+<circle cx="195.0" cy="140" r="34" fill="#a15c00" fill-opacity=".14"/><circle cx="195.0" cy="140" r="26" fill="#a15c00"/>
+<path d="M195.0 130l8 9h-5v10h-6v-10h-5z" fill="#f6f8fa"/>
+<rect x="172.8" y="79" width="44.4" height="22" rx="11" fill="#a15c00"/>
+<text x="195.0" y="95" font-size="12" class="mono inv" font-weight="700" text-anchor="middle" letter-spacing="1.2">现在</text>
+<text x="195.0" y="204" font-size="22" class="accent" font-weight="600" text-anchor="middle">发布</text>
+<text x="195.0" y="232" font-size="15" class="mono muted" text-anchor="middle">周四 23:59 UTC 前</text>
+<text x="195.0" y="258" font-size="14" class="faint" text-anchor="middle">填发布表单，立即检查</text>
+<circle cx="465.0" cy="140" r="26" fill="#ffffff" stroke="#d1d9e0" stroke-width="2"/>
+<path d="M456.0 141l6 6l12 -13" fill="none" stroke="#656d76" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="465.0" y="204" font-size="22" font-weight="600" text-anchor="middle">登记</text>
+<text x="465.0" y="232" font-size="15" class="mono muted" text-anchor="middle">周五</text>
+<text x="465.0" y="258" font-size="14" class="faint" text-anchor="middle">排进下周的榜</text>
+<circle cx="735.0" cy="140" r="26" fill="#ffffff" stroke="#d1d9e0" stroke-width="2"/>
+<path d="M735.0 135.0l7.5 12.0h-15.0z" fill="#656d76"/>
+<text x="735.0" y="204" font-size="22" font-weight="600" text-anchor="middle">投票</text>
+<text x="735.0" y="232" font-size="15" class="mono muted" text-anchor="middle">周一到周日</text>
+<text x="735.0" y="258" font-size="14" class="faint" text-anchor="middle">在每个帖子上点赞</text>
+<circle cx="1005.0" cy="140" r="26" fill="#ffffff" stroke="#d1d9e0" stroke-width="2"/>
+<rect x="994.0" y="138" width="6" height="10" rx="1" fill="#656d76"/><rect x="1002.0" y="131" width="6" height="17" rx="1" fill="#656d76"/><rect x="1010.0" y="141" width="6" height="7" rx="1" fill="#656d76"/>
+<text x="1005.0" y="204" font-size="22" font-weight="600" text-anchor="middle">结果</text>
+<text x="1005.0" y="232" font-size="15" class="mono muted" text-anchor="middle">下周一</text>
+<text x="1005.0" y="258" font-size="14" class="faint" text-anchor="middle">排名，前三名上徽章</text>
+</svg>

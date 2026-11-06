@@ -82,6 +82,11 @@ START_HERE = [
 # page, which is a URL worth having for its own sake: "every safety-gating
 # example" can now be linked to.
 INLINE_PER_PATTERN = 10
+# Of those, how many show before the rest fold into a <details> (since
+# 2026-11-06): the board leads the README now, and eighteen open lists of ten
+# made the catalogue half its length. The folded rows are still printed, so
+# they are still on the front page (front_page) and still searchable.
+INLINE_OPEN = 3
 
 # "Measured, not claimed" shows this many independent reports and links
 # docs/measured.md, which lists every one, with every note.
@@ -154,6 +159,10 @@ def section_nav(strings: dict, *, has_measured: bool = True) -> list[str]:
     if not has_measured:
         keys.remove("measured_h")
     return [f"{n:02d} [{strings[key]}](#{anchor(strings[key])})" for n, key in enumerate(keys, 1)]
+
+
+# How many of entry_points() belong to the board (the first row of chips).
+BOARD_CHIPS = 2
 
 
 def entry_points(strings: dict) -> list[tuple[str, str]]:
@@ -285,8 +294,13 @@ def cover_and_nav(page: Page) -> list[str]:
     add("")
     # <kbd> is the one native element GitHub draws like a button: bordered,
     # rounded and shadowed, with no image to go stale or resist translation.
+    # Two rows: the board's two actions on their own line, then the catalogue
+    # and the other language, so the front page reads board first.
+    chips = entry_points(strings)
     add('<p align="center">')
-    for href, title in entry_points(strings):
+    for index, (href, title) in enumerate(chips):
+        if index == BOARD_CHIPS:
+            add("<br>")
         add(f'<a href="{href}"><kbd>&nbsp;{title}&nbsp;</kbd></a>')
     add('</p>')
     add("")
@@ -512,7 +526,15 @@ def by_decision_pattern(page: Page) -> list[str]:
         add("")
         add(f"_{blurb}_")
         add("")
-        out.extend(entry_list(indexed[:INLINE_PER_PATTERN], strings, readme_layout=True))
+        picked = indexed[:INLINE_PER_PATTERN]
+        out.extend(entry_list(picked[:INLINE_OPEN], strings, readme_layout=True, keep_order=True))
+        if picked[INLINE_OPEN:]:
+            add("<details>")
+            add(f"<summary>{strings['pattern_fold'].format(n=len(picked[INLINE_OPEN:]))}</summary>")
+            add("")
+            out.extend(entry_list(picked[INLINE_OPEN:], strings, readme_layout=True, keep_order=True))
+            add("</details>")
+            add("")
         more = "pattern_more" if len(rows) > shown else "pattern_all"
         add(strings[more].format(shown=shown, n=len(rows), page=page_link, site=site_link(key, lang)))
         add("")

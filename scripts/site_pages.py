@@ -180,6 +180,23 @@ CSS = """
       .caveat { color: var(--alert); }
       .mark { font: 12px var(--mono); color: var(--fg-3); margin-left: 6px; }
       .more { font-size: 14px; }
+      .rows li.item { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 0 14px; align-items: start; }
+      .thumb { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px;
+        margin-top: 2px; border-radius: 10px; font: 600 19px var(--mono); color: var(--ink); }
+      .t0 { background: #f5a524; } .t1 { background: #4ec97a; } .t2 { background: #7aa2f7; }
+      .t3 { background: #c4a7f5; } .t4 { background: #ff9287; } .t5 { background: #a9b3c0; }
+      .box { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 64px;
+        padding: 8px 10px; border: 1px solid var(--rule); border-radius: 10px; color: var(--fg);
+        font: 600 16px/1.2 var(--mono); text-decoration: none; }
+      .box b { margin-top: 4px; font: 500 12px var(--mono); color: var(--fg-3); }
+      a.box { color: var(--amber); border-color: var(--amber); }
+      a.box b { color: var(--amber); }
+      a.box:hover { background: rgba(245, 165, 36, .1); }
+      @media (max-width: 520px) {
+        .rows li.item { grid-template-columns: 36px minmax(0, 1fr) auto; gap: 0 10px; }
+        .thumb { width: 36px; height: 36px; font-size: 16px; }
+        .box { min-width: 52px; padding: 6px 8px; }
+      }
       pre { margin: 8px 0; padding: 10px 12px; background: var(--ink-2); border: 1px solid var(--rule);
         font: 13px/1.5 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; }
       footer { margin-top: 48px; padding-top: 16px; padding-bottom: 40px; border-top: 1px solid var(--rule);

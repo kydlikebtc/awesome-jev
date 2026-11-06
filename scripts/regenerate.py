@@ -32,12 +32,13 @@ SCRIPTS = pathlib.Path(__file__).resolve().parent
 ROOT = SCRIPTS.parent
 
 # In order, with what each writes. build_readme.py draws the README covers
-# before it writes anything, so a cover that no longer fits stops the run
-# before a single file has changed.
+# and the launch-week figure before it writes anything, so a figure whose copy
+# no longer fits stops the run before a single file has changed.
 GENERATORS = (
     (
         "build_readme.py",
-        "README.md, README.zh-CN.md, docs/by-pattern/, docs/measured.md, docs/measured.zh-CN.md and the README covers",
+        "README.md, README.zh-CN.md, docs/by-pattern/, docs/measured.md, docs/measured.zh-CN.md, the README covers "
+        "and the launch-week figure",
     ),
     ("build_assets.py", "the coverage, primitive and primitive-picker figures in docs/assets/"),
     (

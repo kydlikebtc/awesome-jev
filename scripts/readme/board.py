@@ -25,8 +25,10 @@ person picked or the pattern order keeps in the README: these change weekly.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from html import escape
 
 import launches
+from _github import repo_of
 
 from .rows import REPO_URL, SITE, esc, marked, summary_of
 from .strings import ZH_MACHINE
@@ -41,6 +43,11 @@ LAUNCH_FORM = launches.query.LAUNCH_FORM
 NEW_ENTRY_FORM = f"{REPO_URL}/issues/new?template=new-entry.yml"
 MEDALS = {1: "🥇", 2: "🥈", 3: "🥉"}
 VOTE, STAR = "▲", "★"
+# The feed's picture of a product, in CSS pixels: its GitHub owner's avatar,
+# fetched at twice the size for sharp screens. A product with no GitHub
+# repository shows the awesome-jev mark instead.
+THUMB = 48
+NO_THUMB = "site/favicon.svg"
 
 # The cover's feed, per language: the heading over the cards for each state
 # the board can be in, the footer under them, and the three cards drawn when
@@ -156,42 +163,86 @@ def who(launch: dict, strings: dict) -> str:
     return strings[key].format(who=f"[{esc(login)}](https://github.com/{login})")
 
 
-def card(bullet: str, lead: str, row: dict, line: str, meta: list[str]) -> list[str]:
-    """One launch as the feed prints it: the mark, the product and its line,
-    then a small line of who, evidence and the link that matters now."""
-    return [
-        f"{bullet} {lead} **[{esc(row['title'])}]({product_url(row['slug'])})** — {line}<br>",
-        f"  <sub>{' · '.join(meta)}</sub>",
-    ]
+def thumb(row: dict) -> str:
+    """A product's picture on the feed, linked to its page: the avatar of the
+    GitHub account that owns its repository (an organisation's logo or a
+    maker's own picture, as GitHub serves it), or the awesome-jev mark."""
+    repo = repo_of(row)
+    src = f"https://github.com/{repo.split('/')[0]}.png?size={THUMB * 2}" if repo else NO_THUMB
+    return (
+        f'<a href="{product_url(row["slug"])}"><img src="{escape(src)}" width="{THUMB}" height="{THUMB}" '
+        f'alt="{escape(row["title"])}"></a>'
+    )
+
+
+def box(lead: str, under: str = "", href: str | None = None) -> str:
+    """The feed's right-hand box: a mark or a number over a small word, the
+    whole box a link where there is something to do (vote)."""
+    inner = f"<b>{lead}</b>" + (f"<br><sub>{under}</sub>" if under else "")
+    return f'<a href="{escape(href)}">{inner}</a>' if href else inner
+
+
+def feed(items: list[tuple[dict, str, list[str], str]]) -> list[str]:
+    """Launches laid out as a launch feed: one table row per product with its
+    picture, its name and one line over a dim line of who launched it and
+    who read its code, and a box on the right with what counts this week (a
+    vote, the votes, the stars). `items` are (row, line, meta, box) tuples.
+
+    The middle cell is markdown, fenced by blank lines inside the <td> so
+    GitHub renders it as markdown (links, <sub>) within the HTML table; the
+    two outer cells are plain HTML. Only the picture's cell has a width,
+    since GitHub's `max-width: 100%` on images would otherwise let a table
+    squeeze the picture to a sliver; the box takes what its words need, which
+    leaves a phone's narrow screen to the product's line."""
+    out = ["<table>"]
+    for row, line, meta, right in items:
+        out += [
+            "<tr>",
+            f'<td align="center" width="{THUMB + 8}">{thumb(row)}</td>',
+            "<td>",
+            "",
+            f"**[{esc(row['title'])}]({product_url(row['slug'])})** — {line}<br>",
+            f"<sub>{' · '.join(meta)}</sub>",
+            "",
+            "</td>",
+            f'<td align="center">{right}</td>',
+            "</tr>",
+        ]
+    return out + ["</table>", ""]
 
 
 def launch_list(board: Board, week: dict, strings: dict, *, vote: bool) -> list[str]:
-    """A running or filed week's launches, shuffled as the board shows them,
-    with a vote link while the week runs."""
-    lang, out = strings["lang_code"], []
+    """A running or filed week's launches, shuffled as the board shows them:
+    while the week runs the box is the vote link (counts stay hidden until it
+    closes); for a filed week it says the Monday it opens."""
+    lang, items = strings["lang_code"], []
+    monday, _ = launches.week_days(week["week"])
     for launch in board.shuffled(week):
         row = board.rows[launch["product"]]
         meta = [who(launch, strings), strings["tiers"][launches.tier(row)]]
         number = launch.get("discussion")
         if vote and isinstance(number, int):
-            meta.append(f"[{strings['board_vote']}]({launches.query.DISCUSSION}{number})")
-        out += card("-", VOTE, row, esc(tagline(launch, lang)), meta)
-    return out + [""]
+            right = box(VOTE, strings["box_vote"], f"{launches.query.DISCUSSION}{number}")
+        else:
+            right = box(VOTE, strings["box_opens"].format(day=monday.strftime("%m-%d")))
+        items.append((row, esc(tagline(launch, lang)), meta, right))
+    return feed(items)
 
 
 def closed_list(board: Board, strings: dict) -> list[str]:
     """Last week's top three by rank, their votes beside their evidence, and
     the link to the whole week."""
-    lang, week, out = strings["lang_code"], board.closed, []
+    lang, week, items = strings["lang_code"], board.closed, []
     for launch in board.ranked(week)[:3]:
         row, result = board.rows[launch["product"]], launch.get("result") or {}
         rank = result.get("rank")
         votes = strings["board_votes"].format(votes=result.get("votes", 0), counted=result.get("counted", 0))
         meta = [f"{VOTE} {votes}"] + ([strings["board_ring"]] if result.get("ring") else [])
         meta += [who(launch, strings), strings["tiers"][launches.tier(row)]]
-        out += card(f"{rank}.", MEDALS.get(rank, f"#{rank}"), row, esc(tagline(launch, lang)), meta)
+        right = box(f"{MEDALS.get(rank, f'#{rank}')}&nbsp;{result.get('counted', 0):,}", strings["box_votes"])
+        items.append((row, esc(tagline(launch, lang)), meta, right))
     more = marked(strings, "board_closed_more", week=week["week"], page=week_url(week["week"], lang), feed=feed_url(lang))
-    return out + ["", more, ""]
+    return feed(items) + [more, ""]
 
 
 def rising_state(board: Board, row: dict, strings: dict, today) -> str:
@@ -219,26 +270,27 @@ def rising_list(board: Board, catalog: list[dict], strings: dict) -> list[str]:
     if not risen:
         return out + [marked(strings, "board_rising_none", n=launches.RISING_MIN), ""]
     today = launches.as_of(catalog)
-    for index, item in enumerate(risen, 1):
+    items = []
+    for item in risen:
         row = item["row"]
-        stars = strings["board_stars"].format(
-            before=f"{item['before']:,}", after=f"{item['after']:,}", share=launches.share(item["gained"], item["before"])
-        )
+        share = launches.share(item["gained"], item["before"])
+        stars = strings["board_stars"].format(before=f"{item['before']:,}", after=f"{item['after']:,}", share=share)
         meta = [stars, strings["tiers"][launches.tier(row)], rising_state(board, row, strings, today)]
-        out += card(f"{index}.", f"{STAR} **+{item['gained']:,}**", row, one_line(row, lang), meta)
+        items.append((row, one_line(row, lang), meta, box(f"{STAR}&nbsp;+{item['gained']:,}", strings["box_stars"])))
     note = marked(
         strings, "board_rising_note", n=launches.RISING_MIN, shown=launches.RISING_SHOWN, listed=README_RISING,
         board=board_url(lang),
     )
-    return out + ["", f"<sub>{note}</sub>", ""]
+    return out + feed(items) + [f"<sub>{note}</sub>", ""]
 
 
 def this_weeks_launches(page) -> list[str]:
-    """The board as it stands: the running week, the week filed next, last
-    week's top three, or a line saying no week has opened; then what is rising."""
+    """The board as it stands, products first: the running week, the week
+    filed next, last week's top three, or a line saying no week has opened;
+    then how the board works, then what is rising."""
     strings, lang = page.strings, page.lang
     board = read_board(page.catalog)
-    out = [f"## {strings['board_h']}", "", marked(strings, "board_intro", discussions=DISCUSSIONS, board=board_url(lang)), ""]
+    out = [f"## {strings['board_h']}", ""]
     shown = False
     if board.on(board.running):
         shown = True
@@ -257,6 +309,7 @@ def this_weeks_launches(page) -> list[str]:
         out += closed_list(board, strings)
     if not shown:
         out += [marked(strings, "board_empty", form=LAUNCH_FORM), ""]
+    out += [marked(strings, "board_intro", discussions=DISCUSSIONS, board=board_url(lang)), ""]
     out += rising_list(board, page.catalog, strings)
     return out
 
@@ -271,11 +324,27 @@ def example_product(board: Board, catalog: list[dict]) -> str | None:
     return risen[0]["row"]["slug"] if risen else None
 
 
+def week_figure(catalog: list[dict], lang: str) -> list[str]:
+    """The "how a launch week runs" figure (build_readme_week.py), with where
+    the board is now in its alt text as in the image, picked by theme and
+    width as the cover is."""
+    import build_readme_cover as cover
+    import build_readme_week as week
+
+    alt = escape(week.alt_text(lang, week.now_of(catalog)))
+    out = ["<picture>"]
+    for media, srcset in cover.picture_sources(lang, stem=week.STEM):
+        out.append(f'  <source media="{media}" srcset="{srcset}">')
+    out += [f'  <img src="{cover.asset_path(lang, "light", stem=week.STEM)}" alt="{alt}" width="100%">', "</picture>", ""]
+    return out
+
+
 def launch_your_product(page) -> list[str]:
     """How a product launches, as three steps, the badge it gets, and where
     the rules and the data are."""
     strings, lang = page.strings, page.lang
     out = [f"## {strings['launch_h']}", "", marked(strings, "launch_intro", entry=NEW_ENTRY_FORM), ""]
+    out += week_figure(page.catalog, lang)
     out += [f"| {strings['th_step']} | {strings['th_when']} | {strings['th_what_happens']} |", "| --- | --- | --- |"]
     for step, when, what in strings["launch_steps"]:
         out.append(f"| **{step}** | {when} | {what.format(form=LAUNCH_FORM, discussions=DISCUSSIONS)} |")

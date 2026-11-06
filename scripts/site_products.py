@@ -522,9 +522,45 @@ def measures(week: dict, lang: str) -> str:
     return ("" if lang == "zh" else " ").join(parts)
 
 
-def board_item(launch: dict, row: dict, lang: str, *, result: dict | None, base: str = "") -> list[str]:
+MEDALS = {1: "🥇", 2: "🥈", 3: "🥉"}
+THUMB_TONES = 6
+
+
+def thumb(row: dict) -> str:
+    """A product's picture on a board list: the first letter of its name on
+    a tile whose colour its slug picks, drawn by the page itself, since the
+    site loads nothing from another host (lint_docs.check_site_origin), an
+    avatar included."""
+    letter = next((ch for ch in row["title"] if ch.isalnum()), "·").upper()
+    tone = sum(row["slug"].encode()) % THUMB_TONES
+    return f'<span class="thumb t{tone}" aria-hidden="true">{esc(letter)}</span>'
+
+
+def vote_box(lead: str, under: str, href: str | None = None) -> str:
+    """The box at the right of a board item: a mark or a medal over a word
+    or a number, a link where there is something to do (vote)."""
+    inner = f"{esc(lead)}<b>{esc(under)}</b>"
+    if href:
+        return f'<a class="box" href="{esc(href)}" rel="noopener">{inner}</a>'
+    return f'<span class="box">{inner}</span>'
+
+
+def item(li_id: str, row: dict, body: list[str], box: str = "") -> list[str]:
+    """A board list item laid out as a feed: picture, the lines, the box."""
+    out = [f'        <li id="{esc(li_id)}" class="item">', f"          {thumb(row)}", "          <div>"]
+    out += ["  " + line for line in body]
+    out.append("          </div>")
+    if box:
+        out.append(f"          {box}")
+    return out + ["        </li>"]
+
+
+def board_item(launch: dict, row: dict, lang: str, *, result: dict | None, base: str = "",
+               opens: dt.date | None = None) -> list[str]:
     """One launch on a board list. `base` leads every link to the site's root
-    ("../" from a week page)."""
+    ("../" from a week page); `opens` is the Monday a filed week opens. The
+    box says what counts now: the medal and the counted votes once the week
+    closed, the vote link while it runs, the day it opens while filed."""
     b = BOARD[lang]
     tagline = launch.get("tagline_zh") if lang == "zh" and launch.get("tagline_zh") else launch.get("tagline", "")
     meta = []
@@ -537,16 +573,20 @@ def board_item(launch: dict, row: dict, lang: str, *, result: dict | None, base:
     links = [f'<a href="{esc(base + product_path(row["slug"]))}">{esc(b["page"])}</a>']
     if result and result.get("badges"):
         links.append(f'<a href="{esc(base + badge_path(row["slug"]))}">{esc(b["badge"])}</a>')
-    if isinstance(launch.get("discussion"), int) and not result:
-        links.append(f'<a href="{esc(DISCUSSION.format(n=launch["discussion"]))}" rel="noopener">{esc(b["vote"])} ↗</a>')
-    return [
-        f'        <li id="{esc(row["slug"])}">',
+    box = ""
+    if result:
+        box = vote_box(MEDALS.get(result["rank"], f"#{result['rank']}"), f"{result['counted']:g}")
+    elif isinstance(launch.get("discussion"), int):
+        box = vote_box("▲", b["vote"], DISCUSSION.format(n=launch["discussion"]))
+    elif opens:
+        box = vote_box("▲", opens.strftime("%m-%d"))
+    body = [
         f'          <h3><a href="{esc(base + product_path(row["slug"]))}">{esc(row["title"])}</a></h3>',
         f"          <p>{esc(tagline)}</p>",
         f'          <p class="meta">{" · ".join(meta)}</p>',
         f'          <p class="more">{" · ".join(links)}</p>',
-        "        </li>",
     ]
+    return item(row["slug"], row, body, box)
 
 
 def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_weeks: list[dict],
@@ -587,7 +627,7 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
             body += [f"      <h2>{esc(b['next'].format(week=coming['week']))}</h2>",
                      f'      <p class="note">{esc(b["next_note"].format(monday=monday))}</p>', '      <ol class="rows">']
             for launch in launches.shuffled(on, coming["week"]):
-                body += board_item(launch, rows[launch["product"]], lang, result=None)
+                body += board_item(launch, rows[launch["product"]], lang, result=None, opens=monday)
             body.append("      </ol>")
     if not running and not closed:
         body.append(f'      <p class="note">{esc(b["no_launch"])}</p>')
@@ -621,17 +661,16 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
         body.append('      <ol class="rows">')
         for row in fresh:
             summary = row.get("summary_zh") if lang == "zh" and row.get("summary_zh") else row.get("summary", "")
-            body += [
-                f'        <li id="new-{esc(row["slug"])}">',
+            lines = [
                 f'          <h3><a href="{esc(product_path(row["slug"]))}">{esc(row["title"])}</a></h3>',
                 f'          <p class="meta">{meta_line(row, labels, lang)} · {tier_html(row, lang)}</p>',
                 f"          <p>{esc(row.get('tagline') if lang == 'en' and row.get('tagline') else summary)}"
                 f"{marks(row, labels, lang) if not (lang == 'en' and row.get('tagline')) else ''}</p>",
             ]
             if launches.launch_again(history.get(row["slug"], []), weeks_by_id, today)[0] == "now":
-                body.append(f'          <p class="more"><a href="{esc(query.launch_form(row["slug"], row["title"]))}" '
-                            f'rel="noopener">{esc(b["launch_it"])} ↗</a></p>')
-            body.append("        </li>")
+                lines.append(f'          <p class="more"><a href="{esc(query.launch_form(row["slug"], row["title"]))}" '
+                             f'rel="noopener">{esc(b["launch_it"])} ↗</a></p>')
+            body += item(f"new-{row['slug']}", row, lines)
         body.append("      </ol>")
     elif week is not None:
         body.append(f"      <p>{esc(b['nothing_new'])}</p>")
@@ -657,13 +696,12 @@ def rising_section(lang: str, catalog: list[dict], snapshots: list[dict], *,
     if not risen:
         return out + [f"      <p>{esc(b['nothing_rising'].format(n=launches.RISING_MIN))}</p>"]
     out.append('      <ol class="rows">')
-    for item in risen:
-        row = item["row"]
+    for rise in risen:
+        row = rise["row"]
         summary = row.get("summary_zh") if lang == "zh" and row.get("summary_zh") else row.get("summary", "")
-        line = b["rising_item"].format(gained=item["gained"], before=item["before"], after=item["after"],
-                                       share=launches.share(item["gained"], item["before"]))
-        out += [
-            f'        <li id="rising-{esc(row["slug"])}">',
+        line = b["rising_item"].format(gained=rise["gained"], before=rise["before"], after=rise["after"],
+                                       share=launches.share(rise["gained"], rise["before"]))
+        lines = [
             f'          <h3><a href="{esc(product_path(row["slug"]))}">{esc(row["title"])}</a></h3>',
             f'          <p class="meta">{esc(line)} · {esc(b["evidence"])}: {tier_html(row, lang)}</p>',
             f"          <p>{esc(row.get('tagline') if lang == 'en' and row.get('tagline') else summary)}</p>",
@@ -671,12 +709,12 @@ def rising_section(lang: str, catalog: list[dict], snapshots: list[dict], *,
         mine = history.get(row["slug"], [])
         state, _ = launches.launch_again(mine, weeks_by_id, today)
         if state == "now":
-            out.append(f'          <p class="more"><a href="{esc(query.launch_form(row["slug"], row["title"]))}" '
-                       f'rel="noopener">{esc(b["launch_it"])} ↗</a></p>')
+            lines.append(f'          <p class="more"><a href="{esc(query.launch_form(row["slug"], row["title"]))}" '
+                         f'rel="noopener">{esc(b["launch_it"])} ↗</a></p>')
         elif state == "on" and isinstance(mine[-1][1].get("discussion"), int):
-            out.append(f'          <p class="more"><a href="{esc(DISCUSSION.format(n=mine[-1][1]["discussion"]))}" '
-                       f'rel="noopener">{esc(b["vote"])} ↗</a></p>')
-        out.append("        </li>")
+            lines.append(f'          <p class="more"><a href="{esc(DISCUSSION.format(n=mine[-1][1]["discussion"]))}" '
+                         f'rel="noopener">{esc(b["vote"])} ↗</a></p>')
+        out += item(f"rising-{row['slug']}", row, lines, vote_box("★", f"+{rise['gained']:,}"))
     out.append("      </ol>")
     return out
 
