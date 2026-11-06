@@ -13,15 +13,24 @@ behind it.
 
 ## The week (times in UTC)
 
+These are the times each job is set for. GitHub starts scheduled workflows
+late when it is busy: on this repository they started 4.5 to 10 hours late
+in October and November 2026, so the Friday and Monday launch runs, set for
+just before the daily task (00:33), start after it. Nothing depends on a
+run starting on time, and both launch workflows run again on the days
+after (launch-collect on Saturday and Sunday, launch-week on Tuesday), so a
+fix the daily task makes the next morning still lands before the week
+needs it.
+
 | When | What runs | Reports through |
 | --- | --- | --- |
-| Monday 00:05 | `launch-week.yml`: closes last week's launch board, opens this week's, then tells each launch's issue (again at 06:05 and 12:05, which do nothing when the first run did it all) | its commit, the vote posts, the launch issues |
+| Monday 00:05 | `launch-week.yml`: closes last week's launch board, opens this week's, then tells each launch's issue (again at 06:05 and 12:05, and Tuesday 06:05, which do nothing when an earlier run did it all) | its commit, the vote posts, the launch issues |
 | Monday 06:00 | `links.yml`: every row's link | an issue labelled `links`, only when a link is dead |
 | Tuesday 06:00 | `claims.yml`: every cited file still holds its `evidence.matched` | issue #28 |
 | Wednesday 06:00 | `metadata.yml`: stars, licences, repository dates, `.discover/facts.json`, history snapshots | its commit and issue #32 |
 | Thursday 06:00 | `discover.yml`: new candidates from the sibling lists; rewrites the queue | issue #14 |
 | Thursday 14:37 | weekly upkeep task: the judgement work #14, #28 and #32 leave, every line in `docs/held.txt`, the monthly items below, and at most 10 drafted rows | one pull request, which it merges once its checks pass |
-| Friday 00:20 | `launch-collect.yml`: files next week's launches on `main` (again at 06:20 and 12:20, which change nothing when the first run did it) | its commit |
+| Friday 00:20 | `launch-collect.yml`: files next week's launches on `main` (again at 06:20 and 12:20, and Saturday and Sunday 06:20, which change nothing when an earlier run did it) | its commit |
 | Every day but Thursday, 00:33 | daily drafting task: what stopped, the repository's open issues and pull requests, the call sites of launches nobody has read, then at most 15 drafted rows | one pull request, which it merges once its checks pass |
 | Every day 07:30 | `watchdog.yml`: every scheduled workflow succeeded within 8 days (32 for a monthly one), and a row entered `catalog.json` within 10 | an issue labelled `watchdog` |
 | The 1st, 09:00 | `data-release.yml`: tags main `catalog-<YYYY-MM>` for the month that ended and publishes a Release with `catalog.json`, `retired.json` and the schema | the Release |

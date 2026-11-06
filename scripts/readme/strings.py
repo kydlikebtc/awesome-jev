@@ -72,7 +72,7 @@ EN = {
     ),
     "board_next_h": "Next week: {week}",
     "board_next_note": (
-        "Filed for next week, in no particular order. Their vote posts open on Monday {monday} at 00:05 UTC."
+        "Filed for next week, in no particular order. Their vote posts open on Monday {monday}."
     ),
     "board_closed_h": "🏆 Last week: {week}",
     "board_closed_more": (
@@ -495,7 +495,7 @@ ZH = {
     "board_running_h": "▲ 本周：{week}",
     "board_running_note": "收榜前按随机顺序展示、不显示票数，免得大家都投最上面那个。",
     "board_next_h": "下周：{week}",
-    "board_next_note": "已登记、下周上榜的 Launch，不分先后。投票帖在 {monday}（周一）00:05 UTC 开放。",
+    "board_next_note": "已登记、下周上榜的 Launch，不分先后。投票帖在 {monday}（周一）开放。",
     "board_closed_h": "🏆 上周：{week}",
     "board_closed_more": "{week} 的全部 Launch、被折算的票和原因：[当周页面]({page}) · [结果订阅]({feed})",
     "board_empty": (

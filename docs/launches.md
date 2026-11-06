@@ -113,14 +113,17 @@ Weeks are ISO weeks: Monday 00:00 UTC to Sunday 23:59 UTC.
 
    A product whose call site nobody has read yet is read before its week
    opens, so every launch opens with at least a model's reading.
-2. Early on Friday (00:20 UTC) the week's launches are written to
+2. On Friday (the run is set for 00:20 UTC, and GitHub can start it hours
+   late) the week's launches are written to
    `launches/<YYYY>-W<ww>.json` ([schema](../schema/launch.schema.json)) and
    pushed to `main`, with no merge to wait for. The board lists them under
    next week. A launch whose week has passed (its facts were read too late
    for it) goes on this one.
-3. On Monday at 00:05 UTC the week opens: each launch gets a post in the
-   repository's `Launches` Discussions, and a vote is a thumbs-up on it. The
-   launch's issue gets the link to its post and is closed.
+3. On Monday the week opens (the run is set for 00:05 UTC and can start
+   hours late too): each launch gets a post in the repository's `Launches`
+   Discussions, and a vote is a thumbs-up on it. A vote counts when it is
+   cast by Sunday 23:59 UTC. The launch's issue gets the link to its post
+   and is closed.
 4. While the week runs, the board shows its launches in a shuffled order and
    without counts, so nobody votes for whatever is on top. (A Discussion shows
    its own reactions; the board does not repeat them.)

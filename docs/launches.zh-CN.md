@@ -67,8 +67,8 @@ Maker 还可以通过 [confirm-entry 表单](https://github.com/kydlikebtc/aweso
    - fork 仓库要有至少 10 次自己的提交才能发布，60 天没有推送的仓库要有新的推送才能发布；在那之前暂不能发布，编辑 issue 会重新检查。
 
    调用点还没人读过的产品，会在开榜前读过，所以每个 Launch 开榜时至少有模型读过。
-2. 周五一早（00:20 UTC）把这一周的 Launch 写进 `launches/<YYYY>-W<ww>.json`（[schema](../schema/launch.schema.json)）并推到 `main`，不用等合并。榜单在"下周"下面列出它们。错过了自己那一周的 Launch（比如信息读得太晚），排进这一周。
-3. 周一 00:05 UTC 开榜：每个 Launch 在仓库的 `Launches` Discussions 里有一个帖子，在帖子上点赞就是投票。Launch 的 issue 会收到帖子链接，然后关闭。
+2. 周五（定在 00:20 UTC 运行，GitHub 可能晚几个小时才开始）把这一周的 Launch 写进 `launches/<YYYY>-W<ww>.json`（[schema](../schema/launch.schema.json)）并推到 `main`，不用等合并。榜单在"下周"下面列出它们。错过了自己那一周的 Launch（比如信息读得太晚），排进这一周。
+3. 周一开榜（定在 00:05 UTC 运行，同样可能晚几个小时）：每个 Launch 在仓库的 `Launches` Discussions 里有一个帖子，在帖子上点赞就是投票，周日 23:59 UTC 前投的票都算。Launch 的 issue 会收到帖子链接，然后关闭。
 4. 开榜期间，榜单按随机顺序展示，不显示票数，免得大家只给排在前面的投票。（Discussion 自己会显示点赞数，榜单不重复显示。）
 5. 下一个周一收榜：统计票数，结果写入当周文件。一个 Launch 的票大多来自新账号时，这些票不计，按其余的票排名，结果和周榜页都会注明。至少计到一票的前三名，README 徽章会显示名次（[见下文](#readme-徽章)），这一周也有了自己的页面。每个 Launch 的 issue 会收到它的结果，前三名还会收到显示徽章的那行代码。
 

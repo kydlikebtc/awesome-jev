@@ -823,13 +823,62 @@ class MondayTest(unittest.TestCase):
         self.assertNotIn("github.event.", jobs)
         self.assertIn("group: launch-week\n", text)  # never at the same time as the Monday run
 
-    def test_a_failed_friday_or_monday_has_two_more_runs_the_same_day(self):
+    def test_a_failed_friday_or_monday_runs_again_that_day_and_on_the_days_after(self):
+        # GitHub starts scheduled runs late when it is busy (here 4.5 to 10
+        # hours, October and November 2026), so the daily task (00:33 UTC)
+        # fixes a failed Friday or Monday only after that day's runs have come
+        # and gone; the runs on the days after pick its fix up in time.
         week = (ROOT / ".github" / "workflows" / "launch-week.yml").read_text()
         collect = (ROOT / ".github" / "workflows" / "launch-collect.yml").read_text()
-        for cron in ('cron: "5 0 * * 1"', 'cron: "5 6 * * 1"', 'cron: "5 12 * * 1"'):
+        for cron in ('cron: "5 0 * * 1"', 'cron: "5 6 * * 1"', 'cron: "5 12 * * 1"', 'cron: "5 6 * * 2"'):
             self.assertIn(cron, week)
-        for cron in ('cron: "20 0 * * 5"', 'cron: "20 6 * * 5"', 'cron: "20 12 * * 5"'):
+        for cron in ('cron: "20 0 * * 5"', 'cron: "20 6 * * 5"', 'cron: "20 12 * * 5"',
+                     'cron: "20 6 * * 6"', 'cron: "20 6 * * 0"'):
             self.assertIn(cron, collect)
+
+    def test_a_filing_on_saturday_or_sunday_is_for_the_same_week_and_changes_nothing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            (root / "catalog.json").write_text(json.dumps(CATALOG))
+            (root / "launches").mkdir()
+            issues = [issue(81, created="2026-11-12T10:00:00Z")]  # a Thursday: for 2026-W47
+            files = []
+            for day in ("2026-11-13", "2026-11-14", "2026-11-15"):  # Friday, Saturday, Sunday
+                with self.subTest(day=day), contextlib.redirect_stdout(io.StringIO()) as out:
+                    code = launch_intake.main(["--collect", "next", "--on", day, "--root", tmp],
+                                              lookup=FakeLookup(), issues_for=lambda repo: issues,
+                                              comments_for=lambda repo, n: [])
+                    self.assertEqual(code, 0)
+                    self.assertIn("2026-W47: 1 launch(es) on file", out.getvalue())
+                files.append(sorted((p.name, p.read_text()) for p in root.rglob("*.json")))
+            self.assertEqual([p for p, _ in files[0]], ["2026-W47.json", "catalog.json"])
+            self.assertEqual(files[1], files[0])
+            self.assertEqual(files[2], files[0])
+
+    def test_a_run_later_in_the_week_closes_last_week_and_opens_this_one_once(self):
+        # The Tuesday run, when every Monday run failed: the week opens a day
+        # late, and a second run that day has nothing left to do.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp)
+            (root / "catalog.json").write_text(json.dumps(CATALOG))
+            (root / "launches").mkdir()
+            (root / "launches" / "2026-W47.json").write_text(json.dumps(
+                week("2026-W47", "open", [launch("alpha", discussion=9)])))
+            (root / "launches" / "2026-W48.json").write_text(json.dumps(
+                week("2026-W48", "scheduled", [launch("beta", issue=91, role="hunter", submitted_by="h")])))
+            gh = FakeGitHub(reactions={9: [reaction("a")]})
+            tuesday = dt.date(2026, 11, 24)
+            done = launch_week.monday(root, tuesday, repository="o/r", ask=gh.ask, mutate=gh.mutate)
+            self.assertEqual(done[0], "closed 2026-W47")
+            self.assertIn("opened 2026-W48", done)
+            closed = json.loads((root / "launches" / "2026-W47.json").read_text())
+            opened = json.loads((root / "launches" / "2026-W48.json").read_text())
+            self.assertEqual((closed["status"], closed["closed_on"]), ("closed", "2026-11-24"))
+            self.assertEqual(closed["launches"][0]["result"]["votes"], 1)
+            self.assertEqual((opened["status"], opened["launches"][0]["discussion"]), ("open", 100))
+            again = launch_week.monday(root, tuesday, repository="o/r", ask=gh.ask, mutate=gh.mutate)
+            self.assertIn("nothing to do", again[0])
+            self.assertEqual(len(gh.created), 1)  # one post, made once
 
     def test_a_moved_main_is_worked_again_from_its_tip_never_left_on_a_branch(self):
         for name in ("launch-week.yml", "launch-collect.yml", "award.yml"):

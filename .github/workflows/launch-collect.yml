@@ -26,12 +26,19 @@ on:
   schedule:
     # Fridays 00:20 UTC: a launch submitted by Thursday 23:59 UTC is for next week.
     - cron: "20 0 * * 5"
-    # The same at 06:20 and 12:20. Filing the same issues again changes
-    # nothing, so these matter only when the first run failed twice
+    # The same at 06:20 and 12:20, and on Saturday and Sunday at 06:20:
+    # `--collect next` is the coming Monday's week on each of those days, and
+    # filing the same issues again changes nothing (a launch on the file stays
+    # as it is). So these matter only when the runs before them failed twice
     # (retry.yml) and the daily task has fixed the cause since, or a launch
-    # was edited to pass in the meantime.
+    # was edited to pass in the meantime. GitHub starts scheduled runs late
+    # when it is busy, here 4.5 to 10 hours late in October and November 2026,
+    # so the Friday runs can all come and go before the daily task's next
+    # run (00:33 UTC); the weekend ones pick up a fix it makes on Saturday.
     - cron: "20 6 * * 5"
     - cron: "20 12 * * 5"
+    - cron: "20 6 * * 6"
+    - cron: "20 6 * * 0"
   workflow_dispatch:
 
 permissions:
