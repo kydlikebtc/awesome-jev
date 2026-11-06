@@ -34,12 +34,20 @@ on:
   schedule:
     # Mondays 00:05 UTC: a week runs Monday 00:00 to Sunday 23:59 UTC.
     - cron: "5 0 * * 1"
-    # The same at 06:05 and 12:05. A run with nothing left to do does nothing,
-    # so these matter only when the first run failed twice (retry.yml) and the
-    # daily task has fixed the cause since: the week then opens the same day,
-    # with nobody to run it by hand.
+    # The same at 06:05 and 12:05, and on Tuesday at 06:05. A run with nothing
+    # left to do does nothing, so these matter only when the runs before them
+    # failed twice (retry.yml) and the daily task has fixed the cause since:
+    # the week then opens that day, with nobody to run it by hand. GitHub
+    # starts scheduled runs late when it is busy, here 4.5 to 10 hours late in
+    # October and November 2026, so the Monday runs can all come and go before
+    # the daily task's next run (00:33 UTC); the Tuesday one picks up a fix it
+    # makes then, and the week opens a day late rather than not at all. Any
+    # day of the week, --monday closes last week and opens this one, and a
+    # vote counts when it is cast by Sunday 23:59 UTC, however late the posts
+    # opened.
     - cron: "5 6 * * 1"
     - cron: "5 12 * * 1"
+    - cron: "5 6 * * 2"
   workflow_dispatch:
 
 permissions:
