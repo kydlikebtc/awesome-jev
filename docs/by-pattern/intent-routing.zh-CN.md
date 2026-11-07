@@ -4,11 +4,11 @@
 
 _判断用户意图，把请求分流到正确的分支。_
 
-这个决策的全部已收录例子 —— 共 56 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 57 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#intent-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#intent-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 45 · 接口形态 0 · 仅示例 0 · 独立报告 4 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 46 · 接口形态 0 · 仅示例 0 · 独立报告 4 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -191,6 +191,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[SpotAsk](https://github.com/shiquda/spotask)** — 用自己的 API 密钥快速提问的 Mac 菜单栏应用。它的 External Ask 可以让 Jev 这样的决策模型用一个 choice 问题决定问题发往哪里（ChatGPT、Perplexity 等网页 AI、本地 CLI 智能体或桌面应用），再在行内确认，或在置信度高于阈值时直接发送。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · shiquda · `Swift` · `choice` · 调用点 [`Sources/SpotAsk/Decision/DecisionRouting.swift`](https://github.com/shiquda/spotask/blob/HEAD/Sources/SpotAsk/Decision/DecisionRouting.swift)，2026-11-06 模型阅读</sub>
+
+- **[TypeSafe Conversation for Home Assistant](https://github.com/the-sof/home-assistant-typesafe-conversation-agent)** — Home Assistant 的对话代理，用 System One 模型而不是 LLM 来做决定：根据 Jev 对所指意图、设备和数值的类型化回答，由代码解析设备指令和关于家中状态的问题；答案存疑时会追问或回退，而不是猜测。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · the-sof · `Py` · `choice` · `noul` · 调用点 [`custom_components/typesafe_conversation/system_one.py`](https://github.com/the-sof/home-assistant-typesafe-conversation-agent/blob/HEAD/custom_components/typesafe_conversation/system_one.py)，2026-11-07 模型阅读</sub>
 
 - **[Using TypeSafe Jev with the AI SDK](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk)** — Vercel 最完整的实操指南：单问题与多问题调用、按概率阈值路由，以及用 mock evaluation 模型写单元测试。
   <sub>`教程` · `TS` · `noul` · `choice` · `score`</sub>

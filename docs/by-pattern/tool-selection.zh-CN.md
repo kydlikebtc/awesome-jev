@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 256 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 261 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 246 · 接口形态 6 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 251 · 接口形态 6 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -519,6 +519,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — 可观测的浏览器潜行游戏：Jev 做类型化的守卫判断，确定性代码掌管世界规则。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts)，2026-09-22 阅读</sub>
 
+- **[Hermes Switchyard](https://github.com/bgrablin/hermes-switchyard)** — Hermes Agent 插件，把会话中的小决策交给 Jev，并在你设定的范围内依据答案行动：每一轮需要多少推理力度、加载哪个技能、计算机操作中点击哪个控件，以及对历史会话搜索结果重新排序；每次决策都会留下本地记录。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · bgrablin · `Py` · `choice` · `noul` · `score` · 调用点 [`hermes_switchyard/client.py`](https://github.com/bgrablin/hermes-switchyard/blob/HEAD/hermes_switchyard/client.py)，2026-11-07 模型阅读</sub>
+
 - **[jet](https://github.com/arczhi/jet)** — 原生面向 TypeSafe（Jev）的编码智能体，基于递归式 LLM 上下文分解，配有原生 macOS 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arczhi · `Py` · 调用点 [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py)，2026-09-24 阅读</sub>
 
@@ -527,6 +530,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev Civilizations](https://github.com/JonesSteven/jev_civilization)** — 一款带在线演示的小型策略游戏：四个部落自主生活，你只能改变环境。每回合 Jev 用 choice 从真正合法的行动中为每个部落选一个，普通的游戏引擎计算结果，检查器会显示 Jev 收到了哪些信息。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jonessteven · `TS` · `choice` · 调用点 [`scripts/probe-jev.ts`](https://github.com/JonesSteven/jev_civilization/blob/HEAD/scripts/probe-jev.ts)，2026-10-24 模型阅读</sub>
+
+- **[Jev Desktop](https://github.com/jacks3tr/jev-desktop)** — 让 AI 智能体通过 MCP 或命令行把 Windows 桌面任务交出去：它观察窗口，由 Jev 从屏幕上的候选控件中选出下一步要点击、输入或导航的控件（另有 NONE 选项），智能体最终拿到结果或求助请求，而不必处理每一次点击。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · jacks3tr · `Py` · `choice` · 调用点 [`src/jev_desktop/policy.py`](https://github.com/jacks3tr/jev-desktop/blob/HEAD/src/jev_desktop/policy.py)，2026-11-07 模型阅读</sub>
+
+- **[Jev Drive Lab](https://github.com/brendanh18/jev_fsd)** — 基于 OpenStreetMap 在真实加拿大街道上构建的驾驶模拟器，有车流、公交和行人。Jev 可以驾驶：每个时刻它以场景为状态，从 choice 问题中选出下一步动作；每次驾驶都会录下来，可以倒回去查看它为何这样选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · brendanh18 · `Py` · `choice` · 调用点 [`jev/client.py`](https://github.com/brendanh18/jev_fsd/blob/HEAD/jev/client.py)，2026-11-07 模型阅读</sub>
 
 - **[jev-A-share-trader](https://github.com/Eric-Zhou-0302/jev-A-share-trader)** — 由 Jev 驱动的中国 A 股技术分析工作台，支持 AKShare/Tushare、市场扫描以及买入/持有/卖出建议。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · eric-zhou-0302 · `Py` · 调用点 [`src/jev_trader/jev.py`](https://github.com/Eric-Zhou-0302/jev-A-share-trader/blob/HEAD/src/jev_trader/jev.py)，2026-09-24 阅读</sub>
@@ -693,6 +702,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevball](https://github.com/atarikcaliskan/jevball)** — 22 个 Jev 模型，一颗球：一场 3D 足球赛，每名球员都是一个独立的 Jev（TypeSafe AI System One）决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · atarikcaliskan · `JS` · 调用点 [`server/jev.js`](https://github.com/atarikcaliskan/jevball/blob/HEAD/server/jev.js)，2026-09-24 阅读</sub>
 
+- **[jevcraft](https://github.com/mrubens/jevcraft)** — 从全新生存世界开始通关 Minecraft 的机器人：每一步由代码列出机器人当下真能执行的至多十五个带价格的选项（生命值和时间成本、对目标的收益、已尝试过什么），由 Jev 选出一个；另用 noul 和 score 做检查，比如建筑是否符合玩家的要求。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · mrubens · `JS` · `choice` · `noul` · `score` · 调用点 [`src/typesafe.js`](https://github.com/mrubens/jevcraft/blob/HEAD/src/typesafe.js)，2026-11-07 模型阅读</sub>
+
 - **[jevcumber](https://github.com/RubyBrewsday/jevcumber)** — 只写 .feature 文件就能写 Cucumber 测试：无需步骤定义，由 Jev（TypeSafe AI）解析每一个 Gherkin 步骤。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · rubybrewsday · `TS` · 调用点 [`src/resolver.ts`](https://github.com/RubyBrewsday/jevcumber/blob/HEAD/src/resolver.ts)，2026-09-24 阅读</sub>
 
@@ -701,6 +713,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevex](https://github.com/jvsteiner/jevex)** — 一个最小化的智能体：由 Jev 主导循环，LangChain 聊天模型只负责填写参数和最终回复；背后是三个本地 MCP 服务器、十二个可用工具。 <sub>(机翻)</sub>
   <sub>`开源项目` · jvsteiner · `Py` · 调用点 [`src/jevex/benchmark.py`](https://github.com/jvsteiner/jevex/blob/HEAD/src/jevex/benchmark.py)，2026-09-24 阅读</sub>
+
+- **[JevLight](https://github.com/usail-hkust/jevlight)** — 在 SUMO 仿真中用 Jev 控制交通信号，沿用 LLMLight 和 CoLLMLight 的约定：每个路口的排队和等待时间作为状态，用一个 choice 问题选出下一个相位；CoJevLight 还会加入相邻路口，另可记录一个关于是否拥堵的 noul。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · usail-hkust · `Py` · `choice` · `noul` · 调用点 [`jevlight/jev_client.py`](https://github.com/usail-hkust/jevlight/blob/HEAD/jevlight/jev_client.py)，2026-11-07 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[jevnav](https://github.com/dtduc-git/jevnav)** — 为浏览器智能体提供“页面真相”，以及可回放、可测试、可审计的决策。Jev 选择元素，高风险操作需要把关。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · dtduc-git · `Py` · 调用点 [`src/jevnav/decide.py`](https://github.com/dtduc-git/jevnav/blob/HEAD/src/jevnav/decide.py)，2026-09-24 阅读</sub>

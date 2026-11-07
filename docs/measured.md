@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 83 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 86 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -209,6 +209,28 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[ego-jev-ultrafast](https://github.com/shikaizhong-design/ego-jev-ultrafast)**<br>
   Jev drives your Ego Lite browser: one typed-choice request per step. Single-file, zero-dependency port of browser-use/jev-ultrafast with multi-model benchmarks and extra guardrails. Unofficial. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · shikaizhong-design · `JS` · [call site](https://github.com/shikaizhong-design/ego-jev-ultrafast/blob/HEAD/jego.js), read 2026-09-22</sub>
+
+- **[Jev and open decision-model benchmarks](https://github.com/akitaonrails/jev-docs-benchmarks)**<br>
+  Benchmarks how reliably decision models apply supplied rules, how their probabilities behave and what decisions cost: hosted Jev against Microsoft Decision-1, OpenAI Decisions and open models such as Clef, Decision 3.0, Laya, Kev and Jebadiah, with frozen inputs and raw responses. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · akitaonrails · `Py` · `choice` · [call site](https://github.com/akitaonrails/jev-docs-benchmarks/blob/HEAD/benchmark/tools/hosted.py), read by a model 2026-11-07</sub>
+
+  **Caveats:** `no licence`
+
+  > By akitaonrails. In its Decision 3.0 ranking Jev scores 97.6% on the suite's choice tasks. The tasks are the author's own synthetic ones (classification, support routing, retrieval) in English and Brazilian Portuguese; its README says it is not an official vendor benchmark. Local models run on CUDA and ROCm machines. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-07; a maintainer has not yet read the call site.
+
+- **[JEV Healthcare Lab](https://github.com/juneyaooo/jev-healthcare-lab)**<br>
+  Benchmark of Jev on medical decisions (triage urgency, contraindications, medication choice, nursing, trial screening) as choice questions over 26 tasks and 1,514 judgements, against DeepSeek Flash and Qwen, with accuracy, sustained throughput and cost, and raw responses published. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · juneyaooo · `Py` · `choice` · [call site](https://github.com/juneyaooo/jev-healthcare-lab/blob/HEAD/scripts/run_model_evaluation.py), read by a model 2026-11-07</sub>
+
+  **Caveats:** `no licence`
+
+  > The headline Jev results were collected through a third-party gateway (ai.xiaohaima-edu.com) whose responses reported jev-1.13.0, which the authors say they did not verify independently; scripts/run_model_evaluation.py calls TypeSafe directly. The figures are the authors' own; their README says this is not clinical validation. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-07; a maintainer has not yet read the call site.
+
+- **[JEV Reranking Comparisons](https://github.com/carlaiau/jev-reranking)**<br>
+  Benchmark of Jev as a zero-shot reranker: one noul per query and candidate asks whether it is relevant, and the probabilities reorder BM25 runs on MS MARCO passage and document sets (TREC DL 2019) and TREC-1 WSJ, against published BERT rerankers, with time and cost. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · carlaiau · `Py` · `noul` · [call site](https://github.com/carlaiau/jev-reranking/blob/HEAD/reranking/jev.py), read by a model 2026-11-07</sub>
+
+  > On TREC DL 2019 passages its Jev runs score nDCG@10 0.68 against 0.74 for the best published BERT run, and on the document set 0.75 against 0.72; these are the author's own runs. An interactive simulator replays the WSJ results. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-07; a maintainer has not yet read the call site.
 
 - **[jev-acento](https://github.com/marcosmartinez/jev-acento)**<br>
   ¿Jev entiende tu acento? Pre-registered audit of TypeSafe AI's Jev on Spanish — accuracy, calibration and token cost — plus a CLI to run the same comparison on your own labelled data. <sub>(upstream description)</sub><br>

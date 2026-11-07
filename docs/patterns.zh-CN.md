@@ -52,7 +52,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用：** 挑工具需要先拟定计划时，或者难点在于参数时。这里只选择*用哪个*；参数仍需别的东西来填。
 
 <!-- catalogued-tool-selection:start -->
-目录中的**工具选择**：共 256 条，[逐条列出并附警示](by-pattern/tool-selection.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh) · [实践综述（模型撰写，附中文要点）](practice/tool-selection.md)。
+目录中的**工具选择**：共 261 条，[逐条列出并附警示](by-pattern/tool-selection.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh) · [实践综述（模型撰写，附中文要点）](practice/tool-selection.md)。
 <!-- catalogued-tool-selection:end -->
 
 ---
@@ -68,7 +68,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用：** 意图之间重叠得太厉害，连人工标注者都无法与自己保持一致时。先修好分类体系。
 
 <!-- catalogued-intent-routing:start -->
-目录中的**意图路由**：共 56 条，[逐条列出并附警示](by-pattern/intent-routing.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)。
+目录中的**意图路由**：共 57 条，[逐条列出并附警示](by-pattern/intent-routing.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)。
 <!-- catalogued-intent-routing:end -->
 
 ---
@@ -114,7 +114,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用：** 当缺陷需要被解释、而不只是被发现时。分数说明输出不好，却不说明怎么改。对被它拒掉的情况，配上一段生成式的点评。
 
 <!-- catalogued-output-validation:start -->
-目录中的**输出校验**：共 153 条，[逐条列出并附警示](by-pattern/output-validation.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)。
+目录中的**输出校验**：共 154 条，[逐条列出并附警示](by-pattern/output-validation.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)。
 <!-- catalogued-output-validation:end -->
 
 ---
@@ -160,7 +160,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用：** 当你的几个模型区别在于能力而不是成本时。在搭路由器之前，先确认便宜的那条路对简单的请求确实够用。
 
 <!-- catalogued-model-routing:start -->
-目录中的**模型路由**：共 70 条，[逐条列出并附警示](by-pattern/model-routing.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)。
+目录中的**模型路由**：共 73 条，[逐条列出并附警示](by-pattern/model-routing.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)。
 <!-- catalogued-model-routing:end -->
 
 ---
@@ -192,7 +192,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用：** 把它当作你整个检索栈的时候。它重排的是短名单；它不能替代针对大型语料的索引。
 
 <!-- catalogued-search-ranking:start -->
-目录中的**检索与排序**：共 87 条，[逐条列出并附警示](by-pattern/search-ranking.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)。
+目录中的**检索与排序**：共 89 条，[逐条列出并附警示](by-pattern/search-ranking.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)。
 <!-- catalogued-search-ranking:end -->
 
 ---
@@ -224,7 +224,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 **何时不该用：** 当你的分类体系里有互相重叠的叶子节点时。先修好分类体系。
 
 <!-- catalogued-classification:start -->
-目录中的**分类**：共 151 条，[逐条列出并附警示](by-pattern/classification.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)。
+目录中的**分类**：共 155 条，[逐条列出并附警示](by-pattern/classification.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)。
 <!-- catalogued-classification:end -->
 
 ---
@@ -308,7 +308,7 @@ Jev 1.14 还提供实验性 [Box](https://docs.typesafe.ai/primitives/box) 来�
 它也一直是那些给出模式建议的关键词规则（`scripts/classify.py`）安放无法归类的描述的地方，而几轮批量整理都采纳了规则的建议。所以，一个唯一模式是 `overview`、且其行没有记录 `patterns_reviewed` 的带代码项目或插件，算作尚未按模式索引，而不算作总览。目前有 <!--n:overview_unindexed-->232<!--/n--> 行是这样。两份 README、Overview 页面和站点都把它们单独列在这个标题下，[复核队列](review-queue.md#unsorted-overview)则连同规则的建议一起列出它们。对照上面的模式阅读其中一行，给它指定它体现的模式，或者保留 `overview`，然后把阅读的日期写入 `patterns_reviewed`。
 
 <!-- catalogued-overview:start -->
-目录中的**总览**：共 501 条，[逐条列出并附警示](by-pattern/overview.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)。
+目录中的**总览**：共 502 条，[逐条列出并附警示](by-pattern/overview.zh-CN.md) · [站点筛选](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)。
 <!-- catalogued-overview:end -->
 
 ---

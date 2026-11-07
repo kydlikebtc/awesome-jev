@@ -4,11 +4,11 @@
 
 _Classify what the user wants and send the request down the right branch._
 
-Every catalogued example of this decision — 56 of them. The same rows, with caveats, are in [the index](../../README.md#intent-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 57 of them. The same rows, with caveats, are in [the index](../../README.md#intent-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#intent-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 45 · wire shape 0 · example only 0 · independent reports 4 · negative results 0 · no file cited 11. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 46 · wire shape 0 · example only 0 · independent reports 4 · negative results 0 · no file cited 11. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -191,6 +191,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[SpotAsk](https://github.com/shiquda/spotask)** — Mac menu bar app for quick questions with your own API key. Its External Ask can let a decision model such as Jev choose where a question goes (a web AI like ChatGPT or Perplexity, a local CLI agent, or a desktop app) with one choice question, then confirm inline or send above a threshold. <sub>(written by a model)</sub>
   <sub>`Project` · shiquda · `Swift` · `choice` · call site [`Sources/SpotAsk/Decision/DecisionRouting.swift`](https://github.com/shiquda/spotask/blob/HEAD/Sources/SpotAsk/Decision/DecisionRouting.swift), read by a model 2026-11-06</sub>
+
+- **[TypeSafe Conversation for Home Assistant](https://github.com/the-sof/home-assistant-typesafe-conversation-agent)** — Home Assistant conversation agent that decides with a System One model instead of an LLM: device commands and questions about the home are resolved in code from Jev's typed answers on which intent, device and value is meant, and a doubtful answer asks or falls back instead of guessing. <sub>(written by a model)</sub>
+  <sub>`Plugin` · the-sof · `Py` · `choice` · `noul` · call site [`custom_components/typesafe_conversation/system_one.py`](https://github.com/the-sof/home-assistant-typesafe-conversation-agent/blob/HEAD/custom_components/typesafe_conversation/system_one.py), read by a model 2026-11-07</sub>
 
 - **[Using TypeSafe Jev with the AI SDK](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk)** — The richest Vercel walkthrough: single and multi-question calls, probability-threshold routing, and unit tests with a mock evaluation model.
   <sub>`Tutorial` · `TS` · `noul` · `choice` · `score`</sub>
