@@ -12,3 +12,6 @@
 # or changed, a line in declined.txt, or nothing to do, and deletes its line in
 # the same pull request. Nobody else is waited for. A line whose candidate is
 # catalogued or declined is shown as settled until the upkeep deletes it.
+47vigen/catherd  # no Jev call site in its code at HEAD (searched 2026-11-07): version 2.0 dropped Jev routing; src/infra/env.ts says TYPESAFE_API_KEY is no longer read, though SECURITY.md still describes it (2026-11-07)
+ronitgupta138/local-jev  # neither calls Jev nor takes its request shape: its own API at /v1/systemone/choice, /score, /noul (a state string, a question and options), so rule 6 (2026-11-07)
+robertn702/opencode-jev-router  # archived; its README says reasoning-router supersedes it and that its OpenCode plugin is now @reasoning-router/opencode, and this run catalogued robertn702/reasoning-router (slug reasoning-router), so rule 2 (2026-11-07)
