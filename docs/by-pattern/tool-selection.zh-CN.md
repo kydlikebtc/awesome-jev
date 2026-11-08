@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 261 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 262 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 251 · 接口形态 6 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 252 · 接口形态 6 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -596,6 +596,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-decision-benchmarks](https://github.com/baibizhe/jev-decision-benchmarks)** — JEV 在 MetaTool、When2Call 与 BFCL V4 上的决策基准结果，附双语表格和可复现报告。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · baibizhe · `Py` · 调用点 [`scripts/build_tables.py`](https://github.com/baibizhe/jev-decision-benchmarks/blob/HEAD/scripts/build_tables.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
+
+- **[jev-demos](https://github.com/mani-aiml/jev-demos)** — 作者系列视频背后的演示：在所引的演示里，Jev 为每个候选查询回答一个 noul，决定客服智能体要取哪些记录，然后由 Claude 一次性写出回答；其他演示让 Jev 与 Laya 给 500 条 AI 写的回答打分，并测试把 Jev 用作复核关卡时能否被提示注入攻破。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`教程` · mani-aiml · `Py` · `noul` · 调用点 [`jev-fetches-claude-writes/agent_jev_first.py`](https://github.com/mani-aiml/jev-demos/blob/HEAD/jev-fetches-claude-writes/agent_jev_first.py)，2026-11-08 模型阅读</sub>
 
 - **[jev-flappy-bird](https://github.com/hosseintoussi/jev-flappy-bird)** — TypeSafe Jev 模型玩 Flappy Bird 的实时演示，每次只决定一件事：扇翅还是等待。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · hosseintoussi · `TS` · 调用点 [`server/jev.ts`](https://github.com/hosseintoussi/jev-flappy-bird/blob/HEAD/server/jev.ts)，2026-09-24 阅读</sub>

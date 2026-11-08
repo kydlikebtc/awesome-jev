@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 155 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 161 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 144 · 接口形态 2 · 仅示例 0 · 独立报告 15 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 150 · 接口形态 2 · 仅示例 0 · 独立报告 16 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -290,6 +290,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[dsh-jev-decide](https://github.com/nanami-0713/dsh-jev-decide)** — DSH 插件：把 Jev 注册成一个智能体工具。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · nanami-0713 · `JS` · 调用点 [`lib/index.js`](https://github.com/nanami-0713/dsh-jev-decide/blob/HEAD/lib/index.js)，2026-09-22 阅读</sub>
 
+- **[Eikos Arena](https://github.com/caiovicentino/eikos-arena)** — 作者的开源模型 Eikos-27B 与 Jev 在 14 个 Hyperliquid 永续合约上的模拟交易对局：每 5 分钟两者拿到同一份行情快照和 28 个问题（每个市场一个做多、观望或做空的 choice，以及一个是否会上涨的 noul），按账户价值和 Brier 分数计分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · caiovicentino · `Py` · `choice` · `noul` · 调用点 [`arena/arena.py`](https://github.com/caiovicentino/eikos-arena/blob/HEAD/arena/arena.py)，2026-11-08 模型阅读</sub>
+
 - **[github-issue-classification-using-jev](https://github.com/KalyanM45/GitHub-Issue-Classification-Using-Jev)** — 基于 Jev 的 GitHub issue 分类器。 <sub>(机翻)</sub>
   <sub>`开源项目` · kalyanm45 · `Py` · 调用点 [`src/ghtriage/adapters/typesafe.py`](https://github.com/KalyanM45/GitHub-Issue-Classification-Using-Jev/blob/HEAD/src/ghtriage/adapters/typesafe.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
@@ -304,6 +307,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[hush](https://github.com/emreozyoruk/hush)** — 不确定时保持沉默的 issue 分拣：校准过的标签，含垃圾与重复检测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · emreozyoruk · `JS` · 调用点 [`src/jev.js`](https://github.com/emreozyoruk/hush/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
+
+- **[Jev Ad Blocker](https://github.com/fazlerocks/jev-adblock)** — 不用过滤规则列表的 Chrome 广告拦截扩展：它用几个结构字段描述页面上每个像广告的元素，在一个批量请求里为每个元素问 Jev 一个 choice（展示广告、赞助内容、同意弹窗或弹出层、网站自家推广、正文内容、界面元素）；超过各类别阈值的元素由代码隐藏。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · fazlerocks · `TS` · `choice` · 调用点 [`src/shared/jev/questions.ts`](https://github.com/fazlerocks/jev-adblock/blob/HEAD/src/shared/jev/questions.ts)，2026-11-08 模型阅读</sub>
 
 - **[Jev and open decision-model benchmarks](https://github.com/akitaonrails/jev-docs-benchmarks)** — 评测决策模型执行给定规则的可靠性、其概率的表现以及决策成本：把托管的 Jev 与 Microsoft Decision-1、OpenAI Decisions 以及 Clef、Decision 3.0、Laya、Kev、Jebadiah 等开源模型对比，使用冻结的输入并公开原始响应。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · akitaonrails · `Py` · `choice` · 调用点 [`benchmark/tools/hosted.py`](https://github.com/akitaonrails/jev-docs-benchmarks/blob/HEAD/benchmark/tools/hosted.py)，2026-11-07 模型阅读 · ⚠ `无许可证`</sub>
@@ -410,6 +416,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[JevEye](https://github.com/Adityakhalkar/JevEye)** — 向 Jev 询问一张图片：CNN 报告它看到了什么（带校准置信度或选择弃权），再由 Jev 判断这意味着什么。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · adityakhalkar · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/Adityakhalkar/JevEye/blob/HEAD/src/lib/jev.ts)，2026-09-24 阅读</sub>
 
+- **[jevgate](https://github.com/gordonbrander/jevgate)** — 用于 shell 管道的命令行关卡：它从标准输入读取文本，就文本问 Jev 一个 noul，比如它是否在报告故障；P(yes) 超过阈值时，文本像 grep 匹配一样原样输出，或者运行 -- 之后的命令，否则什么也不输出。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · gordonbrander · `Rs` · `noul` · 调用点 [`src/provider.rs`](https://github.com/gordonbrander/jevgate/blob/HEAD/src/provider.rs)，2026-11-08 模型阅读</sub>
+
+- **[jevintegration for SAP Commerce](https://github.com/emenowicz/jev-sap-commerce)** — SAP Commerce 扩展：Jev 为每条商品评论回答四个 noul（是否辱骂、是否垃圾内容、是否含个人数据、是否与商品相关），只有越过你设定的阈值时代码才批准或拒绝；另用 choice 沿类目树逐层建议类目，并建议分类属性值；拿不准的都留给人处理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · emenowicz · `Java` · `noul` · `choice` · 调用点 [`jevintegration/src/org/jevintegration/JevClient.java`](https://github.com/emenowicz/jev-sap-commerce/blob/HEAD/jevintegration/src/org/jevintegration/JevClient.java)，2026-11-08 模型阅读</sub>
+
 - **[jevmod](https://github.com/ohernandezdev/jevmod)** — 面向社区和应用的内容审核，由 Jev（TypeSafe）驱动：按类别给出概率，阈值由你掌控。支持 Discord。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ohernandezdev · `Py` · 调用点 [`jevmod/judge.py`](https://github.com/ohernandezdev/jevmod/blob/HEAD/jevmod/judge.py)，2026-09-24 阅读</sub>
 
@@ -440,6 +452,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[n8n-nodes-jev-classification](https://github.com/khmuhtadin/n8n-nodes-jev-classification)** — Jev 的 n8n 社区节点：带校准概率的文本分类、打分与检查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · khmuhtadin · `TS` · 调用点 [`nodes/JevClassification/JevClassification.node.ts`](https://github.com/khmuhtadin/n8n-nodes-jev-classification/blob/HEAD/nodes/JevClassification/JevClassification.node.ts)，2026-09-22 阅读</sub>
 
+- **[Natural Language Logic Interpreter](https://github.com/narphorium/nl-logic-interpreter)** — 用自然英语书写事实和规则的单步逻辑解释器：它像 Prolog 一样用 SLD 归结证明目标，但合一由 Jev 完成：用一个 choice 判断两句话是什么关系，用 noul 判断它们是否陈述同一事实，再用 choice 把每个变量绑定到一个短语上。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · narphorium · `TS` · `choice` · `noul` · 调用点 [`src/server/aiUnifier.ts`](https://github.com/narphorium/nl-logic-interpreter/blob/HEAD/src/server/aiUnifier.ts)，2026-11-08 模型阅读</sub>
+
 - **[notiq](https://github.com/chengyongru/notiq)** — 原生 Android 通知过滤，用自然语言写规则，由 Jev 或自托管的 FastJev 驱动。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · chengyongru · `Kt` · 调用点 [`app/src/main/java/dev/notiq/data/Settings.kt`](https://github.com/chengyongru/notiq/blob/HEAD/app/src/main/java/dev/notiq/data/Settings.kt)，2026-09-24 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
 
@@ -448,6 +463,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[one-system](https://github.com/rawwerks/one-system)** — 通过统一接口使用本地与托管的分类器（即决策模型）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · rawwerks · `TS` · 引用文件 [`examples/public_release_review.py`](https://github.com/rawwerks/one-system/blob/HEAD/examples/public_release_review.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
+
+- **[OnlyRead](https://github.com/onlyreadai/onlyread)** — 让浏览器里的 AI 智能体在你选定的网站上只能读不能写的 Chrome 扩展：规则、按站点的解码器和判定缓存先处理大部分请求，其余的由 Jev 回答一个 noul（这个请求会不会创建、修改或删除服务器上存储的数据？）；代码据此放行、拦截，或把中间地带交给复核模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · onlyreadai · `TS` · `noul` · 调用点 [`extension/src/background/judge/jev.ts`](https://github.com/onlyreadai/onlyread/blob/HEAD/extension/src/background/judge/jev.ts)，2026-11-08 模型阅读 · ⚠ `作者自荐`</sub>
 
 - **[Parallax](https://github.com/zilize/parallax-dsh)** — DeepSeek Harness 插件，用于在本地 SQLite 语料库中查找某个主题的 arXiv 论文：智能体按关键词召回并组合集合，然后由 Jev 用一个 noul 按纳入标准筛选每篇论文（p ≥ 0.5 保留），再用多个 noul 或一个 choice 把论文分到各主题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · zilize · `TS` · `noul` · `choice` · 调用点 [`src/sets/jev.ts`](https://github.com/zilize/parallax-dsh/blob/HEAD/src/sets/jev.ts)，2026-11-06 模型阅读</sub>

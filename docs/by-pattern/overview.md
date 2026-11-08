@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 502 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 509 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 375 · wire shape 87 · example only 0 · independent reports 28 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 381 · wire shape 88 · example only 0 · independent reports 28 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -587,11 +587,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-lab](https://github.com/Menny1337/jev-lab)** — TypeScript experiments, evaluations, and latency benchmarks for TypeSafe's Jev model <sub>(upstream description)</sub>
   <sub>`Benchmark` · menny1337 · `TS` · call site [`src/client.ts`](https://github.com/Menny1337/jev-lab/blob/HEAD/src/client.ts), read 2026-09-24 · ⚠ `no licence`</sub>
 
+- **[Jev-LCT](https://github.com/gitchw/lct)** — Open decision models (a looped calibration transformer on Qwen 2.5 and Qwen3 backbones, 0.5B to 8B) that read confidence from the model's own recurrent loops and serve Jev's POST /v1/systemone shape (choice, noul, score) from a FastAPI server, with a Python SDK and weights on Hugging Face. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · gitchw · `Py` · cited file [`lct/api/server.py`](https://github.com/gitchw/lct/blob/HEAD/lct/api/server.py), read by a model 2026-11-08 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[jev-little-airways](https://github.com/lbotinelly/jev-little-airways)** — A show-and-tell capability study for Jev, TypeSafe's System One decision model. <sub>(upstream description)</sub>
   <sub>`Benchmark` · lbotinelly · `TS` · call site [`demo/js/jev-monitor.mjs`](https://github.com/lbotinelly/jev-little-airways/blob/HEAD/demo/js/jev-monitor.mjs), read 2026-09-22</sub>
 
 - **[jev-no-enem](https://github.com/patryckalves/jev-no-enem)** — Reproducible benchmark evaluating TypeSafe AI's Jev (System One paradigm) on Brazil's ENEM 2025 standardized exam. Evaluates typed decision-making, domain-specific accuracy, and RLCD uncertainty calibration against open LLM baselines with an interactive GitHub Pages dashboard. <sub>(upstream description)</sub>
   <sub>`Benchmark` · patryckalves · `Py` · call site [`src/evaluate_jev.py`](https://github.com/patryckalves/jev-no-enem/blob/HEAD/src/evaluate_jev.py), read 2026-09-24 · ⚠ `no licence`</sub>
+
+- **[jev-php](https://github.com/f-lombardo/jev-php)** — Small unofficial PHP library, extracted from LLPhant, that sends a state and typed noul, choice and score questions to Jev's POST /v1/systemone and returns value objects with each answer and its token usage. <sub>(written by a model)</sub>
+  <sub>`SDK` · f-lombardo · `PHP` · `noul` · `choice` · `score` · call site [`src/Classification/JevClassifier.php`](https://github.com/f-lombardo/jev-php/blob/HEAD/src/Classification/JevClassifier.php), read by a model 2026-11-08</sub>
 
 - **[jev-php-sdk](https://github.com/mzainzulifqar/jev-php-sdk)** — PHP SDK for TypeSafe's Jev: send text and typed questions, get typed answers with calibrated confidence. PHP 8.1+, works with any PSR-18 client, Laravel 8–13. <sub>(upstream description)</sub>
   <sub>`SDK` · mzainzulifqar · `PHP` · call site [`src/Jev.php`](https://github.com/mzainzulifqar/jev-php-sdk/blob/HEAD/src/Jev.php), read 2026-09-24</sub>
@@ -616,6 +622,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev4mellea](https://github.com/SoundBlaster/Jev4Mellea)** — Jev adapter for Mellea <sub>(upstream description)</sub>
   <sub>`Integration` · soundblaster · `Py` · call site [`src/mellea_jev/providers/typesafe.py`](https://github.com/SoundBlaster/Jev4Mellea/blob/HEAD/src/mellea_jev/providers/typesafe.py), read 2026-09-22</sub>
+
+- **[JevalKit](https://github.com/valen-team/jevalkit)** — Evaluation toolkit for Jev-like decision models: one command runs any of 20 model families, hosted Jev among them, over eight prepared benchmarks (JevBench, Decision Index, JevAlt-Bench and others) as typed choice, noul and score questions, and builds a leaderboard with probability metrics. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · valen-team · `Py` · `choice` · `noul` · `score` · call site [`jevalkit/models/jev.py`](https://github.com/valen-team/jevalkit/blob/HEAD/jevalkit/models/jev.py), read by a model 2026-11-08 · ⚠ `vendor numbers`</sub>
 
 - **[jevclient](https://github.com/AboveColin/jevclient)** — Async Python client for TypeSafe Jev. Typed questions in, probabilities and choices out, no prose to parse. <sub>(upstream description)</sub>
   <sub>`SDK` · abovecolin · `Py` · call site [`jevclient/const.py`](https://github.com/AboveColin/jevclient/blob/HEAD/jevclient/const.py), read 2026-09-22</sub>
@@ -653,11 +662,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[snap](https://github.com/emnlmn/snap)** — Typed decisions from unstructured state: one forward pass, zero generated text. Local, deterministic, Jev-compatible. Not affiliated with typesafe.ai. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · emnlmn · `Rs` · cited file [`src/api.rs`](https://github.com/emnlmn/snap/blob/HEAD/src/api.rs), read 2026-09-24 · ⚠ `not Jev itself`</sub>
 
+- **[SwiftJev](https://github.com/soundblaster/swiftjev)** — Swift package that plugs Jev into SwiftDecision as a DecisionBackend: it sends typed noul, choice and score prompts to TypeSafe's hosted System One API and returns validated probability distributions in option order, leaving the pick to SwiftDecision's own acceptance policy. <sub>(written by a model)</sub>
+  <sub>`SDK` · soundblaster · `Swift` · `noul` · `choice` · `score` · call site [`Sources/SwiftJev/JevDecisionBackend.swift`](https://github.com/soundblaster/swiftjev/blob/HEAD/Sources/SwiftJev/JevDecisionBackend.swift), read by a model 2026-11-08</sub>
+
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)** — First independent head-to-head benchmark of System One decision models (Laya vs Jev) on byte-identical inputs <sub>(upstream description)</sub>
   <sub>`Benchmark` · instax-dutta · `Py` · call site [`runners/jev_runner.py`](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py), read 2026-09-22</sub>
 
 - **[system-one-adapter-rust](https://github.com/codeitlikemiley/system-one-adapter-rust)** — Rust port of TypeSafe system-one-adapter (LLM-backed system_one evaluations) <sub>(upstream description)</sub>
   <sub>`Integration` · codeitlikemiley · `Rs` · call site [`src/client.rs`](https://github.com/codeitlikemiley/system-one-adapter-rust/blob/HEAD/src/client.rs), read 2026-09-22</sub>
+
+- **[SystemOne Client](https://github.com/schainks/system_one_client)** — Elixir client for System One decision models that returns typed answers with their full probability distributions (top-k over a choice, a threshold on a noul, a level cut on a score), with providers for TypeSafe's Jev, OpenRouter's decisions endpoint and models that are not Jev. <sub>(written by a model)</sub>
+  <sub>`SDK` · schainks · `Ex` · `noul` · `choice` · `score` · call site [`lib/system_one_client/provider.ex`](https://github.com/schainks/system_one_client/blob/HEAD/lib/system_one_client/provider.ex), read by a model 2026-11-08</sub>
 
 - **[SystemOneDotNet](https://github.com/JabbaKadabra/SystemOneDotNet)** — .NET client for TypeSafe System One (Jev) — typed questions in, typed answers with probabilities and confidence out. No prompt engineering, no output parsing. <sub>(upstream description)</sub>
   <sub>`SDK` · jabbakadabra · `C#` · call site [`samples/SystemOneDotNet.Sample/Program.cs`](https://github.com/JabbaKadabra/SystemOneDotNet/blob/HEAD/samples/SystemOneDotNet.Sample/Program.cs), read 2026-09-24</sub>
@@ -673,6 +688,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[TypeSafe AI Jev now available on AI Gateway](https://vercel.com/changelog/typesafe-ai-jev-now-available-on-ai-gateway)** — Vercel's launch note for Jev on AI Gateway, with an experimental_evaluate sample using the model string typesafe-ai/jev.
   <sub>`Integration` · `TS` · `noul`</sub>
+
+- **[TypeSafe AI SDK for Go](https://github.com/captain-corgi/typesafe-sdk-go)** — Community Go SDK for TypeSafe's API, with no runtime dependencies (the standard library only) and parity with the Python SDK 0.7.5: typed noul, choice and score questions about any state, images included, in one request. <sub>(written by a model)</sub>
+  <sub>`SDK` · captain-corgi · `Go` · `noul` · `choice` · `score` · call site [`client.go`](https://github.com/captain-corgi/typesafe-sdk-go/blob/HEAD/client.go), read by a model 2026-11-08</sub>
 
 - **[TypeSafe models in Pydantic AI](https://pydantic.dev/docs/ai/models/typesafe/)** — First-party Pydantic AI support: an Agent with output_type=bool over the typesafe:jev-latest model string.
   <sub>`Integration` · `Py`</sub>
@@ -784,6 +802,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[typesafeai.net](https://github.com/Hawxy/TypeSafeAI.Net)** — .NET SDK for the TypeSafe AI platform <sub>(upstream description)</sub>
   <sub>`SDK` · hawxy · `C#` · call site [`src/TypeSafeAI.Extensions.AI/Evaluation/TypeSafeEvaluator.cs`](https://github.com/Hawxy/TypeSafeAI.Net/blob/HEAD/src/TypeSafeAI.Extensions.AI/Evaluation/TypeSafeEvaluator.cs), read 2026-09-22</sub>
+
+- **[Unofficial TypeSafe.ai .NET SDK](https://github.com/laurentkempe/typesafejevplayground)** — Unofficial .NET port of TypeSafe's JavaScript SDK (C# 15, System.Text.Json, no runtime dependencies) that sends typed noul, choice and score questions to Jev's /v1/systemone, with an MCP server sample; it is the code behind the author's blog posts. <sub>(written by a model)</sub>
+  <sub>`SDK` · laurentkempe · `C#` · `noul` · `choice` · `score` · call site [`src/TypeSafe/TypeSafeClient.cs`](https://github.com/laurentkempe/typesafejevplayground/blob/HEAD/src/TypeSafe/TypeSafeClient.cs), read by a model 2026-11-08 · ⚠ `no licence` `AI-written`</sub>
 
 - **[werr](https://github.com/pCwOrM/werr)** — Zero-memory System-1 decision engine & TypeSafe Jev wire-compatible runtime powered by Mandelbrot wave dynamics (The Zero-VRAM Gauntlet). <sub>(earlier upstream description)</sub>
   <sub>`Jev-like alternative` · pcworm · `Py` · cited file [`werr/server.py`](https://github.com/pCwOrM/werr/blob/HEAD/werr/server.py), read 2026-09-24 · ⚠ `not Jev itself`</sub>

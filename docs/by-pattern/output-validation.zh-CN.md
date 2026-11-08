@@ -4,11 +4,11 @@
 
 _在输出到达用户前，按评分标准检查模型产出。_
 
-这个决策的全部已收录例子 —— 共 154 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 156 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#output-validation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#output-validation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 149 · 接口形态 1 · 仅示例 0 · 独立报告 12 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 151 · 接口形态 1 · 仅示例 0 · 独立报告 12 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -284,6 +284,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[dinostomp](https://github.com/collapseindex/dinostomp)** — 面向 AI 评测的验证层：检查的是测量工具本身，而不仅仅是分数——数据、评分器、运行、数字与结论。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · collapseindex · `Py` · 调用点 [`audits/xstest-refusal-guards/compare.py`](https://github.com/collapseindex/dinostomp/blob/HEAD/audits/xstest-refusal-guards/compare.py)，2026-09-24 阅读</sub>
 
+- **[dsh-jev-plugin](https://github.com/jackie-cqz/dsh-jev-plugin)** — DeepSeek Harness 插件：把 Jev 的 noul、choice 和 score 作为工具提供给智能体，还可以把 Jev 用作执行前的风险关卡（对风险等级打分，据此拒绝工具调用、请求批准或放行）、工具结果的复核以及模型路由。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · jackie-cqz · `TS` · `noul` · `choice` · `score` · 调用点 [`src/client.ts`](https://github.com/jackie-cqz/dsh-jev-plugin/blob/HEAD/src/client.ts)，2026-11-08 模型阅读</sub>
+
 - **[dsh-jev-verify](https://github.com/xienda/dsh-jev-verify)** — 给 DeepSeek Harness 的 Jev 决策工具与实时验证基准。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · xienda · `JS` · 调用点 [`lib/index.js`](https://github.com/xienda/dsh-jev-verify/blob/HEAD/lib/index.js)，2026-09-22 阅读</sub>
 
@@ -331,6 +334,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-decisions](https://github.com/bojansandhaus/jev-decisions-hermes)** — 给 Hermes 及其他智能体的 Jev 决策插件：工具风险审查与人工批准。 <sub>(机翻)</sub>
   <sub>`插件` · bojansandhaus · `Py` · 调用点 [`jev_client.py`](https://github.com/bojansandhaus/jev-decisions-hermes/blob/HEAD/jev_client.py)，2026-09-22 阅读</sub>
+
+- **[jev-demos](https://github.com/mani-aiml/jev-demos)** — 作者系列视频背后的演示：在所引的演示里，Jev 为每个候选查询回答一个 noul，决定客服智能体要取哪些记录，然后由 Claude 一次性写出回答；其他演示让 Jev 与 Laya 给 500 条 AI 写的回答打分，并测试把 Jev 用作复核关卡时能否被提示注入攻破。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`教程` · mani-aiml · `Py` · `noul` · 调用点 [`jev-fetches-claude-writes/agent_jev_first.py`](https://github.com/mani-aiml/jev-demos/blob/HEAD/jev-fetches-claude-writes/agent_jev_first.py)，2026-11-08 模型阅读</sub>
 
 - **[jev-enterprise-decision-fabric](https://github.com/ghubnab99/jev-enterprise-decision-fabric)** — 让大量语义决策走同一条经过验证的路径的架构，附带标注数据集。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ghubnab99 · `C#` · 调用点 [`src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs`](https://github.com/ghubnab99/jev-enterprise-decision-fabric/blob/HEAD/src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs)，2026-09-22 阅读</sub>

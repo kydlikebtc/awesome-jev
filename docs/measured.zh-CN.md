@@ -4,7 +4,7 @@
 
 本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。
 
-本目录收录的全部独立测量报告和负面结果 —— 共 86 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
+本目录收录的全部独立测量报告和负面结果 —— 共 87 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
@@ -207,6 +207,12 @@
 - **[ego-jev-ultrafast](https://github.com/shikaizhong-design/ego-jev-ultrafast)**<br>
   Jev 驱动你的轻量浏览器：每步一次类型化选择请求，单文件零依赖。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · shikaizhong-design · `JS` · [调用点](https://github.com/shikaizhong-design/ego-jev-ultrafast/blob/HEAD/jego.js)，2026-09-22 阅读</sub>
+
+- **[Eikos Arena](https://github.com/caiovicentino/eikos-arena)**<br>
+  作者的开源模型 Eikos-27B 与 Jev 在 14 个 Hyperliquid 永续合约上的模拟交易对局：每 5 分钟两者拿到同一份行情快照和 28 个问题（每个市场一个做多、观望或做空的 choice，以及一个是否会上涨的 noul），按账户价值和 Brier 分数计分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · caiovicentino · `Py` · `choice` · `noul` · [调用点](https://github.com/caiovicentino/eikos-arena/blob/HEAD/arena/arena.py)，2026-11-08 模型阅读</sub>
+
+  > 在 72 小时的正式对局（2026-09-24 至 09-27）中，Jev 收益 +0.87%、Brier 分数 0.249，Eikos 为 -3.40% 和 0.266；这些是作者公布的数字，来自冻结并做了哈希的代码。使用真实价格、模拟资金，不下真实订单。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-08 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[Jev and open decision-model benchmarks](https://github.com/akitaonrails/jev-docs-benchmarks)**<br>
   评测决策模型执行给定规则的可靠性、其概率的表现以及决策成本：把托管的 Jev 与 Microsoft Decision-1、OpenAI Decisions 以及 Clef、Decision 3.0、Laya、Kev、Jebadiah 等开源模型对比，使用冻结的输入并公开原始响应。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>

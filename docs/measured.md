@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 86 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 87 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -209,6 +209,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[ego-jev-ultrafast](https://github.com/shikaizhong-design/ego-jev-ultrafast)**<br>
   Jev drives your Ego Lite browser: one typed-choice request per step. Single-file, zero-dependency port of browser-use/jev-ultrafast with multi-model benchmarks and extra guardrails. Unofficial. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · shikaizhong-design · `JS` · [call site](https://github.com/shikaizhong-design/ego-jev-ultrafast/blob/HEAD/jego.js), read 2026-09-22</sub>
+
+- **[Eikos Arena](https://github.com/caiovicentino/eikos-arena)**<br>
+  Paper-trading match between the author's open Eikos-27B and Jev on 14 Hyperliquid perpetuals: every 5 minutes both get the same snapshot and 28 questions (a long, flat or short choice and a will-it-rise noul per market), scored on account value and Brier score. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · caiovicentino · `Py` · `choice` · `noul` · [call site](https://github.com/caiovicentino/eikos-arena/blob/HEAD/arena/arena.py), read by a model 2026-11-08</sub>
+
+  > In its 72-hour official match (2026-09-24 to 09-27) Jev ended at +0.87% and a Brier score of 0.249, Eikos at -3.40% and 0.266; these are the author's figures, from frozen, hashed code. Real prices, simulated money, no orders. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-08; a maintainer has not yet read the call site.
 
 - **[Jev and open decision-model benchmarks](https://github.com/akitaonrails/jev-docs-benchmarks)**<br>
   Benchmarks how reliably decision models apply supplied rules, how their probabilities behave and what decisions cost: hosted Jev against Microsoft Decision-1, OpenAI Decisions and open models such as Clef, Decision 3.0, Laya, Kev and Jebadiah, with frozen inputs and raw responses. <sub>(written by a model)</sub><br>
