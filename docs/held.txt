@@ -15,3 +15,4 @@
 47vigen/catherd  # no Jev call site in its code at HEAD (searched 2026-11-07): version 2.0 dropped Jev routing; src/infra/env.ts says TYPESAFE_API_KEY is no longer read, though SECURITY.md still describes it (2026-11-07)
 ronitgupta138/local-jev  # neither calls Jev nor takes its request shape: its own API at /v1/systemone/choice, /score, /noul (a state string, a question and options), so rule 6 (2026-11-07)
 robertn702/opencode-jev-router  # archived; its README says reasoning-router supersedes it and that its OpenCode plugin is now @reasoning-router/opencode, and this run catalogued robertn702/reasoning-router (slug reasoning-router), so rule 2 (2026-11-07)
+jkf87/jev-handson  # calls Jev (02_라우터/code/mini/router.mjs asks two choices and a noul to route a message), but every call site sits under a Korean folder name, and scripts/_github.raw_get does not percent-encode the path, so model_draft.py and verify_claims.py cannot read it (2026-11-08)
