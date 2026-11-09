@@ -54,9 +54,9 @@
 
 ## 本周发布榜
 
-### 下周：2026-W46
+### ▲ 本周：2026-W46
 
-已登记、下周上榜的 Launch，不分先后。投票帖在 2026-11-09（周一）开放。 <sub>(机翻)</sub>
+收榜前按随机顺序展示、不显示票数，免得大家都投最上面那个。 <sub>(机翻)</sub>
 
 <table>
 <tr>
@@ -67,7 +67,7 @@
 <sub>[kydlikebtc](https://github.com/kydlikebtc) 推荐 · 👤 有人读过调用点</sub>
 
 </td>
-<td align="center" width="80"><b>▲</b><br><sub>11-09<br>开榜</sub></td>
+<td align="center" width="80"><a href="https://github.com/kydlikebtc/awesome-jev/discussions/107"><b>▲</b><br><sub>投票</sub></a></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jeveryword.html"><img src="https://github.com/jkrup.png?size=96" width="48" height="48" alt="jeveryword"></a></td>
@@ -77,7 +77,7 @@
 <sub>[kydlikebtc](https://github.com/kydlikebtc) 推荐 · 👤 有人读过调用点</sub>
 
 </td>
-<td align="center" width="80"><b>▲</b><br><sub>11-09<br>开榜</sub></td>
+<td align="center" width="80"><a href="https://github.com/kydlikebtc/awesome-jev/discussions/108"><b>▲</b><br><sub>投票</sub></a></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html"><img src="https://github.com/agent-labs-dev.png?size=96" width="48" height="48" alt="fastbrowse"></a></td>
@@ -87,7 +87,7 @@
 <sub>[kydlikebtc](https://github.com/kydlikebtc) 推荐 · 🤖 模型读过调用点，尚无人复核</sub>
 
 </td>
-<td align="center" width="80"><b>▲</b><br><sub>11-09<br>开榜</sub></td>
+<td align="center" width="80"><a href="https://github.com/kydlikebtc/awesome-jev/discussions/109"><b>▲</b><br><sub>投票</sub></a></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html"><img src="https://github.com/mattt.png?size=96" width="48" height="48" alt="anydecisionmodel"></a></td>
@@ -97,7 +97,7 @@
 <sub>[kydlikebtc](https://github.com/kydlikebtc) 推荐 · 👤 有人读过调用点</sub>
 
 </td>
-<td align="center" width="80"><b>▲</b><br><sub>11-09<br>开榜</sub></td>
+<td align="center" width="80"><a href="https://github.com/kydlikebtc/awesome-jev/discussions/110"><b>▲</b><br><sub>投票</sub></a></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html"><img src="https://github.com/leepokai.png?size=96" width="48" height="48" alt="jev-guard"></a></td>
@@ -107,7 +107,7 @@
 <sub>[kydlikebtc](https://github.com/kydlikebtc) 推荐 · 👤 有人读过调用点</sub>
 
 </td>
-<td align="center" width="80"><b>▲</b><br><sub>11-09<br>开榜</sub></td>
+<td align="center" width="80"><a href="https://github.com/kydlikebtc/awesome-jev/discussions/111"><b>▲</b><br><sub>投票</sub></a></td>
 </tr>
 </table>
 
@@ -121,7 +121,7 @@
 <td>
 
 **[jeveryword](https://kydlikebtc.github.io/awesome-jev/products/jeveryword.html)** — 用 Jev 做文本抽取：字段抽取、PII 检测与逐字引文。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
-<sub>5 → 40 星（+700%） · 👤 有人读过调用点 · 2026-W46 在榜</sub>
+<sub>5 → 40 星（+700%） · 👤 有人读过调用点 · [投票 ↗](https://github.com/kydlikebtc/awesome-jev/discussions/108)</sub>
 
 </td>
 <td align="center" width="80"><b>★&nbsp;+35</b><br><sub>星标</sub></td>
@@ -131,7 +131,7 @@
 <td>
 
 **[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — 桌面自动化。读系统无障碍树，判断下一步该点哪个按钮、菜单或输入框。<br>
-<sub>1,827 → 14,206 星（+678%） · 👤 有人读过调用点 · 2026-W46 在榜</sub>
+<sub>1,827 → 14,206 星（+678%） · 👤 有人读过调用点 · [投票 ↗](https://github.com/kydlikebtc/awesome-jev/discussions/107)</sub>
 
 </td>
 <td align="center" width="80"><b>★&nbsp;+12,379</b><br><sub>星标</sub></td>
@@ -141,7 +141,7 @@
 <td>
 
 **[anydecisionmodel](https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html)** — 一个 Swift 包：从语言模型获取类型化决策（概率、选择与分数）。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
-<sub>24 → 50 星（+108%） · 👤 有人读过调用点 · 2026-W46 在榜</sub>
+<sub>24 → 50 星（+108%） · 👤 有人读过调用点 · [投票 ↗](https://github.com/kydlikebtc/awesome-jev/discussions/110)</sub>
 
 </td>
 <td align="center" width="80"><b>★&nbsp;+26</b><br><sub>星标</sub></td>
@@ -151,7 +151,7 @@
 <td>
 
 **[fastbrowse](https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html)** — 浏览器智能体：每个页面被索引成候选控件，由 Jev 选出下一步，因此不会点击页面上没有的东西；规划和阅读由 Gemini Flash 负责，答案引用页面原文。维护者记录的 46 个任务中成功率为 99.2%，托管版 Browser Use 为 97.8%，而成本不到其十分之一。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>120 → 173 星（+44%） · 🤖 模型读过调用点，尚无人复核 · 2026-W46 在榜</sub>
+<sub>120 → 173 星（+44%） · 🤖 模型读过调用点，尚无人复核 · [投票 ↗](https://github.com/kydlikebtc/awesome-jev/discussions/109)</sub>
 
 </td>
 <td align="center" width="80"><b>★&nbsp;+53</b><br><sub>星标</sub></td>
@@ -161,7 +161,7 @@
 <td>
 
 **[jev-guard](https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html)** — 给编程智能体用的安全钩子：每次工具调用前，Jev 判断这次调用可能造成多大危害、是不是用户要求的、是否在执行不可信的文字，再由代码决定拒绝、询问还是放行；调用返回后，Jev 扫描结果中的提示注入。支持 Claude Code、Codex、Cursor 等。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>130 → 144 星（+11%） · 👤 有人读过调用点 · 2026-W46 在榜</sub>
+<sub>130 → 144 星（+11%） · 👤 有人读过调用点 · [投票 ↗](https://github.com/kydlikebtc/awesome-jev/discussions/111)</sub>
 
 </td>
 <td align="center" width="80"><b>★&nbsp;+14</b><br><sub>星标</sub></td>
@@ -179,7 +179,7 @@
   <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="docs/assets/launch-week-zh-light-mobile.svg">
   <source media="(max-width: 767px)" srcset="docs/assets/launch-week-zh-dark-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/launch-week-zh-dark.svg">
-  <img src="docs/assets/launch-week-zh-light.svg" alt="一周发布流程：周四 23:59 UTC 前发布，周五登记，周一到周日投票，下周一出结果。现在：2026-W46 已登记 · 2026-11-09（周一）开榜。" width="100%">
+  <img src="docs/assets/launch-week-zh-light.svg" alt="一周发布流程：周四 23:59 UTC 前发布，周五登记，周一到周日投票，下周一出结果。现在：2026-W46 · 投票中，2026-11-15（周日）收榜。" width="100%">
 </picture>
 
 | 步骤 | 时间 | 会发生什么 |

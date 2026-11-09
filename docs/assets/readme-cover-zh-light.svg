@@ -22,7 +22,7 @@
 <text x="262" y="395" font-size="19" class="muted">Maker</text>
 <text x="464" y="362" font-size="36" class="mono" font-weight="600" letter-spacing="-1">1,249</text>
 <text x="464" y="395" font-size="19" class="muted">调用点记录</text>
-<text x="712" y="73" font-size="16" class="mono faint" letter-spacing="1.6">下周 · 2026-W46 · 已登记</text>
+<text x="712" y="73" font-size="16" class="mono faint" letter-spacing="1.6">本周 · 2026-W46 · 投票中</text>
 <rect x="712" y="96" width="428" height="72" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
 <rect x="712" y="114" width="3" height="36" rx="1.5" fill="#1a7f37"/>
 <rect x="728" y="106" width="60" height="52" rx="8" fill="#f6f8fa" stroke="#d1d9e0"/>

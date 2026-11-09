@@ -1,27 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="670" viewBox="0 0 600 670" role="img" aria-labelledby="title description">
 <title id="title">How a launch week runs</title>
-<desc id="description">How a launch week runs: launch by Thursday 23:59 UTC, filed on Friday, vote from Monday to Sunday, results the next Monday. Now: 2026-W46 FILED · OPENS MONDAY 2026-11-09.</desc>
+<desc id="description">How a launch week runs: launch by Thursday 23:59 UTC, filed on Friday, vote from Monday to Sunday, results the next Monday. Now: 2026-W46 · VOTES OPEN UNTIL SUNDAY 2026-11-15.</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#1f2328}.mono{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}.muted{fill:#59636e}.faint{fill:#656d76}.accent{fill:#a15c00}.inv{fill:#f6f8fa}</style>
 <rect x=".5" y=".5" width="599" height="669" rx="16" fill="#f6f8fa" stroke="#d1d9e0"/>
 <text x="36" y="58" font-size="18" class="mono faint" letter-spacing="1.6">HOW A LAUNCH WEEK RUNS</text>
-<text x="36" y="94" font-size="17" class="mono accent" font-weight="600" letter-spacing="0.6">2026-W46 FILED · OPENS MONDAY 2026-11-09</text>
+<text x="36" y="94" font-size="17" class="mono accent" font-weight="600" letter-spacing="0.6">2026-W46 · VOTES OPEN UNTIL SUNDAY 2026-11-15</text>
 <path d="M70 168V552" stroke="#d1d9e0" stroke-width="3" stroke-linecap="round"/>
-<path d="M70 168V296" stroke="#a15c00" stroke-width="3" stroke-linecap="round"/>
+<path d="M70 168V424" stroke="#a15c00" stroke-width="3" stroke-linecap="round"/>
 <circle cx="70" cy="168" r="26" fill="#ffffff" stroke="#a15c00" stroke-width="2"/>
 <path d="M70 158l8 9h-5v10h-6v-10h-5z" fill="#a15c00"/>
 <text x="120" y="158" font-size="28" font-weight="600">Launch</text>
 <text x="120" y="187" font-size="18" class="mono muted">by Thursday 23:59 UTC</text>
 <text x="120" y="214" font-size="18" class="faint">the launch form, checked at once</text>
-<circle cx="70" cy="296" r="34" fill="#a15c00" fill-opacity=".14"/><circle cx="70" cy="296" r="26" fill="#a15c00"/>
-<path d="M61 297l6 6l12 -13" fill="none" stroke="#f6f8fa" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="120" y="286" font-size="28" class="accent" font-weight="600">Filed</text>
-<rect x="211.4" y="265" width="43.9" height="22" rx="11" fill="#a15c00"/>
-<text x="233.3744" y="281" font-size="12" class="mono inv" font-weight="700" text-anchor="middle" letter-spacing="1.2">NOW</text>
+<circle cx="70" cy="296" r="26" fill="#ffffff" stroke="#a15c00" stroke-width="2"/>
+<path d="M61 297l6 6l12 -13" fill="none" stroke="#a15c00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="120" y="286" font-size="28" font-weight="600">Filed</text>
 <text x="120" y="315" font-size="18" class="mono muted">Friday</text>
 <text x="120" y="342" font-size="18" class="faint">on next week&#x27;s board</text>
-<circle cx="70" cy="424" r="26" fill="#ffffff" stroke="#d1d9e0" stroke-width="2"/>
-<path d="M70 419.0l7.5 12.0h-15.0z" fill="#656d76"/>
-<text x="120" y="414" font-size="28" font-weight="600">Vote</text>
+<circle cx="70" cy="424" r="34" fill="#a15c00" fill-opacity=".14"/><circle cx="70" cy="424" r="26" fill="#a15c00"/>
+<path d="M70 419.0l7.5 12.0h-15.0z" fill="#f6f8fa"/>
+<text x="120" y="414" font-size="28" class="accent" font-weight="600">Vote</text>
+<rect x="201.1" y="393" width="43.9" height="22" rx="11" fill="#a15c00"/>
+<text x="223.0928" y="409" font-size="12" class="mono inv" font-weight="700" text-anchor="middle" letter-spacing="1.2">NOW</text>
 <text x="120" y="443" font-size="18" class="mono muted">Monday to Sunday</text>
 <text x="120" y="470" font-size="18" class="faint">a thumbs-up on each post</text>
 <circle cx="70" cy="552" r="26" fill="#ffffff" stroke="#d1d9e0" stroke-width="2"/>

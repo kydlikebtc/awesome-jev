@@ -23,7 +23,7 @@
 <text x="396" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,249</text>
 <text x="396" y="355" font-size="19" class="muted">调用点记录</text>
 <rect x="36" y="392" width="528" height="132" rx="12" fill="#121821" stroke="#30363d"/>
-<text x="56" y="424" font-size="13" class="mono faint" letter-spacing="1.2">下周 · 2026-W46 · 已登记</text>
+<text x="56" y="424" font-size="13" class="mono faint" letter-spacing="1.2">本周 · 2026-W46 · 投票中</text>
 <path d="M62 442.8l5.25 8.399999999999999h-10.5z" fill="#f5a524"/>
 <text x="78" y="452" font-size="15" class="mono" font-weight="600">agent-desktop</text>
 <text x="208.9" y="452" font-size="13" class="muted">桌面自动化：由 Jev 选出下一步要操作的按钮、菜单或…</text>

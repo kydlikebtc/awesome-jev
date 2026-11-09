@@ -1,6 +1,6 @@
 {
   "week": "2026-W46",
-  "status": "scheduled",
+  "status": "open",
   "launches": [
     {
       "product": "jeveryword",
@@ -10,7 +10,9 @@
       "submitted_on": "2026-11-05",
       "tagline": "Extracts fields, PII and exact quotes from text with Jev",
       "tagline_zh": "用 Jev 从文本中抽取字段、PII 和逐字引文",
-      "status": "scheduled"
+      "status": "scheduled",
+      "discussion": 108,
+      "tier_at_open": "person"
     },
     {
       "product": "agent-desktop",
@@ -20,7 +22,9 @@
       "submitted_on": "2026-11-05",
       "tagline": "Desktop automation: Jev picks the button, menu or field to act on next",
       "tagline_zh": "桌面自动化：由 Jev 选出下一步要操作的按钮、菜单或输入框",
-      "status": "scheduled"
+      "status": "scheduled",
+      "discussion": 107,
+      "tier_at_open": "person"
     },
     {
       "product": "anydecisionmodel",
@@ -30,7 +34,9 @@
       "submitted_on": "2026-11-05",
       "tagline": "Swift package for typed choices, scores and probabilities from Jev or MLX",
       "tagline_zh": "Swift 包：从 Jev 或本地 MLX 模型取得选择、分数和概率",
-      "status": "scheduled"
+      "status": "scheduled",
+      "discussion": 110,
+      "tier_at_open": "person"
     },
     {
       "product": "fastbrowse",
@@ -40,7 +46,9 @@
       "submitted_on": "2026-11-05",
       "tagline": "Browser agent: Jev chooses the next control from those on the page",
       "tagline_zh": "浏览器智能体：由 Jev 从页面上已有的控件中选出下一步",
-      "status": "scheduled"
+      "status": "scheduled",
+      "discussion": 109,
+      "tier_at_open": "model"
     },
     {
       "product": "jev-guard",
@@ -50,7 +58,9 @@
       "submitted_on": "2026-11-05",
       "tagline": "Hook for coding agents: Jev judges each tool call's risk before it runs",
       "tagline_zh": "编程智能体的安全钩子：每次工具调用前由 Jev 判断风险",
-      "status": "scheduled"
+      "status": "scheduled",
+      "discussion": 111,
+      "tier_at_open": "person"
     }
   ]
 }
