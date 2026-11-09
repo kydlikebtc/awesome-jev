@@ -172,6 +172,17 @@ TIER_TEXT = {
     "none": "no call site is cited yet",
 }
 
+# How votes count, as a vote post says it: one line for each rule in
+# launches.RULES. A rule never changes in place, so neither does its line,
+# and a post names the rule its votes are counted under.
+RULES_TEXT = {
+    "v1": "The maker's and the submitter's own count for nothing, and an account younger than 30 days, or "
+          "of unknown age, counts half (rules v1).",
+    "v2": "The maker's and the submitter's own count for nothing, and an account younger than 30 days, or "
+          "of unknown age, counts half. When a launch has 10 or more votes and at least half come from such "
+          "accounts, those count for nothing (rules v2).",
+}
+
 
 def post(week: str, launch: dict, row: dict) -> tuple[str, str]:
     """The title and body of a launch's vote post."""
@@ -191,9 +202,8 @@ def post(week: str, launch: dict, row: dict) -> tuple[str, str]:
         f"- Launched by its {launch['role']}, {launch['submitted_by']} (#{launch['issue']})",
         "",
         f"**A thumbs-up on this post is a vote.** Votes cast from Monday {monday} to Sunday {sunday} (UTC) "
-        "count, one per account. The maker's and the submitter's own count for nothing, and an account "
-        "younger than 30 days counts half (rules v1). When the week closes, the counts are written to the "
-        "repository; who voted is not.",
+        f"count, one per account. {RULES_TEXT[L.CURRENT_RULES]} When the week closes, the counts are written "
+        "to the repository; who voted is not.",
         "",
         "Votes and the catalogue's evidence are shown apart and never added together. A rank is a count "
         f"of votes, not this catalogue's recommendation, and nothing here is affiliated with TypeSafe AI. "
@@ -433,8 +443,8 @@ def opened_note(week: str, launch: dict) -> str:
         f"This launch is on the board for **{week}** (Monday {monday} to Sunday {sunday}, UTC). Its vote "
         f"post: {L.query.DISCUSSION}{launch['discussion']}",
         "",
-        "A thumbs-up on that post is a vote, one per account (rules v1). When the week closes next Monday, "
-        "the counts are written to the board and the result is posted here.",
+        f"A thumbs-up on that post is a vote, one per account (rules {L.CURRENT_RULES}). When the week "
+        "closes next Monday, the counts are written to the board and the result is posted here.",
         "",
         "Until then the product's README badge says \"vote this week\" and links to its page, where the vote "
         "post is; after the week, it shows a top-three place, if any. The line, the same for every product:",
