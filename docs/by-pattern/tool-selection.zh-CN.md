@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 262 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 266 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 252 · 接口形态 6 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 256 · 接口形态 6 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -579,6 +579,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-browser-skill](https://github.com/ChenYCL/jev-browser-skill)** — 为编码智能体提供浏览器与电脑操作，由 TypeSafe Jev 驱动：来自 System One 模型的校准判断。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · chenycl · `JS` · 调用点 [`skills/jev-browser/lib/typesafe.mjs`](https://github.com/ChenYCL/jev-browser-skill/blob/HEAD/skills/jev-browser/lib/typesafe.mjs)，2026-09-24 阅读</sub>
 
+- **[jev-browser-wingman](https://github.com/coderexpert123/jev-browser-wingman)** — 在真实、已登录的 Chromium 里接手智能体浏览器操作的 MCP 服务器：每一步由 Jev 用 choice 选出动作类型、元素、填写的值或按键，并用 noul 判断目标是否已完成、是否受阻、是否要求登录、下一步是否会做出无法撤销的提交；拿不准时把这一步交回给智能体。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · coderexpert123 · `TS` · `choice` · `noul` · 调用点 [`src/core/questions.ts`](https://github.com/coderexpert123/jev-browser-wingman/blob/HEAD/src/core/questions.ts)，2026-11-09 模型阅读</sub>
+
 - **[jev-builder](https://github.com/collapseindex/jev-builder)** — 构建 Jev 请求的网页表单：选模板、填空、复制代码。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · collapseindex · `JS` · 调用点 [`jev-builder-core.js`](https://github.com/collapseindex/jev-builder/blob/HEAD/jev-builder-core.js)，2026-09-22 阅读</sub>
 
@@ -612,6 +615,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-harness-router](https://github.com/JoacoMarc/jev-harness-router)** — 面向智能体框架的逐轮路由器：一次约 350 毫秒的 Jev 调用选出模型档位、推理力度、工具与技能，并有硬性兜底。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · joacomarc · `TS` · 调用点 [`src/jev.ts`](https://github.com/JoacoMarc/jev-harness-router/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>
 
+- **[jev-helper](https://github.com/ra2web/jev-helper)** — 接管浏览器即时战略游戏《王二火大》（WannaFire）正在进行的对局的 Chrome 和 Edge 扩展：每次请求发送战况和最多八个决策组，例如造什么、守哪里、用什么进攻，Jev 用 choice 为每组挑出一个合法选项，由扩展执行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ra2web · `JS` · `choice` · 调用点 [`src/shared.mjs`](https://github.com/ra2web/jev-helper/blob/HEAD/src/shared.mjs)，2026-11-09 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[jev-in-codex](https://github.com/teempai/jev-in-codex)** — 通过 MCP 为 Codex 提供由 Jev 驱动的工具与技能选择、上下文搜索和输出分诊。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · teempai · `TS` · 调用点 [`src/labelling.ts`](https://github.com/teempai/jev-in-codex/blob/HEAD/src/labelling.ts)，2026-09-24 阅读</sub>
 
@@ -629,6 +635,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-market-reflex](https://github.com/zzsong1023/jev-market-reflex)** — 用 TypeSafe AI Jev 在实时加密市场上做快速的类型化决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zzsong1023 · `TS` · 调用点 [`src/jev.ts`](https://github.com/zzsong1023/jev-market-reflex/blob/HEAD/src/jev.ts)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[jev-mcp](https://github.com/legostin/jev-mcp)** — 让 Claude Code、Codex 等智能体操作真实 Chrome 浏览器的 MCP 服务器：Jev 回答 choice、noul 和 score，例如哪个元素是出发城市输入框、一次点击是否生效；有把握时工具直接执行，可撤销的步骤会换个候选再试，任何不可撤销的操作之前都先问智能体。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · legostin · `TS` · `choice` · `noul` · `score` · 调用点 [`src/core/jev/client.ts`](https://github.com/legostin/jev-mcp/blob/HEAD/src/core/jev/client.ts)，2026-11-09 模型阅读</sub>
 
 - **[jev-model-tokengate](https://github.com/Thanh-Mathieu95/jev-model-tokengate)** — OpenAI 兼容代理，夹在你的 LLM 与用户之间，逐窗口评估输出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · thanh-mathieu95 · `JS` · 调用点 [`evaluator.js`](https://github.com/Thanh-Mathieu95/jev-model-tokengate/blob/HEAD/evaluator.js)，2026-09-22 阅读</sub>
@@ -779,6 +788,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[snake-jev](https://github.com/siroccomask/snake-jev)** — 由并行 Jev 判断控制的贪吃蛇，每个游戏 tick 一次 API 调用。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · siroccomask · `Py` · 调用点 [`jev_controller.py`](https://github.com/siroccomask/snake-jev/blob/HEAD/jev_controller.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[sommelier](https://github.com/wide3751/sommelier)** — 为每个请求挑选模型和推理强度的 Claude Code mod：Jev 用 score 评估请求需要多少推理，用 noul 判断它是否开启新任务、是否属于高风险操作，代码再把结果映射到 Haiku、Sonnet、Opus 的阶梯上；可选的 choice 会建议一个技能。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · wide3751 · `TS` · `score` · `noul` · `choice` · 调用点 [`hooks/register.ts`](https://github.com/wide3751/sommelier/blob/HEAD/hooks/register.ts)，2026-11-09 模型阅读</sub>
 
 - **[stepwarden](https://github.com/getexcited/stepwarden)** — 智能体的每一次工具调用在执行前都过一遍检查的 Claude Code 插件。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · getexcited · `TS` · 调用点 [`lib/jev.ts`](https://github.com/getexcited/stepwarden/blob/HEAD/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>

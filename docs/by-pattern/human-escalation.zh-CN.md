@@ -4,11 +4,11 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 81 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 83 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#human-escalation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#human-escalation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 66 · 接口形态 5 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 68 · 接口形态 5 · 仅示例 0 · 独立报告 10 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -169,6 +169,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[daf-jev](https://github.com/docxology/daf-jev)** — 可组合的 Python 工具包：问题构造器、置信闸门等。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · docxology · `Py` · 调用点 [`src/daf_jev/client.py`](https://github.com/docxology/daf-jev/blob/HEAD/src/daf_jev/client.py)，2026-09-22 阅读</sub>
 
+- **[Edward](https://github.com/VeridicalTech/Edward)** — 给无人值守运行的编码智能体用的监督器：规则监视事件流，一组探测问题在一次批量请求里用 choice 问 Jev 智能体的行为轨迹是否仍然正常；随后由代码决定让它继续、暂停、取消还是阻止，每个决定都附带签名回执。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · VeridicalTech · `Py` · `choice` · `noul` · 调用点 [`edward/backends.py`](https://github.com/VeridicalTech/Edward/blob/HEAD/edward/backends.py)，2026-11-09 模型阅读</sub>
+
 - **[Example: confidence-gated escalation](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/02-confidence-gate/main.py)** — 带「自动执行或转人工」闸门的路由；策略函数刻意留空 —— 阈值该定在哪，是你的决定。
   <sub>`代码片段` · `Py` · `choice` · 调用点 [`examples/02-confidence-gate/main.py`](https://github.com/kydlikebtc/awesome-jev/blob/HEAD/examples/02-confidence-gate/main.py)，2026-09-22 阅读 · ⚠ `代码未实测`</sub>
 
@@ -192,6 +195,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-logtriage](https://github.com/jyatesdotdev/jev-logtriage)** — 由 Jev 判断一批日志是否值得处理：类型化问题、置信闸门，不执行任何动作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jyatesdotdev · `Py` · 调用点 [`logtriage/cli.py`](https://github.com/jyatesdotdev/jev-logtriage/blob/HEAD/logtriage/cli.py)，2026-09-22 阅读</sub>
+
+- **[jev-mcp](https://github.com/legostin/jev-mcp)** — 让 Claude Code、Codex 等智能体操作真实 Chrome 浏览器的 MCP 服务器：Jev 回答 choice、noul 和 score，例如哪个元素是出发城市输入框、一次点击是否生效；有把握时工具直接执行，可撤销的步骤会换个候选再试，任何不可撤销的操作之前都先问智能体。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · legostin · `TS` · `choice` · `noul` · `score` · 调用点 [`src/core/jev/client.ts`](https://github.com/legostin/jev-mcp/blob/HEAD/src/core/jev/client.ts)，2026-11-09 模型阅读</sub>
 
 - **[jev-mcp-server](https://github.com/wangkuangkuang/jev-mcp-server)** — Jev 的 MCP server：提供官方三种问题类型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · wangkuangkuang · `Py` · 调用点 [`src/jev_mcp_server/config.py`](https://github.com/wangkuangkuang/jev-mcp-server/blob/HEAD/src/jev_mcp_server/config.py)，2026-09-22 阅读</sub>

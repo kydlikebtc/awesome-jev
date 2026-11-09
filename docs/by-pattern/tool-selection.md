@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 262 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 266 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 252 · wire shape 6 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 256 · wire shape 6 · example only 0 · independent reports 11 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -579,6 +579,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-browser-skill](https://github.com/ChenYCL/jev-browser-skill)** — Browser use & computer use for coding agents, powered by TypeSafe Jev: calibrated judgments from a System One model, control loop in code. ego lite / Chrome / Safari · CLI + MCP <sub>(upstream description)</sub>
   <sub>`Plugin` · chenycl · `JS` · call site [`skills/jev-browser/lib/typesafe.mjs`](https://github.com/ChenYCL/jev-browser-skill/blob/HEAD/skills/jev-browser/lib/typesafe.mjs), read 2026-09-24</sub>
 
+- **[jev-browser-wingman](https://github.com/coderexpert123/jev-browser-wingman)** — MCP server that takes an agent's browser steps in a real, logged-in Chromium: Jev picks by choice the action kind, element, value or key for each step and answers nouls on whether the goal is done or blocked, needs a login or would commit something irreversible; when unsure it hands the step back. <sub>(written by a model)</sub>
+  <sub>`Plugin` · coderexpert123 · `TS` · `choice` · `noul` · call site [`src/core/questions.ts`](https://github.com/coderexpert123/jev-browser-wingman/blob/HEAD/src/core/questions.ts), read by a model 2026-11-09</sub>
+
 - **[jev-builder](https://github.com/collapseindex/jev-builder)** — A browser form for building requests to TypeSafe's Jev: pick a template, fill in the blanks, copy the request. No JSON, no install, runs locally. <sub>(upstream description)</sub>
   <sub>`Project` · collapseindex · `JS` · call site [`jev-builder-core.js`](https://github.com/collapseindex/jev-builder/blob/HEAD/jev-builder-core.js), read 2026-09-22</sub>
 
@@ -612,6 +615,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-harness-router](https://github.com/JoacoMarc/jev-harness-router)** — Per-turn router for agent harnesses: one 350ms Jev call picks the model tier, effort, tools and skill, behind a hard deadline with a regex fallback. Claude Agent SDK adapter included. <sub>(upstream description)</sub>
   <sub>`SDK` · joacomarc · `TS` · call site [`src/jev.ts`](https://github.com/JoacoMarc/jev-harness-router/blob/HEAD/src/jev.ts), read 2026-09-24</sub>
 
+- **[jev-helper](https://github.com/ra2web/jev-helper)** — Chrome and Edge extension that takes over a running match of the browser strategy game WannaFire: each request sends the battle state with at most eight decision groups, such as what to build, defend or attack with, and Jev picks one legal option per group by choice for the extension to carry out. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ra2web · `JS` · `choice` · call site [`src/shared.mjs`](https://github.com/ra2web/jev-helper/blob/HEAD/src/shared.mjs), read by a model 2026-11-09 · ⚠ `no licence`</sub>
+
 - **[jev-in-codex](https://github.com/teempai/jev-in-codex)** — Jev-powered tool and skill selection, context search, and output triage for Codex via MCP <sub>(upstream description)</sub>
   <sub>`Plugin` · teempai · `TS` · call site [`src/labelling.ts`](https://github.com/teempai/jev-in-codex/blob/HEAD/src/labelling.ts), read 2026-09-24</sub>
 
@@ -629,6 +635,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-market-reflex](https://github.com/zzsong1023/jev-market-reflex)** — Fast typed AI decisions on live crypto markets using TypeSafe AI Jev. <sub>(upstream description)</sub>
   <sub>`Project` · zzsong1023 · `TS` · call site [`src/jev.ts`](https://github.com/zzsong1023/jev-market-reflex/blob/HEAD/src/jev.ts), read 2026-09-24 · ⚠ `one commit`</sub>
+
+- **[jev-mcp](https://github.com/legostin/jev-mcp)** — MCP server that lets Claude Code, Codex and other agents drive a real Chrome browser: Jev answers choices, nouls and scores, such as which element is the departure-city input or whether a click worked; it acts when sure, retries reversible steps and asks the agent before anything irreversible. <sub>(written by a model)</sub>
+  <sub>`Plugin` · legostin · `TS` · `choice` · `noul` · `score` · call site [`src/core/jev/client.ts`](https://github.com/legostin/jev-mcp/blob/HEAD/src/core/jev/client.ts), read by a model 2026-11-09</sub>
 
 - **[jev-model-tokengate](https://github.com/Thanh-Mathieu95/jev-model-tokengate)** — An OpenAI-compatible proxy that sits between your LLM and your users. It evaluates each sliding window of tokens while the response is still streaming and cuts the stream before a violating token can reach the screen. <sub>(upstream description)</sub>
   <sub>`Project` · thanh-mathieu95 · `JS` · call site [`evaluator.js`](https://github.com/Thanh-Mathieu95/jev-model-tokengate/blob/HEAD/evaluator.js), read 2026-09-22</sub>
@@ -779,6 +788,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[snake-jev](https://github.com/siroccomask/snake-jev)** — Snake controlled by parallel Jev assessments, with one API call per game tick. <sub>(upstream description)</sub>
   <sub>`Project` · siroccomask · `Py` · call site [`jev_controller.py`](https://github.com/siroccomask/snake-jev/blob/HEAD/jev_controller.py), read 2026-09-22 · ⚠ `one commit`</sub>
+
+- **[sommelier](https://github.com/wide3751/sommelier)** — Claude Code mod that picks the model and effort for each request: Jev scores how much reasoning it needs and answers nouls on whether it starts a new task and whether it is high-risk, and code maps that onto a Haiku, Sonnet, Opus ladder; an optional choice suggests a skill. <sub>(written by a model)</sub>
+  <sub>`Plugin` · wide3751 · `TS` · `score` · `noul` · `choice` · call site [`hooks/register.ts`](https://github.com/wide3751/sommelier/blob/HEAD/hooks/register.ts), read by a model 2026-11-09</sub>
 
 - **[stepwarden](https://github.com/getexcited/stepwarden)** — Every tool call your agent makes, checked before it runs. A Claude Code plugin that uses TypeSafe AI's Jev to verify each pending tool call against the session plan, then allows it, asks you, or blocks it. Proof of concept <sub>(upstream description)</sub>
   <sub>`Plugin` · getexcited · `TS` · call site [`lib/jev.ts`](https://github.com/getexcited/stepwarden/blob/HEAD/lib/jev.ts), read 2026-09-22 · ⚠ `one commit`</sub>

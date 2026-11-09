@@ -4,11 +4,11 @@
 
 _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 
-这个决策的全部已收录例子 —— 共 42 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#上下文压缩)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 44 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#上下文压缩)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#context-compaction)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#context-compaction)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 42 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 2 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 44 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 2 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -104,8 +104,14 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 - **[dsh-jev-prune](https://github.com/yangyu666/dsh-jev-prune)** — 给 DeepSeek Harness 的 Jev 判定式上下文压缩：语义化的工具结果裁剪。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · yangyu666 · `JS` · 调用点 [`src/jev.js`](https://github.com/yangyu666/dsh-jev-prune/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
 
+- **[fast-compact](https://github.com/NodarDavituri/fast-compact)** — 大约一秒释放 Claude Code 上下文、又不做摘要的插件：对每条较早的长工具输出，Jev 用一个 noul 判断后续步骤是否还需要它，判为需要的保留原文，其余只留开头和结尾，全文另存到文件里供 Claude 读回。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · NodarDavituri · `TS` · `noul` · 调用点 [`src/jev.ts`](https://github.com/NodarDavituri/fast-compact/blob/HEAD/src/jev.ts)，2026-11-09 模型阅读</sub>
+
 - **[fast-compaction-dsh](https://github.com/kolawong/fast-compaction-dsh)** — 给 DeepSeek Harness 的判定式上下文压缩，取代有损的 LLM 摘要。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · kolawong · `TS` · 调用点 [`src/jev.ts`](https://github.com/kolawong/fast-compaction-dsh/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
+
+- **[fast-jev for OpenCode](https://github.com/nrdz-labs/fast-jev-opencode)** — 从每个发出的模型请求里修剪过时工具调用和大块结果的 OpenCode 插件：Jev 对每次调用回答两个 noul，即这次调用是否应保留、它的完整输出是否应保留，其余由代码删除或截断；已存的历史和 OpenCode 自己的压缩都不受影响。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · nrdz-labs · `TS` · `noul` · 调用点 [`jev.ts`](https://github.com/nrdz-labs/fast-jev-opencode/blob/HEAD/jev.ts)，2026-11-09 模型阅读</sub>
 
 - **[fast-jev-compaction-opencode](https://github.com/overbit/fast-jev-compaction-opencode)** — OpenCode V2 插件，以分类代替摘要来压缩上下文：它用 noul 问题询问 Jev，每个已完成的工具调用及其输出是否仍有用，保留有用的，丢弃可以重新读取或重新运行的；分类失败或节省太少时回退到 OpenCode 自带的压缩。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · overbit · `TS` · `noul` · 调用点 [`src/request.ts`](https://github.com/overbit/fast-jev-compaction-opencode/blob/HEAD/src/request.ts)，2026-11-06 模型阅读</sub>

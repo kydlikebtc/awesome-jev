@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 509 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 514 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 381 · wire shape 88 · example only 0 · independent reports 28 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 386 · wire shape 88 · example only 0 · independent reports 28 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -515,6 +515,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Groot 1](https://github.com/leofmarciano/groot)** — Open typed-decision models (482M Groot 1 and 149M Groot 1 S, on mmBERT) that speak the System One request format, with choice, score and noul questions, so existing jev-latest clients can point at them; trained in English and Portuguese, with a pure Bend forward pass. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · leofmarciano · `Py` · cited file [`groot1/bench.py`](https://github.com/leofmarciano/groot/blob/HEAD/groot1/bench.py), read by a model 2026-11-06 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
+- **[gut](https://github.com/Kungie/gut)** — Python library (gutfeel on PyPI) that makes a judgement call one line: likely asks Jev a noul, classify a choice over an Enum and rate a score over your levels, and with ask_human it returns UNSURE between thresholds; a CLI and an MCP server wrap the same calls. <sub>(written by a model)</sub>
+  <sub>`SDK` · Kungie · `Py` · `noul` · `choice` · `score` · call site [`src/gut/_backends/jev.py`](https://github.com/Kungie/gut/blob/HEAD/src/gut/_backends/jev.py), read by a model 2026-11-09</sub>
+
 - **[http4k Connect: TypeSafe client](https://github.com/http4k/http4k)** — Kotlin client for TypeSafe's API in http4k Connect: a SystemOne action posts a state and Choice, Noul or Score questions to /v1/systemone with jev-latest as the default model, and a fake TypeSafe server answers the same requests in tests. <sub>(written by a model)</sub>
   <sub>`SDK` · http4k · `Kt` · call site [`connect/ai/typesafe/client/src/main/kotlin/org/http4k/connect/typesafe/action/SystemOne.kt`](https://github.com/http4k/http4k/blob/HEAD/connect/ai/typesafe/client/src/main/kotlin/org/http4k/connect/typesafe/action/SystemOne.kt), read by a model 2026-11-05</sub>
 
@@ -676,6 +679,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[SystemOneDotNet](https://github.com/JabbaKadabra/SystemOneDotNet)** — .NET client for TypeSafe System One (Jev) — typed questions in, typed answers with probabilities and confidence out. No prompt engineering, no output parsing. <sub>(upstream description)</sub>
   <sub>`SDK` · jabbakadabra · `C#` · call site [`samples/SystemOneDotNet.Sample/Program.cs`](https://github.com/JabbaKadabra/SystemOneDotNet/blob/HEAD/samples/SystemOneDotNet.Sample/Program.cs), read 2026-09-24</sub>
+
+- **[ThinkThen](https://github.com/botassembly/thinkthen)** — Command line tool with SDKs for 13 languages and DuckDB, SQLite and PostgreSQL extensions, offering ten functions over text, such as decide, choose, tag, score, rank and find, each sent to Jev as nouls, choices or scores; decide prints true, false, or unsure between two bars. <sub>(written by a model)</sub>
+  <sub>`SDK` · botassembly · `Rs` · `noul` · `choice` · `score` · call site [`crates/thinkthen/src/core/adapter/systemone.rs`](https://github.com/botassembly/thinkthen/blob/HEAD/crates/thinkthen/src/core/adapter/systemone.rs), read by a model 2026-11-09</sub>
 
 - **[tinyjevclient](https://github.com/tinyhumansai/tinydecisionmodels)** — An integration with jev by typesafe.ai in Rust
   <sub>`Integration` · tinyhumansai · `Rs` · call site [`crates/tinyjevclient/src/client/test.rs`](https://github.com/tinyhumansai/tinydecisionmodels/blob/HEAD/crates/tinyjevclient/src/client/test.rs), read 2026-09-22 · ⚠ `archived`</sub>
@@ -873,7 +879,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 232 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 235 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[agent-router](https://github.com/nidhi-singh02/agent-router)** — CLI that picks the coding agent, model and effort for a task and starts it in Herdr: fixed rules filter by quota and a 40% reserve on shared accounts, Jev ranks the rest and picks the effort, and an unsure pick on a consequential task goes back to you. Cursor, Claude Code, Codex or OpenCode. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · nidhi-singh02 · `TS` · call site [`packages/router/src/semantic/typesafe-client.ts`](https://github.com/nidhi-singh02/agent-router/blob/HEAD/packages/router/src/semantic/typesafe-client.ts), read 2026-09-22</sub>
@@ -1217,6 +1223,9 @@ Projects and plugins with code, 232 of them, whose only pattern is `overview` an
 - **[dbt_jev](https://github.com/smithclay/dbt_jev)** — use jev in dbt <sub>(upstream description)</sub>
   <sub>`Plugin` · smithclay · `Py` · call site [`src/dbt_jev/runtime.py`](https://github.com/smithclay/dbt_jev/blob/HEAD/src/dbt_jev/runtime.py), read 2026-09-24</sub>
 
+- **[decisionkit](https://github.com/adityajha2005/decisionkit)** — Provider-neutral CLI, Claude Code plugin and MCP server for closed-form decisions in agents, scripts and CI: yes or no, pick one, rate on a scale or rank candidates; through Jev each becomes a noul, choice or score answered with probabilities, so confident answers act and the rest go to a person. <sub>(written by a model)</sub>
+  <sub>`Plugin` · adityajha2005 · `TS` · `noul` · `choice` · `score` · call site [`src/providers/jev.ts`](https://github.com/adityajha2005/decisionkit/blob/HEAD/src/providers/jev.ts), read by a model 2026-11-09</sub>
+
 - **[decisions-judge-mcp](https://github.com/clouatre-labs/decisions-judge-mcp)** — Typed decisions for AI agents as an MCP tool: yes/no probability (noul), choice, and score in one fast request. Backed by the TypeSafe System One model. <sub>(upstream description)</sub>
   <sub>`Plugin` · clouatre-labs · `JS` · call site [`providers/typesafe-api.mjs`](https://github.com/clouatre-labs/decisions-judge-mcp/blob/HEAD/providers/typesafe-api.mjs), read 2026-09-24</sub>
 
@@ -1267,6 +1276,9 @@ Projects and plugins with code, 232 of them, whose only pattern is `overview` an
 
 - **[jeq](https://github.com/cristianoliveira/jeq)** — What happens when jev meets jq? Intelligence you can pipe for quick experimentation and scripts <sub>(upstream description)</sub>
   <sub>`Project` · cristianoliveira · `Go` · call site [`internal/infra/typesafeapi/client.go`](https://github.com/cristianoliveira/jeq/blob/HEAD/internal/infra/typesafeapi/client.go), read 2026-09-24</sub>
+
+- **[Jev DevTools](https://github.com/diegoag64/jev-devtools)** — React inspector for Jev requests: a Node server adapter wraps the TypeSafe SDK client's fetch and records each request's state, questions, answers, probabilities, retries and errors for an in-app panel; an optional flow API draws requests and app steps as diagrams. <sub>(written by a model)</sub>
+  <sub>`Project` · diegoag64 · `TS` · call site [`packages/jev-devtools/server/index.ts`](https://github.com/diegoag64/jev-devtools/blob/HEAD/packages/jev-devtools/server/index.ts), read by a model 2026-11-09</sub>
 
 - **[jev-2048](https://github.com/ARCJ137442/jev-2048)** — An instrumented 2048 web lab where every move is a Jev (TypeSafe AI System One) Choice, with no heuristic fallback \| 用 Jev 决策模型驱动每一步的 2048 网页实验台，概率、置信度、延迟与成本全部摊开可见，且刻意不做启发式兜底 <sub>(upstream description)</sub>
   <sub>`Project` · arcj137442 · `TS` · call site [`src/client/api.ts`](https://github.com/ARCJ137442/jev-2048/blob/HEAD/src/client/api.ts), read 2026-09-22</sub>
@@ -1564,6 +1576,9 @@ Projects and plugins with code, 232 of them, whose only pattern is `overview` an
 
 - **[typesafeai-cli](https://github.com/maddygoround/typesafeai-cli)** — Give your AI agent a CLI companion who has access to TypeSafe AI's Jev. <sub>(upstream description)</sub>
   <sub>`Project` · maddygoround · `Py` · call site [`src/typesafe_cli/client.py`](https://github.com/maddygoround/typesafeai-cli/blob/HEAD/src/typesafe_cli/client.py), read 2026-09-24</sub>
+
+- **[Typewright](https://github.com/Jev-Engineering/TypeWright)** — Declarative compiler for typed Jev decisions: you declare state, decisions and labelled examples in YAML, and it searches prompts with DSPy and GEPA, fits noul thresholds, score cuts and review gates on separate data, and freezes a checksummed JSON program that a light runtime sends to Jev. <sub>(written by a model)</sub>
+  <sub>`Project` · Jev-Engineering · `Py` · `noul` · `choice` · `score` · call site [`src/typewright/backends.py`](https://github.com/Jev-Engineering/TypeWright/blob/HEAD/src/typewright/backends.py), read by a model 2026-11-09 · ⚠ `code untested`</sub>
 
 - **[wellposed](https://github.com/suraj-phanindra/wellposed)** — Lint your jev requests before they come back confidently wrong.
   <sub>`Project` · suraj-phanindra · `JS` · call site [`skills/wellposed/scripts/semantic.mjs`](https://github.com/suraj-phanindra/wellposed/blob/HEAD/skills/wellposed/scripts/semantic.mjs), read 2026-09-24</sub>

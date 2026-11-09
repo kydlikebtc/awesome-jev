@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 74 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 75 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 66 · wire shape 1 · example only 1 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 67 · wire shape 1 · example only 1 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -230,6 +230,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[smart-switch](https://github.com/reycn/smart-switch)** — Reimagined window switcher for macOS using frontier artificial intelligence. Predicted by TypeSafe's Jev model <sub>(upstream description)</sub>
   <sub>`Project` · reycn · `Swift` · call site [`core/src/lib.rs`](https://github.com/reycn/smart-switch/blob/HEAD/core/src/lib.rs), read 2026-09-22</sub>
+
+- **[sommelier](https://github.com/wide3751/sommelier)** — Claude Code mod that picks the model and effort for each request: Jev scores how much reasoning it needs and answers nouls on whether it starts a new task and whether it is high-risk, and code maps that onto a Haiku, Sonnet, Opus ladder; an optional choice suggests a skill. <sub>(written by a model)</sub>
+  <sub>`Plugin` · wide3751 · `TS` · `score` · `noul` · `choice` · call site [`hooks/register.ts`](https://github.com/wide3751/sommelier/blob/HEAD/hooks/register.ts), read by a model 2026-11-09</sub>
 
 - **[stuntdouble](https://github.com/ReallyArtificial/stuntdouble)** — A drop-in /v1/systemone proxy: the app keeps calling Jev while local decision models answer the same requests in the shadow, then it reports whether they would have decided the same — per question, per confidence band, at the app's own decide() — plus Brier, ECE, latency and cost.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/backends.mjs`](https://github.com/ReallyArtificial/stuntdouble/blob/HEAD/src/backends.mjs), read 2026-09-24 · ⚠ `AI-written`</sub>

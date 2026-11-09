@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 509 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 514 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 381 · 接口形态 88 · 仅示例 0 · 独立报告 28 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 386 · 接口形态 88 · 仅示例 0 · 独立报告 28 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -515,6 +515,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Groot 1](https://github.com/leofmarciano/groot)** — 开源的类型化决策模型（基于 mmBERT 的 482M 参数 Groot 1 和 149M 参数 Groot 1 S），使用 System One 请求格式，支持 choice、score 和 noul 问题，现有的 jev-latest 客户端可直接改指向它；以英语和葡萄牙语训练，并有纯 Bend 实现的前向计算。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · leofmarciano · `Py` · 引用文件 [`groot1/bench.py`](https://github.com/leofmarciano/groot/blob/HEAD/groot1/bench.py)，2026-11-06 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
+- **[gut](https://github.com/Kungie/gut)** — 把一次判断写成一行代码的 Python 库（PyPI 上名为 gutfeel）：likely 向 Jev 问一个 noul，classify 在一个 Enum 上问 choice，rate 按你给的等级问 score；开启 ask_human 时，落在两个阈值之间会返回 UNSURE。还附带封装同样调用的 CLI 和 MCP 服务器。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · Kungie · `Py` · `noul` · `choice` · `score` · 调用点 [`src/gut/_backends/jev.py`](https://github.com/Kungie/gut/blob/HEAD/src/gut/_backends/jev.py)，2026-11-09 模型阅读</sub>
+
 - **[http4k Connect: TypeSafe client](https://github.com/http4k/http4k)** — http4k Connect 中的 TypeSafe API Kotlin 客户端：SystemOne 动作把状态和 Choice、Noul 或 Score 问题发送到 /v1/systemone，默认模型为 jev-latest；另有一个模拟的 TypeSafe 服务器，在测试中应答同样的请求。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · http4k · `Kt` · 调用点 [`connect/ai/typesafe/client/src/main/kotlin/org/http4k/connect/typesafe/action/SystemOne.kt`](https://github.com/http4k/http4k/blob/HEAD/connect/ai/typesafe/client/src/main/kotlin/org/http4k/connect/typesafe/action/SystemOne.kt)，2026-11-05 模型阅读</sub>
 
@@ -676,6 +679,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[SystemOneDotNet](https://github.com/JabbaKadabra/SystemOneDotNet)** — TypeSafe System One（Jev）的 .NET 客户端：输入带类型的问题，输出带概率与置信度的类型化答案。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · jabbakadabra · `C#` · 调用点 [`samples/SystemOneDotNet.Sample/Program.cs`](https://github.com/JabbaKadabra/SystemOneDotNet/blob/HEAD/samples/SystemOneDotNet.Sample/Program.cs)，2026-09-24 阅读</sub>
+
+- **[ThinkThen](https://github.com/botassembly/thinkthen)** — 命令行工具，附带 13 种语言的 SDK 以及 DuckDB、SQLite 和 PostgreSQL 扩展，提供十个处理文本的函数，例如 decide、choose、tag、score、rank 和 find，每个都以 noul、choice 或 score 发给 Jev；decide 输出 true、false，或在两条阈值之间输出 unsure。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · botassembly · `Rs` · `noul` · `choice` · `score` · 调用点 [`crates/thinkthen/src/core/adapter/systemone.rs`](https://github.com/botassembly/thinkthen/blob/HEAD/crates/thinkthen/src/core/adapter/systemone.rs)，2026-11-09 模型阅读</sub>
 
 - **[tinyjevclient](https://github.com/tinyhumansai/tinydecisionmodels)** — Rust 版的 Jev 集成。 <sub>(机翻)</sub>
   <sub>`平台集成` · tinyhumansai · `Rs` · 调用点 [`crates/tinyjevclient/src/client/test.rs`](https://github.com/tinyhumansai/tinydecisionmodels/blob/HEAD/crates/tinyjevclient/src/client/test.rs)，2026-09-22 阅读 · ⚠ `已归档`</sub>
@@ -873,7 +879,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ## 尚未按模式索引
 
-带代码的项目或插件，共 232 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
+带代码的项目或插件，共 235 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
 
 - **[agent-router](https://github.com/nidhi-singh02/agent-router)** — 为任务挑选编程智能体、模型和推理强度并在 Herdr 中启动它的命令行工具：先用固定规则按额度和共享账号 40% 的保留量筛选，再由 Jev 给剩下的排序并选定强度；遇到重要任务而把握不足时，交回给你选。支持 Cursor、Claude Code、Codex 或 OpenCode。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · nidhi-singh02 · `TS` · 调用点 [`packages/router/src/semantic/typesafe-client.ts`](https://github.com/nidhi-singh02/agent-router/blob/HEAD/packages/router/src/semantic/typesafe-client.ts)，2026-09-22 阅读</sub>
@@ -1217,6 +1223,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[dbt_jev](https://github.com/smithclay/dbt_jev)** — 在 dbt 中使用 jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · smithclay · `Py` · 调用点 [`src/dbt_jev/runtime.py`](https://github.com/smithclay/dbt_jev/blob/HEAD/src/dbt_jev/runtime.py)，2026-09-24 阅读</sub>
 
+- **[decisionkit](https://github.com/adityajha2005/decisionkit)** — 供智能体、脚本和 CI 做封闭式决策的 CLI、Claude Code 插件和 MCP 服务器，不绑定服务商：是或否、单选、按刻度打分或给候选排序；经由 Jev 时，每种都变成带概率作答的 noul、choice 或 score，有把握的答案直接执行，其余交给人。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · adityajha2005 · `TS` · `noul` · `choice` · `score` · 调用点 [`src/providers/jev.ts`](https://github.com/adityajha2005/decisionkit/blob/HEAD/src/providers/jev.ts)，2026-11-09 模型阅读</sub>
+
 - **[decisions-judge-mcp](https://github.com/clouatre-labs/decisions-judge-mcp)** — 把 AI 智能体的类型化决策做成一个 MCP 工具：是非概率（noul）、choice 和 score，一次快速请求完成。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · clouatre-labs · `JS` · 调用点 [`providers/typesafe-api.mjs`](https://github.com/clouatre-labs/decisions-judge-mcp/blob/HEAD/providers/typesafe-api.mjs)，2026-09-24 阅读</sub>
 
@@ -1267,6 +1276,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jeq](https://github.com/cristianoliveira/jeq)** — 当 jev 遇上 jq 会怎样？可以用管道串联的“智能”，适合快速实验和脚本。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · cristianoliveira · `Go` · 调用点 [`internal/infra/typesafeapi/client.go`](https://github.com/cristianoliveira/jeq/blob/HEAD/internal/infra/typesafeapi/client.go)，2026-09-24 阅读</sub>
+
+- **[Jev DevTools](https://github.com/diegoag64/jev-devtools)** — Jev 请求的 React 检查器：Node 服务端适配器包装 TypeSafe SDK 客户端的 fetch，记录每个请求的状态、问题、答案、概率、重试和错误，显示在应用内的面板里；可选的 flow API 把请求和应用步骤画成流程图。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · diegoag64 · `TS` · 调用点 [`packages/jev-devtools/server/index.ts`](https://github.com/diegoag64/jev-devtools/blob/HEAD/packages/jev-devtools/server/index.ts)，2026-11-09 模型阅读</sub>
 
 - **[jev-2048](https://github.com/ARCJ137442/jev-2048)** — 带插桩的 2048 网页实验：每一步都是一次 Jev Choice。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arcj137442 · `TS` · 调用点 [`src/client/api.ts`](https://github.com/ARCJ137442/jev-2048/blob/HEAD/src/client/api.ts)，2026-09-22 阅读</sub>
@@ -1564,6 +1576,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[typesafeai-cli](https://github.com/maddygoround/typesafeai-cli)** — 给你的 AI 智能体配一个能访问 TypeSafe AI Jev 的命令行伙伴。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · maddygoround · `Py` · 调用点 [`src/typesafe_cli/client.py`](https://github.com/maddygoround/typesafeai-cli/blob/HEAD/src/typesafe_cli/client.py)，2026-09-24 阅读</sub>
+
+- **[Typewright](https://github.com/Jev-Engineering/TypeWright)** — 面向类型化 Jev 决策的声明式编译器：你用 YAML 声明状态、决策和带标签的样例，它用 DSPy 和 GEPA 搜索提示词，在另一份数据上拟合 noul 阈值、score 分界和复核门槛，再冻结成带校验和的 JSON 程序，由轻量运行时发给 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · Jev-Engineering · `Py` · `noul` · `choice` · `score` · 调用点 [`src/typewright/backends.py`](https://github.com/Jev-Engineering/TypeWright/blob/HEAD/src/typewright/backends.py)，2026-11-09 模型阅读 · ⚠ `代码未实测`</sub>
 
 - **[wellposed](https://github.com/suraj-phanindra/wellposed)** — 在 jev 请求自信地给出错误答案之前，先对请求本身做检查。 <sub>(机翻)</sub>
   <sub>`开源项目` · suraj-phanindra · `JS` · 调用点 [`skills/wellposed/scripts/semantic.mjs`](https://github.com/suraj-phanindra/wellposed/blob/HEAD/skills/wellposed/scripts/semantic.mjs)，2026-09-24 阅读</sub>

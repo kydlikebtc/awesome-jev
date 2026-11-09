@@ -4,11 +4,11 @@
 
 _Decide which tool calls and results still matter so stale context can be dropped._
 
-Every catalogued example of this decision — 42 of them. The same rows, with caveats, are in [the index](../../README.md#context-compaction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 44 of them. The same rows, with caveats, are in [the index](../../README.md#context-compaction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#context-compaction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 42 · wire shape 0 · example only 0 · independent reports 2 · negative results 2 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 44 · wire shape 0 · example only 0 · independent reports 2 · negative results 2 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -104,8 +104,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[dsh-jev-prune](https://github.com/yangyu666/dsh-jev-prune)** — Jev-judged context compaction for DeepSeek Harness: semantic tool-result pruning + deterministic receipt compaction <sub>(upstream description)</sub>
   <sub>`Project` · yangyu666 · `JS` · call site [`src/jev.js`](https://github.com/yangyu666/dsh-jev-prune/blob/HEAD/src/jev.js), read 2026-09-22</sub>
 
+- **[fast-compact](https://github.com/NodarDavituri/fast-compact)** — Claude Code plugin that frees context in about a second without summarising: Jev answers one noul per older, long tool output on whether later steps still need it, those rated needed stay whole, and the rest are cut to their start and end, with the full text saved for Claude to read back. <sub>(written by a model)</sub>
+  <sub>`Plugin` · NodarDavituri · `TS` · `noul` · call site [`src/jev.ts`](https://github.com/NodarDavituri/fast-compact/blob/HEAD/src/jev.ts), read by a model 2026-11-09</sub>
+
 - **[fast-compaction-dsh](https://github.com/kolawong/fast-compaction-dsh)** — Verdict-based context compaction for DeepSeek Harness — replaces lossy LLM summaries with fast keep/truncate/drop decisions from jev-latest; everything kept stays verbatim. Port of tamaratran/fast-jev-compaction. <sub>(upstream description)</sub>
   <sub>`Project` · kolawong · `TS` · call site [`src/jev.ts`](https://github.com/kolawong/fast-compaction-dsh/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
+
+- **[fast-jev for OpenCode](https://github.com/nrdz-labs/fast-jev-opencode)** — OpenCode plugin that prunes stale tool calls and bulky results from each outgoing model request: Jev answers two nouls per call, whether the call and whether its full output should stay, and code drops or truncates the rest; stored history and OpenCode's own compaction are untouched. <sub>(written by a model)</sub>
+  <sub>`Plugin` · nrdz-labs · `TS` · `noul` · call site [`jev.ts`](https://github.com/nrdz-labs/fast-jev-opencode/blob/HEAD/jev.ts), read by a model 2026-11-09</sub>
 
 - **[fast-jev-compaction-opencode](https://github.com/overbit/fast-jev-compaction-opencode)** — OpenCode V2 plugin that compacts context by classifying instead of summarizing: it asks Jev, with noul questions, whether each completed tool call and its output still matter, keeps those and drops what can be re-read or re-run, and falls back to OpenCode's compaction if that fails or saves little. <sub>(written by a model)</sub>
   <sub>`Plugin` · overbit · `TS` · `noul` · call site [`src/request.ts`](https://github.com/overbit/fast-jev-compaction-opencode/blob/HEAD/src/request.ts), read by a model 2026-11-06</sub>

@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 74 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 75 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 66 · 接口形态 1 · 仅示例 1 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 67 · 接口形态 1 · 仅示例 1 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -230,6 +230,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[smart-switch](https://github.com/reycn/smart-switch)** — 用前沿 AI 重新想象的 macOS 窗口切换器，由 Jev 做预测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · reycn · `Swift` · 调用点 [`core/src/lib.rs`](https://github.com/reycn/smart-switch/blob/HEAD/core/src/lib.rs)，2026-09-22 阅读</sub>
+
+- **[sommelier](https://github.com/wide3751/sommelier)** — 为每个请求挑选模型和推理强度的 Claude Code mod：Jev 用 score 评估请求需要多少推理，用 noul 判断它是否开启新任务、是否属于高风险操作，代码再把结果映射到 Haiku、Sonnet、Opus 的阶梯上；可选的 choice 会建议一个技能。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · wide3751 · `TS` · `score` · `noul` · `choice` · 调用点 [`hooks/register.ts`](https://github.com/wide3751/sommelier/blob/HEAD/hooks/register.ts)，2026-11-09 模型阅读</sub>
 
 - **[stuntdouble](https://github.com/ReallyArtificial/stuntdouble)** — 一个即插即用的 /v1/systemone 代理：应用照常调用 Jev，本地决策模型在影子里回答同样的请求，再报告它们是否会做出同样的决策 —— 按问题、按置信区间、按应用自己的 decide() 分别统计，并给出 Brier、ECE、延迟与成本。回答“能不能换成本地模型”这个问题。
   <sub>`开源项目` · Really Artificial · `JS` · `choice` · `score` · `noul` · 调用点 [`src/backends.mjs`](https://github.com/ReallyArtificial/stuntdouble/blob/HEAD/src/backends.mjs)，2026-09-24 阅读 · ⚠ `疑似 AI 生成`</sub>
