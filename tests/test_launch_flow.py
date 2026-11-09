@@ -540,6 +540,19 @@ class OpenTest(unittest.TestCase):
         launch_week.open_week(data, ROWS, repository="o/r", ask=None, mutate=None)
         self.assertEqual(data["status"], "open")
 
+    def test_a_post_and_its_issue_note_name_the_rule_its_votes_are_counted_under(self):
+        # Every rule has its line, so a new rule cannot open a week whose posts describe an older one.
+        self.assertEqual(set(launch_week.RULES_TEXT), set(launches.RULES))
+        rule = f"(rules {launches.CURRENT_RULES})"
+        _, text = launch_week.post("2026-W47", launch("alpha"), ROWS["alpha"])
+        self.assertIn(launch_week.RULES_TEXT[launches.CURRENT_RULES], text)
+        self.assertIn(rule, launch_week.opened_note("2026-W47", launch("alpha", discussion=1)))
+        for name in set(launches.RULES) - {launches.CURRENT_RULES}:
+            self.assertNotIn(f"(rules {name})", text)
+        # The current rule settles a ring itself, and the post says how.
+        self.assertIn("ring_young", launches.RULES[launches.CURRENT_RULES])
+        self.assertIn("those count for nothing", text)
+
     def test_user_text_in_a_post_is_inert(self):
         title, text = launch_week.post("2026-W47", launch("alpha", tagline="@all [x](javascript:y) <b>"), ROWS["alpha"])
         self.assertIn("@​all \\[x\\]\\(javascript:y\\) \\<b\\>", text)
