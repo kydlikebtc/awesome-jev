@@ -4,7 +4,7 @@
 
 本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。
 
-本目录收录的全部独立测量报告和负面结果 —— 共 89 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
+本目录收录的全部独立测量报告和负面结果 —— 共 90 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
@@ -241,6 +241,12 @@
   <sub>`基准测试` · carlaiau · `Py` · `noul` · [调用点](https://github.com/carlaiau/jev-reranking/blob/HEAD/reranking/jev.py)，2026-11-07 模型阅读</sub>
 
   > 在 TREC DL 2019 段落集上，作者的 Jev 运行 nDCG@10 为 0.68，已发表的最佳 BERT 运行为 0.74；在文档集上为 0.75 对 0.72；这些都是作者自己的运行结果。另有交互式模拟器可重放 WSJ 结果。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-07 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
+- **[Jev vs. the right baselines](https://github.com/ickma2311/jev-baselines-eval)**<br>
+  两项预注册的独立研究：Jev 以 choice 在 CLINC150 和 Banking77 上分类客户意图，作为升级级联的关卡，与小型和前沿大模型以及有监督编码器对比；第二项研究检验在提示注入下，Jev 的置信度能否区分被劫持的决策和抵抗住的决策。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ickma2311 · `Py` · `choice` · `noul` · [调用点](https://github.com/ickma2311/jev-baselines-eval/blob/HEAD/code/common.py)，2026-11-10 模型阅读</sub>
+
+  > 作者的结论：两个级联实验结果都不明确；在注入条件下，Jev 的置信度把被劫持的决策排在抵抗住的决策之上。第一项研究经 Vercel AI Gateway 调用 Jev，第二项直接调用。参与对比的其他模型不是 Jev。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-10 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[Jev × DimABSA](https://github.com/zhangyiqun018/jev-dimabsa)**<br>
   只用 Jev、不生成文本也不微调的 SemEval-2026 任务 3（DimABSA）参赛系统：用 score 把每个方面词的效价和唤醒度放到 1 到 9 的刻度上，再用 choice 和 noul 抽取方面词、观点词和类别组成的三元组与四元组。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>

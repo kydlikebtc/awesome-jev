@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 268 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 271 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 258 · wire shape 6 · example only 0 · independent reports 12 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 260 · wire shape 7 · example only 0 · independent reports 12 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -645,6 +645,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-model-tokengate](https://github.com/Thanh-Mathieu95/jev-model-tokengate)** — An OpenAI-compatible proxy that sits between your LLM and your users. It evaluates each sliding window of tokens while the response is still streaming and cuts the stream before a violating token can reach the screen. <sub>(upstream description)</sub>
   <sub>`Project` · thanh-mathieu95 · `JS` · call site [`evaluator.js`](https://github.com/Thanh-Mathieu95/jev-model-tokengate/blob/HEAD/evaluator.js), read 2026-09-22</sub>
 
+- **[jev-oncall](https://github.com/mingleiw/jev-oncall)** — On-call tooling in which Jev triages each production alert (a noul on whether it is actionable, a severity score, a choice of team and of a duplicate) and, in a root-cause benchmark, picks the next diagnostic check and the supported hypothesis while code enforces budgets. <sub>(written by a model)</sub>
+  <sub>`Project` · mingleiw · `Py` · `noul` · `score` · `choice` · call site [`triage.py`](https://github.com/mingleiw/jev-oncall/blob/HEAD/triage.py), read by a model 2026-11-10</sub>
+
 - **[jev-physical-ai](https://github.com/robokrunch/jev-physical-ai)** — Putting TypeSafe's Jev to work on robots, fleets, and edge hardware — real measured numbers, honestly caveated. <sub>(upstream description)</sub>
   <sub>`Project` · robokrunch · `Py` · call site [`code/demo-a.py`](https://github.com/robokrunch/jev-physical-ai/blob/HEAD/code/demo-a.py), read 2026-09-22</sub>
 
@@ -774,6 +777,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[ps2-ai-agent](https://github.com/opaielsheikh/ps2-ai-agent)** — Autonomous PlayStation 2 AI Agent with real-time visual telemetry HUD powered by TypeSafe Jev System One <sub>(upstream description)</sub>
   <sub>`Project` · opaielsheikh · `Py` · call site [`agent_bridge.py`](https://github.com/opaielsheikh/ps2-ai-agent/blob/HEAD/agent_bridge.py), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
 
+- **[Qualixar Jev Decision Layer](https://github.com/qualixar/jev-decision-layer)** — Plugin and local MCP server that lets an agent hand Jev one closed question at a time, such as which tool, skill or format fits, whether a draft meets its brief, or which team a request belongs to, from 55 recipes; local policy gates check each typed answer and record a receipt. <sub>(written by a model)</sub>
+  <sub>`Plugin` · qualixar · `Py` · `choice` · `score` · `noul` · call site [`plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py`](https://github.com/qualixar/jev-decision-layer/blob/HEAD/plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py), read by a model 2026-11-10</sub>
+
 - **[reflex](https://github.com/kaustav1996/reflex)** — A coding agent and personal assistant with System One reflexes (TypeSafe Jev) on top of the Pi coding agent <sub>(upstream description)</sub>
   <sub>`Plugin` · kaustav1996 · `TS` · call site [`src/extensions/typesafe/provider.ts`](https://github.com/kaustav1996/reflex/blob/HEAD/src/extensions/typesafe/provider.ts), read 2026-09-24</sub>
 
@@ -833,6 +839,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[ui-generator-instinct-jev](https://github.com/joevidev/ui-generator-instinct-jev)** — Jev as a UI generator: describe a case in free text and Jev answers only typed questions over real option sets, picking and configuring an actual shadcn/ui component or page block. It never writes code or copy.
   <sub>`Project` · joevidev · `TS` · call site [`lib/typesafe-client.ts`](https://github.com/joevidev/ui-generator-instinct-jev/blob/HEAD/lib/typesafe-client.ts), read 2026-09-24 · ⚠ `no licence`</sub>
+
+- **[WebJev](https://github.com/lexmount/webjev)** — Jev-like decision model tuned for browser use that picks the next action on a live page in one forward pass, served behind Jev's POST /v1/systemone shape and OpenRouter's decisions route, in front of vLLM, so a Jev browser agent can swap it in. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · lexmount · `Py` · cited file [`evaluation/serving/adapter.py`](https://github.com/lexmount/webjev/blob/HEAD/evaluation/serving/adapter.py), read by a model 2026-11-10 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[Jev (Fully Tested) + Browser Use: FASTEST AI Agent I'VE TRIED YET!](https://www.youtube.com/watch?v=SNJ3yuJ_QwY)** — Wires Jev into Browser Use to drive a browser automation agent.
   <sub>`Video` · AICodeKing · ⚠ `unverified claims`</sub>

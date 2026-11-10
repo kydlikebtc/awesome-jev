@@ -11,10 +11,10 @@ Content scoring puts a number or a band on something: a passage's relevance, a r
 <!-- readings:start -->
 |  | Rows |
 | --- | ---: |
-| Filed under this pattern | 184 |
-| Citing one file in their repository (`evidence`) | 180 |
+| Filed under this pattern | 186 |
+| Citing one file in their repository (`evidence`) | 182 |
 | Of those, the file read by a person (`evidence.read_on`) | 159 |
-| Of those, read only by a model (`evidence.model_read_on`) | 21 |
+| Of those, read only by a model (`evidence.model_read_on`) | 23 |
 | Of those, no reading recorded (a script's match only) | 0 |
 <!-- readings:end -->
 
@@ -37,11 +37,11 @@ Content scoring puts a number or a band on something: a passage's relevance, a r
 <!-- primitives:start -->
 | Primitive | A person read the code calling it | A model read the code calling it | Only the text signal shows it |
 | --- | ---: | ---: | ---: |
-| `choice` | 14 | 16 | 54 |
-| `score` | 12 | 17 | 43 |
-| `noul` | 11 | 17 | 64 |
+| `choice` | 14 | 18 | 54 |
+| `score` | 12 | 19 | 43 |
+| `noul` | 11 | 19 | 64 |
 
-Primitives recorded together on one row (`question_types`, a person's or a model's reading): `choice` + `score` + `noul` 24 · `choice` + `score` 3 · `choice` 2 · `noul` 2 · `choice` + `noul` 1 · `score` 1 · `score` + `noul` 1.
+Primitives recorded together on one row (`question_types`, a person's or a model's reading): `choice` + `score` + `noul` 26 · `choice` + `score` 3 · `choice` 2 · `noul` 2 · `choice` + `noul` 1 · `score` 1 · `score` + `noul` 1.
 <!-- primitives:end -->
 
 All three primitives appear, and many rows record all three, because scoring projects tend to be toolkits that expose each one: a SQL extension, a set of workflow blocks, a command-line tool. Score is for an ordered scale whose levels you can describe; Noul is for one criterion at a time, when you want to know which rule failed; Choice is for categories with no order, like worldmonitor-shadow-mode's threat category.

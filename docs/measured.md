@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 89 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 90 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -243,6 +243,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   <sub>`Benchmark` · carlaiau · `Py` · `noul` · [call site](https://github.com/carlaiau/jev-reranking/blob/HEAD/reranking/jev.py), read by a model 2026-11-07</sub>
 
   > On TREC DL 2019 passages its Jev runs score nDCG@10 0.68 against 0.74 for the best published BERT run, and on the document set 0.75 against 0.72; these are the author's own runs. An interactive simulator replays the WSJ results. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-07; a maintainer has not yet read the call site.
+
+- **[Jev vs. the right baselines](https://github.com/ickma2311/jev-baselines-eval)**<br>
+  Two pre-registered studies: Jev classifies customer intents on CLINC150 and Banking77 as a choice, as the gate of an escalation cascade, against LLMs and a supervised encoder; the second asks whether, under prompt injection, Jev's confidence separates hijacked decisions from resisted ones. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ickma2311 · `Py` · `choice` · `noul` · [call site](https://github.com/ickma2311/jev-baselines-eval/blob/HEAD/code/common.py), read by a model 2026-11-10</sub>
+
+  > The author's conclusions: both cascade experiments were ambiguous, and under injection Jev's confidence ranked hijacked decisions above resisted ones. The first study calls Jev through Vercel AI Gateway, the second directly. The other models compared are not Jev. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-10; a maintainer has not yet read the call site.
 
 - **[Jev × DimABSA](https://github.com/zhangyiqun018/jev-dimabsa)**<br>
   SemEval-2026 Task 3 (DimABSA) system built on Jev alone, without generation or fine-tuning: scores place each aspect's valence and arousal on a 1 to 9 scale, and choices and nouls pull out aspect, opinion and category triplets and quadruplets. <sub>(written by a model)</sub><br>
