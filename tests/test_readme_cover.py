@@ -216,21 +216,21 @@ class FeedTests(unittest.TestCase):
         ]
         for weeks, heading, expected in cases:
             with self.subTest(heading=heading), patch.object(board.launches, "weeks", return_value=weeks), \
-                    patch.object(board.launches, "refreshes", return_value=[]):
+                    patch.object(board.launches, "readings", return_value=[]):
                 feed = board.hero([row], "en")
                 self.assertEqual(feed["heading"], heading)
                 self.assertEqual(len(feed["cards"]), 1)
                 self.assertEqual({k: feed["cards"][0][k] for k in expected}, expected)
                 self.assertEqual((feed["cards"][0]["title"], feed["cards"][0]["line"]), ("Alpha", "One line"))
         with patch.object(board.launches, "weeks", return_value=[]), \
-                patch.object(board.launches, "refreshes", return_value=[]):
+                patch.object(board.launches, "readings", return_value=[]):
             feed = board.hero([row], "zh")
             self.assertEqual(feed["heading"], board.HERO["zh"]["steps"])
             self.assertEqual([c["tier"] for c in feed["cards"]], [None, None, None])
         before = {"date": "2026-10-28", "rows": [{"slug": "alpha", "stars": 10}]}
         after = {"date": "2026-11-04", "rows": [{"slug": "alpha", "stars": 60}]}
         with patch.object(board.launches, "weeks", return_value=[]), \
-                patch.object(board.launches, "refreshes", return_value=[before, after]):
+                patch.object(board.launches, "readings", return_value=[before, after]):
             feed = board.hero([row], "en")
             self.assertEqual(feed["heading"], board.HERO["en"]["rising"])
             self.assertEqual(feed["cards"][0]["count"], "+50")

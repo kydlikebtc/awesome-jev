@@ -12,8 +12,9 @@ one page per product, one per maker, and the board itself.
   launches.html, .zh.html    the board: the week running, the last week closed,
                              next week's launches, the past weeks, the
                              products new this week, and the products rising
-                             fastest between the two latest weekly refreshes
-                             (L29 of the plan's third round)
+                             fastest over about a week of star readings
+                             (L29 of the plan's third round; read daily
+                             since 2026-11-10)
   weeks/<week>.html, .zh.html  a closed week's ranking, and the launches
                              removed from it with their reasons (L15)
   badges/<slug>.svg          every product's badge for its README (L13, L30):
@@ -169,11 +170,13 @@ BOARD = {
         "m_read": "When the week opened, a person or a model had read the call site of {read} of {known}.",
         "m_discounted": "{discounted} of {votes} votes counted for less than one.",
         "rising": "Rising in the catalogue: {start} to {end}",
-        "rising_note": "Products whose GitHub stars grew fastest between the two latest weekly refreshes: at least "
-                       "{n} stars gained, in order of the gain as a share of the stars before. Stars are GitHub's "
-                       "count, a popularity signal, not a verdict, and nothing is awarded for rising.",
+        "rising_note": "Products whose GitHub stars grew fastest between the two dates above (every product's "
+                       "stars are read each day, and the newest reading is compared with the one closest to a week "
+                       "before it): at least {n} stars gained, in order of the gain as a share of the stars before. "
+                       "Stars are GitHub's count, a popularity signal, not a verdict, and nothing is awarded for "
+                       "rising.",
         "rising_item": "+{gained} stars, {before} to {after} ({share})",
-        "nothing_rising": "No product gained {n} stars between the two latest weekly refreshes.",
+        "nothing_rising": "No product gained {n} stars between the two dates above.",
     },
     "zh": {
         "title": "发布榜 · awesome-jev",
@@ -225,10 +228,11 @@ BOARD = {
         "m_read": "开榜时，{known} 个中有 {read} 个的调用点已由人或模型读过。",
         "m_discounted": "{votes} 票中有 {discounted} 票按不足一票计。",
         "rising": "目录里上升最快：{start} 至 {end}",
-        "rising_note": "最近两次每周刷新之间，GitHub 星标涨得最快的产品：至少涨了 {n} 个，按涨幅占原有星标的比例排序。"
+        "rising_note": "上面两个日期之间 GitHub 星标涨得最快的产品（每个产品的星标每天读一次，拿最新一次和最接近一周前的那次比较）："
+                       "至少涨了 {n} 个，按涨幅占原有星标的比例排序。"
                        "星标是 GitHub 的计数，是热度信号，不是评价；上升不会得到任何奖励。",
         "rising_item": "+{gained} 星，{before} → {after}（{share}）",
-        "nothing_rising": "最近两次每周刷新之间，没有产品的星标涨到 {n} 个。",
+        "nothing_rising": "上面两个日期之间，没有产品的星标涨到 {n} 个。",
     },
 }
 
@@ -591,8 +595,9 @@ def board_item(launch: dict, row: dict, lang: str, *, result: dict | None, base:
 
 def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_weeks: list[dict],
                labels: sp.Labels, snapshots: list[dict] = ()) -> str:
-    """The board. `snapshots` are the weekly refreshes in history/, oldest
-    first; the two newest say which products are rising (L29)."""
+    """The board. `snapshots` are star readings, oldest first, as
+    launches.readings() picks them; the last two say which products are
+    rising (L29)."""
     b = BOARD[lang]
     path = launches_path(lang)
     body = [
@@ -682,10 +687,10 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
 def rising_section(lang: str, catalog: list[dict], snapshots: list[dict], *,
                    history: dict[str, list[tuple[str, dict]]], weeks_by_id: dict[str, dict],
                    today: dt.date | None) -> list[str]:
-    """The products rising fastest between the two newest weekly refreshes
+    """The products rising fastest between the last two star readings
     (launches.rising), each with its evidence and, when it can launch, the
     filled-in form, or its vote post while it is on the board. Nothing before
-    there are two refreshes."""
+    there are two readings."""
     if len(snapshots) < 2:
         return []
     b = BOARD[lang]
@@ -857,7 +862,7 @@ def pages(catalog: list[dict], patterns: list[dict], labels: sp.Labels, *,
           launch_weeks: list[dict], maker_profiles: dict[str, dict],
           snapshots: list[dict] = ()) -> dict[str, str]:
     """Every file this module writes: path relative to site/ → text.
-    `snapshots` are the weekly refreshes in history/, oldest first."""
+    `snapshots` are star readings, oldest first (launches.readings)."""
     products = sorted((r for r in catalog if launches.is_product(r)), key=lambda r: r["slug"])
     rows = {r["slug"]: r for r in products}
     by_key = {p["key"]: p for p in patterns}

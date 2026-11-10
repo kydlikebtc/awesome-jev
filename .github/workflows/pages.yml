@@ -29,6 +29,7 @@ on:
       - "launches/**"
       - "makers/**"
       - "history/*.json"
+      - "history/daily/*.json"
       - "scripts/_stats.py"
       - "scripts/_markers.py"
       - "scripts/assemble_site.py"

@@ -51,7 +51,7 @@ AFTER = {"date": "2026-11-04", "rows": [{"slug": "alpha", "stars": 60}]}
 def section(weeks: list[dict], snapshots: list[dict] = (), strings: dict = build_readme.EN) -> str:
     page = type("Page", (), {"strings": strings, "lang": strings["lang_code"], "catalog": ROWS})()
     with patch.object(board.launches, "weeks", return_value=weeks), \
-            patch.object(board.launches, "refreshes", return_value=list(snapshots)):
+            patch.object(board.launches, "readings", return_value=list(snapshots)):
         return "\n".join(board.this_weeks_launches(page))
 
 
@@ -115,7 +115,7 @@ class FeedTests(unittest.TestCase):
 class WeekFigureTests(unittest.TestCase):
     def now(self, weeks: list[dict]) -> week.Now:
         with patch.object(board.launches, "weeks", return_value=weeks), \
-                patch.object(board.launches, "refreshes", return_value=[]):
+                patch.object(board.launches, "readings", return_value=[]):
             return week.now_of(ROWS)
 
     def test_the_phase_comes_from_the_week_files(self):

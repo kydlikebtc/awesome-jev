@@ -20,6 +20,14 @@ between the two newest files, and each monthly report those of its month
 ([docs/launches.md](../docs/launches.md#rising)). A star count
 is GitHub's at the refresh: a popularity signal, not a quality verdict.
 
+`daily/` holds the daily star readings (since 2026-11-10): one file per UTC
+day, `daily/YYYY-MM-DD.json`, with each product's slug and GitHub stars,
+written by [`scripts/daily_stars.py`](../scripts/daily_stars.py) in
+[`board-daily.yml`](../.github/workflows/board-daily.yml). The board's rising
+list compares the newest reading with the one closest to a week before it, a
+weekly file here included, so it moves every day. Readings older than two
+weeks are deleted from the folder; git's history keeps them.
+
 `traffic/` holds a second kind of snapshot, once a `TRAFFIC_TOKEN` secret
 exists (since 2026-10-24): GitHub's own traffic figures for this repository
 (views and clones per day, the top ten referrers and paths) for the 14 days
@@ -42,6 +50,10 @@ slug、star、许可证和标记。
 [`docs/shape.zh-CN.md`](../docs/shape.zh-CN.md) 在有三份快照后会读取它们，生成「随时间的变化」表。
 自 2026-11-04 起，发布榜列出最新两份快照之间 star 涨得最快的产品，每份月报列出当月的（[docs/launches.zh-CN.md](../docs/launches.zh-CN.md#上升最快)）。
 star 数是刷新时 GitHub 的计数：热度信号，不是质量结论。
+
+`daily/` 存放每天的星标读数（自 2026-11-10 起）：每个 UTC 日一个文件，`daily/YYYY-MM-DD.json`，记录每个产品的 slug 和 GitHub 星标，
+由 [`board-daily.yml`](../.github/workflows/board-daily.yml) 运行 [`scripts/daily_stars.py`](../scripts/daily_stars.py) 写入。
+发布榜的上升最快列表拿最新一次读数和最接近一周前的那次比较（这里的每周快照也算在内），所以每天都会更新。超过两周的读数会从文件夹删掉，git 历史里仍然保留。
 
 在配置了 `TRAFFIC_TOKEN` secret 之后（自 2026-10-24 起），`traffic/` 存放另一种快照：
 每次每周刷新之前 14 天里 GitHub 为本仓库统计的访问数据（每天的浏览和克隆次数、前十个来源站点和前十个页面），

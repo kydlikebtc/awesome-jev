@@ -32,6 +32,7 @@ needs it.
 | Thursday 14:37 | weekly upkeep task: the judgement work #14, #28 and #32 leave, every line in `docs/held.txt`, the monthly items below, and at most 10 drafted rows | one pull request, which it merges once its checks pass |
 | Friday 00:20 | `launch-collect.yml`: files next week's launches on `main` (again at 06:20 and 12:20, and Saturday and Sunday 06:20, which change nothing when an earlier run did it) | its commit |
 | Every day but Thursday, 00:33 | daily drafting task: what stopped, the repository's open issues and pull requests, the call sites of launches nobody has read, then at most 15 drafted rows | one pull request, which it merges once its checks pass |
+| Every day 01:40 | `board-daily.yml`: reads every product's GitHub stars into `history/daily/`, so the board's rising list covers the week to that day, and regenerates both READMEs | its commit |
 | Every day 07:30 | `watchdog.yml`: every scheduled workflow succeeded within 8 days (32 for a monthly one), and a row entered `catalog.json` within 10 | an issue labelled `watchdog` |
 | The 1st, 09:00 | `data-release.yml`: tags main `catalog-<YYYY-MM>` for the month that ended and publishes a Release with `catalog.json`, `retired.json` and the schema | the Release |
 | The 15th, 09:00 | `award.yml`: once the board's year has ended (first on 2027-09-15), writes the year's decision award; otherwise does nothing | its commit |
@@ -132,7 +133,10 @@ Since 2026-11-03 the site has a launch board over the catalogue
 ([docs/launches.md](docs/launches.md)): a page per product and per maker, a
 page per closed week, a README badge per product (listed, launching, then a
 top-three place), and the board itself, which also lists the products whose
-stars rose fastest between the two latest weekly refreshes (`history/`). The
+stars rose fastest over about a week. Since 2026-11-10 `board-daily.yml`
+reads every product's stars each day into `history/daily/`, and the list
+compares the newest reading with the one closest to a week before it
+(`launches.readings`), so it moves every day rather than every Wednesday. The
 pages are written with the others at deploy (`scripts/site_products.py`).
 
 Both READMEs open with the board (`scripts/readme/board.py` reads
@@ -142,10 +146,11 @@ the repository owner's GitHub avatar, the product and its line, and a box
 with the vote link, the day it opens, the medal and counted votes, or the
 stars gained), and the README cover draws the same cards. "Launch your
 product" opens with a figure of the week's four stations that marks where
-the board is now (`scripts/build_readme_week.py`). So the two commits that
-change those files, Friday's filing and Monday's open, regenerate the
-READMEs and figures before their checks, as the weekly refresh already
-does; a week file pushed without them would fail the next strict check.
+the board is now (`scripts/build_readme_week.py`). So the commits that
+change those files, Friday's filing, Monday's open and each day's star
+reading, regenerate the READMEs and figures before their checks, as the
+weekly refresh already does; a file pushed without them would fail the next
+strict check.
 The site's board draws the same feed with a lettered tile in place of the
 avatar, since the site loads nothing from another host.
 

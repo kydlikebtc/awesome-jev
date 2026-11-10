@@ -598,8 +598,8 @@ def pages(catalog: list[dict], retired: list[dict], patterns: list[dict], taxono
     """Every file this module writes: path relative to site/ → text. Beside
     its own pages, the launch board's (site_products.py): one per product and
     per maker, and the board, built from `launch_weeks` (launches/*.json) and
-    `maker_profiles` (makers/*.json); the board's rising list reads the two
-    newest of `snapshots`, the weekly refreshes in history/, oldest first."""
+    `maker_profiles` (makers/*.json); the board's rising list reads the last
+    two of `snapshots`, star readings oldest first (launches.readings)."""
     import site_products  # it builds on this module's shell, so it is imported here
 
     labels = Labels(taxonomy)

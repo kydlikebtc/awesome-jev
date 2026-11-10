@@ -18,7 +18,8 @@ decided here, so the three cannot drift apart:
   * the ISO weeks the board runs in (week_of, week_days)
   * how votes are weighted and a week is ranked (weigh, rank; RULES)
   * what a closed week is measured by (week_measures, gate_streak; L28)
-  * which products rose fastest between two weekly refreshes (rising; L29)
+  * which products rose fastest over about a week of star readings (rising,
+    readings; L29, read daily since 2026-11-10)
   * what a product's README badge says (badge_state, badge_line; L30)
 
 What launches/*.json and makers/*.json may hold, beyond what the schemas can
@@ -66,6 +67,9 @@ query = _load_query()
 LAUNCH_DIR = ROOT / "launches"
 MAKER_DIR = ROOT / "makers"
 HISTORY_DIR = ROOT / "history"
+# The daily star readings (scripts/daily_stars.py, board-daily.yml; since
+# 2026-11-10), beside the weekly refreshes in history/.
+DAILY_DIR = HISTORY_DIR / "daily"
 LAUNCH_SCHEMA = ROOT / "schema" / "launch.schema.json"
 MAKER_SCHEMA = ROOT / "schema" / "maker.schema.json"
 
@@ -86,14 +90,18 @@ RELAUNCH_DAYS = 60
 LAST_DAY = 3
 
 # Rising (L29 of the plan's third round, 2026-11-04): the products whose GitHub
-# stars grew fastest between two weekly refreshes (history/), so the board says
-# what people are starring even in a week with few launches. A product is listed
-# once it gained at least RISING_MIN stars, by its gain as a share of the stars
-# it had before, then by the gain; the board shows RISING_SHOWN. Stars are
-# GitHub's count at each refresh, a popularity signal, not a verdict, and
-# nothing is awarded for rising.
+# stars grew fastest over about a week, so the board says what people are
+# starring even in a week with few launches. A product is listed once it gained
+# at least RISING_MIN stars, by its gain as a share of the stars it had before,
+# then by the gain; the board shows RISING_SHOWN. Stars are GitHub's count at
+# each reading, a popularity signal, not a verdict, and nothing is awarded for
+# rising. Until 2026-11-10 the two readings were the two latest weekly
+# refreshes, so the list moved once a week; since then board-daily.yml reads
+# every product's stars each day (history/daily/), and the list compares the
+# newest reading with the one closest to RISING_DAYS before it (readings).
 RISING_MIN = 10
 RISING_SHOWN = 10
+RISING_DAYS = 7
 
 # Evidence tiers, strongest first (query.LAUNCH_TIERS, which the MCP server's
 # launch tools and the site's api/v1/launches.json read too).
@@ -245,8 +253,10 @@ def new_this_week(catalog: list[dict]) -> tuple[str | None, list[dict]]:
 
 def rising(catalog: list[dict], before: dict | None, after: dict | None, *,
            limit: int = RISING_SHOWN) -> list[dict]:
-    """The products whose stars rose fastest from snapshot `before` to snapshot
-    `after` (two history/<date>.json payloads, older first), fastest first:
+    """The products whose stars rose fastest from reading `before` to reading
+    `after` (two payloads with dated `rows` of slug and stars, older first: a
+    weekly refresh in history/ or a daily reading in history/daily/, as
+    readings() picks them), fastest first:
     {"row", "before", "after", "gained"} each. A row either snapshot lacks a
     count for, a row no longer catalogued, a quiet row and a row that is not a
     product are left out, and so is one that gained fewer than RISING_MIN."""
@@ -444,22 +454,60 @@ def weeks(directory: pathlib.Path = LAUNCH_DIR) -> list[dict]:
     return [found[k] for k in sorted(found) if isinstance(found[k], dict)]
 
 
-def refreshes(directory: pathlib.Path = HISTORY_DIR, last: int = 2) -> list[dict]:
-    """The `last` weekly refreshes in history/ (one per Wednesday, written by
-    scripts/snapshot_stats.py), oldest first: what rising() compares. Only
-    files named by their date are read, and one that does not parse or holds
-    no rows is left out, so a broken file costs the list, never the site."""
+def _reading(path: pathlib.Path) -> dict | None:
+    """One file of star readings, or None when it does not parse or holds no
+    rows, so a broken file costs the list, never the site."""
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if isinstance(payload, dict) and isinstance(payload.get("rows"), list):
+        return payload
+    return None
+
+
+def _dated(directory: pathlib.Path) -> list[pathlib.Path]:
+    """The files in `directory` named by a date, oldest first."""
     if not directory.is_dir():
         return []
-    out = []
-    for path in sorted(p for p in directory.glob("*.json") if DAY.match(p.stem))[-last:]:
-        try:
-            payload = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            continue
-        if isinstance(payload, dict) and isinstance(payload.get("rows"), list):
-            out.append(payload)
-    return out
+    return sorted(p for p in directory.glob("*.json") if DAY.match(p.stem))
+
+
+def refreshes(directory: pathlib.Path = HISTORY_DIR, last: int = 2) -> list[dict]:
+    """The `last` weekly refreshes in history/ (one per Wednesday, written by
+    scripts/snapshot_stats.py), oldest first. Only files named by their date
+    are read, and one that does not parse or holds no rows is left out."""
+    return [r for r in map(_reading, _dated(directory)[-last:]) if r is not None]
+
+
+def readings(directory: pathlib.Path = HISTORY_DIR, daily: pathlib.Path | None = None) -> list[dict]:
+    """The two star readings rising() compares, older first: the newest of
+    the daily readings (history/daily/, scripts/daily_stars.py) and the weekly
+    refreshes (history/), and the one before it dated closest to RISING_DAYS
+    earlier, the older of two as close. On a day both kinds were written, the
+    daily reading is the one read. The weekly refreshes keep the list whole while
+    the daily readings are fewer than a week, or a day was missed: the dates
+    the board prints say which two were compared. Fewer than two readings
+    that parse: as many as there are."""
+    daily = directory / DAILY_DIR.name if daily is None else daily
+    found = [(p.stem, 0, p) for p in _dated(directory)] + [(p.stem, 1, p) for p in _dated(daily)]
+    found.sort(reverse=True)
+    after, newest = None, None
+    for date, _, path in found:
+        after = _reading(path)
+        if after is not None:
+            newest = date
+            break
+    if after is None:
+        return []
+    target = dt.date.fromisoformat(newest) - dt.timedelta(days=RISING_DAYS)
+    earlier = sorted((abs((dt.date.fromisoformat(d) - target).days), d, -kind, path)
+                     for d, kind, path in found if d < newest)
+    for *_, path in earlier:
+        before = _reading(path)
+        if before is not None:
+            return [before, after]
+    return [after]
 
 
 def makers(directory: pathlib.Path = MAKER_DIR) -> dict[str, dict]:

@@ -5,6 +5,7 @@
 # generator, and lint.yml regenerates them (see CONTRIBUTING.md).
 #
 # history/*.json are the weekly refresh's snapshots (scripts/snapshot_stats.py),
+# and history/daily/*.json the daily star readings (scripts/daily_stars.py),
 # written whole like the rest; history/README.md is hand-written.
 #
 # Deliberately not listed: docs/status.md, docs/sources.md,
@@ -26,3 +27,4 @@
 /docs/shape.zh-CN.md linguist-generated
 /examples/index.json linguist-generated
 /history/*.json linguist-generated
+/history/daily/*.json linguist-generated

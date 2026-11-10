@@ -17,7 +17,7 @@ name: retry
 
 on:
   workflow_run:
-    workflows: [award, claims, data-release, description, discover, launch-collect, launch-intake, launch-week, links, lint, metadata, new-entry, pages, watchdog]
+    workflows: [award, board-daily, claims, data-release, description, discover, launch-collect, launch-intake, launch-week, links, lint, metadata, new-entry, pages, watchdog]
     types: [completed]
 
 permissions:

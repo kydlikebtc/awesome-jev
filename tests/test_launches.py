@@ -276,6 +276,51 @@ class RisingTest(unittest.TestCase):
 
         self.assertIn("Rising in the catalogue:", assemble_site.page_files()["launches.html"])
 
+    @staticmethod
+    def folders(tmp: str, weekly: tuple[str, ...], daily: tuple[str, ...]) -> pathlib.Path:
+        folder = pathlib.Path(tmp)
+        (folder / "daily").mkdir()
+        for date in weekly:
+            (folder / f"{date}.json").write_text(json.dumps({**stars(date, alpha=1), "kind": "weekly"}))
+        for date in daily:
+            (folder / "daily" / f"{date}.json").write_text(json.dumps({**stars(date, alpha=1), "kind": "daily"}))
+        (folder / "README.md").write_text("not a reading")
+        return folder
+
+    def pair(self, folder: pathlib.Path) -> list[tuple[str, str]]:
+        return [(x["date"], x["kind"]) for x in launches.readings(folder)]
+
+    def test_rising_compares_the_newest_reading_with_the_one_closest_to_a_week_before(self):
+        # Since 2026-11-10 the stars are read every day (board-daily.yml), so
+        # the list moves every day; the weekly refreshes fill in until a week
+        # of daily readings is on file, and a day that was missed.
+        with tempfile.TemporaryDirectory() as tmp:
+            weekly = ("2026-10-21", "2026-10-28", "2026-11-04")
+            # Only weekly refreshes: the two latest, as before 2026-11-10.
+            self.assertEqual(self.pair(self.folders(tmp, weekly, ())),
+                             [("2026-10-28", "weekly"), ("2026-11-04", "weekly")])
+        with tempfile.TemporaryDirectory() as tmp:
+            # The first daily reading: against the weekly refresh six days before.
+            self.assertEqual(self.pair(self.folders(tmp, weekly, ("2026-11-10",))),
+                             [("2026-11-04", "weekly"), ("2026-11-10", "daily")])
+        with tempfile.TemporaryDirectory() as tmp:
+            # A week of daily readings: exactly seven days, and on a Wednesday
+            # the daily reading is the newer of the two that day.
+            daily = tuple(f"2026-11-{d:02d}" for d in range(10, 19))
+            folder = self.folders(tmp, (*weekly, "2026-11-11", "2026-11-18"), daily)
+            self.assertEqual(self.pair(folder), [("2026-11-11", "daily"), ("2026-11-18", "daily")])
+            # Days 11-11 missed: two readings as close, 11-10 and 11-12; the older wins.
+            (folder / "daily" / "2026-11-11.json").unlink()
+            (folder / "2026-11-11.json").unlink()
+            self.assertEqual(self.pair(folder), [("2026-11-10", "daily"), ("2026-11-18", "daily")])
+            # A broken newest reading is passed over for the next one.
+            (folder / "daily" / "2026-11-18.json").write_text("{ broken")
+            (folder / "2026-11-18.json").unlink()
+            self.assertEqual(self.pair(folder), [("2026-11-10", "daily"), ("2026-11-17", "daily")])
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(self.pair(self.folders(tmp, (), ("2026-11-10",))), [("2026-11-10", "daily")])
+            self.assertEqual(launches.readings(pathlib.Path(tmp) / "none"), [])
+
     def test_nothing_without_two_refreshes_and_a_share_reads_as_a_percentage(self):
         self.assertEqual(launches.rising(CATALOG, None, stars("2026-11-04", alpha=40)), [])
         self.assertEqual((launches.share(35, 5), launches.share(15, 0), launches.share(100, 1000)),
@@ -628,7 +673,7 @@ class PagesTest(unittest.TestCase):
         self.assertNotIn("Rising in the catalogue", build()["launches.html"])
         flat = site_pages.pages(CATALOG, [], PATTERNS, TAXONOMY, maker_profiles={},
                                 snapshots=[stars("2026-10-28", alpha=5), stars("2026-11-04", alpha=6)])
-        self.assertIn("No product gained 10 stars between the two latest weekly refreshes.", flat["launches.html"])
+        self.assertIn("No product gained 10 stars between the two dates above.", flat["launches.html"])
 
     def test_every_product_has_a_badge_and_its_page_gives_the_line(self):
         files = build(weeks=[CLOSED, OPEN])
