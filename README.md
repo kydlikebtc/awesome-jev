@@ -113,62 +113,62 @@ In a shuffled order and without counts until the week closes, so nobody votes fo
 
 Products built on Jev, launched by their makers once a week, or hunted by anyone who found one. People vote with a thumbs-up on each launch's post in [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches); the week closes on Sunday 23:59 UTC with a rank. Votes say how many people cared; the evidence beside each launch says who read the code that calls Jev. The two are never added together, and a rank is not this catalogue's recommendation. [The board](https://kydlikebtc.github.io/awesome-jev/launches.html) has every week, a page per product and per maker, and the rising list.
 
-### ★ Rising: 2026-10-28 to 2026-11-04
+### ★ Rising: 2026-11-04 to 2026-11-10
 
 <table>
 <tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jeveryword.html"><img src="https://github.com/jkrup.png?size=96" width="48" height="48" alt="jeveryword"></a></td>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/kojev.html"><img src="https://github.com/ItisNoMatter.png?size=96" width="48" height="48" alt="kojev"></a></td>
 <td>
 
-**[jeveryword](https://kydlikebtc.github.io/awesome-jev/products/jeveryword.html)** — Text extraction with Jev: field extraction, PII detection and exact quotes, built on TypeSafe's Jev. <sub>(upstream description)</sub><br>
-<sub>5 → 40 stars (+700%) · 👤 a person read the call site · [Vote ↗](https://github.com/kydlikebtc/awesome-jev/discussions/108)</sub>
+**[kojev](https://kydlikebtc.github.io/awesome-jev/products/kojev.html)** — Kotlin Multiplatform client for Jev that returns your own enum/sealed types instead of string keys. <sub>(upstream description)</sub><br>
+<sub>10 → 22 stars (+120%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=kojev&title=Launch%3A%20kojev)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+35</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+12</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
 <td>
 
 **[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — Desktop automation that reads the system accessibility tree and decides which button, menu or field to act on next.<br>
-<sub>1,827 → 14,206 stars (+678%) · 👤 a person read the call site · [Vote ↗](https://github.com/kydlikebtc/awesome-jev/discussions/107)</sub>
+<sub>14,206 → 20,568 stars (+45%) · 👤 a person read the call site · [Vote ↗](https://github.com/kydlikebtc/awesome-jev/discussions/107)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+12,379</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+6,362</b><br><sub>stars</sub></td>
 </tr>
 <tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html"><img src="https://github.com/mattt.png?size=96" width="48" height="48" alt="anydecisionmodel"></a></td>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jevgraph.html"><img src="https://github.com/chenmingtang830.png?size=96" width="48" height="48" alt="jevgraph"></a></td>
 <td>
 
-**[anydecisionmodel](https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html)** — A Swift package for typed decisions from language models (probabilities, choices, and scores), with support for local MLX models and the TypeSafe Jev API. <sub>(upstream description)</sub><br>
-<sub>24 → 50 stars (+108%) · 👤 a person read the call site · [Vote ↗](https://github.com/kydlikebtc/awesome-jev/discussions/110)</sub>
+**[jevgraph](https://kydlikebtc.github.io/awesome-jev/products/jevgraph.html)** — Evidence-backed knowledge graph construction with typed Jev relation decisions <sub>(upstream description)</sub><br>
+<sub>47 → 64 stars (+36%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgraph&title=Launch%3A%20jevgraph)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+26</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+17</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html"><img src="https://github.com/agent-labs-dev.png?size=96" width="48" height="48" alt="fastbrowse"></a></td>
 <td>
 
 **[fastbrowse](https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html)** — Browser agent: each page is indexed into candidate controls and Jev chooses the next one, so it cannot click what is not there; a Gemini Flash LLM plans and reads, and answers cite the page. Its maintainer recorded 99.2% on 46 tasks against 97.8% for hosted Browser Use, at under a tenth of the cost. <sub>(written by a model)</sub><br>
-<sub>120 → 173 stars (+44%) · 🤖 a model read the call site, no person yet · [Vote ↗](https://github.com/kydlikebtc/awesome-jev/discussions/109)</sub>
+<sub>173 → 220 stars (+27%) · 🤖 a model read the call site, no person yet · [Vote ↗](https://github.com/kydlikebtc/awesome-jev/discussions/109)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+53</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+47</b><br><sub>stars</sub></td>
 </tr>
 <tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html"><img src="https://github.com/leepokai.png?size=96" width="48" height="48" alt="jev-guard"></a></td>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/vector-graph-rag.html"><img src="https://github.com/zilliztech.png?size=96" width="48" height="48" alt="vector-graph-rag"></a></td>
 <td>
 
-**[jev-guard](https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html)** — Security hook for coding agents: before each tool call Jev judges how much harm it could do, whether the user asked for it and whether it follows untrusted text, and code denies, asks or allows; afterwards Jev scans the result for prompt injection. For Claude Code, Codex, Cursor and more. <sub>(written by a model)</sub><br>
-<sub>130 → 144 stars (+11%) · 👤 a person read the call site · [Vote ↗](https://github.com/kydlikebtc/awesome-jev/discussions/111)</sub>
+**[vector-graph-rag](https://kydlikebtc.github.io/awesome-jev/products/vector-graph-rag.html)** — Graph RAG that stores entities and relations as vectors in Milvus, no graph database. Two-stage Jev reranking asks a noul per candidate relation against the query, then scores the passages of the top relations; by the author's run, 86.61% average Recall@5 on MuSiQue and 2Wiki, 1,000 questions each. <sub>(written by a model)</sub><br>
+<sub>263 → 294 stars (+12%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=vector-graph-rag&title=Launch%3A%20vector-graph-rag)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+14</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+31</b><br><sub>stars</sub></td>
 </tr>
 </table>
 
-<sub>The 10 products whose GitHub stars grew fastest between the two latest weekly refreshes, at least 10 stars gained, by the gain as a share of the stars before; the first 5 here. Stars are GitHub's count, a popularity signal, not a verdict, and nothing is awarded for rising. [All 10 on the board](https://kydlikebtc.github.io/awesome-jev/launches.html).</sub>
+<sub>The 10 products whose GitHub stars grew fastest between the two dates above (every product's stars are read each day, and the newest reading is compared with the one closest to a week before it), at least 10 stars gained, by the gain as a share of the stars before; the first 5 here. Stars are GitHub's count, a popularity signal, not a verdict, and nothing is awarded for rising. [All 10 on the board](https://kydlikebtc.github.io/awesome-jev/launches.html).</sub>
 
 ## Launch your product
 
