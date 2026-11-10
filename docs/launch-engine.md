@@ -48,7 +48,7 @@ fork replaces those parts with its own:
 | --- | --- |
 | `scripts/launch_intake.py` | `draft_from_issue.py` (reading the issue form), `lint.py` (the schema validator) |
 | `scripts/check_launches.py` | `lint.py` (`lint.validate`, a minimal JSON Schema draft-07 validator) |
-| `scripts/site_products.py` | this site's page shell (`site_pages.py`); another site renders `launches.weeks()` its own way. Its rising list takes two weekly snapshots of each row's stars (`history/<date>.json`, written here by `scripts/snapshot_stats.py`; `launches.refreshes()` reads them); without them the board has no rising list |
+| `scripts/site_products.py` | this site's page shell (`site_pages.py`); another site renders `launches.weeks()` its own way. Its rising list takes two readings of each product's stars about a week apart (`history/<date>.json`, written here weekly by `scripts/snapshot_stats.py`, and `history/daily/<date>.json`, written daily by `scripts/daily_stars.py`; `launches.readings()` picks the two); without two the board has no rising list |
 
 The workflows: `.github/workflows/launch-intake.yml`, `launch-collect.yml`,
 `launch-week.yml`, `launch-votes.yml`, `launch-probe.yml`, `award.yml` and

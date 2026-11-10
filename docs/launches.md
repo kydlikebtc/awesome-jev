@@ -40,7 +40,7 @@ form, or follow "Launch it" on the product's page, which fills the product in.
 | Telling each launch | On Monday each launch's issue gets the link to its vote post and is closed; when the week closes, its result, and a top three its badge line | Built (2026-11-04) |
 | One click from a product | "Launch it" and "Made this?" on every product page open the launch and confirm-entry forms with the product filled in; the board's new products have "Launch it" too | Built (2026-11-04) |
 | Measures | Each closed week keeps how many accounts voted and how many came back, and each launch who had read its call site when it opened ([below](#how-the-board-is-measured)) | Built (2026-11-04) |
-| Rising | The products whose GitHub stars grew fastest between the two latest weekly refreshes, on the board, and over the month in each monthly report ([below](#rising)) | Built (2026-11-04) |
+| Rising | The products whose GitHub stars grew fastest over about a week, on the board, and over the month in each monthly report ([below](#rising)); read every day since 2026-11-10 | Built (2026-11-04) |
 | A badge for every product | One line for a product's README whose picture says it is listed, then that it is launching, then its top-three place; every product page shows the line ([below](#the-readme-badge)) | Built (2026-11-04) |
 | Link previews | Every product, maker, week and board page names the site's preview card, so a link shared anywhere shows one | Built (2026-11-04) |
 | Nothing waits for a person | Every case the launch check and the close used to hold for a maintainer has a rule ([below](#decisions-2026-11-05)); a failed run tries again by itself; the award is written by its rule | Built (2026-11-05) |
@@ -193,13 +193,22 @@ weeks in a row so far. The rules for both are in
 
 ## Rising
 
-The board lists the products whose GitHub stars grew fastest between the two
-latest weekly refreshes (the snapshots in [history/](../history/), one each
-Wednesday): those that gained at least 10 stars, in order of the gain as a
-share of the stars they had before, then of the gain, ten at most. A quiet
-product (no push in 60 days) is left out, as from the new products. Each
-monthly report lists the same over its month, from its first snapshot to its
-last.
+The board lists the products whose GitHub stars grew fastest over about a
+week: those that gained at least 10 stars, in order of the gain as a share of
+the stars they had before, then of the gain, ten at most. A quiet product (no
+push in 60 days) is left out, as from the new products. Each monthly report
+lists the same over its month, from its first weekly snapshot to its last.
+
+Since 2026-11-10 every product's stars are read every day
+([`board-daily.yml`](../.github/workflows/board-daily.yml),
+[`scripts/daily_stars.py`](../scripts/daily_stars.py)) into
+[history/daily/](../history/daily/), and the list compares the newest reading
+with the one closest to seven days before it, a weekly refresh in
+[history/](../history/) included (`readings` in
+[`scripts/launches.py`](../scripts/launches.py)). So the list, both READMEs and
+the board page move every day; the dates over the list say which two readings
+it compares. Until then it compared the two latest weekly refreshes, and moved
+on Wednesdays.
 
 It is there so the board says something every week, launches or not, and so
 a hunter has somewhere to start: a rising product that can launch has
@@ -323,7 +332,8 @@ hand. Each case that used to wait for a maintainer now has a rule, in
 | `scripts/launch_week.py` | opens a week, closes the one before, and tells each launch's issue | |
 | `scripts/launch_votes.py` | reads one Discussion's votes | |
 | `scripts/site_products.py` | the product, maker, week and board pages, the rising list, the badges and the weekly results feed | |
-| `history/<date>.json` | each weekly refresh's counts and stars; the rising list reads the two newest | `metadata.yml` |
+| `history/<date>.json` | each weekly refresh's counts and stars; the monthly report's rising list reads them, and the board's when no daily reading is closer | `metadata.yml` |
+| `history/daily/<date>.json` | every product's stars, read each day and kept two weeks; the board's rising list compares the newest with the one closest to a week before | `board-daily.yml` |
 | `src/awesome_jev_mcp/query.py` | what the MCP server's launch tools and `api/v1/launches.json` answer | |
 | `scripts/award.py` | the year's award: one shortlist per pattern, and its first as the award | |
 | `docs/award/<year>.md` | the year's award, once the year has ended | `award.yml` |

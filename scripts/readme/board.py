@@ -11,8 +11,10 @@ it is built on follows.
 Everything here is read from files, never from the clock, so two builds of the
 same tree write the same bytes: the weeks in launches/ (written by
 launch-collect.yml on Fridays and launch-week.yml on Mondays, both of which
-regenerate the READMEs in the same commit) and the two latest weekly refreshes
-in history/ (metadata.yml, which regenerates too). Which week is running,
+regenerate the READMEs in the same commit) and the two star readings the
+rising list compares (launches.readings: the daily readings in history/daily/
+from board-daily.yml and the weekly refreshes in history/ from metadata.yml,
+both of which regenerate too). Which week is running,
 which is filed next and which closed last is decided as the board page on the
 site decides it (site_products.board_page), from each week's `status`.
 
@@ -142,7 +144,7 @@ def read_board(catalog: list[dict]) -> Board:
     coming = next(
         (w for w in weeks if w.get("status") == "scheduled" and (not running or w["week"] > running["week"])), None
     )
-    return Board({r["slug"]: r for r in catalog}, weeks, running, closed, coming, launches.refreshes())
+    return Board({r["slug"]: r for r in catalog}, weeks, running, closed, coming, launches.readings())
 
 
 def tagline(launch: dict, lang: str) -> str:
@@ -263,7 +265,8 @@ def rising_state(board: Board, row: dict, strings: dict, today) -> str:
 
 
 def rising_list(board: Board, catalog: list[dict], strings: dict) -> list[str]:
-    """The products rising fastest between the two latest weekly refreshes."""
+    """The products rising fastest between the two star readings
+    launches.readings() picks: the newest, and the one closest to a week before."""
     if len(board.snapshots) < 2:
         return []
     lang = strings["lang_code"]

@@ -85,12 +85,13 @@ EN = {
     ),
     "board_rising_h": "★ Rising: {start} to {end}",
     "board_rising_note": (
-        "The {shown} products whose GitHub stars grew fastest between the two latest weekly refreshes, at least "
+        "The {shown} products whose GitHub stars grew fastest between the two dates above (every product's stars "
+        "are read each day, and the newest reading is compared with the one closest to a week before it), at least "
         "{n} stars gained, by the gain as a share of the stars before; the first {listed} here. Stars are "
         "GitHub's count, a popularity signal, not a verdict, and nothing is awarded for rising. "
         "[All {shown} on the board]({board})."
     ),
-    "board_rising_none": "No product gained {n} stars between the two latest weekly refreshes.",
+    "board_rising_none": "No product gained {n} stars between the two dates above.",
     "board_stars": "{before} → {after} stars ({share})",
     "board_launch_it": "Launch it ↗",
     "board_again": "can launch again from {day}",
@@ -511,11 +512,12 @@ ZH = {
     ),
     "board_rising_h": "★ 上升最快：{start} 至 {end}",
     "board_rising_note": (
-        "最近两次每周刷新之间，GitHub 星标涨得最快的 {shown} 个产品：至少涨了 {n} 个，按涨幅占原有星标的比例排序，"
+        "上面两个日期之间 GitHub 星标涨得最快的 {shown} 个产品（每个产品的星标每天读一次，拿最新一次和最接近一周前的那次比较）："
+        "至少涨了 {n} 个，按涨幅占原有星标的比例排序，"
         "这里列前 {listed} 个。星标是 GitHub 的计数，是热度信号，不是评价；上升不会得到任何奖励。"
         "[发布榜上的全部 {shown} 个]({board})。"
     ),
-    "board_rising_none": "最近两次每周刷新之间，没有产品的星标涨到 {n} 个。",
+    "board_rising_none": "上面两个日期之间，没有产品的星标涨到 {n} 个。",
     "board_stars": "{before} → {after} 星（{share}）",
     "board_launch_it": "发布它 ↗",
     "board_again": "{day} 起可再次发布",

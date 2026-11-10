@@ -40,7 +40,7 @@
 | --- | --- |
 | `scripts/launch_intake.py` | `draft_from_issue.py`（读 issue 表单）、`lint.py`（schema 校验） |
 | `scripts/check_launches.py` | `lint.py`（`lint.validate`，一个最小的 JSON Schema draft-07 校验器） |
-| `scripts/site_products.py` | 本站的页面外壳（`site_pages.py`）；别的站点用自己的方式渲染 `launches.weeks()`。上升最快的列表需要每行星标的两份每周快照（`history/<date>.json`，本仓库由 `scripts/snapshot_stats.py` 写入，`launches.refreshes()` 读取），没有快照的话榜单就没有这个列表 |
+| `scripts/site_products.py` | 本站的页面外壳（`site_pages.py`）；别的站点用自己的方式渲染 `launches.weeks()`。上升最快的列表需要每个产品相隔大约一周的两次星标读数（本仓库每周由 `scripts/snapshot_stats.py` 写入 `history/<date>.json`，每天由 `scripts/daily_stars.py` 写入 `history/daily/<date>.json`，`launches.readings()` 挑出两次），不足两次的话榜单就没有这个列表 |
 
 工作流：`.github/workflows/launch-intake.yml`、`launch-collect.yml`、`launch-week.yml`、`launch-votes.yml`、`launch-probe.yml`、`award.yml` 和 `retry.yml`（失败的运行再跑一次），以及 issue 表单 `.github/ISSUE_TEMPLATE/launch.yml`。这些都不等人：收件检查或收榜拿不准的情况都有规则（docs/launches.zh-CN.md，“已定的事（2026-11-05）”）。`tests/test_launches.py`、`tests/test_launch_flow.py`、`tests/test_mcp_launches.py`、`tests/test_launch_award.py` 不联网就能测试全部内容。
 

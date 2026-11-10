@@ -1,0 +1,124 @@
+# Refreshes the launch board and both READMEs every day (since 2026-11-10,
+# when the owner asked for daily and weekly jobs that keep them up to date
+# with nothing left for them to do).
+#
+# The weekly jobs already rewrite the board: launch-week.yml opens and closes
+# the weeks on Mondays, metadata.yml reads every repository's facts on
+# Wednesdays, and launch-collect.yml files next week's launches on Fridays;
+# every merge to main regenerates the READMEs too (lint.yml). Between those
+# days nothing on the board moved. This job reads every product's GitHub stars
+# into history/daily/<UTC date>.json (scripts/daily_stars.py), so the board's
+# rising list compares the newest reading with the one closest to a week
+# before it (launches.readings) and moves every day, then regenerates what the
+# list feeds: both READMEs, their covers and everything else regenerate.py
+# writes, so a file a bot push left stale is caught here too.
+#
+# Like launch-collect.yml and launch-week.yml, it commits, runs lint's checks on
+# that commit, and pushes to main, rebasing onto anything pushed meanwhile. It
+# never forces. If the commit no longer applies, it reads again from the new
+# tip of main, which is safe because a reading only writes its own file, up to
+# three times; then it fails, and retry.yml runs it once more. Then it asks
+# pages.yml to rebuild the site's board. Its own concurrency group: sharing
+# launch-week's would let a queued run of one replace a queued run of the
+# other.
+#
+# Injection review: no `github.event.*` value reaches a `run:` block, and the
+# workflow takes no inputs. What GitHub returns is a star count, checked to be
+# an integer before it is written.
+name: board-daily
+
+on:
+  schedule:
+    # Every day 01:40 UTC, after the daily drafting task (00:33). GitHub starts
+    # scheduled runs late when it is busy (4.5 to 10 hours late here in
+    # October and November 2026), still inside the same UTC day.
+    - cron: "40 1 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: board-daily
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Read the stars and refresh the board and the READMEs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      # The checks below are lint's, and lint runs its node tests on this one.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+
+      - name: Read every product's stars
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -o pipefail
+          python3 scripts/daily_stars.py | tee /tmp/reading.log
+
+      - name: Commit the reading with the READMEs it feeds
+        id: commit
+        run: |
+          python3 scripts/regenerate.py > /dev/null
+          git add -A history/daily README.md README.zh-CN.md docs llms.txt examples/index.json examples/README.md skills/awesome-jev/SKILL.md
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "board: daily star reading and README refresh" -m "$(tail -n 1 /tmp/reading.log)"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Run the checks on that commit before pushing it
+        id: checks
+        if: steps.commit.outputs.changed == 'true'
+        run: python3 scripts/check.py --ci --quick
+
+      - name: Push to main, reading again from the new main if it moved
+        id: land
+        if: steps.checks.outcome == 'success'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -o pipefail
+          for attempt in 1 2 3; do
+            if git pull -q --rebase origin main && git push -q origin HEAD:main; then
+              echo "landed=main" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "main moved and the commit no longer applies (attempt $attempt): reading again from the new main"
+            sleep $((attempt * 15))
+            git fetch -q origin main
+            git reset -q --hard origin/main
+            python3 scripts/daily_stars.py | tee /tmp/reading.log
+            python3 scripts/regenerate.py > /dev/null
+            git add -A history/daily README.md README.zh-CN.md docs llms.txt examples/index.json examples/README.md skills/awesome-jev/SKILL.md
+            if git diff --cached --quiet; then
+              echo "main already has today's reading"
+              echo "landed=main" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            git commit -q -m "board: daily star reading and README refresh" -m "$(tail -n 1 /tmp/reading.log)"
+            python3 scripts/check.py --ci --quick
+          done
+          echo "::error title=Today's star reading is not on main::main kept moving during three attempts. retry.yml runs this once more, from the tip of main."
+          exit 1
+
+      - name: Rebuild the site with the board
+        if: steps.land.outputs.landed == 'main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run pages.yml --ref main

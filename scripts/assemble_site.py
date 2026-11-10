@@ -130,7 +130,7 @@ def page_files() -> dict[str, str]:
     return site_pages.pages(
         catalog, retired, patterns, taxonomy,
         launch_weeks=launches.weeks(), maker_profiles=launches.makers(),
-        snapshots=launches.refreshes(),
+        snapshots=launches.readings(),
     )
 
 
