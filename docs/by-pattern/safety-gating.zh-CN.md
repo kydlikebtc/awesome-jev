@@ -4,11 +4,11 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 162 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 165 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#safety-gating)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#safety-gating)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 155 · 接口形态 3 · 仅示例 0 · 独立报告 12 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 158 · 接口形态 3 · 仅示例 0 · 独立报告 12 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -251,6 +251,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[claude-jev-plugin](https://github.com/dr-dimitru/claude-jev-plugin)** — 给 Claude Code 的 Jev 语义护栏。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · dr-dimitru · `TS` · 调用点 [`dist/client.d.ts`](https://github.com/dr-dimitru/claude-jev-plugin/blob/HEAD/dist/client.d.ts)，2026-09-22 阅读</sub>
 
+- **[ClauJev](https://github.com/civalski/claujev)** — 让 Jev 在回复到达你之前检查 Claude 工作的 Claude Code 插件：用 score 和 noul 把本轮真实的 git diff 与 Claude 自称做了的事对比，看起来没做完就让它回去补完；Jev 还会给每个请求打分以建议推理强度，并为子智能体选路由。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · civalski · `JS` · `choice` · `score` · `noul` · 调用点 [`plugins/claujev/hooks/claujev.mjs`](https://github.com/civalski/claujev/blob/HEAD/plugins/claujev/hooks/claujev.mjs)，2026-11-10 模型阅读</sub>
+
 - **[construct-auto-classifier](https://github.com/godspede/construct-auto-classifier)** — 面向 AI 编码智能体 shell 命令的安全关卡（OpenCode、Antigravity）：先用快速的结构规则，再交给 TypeSafe Jev 判断。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · godspede · `TS` · 调用点 [`src/classifier/jev-client.ts`](https://github.com/godspede/construct-auto-classifier/blob/HEAD/src/classifier/jev-client.ts)，2026-09-24 阅读</sub>
 
@@ -292,6 +295,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — 可观测的浏览器潜行游戏：Jev 做类型化的守卫判断，确定性代码掌管世界规则。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts)，2026-09-22 阅读</sub>
+
+- **[Hiep Paseo plugins](https://github.com/hieppp/hiep-paseo-plugin)** — Paseo 智能体应用的一组插件，其中三个用到 Jev：一个权限门，用 noul 判断 shell 命令是否只读，用 choice 决定允许、拒绝还是交给你；一个编排器，把委派的任务路由到某个模型和推理强度；以及一个 MCP 评估工具。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · hieppp · `TS` · `noul` · `choice` · 调用点 [`plugins/jev-permission-gate/server/jev-worker.ts`](https://github.com/hieppp/hiep-paseo-plugin/blob/HEAD/plugins/jev-permission-gate/server/jev-worker.ts)，2026-11-10 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[hush](https://github.com/emreozyoruk/hush)** — 不确定时保持沉默的 issue 分拣：校准过的标签，含垃圾与重复检测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · emreozyoruk · `JS` · 调用点 [`src/jev.js`](https://github.com/emreozyoruk/hush/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
@@ -481,6 +487,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[sloppy-jevs-extension](https://github.com/neddes/sloppy-jevs-extension)** — 开源 Chrome 扩展：用 Jev 过滤 AI 生成的文字与广告。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · neddes · `JS` · 调用点 [`background.js`](https://github.com/neddes/sloppy-jevs-extension/blob/HEAD/background.js)，2026-09-22 阅读</sub>
+
+- **[Social Risk · Qwen3-VL + Jev](https://github.com/TianJinWeiBoss520/social-risk-qwen-jev)** — 关于中文图文表情包中厌女内容的研究项目：经过 LoRA 微调的 Qwen3-VL 把每条内容转成结构化证据，Jev 按固定政策回答一个 noul，判断内容是否攻击或贬低女性；代码再把概率分成风险等级。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · TianJinWeiBoss520 · `Py` · `noul` · 调用点 [`experiments/v1/src/run_ltedi_jev_cloud20.py`](https://github.com/TianJinWeiBoss520/social-risk-qwen-jev/blob/HEAD/experiments/v1/src/run_ltedi_jev_cloud20.py)，2026-11-10 模型阅读</sub>
 
 - **[solvi](https://github.com/solvi-ai/solvi)** — Python 决策运行时，内置 System One API 适配器：由 Jev、LLM 或本地模型给出类型化答案，再由硬性检查、规则和校准阈值决定采纳、弃权或转交人工；每个决策都保存为可重放的哈希链记录。 <sub>(机翻)</sub>
   <sub>`SDK` · mxkuzn · `Py` · `choice` · `noul` · 调用点 [`src/solvi/core/deciders/systemone.py`](https://github.com/solvi-ai/solvi/blob/HEAD/src/solvi/core/deciders/systemone.py)，2026-10-23 阅读 · ⚠ `作者自荐`</sub>

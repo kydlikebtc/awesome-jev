@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 181 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 184 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 172 · 接口形态 5 · 仅示例 0 · 独立报告 10 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 175 · 接口形态 5 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -317,6 +317,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[dsh-jev-verify](https://github.com/xienda/dsh-jev-verify)** — 给 DeepSeek Harness 的 Jev 决策工具与实时验证基准。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · xienda · `JS` · 调用点 [`lib/index.js`](https://github.com/xienda/dsh-jev-verify/blob/HEAD/lib/index.js)，2026-09-22 阅读</sub>
 
+- **[Evaluating and Benchmarking the System One Model Jev](https://github.com/AppliedMachineLearning-Lab/jev-benchmarking)** — 一篇 arXiv 论文的代码：在 37 个公开数据集上以 choice、noul 和 score 零样本测试 Jev，并用同样的请求给两个开源权重大模型打分作对比；另有一个序列决策部分，让 Jev 在 ALFWorld、TextWorld、FrozenLake 等五个环境里每步选一个动作。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · AppliedMachineLearning-Lab · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_benchmarking/runner.py`](https://github.com/AppliedMachineLearning-Lab/jev-benchmarking/blob/HEAD/jev_benchmarking/runner.py)，2026-11-10 模型阅读</sub>
+
 - **[github-issue-classification-using-jev](https://github.com/KalyanM45/GitHub-Issue-Classification-Using-Jev)** — 基于 Jev 的 GitHub issue 分类器。 <sub>(机翻)</sub>
   <sub>`开源项目` · kalyanm45 · `Py` · 调用点 [`src/ghtriage/adapters/typesafe.py`](https://github.com/KalyanM45/GitHub-Issue-Classification-Using-Jev/blob/HEAD/src/ghtriage/adapters/typesafe.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
@@ -334,6 +337,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[instruct-jev](https://github.com/ctaxnagomi/instruct-jev)** — INSTRUCT_JEV：Jev／System One 指令语料库（choice／noul／score）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ctaxnagomi · `Py` · 调用点 [`DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py`](https://github.com/ctaxnagomi/instruct-jev/blob/HEAD/DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py)，2026-09-22 阅读</sub>
+
+- **[Jev PR Quality](https://github.com/rawtreedb/jev-pr-quality)** — 用 Jev 审查每个 pull request 的 GitHub Action：在 19 个软件质量维度上，每个维度用 noul 判断是否适用，用 score 打 1 到 10 分，再用 choice 选出最严重的缺陷；它在 PR 上发评论，任何维度低于阈值时检查失败。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · rawtreedb · `JS` · `noul` · `score` · `choice` · 调用点 [`scripts/jev-review/review.mjs`](https://github.com/rawtreedb/jev-pr-quality/blob/HEAD/scripts/jev-review/review.mjs)，2026-11-10 模型阅读</sub>
+
+- **[Jev × DimABSA](https://github.com/zhangyiqun018/jev-dimabsa)** — 只用 Jev、不生成文本也不微调的 SemEval-2026 任务 3（DimABSA）参赛系统：用 score 把每个方面词的效价和唤醒度放到 1 到 9 的刻度上，再用 choice 和 noul 抽取方面词、观点词和类别组成的三元组与四元组。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · zhangyiqun018 · `Py` · `score` · `choice` · `noul` · 调用点 [`jev/client.py`](https://github.com/zhangyiqun018/jev-dimabsa/blob/HEAD/jev/client.py)，2026-11-10 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[jev-as-quant](https://github.com/jiayylu/jev-as-quant)** — 把类型化 System-1 决策作为量化研究栈的判断层。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jiayylu · `Py` · 调用点 [`src/jevquant/engines/jev.py`](https://github.com/jiayylu/jev-as-quant/blob/HEAD/src/jevquant/engines/jev.py)，2026-09-22 阅读</sub>

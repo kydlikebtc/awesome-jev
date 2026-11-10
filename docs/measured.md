@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 87 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 89 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -216,6 +216,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 
   > In its 72-hour official match (2026-09-24 to 09-27) Jev ended at +0.87% and a Brier score of 0.249, Eikos at -3.40% and 0.266; these are the author's figures, from frozen, hashed code. Real prices, simulated money, no orders. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-08; a maintainer has not yet read the call site.
 
+- **[Evaluating and Benchmarking the System One Model Jev](https://github.com/AppliedMachineLearning-Lab/jev-benchmarking)**<br>
+  Code for an arXiv paper that runs Jev zero-shot on 37 public datasets as choices, nouls and scores, against two open-weight LLMs scored on the same requests, plus a sequential track where Jev picks one action per step in five environments such as ALFWorld, TextWorld and FrozenLake. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · AppliedMachineLearning-Lab · `Py` · `choice` · `noul` · `score` · [call site](https://github.com/AppliedMachineLearning-Lab/jev-benchmarking/blob/HEAD/jev_benchmarking/runner.py), read by a model 2026-11-10</sub>
+
+  > The comparison models (Qwen and Gemma, scored through their own option probabilities) are not Jev. The raw responses are published on Zenodo, so the tables can be rebuilt without API access. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-10; a maintainer has not yet read the call site.
+
 - **[Jev and open decision-model benchmarks](https://github.com/akitaonrails/jev-docs-benchmarks)**<br>
   Benchmarks how reliably decision models apply supplied rules, how their probabilities behave and what decisions cost: hosted Jev against Microsoft Decision-1, OpenAI Decisions and open models such as Clef, Decision 3.0, Laya, Kev and Jebadiah, with frozen inputs and raw responses. <sub>(written by a model)</sub><br>
   <sub>`Benchmark` · akitaonrails · `Py` · `choice` · [call site](https://github.com/akitaonrails/jev-docs-benchmarks/blob/HEAD/benchmark/tools/hosted.py), read by a model 2026-11-07</sub>
@@ -237,6 +243,14 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   <sub>`Benchmark` · carlaiau · `Py` · `noul` · [call site](https://github.com/carlaiau/jev-reranking/blob/HEAD/reranking/jev.py), read by a model 2026-11-07</sub>
 
   > On TREC DL 2019 passages its Jev runs score nDCG@10 0.68 against 0.74 for the best published BERT run, and on the document set 0.75 against 0.72; these are the author's own runs. An interactive simulator replays the WSJ results. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-07; a maintainer has not yet read the call site.
+
+- **[Jev × DimABSA](https://github.com/zhangyiqun018/jev-dimabsa)**<br>
+  SemEval-2026 Task 3 (DimABSA) system built on Jev alone, without generation or fine-tuning: scores place each aspect's valence and arousal on a 1 to 9 scale, and choices and nouls pull out aspect, opinion and category triplets and quadruplets. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · zhangyiqun018 · `Py` · `score` · `choice` · `noul` · [call site](https://github.com/zhangyiqun018/jev-dimabsa/blob/HEAD/jev/client.py), read by a model 2026-11-10</sub>
+
+  **Caveats:** `no licence`
+
+  > No LICENSE file. Its official-test figures (Task 1 RMSE 1.0645, the lowest micro aggregate of the 14 teams with all ten corpora) are the author's own report. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-10; a maintainer has not yet read the call site.
 
 - **[jev-acento](https://github.com/marcosmartinez/jev-acento)**<br>
   ¿Jev entiende tu acento? Pre-registered audit of TypeSafe AI's Jev on Spanish — accuracy, calibration and token cost — plus a CLI to run the same comparison on your own labelled data. <sub>(upstream description)</sub><br>

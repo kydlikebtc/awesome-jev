@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 266 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 268 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 256 · 接口形态 6 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 258 · 接口形态 6 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -501,6 +501,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ego-jev-ultrafast](https://github.com/shikaizhong-design/ego-jev-ultrafast)** — Jev 驱动你的轻量浏览器：每步一次类型化选择请求，单文件零依赖。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · shikaizhong-design · `JS` · 调用点 [`jego.js`](https://github.com/shikaizhong-design/ego-jev-ultrafast/blob/HEAD/jego.js)，2026-09-22 阅读</sub>
 
+- **[Evaluating and Benchmarking the System One Model Jev](https://github.com/AppliedMachineLearning-Lab/jev-benchmarking)** — 一篇 arXiv 论文的代码：在 37 个公开数据集上以 choice、noul 和 score 零样本测试 Jev，并用同样的请求给两个开源权重大模型打分作对比；另有一个序列决策部分，让 Jev 在 ALFWorld、TextWorld、FrozenLake 等五个环境里每步选一个动作。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · AppliedMachineLearning-Lab · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_benchmarking/runner.py`](https://github.com/AppliedMachineLearning-Lab/jev-benchmarking/blob/HEAD/jev_benchmarking/runner.py)，2026-11-10 模型阅读</sub>
+
 - **[Example: speculative fan-out](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/03-fan-out/main.py)** — 一次问清操作本身、以及每个可能操作各自的目标 —— 于是浏览器的一步永远不需要第二次往返。
   <sub>`代码片段` · `Py` · `choice` · `noul` · 调用点 [`examples/03-fan-out/main.py`](https://github.com/kydlikebtc/awesome-jev/blob/HEAD/examples/03-fan-out/main.py)，2026-09-22 阅读 · ⚠ `代码未实测`</sub>
 
@@ -728,6 +731,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[JevLight](https://github.com/usail-hkust/jevlight)** — 在 SUMO 仿真中用 Jev 控制交通信号，沿用 LLMLight 和 CoLLMLight 的约定：每个路口的排队和等待时间作为状态，用一个 choice 问题选出下一个相位；CoJevLight 还会加入相邻路口，另可记录一个关于是否拥堵的 noul。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · usail-hkust · `Py` · `choice` · `noul` · 调用点 [`jevlight/jev_client.py`](https://github.com/usail-hkust/jevlight/blob/HEAD/jevlight/jev_client.py)，2026-11-07 模型阅读 · ⚠ `无许可证`</sub>
+
+- **[jevman](https://github.com/joch/jevman)** — 由决策模型驱动的吃豆人：每到一个路口，Jev 用 choice 选出吃豆人（或幽灵）的下一个方向，概率直接画在棋盘上；可以看它玩、和它对战，或让不同模型互相对抗，还有一个比较哪个模型玩得最好的排行榜。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · joch · `TS` · `choice` · 调用点 [`server/jev.ts`](https://github.com/joch/jevman/blob/HEAD/server/jev.ts)，2026-11-10 模型阅读</sub>
 
 - **[jevnav](https://github.com/dtduc-git/jevnav)** — 为浏览器智能体提供“页面真相”，以及可回放、可测试、可审计的决策。Jev 选择元素，高风险操作需要把关。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · dtduc-git · `Py` · 调用点 [`src/jevnav/decide.py`](https://github.com/dtduc-git/jevnav/blob/HEAD/src/jevnav/decide.py)，2026-09-24 阅读</sub>

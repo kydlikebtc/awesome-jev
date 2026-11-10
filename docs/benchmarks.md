@@ -6,7 +6,7 @@
 
 Every `kind: benchmark` row that carries a `measurement`: what its own author measured, indexed field by field from the author's report. This repository measured and re-ran none of it. A **direction** is the author's own conclusion about Jev for that task, author-stated and not reproduced here, and is left blank where the author states none in words. Task, dataset and comparator names are recorded as the author names them.
 
-**87** benchmark rows; **27** carry a measurement. Of those, a person has read **0** against their report (`measurement.read_on`) and only a model **0** (`measurement.model_read_on`); a script or a model filled in the other **27** and nobody has read them back. The review queue lists [the unread rows](review-queue.md#measurement-unread) and [those only a model has read](review-queue.md#model-read). How the fields were first filled in: [docs/method.md](method.md). Field rules: [CONTRIBUTING](../CONTRIBUTING.md#field-rules).
+**89** benchmark rows; **27** carry a measurement. Of those, a person has read **0** against their report (`measurement.read_on`) and only a model **0** (`measurement.model_read_on`); a script or a model filled in the other **27** and nobody has read them back. The review queue lists [the unread rows](review-queue.md#measurement-unread) and [those only a model has read](review-queue.md#model-read). How the fields were first filled in: [docs/method.md](method.md). Field rules: [CONTRIBUTING](../CONTRIBUTING.md#field-rules).
 
 ## Direction by decision pattern
 
@@ -14,7 +14,7 @@ Benchmark rows per decision pattern, by the direction their authors state. A row
 
 | Pattern | favourable (author-stated, not reproduced here) | mixed (author-stated, not reproduced here) | unfavourable (author-stated, not reproduced here) | inconclusive (author-stated, not reproduced here) | none stated | no measurement recorded |
 | --- | --- | --- | --- | --- | --- | --- |
-| Tool selection | · | 1 | · | 1 | 1 | 8 |
+| Tool selection | · | 1 | · | 1 | 1 | 9 |
 | Intent routing | · | 1 | · | · | · | 3 |
 | Context compaction | · | · | 1 | · | · | 1 |
 | Safety gating | · | 2 | · | · | 2 | 8 |
@@ -22,11 +22,11 @@ Benchmark rows per decision pattern, by the direction their authors state. A row
 | Human escalation | · | 4 | · | · | 2 | 4 |
 | Speculative fan-out | · | · | · | · | · | 1 |
 | Search & ranking | 1 | 3 | 1 | · | · | 2 |
-| Structured extraction | · | · | · | · | · | 2 |
-| Classification | · | 1 | 1 | · | 2 | 13 |
+| Structured extraction | · | · | · | · | · | 3 |
+| Classification | · | 1 | 1 | · | 2 | 14 |
 | Document triage | · | 1 | · | · | 1 | · |
 | Support triage | · | · | · | · | 1 | 2 |
-| Content scoring | · | 2 | 1 | · | · | 7 |
+| Content scoring | · | 2 | 1 | · | · | 9 |
 | Overview | · | 3 | · | · | 2 | 24 |
 
 ## By comparator
