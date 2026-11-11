@@ -139,6 +139,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevflow](https://github.com/Mawfyy/jevflow)** — 把概率式 AI 决策做成可组合的后端原语。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · ★10+ · mawfyy · `TS` · 调用点 [`packages/provider-jev/src/index.ts`](https://github.com/Mawfyy/jevflow/blob/HEAD/packages/provider-jev/src/index.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
+- **[jevintegration for SAP Commerce](https://github.com/emenowicz/jev-sap-commerce)** — SAP Commerce 扩展：Jev 为每条商品评论回答四个 noul（是否辱骂、是否垃圾内容、是否含个人数据、是否与商品相关），只有越过你设定的阈值时代码才批准或拒绝；另用 choice 沿类目树逐层建议类目，并建议分类属性值；拿不准的都留给人处理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · emenowicz · `Java` · `noul` · `choice` · 调用点 [`jevintegration/src/org/jevintegration/JevClient.java`](https://github.com/emenowicz/jev-sap-commerce/blob/HEAD/jevintegration/src/org/jevintegration/JevClient.java)，2026-11-08 模型阅读</sub>
+
 - **[Jevline](https://github.com/tsale/jevline)** — 基于安全遥测数据划定事件范围：从一个已确认恶意的进程出发，针对日志所关联的每个进程、账户、主机、地址或域名，询问 Jev 它是否属于同一事件，并逐轮追踪新加入的部分。接近阈值的答案会标记出来交由分析师复核。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · tsale · `TS` · `noul` · 调用点 [`engine/src/jev.ts`](https://github.com/tsale/jevline/blob/HEAD/engine/src/jev.ts)，2026-10-31 模型阅读</sub>
 
@@ -151,11 +154,20 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevwire](https://github.com/Brainwires/jevwire)** — 给智能体的 Jev 决策层：MCP server、可嵌入的 DecisionModel 库，以及一个只做升级的 Claude Code 插件。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · brainwires · `TS` · 调用点 [`src/jev/client.ts`](https://github.com/Brainwires/jevwire/blob/HEAD/src/jev/client.ts)，2026-09-22 阅读</sub>
 
+- **[laya-opencv](https://github.com/uu889/laya-opencv)** — 面向决策模型的本地工作台和安装包（Windows、Linux）。检测方案把 OpenCV 测量值变成规则检查，再向本地 Laya、TypeSafe 的 Jev 或 aiask.me 提出 Choice、Noul 和 Score 问题；规则与模型不一致或置信度低的结果会标记为待人工复核。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · uu889 · `Py` · `choice` · `noul` · `score` · 调用点 [`app/launcher.py`](https://github.com/uu889/laya-opencv/blob/HEAD/app/launcher.py)，2026-11-05 模型阅读</sub>
+
 - **[muse-jev-playbook](https://github.com/Bodila51/muse-jev-playbook)** — 为 Muse 提供的 Jev 决策层：在昂贵的智能体工作之前加一道快速、便宜的 TypeSafe AI 关卡——置信度策略与配方。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · bodila51 · `Py` · 调用点 [`src/jev_client.py`](https://github.com/Bodila51/muse-jev-playbook/blob/HEAD/src/jev_client.py)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
 
+- **[Orchvia](https://github.com/masonlee39/orchvia)** — 在你自己的应用里把 Claude Code 和 Codex 智能体组成团队运行。它的可选路由层向可插拔的评判者（Jev 或纯规则）提出 Choice、Noul 和 Score 类型的问题，判断由哪个智能体接手请求；置信度低于 0.85 或差距小于 0.2 时，提议要等人确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · masonlee39 · `Py` · `choice` · `noul` · `score` · 调用点 [`python/src/orchvia/routing.py`](https://github.com/masonlee39/orchvia/blob/HEAD/python/src/orchvia/routing.py)，2026-11-05 模型阅读</sub>
+
 - **[poorjev](https://github.com/rupeshpoojary9/poorjev)** — 开源的本地 Jev 替代品：一个有可证校准置信度的 System One 决策层。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★10+ · rupeshpoojary9 · `Py` · 引用文件 [`crossbench/jev_client.py`](https://github.com/rupeshpoojary9/poorjev/blob/HEAD/crossbench/jev_client.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
+
+- **[solvi](https://github.com/solvi-ai/solvi)** — Python 决策运行时，内置 System One API 适配器：由 Jev、LLM 或本地模型给出类型化答案，再由硬性检查、规则和校准阈值决定采纳、弃权或转交人工；每个决策都保存为可重放的哈希链记录。 <sub>(机翻)</sub>
+  <sub>`SDK` · ★10+ · mxkuzn · `Py` · `choice` · `noul` · 调用点 [`src/solvi/core/deciders/systemone.py`](https://github.com/solvi-ai/solvi/blob/HEAD/src/solvi/core/deciders/systemone.py)，2026-10-23 阅读 · ⚠ `作者自荐`</sub>
 
 - **[toolgate](https://github.com/RiskAverseTech/toolgate)** — 面向 AI 智能体的开源自动模式：一个校准过的工具调用防火墙。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · riskaversetech · `TS` · 调用点 [`src/backends/typesafe.ts`](https://github.com/RiskAverseTech/toolgate/blob/HEAD/src/backends/typesafe.ts)，2026-09-22 阅读</sub>
@@ -232,12 +244,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevbus](https://github.com/zkjoie/jevbus)** — 一个流式事件总线：路由、订阅与消费都由概率决策决定。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zkjoie · `Rs` · 调用点 [`src/jev/http.rs`](https://github.com/zkjoie/jevbus/blob/HEAD/src/jev/http.rs)，2026-09-22 阅读</sub>
 
-- **[jevintegration for SAP Commerce](https://github.com/emenowicz/jev-sap-commerce)** — SAP Commerce 扩展：Jev 为每条商品评论回答四个 noul（是否辱骂、是否垃圾内容、是否含个人数据、是否与商品相关），只有越过你设定的阈值时代码才批准或拒绝；另用 choice 沿类目树逐层建议类目，并建议分类属性值；拿不准的都留给人处理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · emenowicz · `Java` · `noul` · `choice` · 调用点 [`jevintegration/src/org/jevintegration/JevClient.java`](https://github.com/emenowicz/jev-sap-commerce/blob/HEAD/jevintegration/src/org/jevintegration/JevClient.java)，2026-11-08 模型阅读</sub>
-
-- **[laya-opencv](https://github.com/uu889/laya-opencv)** — 面向决策模型的本地工作台和安装包（Windows、Linux）。检测方案把 OpenCV 测量值变成规则检查，再向本地 Laya、TypeSafe 的 Jev 或 aiask.me 提出 Choice、Noul 和 Score 问题；规则与模型不一致或置信度低的结果会标记为待人工复核。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · uu889 · `Py` · `choice` · `noul` · `score` · 调用点 [`app/launcher.py`](https://github.com/uu889/laya-opencv/blob/HEAD/app/launcher.py)，2026-11-05 模型阅读</sub>
-
 - **[luce](https://github.com/scienthoon/luce)** — Luce：一份校准决策模型的配方 —— 输入一句任务描述，产出一个小模型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · scienthoon · `Py` · 调用点 [`scripts/jev_eval.mjs`](https://github.com/scienthoon/luce/blob/HEAD/scripts/jev_eval.mjs)，2026-09-22 阅读</sub>
 
@@ -250,9 +256,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[opencode-jev-orchestrator](https://github.com/aaronshaf/opencode-jev-orchestrator)** — 让 OpenCode 粘在便宜模型上以保持缓存热度，由 Jev 把困难的轮次升级给更强的模型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · aaronshaf · `TS` · 调用点 [`src/jev.ts`](https://github.com/aaronshaf/opencode-jev-orchestrator/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
-- **[Orchvia](https://github.com/masonlee39/orchvia)** — 在你自己的应用里把 Claude Code 和 Codex 智能体组成团队运行。它的可选路由层向可插拔的评判者（Jev 或纯规则）提出 Choice、Noul 和 Score 类型的问题，判断由哪个智能体接手请求；置信度低于 0.85 或差距小于 0.2 时，提议要等人确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · masonlee39 · `Py` · `choice` · `noul` · `score` · 调用点 [`python/src/orchvia/routing.py`](https://github.com/masonlee39/orchvia/blob/HEAD/python/src/orchvia/routing.py)，2026-11-05 模型阅读</sub>
-
 - **[padflow-jev-evals](https://github.com/zsavage8/padflow-jev-evals)** — 来自某土地开发 SaaS 的类型化决策基准：schema、匿名标注数据与运行器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · zsavage8 · `Py` · 调用点 [`scripts/run_baseline.py`](https://github.com/zsavage8/padflow-jev-evals/blob/HEAD/scripts/run_baseline.py)，2026-09-22 阅读</sub>
 
@@ -264,9 +267,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[qwen-rlcd](https://github.com/shamazharikh/qwen-rlcd)** — 基于 Qwen3.5-0.8B 的 Jev 风格校准决策模型（Choice／Score／Noul）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · shamazharikh · `Py` · 引用文件 [`scripts/bench_fork.py`](https://github.com/shamazharikh/qwen-rlcd/blob/HEAD/scripts/bench_fork.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身` `无许可证`</sub>
-
-- **[solvi](https://github.com/solvi-ai/solvi)** — Python 决策运行时，内置 System One API 适配器：由 Jev、LLM 或本地模型给出类型化答案，再由硬性检查、规则和校准阈值决定采纳、弃权或转交人工；每个决策都保存为可重放的哈希链记录。 <sub>(机翻)</sub>
-  <sub>`SDK` · mxkuzn · `Py` · `choice` · `noul` · 调用点 [`src/solvi/core/deciders/systemone.py`](https://github.com/solvi-ai/solvi/blob/HEAD/src/solvi/core/deciders/systemone.py)，2026-10-23 阅读 · ⚠ `作者自荐`</sub>
 
 - **[spending-effort-with-jev](https://github.com/Yaxin9Luo/spending-effort-with-jev)** — Claude Code mod：读取你发出的每条消息，用 choice 问 Jev 这个任务值得哪个 /effort 档位，再用 noul 判断一项长时间托管的任务是否还有含糊之处；会话当前档位看起来不对时，提供一键切换，并提醒需求不清。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · Yaxin9Luo · `TS` · `choice` · `noul` · 调用点 [`plugins/spending-effort-with-jev/hooks/judge.ts`](https://github.com/Yaxin9Luo/spending-effort-with-jev/blob/HEAD/plugins/spending-effort-with-jev/hooks/judge.ts)，2026-11-10 模型阅读</sub>

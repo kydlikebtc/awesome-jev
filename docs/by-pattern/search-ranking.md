@@ -45,6 +45,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[FastMCP jev_search transform](https://github.com/PrefectHQ/fastmcp/blob/main/fastmcp_slim/fastmcp/experimental/transforms/jev_search.py)** — Two-stage MCP tool search: a wide Choice coarse-ranks the whole catalogue, then a shortlist gets full descriptions plus one Noul each to decide whether it does the job at all.
   <sub>`Project` · ★10k+ · `Py` · `choice` · `noul` · call site [`fastmcp_slim/fastmcp/experimental/transforms/jev_search.py`](https://github.com/PrefectHQ/fastmcp/blob/HEAD/fastmcp_slim/fastmcp/experimental/transforms/jev_search.py), read 2026-09-22</sub>
 
+- **[Hindsight](https://github.com/vectorize-io/hindsight)** — Agent memory server that can hand two jobs to a decision model: re-ranking a recall pool with one Noul per candidate, optionally dropping unhelpful and duplicate memories, and settling easy consolidation cases with Choice questions before the LLM sees them. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10k+ · vectorize-io · `Py` · `noul` · `choice` · call site [`hindsight-api-slim/hindsight_api/engine/decision_model.py`](https://github.com/vectorize-io/hindsight/blob/HEAD/hindsight-api-slim/hindsight_api/engine/decision_model.py), read by a model 2026-11-05</sub>
+
 - **[jcode: memory recall without embeddings](https://github.com/1jehuang/jcode)** — Replaces the whole retrieval stack for memory recall — no embeddings, no BM25, no reranker — with one batched Noul per candidate memory.
   <sub>`Project` · ★10k+ · `Rs` · `noul` · call site [`crates/jcode-base/src/jev.rs`](https://github.com/1jehuang/jcode/blob/HEAD/crates/jcode-base/src/jev.rs), read 2026-09-22</sub>
 
@@ -141,8 +144,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Cheshi](https://github.com/CheshiAI/Cheshi)** — Jev-powered conversation memory: find past sessions and revisit decisions with original sources. A macOS workspace for OpenAI Codex. Manage AI conversations and agents, explore code with CodeGraph, and work with Git, Ghostty terminals, and Apple Notes in one app. <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · cheshiai · `C` · call site [`desktop/lib/typesafe-connection.mts`](https://github.com/CheshiAI/Cheshi/blob/HEAD/desktop/lib/typesafe-connection.mts), read 2026-09-24</sub>
 
+- **[every](https://github.com/sufianetaouil/every)** — Ask a yes/no question of every function in a codebase. Ranked answers in seconds, for cents. Grep whose pattern is a question, powered by TypeSafe Jev. <sub>(upstream description)</sub>
+  <sub>`Project` · ★10+ · sufianetaouil · `Py` · call site [`reference/probe_jev.py`](https://github.com/sufianetaouil/every/blob/HEAD/reference/probe_jev.py), read 2026-09-22</sub>
+
 - **[grev](https://github.com/aurorainfra/grev)** — Unix filters that ask questions instead of matching patterns: `grev 'is a vegan meal' menu.txt` keeps the lines Jev says yes to, with related tools that use a choice's confidence or a path score. Pins jev-1.13.0 because thresholds are tuned per model version. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · aurorainfra · `Go` · call site [`internal/jev/price.go`](https://github.com/aurorainfra/grev/blob/HEAD/internal/jev/price.go), read by a model 2026-10-24</sub>
+
+- **[Hermes Switchyard](https://github.com/bgrablin/hermes-switchyard)** — Hermes Agent plugin that hands a session's small decisions to Jev and acts on the answers within limits you set: the reasoning effort each turn needs, which skill to load, which control to click in computer use, and re-ranking past-session search, with a local receipt of each. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · bgrablin · `Py` · `choice` · `noul` · `score` · call site [`hermes_switchyard/client.py`](https://github.com/bgrablin/hermes-switchyard/blob/HEAD/hermes_switchyard/client.py), read by a model 2026-11-07</sub>
 
 - **[hermes-jev](https://github.com/keeltrace/hermes-nerve)** — Typed System One decisions, ranking, verification, and an opt-in Hermes tool gate using TypeSafe Jev.
   <sub>`Project` · ★10+ · keeltrace · `Py` · call site [`hermes_nerve/client.py`](https://github.com/keeltrace/hermes-nerve/blob/HEAD/hermes_nerve/client.py), read 2026-09-22</sub>
@@ -158,6 +167,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev RAG](https://github.com/aifabrice/jev-rag)** — Indexes local documents with SQLite FTS5/BM25, then asks one Jev Noul per candidate passage and sorts by the returned relevance probability before optionally generating a cited answer.
   <sub>`Project` · ★10+ · aifabrice · `Py` · `noul` · call site [`local_kb.py`](https://github.com/aifabrice/jev-rag/blob/HEAD/local_kb.py), read 2026-09-26 · ⚠ `3rd-party key` `AI-written` `self-submitted`</sub>
+
+- **[JEV Reranking Comparisons](https://github.com/carlaiau/jev-reranking)** — Benchmark of Jev as a zero-shot reranker: one noul per query and candidate asks whether it is relevant, and the probabilities reorder BM25 runs on MS MARCO passage and document sets (TREC DL 2019) and TREC-1 WSJ, against published BERT rerankers, with time and cost. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · ★10+ · carlaiau · `Py` · `noul` · call site [`reranking/jev.py`](https://github.com/carlaiau/jev-reranking/blob/HEAD/reranking/jev.py), read by a model 2026-11-07</sub>
 
 - **[jev-rag-benchmark](https://github.com/erendikmenn/jev-rag-benchmark)** — Reproducible benchmark for measuring Jev reranking quality, latency, and cost in RAG <sub>(upstream description)</sub>
   <sub>`Benchmark` · ★10+ · erendikmenn · `Py` · call site [`src/jev_rag_benchmark/rerankers.py`](https://github.com/erendikmenn/jev-rag-benchmark/blob/HEAD/src/jev_rag_benchmark/rerankers.py), read 2026-09-22 · author's conclusion: favourable (author-stated, not reproduced here)</sub>
@@ -179,6 +191,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[JevGPT: Thinking Fast and Slow in Autonomous Research](https://github.com/sunyasheng/JevGPT)** — Research agent from arXiv 2610.18272. GPT-5.5 plans searches and writes the answer; in BrowseComp-Plus QA, Jev answers a Choice over numbered source lines (where is the answer) and a Noul (does the region address it) per document region and query, in parallel. GPT gets the original lines.
   <sub>`Project` · ★10+ · sunyasheng · `TS` · `Py` · `choice` · `noul` · call site [`runtime/pi-serini/src/extensions/jev_find_v1.ts`](https://github.com/sunyasheng/JevGPT/blob/HEAD/runtime/pi-serini/src/extensions/jev_find_v1.ts) · ⚠ `3rd-party key` `unverified claims` `self-submitted`</sub>
+
+- **[JevPDF](https://github.com/kylemclaren/jevpdf)** — Searches a PDF by meaning. pdf.js extracts each page's lines in the browser and Jev answers one Noul per line ("does this line answer the query?"), at most 16 lines per request with the page text as shared state. Lines at p ≥ 0.55 are highlighted in probability order; only text is sent to Jev.
+  <sub>`Project` · ★10+ · kylemclaren · `TS` · `noul` · call site [`src/lib/jev-config.ts`](https://github.com/kylemclaren/jevpdf/blob/HEAD/src/lib/jev-config.ts), read 2026-09-23 · ⚠ `self-submitted`</sub>
 
 - **[jevql](https://github.com/kylemclaren/jevql)** — Semantic SQL for Postgres, powered by Jev <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · kylemclaren · `Go` · call site [`sdk/go/jevql.go`](https://github.com/kylemclaren/jevql/blob/HEAD/sdk/go/jevql.go), read 2026-09-22</sub>
@@ -204,6 +219,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[oko](https://github.com/bartlomein/oko)** — Code retrieval over MCP for Codex, Claude Code and OpenCode: hands an agent the relevant source snippets so it reads less irrelevant code.
   <sub>`Plugin` · ★10+ · bartlomein · `Rs` · call site [`scripts/benchmark-public/replay/replay.py`](https://github.com/bartlomein/oko/blob/HEAD/scripts/benchmark-public/replay/replay.py), read 2026-09-24 · ⚠ `unverified claims`</sub>
 
+- **[Parallax](https://github.com/zilize/parallax-dsh)** — DeepSeek Harness plugin for finding the arXiv papers on a topic in a local SQLite corpus: the agent recalls by keyword and combines sets, then Jev screens each paper against the inclusion criteria with a noul (kept at p ≥ 0.5) and sorts papers into topics with nouls or a choice. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · zilize · `TS` · `noul` · `choice` · call site [`src/sets/jev.ts`](https://github.com/zilize/parallax-dsh/blob/HEAD/src/sets/jev.ts), read by a model 2026-11-06</sub>
+
 - **[pi-jev](https://github.com/madeye/pi-jev)** — Jev-assisted file retrieval and request caching for faster Pi workflows <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · madeye · `TS` · call site [`src/jev.ts`](https://github.com/madeye/pi-jev/blob/HEAD/src/jev.ts), read 2026-09-24</sub>
 
@@ -228,20 +246,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[clay-jev-people-ranker](https://github.com/promptgtm-shared/clay-jev-people-ranker)** — Agent Skill and Python workflow for Clay lead scoring, B2B prospect qualification, and people-search ranking with TypeSafe JEV. <sub>(upstream description)</sub>
   <sub>`Plugin` · promptgtm-shared · `Py` · call site [`scripts/rank_clay_people.py`](https://github.com/promptgtm-shared/clay-jev-people-ranker/blob/HEAD/scripts/rank_clay_people.py), read 2026-09-24</sub>
 
-- **[every](https://github.com/sufianetaouil/every)** — Ask a yes/no question of every function in a codebase. Ranked answers in seconds, for cents. Grep whose pattern is a question, powered by TypeSafe Jev. <sub>(upstream description)</sub>
-  <sub>`Project` · sufianetaouil · `Py` · call site [`reference/probe_jev.py`](https://github.com/sufianetaouil/every/blob/HEAD/reference/probe_jev.py), read 2026-09-22</sub>
-
-- **[Hermes Switchyard](https://github.com/bgrablin/hermes-switchyard)** — Hermes Agent plugin that hands a session's small decisions to Jev and acts on the answers within limits you set: the reasoning effort each turn needs, which skill to load, which control to click in computer use, and re-ranking past-session search, with a local receipt of each. <sub>(written by a model)</sub>
-  <sub>`Plugin` · bgrablin · `Py` · `choice` · `noul` · `score` · call site [`hermes_switchyard/client.py`](https://github.com/bgrablin/hermes-switchyard/blob/HEAD/hermes_switchyard/client.py), read by a model 2026-11-07</sub>
-
-- **[Hindsight](https://github.com/vectorize-io/hindsight)** — Agent memory server that can hand two jobs to a decision model: re-ranking a recall pool with one Noul per candidate, optionally dropping unhelpful and duplicate memories, and settling easy consolidation cases with Choice questions before the LLM sees them. <sub>(written by a model)</sub>
-  <sub>`Project` · vectorize-io · `Py` · `noul` · `choice` · call site [`hindsight-api-slim/hindsight_api/engine/decision_model.py`](https://github.com/vectorize-io/hindsight/blob/HEAD/hindsight-api-slim/hindsight_api/engine/decision_model.py), read by a model 2026-11-05</sub>
-
 - **[Jev Codex Token Saver](https://github.com/jcressler/jev-codex-token-saver)** — Codex plugin whose MCP server searches the workspace or groups a large log locally, then asks Jev one noul per candidate excerpt on whether it holds evidence for the query and for each stated requirement, and returns only the selected exact excerpts to Codex. <sub>(written by a model)</sub>
   <sub>`Plugin` · jcressler · `JS` · `noul` · call site [`src/investigator.mjs`](https://github.com/jcressler/jev-codex-token-saver/blob/HEAD/src/investigator.mjs), read by a model 2026-11-10</sub>
-
-- **[JEV Reranking Comparisons](https://github.com/carlaiau/jev-reranking)** — Benchmark of Jev as a zero-shot reranker: one noul per query and candidate asks whether it is relevant, and the probabilities reorder BM25 runs on MS MARCO passage and document sets (TREC DL 2019) and TREC-1 WSJ, against published BERT rerankers, with time and cost. <sub>(written by a model)</sub>
-  <sub>`Benchmark` · carlaiau · `Py` · `noul` · call site [`reranking/jev.py`](https://github.com/carlaiau/jev-reranking/blob/HEAD/reranking/jev.py), read by a model 2026-11-07</sub>
 
 - **[jev-assist](https://github.com/glud123/jev-assist)** — Don't burn your expensive main model on grep-and-guess grunt work — let jev rank the whole repo, and save the main model for reading the right files and writing the right code.
   <sub>`Project` · glud123 · `JS` · call site [`scripts/jev.mjs`](https://github.com/glud123/jev-assist/blob/HEAD/scripts/jev.mjs), read 2026-09-22</sub>
@@ -279,9 +285,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevgrep](https://github.com/allebee/jevgrep)** — grep by meaning: pipe in any text, ask a yes/no question in plain English, get only the matching lines. Works behind tail -f, about $0.004 per 1,000 lines, powered by TypeSafe's Jev.
   <sub>`Project` · allebee · `Py` · call site [`src/jevgrep/judge.py`](https://github.com/allebee/jevgrep/blob/HEAD/src/jevgrep/judge.py), read 2026-09-22</sub>
 
-- **[JevPDF](https://github.com/kylemclaren/jevpdf)** — Searches a PDF by meaning. pdf.js extracts each page's lines in the browser and Jev answers one Noul per line ("does this line answer the query?"), at most 16 lines per request with the page text as shared state. Lines at p ≥ 0.55 are highlighted in probability order; only text is sent to Jev.
-  <sub>`Project` · kylemclaren · `TS` · `noul` · call site [`src/lib/jev-config.ts`](https://github.com/kylemclaren/jevpdf/blob/HEAD/src/lib/jev-config.ts), read 2026-09-23 · ⚠ `self-submitted`</sub>
-
 - **[JevRAG](https://github.com/ajanm007/jevrag)** — Python library that turns five RAG judgement calls into nouls Jev answers: whether the evidence so far is enough to stop retrieving, where to split a chunk, which passages earn a context slot, whether an answer stays grounded, and whether a cached answer is safe to reuse. <sub>(written by a model)</sub>
   <sub>`Project` · ajanm007 · `Py` · `noul` · call site [`jevrag/decision.py`](https://github.com/ajanm007/jevrag/blob/HEAD/jevrag/decision.py), read by a model 2026-11-10</sub>
 
@@ -290,9 +293,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[llama-index-jev](https://github.com/WiktorB2004/llama-index-jev)** — LlamaIndex reranker + router powered by TypeSafe Jev — typed scores/choices, cheaper than LLM-as-judge.
   <sub>`Project` · wiktorb2004 · `Py` · call site [`packages/llama-index-postprocessor-jev/llama_index/postprocessor/jev/openrouter.py`](https://github.com/WiktorB2004/llama-index-jev/blob/HEAD/packages/llama-index-postprocessor-jev/llama_index/postprocessor/jev/openrouter.py), read 2026-09-22</sub>
-
-- **[Parallax](https://github.com/zilize/parallax-dsh)** — DeepSeek Harness plugin for finding the arXiv papers on a topic in a local SQLite corpus: the agent recalls by keyword and combines sets, then Jev screens each paper against the inclusion criteria with a noul (kept at p ≥ 0.5) and sorts papers into topics with nouls or a choice. <sub>(written by a model)</sub>
-  <sub>`Plugin` · zilize · `TS` · `noul` · `choice` · call site [`src/sets/jev.ts`](https://github.com/zilize/parallax-dsh/blob/HEAD/src/sets/jev.ts), read by a model 2026-11-06</sub>
 
 - **[pijev](https://github.com/tonyzdev/pijev)** — PiJev: a terminal coding agent with Jev in the loop — Jev ranks the repository's files before the first call, picks skills and triages failures; your coding model writes the code. Built on Pi. <sub>(upstream description)</sub>
   <sub>`Project` · tonyzdev · `TS` · call site [`src/jev.ts`](https://github.com/tonyzdev/pijev/blob/HEAD/src/jev.ts), read 2026-09-24</sub>

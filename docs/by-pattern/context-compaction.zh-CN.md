@@ -68,8 +68,8 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 - **[fast-dev-compaction](https://github.com/leonaaardob/fast-dev-compaction)** — Codex 插件：在会话压缩前后，由 Jev 引导逐字恢复上下文。移植自 tamaratran/fast-jev-compaction，适配 Codex 的生命周期钩子。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · leonaaardob · `TS` · 调用点 [`src/request.ts`](https://github.com/leonaaardob/fast-dev-compaction/blob/HEAD/src/request.ts)，2026-09-24 阅读</sub>
 
-- **[jev-compact](https://github.com/fatelei/jev-compact)** — 为 OpenAI Codex CLI 提供由 Jev 打分的上下文压缩——在压缩前为每个工具调用打分，并恢复关键内容。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · ★10+ · fatelei · `TS` · 调用点 [`plugins/jev-compact/dist/fast-jev.mjs`](https://github.com/fatelei/jev-compact/blob/HEAD/plugins/jev-compact/dist/fast-jev.mjs)，2026-09-24 阅读</sub>
+- **[fast-jev-compaction-opencode](https://github.com/overbit/fast-jev-compaction-opencode)** — OpenCode V2 插件，以分类代替摘要来压缩上下文：它用 noul 问题询问 Jev，每个已完成的工具调用及其输出是否仍有用，保留有用的，丢弃可以重新读取或重新运行的；分类失败或节省太少时回退到 OpenCode 自带的压缩。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · overbit · `TS` · `noul` · 调用点 [`src/request.ts`](https://github.com/overbit/fast-jev-compaction-opencode/blob/HEAD/src/request.ts)，2026-11-06 模型阅读</sub>
 
 - **[jev-compaction-plus](https://github.com/cth9191/jev-compaction-plus)** — 由 Jev 完成而非写摘要的 Claude Code 上下文压缩：对每个旧的工具结果，Jev 判断助手是否仍需要它的原文；保留的结果一字不改，丢弃的移入 Claude 可以回读的“抽屉”文件。它是 fast-jev-compaction 的分支，针对超大会话做了三处修复。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · cth9191 · `TS` · `noul` · 调用点 [`hooks/fast-jev.ts`](https://github.com/cth9191/jev-compaction-plus/blob/HEAD/hooks/fast-jev.ts)，2026-10-31 模型阅读</sub>
@@ -113,14 +113,14 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 - **[fast-jev for OpenCode](https://github.com/nrdz-labs/fast-jev-opencode)** — 从每个发出的模型请求里修剪过时工具调用和大块结果的 OpenCode 插件：Jev 对每次调用回答两个 noul，即这次调用是否应保留、它的完整输出是否应保留，其余由代码删除或截断；已存的历史和 OpenCode 自己的压缩都不受影响。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · nrdz-labs · `TS` · `noul` · 调用点 [`jev.ts`](https://github.com/nrdz-labs/fast-jev-opencode/blob/HEAD/jev.ts)，2026-11-09 模型阅读</sub>
 
-- **[fast-jev-compaction-opencode](https://github.com/overbit/fast-jev-compaction-opencode)** — OpenCode V2 插件，以分类代替摘要来压缩上下文：它用 noul 问题询问 Jev，每个已完成的工具调用及其输出是否仍有用，保留有用的，丢弃可以重新读取或重新运行的；分类失败或节省太少时回退到 OpenCode 自带的压缩。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · overbit · `TS` · `noul` · 调用点 [`src/request.ts`](https://github.com/overbit/fast-jev-compaction-opencode/blob/HEAD/src/request.ts)，2026-11-06 模型阅读</sub>
-
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
   <sub>`开源项目` · Really Artificial · `JS` · `choice` · `score` · `noul` · 调用点 [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs)，2026-09-22 阅读 · ⚠ `疑似 AI 生成`</sub>
 
 - **[Jev Codex Token Saver](https://github.com/jcressler/jev-codex-token-saver)** — Codex 插件：它的 MCP 服务器在本地搜索工作区或给大日志分组，然后对每段候选摘录问 Jev 一个 noul，判断其中是否有回答查询、满足每项需求的证据，只把选中的原文摘录返回给 Codex。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · jcressler · `JS` · `noul` · 调用点 [`src/investigator.mjs`](https://github.com/jcressler/jev-codex-token-saver/blob/HEAD/src/investigator.mjs)，2026-11-10 模型阅读</sub>
+
+- **[jev-compact](https://github.com/fatelei/jev-compact)** — 为 OpenAI Codex CLI 提供由 Jev 打分的上下文压缩——在压缩前为每个工具调用打分，并恢复关键内容。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · fatelei · `TS` · 调用点 [`plugins/jev-compact/dist/fast-jev.mjs`](https://github.com/fatelei/jev-compact/blob/HEAD/plugins/jev-compact/dist/fast-jev.mjs)，2026-09-24 阅读</sub>
 
 - **[jev-compaction](https://github.com/picaye/jev-compaction)** — 从不做摘要的 Hermes 会话上下文压缩：每次工具调用都被打分。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · picaye · `JS` · 调用点 [`hermes-compact.mjs`](https://github.com/picaye/jev-compaction/blob/HEAD/hermes-compact.mjs)，2026-09-22 阅读</sub>

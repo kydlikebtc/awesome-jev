@@ -92,6 +92,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — Toolkit of 44 agents, 63 skills and 79 hooks routed from plain-English requests. Its /d router asks Jev to classify a request and gates dispatch on whether the route keeps the requested outcome; its auto-compact plugin, past 60% context, asks three nouls per unclear tool call and prunes verbatim. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · notque · `Py` · call site [`plugins/jev-auto-compact/hooks/jev-auto-compact.mjs`](https://github.com/notque/vexjoy-agent/blob/HEAD/plugins/jev-auto-compact/hooks/jev-auto-compact.mjs), read 2026-09-22</sub>
 
+- **[adhere](https://github.com/darkmatter/adhere)** — Linter for rules a normal linter cannot check, written as Markdown with should and should-not examples. It asks Jev whether each file breaks each rule and reports those above a threshold with the part of the file Jev points at; adhere validate flags rules a linter could check or that contradict. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · darkmatter · `TS` · `noul` · `choice` · call site [`src/providers/jev.ts`](https://github.com/darkmatter/adhere/blob/HEAD/src/providers/jev.ts), read by a model 2026-11-06</sub>
+
+- **[atoma](https://github.com/atoma-run/atoma)** — Platform that coordinates AI agents to turn a request into finished work. Jev takes its bounded decisions: which agent or stored recipe takes a task, with a noul on whether each candidate fits, and whether a plan or result can be approved; unsure answers go back to the run's models. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · atoma-run · `TS` · `choice` · `noul` · call site [`src/core/jev.ts`](https://github.com/atoma-run/atoma/blob/HEAD/src/core/jev.ts), read by a model 2026-11-06</sub>
+
 - **[augustus](https://github.com/24601/Augustus)** — Agent skill for the decision-model class (classifiers, encoders/decoders, specialized AR heads, System One). TypeSafe Jev is the dominant exemplar. Composition algebra, question design, validation gates. MIT.
   <sub>`Plugin` · ★10+ · 24601 · `Py` · call site [`.agents/skills/augustus/SKILL.md`](https://github.com/24601/Augustus/blob/HEAD/.agents/skills/augustus/SKILL.md), read 2026-09-24</sub>
 
@@ -104,11 +110,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[claude-jev](https://github.com/0x7067/claude-jev)** — Claude Code and Pi plugin that sends small judgments to Jev: whether an edit breaks a rule in CLAUDE.md (blocked with a file:line citation), which context blocks to keep verbatim at compaction, a model tier per subagent with nouls on its brief, and a routing hint per prompt. Every hook fails open. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · 0x7067 · `Py` · call site [`scripts/jev.py`](https://github.com/0x7067/claude-jev/blob/HEAD/scripts/jev.py), read 2026-09-22</sub>
 
+- **[claude-referee](https://github.com/ismaildasci/claude-referee)** — Unofficial Claude Code plugin that checks "done" claims and small judgement calls with Jev and keeps a local receipt of each: commands (done, decide, judge, claims) batch nouls, choices or scores into one request, and a Stop hook records, or in soft mode warns, when no counted check backs a claim. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · ismaildasci · `TS` · `noul` · `choice` · `score` · call site [`src/engine/client.ts`](https://github.com/ismaildasci/claude-referee/blob/HEAD/src/engine/client.ts), read by a model 2026-11-07</sub>
+
 - **[cmd-mod-jev-nudge](https://github.com/CommandCodeAI/cmd-mod-jev-nudge)** — Command Code mod: nudges the agent to keep going when it stops with work left, judged by Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · commandcodeai · `TS` · call site [`src/protocol.ts`](https://github.com/CommandCodeAI/cmd-mod-jev-nudge/blob/HEAD/src/protocol.ts), read 2026-09-24</sub>
 
 - **[dsh-jev-tools](https://github.com/HorusJiang/dsh-jev-tools)** — DeepSeek Harness plugin asking Jev, before tool output enters the context, which segments of a long read or fetch matter (kept by rank, not threshold), whether a fetched page holds instructions aimed at an AI (warned at 0.75, left unchanged), which skill to suggest, and if a done claim has evidence. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · horusjiang · `TS` · call site [`src/config.ts`](https://github.com/HorusJiang/dsh-jev-tools/blob/HEAD/src/config.ts), read 2026-09-24</sub>
+
+- **[Gallant](https://github.com/madxmike/gallant)** — Go linter whose rules are questions for a decision model about a file's text, answered as noul, choice or score against a confidence threshold. By default it asks Jev through OpenCode Zen's free Jev model; other providers serve Liquid's, Cloudflare's or local models. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · madxmike · `Go` · `noul` · `choice` · `score` · call site [`eval/opencode/opencode.go`](https://github.com/madxmike/gallant/blob/HEAD/eval/opencode/opencode.go), read by a model 2026-11-06</sub>
 
 - **[hermes-jev](https://github.com/keeltrace/hermes-nerve)** — Typed System One decisions, ranking, verification, and an opt-in Hermes tool gate using TypeSafe Jev.
   <sub>`Project` · ★10+ · keeltrace · `Py` · call site [`hermes_nerve/client.py`](https://github.com/keeltrace/hermes-nerve/blob/HEAD/hermes_nerve/client.py), read 2026-09-22</sub>
@@ -239,6 +251,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[snifftest](https://github.com/DanRWilloughby/snifftest)** — A prose linter that sniffs out AI writing tells. Zero dependencies, countable rules plus one judgment model. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · danrwilloughby · `TS` · call site [`src/jev.ts`](https://github.com/DanRWilloughby/snifftest/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
+- **[solvi](https://github.com/solvi-ai/solvi)** — Python runtime with a System One API adapter: Jev, an LLM or a local checkpoint proposes typed answers; hard checks, rules and calibrated thresholds decide, abstain or escalate to a person, and every decision is a hash-chained replayable trace.
+  <sub>`SDK` · ★10+ · mxkuzn · `Py` · `choice` · `noul` · call site [`src/solvi/core/deciders/systemone.py`](https://github.com/solvi-ai/solvi/blob/HEAD/src/solvi/core/deciders/systemone.py), read 2026-10-23 · ⚠ `self-submitted`</sub>
+
 - **[stingray](https://github.com/nanako0129/stingray)** — Claude Code Stop hook that catches turns that stop half-done: Jev judges whether the turn did nothing, declared an action its tool calls do not back, promised to watch work that is not running, or answered in the wrong language, and the hook blocks the stop with a fixed nudge. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · nanako0129 · `sh` · `noul` · call site [`hooks/stingray.sh`](https://github.com/nanako0129/stingray/blob/HEAD/hooks/stingray.sh), read by a model 2026-11-04</sub>
 
@@ -254,9 +269,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[yoshi](https://github.com/compozy/yoshi)** — Context-pruning proxy for Claude Code and Codex: Jev judges which history is still needed, measured not claimed. POC here now, heading soon into https://github.com/compozy/compozy <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · compozy · `TS` · call site [`benchmarks/jev-calibrate.ts`](https://github.com/compozy/yoshi/blob/HEAD/benchmarks/jev-calibrate.ts), read 2026-09-22</sub>
 
-- **[adhere](https://github.com/darkmatter/adhere)** — Linter for rules a normal linter cannot check, written as Markdown with should and should-not examples. It asks Jev whether each file breaks each rule and reports those above a threshold with the part of the file Jev points at; adhere validate flags rules a linter could check or that contradict. <sub>(written by a model)</sub>
-  <sub>`Project` · darkmatter · `TS` · `noul` · `choice` · call site [`src/providers/jev.ts`](https://github.com/darkmatter/adhere/blob/HEAD/src/providers/jev.ts), read by a model 2026-11-06</sub>
-
 - **[agent-gate-loop](https://github.com/Ripwords/agent-gate-loop)** — Reusable GitHub Action: agent fix loop gated by checks, an AI reviewer, and TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · ripwords · `TS` · call site [`src/jev.ts`](https://github.com/Ripwords/agent-gate-loop/blob/HEAD/src/jev.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
@@ -266,14 +278,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[assay-001](https://github.com/jourdanlabs/assay-001)** — ASSAY-001: independent, pre-registered verification of TypeSafe Jev's calibration and type-safety claims. Split verdict, published in full. <sub>(upstream description)</sub>
   <sub>`Project` · jourdanlabs · `Py` · call site [`harness/run.py`](https://github.com/jourdanlabs/assay-001/blob/HEAD/harness/run.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
-- **[atoma](https://github.com/atoma-run/atoma)** — Platform that coordinates AI agents to turn a request into finished work. Jev takes its bounded decisions: which agent or stored recipe takes a task, with a noul on whether each candidate fits, and whether a plan or result can be approved; unsure answers go back to the run's models. <sub>(written by a model)</sub>
-  <sub>`Project` · atoma-run · `TS` · `choice` · `noul` · call site [`src/core/jev.ts`](https://github.com/atoma-run/atoma/blob/HEAD/src/core/jev.ts), read by a model 2026-11-06</sub>
-
 - **[check-risk](https://github.com/moezubair/check-risk)** — A CLI and GitHub Action that assesses code-change risk using deterministic rules and TypeSafe Jev, recommending checks and reviewers before merge. <sub>(upstream description)</sub>
   <sub>`Project` · moezubair · `TS` · call site [`src/jev.ts`](https://github.com/moezubair/check-risk/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
-
-- **[claude-referee](https://github.com/ismaildasci/claude-referee)** — Unofficial Claude Code plugin that checks "done" claims and small judgement calls with Jev and keeps a local receipt of each: commands (done, decide, judge, claims) batch nouls, choices or scores into one request, and a Stop hook records, or in soft mode warns, when no counted check backs a claim. <sub>(written by a model)</sub>
-  <sub>`Plugin` · ismaildasci · `TS` · `noul` · `choice` · `score` · call site [`src/engine/client.ts`](https://github.com/ismaildasci/claude-referee/blob/HEAD/src/engine/client.ts), read by a model 2026-11-07</sub>
 
 - **[ClauJev](https://github.com/civalski/claujev)** — Claude Code plugin in which Jev checks Claude's work before the reply reaches you: scores and nouls compare the turn's real git diff with what Claude says it did and send it back when the work looks unfinished; Jev also scores each request to suggest an effort level and routes subagents. <sub>(written by a model)</sub>
   <sub>`Plugin` · civalski · `JS` · `choice` · `score` · `noul` · call site [`plugins/claujev/hooks/claujev.mjs`](https://github.com/civalski/claujev/blob/HEAD/plugins/claujev/hooks/claujev.mjs), read by a model 2026-11-10</sub>
@@ -298,9 +304,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Footwork](https://github.com/Tom-R-Main/Footwork)** — A verified browser agent: a cheap Jev guard (evidence-checked completions, a destructive gate) in front of any LLM browser driver, with Jev taking the mechanical steps in dual mode. Built on browser-use; every number pre-registered and measured. <sub>(earlier upstream description)</sub>
   <sub>`Project` · tom-r-main · `Py` · call site [`jevdual/evals/runner.py`](https://github.com/Tom-R-Main/Footwork/blob/HEAD/jevdual/evals/runner.py), read 2026-09-24</sub>
-
-- **[Gallant](https://github.com/madxmike/gallant)** — Go linter whose rules are questions for a decision model about a file's text, answered as noul, choice or score against a confidence threshold. By default it asks Jev through OpenCode Zen's free Jev model; other providers serve Liquid's, Cloudflare's or local models. <sub>(written by a model)</sub>
-  <sub>`Project` · madxmike · `Go` · `noul` · `choice` · `score` · call site [`eval/opencode/opencode.go`](https://github.com/madxmike/gallant/blob/HEAD/eval/opencode/opencode.go), read by a model 2026-11-06</sub>
 
 - **[human-compiler](https://github.com/asfarsadewa/human-compiler)** — A compiler for human language. Paste text, get diagnostics. Measured by TypeSafe Jev. <sub>(upstream description)</sub>
   <sub>`Project` · asfarsadewa · `TS` · call site [`src/worker/index.ts`](https://github.com/asfarsadewa/human-compiler/blob/HEAD/src/worker/index.ts), read 2026-09-22</sub>
@@ -475,9 +478,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[semantic-assert](https://github.com/mondaychen/semantic-assert)** — Testing lib for asserting the real requirement. <sub>(upstream description)</sub>
   <sub>`SDK` · mondaychen · `TS` · call site [`packages/semantic-assert-typesafe/src/client.ts`](https://github.com/mondaychen/semantic-assert/blob/HEAD/packages/semantic-assert-typesafe/src/client.ts), read 2026-09-24</sub>
-
-- **[solvi](https://github.com/solvi-ai/solvi)** — Python runtime with a System One API adapter: Jev, an LLM or a local checkpoint proposes typed answers; hard checks, rules and calibrated thresholds decide, abstain or escalate to a person, and every decision is a hash-chained replayable trace.
-  <sub>`SDK` · mxkuzn · `Py` · `choice` · `noul` · call site [`src/solvi/core/deciders/systemone.py`](https://github.com/solvi-ai/solvi/blob/HEAD/src/solvi/core/deciders/systemone.py), read 2026-10-23 · ⚠ `self-submitted`</sub>
 
 - **[stepwarden](https://github.com/getexcited/stepwarden)** — Every tool call your agent makes, checked before it runs. A Claude Code plugin that uses TypeSafe AI's Jev to verify each pending tool call against the session plan, then allows it, asks you, or blocks it. Proof of concept <sub>(upstream description)</sub>
   <sub>`Plugin` · getexcited · `TS` · call site [`lib/jev.ts`](https://github.com/getexcited/stepwarden/blob/HEAD/lib/jev.ts), read 2026-09-22 · ⚠ `one commit`</sub>

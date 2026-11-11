@@ -4,7 +4,7 @@
 
 <sub>[awesome-jev](../README.md) · [中文](shape.zh-CN.md)</sub>
 
-Counts that describe this catalogue as a dataset, regenerated from `catalog.json` whenever it changes; the newest link check behind them is dated **2026-11-04**. They describe what the catalogue holds, which is what reached it through the sibling directories, this repository's discovery and its contributors, not the ecosystem at large. A star band is a popularity signal, not a quality verdict, and nothing here was run or reproduced by this repository. `python3 scripts/counts.py` prints the same numbers as text; the headline figures are on [the status page](status.md).
+Counts that describe this catalogue as a dataset, regenerated from `catalog.json` whenever it changes; the newest link check behind them is dated **2026-11-11**. They describe what the catalogue holds, which is what reached it through the sibling directories, this repository's discovery and its contributors, not the ecosystem at large. A star band is a popularity signal, not a quality verdict, and nothing here was run or reproduced by this repository. `python3 scripts/counts.py` prints the same numbers as text; the headline figures are on [the status page](status.md).
 
 ## Evidence by decision pattern
 
@@ -116,16 +116,16 @@ Rows of each kind per star band, from GitHub's count at the last weekly refresh;
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Official docs (`official-docs`) | 31 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | ★1k+ |
 | Integration (`integration`) | 38 | 28 | 8 | 9 | 1 | 4 | 5 | 1 | ★10+ |
-| Project (`project`) | 751 | 706 | 350 | 221 | 97 | 20 | 16 | 2 | ★10+ |
-| Plugin (`plugin`) | 300 | 270 | 124 | 110 | 31 | 4 | 1 | 0 | ★10+ |
-| SDK (`sdk`) | 115 | 101 | 74 | 20 | 6 | 0 | 1 | 0 | under 10 |
+| Project (`project`) | 751 | 748 | 371 | 238 | 98 | 22 | 17 | 2 | ★10+ |
+| Plugin (`plugin`) | 300 | 300 | 144 | 120 | 31 | 4 | 1 | 0 | ★10+ |
+| SDK (`sdk`) | 115 | 114 | 85 | 21 | 6 | 1 | 1 | 0 | under 10 |
 | Snippet (`snippet`) | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-| Tutorial (`tutorial`) | 18 | 13 | 2 | 7 | 2 | 2 | 0 | 0 | ★10+ |
+| Tutorial (`tutorial`) | 18 | 15 | 3 | 8 | 2 | 2 | 0 | 0 | ★10+ |
 | Article (`article`) | 14 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | Video (`video`) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-| Benchmark (`benchmark`) | 93 | 77 | 49 | 19 | 5 | 2 | 1 | 1 | under 10 |
+| Benchmark (`benchmark`) | 93 | 90 | 56 | 24 | 6 | 2 | 1 | 1 | under 10 |
 | Discussion (`discussion`) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-| Jev-like alternative (`alternative`) | 114 | 95 | 12 | 41 | 29 | 12 | 1 | 0 | ★10+ |
+| Jev-like alternative (`alternative`) | 114 | 111 | 19 | 47 | 31 | 13 | 1 | 0 | ★10+ |
 
 ## Languages by decision pattern
 
@@ -175,7 +175,7 @@ Rows per pattern recording each of the 6 most recorded languages; the rest share
 
 ## Over time
 
-The catalogue's counts at each weekly refresh, from the snapshots in `history/` (generated data, never a source): 6 since 2026-09-30, the newest 6 shown. A count is what was catalogued on that day, not how the ecosystem grew; a dash is a count that snapshot did not record. Candidates to read is the discovery queue's "To read" (issue #14), recorded since 2026-10-30: when it grows, drafting is behind discovery.
+The catalogue's counts at each weekly refresh, from the snapshots in `history/` (generated data, never a source): 7 since 2026-09-30, the newest 7 shown. A count is what was catalogued on that day, not how the ecosystem grew; a dash is a count that snapshot did not record. Candidates to read is the discovery queue's "To read" (issue #14), recorded since 2026-10-30: when it grows, drafting is behind discovery.
 
 | Snapshot | Entries | With code | Rows citing a call site | Independent reports | Negative results | Alternatives | No licence declared | Candidates to read |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -185,6 +185,7 @@ The catalogue's counts at each weekly refresh, from the snapshots in `history/` 
 | 2026-10-21 | 1218 | 1187 | 1079 | 72 | 5 | 60 | 194 | — |
 | 2026-10-28 | 1265 | 1233 | 1107 | 72 | 5 | 78 | 192 | — |
 | 2026-11-04 | 1370 | 1338 | 1192 | 78 | 5 | 97 | 205 | 444 |
+| 2026-11-11 | 1483 | 1451 | 1287 | 90 | 5 | 114 | 214 | 443 |
 
 ---
 

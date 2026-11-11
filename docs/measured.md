@@ -78,6 +78,18 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   Benchmark Heaven's benchmark for Jev and Jev-compatible decision models: noul, choice and score tasks, sent through a /v1/systemone adapter and scored for accuracy, calibration, latency and cost. Release v1.6.1 (2026-10-06); some inputs are sealed, so it cannot be fully rerun independently. <sub>(written by a model)</sub><br>
   <sub>`Benchmark` · ★100+ · fstandhartinger · `Py` · [call site](https://github.com/fstandhartinger/jevbench/blob/HEAD/jevbench/adapters/typesafe.py), read 2026-09-22</sub>
 
+- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)**<br>
+  Together AI fine-tuned Qwen3.5-4B to answer decisions with one option letter. In a paired rerun of three public Jev benchmarks it scored 50.6% on phishing against Jev 1.13's 62.9%, 93.3% on tool risk for both, and 96.3% against 100% on ticket routing. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ★100+ · togethercomputer · `Py` · `choice` · [call site](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py), read by a model 2026-11-05</sub>
+
+  > Jev runs only as the baseline: typesafe/jev-1.13 through OpenRouter's Decisions API, one Choice per request, on items from anisselbd/jev-phishing-bench, themsquared/jev-benchmark and WallerChen/jev-measured. The results and raw responses are in evaluation/public-third-party/. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-05; a maintainer has not yet read the call site.
+
+- **[choosekit](https://github.com/notxf1le/choosekit)**<br>
+  TypeScript library that scores a fixed set of choices from a model's log probabilities through llama.cpp, Ollama or OpenRouter. Its benchmarks put Jev 1.13 at 53.6% on a 1,000-question SuperGPQA sample, and level with a local Qwen 3.8 27B on SemIf's 144 cases at 96.53%. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ★10+ · notxf1le · `TS` · `JS` · `choice` · [call site](https://github.com/notxf1le/choosekit/blob/HEAD/benchmarks/run-supergpqa.mjs), read by a model 2026-11-05</sub>
+
+  > choosekit itself calls no Jev: Jev 1.13 runs through OpenRouter's Decisions API only in the benchmark scripts, as the hosted comparison. The README notes that the SemIf latencies include different transport overhead. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-05; a maintainer has not yet read the call site.
+
 - **[Decision Index](https://github.com/apolinario/decision-index)**<br>
   Reproduction kit for the Decision Index, a leaderboard of typed decision engines (Jev and open models answering choice and noul questions) on 37 public benchmarks, scored chance-corrected. Its http engine sends each request unchanged to any /v1/systemone server; jev-1.13.0 is the reference. <sub>(written by a model)</sub><br>
   <sub>`Benchmark` · ★10+ · apolinario · `Py` · [call site](https://github.com/apolinario/decision-index/blob/HEAD/decision_index/engines/http.py), read by a model 2026-10-30</sub>
@@ -92,6 +104,22 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 
   > The expanded 2026-09-29 run tested only Jev; an earlier pilot also ran LLMs (Gemini 3.8 Flash scored higher on banking). The author warns the results apply only to the endpoints, settings and datasets tested. No LICENSE file. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-04; a maintainer has not yet read the call site.
 
+- **[Jev and open decision-model benchmarks](https://github.com/akitaonrails/jev-docs-benchmarks)**<br>
+  Benchmarks how reliably decision models apply supplied rules, how their probabilities behave and what decisions cost: hosted Jev against Microsoft Decision-1, OpenAI Decisions and open models such as Clef, Decision 3.0, Laya, Kev and Jebadiah, with frozen inputs and raw responses. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ★10+ · akitaonrails · `Py` · `choice` · [call site](https://github.com/akitaonrails/jev-docs-benchmarks/blob/HEAD/benchmark/tools/hosted.py), read by a model 2026-11-07</sub>
+
+  **Caveats:** `no licence`
+
+  > By akitaonrails. In its Decision 3.0 ranking Jev scores 97.6% on the suite's choice tasks. The tasks are the author's own synthetic ones (classification, support routing, retrieval) in English and Brazilian Portuguese; its README says it is not an official vendor benchmark. Local models run on CUDA and ROCm machines. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-07; a maintainer has not yet read the call site.
+
+- **[JEV Healthcare Lab](https://github.com/juneyaooo/jev-healthcare-lab)**<br>
+  Benchmark of Jev on medical decisions (triage urgency, contraindications, medication choice, nursing, trial screening) as choice questions over 26 tasks and 1,514 judgements, against DeepSeek Flash and Qwen, with accuracy, sustained throughput and cost, and raw responses published. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ★10+ · juneyaooo · `Py` · `choice` · [call site](https://github.com/juneyaooo/jev-healthcare-lab/blob/HEAD/scripts/run_model_evaluation.py), read by a model 2026-11-07</sub>
+
+  **Caveats:** `no licence`
+
+  > The headline Jev results were collected through a third-party gateway (ai.xiaohaima-edu.com) whose responses reported jev-1.13.0, which the authors say they did not verify independently; scripts/run_model_evaluation.py calls TypeSafe directly. The figures are the authors' own; their README says this is not clinical validation. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-07; a maintainer has not yet read the call site.
+
 - **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)**<br>
   Weekly go-to-market experiments with Jev, each tested against Claude: lead triage and routing, deal risk, reply triage, MEDDPICC fields from call summaries, duplicate accounts and closed-lost reactivation, plus an MCP server. A shared client subtracts a measured score bias of 0.30 before rounding. <sub>(written by a model)</sub><br>
   <sub>`Benchmark` · ★10+ · deepdave98 · `Py` · `noul` · `choice` · `score` · [call site](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py), read by a model 2026-10-31</sub>
@@ -99,6 +127,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   **Caveats:** `no licence`
 
   > This row cites common/jev.py, the client weeks 03 onward share. No LICENSE file. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-31; a maintainer has not yet read the call site.
+
+- **[JEV Reranking Comparisons](https://github.com/carlaiau/jev-reranking)**<br>
+  Benchmark of Jev as a zero-shot reranker: one noul per query and candidate asks whether it is relevant, and the probabilities reorder BM25 runs on MS MARCO passage and document sets (TREC DL 2019) and TREC-1 WSJ, against published BERT rerankers, with time and cost. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ★10+ · carlaiau · `Py` · `noul` · [call site](https://github.com/carlaiau/jev-reranking/blob/HEAD/reranking/jev.py), read by a model 2026-11-07</sub>
+
+  > On TREC DL 2019 passages its Jev runs score nDCG@10 0.68 against 0.74 for the best published BERT run, and on the document set 0.75 against 0.72; these are the author's own runs. An interactive simulator replays the WSJ results. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-07; a maintainer has not yet read the call site.
 
 - **[jev-benchmarks](https://github.com/AbdelStark/jev-benchmarks)**<br>
   Probability-aware evaluation for typed decision models: calibration, selective risk, latency, and reproducible benchmarks. <sub>(upstream description)</sub><br>
@@ -184,12 +218,6 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   Jev Bayes, No? Testing TypeSafe AI's Jev against Bayesian-optimal strategies, and testing if Jev can effectivly use Bayesian priors. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · tomrichner · `Py` · [call site](https://github.com/TomRichner/can-jev-bayes/blob/HEAD/src/jevbandits/client.py), read 2026-09-24</sub>
 
-- **[choosekit](https://github.com/notxf1le/choosekit)**<br>
-  TypeScript library that scores a fixed set of choices from a model's log probabilities through llama.cpp, Ollama or OpenRouter. Its benchmarks put Jev 1.13 at 53.6% on a 1,000-question SuperGPQA sample, and level with a local Qwen 3.8 27B on SemIf's 144 cases at 96.53%. <sub>(written by a model)</sub><br>
-  <sub>`Benchmark` · notxf1le · `TS` · `JS` · `choice` · [call site](https://github.com/notxf1le/choosekit/blob/HEAD/benchmarks/run-supergpqa.mjs), read by a model 2026-11-05</sub>
-
-  > choosekit itself calls no Jev: Jev 1.13 runs through OpenRouter's Decisions API only in the benchmark scripts, as the hosted comparison. The README notes that the SemIf latencies include different transport overhead. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-05; a maintainer has not yet read the call site.
-
 - **[Decision Models as Guardrails](https://dm-as-guardrails.raxitlabs.com)**<br>
   Asks Jev 1.13.0, Jev 1.14.0 and 17 other systems, Bedrock Guardrails among them, the same 9,975 labelled guardrail checks in six suites. Jev answers each as a noul; 0.5 or more blocks, nothing tuned per model. Reports balanced accuracy with 95% intervals and USD per 1,000 checks at list price.<br>
   <sub>`Benchmark` · raxIT Labs · `Py` · `noul` · `score` · [call site](https://github.com/raxITlabs/decision-models-as-guardrails/blob/HEAD/benchmark/goldrails_bench/systemone.py)</sub>
@@ -222,22 +250,6 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 
   > The comparison models (Qwen and Gemma, scored through their own option probabilities) are not Jev. The raw responses are published on Zenodo, so the tables can be rebuilt without API access. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-10; a maintainer has not yet read the call site.
 
-- **[Jev and open decision-model benchmarks](https://github.com/akitaonrails/jev-docs-benchmarks)**<br>
-  Benchmarks how reliably decision models apply supplied rules, how their probabilities behave and what decisions cost: hosted Jev against Microsoft Decision-1, OpenAI Decisions and open models such as Clef, Decision 3.0, Laya, Kev and Jebadiah, with frozen inputs and raw responses. <sub>(written by a model)</sub><br>
-  <sub>`Benchmark` · akitaonrails · `Py` · `choice` · [call site](https://github.com/akitaonrails/jev-docs-benchmarks/blob/HEAD/benchmark/tools/hosted.py), read by a model 2026-11-07</sub>
-
-  **Caveats:** `no licence`
-
-  > By akitaonrails. In its Decision 3.0 ranking Jev scores 97.6% on the suite's choice tasks. The tasks are the author's own synthetic ones (classification, support routing, retrieval) in English and Brazilian Portuguese; its README says it is not an official vendor benchmark. Local models run on CUDA and ROCm machines. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-07; a maintainer has not yet read the call site.
-
-- **[JEV Healthcare Lab](https://github.com/juneyaooo/jev-healthcare-lab)**<br>
-  Benchmark of Jev on medical decisions (triage urgency, contraindications, medication choice, nursing, trial screening) as choice questions over 26 tasks and 1,514 judgements, against DeepSeek Flash and Qwen, with accuracy, sustained throughput and cost, and raw responses published. <sub>(written by a model)</sub><br>
-  <sub>`Benchmark` · juneyaooo · `Py` · `choice` · [call site](https://github.com/juneyaooo/jev-healthcare-lab/blob/HEAD/scripts/run_model_evaluation.py), read by a model 2026-11-07</sub>
-
-  **Caveats:** `no licence`
-
-  > The headline Jev results were collected through a third-party gateway (ai.xiaohaima-edu.com) whose responses reported jev-1.13.0, which the authors say they did not verify independently; scripts/run_model_evaluation.py calls TypeSafe directly. The figures are the authors' own; their README says this is not clinical validation. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-07; a maintainer has not yet read the call site.
-
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)**<br>
   Benchmark of Jev against open decision models on 480 authored general Persian questions, 560 literary questions and a classical poetry pilot, asked as choices, nouls and scores with raw responses saved and scored locally; Jev leads on choice and noul accuracy. <sub>(written by a model)</sub><br>
   <sub>`Benchmark` · armanjr · `Py` · `choice` · `noul` · `score` · [call site](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py), read by a model 2026-11-11</sub>
@@ -245,12 +257,6 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   **Caveats:** `no licence`
 
   > The other models (Jeff, Mizan and Laya) are not Jev; Mizan leads on scores. The results are the author's. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-11; a maintainer has not yet read the call site.
-
-- **[JEV Reranking Comparisons](https://github.com/carlaiau/jev-reranking)**<br>
-  Benchmark of Jev as a zero-shot reranker: one noul per query and candidate asks whether it is relevant, and the probabilities reorder BM25 runs on MS MARCO passage and document sets (TREC DL 2019) and TREC-1 WSJ, against published BERT rerankers, with time and cost. <sub>(written by a model)</sub><br>
-  <sub>`Benchmark` · carlaiau · `Py` · `noul` · [call site](https://github.com/carlaiau/jev-reranking/blob/HEAD/reranking/jev.py), read by a model 2026-11-07</sub>
-
-  > On TREC DL 2019 passages its Jev runs score nDCG@10 0.68 against 0.74 for the best published BERT run, and on the document set 0.75 against 0.72; these are the author's own runs. An interactive simulator replays the WSJ results. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-07; a maintainer has not yet read the call site.
 
 - **[Jev vs. the right baselines](https://github.com/ickma2311/jev-baselines-eval)**<br>
   Two pre-registered studies: Jev classifies customer intents on CLINC150 and Banking77 as a choice, as the gate of an escalation cascade, against LLMs and a supervised encoder; the second asks whether, under prompt injection, Jev's confidence separates hijacked decisions from resisted ones. <sub>(written by a model)</sub><br>
@@ -302,9 +308,9 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   Comparing Jev, Gemini Flash, and Claude Fable on Python code review rules: cost, speed, accuracy, and consistency. Includes results, charts, and reproducible experiments. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · gemanor · `Py` · [call site](https://github.com/gemanor/jev-code-review-benchmark/blob/HEAD/determinest/clients.py), read 2026-09-24 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
 
-- **[jev-cyrillic-audit](https://github.com/AHTOOOXA/jev-cyrillic-audit)**<br>
+- **[jev-cyrillic-audit](https://github.com/tonysafonov/jev-cyrillic-audit)**<br>
   Does TypeSafe's Jev keep its accuracy and calibration on Russian? Independent RU vs EN audit (ECE, reliability diagrams, paired bootstrap) on parallel human-labelled data. <sub>(upstream description)</sub><br>
-  <sub>`Benchmark` · ahtoooxa · `Py` · [call site](https://github.com/AHTOOOXA/jev-cyrillic-audit/blob/HEAD/src/jev_cyrillic_audit/run.py), read 2026-09-24</sub>
+  <sub>`Benchmark` · ahtoooxa · `Py` · [call site](https://github.com/tonysafonov/jev-cyrillic-audit/blob/HEAD/src/jev_cyrillic_audit/run.py), read 2026-09-24</sub>
 
   > An independent calibration audit outside English — the gap docs/status.md lists as worth watching.
 
@@ -467,12 +473,6 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)**<br>
   First independent head-to-head benchmark of System One decision models (Laya vs Jev) on byte-identical inputs <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · instax-dutta · `Py` · [call site](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py), read 2026-09-22</sub>
-
-- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)**<br>
-  Together AI fine-tuned Qwen3.5-4B to answer decisions with one option letter. In a paired rerun of three public Jev benchmarks it scored 50.6% on phishing against Jev 1.13's 62.9%, 93.3% on tool risk for both, and 96.3% against 100% on ticket routing. <sub>(written by a model)</sub><br>
-  <sub>`Benchmark` · togethercomputer · `Py` · `choice` · [call site](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py), read by a model 2026-11-05</sub>
-
-  > Jev runs only as the baseline: typesafe/jev-1.13 through OpenRouter's Decisions API, one Choice per request, on items from anisselbd/jev-phishing-bench, themsquared/jev-benchmark and WallerChen/jev-measured. The results and raw responses are in evaluation/public-third-party/. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-05; a maintainer has not yet read the call site.
 
 - **[typesafe-jev-calibrate-for-code-review](https://github.com/Selmar/typesafe-jev-calibrate-for-code-review)**<br>
   About calibrating Jev for code reviews <sub>(upstream description)</sub><br>

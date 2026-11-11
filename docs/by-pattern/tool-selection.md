@@ -168,9 +168,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevrouter](https://github.com/BillionsBobby/JevRouter)** — A router for models, tools and subagents.
   <sub>`Project` · ★100+ · billionsbobby · `TS` · call site [`functions/api/jev.js`](https://github.com/BillionsBobby/JevRouter/blob/HEAD/functions/api/jev.js), read 2026-09-22</sub>
 
-- **[Jevry](https://github.com/michaelswissa/jevry)** — Open-source desktop browser that works through websites from a plain-language task: a text model plans, Jev picks each action as a choice among what the browser can actually execute (never generated JavaScript or selectors), and Chromium acts with visible steps and stop controls. <sub>(written by a model)</sub>
-  <sub>`Project` · ★100+ · michaelswissa · `TS` · `choice` · call site [`desktop/jev-direct-plan.ts`](https://github.com/michaelswissa/jevry/blob/HEAD/desktop/jev-direct-plan.ts), read by a model 2026-10-24</sub>
-
 - **[LLM Debugger](https://github.com/mohsen1/llm-debugger-vscode-extension)** — VS Code extension that debugs by running the code. At each pause Jev picks the next action as a `choice` (step, continue, breakpoint, evaluate, finish) and answers two `noul`s: is the faulty line found, and is it this one. A generation model supplies only locations, expressions and the fix. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · mohsen1 · `TS` · `choice` · `noul` · call site [`src/agent/strategies/jev.ts`](https://github.com/mohsen1/llm-debugger-vscode-extension/blob/HEAD/src/agent/strategies/jev.ts), read by a model 2026-10-28 · ⚠ `3rd-party key` `vendor numbers`</sub>
 
@@ -179,6 +176,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[mobile-jev](https://github.com/droidrun/mobile-jev)** — Mobile computer use: Jev picks the next on-screen action on a phone.
   <sub>`Project` · ★100+ · droidrun · `JS` · call site [`apps/jev-studio/app/components/use-studio.ts`](https://github.com/droidrun/mobile-jev/blob/HEAD/apps/jev-studio/app/components/use-studio.ts), read 2026-09-22 · ⚠ `one commit`</sub>
+
+- **[multi-uav-jev](https://github.com/yongld/multi-uav-jev)** — Not Jev: a MuJoCo simulation of a drone fleet in which each aircraft's worker sends Jev-shaped Choice questions about its next manoeuvre, worded for its role (track, block, intercept, support), to a local NeoHorse-Jev-4B endpoint; deterministic code keeps navigation, braking and separation. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · ★100+ · yongld · `Py` · `choice` · cited file [`sim/duel_tactics.py`](https://github.com/yongld/multi-uav-jev/blob/HEAD/sim/duel_tactics.py), read by a model 2026-11-05 · ⚠ `not Jev itself`</sub>
 
 - **[neo4jev](https://github.com/jexp/neo4jev)** — Puts Jev inside a knowledge graph traversal: at each node it decides which edge is most worth following.
   <sub>`Project` · ★100+ · `Py` · `choice` · call site [`src/neo4jev/navigator.py`](https://github.com/jexp/neo4jev/blob/HEAD/src/neo4jev/navigator.py), read 2026-09-22</sub>
@@ -212,6 +212,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[agent-chaperone](https://github.com/agent-chaperone/agent-chaperone)** — Screens an AI agent's tool calls before they run and tool results before the agent reads them. An MCP proxy plus a hooks adapter for a client's built-in tools. <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · agent-chaperone · `TS` · call site [`src/backends/typesafe.ts`](https://github.com/agent-chaperone/agent-chaperone/blob/HEAD/src/backends/typesafe.ts), read 2026-09-22</sub>
+
+- **[atoma](https://github.com/atoma-run/atoma)** — Platform that coordinates AI agents to turn a request into finished work. Jev takes its bounded decisions: which agent or stored recipe takes a task, with a noul on whether each candidate fits, and whether a plan or result can be approved; unsure answers go back to the run's models. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · atoma-run · `TS` · `choice` · `noul` · call site [`src/core/jev.ts`](https://github.com/atoma-run/atoma/blob/HEAD/src/core/jev.ts), read by a model 2026-11-06</sub>
 
 - **[azdaja](https://github.com/kubet/azdaja)** — Minimal harness-agnostic recursive language model layer — one binary, Python + llm() <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · kubet · `Py` · call site [`bench/jev/adapter.py`](https://github.com/kubet/azdaja/blob/HEAD/bench/jev/adapter.py), read 2026-09-22</sub>
@@ -261,11 +264,23 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[hearth-jev-rental-search](https://github.com/Nancy-Chauhan/hearth-jev-rental-search)** — Autonomous multi-source rental search powered by TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · nancy-chauhan · `JS` · call site [`jev_ultrafast/model.py`](https://github.com/Nancy-Chauhan/hearth-jev-rental-search/blob/HEAD/jev_ultrafast/model.py), read 2026-09-22</sub>
 
+- **[Hermes Switchyard](https://github.com/bgrablin/hermes-switchyard)** — Hermes Agent plugin that hands a session's small decisions to Jev and acts on the answers within limits you set: the reasoning effort each turn needs, which skill to load, which control to click in computer use, and re-ranking past-session search, with a local receipt of each. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · bgrablin · `Py` · `choice` · `noul` · `score` · call site [`hermes_switchyard/client.py`](https://github.com/bgrablin/hermes-switchyard/blob/HEAD/hermes_switchyard/client.py), read by a model 2026-11-07</sub>
+
 - **[jcr](https://github.com/NiazMorshed2007/jcr)** — A Jev-powered resolver for agent harnesses to find deterministic commands and their context in a nested capability tree. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · niazmorshed2007 · `JS` · call site [`src/jcr/jev.ts`](https://github.com/NiazMorshed2007/jcr/blob/HEAD/src/jcr/jev.ts), read 2026-09-22</sub>
 
+- **[Jev Advisor Gateway](https://github.com/1arley/jev-advisor-gateway)** — Local gateway between a coding agent (Codex, Claude Code, OpenCode, Kilo, Gemini CLI, Devin) and its model: Jev chooses the agent's next tool and answers noul questions about it, the session model writes arguments and the answer, and when Jev is unsure an optional read-only advisor adds a note. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · 1arley · `TS` · `choice` · `noul` · call site [`src/jev.ts`](https://github.com/1arley/jev-advisor-gateway/blob/HEAD/src/jev.ts), read by a model 2026-11-06</sub>
+
 - **[Jev Browser Bridge](https://github.com/lexmount/jev-browser-bridge)** — Runs a Jev browser agent on any CDP browser, even ones that never draw a page: it reads the DOM rather than positions and asks Jev one choice for the operation and one for its target. The author reports 59–65% on 172 MiniWoB++ episodes across six browsers, against 24–31% for a position reader. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · lexmount · `Py` · `choice` · call site [`jev_browser_bridge/model.py`](https://github.com/lexmount/jev-browser-bridge/blob/HEAD/jev_browser_bridge/model.py), read by a model 2026-10-24 · ⚠ `vendor numbers`</sub>
+
+- **[Jev Desktop](https://github.com/jacks3tr/jev-desktop)** — Lets AI agents hand off Windows desktop tasks through MCP or a command line: it observes the windows, and Jev chooses which control to click, type into or navigate to next from the candidates on screen, with a NONE option, so the agent gets a result or a request for help instead of every click. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · jacks3tr · `Py` · `choice` · call site [`src/jev_desktop/policy.py`](https://github.com/jacks3tr/jev-desktop/blob/HEAD/src/jev_desktop/policy.py), read by a model 2026-11-07</sub>
+
+- **[Jev Drive Lab](https://github.com/brendanh18/jev_fsd)** — Driving simulator on real Canadian streets built from OpenStreetMap, with traffic, transit and pedestrians. Jev can drive: for each moment it gets the scene as state and chooses the next manoeuvre from choice questions, and every drive is recorded so you can rewind and see why it chose. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · brendanh18 · `Py` · `choice` · call site [`jev/client.py`](https://github.com/brendanh18/jev_fsd/blob/HEAD/jev/client.py), read by a model 2026-11-07</sub>
 
 - **[JEV Jornada](https://github.com/caio-moliveira/workshop-jev)** — Workshop sales agent in LangGraph, in Portuguese, whose decisions (three guardrail nouls, a choice of which of seven queries answers the question, three nouls checking the reply is faithful) go to Jev, to an OpenAI or Anthropic LLM, or both, comparing accuracy, latency, tokens and cost. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · caio-moliveira · `Py` · `noul` · `choice` · call site [`backend/app/providers/jev.py`](https://github.com/caio-moliveira/workshop-jev/blob/HEAD/backend/app/providers/jev.py), read by a model 2026-11-03 · ⚠ `no licence` `3rd-party key`</sub>
@@ -375,14 +390,23 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jevbridge](https://github.com/tacticocc/Jevbridge)** — ACP and MCP adapter that bridges TypeSafe Jev with any LLM — computer use and typed decisions alongside Codex, Claude, Grok, and OpenCode. <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · gamesonrblx · `TS` · call site [`src/types.ts`](https://github.com/tacticocc/Jevbridge/blob/HEAD/src/types.ts), read 2026-09-24</sub>
 
+- **[jevcraft](https://github.com/mrubens/jevcraft)** — Minecraft bot that beat the game from a fresh Survival world: at each step code lists up to fifteen priced options the bot can really take (cost in health and time, gain toward the goal, what was tried) and Jev picks one, with nouls and scores for checks such as whether a build fits a request. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · mrubens · `JS` · `choice` · `noul` · `score` · call site [`src/typesafe.js`](https://github.com/mrubens/jevcraft/blob/HEAD/src/typesafe.js), read by a model 2026-11-07</sub>
+
 - **[JevDo](https://github.com/yinhong-zhou/jevdo)** — Loop for DeepSeek Harness (DSH) in which Jev decides each step: run a saved, validated Action (a command or script bound to a project), call the main model, ask for clarification or finish. The main model handles new problems and saves reusable Actions for later sessions. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · yinhong-zhou · `TS` · `choice` · call site [`src/decision.ts`](https://github.com/yinhong-zhou/jevdo/blob/HEAD/src/decision.ts), read by a model 2026-11-01</sub>
 
 - **[jevgpt](https://github.com/Bewinxed/jevgpt)** — A chatbot built on a model that cannot generate text (TypeSafe AI's Jev, driven autoregressively) <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · bewinxed · `TS` · call site [`src/jevgpt/sampler.py`](https://github.com/Bewinxed/jevgpt/blob/HEAD/src/jevgpt/sampler.py), read 2026-09-22</sub>
 
+- **[JevLight](https://github.com/usail-hkust/jevlight)** — Traffic signal control in SUMO simulation with Jev, on LLMLight and CoLLMLight's conventions: each junction's queues and waiting times are the state and one choice question picks the next phase; CoJevLight adds the neighbouring junctions, and a noul on congestion can be logged. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · usail-hkust · `Py` · `choice` · `noul` · call site [`jevlight/jev_client.py`](https://github.com/usail-hkust/jevlight/blob/HEAD/jevlight/jev_client.py), read by a model 2026-11-07 · ⚠ `no licence`</sub>
+
 - **[jevloop](https://github.com/parkavenue9639/jevloop)** — A Jev-driven general-purpose agent harness for faster, lower-cost execution, with built-in side-by-side experiments against LLM-only agents. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · parkavenue9639 · `Py` · call site [`backend/jevloop/decision/laya.py`](https://github.com/parkavenue9639/jevloop/blob/HEAD/backend/jevloop/decision/laya.py), read by a model 2026-11-05</sub>
+
+- **[Jevry](https://github.com/michaelswissa/jevry)** — Open-source desktop browser that works through websites from a plain-language task: a text model plans, Jev picks each action as a choice among what the browser can actually execute (never generated JavaScript or selectors), and Chromium acts with visible steps and stop controls. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · michaelswissa · `TS` · `choice` · call site [`desktop/jev-direct-plan.ts`](https://github.com/michaelswissa/jevry/blob/HEAD/desktop/jev-direct-plan.ts), read by a model 2026-10-24</sub>
 
 - **[jevscape](https://github.com/Skyvern-AI/jevscape)** — RuneBench harness for TypeSafe's Jev: bounded action catalog, tick-mode controller and a live dashboard <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · skyvern-ai · `TS` · call site [`agents/jev/jev-client.ts`](https://github.com/Skyvern-AI/jevscape/blob/HEAD/agents/jev/jev-client.ts), read 2026-09-22 · ⚠ `no licence`</sub>
@@ -453,6 +477,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[super-jev](https://github.com/Kevthetech143/super-jev)** — A small, extensible decision-to-action harness for TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · kevthetech143 · `Py` · call site [`skills/super-jev/superjev.py`](https://github.com/Kevthetech143/super-jev/blob/HEAD/skills/super-jev/superjev.py), read 2026-09-22</sub>
 
+- **[System One Computer Use](https://github.com/brainstormity/system-one-computer-use)** — Prototype agent that drives a computer or an Android phone from screenshots: each step sends Jev the screen, the task and the history, Jev picks the next action (click, type, scroll, open a site or stop) and the text or site to use, and a Box question marks the element to click. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · brainstormity · `Py` · `choice` · call site [`jev_agent.py`](https://github.com/brainstormity/system-one-computer-use/blob/HEAD/jev_agent.py), read by a model 2026-11-06</sub>
+
 - **[tsai-sc](https://github.com/phyous/tsai-sc)** — Drives a 1990s real-time strategy game through keyboard and mouse, recording the action probabilities.
   <sub>`Project` · ★10+ · phyous · `Py` · call site [`tsai_sc/typesafe.py`](https://github.com/phyous/tsai-sc/blob/HEAD/tsai_sc/typesafe.py), read 2026-09-22</sub>
 
@@ -473,9 +500,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[AskJev](https://github.com/ranjan2829/AskJev)** — AskJev — Jev autopilot for any website + guard on irreversible clicks (TypeSafe System One, not Claude) <sub>(upstream description)</sub>
   <sub>`Project` · ranjan2829 · `TS` · call site [`mcp/src/jev-client.ts`](https://github.com/ranjan2829/AskJev/blob/HEAD/mcp/src/jev-client.ts), read 2026-09-24</sub>
-
-- **[atoma](https://github.com/atoma-run/atoma)** — Platform that coordinates AI agents to turn a request into finished work. Jev takes its bounded decisions: which agent or stored recipe takes a task, with a noul on whether each candidate fits, and whether a plan or result can be approved; unsure answers go back to the run's models. <sub>(written by a model)</sub>
-  <sub>`Project` · atoma-run · `TS` · `choice` · `noul` · call site [`src/core/jev.ts`](https://github.com/atoma-run/atoma/blob/HEAD/src/core/jev.ts), read by a model 2026-11-06</sub>
 
 - **[bicameral](https://github.com/AbdelStark/bicameral)** — Hybrid coding harness: System 2 writes, System 1 (Jev) runs reflexes. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`packages/s1-runtime/src/backends/typesafe.ts`](https://github.com/AbdelStark/bicameral/blob/HEAD/packages/s1-runtime/src/backends/typesafe.ts), read 2026-09-22</sub>
@@ -525,23 +549,11 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — Observable browser stealth game: Jev makes typed guard judgments while deterministic code owns the world. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts), read 2026-09-22</sub>
 
-- **[Hermes Switchyard](https://github.com/bgrablin/hermes-switchyard)** — Hermes Agent plugin that hands a session's small decisions to Jev and acts on the answers within limits you set: the reasoning effort each turn needs, which skill to load, which control to click in computer use, and re-ranking past-session search, with a local receipt of each. <sub>(written by a model)</sub>
-  <sub>`Plugin` · bgrablin · `Py` · `choice` · `noul` · `score` · call site [`hermes_switchyard/client.py`](https://github.com/bgrablin/hermes-switchyard/blob/HEAD/hermes_switchyard/client.py), read by a model 2026-11-07</sub>
-
 - **[jet](https://github.com/arczhi/jet)** — A TypeSafe-native (Jev) coding agent built on Recursive LLM Context Decomposition (RLCD), with a native macOS client <sub>(upstream description)</sub>
   <sub>`Project` · arczhi · `Py` · call site [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py), read 2026-09-24</sub>
 
-- **[Jev Advisor Gateway](https://github.com/1arley/jev-advisor-gateway)** — Local gateway between a coding agent (Codex, Claude Code, OpenCode, Kilo, Gemini CLI, Devin) and its model: Jev chooses the agent's next tool and answers noul questions about it, the session model writes arguments and the answer, and when Jev is unsure an optional read-only advisor adds a note. <sub>(written by a model)</sub>
-  <sub>`Plugin` · 1arley · `TS` · `choice` · `noul` · call site [`src/jev.ts`](https://github.com/1arley/jev-advisor-gateway/blob/HEAD/src/jev.ts), read by a model 2026-11-06</sub>
-
 - **[Jev Civilizations](https://github.com/JonesSteven/jev_civilization)** — Small strategy game with a live demo: four tribes run their own lives while you only change the environment. Each turn Jev picks one action per tribe as a choice over the moves that are actually legal, a plain game engine works out the results, and an inspector shows what Jev was told. <sub>(written by a model)</sub>
   <sub>`Project` · jonessteven · `TS` · `choice` · call site [`scripts/probe-jev.ts`](https://github.com/JonesSteven/jev_civilization/blob/HEAD/scripts/probe-jev.ts), read by a model 2026-10-24</sub>
-
-- **[Jev Desktop](https://github.com/jacks3tr/jev-desktop)** — Lets AI agents hand off Windows desktop tasks through MCP or a command line: it observes the windows, and Jev chooses which control to click, type into or navigate to next from the candidates on screen, with a NONE option, so the agent gets a result or a request for help instead of every click. <sub>(written by a model)</sub>
-  <sub>`Plugin` · jacks3tr · `Py` · `choice` · call site [`src/jev_desktop/policy.py`](https://github.com/jacks3tr/jev-desktop/blob/HEAD/src/jev_desktop/policy.py), read by a model 2026-11-07</sub>
-
-- **[Jev Drive Lab](https://github.com/brendanh18/jev_fsd)** — Driving simulator on real Canadian streets built from OpenStreetMap, with traffic, transit and pedestrians. Jev can drive: for each moment it gets the scene as state and chooses the next manoeuvre from choice questions, and every drive is recorded so you can rewind and see why it chose. <sub>(written by a model)</sub>
-  <sub>`Project` · brendanh18 · `Py` · `choice` · call site [`jev/client.py`](https://github.com/brendanh18/jev_fsd/blob/HEAD/jev/client.py), read by a model 2026-11-07</sub>
 
 - **[Jev plays Vampire Survivors](https://github.com/oldmoldycake/jev_vampire_survivors)** — A BepInEx mod and a Python brain that let Jev play the real Steam game: each decision is a choice asked in plain English, for the character, the stage, every level-up and the walking direction four times a second, with a live dashboard of every answer. <sub>(written by a model)</sub>
   <sub>`Project` · oldmoldycake · `Py` · `choice` · call site [`brain/jev_vs/jev_client.py`](https://github.com/oldmoldycake/jev_vampire_survivors/blob/HEAD/brain/jev_vs/jev_client.py), read by a model 2026-11-11</sub>
@@ -726,9 +738,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevball](https://github.com/atarikcaliskan/jevball)** — 22 Jev models, one ball: a 3D football match where every player is its own Jev (TypeSafe AI System One) decision. Watch, or take over the number 9. <sub>(upstream description)</sub>
   <sub>`Project` · atarikcaliskan · `JS` · call site [`server/jev.js`](https://github.com/atarikcaliskan/jevball/blob/HEAD/server/jev.js), read 2026-09-24</sub>
 
-- **[jevcraft](https://github.com/mrubens/jevcraft)** — Minecraft bot that beat the game from a fresh Survival world: at each step code lists up to fifteen priced options the bot can really take (cost in health and time, gain toward the goal, what was tried) and Jev picks one, with nouls and scores for checks such as whether a build fits a request. <sub>(written by a model)</sub>
-  <sub>`Project` · mrubens · `JS` · `choice` · `noul` · `score` · call site [`src/typesafe.js`](https://github.com/mrubens/jevcraft/blob/HEAD/src/typesafe.js), read by a model 2026-11-07</sub>
-
 - **[jevcumber](https://github.com/RubyBrewsday/jevcumber)** — Write Cucumber tests with just the .feature file. No step definitions — Jev (TypeSafe AI) resolves each Gherkin step and Playwright runs it. <sub>(upstream description)</sub>
   <sub>`Project` · rubybrewsday · `TS` · call site [`src/resolver.ts`](https://github.com/RubyBrewsday/jevcumber/blob/HEAD/src/resolver.ts), read 2026-09-24</sub>
 
@@ -737,9 +746,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevex](https://github.com/jvsteiner/jevex)** — A minimal agent in which Jev directs the loop and a LangChain chat model writes only argument values and the final reply, over three local MCP servers with twelve working tools.
   <sub>`Project` · jvsteiner · `Py` · call site [`src/jevex/benchmark.py`](https://github.com/jvsteiner/jevex/blob/HEAD/src/jevex/benchmark.py), read 2026-09-24</sub>
-
-- **[JevLight](https://github.com/usail-hkust/jevlight)** — Traffic signal control in SUMO simulation with Jev, on LLMLight and CoLLMLight's conventions: each junction's queues and waiting times are the state and one choice question picks the next phase; CoJevLight adds the neighbouring junctions, and a noul on congestion can be logged. <sub>(written by a model)</sub>
-  <sub>`Project` · usail-hkust · `Py` · `choice` · `noul` · call site [`jevlight/jev_client.py`](https://github.com/usail-hkust/jevlight/blob/HEAD/jevlight/jev_client.py), read by a model 2026-11-07 · ⚠ `no licence`</sub>
 
 - **[jevman](https://github.com/joch/jevman)** — Pac-Man driven by decision models: at each junction Jev picks Pac-Man's (or the ghosts') next direction by choice, its odds drawn on the board, with modes to watch it play, play against it, or set models against each other, and a leaderboard of which model plays best. <sub>(written by a model)</sub>
   <sub>`Project` · joch · `TS` · `choice` · call site [`server/jev.ts`](https://github.com/joch/jevman/blob/HEAD/server/jev.ts), read by a model 2026-11-10</sub>
@@ -761,9 +767,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[macos-computer-use-kit](https://github.com/Sur-Cai/macos-computer-use-kit)** — AX-first computer use for AI agents on macOS with optional Jev (TypeSafe System One) semantic guards: calibrated target/input judgments before an irreversible action, decisions kept in code. Accessibility-tree targeting, window-scoped input, clipboard-safe paste, read-back verification…
   <sub>`Plugin` · sur-cai · `Py` · call site [`src/macos_computer_use/jev.py`](https://github.com/Sur-Cai/macos-computer-use-kit/blob/HEAD/src/macos_computer_use/jev.py), read 2026-09-24</sub>
-
-- **[multi-uav-jev](https://github.com/yongld/multi-uav-jev)** — Not Jev: a MuJoCo simulation of a drone fleet in which each aircraft's worker sends Jev-shaped Choice questions about its next manoeuvre, worded for its role (track, block, intercept, support), to a local NeoHorse-Jev-4B endpoint; deterministic code keeps navigation, braking and separation. <sub>(written by a model)</sub>
-  <sub>`Jev-like alternative` · yongld · `Py` · `choice` · cited file [`sim/duel_tactics.py`](https://github.com/yongld/multi-uav-jev/blob/HEAD/sim/duel_tactics.py), read by a model 2026-11-05 · ⚠ `not Jev itself`</sub>
 
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — Binary approval gate for Codex and Claude Code — every intercepted tool call is reviewed by TypeSafe JEV and composed through a versioned local policy, with scoped authorization. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · alexj11324 · `Go` · cited file [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go), read 2026-09-22 · ⚠ `not Jev itself`</sub>
@@ -818,9 +821,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[swarmrouter](https://github.com/ndolinschi/swarmrouter)** — Route tasks to research/code/browser/support/writer agents via TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/swarmrouter/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
-
-- **[System One Computer Use](https://github.com/brainstormity/system-one-computer-use)** — Prototype agent that drives a computer or an Android phone from screenshots: each step sends Jev the screen, the task and the history, Jev picks the next action (click, type, scroll, open a site or stop) and the text or site to use, and a Box question marks the element to click. <sub>(written by a model)</sub>
-  <sub>`Project` · brainstormity · `Py` · `choice` · call site [`jev_agent.py`](https://github.com/brainstormity/system-one-computer-use/blob/HEAD/jev_agent.py), read by a model 2026-11-06</sub>
 
 - **[terrarium](https://github.com/TheGali/terrarium)** — A sandbox where a TypeSafe System One model presses the controls of a small creature. Code runs the world. <sub>(upstream description)</sub>
   <sub>`Project` · thegali · `JS` · call site [`bench/run-jev.mjs`](https://github.com/TheGali/terrarium/blob/HEAD/bench/run-jev.mjs), read 2026-09-22</sub>

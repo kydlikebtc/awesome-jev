@@ -38,6 +38,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)** — 一套循序渐进的课程：从第一次调用、逐个原语、state 形状与 criteria，一直到工单分拣和多步工作流，并对应了全部四个官方模式。
   <sub>`教程` · ★1k+ · `Py` · `choice` · `score` · `noul` · 调用点 [`models/jev/06-criteria.py`](https://github.com/daveebbelaar/ai-cookbook/blob/HEAD/models/jev/06-criteria.py)，2026-09-22 阅读</sub>
 
+- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)** — Together AI 微调 Qwen3.5-4B，用一个选项字母回答决策问题。在对三个公开 Jev 基准的配对重跑中，它在钓鱼邮件上得 50.6%，Jev 1.13 为 62.9%；工具风险上两者都是 93.3%；工单路由上为 96.3%，Jev 为 100%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · ★100+ · togethercomputer · `Py` · `choice` · 调用点 [`evaluation/public-third-party/run.py`](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py)，2026-11-05 模型阅读</sub>
+
 - **[jev-demo](https://github.com/soyjorgepilo/jev-demo)** — 三个西班牙语演示，展示同一模式：Jev 决策、代码执行。Jira 工单分诊，按结果直接应用、标记复核或升级；预检扫描先标出有问题的函数，再只让 Claude 解释这些函数；PR 路由把每个 pull request 分给规则、Haiku 或 Sonnet。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · soyjorgepilo · `TS` · `choice` · `noul` · `score` · 调用点 [`shared/jev.ts`](https://github.com/soyjorgepilo/jev-demo/blob/HEAD/shared/jev.ts)，2026-11-04 模型阅读 · ⚠ `仅一次提交` `无许可证` `需第三方密钥`</sub>
 
@@ -61,9 +64,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-triage](https://github.com/boldbug1/jev-triage)** — 按紧急程度给消息排序的 Go 命令行工具：每条消息发一次 Jev 请求，问一个类型 choice（bug、计费、功能请求、账户、其他）、一个 0–3 的紧急程度 score，以及一个“发信人是否显得沮丧”的 noul。类别置信度低于 0.8 的消息放进人工复核列表。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · boldbug1 · `Go` · 调用点 [`main.go`](https://github.com/boldbug1/jev-triage/blob/HEAD/main.go)，2026-09-24 阅读</sub>
-
-- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)** — Together AI 微调 Qwen3.5-4B，用一个选项字母回答决策问题。在对三个公开 Jev 基准的配对重跑中，它在钓鱼邮件上得 50.6%，Jev 1.13 为 62.9%；工具风险上两者都是 93.3%；工单路由上为 96.3%，Jev 为 100%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`基准测试` · togethercomputer · `Py` · `choice` · 调用点 [`evaluation/public-third-party/run.py`](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py)，2026-11-05 模型阅读</sub>
 
 - **[Support-routing benchmark: 100 held-out cases](https://decisionmodelhub.com/benchmarks/support-routing)** — 在 100 条留出的虚构客服消息上，将 Jev 与 Clef、Clef Flash、OpenAI 的 Decisions API 以及 GPT-6 Luna 结构化输出基线进行对比：每条消息路由到五个团队标签之一；所有用例和各模型的作答记录均可下载。 <sub>(机翻)</sub>
   <sub>`基准测试` · DecisionModelHub · ⚠ `作者自荐`</sub>

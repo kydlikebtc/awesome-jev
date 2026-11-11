@@ -139,6 +139,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevflow](https://github.com/Mawfyy/jevflow)** — Probabilistic AI decisions as composable backend primitives — typed judgments (noul/score/choice), deterministic thresholds, and explainable workflows. Powered by TypeSafe's Jev, provider-agnostic. <sub>(upstream description)</sub>
   <sub>`Integration` · ★10+ · mawfyy · `TS` · call site [`packages/provider-jev/src/index.ts`](https://github.com/Mawfyy/jevflow/blob/HEAD/packages/provider-jev/src/index.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[jevintegration for SAP Commerce](https://github.com/emenowicz/jev-sap-commerce)** — SAP Commerce extension: Jev answers four nouls per product review (abusive, spam, personal data, on topic) so code approves or rejects only past your thresholds, and choices suggest categories, level by level down the tree, and attribute values; anything unsure stays with a person. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · emenowicz · `Java` · `noul` · `choice` · call site [`jevintegration/src/org/jevintegration/JevClient.java`](https://github.com/emenowicz/jev-sap-commerce/blob/HEAD/jevintegration/src/org/jevintegration/JevClient.java), read by a model 2026-11-08</sub>
+
 - **[Jevline](https://github.com/tsale/jevline)** — Scopes an incident from security telemetry: from one confirmed-malicious process, it asks Jev of every process, account, host, address or domain the logs link to whether it belongs to the same incident, and follows what joins round by round. Answers near the threshold are marked for analyst review. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · tsale · `TS` · `noul` · call site [`engine/src/jev.ts`](https://github.com/tsale/jevline/blob/HEAD/engine/src/jev.ts), read by a model 2026-10-31</sub>
 
@@ -151,11 +154,20 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevwire](https://github.com/Brainwires/jevwire)** — Jev decision layer for agents: MCP server, embeddable DecisionModel library, and an escalate-only Claude Code plugin (TypeSafe AI's Jev) <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · brainwires · `TS` · call site [`src/jev/client.ts`](https://github.com/Brainwires/jevwire/blob/HEAD/src/jev/client.ts), read 2026-09-22</sub>
 
+- **[laya-opencv](https://github.com/uu889/laya-opencv)** — Local workbench and installer (Windows, Linux) for decision models. Inspection recipes turn OpenCV measurements into rule checks, then ask Choice, Noul and Score questions of local Laya, TypeSafe's Jev or aiask.me; disagreements and low-confidence answers are flagged for review. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · uu889 · `Py` · `choice` · `noul` · `score` · call site [`app/launcher.py`](https://github.com/uu889/laya-opencv/blob/HEAD/app/launcher.py), read by a model 2026-11-05</sub>
+
 - **[muse-jev-playbook](https://github.com/Bodila51/muse-jev-playbook)** — Jev decision layer for Muse: a fast, cheap TypeSafe AI gate before expensive agent work — confidence policy, recipes, reference router, honest measurement. <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · bodila51 · `Py` · call site [`src/jev_client.py`](https://github.com/Bodila51/muse-jev-playbook/blob/HEAD/src/jev_client.py), read 2026-09-24 · ⚠ `one commit`</sub>
 
+- **[Orchvia](https://github.com/masonlee39/orchvia)** — Runs Claude Code and Codex agents as a team from your own application. Its optional routing layer asks a pluggable judge, Jev or plain rules, typed Choice, Noul and Score questions about which agent takes a request; below 0.85 confidence or a 0.2 margin the proposal waits for a person. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · masonlee39 · `Py` · `choice` · `noul` · `score` · call site [`python/src/orchvia/routing.py`](https://github.com/masonlee39/orchvia/blob/HEAD/python/src/orchvia/routing.py), read by a model 2026-11-05</sub>
+
 - **[poorjev](https://github.com/rupeshpoojary9/poorjev)** — Open-source, local Jev alternative: a System One decision layer with provably calibrated confidence (ECE 0.170→0.071). Typed decisions, runs offline, no API key, no waitlist. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · ★10+ · rupeshpoojary9 · `Py` · cited file [`crossbench/jev_client.py`](https://github.com/rupeshpoojary9/poorjev/blob/HEAD/crossbench/jev_client.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
+
+- **[solvi](https://github.com/solvi-ai/solvi)** — Python runtime with a System One API adapter: Jev, an LLM or a local checkpoint proposes typed answers; hard checks, rules and calibrated thresholds decide, abstain or escalate to a person, and every decision is a hash-chained replayable trace.
+  <sub>`SDK` · ★10+ · mxkuzn · `Py` · `choice` · `noul` · call site [`src/solvi/core/deciders/systemone.py`](https://github.com/solvi-ai/solvi/blob/HEAD/src/solvi/core/deciders/systemone.py), read 2026-10-23 · ⚠ `self-submitted`</sub>
 
 - **[toolgate](https://github.com/RiskAverseTech/toolgate)** — Open auto mode for AI agents — a calibrated tool-call firewall powered by TypeSafe Jev. Ships as a Claude Code hook <sub>(earlier upstream description)</sub>
   <sub>`Plugin` · ★10+ · riskaversetech · `TS` · call site [`src/backends/typesafe.ts`](https://github.com/RiskAverseTech/toolgate/blob/HEAD/src/backends/typesafe.ts), read 2026-09-22</sub>
@@ -232,12 +244,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevbus](https://github.com/zkjoie/jevbus)** — A streaming event bus whose routing, subscription and consumption are decided by a probabilistic judge. The reference judge is TypeSafe AI's Jev (System One) model: send it a payload and a set of typed questions, get back calibrated probabilities instead of prose. <sub>(upstream description)</sub>
   <sub>`Project` · zkjoie · `Rs` · call site [`src/jev/http.rs`](https://github.com/zkjoie/jevbus/blob/HEAD/src/jev/http.rs), read 2026-09-22</sub>
 
-- **[jevintegration for SAP Commerce](https://github.com/emenowicz/jev-sap-commerce)** — SAP Commerce extension: Jev answers four nouls per product review (abusive, spam, personal data, on topic) so code approves or rejects only past your thresholds, and choices suggest categories, level by level down the tree, and attribute values; anything unsure stays with a person. <sub>(written by a model)</sub>
-  <sub>`Plugin` · emenowicz · `Java` · `noul` · `choice` · call site [`jevintegration/src/org/jevintegration/JevClient.java`](https://github.com/emenowicz/jev-sap-commerce/blob/HEAD/jevintegration/src/org/jevintegration/JevClient.java), read by a model 2026-11-08</sub>
-
-- **[laya-opencv](https://github.com/uu889/laya-opencv)** — Local workbench and installer (Windows, Linux) for decision models. Inspection recipes turn OpenCV measurements into rule checks, then ask Choice, Noul and Score questions of local Laya, TypeSafe's Jev or aiask.me; disagreements and low-confidence answers are flagged for review. <sub>(written by a model)</sub>
-  <sub>`Project` · uu889 · `Py` · `choice` · `noul` · `score` · call site [`app/launcher.py`](https://github.com/uu889/laya-opencv/blob/HEAD/app/launcher.py), read by a model 2026-11-05</sub>
-
 - **[luce](https://github.com/scienthoon/luce)** — Luce: a recipe for calibrated decision models — a sentence about your task in, a small model that answers typed questions with honest probabilities out (init → synth → train → eval → serve) <sub>(upstream description)</sub>
   <sub>`Project` · scienthoon · `Py` · call site [`scripts/jev_eval.mjs`](https://github.com/scienthoon/luce/blob/HEAD/scripts/jev_eval.mjs), read 2026-09-22</sub>
 
@@ -250,9 +256,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[opencode-jev-orchestrator](https://github.com/aaronshaf/opencode-jev-orchestrator)** — Keeps OpenCode on a cheap sticky model for warm cache; Jev escalates hard turns to stronger subagents. <sub>(upstream description)</sub>
   <sub>`Project` · aaronshaf · `TS` · call site [`src/jev.ts`](https://github.com/aaronshaf/opencode-jev-orchestrator/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
-- **[Orchvia](https://github.com/masonlee39/orchvia)** — Runs Claude Code and Codex agents as a team from your own application. Its optional routing layer asks a pluggable judge, Jev or plain rules, typed Choice, Noul and Score questions about which agent takes a request; below 0.85 confidence or a 0.2 margin the proposal waits for a person. <sub>(written by a model)</sub>
-  <sub>`Project` · masonlee39 · `Py` · `choice` · `noul` · `score` · call site [`python/src/orchvia/routing.py`](https://github.com/masonlee39/orchvia/blob/HEAD/python/src/orchvia/routing.py), read by a model 2026-11-05</sub>
-
 - **[padflow-jev-evals](https://github.com/zsavage8/padflow-jev-evals)** — Typed-decision benchmark from PadFlow (land development SaaS): schemas, anonymized labeled rows, and a runner for confidence-calibrated models like TypeSafe Jev. <sub>(upstream description)</sub>
   <sub>`Benchmark` · zsavage8 · `Py` · call site [`scripts/run_baseline.py`](https://github.com/zsavage8/padflow-jev-evals/blob/HEAD/scripts/run_baseline.py), read 2026-09-22</sub>
 
@@ -264,9 +267,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[qwen-rlcd](https://github.com/shamazharikh/qwen-rlcd)** — Jev-style calibrated decision model (Choice/Score/Noul) on Qwen3.5-0.8B <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · shamazharikh · `Py` · cited file [`scripts/bench_fork.py`](https://github.com/shamazharikh/qwen-rlcd/blob/HEAD/scripts/bench_fork.py), read 2026-09-22 · ⚠ `not Jev itself` `no licence`</sub>
-
-- **[solvi](https://github.com/solvi-ai/solvi)** — Python runtime with a System One API adapter: Jev, an LLM or a local checkpoint proposes typed answers; hard checks, rules and calibrated thresholds decide, abstain or escalate to a person, and every decision is a hash-chained replayable trace.
-  <sub>`SDK` · mxkuzn · `Py` · `choice` · `noul` · call site [`src/solvi/core/deciders/systemone.py`](https://github.com/solvi-ai/solvi/blob/HEAD/src/solvi/core/deciders/systemone.py), read 2026-10-23 · ⚠ `self-submitted`</sub>
 
 - **[spending-effort-with-jev](https://github.com/Yaxin9Luo/spending-effort-with-jev)** — Claude Code mod that reads each message you send and asks Jev a choice for the /effort level the task deserves and a noul on whether a long hand-off is still ambiguous; when the session's level looks wrong it offers a one-key switch, and it warns about fuzzy specs. <sub>(written by a model)</sub>
   <sub>`Plugin` · Yaxin9Luo · `TS` · `choice` · `noul` · call site [`plugins/spending-effort-with-jev/hooks/judge.ts`](https://github.com/Yaxin9Luo/spending-effort-with-jev/blob/HEAD/plugins/spending-effort-with-jev/hooks/judge.ts), read by a model 2026-11-10</sub>

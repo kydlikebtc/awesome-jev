@@ -465,13 +465,13 @@ _判断用户意图，把请求分流到正确的分支。_
   一套循序渐进的课程：从第一次调用、逐个原语、state 形状与 criteria，一直到工单分拣和多步工作流，并对应了全部四个官方模式。<br>
   <sub>`教程` · ★1k+ · `Py` · `choice` · `score` · `noul` · [调用点](https://github.com/daveebbelaar/ai-cookbook/blob/HEAD/models/jev/06-criteria.py)，2026-09-22 阅读</sub>
 
+- **[Harness](https://github.com/autonomous-ai/openharness)**<br>
+  在多台机器上并排运行 Claude Code、Codex 等编码智能体的指挥中心。它的 ⌘B 路由器通过 OpenRouter 的 Decisions API，在一次请求里用 Choice 问题询问 Jev 1.13：新任务该交给哪个会话、哪个项目和哪个智能体。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★1k+ · autonomous-ai · `TS` · `choice` · [调用点](https://github.com/autonomous-ai/openharness/blob/HEAD/cli/src/lib/jev/jevClient.ts)，2026-11-05 模型阅读</sub>
+
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)**<br>
   一个 Android 回复副驾：从屏幕文本判断意图、时机和风险，OCR 与文案起草交给另外的模型。<br>
   <sub>`开源项目` · ★1k+ · `Java` · `choice` · `score` · `noul` · [调用点](https://github.com/jev-chat/jev-chat-jarvis/blob/HEAD/cn/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-09-22 阅读</sub>
-
-- **[Real Python: hello-jev](https://github.com/realpython/materials/tree/master/hello-jev)**<br>
-  带对照组的教学示例：同一个问询台任务，一份是只认 Y/N 的纯 Python 写法，旁边是一个能读出意图的 Noul。<br>
-  <sub>`教程` · ★1k+ · Real Python · `Py` · `noul` · [调用点](https://github.com/realpython/materials/blob/HEAD/hello-jev/jev_noul.py)，2026-09-22 阅读</sub>
 
 </details>
 
@@ -648,15 +648,15 @@ _在输出到达用户前，按评分标准检查模型产出。_
 
 _判断失败的步骤是否值得重试。_
 
-- **[DuoMind](https://github.com/j1s4nn/duomind)**<br>
-  一个 OpenAI 兼容的本地服务器，把 llama.cpp 上的小模型与 Jev 搭配：在生成之前、之中和之后共 18 个决策点（是否需要推理、是否安全、输出格式、是否该停、是否重试）引导本地模型。提示词会发送给 TypeSafe，生成过程留在本地。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`开源项目` · ★10+ · j1s4nn · `Py` · `noul` · `choice` · [调用点](https://github.com/j1s4nn/duomind/blob/HEAD/src/duomind/jev_client.py)，2026-10-24 模型阅读</sub>
-
-  **注意:** `厂商自报数据`
-
 - **[jev-harness](https://github.com/ismaelsoilet/jev-harness)**<br>
   面向 AI 编码智能体的决策关卡，提供 CLI、MCP 服务器、CI 钩子以及 Python、TypeScript 和 Rust SDK：先用离线启发式规则，再可选地交给 Jev 判断：失败的测试日志是否需要动用 LLM、是否中止反复修改的循环、该用哪个模型档位和推理力度、某一步是否已完成。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`插件` · ★10+ · ismaelsoilet · `Py` · [调用点](https://github.com/ismaelsoilet/jev-harness/blob/HEAD/src/jev_harness/client.py)，2026-09-24 阅读</sub>
+
+- **[DuoMind](https://github.com/j1s4nn/duomind)**<br>
+  一个 OpenAI 兼容的本地服务器，把 llama.cpp 上的小模型与 Jev 搭配：在生成之前、之中和之后共 18 个决策点（是否需要推理、是否安全、输出格式、是否该停、是否重试）引导本地模型。提示词会发送给 TypeSafe，生成过程留在本地。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`开源项目` · j1s4nn · `Py` · `noul` · `choice` · [调用点](https://github.com/j1s4nn/duomind/blob/HEAD/src/duomind/jev_client.py)，2026-10-24 模型阅读</sub>
+
+  **注意:** `厂商自报数据`
 
 - **[harnessjudge](https://github.com/ndolinschi/harnessjudge)**<br>
   面向智能体开发者的网页应用：粘贴某一步的执行轨迹，由 Jev 判定为通过、重试、升级或停止。没有 TYPESAFE_API_KEY 时，本地启发式规则返回同样结构的答案，并标为演示模式。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
@@ -777,6 +777,10 @@ _选择由哪个下游模型或档位处理请求。_
   三个可独立安装的 Claude Code 插件 —— 护栏、模型路由、技能推荐 —— 各自带 hook 和测试。<br>
   <sub>`插件` · ★10k+ · `Py` · `TS` · `choice` · `score` · `noul` · [调用点](https://github.com/davila7/claude-code-templates/blob/HEAD/scripts/jev-spike.mjs)，2026-09-22 阅读</sub>
 
+- **[Hindsight](https://github.com/vectorize-io/hindsight)**<br>
+  智能体记忆服务器，可以把两件事交给决策模型：对召回候选逐条提一个 Noul 问题来重排，并可选地剔除无用和重复的记忆；在 LLM 处理之前，先用 Choice 问题判定简单的整合情形。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★10k+ · vectorize-io · `Py` · `noul` · `choice` · [调用点](https://github.com/vectorize-io/hindsight/blob/HEAD/hindsight-api-slim/hindsight_api/engine/decision_model.py)，2026-11-05 模型阅读</sub>
+
 - **[oh-my-pi](https://github.com/can1357/oh-my-pi)**<br>
   深度整合 IDE 的编程智能体。 <sub>(机翻)</sub><br>
   <sub>`开源项目` · ★10k+ · can1357 · `TS` · [调用点](https://github.com/can1357/oh-my-pi/blob/HEAD/packages/ai/src/judgment/native.ts)，2026-11-05 模型阅读</sub>
@@ -784,6 +788,10 @@ _选择由哪个下游模型或档位处理请求。_
 - **[openwork](https://github.com/different-ai/openwork)**<br>
   Claude Cowork 的开源替代品，基于 opencode 构建。它的网关在 Auto 路由中为每个 Smart Router 任务向 Jev 提一个 Score 问题，再为思考强度提一个，然后按回答路由提示；没有 TypeSafe 密钥时走后备路由。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`开源项目` · ★10k+ · different-ai · `TS` · `score` · [调用点](https://github.com/different-ai/openwork/blob/HEAD/ee/apps/gateway/src/auto-router/jev.ts)，2026-11-05 模型阅读</sub>
+
+- **[Harness](https://github.com/autonomous-ai/openharness)**<br>
+  在多台机器上并排运行 Claude Code、Codex 等编码智能体的指挥中心。它的 ⌘B 路由器通过 OpenRouter 的 Decisions API，在一次请求里用 Choice 问题询问 Jev 1.13：新任务该交给哪个会话、哪个项目和哪个智能体。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★1k+ · autonomous-ai · `TS` · `choice` · [调用点](https://github.com/autonomous-ai/openharness/blob/HEAD/cli/src/lib/jev/jevClient.ts)，2026-11-05 模型阅读</sub>
 
 - **[hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills)**<br>
   九个 agent 技能加一个 CLI，覆盖模型路由、记忆过滤、对话轮保留、多选一技能选择和下一步动作决策。<br>
@@ -794,16 +802,6 @@ _选择由哪个下游模型或档位处理请求。_
 - **[Astra-Ares](https://github.com/miuuyy/Astra-Ares)**<br>
   运行一个打过补丁的 Codex CLI：Jev 读取有限的任务上下文，用两个 choice 选出 GPT-6 下一次回复的推理力度，以及这个力度持续几次回复（1、2、5 或 10）；GPT-6 改变推理力度不会破坏提示缓存。属于实验性的参考实现。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`插件` · ★100+ · miuuyy · `JS` · [调用点](https://github.com/miuuyy/Astra-Ares/blob/HEAD/src/jev.mjs)，2026-09-24 阅读</sub>
-
-- **[distill](https://github.com/samuelfaj/distill)**<br>
-  面向 Grok、Codex 订阅及任何兼容 OpenAI 协议的模型的编程智能体 harness 和 TUI，目标是少花 token。模型档位的推理力度保持默认的 auto 时，由 Jev 为每次调用挑选推理力度；客户端默认经 OpenRouter 调用 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`开源项目` · ★100+ · samuelfaj · `Rs` · [调用点](https://github.com/samuelfaj/distill/blob/HEAD/crates/codegen/distill-workspace/src/jev/client.rs)，2026-09-22 阅读</sub>
-
-- **[jev-codex-router](https://github.com/0xNatoshi/jev-codex-router)**<br>
-  先让 Jev 判断这一轮编程任务有多难，再决定模型档位、推理深度和速度模式。<br>
-  <sub>`插件` · ★100+ · `JS` · `choice` · `score` · [调用点](https://github.com/0xNatoshi/jev-codex-router/blob/HEAD/server/jev_server.py)，2026-09-22 阅读</sub>
-
-  **注意:** `已归档`
 
 </details>
 
@@ -895,6 +893,10 @@ _对来自廉价检索步骤的候选做打分或重排。_
   两段式 MCP 工具检索：先用一个宽 Choice 对整个目录粗排，再给候选短名单配完整描述，每个候选各配一个 Noul 判断它到底是否胜任。<br>
   <sub>`开源项目` · ★10k+ · `Py` · `choice` · `noul` · [调用点](https://github.com/PrefectHQ/fastmcp/blob/HEAD/fastmcp_slim/fastmcp/experimental/transforms/jev_search.py)，2026-09-22 阅读</sub>
 
+- **[Hindsight](https://github.com/vectorize-io/hindsight)**<br>
+  智能体记忆服务器，可以把两件事交给决策模型：对召回候选逐条提一个 Noul 问题来重排，并可选地剔除无用和重复的记忆；在 LLM 处理之前，先用 Choice 问题判定简单的整合情形。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★10k+ · vectorize-io · `Py` · `noul` · `choice` · [调用点](https://github.com/vectorize-io/hindsight/blob/HEAD/hindsight-api-slim/hindsight_api/engine/decision_model.py)，2026-11-05 模型阅读</sub>
+
 - **[jcode: memory recall without embeddings](https://github.com/1jehuang/jcode)**<br>
   把记忆召回的整套检索栈替换掉 —— 不用 embedding、不用 BM25、不用重排器 —— 改为对每条候选记忆批量问一个 Noul。<br>
   <sub>`开源项目` · ★10k+ · `Rs` · `noul` · [调用点](https://github.com/1jehuang/jcode/blob/HEAD/crates/jcode-base/src/jev.rs)，2026-09-22 阅读</sub>
@@ -910,12 +912,6 @@ _对来自廉价检索步骤的候选做打分或重排。_
 - **[OpenViking: retrieval reranking](https://github.com/volcengine/OpenViking)**<br>
   单次批量请求里对每个候选文档问一个 Noul，直接把「是」的概率当相关性分数。<br>
   <sub>`开源项目` · ★10k+ · `Py` · `noul` · [调用点](https://github.com/volcengine/OpenViking/blob/HEAD/openviking/models/rerank/jev_rerank.py)，2026-09-22 阅读</sub>
-
-- **[XERJ](https://github.com/xerj-org/xerj)**<br>
-  一个本地优先的搜索引擎兼 MCP 服务器，打包为单个 Rust 二进制文件。可选的 `rerank` 阶段对每条靠前结果向 Jev 提一个 `noul`（`document` 是否回答了 state 中的查询？），再按概率重新排序。作者报告 FiQA 上的 nDCG@10 从 0.24 升至 0.36，总共 648 次搜索花费约 0.64 美元。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`开源项目` · ★10k+ · xerj-org · `Rs` · `noul` · [调用点](https://github.com/xerj-org/xerj/blob/HEAD/engine/crates/xerj-rerank/src/lib.rs)，2026-10-26 模型阅读</sub>
-
-  **注意:** `厂商自报数据`
 
 </details>
 
@@ -946,6 +942,14 @@ _从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不�
   「小模型 → 校验 → 推理模型」的两段级联，用一小部分成本拿到接近大推理模型的质量。<br>
   <sub>`官方文档` · `Py`</sub>
 
+- **[ContextGem](https://github.com/shcherbak-ai/contextgem)**<br>
+  用 LLM 和决策模型从文档中抽取结构化数据的 Python 框架。配合 Jev 这类决策模型时，它对每个段落提一个是非题，找出每个方面（aspect）对应的条款，并把布尔、标签和评级概念转成 noul、choice 和 score 问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★1k+ · shcherbak-ai · `Py` · `noul` · `choice` · `score` · [调用点](https://github.com/shcherbak-ai/contextgem/blob/HEAD/contextgem/internal/base/decision_models.py)，2026-11-06 模型阅读</sub>
+
+- **[jev-job-search](https://github.com/qbeka/jev-job-search)**<br>
+  在 Claude Code 里运行的求职申请工具：经 OpenRouter 问 Jev 每个职位是否是带薪的软件岗位、级别和入职时间是否合适、技术栈匹配度如何，以及每个表单字段该填哪条已存答案或哪个选项，然后在 Chrome 里填好表单等你确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★100+ · qbeka · `TS` · `noul` · `choice` · `score` · [调用点](https://github.com/qbeka/jev-job-search/blob/HEAD/src/jev/client.ts)，2026-11-10 模型阅读</sub>
+
 - **[jev4pg](https://github.com/Sheltercosmo/jev4pg)**<br>
   为 PostgreSQL 提供自然语言 SQL 和 41 个语义算子。过滤、抽取、排序、匹配和核验以有上限的批次交给 Jev，答案须先通过校验；choice 选项需达 0.55、noul 需达 0.8 才算成立。作者报告其准确率为 98%，pg-jev 的请求路径为 92%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`开源项目` · ★100+ · Sheltercosmo · `Py` · `choice` · `noul` · [调用点](https://github.com/Sheltercosmo/jev4pg/blob/HEAD/sdd/generic/jev.py)，2026-10-26 模型阅读</sub>
@@ -967,14 +971,6 @@ _从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不�
   <sub>`开源项目` · ★10+ · bilune · `TS` · `choice` · `score` · `noul` · [调用点](https://github.com/bilune/jev-design/blob/HEAD/src/design/jev/generate.ts)，2026-10-30 模型阅读</sub>
 
   **注意:** `无许可证`
-
-- **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)**<br>
-  面向 Apple 芯片上原生 macOS 应用的 computer use 智能体：由 OmniParser CoreML、Apple Vision OCR 和辅助功能标签在本机找出窗口里的控件，再由 Jev 根据观察到的文字（从不看像素）用 choice 选下一步动作。输入前有防护检查，基准测试核对的是实际结果，而不是 Jev 的 DONE 判断。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`开源项目` · ★10+ · jcpsimmons · `JS` · [调用点](https://github.com/jcpsimmons/jev-macos-loop/blob/HEAD/src/providers.mjs)，2026-09-22 阅读</sub>
-
-- **[jeveryword](https://github.com/jkrup/jeveryword)**<br>
-  用 Jev 做文本抽取：字段抽取、PII 检测与逐字引文。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
-  <sub>`开源项目` · ★10+ · jkrup · `JS` · [调用点](https://github.com/jkrup/jeveryword/blob/HEAD/src/client.mjs)，2026-09-22 阅读</sub>
 
 </details>
 
@@ -1025,13 +1021,13 @@ _把条目归入分类体系，包括用概率遍历的深层层级。_
 
   **注意:** `仅影子运行`
 
+- **[ContextGem](https://github.com/shcherbak-ai/contextgem)**<br>
+  用 LLM 和决策模型从文档中抽取结构化数据的 Python 框架。配合 Jev 这类决策模型时，它对每个段落提一个是非题，找出每个方面（aspect）对应的条款，并把布尔、标签和评级概念转成 noul、choice 和 score 问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`开源项目` · ★1k+ · shcherbak-ai · `Py` · `noul` · `choice` · `score` · [调用点](https://github.com/shcherbak-ai/contextgem/blob/HEAD/contextgem/internal/base/decision_models.py)，2026-11-06 模型阅读</sub>
+
 - **[pg-jev](https://github.com/realZachi/pg-jev)**<br>
   一个真正的 PostgreSQL 扩展，把三个原语暴露成 SQL 函数 —— 语义判断可以直接写进任意行类型的 WHERE 子句。<br>
   <sub>`开源项目` · ★1k+ · `Py` · `sh` · `choice` · `score` · `noul` · [调用点](https://github.com/realZachi/pg-jev/blob/HEAD/sql/jev--0.2.0.sql)，2026-09-22 阅读</sub>
-
-- **[332_lab-jev-chat](https://github.com/Liyucheng1997/332_lab-jev-chat)**<br>
-  电脑版微信助手：由 Jev 判断每条消息的意图，DeepSeek 给出建议回复。 <sub>(机翻)</sub><br>
-  <sub>`开源项目` · ★100+ · liyucheng1997 · `Kt` · [调用点](https://github.com/Liyucheng1997/332_lab-jev-chat/blob/HEAD/windows/jev_windows/jev_api.py)，2026-09-24 阅读</sub>
 
 </details>
 
@@ -1166,6 +1162,10 @@ _按意图和紧急度路由支持工单与会话。_
 <details>
 <summary>展开另外 7 条</summary>
 
+- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)**<br>
+  Together AI 微调 Qwen3.5-4B，用一个选项字母回答决策问题。在对三个公开 Jev 基准的配对重跑中，它在钓鱼邮件上得 50.6%，Jev 1.13 为 62.9%；工具风险上两者都是 93.3%；工单路由上为 96.3%，Jev 为 100%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★100+ · togethercomputer · `Py` · `choice` · [调用点](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py)，2026-11-05 模型阅读</sub>
+
 - **[jev-demo](https://github.com/soyjorgepilo/jev-demo)**<br>
   三个西班牙语演示，展示同一模式：Jev 决策、代码执行。Jira 工单分诊，按结果直接应用、标记复核或升级；预检扫描先标出有问题的函数，再只让 Claude 解释这些函数；PR 路由把每个 pull request 分给规则、Haiku 或 Sonnet。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`开源项目` · ★10+ · soyjorgepilo · `TS` · `choice` · `noul` · `score` · [调用点](https://github.com/soyjorgepilo/jev-demo/blob/HEAD/shared/jev.ts)，2026-11-04 模型阅读</sub>
@@ -1195,10 +1195,6 @@ _按意图和紧急度路由支持工单与会话。_
 - **[Jev on AI/ML API](https://docs.aimlapi.com/api-references/decision-models/typesafe/jev)**<br>
   又一个网关接入路径，值得记一笔是因为它的端点路径和请求外壳跟原生 API、跟 Cloudflare 都不一样。<br>
   <sub>`平台集成` · `Py` · `noul` · `choice` · `score`</sub>
-
-- **[Jev on Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/)**<br>
-  Workers AI binding 与 REST 示例：一次调用同时问 noul、choice、score，并给出含逐答案置信度的完整响应。<br>
-  <sub>`平台集成` · `TS` · `sh` · `noul` · `choice` · `score`</sub>
 
 </details>
 
@@ -1370,7 +1366,7 @@ _介绍模型或整个领域，而非单一模式。_
 <details>
 <summary><b>查看可搜索站点预览</b></summary>
 
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=a1f1828fb8a43566" alt="可搜索的 Jev 目录：精选路径、筛选排序、带日期的来源证据与条目卡片" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=8f28addbd4048d92" alt="可搜索的 Jev 目录：精选路径、筛选排序、带日期的来源证据与条目卡片" width="760"></a>
 
 <sub>点击条形即可筛选。另有两个视图：<a href="https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh">三个原语</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh">兼容性矩阵</a>。每个筛选条件和每个条目都是可分享的 URL。也有静态页面：<a href="https://kydlikebtc.github.io/awesome-jev/patterns/">每个模式一页</a> · <a href="https://kydlikebtc.github.io/awesome-jev/new.zh.html">每周新增与退役</a>（<a href="https://kydlikebtc.github.io/awesome-jev/feed.zh.xml">Atom 订阅</a>）。有代码的产品还可以上<a href="https://kydlikebtc.github.io/awesome-jev/launches.zh.html">每周发布榜</a>（<a href="docs/launches.zh-CN.md">规则说明</a>）。</sub>
 
@@ -1397,17 +1393,17 @@ _介绍模型或整个领域，而非单一模式。_
 
 ## 哪些经过核实，哪些没有
 
-- **链接检查** —— 有 1363 行记录了 HTTP 2xx 响应和 `checked` 日期，另有 120 行没有带日期的成功记录。检查日期因条目而异，过去成功不保证今天仍可访问。star 数和许可证也是仓库元数据的快照。
+- **链接检查** —— 有 1479 行记录了 HTTP 2xx 响应和 `checked` 日期，另有 4 行没有带日期的成功记录。检查日期因条目而异，过去成功不保证今天仍可访问。star 数和许可证也是仓库元数据的快照。
 
 - **来源与代码阅读** —— `evidence.path` 指向所读文件，`evidence.read_on` 记录声明的阅读日期，`evidence.model_read_on` 记录模型的阅读、单独显示，`evidence_none` 解释缺少文件证据的原因。阅读调用点与运行代码是两件事。摘要包含源项目描述与机翻，详见[方法与局限](docs/method.md)。 <sub>(机翻)</sub>
 
-- **摘要是谁的文字** —— 746 条摘要的英文原文就是被链接项目自己在 GitHub 上的描述，逐字相同，这些行标为 *(项目自述)*；29 条标为 *(项目旧自述)*：英文取自项目描述，但两者已不再相同。这些文字出自项目作者，中文摘要是其译文。11 条摘要标明由人为本目录撰写，383 条由模型为本目录撰写并标为 *(模型撰写)*，314 条未作记录。每周刷新会把每条英文摘要与其仓库描述比对并标出相同者；只有人才能把摘要标为人写的。 <sub>(机翻)</sub>
+- **摘要是谁的文字** —— 745 条摘要的英文原文就是被链接项目自己在 GitHub 上的描述，逐字相同，这些行标为 *(项目自述)*；30 条标为 *(项目旧自述)*：英文取自项目描述，但两者已不再相同。这些文字出自项目作者，中文摘要是其译文。11 条摘要标明由人为本目录撰写，383 条由模型为本目录撰写并标为 *(模型撰写)*，314 条未作记录。每周刷新会把每条英文摘要与其仓库描述比对并标出相同者；只有人才能把摘要标为人写的。 <sub>(机翻)</sub>
 
 - **中文是谁写的** —— 1483 行中有 191 行的中文摘要由人撰写；其余 1292 行由模型翻译，带有 `zh_machine`，并在中文 README、中文模式页面和站点的中文视图中逐条标为 *(机翻)*。[翻译队列](docs/zh-queue.md)列出等待有人替换的机翻：先是星标最高各行的全部机翻，再按星标从高到低列出被脚本计算的三项文本信号（比英文短得多、缺少英文里的数字、大部分是 ASCII 字符）中至少一项标出的其他机翻。信号只是对照比较，不是对译文的结论，README、模式页面和站点上的各行都不显示信号。认领方法见[认领翻译](CONTRIBUTING.md#claim-a-translation)；只有你自己写的译文才能去掉 `zh_machine`。 <sub>(机翻)</sub>
 
 - **调用点文本复查** —— 有 1287 行通过 `evidence` 记录了项目调用 Jev 的文件及其中匹配的字符串。另有 110 行记录的文件只表明项目采用了 Jev 的请求结构、并非基于 Jev 构建（所有 `alternative`——无论是自己提供这种结构，还是向 Jev 发送同样的请求作对比——以及由其他模型支撑的适配器），1 行记录的只是项目附带的示例；`evidence.kind` 标明属于哪一种。每周 [claims 任务](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) 检查这些字符串是否仍在默认分支，发现文本或文件缺失时报告。这些数字是已记录的证据数量，**不是最新 CI 通过数**。文本匹配不能证明调用实际执行、API 兼容或结果正确。脚本标出、需要人重读的引用列在[复核队列](docs/review-queue.md)。 <sub>(机翻)</sub>
 
-- **用了哪些原语** —— 有 109 行在 `question_types` 中记录了有人读代码时确认调用的原语；另有 217 行记录的是模型读代码时确认的原语，这些行的调用点只有模型读过（`evidence.model_read_on`）。此外还有 749 行带 `primitives_seen`，这是机器文本信号：每周刷新在该行所引的那一个文件中找到了某个原语的请求或回答结构（`"type": "choice"`、`Noul(`、`.noul`）。文件里出现这种结构不等于调用；其中 618 行没有 `question_types`，这个信号就是关于它们所用原语的全部记录。本目录的筛选、计数和规则都不会把它当作原语声明。 <sub>(机翻)</sub>
+- **用了哪些原语** —— 有 109 行在 `question_types` 中记录了有人读代码时确认调用的原语；另有 217 行记录的是模型读代码时确认的原语，这些行的调用点只有模型读过（`evidence.model_read_on`）。此外还有 833 行带 `primitives_seen`，这是机器文本信号：每周刷新在该行所引的那一个文件中找到了某个原语的请求或回答结构（`"type": "choice"`、`Noul(`、`.noul`）。文件里出现这种结构不等于调用；其中 642 行没有 `question_types`，这个信号就是关于它们所用原语的全部记录。本目录的筛选、计数和规则都不会把它当作原语声明。 <sub>(机翻)</sub>
 
 - **本仓库未独立验证运行与性能** —— 所有目录条目默认都未经本仓库实测，没有 `code-untested` 标签也不代表已测试。被收录的基准是原作者的测量，本目录没有独立复现。仓库构建检查与安装包冒烟测试不运行这些集成，也不调用 Jev 在线 API；收录亦不代表安全审计。
 

@@ -68,8 +68,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[fast-dev-compaction](https://github.com/leonaaardob/fast-dev-compaction)** — Codex plugin: verbatim Jev-guided context restoration around session compaction. Port of tamaratran/fast-jev-compaction to Codex lifecycle hooks. <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · leonaaardob · `TS` · call site [`src/request.ts`](https://github.com/leonaaardob/fast-dev-compaction/blob/HEAD/src/request.ts), read 2026-09-24</sub>
 
-- **[jev-compact](https://github.com/fatelei/jev-compact)** — Jev-scored context compaction for OpenAI Codex CLI — scores every tool call before compaction and restores critical tool outputs verbatim after it <sub>(upstream description)</sub>
-  <sub>`Plugin` · ★10+ · fatelei · `TS` · call site [`plugins/jev-compact/dist/fast-jev.mjs`](https://github.com/fatelei/jev-compact/blob/HEAD/plugins/jev-compact/dist/fast-jev.mjs), read 2026-09-24</sub>
+- **[fast-jev-compaction-opencode](https://github.com/overbit/fast-jev-compaction-opencode)** — OpenCode V2 plugin that compacts context by classifying instead of summarizing: it asks Jev, with noul questions, whether each completed tool call and its output still matter, keeps those and drops what can be re-read or re-run, and falls back to OpenCode's compaction if that fails or saves little. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · overbit · `TS` · `noul` · call site [`src/request.ts`](https://github.com/overbit/fast-jev-compaction-opencode/blob/HEAD/src/request.ts), read by a model 2026-11-06</sub>
 
 - **[jev-compaction-plus](https://github.com/cth9191/jev-compaction-plus)** — Claude Code compaction by Jev instead of a summary: for every old tool result Jev answers whether the assistant still needs it word for word; kept results stay verbatim and dropped ones move to a drawer file Claude can read back. A fork of fast-jev-compaction with three fixes for huge sessions. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · cth9191 · `TS` · `noul` · call site [`hooks/fast-jev.ts`](https://github.com/cth9191/jev-compaction-plus/blob/HEAD/hooks/fast-jev.ts), read by a model 2026-10-31</sub>
@@ -113,14 +113,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[fast-jev for OpenCode](https://github.com/nrdz-labs/fast-jev-opencode)** — OpenCode plugin that prunes stale tool calls and bulky results from each outgoing model request: Jev answers two nouls per call, whether the call and whether its full output should stay, and code drops or truncates the rest; stored history and OpenCode's own compaction are untouched. <sub>(written by a model)</sub>
   <sub>`Plugin` · nrdz-labs · `TS` · `noul` · call site [`jev.ts`](https://github.com/nrdz-labs/fast-jev-opencode/blob/HEAD/jev.ts), read by a model 2026-11-09</sub>
 
-- **[fast-jev-compaction-opencode](https://github.com/overbit/fast-jev-compaction-opencode)** — OpenCode V2 plugin that compacts context by classifying instead of summarizing: it asks Jev, with noul questions, whether each completed tool call and its output still matter, keeps those and drops what can be re-read or re-run, and falls back to OpenCode's compaction if that fails or saves little. <sub>(written by a model)</sub>
-  <sub>`Plugin` · overbit · `TS` · `noul` · call site [`src/request.ts`](https://github.com/overbit/fast-jev-compaction-opencode/blob/HEAD/src/request.ts), read by a model 2026-11-06</sub>
-
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
 
 - **[Jev Codex Token Saver](https://github.com/jcressler/jev-codex-token-saver)** — Codex plugin whose MCP server searches the workspace or groups a large log locally, then asks Jev one noul per candidate excerpt on whether it holds evidence for the query and for each stated requirement, and returns only the selected exact excerpts to Codex. <sub>(written by a model)</sub>
   <sub>`Plugin` · jcressler · `JS` · `noul` · call site [`src/investigator.mjs`](https://github.com/jcressler/jev-codex-token-saver/blob/HEAD/src/investigator.mjs), read by a model 2026-11-10</sub>
+
+- **[jev-compact](https://github.com/fatelei/jev-compact)** — Jev-scored context compaction for OpenAI Codex CLI — scores every tool call before compaction and restores critical tool outputs verbatim after it <sub>(upstream description)</sub>
+  <sub>`Plugin` · fatelei · `TS` · call site [`plugins/jev-compact/dist/fast-jev.mjs`](https://github.com/fatelei/jev-compact/blob/HEAD/plugins/jev-compact/dist/fast-jev.mjs), read 2026-09-24</sub>
 
 - **[jev-compaction](https://github.com/picaye/jev-compaction)** — Context compaction for Hermes sessions that never summarises: every tool call is scored by TypeSafe's Jev model, stale calls are dropped, everything kept stays verbatim. <sub>(upstream description)</sub>
   <sub>`Project` · picaye · `JS` · call site [`hermes-compact.mjs`](https://github.com/picaye/jev-compaction/blob/HEAD/hermes-compact.mjs), read 2026-09-22</sub>

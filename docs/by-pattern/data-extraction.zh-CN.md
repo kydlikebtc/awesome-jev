@@ -41,6 +41,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Cookbook: Structured data extraction cascade](https://docs.typesafe.ai/cookbooks/sde_cascade)** ⭐ — 「小模型 → 校验 → 推理模型」的两段级联，用一小部分成本拿到接近大推理模型的质量。
   <sub>`官方文档` · `Py`</sub>
 
+- **[ContextGem](https://github.com/shcherbak-ai/contextgem)** — 用 LLM 和决策模型从文档中抽取结构化数据的 Python 框架。配合 Jev 这类决策模型时，它对每个段落提一个是非题，找出每个方面（aspect）对应的条款，并把布尔、标签和评级概念转成 noul、choice 和 score 问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★1k+ · shcherbak-ai · `Py` · `noul` · `choice` · `score` · 调用点 [`contextgem/internal/base/decision_models.py`](https://github.com/shcherbak-ai/contextgem/blob/HEAD/contextgem/internal/base/decision_models.py)，2026-11-06 模型阅读</sub>
+
+- **[jev-job-search](https://github.com/qbeka/jev-job-search)** — 在 Claude Code 里运行的求职申请工具：经 OpenRouter 问 Jev 每个职位是否是带薪的软件岗位、级别和入职时间是否合适、技术栈匹配度如何，以及每个表单字段该填哪条已存答案或哪个选项，然后在 Chrome 里填好表单等你确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · qbeka · `TS` · `noul` · `choice` · `score` · 调用点 [`src/jev/client.ts`](https://github.com/qbeka/jev-job-search/blob/HEAD/src/jev/client.ts)，2026-11-10 模型阅读</sub>
+
 - **[jev4pg](https://github.com/Sheltercosmo/jev4pg)** — 为 PostgreSQL 提供自然语言 SQL 和 41 个语义算子。过滤、抽取、排序、匹配和核验以有上限的批次交给 Jev，答案须先通过校验；choice 选项需达 0.55、noul 需达 0.8 才算成立。作者报告其准确率为 98%，pg-jev 的请求路径为 92%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · Sheltercosmo · `Py` · `choice` · `noul` · 调用点 [`sdd/generic/jev.py`](https://github.com/Sheltercosmo/jev4pg/blob/HEAD/sdd/generic/jev.py)，2026-10-26 模型阅读 · ⚠ `厂商自报数据`</sub>
 
@@ -68,14 +74,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[JevSpan](https://github.com/lzq-0529/jev-span)** — 中英文零样本命名实体识别：代码按标点列出带精确字符位置的候选片段，由 Jev 的 choice 问题为每种实体类型提名窗口、核验每个候选（该类型、none、mixed 或 partial）并选出准确边界，每个实体都保留概率和决策过程。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · lzq-0529 · `Py` · `choice` · 调用点 [`src/jevspan/jev_client.py`](https://github.com/lzq-0529/jev-span/blob/HEAD/src/jevspan/jev_client.py)，2026-09-30 阅读 · ⚠ `疑似 AI 生成` `作者自荐`</sub>
 
+- **[Natural Language Logic Interpreter](https://github.com/narphorium/nl-logic-interpreter)** — 用自然英语书写事实和规则的单步逻辑解释器：它像 Prolog 一样用 SLD 归结证明目标，但合一由 Jev 完成：用一个 choice 判断两句话是什么关系，用 noul 判断它们是否陈述同一事实，再用 choice 把每个变量绑定到一个短语上。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · narphorium · `TS` · `choice` · `noul` · 调用点 [`src/server/aiUnifier.ts`](https://github.com/narphorium/nl-logic-interpreter/blob/HEAD/src/server/aiUnifier.ts)，2026-11-08 模型阅读</sub>
+
 - **[smart-paste](https://github.com/nomanjack/smart-paste)** — 根据粘贴的文本自动填写表单：把表单标题、字段标签和你的文字交给 TypeSafe，插入匹配到的值，提交前由你检查。 <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · nomanjack · `JS` · 调用点 [`worker.js`](https://github.com/nomanjack/smart-paste/blob/HEAD/worker.js)，2026-09-24 阅读</sub>
 
 - **[ask-jev](https://github.com/logicrw/ask-jev)** — 只用标准库的命令行工具，在 280 毫秒的建议预算内把智能体的小判断交给 Jev：choose（choice）、check（用 noul 判断证据是否支持某个说法）、score、最多 32 题的 batch，以及 purify：对每段文字问一个 noul，只保留相关的原文行。失败即放行，由智能体做决定。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · logicrw · `Py` · 调用点 [`scripts/jev_context.py`](https://github.com/logicrw/ask-jev/blob/HEAD/scripts/jev_context.py)，2026-09-24 阅读</sub>
-
-- **[ContextGem](https://github.com/shcherbak-ai/contextgem)** — 用 LLM 和决策模型从文档中抽取结构化数据的 Python 框架。配合 Jev 这类决策模型时，它对每个段落提一个是非题，找出每个方面（aspect）对应的条款，并把布尔、标签和评级概念转成 noul、choice 和 score 问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · shcherbak-ai · `Py` · `noul` · `choice` · `score` · 调用点 [`contextgem/internal/base/decision_models.py`](https://github.com/shcherbak-ai/contextgem/blob/HEAD/contextgem/internal/base/decision_models.py)，2026-11-06 模型阅读</sub>
 
 - **[DuckDB Dual Cognition](https://github.com/prasanthj/duckdb-dual-cognition)** — 原生 DuckDB 扩展：用 SQL 函数批量对每一行问 Jev choice、score 和 noul，包括从候选里为一行挑出外键，或答 ambiguous、no_match；只有置信度低于阈值的行才交给 OpenAI 模型去推理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · prasanthj · `C++` · `choice` · `score` · `noul` · 调用点 [`src/dc_extension.cpp`](https://github.com/prasanthj/duckdb-dual-cognition/blob/HEAD/src/dc_extension.cpp)，2026-11-11 模型阅读 · ⚠ `需第三方密钥`</sub>
@@ -95,20 +101,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-information-extraction](https://github.com/abhishekmamdapure/jev-information-extraction)** — 解析 PDF 并抽取相关信息。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abhishekmamdapure · `Py` · 调用点 [`backend/main.py`](https://github.com/abhishekmamdapure/jev-information-extraction/blob/HEAD/backend/main.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
-- **[jev-job-search](https://github.com/qbeka/jev-job-search)** — 在 Claude Code 里运行的求职申请工具：经 OpenRouter 问 Jev 每个职位是否是带薪的软件岗位、级别和入职时间是否合适、技术栈匹配度如何，以及每个表单字段该填哪条已存答案或哪个选项，然后在 Chrome 里填好表单等你确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · qbeka · `TS` · `noul` · `choice` · `score` · 调用点 [`src/jev/client.ts`](https://github.com/qbeka/jev-job-search/blob/HEAD/src/jev/client.ts)，2026-11-10 模型阅读</sub>
-
 - **[jev-mcp-dispatcher](https://github.com/abhishekashokvkumar/jev-mcp-dispatcher)** — 完全由 Jev 驱动的自然语言 MCP 工具分发器，不用通用 LLM。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · abhishekashokvkumar · `Py` · 调用点 [`jev_mcp_dispatcher.py`](https://github.com/abhishekashokvkumar/jev-mcp-dispatcher/blob/HEAD/jev_mcp_dispatcher.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
 - **[JEVsnap](https://github.com/brainstormity/jevsnap)** — 适用于 macOS、Linux 和 Windows 的截图热键：图片进入剪贴板前先涂黑密钥和个人信息；本地规则之后，Jev 用 noul 判断哪些 OCR 文本行和单词要隐藏，可选的视觉检查再用 box 问题找出剩下的部分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · brainstormity · `TS` · `noul` · `choice` · 调用点 [`desktop/src/core/jevClient.ts`](https://github.com/brainstormity/jevsnap/blob/HEAD/desktop/src/core/jevClient.ts)，2026-11-10 模型阅读</sub>
+  <sub>`开源项目` · brainstormity · `TS` · `noul` · `choice` · 调用点 [`desktop/src/core/jevClient.ts`](https://github.com/brainstormity/jevsnap/blob/HEAD/desktop/src/core/jevClient.ts)，2026-11-10 模型阅读 · ⚠ `仅一次提交`</sub>
 
 - **[jevsume](https://github.com/unownone/jevsume)** — 由 Jev 驱动的 ATS 友好简历评审。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · unownone · `TS` · 调用点 [`packages/jev/http.ts`](https://github.com/unownone/jevsume/blob/HEAD/packages/jev/http.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
-
-- **[Natural Language Logic Interpreter](https://github.com/narphorium/nl-logic-interpreter)** — 用自然英语书写事实和规则的单步逻辑解释器：它像 Prolog 一样用 SLD 归结证明目标，但合一由 Jev 完成：用一个 choice 判断两句话是什么关系，用 noul 判断它们是否陈述同一事实，再用 choice 把每个变量绑定到一个短语上。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · narphorium · `TS` · `choice` · `noul` · 调用点 [`src/server/aiUnifier.ts`](https://github.com/narphorium/nl-logic-interpreter/blob/HEAD/src/server/aiUnifier.ts)，2026-11-08 模型阅读</sub>
 
 - **[question-kit](https://github.com/Engid/question-kit)** — 面向 Jev 的 TypeScript 构件库，Python 移植版在预览中；其中包括一个服务智能体：你把服务描述成数据，由代码执行流程，Jev 读取客户的每一轮发言，判断意图、某一步需要的值以及流程没写明的判断，每个结论都要过置信度关卡。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · Engid · `TS` · `choice` · `noul` · `score` · 调用点 [`packages/question-kit/core/typesafe.ts`](https://github.com/Engid/question-kit/blob/HEAD/packages/question-kit/core/typesafe.ts)，2026-11-11 模型阅读</sub>

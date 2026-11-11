@@ -86,6 +86,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[quackd](https://github.com/rokbenko/quackd)** — 统管所有机器人的 CLI：每台机器人配一个 LLM 作大脑，由 Jev 做决策。 <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · rokbenko · `Py` · 调用点 [`quackd/agent/decision/systemone.py`](https://github.com/rokbenko/quackd/blob/HEAD/quackd/agent/decision/systemone.py)，2026-09-24 阅读</sub>
 
+- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)** — Together AI 微调 Qwen3.5-4B，用一个选项字母回答决策问题。在对三个公开 Jev 基准的配对重跑中，它在钓鱼邮件上得 50.6%，Jev 1.13 为 62.9%；工具风险上两者都是 93.3%；工单路由上为 96.3%，Jev 为 100%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · ★100+ · togethercomputer · `Py` · `choice` · 调用点 [`evaluation/public-third-party/run.py`](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py)，2026-11-05 模型阅读</sub>
+
 - **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — 由 44 个智能体、63 个技能和 79 个钩子组成的工具包，按大白话请求分派。它的 /d 路由器请 Jev 给请求分类，并在派发前确认所选路线不会改变用户要的结果；它的自动压缩插件在上下文超过 60% 后，对每个难以判断的工具调用提三个 noul，并逐字裁剪。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · notque · `Py` · 调用点 [`plugins/jev-auto-compact/hooks/jev-auto-compact.mjs`](https://github.com/notque/vexjoy-agent/blob/HEAD/plugins/jev-auto-compact/hooks/jev-auto-compact.mjs)，2026-09-22 阅读</sub>
 
@@ -115,6 +118,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[flue-jev-demo](https://github.com/matthewp/flue-jev-demo)** — 通过 Cloudflare AI Gateway 用 Jev 做 Flue 智能体路由。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · matthewp · `TS` · 调用点 [`src/flue-jev.ts`](https://github.com/matthewp/flue-jev-demo/blob/HEAD/src/flue-jev.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+
+- **[guardrails-md](https://github.com/berget-ai/guardrails-md)** — 默认不是 Jev：一个用于 opencode、pi 和 Claude Code 的闸门，对每条 bash 命令向 System One 模型提三个 Noul 问题（是否具破坏性、是否泄露凭据、是否违反仓库的 GUARDRAILS.md），超过 0.7 就拦截，端点出错时也拦截，默认使用 Berget 的 berget/bev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · ★10+ · berget-ai · `TS` · `noul` · 引用文件 [`core.ts`](https://github.com/berget-ai/guardrails-md/blob/HEAD/core.ts)，2026-11-05 模型阅读 · ⚠ `并非 Jev 本身`</sub>
 
 - **[hermes-jev](https://github.com/keeltrace/hermes-nerve)** — 类型化的 System One 决策、排序、校验，以及可选启用的 Hermes 工具闸门。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · keeltrace · `Py` · 调用点 [`hermes_nerve/client.py`](https://github.com/keeltrace/hermes-nerve/blob/HEAD/hermes_nerve/client.py)，2026-09-22 阅读</sub>
@@ -182,7 +188,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-usecases](https://github.com/kenhuangus/jev-usecases)** — 生产级的 Jev 用例 harness，带置信度门控的决策逻辑。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · kenhuangus · `Py` · 调用点 [`src/jev_usecases/client.py`](https://github.com/kenhuangus/jev-usecases/blob/HEAD/src/jev_usecases/client.py)，2026-09-22 阅读</sub>
 
-- **[jev_antispam_bot](https://github.com/backmeupplz/jev_antispam_bot)** — 基于 grammY 的极简 Telegram 反垃圾机器人。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[jev_antispam_bot](https://github.com/backmeupplz/jev_antispam_bot)** — 基于 grammY 的极简 Telegram 反垃圾机器人。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · backmeupplz · `TS` · 调用点 [`src/spam.ts`](https://github.com/backmeupplz/jev_antispam_bot/blob/HEAD/src/spam.ts)，2026-09-22 阅读</sub>
 
 - **[JevPR](https://github.com/HexyeDEV/JevPR)** — 由 Jev 自动完成的 PR 风险审查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
@@ -191,8 +197,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[muse-jev-playbook](https://github.com/Bodila51/muse-jev-playbook)** — 为 Muse 提供的 Jev 决策层：在昂贵的智能体工作之前加一道快速、便宜的 TypeSafe AI 关卡——置信度策略与配方。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · bodila51 · `Py` · 调用点 [`src/jev_client.py`](https://github.com/Bodila51/muse-jev-playbook/blob/HEAD/src/jev_client.py)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
 
+- **[nachalnik](https://github.com/ljedrz/nachalnik)** — 一个透明的 Rust 智能体运行时：上下文、工具、权限与请求都是显式状态，另附 MCP 桥接。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · ljedrz · `Rs` · 调用点 [`nachalnik-providers/src/system1.rs`](https://github.com/ljedrz/nachalnik/blob/HEAD/nachalnik-providers/src/system1.rs)，2026-11-05 模型阅读</sub>
+
 - **[omo-jev-plugin](https://github.com/brianhong-dev/omo-jev-plugin)** — 面向 OmO 和 senpi 编程智能体的插件：询问 Jev 哪个已加载的技能和下一个工具适合当前任务、最近的结果是否在重复失败、工作是否看起来已完成；在 act 模式下还会决定使用哪个模型和思考级别，以及是否拦截某个工具调用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · brianhong-dev · `TS` · `noul` · `choice` · `score` · 调用点 [`src/decision.ts`](https://github.com/brianhong-dev/omo-jev-plugin/blob/HEAD/src/decision.ts)，2026-11-01 模型阅读</sub>
+
+- **[OnlyRead](https://github.com/onlyreadai/onlyread)** — 让浏览器里的 AI 智能体在你选定的网站上只能读不能写的 Chrome 扩展：规则、按站点的解码器和判定缓存先处理大部分请求，其余的由 Jev 回答一个 noul（这个请求会不会创建、修改或删除服务器上存储的数据？）；代码据此放行、拦截，或把中间地带交给复核模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · onlyreadai · `TS` · `noul` · 调用点 [`extension/src/background/judge/jev.ts`](https://github.com/onlyreadai/onlyread/blob/HEAD/extension/src/background/judge/jev.ts)，2026-11-08 模型阅读 · ⚠ `作者自荐`</sub>
 
 - **[patdown](https://github.com/tyler-dot-earth/patdown)** — 用 Jev 做拦截、引导与「模糊 lint」，让智能体遵守你的规则与约定。含 CLI 与 GitHub Action。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · tyler-dot-earth · `TS` · 调用点 [`apps/patdown/src/typesafe-judge.ts`](https://github.com/tyler-dot-earth/patdown/blob/HEAD/apps/patdown/src/typesafe-judge.ts)，2026-09-22 阅读</sub>
@@ -211,6 +223,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[skimmer](https://github.com/dorkitude/skimmer)** — 把网页、文件和列表精简到只剩与目标相关部分的命令行工具：每个约 2,000 字符的片段或列表项向 Jev 提一个是非题——它对目标有没有帮助，只按原顺序返回保留的部分。可选的第二个问题会标出试图操纵读者的文本，但这只是过滤器，不是安全边界。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · dorkitude · `Go` · `noul` · 调用点 [`internal/jev/client.go`](https://github.com/dorkitude/skimmer/blob/HEAD/internal/jev/client.go)，2026-10-31 模型阅读</sub>
+
+- **[solvi](https://github.com/solvi-ai/solvi)** — Python 决策运行时，内置 System One API 适配器：由 Jev、LLM 或本地模型给出类型化答案，再由硬性检查、规则和校准阈值决定采纳、弃权或转交人工；每个决策都保存为可重放的哈希链记录。 <sub>(机翻)</sub>
+  <sub>`SDK` · ★10+ · mxkuzn · `Py` · `choice` · `noul` · 调用点 [`src/solvi/core/deciders/systemone.py`](https://github.com/solvi-ai/solvi/blob/HEAD/src/solvi/core/deciders/systemone.py)，2026-10-23 阅读 · ⚠ `作者自荐`</sub>
 
 - **[toolgate](https://github.com/RiskAverseTech/toolgate)** — 面向 AI 智能体的开源自动模式：一个校准过的工具调用防火墙。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · riskaversetech · `TS` · 调用点 [`src/backends/typesafe.ts`](https://github.com/RiskAverseTech/toolgate/blob/HEAD/src/backends/typesafe.ts)，2026-09-22 阅读</sub>
@@ -292,9 +307,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[guard-jev](https://github.com/NorbertBodziony/guard-jev)** — 一个文本审核演示：一次 systemOne 调用并行检查七个 Noul 风险项和一个严重程度 Score，最终结论由代码按策略阈值计算。 <sub>(机翻)</sub>
   <sub>`开源项目` · norbertbodziony · `TS` · 调用点 [`app/api/moderate/route.ts`](https://github.com/NorbertBodziony/guard-jev/blob/HEAD/app/api/moderate/route.ts)，2026-09-24 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
-
-- **[guardrails-md](https://github.com/berget-ai/guardrails-md)** — 默认不是 Jev：一个用于 opencode、pi 和 Claude Code 的闸门，对每条 bash 命令向 System One 模型提三个 Noul 问题（是否具破坏性、是否泄露凭据、是否违反仓库的 GUARDRAILS.md），超过 0.7 就拦截，端点出错时也拦截，默认使用 Berget 的 berget/bev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`Jev 替代实现` · berget-ai · `TS` · `noul` · 引用文件 [`core.ts`](https://github.com/berget-ai/guardrails-md/blob/HEAD/core.ts)，2026-11-05 模型阅读 · ⚠ `并非 Jev 本身`</sub>
 
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — 可观测的浏览器潜行游戏：Jev 做类型化的守卫判断，确定性代码掌管世界规则。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts)，2026-09-22 阅读</sub>
@@ -449,14 +461,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[mastra-jev-moderation](https://github.com/CodeAlive-AI/mastra-jev-moderation)** — 给 Mastra 智能体的输入审核，基于 Jev，单文件实现。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · codealive-ai · `TS` · 调用点 [`jev-moderation.ts`](https://github.com/CodeAlive-AI/mastra-jev-moderation/blob/HEAD/jev-moderation.ts)，2026-09-22 阅读</sub>
 
-- **[nachalnik](https://github.com/ljedrz/nachalnik)** — 一个透明的 Rust 智能体运行时：上下文、工具、权限与请求都是显式状态，另附 MCP 桥接。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · ljedrz · `Rs` · 调用点 [`nachalnik-providers/src/system1.rs`](https://github.com/ljedrz/nachalnik/blob/HEAD/nachalnik-providers/src/system1.rs)，2026-11-05 模型阅读</sub>
-
 - **[omp-jevens-classifier](https://github.com/STRML/omp-jevens-classifier)** — 给 OMP 的模型裁决式权限闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · strml · `TS` · 调用点 [`jev.ts`](https://github.com/STRML/omp-jevens-classifier/blob/HEAD/jev.ts)，2026-09-22 阅读 · ⚠ `已归档`</sub>
-
-- **[OnlyRead](https://github.com/onlyreadai/onlyread)** — 让浏览器里的 AI 智能体在你选定的网站上只能读不能写的 Chrome 扩展：规则、按站点的解码器和判定缓存先处理大部分请求，其余的由 Jev 回答一个 noul（这个请求会不会创建、修改或删除服务器上存储的数据？）；代码据此放行、拦截，或把中间地带交给复核模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · onlyreadai · `TS` · `noul` · 调用点 [`extension/src/background/judge/jev.ts`](https://github.com/onlyreadai/onlyread/blob/HEAD/extension/src/background/judge/jev.ts)，2026-11-08 模型阅读 · ⚠ `作者自荐`</sub>
 
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — 给 Codex 与 Claude Code 的二值批准闸门：每次被拦截的工具调用都要审查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · alexj11324 · `Go` · 引用文件 [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
@@ -503,17 +509,11 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Social Risk · Qwen3-VL + Jev](https://github.com/TianJinWeiBoss520/social-risk-qwen-jev)** — 关于中文图文表情包中厌女内容的研究项目：经过 LoRA 微调的 Qwen3-VL 把每条内容转成结构化证据，Jev 按固定政策回答一个 noul，判断内容是否攻击或贬低女性；代码再把概率分成风险等级。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · TianJinWeiBoss520 · `Py` · `noul` · 调用点 [`experiments/v1/src/run_ltedi_jev_cloud20.py`](https://github.com/TianJinWeiBoss520/social-risk-qwen-jev/blob/HEAD/experiments/v1/src/run_ltedi_jev_cloud20.py)，2026-11-10 模型阅读</sub>
 
-- **[solvi](https://github.com/solvi-ai/solvi)** — Python 决策运行时，内置 System One API 适配器：由 Jev、LLM 或本地模型给出类型化答案，再由硬性检查、规则和校准阈值决定采纳、弃权或转交人工；每个决策都保存为可重放的哈希链记录。 <sub>(机翻)</sub>
-  <sub>`SDK` · mxkuzn · `Py` · `choice` · `noul` · 调用点 [`src/solvi/core/deciders/systemone.py`](https://github.com/solvi-ai/solvi/blob/HEAD/src/solvi/core/deciders/systemone.py)，2026-10-23 阅读 · ⚠ `作者自荐`</sub>
-
 - **[stepwarden](https://github.com/getexcited/stepwarden)** — 智能体的每一次工具调用在执行前都过一遍检查的 Claude Code 插件。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · getexcited · `TS` · 调用点 [`lib/jev.ts`](https://github.com/getexcited/stepwarden/blob/HEAD/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
 - **[switchboard](https://github.com/aniruddh-krovvidi/switchboard)** — 基于 TypeSafe Jev（System One 模型）的 LLM 网关护栏与模型路由器，附带独立的准确率与校准评估。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · aniruddh-krovvidi · `Py` · 调用点 [`jev.py`](https://github.com/aniruddh-krovvidi/switchboard/blob/HEAD/jev.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
-
-- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)** — Together AI 微调 Qwen3.5-4B，用一个选项字母回答决策问题。在对三个公开 Jev 基准的配对重跑中，它在钓鱼邮件上得 50.6%，Jev 1.13 为 62.9%；工具风险上两者都是 93.3%；工单路由上为 96.3%，Jev 为 100%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`基准测试` · togethercomputer · `Py` · `choice` · 调用点 [`evaluation/public-third-party/run.py`](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py)，2026-11-05 模型阅读</sub>
 
 - **[toolgate](https://github.com/ndolinschi/toolgate)** — 智能体工具与 MCP 调用关卡：通过 TypeSafe Jev 决定放行、询问人类或拒绝。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/toolgate/blob/HEAD/src/lib/jev.ts)，2026-09-24 阅读 · ⚠ `仅一次提交` `无许可证`</sub>

@@ -38,6 +38,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)** — A graded course from a first call through each primitive, state shapes and criteria, to ticket triage and a multi-step workflow, mirroring all four official patterns.
   <sub>`Tutorial` · ★1k+ · `Py` · `choice` · `score` · `noul` · call site [`models/jev/06-criteria.py`](https://github.com/daveebbelaar/ai-cookbook/blob/HEAD/models/jev/06-criteria.py), read 2026-09-22</sub>
 
+- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)** — Together AI fine-tuned Qwen3.5-4B to answer decisions with one option letter. In a paired rerun of three public Jev benchmarks it scored 50.6% on phishing against Jev 1.13's 62.9%, 93.3% on tool risk for both, and 96.3% against 100% on ticket routing. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · ★100+ · togethercomputer · `Py` · `choice` · call site [`evaluation/public-third-party/run.py`](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py), read by a model 2026-11-05</sub>
+
 - **[jev-demo](https://github.com/soyjorgepilo/jev-demo)** — Three Spanish-language demos of one pattern, Jev decides and code acts: Jira ticket triage that applies, marks for review or escalates; a pre-flight pass that flags functions before Claude explains only those; and a PR router sending each pull request to rules, Haiku or Sonnet. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · soyjorgepilo · `TS` · `choice` · `noul` · `score` · call site [`shared/jev.ts`](https://github.com/soyjorgepilo/jev-demo/blob/HEAD/shared/jev.ts), read by a model 2026-11-04 · ⚠ `one commit` `no licence` `3rd-party key`</sub>
 
@@ -61,9 +64,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-triage](https://github.com/boldbug1/jev-triage)** — Go command-line tool that sorts messages by urgency: one Jev request per message asks a choice of kind (bug, billing, feature request, account, other), a 0–3 urgency score and a noul on whether the sender sounds frustrated. Below 0.8 category confidence a message goes to a review-by-hand list. <sub>(written by a model)</sub>
   <sub>`Project` · boldbug1 · `Go` · call site [`main.go`](https://github.com/boldbug1/jev-triage/blob/HEAD/main.go), read 2026-09-24</sub>
-
-- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)** — Together AI fine-tuned Qwen3.5-4B to answer decisions with one option letter. In a paired rerun of three public Jev benchmarks it scored 50.6% on phishing against Jev 1.13's 62.9%, 93.3% on tool risk for both, and 96.3% against 100% on ticket routing. <sub>(written by a model)</sub>
-  <sub>`Benchmark` · togethercomputer · `Py` · `choice` · call site [`evaluation/public-third-party/run.py`](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py), read by a model 2026-11-05</sub>
 
 - **[Support-routing benchmark: 100 held-out cases](https://decisionmodelhub.com/benchmarks/support-routing)** — Compares Jev with Clef, Clef Flash, OpenAI's Decisions API and a GPT-6 Luna structured-output baseline on 100 held-out fictional support messages, each routed to one of five team labels; every case and recorded answer can be downloaded.
   <sub>`Benchmark` · DecisionModelHub · ⚠ `self-submitted`</sub>

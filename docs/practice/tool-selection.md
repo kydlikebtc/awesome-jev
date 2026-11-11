@@ -37,9 +37,9 @@ Apart from `overview`, tool selection has the most rows whose cited file a perso
 <!-- primitives:start -->
 | Primitive | A person read the code calling it | A model read the code calling it | Only the text signal shows it |
 | --- | ---: | ---: | ---: |
-| `choice` | 26 | 42 | 105 |
-| `score` | 6 | 12 | 31 |
-| `noul` | 16 | 26 | 82 |
+| `choice` | 26 | 42 | 107 |
+| `score` | 6 | 12 | 32 |
+| `noul` | 16 | 26 | 84 |
 
 Primitives recorded together on one row (`question_types`, a person's or a model's reading): `choice` 29 · `choice` + `noul` 21 · `choice` + `score` + `noul` 17 · `noul` 4 · `choice` + `score` 1.
 <!-- primitives:end -->

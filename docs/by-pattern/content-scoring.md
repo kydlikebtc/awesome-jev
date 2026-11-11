@@ -68,6 +68,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-forge](https://github.com/zwliJay/jev-forge)** — Not Jev: a toolkit that synthesizes decision data, trains and calibrates small candidate scorers (JevForge-0.8B) and serves them behind a Jev-compatible API, first for picking the next click or form control on a web page. Its benchmark sends the same held-out choice, noul and score questions to Jev. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · ★100+ · zwlijay · `Py` · cited file [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
 
+- **[jev-job-search](https://github.com/qbeka/jev-job-search)** — Job application tool run from Claude Code that asks Jev, through OpenRouter, whether each posting is a paid software role at the right level and term, how well the stack matches, and which saved answer or option fits each form field, then fills the forms in Chrome for you to approve. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · qbeka · `TS` · `noul` · `choice` · `score` · call site [`src/jev/client.ts`](https://github.com/qbeka/jev-job-search/blob/HEAD/src/jev/client.ts), read by a model 2026-11-10</sub>
+
 - **[jev-lint](https://github.com/mizchi/jev-lint)** — Linter for what parsers miss: ast-grep picks the code, Jev is asked each rule's one-sentence question about every match, such as whether the comment above claims something untrue of the code, and matches over the cutoff are flagged. 99 rules ship, from 48 questions; judged code goes to the API. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · mizchi · `TS` · call site [`src/jev.ts`](https://github.com/mizchi/jev-lint/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
@@ -84,7 +87,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · ★100+ · chetaslua · `Py` · call site [`jevmeter/score.py`](https://github.com/ChetasLua/jevmeter/blob/HEAD/jevmeter/score.py), read 2026-09-22</sub>
 
 - **[killmyidea](https://github.com/monteduro/killmyidea)** — Scores a startup idea across several dimensions and returns a verdict of kill, fix or ship.
-  <sub>`Project` · ★100+ · `TS` · `score` · `choice` · call site [`src/lib/typesafe.ts`](https://github.com/monteduro/killmyidea/blob/HEAD/src/lib/typesafe.ts), read 2026-09-22 · ⚠ `no licence`</sub>
+  <sub>`Project` · ★100+ · `TS` · `score` · `choice` · call site [`src/lib/typesafe.ts`](https://github.com/monteduro/killmyidea/blob/HEAD/src/lib/typesafe.ts), read 2026-09-22</sub>
 
 - **[llm2jev](https://github.com/Yinsongxu/LLM2Jev)** — Adapt local language models into Jev-compatible structured decision engines with Choice, Score, and Noul outputs powered by prefill-only binary inference.
   <sub>`Project` · ★100+ · yinsongxu · `Py` · call site [`src/llm2jev/server/sglang_server.py`](https://github.com/Yinsongxu/LLM2Jev/blob/HEAD/src/llm2jev/server/sglang_server.py), read 2026-09-24</sub>
@@ -382,9 +385,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-hooks](https://github.com/microchipgnu/jev-hooks)** — Compose typed Jev judgments as reactive semantic state in React and backend programs <sub>(upstream description)</sub>
   <sub>`Project` · microchipgnu · `TS` · call site [`src/adapters/typesafe.ts`](https://github.com/microchipgnu/jev-hooks/blob/HEAD/src/adapters/typesafe.ts), read 2026-09-22 · ⚠ `no licence`</sub>
-
-- **[jev-job-search](https://github.com/qbeka/jev-job-search)** — Job application tool run from Claude Code that asks Jev, through OpenRouter, whether each posting is a paid software role at the right level and term, how well the stack matches, and which saved answer or option fits each form field, then fills the forms in Chrome for you to approve. <sub>(written by a model)</sub>
-  <sub>`Project` · qbeka · `TS` · `noul` · `choice` · `score` · call site [`src/jev/client.ts`](https://github.com/qbeka/jev-job-search/blob/HEAD/src/jev/client.ts), read by a model 2026-11-10</sub>
 
 - **[jev-judgment](https://github.com/HyunjunJeon/jev-judgment)** — Agent Skill: send closed coding-agent judgments to TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · hyunjunjeon · `Py` · call site [`skills/jev-judgment/scripts/jev.py`](https://github.com/HyunjunJeon/jev-judgment/blob/HEAD/skills/jev-judgment/scripts/jev.py), read 2026-09-22 · ⚠ `one commit`</sub>

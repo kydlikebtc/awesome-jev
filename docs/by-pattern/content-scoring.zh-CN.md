@@ -68,6 +68,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-forge](https://github.com/zwliJay/jev-forge)** — 并非 Jev：一套合成决策数据、训练并校准小型候选打分模型（JevForge-0.8B）、再通过兼容 Jev 的 API 提供服务的工具链，首个场景是在网页上挑选下一次点击或表单控件。其基准脚本把同一批留出的 choice、noul 和 score 问题发给真正的 Jev 作对比。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★100+ · zwlijay · `Py` · 引用文件 [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
 
+- **[jev-job-search](https://github.com/qbeka/jev-job-search)** — 在 Claude Code 里运行的求职申请工具：经 OpenRouter 问 Jev 每个职位是否是带薪的软件岗位、级别和入职时间是否合适、技术栈匹配度如何，以及每个表单字段该填哪条已存答案或哪个选项，然后在 Chrome 里填好表单等你确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · qbeka · `TS` · `noul` · `choice` · `score` · 调用点 [`src/jev/client.ts`](https://github.com/qbeka/jev-job-search/blob/HEAD/src/jev/client.ts)，2026-11-10 模型阅读</sub>
+
 - **[jev-lint](https://github.com/mizchi/jev-lint)** — 检查解析器查不出的问题的 lint 工具：由 ast-grep 挑出代码，再就每处匹配向 Jev 提出该规则的一句话问题，例如上方注释是否说了代码里不成立的事，概率超过规则的阈值就报出。随附 99 条规则，出自 48 个问题；被判断的代码会发送到 API。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · mizchi · `TS` · 调用点 [`src/jev.ts`](https://github.com/mizchi/jev-lint/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
@@ -84,7 +87,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`开源项目` · ★100+ · chetaslua · `Py` · 调用点 [`jevmeter/score.py`](https://github.com/ChetasLua/jevmeter/blob/HEAD/jevmeter/score.py)，2026-09-22 阅读</sub>
 
 - **[killmyidea](https://github.com/monteduro/killmyidea)** — 输入一个创业点子，Jev 从多个维度打分，最后给你 KILL、FIX 或 SHIP。
-  <sub>`开源项目` · ★100+ · `TS` · `score` · `choice` · 调用点 [`src/lib/typesafe.ts`](https://github.com/monteduro/killmyidea/blob/HEAD/src/lib/typesafe.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+  <sub>`开源项目` · ★100+ · `TS` · `score` · `choice` · 调用点 [`src/lib/typesafe.ts`](https://github.com/monteduro/killmyidea/blob/HEAD/src/lib/typesafe.ts)，2026-09-22 阅读</sub>
 
 - **[llm2jev](https://github.com/Yinsongxu/LLM2Jev)** — 把本地语言模型改造成 Jev 兼容的结构化决策引擎，输出 Choice、Score、Noul。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · yinsongxu · `Py` · 调用点 [`src/llm2jev/server/sglang_server.py`](https://github.com/Yinsongxu/LLM2Jev/blob/HEAD/src/llm2jev/server/sglang_server.py)，2026-09-24 阅读</sub>
@@ -382,9 +385,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-hooks](https://github.com/microchipgnu/jev-hooks)** — 把类型化 Jev 判断组合成 React 与后端程序里的响应式语义状态。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · microchipgnu · `TS` · 调用点 [`src/adapters/typesafe.ts`](https://github.com/microchipgnu/jev-hooks/blob/HEAD/src/adapters/typesafe.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
-
-- **[jev-job-search](https://github.com/qbeka/jev-job-search)** — 在 Claude Code 里运行的求职申请工具：经 OpenRouter 问 Jev 每个职位是否是带薪的软件岗位、级别和入职时间是否合适、技术栈匹配度如何，以及每个表单字段该填哪条已存答案或哪个选项，然后在 Chrome 里填好表单等你确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · qbeka · `TS` · `noul` · `choice` · `score` · 调用点 [`src/jev/client.ts`](https://github.com/qbeka/jev-job-search/blob/HEAD/src/jev/client.ts)，2026-11-10 模型阅读</sub>
 
 - **[jev-judgment](https://github.com/HyunjunJeon/jev-judgment)** — Agent 技能：把编程智能体的封闭式判断交给 Jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · hyunjunjeon · `Py` · 调用点 [`skills/jev-judgment/scripts/jev.py`](https://github.com/HyunjunJeon/jev-judgment/blob/HEAD/skills/jev-judgment/scripts/jev.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>

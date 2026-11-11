@@ -86,6 +86,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[quackd](https://github.com/rokbenko/quackd)** — One CLI for all your robots. Connect them, command them, and let them work together, each with an LLM for a brain, Jev for cheaper steps. Microduck, Open Duck Mini, LeRobot, XLeRobot, AlohaMini, ToddlerBot or any ROS base. Claude, OpenAI, Gemini, Grok, or local via Ollama or vLLM. Simulator, .d
   <sub>`Plugin` · ★100+ · rokbenko · `Py` · call site [`quackd/agent/decision/systemone.py`](https://github.com/rokbenko/quackd/blob/HEAD/quackd/agent/decision/systemone.py), read 2026-09-24</sub>
 
+- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)** — Together AI fine-tuned Qwen3.5-4B to answer decisions with one option letter. In a paired rerun of three public Jev benchmarks it scored 50.6% on phishing against Jev 1.13's 62.9%, 93.3% on tool risk for both, and 96.3% against 100% on ticket routing. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · ★100+ · togethercomputer · `Py` · `choice` · call site [`evaluation/public-third-party/run.py`](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py), read by a model 2026-11-05</sub>
+
 - **[vexjoy-agent](https://github.com/notque/vexjoy-agent)** — Toolkit of 44 agents, 63 skills and 79 hooks routed from plain-English requests. Its /d router asks Jev to classify a request and gates dispatch on whether the route keeps the requested outcome; its auto-compact plugin, past 60% context, asks three nouls per unclear tool call and prunes verbatim. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · notque · `Py` · call site [`plugins/jev-auto-compact/hooks/jev-auto-compact.mjs`](https://github.com/notque/vexjoy-agent/blob/HEAD/plugins/jev-auto-compact/hooks/jev-auto-compact.mjs), read 2026-09-22</sub>
 
@@ -115,6 +118,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[flue-jev-demo](https://github.com/matthewp/flue-jev-demo)** — Flue agent routing with TypeSafe Jev through Cloudflare AI Gateway <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · matthewp · `TS` · call site [`src/flue-jev.ts`](https://github.com/matthewp/flue-jev-demo/blob/HEAD/src/flue-jev.ts), read 2026-09-22 · ⚠ `no licence`</sub>
+
+- **[guardrails-md](https://github.com/berget-ai/guardrails-md)** — Not Jev by default: a gate for opencode, pi and Claude Code that asks a System One model three Noul questions about each bash command (destructive, leaks credentials, breaks the repository's GUARDRAILS.md) and blocks it above 0.7, failing closed, using Berget's berget/bev. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · ★10+ · berget-ai · `TS` · `noul` · cited file [`core.ts`](https://github.com/berget-ai/guardrails-md/blob/HEAD/core.ts), read by a model 2026-11-05 · ⚠ `not Jev itself`</sub>
 
 - **[hermes-jev](https://github.com/keeltrace/hermes-nerve)** — Typed System One decisions, ranking, verification, and an opt-in Hermes tool gate using TypeSafe Jev.
   <sub>`Project` · ★10+ · keeltrace · `Py` · call site [`hermes_nerve/client.py`](https://github.com/keeltrace/hermes-nerve/blob/HEAD/hermes_nerve/client.py), read 2026-09-22</sub>
@@ -182,7 +188,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-usecases](https://github.com/kenhuangus/jev-usecases)** — Production TypeSafe Jev (System One) use-case harnesses with confidence-gated decision logic <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · kenhuangus · `Py` · call site [`src/jev_usecases/client.py`](https://github.com/kenhuangus/jev-usecases/blob/HEAD/src/jev_usecases/client.py), read 2026-09-22</sub>
 
-- **[jev_antispam_bot](https://github.com/backmeupplz/jev_antispam_bot)** — Minimal grammY Telegram anti-spam bot powered by TypeSafe Jev <sub>(upstream description)</sub>
+- **[jev_antispam_bot](https://github.com/backmeupplz/jev_antispam_bot)** — Minimal grammY Telegram anti-spam bot powered by TypeSafe Jev <sub>(earlier upstream description)</sub>
   <sub>`Project` · ★10+ · backmeupplz · `TS` · call site [`src/spam.ts`](https://github.com/backmeupplz/jev_antispam_bot/blob/HEAD/src/spam.ts), read 2026-09-22</sub>
 
 - **[JevPR](https://github.com/HexyeDEV/JevPR)** — PR Risk review, automated by Jev <sub>(upstream description)</sub>
@@ -191,8 +197,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[muse-jev-playbook](https://github.com/Bodila51/muse-jev-playbook)** — Jev decision layer for Muse: a fast, cheap TypeSafe AI gate before expensive agent work — confidence policy, recipes, reference router, honest measurement. <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · bodila51 · `Py` · call site [`src/jev_client.py`](https://github.com/Bodila51/muse-jev-playbook/blob/HEAD/src/jev_client.py), read 2026-09-24 · ⚠ `one commit`</sub>
 
+- **[nachalnik](https://github.com/ljedrz/nachalnik)** — A transparent agent runtime in Rust: context, tools, permissions and requests as explicit state. Plus an MCP bridge and a terminal agent. <sub>(upstream description)</sub>
+  <sub>`Plugin` · ★10+ · ljedrz · `Rs` · call site [`nachalnik-providers/src/system1.rs`](https://github.com/ljedrz/nachalnik/blob/HEAD/nachalnik-providers/src/system1.rs), read by a model 2026-11-05</sub>
+
 - **[omo-jev-plugin](https://github.com/brianhong-dev/omo-jev-plugin)** — Plugin for the OmO and senpi coding agents that asks Jev which loaded skill and next tool fit the task, whether recent results repeat a failure and whether the work looks complete; in act mode also which model and thinking level to use and whether to block a tool call. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · brianhong-dev · `TS` · `noul` · `choice` · `score` · call site [`src/decision.ts`](https://github.com/brianhong-dev/omo-jev-plugin/blob/HEAD/src/decision.ts), read by a model 2026-11-01</sub>
+
+- **[OnlyRead](https://github.com/onlyreadai/onlyread)** — Chrome extension that keeps browser agents read-only on the sites you pick: rules, per-site decoders and a verdict cache settle most requests, and Jev answers a noul on the rest (does this request create, modify or delete stored data?); code allows, blocks or sends the middle band to a review model. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · onlyreadai · `TS` · `noul` · call site [`extension/src/background/judge/jev.ts`](https://github.com/onlyreadai/onlyread/blob/HEAD/extension/src/background/judge/jev.ts), read by a model 2026-11-08 · ⚠ `self-submitted`</sub>
 
 - **[patdown](https://github.com/tyler-dot-earth/patdown)** — Block, steer, and "fuzzy lint" with Jev to make agents follow your rules and conventions. CLI, github action, pi package, and more. Built with Effect.
   <sub>`Project` · ★10+ · tyler-dot-earth · `TS` · call site [`apps/patdown/src/typesafe-judge.ts`](https://github.com/tyler-dot-earth/patdown/blob/HEAD/apps/patdown/src/typesafe-judge.ts), read 2026-09-22</sub>
@@ -211,6 +223,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[skimmer](https://github.com/dorkitude/skimmer)** — CLI that cuts pages, files and lists down to what serves a goal: each ~2,000-character chunk or list item gets one Jev yes/no, does this help with the goal, and only kept parts come back, in order. An optional second question flags text trying to steer the reader: a filter, not a security boundary. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · dorkitude · `Go` · `noul` · call site [`internal/jev/client.go`](https://github.com/dorkitude/skimmer/blob/HEAD/internal/jev/client.go), read by a model 2026-10-31</sub>
+
+- **[solvi](https://github.com/solvi-ai/solvi)** — Python runtime with a System One API adapter: Jev, an LLM or a local checkpoint proposes typed answers; hard checks, rules and calibrated thresholds decide, abstain or escalate to a person, and every decision is a hash-chained replayable trace.
+  <sub>`SDK` · ★10+ · mxkuzn · `Py` · `choice` · `noul` · call site [`src/solvi/core/deciders/systemone.py`](https://github.com/solvi-ai/solvi/blob/HEAD/src/solvi/core/deciders/systemone.py), read 2026-10-23 · ⚠ `self-submitted`</sub>
 
 - **[toolgate](https://github.com/RiskAverseTech/toolgate)** — Open auto mode for AI agents — a calibrated tool-call firewall powered by TypeSafe Jev. Ships as a Claude Code hook <sub>(earlier upstream description)</sub>
   <sub>`Plugin` · ★10+ · riskaversetech · `TS` · call site [`src/backends/typesafe.ts`](https://github.com/RiskAverseTech/toolgate/blob/HEAD/src/backends/typesafe.ts), read 2026-09-22</sub>
@@ -292,9 +307,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[guard-jev](https://github.com/NorbertBodziony/guard-jev)** — A text-moderation demo: one systemOne call screens seven Noul hazards and one severity Score in parallel, and the verdict is computed in code from policy thresholds.
   <sub>`Project` · norbertbodziony · `TS` · call site [`app/api/moderate/route.ts`](https://github.com/NorbertBodziony/guard-jev/blob/HEAD/app/api/moderate/route.ts), read 2026-09-24 · ⚠ `one commit` `no licence`</sub>
-
-- **[guardrails-md](https://github.com/berget-ai/guardrails-md)** — Not Jev by default: a gate for opencode, pi and Claude Code that asks a System One model three Noul questions about each bash command (destructive, leaks credentials, breaks the repository's GUARDRAILS.md) and blocks it above 0.7, failing closed, using Berget's berget/bev. <sub>(written by a model)</sub>
-  <sub>`Jev-like alternative` · berget-ai · `TS` · `noul` · cited file [`core.ts`](https://github.com/berget-ai/guardrails-md/blob/HEAD/core.ts), read by a model 2026-11-05 · ⚠ `not Jev itself`</sub>
 
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — Observable browser stealth game: Jev makes typed guard judgments while deterministic code owns the world. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts), read 2026-09-22</sub>
@@ -449,14 +461,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[mastra-jev-moderation](https://github.com/CodeAlive-AI/mastra-jev-moderation)** — Input moderation for Mastra agents on TypeSafe Jev — one file <sub>(upstream description)</sub>
   <sub>`Project` · codealive-ai · `TS` · call site [`jev-moderation.ts`](https://github.com/CodeAlive-AI/mastra-jev-moderation/blob/HEAD/jev-moderation.ts), read 2026-09-22</sub>
 
-- **[nachalnik](https://github.com/ljedrz/nachalnik)** — A transparent agent runtime in Rust: context, tools, permissions and requests as explicit state. Plus an MCP bridge and a terminal agent. <sub>(upstream description)</sub>
-  <sub>`Plugin` · ljedrz · `Rs` · call site [`nachalnik-providers/src/system1.rs`](https://github.com/ljedrz/nachalnik/blob/HEAD/nachalnik-providers/src/system1.rs), read by a model 2026-11-05</sub>
-
 - **[omp-jevens-classifier](https://github.com/STRML/omp-jevens-classifier)** — Jev-powered model-judged permission gate for OMP (TypeSafe System One) <sub>(upstream description)</sub>
   <sub>`Project` · strml · `TS` · call site [`jev.ts`](https://github.com/STRML/omp-jevens-classifier/blob/HEAD/jev.ts), read 2026-09-22 · ⚠ `archived`</sub>
-
-- **[OnlyRead](https://github.com/onlyreadai/onlyread)** — Chrome extension that keeps browser agents read-only on the sites you pick: rules, per-site decoders and a verdict cache settle most requests, and Jev answers a noul on the rest (does this request create, modify or delete stored data?); code allows, blocks or sends the middle band to a review model. <sub>(written by a model)</sub>
-  <sub>`Plugin` · onlyreadai · `TS` · `noul` · call site [`extension/src/background/judge/jev.ts`](https://github.com/onlyreadai/onlyread/blob/HEAD/extension/src/background/judge/jev.ts), read by a model 2026-11-08 · ⚠ `self-submitted`</sub>
 
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — Binary approval gate for Codex and Claude Code — every intercepted tool call is reviewed by TypeSafe JEV and composed through a versioned local policy, with scoped authorization. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · alexj11324 · `Go` · cited file [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go), read 2026-09-22 · ⚠ `not Jev itself`</sub>
@@ -503,17 +509,11 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Social Risk · Qwen3-VL + Jev](https://github.com/TianJinWeiBoss520/social-risk-qwen-jev)** — Research project on misogyny in Chinese image-and-text memes: a LoRA-tuned Qwen3-VL turns each post into structured evidence, and Jev answers one noul under a fixed policy on whether the post attacks or demeans women; code turns the probability into risk bands. <sub>(written by a model)</sub>
   <sub>`Project` · TianJinWeiBoss520 · `Py` · `noul` · call site [`experiments/v1/src/run_ltedi_jev_cloud20.py`](https://github.com/TianJinWeiBoss520/social-risk-qwen-jev/blob/HEAD/experiments/v1/src/run_ltedi_jev_cloud20.py), read by a model 2026-11-10</sub>
 
-- **[solvi](https://github.com/solvi-ai/solvi)** — Python runtime with a System One API adapter: Jev, an LLM or a local checkpoint proposes typed answers; hard checks, rules and calibrated thresholds decide, abstain or escalate to a person, and every decision is a hash-chained replayable trace.
-  <sub>`SDK` · mxkuzn · `Py` · `choice` · `noul` · call site [`src/solvi/core/deciders/systemone.py`](https://github.com/solvi-ai/solvi/blob/HEAD/src/solvi/core/deciders/systemone.py), read 2026-10-23 · ⚠ `self-submitted`</sub>
-
 - **[stepwarden](https://github.com/getexcited/stepwarden)** — Every tool call your agent makes, checked before it runs. A Claude Code plugin that uses TypeSafe AI's Jev to verify each pending tool call against the session plan, then allows it, asks you, or blocks it. Proof of concept <sub>(upstream description)</sub>
   <sub>`Plugin` · getexcited · `TS` · call site [`lib/jev.ts`](https://github.com/getexcited/stepwarden/blob/HEAD/lib/jev.ts), read 2026-09-22 · ⚠ `one commit`</sub>
 
 - **[switchboard](https://github.com/aniruddh-krovvidi/switchboard)** — Guardrail + model router for LLM gateways on TypeSafe's Jev (System One model), with an independent accuracy/calibration/latency evaluation. Stdlib Python. <sub>(upstream description)</sub>
   <sub>`Project` · aniruddh-krovvidi · `Py` · call site [`jev.py`](https://github.com/aniruddh-krovvidi/switchboard/blob/HEAD/jev.py), read 2026-09-24 · ⚠ `no licence`</sub>
-
-- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)** — Together AI fine-tuned Qwen3.5-4B to answer decisions with one option letter. In a paired rerun of three public Jev benchmarks it scored 50.6% on phishing against Jev 1.13's 62.9%, 93.3% on tool risk for both, and 96.3% against 100% on ticket routing. <sub>(written by a model)</sub>
-  <sub>`Benchmark` · togethercomputer · `Py` · `choice` · call site [`evaluation/public-third-party/run.py`](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py), read by a model 2026-11-05</sub>
 
 - **[toolgate](https://github.com/ndolinschi/toolgate)** — Agent tool/MCP call gate — allow / ask_human / deny via TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/toolgate/blob/HEAD/src/lib/jev.ts), read 2026-09-24 · ⚠ `one commit` `no licence`</sub>

@@ -168,9 +168,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevrouter](https://github.com/BillionsBobby/JevRouter)** — 面向模型、工具和子智能体的路由器。
   <sub>`开源项目` · ★100+ · billionsbobby · `TS` · 调用点 [`functions/api/jev.js`](https://github.com/BillionsBobby/JevRouter/blob/HEAD/functions/api/jev.js)，2026-09-22 阅读</sub>
 
-- **[Jevry](https://github.com/michaelswissa/jevry)** — 一款开源桌面浏览器，可根据自然语言任务操作网站：文本模型负责规划，Jev 用 choice 从浏览器真正能执行的动作中挑选每一步（绝不生成 JavaScript 或选择器），Chromium 执行，步骤可见并可随时停止。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★100+ · michaelswissa · `TS` · `choice` · 调用点 [`desktop/jev-direct-plan.ts`](https://github.com/michaelswissa/jevry/blob/HEAD/desktop/jev-direct-plan.ts)，2026-10-24 模型阅读</sub>
-
 - **[LLM Debugger](https://github.com/mohsen1/llm-debugger-vscode-extension)** — 通过实际运行代码来调试的 VS Code 扩展。每次暂停时，Jev 用一个 `choice` 选出下一步动作（单步、继续、设断点、求值、结束），并回答两个 `noul`：是否已找到出错的行，当前这一行是否就是出错处。只有需要断点位置、表达式和最终修复时才调用生成模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · mohsen1 · `TS` · `choice` · `noul` · 调用点 [`src/agent/strategies/jev.ts`](https://github.com/mohsen1/llm-debugger-vscode-extension/blob/HEAD/src/agent/strategies/jev.ts)，2026-10-28 模型阅读 · ⚠ `需第三方密钥` `厂商自报数据`</sub>
 
@@ -179,6 +176,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[mobile-jev](https://github.com/droidrun/mobile-jev)** — 移动端 computer use：由 Jev 决定手机屏幕上的下一个动作。
   <sub>`开源项目` · ★100+ · droidrun · `JS` · 调用点 [`apps/jev-studio/app/components/use-studio.ts`](https://github.com/droidrun/mobile-jev/blob/HEAD/apps/jev-studio/app/components/use-studio.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[multi-uav-jev](https://github.com/yongld/multi-uav-jev)** — 不是 Jev：一个 MuJoCo 无人机编队仿真，每架飞机的工作线程按自身角色（跟踪、拦阻、截击、支援）措辞，把关于下一个机动动作的 Jev 格式 Choice 问题发给本地 NeoHorse-Jev-4B 端点；导航、制动和间隔保持仍由确定性代码负责。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · ★100+ · yongld · `Py` · `choice` · 引用文件 [`sim/duel_tactics.py`](https://github.com/yongld/multi-uav-jev/blob/HEAD/sim/duel_tactics.py)，2026-11-05 模型阅读 · ⚠ `并非 Jev 本身`</sub>
 
 - **[neo4jev](https://github.com/jexp/neo4jev)** — 把 Jev 塞进知识图谱。每走到一个节点，判断下一条最值得走的边，再一路找下去。
   <sub>`开源项目` · ★100+ · `Py` · `choice` · 调用点 [`src/neo4jev/navigator.py`](https://github.com/jexp/neo4jev/blob/HEAD/src/neo4jev/navigator.py)，2026-09-22 阅读</sub>
@@ -212,6 +212,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[agent-chaperone](https://github.com/agent-chaperone/agent-chaperone)** — 在智能体工具调用执行前、以及工具结果被读取前做筛查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · agent-chaperone · `TS` · 调用点 [`src/backends/typesafe.ts`](https://github.com/agent-chaperone/agent-chaperone/blob/HEAD/src/backends/typesafe.ts)，2026-09-22 阅读</sub>
+
+- **[atoma](https://github.com/atoma-run/atoma)** — 协调多个 AI 智能体、把一个请求变成成品的平台。其中有边界的决策由 Jev 来做：哪个智能体或已存的配方接手某项任务（并对每个候选是否合适提一个 noul），以及某个计划或结果能否获批；Jev 拿不准的答案会交回给本次运行的模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · atoma-run · `TS` · `choice` · `noul` · 调用点 [`src/core/jev.ts`](https://github.com/atoma-run/atoma/blob/HEAD/src/core/jev.ts)，2026-11-06 模型阅读</sub>
 
 - **[azdaja](https://github.com/kubet/azdaja)** — 与 harness 无关的极简递归语言模型层：单个二进制。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · kubet · `Py` · 调用点 [`bench/jev/adapter.py`](https://github.com/kubet/azdaja/blob/HEAD/bench/jev/adapter.py)，2026-09-22 阅读</sub>
@@ -261,11 +264,23 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[hearth-jev-rental-search](https://github.com/Nancy-Chauhan/hearth-jev-rental-search)** — 由 Jev 驱动的自主多源租房搜索。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · nancy-chauhan · `JS` · 调用点 [`jev_ultrafast/model.py`](https://github.com/Nancy-Chauhan/hearth-jev-rental-search/blob/HEAD/jev_ultrafast/model.py)，2026-09-22 阅读</sub>
 
+- **[Hermes Switchyard](https://github.com/bgrablin/hermes-switchyard)** — Hermes Agent 插件，把会话中的小决策交给 Jev，并在你设定的范围内依据答案行动：每一轮需要多少推理力度、加载哪个技能、计算机操作中点击哪个控件，以及对历史会话搜索结果重新排序；每次决策都会留下本地记录。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · bgrablin · `Py` · `choice` · `noul` · `score` · 调用点 [`hermes_switchyard/client.py`](https://github.com/bgrablin/hermes-switchyard/blob/HEAD/hermes_switchyard/client.py)，2026-11-07 模型阅读</sub>
+
 - **[jcr](https://github.com/NiazMorshed2007/jcr)** — 由 Jev 驱动的解析器，帮智能体 harness 在仓库里找到确定性命令及其上下文。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · niazmorshed2007 · `JS` · 调用点 [`src/jcr/jev.ts`](https://github.com/NiazMorshed2007/jcr/blob/HEAD/src/jcr/jev.ts)，2026-09-22 阅读</sub>
 
+- **[Jev Advisor Gateway](https://github.com/1arley/jev-advisor-gateway)** — 位于编程智能体（Codex、Claude Code、OpenCode、Kilo、Gemini CLI、Devin）与其模型之间的本地网关：由 Jev 选择智能体的下一个工具并回答与之相关的 noul 问题，会话模型负责写参数和最终回答；Jev 拿不准时，可选的只读顾问模型会补充一条提示。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · 1arley · `TS` · `choice` · `noul` · 调用点 [`src/jev.ts`](https://github.com/1arley/jev-advisor-gateway/blob/HEAD/src/jev.ts)，2026-11-06 模型阅读</sub>
+
 - **[Jev Browser Bridge](https://github.com/lexmount/jev-browser-bridge)** — 让 Jev 浏览器 Agent 运行在任何支持 CDP 的浏览器上，包括从不渲染页面的浏览器：它读取 DOM 而不是坐标，向 Jev 问一个 choice 选操作、再问一个 choice 选目标。作者报告在六种浏览器上的 172 个 MiniWoB++ 回合中成功率为 59–65%，基于坐标的读取方式为 24–31%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · lexmount · `Py` · `choice` · 调用点 [`jev_browser_bridge/model.py`](https://github.com/lexmount/jev-browser-bridge/blob/HEAD/jev_browser_bridge/model.py)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
+
+- **[Jev Desktop](https://github.com/jacks3tr/jev-desktop)** — 让 AI 智能体通过 MCP 或命令行把 Windows 桌面任务交出去：它观察窗口，由 Jev 从屏幕上的候选控件中选出下一步要点击、输入或导航的控件（另有 NONE 选项），智能体最终拿到结果或求助请求，而不必处理每一次点击。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · jacks3tr · `Py` · `choice` · 调用点 [`src/jev_desktop/policy.py`](https://github.com/jacks3tr/jev-desktop/blob/HEAD/src/jev_desktop/policy.py)，2026-11-07 模型阅读</sub>
+
+- **[Jev Drive Lab](https://github.com/brendanh18/jev_fsd)** — 基于 OpenStreetMap 在真实加拿大街道上构建的驾驶模拟器，有车流、公交和行人。Jev 可以驾驶：每个时刻它以场景为状态，从 choice 问题中选出下一步动作；每次驾驶都会录下来，可以倒回去查看它为何这样选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · brendanh18 · `Py` · `choice` · 调用点 [`jev/client.py`](https://github.com/brendanh18/jev_fsd/blob/HEAD/jev/client.py)，2026-11-07 模型阅读</sub>
 
 - **[JEV Jornada](https://github.com/caio-moliveira/workshop-jev)** — 工作坊用的 LangGraph 销售智能体（葡萄牙语）：其中的决策（三个护栏是非题、一个从七个查询中选出能回答问题者的选择题、三个检查回复是否忠实的是非题）交给 Jev、OpenAI 或 Anthropic 的 LLM，或两者同时处理，并对比准确率、延迟、token 和成本。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · caio-moliveira · `Py` · `noul` · `choice` · 调用点 [`backend/app/providers/jev.py`](https://github.com/caio-moliveira/workshop-jev/blob/HEAD/backend/app/providers/jev.py)，2026-11-03 模型阅读 · ⚠ `无许可证` `需第三方密钥`</sub>
@@ -375,14 +390,23 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jevbridge](https://github.com/tacticocc/Jevbridge)** — 把 TypeSafe Jev 与任意 LLM 连起来的 ACP 与 MCP 适配器：在 Codex、Claude 等旁边提供电脑操作和带类型的决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · gamesonrblx · `TS` · 调用点 [`src/types.ts`](https://github.com/tacticocc/Jevbridge/blob/HEAD/src/types.ts)，2026-09-24 阅读</sub>
 
+- **[jevcraft](https://github.com/mrubens/jevcraft)** — 从全新生存世界开始通关 Minecraft 的机器人：每一步由代码列出机器人当下真能执行的至多十五个带价格的选项（生命值和时间成本、对目标的收益、已尝试过什么），由 Jev 选出一个；另用 noul 和 score 做检查，比如建筑是否符合玩家的要求。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · mrubens · `JS` · `choice` · `noul` · `score` · 调用点 [`src/typesafe.js`](https://github.com/mrubens/jevcraft/blob/HEAD/src/typesafe.js)，2026-11-07 模型阅读</sub>
+
 - **[JevDo](https://github.com/yinhong-zhou/jevdo)** — DeepSeek Harness（DSH）的一个 Loop，由 Jev 决定每一步：运行已保存并验证过的 Action（绑定到项目的命令或脚本）、调用主模型、请求澄清或结束。主模型处理新问题，并把可复用的做法保存为 Action，留给之后的会话。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · yinhong-zhou · `TS` · `choice` · 调用点 [`src/decision.ts`](https://github.com/yinhong-zhou/jevdo/blob/HEAD/src/decision.ts)，2026-11-01 模型阅读</sub>
 
 - **[jevgpt](https://github.com/Bewinxed/jevgpt)** — 用一个不会生成文本的模型搭的聊天机器人（自回归驱动）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · bewinxed · `TS` · 调用点 [`src/jevgpt/sampler.py`](https://github.com/Bewinxed/jevgpt/blob/HEAD/src/jevgpt/sampler.py)，2026-09-22 阅读</sub>
 
+- **[JevLight](https://github.com/usail-hkust/jevlight)** — 在 SUMO 仿真中用 Jev 控制交通信号，沿用 LLMLight 和 CoLLMLight 的约定：每个路口的排队和等待时间作为状态，用一个 choice 问题选出下一个相位；CoJevLight 还会加入相邻路口，另可记录一个关于是否拥堵的 noul。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · usail-hkust · `Py` · `choice` · `noul` · 调用点 [`jevlight/jev_client.py`](https://github.com/usail-hkust/jevlight/blob/HEAD/jevlight/jev_client.py)，2026-11-07 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[jevloop](https://github.com/parkavenue9639/jevloop)** — 由 Jev 驱动的通用智能体框架，追求更快、更低成本的执行，并内置与纯 LLM 智能体的并排对比实验。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · parkavenue9639 · `Py` · 调用点 [`backend/jevloop/decision/laya.py`](https://github.com/parkavenue9639/jevloop/blob/HEAD/backend/jevloop/decision/laya.py)，2026-11-05 模型阅读</sub>
+
+- **[Jevry](https://github.com/michaelswissa/jevry)** — 一款开源桌面浏览器，可根据自然语言任务操作网站：文本模型负责规划，Jev 用 choice 从浏览器真正能执行的动作中挑选每一步（绝不生成 JavaScript 或选择器），Chromium 执行，步骤可见并可随时停止。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · michaelswissa · `TS` · `choice` · 调用点 [`desktop/jev-direct-plan.ts`](https://github.com/michaelswissa/jevry/blob/HEAD/desktop/jev-direct-plan.ts)，2026-10-24 模型阅读</sub>
 
 - **[jevscape](https://github.com/Skyvern-AI/jevscape)** — 给 Jev 的 RuneBench harness：有界动作目录、tick 模式控制器与实时看板。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · skyvern-ai · `TS` · 调用点 [`agents/jev/jev-client.ts`](https://github.com/Skyvern-AI/jevscape/blob/HEAD/agents/jev/jev-client.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
@@ -453,6 +477,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[super-jev](https://github.com/Kevthetech143/super-jev)** — 小而可扩展的「决策到动作」harness。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · kevthetech143 · `Py` · 调用点 [`skills/super-jev/superjev.py`](https://github.com/Kevthetech143/super-jev/blob/HEAD/skills/super-jev/superjev.py)，2026-09-22 阅读</sub>
 
+- **[System One Computer Use](https://github.com/brainstormity/system-one-computer-use)** — 根据截图操作电脑或 Android 手机的原型智能体：每一步把屏幕截图、任务和历史发给 Jev，由 Jev 选出下一步动作（点击、输入、滚动、打开网站或停止）以及要用的文本或网站，再用一个 Box 问题标出要点击的元素。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · brainstormity · `Py` · `choice` · 调用点 [`jev_agent.py`](https://github.com/brainstormity/system-one-computer-use/blob/HEAD/jev_agent.py)，2026-11-06 模型阅读</sub>
+
 - **[tsai-sc](https://github.com/phyous/tsai-sc)** — 通过键鼠操作一款 90 年代即时战略游戏，并记录每次动作的概率。
   <sub>`开源项目` · ★10+ · phyous · `Py` · 调用点 [`tsai_sc/typesafe.py`](https://github.com/phyous/tsai-sc/blob/HEAD/tsai_sc/typesafe.py)，2026-09-22 阅读</sub>
 
@@ -473,9 +500,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[AskJev](https://github.com/ranjan2829/AskJev)** — AskJev：适用于任意网站的 Jev 自动驾驶，并对不可逆的点击加一道防护（使用 TypeSafe System One，而不是 Claude）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ranjan2829 · `TS` · 调用点 [`mcp/src/jev-client.ts`](https://github.com/ranjan2829/AskJev/blob/HEAD/mcp/src/jev-client.ts)，2026-09-24 阅读</sub>
-
-- **[atoma](https://github.com/atoma-run/atoma)** — 协调多个 AI 智能体、把一个请求变成成品的平台。其中有边界的决策由 Jev 来做：哪个智能体或已存的配方接手某项任务（并对每个候选是否合适提一个 noul），以及某个计划或结果能否获批；Jev 拿不准的答案会交回给本次运行的模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · atoma-run · `TS` · `choice` · `noul` · 调用点 [`src/core/jev.ts`](https://github.com/atoma-run/atoma/blob/HEAD/src/core/jev.ts)，2026-11-06 模型阅读</sub>
 
 - **[bicameral](https://github.com/AbdelStark/bicameral)** — 混合式编程 harness：System 2 负责写，System 1（Jev）负责反射式动作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`packages/s1-runtime/src/backends/typesafe.ts`](https://github.com/AbdelStark/bicameral/blob/HEAD/packages/s1-runtime/src/backends/typesafe.ts)，2026-09-22 阅读</sub>
@@ -525,23 +549,11 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — 可观测的浏览器潜行游戏：Jev 做类型化的守卫判断，确定性代码掌管世界规则。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts)，2026-09-22 阅读</sub>
 
-- **[Hermes Switchyard](https://github.com/bgrablin/hermes-switchyard)** — Hermes Agent 插件，把会话中的小决策交给 Jev，并在你设定的范围内依据答案行动：每一轮需要多少推理力度、加载哪个技能、计算机操作中点击哪个控件，以及对历史会话搜索结果重新排序；每次决策都会留下本地记录。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · bgrablin · `Py` · `choice` · `noul` · `score` · 调用点 [`hermes_switchyard/client.py`](https://github.com/bgrablin/hermes-switchyard/blob/HEAD/hermes_switchyard/client.py)，2026-11-07 模型阅读</sub>
-
 - **[jet](https://github.com/arczhi/jet)** — 原生面向 TypeSafe（Jev）的编码智能体，基于递归式 LLM 上下文分解，配有原生 macOS 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arczhi · `Py` · 调用点 [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py)，2026-09-24 阅读</sub>
 
-- **[Jev Advisor Gateway](https://github.com/1arley/jev-advisor-gateway)** — 位于编程智能体（Codex、Claude Code、OpenCode、Kilo、Gemini CLI、Devin）与其模型之间的本地网关：由 Jev 选择智能体的下一个工具并回答与之相关的 noul 问题，会话模型负责写参数和最终回答；Jev 拿不准时，可选的只读顾问模型会补充一条提示。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · 1arley · `TS` · `choice` · `noul` · 调用点 [`src/jev.ts`](https://github.com/1arley/jev-advisor-gateway/blob/HEAD/src/jev.ts)，2026-11-06 模型阅读</sub>
-
 - **[Jev Civilizations](https://github.com/JonesSteven/jev_civilization)** — 一款带在线演示的小型策略游戏：四个部落自主生活，你只能改变环境。每回合 Jev 用 choice 从真正合法的行动中为每个部落选一个，普通的游戏引擎计算结果，检查器会显示 Jev 收到了哪些信息。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jonessteven · `TS` · `choice` · 调用点 [`scripts/probe-jev.ts`](https://github.com/JonesSteven/jev_civilization/blob/HEAD/scripts/probe-jev.ts)，2026-10-24 模型阅读</sub>
-
-- **[Jev Desktop](https://github.com/jacks3tr/jev-desktop)** — 让 AI 智能体通过 MCP 或命令行把 Windows 桌面任务交出去：它观察窗口，由 Jev 从屏幕上的候选控件中选出下一步要点击、输入或导航的控件（另有 NONE 选项），智能体最终拿到结果或求助请求，而不必处理每一次点击。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · jacks3tr · `Py` · `choice` · 调用点 [`src/jev_desktop/policy.py`](https://github.com/jacks3tr/jev-desktop/blob/HEAD/src/jev_desktop/policy.py)，2026-11-07 模型阅读</sub>
-
-- **[Jev Drive Lab](https://github.com/brendanh18/jev_fsd)** — 基于 OpenStreetMap 在真实加拿大街道上构建的驾驶模拟器，有车流、公交和行人。Jev 可以驾驶：每个时刻它以场景为状态，从 choice 问题中选出下一步动作；每次驾驶都会录下来，可以倒回去查看它为何这样选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · brendanh18 · `Py` · `choice` · 调用点 [`jev/client.py`](https://github.com/brendanh18/jev_fsd/blob/HEAD/jev/client.py)，2026-11-07 模型阅读</sub>
 
 - **[Jev plays Vampire Survivors](https://github.com/oldmoldycake/jev_vampire_survivors)** — 一个 BepInEx mod 加一个 Python「大脑」，让 Jev 玩 Steam 上的正版游戏：每个决定都是用平实英语提出的 choice，包括选角色、选关卡、每次升级选什么，以及每秒四次选择行走方向；另有实时面板显示每个答案。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · oldmoldycake · `Py` · `choice` · 调用点 [`brain/jev_vs/jev_client.py`](https://github.com/oldmoldycake/jev_vampire_survivors/blob/HEAD/brain/jev_vs/jev_client.py)，2026-11-11 模型阅读</sub>
@@ -726,9 +738,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevball](https://github.com/atarikcaliskan/jevball)** — 22 个 Jev 模型，一颗球：一场 3D 足球赛，每名球员都是一个独立的 Jev（TypeSafe AI System One）决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · atarikcaliskan · `JS` · 调用点 [`server/jev.js`](https://github.com/atarikcaliskan/jevball/blob/HEAD/server/jev.js)，2026-09-24 阅读</sub>
 
-- **[jevcraft](https://github.com/mrubens/jevcraft)** — 从全新生存世界开始通关 Minecraft 的机器人：每一步由代码列出机器人当下真能执行的至多十五个带价格的选项（生命值和时间成本、对目标的收益、已尝试过什么），由 Jev 选出一个；另用 noul 和 score 做检查，比如建筑是否符合玩家的要求。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · mrubens · `JS` · `choice` · `noul` · `score` · 调用点 [`src/typesafe.js`](https://github.com/mrubens/jevcraft/blob/HEAD/src/typesafe.js)，2026-11-07 模型阅读</sub>
-
 - **[jevcumber](https://github.com/RubyBrewsday/jevcumber)** — 只写 .feature 文件就能写 Cucumber 测试：无需步骤定义，由 Jev（TypeSafe AI）解析每一个 Gherkin 步骤。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · rubybrewsday · `TS` · 调用点 [`src/resolver.ts`](https://github.com/RubyBrewsday/jevcumber/blob/HEAD/src/resolver.ts)，2026-09-24 阅读</sub>
 
@@ -737,9 +746,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevex](https://github.com/jvsteiner/jevex)** — 一个最小化的智能体：由 Jev 主导循环，LangChain 聊天模型只负责填写参数和最终回复；背后是三个本地 MCP 服务器、十二个可用工具。 <sub>(机翻)</sub>
   <sub>`开源项目` · jvsteiner · `Py` · 调用点 [`src/jevex/benchmark.py`](https://github.com/jvsteiner/jevex/blob/HEAD/src/jevex/benchmark.py)，2026-09-24 阅读</sub>
-
-- **[JevLight](https://github.com/usail-hkust/jevlight)** — 在 SUMO 仿真中用 Jev 控制交通信号，沿用 LLMLight 和 CoLLMLight 的约定：每个路口的排队和等待时间作为状态，用一个 choice 问题选出下一个相位；CoJevLight 还会加入相邻路口，另可记录一个关于是否拥堵的 noul。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · usail-hkust · `Py` · `choice` · `noul` · 调用点 [`jevlight/jev_client.py`](https://github.com/usail-hkust/jevlight/blob/HEAD/jevlight/jev_client.py)，2026-11-07 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[jevman](https://github.com/joch/jevman)** — 由决策模型驱动的吃豆人：每到一个路口，Jev 用 choice 选出吃豆人（或幽灵）的下一个方向，概率直接画在棋盘上；可以看它玩、和它对战，或让不同模型互相对抗，还有一个比较哪个模型玩得最好的排行榜。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · joch · `TS` · `choice` · 调用点 [`server/jev.ts`](https://github.com/joch/jevman/blob/HEAD/server/jev.ts)，2026-11-10 模型阅读</sub>
@@ -761,9 +767,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[macos-computer-use-kit](https://github.com/Sur-Cai/macos-computer-use-kit)** — 面向 macOS AI 智能体的、以辅助功能为先的电脑操作工具包，可选配 Jev（TypeSafe System One）语义护栏。 <sub>(机翻)</sub>
   <sub>`插件` · sur-cai · `Py` · 调用点 [`src/macos_computer_use/jev.py`](https://github.com/Sur-Cai/macos-computer-use-kit/blob/HEAD/src/macos_computer_use/jev.py)，2026-09-24 阅读</sub>
-
-- **[multi-uav-jev](https://github.com/yongld/multi-uav-jev)** — 不是 Jev：一个 MuJoCo 无人机编队仿真，每架飞机的工作线程按自身角色（跟踪、拦阻、截击、支援）措辞，把关于下一个机动动作的 Jev 格式 Choice 问题发给本地 NeoHorse-Jev-4B 端点；导航、制动和间隔保持仍由确定性代码负责。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`Jev 替代实现` · yongld · `Py` · `choice` · 引用文件 [`sim/duel_tactics.py`](https://github.com/yongld/multi-uav-jev/blob/HEAD/sim/duel_tactics.py)，2026-11-05 模型阅读 · ⚠ `并非 Jev 本身`</sub>
 
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — 给 Codex 与 Claude Code 的二值批准闸门：每次被拦截的工具调用都要审查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · alexj11324 · `Go` · 引用文件 [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
@@ -818,9 +821,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[swarmrouter](https://github.com/ndolinschi/swarmrouter)** — 用 Jev 把任务路由给研究／编码／浏览／客服／写作智能体。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/swarmrouter/blob/HEAD/src/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
-
-- **[System One Computer Use](https://github.com/brainstormity/system-one-computer-use)** — 根据截图操作电脑或 Android 手机的原型智能体：每一步把屏幕截图、任务和历史发给 Jev，由 Jev 选出下一步动作（点击、输入、滚动、打开网站或停止）以及要用的文本或网站，再用一个 Box 问题标出要点击的元素。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · brainstormity · `Py` · `choice` · 调用点 [`jev_agent.py`](https://github.com/brainstormity/system-one-computer-use/blob/HEAD/jev_agent.py)，2026-11-06 模型阅读</sub>
 
 - **[terrarium](https://github.com/TheGali/terrarium)** — 一个沙盒：System One 模型按下小生物的操控键，代码负责其余。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · thegali · `JS` · 调用点 [`bench/run-jev.mjs`](https://github.com/TheGali/terrarium/blob/HEAD/bench/run-jev.mjs)，2026-09-22 阅读</sub>

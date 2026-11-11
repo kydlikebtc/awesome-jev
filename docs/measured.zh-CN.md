@@ -78,6 +78,18 @@
   Benchmark Heaven 维护的基准，评测 Jev 及兼容 Jev 的决策模型：通过 /v1/systemone 适配器把 noul、choice 和 score 任务发给各个系统，按准确率、校准、延迟和成本打分。当前版本 v1.6.1（2026-10-06）；部分输入是封存的，因此无法完全独立重跑。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · ★100+ · fstandhartinger · `Py` · [调用点](https://github.com/fstandhartinger/jevbench/blob/HEAD/jevbench/adapters/typesafe.py)，2026-09-22 阅读</sub>
 
+- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)**<br>
+  Together AI 微调 Qwen3.5-4B，用一个选项字母回答决策问题。在对三个公开 Jev 基准的配对重跑中，它在钓鱼邮件上得 50.6%，Jev 1.13 为 62.9%；工具风险上两者都是 93.3%；工单路由上为 96.3%，Jev 为 100%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★100+ · togethercomputer · `Py` · `choice` · [调用点](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py)，2026-11-05 模型阅读</sub>
+
+  > Jev 只作为基线：通过 OpenRouter 的 Decisions API 调用 typesafe/jev-1.13，每次请求一个 Choice 问题，题目来自 anisselbd/jev-phishing-bench、themsquared/jev-benchmark 和 WallerChen/jev-measured。结果和原始响应在 evaluation/public-third-party/。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-05 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
+- **[choosekit](https://github.com/notxf1le/choosekit)**<br>
+  一个 TypeScript 库，通过 llama.cpp、Ollama 或 OpenRouter，用模型的对数概率给一组固定选项打分。它的基准测试中，Jev 1.13 在 1,000 题的 SuperGPQA 样本上得 53.6%，在 SemIf 的 144 个用例上与本地 Qwen 3.8 27B 同为 96.53%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★10+ · notxf1le · `TS` · `JS` · `choice` · [调用点](https://github.com/notxf1le/choosekit/blob/HEAD/benchmarks/run-supergpqa.mjs)，2026-11-05 模型阅读</sub>
+
+  > choosekit 本身不调用 Jev：只有基准脚本通过 OpenRouter 的 Decisions API 运行 Jev 1.13，作为托管对照。README 说明 SemIf 的延迟数据包含不同的传输开销。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-05 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
 - **[Decision Index](https://github.com/apolinario/decision-index)**<br>
   Decision Index 的复现工具包。Decision Index 是类型化决策引擎（Jev 以及回答 choice 和 noul 问题的开源模型）的排行榜，涵盖 37 个公开基准，按扣除随机水平的方式计分。其 http 引擎把每个请求原样发给任何 /v1/systemone 服务器；参考模型为 jev-1.13.0。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · ★10+ · apolinario · `Py` · [调用点](https://github.com/apolinario/decision-index/blob/HEAD/decision_index/engines/http.py)，2026-10-30 模型阅读</sub>
@@ -92,6 +104,22 @@
 
   > 2026-09-29 的扩展测试只测了 Jev；更早的试点还测了 LLM（Gemini 3.8 Flash 在银行意图上得分更高）。作者提醒，结果只适用于所测的端点、设置和数据集。仓库没有 LICENSE 文件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-04 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
+- **[Jev and open decision-model benchmarks](https://github.com/akitaonrails/jev-docs-benchmarks)**<br>
+  评测决策模型执行给定规则的可靠性、其概率的表现以及决策成本：把托管的 Jev 与 Microsoft Decision-1、OpenAI Decisions 以及 Clef、Decision 3.0、Laya、Kev、Jebadiah 等开源模型对比，使用冻结的输入并公开原始响应。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★10+ · akitaonrails · `Py` · `choice` · [调用点](https://github.com/akitaonrails/jev-docs-benchmarks/blob/HEAD/benchmark/tools/hosted.py)，2026-11-07 模型阅读</sub>
+
+  **注意:** `无许可证`
+
+  > 作者为 akitaonrails。在其 Decision 3.0 排名中，Jev 在该套件的 choice 任务上得分 97.6%。任务是作者自建的合成任务（分类、客服路由、检索），有英语和巴西葡萄牙语；README 说明这不是厂商官方基准。本地模型运行在 CUDA 和 ROCm 机器上。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-07 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
+- **[JEV Healthcare Lab](https://github.com/juneyaooo/jev-healthcare-lab)**<br>
+  Jev 医疗决策基准：以 choice 问题覆盖 26 项任务、1,514 项判断（分诊紧急程度、禁忌判断、用药选择、护理、临床试验筛选），与 DeepSeek Flash 和 Qwen 对比准确率、持续吞吐和成本，并公开原始响应。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★10+ · juneyaooo · `Py` · `choice` · [调用点](https://github.com/juneyaooo/jev-healthcare-lab/blob/HEAD/scripts/run_model_evaluation.py)，2026-11-07 模型阅读</sub>
+
+  **注意:** `无许可证`
+
+  > Jev 的主要结果是经第三方网关（ai.xiaohaima-edu.com）收集的，其响应自称为 jev-1.13.0，作者表示未独立核实；scripts/run_model_evaluation.py 则直接调用 TypeSafe。数据由作者自报；README 说明这不是临床有效性验证。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-07 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
 - **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)**<br>
   每周一个的市场销售（GTM）实验，均用 Jev 完成并与 Claude 对比：线索分拣和路由、交易风险、回复分拣、从通话摘要中提取 MEDDPICC 字段、重复账户识别、已流失交易的重新激活，另有一个 MCP 服务器。共享客户端在取整前减去实测的 0.30 分数偏差。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · ★10+ · deepdave98 · `Py` · `noul` · `choice` · `score` · [调用点](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py)，2026-10-31 模型阅读</sub>
@@ -99,6 +127,12 @@
   **注意:** `无许可证`
 
   > 本条目引用 common/jev.py，即第 03 周起各实验共用的客户端。仓库中没有 LICENSE 文件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-31 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
+- **[JEV Reranking Comparisons](https://github.com/carlaiau/jev-reranking)**<br>
+  把 Jev 当作零样本重排器的基准：对每个查询与候选各问一个是否相关的 noul，用概率对 MS MARCO 段落和文档集（TREC DL 2019）以及 TREC-1 WSJ 上的 BM25 结果重新排序，与已发表的 BERT 重排器对比，并记录耗时和成本。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★10+ · carlaiau · `Py` · `noul` · [调用点](https://github.com/carlaiau/jev-reranking/blob/HEAD/reranking/jev.py)，2026-11-07 模型阅读</sub>
+
+  > 在 TREC DL 2019 段落集上，作者的 Jev 运行 nDCG@10 为 0.68，已发表的最佳 BERT 运行为 0.74；在文档集上为 0.75 对 0.72；这些都是作者自己的运行结果。另有交互式模拟器可重放 WSJ 结果。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-07 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[jev-benchmarks](https://github.com/AbdelStark/jev-benchmarks)**<br>
   面向类型化决策模型的概率感知评测：校准度、选择性风险、延迟，以及可复现的基准。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
@@ -184,12 +218,6 @@
   Jev 会贝叶斯吗？把 TypeSafe AI 的 Jev 与贝叶斯最优策略对比，并测试它能否有效使用贝叶斯推理。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · tomrichner · `Py` · [调用点](https://github.com/TomRichner/can-jev-bayes/blob/HEAD/src/jevbandits/client.py)，2026-09-24 阅读</sub>
 
-- **[choosekit](https://github.com/notxf1le/choosekit)**<br>
-  一个 TypeScript 库，通过 llama.cpp、Ollama 或 OpenRouter，用模型的对数概率给一组固定选项打分。它的基准测试中，Jev 1.13 在 1,000 题的 SuperGPQA 样本上得 53.6%，在 SemIf 的 144 个用例上与本地 Qwen 3.8 27B 同为 96.53%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · notxf1le · `TS` · `JS` · `choice` · [调用点](https://github.com/notxf1le/choosekit/blob/HEAD/benchmarks/run-supergpqa.mjs)，2026-11-05 模型阅读</sub>
-
-  > choosekit 本身不调用 Jev：只有基准脚本通过 OpenRouter 的 Decisions API 运行 Jev 1.13，作为托管对照。README 说明 SemIf 的延迟数据包含不同的传输开销。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-05 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
-
 - **[Decision Models as Guardrails](https://dm-as-guardrails.raxitlabs.com)**<br>
   让 Jev 1.13.0、Jev 1.14.0 及其他 17 个系统（包括 Bedrock Guardrails）回答同样的 9,975 条带标注的护栏检查，分为六个套件。Jev 以 noul 回答每条检查，概率达到 0.5 或以上即拦截，不对任何模型单独调参。报告平衡准确率（含 95% 区间）以及按公开价格计算的每 1,000 次检查的美元成本。 <sub>(机翻)</sub><br>
   <sub>`基准测试` · raxIT Labs · `Py` · `noul` · `score` · [调用点](https://github.com/raxITlabs/decision-models-as-guardrails/blob/HEAD/benchmark/goldrails_bench/systemone.py)</sub>
@@ -220,22 +248,6 @@
 
   > 作为对比的模型（Qwen 和 Gemma，用它们自己的选项概率打分）不是 Jev。原始响应已发布在 Zenodo 上，不调用 API 也能重建论文里的表格。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-10 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
-- **[Jev and open decision-model benchmarks](https://github.com/akitaonrails/jev-docs-benchmarks)**<br>
-  评测决策模型执行给定规则的可靠性、其概率的表现以及决策成本：把托管的 Jev 与 Microsoft Decision-1、OpenAI Decisions 以及 Clef、Decision 3.0、Laya、Kev、Jebadiah 等开源模型对比，使用冻结的输入并公开原始响应。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · akitaonrails · `Py` · `choice` · [调用点](https://github.com/akitaonrails/jev-docs-benchmarks/blob/HEAD/benchmark/tools/hosted.py)，2026-11-07 模型阅读</sub>
-
-  **注意:** `无许可证`
-
-  > 作者为 akitaonrails。在其 Decision 3.0 排名中，Jev 在该套件的 choice 任务上得分 97.6%。任务是作者自建的合成任务（分类、客服路由、检索），有英语和巴西葡萄牙语；README 说明这不是厂商官方基准。本地模型运行在 CUDA 和 ROCm 机器上。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-07 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
-
-- **[JEV Healthcare Lab](https://github.com/juneyaooo/jev-healthcare-lab)**<br>
-  Jev 医疗决策基准：以 choice 问题覆盖 26 项任务、1,514 项判断（分诊紧急程度、禁忌判断、用药选择、护理、临床试验筛选），与 DeepSeek Flash 和 Qwen 对比准确率、持续吞吐和成本，并公开原始响应。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · juneyaooo · `Py` · `choice` · [调用点](https://github.com/juneyaooo/jev-healthcare-lab/blob/HEAD/scripts/run_model_evaluation.py)，2026-11-07 模型阅读</sub>
-
-  **注意:** `无许可证`
-
-  > Jev 的主要结果是经第三方网关（ai.xiaohaima-edu.com）收集的，其响应自称为 jev-1.13.0，作者表示未独立核实；scripts/run_model_evaluation.py 则直接调用 TypeSafe。数据由作者自报；README 说明这不是临床有效性验证。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-07 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
-
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)**<br>
   在 480 道自编通用波斯语题、560 道文学题和一个古典诗歌试点上，把 Jev 与开源决策模型对比的基准：以 choice、noul 和 score 提问，保存原始响应并在本地评分；Jev 在 choice 和 noul 准确率上领先。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · armanjr · `Py` · `choice` · `noul` · `score` · [调用点](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py)，2026-11-11 模型阅读</sub>
@@ -243,12 +255,6 @@
   **注意:** `无许可证`
 
   > 其他模型（Jeff、Mizan 和 Laya）不是 Jev；在 score 上 Mizan 领先。结果是作者自己的。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-11 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
-
-- **[JEV Reranking Comparisons](https://github.com/carlaiau/jev-reranking)**<br>
-  把 Jev 当作零样本重排器的基准：对每个查询与候选各问一个是否相关的 noul，用概率对 MS MARCO 段落和文档集（TREC DL 2019）以及 TREC-1 WSJ 上的 BM25 结果重新排序，与已发表的 BERT 重排器对比，并记录耗时和成本。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · carlaiau · `Py` · `noul` · [调用点](https://github.com/carlaiau/jev-reranking/blob/HEAD/reranking/jev.py)，2026-11-07 模型阅读</sub>
-
-  > 在 TREC DL 2019 段落集上，作者的 Jev 运行 nDCG@10 为 0.68，已发表的最佳 BERT 运行为 0.74；在文档集上为 0.75 对 0.72；这些都是作者自己的运行结果。另有交互式模拟器可重放 WSJ 结果。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-07 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[Jev vs. the right baselines](https://github.com/ickma2311/jev-baselines-eval)**<br>
   两项预注册的独立研究：Jev 以 choice 在 CLINC150 和 Banking77 上分类客户意图，作为升级级联的关卡，与小型和前沿大模型以及有监督编码器对比；第二项研究检验在提示注入下，Jev 的置信度能否区分被劫持的决策和抵抗住的决策。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
@@ -300,9 +306,9 @@
   在 Python 代码审查规则上比较 Jev、Gemini Flash 与 Claude Fable：成本、速度、准确率与一致性。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · gemanor · `Py` · [调用点](https://github.com/gemanor/jev-code-review-benchmark/blob/HEAD/determinest/clients.py)，2026-09-24 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
 
-- **[jev-cyrillic-audit](https://github.com/AHTOOOXA/jev-cyrillic-audit)**<br>
+- **[jev-cyrillic-audit](https://github.com/tonysafonov/jev-cyrillic-audit)**<br>
   TypeSafe 的 Jev 在俄语上能保持准确率与校准吗？一项独立的俄英对照审计（ECE、可靠性图）。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · ahtoooxa · `Py` · [调用点](https://github.com/AHTOOOXA/jev-cyrillic-audit/blob/HEAD/src/jev_cyrillic_audit/run.py)，2026-09-24 阅读</sub>
+  <sub>`基准测试` · ahtoooxa · `Py` · [调用点](https://github.com/tonysafonov/jev-cyrillic-audit/blob/HEAD/src/jev_cyrillic_audit/run.py)，2026-09-24 阅读</sub>
 
   > 一项独立的非英语校准审计——正是 docs/status.md 中列为值得关注的空白。
 
@@ -463,12 +469,6 @@
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)**<br>
   首个独立的 System One 决策模型横评（Laya 对比 Jev）。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · instax-dutta · `Py` · [调用点](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py)，2026-09-22 阅读</sub>
-
-- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)**<br>
-  Together AI 微调 Qwen3.5-4B，用一个选项字母回答决策问题。在对三个公开 Jev 基准的配对重跑中，它在钓鱼邮件上得 50.6%，Jev 1.13 为 62.9%；工具风险上两者都是 93.3%；工单路由上为 96.3%，Jev 为 100%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · togethercomputer · `Py` · `choice` · [调用点](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py)，2026-11-05 模型阅读</sub>
-
-  > Jev 只作为基线：通过 OpenRouter 的 Decisions API 调用 typesafe/jev-1.13，每次请求一个 Choice 问题，题目来自 anisselbd/jev-phishing-bench、themsquared/jev-benchmark 和 WallerChen/jev-measured。结果和原始响应在 evaluation/public-third-party/。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-05 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[typesafe-jev-calibrate-for-code-review](https://github.com/Selmar/typesafe-jev-calibrate-for-code-review)**<br>
   关于为代码审查校准 Jev 的研究。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>

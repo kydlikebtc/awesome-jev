@@ -41,6 +41,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Cookbook: Structured data extraction cascade](https://docs.typesafe.ai/cookbooks/sde_cascade)** ⭐ — A two-stage mini-then-verify-then-reasoning cascade that reaches most of a big reasoning model's quality at a fraction of the cost.
   <sub>`Official docs` · `Py`</sub>
 
+- **[ContextGem](https://github.com/shcherbak-ai/contextgem)** — Python framework that extracts structured data from documents with LLMs and decision models. Given a decision model such as Jev, it asks a yes/no question per paragraph to find each aspect's clauses and turns Boolean, label and rating concepts into noul, choice and score questions. <sub>(written by a model)</sub>
+  <sub>`Project` · ★1k+ · shcherbak-ai · `Py` · `noul` · `choice` · `score` · call site [`contextgem/internal/base/decision_models.py`](https://github.com/shcherbak-ai/contextgem/blob/HEAD/contextgem/internal/base/decision_models.py), read by a model 2026-11-06</sub>
+
+- **[jev-job-search](https://github.com/qbeka/jev-job-search)** — Job application tool run from Claude Code that asks Jev, through OpenRouter, whether each posting is a paid software role at the right level and term, how well the stack matches, and which saved answer or option fits each form field, then fills the forms in Chrome for you to approve. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · qbeka · `TS` · `noul` · `choice` · `score` · call site [`src/jev/client.ts`](https://github.com/qbeka/jev-job-search/blob/HEAD/src/jev/client.ts), read by a model 2026-11-10</sub>
+
 - **[jev4pg](https://github.com/Sheltercosmo/jev4pg)** — Natural-language SQL and 41 semantic operators for PostgreSQL. Filtering, extraction, ranking, matching and verification go to Jev in bounded batches with validated answers; a choice option needs 0.55 and a noul 0.8 to count. The authors report 98% accuracy against 92% for pg-jev's request path. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · Sheltercosmo · `Py` · `choice` · `noul` · call site [`sdd/generic/jev.py`](https://github.com/Sheltercosmo/jev4pg/blob/HEAD/sdd/generic/jev.py), read by a model 2026-10-26 · ⚠ `vendor numbers`</sub>
 
@@ -68,14 +74,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[JevSpan](https://github.com/lzq-0529/jev-span)** — Zero-shot named entity recognition for Chinese and English: code enumerates candidate spans at punctuation, and Jev choice questions nominate a window per entity type, verify each nominee (type, none, mixed or partial) and pick its exact boundary, keeping each entity's probability.
   <sub>`Project` · ★10+ · lzq-0529 · `Py` · `choice` · call site [`src/jevspan/jev_client.py`](https://github.com/lzq-0529/jev-span/blob/HEAD/src/jevspan/jev_client.py), read 2026-09-30 · ⚠ `AI-written` `self-submitted`</sub>
 
+- **[Natural Language Logic Interpreter](https://github.com/narphorium/nl-logic-interpreter)** — Step-through logic interpreter for facts and rules in plain English: it proves goals by SLD resolution as Prolog does, but Jev does the unification, with a choice on how two sentences relate, nouls on whether they state the same fact and choices that bind each variable to a phrase. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · narphorium · `TS` · `choice` · `noul` · call site [`src/server/aiUnifier.ts`](https://github.com/narphorium/nl-logic-interpreter/blob/HEAD/src/server/aiUnifier.ts), read by a model 2026-11-08</sub>
+
 - **[smart-paste](https://github.com/nomanjack/smart-paste)** — Fills form fields from pasted text: the form's heading, labels and your text go to TypeSafe, and it inserts the values it matches for you to review before submitting.
   <sub>`Plugin` · ★10+ · nomanjack · `JS` · call site [`worker.js`](https://github.com/nomanjack/smart-paste/blob/HEAD/worker.js), read 2026-09-24</sub>
 
 - **[ask-jev](https://github.com/logicrw/ask-jev)** — Standard-library CLI that hands an agent's small judgments to Jev within a 280 ms advisory budget: choose (a choice), check (a noul on whether evidence shows a claim), score, a batch of at most 32, and purify, a noul per passage keeping only relevant original lines. Fails open; the agent decides. <sub>(written by a model)</sub>
   <sub>`Project` · logicrw · `Py` · call site [`scripts/jev_context.py`](https://github.com/logicrw/ask-jev/blob/HEAD/scripts/jev_context.py), read 2026-09-24</sub>
-
-- **[ContextGem](https://github.com/shcherbak-ai/contextgem)** — Python framework that extracts structured data from documents with LLMs and decision models. Given a decision model such as Jev, it asks a yes/no question per paragraph to find each aspect's clauses and turns Boolean, label and rating concepts into noul, choice and score questions. <sub>(written by a model)</sub>
-  <sub>`Project` · shcherbak-ai · `Py` · `noul` · `choice` · `score` · call site [`contextgem/internal/base/decision_models.py`](https://github.com/shcherbak-ai/contextgem/blob/HEAD/contextgem/internal/base/decision_models.py), read by a model 2026-11-06</sub>
 
 - **[DuckDB Dual Cognition](https://github.com/prasanthj/duckdb-dual-cognition)** — Native DuckDB extension whose SQL functions ask Jev choices, scores and nouls over every row in batches, including picking a row's foreign key from candidates or answering ambiguous or no_match, and send only rows below a confidence threshold to an OpenAI model for reasoning. <sub>(written by a model)</sub>
   <sub>`Plugin` · prasanthj · `C++` · `choice` · `score` · `noul` · call site [`src/dc_extension.cpp`](https://github.com/prasanthj/duckdb-dual-cognition/blob/HEAD/src/dc_extension.cpp), read by a model 2026-11-11 · ⚠ `3rd-party key`</sub>
@@ -95,20 +101,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-information-extraction](https://github.com/abhishekmamdapure/jev-information-extraction)** — Parsing the PDF and extracting the relevant information <sub>(upstream description)</sub>
   <sub>`Project` · abhishekmamdapure · `Py` · call site [`backend/main.py`](https://github.com/abhishekmamdapure/jev-information-extraction/blob/HEAD/backend/main.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
-- **[jev-job-search](https://github.com/qbeka/jev-job-search)** — Job application tool run from Claude Code that asks Jev, through OpenRouter, whether each posting is a paid software role at the right level and term, how well the stack matches, and which saved answer or option fits each form field, then fills the forms in Chrome for you to approve. <sub>(written by a model)</sub>
-  <sub>`Project` · qbeka · `TS` · `noul` · `choice` · `score` · call site [`src/jev/client.ts`](https://github.com/qbeka/jev-job-search/blob/HEAD/src/jev/client.ts), read by a model 2026-11-10</sub>
-
 - **[jev-mcp-dispatcher](https://github.com/abhishekashokvkumar/jev-mcp-dispatcher)** — Natural-language MCP tool dispatcher powered entirely by TypeSafe's Jev — no general-purpose LLM. Discovers a simple MCP server's tool signatures at runtime and uses Jev's typed primitives (Choice/Noul) to pick the right tool and extract its arguments straight out of the sentence. <sub>(upstream description)</sub>
   <sub>`Plugin` · abhishekashokvkumar · `Py` · call site [`jev_mcp_dispatcher.py`](https://github.com/abhishekashokvkumar/jev-mcp-dispatcher/blob/HEAD/jev_mcp_dispatcher.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
 - **[JEVsnap](https://github.com/brainstormity/jevsnap)** — Screenshot hotkey for macOS, Linux and Windows that blacks out secrets and personal data before the image reaches the clipboard: after local rules, Jev answers nouls on which OCR lines and words to hide, and an optional check finds what is left with box questions. <sub>(written by a model)</sub>
-  <sub>`Project` · brainstormity · `TS` · `noul` · `choice` · call site [`desktop/src/core/jevClient.ts`](https://github.com/brainstormity/jevsnap/blob/HEAD/desktop/src/core/jevClient.ts), read by a model 2026-11-10</sub>
+  <sub>`Project` · brainstormity · `TS` · `noul` · `choice` · call site [`desktop/src/core/jevClient.ts`](https://github.com/brainstormity/jevsnap/blob/HEAD/desktop/src/core/jevClient.ts), read by a model 2026-11-10 · ⚠ `one commit`</sub>
 
 - **[jevsume](https://github.com/unownone/jevsume)** — ATS-friendly resume review powered by Jev (TypeSafe System One). The frontend extracts resume text the way a parser would, then a Cloudflare Worker runs typed JEV questions and composes a JevScore. <sub>(upstream description)</sub>
   <sub>`Project` · unownone · `TS` · call site [`packages/jev/http.ts`](https://github.com/unownone/jevsume/blob/HEAD/packages/jev/http.ts), read 2026-09-22 · ⚠ `no licence`</sub>
-
-- **[Natural Language Logic Interpreter](https://github.com/narphorium/nl-logic-interpreter)** — Step-through logic interpreter for facts and rules in plain English: it proves goals by SLD resolution as Prolog does, but Jev does the unification, with a choice on how two sentences relate, nouls on whether they state the same fact and choices that bind each variable to a phrase. <sub>(written by a model)</sub>
-  <sub>`Project` · narphorium · `TS` · `choice` · `noul` · call site [`src/server/aiUnifier.ts`](https://github.com/narphorium/nl-logic-interpreter/blob/HEAD/src/server/aiUnifier.ts), read by a model 2026-11-08</sub>
 
 - **[question-kit](https://github.com/Engid/question-kit)** — TypeScript library of building blocks for Jev, with a Python port in preview, including a service agent: you describe a service as data, code runs the procedure, and Jev reads each customer turn for the intent, the values a step needs and the judgement calls, each behind a confidence gate. <sub>(written by a model)</sub>
   <sub>`SDK` · Engid · `TS` · `choice` · `noul` · `score` · call site [`packages/question-kit/core/typesafe.ts`](https://github.com/Engid/question-kit/blob/HEAD/packages/question-kit/core/typesafe.ts), read by a model 2026-11-11</sub>

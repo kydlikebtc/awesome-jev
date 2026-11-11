@@ -19,13 +19,14 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 
 ## Every machine translation at ★100+ · ★100+ 的全部机翻
 
-155 rows, most-starred band first, then the rows more signals flag. A dash means no signal fires, not that the translation is right. · 共 155 行，按星标区间从高到低，再按命中信号的多少排列。破折号表示没有信号触发，不代表译文无误。
+164 rows, most-starred band first, then the rows more signals flag. A dash means no signal fires, not that the translation is right. · 共 164 行，按星标区间从高到低，再按命中信号的多少排列。破折号表示没有信号触发，不代表译文无误。
 
 | Row · 行 | Stars · 星标 | Signals · 信号 |
 | --- | --- | --- |
 | [langchain](https://kydlikebtc.github.io/awesome-jev/?lang=en#langchain) | ★100k+ | — |
 | [ai](https://kydlikebtc.github.io/awesome-jev/?lang=en#ai) | ★10k+ | `short` 0.24 · `ascii` 0.67 |
 | [ai-hedge-fund](https://kydlikebtc.github.io/awesome-jev/?lang=en#ai-hedge-fund) | ★10k+ | — |
+| [hindsight](https://kydlikebtc.github.io/awesome-jev/?lang=en#hindsight) | ★10k+ | — |
 | [laya-nandhakishorm](https://kydlikebtc.github.io/awesome-jev/?lang=en#laya-nandhakishorm) | ★10k+ | — |
 | [litellm](https://kydlikebtc.github.io/awesome-jev/?lang=en#litellm) | ★10k+ | — |
 | [oh-my-pi](https://kydlikebtc.github.io/awesome-jev/?lang=en#oh-my-pi) | ★10k+ | — |
@@ -33,13 +34,17 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [pydantic-ai](https://kydlikebtc.github.io/awesome-jev/?lang=en#pydantic-ai) | ★10k+ | — |
 | [xerj](https://kydlikebtc.github.io/awesome-jev/?lang=en#xerj) | ★10k+ | — |
 | [celesto](https://kydlikebtc.github.io/awesome-jev/?lang=en#celesto) | ★1k+ | `short` 0.23 |
+| [http4k-connect-typesafe](https://kydlikebtc.github.io/awesome-jev/?lang=en#http4k-connect-typesafe) | ★1k+ | `ascii` 0.68 |
 | [startlux-decision](https://kydlikebtc.github.io/awesome-jev/?lang=en#startlux-decision) | ★1k+ | `ascii` 0.64 |
+| [strands-decider](https://kydlikebtc.github.io/awesome-jev/?lang=en#strands-decider) | ★1k+ | `ascii` 0.63 |
 | [agentgateway-guardrail](https://kydlikebtc.github.io/awesome-jev/?lang=en#agentgateway-guardrail) | ★1k+ | — |
 | [ax](https://kydlikebtc.github.io/awesome-jev/?lang=en#ax) | ★1k+ | — |
 | [clm](https://kydlikebtc.github.io/awesome-jev/?lang=en#clm) | ★1k+ | — |
+| [contextgem](https://kydlikebtc.github.io/awesome-jev/?lang=en#contextgem) | ★1k+ | — |
 | [deep-searcher](https://kydlikebtc.github.io/awesome-jev/?lang=en#deep-searcher) | ★1k+ | — |
 | [deepopen](https://kydlikebtc.github.io/awesome-jev/?lang=en#deepopen) | ★1k+ | — |
 | [gptcache](https://kydlikebtc.github.io/awesome-jev/?lang=en#gptcache) | ★1k+ | — |
+| [openharness](https://kydlikebtc.github.io/awesome-jev/?lang=en#openharness) | ★1k+ | — |
 | [jeff-firelex](https://kydlikebtc.github.io/awesome-jev/?lang=en#jeff-firelex) | ★1k+ | — |
 | [jevgrep-dzhng](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevgrep-dzhng) | ★1k+ | — |
 | [latitude-llm](https://kydlikebtc.github.io/awesome-jev/?lang=en#latitude-llm) | ★1k+ | — |
@@ -55,13 +60,14 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [yao-agents](https://kydlikebtc.github.io/awesome-jev/?lang=en#yao-agents) | ★1k+ | — |
 | [agent](https://kydlikebtc.github.io/awesome-jev/?lang=en#agent) | ★100+ | `short` 0.09 · `numbers` `21` |
 | [openwhisper](https://kydlikebtc.github.io/awesome-jev/?lang=en#openwhisper) | ★100+ | `short` 0.16 · `numbers` `64` `3` |
+| [nace-ai-drex](https://kydlikebtc.github.io/awesome-jev/?lang=en#nace-ai-drex) | ★100+ | `ascii` 0.69 |
 | [hippo-memory](https://kydlikebtc.github.io/awesome-jev/?lang=en#hippo-memory) | ★100+ | `short` 0.21 |
 | [instructor-php](https://kydlikebtc.github.io/awesome-jev/?lang=en#instructor-php) | ★100+ | `ascii` 0.63 |
 | [jev-chat-windows](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-chat-windows) | ★100+ | `numbers` `4` `3` |
 | [jev-docs-zh](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-docs-zh) | ★100+ | `short` 0.14 |
+| [jev-style](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-style) | ★100+ | `ascii` 0.64 |
 | [quackd](https://kydlikebtc.github.io/awesome-jev/?lang=en#quackd) | ★100+ | `short` 0.13 |
 | [smithers](https://kydlikebtc.github.io/awesome-jev/?lang=en#smithers) | ★100+ | `short` 0.26 |
-| [strands-decider](https://kydlikebtc.github.io/awesome-jev/?lang=en#strands-decider) | ★100+ | `ascii` 0.63 |
 | [systemoneharness](https://kydlikebtc.github.io/awesome-jev/?lang=en#systemoneharness) | ★100+ | `ascii` 0.77 |
 | [ten-levels-of-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#ten-levels-of-jev) | ★100+ | — |
 | [332-lab-jev-chat](https://kydlikebtc.github.io/awesome-jev/?lang=en#332-lab-jev-chat) | ★100+ | — |
@@ -72,7 +78,6 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [astra-ares](https://kydlikebtc.github.io/awesome-jev/?lang=en#astra-ares) | ★100+ | — |
 | [atomic](https://kydlikebtc.github.io/awesome-jev/?lang=en#atomic) | ★100+ | — |
 | [beebots](https://kydlikebtc.github.io/awesome-jev/?lang=en#beebots) | ★100+ | — |
-| [bud-decision-studio](https://kydlikebtc.github.io/awesome-jev/?lang=en#bud-decision-studio) | ★100+ | — |
 | [building-with-typesafe-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#building-with-typesafe-jev) | ★100+ | — |
 | [classifier-dev](https://kydlikebtc.github.io/awesome-jev/?lang=en#classifier-dev) | ★100+ | — |
 | [compact-adviser](https://kydlikebtc.github.io/awesome-jev/?lang=en#compact-adviser) | ★100+ | — |
@@ -86,6 +91,7 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [docjev](https://kydlikebtc.github.io/awesome-jev/?lang=en#docjev) | ★100+ | — |
 | [embodied-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#embodied-jev) | ★100+ | — |
 | [fastbrowse](https://kydlikebtc.github.io/awesome-jev/?lang=en#fastbrowse) | ★100+ | — |
+| [flide](https://kydlikebtc.github.io/awesome-jev/?lang=en#flide) | ★100+ | — |
 | [formanator](https://kydlikebtc.github.io/awesome-jev/?lang=en#formanator) | ★100+ | — |
 | [grok-bot-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#grok-bot-jev) | ★100+ | — |
 | [hey-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#hey-jev) | ★100+ | — |
@@ -109,6 +115,7 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [jev-foundation-models](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-foundation-models) | ★100+ | — |
 | [jev-gateway](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-gateway) | ★100+ | — |
 | [jev-guard](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-guard) | ★100+ | — |
+| [jev-job-search](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-job-search) | ★100+ | — |
 | [jev-lint](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-lint) | ★100+ | — |
 | [jev-mem](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-mem) | ★100+ | — |
 | [jev-seo-agricidaniel](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-seo-agricidaniel) | ★100+ | — |
@@ -131,7 +138,6 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [jevlint-codegirl-007](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevlint-codegirl-007) | ★100+ | — |
 | [jevmem](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevmem) | ★100+ | — |
 | [jevmind](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevmind) | ★100+ | — |
-| [jevry](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevry) | ★100+ | — |
 | [jgrep](https://kydlikebtc.github.io/awesome-jev/?lang=en#jgrep) | ★100+ | — |
 | [jiwo](https://kydlikebtc.github.io/awesome-jev/?lang=en#jiwo) | ★100+ | — |
 | [keel](https://kydlikebtc.github.io/awesome-jev/?lang=en#keel) | ★100+ | — |
@@ -145,6 +151,7 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [localjev](https://kydlikebtc.github.io/awesome-jev/?lang=en#localjev) | ★100+ | — |
 | [macbrow](https://kydlikebtc.github.io/awesome-jev/?lang=en#macbrow) | ★100+ | — |
 | [mu](https://kydlikebtc.github.io/awesome-jev/?lang=en#mu) | ★100+ | — |
+| [multi-uav-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#multi-uav-jev) | ★100+ | — |
 | [neurolink](https://kydlikebtc.github.io/awesome-jev/?lang=en#neurolink) | ★100+ | — |
 | [omg-dev](https://kydlikebtc.github.io/awesome-jev/?lang=en#omg-dev) | ★100+ | — |
 | [onejev](https://kydlikebtc.github.io/awesome-jev/?lang=en#onejev) | ★100+ | — |
@@ -166,6 +173,7 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [system1-agents](https://kydlikebtc.github.io/awesome-jev/?lang=en#system1-agents) | ★100+ | — |
 | [taskuary](https://kydlikebtc.github.io/awesome-jev/?lang=en#taskuary) | ★100+ | — |
 | [tax-doc-classifier](https://kydlikebtc.github.io/awesome-jev/?lang=en#tax-doc-classifier) | ★100+ | — |
+| [tev1](https://kydlikebtc.github.io/awesome-jev/?lang=en#tev1) | ★100+ | — |
 | [third-hand](https://kydlikebtc.github.io/awesome-jev/?lang=en#third-hand) | ★100+ | — |
 | [tiptour-macos](https://kydlikebtc.github.io/awesome-jev/?lang=en#tiptour-macos) | ★100+ | — |
 | [vector-graph-rag](https://kydlikebtc.github.io/awesome-jev/?lang=en#vector-graph-rag) | ★100+ | — |
@@ -176,6 +184,7 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [warrenduffer](https://kydlikebtc.github.io/awesome-jev/?lang=en#warrenduffer) | ★100+ | — |
 | [webctl](https://kydlikebtc.github.io/awesome-jev/?lang=en#webctl) | ★100+ | — |
 | [wrongstack](https://kydlikebtc.github.io/awesome-jev/?lang=en#wrongstack) | ★100+ | — |
+| [yielded-agent](https://kydlikebtc.github.io/awesome-jev/?lang=en#yielded-agent) | ★100+ | — |
 | [youtube-sponsor-detection](https://kydlikebtc.github.io/awesome-jev/?lang=en#youtube-sponsor-detection) | ★100+ | — |
 | [goutoujunshi-jev-chat](https://kydlikebtc.github.io/awesome-jev/?lang=en#goutoujunshi-jev-chat) | ★100+ | — |
 
@@ -183,7 +192,7 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 
 ## Other machine translations a signal flags · 被信号标出的其他机翻
 
-409 rows below ★100+, in the same order. · 共 409 行，低于 ★100+，顺序同上。
+406 rows below ★100+, in the same order. · 共 406 行，低于 ★100+，顺序同上。
 
 | Row · 行 | Stars · 星标 | Signals · 信号 |
 | --- | --- | --- |
@@ -206,12 +215,12 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [browserclaw](https://kydlikebtc.github.io/awesome-jev/?lang=en#browserclaw) | ★10+ | `ascii` 0.64 |
 | [captaincore](https://kydlikebtc.github.io/awesome-jev/?lang=en#captaincore) | ★10+ | `short` 0.27 |
 | [cheshi](https://kydlikebtc.github.io/awesome-jev/?lang=en#cheshi) | ★10+ | `short` 0.19 |
+| [choosekit](https://kydlikebtc.github.io/awesome-jev/?lang=en#choosekit) | ★10+ | `ascii` 0.66 |
 | [clash-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#clash-jev) | ★10+ | `short` 0.27 |
 | [cultivar](https://kydlikebtc.github.io/awesome-jev/?lang=en#cultivar) | ★10+ | `short` 0.22 |
 | [dejevu](https://kydlikebtc.github.io/awesome-jev/?lang=en#dejevu) | ★10+ | `short` 0.27 |
 | [diffusion-jev-sglang](https://kydlikebtc.github.io/awesome-jev/?lang=en#diffusion-jev-sglang) | ★10+ | `ascii` 0.63 |
 | [discern](https://kydlikebtc.github.io/awesome-jev/?lang=en#discern) | ★10+ | `short` 0.17 |
-| [nace-ai-drex](https://kydlikebtc.github.io/awesome-jev/?lang=en#nace-ai-drex) | ★10+ | `ascii` 0.69 |
 | [dsh-jev-buberlo](https://kydlikebtc.github.io/awesome-jev/?lang=en#dsh-jev-buberlo) | ★10+ | `ascii` 0.64 |
 | [dsh-jev-zhangxaochen](https://kydlikebtc.github.io/awesome-jev/?lang=en#dsh-jev-zhangxaochen) | ★10+ | `ascii` 0.69 |
 | [duckdb-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#duckdb-jev) | ★10+ | `short` 0.23 |
@@ -253,7 +262,6 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [jev-search](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-search) | ★10+ | `ascii` 0.67 |
 | [jev-skill-suggester](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-skill-suggester) | ★10+ | `short` 0.21 |
 | [jev-spring-boot-starter](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-spring-boot-starter) | ★10+ | `ascii` 0.85 |
-| [jev-style](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-style) | ★10+ | `ascii` 0.64 |
 | [jev-test-filter](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-test-filter) | ★10+ | `short` 0.27 |
 | [jev-tool-router](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-tool-router) | ★10+ | `ascii` 0.66 |
 | [jev-trades](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-trades) | ★10+ | `short` 0.19 |
@@ -274,6 +282,7 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [jevtown](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevtown) | ★10+ | `numbers` `10000` |
 | [jevwire](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevwire) | ★10+ | `ascii` 0.61 |
 | [jevyoumean](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevyoumean) | ★10+ | `short` 0.25 |
+| [jeyzma](https://kydlikebtc.github.io/awesome-jev/?lang=en#jeyzma) | ★10+ | `ascii` 0.71 |
 | [laya-browser-agent](https://kydlikebtc.github.io/awesome-jev/?lang=en#laya-browser-agent) | ★10+ | `short` 0.18 |
 | [laya-vs-jev-arena](https://kydlikebtc.github.io/awesome-jev/?lang=en#laya-vs-jev-arena) | ★10+ | `short` 0.20 |
 | [legalforecastbench](https://kydlikebtc.github.io/awesome-jev/?lang=en#legalforecastbench) | ★10+ | `ascii` 0.70 |
@@ -294,7 +303,9 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [robojev](https://kydlikebtc.github.io/awesome-jev/?lang=en#robojev) | ★10+ | `ascii` 0.73 |
 | [sift](https://kydlikebtc.github.io/awesome-jev/?lang=en#sift) | ★10+ | `short` 0.28 |
 | [slop-grader](https://kydlikebtc.github.io/awesome-jev/?lang=en#slop-grader) | ★10+ | `short` 0.25 |
+| [snap](https://kydlikebtc.github.io/awesome-jev/?lang=en#snap) | ★10+ | `short` 0.28 |
 | [swift-typesafe](https://kydlikebtc.github.io/awesome-jev/?lang=en#swift-typesafe) | ★10+ | `ascii` 0.72 |
+| [swiftjev](https://kydlikebtc.github.io/awesome-jev/?lang=en#swiftjev) | ★10+ | `ascii` 0.65 |
 | [sys1](https://kydlikebtc.github.io/awesome-jev/?lang=en#sys1) | ★10+ | `ascii` 0.61 |
 | [system-one-iamaamir](https://kydlikebtc.github.io/awesome-jev/?lang=en#system-one-iamaamir) | ★10+ | `ascii` 0.64 |
 | [toolgate](https://kydlikebtc.github.io/awesome-jev/?lang=en#toolgate) | ★10+ | `short` 0.26 |
@@ -302,7 +313,6 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [typed-decision-bert](https://kydlikebtc.github.io/awesome-jev/?lang=en#typed-decision-bert) | ★10+ | `short` 0.20 |
 | [typed-decisions](https://kydlikebtc.github.io/awesome-jev/?lang=en#typed-decisions) | ★10+ | `short` 0.13 |
 | [typesafe](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe) | ★10+ | `ascii` 0.91 |
-| [typesafe-ai-php](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-ai-php) | ★10+ | `ascii` 0.67 |
 | [typesafe-playground](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-playground) | ★10+ | `short` 0.28 |
 | [typesafeai-dotnet-sdk](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafeai-dotnet-sdk) | ★10+ | `short` 0.25 |
 | [agi-jev-containment](https://kydlikebtc.github.io/awesome-jev/?lang=en#agi-jev-containment) |  | `short` 0.11 · `numbers` `1` `5` `4` `2026` |
@@ -365,7 +375,6 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [casse-brique-typesafe](https://kydlikebtc.github.io/awesome-jev/?lang=en#casse-brique-typesafe) |  | `short` 0.26 |
 | [chat2jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#chat2jev) |  | `ascii` 0.77 |
 | [check-risk](https://kydlikebtc.github.io/awesome-jev/?lang=en#check-risk) |  | `short` 0.28 |
-| [choosekit](https://kydlikebtc.github.io/awesome-jev/?lang=en#choosekit) |  | `ascii` 0.66 |
 | [claude-jev-plugin](https://kydlikebtc.github.io/awesome-jev/?lang=en#claude-jev-plugin) |  | `ascii` 0.72 |
 | [computer-use-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#computer-use-jev) |  | `ascii` 0.78 |
 | [cyber-breach-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#cyber-breach-jev) |  | `short` 0.16 |
@@ -388,4 +397,4 @@ Chinese summaries a model translated (`zh_machine: true`), for a person to repla
 | [footwork](https://kydlikebtc.github.io/awesome-jev/?lang=en#footwork) |  | `short` 0.24 |
 | [frost](https://kydlikebtc.github.io/awesome-jev/?lang=en#frost) |  | `short` 0.26 |
 
-…and 209 more, in the same order; `python3 scripts/zh_audit.py --json` lists every machine translation. · 另有 209 行未列出，顺序相同；`python3 scripts/zh_audit.py --json` 会列出全部机翻。
+…and 206 more, in the same order; `python3 scripts/zh_audit.py --json` lists every machine translation. · 另有 206 行未列出，顺序相同；`python3 scripts/zh_audit.py --json` 会列出全部机翻。

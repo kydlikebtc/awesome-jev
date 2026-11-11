@@ -57,6 +57,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)** — 一套循序渐进的课程：从第一次调用、逐个原语、state 形状与 criteria，一直到工单分拣和多步工作流，并对应了全部四个官方模式。
   <sub>`教程` · ★1k+ · `Py` · `choice` · `score` · `noul` · 调用点 [`models/jev/06-criteria.py`](https://github.com/daveebbelaar/ai-cookbook/blob/HEAD/models/jev/06-criteria.py)，2026-09-22 阅读</sub>
 
+- **[Harness](https://github.com/autonomous-ai/openharness)** — 在多台机器上并排运行 Claude Code、Codex 等编码智能体的指挥中心。它的 ⌘B 路由器通过 OpenRouter 的 Decisions API，在一次请求里用 Choice 问题询问 Jev 1.13：新任务该交给哪个会话、哪个项目和哪个智能体。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★1k+ · autonomous-ai · `TS` · `choice` · 调用点 [`cli/src/lib/jev/jevClient.ts`](https://github.com/autonomous-ai/openharness/blob/HEAD/cli/src/lib/jev/jevClient.ts)，2026-11-05 模型阅读</sub>
+
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — 一个 Android 回复副驾：从屏幕文本判断意图、时机和风险，OCR 与文案起草交给另外的模型。
   <sub>`开源项目` · ★1k+ · `Java` · `choice` · `score` · `noul` · 调用点 [`cn/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/jev-chat/jev-chat-jarvis/blob/HEAD/cn/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-09-22 阅读</sub>
 
@@ -108,11 +111,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — 聊天回复助手（桌面悬浮窗、Android 悬浮助手、iOS 键盘），基于 Jev Android。它根据可见对话或截图向 Jev 询问字面问题、对方意图、危险程度、是否现在回复以及最佳行动，再让 Jev 在起草的回复中挑选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · 调用点 [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-10-26 模型阅读 · ⚠ `需第三方密钥`</sub>
 
+- **[Apparite](https://github.com/dglazkov/jev2ui)** — 把文字描述变成可点击应用样稿、并按 DESIGN.md 上色的设计工具：Jev 在一次 choice 和 noul 请求里决定一个界面有哪些区块、用什么布局和图标，以及后续每条消息要求改什么；文字由一个小型 Gemini 模型撰写，界面由代码拼装。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · dglazkov · `TS` · `choice` · `noul` · `score` · 调用点 [`src/server/plan.ts`](https://github.com/dglazkov/jev2ui/blob/HEAD/src/server/plan.ts)，2026-11-09 模型阅读 · ⚠ `需第三方密钥`</sub>
+
 - **[DMB: decision-model benchmark](https://github.com/nibzard/decision-model-benchmark)** — 针对“从列表中选一项并给出置信度”这类 API 的基准测试：比较 Jev、带结构化输出的 LLM 和确定性基线的准确率、延迟、成本、失败率和置信度。作者报告 jev-latest 在 Banking77 上为 79.2%，CLINC150 上为 88.6%，NLU++ 上微平均 F1 为 48.3%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ★10+ · nibzard · `Py` · `choice` · 调用点 [`src/dmb/contenders/jev.py`](https://github.com/nibzard/decision-model-benchmark/blob/HEAD/src/dmb/contenders/jev.py)，2026-11-04 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[Gatekeeper](https://github.com/AgriciDaniel/gatekeeper)** — Claude Code 钩子，在 AI 自行挑选之前决定由哪个智能体或技能处理一条提示：YAML 规则手册先处理代码能判定的部分，其余的由 Jev 以 Choice 回答归哪个处理者，再按置信区间转成转交、建议、确认、上报、拦截或放行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · AgriciDaniel · `Py` · `choice` · `noul` · 调用点 [`gatekeeper/jev.py`](https://github.com/AgriciDaniel/gatekeeper/blob/HEAD/gatekeeper/jev.py)，2026-11-01 模型阅读</sub>
+
+- **[GoEventBus](https://github.com/protocol-lattice/goeventbus)** — 高性能的 Go 事件总线，带一个可选的决策层：当确定性规则和缓存的决策都匹配不上某个事件的状态时，由 Jev（经 OpenRouter 的 Decisions API 调用）从有限的候选集中选出要执行的事件类型，执行本身仍留在总线内部。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · protocol-lattice · `Go` · `choice` · 调用点 [`jev.go`](https://github.com/protocol-lattice/goeventbus/blob/HEAD/jev.go)，2026-11-06 模型阅读</sub>
 
 - **[Gut](https://github.com/vinibrsl/gut)** — 用于 LLM 决策的 Elixir DSL：Gut.feel(subject, question, choices) 返回你给定的某个 Elixir 值，例如应处理某张工单的团队。其 Jev 适配器通过 ReqLLM 以一个 Choice 问题提问；其他适配器可用任意 ReqLLM 模型、Ollama 或你自己的代码。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · ★10+ · vinibrsl · `Ex` · `choice` · 调用点 [`lib/gut/req_llm/jev.ex`](https://github.com/vinibrsl/gut/blob/HEAD/lib/gut/req_llm/jev.ex)，2026-11-02 模型阅读</sub>
@@ -147,17 +156,23 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevyoumean](https://github.com/syumai/jevyoumean)** — 给任意 CLI 的语义化「你是不是想输入」：用 Jev 匹配子命令。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · syumai · `Go` · 调用点 [`internal/jev/client.go`](https://github.com/syumai/jevyoumean/blob/HEAD/internal/jev/client.go)，2026-09-22 阅读</sub>
 
+- **[Orchvia](https://github.com/masonlee39/orchvia)** — 在你自己的应用里把 Claude Code 和 Codex 智能体组成团队运行。它的可选路由层向可插拔的评判者（Jev 或纯规则）提出 Choice、Noul 和 Score 类型的问题，判断由哪个智能体接手请求；置信度低于 0.85 或差距小于 0.2 时，提议要等人确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · masonlee39 · `Py` · `choice` · `noul` · `score` · 调用点 [`python/src/orchvia/routing.py`](https://github.com/masonlee39/orchvia/blob/HEAD/python/src/orchvia/routing.py)，2026-11-05 模型阅读</sub>
+
 - **[RoboDiag Harness](https://github.com/yuebit/robodiag-harness)** — 面向 ROS 2 机器人的诊断工具：由 Jev 把每个请求分为查询、诊断、操作或闲聊，并在诊断时挑选下一个只读的取证工具。代码要求诊断结束前至少有一项健康测试和一次实时测量，再由聊天模型解释证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · yuebit · `Py` · `choice` · 调用点 [`robodiag_jev.py`](https://github.com/yuebit/robodiag-harness/blob/HEAD/robodiag_jev.py)，2026-11-01 模型阅读</sub>
+
+- **[SpotAsk](https://github.com/shiquda/spotask)** — 用自己的 API 密钥快速提问的 Mac 菜单栏应用。它的 External Ask 可以让 Jev 这样的决策模型用一个 choice 问题决定问题发往哪里（ChatGPT、Perplexity 等网页 AI、本地 CLI 智能体或桌面应用），再在行内确认，或在置信度高于阈值时直接发送。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · shiquda · `Swift` · `choice` · 调用点 [`Sources/SpotAsk/Decision/DecisionRouting.swift`](https://github.com/shiquda/spotask/blob/HEAD/Sources/SpotAsk/Decision/DecisionRouting.swift)，2026-11-06 模型阅读</sub>
+
+- **[TypeSafe Conversation for Home Assistant](https://github.com/the-sof/home-assistant-typesafe-conversation-agent)** — Home Assistant 的对话代理，用 System One 模型而不是 LLM 来做决定：根据 Jev 对所指意图、设备和数值的类型化回答，由代码解析设备指令和关于家中状态的问题；答案存疑时会追问或回退，而不是猜测。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · the-sof · `Py` · `choice` · `noul` · 调用点 [`custom_components/typesafe_conversation/system_one.py`](https://github.com/the-sof/home-assistant-typesafe-conversation-agent/blob/HEAD/custom_components/typesafe_conversation/system_one.py)，2026-11-07 模型阅读</sub>
 
 - **[typesafe-jev-workflow](https://github.com/GiesN/typesafe-jev-workflow)** — 一个小型异步 LangGraph 工作流：把模拟邮件交给 Jev 做带类型的 Choice（发票或一般邮件），再路由到演示处理器。分类会真实调用 API；处理器只设置去向。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · giesn · `Py` · 调用点 [`src/typesafe_ai_langgraph/typesafe_ai_langgraph_workflow.py`](https://github.com/GiesN/typesafe-jev-workflow/blob/HEAD/src/typesafe_ai_langgraph/typesafe_ai_langgraph_workflow.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
 
 - **[A deep dive into Jev, TypeSafe's System One model](https://flaviocopes.com/jev/)** — 技术密度最高的独立讲解：JS / Python / AI SDK 三种代码、三种应答结构、进阶模式，还诚实列出了模型的失效场景。
   <sub>`教程` · Flavio Copes · `JS` · `Py` · `TS` · `choice` · `score` · `noul`</sub>
-
-- **[Apparite](https://github.com/dglazkov/jev2ui)** — 把文字描述变成可点击应用样稿、并按 DESIGN.md 上色的设计工具：Jev 在一次 choice 和 noul 请求里决定一个界面有哪些区块、用什么布局和图标，以及后续每条消息要求改什么；文字由一个小型 Gemini 模型撰写，界面由代码拼装。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · dglazkov · `TS` · `choice` · `noul` · `score` · 调用点 [`src/server/plan.ts`](https://github.com/dglazkov/jev2ui/blob/HEAD/src/server/plan.ts)，2026-11-09 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI 自定义节点：根据类型化判断为工作流分支，比如提示词想要哪种风格、是否对儿童过于血腥、是否提到了真实人物；用一个下拉框就能在 Jev、Laya 和 Cloudflare 的 Clef 之间切换后端。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · dante01yoon · `Py` · `choice` · `noul` · `score` · 调用点 [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py)，2026-11-11 模型阅读</sub>
@@ -167,12 +182,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Example: confidence-gated escalation](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/02-confidence-gate/main.py)** — 带「自动执行或转人工」闸门的路由；策略函数刻意留空 —— 阈值该定在哪，是你的决定。
   <sub>`代码片段` · `Py` · `choice` · 调用点 [`examples/02-confidence-gate/main.py`](https://github.com/kydlikebtc/awesome-jev/blob/HEAD/examples/02-confidence-gate/main.py)，2026-09-22 阅读 · ⚠ `代码未实测`</sub>
-
-- **[GoEventBus](https://github.com/protocol-lattice/goeventbus)** — 高性能的 Go 事件总线，带一个可选的决策层：当确定性规则和缓存的决策都匹配不上某个事件的状态时，由 Jev（经 OpenRouter 的 Decisions API 调用）从有限的候选集中选出要执行的事件类型，执行本身仍留在总线内部。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · protocol-lattice · `Go` · `choice` · 调用点 [`jev.go`](https://github.com/protocol-lattice/goeventbus/blob/HEAD/jev.go)，2026-11-06 模型阅读</sub>
-
-- **[Harness](https://github.com/autonomous-ai/openharness)** — 在多台机器上并排运行 Claude Code、Codex 等编码智能体的指挥中心。它的 ⌘B 路由器通过 OpenRouter 的 Decisions API，在一次请求里用 Choice 问题询问 Jev 1.13：新任务该交给哪个会话、哪个项目和哪个智能体。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · autonomous-ai · `TS` · `choice` · 调用点 [`cli/src/lib/jev/jevClient.ts`](https://github.com/autonomous-ai/openharness/blob/HEAD/cli/src/lib/jev/jevClient.ts)，2026-11-05 模型阅读</sub>
 
 - **[Jev AI Use Cases](https://medium.com/data-science-in-your-pocket/jev-ai-use-cases-9a87d57ac3b4)** — 逐个用例走一遍 —— 智能体路由、智能体内部的决策层、工单分拣 —— 每个都给出具体的选项集和示例响应。
   <sub>`教程` · Mehul Gupta · `Py` · `choice` · ⚠ `付费墙`</sub>
@@ -195,17 +204,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — LangChain 集成：一个分类器，外加用于模型路由、以及在高风险工具调用执行前拦截它的实验性 middleware。
   <sub>`平台集成` · `Py` · `choice` · `score` · `noul` · ⚠ `需早期访问`</sub>
 
-- **[Orchvia](https://github.com/masonlee39/orchvia)** — 在你自己的应用里把 Claude Code 和 Codex 智能体组成团队运行。它的可选路由层向可插拔的评判者（Jev 或纯规则）提出 Choice、Noul 和 Score 类型的问题，判断由哪个智能体接手请求；置信度低于 0.85 或差距小于 0.2 时，提议要等人确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · masonlee39 · `Py` · `choice` · `noul` · `score` · 调用点 [`python/src/orchvia/routing.py`](https://github.com/masonlee39/orchvia/blob/HEAD/python/src/orchvia/routing.py)，2026-11-05 模型阅读</sub>
-
 - **[question-kit](https://github.com/Engid/question-kit)** — 面向 Jev 的 TypeScript 构件库，Python 移植版在预览中；其中包括一个服务智能体：你把服务描述成数据，由代码执行流程，Jev 读取客户的每一轮发言，判断意图、某一步需要的值以及流程没写明的判断，每个结论都要过置信度关卡。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · Engid · `TS` · `choice` · `noul` · `score` · 调用点 [`packages/question-kit/core/typesafe.ts`](https://github.com/Engid/question-kit/blob/HEAD/packages/question-kit/core/typesafe.ts)，2026-11-11 模型阅读</sub>
-
-- **[SpotAsk](https://github.com/shiquda/spotask)** — 用自己的 API 密钥快速提问的 Mac 菜单栏应用。它的 External Ask 可以让 Jev 这样的决策模型用一个 choice 问题决定问题发往哪里（ChatGPT、Perplexity 等网页 AI、本地 CLI 智能体或桌面应用），再在行内确认，或在置信度高于阈值时直接发送。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · shiquda · `Swift` · `choice` · 调用点 [`Sources/SpotAsk/Decision/DecisionRouting.swift`](https://github.com/shiquda/spotask/blob/HEAD/Sources/SpotAsk/Decision/DecisionRouting.swift)，2026-11-06 模型阅读</sub>
-
-- **[TypeSafe Conversation for Home Assistant](https://github.com/the-sof/home-assistant-typesafe-conversation-agent)** — Home Assistant 的对话代理，用 System One 模型而不是 LLM 来做决定：根据 Jev 对所指意图、设备和数值的类型化回答，由代码解析设备指令和关于家中状态的问题；答案存疑时会追问或回退，而不是猜测。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · the-sof · `Py` · `choice` · `noul` · 调用点 [`custom_components/typesafe_conversation/system_one.py`](https://github.com/the-sof/home-assistant-typesafe-conversation-agent/blob/HEAD/custom_components/typesafe_conversation/system_one.py)，2026-11-07 模型阅读</sub>
 
 - **[Using TypeSafe Jev with the AI SDK](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk)** — Vercel 最完整的实操指南：单问题与多问题调用、按概率阈值路由，以及用 mock evaluation 模型写单元测试。
   <sub>`教程` · `TS` · `noul` · `choice` · `score`</sub>

@@ -464,13 +464,13 @@ _Classify what the user wants and send the request down the right branch._
   A graded course from a first call through each primitive, state shapes and criteria, to ticket triage and a multi-step workflow, mirroring all four official patterns.<br>
   <sub>`Tutorial` · ★1k+ · `Py` · `choice` · `score` · `noul` · [call site](https://github.com/daveebbelaar/ai-cookbook/blob/HEAD/models/jev/06-criteria.py), read 2026-09-22</sub>
 
+- **[Harness](https://github.com/autonomous-ai/openharness)**<br>
+  Command center that runs coding agents such as Claude Code and Codex side by side across machines. Its ⌘B router asks Jev 1.13 through OpenRouter's Decisions API, in one request of Choice questions, which session, project and agent a new task goes to. <sub>(written by a model)</sub><br>
+  <sub>`Project` · ★1k+ · autonomous-ai · `TS` · `choice` · [call site](https://github.com/autonomous-ai/openharness/blob/HEAD/cli/src/lib/jev/jevClient.ts), read by a model 2026-11-05</sub>
+
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)**<br>
   An Android reply co-pilot that judges intent, timing and risk from on-screen text, while separate models handle OCR and drafting.<br>
   <sub>`Project` · ★1k+ · `Java` · `choice` · `score` · `noul` · [call site](https://github.com/jev-chat/jev-chat-jarvis/blob/HEAD/cn/app/src/main/java/com/jev/probe/jev/JevQuestions.kt), read 2026-09-22</sub>
-
-- **[Real Python: hello-jev](https://github.com/realpython/materials/tree/master/hello-jev)**<br>
-  A teaching example with a deliberate control group: the same station-enquiry task written in plain Python that only accepts Y/N, next to a Noul that reads intent.<br>
-  <sub>`Tutorial` · ★1k+ · Real Python · `Py` · `noul` · [call site](https://github.com/realpython/materials/blob/HEAD/hello-jev/jev_noul.py), read 2026-09-22</sub>
 
 </details>
 
@@ -647,15 +647,15 @@ _Check a model's output against a rubric before it reaches a user._
 
 _Decide whether a failed step is worth retrying._
 
-- **[DuoMind](https://github.com/j1s4nn/duomind)**<br>
-  OpenAI-compatible local server that pairs a small llama.cpp model with Jev: 18 decision points before, during and after generation (needs reasoning, safety, format, should stop, needs retry) steer the local model. Prompts go to TypeSafe; generation stays local. <sub>(written by a model)</sub><br>
-  <sub>`Project` · ★10+ · j1s4nn · `Py` · `noul` · `choice` · [call site](https://github.com/j1s4nn/duomind/blob/HEAD/src/duomind/jev_client.py), read by a model 2026-10-24</sub>
-
-  **Caveats:** `vendor numbers`
-
 - **[jev-harness](https://github.com/ismaelsoilet/jev-harness)**<br>
   Decision gates for AI coding agents (CLI, MCP server, CI hook; Python, TypeScript and Rust SDKs): offline heuristics first, then optional Jev judgments on whether a failing test log needs the LLM, whether to abort a fix loop, which model tier and reasoning effort to use, and if a step is done. <sub>(written by a model)</sub><br>
   <sub>`Plugin` · ★10+ · ismaelsoilet · `Py` · [call site](https://github.com/ismaelsoilet/jev-harness/blob/HEAD/src/jev_harness/client.py), read 2026-09-24</sub>
+
+- **[DuoMind](https://github.com/j1s4nn/duomind)**<br>
+  OpenAI-compatible local server that pairs a small llama.cpp model with Jev: 18 decision points before, during and after generation (needs reasoning, safety, format, should stop, needs retry) steer the local model. Prompts go to TypeSafe; generation stays local. <sub>(written by a model)</sub><br>
+  <sub>`Project` · j1s4nn · `Py` · `noul` · `choice` · [call site](https://github.com/j1s4nn/duomind/blob/HEAD/src/duomind/jev_client.py), read by a model 2026-10-24</sub>
+
+  **Caveats:** `vendor numbers`
 
 - **[harnessjudge](https://github.com/ndolinschi/harnessjudge)**<br>
   Web app for agent builders: paste the trace of one agent step and Jev judges it as ok, retry, escalate or stop. Without a TYPESAFE_API_KEY, local heuristics return answers of the same shape, labelled as demo mode. <sub>(written by a model)</sub><br>
@@ -776,6 +776,10 @@ _Pick which downstream model or tier should handle a request._
   Three independently installable Claude Code plugins — guardrails, model router and skill suggestion — each with its own hooks and tests.<br>
   <sub>`Plugin` · ★10k+ · `Py` · `TS` · `choice` · `score` · `noul` · [call site](https://github.com/davila7/claude-code-templates/blob/HEAD/scripts/jev-spike.mjs), read 2026-09-22</sub>
 
+- **[Hindsight](https://github.com/vectorize-io/hindsight)**<br>
+  Agent memory server that can hand two jobs to a decision model: re-ranking a recall pool with one Noul per candidate, optionally dropping unhelpful and duplicate memories, and settling easy consolidation cases with Choice questions before the LLM sees them. <sub>(written by a model)</sub><br>
+  <sub>`Project` · ★10k+ · vectorize-io · `Py` · `noul` · `choice` · [call site](https://github.com/vectorize-io/hindsight/blob/HEAD/hindsight-api-slim/hindsight_api/engine/decision_model.py), read by a model 2026-11-05</sub>
+
 - **[oh-my-pi](https://github.com/can1357/oh-my-pi)**<br>
   ⌥ Coding agent with the IDE wired in<br>
   <sub>`Project` · ★10k+ · can1357 · `TS` · [call site](https://github.com/can1357/oh-my-pi/blob/HEAD/packages/ai/src/judgment/native.ts), read by a model 2026-11-05</sub>
@@ -783,6 +787,10 @@ _Pick which downstream model or tier should handle a request._
 - **[openwork](https://github.com/different-ai/openwork)**<br>
   Open-source alternative to Claude Cowork, built on opencode. Its gateway's Auto route asks Jev one Score per Smart Router task and one for the thinking level, then routes the prompt by the answers; without a TypeSafe key it takes the fallback route. <sub>(written by a model)</sub><br>
   <sub>`Project` · ★10k+ · different-ai · `TS` · `score` · [call site](https://github.com/different-ai/openwork/blob/HEAD/ee/apps/gateway/src/auto-router/jev.ts), read by a model 2026-11-05</sub>
+
+- **[Harness](https://github.com/autonomous-ai/openharness)**<br>
+  Command center that runs coding agents such as Claude Code and Codex side by side across machines. Its ⌘B router asks Jev 1.13 through OpenRouter's Decisions API, in one request of Choice questions, which session, project and agent a new task goes to. <sub>(written by a model)</sub><br>
+  <sub>`Project` · ★1k+ · autonomous-ai · `TS` · `choice` · [call site](https://github.com/autonomous-ai/openharness/blob/HEAD/cli/src/lib/jev/jevClient.ts), read by a model 2026-11-05</sub>
 
 - **[hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills)**<br>
   Nine agent skills plus a CLI covering model routing, memory filtering, turn retention, one-of-many skill selection and next-action choice.<br>
@@ -793,16 +801,6 @@ _Pick which downstream model or tier should handle a request._
 - **[Astra-Ares](https://github.com/miuuyy/Astra-Ares)**<br>
   Runs a patched Codex CLI in which Jev reads bounded task context and, with two choices, picks the reasoning effort for GPT-6's next response and how many responses (1, 2, 5 or 10) it should last; GPT-6 can change effort without breaking the prompt cache. An experimental reference implementation. <sub>(written by a model)</sub><br>
   <sub>`Plugin` · ★100+ · miuuyy · `JS` · [call site](https://github.com/miuuyy/Astra-Ares/blob/HEAD/src/jev.mjs), read 2026-09-24</sub>
-
-- **[distill](https://github.com/samuelfaj/distill)**<br>
-  Coding-agent harness and TUI for Grok and Codex subscriptions and any OpenAI-compatible model, built to spend fewer tokens. When a model tier's effort is left on auto, the default, Jev picks the reasoning effort for every call; the client reaches Jev through OpenRouter by default. <sub>(written by a model)</sub><br>
-  <sub>`Project` · ★100+ · samuelfaj · `Rs` · [call site](https://github.com/samuelfaj/distill/blob/HEAD/crates/codegen/distill-workspace/src/jev/client.rs), read 2026-09-22</sub>
-
-- **[jev-codex-router](https://github.com/0xNatoshi/jev-codex-router)**<br>
-  Judges how hard a coding turn is, then picks the model tier, reasoning depth and speed mode to match.<br>
-  <sub>`Plugin` · ★100+ · `JS` · `choice` · `score` · [call site](https://github.com/0xNatoshi/jev-codex-router/blob/HEAD/server/jev_server.py), read 2026-09-22</sub>
-
-  **Caveats:** `archived`
 
 </details>
 
@@ -894,6 +892,10 @@ _Score or re-rank candidates from a cheaper retrieval step._
   Two-stage MCP tool search: a wide Choice coarse-ranks the whole catalogue, then a shortlist gets full descriptions plus one Noul each to decide whether it does the job at all.<br>
   <sub>`Project` · ★10k+ · `Py` · `choice` · `noul` · [call site](https://github.com/PrefectHQ/fastmcp/blob/HEAD/fastmcp_slim/fastmcp/experimental/transforms/jev_search.py), read 2026-09-22</sub>
 
+- **[Hindsight](https://github.com/vectorize-io/hindsight)**<br>
+  Agent memory server that can hand two jobs to a decision model: re-ranking a recall pool with one Noul per candidate, optionally dropping unhelpful and duplicate memories, and settling easy consolidation cases with Choice questions before the LLM sees them. <sub>(written by a model)</sub><br>
+  <sub>`Project` · ★10k+ · vectorize-io · `Py` · `noul` · `choice` · [call site](https://github.com/vectorize-io/hindsight/blob/HEAD/hindsight-api-slim/hindsight_api/engine/decision_model.py), read by a model 2026-11-05</sub>
+
 - **[jcode: memory recall without embeddings](https://github.com/1jehuang/jcode)**<br>
   Replaces the whole retrieval stack for memory recall — no embeddings, no BM25, no reranker — with one batched Noul per candidate memory.<br>
   <sub>`Project` · ★10k+ · `Rs` · `noul` · [call site](https://github.com/1jehuang/jcode/blob/HEAD/crates/jcode-base/src/jev.rs), read 2026-09-22</sub>
@@ -909,12 +911,6 @@ _Score or re-rank candidates from a cheaper retrieval step._
 - **[OpenViking: retrieval reranking](https://github.com/volcengine/OpenViking)**<br>
   One Noul per candidate document in a single batched request, with the yes-probability used directly as the relevance score.<br>
   <sub>`Project` · ★10k+ · `Py` · `noul` · [call site](https://github.com/volcengine/OpenViking/blob/HEAD/openviking/models/rerank/jev_rerank.py), read 2026-09-22</sub>
-
-- **[XERJ](https://github.com/xerj-org/xerj)**<br>
-  Local-first search engine and MCP server in one Rust binary. Its optional `rerank` stage asks Jev one `noul` per top hit (does `document` answer the query in the state?) and re-sorts by the probabilities. The authors report FiQA nDCG@10 rising from 0.24 to 0.36, about $0.64 for 648 searches. <sub>(written by a model)</sub><br>
-  <sub>`Project` · ★10k+ · xerj-org · `Rs` · `noul` · [call site](https://github.com/xerj-org/xerj/blob/HEAD/engine/crates/xerj-rerank/src/lib.rs), read by a model 2026-10-26</sub>
-
-  **Caveats:** `vendor numbers`
 
 </details>
 
@@ -945,6 +941,14 @@ _Pull typed fields out of messy text by choosing among candidates rather than ge
   A two-stage mini-then-verify-then-reasoning cascade that reaches most of a big reasoning model's quality at a fraction of the cost.<br>
   <sub>`Official docs` · `Py`</sub>
 
+- **[ContextGem](https://github.com/shcherbak-ai/contextgem)**<br>
+  Python framework that extracts structured data from documents with LLMs and decision models. Given a decision model such as Jev, it asks a yes/no question per paragraph to find each aspect's clauses and turns Boolean, label and rating concepts into noul, choice and score questions. <sub>(written by a model)</sub><br>
+  <sub>`Project` · ★1k+ · shcherbak-ai · `Py` · `noul` · `choice` · `score` · [call site](https://github.com/shcherbak-ai/contextgem/blob/HEAD/contextgem/internal/base/decision_models.py), read by a model 2026-11-06</sub>
+
+- **[jev-job-search](https://github.com/qbeka/jev-job-search)**<br>
+  Job application tool run from Claude Code that asks Jev, through OpenRouter, whether each posting is a paid software role at the right level and term, how well the stack matches, and which saved answer or option fits each form field, then fills the forms in Chrome for you to approve. <sub>(written by a model)</sub><br>
+  <sub>`Project` · ★100+ · qbeka · `TS` · `noul` · `choice` · `score` · [call site](https://github.com/qbeka/jev-job-search/blob/HEAD/src/jev/client.ts), read by a model 2026-11-10</sub>
+
 - **[jev4pg](https://github.com/Sheltercosmo/jev4pg)**<br>
   Natural-language SQL and 41 semantic operators for PostgreSQL. Filtering, extraction, ranking, matching and verification go to Jev in bounded batches with validated answers; a choice option needs 0.55 and a noul 0.8 to count. The authors report 98% accuracy against 92% for pg-jev's request path. <sub>(written by a model)</sub><br>
   <sub>`Project` · ★100+ · Sheltercosmo · `Py` · `choice` · `noul` · [call site](https://github.com/Sheltercosmo/jev4pg/blob/HEAD/sdd/generic/jev.py), read by a model 2026-10-26</sub>
@@ -966,14 +970,6 @@ _Pull typed fields out of messy text by choosing among candidates rather than ge
   <sub>`Project` · ★10+ · bilune · `TS` · `choice` · `score` · `noul` · [call site](https://github.com/bilune/jev-design/blob/HEAD/src/design/jev/generate.ts), read by a model 2026-10-30</sub>
 
   **Caveats:** `no licence`
-
-- **[jev-macos-loop](https://github.com/jcpsimmons/jev-macos-loop)**<br>
-  Computer-use agent for native macOS apps on Apple silicon: OmniParser CoreML, Apple Vision OCR and accessibility labels find a window's controls locally, and Jev picks the next action with a choice from the observed text, never pixels. Input is guarded, and benchmarks check results, not Jev's DONE. <sub>(written by a model)</sub><br>
-  <sub>`Project` · ★10+ · jcpsimmons · `JS` · [call site](https://github.com/jcpsimmons/jev-macos-loop/blob/HEAD/src/providers.mjs), read 2026-09-22</sub>
-
-- **[jeveryword](https://github.com/jkrup/jeveryword)**<br>
-  Text extraction with Jev: field extraction, PII detection and exact quotes, built on TypeSafe's Jev. <sub>(upstream description)</sub><br>
-  <sub>`Project` · ★10+ · jkrup · `JS` · [call site](https://github.com/jkrup/jeveryword/blob/HEAD/src/client.mjs), read 2026-09-22</sub>
 
 </details>
 
@@ -1024,13 +1020,13 @@ _Put an item into a taxonomy, including deep hierarchies walked with probabiliti
 
   **Caveats:** `shadow mode`
 
+- **[ContextGem](https://github.com/shcherbak-ai/contextgem)**<br>
+  Python framework that extracts structured data from documents with LLMs and decision models. Given a decision model such as Jev, it asks a yes/no question per paragraph to find each aspect's clauses and turns Boolean, label and rating concepts into noul, choice and score questions. <sub>(written by a model)</sub><br>
+  <sub>`Project` · ★1k+ · shcherbak-ai · `Py` · `noul` · `choice` · `score` · [call site](https://github.com/shcherbak-ai/contextgem/blob/HEAD/contextgem/internal/base/decision_models.py), read by a model 2026-11-06</sub>
+
 - **[pg-jev](https://github.com/realZachi/pg-jev)**<br>
   A real PostgreSQL extension exposing the primitives as SQL functions, so a semantic decision can appear in a WHERE clause over any row type.<br>
   <sub>`Project` · ★1k+ · `Py` · `sh` · `choice` · `score` · `noul` · [call site](https://github.com/realZachi/pg-jev/blob/HEAD/sql/jev--0.2.0.sql), read 2026-09-22</sub>
-
-- **[332_lab-jev-chat](https://github.com/Liyucheng1997/332_lab-jev-chat)**<br>
-  A Windows WeChat assistant: Jev judges the intent of each incoming message and DeepSeek suggests replies.<br>
-  <sub>`Project` · ★100+ · liyucheng1997 · `Kt` · [call site](https://github.com/Liyucheng1997/332_lab-jev-chat/blob/HEAD/windows/jev_windows/jev_api.py), read 2026-09-24</sub>
 
 </details>
 
@@ -1165,6 +1161,10 @@ _Route support tickets and conversations by intent and urgency._
 <details>
 <summary>7 more examples</summary>
 
+- **[tev1-4B-experimental](https://github.com/togethercomputer/tev1)**<br>
+  Together AI fine-tuned Qwen3.5-4B to answer decisions with one option letter. In a paired rerun of three public Jev benchmarks it scored 50.6% on phishing against Jev 1.13's 62.9%, 93.3% on tool risk for both, and 96.3% against 100% on ticket routing. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ★100+ · togethercomputer · `Py` · `choice` · [call site](https://github.com/togethercomputer/tev1/blob/HEAD/evaluation/public-third-party/run.py), read by a model 2026-11-05</sub>
+
 - **[jev-demo](https://github.com/soyjorgepilo/jev-demo)**<br>
   Three Spanish-language demos of one pattern, Jev decides and code acts: Jira ticket triage that applies, marks for review or escalates; a pre-flight pass that flags functions before Claude explains only those; and a PR router sending each pull request to rules, Haiku or Sonnet. <sub>(written by a model)</sub><br>
   <sub>`Project` · ★10+ · soyjorgepilo · `TS` · `choice` · `noul` · `score` · [call site](https://github.com/soyjorgepilo/jev-demo/blob/HEAD/shared/jev.ts), read by a model 2026-11-04</sub>
@@ -1194,10 +1194,6 @@ _Route support tickets and conversations by intent and urgency._
 - **[Jev on AI/ML API](https://docs.aimlapi.com/api-references/decision-models/typesafe/jev)**<br>
   Another gateway route, notable because its endpoint path and request envelope differ again from both the native API and Cloudflare's.<br>
   <sub>`Integration` · `Py` · `noul` · `choice` · `score`</sub>
-
-- **[Jev on Cloudflare Workers AI](https://developers.cloudflare.com/ai/models/typesafe/jev/)**<br>
-  Workers AI binding and REST samples asking a noul, a choice and a score in one call, with the full response including per-answer confidence.<br>
-  <sub>`Integration` · `TS` · `sh` · `noul` · `choice` · `score`</sub>
 
 </details>
 
@@ -1369,7 +1365,7 @@ The parts that are not the catalog.
 <details>
 <summary><b>Preview the searchable catalogue</b></summary>
 
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=a1f1828fb8a43566" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=en"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-en.png?v=8f28addbd4048d92" alt="Searchable Jev catalogue with curated paths, filters, dated source evidence and entry cards" width="760"></a>
 
 <sub>Filter by clicking a bar. Two more views: <a href="https://kydlikebtc.github.io/awesome-jev/?view=prims">primitives</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat">compatibility</a>. Every filter and entry is a shareable URL. Also as plain pages: <a href="https://kydlikebtc.github.io/awesome-jev/patterns/">one per pattern</a> · <a href="https://kydlikebtc.github.io/awesome-jev/new.html">what's new each week</a> (<a href="https://kydlikebtc.github.io/awesome-jev/feed.xml">Atom feed</a>). Products with code also launch on <a href="https://kydlikebtc.github.io/awesome-jev/launches.html">the weekly launch board</a> (<a href="docs/launches.md">how it works</a>).</sub>
 
@@ -1396,17 +1392,17 @@ The parts that are not the catalog.
 
 ## What is verified, and what is not
 
-- **Link checks** — 1363 rows carry an HTTP 2xx response and a `checked` date; 120 carry no dated success record. Dates vary by row and a past success does not guarantee availability today. Stars and licences are repository metadata snapshots.
+- **Link checks** — 1479 rows carry an HTTP 2xx response and a `checked` date; 4 carry no dated success record. Dates vary by row and a past success does not guarantee availability today. Stars and licences are repository metadata snapshots.
 
 - **Source and code review** — `evidence.path` cites the file read, `evidence.read_on` records the reported review date, `evidence.model_read_on` a model's reading, shown apart, and `evidence_none` explains missing file evidence. Reading a call site is separate from running it. Summaries include source descriptions and machine translations; see the [method and its limits](docs/method.md).
 
-- **Whose words the summaries are** — 746 summaries are the linked project's own GitHub description, word for word, and are marked *(upstream description)*; 29 are marked *(earlier upstream description)*: taken from one that no longer reads the same. Those words are their authors'. 11 summaries are marked as written for this catalogue by a person, 383 were written for it by a model and are marked *(written by a model)*, and 314 carry no record either way. The weekly refresh compares each summary with its repository's description and labels a match; only a person marks a summary as a person's.
+- **Whose words the summaries are** — 745 summaries are the linked project's own GitHub description, word for word, and are marked *(upstream description)*; 30 are marked *(earlier upstream description)*: taken from one that no longer reads the same. Those words are their authors'. 11 summaries are marked as written for this catalogue by a person, 383 were written for it by a model and are marked *(written by a model)*, and 314 carry no record either way. The weekly refresh compares each summary with its repository's description and labels a match; only a person marks a summary as a person's.
 
 - **Who wrote the Chinese** — 191 of 1483 rows have a Chinese summary a person wrote; a model translated the other 1292, and each of those carries `zh_machine` and is marked *(机翻)* in the Chinese README, on the Chinese pattern pages and in the site's Chinese view. The [translation queue](docs/zh-queue.md) lists machine translations for a person to replace: every one on the most-starred rows, then, most-starred first, others flagged by at least one of three text signals a script computes (much shorter than the English, a number from the English missing, mostly ASCII). A signal is a comparison, not a verdict on a translation, and no row in the READMEs, the pattern pages or the site shows one. To take some, see [Claim a translation](CONTRIBUTING.md#claim-a-translation); only a translation of your own takes `zh_machine` off.
 
 - **Call-site text checks** — 1287 rows record in `evidence` a file where the project calls Jev, and strings matched in it. Another 110 record a file that shows a project speaking Jev's request shape rather than building on Jev (every `alternative`, whether it serves that shape or sends Jev the same request to compare, and adapters backed by other models), and 1 only an example the project ships; `evidence.kind` says which. The weekly [claims job](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) checks that those strings remain on the default branch and reports missing text or files. These counts measure recorded evidence, **not latest CI passes**. A text match does not prove that a call executes, the API is compatible, or the result is correct. Citations a script marks for a person to re-read are listed in the [review queue](docs/review-queue.md).
 
-- **Which primitives** — 109 rows name in `question_types` the primitives a person read the code calling, and 217 more the primitives a model read there, on rows whose call site only a model has read (`evidence.model_read_on`). Apart from those, 749 rows carry `primitives_seen`, a machine text signal: the weekly refresh found a primitive's request or answer shape (`"type": "choice"`, `Noul(`, `.noul`) in the one file the row cites. A shape in a file is not a call, and 618 of those rows carry no `question_types`, so the signal is all that is recorded about their primitives. No filter, count or rule here reads the signal as a primitive claim.
+- **Which primitives** — 109 rows name in `question_types` the primitives a person read the code calling, and 217 more the primitives a model read there, on rows whose call site only a model has read (`evidence.model_read_on`). Apart from those, 833 rows carry `primitives_seen`, a machine text signal: the weekly refresh found a primitive's request or answer shape (`"type": "choice"`, `Noul(`, `.noul`) in the one file the row cites. A shape in a file is not a call, and 642 of those rows carry no `question_types`, so the signal is all that is recorded about their primitives. No filter, count or rule here reads the signal as a primitive claim.
 
 - **Runtime and performance not independently tested here** — treat every catalogue entry as untested by this repository, including entries without `code-untested`. Linked benchmarks describe their authors' measurements; this catalogue has not reproduced them. Repository build checks and package smoke tests do not exercise those integrations or the live Jev API, and inclusion is not a security review.
 
