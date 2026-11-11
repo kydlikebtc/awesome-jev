@@ -4,11 +4,11 @@
 
 _Pull typed fields out of messy text by choosing among candidates rather than generating them._
 
-Every catalogued example of this decision — 27 of them. The same rows, with caveats, are in [the index](../../README.md#structured-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 30 of them. The same rows, with caveats, are in [the index](../../README.md#structured-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#data-extraction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 23 · wire shape 0 · example only 0 · independent reports 3 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 26 · wire shape 0 · example only 0 · independent reports 3 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -77,6 +77,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[ContextGem](https://github.com/shcherbak-ai/contextgem)** — Python framework that extracts structured data from documents with LLMs and decision models. Given a decision model such as Jev, it asks a yes/no question per paragraph to find each aspect's clauses and turns Boolean, label and rating concepts into noul, choice and score questions. <sub>(written by a model)</sub>
   <sub>`Project` · shcherbak-ai · `Py` · `noul` · `choice` · `score` · call site [`contextgem/internal/base/decision_models.py`](https://github.com/shcherbak-ai/contextgem/blob/HEAD/contextgem/internal/base/decision_models.py), read by a model 2026-11-06</sub>
 
+- **[DuckDB Dual Cognition](https://github.com/prasanthj/duckdb-dual-cognition)** — Native DuckDB extension whose SQL functions ask Jev choices, scores and nouls over every row in batches, including picking a row's foreign key from candidates or answering ambiguous or no_match, and send only rows below a confidence threshold to an OpenAI model for reasoning. <sub>(written by a model)</sub>
+  <sub>`Plugin` · prasanthj · `C++` · `choice` · `score` · `noul` · call site [`src/dc_extension.cpp`](https://github.com/prasanthj/duckdb-dual-cognition/blob/HEAD/src/dc_extension.cpp), read by a model 2026-11-11 · ⚠ `3rd-party key`</sub>
+
+- **[ex-regex](https://github.com/nothans/ex-regex)** — Python library shaped like the re module whose find, replace, split, filter and extract decide each match by meaning: Jev judges candidate spans of the input, so every match is a verbatim slice with its offsets, never invented text. <sub>(written by a model)</sub>
+  <sub>`Project` · nothans · `Py` · `noul` · `choice` · `score` · call site [`src/exregex/backends.py`](https://github.com/nothans/ex-regex/blob/HEAD/src/exregex/backends.py), read by a model 2026-11-11</sub>
+
 - **[Jev × DimABSA](https://github.com/zhangyiqun018/jev-dimabsa)** — SemEval-2026 Task 3 (DimABSA) system built on Jev alone, without generation or fine-tuning: scores place each aspect's valence and arousal on a 1 to 9 scale, and choices and nouls pull out aspect, opinion and category triplets and quadruplets. <sub>(written by a model)</sub>
   <sub>`Benchmark` · zhangyiqun018 · `Py` · `score` · `choice` · `noul` · call site [`jev/client.py`](https://github.com/zhangyiqun018/jev-dimabsa/blob/HEAD/jev/client.py), read by a model 2026-11-10 · ⚠ `no licence`</sub>
 
@@ -103,6 +109,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Natural Language Logic Interpreter](https://github.com/narphorium/nl-logic-interpreter)** — Step-through logic interpreter for facts and rules in plain English: it proves goals by SLD resolution as Prolog does, but Jev does the unification, with a choice on how two sentences relate, nouls on whether they state the same fact and choices that bind each variable to a phrase. <sub>(written by a model)</sub>
   <sub>`Project` · narphorium · `TS` · `choice` · `noul` · call site [`src/server/aiUnifier.ts`](https://github.com/narphorium/nl-logic-interpreter/blob/HEAD/src/server/aiUnifier.ts), read by a model 2026-11-08</sub>
+
+- **[question-kit](https://github.com/Engid/question-kit)** — TypeScript library of building blocks for Jev, with a Python port in preview, including a service agent: you describe a service as data, code runs the procedure, and Jev reads each customer turn for the intent, the values a step needs and the judgement calls, each behind a confidence gate. <sub>(written by a model)</sub>
+  <sub>`SDK` · Engid · `TS` · `choice` · `noul` · `score` · call site [`packages/question-kit/core/typesafe.ts`](https://github.com/Engid/question-kit/blob/HEAD/packages/question-kit/core/typesafe.ts), read by a model 2026-11-11</sub>
 
 - **[smoking-extraction-benchmark](https://github.com/vclic/smoking-extraction-benchmark)** — Synthetic smoking-history extraction benchmark comparing TypeSafe Jev and OpenAI structured outputs, with reproducible accuracy, cost, and latency results. <sub>(upstream description)</sub>
   <sub>`Benchmark` · vclic · `Py` · call site [`smoking_eval/providers.py`](https://github.com/vclic/smoking-extraction-benchmark/blob/HEAD/smoking_eval/providers.py), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>

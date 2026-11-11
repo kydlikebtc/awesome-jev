@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 186 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 188 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 177 · 接口形态 5 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 179 · 接口形态 5 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -341,6 +341,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[instruct-jev](https://github.com/ctaxnagomi/instruct-jev)** — INSTRUCT_JEV：Jev／System One 指令语料库（choice／noul／score）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ctaxnagomi · `Py` · 调用点 [`DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py`](https://github.com/ctaxnagomi/instruct-jev/blob/HEAD/DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py)，2026-09-22 阅读</sub>
 
+- **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — 在 480 道自编通用波斯语题、560 道文学题和一个古典诗歌试点上，把 Jev 与开源决策模型对比的基准：以 choice、noul 和 score 提问，保存原始响应并在本地评分；Jev 在 choice 和 noul 准确率上领先。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · armanjr · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py)，2026-11-11 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[Jev PR Quality](https://github.com/rawtreedb/jev-pr-quality)** — 用 Jev 审查每个 pull request 的 GitHub Action：在 19 个软件质量维度上，每个维度用 noul 判断是否适用，用 score 打 1 到 10 分，再用 choice 选出最严重的缺陷；它在 PR 上发评论，任何维度低于阈值时检查失败。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · rawtreedb · `JS` · `noul` · `score` · `choice` · 调用点 [`scripts/jev-review/review.mjs`](https://github.com/rawtreedb/jev-pr-quality/blob/HEAD/scripts/jev-review/review.mjs)，2026-11-10 模型阅读</sub>
 
@@ -526,6 +529,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[s1s](https://github.com/cpaczek/s1s)** — System One 搜索：用类型化判断与仓库证据导航与追踪代码。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · cpaczek · `TS` · 调用点 [`src/client.ts`](https://github.com/cpaczek/s1s/blob/HEAD/src/client.ts)，2026-09-22 阅读</sub>
+
+- **[Sael](https://github.com/cipherTing/sael)** — 部署在 OpenAI 和 Anthropic 格式 AI 服务前面的文本审查网关：Jev 针对每一轮用户输入回答一组 noul 和 score，网关按你在控制台设置的规则和阈值拦截或记录，其余请求原样转发。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · cipherTing · `Go` · `noul` · `score` · 调用点 [`cli/internal/questions/moderation.go`](https://github.com/cipherTing/sael/blob/HEAD/cli/internal/questions/moderation.go)，2026-11-11 模型阅读</sub>
 
 - **[shady-town](https://github.com/tpaulshippy/shady-town)** — Shady Town：客厅电视上的社交推理派对游戏，由 Jev 主持。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tpaulshippy · `Rb` · 调用点 [`lib/shady_town/evaluator.rb`](https://github.com/tpaulshippy/shady-town/blob/HEAD/lib/shady_town/evaluator.rb)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>

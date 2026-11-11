@@ -4,11 +4,11 @@
 
 _判断用户意图，把请求分流到正确的分支。_
 
-这个决策的全部已收录例子 —— 共 58 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 61 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#intent-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#intent-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 47 · 接口形态 0 · 仅示例 0 · 独立报告 4 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 50 · 接口形态 0 · 仅示例 0 · 独立报告 4 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -159,6 +159,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Apparite](https://github.com/dglazkov/jev2ui)** — 把文字描述变成可点击应用样稿、并按 DESIGN.md 上色的设计工具：Jev 在一次 choice 和 noul 请求里决定一个界面有哪些区块、用什么布局和图标，以及后续每条消息要求改什么；文字由一个小型 Gemini 模型撰写，界面由代码拼装。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · dglazkov · `TS` · `choice` · `noul` · `score` · 调用点 [`src/server/plan.ts`](https://github.com/dglazkov/jev2ui/blob/HEAD/src/server/plan.ts)，2026-11-09 模型阅读 · ⚠ `需第三方密钥`</sub>
 
+- **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI 自定义节点：根据类型化判断为工作流分支，比如提示词想要哪种风格、是否对儿童过于血腥、是否提到了真实人物；用一个下拉框就能在 Jev、Laya 和 Cloudflare 的 Clef 之间切换后端。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · dante01yoon · `Py` · `choice` · `noul` · `score` · 调用点 [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py)，2026-11-11 模型阅读</sub>
+
+- **[ElBruno.AI.Decisions](https://github.com/elbruno/ElBruno.AI.Decisions)** — NuGet 上的统一 .NET API，用于分类、路由、按评分标准打分和命题判断，返回概率分布；其中一个包原生调用 Jev 的 POST /v1/systemone，另有调用微软 Foundry 决策模型和通过 Ollama 调用本地模型的包。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · elbruno · `C#` · `choice` · `score` · `noul` · 调用点 [`src/ElBruno.AI.Decisions.Jev/JevClient.cs`](https://github.com/elbruno/ElBruno.AI.Decisions/blob/HEAD/src/ElBruno.AI.Decisions.Jev/JevClient.cs)，2026-11-11 模型阅读</sub>
+
 - **[Example: confidence-gated escalation](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/02-confidence-gate/main.py)** — 带「自动执行或转人工」闸门的路由；策略函数刻意留空 —— 阈值该定在哪，是你的决定。
   <sub>`代码片段` · `Py` · `choice` · 调用点 [`examples/02-confidence-gate/main.py`](https://github.com/kydlikebtc/awesome-jev/blob/HEAD/examples/02-confidence-gate/main.py)，2026-09-22 阅读 · ⚠ `代码未实测`</sub>
 
@@ -191,6 +197,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Orchvia](https://github.com/masonlee39/orchvia)** — 在你自己的应用里把 Claude Code 和 Codex 智能体组成团队运行。它的可选路由层向可插拔的评判者（Jev 或纯规则）提出 Choice、Noul 和 Score 类型的问题，判断由哪个智能体接手请求；置信度低于 0.85 或差距小于 0.2 时，提议要等人确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · masonlee39 · `Py` · `choice` · `noul` · `score` · 调用点 [`python/src/orchvia/routing.py`](https://github.com/masonlee39/orchvia/blob/HEAD/python/src/orchvia/routing.py)，2026-11-05 模型阅读</sub>
+
+- **[question-kit](https://github.com/Engid/question-kit)** — 面向 Jev 的 TypeScript 构件库，Python 移植版在预览中；其中包括一个服务智能体：你把服务描述成数据，由代码执行流程，Jev 读取客户的每一轮发言，判断意图、某一步需要的值以及流程没写明的判断，每个结论都要过置信度关卡。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · Engid · `TS` · `choice` · `noul` · `score` · 调用点 [`packages/question-kit/core/typesafe.ts`](https://github.com/Engid/question-kit/blob/HEAD/packages/question-kit/core/typesafe.ts)，2026-11-11 模型阅读</sub>
 
 - **[SpotAsk](https://github.com/shiquda/spotask)** — 用自己的 API 密钥快速提问的 Mac 菜单栏应用。它的 External Ask 可以让 Jev 这样的决策模型用一个 choice 问题决定问题发往哪里（ChatGPT、Perplexity 等网页 AI、本地 CLI 智能体或桌面应用），再在行内确认，或在置信度高于阈值时直接发送。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · shiquda · `Swift` · `choice` · 调用点 [`Sources/SpotAsk/Decision/DecisionRouting.swift`](https://github.com/shiquda/spotask/blob/HEAD/Sources/SpotAsk/Decision/DecisionRouting.swift)，2026-11-06 模型阅读</sub>

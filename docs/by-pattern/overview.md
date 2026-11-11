@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 522 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 525 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 390 · wire shape 92 · example only 0 · independent reports 28 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 391 · wire shape 94 · example only 0 · independent reports 28 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -704,6 +704,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Tracing Jev calls with Langfuse](https://langfuse.com/integrations/model-providers/typesafe)** — The only platform with dedicated Jev observability: an OpenInference instrumentor that traces every decision call over OpenTelemetry.
   <sub>`Integration` · `Py` · `choice` · `score` · `noul`</sub>
 
+- **[Trio-Spark](https://github.com/machinefi/trio-spark)** — Public home of MachineFi's hosted decision model, which picks the best of two to eight moves for a text, image or short video state and takes Jev's POST /v1/systemone shape; the repository holds API clients and demos such as ticket routing and comment moderation. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · machinefi · `Py` · cited file [`demos/comment-bouncer/run.py`](https://github.com/machinefi/trio-spark/blob/HEAD/demos/comment-bouncer/run.py), read by a model 2026-11-11 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[typesafe](https://github.com/mattneel/typesafe)** — An idiomatic Elixir client for the TypeSafe AI API <sub>(upstream description)</sub>
   <sub>`SDK` · mattneel · `Ex` · call site [`lib/typesafe/req.ex`](https://github.com/mattneel/typesafe/blob/HEAD/lib/typesafe/req.ex), read 2026-09-24</sub>
 
@@ -824,8 +827,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[typesafeai.net](https://github.com/Hawxy/TypeSafeAI.Net)** — .NET SDK for the TypeSafe AI platform <sub>(upstream description)</sub>
   <sub>`SDK` · hawxy · `C#` · call site [`src/TypeSafeAI.Extensions.AI/Evaluation/TypeSafeEvaluator.cs`](https://github.com/Hawxy/TypeSafeAI.Net/blob/HEAD/src/TypeSafeAI.Extensions.AI/Evaluation/TypeSafeEvaluator.cs), read 2026-09-22</sub>
 
+- **[TypeSafeSharp](https://github.com/sanamhub/typesafe-dotnet)** — Unofficial .NET client for TypeSafe's System One API and Jev on NuGet, for netstandard2.0 and net10.0, with the official SDKs' retries, errors and key handling, typed choice, score and noul answers, batching, dependency injection and OpenTelemetry tracing. <sub>(written by a model)</sub>
+  <sub>`SDK` · sanamhub · `C#` · `choice` · `score` · `noul` · call site [`src/TypeSafeSharp/TypeSafeClient.cs`](https://github.com/sanamhub/typesafe-dotnet/blob/HEAD/src/TypeSafeSharp/TypeSafeClient.cs), read by a model 2026-11-11</sub>
+
 - **[Unofficial TypeSafe.ai .NET SDK](https://github.com/laurentkempe/typesafejevplayground)** — Unofficial .NET port of TypeSafe's JavaScript SDK (C# 15, System.Text.Json, no runtime dependencies) that sends typed noul, choice and score questions to Jev's /v1/systemone, with an MCP server sample; it is the code behind the author's blog posts. <sub>(written by a model)</sub>
   <sub>`SDK` · laurentkempe · `C#` · `noul` · `choice` · `score` · call site [`src/TypeSafe/TypeSafeClient.cs`](https://github.com/laurentkempe/typesafejevplayground/blob/HEAD/src/TypeSafe/TypeSafeClient.cs), read by a model 2026-11-08 · ⚠ `no licence` `AI-written`</sub>
+
+- **[Verdict](https://github.com/Manavarya09/verdict)** — Small multilingual decision models (the default has 118M parameters and runs on a CPU) with choose, score and check calls, a server that takes Jev's POST /v1/systemone shape so existing integrations can switch by base URL, and training on your own labels. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · Manavarya09 · `Py` · cited file [`src/verdict/server.py`](https://github.com/Manavarya09/verdict/blob/HEAD/src/verdict/server.py), read by a model 2026-11-11 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[Wald-4B](https://github.com/org2AI/wald-4b)** — Open 4B decision model fine-tuned from Qwen that reads a probability for every option from its option-letter logits, thinks briefly only when unsure, reads images, and serves Jev's POST /v1/systemone shape on your own GPU, with GGUF builds for llama.cpp. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · org2AI · `Py` · cited file [`server/src/wald_serve/native.py`](https://github.com/org2AI/wald-4b/blob/HEAD/server/src/wald_serve/native.py), read by a model 2026-11-10 · ⚠ `not Jev itself` `vendor numbers`</sub>

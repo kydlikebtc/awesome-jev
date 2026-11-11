@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 271 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 274 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 260 · 接口形态 7 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 263 · 接口形态 7 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -486,6 +486,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[casse-brique-typesafe](https://github.com/Para-FR/casse-brique-typesafe)** — 一个 Next.js 打砖块游戏，球拍由 Jev 实时控制。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · para-fr · `TS` · 调用点 [`src/app/api/paddle/route.ts`](https://github.com/Para-FR/casse-brique-typesafe/blob/HEAD/src/app/api/paddle/route.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
+- **[CloakBrowser Agent](https://github.com/CloakHQ/CloakBrowser-Agent)** — 浏览器智能体：每一步都由 Jev 在一次请求里决定，用 choice 选择操作，并为每种可能的操作再用 choice 选出目标元素，由 CloakBrowser 隐身 Chromium 以类人的方式执行；可作为 MCP 服务器、CLI 或库使用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · CloakHQ · `Py` · `choice` · 调用点 [`cloak_agent/model.py`](https://github.com/CloakHQ/CloakBrowser-Agent/blob/HEAD/cloak_agent/model.py)，2026-11-11 模型阅读</sub>
+
 - **[computer-use-jev](https://github.com/paulsmith/computer-use-jev)** — 以 Jev 为决策者的 macOS computer use。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · paulsmith · `Go` · 调用点 [`typesafe/client.go`](https://github.com/paulsmith/computer-use-jev/blob/HEAD/typesafe/client.go)，2026-09-22 阅读</sub>
 
@@ -539,6 +542,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev Drive Lab](https://github.com/brendanh18/jev_fsd)** — 基于 OpenStreetMap 在真实加拿大街道上构建的驾驶模拟器，有车流、公交和行人。Jev 可以驾驶：每个时刻它以场景为状态，从 choice 问题中选出下一步动作；每次驾驶都会录下来，可以倒回去查看它为何这样选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · brendanh18 · `Py` · `choice` · 调用点 [`jev/client.py`](https://github.com/brendanh18/jev_fsd/blob/HEAD/jev/client.py)，2026-11-07 模型阅读</sub>
+
+- **[Jev plays Vampire Survivors](https://github.com/oldmoldycake/jev_vampire_survivors)** — 一个 BepInEx mod 加一个 Python「大脑」，让 Jev 玩 Steam 上的正版游戏：每个决定都是用平实英语提出的 choice，包括选角色、选关卡、每次升级选什么，以及每秒四次选择行走方向；另有实时面板显示每个答案。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · oldmoldycake · `Py` · `choice` · 调用点 [`brain/jev_vs/jev_client.py`](https://github.com/oldmoldycake/jev_vampire_survivors/blob/HEAD/brain/jev_vs/jev_client.py)，2026-11-11 模型阅读</sub>
 
 - **[jev-A-share-trader](https://github.com/Eric-Zhou-0302/jev-A-share-trader)** — 由 Jev 驱动的中国 A 股技术分析工作台，支持 AKShare/Tushare、市场扫描以及买入/持有/卖出建议。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · eric-zhou-0302 · `Py` · 调用点 [`src/jev_trader/jev.py`](https://github.com/Eric-Zhou-0302/jev-A-share-trader/blob/HEAD/src/jev_trader/jev.py)，2026-09-24 阅读</sub>
@@ -779,6 +785,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Qualixar Jev Decision Layer](https://github.com/qualixar/jev-decision-layer)** — 插件加本地 MCP 服务器：让智能体每次把一个封闭问题交给 Jev，比如该用哪个工具、技能或格式，草稿是否符合要求，请求该归哪个团队，共 55 个配方；本地策略关卡检查每个类型化答案并记录凭据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · qualixar · `Py` · `choice` · `score` · `noul` · 调用点 [`plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py`](https://github.com/qualixar/jev-decision-layer/blob/HEAD/plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py)，2026-11-10 模型阅读</sub>
+
+- **[question-kit](https://github.com/Engid/question-kit)** — 面向 Jev 的 TypeScript 构件库，Python 移植版在预览中；其中包括一个服务智能体：你把服务描述成数据，由代码执行流程，Jev 读取客户的每一轮发言，判断意图、某一步需要的值以及流程没写明的判断，每个结论都要过置信度关卡。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · Engid · `TS` · `choice` · `noul` · `score` · 调用点 [`packages/question-kit/core/typesafe.ts`](https://github.com/Engid/question-kit/blob/HEAD/packages/question-kit/core/typesafe.ts)，2026-11-11 模型阅读</sub>
 
 - **[reflex](https://github.com/kaustav1996/reflex)** — 构建在 Pi 编码智能体之上的编码助手与个人助理，拥有 System One 式的“条件反射”（TypeSafe Jev）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · kaustav1996 · `TS` · 调用点 [`src/extensions/typesafe/provider.ts`](https://github.com/kaustav1996/reflex/blob/HEAD/src/extensions/typesafe/provider.ts)，2026-09-24 阅读</sub>

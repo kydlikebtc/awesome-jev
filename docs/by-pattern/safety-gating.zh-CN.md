@@ -4,11 +4,11 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 167 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 169 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#safety-gating)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#safety-gating)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 160 · 接口形态 3 · 仅示例 0 · 独立报告 13 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 162 · 接口形态 3 · 仅示例 0 · 独立报告 13 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -254,6 +254,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ClauJev](https://github.com/civalski/claujev)** — 让 Jev 在回复到达你之前检查 Claude 工作的 Claude Code 插件：用 score 和 noul 把本轮真实的 git diff 与 Claude 自称做了的事对比，看起来没做完就让它回去补完；Jev 还会给每个请求打分以建议推理强度，并为子智能体选路由。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · civalski · `JS` · `choice` · `score` · `noul` · 调用点 [`plugins/claujev/hooks/claujev.mjs`](https://github.com/civalski/claujev/blob/HEAD/plugins/claujev/hooks/claujev.mjs)，2026-11-10 模型阅读</sub>
 
+- **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI 自定义节点：根据类型化判断为工作流分支，比如提示词想要哪种风格、是否对儿童过于血腥、是否提到了真实人物；用一个下拉框就能在 Jev、Laya 和 Cloudflare 的 Clef 之间切换后端。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · dante01yoon · `Py` · `choice` · `noul` · `score` · 调用点 [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py)，2026-11-11 模型阅读</sub>
+
 - **[construct-auto-classifier](https://github.com/godspede/construct-auto-classifier)** — 面向 AI 编码智能体 shell 命令的安全关卡（OpenCode、Antigravity）：先用快速的结构规则，再交给 TypeSafe Jev 判断。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · godspede · `TS` · 调用点 [`src/classifier/jev-client.ts`](https://github.com/godspede/construct-auto-classifier/blob/HEAD/src/classifier/jev-client.ts)，2026-09-24 阅读</sub>
 
@@ -481,6 +484,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[s1s](https://github.com/cpaczek/s1s)** — System One 搜索：用类型化判断与仓库证据导航与追踪代码。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · cpaczek · `TS` · 调用点 [`src/client.ts`](https://github.com/cpaczek/s1s/blob/HEAD/src/client.ts)，2026-09-22 阅读</sub>
+
+- **[Sael](https://github.com/cipherTing/sael)** — 部署在 OpenAI 和 Anthropic 格式 AI 服务前面的文本审查网关：Jev 针对每一轮用户输入回答一组 noul 和 score，网关按你在控制台设置的规则和阈值拦截或记录，其余请求原样转发。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · cipherTing · `Go` · `noul` · `score` · 调用点 [`cli/internal/questions/moderation.go`](https://github.com/cipherTing/sael/blob/HEAD/cli/internal/questions/moderation.go)，2026-11-11 模型阅读</sub>
 
 - **[shade-arena-jev-monitor](https://github.com/nican2018/shade-arena-jev-monitor)** — 评估 Jev 作为智能体破坏行为的快速监控与动作闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · nican2018 · `Py` · 调用点 [`llms/typesafe_llm.py`](https://github.com/nican2018/shade-arena-jev-monitor/blob/HEAD/llms/typesafe_llm.py)，2026-09-22 阅读</sub>

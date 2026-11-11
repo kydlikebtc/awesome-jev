@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 79 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 81 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 71 · wire shape 1 · example only 1 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 73 · wire shape 1 · example only 1 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -171,6 +171,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[dsh-plugin-jev-effort-selector](https://github.com/justhalfbit/dsh-plugin-jev-effort-selector)** — A DeepSeek Harness plugin that picks the reasoning level automatically: Jev judges how much thought each message deserves, follow-ups inherit the topic's depth, low confidence rounds up, and any failure falls back silently.
   <sub>`Plugin` · justhalfbit · `JS` · call site [`lib/client.js`](https://github.com/justhalfbit/dsh-plugin-jev-effort-selector/blob/HEAD/lib/client.js), read 2026-09-24</sub>
 
+- **[DuckDB Dual Cognition](https://github.com/prasanthj/duckdb-dual-cognition)** — Native DuckDB extension whose SQL functions ask Jev choices, scores and nouls over every row in batches, including picking a row's foreign key from candidates or answering ambiguous or no_match, and send only rows below a confidence threshold to an OpenAI model for reasoning. <sub>(written by a model)</sub>
+  <sub>`Plugin` · prasanthj · `C++` · `choice` · `score` · `noul` · call site [`src/dc_extension.cpp`](https://github.com/prasanthj/duckdb-dual-cognition/blob/HEAD/src/dc_extension.cpp), read by a model 2026-11-11 · ⚠ `3rd-party key`</sub>
+
 - **[Harness](https://github.com/autonomous-ai/openharness)** — Command center that runs coding agents such as Claude Code and Codex side by side across machines. Its ⌘B router asks Jev 1.13 through OpenRouter's Decisions API, in one request of Choice questions, which session, project and agent a new task goes to. <sub>(written by a model)</sub>
   <sub>`Project` · autonomous-ai · `TS` · `choice` · call site [`cli/src/lib/jev/jevClient.ts`](https://github.com/autonomous-ai/openharness/blob/HEAD/cli/src/lib/jev/jevClient.ts), read by a model 2026-11-05</sub>
 
@@ -227,6 +230,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — The LangChain integration: a classifier plus experimental middleware for model routing and for gating risky tool calls before they run.
   <sub>`Integration` · `Py` · `choice` · `score` · `noul` · ⚠ `early access`</sub>
+
+- **[model-router-python](https://github.com/TheCoder30ec4/model_router_python)** — Python library that, for each prompt, drops models whose context, output or budget cannot fit, then asks Jev to choose among the rest with their live prices and limits, and returns the model id for your code to call; Jev is reached through jevai.org or OpenRouter. <sub>(written by a model)</sub>
+  <sub>`Project` · TheCoder30ec4 · `Py` · `choice` · call site [`src/model_router/jev.py`](https://github.com/TheCoder30ec4/model_router_python/blob/HEAD/src/model_router/jev.py), read by a model 2026-11-11</sub>
 
 - **[NetworkChuck's Jev guide](https://github.com/thenetworkchuck/jev-guide)** — Companion guide to NetworkChuck's Jev video, in five chapters from the Playground to code: curl calls with noul, choice and score questions, TypeSafe's skill for a coding agent, and a Bun model router where one choice question picks a small, medium or large model for each prompt. <sub>(written by a model)</sub>
   <sub>`Tutorial` · thenetworkchuck · `TS` · `choice` · call site [`examples/router/router.ts`](https://github.com/thenetworkchuck/jev-guide/blob/HEAD/examples/router/router.ts), read by a model 2026-11-06</sub>

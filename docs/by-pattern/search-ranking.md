@@ -4,11 +4,11 @@
 
 _Score or re-rank candidates from a cheaper retrieval step._
 
-Every catalogued example of this decision — 92 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 93 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#search-ranking): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 88 · wire shape 0 · example only 0 · independent reports 7 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 89 · wire shape 0 · example only 0 · independent reports 8 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -266,6 +266,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-starter](https://github.com/hamakyo/jev-starter)** — Typed, policy-driven decision workflows on top of TypeSafe AI Jev: confidence routing, fallbacks, evaluation, and RAG patterns for TypeScript apps. <sub>(upstream description)</sub>
   <sub>`Plugin` · hamakyo · `TS` · call site [`src/providers/jev-provider.ts`](https://github.com/hamakyo/jev-starter/blob/HEAD/src/providers/jev-provider.ts), read 2026-09-22</sub>
+
+- **[jev-test](https://github.com/mity-prodgen/jev-test)** — Test harness behind three write-ups on Jev: an audit of whether its confidence means anything, Jev as a judge of whether a claim is supported by a source passage against an LLM judge, and Jev in RAG as a reranker, including whether a chunk's own text can change its rank. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · mity-prodgen · `Py` · `choice` · `score` · `noul` · call site [`jev_harness/client.py`](https://github.com/mity-prodgen/jev-test/blob/HEAD/jev_harness/client.py), read by a model 2026-11-11</sub>
 
 - **[jev.nvim](https://github.com/valentynkit/jev.nvim)** — Neovim: ask the buffer a question, get a quickfix list. Treesitter splits functions, Jev scores each one, probabilities land as virtual text <sub>(upstream description)</sub>
   <sub>`Plugin` · valentynkit · `Lua` · call site [`lua/jev/client.lua`](https://github.com/valentynkit/jev.nvim/blob/HEAD/lua/jev/client.lua), read 2026-09-24</sub>

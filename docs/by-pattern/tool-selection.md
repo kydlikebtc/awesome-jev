@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 271 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 274 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 260 · wire shape 7 · example only 0 · independent reports 12 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 263 · wire shape 7 · example only 0 · independent reports 12 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -486,6 +486,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[casse-brique-typesafe](https://github.com/Para-FR/casse-brique-typesafe)** — A Next.js brick breaker whose paddle is controlled in real time by TypeSafe AI's Jev model. Built with Claude Code. <sub>(upstream description)</sub>
   <sub>`Plugin` · para-fr · `TS` · call site [`src/app/api/paddle/route.ts`](https://github.com/Para-FR/casse-brique-typesafe/blob/HEAD/src/app/api/paddle/route.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[CloakBrowser Agent](https://github.com/CloakHQ/CloakBrowser-Agent)** — Browser agent in which Jev decides every step in one request: a choice of operation plus a choice of target element for each possible operation, while the CloakBrowser stealth Chromium carries it out with human-like input; it runs as an MCP server, a CLI or a library. <sub>(written by a model)</sub>
+  <sub>`Project` · CloakHQ · `Py` · `choice` · call site [`cloak_agent/model.py`](https://github.com/CloakHQ/CloakBrowser-Agent/blob/HEAD/cloak_agent/model.py), read by a model 2026-11-11</sub>
+
 - **[computer-use-jev](https://github.com/paulsmith/computer-use-jev)** — macOS computer use driven by Jev (TypeSafe System One) as the decision maker <sub>(upstream description)</sub>
   <sub>`Project` · paulsmith · `Go` · call site [`typesafe/client.go`](https://github.com/paulsmith/computer-use-jev/blob/HEAD/typesafe/client.go), read 2026-09-22</sub>
 
@@ -539,6 +542,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev Drive Lab](https://github.com/brendanh18/jev_fsd)** — Driving simulator on real Canadian streets built from OpenStreetMap, with traffic, transit and pedestrians. Jev can drive: for each moment it gets the scene as state and chooses the next manoeuvre from choice questions, and every drive is recorded so you can rewind and see why it chose. <sub>(written by a model)</sub>
   <sub>`Project` · brendanh18 · `Py` · `choice` · call site [`jev/client.py`](https://github.com/brendanh18/jev_fsd/blob/HEAD/jev/client.py), read by a model 2026-11-07</sub>
+
+- **[Jev plays Vampire Survivors](https://github.com/oldmoldycake/jev_vampire_survivors)** — A BepInEx mod and a Python brain that let Jev play the real Steam game: each decision is a choice asked in plain English, for the character, the stage, every level-up and the walking direction four times a second, with a live dashboard of every answer. <sub>(written by a model)</sub>
+  <sub>`Project` · oldmoldycake · `Py` · `choice` · call site [`brain/jev_vs/jev_client.py`](https://github.com/oldmoldycake/jev_vampire_survivors/blob/HEAD/brain/jev_vs/jev_client.py), read by a model 2026-11-11</sub>
 
 - **[jev-A-share-trader](https://github.com/Eric-Zhou-0302/jev-A-share-trader)** — A Jev-powered technical analysis workspace for China A-shares, supporting AKShare/Tushare, market scans, and Buy/Hold/Sell assessments with time horizons and traceable evidence. <sub>(upstream description)</sub>
   <sub>`Project` · eric-zhou-0302 · `Py` · call site [`src/jev_trader/jev.py`](https://github.com/Eric-Zhou-0302/jev-A-share-trader/blob/HEAD/src/jev_trader/jev.py), read 2026-09-24</sub>
@@ -779,6 +785,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Qualixar Jev Decision Layer](https://github.com/qualixar/jev-decision-layer)** — Plugin and local MCP server that lets an agent hand Jev one closed question at a time, such as which tool, skill or format fits, whether a draft meets its brief, or which team a request belongs to, from 55 recipes; local policy gates check each typed answer and record a receipt. <sub>(written by a model)</sub>
   <sub>`Plugin` · qualixar · `Py` · `choice` · `score` · `noul` · call site [`plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py`](https://github.com/qualixar/jev-decision-layer/blob/HEAD/plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py), read by a model 2026-11-10</sub>
+
+- **[question-kit](https://github.com/Engid/question-kit)** — TypeScript library of building blocks for Jev, with a Python port in preview, including a service agent: you describe a service as data, code runs the procedure, and Jev reads each customer turn for the intent, the values a step needs and the judgement calls, each behind a confidence gate. <sub>(written by a model)</sub>
+  <sub>`SDK` · Engid · `TS` · `choice` · `noul` · `score` · call site [`packages/question-kit/core/typesafe.ts`](https://github.com/Engid/question-kit/blob/HEAD/packages/question-kit/core/typesafe.ts), read by a model 2026-11-11</sub>
 
 - **[reflex](https://github.com/kaustav1996/reflex)** — A coding agent and personal assistant with System One reflexes (TypeSafe Jev) on top of the Pi coding agent <sub>(upstream description)</sub>
   <sub>`Plugin` · kaustav1996 · `TS` · call site [`src/extensions/typesafe/provider.ts`](https://github.com/kaustav1996/reflex/blob/HEAD/src/extensions/typesafe/provider.ts), read 2026-09-24</sub>

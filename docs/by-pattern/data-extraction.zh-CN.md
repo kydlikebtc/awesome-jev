@@ -4,11 +4,11 @@
 
 _从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不是生成。_
 
-这个决策的全部已收录例子 —— 共 27 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#结构化抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 30 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#结构化抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#data-extraction)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#data-extraction)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 23 · 接口形态 0 · 仅示例 0 · 独立报告 3 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 26 · 接口形态 0 · 仅示例 0 · 独立报告 3 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -77,6 +77,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ContextGem](https://github.com/shcherbak-ai/contextgem)** — 用 LLM 和决策模型从文档中抽取结构化数据的 Python 框架。配合 Jev 这类决策模型时，它对每个段落提一个是非题，找出每个方面（aspect）对应的条款，并把布尔、标签和评级概念转成 noul、choice 和 score 问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · shcherbak-ai · `Py` · `noul` · `choice` · `score` · 调用点 [`contextgem/internal/base/decision_models.py`](https://github.com/shcherbak-ai/contextgem/blob/HEAD/contextgem/internal/base/decision_models.py)，2026-11-06 模型阅读</sub>
 
+- **[DuckDB Dual Cognition](https://github.com/prasanthj/duckdb-dual-cognition)** — 原生 DuckDB 扩展：用 SQL 函数批量对每一行问 Jev choice、score 和 noul，包括从候选里为一行挑出外键，或答 ambiguous、no_match；只有置信度低于阈值的行才交给 OpenAI 模型去推理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · prasanthj · `C++` · `choice` · `score` · `noul` · 调用点 [`src/dc_extension.cpp`](https://github.com/prasanthj/duckdb-dual-cognition/blob/HEAD/src/dc_extension.cpp)，2026-11-11 模型阅读 · ⚠ `需第三方密钥`</sub>
+
+- **[ex-regex](https://github.com/nothans/ex-regex)** — 形似 re 模块的 Python 库，其查找、替换、切分、过滤和提取都按语义判断每个匹配：由 Jev 判断输入里的候选片段，所以每个匹配都是带偏移量的原文切片，绝不会编造文本。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · nothans · `Py` · `noul` · `choice` · `score` · 调用点 [`src/exregex/backends.py`](https://github.com/nothans/ex-regex/blob/HEAD/src/exregex/backends.py)，2026-11-11 模型阅读</sub>
+
 - **[Jev × DimABSA](https://github.com/zhangyiqun018/jev-dimabsa)** — 只用 Jev、不生成文本也不微调的 SemEval-2026 任务 3（DimABSA）参赛系统：用 score 把每个方面词的效价和唤醒度放到 1 到 9 的刻度上，再用 choice 和 noul 抽取方面词、观点词和类别组成的三元组与四元组。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · zhangyiqun018 · `Py` · `score` · `choice` · `noul` · 调用点 [`jev/client.py`](https://github.com/zhangyiqun018/jev-dimabsa/blob/HEAD/jev/client.py)，2026-11-10 模型阅读 · ⚠ `无许可证`</sub>
 
@@ -103,6 +109,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Natural Language Logic Interpreter](https://github.com/narphorium/nl-logic-interpreter)** — 用自然英语书写事实和规则的单步逻辑解释器：它像 Prolog 一样用 SLD 归结证明目标，但合一由 Jev 完成：用一个 choice 判断两句话是什么关系，用 noul 判断它们是否陈述同一事实，再用 choice 把每个变量绑定到一个短语上。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · narphorium · `TS` · `choice` · `noul` · 调用点 [`src/server/aiUnifier.ts`](https://github.com/narphorium/nl-logic-interpreter/blob/HEAD/src/server/aiUnifier.ts)，2026-11-08 模型阅读</sub>
+
+- **[question-kit](https://github.com/Engid/question-kit)** — 面向 Jev 的 TypeScript 构件库，Python 移植版在预览中；其中包括一个服务智能体：你把服务描述成数据，由代码执行流程，Jev 读取客户的每一轮发言，判断意图、某一步需要的值以及流程没写明的判断，每个结论都要过置信度关卡。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · Engid · `TS` · `choice` · `noul` · `score` · 调用点 [`packages/question-kit/core/typesafe.ts`](https://github.com/Engid/question-kit/blob/HEAD/packages/question-kit/core/typesafe.ts)，2026-11-11 模型阅读</sub>
 
 - **[smoking-extraction-benchmark](https://github.com/vclic/smoking-extraction-benchmark)** — 合成的吸烟史抽取基准：对比 Jev 与 OpenAI 结构化输出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · vclic · `Py` · 调用点 [`smoking_eval/providers.py`](https://github.com/vclic/smoking-extraction-benchmark/blob/HEAD/smoking_eval/providers.py)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>

@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 167 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 169 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 160 · wire shape 3 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 162 · wire shape 3 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -254,6 +254,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[ClauJev](https://github.com/civalski/claujev)** — Claude Code plugin in which Jev checks Claude's work before the reply reaches you: scores and nouls compare the turn's real git diff with what Claude says it did and send it back when the work looks unfinished; Jev also scores each request to suggest an effort level and routes subagents. <sub>(written by a model)</sub>
   <sub>`Plugin` · civalski · `JS` · `choice` · `score` · `noul` · call site [`plugins/claujev/hooks/claujev.mjs`](https://github.com/civalski/claujev/blob/HEAD/plugins/claujev/hooks/claujev.mjs), read by a model 2026-11-10</sub>
 
+- **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI custom nodes that branch a workflow on a typed judgement, such as which style a prompt wants, whether it is too graphic for children or whether it names a real person, with one dropdown switching the backend between Jev, Laya and Cloudflare's Clef. <sub>(written by a model)</sub>
+  <sub>`Plugin` · dante01yoon · `Py` · `choice` · `noul` · `score` · call site [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py), read by a model 2026-11-11</sub>
+
 - **[construct-auto-classifier](https://github.com/godspede/construct-auto-classifier)** — Effect-based safety gate for AI coding agents' shell commands (OpenCode, Antigravity): fast structural rules, then TypeSafe's Jev or a chat model judges what a command does. Certified with Jev at zero dangerous commands allowed. <sub>(upstream description)</sub>
   <sub>`Plugin` · godspede · `TS` · call site [`src/classifier/jev-client.ts`](https://github.com/godspede/construct-auto-classifier/blob/HEAD/src/classifier/jev-client.ts), read 2026-09-24</sub>
 
@@ -481,6 +484,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[s1s](https://github.com/cpaczek/s1s)** — System One Search: navigate and trace code with TypeSafe judgments and repository evidence <sub>(upstream description)</sub>
   <sub>`Project` · cpaczek · `TS` · call site [`src/client.ts`](https://github.com/cpaczek/s1s/blob/HEAD/src/client.ts), read 2026-09-22</sub>
+
+- **[Sael](https://github.com/cipherTing/sael)** — Text-review gateway in front of OpenAI- and Anthropic-format AI services: Jev answers a set of nouls and scores about each turn's user input, the gateway blocks or logs by the rules and thresholds you set in its console, and forwards the rest unchanged. <sub>(written by a model)</sub>
+  <sub>`Project` · cipherTing · `Go` · `noul` · `score` · call site [`cli/internal/questions/moderation.go`](https://github.com/cipherTing/sael/blob/HEAD/cli/internal/questions/moderation.go), read by a model 2026-11-11</sub>
 
 - **[shade-arena-jev-monitor](https://github.com/nican2018/shade-arena-jev-monitor)** — Evaluating TypeSafe's Jev as a fast monitor and action gate for agent sabotage in SHADE-Arena, compared with Gemini 2.5 Flash/Pro. <sub>(upstream description)</sub>
   <sub>`Project` · nican2018 · `Py` · call site [`llms/typesafe_llm.py`](https://github.com/nican2018/shade-arena-jev-monitor/blob/HEAD/llms/typesafe_llm.py), read 2026-09-22</sub>

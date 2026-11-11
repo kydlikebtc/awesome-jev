@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 173 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 179 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 162 · 接口形态 2 · 仅示例 0 · 独立报告 18 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 168 · 接口形态 2 · 仅示例 0 · 独立报告 19 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -281,6 +281,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Apparite](https://github.com/dglazkov/jev2ui)** — 把文字描述变成可点击应用样稿、并按 DESIGN.md 上色的设计工具：Jev 在一次 choice 和 noul 请求里决定一个界面有哪些区块、用什么布局和图标，以及后续每条消息要求改什么；文字由一个小型 Gemini 模型撰写，界面由代码拼装。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · dglazkov · `TS` · `choice` · `noul` · `score` · 调用点 [`src/server/plan.ts`](https://github.com/dglazkov/jev2ui/blob/HEAD/src/server/plan.ts)，2026-11-09 模型阅读 · ⚠ `需第三方密钥`</sub>
 
+- **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI 自定义节点：根据类型化判断为工作流分支，比如提示词想要哪种风格、是否对儿童过于血腥、是否提到了真实人物；用一个下拉框就能在 Jev、Laya 和 Cloudflare 的 Clef 之间切换后端。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · dante01yoon · `Py` · `choice` · `noul` · `score` · 调用点 [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py)，2026-11-11 模型阅读</sub>
+
 - **[ContextGem](https://github.com/shcherbak-ai/contextgem)** — 用 LLM 和决策模型从文档中抽取结构化数据的 Python 框架。配合 Jev 这类决策模型时，它对每个段落提一个是非题，找出每个方面（aspect）对应的条款，并把布尔、标签和评级概念转成 noul、choice 和 score 问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · shcherbak-ai · `Py` · `noul` · `choice` · `score` · 调用点 [`contextgem/internal/base/decision_models.py`](https://github.com/shcherbak-ai/contextgem/blob/HEAD/contextgem/internal/base/decision_models.py)，2026-11-06 模型阅读</sub>
 
@@ -293,14 +296,26 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[DriveSceneMiner](https://github.com/bskkimm/drivesceneminer)** — 从车辆记录数据中挖掘驾驶动作：把运动、车道几何和与其他物体的交互转换成可读的证据，由 Jev 用 choice 问题对每个时刻的横向和纵向动作分类，再把这些时刻合并成带时间戳、可供审阅的场景。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · bskkimm · `Py` · `choice` · 调用点 [`src/jevsceneminer/inference/jev.py`](https://github.com/bskkimm/drivesceneminer/blob/HEAD/src/jevsceneminer/inference/jev.py)，2026-11-07 模型阅读</sub>
 
+- **[dsh-fact-check](https://github.com/7starsseeker/dsh-fact-check)** — DeepSeek Harness 的事实核查技能，其中可选的 Jev 层提出事实性 noul，比如证据是否支持某条论断、是否已足够停止搜索、来源是否为一手来源；Jev 只能下调论断的可信等级，不能上调。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · 7starsseeker · `JS` · `noul` · 调用点 [`tools/jev-verdict.mjs`](https://github.com/7starsseeker/dsh-fact-check/blob/HEAD/tools/jev-verdict.mjs)，2026-11-11 模型阅读</sub>
+
 - **[dsh-jev-decide](https://github.com/nanami-0713/dsh-jev-decide)** — DSH 插件：把 Jev 注册成一个智能体工具。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · nanami-0713 · `JS` · 调用点 [`lib/index.js`](https://github.com/nanami-0713/dsh-jev-decide/blob/HEAD/lib/index.js)，2026-09-22 阅读</sub>
+
+- **[DuckDB Dual Cognition](https://github.com/prasanthj/duckdb-dual-cognition)** — 原生 DuckDB 扩展：用 SQL 函数批量对每一行问 Jev choice、score 和 noul，包括从候选里为一行挑出外键，或答 ambiguous、no_match；只有置信度低于阈值的行才交给 OpenAI 模型去推理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · prasanthj · `C++` · `choice` · `score` · `noul` · 调用点 [`src/dc_extension.cpp`](https://github.com/prasanthj/duckdb-dual-cognition/blob/HEAD/src/dc_extension.cpp)，2026-11-11 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[Eikos Arena](https://github.com/caiovicentino/eikos-arena)** — 作者的开源模型 Eikos-27B 与 Jev 在 14 个 Hyperliquid 永续合约上的模拟交易对局：每 5 分钟两者拿到同一份行情快照和 28 个问题（每个市场一个做多、观望或做空的 choice，以及一个是否会上涨的 noul），按账户价值和 Brier 分数计分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · caiovicentino · `Py` · `choice` · `noul` · 调用点 [`arena/arena.py`](https://github.com/caiovicentino/eikos-arena/blob/HEAD/arena/arena.py)，2026-11-08 模型阅读</sub>
 
+- **[ElBruno.AI.Decisions](https://github.com/elbruno/ElBruno.AI.Decisions)** — NuGet 上的统一 .NET API，用于分类、路由、按评分标准打分和命题判断，返回概率分布；其中一个包原生调用 Jev 的 POST /v1/systemone，另有调用微软 Foundry 决策模型和通过 Ollama 调用本地模型的包。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · elbruno · `C#` · `choice` · `score` · `noul` · 调用点 [`src/ElBruno.AI.Decisions.Jev/JevClient.cs`](https://github.com/elbruno/ElBruno.AI.Decisions/blob/HEAD/src/ElBruno.AI.Decisions.Jev/JevClient.cs)，2026-11-11 模型阅读</sub>
+
 - **[Evaluating and Benchmarking the System One Model Jev](https://github.com/AppliedMachineLearning-Lab/jev-benchmarking)** — 一篇 arXiv 论文的代码：在 37 个公开数据集上以 choice、noul 和 score 零样本测试 Jev，并用同样的请求给两个开源权重大模型打分作对比；另有一个序列决策部分，让 Jev 在 ALFWorld、TextWorld、FrozenLake 等五个环境里每步选一个动作。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · AppliedMachineLearning-Lab · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_benchmarking/runner.py`](https://github.com/AppliedMachineLearning-Lab/jev-benchmarking/blob/HEAD/jev_benchmarking/runner.py)，2026-11-10 模型阅读</sub>
+
+- **[ex-regex](https://github.com/nothans/ex-regex)** — 形似 re 模块的 Python 库，其查找、替换、切分、过滤和提取都按语义判断每个匹配：由 Jev 判断输入里的候选片段，所以每个匹配都是带偏移量的原文切片，绝不会编造文本。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · nothans · `Py` · `noul` · `choice` · `score` · 调用点 [`src/exregex/backends.py`](https://github.com/nothans/ex-regex/blob/HEAD/src/exregex/backends.py)，2026-11-11 模型阅读</sub>
 
 - **[github-issue-classification-using-jev](https://github.com/KalyanM45/GitHub-Issue-Classification-Using-Jev)** — 基于 Jev 的 GitHub issue 分类器。 <sub>(机翻)</sub>
   <sub>`开源项目` · kalyanm45 · `Py` · 调用点 [`src/ghtriage/adapters/typesafe.py`](https://github.com/KalyanM45/GitHub-Issue-Classification-Using-Jev/blob/HEAD/src/ghtriage/adapters/typesafe.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
@@ -328,6 +343,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[JEV Healthcare Lab](https://github.com/juneyaooo/jev-healthcare-lab)** — Jev 医疗决策基准：以 choice 问题覆盖 26 项任务、1,514 项判断（分诊紧急程度、禁忌判断、用药选择、护理、临床试验筛选），与 DeepSeek Flash 和 Qwen 对比准确率、持续吞吐和成本，并公开原始响应。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · juneyaooo · `Py` · `choice` · 调用点 [`scripts/run_model_evaluation.py`](https://github.com/juneyaooo/jev-healthcare-lab/blob/HEAD/scripts/run_model_evaluation.py)，2026-11-07 模型阅读 · ⚠ `无许可证`</sub>
+
+- **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — 在 480 道自编通用波斯语题、560 道文学题和一个古典诗歌试点上，把 Jev 与开源决策模型对比的基准：以 choice、noul 和 score 提问，保存原始响应并在本地评分；Jev 在 choice 和 noul 准确率上领先。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · armanjr · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py)，2026-11-11 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[Jev Playwright](https://github.com/arthurfiorette/jev-playwright)** — 一个 Playwright 报告器：在启动任何浏览器之前，询问 Jev 某次代码改动可能影响哪些现有端到端测试，并跳过明显无关的测试。默认会发送改动路径、补丁和测试代码；README 提醒它可能漏掉受影响的测试。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arthurfiorette · `TS` · 调用点 [`src/config.ts`](https://github.com/arthurfiorette/jev-playwright/blob/HEAD/src/config.ts)，2026-10-24 模型阅读</sub>

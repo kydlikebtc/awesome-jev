@@ -4,7 +4,7 @@
 
 本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。
 
-本目录收录的全部独立测量报告和负面结果 —— 共 90 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
+本目录收录的全部独立测量报告和负面结果 —— 共 92 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
@@ -236,6 +236,14 @@
 
   > Jev 的主要结果是经第三方网关（ai.xiaohaima-edu.com）收集的，其响应自称为 jev-1.13.0，作者表示未独立核实；scripts/run_model_evaluation.py 则直接调用 TypeSafe。数据由作者自报；README 说明这不是临床有效性验证。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-07 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
+- **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)**<br>
+  在 480 道自编通用波斯语题、560 道文学题和一个古典诗歌试点上，把 Jev 与开源决策模型对比的基准：以 choice、noul 和 score 提问，保存原始响应并在本地评分；Jev 在 choice 和 noul 准确率上领先。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · armanjr · `Py` · `choice` · `noul` · `score` · [调用点](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py)，2026-11-11 模型阅读</sub>
+
+  **注意:** `无许可证`
+
+  > 其他模型（Jeff、Mizan 和 Laya）不是 Jev；在 score 上 Mizan 领先。结果是作者自己的。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-11 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
 - **[JEV Reranking Comparisons](https://github.com/carlaiau/jev-reranking)**<br>
   把 Jev 当作零样本重排器的基准：对每个查询与候选各问一个是否相关的 noul，用概率对 MS MARCO 段落和文档集（TREC DL 2019）以及 TREC-1 WSJ 上的 BM25 结果重新排序，与已发表的 BERT 重排器对比，并记录耗时和成本。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · carlaiau · `Py` · `noul` · [调用点](https://github.com/carlaiau/jev-reranking/blob/HEAD/reranking/jev.py)，2026-11-07 模型阅读</sub>
@@ -413,6 +421,12 @@
 - **[jev-sim](https://github.com/dashbi1/jev-sim)**<br>
   从 LLM logits 读出类型化决策的 Jev 兼容 /v1/systemone 服务，带基准。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · dashbi1 · `Py` · [调用点](https://github.com/dashbi1/jev-sim/blob/HEAD/jev_sim/cli.py)，2026-09-22 阅读</sub>
+
+- **[jev-test](https://github.com/mity-prodgen/jev-test)**<br>
+  三篇 Jev 测评文章背后的测试工具：检验 Jev 的置信度是否有意义；让 Jev 判断某个论断是否有来源段落支持，并与大模型评判对比；以及把 Jev 用在 RAG 里做重排序，包括某个片段自身的文字能否改变它的排名。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · mity-prodgen · `Py` · `choice` · `score` · `noul` · [调用点](https://github.com/mity-prodgen/jev-test/blob/HEAD/jev_harness/client.py)，2026-11-11 模型阅读</sub>
+
+  > 大模型评判和困难负例用的是 Claude，它不是 Jev。每个原始请求和响应都有记录。它不是已收录的 jev-test（WeSecureYou）。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-11 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[jev-trace-classifier](https://github.com/sypherin/jev-trace-classifier)**<br>
   把 Jev 的 noul 原语应用到一个共谋语料库上。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>

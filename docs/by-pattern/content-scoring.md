@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 186 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 188 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 177 · wire shape 5 · example only 0 · independent reports 12 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 179 · wire shape 5 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -341,6 +341,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[instruct-jev](https://github.com/ctaxnagomi/instruct-jev)** — INSTRUCT_JEV - TypeSafe AI Jev / System One instruction corpus (choice/noul/score), compiled by DeckerGUI. 119 rows. Mirrored on HuggingFace. <sub>(upstream description)</sub>
   <sub>`Project` · ctaxnagomi · `Py` · call site [`DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py`](https://github.com/ctaxnagomi/instruct-jev/blob/HEAD/DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py), read 2026-09-22</sub>
 
+- **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — Benchmark of Jev against open decision models on 480 authored general Persian questions, 560 literary questions and a classical poetry pilot, asked as choices, nouls and scores with raw responses saved and scored locally; Jev leads on choice and noul accuracy. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · armanjr · `Py` · `choice` · `noul` · `score` · call site [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py), read by a model 2026-11-11 · ⚠ `no licence`</sub>
+
 - **[Jev PR Quality](https://github.com/rawtreedb/jev-pr-quality)** — GitHub Action that reviews each pull request's diff with Jev across 19 software-quality dimensions: per dimension a noul on whether it applies, a score from 1 to 10 and a choice of its worst weakness; it comments on the PR and fails the check below your threshold. <sub>(written by a model)</sub>
   <sub>`Project` · rawtreedb · `JS` · `noul` · `score` · `choice` · call site [`scripts/jev-review/review.mjs`](https://github.com/rawtreedb/jev-pr-quality/blob/HEAD/scripts/jev-review/review.mjs), read by a model 2026-11-10</sub>
 
@@ -526,6 +529,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[s1s](https://github.com/cpaczek/s1s)** — System One Search: navigate and trace code with TypeSafe judgments and repository evidence <sub>(upstream description)</sub>
   <sub>`Project` · cpaczek · `TS` · call site [`src/client.ts`](https://github.com/cpaczek/s1s/blob/HEAD/src/client.ts), read 2026-09-22</sub>
+
+- **[Sael](https://github.com/cipherTing/sael)** — Text-review gateway in front of OpenAI- and Anthropic-format AI services: Jev answers a set of nouls and scores about each turn's user input, the gateway blocks or logs by the rules and thresholds you set in its console, and forwards the rest unchanged. <sub>(written by a model)</sub>
+  <sub>`Project` · cipherTing · `Go` · `noul` · `score` · call site [`cli/internal/questions/moderation.go`](https://github.com/cipherTing/sael/blob/HEAD/cli/internal/questions/moderation.go), read by a model 2026-11-11</sub>
 
 - **[shady-town](https://github.com/tpaulshippy/shady-town)** — Shady Town: social-deduction party game for the living room TV, moderated by TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · tpaulshippy · `Rb` · call site [`lib/shady_town/evaluator.rb`](https://github.com/tpaulshippy/shady-town/blob/HEAD/lib/shady_town/evaluator.rb), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>

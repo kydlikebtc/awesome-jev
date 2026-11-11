@@ -4,11 +4,11 @@
 
 _对来自廉价检索步骤的候选做打分或重排。_
 
-这个决策的全部已收录例子 —— 共 92 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 93 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#search-ranking)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#search-ranking)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 88 · 接口形态 0 · 仅示例 0 · 独立报告 7 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 89 · 接口形态 0 · 仅示例 0 · 独立报告 8 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -266,6 +266,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-starter](https://github.com/hamakyo/jev-starter)** — 基于 Jev 的类型化、策略驱动决策工作流：置信路由、回退与评测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · hamakyo · `TS` · 调用点 [`src/providers/jev-provider.ts`](https://github.com/hamakyo/jev-starter/blob/HEAD/src/providers/jev-provider.ts)，2026-09-22 阅读</sub>
+
+- **[jev-test](https://github.com/mity-prodgen/jev-test)** — 三篇 Jev 测评文章背后的测试工具：检验 Jev 的置信度是否有意义；让 Jev 判断某个论断是否有来源段落支持，并与大模型评判对比；以及把 Jev 用在 RAG 里做重排序，包括某个片段自身的文字能否改变它的排名。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · mity-prodgen · `Py` · `choice` · `score` · `noul` · 调用点 [`jev_harness/client.py`](https://github.com/mity-prodgen/jev-test/blob/HEAD/jev_harness/client.py)，2026-11-11 模型阅读</sub>
 
 - **[jev.nvim](https://github.com/valentynkit/jev.nvim)** — Neovim 插件：向当前缓冲区提问，得到 quickfix 列表。Treesitter 切分函数，Jev 给每个函数打分，概率以虚拟文本显示。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · valentynkit · `Lua` · 调用点 [`lua/jev/client.lua`](https://github.com/valentynkit/jev.nvim/blob/HEAD/lua/jev/client.lua)，2026-09-24 阅读</sub>

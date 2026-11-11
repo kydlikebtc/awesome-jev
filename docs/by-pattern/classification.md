@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 173 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 179 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 162 · wire shape 2 · example only 0 · independent reports 18 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 168 · wire shape 2 · example only 0 · independent reports 19 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -281,6 +281,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Apparite](https://github.com/dglazkov/jev2ui)** — Design tool that turns a text prompt into a clickable app mock painted by a DESIGN.md: Jev decides, in one request of choices and nouls, which sections, layout and icon a screen gets, and what each later message asks to change; a small Gemini model writes the words and code assembles the screen. <sub>(written by a model)</sub>
   <sub>`Project` · dglazkov · `TS` · `choice` · `noul` · `score` · call site [`src/server/plan.ts`](https://github.com/dglazkov/jev2ui/blob/HEAD/src/server/plan.ts), read by a model 2026-11-09 · ⚠ `3rd-party key`</sub>
 
+- **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI custom nodes that branch a workflow on a typed judgement, such as which style a prompt wants, whether it is too graphic for children or whether it names a real person, with one dropdown switching the backend between Jev, Laya and Cloudflare's Clef. <sub>(written by a model)</sub>
+  <sub>`Plugin` · dante01yoon · `Py` · `choice` · `noul` · `score` · call site [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py), read by a model 2026-11-11</sub>
+
 - **[ContextGem](https://github.com/shcherbak-ai/contextgem)** — Python framework that extracts structured data from documents with LLMs and decision models. Given a decision model such as Jev, it asks a yes/no question per paragraph to find each aspect's clauses and turns Boolean, label and rating concepts into noul, choice and score questions. <sub>(written by a model)</sub>
   <sub>`Project` · shcherbak-ai · `Py` · `noul` · `choice` · `score` · call site [`contextgem/internal/base/decision_models.py`](https://github.com/shcherbak-ai/contextgem/blob/HEAD/contextgem/internal/base/decision_models.py), read by a model 2026-11-06</sub>
 
@@ -293,14 +296,26 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[DriveSceneMiner](https://github.com/bskkimm/drivesceneminer)** — Mines driving manoeuvres from recorded vehicle data: it turns motion, lane geometry and object interactions into readable evidence, Jev classifies each moment's lateral and longitudinal manoeuvre with choice questions, and the moments merge into timestamped, reviewable scenes. <sub>(written by a model)</sub>
   <sub>`Project` · bskkimm · `Py` · `choice` · call site [`src/jevsceneminer/inference/jev.py`](https://github.com/bskkimm/drivesceneminer/blob/HEAD/src/jevsceneminer/inference/jev.py), read by a model 2026-11-07</sub>
 
+- **[dsh-fact-check](https://github.com/7starsseeker/dsh-fact-check)** — Fact-check skill for DeepSeek Harness whose optional Jev layer asks factual nouls, such as whether the evidence supports a claim, whether it is enough to stop searching, and whether a source is primary; Jev may only downgrade a claim's tier, never raise it. <sub>(written by a model)</sub>
+  <sub>`Plugin` · 7starsseeker · `JS` · `noul` · call site [`tools/jev-verdict.mjs`](https://github.com/7starsseeker/dsh-fact-check/blob/HEAD/tools/jev-verdict.mjs), read by a model 2026-11-11</sub>
+
 - **[dsh-jev-decide](https://github.com/nanami-0713/dsh-jev-decide)** — DSH plugin: register TypeSafe Jev (System One decision model) as an agent tool — jev_decide returns calibrated probabilities (noul/choice/score) for routing/triage/guardrail judgments, no text generation. 把 TypeSafe Jev 决策模型注册为 DSH agent 工具 <sub>(upstream description)</sub>
   <sub>`Plugin` · nanami-0713 · `JS` · call site [`lib/index.js`](https://github.com/nanami-0713/dsh-jev-decide/blob/HEAD/lib/index.js), read 2026-09-22</sub>
+
+- **[DuckDB Dual Cognition](https://github.com/prasanthj/duckdb-dual-cognition)** — Native DuckDB extension whose SQL functions ask Jev choices, scores and nouls over every row in batches, including picking a row's foreign key from candidates or answering ambiguous or no_match, and send only rows below a confidence threshold to an OpenAI model for reasoning. <sub>(written by a model)</sub>
+  <sub>`Plugin` · prasanthj · `C++` · `choice` · `score` · `noul` · call site [`src/dc_extension.cpp`](https://github.com/prasanthj/duckdb-dual-cognition/blob/HEAD/src/dc_extension.cpp), read by a model 2026-11-11 · ⚠ `3rd-party key`</sub>
 
 - **[Eikos Arena](https://github.com/caiovicentino/eikos-arena)** — Paper-trading match between the author's open Eikos-27B and Jev on 14 Hyperliquid perpetuals: every 5 minutes both get the same snapshot and 28 questions (a long, flat or short choice and a will-it-rise noul per market), scored on account value and Brier score. <sub>(written by a model)</sub>
   <sub>`Benchmark` · caiovicentino · `Py` · `choice` · `noul` · call site [`arena/arena.py`](https://github.com/caiovicentino/eikos-arena/blob/HEAD/arena/arena.py), read by a model 2026-11-08</sub>
 
+- **[ElBruno.AI.Decisions](https://github.com/elbruno/ElBruno.AI.Decisions)** — One .NET API on NuGet for classification, routing, rubric scoring and proposition checks that returns probability distributions, with a package that calls Jev's POST /v1/systemone natively beside packages for Microsoft's Foundry decision models and local models through Ollama. <sub>(written by a model)</sub>
+  <sub>`SDK` · elbruno · `C#` · `choice` · `score` · `noul` · call site [`src/ElBruno.AI.Decisions.Jev/JevClient.cs`](https://github.com/elbruno/ElBruno.AI.Decisions/blob/HEAD/src/ElBruno.AI.Decisions.Jev/JevClient.cs), read by a model 2026-11-11</sub>
+
 - **[Evaluating and Benchmarking the System One Model Jev](https://github.com/AppliedMachineLearning-Lab/jev-benchmarking)** — Code for an arXiv paper that runs Jev zero-shot on 37 public datasets as choices, nouls and scores, against two open-weight LLMs scored on the same requests, plus a sequential track where Jev picks one action per step in five environments such as ALFWorld, TextWorld and FrozenLake. <sub>(written by a model)</sub>
   <sub>`Benchmark` · AppliedMachineLearning-Lab · `Py` · `choice` · `noul` · `score` · call site [`jev_benchmarking/runner.py`](https://github.com/AppliedMachineLearning-Lab/jev-benchmarking/blob/HEAD/jev_benchmarking/runner.py), read by a model 2026-11-10</sub>
+
+- **[ex-regex](https://github.com/nothans/ex-regex)** — Python library shaped like the re module whose find, replace, split, filter and extract decide each match by meaning: Jev judges candidate spans of the input, so every match is a verbatim slice with its offsets, never invented text. <sub>(written by a model)</sub>
+  <sub>`Project` · nothans · `Py` · `noul` · `choice` · `score` · call site [`src/exregex/backends.py`](https://github.com/nothans/ex-regex/blob/HEAD/src/exregex/backends.py), read by a model 2026-11-11</sub>
 
 - **[github-issue-classification-using-jev](https://github.com/KalyanM45/GitHub-Issue-Classification-Using-Jev)** — This repository contains a GitHub issue classifier built on Jev, TypeSafe AI's System One model. It labels every new issue with typed values and calibrated confidence in milliseconds, labelling what it is sure about and escalating what it is not. Three guardrail layers guard every write, and a
   <sub>`Project` · kalyanm45 · `Py` · call site [`src/ghtriage/adapters/typesafe.py`](https://github.com/KalyanM45/GitHub-Issue-Classification-Using-Jev/blob/HEAD/src/ghtriage/adapters/typesafe.py), read 2026-09-22 · ⚠ `one commit`</sub>
@@ -328,6 +343,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[JEV Healthcare Lab](https://github.com/juneyaooo/jev-healthcare-lab)** — Benchmark of Jev on medical decisions (triage urgency, contraindications, medication choice, nursing, trial screening) as choice questions over 26 tasks and 1,514 judgements, against DeepSeek Flash and Qwen, with accuracy, sustained throughput and cost, and raw responses published. <sub>(written by a model)</sub>
   <sub>`Benchmark` · juneyaooo · `Py` · `choice` · call site [`scripts/run_model_evaluation.py`](https://github.com/juneyaooo/jev-healthcare-lab/blob/HEAD/scripts/run_model_evaluation.py), read by a model 2026-11-07 · ⚠ `no licence`</sub>
+
+- **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — Benchmark of Jev against open decision models on 480 authored general Persian questions, 560 literary questions and a classical poetry pilot, asked as choices, nouls and scores with raw responses saved and scored locally; Jev leads on choice and noul accuracy. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · armanjr · `Py` · `choice` · `noul` · `score` · call site [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py), read by a model 2026-11-11 · ⚠ `no licence`</sub>
 
 - **[Jev Playwright](https://github.com/arthurfiorette/jev-playwright)** — Playwright reporter that asks Jev which existing end-to-end tests a code change could affect and skips the clearly unrelated ones before any browser starts. Sends changed paths, patches and test bodies by default; its README warns it can miss affected tests. <sub>(written by a model)</sub>
   <sub>`Project` · arthurfiorette · `TS` · call site [`src/config.ts`](https://github.com/arthurfiorette/jev-playwright/blob/HEAD/src/config.ts), read by a model 2026-10-24</sub>

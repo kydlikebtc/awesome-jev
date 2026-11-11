@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 160 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 162 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 155 · wire shape 1 · example only 0 · independent reports 12 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 157 · wire shape 1 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -287,6 +287,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[dinostomp](https://github.com/collapseindex/dinostomp)** — A verification layer for AI evaluations. Checks the instrument, not just the score: data, scorer, runs, numbers, claims, and itself. <sub>(upstream description)</sub>
   <sub>`Project` · collapseindex · `Py` · call site [`audits/xstest-refusal-guards/compare.py`](https://github.com/collapseindex/dinostomp/blob/HEAD/audits/xstest-refusal-guards/compare.py), read 2026-09-24</sub>
 
+- **[dsh-fact-check](https://github.com/7starsseeker/dsh-fact-check)** — Fact-check skill for DeepSeek Harness whose optional Jev layer asks factual nouls, such as whether the evidence supports a claim, whether it is enough to stop searching, and whether a source is primary; Jev may only downgrade a claim's tier, never raise it. <sub>(written by a model)</sub>
+  <sub>`Plugin` · 7starsseeker · `JS` · `noul` · call site [`tools/jev-verdict.mjs`](https://github.com/7starsseeker/dsh-fact-check/blob/HEAD/tools/jev-verdict.mjs), read by a model 2026-11-11</sub>
+
 - **[dsh-jev-plugin](https://github.com/jackie-cqz/dsh-jev-plugin)** — DeepSeek Harness plugin that gives agents Jev's noul, choice and score as tools, and can also use Jev as a pre-execution risk gate (a score over risk levels that denies a tool call, asks for approval or lets it run), a review of tool results and a model router. <sub>(written by a model)</sub>
   <sub>`Plugin` · jackie-cqz · `TS` · `noul` · `choice` · `score` · call site [`src/client.ts`](https://github.com/jackie-cqz/dsh-jev-plugin/blob/HEAD/src/client.ts), read by a model 2026-11-08</sub>
 
@@ -394,6 +397,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-suite](https://github.com/klauswg/jev-suite)** — Four decision-quality tools on Jev (TypeSafe System One): Jev answers structured questions, deterministic code keeps the final say. <sub>(upstream description)</sub>
   <sub>`Project` · klauswg · `Java` · call site [`jev-fidelity/src/main/java/com/jevsuite/fidelity/eval/EvalRunner.java`](https://github.com/klauswg/jev-suite/blob/HEAD/jev-fidelity/src/main/java/com/jevsuite/fidelity/eval/EvalRunner.java), read 2026-09-24</sub>
+
+- **[jev-test](https://github.com/mity-prodgen/jev-test)** — Test harness behind three write-ups on Jev: an audit of whether its confidence means anything, Jev as a judge of whether a claim is supported by a source passage against an LLM judge, and Jev in RAG as a reranker, including whether a chunk's own text can change its rank. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · mity-prodgen · `Py` · `choice` · `score` · `noul` · call site [`jev_harness/client.py`](https://github.com/mity-prodgen/jev-test/blob/HEAD/jev_harness/client.py), read by a model 2026-11-11</sub>
 
 - **[jev-the-janitor](https://github.com/kylehovance-ai/jev-the-janitor)** — A janitor for markdown vaults powered by TypeSafe Jev: Jev votes on each note, your code files it, you review the low-confidence pile.
   <sub>`Project` · kylehovance-ai · `Py` · call site [`janitor/client.py`](https://github.com/kylehovance-ai/jev-the-janitor/blob/HEAD/janitor/client.py), read 2026-09-22</sub>

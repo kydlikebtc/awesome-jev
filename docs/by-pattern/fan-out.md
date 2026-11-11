@@ -4,11 +4,11 @@
 
 _Pack many questions — including speculative ones — into one request and let code pick what mattered._
 
-Every catalogued example of this decision — 39 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 40 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#fan-out): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 31 · wire shape 1 · example only 0 · independent reports 1 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 32 · wire shape 1 · example only 0 · independent reports 1 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -105,6 +105,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[A deep dive into Jev, TypeSafe's System One model](https://flaviocopes.com/jev/)** — The densest independent explainer: code in JS, Python and the AI SDK, all three answer shapes, the advanced patterns, and an honest list of where the model fails.
   <sub>`Tutorial` · Flavio Copes · `JS` · `Py` · `TS` · `choice` · `score` · `noul`</sub>
+
+- **[CloakBrowser Agent](https://github.com/CloakHQ/CloakBrowser-Agent)** — Browser agent in which Jev decides every step in one request: a choice of operation plus a choice of target element for each possible operation, while the CloakBrowser stealth Chromium carries it out with human-like input; it runs as an MCP server, a CLI or a library. <sub>(written by a model)</sub>
+  <sub>`Project` · CloakHQ · `Py` · `choice` · call site [`cloak_agent/model.py`](https://github.com/CloakHQ/CloakBrowser-Agent/blob/HEAD/cloak_agent/model.py), read by a model 2026-11-11</sub>
 
 - **[Example: speculative fan-out](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/03-fan-out/main.py)** — Asks for an operation plus a target for each operation it might have picked, so a browser step never needs a second round trip.
   <sub>`Snippet` · `Py` · `choice` · `noul` · call site [`examples/03-fan-out/main.py`](https://github.com/kydlikebtc/awesome-jev/blob/HEAD/examples/03-fan-out/main.py), read 2026-09-22 · ⚠ `code untested`</sub>

@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 522 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 525 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 390 · 接口形态 92 · 仅示例 0 · 独立报告 28 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 391 · 接口形态 94 · 仅示例 0 · 独立报告 28 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -704,6 +704,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Tracing Jev calls with Langfuse](https://langfuse.com/integrations/model-providers/typesafe)** — 目前唯一有 Jev 专用可观测性的平台：一个 OpenInference instrumentor，通过 OpenTelemetry 追踪每次决策调用。
   <sub>`平台集成` · `Py` · `choice` · `score` · `noul`</sub>
 
+- **[Trio-Spark](https://github.com/machinefi/trio-spark)** — MachineFi 托管决策模型的公开仓库：该模型针对文本、图片或短视频状态，从两到八个动作中挑出最佳的一个，并接受 Jev 的 POST /v1/systemone 请求格式；仓库里有 API 客户端和工单分流、评论审核等演示。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · machinefi · `Py` · 引用文件 [`demos/comment-bouncer/run.py`](https://github.com/machinefi/trio-spark/blob/HEAD/demos/comment-bouncer/run.py)，2026-11-11 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
 - **[typesafe](https://github.com/mattneel/typesafe)** — 地道的 Elixir 版 TypeSafe AI API 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · mattneel · `Ex` · 调用点 [`lib/typesafe/req.ex`](https://github.com/mattneel/typesafe/blob/HEAD/lib/typesafe/req.ex)，2026-09-24 阅读</sub>
 
@@ -824,8 +827,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[typesafeai.net](https://github.com/Hawxy/TypeSafeAI.Net)** — 面向 TypeSafe AI 平台的 .NET SDK。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · hawxy · `C#` · 调用点 [`src/TypeSafeAI.Extensions.AI/Evaluation/TypeSafeEvaluator.cs`](https://github.com/Hawxy/TypeSafeAI.Net/blob/HEAD/src/TypeSafeAI.Extensions.AI/Evaluation/TypeSafeEvaluator.cs)，2026-09-22 阅读</sub>
 
+- **[TypeSafeSharp](https://github.com/sanamhub/typesafe-dotnet)** — NuGet 上的 TypeSafe System One API 和 Jev 非官方 .NET 客户端，支持 netstandard2.0 和 net10.0，沿用官方 SDK 的重试、错误和密钥处理方式，提供类型化的 choice、score 和 noul 答案、批处理、依赖注入和 OpenTelemetry 追踪。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · sanamhub · `C#` · `choice` · `score` · `noul` · 调用点 [`src/TypeSafeSharp/TypeSafeClient.cs`](https://github.com/sanamhub/typesafe-dotnet/blob/HEAD/src/TypeSafeSharp/TypeSafeClient.cs)，2026-11-11 模型阅读</sub>
+
 - **[Unofficial TypeSafe.ai .NET SDK](https://github.com/laurentkempe/typesafejevplayground)** — TypeSafe JavaScript SDK 的非官方 .NET 移植版（C# 15、System.Text.Json、无运行时依赖），向 Jev 的 /v1/systemone 发送类型化的 noul、choice 和 score 问题，附带一个 MCP 服务器示例；是作者系列博客文章背后的代码。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · laurentkempe · `C#` · `noul` · `choice` · `score` · 调用点 [`src/TypeSafe/TypeSafeClient.cs`](https://github.com/laurentkempe/typesafejevplayground/blob/HEAD/src/TypeSafe/TypeSafeClient.cs)，2026-11-08 模型阅读 · ⚠ `无许可证` `疑似 AI 生成`</sub>
+
+- **[Verdict](https://github.com/Manavarya09/verdict)** — 小型多语言决策模型（默认模型 1.18 亿参数，CPU 即可运行），提供 choose、score 和 check 调用；服务器接受 Jev 的 POST /v1/systemone 请求格式，现有集成改个 base URL 就能切换；还支持用你自己的标注训练。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · Manavarya09 · `Py` · 引用文件 [`src/verdict/server.py`](https://github.com/Manavarya09/verdict/blob/HEAD/src/verdict/server.py)，2026-11-11 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[Wald-4B](https://github.com/org2AI/wald-4b)** — 从 Qwen 微调的开源 4B 决策模型：从选项字母的 logit 读出每个选项的概率，只在不确定时短暂思考，能读图片，在你自己的 GPU 上提供 Jev 的 POST /v1/systemone 请求格式，另有供 llama.cpp 使用的 GGUF 版本。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · org2AI · `Py` · 引用文件 [`server/src/wald_serve/native.py`](https://github.com/org2AI/wald-4b/blob/HEAD/server/src/wald_serve/native.py)，2026-11-10 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>

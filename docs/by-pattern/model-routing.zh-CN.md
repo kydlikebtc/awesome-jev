@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 79 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 81 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 71 · 接口形态 1 · 仅示例 1 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 73 · 接口形态 1 · 仅示例 1 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -171,6 +171,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[dsh-plugin-jev-effort-selector](https://github.com/justhalfbit/dsh-plugin-jev-effort-selector)** — DeepSeek Harness (DSH) 推理等级自动选择插件：由 Jev System One 模型判断每条消息值多少思考量，按模型声明的等级自动推导档位，上下文信封让「继续」这类追问继承话题深度，低置信度向上取，任何失败都静默沿用原等级。 \| Jev-driven reasoning effort per message: per-model ladders derived from what each model advertises, a fixed-size context envelope so follow-ups inherit topic depth…
   <sub>`插件` · justhalfbit · `JS` · 调用点 [`lib/client.js`](https://github.com/justhalfbit/dsh-plugin-jev-effort-selector/blob/HEAD/lib/client.js)，2026-09-24 阅读</sub>
 
+- **[DuckDB Dual Cognition](https://github.com/prasanthj/duckdb-dual-cognition)** — 原生 DuckDB 扩展：用 SQL 函数批量对每一行问 Jev choice、score 和 noul，包括从候选里为一行挑出外键，或答 ambiguous、no_match；只有置信度低于阈值的行才交给 OpenAI 模型去推理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · prasanthj · `C++` · `choice` · `score` · `noul` · 调用点 [`src/dc_extension.cpp`](https://github.com/prasanthj/duckdb-dual-cognition/blob/HEAD/src/dc_extension.cpp)，2026-11-11 模型阅读 · ⚠ `需第三方密钥`</sub>
+
 - **[Harness](https://github.com/autonomous-ai/openharness)** — 在多台机器上并排运行 Claude Code、Codex 等编码智能体的指挥中心。它的 ⌘B 路由器通过 OpenRouter 的 Decisions API，在一次请求里用 Choice 问题询问 Jev 1.13：新任务该交给哪个会话、哪个项目和哪个智能体。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · autonomous-ai · `TS` · `choice` · 调用点 [`cli/src/lib/jev/jevClient.ts`](https://github.com/autonomous-ai/openharness/blob/HEAD/cli/src/lib/jev/jevClient.ts)，2026-11-05 模型阅读</sub>
 
@@ -227,6 +230,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — LangChain 集成：一个分类器，外加用于模型路由、以及在高风险工具调用执行前拦截它的实验性 middleware。
   <sub>`平台集成` · `Py` · `choice` · `score` · `noul` · ⚠ `需早期访问`</sub>
+
+- **[model-router-python](https://github.com/TheCoder30ec4/model_router_python)** — Python 库：针对每个提示，先排除上下文、输出长度或预算不合适的模型，再结合实时价格和限额让 Jev 从剩下的模型里选一个，返回模型 id 由你的代码去调用；经 jevai.org 或 OpenRouter 调用 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · TheCoder30ec4 · `Py` · `choice` · 调用点 [`src/model_router/jev.py`](https://github.com/TheCoder30ec4/model_router_python/blob/HEAD/src/model_router/jev.py)，2026-11-11 模型阅读</sub>
 
 - **[NetworkChuck's Jev guide](https://github.com/thenetworkchuck/jev-guide)** — NetworkChuck 的 Jev 视频配套指南，分五章从 Playground 讲到代码：用 curl 发送 noul、choice 和 score 问题，为编程智能体安装 TypeSafe 的技能，以及一个 Bun 写的模型路由器：用一个 choice 问题为每条提示选择小、中或大模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`教程` · thenetworkchuck · `TS` · `choice` · 调用点 [`examples/router/router.ts`](https://github.com/thenetworkchuck/jev-guide/blob/HEAD/examples/router/router.ts)，2026-11-06 模型阅读</sub>
