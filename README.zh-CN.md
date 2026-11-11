@@ -113,7 +113,7 @@
 
 用 Jev 做出来的产品，由 Maker 每周发布一次，任何人也可以推荐（hunt）自己发现的产品。大家在每个 Launch 的 [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches) 帖子上点赞投票，每周日 23:59 UTC 收榜、排名。票数说明有多少人关心；每个 Launch 旁边的证据说明谁读过它调用 Jev 的代码。两者从不相加，名次也不是本目录的推荐。[发布榜](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)上有每一周、每个产品和每位 Maker 的页面，以及上升榜。 <sub>(机翻)</sub>
 
-### ★ 上升最快：2026-11-04 至 2026-11-10
+### ★ 上升最快：2026-11-04 至 2026-11-11
 
 <table>
 <tr>
@@ -127,14 +127,24 @@
 <td align="center" width="80"><b>★&nbsp;+12</b><br><sub>星标</sub></td>
 </tr>
 <tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html"><img src="https://github.com/sunyasheng.png?size=96" width="48" height="48" alt="JevGPT: Thinking Fast and Slow in Autonomous Research"></a></td>
+<td>
+
+**[JevGPT: Thinking Fast and Slow in Autonomous Research](https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html)** — 论文 arXiv 2610.18272 的研究 Agent。GPT-5.5 规划检索并写出答案；在 BrowseComp-Plus 问答中，对每个被检查的文档区域和每个查询，Jev 回答一个 Choice（在编号的原文行中选出答案所在行）和一个 Noul（该区域是否涉及该查询），在多个文档上并行运行。GPT 拿到的是原文行。 <sub>(机翻)</sub><br>
+<sub>14 → 26 星（+86%） · 🔍 仅文本匹配，还没有人读过 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgpt-sunyasheng&title=Launch%3A%20JevGPT%3A%20Thinking%20Fast%20and%20Slow%20in%20Autonomous%20Research)</sub>
+
+</td>
+<td align="center" width="80"><b>★&nbsp;+12</b><br><sub>星标</sub></td>
+</tr>
+<tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
 <td>
 
 **[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — 桌面自动化。读系统无障碍树，判断下一步该点哪个按钮、菜单或输入框。<br>
-<sub>14,206 → 20,568 星（+45%） · 👤 有人读过调用点 · [投票 ↗](https://github.com/kydlikebtc/awesome-jev/discussions/107)</sub>
+<sub>14,206 → 21,640 星（+52%） · 👤 有人读过调用点 · [投票 ↗](https://github.com/kydlikebtc/awesome-jev/discussions/107)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+6,362</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+7,434</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jevgraph.html"><img src="https://github.com/chenmingtang830.png?size=96" width="48" height="48" alt="jevgraph"></a></td>
@@ -151,20 +161,10 @@
 <td>
 
 **[fastbrowse](https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html)** — 浏览器智能体：每个页面被索引成候选控件，由 Jev 选出下一步，因此不会点击页面上没有的东西；规划和阅读由 Gemini Flash 负责，答案引用页面原文。维护者记录的 46 个任务中成功率为 99.2%，托管版 Browser Use 为 97.8%，而成本不到其十分之一。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>173 → 220 星（+27%） · 🤖 模型读过调用点，尚无人复核 · [投票 ↗](https://github.com/kydlikebtc/awesome-jev/discussions/109)</sub>
+<sub>173 → 222 星（+28%） · 🤖 模型读过调用点，尚无人复核 · [投票 ↗](https://github.com/kydlikebtc/awesome-jev/discussions/109)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+47</b><br><sub>星标</sub></td>
-</tr>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/vector-graph-rag.html"><img src="https://github.com/zilliztech.png?size=96" width="48" height="48" alt="vector-graph-rag"></a></td>
-<td>
-
-**[vector-graph-rag](https://kydlikebtc.github.io/awesome-jev/products/vector-graph-rag.html)** — 把实体和关系作为向量存进 Milvus 的 Graph RAG，无需图数据库。两阶段 Jev 重排先针对查询给每条候选关系提一个 noul，再给排名靠前的关系所指向的段落打分；按作者的测试，在 MuSiQue 和 2Wiki（各 1,000 题）上平均 Recall@5 为 86.61%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>263 → 294 星（+12%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=vector-graph-rag&title=Launch%3A%20vector-graph-rag)</sub>
-
-</td>
-<td align="center" width="80"><b>★&nbsp;+31</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+49</b><br><sub>星标</sub></td>
 </tr>
 </table>
 

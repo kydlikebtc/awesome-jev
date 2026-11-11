@@ -113,7 +113,7 @@ In a shuffled order and without counts until the week closes, so nobody votes fo
 
 Products built on Jev, launched by their makers once a week, or hunted by anyone who found one. People vote with a thumbs-up on each launch's post in [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches); the week closes on Sunday 23:59 UTC with a rank. Votes say how many people cared; the evidence beside each launch says who read the code that calls Jev. The two are never added together, and a rank is not this catalogue's recommendation. [The board](https://kydlikebtc.github.io/awesome-jev/launches.html) has every week, a page per product and per maker, and the rising list.
 
-### ★ Rising: 2026-11-04 to 2026-11-10
+### ★ Rising: 2026-11-04 to 2026-11-11
 
 <table>
 <tr>
@@ -127,14 +127,24 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <td align="center" width="80"><b>★&nbsp;+12</b><br><sub>stars</sub></td>
 </tr>
 <tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html"><img src="https://github.com/sunyasheng.png?size=96" width="48" height="48" alt="JevGPT: Thinking Fast and Slow in Autonomous Research"></a></td>
+<td>
+
+**[JevGPT: Thinking Fast and Slow in Autonomous Research](https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html)** — Research agent from arXiv 2610.18272. GPT-5.5 plans searches and writes the answer; in BrowseComp-Plus QA, Jev answers a Choice over numbered source lines (where is the answer) and a Noul (does the region address it) per document region and query, in parallel. GPT gets the original lines.<br>
+<sub>14 → 26 stars (+86%) · 🔍 text match only, nobody has read it · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgpt-sunyasheng&title=Launch%3A%20JevGPT%3A%20Thinking%20Fast%20and%20Slow%20in%20Autonomous%20Research)</sub>
+
+</td>
+<td align="center" width="80"><b>★&nbsp;+12</b><br><sub>stars</sub></td>
+</tr>
+<tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
 <td>
 
 **[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — Desktop automation that reads the system accessibility tree and decides which button, menu or field to act on next.<br>
-<sub>14,206 → 20,568 stars (+45%) · 👤 a person read the call site · [Vote ↗](https://github.com/kydlikebtc/awesome-jev/discussions/107)</sub>
+<sub>14,206 → 21,640 stars (+52%) · 👤 a person read the call site · [Vote ↗](https://github.com/kydlikebtc/awesome-jev/discussions/107)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+6,362</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+7,434</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jevgraph.html"><img src="https://github.com/chenmingtang830.png?size=96" width="48" height="48" alt="jevgraph"></a></td>
@@ -151,20 +161,10 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <td>
 
 **[fastbrowse](https://kydlikebtc.github.io/awesome-jev/products/fastbrowse.html)** — Browser agent: each page is indexed into candidate controls and Jev chooses the next one, so it cannot click what is not there; a Gemini Flash LLM plans and reads, and answers cite the page. Its maintainer recorded 99.2% on 46 tasks against 97.8% for hosted Browser Use, at under a tenth of the cost. <sub>(written by a model)</sub><br>
-<sub>173 → 220 stars (+27%) · 🤖 a model read the call site, no person yet · [Vote ↗](https://github.com/kydlikebtc/awesome-jev/discussions/109)</sub>
+<sub>173 → 222 stars (+28%) · 🤖 a model read the call site, no person yet · [Vote ↗](https://github.com/kydlikebtc/awesome-jev/discussions/109)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+47</b><br><sub>stars</sub></td>
-</tr>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/vector-graph-rag.html"><img src="https://github.com/zilliztech.png?size=96" width="48" height="48" alt="vector-graph-rag"></a></td>
-<td>
-
-**[vector-graph-rag](https://kydlikebtc.github.io/awesome-jev/products/vector-graph-rag.html)** — Graph RAG that stores entities and relations as vectors in Milvus, no graph database. Two-stage Jev reranking asks a noul per candidate relation against the query, then scores the passages of the top relations; by the author's run, 86.61% average Recall@5 on MuSiQue and 2Wiki, 1,000 questions each. <sub>(written by a model)</sub><br>
-<sub>263 → 294 stars (+12%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=vector-graph-rag&title=Launch%3A%20vector-graph-rag)</sub>
-
-</td>
-<td align="center" width="80"><b>★&nbsp;+31</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+49</b><br><sub>stars</sub></td>
 </tr>
 </table>
 
