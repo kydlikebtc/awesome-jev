@@ -97,10 +97,27 @@ jobs:
       # stack on the site names, is installed first: without it the Chinese
       # screenshot and the cards' "中文" render as empty boxes, and
       # --require-cjk-font fails the step instead of publishing them.
+      #
+      # The install is tried three times, a minute apart. Most runs here are
+      # dispatched by another workflow (board-daily, metadata, launch-week,
+      # launch-collect), and GitHub sends no workflow_run event for a run the
+      # GITHUB_TOKEN started, so retry.yml never gives those a second attempt.
+      # On 2026-11-11 the runner could not resolve security.ubuntu.com for two
+      # minutes, and the site stayed a day behind until the next dispatch.
       - name: Install a CJK font for the screenshots
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq --no-install-recommends fonts-noto-cjk
+          for attempt in 1 2 3; do
+            if sudo apt-get update -qq \
+              && sudo apt-get install -y -qq --no-install-recommends fonts-noto-cjk; then
+              break
+            fi
+            if [ "$attempt" = 3 ]; then
+              echo "::error::apt could not install fonts-noto-cjk in three attempts"
+              exit 1
+            fi
+            echo "apt failed on attempt $attempt; trying again in 60 s"
+            sleep 60
+          done
           fc-list :lang=zh family | sort -u
 
       - name: Render preview images from the live data
