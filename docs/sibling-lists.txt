@@ -76,3 +76,8 @@ https://github.com/onlyoasis/awesome-jev-cases
 https://github.com/yangzhou-chaofan/awesome-jev-prompt
 https://github.com/JingHao-Leon/awesome-jev-apps
 https://github.com/seeapi/awesome-jev-use-cases
+
+# Added 2026-11-12 by the weekly upkeep: two curated lists the daily run held
+# (docs/held.txt) and the upkeep settled as lists to harvest rather than rows.
+https://github.com/yanng981/awesome-system-one
+https://github.com/reacher-z/awesome-jev

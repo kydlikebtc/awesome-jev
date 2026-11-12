@@ -248,6 +248,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[agi-jev-containment](https://github.com/carlosedm10/agi-jev-containment)** — 本地 AI 智能体监控：链路级恶意智能体检测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · carlosedm10 · `Py` · 调用点 [`backend/app/classification/jev.py`](https://github.com/carlosedm10/agi-jev-containment/blob/HEAD/backend/app/classification/jev.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
+- **[AI 海龟汤 (AI Turtle Soup)](https://github.com/zerotang05/situation-puzzle)** — 由 Jev 主持的海龟汤推理游戏：玩家的每个提问由 choice 回答“是、否或无关”，写下的还原被判为“还原成功、接近或尚未”，投稿的题目先经审核再进入公开题库。置信度低于阈值的判定交给 MiniMax 模型重判。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · zerotang05 · `TS` · `choice` · 调用点 [`packages/jev/src/config.ts`](https://github.com/zerotang05/situation-puzzle/blob/HEAD/packages/jev/src/config.ts)，2026-11-12 模型阅读</sub>
+
 - **[AskJev](https://github.com/ranjan2829/AskJev)** — AskJev：适用于任意网站的 Jev 自动驾驶，并对不可逆的点击加一道防护（使用 TypeSafe System One，而不是 Claude）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ranjan2829 · `TS` · 调用点 [`mcp/src/jev-client.ts`](https://github.com/ranjan2829/AskJev/blob/HEAD/mcp/src/jev-client.ts)，2026-09-24 阅读</sub>
 
@@ -515,11 +518,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[switchboard](https://github.com/aniruddh-krovvidi/switchboard)** — 基于 TypeSafe Jev（System One 模型）的 LLM 网关护栏与模型路由器，附带独立的准确率与校准评估。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · aniruddh-krovvidi · `Py` · 调用点 [`jev.py`](https://github.com/aniruddh-krovvidi/switchboard/blob/HEAD/jev.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
 
-- **[toolgate](https://github.com/ndolinschi/toolgate)** — 智能体工具与 MCP 调用关卡：通过 TypeSafe Jev 决定放行、询问人类或拒绝。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/toolgate/blob/HEAD/src/lib/jev.ts)，2026-09-24 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
-
-- **[trustgate](https://github.com/ndolinschi/trustgate)** — TrustGate：面向独立媒体的信任与安全闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/trustgate/blob/HEAD/src/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
+- **[TRA](https://github.com/bijectivelabs/bitra)** — 执行完全确定的加密货币交易台。规则开新仓之前，其事件守卫会就近期新闻标题询问 Jev：用 choice 判断事件类型（正反两种选项顺序各问一次），用 noul 判断是否涉及该资产和整个市场，再用一个 noul 筛查写给机器的指令。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · bijectivelabs · `Py` · `choice` · `noul` · 调用点 [`src/trading_research_agents/llm/providers/typesafe.py`](https://github.com/bijectivelabs/bitra/blob/HEAD/src/trading_research_agents/llm/providers/typesafe.py)，2026-11-12 模型阅读</sub>
 
 - **[typesafe-migration-guard](https://github.com/opaielsheikh/typesafe-migration-guard)** — 由 Jev 驱动的数据库迁移安全自动审查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · opaielsheikh · `TS` · 调用点 [`lib/typesafe.ts`](https://github.com/opaielsheikh/typesafe-migration-guard/blob/HEAD/lib/typesafe.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

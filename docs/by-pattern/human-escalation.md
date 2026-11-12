@@ -4,11 +4,11 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 87 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 88 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#human-escalation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 72 · wire shape 5 · example only 0 · independent reports 11 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 73 · wire shape 5 · example only 0 · independent reports 11 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -69,6 +69,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Inbox Zero: seven email decisions](https://github.com/elie222/inbox-zero)** — Seven distinct email decisions, each with its own separately chosen threshold, falling back to the normal LLM on any error.
   <sub>`Project` · ★10k+ · `TS` · `choice` · `noul` · call site [`apps/web/utils/decision-model/decision-model.ts`](https://github.com/elie222/inbox-zero/blob/HEAD/apps/web/utils/decision-model/decision-model.ts), read by a model 2026-11-05</sub>
+
+- **[agent-router](https://github.com/nidhi-singh02/agent-router)** — CLI that picks the coding agent, model and effort for a task and starts it in Herdr: fixed rules filter by quota and a 40% reserve on shared accounts, Jev ranks the rest and picks the effort, and an unsure pick on a consequential task goes back to you. Cursor, Claude Code, Codex or OpenCode. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★100+ · nidhi-singh02 · `TS` · call site [`packages/router/src/semantic/typesafe-client.ts`](https://github.com/nidhi-singh02/agent-router/blob/HEAD/packages/router/src/semantic/typesafe-client.ts), read 2026-09-22</sub>
 
 - **[jev-align](https://github.com/sutro-sh/jev-align)** — Builds calibrated decision functions from human feedback.
   <sub>`Project` · ★100+ · sutro-sh · `Py` · call site [`src/jev_align/jev.py`](https://github.com/sutro-sh/jev-align/blob/HEAD/src/jev_align/jev.py), read 2026-09-22</sub>
@@ -211,6 +214,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-guard](https://github.com/CMaintz/jev-guard)** — Vets an LLM agent's tool calls through TypeSafe AI's Jev before they run — allow, block, or hold, failing safe on uncertainty. <sub>(upstream description)</sub>
   <sub>`Project` · cmaintz · `TS` · call site [`src/providers/typesafe.ts`](https://github.com/CMaintz/jev-guard/blob/HEAD/src/providers/typesafe.ts), read 2026-09-24 · ⚠ `archived`</sub>
 
+- **[jev-handson](https://github.com/jkf87/jev-handson)** — Korean hands-on lectures on wiring Jev into Claude Code, Codex and OpenClaw. The lecture 2 message router asks in one request a choice of route (chat, task, unclear or spam), a choice of worker (Codex, Claude Code, a scheduler, a GPU server or none) and a noul on whether a person must confirm first. <sub>(written by a model)</sub>
+  <sub>`Tutorial` · jkf87 · `JS` · `choice` · `noul` · call site [`02_라우터/code/mini/router.mjs`](https://github.com/jkf87/jev-handson/blob/HEAD/02_%EB%9D%BC%EC%9A%B0%ED%84%B0/code/mini/router.mjs), read by a model 2026-11-12 · ⚠ `no licence`</sub>
+
 - **[jev-logtriage](https://github.com/jyatesdotdev/jev-logtriage)** — Jev decides whether a batch of logs is worth acting on. Typed questions, confidence gates, nothing executed. <sub>(upstream description)</sub>
   <sub>`Project` · jyatesdotdev · `Py` · call site [`logtriage/cli.py`](https://github.com/jyatesdotdev/jev-logtriage/blob/HEAD/logtriage/cli.py), read 2026-09-22</sub>
 
@@ -279,9 +285,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[tink-route](https://github.com/jon-devlapaz/tink-route)** — Dynamic, confidence-aware Agent Skill routing with TypeSafe Jev and Tink <sub>(upstream description)</sub>
   <sub>`Plugin` · jon-devlapaz · `Py` · call site [`src/tink_route/core/constants.py`](https://github.com/jon-devlapaz/tink-route/blob/HEAD/src/tink_route/core/constants.py), read 2026-09-24</sub>
-
-- **[toolgate](https://github.com/ndolinschi/toolgate)** — Agent tool/MCP call gate — allow / ask_human / deny via TypeSafe Jev <sub>(upstream description)</sub>
-  <sub>`Plugin` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/toolgate/blob/HEAD/src/lib/jev.ts), read 2026-09-24 · ⚠ `one commit` `no licence`</sub>
 
 - **[typesafe-local](https://github.com/aabolfazl/typesafe-local)** — Inspired by TypeSafe Ai, Ask a local LLM typed questions, get calibrated probabilities instead of text. Structured output without generation or parsing. MLX / Apple Silicon. <sub>(upstream description)</sub>
   <sub>`Project` · aabolfazl · `Py` · call site [`ots/server.py`](https://github.com/aabolfazl/typesafe-local/blob/HEAD/ots/server.py), read 2026-09-22</sub>

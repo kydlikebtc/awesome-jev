@@ -4,11 +4,11 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 87 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 88 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#human-escalation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#human-escalation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 72 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 73 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -69,6 +69,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Inbox Zero: seven email decisions](https://github.com/elie222/inbox-zero)** — 七个互不相同的邮件决策，每个都有自己单独设定的阈值，任何出错都回落到普通 LLM。
   <sub>`开源项目` · ★10k+ · `TS` · `choice` · `noul` · 调用点 [`apps/web/utils/decision-model/decision-model.ts`](https://github.com/elie222/inbox-zero/blob/HEAD/apps/web/utils/decision-model/decision-model.ts)，2026-11-05 模型阅读</sub>
+
+- **[agent-router](https://github.com/nidhi-singh02/agent-router)** — 为任务挑选编程智能体、模型和推理强度并在 Herdr 中启动它的命令行工具：先用固定规则按额度和共享账号 40% 的保留量筛选，再由 Jev 给剩下的排序并选定强度；遇到重要任务而把握不足时，交回给你选。支持 Cursor、Claude Code、Codex 或 OpenCode。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★100+ · nidhi-singh02 · `TS` · 调用点 [`packages/router/src/semantic/typesafe-client.ts`](https://github.com/nidhi-singh02/agent-router/blob/HEAD/packages/router/src/semantic/typesafe-client.ts)，2026-09-22 阅读</sub>
 
 - **[jev-align](https://github.com/sutro-sh/jev-align)** — 从人类反馈出发，构建经过校准的决策函数。
   <sub>`开源项目` · ★100+ · sutro-sh · `Py` · 调用点 [`src/jev_align/jev.py`](https://github.com/sutro-sh/jev-align/blob/HEAD/src/jev_align/jev.py)，2026-09-22 阅读</sub>
@@ -211,6 +214,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-guard](https://github.com/CMaintz/jev-guard)** — 在 LLM 智能体的工具调用执行前，交给 TypeSafe AI 的 Jev 审核——放行、阻止或挂起，不确定时安全失败。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · cmaintz · `TS` · 调用点 [`src/providers/typesafe.ts`](https://github.com/CMaintz/jev-guard/blob/HEAD/src/providers/typesafe.ts)，2026-09-24 阅读 · ⚠ `已归档`</sub>
 
+- **[jev-handson](https://github.com/jkf87/jev-handson)** — 韩语实践课程，讲如何把 Jev 接入 Claude Code、Codex 和 OpenClaw。第 2 讲的消息路由器在一次请求中问：走哪条路线（闲聊、任务、不明确或垃圾信息）、交给哪个执行者（Codex、Claude Code、调度器、GPU 服务器或都不合适），再用一个 noul 问执行前是否必须由人确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`教程` · jkf87 · `JS` · `choice` · `noul` · 调用点 [`02_라우터/code/mini/router.mjs`](https://github.com/jkf87/jev-handson/blob/HEAD/02_%EB%9D%BC%EC%9A%B0%ED%84%B0/code/mini/router.mjs)，2026-11-12 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[jev-logtriage](https://github.com/jyatesdotdev/jev-logtriage)** — 由 Jev 判断一批日志是否值得处理：类型化问题、置信闸门，不执行任何动作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jyatesdotdev · `Py` · 调用点 [`logtriage/cli.py`](https://github.com/jyatesdotdev/jev-logtriage/blob/HEAD/logtriage/cli.py)，2026-09-22 阅读</sub>
 
@@ -279,9 +285,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[tink-route](https://github.com/jon-devlapaz/tink-route)** — 动态的、感知置信度的 Agent 技能路由。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · jon-devlapaz · `Py` · 调用点 [`src/tink_route/core/constants.py`](https://github.com/jon-devlapaz/tink-route/blob/HEAD/src/tink_route/core/constants.py)，2026-09-24 阅读</sub>
-
-- **[toolgate](https://github.com/ndolinschi/toolgate)** — 智能体工具与 MCP 调用关卡：通过 TypeSafe Jev 决定放行、询问人类或拒绝。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/toolgate/blob/HEAD/src/lib/jev.ts)，2026-09-24 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
 
 - **[typesafe-local](https://github.com/aabolfazl/typesafe-local)** — 受 TypeSafe 启发：向本地 LLM 提类型化问题，拿到校准概率。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · aabolfazl · `Py` · 调用点 [`ots/server.py`](https://github.com/aabolfazl/typesafe-local/blob/HEAD/ots/server.py)，2026-09-22 阅读</sub>

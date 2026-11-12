@@ -30,9 +30,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[DuoMind](https://github.com/j1s4nn/duomind)** — OpenAI-compatible local server that pairs a small llama.cpp model with Jev: 18 decision points before, during and after generation (needs reasoning, safety, format, should stop, needs retry) steer the local model. Prompts go to TypeSafe; generation stays local. <sub>(written by a model)</sub>
   <sub>`Project` · j1s4nn · `Py` · `noul` · `choice` · call site [`src/duomind/jev_client.py`](https://github.com/j1s4nn/duomind/blob/HEAD/src/duomind/jev_client.py), read by a model 2026-10-24 · ⚠ `vendor numbers`</sub>
 
-- **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — Web app for agent builders: paste the trace of one agent step and Jev judges it as ok, retry, escalate or stop. Without a TYPESAFE_API_KEY, local heuristics return answers of the same shape, labelled as demo mode. <sub>(written by a model)</sub>
-  <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/harnessjudge/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
-
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
 
@@ -44,6 +41,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevswiftsdk](https://github.com/NSStudent/JevSwiftSDK)** — Independent, unofficial and dependency-free Swift SDK for the System One API: choice, noul and score questions typed as Swift values, such as a choice over an enum, named batches answered in one call with every answer checked, retries with a policy and cancellation. iOS 15+, macOS 12+ and Linux. <sub>(written by a model)</sub>
   <sub>`SDK` · nsstudent · `Swift` · call site [`Sources/JevSwiftSDK/Configuration.swift`](https://github.com/NSStudent/JevSwiftSDK/blob/HEAD/Sources/JevSwiftSDK/Configuration.swift), read 2026-09-22</sub>
+
+- **[Reflex](https://github.com/datadog-labs/reflex)** — Rust library for control loops on observability data: Datadog metrics and Toto forecasts become typed state, Jev recommends an action as a choice, such as Open, Probe or NoChange for a circuit, and the executor applies it only when legality checks, guards and invariants allow. <sub>(written by a model)</sub>
+  <sub>`Project` · datadog-labs · `Rs` · `choice` · call site [`crates/reflex-typesafe/src/lib.rs`](https://github.com/datadog-labs/reflex/blob/HEAD/crates/reflex-typesafe/src/lib.rs), read by a model 2026-11-12</sub>
 
 - **[XavierJev](https://github.com/liu-x27/XavierJev)** — A local decision layer in Jev's shape: yes/no, choice and rubric questions read off one token's logprobs from a local model, with a Claude Code permission gate measured on held-out command sets.
   <sub>`Jev-like alternative` · Xinyu Liu · `TS` · `noul` · `choice` · `score` · cited file [`src/gate.ts`](https://github.com/liu-x27/XavierJev/blob/HEAD/src/gate.ts), read 2026-09-25 · ⚠ `not Jev itself` `AI-written`</sub>

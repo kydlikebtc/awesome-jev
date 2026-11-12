@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 81 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 84 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 73 · wire shape 1 · example only 1 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 76 · wire shape 1 · example only 1 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -53,6 +53,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills)** — Nine agent skills plus a CLI covering model routing, memory filtering, turn retention, one-of-many skill selection and next-action choice.
   <sub>`Plugin` · ★1k+ · `Py` · `choice` · `score` · `noul` · call site [`jevkit/client.py`](https://github.com/kerpopule/hermes-jev-skills/blob/HEAD/jevkit/client.py), read 2026-09-22 · ⚠ `measured, not adopted`</sub>
+
+- **[agent-router](https://github.com/nidhi-singh02/agent-router)** — CLI that picks the coding agent, model and effort for a task and starts it in Herdr: fixed rules filter by quota and a 40% reserve on shared accounts, Jev ranks the rest and picks the effort, and an unsure pick on a consequential task goes back to you. Cursor, Claude Code, Codex or OpenCode. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★100+ · nidhi-singh02 · `TS` · call site [`packages/router/src/semantic/typesafe-client.ts`](https://github.com/nidhi-singh02/agent-router/blob/HEAD/packages/router/src/semantic/typesafe-client.ts), read 2026-09-22</sub>
 
 - **[Astra-Ares](https://github.com/miuuyy/Astra-Ares)** — Runs a patched Codex CLI in which Jev reads bounded task context and, with two choices, picks the reasoning effort for GPT-6's next response and how many responses (1, 2, 5 or 10) it should last; GPT-6 can change effort without breaking the prompt cache. An experimental reference implementation. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · miuuyy · `JS` · call site [`src/jev.mjs`](https://github.com/miuuyy/Astra-Ares/blob/HEAD/src/jev.mjs), read 2026-09-24</sub>
@@ -170,6 +173,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[stuntd](https://github.com/bladedevoff/stuntd)** — Local proxy that learns your app's typed LLM decisions and answers them with a Laya head. Jev and OpenAI compatible. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · bladedevoff · `Py` · call site [`stuntd/jev/answer.py`](https://github.com/bladedevoff/stuntd/blob/HEAD/stuntd/jev/answer.py), read 2026-09-24</sub>
+
+- **[AgentScope](https://github.com/agentscope-ai/agentscope)** — Multi-agent framework whose classifier models include Jev: JevClassifierModel sends binary, choice and score questions to System One through TypeSafe's Python SDK, and the ModelRouter middleware asks a classifier one choice per reply to pick the chat model that answers. <sub>(written by a model)</sub>
+  <sub>`Project` · agentscope-ai · `Py` · `choice` · `noul` · `score` · call site [`src/agentscope/classifier/_jev/_model.py`](https://github.com/agentscope-ai/agentscope/blob/HEAD/src/agentscope/classifier/_jev/_model.py), read by a model 2026-11-12</sub>
+
+- **[AI 海龟汤 (AI Turtle Soup)](https://github.com/zerotang05/situation-puzzle)** — Lateral-thinking puzzle game hosted by Jev: each player question gets a choice of Yes, No or Irrelevant, a written solution is ruled Solved, Close or Not yet, and submitted puzzles are reviewed before the public library. A verdict below the confidence threshold goes to a MiniMax model. <sub>(written by a model)</sub>
+  <sub>`Project` · zerotang05 · `TS` · `choice` · call site [`packages/jev/src/config.ts`](https://github.com/zerotang05/situation-puzzle/blob/HEAD/packages/jev/src/config.ts), read by a model 2026-11-12</sub>
 
 - **[Building a Harness with Jev](https://www.langchain.com/blog/building-a-harness-with-jev)** — LangChain's explainer and integration walkthrough: the three question types, plus model routing and gating risky tool calls before they run.
   <sub>`Article` · Sydney Runkle, Hunter Lovell · `Py` · ⚠ `vendor numbers`</sub>

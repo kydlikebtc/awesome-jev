@@ -4,11 +4,11 @@
 
 _Classify what the user wants and send the request down the right branch._
 
-Every catalogued example of this decision — 61 of them. The same rows, with caveats, are in [the index](../../README.md#intent-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 62 of them. The same rows, with caveats, are in [the index](../../README.md#intent-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#intent-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 50 · wire shape 0 · example only 0 · independent reports 4 · negative results 0 · no file cited 11. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 51 · wire shape 0 · example only 0 · independent reports 4 · negative results 0 · no file cited 11. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -95,6 +95,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-social](https://github.com/socai-io/jev-social)** — Read-only Instagram, TikTok and LinkedIn research: Jev routes the platform and selects each bounded socai CLI action from fresh browser evidence; code validates targets and preserves source links.
   <sub>`Project` · ★100+ · socai-io · `JS` · `choice` · call site [`src/actions.js`](https://github.com/socai-io/jev-social/blob/HEAD/src/actions.js), read 2026-09-23 · ⚠ `3rd-party key`</sub>
+
+- **[jev-voice](https://github.com/kevinbadi/jev-voice)** — Voice control for the Mac: whisper.cpp transcribes locally, then one ~250 ms Jev request turns the command into an action and arguments picked from candidates code built, such as installed apps. Multi-step tasks run an agent loop on the Accessibility tree, capped at 40 actions and 80 Jev calls. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · kevinbadi · `Py` · call site [`jev_voice/config.py`](https://github.com/kevinbadi/jev-voice/blob/HEAD/jev_voice/config.py), read 2026-09-22</sub>
 
 - **[jev-voice-browser](https://github.com/moritzkremb/jev-voice-browser)** — Voice-driven browser control where target criteria are rebuilt per request from the live element list, always including a none option.
   <sub>`Project` · ★100+ · `JS` · `choice` · `score` · `noul` · call site [`src/jev.js`](https://github.com/moritzkremb/jev-voice-browser/blob/HEAD/src/jev.js), read 2026-09-22</sub>
@@ -192,14 +195,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-eval](https://github.com/Shogo-nfrealmusic/jev-eval)** — A third-party check of Jev against two LLMs under identical conditions: routing booking inquiries to a photo-shoot service for tourists in Japan, sixty synthetic messages in four languages.
   <sub>`Benchmark` · shogo-nfrealmusic · `TS` · call site [`src/jev.ts`](https://github.com/Shogo-nfrealmusic/jev-eval/blob/HEAD/src/jev.ts), read 2026-09-24 · ⚠ `no licence`</sub>
 
+- **[jev-handson](https://github.com/jkf87/jev-handson)** — Korean hands-on lectures on wiring Jev into Claude Code, Codex and OpenClaw. The lecture 2 message router asks in one request a choice of route (chat, task, unclear or spam), a choice of worker (Codex, Claude Code, a scheduler, a GPU server or none) and a noul on whether a person must confirm first. <sub>(written by a model)</sub>
+  <sub>`Tutorial` · jkf87 · `JS` · `choice` · `noul` · call site [`02_라우터/code/mini/router.mjs`](https://github.com/jkf87/jev-handson/blob/HEAD/02_%EB%9D%BC%EC%9A%B0%ED%84%B0/code/mini/router.mjs), read by a model 2026-11-12 · ⚠ `no licence`</sub>
+
 - **[jev-inbox-queue](https://github.com/tusharck/jev-inbox-queue)** — Turn an inbox into a short action queue with Jev (TypeSafe System One) <sub>(upstream description)</sub>
   <sub>`Project` · tusharck · `Py` · call site [`inbox_queue/classify.py`](https://github.com/tusharck/jev-inbox-queue/blob/HEAD/inbox_queue/classify.py), read 2026-09-24 · ⚠ `one commit`</sub>
 
 - **[JevT++](https://github.com/wiatrM/jevtpp)** — C++20 library that turns runtime text, JSON or objects into enums, booleans and scores through compile-time schemas, with full distributions and explicit abstention. Runs local Laya models in-process (ONNX Runtime or ggml) or Jev through an opt-in remote backend; latency metrics and a Mario demo. <sub>(written by a model)</sub>
   <sub>`SDK` · wiatrm · `C++` · call site [`include/jevt/remote.hpp`](https://github.com/wiatrM/jevtpp/blob/HEAD/include/jevt/remote.hpp), read by a model 2026-10-24</sub>
-
-- **[lanebreak](https://github.com/ndolinschi/lanebreak)** — LaneBreak — support ticket priority+routing via TypeSafe Jev <sub>(upstream description)</sub>
-  <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/lanebreak/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
 
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — The LangChain integration: a classifier plus experimental middleware for model routing and for gating risky tool calls before they run.
   <sub>`Integration` · `Py` · `choice` · `score` · `noul` · ⚠ `early access`</sub>

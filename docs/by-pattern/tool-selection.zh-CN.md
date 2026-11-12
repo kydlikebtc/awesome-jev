@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 274 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 275 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 263 · 接口形态 7 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 264 · 接口形态 7 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -153,6 +153,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-use](https://github.com/savka777/jev-use)** — macOS 上用语音或打字操作电脑：读取前台窗口的辅助功能树而不截图；每一步发一个 Jev 请求，选出一个操作和一个带编号的目标，要输入的文字取自你原话中的片段，再用 noul 判断是否还需要后续步骤、效果是否已经出现。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · savka777 · `Swift` · 调用点 [`Sources/JevCore/Decision.swift`](https://github.com/savka777/jev-use/blob/HEAD/Sources/JevCore/Decision.swift)，2026-09-24 阅读</sub>
 
+- **[jev-voice](https://github.com/kevinbadi/jev-voice)** — 用语音控制 Mac：whisper.cpp 在本地转写，再由一个约 250 毫秒的 Jev 请求把命令变成一个动作及其参数，参数从代码列出的候选中选出，例如已安装的应用。多步任务会在辅助功能树上跑智能体循环，上限为 40 个动作、80 次 Jev 调用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · kevinbadi · `Py` · 调用点 [`jev_voice/config.py`](https://github.com/kevinbadi/jev-voice/blob/HEAD/jev_voice/config.py)，2026-09-22 阅读</sub>
+
 - **[jev-voice-browser](https://github.com/moritzkremb/jev-voice-browser)** — 语音驱动的浏览器控制：目标选项每次请求都按当前实时元素列表重建，并且总是包含一个 none 选项。
   <sub>`开源项目` · ★100+ · `JS` · `choice` · `score` · `noul` · 调用点 [`src/jev.js`](https://github.com/moritzkremb/jev-voice-browser/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
 
@@ -167,6 +170,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevrouter](https://github.com/BillionsBobby/JevRouter)** — 面向模型、工具和子智能体的路由器。
   <sub>`开源项目` · ★100+ · billionsbobby · `TS` · 调用点 [`functions/api/jev.js`](https://github.com/BillionsBobby/JevRouter/blob/HEAD/functions/api/jev.js)，2026-09-22 阅读</sub>
+
+- **[laya-ultrafast](https://github.com/ipenywis/laya-ultrafast)** — jev-ultrafast（一个浏览器智能体）的移植版：在 Mac 上用开放权重模型 Laya 代替 Jev 做决策，在 M1 Max 上每次决策约 33 毫秒。设置 DECISION_MODEL=typesafe 时沿用原来的 Jev 策略：在一次请求里用一个 choice 选操作，再用一个 choice 选该操作的目标。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · ipenywis · `Py` · 调用点 [`laya_ultrafast/model.py`](https://github.com/ipenywis/laya-ultrafast/blob/HEAD/laya_ultrafast/model.py)，2026-09-22 阅读</sub>
 
 - **[LLM Debugger](https://github.com/mohsen1/llm-debugger-vscode-extension)** — 通过实际运行代码来调试的 VS Code 扩展。每次暂停时，Jev 用一个 `choice` 选出下一步动作（单步、继续、设断点、求值、结束），并回答两个 `noul`：是否已找到出错的行，当前这一行是否就是出错处。只有需要断点位置、表达式和最终修复时才调用生成模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · mohsen1 · `TS` · `choice` · `noul` · 调用点 [`src/agent/strategies/jev.ts`](https://github.com/mohsen1/llm-debugger-vscode-extension/blob/HEAD/src/agent/strategies/jev.ts)，2026-10-28 模型阅读 · ⚠ `需第三方密钥` `厂商自报数据`</sub>
@@ -183,9 +189,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[neo4jev](https://github.com/jexp/neo4jev)** — 把 Jev 塞进知识图谱。每走到一个节点，判断下一条最值得走的边，再一路找下去。
   <sub>`开源项目` · ★100+ · `Py` · `choice` · 调用点 [`src/neo4jev/navigator.py`](https://github.com/jexp/neo4jev/blob/HEAD/src/neo4jev/navigator.py)，2026-09-22 阅读</sub>
 
-- **[omg.dev](https://github.com/BennyKok/omg.dev)** — 用手机遥控在你电脑或托管云机上运行的 Claude Code、Codex 等编程智能体。它的移动端端到端测试把 Jev 当作决策层：给定屏幕的无障碍树，用 noul 判断某一步是否完成、是否走进死胡同，再用 choice 选出下一步要点的元素。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · ★100+ · bennykok · `TS` · 调用点 [`mobile/scripts/jev.ts`](https://github.com/BennyKok/omg.dev/blob/HEAD/mobile/scripts/jev.ts)，2026-09-22 阅读</sub>
-
 - **[pi-jev](https://github.com/y0usaf/pi-jev)** — 给编程智能体做的决策层：一个可度量的工具调用闸门，外加一个返回校准答案的类型化提问。
   <sub>`插件` · ★100+ · y0usaf · `TS` · 调用点 [`src/client.ts`](https://github.com/y0usaf/pi-jev/blob/HEAD/src/client.ts)，2026-09-22 阅读</sub>
 
@@ -200,6 +203,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[systemoneharness](https://github.com/HarnessRouter/SystemOneHarness)** — 面向 System One 模型的 harness。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · harnessrouter · `Py` · 调用点 [`systemone_harness/provider.py`](https://github.com/HarnessRouter/SystemOneHarness/blob/HEAD/systemone_harness/provider.py)，2026-09-22 阅读</sub>
+
+- **[third-hand](https://github.com/shhivv/third-hand)** — 可以聊天的 macOS 助手：用 @ 标记一个应用（如 @Spotify），它会读取该应用的无障碍控件，替你点击和输入。ChatGPT 规划步骤；Jev 用一个 choice 把每一步的标签对应到屏幕上的一个元素（或判定都不是），同一次请求还可以判断任务是否完成以及下一步操作。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · shhivv · `Swift` · 调用点 [`Sources/ThirdHand/JevClient.swift`](https://github.com/shhivv/third-hand/blob/HEAD/Sources/ThirdHand/JevClient.swift)，2026-09-22 阅读</sub>
 
 - **[tiptour-macos](https://github.com/milind-soni/tiptour-macos)** — 替你点击的 macOS 菜单栏助手。默认的 Jev 模式下你输入任务；每一步由 Jev 的 choice 从本地检测到的屏幕控件中选一个，TipTour 照此点击，不设置信度门槛，直到 Jev 选择“无”或报告任务完成，或满 12 步为止。截图不离开本机。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · milind-soni · `Swift` · 调用点 [`TipTour/Jev/JevClient.swift`](https://github.com/milind-soni/tiptour-macos/blob/HEAD/TipTour/Jev/JevClient.swift)，2026-09-22 阅读</sub>
@@ -543,9 +549,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[gg-friggin-ez](https://github.com/ItisShikhar/gg-friggin-ez)** — 给 Node.js 的快速多语言脏话与毒性筛查器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · itisshikhar · `TS` · 调用点 [`demo/js/models.js`](https://github.com/ItisShikhar/gg-friggin-ez/blob/HEAD/demo/js/models.js)，2026-09-22 阅读</sub>
 
-- **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — 面向智能体开发者的网页应用：粘贴某一步的执行轨迹，由 Jev 判定为通过、重试、升级或停止。没有 TYPESAFE_API_KEY 时，本地启发式规则返回同样结构的答案，并标为演示模式。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/harnessjudge/blob/HEAD/src/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
-
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — 可观测的浏览器潜行游戏：Jev 做类型化的守卫判断，确定性代码掌管世界规则。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts)，2026-09-22 阅读</sub>
 
@@ -795,6 +798,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[reflex](https://github.com/kaustav1996/reflex)** — 构建在 Pi 编码智能体之上的编码助手与个人助理，拥有 System One 式的“条件反射”（TypeSafe Jev）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · kaustav1996 · `TS` · 调用点 [`src/extensions/typesafe/provider.ts`](https://github.com/kaustav1996/reflex/blob/HEAD/src/extensions/typesafe/provider.ts)，2026-09-24 阅读</sub>
 
+- **[Reflex](https://github.com/datadog-labs/reflex)** — 用于可观测性数据控制回路的 Rust 库：Datadog 指标和 Toto 预测变成类型化状态，由 Jev 以 choice 推荐一个动作（例如熔断器的 Open、Probe 或 NoChange），执行器只有在合法性检查、守卫条件和不变量都允许时才执行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · datadog-labs · `Rs` · `choice` · 调用点 [`crates/reflex-typesafe/src/lib.rs`](https://github.com/datadog-labs/reflex/blob/HEAD/crates/reflex-typesafe/src/lib.rs)，2026-11-12 模型阅读</sub>
+
 - **[robo-harness](https://github.com/grmkris/robo-harness)** — SO-101 机械臂智能体工作台：Bun/Effect 协调器、React 工作台、Python 电机控制。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · grmkris · `TS` · 调用点 [`apps/server/src/decision/jev.ts`](https://github.com/grmkris/robo-harness/blob/HEAD/apps/server/src/decision/jev.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
@@ -818,9 +824,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[stepwarden](https://github.com/getexcited/stepwarden)** — 智能体的每一次工具调用在执行前都过一遍检查的 Claude Code 插件。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · getexcited · `TS` · 调用点 [`lib/jev.ts`](https://github.com/getexcited/stepwarden/blob/HEAD/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
-
-- **[swarmrouter](https://github.com/ndolinschi/swarmrouter)** — 用 Jev 把任务路由给研究／编码／浏览／客服／写作智能体。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/swarmrouter/blob/HEAD/src/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
 
 - **[terrarium](https://github.com/TheGali/terrarium)** — 一个沙盒：System One 模型按下小生物的操控键，代码负责其余。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · thegali · `JS` · 调用点 [`bench/run-jev.mjs`](https://github.com/TheGali/terrarium/blob/HEAD/bench/run-jev.mjs)，2026-09-22 阅读</sub>

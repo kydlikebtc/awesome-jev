@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 188 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 187 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 179 · 接口形态 5 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 178 · 接口形态 5 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -55,6 +55,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[beebots](https://github.com/imikerussell/beebots)** — 三个交易机器人在 OKX 永续合约上比赛，默认是模拟盘：每一步由 Jev（或 Gemini）用 choice 从合法动作中选出，再用 score 给出信心；另有确定性的备用选择器、纯代码写的风控层，以及显示每个决策由谁做出的实时面板。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · imikerussell · `TS` · `choice` · `score` · 调用点 [`src/jev.ts`](https://github.com/imikerussell/beebots/blob/HEAD/src/jev.ts)，2026-10-24 模型阅读</sub>
+
+- **[crush-monitor](https://github.com/FerryCorleone/crush-monitor)** — 在本机运行的网页工具，分析你粘贴的与心仪对象的微信聊天记录。对每条消息，Jev 在 12 类情绪和 35 类意图中给出概率，各展示最高的三项，并为好感信号和你自己的回复打分（回复按 SSS 到 D 分档）。也可以改用文本 LLM 代替 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · ferrycorleone · `TS` · 调用点 [`server/provider-config.ts`](https://github.com/FerryCorleone/crush-monitor/blob/HEAD/server/provider-config.ts)，2026-09-24 阅读</sub>
+
+- **[dasheng](https://github.com/wquguru/dasheng)** — 英文朗读练习：流式 ASR 模型负责转写，对齐找出念得不一样的词，只把这些词交给 Jev 判：用 noul 判断是不是同一个词，用 choice 判断错误类型，再用 1 到 5 分的 score 判断整句意思是否走样。发音不打分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · wquguru · `JS` · 调用点 [`lib/jev.js`](https://github.com/wquguru/dasheng/blob/HEAD/lib/jev.js)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
 - **[jev-as-a-judge](https://github.com/danielgshea/jev-as-a-judge)** — 把 Jev 当作智能体评测的评委，与 GPT-5.6 Luna、GPT-5.6 Terra 和 Claude Sonnet 4.6 比较：一个天气智能体的五次固定运行，每次评 100 遍，给出质量分和通过与否。Jev 在全部 500 次判定中都与人工标注一致，其他三者为 99.8%、96.4% 和 80.0%；只有一位审阅者、五次运行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · danielgshea · `Py` · 调用点 [`src/evals/judges/__init__.py`](https://github.com/danielgshea/jev-as-a-judge/blob/HEAD/src/evals/judges/__init__.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
@@ -332,9 +338,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[gpt-vs-jev](https://github.com/TanayPadar/gpt-vs-jev)** — 在同一输入上对比 GPT 的生成式语言与 JEV 的结构化 Noul 决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tanaypadar · `TS` · 调用点 [`lib/jev.ts`](https://github.com/TanayPadar/gpt-vs-jev/blob/HEAD/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
-- **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — 面向智能体开发者的网页应用：粘贴某一步的执行轨迹，由 Jev 判定为通过、重试、升级或停止。没有 TYPESAFE_API_KEY 时，本地启发式规则返回同样结构的答案，并标为演示模式。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/harnessjudge/blob/HEAD/src/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
-
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — 可观测的浏览器潜行游戏：Jev 做类型化的守卫判断，确定性代码掌管世界规则。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts)，2026-09-22 阅读</sub>
 
@@ -452,9 +455,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevbus](https://github.com/zkjoie/jevbus)** — 一个流式事件总线：路由、订阅与消费都由概率决策决定。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zkjoie · `Rs` · 调用点 [`src/jev/http.rs`](https://github.com/zkjoie/jevbus/blob/HEAD/src/jev/http.rs)，2026-09-22 阅读</sub>
 
-- **[jevchess](https://github.com/choxos/jevchess)** — 让 Jev 与任意 OpenRouter 模型、Stockfish 或你本人下国际象棋，单页网页应用。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · choxos · `JS` · 调用点 [`docs/chess-ai.js`](https://github.com/choxos/jevchess/blob/HEAD/docs/chess-ai.js)，2026-09-22 阅读</sub>
-
 - **[jevcut](https://github.com/VBS2004/jevcut)** — 把长视频剪成排好序的短片：代码列出片段所有可能的起止位置，Jev 只评判每个候选边界会剪出的片段，用 noul 判断它是否从半句话开始或结束、能否独立成立、是不是广告，用 choice 在候选之间挑选，用 score 评估开头抓不抓人。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · VBS2004 · `Py` · `noul` · `choice` · `score` · 调用点 [`src/jevcut/backends.py`](https://github.com/VBS2004/jevcut/blob/HEAD/src/jevcut/backends.py)，2026-11-09 模型阅读</sub>
 
@@ -463,9 +463,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevmoji](https://github.com/cheeaun/jevmoji)** — 输入任意内容，得到由 Jev 打分（0–3）的相关表情符号。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · cheeaun · `JS` · 调用点 [`js/jev-chunked.js`](https://github.com/cheeaun/jevmoji/blob/HEAD/js/jev-chunked.js)，2026-09-24 阅读</sub>
-
-- **[jevplay](https://github.com/ndolinschi/jevplay)** — Jev playground：自定义 Choice／Score／Noul 构造器，带实时概率分布。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/jevplay/blob/HEAD/src/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
 
 - **[JevPromptCoach](https://github.com/CrowdLinker/JevPromptCoach)** — 给你向编码智能体提问的方式打分，并显示你的习惯是否在进步的 Claude Code 插件。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · crowdlinker · `TS` · 调用点 [`src/jev.ts`](https://github.com/CrowdLinker/JevPromptCoach/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>
@@ -499,6 +496,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[n8n-nodes-typesafe-ai](https://github.com/DomMonte/n8n-nodes-typesafe-ai)** — 面向 System One API 的 n8n 社区节点：类型化的是非、选择与打分问题。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · dommonte · `TS` · 调用点 [`nodes/TypeSafeAi/constants.ts`](https://github.com/DomMonte/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/constants.ts)，2026-09-22 阅读</sub>
+
+- **[Netizen](https://github.com/seheta/netizen)** — 在帖子发布前模拟印尼网民的反应。Jev 在一次请求中针对每个人设（如网约摩的司机或水军）回答：会不会停下来看、会做什么、立场如何、评论起什么作用；另外判断帖子是否涉及敏感话题、能传播多广。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · seheta · `Py` · `noul` · `choice` · `score` · 调用点 [`spike/spike.py`](https://github.com/seheta/netizen/blob/HEAD/spike/spike.py)，2026-11-12 模型阅读</sub>
 
 - **[omp-jevens-classifier](https://github.com/STRML/omp-jevens-classifier)** — 给 OMP 的模型裁决式权限闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · strml · `TS` · 调用点 [`jev.ts`](https://github.com/STRML/omp-jevens-classifier/blob/HEAD/jev.ts)，2026-09-22 阅读 · ⚠ `已归档`</sub>
@@ -538,9 +538,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[sloppy-jevs-extension](https://github.com/neddes/sloppy-jevs-extension)** — 开源 Chrome 扩展：用 Jev 过滤 AI 生成的文字与广告。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · neddes · `JS` · 调用点 [`background.js`](https://github.com/neddes/sloppy-jevs-extension/blob/HEAD/background.js)，2026-09-22 阅读</sub>
-
-- **[spendbrake](https://github.com/ndolinschi/spendbrake)** — 智能体预算刹车：继续／降级模型／停止。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/spendbrake/blob/HEAD/src/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
 
 - **[system-one-gemma](https://github.com/akash-kamat/system-one-gemma)** — 开源的 Jev 式 System One 决策模型：Gemma 3 270M 加一个打分头。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · akash-kamat · `Py` · 引用文件 [`system_one.py`](https://github.com/akash-kamat/system-one-gemma/blob/HEAD/system_one.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身` `无许可证`</sub>

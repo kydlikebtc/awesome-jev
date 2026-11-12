@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 274 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 275 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 263 · wire shape 7 · example only 0 · independent reports 12 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 264 · wire shape 7 · example only 0 · independent reports 12 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -153,6 +153,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-use](https://github.com/savka777/jev-use)** — Voice and typed computer use for macOS: the app reads the front window's Accessibility tree instead of screenshots, and each step one Jev request chooses an operation and a numbered target, typed text being a span of your sentence, with nouls on whether more steps remain or the effect already shows. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · savka777 · `Swift` · call site [`Sources/JevCore/Decision.swift`](https://github.com/savka777/jev-use/blob/HEAD/Sources/JevCore/Decision.swift), read 2026-09-24</sub>
 
+- **[jev-voice](https://github.com/kevinbadi/jev-voice)** — Voice control for the Mac: whisper.cpp transcribes locally, then one ~250 ms Jev request turns the command into an action and arguments picked from candidates code built, such as installed apps. Multi-step tasks run an agent loop on the Accessibility tree, capped at 40 actions and 80 Jev calls. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · kevinbadi · `Py` · call site [`jev_voice/config.py`](https://github.com/kevinbadi/jev-voice/blob/HEAD/jev_voice/config.py), read 2026-09-22</sub>
+
 - **[jev-voice-browser](https://github.com/moritzkremb/jev-voice-browser)** — Voice-driven browser control where target criteria are rebuilt per request from the live element list, always including a none option.
   <sub>`Project` · ★100+ · `JS` · `choice` · `score` · `noul` · call site [`src/jev.js`](https://github.com/moritzkremb/jev-voice-browser/blob/HEAD/src/jev.js), read 2026-09-22</sub>
 
@@ -167,6 +170,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevrouter](https://github.com/BillionsBobby/JevRouter)** — A router for models, tools and subagents.
   <sub>`Project` · ★100+ · billionsbobby · `TS` · call site [`functions/api/jev.js`](https://github.com/BillionsBobby/JevRouter/blob/HEAD/functions/api/jev.js), read 2026-09-22</sub>
+
+- **[laya-ultrafast](https://github.com/ipenywis/laya-ultrafast)** — Port of jev-ultrafast, a browser agent, that makes its decisions on a Mac with Laya, an open-weight model, instead of Jev: about 33 ms per decision on an M1 Max. With DECISION_MODEL=typesafe it keeps the original Jev policy: in one request, a choice of operation and a choice of its target. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · ipenywis · `Py` · call site [`laya_ultrafast/model.py`](https://github.com/ipenywis/laya-ultrafast/blob/HEAD/laya_ultrafast/model.py), read 2026-09-22</sub>
 
 - **[LLM Debugger](https://github.com/mohsen1/llm-debugger-vscode-extension)** — VS Code extension that debugs by running the code. At each pause Jev picks the next action as a `choice` (step, continue, breakpoint, evaluate, finish) and answers two `noul`s: is the faulty line found, and is it this one. A generation model supplies only locations, expressions and the fix. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · mohsen1 · `TS` · `choice` · `noul` · call site [`src/agent/strategies/jev.ts`](https://github.com/mohsen1/llm-debugger-vscode-extension/blob/HEAD/src/agent/strategies/jev.ts), read by a model 2026-10-28 · ⚠ `3rd-party key` `vendor numbers`</sub>
@@ -183,9 +189,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[neo4jev](https://github.com/jexp/neo4jev)** — Puts Jev inside a knowledge graph traversal: at each node it decides which edge is most worth following.
   <sub>`Project` · ★100+ · `Py` · `choice` · call site [`src/neo4jev/navigator.py`](https://github.com/jexp/neo4jev/blob/HEAD/src/neo4jev/navigator.py), read 2026-09-22</sub>
 
-- **[omg.dev](https://github.com/BennyKok/omg.dev)** — Phone remote for Claude Code, Codex and other coding agents running on your computer or a hosted one. Its mobile end-to-end tests use Jev as the decision layer: given the screen's accessibility tree, nouls ask whether a step is done or a dead end and a choice picks the element to tap next. <sub>(written by a model)</sub>
-  <sub>`Plugin` · ★100+ · bennykok · `TS` · call site [`mobile/scripts/jev.ts`](https://github.com/BennyKok/omg.dev/blob/HEAD/mobile/scripts/jev.ts), read 2026-09-22</sub>
-
 - **[pi-jev](https://github.com/y0usaf/pi-jev)** — A decision layer for a coding agent: a measured tool-call gate plus a typed ask for calibrated answers.
   <sub>`Plugin` · ★100+ · y0usaf · `TS` · call site [`src/client.ts`](https://github.com/y0usaf/pi-jev/blob/HEAD/src/client.ts), read 2026-09-22</sub>
 
@@ -200,6 +203,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[systemoneharness](https://github.com/HarnessRouter/SystemOneHarness)** — The system one Harness for system one models
   <sub>`Project` · ★100+ · harnessrouter · `Py` · call site [`systemone_harness/provider.py`](https://github.com/HarnessRouter/SystemOneHarness/blob/HEAD/systemone_harness/provider.py), read 2026-09-22</sub>
+
+- **[third-hand](https://github.com/shhivv/third-hand)** — macOS assistant you chat with: tag an app, such as @Spotify, and it reads the app's accessible controls, clicks and types. ChatGPT plans the steps; a Jev choice resolves each step's label to one on-screen element, or none, and one request can also ask whether the task is done and the next operation. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · shhivv · `Swift` · call site [`Sources/ThirdHand/JevClient.swift`](https://github.com/shhivv/third-hand/blob/HEAD/Sources/ThirdHand/JevClient.swift), read 2026-09-22</sub>
 
 - **[tiptour-macos](https://github.com/milind-soni/tiptour-macos)** — macOS menu-bar assistant that clicks for you. In its default Jev mode you type a task; each step, a Jev choice picks one of the controls detected on screen and TipTour clicks it, with no confidence cutoff, until Jev picks none or reports the task done, or after 12 actions. Screenshots stay local. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · milind-soni · `Swift` · call site [`TipTour/Jev/JevClient.swift`](https://github.com/milind-soni/tiptour-macos/blob/HEAD/TipTour/Jev/JevClient.swift), read 2026-09-22</sub>
@@ -543,9 +549,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[gg-friggin-ez](https://github.com/ItisShikhar/gg-friggin-ez)** — Fast, drop-in multilingual profanity and toxicity screener for Node.js, powered by System 1 models like TypeSafe AI Jev and Laya. Catches leetspeak, character spacing, and romanized profanity across languages including Kannada, Telugu, Tamil, Hindi, and Bengali. ~50-500ms latency. <sub>(upstream description)</sub>
   <sub>`Project` · itisshikhar · `TS` · call site [`demo/js/models.js`](https://github.com/ItisShikhar/gg-friggin-ez/blob/HEAD/demo/js/models.js), read 2026-09-22</sub>
 
-- **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — Web app for agent builders: paste the trace of one agent step and Jev judges it as ok, retry, escalate or stop. Without a TYPESAFE_API_KEY, local heuristics return answers of the same shape, labelled as demo mode. <sub>(written by a model)</sub>
-  <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/harnessjudge/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
-
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — Observable browser stealth game: Jev makes typed guard judgments while deterministic code owns the world. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts), read 2026-09-22</sub>
 
@@ -795,6 +798,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[reflex](https://github.com/kaustav1996/reflex)** — A coding agent and personal assistant with System One reflexes (TypeSafe Jev) on top of the Pi coding agent <sub>(upstream description)</sub>
   <sub>`Plugin` · kaustav1996 · `TS` · call site [`src/extensions/typesafe/provider.ts`](https://github.com/kaustav1996/reflex/blob/HEAD/src/extensions/typesafe/provider.ts), read 2026-09-24</sub>
 
+- **[Reflex](https://github.com/datadog-labs/reflex)** — Rust library for control loops on observability data: Datadog metrics and Toto forecasts become typed state, Jev recommends an action as a choice, such as Open, Probe or NoChange for a circuit, and the executor applies it only when legality checks, guards and invariants allow. <sub>(written by a model)</sub>
+  <sub>`Project` · datadog-labs · `Rs` · `choice` · call site [`crates/reflex-typesafe/src/lib.rs`](https://github.com/datadog-labs/reflex/blob/HEAD/crates/reflex-typesafe/src/lib.rs), read by a model 2026-11-12</sub>
+
 - **[robo-harness](https://github.com/grmkris/robo-harness)** — SO-101 robot-arm agent workbench: Bun/Effect coordinator, React workbench, Python LeRobot motor owner <sub>(upstream description)</sub>
   <sub>`Project` · grmkris · `TS` · call site [`apps/server/src/decision/jev.ts`](https://github.com/grmkris/robo-harness/blob/HEAD/apps/server/src/decision/jev.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
@@ -818,9 +824,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[stepwarden](https://github.com/getexcited/stepwarden)** — Every tool call your agent makes, checked before it runs. A Claude Code plugin that uses TypeSafe AI's Jev to verify each pending tool call against the session plan, then allows it, asks you, or blocks it. Proof of concept <sub>(upstream description)</sub>
   <sub>`Plugin` · getexcited · `TS` · call site [`lib/jev.ts`](https://github.com/getexcited/stepwarden/blob/HEAD/lib/jev.ts), read 2026-09-22 · ⚠ `one commit`</sub>
-
-- **[swarmrouter](https://github.com/ndolinschi/swarmrouter)** — Route tasks to research/code/browser/support/writer agents via TypeSafe Jev <sub>(upstream description)</sub>
-  <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/swarmrouter/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
 
 - **[terrarium](https://github.com/TheGali/terrarium)** — A sandbox where a TypeSafe System One model presses the controls of a small creature. Code runs the world. <sub>(upstream description)</sub>
   <sub>`Project` · thegali · `JS` · call site [`bench/run-jev.mjs`](https://github.com/TheGali/terrarium/blob/HEAD/bench/run-jev.mjs), read 2026-09-22</sub>
