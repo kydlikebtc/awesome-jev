@@ -114596,6 +114596,40 @@
     "stars": 8
   },
   {
+    "slug": "valen",
+    "title": "Valen",
+    "summary": "Apache-2.0 multimodal decision models (Valen-Decision-1.5, 0.8B to 27B) answering `choice`, `score` and `noul` questions about text, images and video, plus `bbox` questions that return a box. Native, ONNX and GGUF weights, training code, and `/v1/systemone` serving via vLLM, SGLang or llama.cpp.",
+    "summary_zh": "Apache-2.0 开放多模态决策模型（Valen-Decision-1.5，0.8B 至 27B），回答关于文本、图片和视频的 `choice`、`score`、`noul` 问题，`bbox` 问题在同一次前向中返回目标框。提供原生、ONNX 和 GGUF 权重与训练代码，可通过 vLLM、SGLang 或补丁版 llama.cpp 以 `/v1/systemone` 提供服务。",
+    "url": "https://github.com/Valen-Team/Valen",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "languages": [
+      "python"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "Valen-Team",
+      "url": "https://github.com/Valen-Team"
+    },
+    "repo_license": "Apache-2.0",
+    "flags": [
+      "not-jev",
+      "vendor-reported"
+    ],
+    "notes": "Not Jev: open models answering in Jev's request shape, so thresholds tuned on Jev do not transfer. Submitted by a maintainer of the project.",
+    "sources": [
+      {
+        "catalog": "maintainer submission",
+        "url": "https://github.com/Valen-Team/Valen"
+      }
+    ],
+    "license": "CC0-1.0"
+  },
+  {
     "slug": "vector-graph-rag",
     "title": "vector-graph-rag",
     "summary": "Graph RAG that stores entities and relations as vectors in Milvus, no graph database. Two-stage Jev reranking asks a noul per candidate relation against the query, then scores the passages of the top relations; by the author's run, 86.61% average Recall@5 on MuSiQue and 2Wiki, 1,000 questions each.",
