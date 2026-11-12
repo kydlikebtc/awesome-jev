@@ -183,6 +183,16 @@ class RenderFontTest(unittest.TestCase):
         self.assertLess(install, pages.index("python3 scripts/render_images.py --require-cjk-font"))
         self.assertIn("Noto Sans CJK SC", lint_docs.CJK_FAMILIES)
 
+    def test_the_deploy_retries_the_install(self):
+        # A dispatched pages run gets no second attempt from retry.yml, so a
+        # mirror that does not answer once must not end the deploy.
+        pages = (ROOT / ".github" / "workflows" / "pages.yml").read_text(encoding="utf-8")
+        step = pages[pages.index("- name: Install a CJK font for the screenshots"):
+                     pages.index("- name: Render preview images from the live data")]
+        self.assertIn("for attempt in 1 2 3; do", step)
+        self.assertIn("sleep 60", step)
+        self.assertIn("exit 1", step)
+
 
 if __name__ == "__main__":
     unittest.main()

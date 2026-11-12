@@ -11,6 +11,12 @@
 # the same run again, at the same commit; the jobs that push rebase onto the
 # tip of main, or start again from it, when main moved.
 #
+# A run another workflow dispatched with the GITHUB_TOKEN (pages and lint,
+# from board-daily, metadata, launch-week and launch-collect) sends no
+# workflow_run event, so it never reaches this workflow: on 2026-11-11 a
+# dispatched pages run failed once and got no second attempt. The steps in
+# those runs that fetch from outside retry by themselves instead.
+#
 # Injection review: no `github.event.*` value reaches a `run:` block except
 # through `env:`, and the run id is checked as digits before use.
 name: retry
