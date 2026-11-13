@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 275 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 279 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 264 · 接口形态 7 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 268 · 接口形态 7 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -519,6 +519,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[CloakBrowser Agent](https://github.com/CloakHQ/CloakBrowser-Agent)** — 浏览器智能体：每一步都由 Jev 在一次请求里决定，用 choice 选择操作，并为每种可能的操作再用 choice 选出目标元素，由 CloakBrowser 隐身 Chromium 以类人的方式执行；可作为 MCP 服务器、CLI 或库使用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · CloakHQ · `Py` · `choice` · 调用点 [`cloak_agent/model.py`](https://github.com/CloakHQ/CloakBrowser-Agent/blob/HEAD/cloak_agent/model.py)，2026-11-11 模型阅读</sub>
 
+- **[ComfyUI-Jev](https://github.com/hndrr/ComfyUI-Jev)** — ComfyUI 自定义节点：Jev Interpret 在候选里做选择、判断条件、给文本打分、从文本中挑出数值（choice、noul、score）；Jev Skill Choice 为请求挑选本地 SKILL.md 技能；结果再传给其他节点。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · hndrr · `Py` · `choice` · `noul` · `score` · 调用点 [`api.py`](https://github.com/hndrr/ComfyUI-Jev/blob/HEAD/api.py)，2026-11-13 模型阅读</sub>
+
 - **[computer-use-jev](https://github.com/paulsmith/computer-use-jev)** — 以 Jev 为决策者的 macOS computer use。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · paulsmith · `Go` · 调用点 [`typesafe/client.go`](https://github.com/paulsmith/computer-use-jev/blob/HEAD/typesafe/client.go)，2026-09-22 阅读</sub>
 
@@ -558,8 +561,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jev Civilizations](https://github.com/JonesSteven/jev_civilization)** — 一款带在线演示的小型策略游戏：四个部落自主生活，你只能改变环境。每回合 Jev 用 choice 从真正合法的行动中为每个部落选一个，普通的游戏引擎计算结果，检查器会显示 Jev 收到了哪些信息。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jonessteven · `TS` · `choice` · 调用点 [`scripts/probe-jev.ts`](https://github.com/JonesSteven/jev_civilization/blob/HEAD/scripts/probe-jev.ts)，2026-10-24 模型阅读</sub>
 
+- **[JEV Orchestrator](https://github.com/hiyoku/jev-orc)** — Claude Code 插件，让每次 Agent 派生都先经过 Jev：两个 score（任务有多难、需要多少推理）和若干 noul（是否要改文件、跑 shell 命令、上网、查库文档或用浏览器）决定子智能体的模型、推理强度和工具配置。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · hiyoku · `TS` · `score` · `noul` · 调用点 [`src/jev/client.ts`](https://github.com/hiyoku/jev-orc/blob/HEAD/src/jev/client.ts)，2026-11-13 模型阅读</sub>
+
 - **[Jev plays Vampire Survivors](https://github.com/oldmoldycake/jev_vampire_survivors)** — 一个 BepInEx mod 加一个 Python「大脑」，让 Jev 玩 Steam 上的正版游戏：每个决定都是用平实英语提出的 choice，包括选角色、选关卡、每次升级选什么，以及每秒四次选择行走方向；另有实时面板显示每个答案。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · oldmoldycake · `Py` · `choice` · 调用点 [`brain/jev_vs/jev_client.py`](https://github.com/oldmoldycake/jev_vampire_survivors/blob/HEAD/brain/jev_vs/jev_client.py)，2026-11-11 模型阅读</sub>
+
+- **[Jev Router](https://github.com/AIAnytime/Jev-Router)** — OpenAI 兼容的路由器：在一次调用里问 Jev 哪个候选模型适合这个请求（choice）、请求有多难（score）、是否需要前沿模型（noul）以及任务类型（choice），可选再问护栏类 noul 和哪些工具相关；然后由策略引擎选定模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · AIAnytime · `Py` · `choice` · `score` · `noul` · 调用点 [`jev_router/engine/jev_client.py`](https://github.com/AIAnytime/Jev-Router/blob/HEAD/jev_router/engine/jev_client.py)，2026-11-13 模型阅读</sub>
+
+- **[Jev Skills](https://github.com/n23eos/jev-skills)** — 供 Claude Code 和 Codex 使用的十四个技能，每个技能里 Jev 只做一个有界的 choice：读哪个已装技能、用哪个已配置模型、先看哪个文件、测试或组件，或者下一步用哪个方案、工具或评审动作。具体工作仍由编程智能体完成。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · n23eos · `Py` · `choice` · 调用点 [`src/jev_skills/core.py`](https://github.com/n23eos/jev-skills/blob/HEAD/src/jev_skills/core.py)，2026-11-13 模型阅读</sub>
 
 - **[jev-A-share-trader](https://github.com/Eric-Zhou-0302/jev-A-share-trader)** — 由 Jev 驱动的中国 A 股技术分析工作台，支持 AKShare/Tushare、市场扫描以及买入/持有/卖出建议。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · eric-zhou-0302 · `Py` · 调用点 [`src/jev_trader/jev.py`](https://github.com/Eric-Zhou-0302/jev-A-share-trader/blob/HEAD/src/jev_trader/jev.py)，2026-09-24 阅读</sub>

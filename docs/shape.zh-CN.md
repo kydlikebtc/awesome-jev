@@ -14,26 +14,26 @@
 
 | 模式 | 行数 | 官方文档 | 调用点 | 接口形态 | 仅示例 | 独立报告 | 负面结果 | 未引用文件 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| [工具选择](by-pattern/tool-selection.zh-CN.md) | 275 | 3 | 264 | 7 | 0 | 12 | 1 | 4 |
+| [工具选择](by-pattern/tool-selection.zh-CN.md) | 279 | 3 | 268 | 7 | 0 | 12 | 1 | 4 |
 | [意图路由](by-pattern/intent-routing.zh-CN.md) | 62 | 3 | 51 | 0 | 0 | 4 | 0 | 11 |
 | [上下文压缩](by-pattern/context-compaction.zh-CN.md) | 47 | 0 | 47 | 0 | 0 | 2 | 2 | 0 |
-| [安全闸门](by-pattern/safety-gating.zh-CN.md) | 169 | 2 | 162 | 3 | 0 | 13 | 0 | 4 |
-| [输出校验](by-pattern/output-validation.zh-CN.md) | 163 | 2 | 158 | 1 | 0 | 13 | 0 | 4 |
+| [安全闸门](by-pattern/safety-gating.zh-CN.md) | 170 | 2 | 163 | 3 | 0 | 13 | 0 | 4 |
+| [输出校验](by-pattern/output-validation.zh-CN.md) | 164 | 2 | 159 | 1 | 0 | 13 | 0 | 4 |
 | [重试控制](by-pattern/retry-control.zh-CN.md) | 8 | 0 | 7 | 1 | 0 | 0 | 0 | 0 |
-| [人工升级](by-pattern/human-escalation.zh-CN.md) | 88 | 7 | 73 | 5 | 0 | 11 | 0 | 10 |
-| [模型路由](by-pattern/model-routing.zh-CN.md) | 84 | 2 | 76 | 1 | 1 | 0 | 1 | 6 |
-| [并行扇出](by-pattern/fan-out.zh-CN.md) | 43 | 3 | 35 | 1 | 0 | 1 | 0 | 7 |
+| [人工升级](by-pattern/human-escalation.zh-CN.md) | 89 | 7 | 74 | 5 | 0 | 11 | 0 | 10 |
+| [模型路由](by-pattern/model-routing.zh-CN.md) | 90 | 2 | 82 | 1 | 1 | 0 | 1 | 6 |
+| [并行扇出](by-pattern/fan-out.zh-CN.md) | 44 | 3 | 36 | 1 | 0 | 1 | 0 | 7 |
 | [检索与排序](by-pattern/search-ranking.zh-CN.md) | 95 | 3 | 91 | 0 | 0 | 8 | 1 | 4 |
-| [结构化抽取](by-pattern/data-extraction.zh-CN.md) | 32 | 4 | 28 | 0 | 0 | 3 | 0 | 4 |
-| [分类](by-pattern/classification.zh-CN.md) | 185 | 4 | 174 | 2 | 0 | 19 | 1 | 9 |
+| [结构化抽取](by-pattern/data-extraction.zh-CN.md) | 33 | 4 | 29 | 0 | 0 | 3 | 0 | 4 |
+| [分类](by-pattern/classification.zh-CN.md) | 191 | 4 | 179 | 3 | 0 | 19 | 1 | 9 |
 | [机器学习特征抽取](by-pattern/feature-extraction.zh-CN.md) | 9 | 1 | 8 | 0 | 0 | 0 | 0 | 1 |
 | [文档分拣](by-pattern/document-triage.zh-CN.md) | 23 | 0 | 22 | 0 | 0 | 2 | 0 | 1 |
 | [工单分拣](by-pattern/support-triage.zh-CN.md) | 13 | 1 | 8 | 0 | 0 | 2 | 0 | 5 |
-| [内容评分](by-pattern/content-scoring.zh-CN.md) | 187 | 2 | 178 | 5 | 0 | 13 | 1 | 4 |
+| [内容评分](by-pattern/content-scoring.zh-CN.md) | 189 | 2 | 180 | 5 | 0 | 13 | 1 | 4 |
 | [实时推荐](by-pattern/recommendation.zh-CN.md) | 3 | 0 | 3 | 0 | 0 | 0 | 0 | 0 |
-| [总览](by-pattern/overview.zh-CN.md) | 514 | 6 | 379 | 95 | 0 | 28 | 1 | 40 |
+| [总览](by-pattern/overview.zh-CN.md) | 517 | 6 | 380 | 97 | 0 | 29 | 1 | 40 |
 
-有 28 份独立报告只归入了 `overview`、没有归入任何其他模式，所以在有人把它们归入所测的决策之前，这张表无法把它们计入那个决策。
+有 29 份独立报告只归入了 `overview`、没有归入任何其他模式，所以在有人把它们归入所测的决策之前，这张表无法把它们计入那个决策。
 
 ## 语言
 
@@ -41,11 +41,11 @@
 
 | 语言 | 行数 |
 | --- | --- |
-| `python` | 603 |
-| `typescript` | 466 |
+| `python` | 613 |
+| `typescript` | 470 |
 | `javascript` | 168 |
-| `rust` | 60 |
-| `go` | 58 |
+| `rust` | 61 |
+| `go` | 59 |
 | `swift` | 22 |
 | `java` | 16 |
 | `ruby` | 13 |
@@ -65,23 +65,23 @@
 
 | 分组 | 行数 |
 | --- | --- |
-| 只有 `typesafe-api` | 1182 |
-| 至少有一个值对应[兼容性表](compatibility.md)中的其他接入面（网关、SDK 或框架），且不含 `self-hosted` | 106 |
-| 除 `typesafe-api` 外只记录没有任何兼容性接入面对应的值（示例运行所在的主机、工具或框架，或该表未描述的路径），且不含 `self-hosted` | 65 |
-| 含 `self-hosted`，无论还记录了什么 | 102 |
-| 未记录任何值 | 24 |
+| 只有 `typesafe-api` | 1188 |
+| 至少有一个值对应[兼容性表](compatibility.md)中的其他接入面（网关、SDK 或框架），且不含 `self-hosted` | 111 |
+| 除 `typesafe-api` 外只记录没有任何兼容性接入面对应的值（示例运行所在的主机、工具或框架，或该表未描述的路径），且不含 `self-hosted` | 67 |
+| 含 `self-hosted`，无论还记录了什么 | 104 |
+| 未记录任何值 | 25 |
 
 各行记录的每个值，以及对应它的兼容性接入面：
 
 | 值 | 兼容性接入面 | 行数 |
 | --- | --- | --- |
-| `typesafe-api` | `typesafe-native` | 1303 |
-| `self-hosted` | — | 102 |
-| `openrouter` | `openrouter` | 62 |
-| `claude-code` | — | 46 |
-| `vercel-ai-gateway` | `vercel-eval`, `vercel-compat` | 40 |
+| `typesafe-api` | `typesafe-native` | 1315 |
+| `self-hosted` | — | 104 |
+| `openrouter` | `openrouter` | 66 |
+| `claude-code` | — | 49 |
+| `vercel-ai-gateway` | `vercel-eval`, `vercel-compat` | 41 |
 | `mcp` | — | 20 |
-| `cloudflare-workers-ai` | `cloudflare` | 5 |
+| `cloudflare-workers-ai` | `cloudflare` | 6 |
 | `langchain` | `langchain` | 5 |
 | `opencode-zen` | — | 5 |
 | `github` | — | 4 |
@@ -118,16 +118,16 @@
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 官方文档 (`official-docs`) | 31 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | ★1k+ |
 | 平台集成 (`integration`) | 38 | 28 | 8 | 9 | 1 | 4 | 5 | 1 | ★10+ |
-| 开源项目 (`project`) | 748 | 738 | 361 | 238 | 98 | 22 | 17 | 2 | ★10+ |
-| 插件 (`plugin`) | 297 | 297 | 142 | 120 | 30 | 4 | 1 | 0 | ★10+ |
+| 开源项目 (`project`) | 753 | 738 | 361 | 238 | 98 | 22 | 17 | 2 | ★10+ |
+| 插件 (`plugin`) | 303 | 297 | 142 | 120 | 30 | 4 | 1 | 0 | ★10+ |
 | SDK (`sdk`) | 115 | 114 | 85 | 21 | 6 | 1 | 1 | 0 | 不足 10 |
 | 代码片段 (`snippet`) | 4 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | 教程 (`tutorial`) | 19 | 15 | 3 | 8 | 2 | 2 | 0 | 0 | ★10+ |
 | 文章 (`article`) | 14 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | 视频 (`video`) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-| 基准测试 (`benchmark`) | 93 | 90 | 56 | 24 | 6 | 2 | 1 | 1 | 不足 10 |
+| 基准测试 (`benchmark`) | 95 | 90 | 56 | 24 | 6 | 2 | 1 | 1 | 不足 10 |
 | 讨论 (`discussion`) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-| Jev 替代实现 (`alternative`) | 115 | 110 | 19 | 46 | 31 | 13 | 1 | 0 | ★10+ |
+| Jev 替代实现 (`alternative`) | 118 | 110 | 19 | 46 | 31 | 13 | 1 | 0 | ★10+ |
 
 ## 按决策模式看语言
 
@@ -135,45 +135,45 @@
 
 | 模式 | `python` | `typescript` | `javascript` | `rust` | `go` | `swift` | 其他语言 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [工具选择](by-pattern/tool-selection.zh-CN.md) | 113 | 102 | 46 | 6 | 4 | 8 | 1 |
+| [工具选择](by-pattern/tool-selection.zh-CN.md) | 116 | 103 | 46 | 6 | 4 | 8 | 1 |
 | [意图路由](by-pattern/intent-routing.zh-CN.md) | 30 | 19 | 4 | 0 | 2 | 2 | 5 |
 | [上下文压缩](by-pattern/context-compaction.zh-CN.md) | 13 | 27 | 5 | 1 | 1 | 0 | 0 |
-| [安全闸门](by-pattern/safety-gating.zh-CN.md) | 62 | 69 | 24 | 4 | 7 | 1 | 3 |
-| [输出校验](by-pattern/output-validation.zh-CN.md) | 59 | 62 | 21 | 8 | 6 | 1 | 5 |
+| [安全闸门](by-pattern/safety-gating.zh-CN.md) | 63 | 69 | 24 | 4 | 7 | 1 | 3 |
+| [输出校验](by-pattern/output-validation.zh-CN.md) | 59 | 63 | 21 | 8 | 6 | 1 | 5 |
 | [重试控制](by-pattern/retry-control.zh-CN.md) | 3 | 1 | 1 | 1 | 0 | 1 | 1 |
-| [人工升级](by-pattern/human-escalation.zh-CN.md) | 51 | 28 | 3 | 1 | 0 | 0 | 2 |
-| [模型路由](by-pattern/model-routing.zh-CN.md) | 24 | 42 | 13 | 4 | 1 | 1 | 1 |
-| [并行扇出](by-pattern/fan-out.zh-CN.md) | 24 | 13 | 5 | 2 | 1 | 1 | 4 |
+| [人工升级](by-pattern/human-escalation.zh-CN.md) | 51 | 29 | 3 | 1 | 0 | 0 | 2 |
+| [模型路由](by-pattern/model-routing.zh-CN.md) | 28 | 43 | 13 | 5 | 1 | 1 | 1 |
+| [并行扇出](by-pattern/fan-out.zh-CN.md) | 25 | 13 | 5 | 2 | 1 | 1 | 4 |
 | [检索与排序](by-pattern/search-ranking.zh-CN.md) | 42 | 26 | 7 | 8 | 6 | 1 | 7 |
-| [结构化抽取](by-pattern/data-extraction.zh-CN.md) | 18 | 9 | 4 | 0 | 0 | 0 | 1 |
-| [分类](by-pattern/classification.zh-CN.md) | 75 | 51 | 30 | 5 | 1 | 0 | 20 |
+| [结构化抽取](by-pattern/data-extraction.zh-CN.md) | 19 | 9 | 4 | 0 | 0 | 0 | 1 |
+| [分类](by-pattern/classification.zh-CN.md) | 78 | 54 | 30 | 5 | 1 | 0 | 20 |
 | [机器学习特征抽取](by-pattern/feature-extraction.zh-CN.md) | 5 | 2 | 1 | 0 | 0 | 0 | 1 |
 | [文档分拣](by-pattern/document-triage.zh-CN.md) | 8 | 5 | 7 | 2 | 0 | 0 | 0 |
 | [工单分拣](by-pattern/support-triage.zh-CN.md) | 7 | 4 | 0 | 0 | 1 | 0 | 3 |
-| [内容评分](by-pattern/content-scoring.zh-CN.md) | 84 | 60 | 27 | 5 | 2 | 2 | 10 |
+| [内容评分](by-pattern/content-scoring.zh-CN.md) | 86 | 60 | 27 | 5 | 2 | 2 | 10 |
 | [实时推荐](by-pattern/recommendation.zh-CN.md) | 2 | 1 | 0 | 0 | 0 | 0 | 0 |
-| [总览](by-pattern/overview.zh-CN.md) | 214 | 115 | 45 | 26 | 34 | 9 | 59 |
+| [总览](by-pattern/overview.zh-CN.md) | 216 | 115 | 45 | 26 | 35 | 9 | 59 |
 
 ## 一起归档的模式
 
-有 405 行归入了不止一个模式。最常出现在同一行上的 10 对模式：
+有 412 行归入了不止一个模式。最常出现在同一行上的 10 对模式：
 
 | 模式 | 行数 |
 | --- | --- |
-| [分类](by-pattern/classification.zh-CN.md) + [内容评分](by-pattern/content-scoring.zh-CN.md) | 40 |
+| [分类](by-pattern/classification.zh-CN.md) + [内容评分](by-pattern/content-scoring.zh-CN.md) | 41 |
 | [安全闸门](by-pattern/safety-gating.zh-CN.md) + [输出校验](by-pattern/output-validation.zh-CN.md) | 39 |
-| [工具选择](by-pattern/tool-selection.zh-CN.md) + [安全闸门](by-pattern/safety-gating.zh-CN.md) | 34 |
+| [工具选择](by-pattern/tool-selection.zh-CN.md) + [安全闸门](by-pattern/safety-gating.zh-CN.md) | 35 |
 | [安全闸门](by-pattern/safety-gating.zh-CN.md) + [分类](by-pattern/classification.zh-CN.md) | 31 |
 | [人工升级](by-pattern/human-escalation.zh-CN.md) + [内容评分](by-pattern/content-scoring.zh-CN.md) | 27 |
 | [工具选择](by-pattern/tool-selection.zh-CN.md) + [输出校验](by-pattern/output-validation.zh-CN.md) | 26 |
 | [安全闸门](by-pattern/safety-gating.zh-CN.md) + [内容评分](by-pattern/content-scoring.zh-CN.md) | 24 |
 | [输出校验](by-pattern/output-validation.zh-CN.md) + [内容评分](by-pattern/content-scoring.zh-CN.md) | 23 |
 | [安全闸门](by-pattern/safety-gating.zh-CN.md) + [人工升级](by-pattern/human-escalation.zh-CN.md) | 21 |
-| [工具选择](by-pattern/tool-selection.zh-CN.md) + [内容评分](by-pattern/content-scoring.zh-CN.md) | 18 |
+| [工具选择](by-pattern/tool-selection.zh-CN.md) + [内容评分](by-pattern/content-scoring.zh-CN.md) | 19 |
 
 ## 作者
 
-有 1362 行写明了作者，共 1246 位不同的作者（按显示名比较，不区分大小写）。其中 1157 位在本目录只有一行，71 位有两行，18 位有三行或更多；单个作者最多有 6 行。本页不列出任何作者的名字：它显示的是目录的集中程度，而不是谁在贡献。
+有 1378 行写明了作者，共 1259 位不同的作者（按显示名比较，不区分大小写）。其中 1167 位在本目录只有一行，74 位有两行，18 位有三行或更多；单个作者最多有 6 行。本页不列出任何作者的名字：它显示的是目录的集中程度，而不是谁在贡献。
 
 ## 随时间的变化
 

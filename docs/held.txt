@@ -12,3 +12,5 @@
 # or changed, a line in declined.txt, or nothing to do, and deletes its line in
 # the same pull request. Nobody else is waited for. A line whose candidate is
 # catalogued or declined is shown as settled until the upkeep deletes it.
+alexei-led/pi-model-router  # routes with whichever classifier Pi's registry.classify is given, so its router code holds no Jev call; Jev appears only in model-router.example.json and docs/examples/classifier-catalog.ts, and whether an example config is a call site is a rule question (2026-11-13)
+stefanwebb/meta-awesome-jev  # a meta list merging 106 awesome-jev lists into one README and catalog; its scripts render those and call no model, so it is a sibling list or a directory row, not a row the daily run drafts (2026-11-13)
