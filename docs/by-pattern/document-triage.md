@@ -4,11 +4,11 @@
 
 _Classify and route incoming documents, invoices and forms._
 
-Every catalogued example of this decision — 22 of them. The same rows, with caveats, are in [the index](../../README.md#document-triage); [the site](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 23 of them. The same rows, with caveats, are in [the index](../../README.md#document-triage); [the site](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#document-triage): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 21 · wire shape 0 · example only 0 · independent reports 2 · negative results 0 · no file cited 1. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 22 · wire shape 0 · example only 0 · independent reports 2 · negative results 0 · no file cited 1. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -88,6 +88,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[tiab-review-plugin](https://github.com/youkiti/tiab-review-plugin)** — A Chrome extension that speeds up title-and-abstract screening for systematic reviews, published on the Chrome Web Store.
   <sub>`Plugin` · youkiti · `TS` · call site [`src/lib/providers/typesafe.ts`](https://github.com/youkiti/tiab-review-plugin/blob/HEAD/src/lib/providers/typesafe.ts), read 2026-09-24</sub>
+
+- **[TradingAgents](https://github.com/tauricresearch/tradingagents)** — Multi-agent LLM trading framework. With a TypeSafe key set, its Sentiment Analyst screens each StockTwits or Reddit post with Jev: a noul on whether it is about the instrument, dropped below 0.3, and a choice of the author's stance, bullish, bearish or neutral, counted at confidence 0.5 or more. <sub>(written by a model)</sub>
+  <sub>`Project` · tauricresearch · `Py` · `noul` · `choice` · call site [`tradingagents/agents/post_screen.py`](https://github.com/tauricresearch/tradingagents/blob/HEAD/tradingagents/agents/post_screen.py), read by a model 2026-11-12</sub>
 
 - **[jevai.org community showcase cases](https://www.jevai.org/cases)** — Nine worked community scenarios: intent routing, invoice classification, news filtering, product tagging, moderation, claim verification, CSV validation and more.
   <sub>`Project` · ⚠ `unverified claims`</sub>

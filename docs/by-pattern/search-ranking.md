@@ -4,11 +4,11 @@
 
 _Score or re-rank candidates from a cheaper retrieval step._
 
-Every catalogued example of this decision — 93 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 95 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#search-ranking): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 89 · wire shape 0 · example only 0 · independent reports 8 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 91 · wire shape 0 · example only 0 · independent reports 8 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -108,6 +108,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevgrep](https://github.com/nassim-arifette/jevgrep)** — Code search for agents that lack the symbol name: it splits the authorized repository into fragments, asks a Jev noul per fragment whether it answers your question, and returns the exact excerpts with paths and line numbers, via CLI or local MCP. Remote calls stay off until enabled per project. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · nassim-arifette · `TS` · call site [`experiments/jev-contract/probe.mjs`](https://github.com/nassim-arifette/jevgrep/blob/HEAD/experiments/jev-contract/probe.mjs), read 2026-09-24</sub>
 
+- **[jevmem](https://github.com/Avinash-jetwani/jevmem)** — Project memory for Claude Code, Cursor and Codex: a Jev noul asks if a decision is worth keeping, kept ones go to JEVMEM.md and return when relevant, and edits and commands are checked against them. Author's runs: Claude followed them in 66 of 72 sessions, 28 without, 67 with a hand-kept CLAUDE.md. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★100+ · avinash-jetwani · `TS` · call site [`src/jev.ts`](https://github.com/Avinash-jetwani/jevmem/blob/HEAD/src/jev.ts), read 2026-09-24</sub>
+
 - **[jgrep](https://github.com/keltokhy/jgrep)** — grep where the pattern is a description: each line becomes one Jev noul, matched at probability 0.5 by default, judged concurrently and printed in input order, so it works on tail -f. On 994 Hacker News titles the author measured 4.6 seconds and $0.012 for one description. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · keltokhy · `Py` · call site [`bench/code_review.py`](https://github.com/keltokhy/jgrep/blob/HEAD/bench/code_review.py), read 2026-09-22</sub>
 
@@ -137,6 +140,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[warrenduffer](https://github.com/arimanyus/warrenduffer)** — Intraday trading bot for Indian stocks placing real orders, with no paper mode: Jev ranks Nifty 50 names in two stages and decides take-profit and exits; code sizes each trade, sets the stop and halts at the daily loss cap, via Zerodha Kite or Kotak Neo. A replay runs the same loop on a past day. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · arimanyus · `TS` · call site [`src/model/jev.ts`](https://github.com/arimanyus/warrenduffer/blob/HEAD/src/model/jev.ts), read 2026-09-24</sub>
+
+- **[webctl](https://github.com/dorkitude/webctl)** — Web search CLI for agents: it queries 3 search backends, has Jev score each result against the query and goal (on topic, from a good source), keeps the best and dedupes them with MinHash and Jev. With --filter-chunks it scrapes the top pages and keeps only the chunks Jev judges relevant. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · dorkitude · `Go` · call site [`internal/jev/client.go`](https://github.com/dorkitude/webctl/blob/HEAD/internal/jev/client.go), read 2026-09-22</sub>
 
 - **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — Chat-reply assistant (desktop overlay, Android floating assistant, iOS keyboard) built on Jev Android. From the visible chat or a screenshot it asks Jev the literal question, the other person's intent, a danger level, whether to reply now and the best action, then has Jev pick among drafted replies. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · call site [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt), read by a model 2026-10-26 · ⚠ `3rd-party key`</sub>

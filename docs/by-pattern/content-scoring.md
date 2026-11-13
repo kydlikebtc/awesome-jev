@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 190 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 189 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 181 · wire shape 5 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 180 · wire shape 5 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -55,6 +55,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[beebots](https://github.com/imikerussell/beebots)** — Three trading bots race on OKX perpetual futures, paper trading by default: Jev (or Gemini) picks each move as a choice from the legal actions plus a score for conviction, with a deterministic fallback, a plain-code risk layer and a live dashboard. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · imikerussell · `TS` · `choice` · `score` · call site [`src/jev.ts`](https://github.com/imikerussell/beebots/blob/HEAD/src/jev.ts), read by a model 2026-10-24</sub>
+
+- **[crush-monitor](https://github.com/FerryCorleone/crush-monitor)** — Local web tool that analyses a pasted WeChat chat with a crush. For each message Jev weighs 12 emotions and 35 intents, showing the top three of each, and it scores the affection signals and your own replies, graded SSS to D. Text LLMs can stand in for Jev. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · ferrycorleone · `TS` · call site [`server/provider-config.ts`](https://github.com/FerryCorleone/crush-monitor/blob/HEAD/server/provider-config.ts), read 2026-09-24</sub>
+
+- **[dasheng](https://github.com/wquguru/dasheng)** — Read-aloud trainer for English: a streaming ASR model transcribes, alignment picks the words that differ, and Jev judges only those, a noul on whether it is the same word, a choice of error type, and a 1–5 score of whether the sentence kept its meaning. Pronunciation is not scored. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · wquguru · `JS` · call site [`lib/jev.js`](https://github.com/wquguru/dasheng/blob/HEAD/lib/jev.js), read 2026-09-22 · ⚠ `no licence`</sub>
 
 - **[jev-as-a-judge](https://github.com/danielgshea/jev-as-a-judge)** — Tests Jev as an agent-eval judge against GPT-5.6 Luna, GPT-5.6 Terra and Claude Sonnet 4.6: five frozen runs of a weather agent, each judged 100 times for a quality score and a pass-or-fail call. Jev matched the human label on all 500 calls, against 99.8%, 96.4% and 80.0%; one reviewer, five runs. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · danielgshea · `Py` · call site [`src/evals/judges/__init__.py`](https://github.com/danielgshea/jev-as-a-judge/blob/HEAD/src/evals/judges/__init__.py), read 2026-09-22 · ⚠ `no licence`</sub>
@@ -335,9 +341,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[gpt-vs-jev](https://github.com/TanayPadar/gpt-vs-jev)** — Compare GPT generated language with JEV structured Noul decisions on the same input. <sub>(upstream description)</sub>
   <sub>`Project` · tanaypadar · `TS` · call site [`lib/jev.ts`](https://github.com/TanayPadar/gpt-vs-jev/blob/HEAD/lib/jev.ts), read 2026-09-22 · ⚠ `one commit`</sub>
 
-- **[harnessjudge](https://github.com/ndolinschi/harnessjudge)** — Web app for agent builders: paste the trace of one agent step and Jev judges it as ok, retry, escalate or stop. Without a TYPESAFE_API_KEY, local heuristics return answers of the same shape, labelled as demo mode. <sub>(written by a model)</sub>
-  <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/harnessjudge/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
-
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — Observable browser stealth game: Jev makes typed guard judgments while deterministic code owns the world. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts), read 2026-09-22</sub>
 
@@ -455,9 +458,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevbus](https://github.com/zkjoie/jevbus)** — A streaming event bus whose routing, subscription and consumption are decided by a probabilistic judge. The reference judge is TypeSafe AI's Jev (System One) model: send it a payload and a set of typed questions, get back calibrated probabilities instead of prose. <sub>(upstream description)</sub>
   <sub>`Project` · zkjoie · `Rs` · call site [`src/jev/http.rs`](https://github.com/zkjoie/jevbus/blob/HEAD/src/jev/http.rs), read 2026-09-22</sub>
 
-- **[jevchess](https://github.com/choxos/jevchess)** — Jev, TypeSafe's System One model, plays chess against any OpenRouter LLM, Stockfish and you. One-page web app with live moves, Jev's move probabilities, saved games and win rates. <sub>(upstream description)</sub>
-  <sub>`Project` · choxos · `JS` · call site [`docs/chess-ai.js`](https://github.com/choxos/jevchess/blob/HEAD/docs/chess-ai.js), read 2026-09-22</sub>
-
 - **[jevcut](https://github.com/VBS2004/jevcut)** — Turns a long video into ranked short clips: code lists every place a clip could start or end, and Jev only judges the clip each candidate edge would make, with nouls on whether it starts or ends mid-thought, stands alone or is an ad, choices among candidates and scores for how it holds attention. <sub>(written by a model)</sub>
   <sub>`Project` · VBS2004 · `Py` · `noul` · `choice` · `score` · call site [`src/jevcut/backends.py`](https://github.com/VBS2004/jevcut/blob/HEAD/src/jevcut/backends.py), read by a model 2026-11-09</sub>
 
@@ -466,9 +466,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevmoji](https://github.com/cheeaun/jevmoji)** — Type anything. Get related emojis scored 0–3 with Jev. <sub>(upstream description)</sub>
   <sub>`Project` · cheeaun · `JS` · call site [`js/jev-chunked.js`](https://github.com/cheeaun/jevmoji/blob/HEAD/js/jev-chunked.js), read 2026-09-24</sub>
-
-- **[jevplay](https://github.com/ndolinschi/jevplay)** — TypeSafe Jev playground — custom Choice/Score/Noul builder with live distributions <sub>(upstream description)</sub>
-  <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/jevplay/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
 
 - **[JevPromptCoach](https://github.com/CrowdLinker/JevPromptCoach)** — Claude Code plugin that scores how well you prompt a coding agent, and shows whether your habits are improving. Runs on TypeSafe's Jev model. Zero added latency. <sub>(upstream description)</sub>
   <sub>`Plugin` · crowdlinker · `TS` · call site [`src/jev.ts`](https://github.com/CrowdLinker/JevPromptCoach/blob/HEAD/src/jev.ts), read 2026-09-24</sub>
@@ -505,6 +502,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[n8n-nodes-typesafe-ai](https://github.com/DomMonte/n8n-nodes-typesafe-ai)** — n8n community node for the TypeSafe AI System One API — typed yes/no, choice and score questions with calibrated probabilities <sub>(upstream description)</sub>
   <sub>`Project` · dommonte · `TS` · call site [`nodes/TypeSafeAi/constants.ts`](https://github.com/DomMonte/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/constants.ts), read 2026-09-22</sub>
+
+- **[Netizen](https://github.com/seheta/netizen)** — Simulates how Indonesian netizens react to a post before it goes live. In one request Jev answers, per persona such as ojol drivers or buzzers, whether they stop scrolling, what they do, where they stand and what their comment does, plus whether the post is sensitive and how far it spreads. <sub>(written by a model)</sub>
+  <sub>`Project` · seheta · `Py` · `noul` · `choice` · `score` · call site [`spike/spike.py`](https://github.com/seheta/netizen/blob/HEAD/spike/spike.py), read by a model 2026-11-12</sub>
 
 - **[omp-jevens-classifier](https://github.com/STRML/omp-jevens-classifier)** — Jev-powered model-judged permission gate for OMP (TypeSafe System One) <sub>(upstream description)</sub>
   <sub>`Project` · strml · `TS` · call site [`jev.ts`](https://github.com/STRML/omp-jevens-classifier/blob/HEAD/jev.ts), read 2026-09-22 · ⚠ `archived`</sub>
@@ -544,9 +544,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[sloppy-jevs-extension](https://github.com/neddes/sloppy-jevs-extension)** — Open-source Chrome extension that filters AI-generated prose and ads with Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · neddes · `JS` · call site [`background.js`](https://github.com/neddes/sloppy-jevs-extension/blob/HEAD/background.js), read 2026-09-22</sub>
-
-- **[spendbrake](https://github.com/ndolinschi/spendbrake)** — Agent budget brake — continue / downgrade_model / stop via TypeSafe Jev <sub>(upstream description)</sub>
-  <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/spendbrake/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
 
 - **[system-one-gemma](https://github.com/akash-kamat/system-one-gemma)** — Open-source Jev-style System One decision model. Gemma 3 270M with a scoring head — fast, calibrated decisions in a single forward pass. No text generation. Inspired by TypeSafe.ai's Jev. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · akash-kamat · `Py` · cited file [`system_one.py`](https://github.com/akash-kamat/system-one-gemma/blob/HEAD/system_one.py), read 2026-09-22 · ⚠ `not Jev itself` `no licence`</sub>

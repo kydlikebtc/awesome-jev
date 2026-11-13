@@ -248,6 +248,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[agi-jev-containment](https://github.com/carlosedm10/agi-jev-containment)** — AGI JEV Detection — local AI agent monitor: chain-level malicious-agent detection (TypeSafe Jev + Sentinel), escalate-only L1–L5 containment, Neo4j forensics, AngryRobot dashboard. HackSpain 2026. <sub>(upstream description)</sub>
   <sub>`Project` · carlosedm10 · `Py` · call site [`backend/app/classification/jev.py`](https://github.com/carlosedm10/agi-jev-containment/blob/HEAD/backend/app/classification/jev.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[AI 海龟汤 (AI Turtle Soup)](https://github.com/zerotang05/situation-puzzle)** — Lateral-thinking puzzle game hosted by Jev: each player question gets a choice of Yes, No or Irrelevant, a written solution is ruled Solved, Close or Not yet, and submitted puzzles are reviewed before the public library. A verdict below the confidence threshold goes to a MiniMax model. <sub>(written by a model)</sub>
+  <sub>`Project` · zerotang05 · `TS` · `choice` · call site [`packages/jev/src/config.ts`](https://github.com/zerotang05/situation-puzzle/blob/HEAD/packages/jev/src/config.ts), read by a model 2026-11-12</sub>
+
 - **[AskJev](https://github.com/ranjan2829/AskJev)** — AskJev — Jev autopilot for any website + guard on irreversible clicks (TypeSafe System One, not Claude) <sub>(upstream description)</sub>
   <sub>`Project` · ranjan2829 · `TS` · call site [`mcp/src/jev-client.ts`](https://github.com/ranjan2829/AskJev/blob/HEAD/mcp/src/jev-client.ts), read 2026-09-24</sub>
 
@@ -518,11 +521,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[switchboard](https://github.com/aniruddh-krovvidi/switchboard)** — Guardrail + model router for LLM gateways on TypeSafe's Jev (System One model), with an independent accuracy/calibration/latency evaluation. Stdlib Python. <sub>(upstream description)</sub>
   <sub>`Project` · aniruddh-krovvidi · `Py` · call site [`jev.py`](https://github.com/aniruddh-krovvidi/switchboard/blob/HEAD/jev.py), read 2026-09-24 · ⚠ `no licence`</sub>
 
-- **[toolgate](https://github.com/ndolinschi/toolgate)** — Agent tool/MCP call gate — allow / ask_human / deny via TypeSafe Jev <sub>(upstream description)</sub>
-  <sub>`Plugin` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/toolgate/blob/HEAD/src/lib/jev.ts), read 2026-09-24 · ⚠ `one commit` `no licence`</sub>
-
-- **[trustgate](https://github.com/ndolinschi/trustgate)** — TrustGate — indie media T&S gate via TypeSafe Jev <sub>(upstream description)</sub>
-  <sub>`Project` · ndolinschi · `TS` · call site [`src/lib/jev.ts`](https://github.com/ndolinschi/trustgate/blob/HEAD/src/lib/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
+- **[TRA](https://github.com/bijectivelabs/bitra)** — Crypto trading desk with deterministic execution. Before a rule's new entry its event guard asks Jev about recent headlines: the event's kind as a choice in two orders, nouls on whether it concerns the asset and the market, and a noul screening machine-addressed instructions. <sub>(written by a model)</sub>
+  <sub>`Project` · bijectivelabs · `Py` · `choice` · `noul` · call site [`src/trading_research_agents/llm/providers/typesafe.py`](https://github.com/bijectivelabs/bitra/blob/HEAD/src/trading_research_agents/llm/providers/typesafe.py), read by a model 2026-11-12</sub>
 
 - **[typesafe-migration-guard](https://github.com/opaielsheikh/typesafe-migration-guard)** — Automated database migration safety reviewer powered by TypeSafe AI (Jev System One model) <sub>(upstream description)</sub>
   <sub>`Project` · opaielsheikh · `TS` · call site [`lib/typesafe.ts`](https://github.com/opaielsheikh/typesafe-migration-guard/blob/HEAD/lib/typesafe.ts), read 2026-09-22 · ⚠ `no licence`</sub>

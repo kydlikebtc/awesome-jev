@@ -1,5 +1,71 @@
 [
   {
+    "slug": "cartshield",
+    "title": "cartshield",
+    "summary": "CartShield — SMB checkout fraud disposition via TypeSafe Jev",
+    "summary_source": "upstream-description",
+    "summary_zh": "CartShield：中小商户结账反欺诈判定。",
+    "zh_machine": true,
+    "url": "https://github.com/ndolinschi/cartshield",
+    "kind": "project",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ndolinschi",
+      "url": "https://github.com/ndolinschi"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "unknown",
+    "repo_created_at": "2026-09-17T07:45:00Z",
+    "repo_pushed_at": "2026-09-17T07:45:04Z",
+    "repo_commits": 1,
+    "evidence": {
+      "path": "src/lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "JohnDotOwl/awesome-jev",
+        "url": "https://github.com/JohnDotOwl/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "no-license",
+      "single-commit"
+    ],
+    "checked": "2026-11-11",
+    "link_status": 404,
+    "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
     "slug": "datajev",
     "title": "datajev",
     "summary": "⚡ DataJev LLM → Analyze Jev → Continue / Switch / Verify / Stop System-1 control for System-2 data agents",
@@ -118,6 +184,132 @@
     "checked": "2026-11-04",
     "notes": "Retired 2026-11-05: the TypeSafe service the row cited is gone, and no file on the default branch (develop) calls Jev or names TypeSafe any more (searched 2026-11-05); its claim had failed in every weekly check since 2026-10-06. Kept here so the reference stays searchable.",
     "notes_zh": "2026-11-05 退役：本条目所引的 TypeSafe 服务已删除，默认分支（develop）上已没有任何文件调用 Jev 或提到 TypeSafe（2026-11-05 搜索）；自 2026-10-06 起每周检查都未通过。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "harnessjudge",
+    "title": "harnessjudge",
+    "summary": "Web app for agent builders: paste the trace of one agent step and Jev judges it as ok, retry, escalate or stop. Without a TYPESAFE_API_KEY, local heuristics return answers of the same shape, labelled as demo mode.",
+    "summary_source": "model-written",
+    "summary_zh": "面向智能体开发者的网页应用：粘贴某一步的执行轨迹，由 Jev 判定为通过、重试、升级或停止。没有 TYPESAFE_API_KEY 时，本地启发式规则返回同样结构的答案，并标为演示模式。",
+    "zh_machine": true,
+    "url": "https://github.com/ndolinschi/harnessjudge",
+    "kind": "project",
+    "patterns": [
+      "retry-control",
+      "tool-selection",
+      "content-scoring"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ndolinschi",
+      "url": "https://github.com/ndolinschi"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "unknown",
+    "repo_created_at": "2026-09-17T09:21:42Z",
+    "repo_pushed_at": "2026-09-17T09:22:10Z",
+    "repo_commits": 1,
+    "evidence": {
+      "path": "src/lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "no-license",
+      "single-commit"
+    ],
+    "checked": "2026-11-11",
+    "link_status": 404,
+    "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "hiresignal",
+    "title": "hiresignal",
+    "summary": "HireSignal — resume first-pass fit+interview via TypeSafe Jev",
+    "summary_source": "upstream-description",
+    "summary_zh": "HireSignal：简历初筛与面试匹配。",
+    "zh_machine": true,
+    "url": "https://github.com/ndolinschi/hiresignal",
+    "kind": "project",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ndolinschi",
+      "url": "https://github.com/ndolinschi"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "unknown",
+    "repo_created_at": "2026-09-17T07:45:00Z",
+    "repo_pushed_at": "2026-09-17T07:45:05Z",
+    "repo_commits": 1,
+    "evidence": {
+      "path": "src/lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "no-license",
+      "single-commit"
+    ],
+    "checked": "2026-11-11",
+    "link_status": 404,
+    "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
   },
   {
     "slug": "jev-atlas",
@@ -1039,6 +1231,138 @@
     "notes_zh": "2026-10-24 退役：自 2026-10-13 起每周刷新都无法访问该仓库（最近一次为 2026-10-21）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
   },
   {
+    "slug": "jevchess",
+    "title": "jevchess",
+    "summary": "Jev, TypeSafe's System One model, plays chess against any OpenRouter LLM, Stockfish and you. One-page web app with live moves, Jev's move probabilities, saved games and win rates.",
+    "summary_source": "upstream-description",
+    "summary_zh": "让 Jev 与任意 OpenRouter 模型、Stockfish 或你本人下国际象棋，单页网页应用。",
+    "zh_machine": true,
+    "url": "https://github.com/choxos/jevchess",
+    "kind": "project",
+    "patterns": [
+      "content-scoring"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "choxos",
+      "url": "https://github.com/choxos"
+    },
+    "has_code": true,
+    "stars": 6,
+    "repo_license": "MIT",
+    "repo_created_at": "2026-09-19T17:39:40Z",
+    "repo_pushed_at": "2026-09-20T04:42:59Z",
+    "repo_commits": 15,
+    "evidence": {
+      "path": "docs/chess-ai.js",
+      "matched": [
+        "typesafe/jev",
+        "jev-1.13",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "AppitStudio/awesome-jev",
+        "url": "https://github.com/AppitStudio/awesome-jev"
+      },
+      {
+        "catalog": "Gerry9000/awesome-jev",
+        "url": "https://github.com/Gerry9000/awesome-jev"
+      },
+      {
+        "catalog": "logicrw/awesome-jev-projects",
+        "url": "https://github.com/logicrw/awesome-jev-projects"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "javascript"
+    ],
+    "checked": "2026-11-11",
+    "link_status": 404,
+    "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "jevplay",
+    "title": "jevplay",
+    "summary": "TypeSafe Jev playground — custom Choice/Score/Noul builder with live distributions",
+    "summary_source": "upstream-description",
+    "summary_zh": "Jev playground：自定义 Choice／Score／Noul 构造器，带实时概率分布。",
+    "zh_machine": true,
+    "url": "https://github.com/ndolinschi/jevplay",
+    "kind": "project",
+    "patterns": [
+      "content-scoring"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ndolinschi",
+      "url": "https://github.com/ndolinschi"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "unknown",
+    "repo_created_at": "2026-09-17T09:21:55Z",
+    "repo_pushed_at": "2026-09-17T09:22:16Z",
+    "repo_commits": 1,
+    "evidence": {
+      "path": "src/lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "JohnDotOwl/awesome-jev",
+        "url": "https://github.com/JohnDotOwl/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "no-license",
+      "single-commit"
+    ],
+    "checked": "2026-11-11",
+    "link_status": 404,
+    "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
     "slug": "jevrev",
     "title": "JevRev",
     "summary": "The decision layer beside an LLM: Jev filters plans, checks progress and keeps attention on work worth continuing, while the LLM supplies breadth and implementation.",
@@ -1105,6 +1429,324 @@
     "notes_zh": "2026-10-24 退役：自 2026-10-13 起每周刷新都无法访问该仓库（最近一次为 2026-10-21）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
   },
   {
+    "slug": "lanebreak",
+    "title": "lanebreak",
+    "summary": "LaneBreak — support ticket priority+routing via TypeSafe Jev",
+    "summary_source": "upstream-description",
+    "summary_zh": "LaneBreak：工单优先级与路由。",
+    "zh_machine": true,
+    "url": "https://github.com/ndolinschi/lanebreak",
+    "kind": "project",
+    "patterns": [
+      "intent-routing"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ndolinschi",
+      "url": "https://github.com/ndolinschi"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "unknown",
+    "repo_created_at": "2026-09-17T07:45:00Z",
+    "repo_pushed_at": "2026-09-17T07:45:04Z",
+    "repo_commits": 1,
+    "evidence": {
+      "path": "src/lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "JohnDotOwl/awesome-jev",
+        "url": "https://github.com/JohnDotOwl/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      },
+      {
+        "catalog": "seeapi/awesome-jev-use-cases",
+        "url": "https://github.com/seeapi/awesome-jev-use-cases"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "no-license",
+      "single-commit"
+    ],
+    "checked": "2026-11-11",
+    "link_status": 404,
+    "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "lichen",
+    "title": "Lichen",
+    "summary": "Drop-in, API-compatible replacement for Jev that runs open-weight models locally behind the same /v1/systemone endpoint, images allowed in the state. The author reports 204 to 207 of 231 public JevBench decisions with gemma-4-26B-A4B on a 24 GB laptop GPU, against 200 for Jev 1.13.",
+    "summary_source": "model-written",
+    "summary_zh": "可直接替换 Jev 的 API 兼容实现，在本地用开放权重模型提供同样的 /v1/systemone 接口，state 中还可包含图片。作者报告在 24 GB 笔记本 GPU 上用 gemma-4-26B-A4B 答对 231 个公开 JevBench 决策中的 204 至 207 个，Jev 1.13 为 200 个。",
+    "url": "https://github.com/Mushroom-Systems/lichen",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "Mushroom-Systems",
+      "url": "https://github.com/Mushroom-Systems"
+    },
+    "repo_license": "MIT",
+    "repo_created_at": "2026-09-23T20:56:00Z",
+    "repo_pushed_at": "2026-09-30T18:18:17Z",
+    "repo_commits": 26,
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev",
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "bench/ask_jev.py",
+      "matched": [
+        "URL = os.environ.get(\"SYSTEMONE_URL\", \"https://api.typesafe.ai/v1/systemone\")",
+        "body = json.dumps({\"state\": case[\"state\"], \"model\": \"jev-latest\","
+      ],
+      "kind": "wire-shape",
+      "model_read_on": "2026-10-26"
+    },
+    "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "AppitStudio/awesome-jev",
+        "url": "https://github.com/AppitStudio/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-10-26",
+    "zh_machine": true,
+    "has_code": true,
+    "official": false,
+    "checked": "2026-11-11",
+    "link_status": 404,
+    "stars": 59
+  },
+  {
+    "slug": "mcpmatch",
+    "title": "mcpmatch",
+    "summary": "Match user goals to MCP catalog (two-stage) via TypeSafe Jev",
+    "summary_source": "upstream-description",
+    "summary_zh": "用两段式流程把用户目标匹配到 MCP 目录。",
+    "zh_machine": true,
+    "url": "https://github.com/ndolinschi/mcpmatch",
+    "kind": "plugin",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ndolinschi",
+      "url": "https://github.com/ndolinschi"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "unknown",
+    "repo_created_at": "2026-09-17T09:21:51Z",
+    "repo_pushed_at": "2026-09-17T09:22:14Z",
+    "repo_commits": 1,
+    "evidence": {
+      "path": "src/lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "no-license",
+      "single-commit"
+    ],
+    "checked": "2026-11-11",
+    "link_status": 404,
+    "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "omg-dev",
+    "title": "omg.dev",
+    "summary": "Phone remote for Claude Code, Codex and other coding agents running on your computer or a hosted one. Its mobile end-to-end tests use Jev as the decision layer: given the screen's accessibility tree, nouls ask whether a step is done or a dead end and a choice picks the element to tap next.",
+    "summary_source": "model-written",
+    "summary_zh": "用手机遥控在你电脑或托管云机上运行的 Claude Code、Codex 等编程智能体。它的移动端端到端测试把 Jev 当作决策层：给定屏幕的无障碍树，用 noul 判断某一步是否完成、是否走进死胡同，再用 choice 选出下一步要点的元素。",
+    "zh_machine": true,
+    "url": "https://github.com/BennyKok/omg.dev",
+    "kind": "plugin",
+    "patterns": [
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "bennykok",
+      "url": "https://github.com/bennykok"
+    },
+    "has_code": true,
+    "stars": 556,
+    "repo_license": "MIT",
+    "repo_created_at": "2026-06-17T07:33:04Z",
+    "repo_pushed_at": "2026-11-11T08:28:16Z",
+    "repo_commits": 3465,
+    "evidence": {
+      "path": "mobile/scripts/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "BeatAPI/awesome-jev",
+        "url": "https://github.com/BeatAPI/awesome-jev"
+      },
+      {
+        "catalog": "logicrw/awesome-jev-projects",
+        "url": "https://github.com/logicrw/awesome-jev-projects"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "checked": "2026-11-11",
+    "notes": "Retired 2026-11-12: the Jev decision layer of its mobile end-to-end tests went with the mobile/ folder, and no code file on its default branch names Jev, TypeSafe or /v1/systemone any more (searched 2026-11-12). Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：其移动端端到端测试中的 Jev 决策层已随 mobile/ 文件夹一并删除，默认分支上也已没有任何代码文件提到 Jev、TypeSafe 或 /v1/systemone（2026-11-12 搜索）。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "pulselane",
+    "title": "pulselane",
+    "summary": "PulseLane — clinic triage decisions via TypeSafe Jev",
+    "summary_source": "upstream-description",
+    "summary_zh": "PulseLane：诊所分诊决策。",
+    "zh_machine": true,
+    "url": "https://github.com/ndolinschi/pulselane",
+    "kind": "project",
+    "patterns": [
+      "classification"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ndolinschi",
+      "url": "https://github.com/ndolinschi"
+    },
+    "has_code": true,
+    "stars": 1,
+    "repo_license": "unknown",
+    "repo_created_at": "2026-09-17T07:45:01Z",
+    "repo_pushed_at": "2026-09-17T07:45:04Z",
+    "repo_commits": 1,
+    "evidence": {
+      "path": "src/lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "JohnDotOwl/awesome-jev",
+        "url": "https://github.com/JohnDotOwl/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "no-license",
+      "single-commit"
+    ],
+    "checked": "2026-11-11",
+    "link_status": 404,
+    "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
     "slug": "rh-guard",
     "title": "rh-guard",
     "summary": "Reward-hack radar for coding agents: structural denies + TypeSafe Jev System One sidecar for Claude Code & Cursor hooks",
@@ -1157,6 +1799,265 @@
     "link_status": 404,
     "notes": "Retired 2026-10-24: the repository has not resolved in any weekly refresh since 2026-10-13 (last on 2026-10-21) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
     "notes_zh": "2026-10-24 退役：自 2026-10-13 起每周刷新都无法访问该仓库（最近一次为 2026-10-21）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "spendbrake",
+    "title": "spendbrake",
+    "summary": "Agent budget brake — continue / downgrade_model / stop via TypeSafe Jev",
+    "summary_source": "upstream-description",
+    "summary_zh": "智能体预算刹车：继续／降级模型／停止。",
+    "zh_machine": true,
+    "url": "https://github.com/ndolinschi/spendbrake",
+    "kind": "project",
+    "patterns": [
+      "content-scoring"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ndolinschi",
+      "url": "https://github.com/ndolinschi"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "unknown",
+    "repo_created_at": "2026-09-17T09:21:47Z",
+    "repo_pushed_at": "2026-09-17T09:22:12Z",
+    "repo_commits": 1,
+    "evidence": {
+      "path": "src/lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "no-license",
+      "single-commit"
+    ],
+    "checked": "2026-11-11",
+    "link_status": 404,
+    "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "swarmrouter",
+    "title": "swarmrouter",
+    "summary": "Route tasks to research/code/browser/support/writer agents via TypeSafe Jev",
+    "summary_source": "upstream-description",
+    "summary_zh": "用 Jev 把任务路由给研究／编码／浏览／客服／写作智能体。",
+    "zh_machine": true,
+    "url": "https://github.com/ndolinschi/swarmrouter",
+    "kind": "project",
+    "patterns": [
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ndolinschi",
+      "url": "https://github.com/ndolinschi"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "unknown",
+    "repo_created_at": "2026-09-17T09:21:37Z",
+    "repo_pushed_at": "2026-09-17T09:22:07Z",
+    "repo_commits": 1,
+    "evidence": {
+      "path": "src/lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      },
+      {
+        "catalog": "seeapi/awesome-jev-use-cases",
+        "url": "https://github.com/seeapi/awesome-jev-use-cases"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "no-license",
+      "single-commit"
+    ],
+    "checked": "2026-11-11",
+    "link_status": 404,
+    "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "toolgate-ndolinschi",
+    "title": "toolgate",
+    "summary": "Agent tool/MCP call gate — allow / ask_human / deny via TypeSafe Jev",
+    "summary_source": "upstream-description",
+    "summary_zh": "智能体工具与 MCP 调用关卡：通过 TypeSafe Jev 决定放行、询问人类或拒绝。",
+    "url": "https://github.com/ndolinschi/toolgate",
+    "kind": "plugin",
+    "patterns": [
+      "safety-gating",
+      "human-escalation"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ndolinschi",
+      "url": "https://github.com/ndolinschi"
+    },
+    "has_code": true,
+    "official": false,
+    "stars": 2,
+    "repo_license": "unknown",
+    "repo_created_at": "2026-09-17T09:21:34Z",
+    "repo_pushed_at": "2026-09-17T09:22:05Z",
+    "repo_commits": 1,
+    "published": "2026-09-17",
+    "first_seen": "2026-09-24",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "JohnDotOwl/awesome-jev",
+        "url": "https://github.com/JohnDotOwl/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "evidence": {
+      "path": "src/lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-24"
+    },
+    "zh_machine": true,
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "no-license",
+      "single-commit"
+    ],
+    "checked": "2026-11-11",
+    "link_status": 404,
+    "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "trustgate",
+    "title": "trustgate",
+    "summary": "TrustGate — indie media T&S gate via TypeSafe Jev",
+    "summary_source": "upstream-description",
+    "summary_zh": "TrustGate：面向独立媒体的信任与安全闸门。",
+    "zh_machine": true,
+    "url": "https://github.com/ndolinschi/trustgate",
+    "kind": "project",
+    "patterns": [
+      "safety-gating"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "ndolinschi",
+      "url": "https://github.com/ndolinschi"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "unknown",
+    "repo_created_at": "2026-09-17T07:45:00Z",
+    "repo_pushed_at": "2026-09-17T07:45:04Z",
+    "repo_commits": 1,
+    "evidence": {
+      "path": "src/lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "flags": [
+      "no-license",
+      "single-commit"
+    ],
+    "checked": "2026-11-11",
+    "link_status": 404,
+    "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
   },
   {
     "slug": "typesafe-oracles",

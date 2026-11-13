@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 163 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 164 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 158 · wire shape 1 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 159 · wire shape 1 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -82,6 +82,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jevlint (codegirl-007)](https://github.com/codegirl-007/jevlint)** — Linter that checks code against plain-language rules: Tree-sitter extracts each code unit and Jev answers one `choice` per rule (pass, fail, optionally skip or abstain); a failure is reported only when its confidence reaches the rule's floor. Other backends: OpenAI, OpenRouter, Cloudflare. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · codegirl-007 · `Go` · `choice` · call site [`internal/evaluation/client.go`](https://github.com/codegirl-007/jevlint/blob/HEAD/internal/evaluation/client.go), read by a model 2026-10-26</sub>
+
+- **[openwhisper](https://github.com/Knuckles92/OpenWhisper)** — Local speech-to-text, dictation, and meetings with Whisper and OpenAI API. Optional Windows x64 engines: Parakeet, Qwen3-ASR, Nemotron Streaming, and Moonshine.
+  <sub>`Project` · ★100+ · knuckles92 · `Py` · call site [`benchmarks/typesafe_experiments.py`](https://github.com/Knuckles92/OpenWhisper/blob/HEAD/benchmarks/typesafe_experiments.py), read 2026-09-22</sub>
 
 - **[perch: semantic code linting](https://github.com/lakeday-org/perch)** — Tree-sitter finds and ranks methods, then user-authored YAML rules compile into nouls, with severity read as the rubric's expected value rather than the top band.
   <sub>`Project` · ★100+ · `JS` · `choice` · `score` · `noul` · call site [`src/cli.js`](https://github.com/lakeday-org/perch/blob/HEAD/src/cli.js), read 2026-09-22</sub>

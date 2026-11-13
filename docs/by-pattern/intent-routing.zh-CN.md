@@ -4,11 +4,11 @@
 
 _判断用户意图，把请求分流到正确的分支。_
 
-这个决策的全部已收录例子 —— 共 61 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 62 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#意图路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#intent-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#intent-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 50 · 接口形态 0 · 仅示例 0 · 独立报告 4 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 51 · 接口形态 0 · 仅示例 0 · 独立报告 4 · 负面结果 0 · 未引用文件 11。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -95,6 +95,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-social](https://github.com/socai-io/jev-social)** — 只读的 Instagram、TikTok 与 LinkedIn 调研：Jev 先路由平台，再从最新浏览器证据中选择受限的 socai CLI 动作；代码校验目标并保留来源链接。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · socai-io · `JS` · `choice` · 调用点 [`src/actions.js`](https://github.com/socai-io/jev-social/blob/HEAD/src/actions.js)，2026-09-23 阅读 · ⚠ `需第三方密钥`</sub>
+
+- **[jev-voice](https://github.com/kevinbadi/jev-voice)** — 用语音控制 Mac：whisper.cpp 在本地转写，再由一个约 250 毫秒的 Jev 请求把命令变成一个动作及其参数，参数从代码列出的候选中选出，例如已安装的应用。多步任务会在辅助功能树上跑智能体循环，上限为 40 个动作、80 次 Jev 调用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · kevinbadi · `Py` · 调用点 [`jev_voice/config.py`](https://github.com/kevinbadi/jev-voice/blob/HEAD/jev_voice/config.py)，2026-09-22 阅读</sub>
 
 - **[jev-voice-browser](https://github.com/moritzkremb/jev-voice-browser)** — 语音驱动的浏览器控制：目标选项每次请求都按当前实时元素列表重建，并且总是包含一个 none 选项。
   <sub>`开源项目` · ★100+ · `JS` · `choice` · `score` · `noul` · 调用点 [`src/jev.js`](https://github.com/moritzkremb/jev-voice-browser/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
@@ -192,14 +195,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-eval](https://github.com/Shogo-nfrealmusic/jev-eval)** — 第三方在相同条件下对比 Jev 与两款 LLM：为面向日本游客的摄影服务路由预订咨询，共六十条四种语言的合成消息。 <sub>(机翻)</sub>
   <sub>`基准测试` · shogo-nfrealmusic · `TS` · 调用点 [`src/jev.ts`](https://github.com/Shogo-nfrealmusic/jev-eval/blob/HEAD/src/jev.ts)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
 
+- **[jev-handson](https://github.com/jkf87/jev-handson)** — 韩语实践课程，讲如何把 Jev 接入 Claude Code、Codex 和 OpenClaw。第 2 讲的消息路由器在一次请求中问：走哪条路线（闲聊、任务、不明确或垃圾信息）、交给哪个执行者（Codex、Claude Code、调度器、GPU 服务器或都不合适），再用一个 noul 问执行前是否必须由人确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`教程` · jkf87 · `JS` · `choice` · `noul` · 调用点 [`02_라우터/code/mini/router.mjs`](https://github.com/jkf87/jev-handson/blob/HEAD/02_%EB%9D%BC%EC%9A%B0%ED%84%B0/code/mini/router.mjs)，2026-11-12 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[jev-inbox-queue](https://github.com/tusharck/jev-inbox-queue)** — 用 Jev（TypeSafe System One）把收件箱变成一个简短的行动队列。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tusharck · `Py` · 调用点 [`inbox_queue/classify.py`](https://github.com/tusharck/jev-inbox-queue/blob/HEAD/inbox_queue/classify.py)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
 
 - **[JevT++](https://github.com/wiatrM/jevtpp)** — 一个 C++20 库，通过编译期模式把运行时的文本、JSON 或对象转换为枚举、布尔值和分数，提供完整概率分布并支持显式弃权。可在进程内运行本地 Laya 模型（ONNX Runtime 或 ggml），也可通过可选的远程后端调用 Jev；附带延迟指标和马里奥游戏演示。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · wiatrm · `C++` · 调用点 [`include/jevt/remote.hpp`](https://github.com/wiatrM/jevtpp/blob/HEAD/include/jevt/remote.hpp)，2026-10-24 模型阅读</sub>
-
-- **[lanebreak](https://github.com/ndolinschi/lanebreak)** — LaneBreak：工单优先级与路由。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ndolinschi · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/ndolinschi/lanebreak/blob/HEAD/src/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
 
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — LangChain 集成：一个分类器，外加用于模型路由、以及在高风险工具调用执行前拦截它的实验性 middleware。
   <sub>`平台集成` · `Py` · `choice` · `score` · `noul` · ⚠ `需早期访问`</sub>

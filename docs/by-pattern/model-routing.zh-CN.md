@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 87 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 90 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 79 · 接口形态 1 · 仅示例 1 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 82 · 接口形态 1 · 仅示例 1 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -53,6 +53,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[hermes-jev-skills](https://github.com/kerpopule/hermes-jev-skills)** — 九个 agent 技能加一个 CLI，覆盖模型路由、记忆过滤、对话轮保留、多选一技能选择和下一步动作决策。
   <sub>`插件` · ★1k+ · `Py` · `choice` · `score` · `noul` · 调用点 [`jevkit/client.py`](https://github.com/kerpopule/hermes-jev-skills/blob/HEAD/jevkit/client.py)，2026-09-22 阅读 · ⚠ `实测后未采用`</sub>
+
+- **[agent-router](https://github.com/nidhi-singh02/agent-router)** — 为任务挑选编程智能体、模型和推理强度并在 Herdr 中启动它的命令行工具：先用固定规则按额度和共享账号 40% 的保留量筛选，再由 Jev 给剩下的排序并选定强度；遇到重要任务而把握不足时，交回给你选。支持 Cursor、Claude Code、Codex 或 OpenCode。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★100+ · nidhi-singh02 · `TS` · 调用点 [`packages/router/src/semantic/typesafe-client.ts`](https://github.com/nidhi-singh02/agent-router/blob/HEAD/packages/router/src/semantic/typesafe-client.ts)，2026-09-22 阅读</sub>
 
 - **[Astra-Ares](https://github.com/miuuyy/Astra-Ares)** — 运行一个打过补丁的 Codex CLI：Jev 读取有限的任务上下文，用两个 choice 选出 GPT-6 下一次回复的推理力度，以及这个力度持续几次回复（1、2、5 或 10）；GPT-6 改变推理力度不会破坏提示缓存。属于实验性的参考实现。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · miuuyy · `JS` · 调用点 [`src/jev.mjs`](https://github.com/miuuyy/Astra-Ares/blob/HEAD/src/jev.mjs)，2026-09-24 阅读</sub>
@@ -170,6 +173,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[stuntd](https://github.com/bladedevoff/stuntd)** — 本地代理：学习应用里带类型的 LLM 决策，并用一个 Laya 头来回答。兼容 Jev 与 OpenAI 接口。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · bladedevoff · `Py` · 调用点 [`stuntd/jev/answer.py`](https://github.com/bladedevoff/stuntd/blob/HEAD/stuntd/jev/answer.py)，2026-09-24 阅读</sub>
+
+- **[AgentScope](https://github.com/agentscope-ai/agentscope)** — 多智能体框架，其分类器模型包括 Jev：JevClassifierModel 通过 TypeSafe 的 Python SDK 把二元、choice 和 score 问题发给 System One；ModelRouter 中间件在每次回复时让分类器做一个 choice，选出由哪个聊天模型作答。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · agentscope-ai · `Py` · `choice` · `noul` · `score` · 调用点 [`src/agentscope/classifier/_jev/_model.py`](https://github.com/agentscope-ai/agentscope/blob/HEAD/src/agentscope/classifier/_jev/_model.py)，2026-11-12 模型阅读</sub>
+
+- **[AI 海龟汤 (AI Turtle Soup)](https://github.com/zerotang05/situation-puzzle)** — 由 Jev 主持的海龟汤推理游戏：玩家的每个提问由 choice 回答“是、否或无关”，写下的还原被判为“还原成功、接近或尚未”，投稿的题目先经审核再进入公开题库。置信度低于阈值的判定交给 MiniMax 模型重判。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · zerotang05 · `TS` · `choice` · 调用点 [`packages/jev/src/config.ts`](https://github.com/zerotang05/situation-puzzle/blob/HEAD/packages/jev/src/config.ts)，2026-11-12 模型阅读</sub>
 
 - **[Building a Harness with Jev](https://www.langchain.com/blog/building-a-harness-with-jev)** — LangChain 的讲解兼集成实操：三种问题类型，加上模型路由、以及在高风险工具调用执行前拦截它。
   <sub>`文章` · Sydney Runkle, Hunter Lovell · `Py` · ⚠ `厂商自报数据`</sub>

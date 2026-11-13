@@ -12,12 +12,5 @@
 # or changed, a line in declined.txt, or nothing to do, and deletes its line in
 # the same pull request. Nobody else is waited for. A line whose candidate is
 # catalogued or declined is shown as settled until the upkeep deletes it.
-47vigen/catherd  # no Jev call site in its code at HEAD (searched 2026-11-07): version 2.0 dropped Jev routing; src/infra/env.ts says TYPESAFE_API_KEY is no longer read, though SECURITY.md still describes it (2026-11-07)
-ronitgupta138/local-jev  # neither calls Jev nor takes its request shape: its own API at /v1/systemone/choice, /score, /noul (a state string, a question and options), so rule 6 (2026-11-07)
-robertn702/opencode-jev-router  # archived; its README says reasoning-router supersedes it and that its OpenCode plugin is now @reasoning-router/opencode, and this run catalogued robertn702/reasoning-router (slug reasoning-router), so rule 2 (2026-11-07)
-jkf87/jev-handson  # calls Jev (02_라우터/code/mini/router.mjs asks two choices and a noul to route a message), but every call site sits under a Korean folder name, and scripts/_github.raw_get does not percent-encode the path, so model_draft.py and verify_claims.py cannot read it (2026-11-08)
-sunyasheng/jevdeepresearch  # no longer maintained: its README says the project continues as JevGPT (sunyasheng/JevGPT), which is catalogued as jevgpt-sunyasheng, so rule 2 (2026-11-09)
-yanng981/awesome-system-one  # a curated list of System One models built from laya-ai.com's comparison; its only script writes the README and calls no model, so it is a sibling list or a directory row, not a row the daily run drafts (2026-11-10)
-reacher-z/awesome-jev  # a curated list of Jev papers, models and tools with a website; its scripts only match Jev's URL in other projects and call no model, so it is a sibling list or a directory row, not a row the daily run drafts (2026-11-10)
 alexei-led/pi-model-router  # routes with whichever classifier Pi's registry.classify is given, so its router code holds no Jev call; Jev appears only in model-router.example.json and docs/examples/classifier-catalog.ts, and whether an example config is a call site is a rule question (2026-11-13)
 stefanwebb/meta-awesome-jev  # a meta list merging 106 awesome-jev lists into one README and catalog; its scripts render those and call no model, so it is a sibling list or a directory row, not a row the daily run drafts (2026-11-13)

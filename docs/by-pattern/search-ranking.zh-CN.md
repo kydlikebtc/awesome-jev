@@ -4,11 +4,11 @@
 
 _对来自廉价检索步骤的候选做打分或重排。_
 
-这个决策的全部已收录例子 —— 共 93 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 95 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#search-ranking)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#search-ranking)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 89 · 接口形态 0 · 仅示例 0 · 独立报告 8 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 91 · 接口形态 0 · 仅示例 0 · 独立报告 8 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -108,6 +108,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevgrep](https://github.com/nassim-arifette/jevgrep)** — 为不知道符号名的智能体做的代码搜索：把已授权的仓库切成片段，对每个片段用一个 Jev noul 判断它是否回答了你的问题，再返回原样的代码摘录及其路径和行号；可通过命令行或本地 MCP 使用。远程调用默认关闭，需按项目开启。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · nassim-arifette · `TS` · 调用点 [`experiments/jev-contract/probe.mjs`](https://github.com/nassim-arifette/jevgrep/blob/HEAD/experiments/jev-contract/probe.mjs)，2026-09-24 阅读</sub>
 
+- **[jevmem](https://github.com/Avinash-jetwani/jevmem)** — 为 Claude Code、Cursor 和 Codex 提供项目记忆：用 Jev 的 noul 判断聊天中的一个决定值不值得保留，保留的写进 JEVMEM.md，相关时再带回来；文件编辑和命令会先对照这些记录检查。作者的测试中，Claude 在 72 次会话里有 66 次遵循了这些决定，不用它时是 28 次，手动维护 CLAUDE.md 时是 67 次。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★100+ · avinash-jetwani · `TS` · 调用点 [`src/jev.ts`](https://github.com/Avinash-jetwani/jevmem/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>
+
 - **[jgrep](https://github.com/keltokhy/jgrep)** — 以描述为模式的 grep：每一行变成一个 Jev noul，默认概率达到 0.5 即算匹配；并发判断、按输入顺序输出，所以也能用在 tail -f 上。作者在 994 条 Hacker News 标题上测得，一条描述用时 4.6 秒、花费 0.012 美元。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · keltokhy · `Py` · 调用点 [`bench/code_review.py`](https://github.com/keltokhy/jgrep/blob/HEAD/bench/code_review.py)，2026-09-22 阅读</sub>
 
@@ -137,6 +140,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[warrenduffer](https://github.com/arimanyus/warrenduffer)** — 面向印度股票的日内交易机器人，下的是真实订单，没有模拟盘：Jev 分两轮给 Nifty 50 成分股排序，并决定止盈和离场；代码负责每笔仓位、设置止损，并在触及每日亏损上限时停止交易，经 Zerodha Kite 或 Kotak Neo 下单。回放功能可在过去某一天的数据上跑同一套循环。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · arimanyus · `TS` · 调用点 [`src/model/jev.ts`](https://github.com/arimanyus/warrenduffer/blob/HEAD/src/model/jev.ts)，2026-09-24 阅读</sub>
+
+- **[webctl](https://github.com/dorkitude/webctl)** — 给智能体用的网页搜索 CLI：同时查询 3 个搜索后端，让 Jev 结合查询和目标给每条结果打分（是否切题、来源是否可靠），保留高分结果，再用 MinHash 和 Jev 去重。加 --filter-chunks 时会抓取排名靠前的页面，只保留 Jev 判为相关的段落。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · dorkitude · `Go` · 调用点 [`internal/jev/client.go`](https://github.com/dorkitude/webctl/blob/HEAD/internal/jev/client.go)，2026-09-22 阅读</sub>
 
 - **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — 聊天回复助手（桌面悬浮窗、Android 悬浮助手、iOS 键盘），基于 Jev Android。它根据可见对话或截图向 Jev 询问字面问题、对方意图、危险程度、是否现在回复以及最佳行动，再让 Jev 在起草的回复中挑选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · 调用点 [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-10-26 模型阅读 · ⚠ `需第三方密钥`</sub>

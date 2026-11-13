@@ -4,11 +4,11 @@
 
 _从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不是生成。_
 
-这个决策的全部已收录例子 —— 共 31 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#结构化抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 33 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#结构化抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#data-extraction)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#data-extraction)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 27 · 接口形态 0 · 仅示例 0 · 独立报告 3 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 29 · 接口形态 0 · 仅示例 0 · 独立报告 3 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -47,8 +47,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-job-search](https://github.com/qbeka/jev-job-search)** — 在 Claude Code 里运行的求职申请工具：经 OpenRouter 问 Jev 每个职位是否是带薪的软件岗位、级别和入职时间是否合适、技术栈匹配度如何，以及每个表单字段该填哪条已存答案或哪个选项，然后在 Chrome 里填好表单等你确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · qbeka · `TS` · `noul` · `choice` · `score` · 调用点 [`src/jev/client.ts`](https://github.com/qbeka/jev-job-search/blob/HEAD/src/jev/client.ts)，2026-11-10 模型阅读</sub>
 
+- **[jev-voice](https://github.com/kevinbadi/jev-voice)** — 用语音控制 Mac：whisper.cpp 在本地转写，再由一个约 250 毫秒的 Jev 请求把命令变成一个动作及其参数，参数从代码列出的候选中选出，例如已安装的应用。多步任务会在辅助功能树上跑智能体循环，上限为 40 个动作、80 次 Jev 调用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · kevinbadi · `Py` · 调用点 [`jev_voice/config.py`](https://github.com/kevinbadi/jev-voice/blob/HEAD/jev_voice/config.py)，2026-09-22 阅读</sub>
+
 - **[jev4pg](https://github.com/Sheltercosmo/jev4pg)** — 为 PostgreSQL 提供自然语言 SQL 和 41 个语义算子。过滤、抽取、排序、匹配和核验以有上限的批次交给 Jev，答案须先通过校验；choice 选项需达 0.55、noul 需达 0.8 才算成立。作者报告其准确率为 98%，pg-jev 的请求路径为 92%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · Sheltercosmo · `Py` · `choice` · `noul` · 调用点 [`sdd/generic/jev.py`](https://github.com/Sheltercosmo/jev4pg/blob/HEAD/sdd/generic/jev.py)，2026-10-26 模型阅读 · ⚠ `厂商自报数据`</sub>
+
+- **[jevmem](https://github.com/Avinash-jetwani/jevmem)** — 为 Claude Code、Cursor 和 Codex 提供项目记忆：用 Jev 的 noul 判断聊天中的一个决定值不值得保留，保留的写进 JEVMEM.md，相关时再带回来；文件编辑和命令会先对照这些记录检查。作者的测试中，Claude 在 72 次会话里有 66 次遵循了这些决定，不用它时是 28 次，手动维护 CLAUDE.md 时是 67 次。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★100+ · avinash-jetwani · `TS` · 调用点 [`src/jev.ts`](https://github.com/Avinash-jetwani/jevmem/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>
 
 - **[jev playground (deepdave98)](https://github.com/deepdave98/jev-playground)** — 每周一个的市场销售（GTM）实验，均用 Jev 完成并与 Claude 对比：线索分拣和路由、交易风险、回复分拣、从通话摘要中提取 MEDDPICC 字段、重复账户识别、已流失交易的重新激活，另有一个 MCP 服务器。共享客户端在取整前减去实测的 0.30 分数偏差。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ★10+ · deepdave98 · `Py` · `noul` · `choice` · `score` · 调用点 [`common/jev.py`](https://github.com/deepdave98/jev-playground/blob/HEAD/common/jev.py)，2026-10-31 模型阅读 · ⚠ `无许可证`</sub>

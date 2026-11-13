@@ -4,11 +4,11 @@
 
 _把大量问题（包括推测性的）打包进一次请求，再由代码挑出真正用得上的答案。_
 
-这个决策的全部已收录例子 —— 共 41 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#并行扇出)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 44 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#并行扇出)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#fan-out)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#fan-out)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 33 · 接口形态 1 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 7。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 36 · 接口形态 1 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 7。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -52,6 +52,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)** — 一套循序渐进的课程：从第一次调用、逐个原语、state 形状与 criteria，一直到工单分拣和多步工作流，并对应了全部四个官方模式。
   <sub>`教程` · ★1k+ · `Py` · `choice` · `score` · `noul` · 调用点 [`models/jev/06-criteria.py`](https://github.com/daveebbelaar/ai-cookbook/blob/HEAD/models/jev/06-criteria.py)，2026-09-22 阅读</sub>
 
+- **[dasheng](https://github.com/wquguru/dasheng)** — 英文朗读练习：流式 ASR 模型负责转写，对齐找出念得不一样的词，只把这些词交给 Jev 判：用 noul 判断是不是同一个词，用 choice 判断错误类型，再用 1 到 5 分的 score 判断整句意思是否走样。发音不打分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · wquguru · `JS` · 调用点 [`lib/jev.js`](https://github.com/wquguru/dasheng/blob/HEAD/lib/jev.js)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+
 - **[Hey Jev](https://github.com/henryklunaris/hey-jev)** — macOS 语音助手：本地 Whisper 转写指令后，一次 Jev 请求同时问完所有问题（请求类别、是否复合、目标、应用、动作、音量级别），题型有 `choice`、`noul` 和 `score`；代码通过 AppleScript 执行动作，只有常识性问题才交给 LLM。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · henryklunaris · `Py` · `choice` · `noul` · `score` · 调用点 [`siri.py`](https://github.com/henryklunaris/hey-jev/blob/HEAD/siri.py)，2026-10-29 模型阅读 · ⚠ `无许可证` `需第三方密钥`</sub>
 
@@ -63,6 +66,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-forge](https://github.com/zwliJay/jev-forge)** — 并非 Jev：一套合成决策数据、训练并校准小型候选打分模型（JevForge-0.8B）、再通过兼容 Jev 的 API 提供服务的工具链，首个场景是在网页上挑选下一次点击或表单控件。其基准脚本把同一批留出的 choice、noul 和 score 问题发给真正的 Jev 作对比。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★100+ · zwlijay · `Py` · 引用文件 [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
+
+- **[jev-voice](https://github.com/kevinbadi/jev-voice)** — 用语音控制 Mac：whisper.cpp 在本地转写，再由一个约 250 毫秒的 Jev 请求把命令变成一个动作及其参数，参数从代码列出的候选中选出，例如已安装的应用。多步任务会在辅助功能树上跑智能体循环，上限为 40 个动作、80 次 Jev 调用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · kevinbadi · `Py` · 调用点 [`jev_voice/config.py`](https://github.com/kevinbadi/jev-voice/blob/HEAD/jev_voice/config.py)，2026-09-22 阅读</sub>
 
 - **[VideoJev](https://github.com/MCG-NJU/VideoJev)** — 开源 System One 视频模型，在共享视频前缀上对多个问题的时间候选和多选答案直接打分，返回区间、答案和候选概率，无需生成文本。 <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★100+ · Yuhan Zhu and collaborators · `Py` · ⚠ `并非 Jev 本身` `代码未实测` `作者自荐`</sub>
@@ -135,6 +141,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[JevTools](https://github.com/RileyCarney/JevTools)** — Jev 的本地仪表盘和命令行演示：用六个问题（score、noul 和一个 choice）并行评估一条商品评论并汇总成综合分，对话题分类（choice），还能运行自定义决定；每个请求和答案都记录到本地 SQLite 文件。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · RileyCarney · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_demo.py`](https://github.com/RileyCarney/JevTools/blob/HEAD/jev_demo.py)，2026-11-13 模型阅读</sub>
+
+- **[Netizen](https://github.com/seheta/netizen)** — 在帖子发布前模拟印尼网民的反应。Jev 在一次请求中针对每个人设（如网约摩的司机或水军）回答：会不会停下来看、会做什么、立场如何、评论起什么作用；另外判断帖子是否涉及敏感话题、能传播多广。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · seheta · `Py` · `noul` · `choice` · `score` · 调用点 [`spike/spike.py`](https://github.com/seheta/netizen/blob/HEAD/spike/spike.py)，2026-11-12 模型阅读</sub>
 
 - **[psearch](https://github.com/komikat/psearch)** — 给终端与智能体的并行网页搜索，带本地 Chromium 与 Jev 引导的探索。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · komikat · `Py` · 调用点 [`psearch.py`](https://github.com/komikat/psearch/blob/HEAD/psearch.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>

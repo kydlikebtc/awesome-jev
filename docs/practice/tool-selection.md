@@ -11,10 +11,10 @@ Apart from `overview`, tool selection has the most rows whose cited file a perso
 <!-- readings:start -->
 |  | Rows |
 | --- | ---: |
-| Filed under this pattern | 278 |
-| Citing one file in their repository (`evidence`) | 274 |
+| Filed under this pattern | 279 |
+| Citing one file in their repository (`evidence`) | 275 |
 | Of those, the file read by a person (`evidence.read_on`) | 217 |
-| Of those, read only by a model (`evidence.model_read_on`) | 57 |
+| Of those, read only by a model (`evidence.model_read_on`) | 58 |
 | Of those, no reading recorded (a script's match only) | 0 |
 <!-- readings:end -->
 
@@ -37,11 +37,11 @@ Apart from `overview`, tool selection has the most rows whose cited file a perso
 <!-- primitives:start -->
 | Primitive | A person read the code calling it | A model read the code calling it | Only the text signal shows it |
 | --- | ---: | ---: | ---: |
-| `choice` | 26 | 45 | 107 |
+| `choice` | 26 | 46 | 109 |
 | `score` | 6 | 15 | 32 |
-| `noul` | 16 | 29 | 84 |
+| `noul` | 16 | 29 | 85 |
 
-Primitives recorded together on one row (`question_types`, a person's or a model's reading): `choice` 30 · `choice` + `noul` 21 · `choice` + `score` + `noul` 19 · `noul` 4 · `choice` + `score` 1 · `score` + `noul` 1.
+Primitives recorded together on one row (`question_types`, a person's or a model's reading): `choice` 31 · `choice` + `noul` 21 · `choice` + `score` + `noul` 19 · `noul` 4 · `choice` + `score` 1 · `score` + `noul` 1.
 <!-- primitives:end -->
 
 Choice dominates, as the pattern's design notes expect. Noul appears beside it for two separate questions: whether any candidate fits at all, and whether the chosen action needs the user's confirmation (jev-cu). Score is rare here; where it appears it usually rides beside the choice, such as the conviction [beebots](https://kydlikebtc.github.io/awesome-jev/?lang=en#beebots) asks for alongside each trading move.
@@ -67,6 +67,7 @@ Choice dominates, as the pattern's design notes expect. Noul appears beside it f
 | [browser-use-olympics](https://kydlikebtc.github.io/awesome-jev/?lang=en#browser-use-olympics) | `noul` | probability | 0.7 | above: escalate the step as blocked | nobody yet |
 | [jev-voice-control](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-voice-control) | `noul` | probability | 0.7 | at or above: treat the screen as the wrong one and back out | nobody yet |
 | [llm-debugger-vscode](https://kydlikebtc.github.io/awesome-jev/?lang=en#llm-debugger-vscode) | `noul` | probability | 0.7 | at or above (readyForFix): finish the hunt without asking the LLM | a model, 2026-10-28 |
+| [third-hand](https://kydlikebtc.github.io/awesome-jev/?lang=en#third-hand) | `noul` | probability | 0.7 | at or above: treat the task as done | nobody yet |
 | [jev-mobile-xinwang-nwpu](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-mobile-xinwang-nwpu) | `noul` | probability | 0.5 | at or above: accept the goal as achieved | nobody yet |
 | [neo4jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#neo4jev) | `noul` | probability | 0.5 | at or above (default): stop at the node as the goal | nobody yet |
 | [jev-skill-scout](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-skill-scout) | `noul` | probability | 0.3 | below (default): suggest no skill | nobody yet |

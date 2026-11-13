@@ -45,6 +45,9 @@ from dataclasses import dataclass
 
 API = "https://api.github.com"
 RAW = "https://raw.githubusercontent.com"
+# Characters a URL path may carry as they are (RFC 3986 pchar and "/"):
+# raw_get percent-encodes everything else in a file's path.
+RAW_PATH_SAFE = "/!$&'()*+,;=:@"
 TIMEOUT = 25
 
 # The longest a rate-limited request waits before its one retry. A weekly job
@@ -530,9 +533,15 @@ def raw_get(repo: str, branch: str, path: str, *, retries: int = 1) -> str | Non
     A 429 is not a miss either: it is waited out once like an API rate limit,
     and one that persists raises RateLimited instead of calling the file gone.
     `branch` may be "HEAD", which the raw host resolves to the default branch.
+
+    The path is percent-encoded, so a file under a folder named in Korean or
+    holding a space can be read: unencoded, such a URL cannot be sent at all
+    (jkf87/jev-handson's call sites, 2026-11-12). A path of letters, digits
+    and the punctuation a path may carry is sent unchanged.
     """
     req = urllib.request.Request(
-        f"{RAW}/{repo}/{branch}/{path}", headers={"User-Agent": "awesome-jev"}
+        f"{RAW}/{repo}/{branch}/{urllib.parse.quote(path, safe=RAW_PATH_SAFE)}",
+        headers={"User-Agent": "awesome-jev"},
     )
     for attempt in range(retries + 1):
         status, body, _ = _request(req, "raw")

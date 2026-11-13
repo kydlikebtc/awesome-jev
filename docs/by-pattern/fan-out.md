@@ -4,11 +4,11 @@
 
 _Pack many questions — including speculative ones — into one request and let code pick what mattered._
 
-Every catalogued example of this decision — 41 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 44 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#fan-out): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 33 · wire shape 1 · example only 0 · independent reports 1 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 36 · wire shape 1 · example only 0 · independent reports 1 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -52,6 +52,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[ai-cookbook: Jev track](https://github.com/daveebbelaar/ai-cookbook)** — A graded course from a first call through each primitive, state shapes and criteria, to ticket triage and a multi-step workflow, mirroring all four official patterns.
   <sub>`Tutorial` · ★1k+ · `Py` · `choice` · `score` · `noul` · call site [`models/jev/06-criteria.py`](https://github.com/daveebbelaar/ai-cookbook/blob/HEAD/models/jev/06-criteria.py), read 2026-09-22</sub>
 
+- **[dasheng](https://github.com/wquguru/dasheng)** — Read-aloud trainer for English: a streaming ASR model transcribes, alignment picks the words that differ, and Jev judges only those, a noul on whether it is the same word, a choice of error type, and a 1–5 score of whether the sentence kept its meaning. Pronunciation is not scored. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · wquguru · `JS` · call site [`lib/jev.js`](https://github.com/wquguru/dasheng/blob/HEAD/lib/jev.js), read 2026-09-22 · ⚠ `no licence`</sub>
+
 - **[Hey Jev](https://github.com/henryklunaris/hey-jev)** — macOS voice assistant: local Whisper transcribes a command, then one Jev request asks every question at once (category, compound or not, target, app, action, volume level) as `choice`, `noul` and `score` questions; code runs the action through AppleScript, and only general questions reach an LLM. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · henryklunaris · `Py` · `choice` · `noul` · `score` · call site [`siri.py`](https://github.com/henryklunaris/hey-jev/blob/HEAD/siri.py), read by a model 2026-10-29 · ⚠ `no licence` `3rd-party key`</sub>
 
@@ -63,6 +66,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-forge](https://github.com/zwliJay/jev-forge)** — Not Jev: a toolkit that synthesizes decision data, trains and calibrates small candidate scorers (JevForge-0.8B) and serves them behind a Jev-compatible API, first for picking the next click or form control on a web page. Its benchmark sends the same held-out choice, noul and score questions to Jev. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · ★100+ · zwlijay · `Py` · cited file [`jevforge/bench_jev.py`](https://github.com/zwliJay/jev-forge/blob/HEAD/jevforge/bench_jev.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
+
+- **[jev-voice](https://github.com/kevinbadi/jev-voice)** — Voice control for the Mac: whisper.cpp transcribes locally, then one ~250 ms Jev request turns the command into an action and arguments picked from candidates code built, such as installed apps. Multi-step tasks run an agent loop on the Accessibility tree, capped at 40 actions and 80 Jev calls. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · kevinbadi · `Py` · call site [`jev_voice/config.py`](https://github.com/kevinbadi/jev-voice/blob/HEAD/jev_voice/config.py), read 2026-09-22</sub>
 
 - **[VideoJev](https://github.com/MCG-NJU/VideoJev)** — Open System One video models that score temporal candidates and multiple-choice options for several queries over one shared video prefix, then return intervals, answers, and candidate probabilities without text generation.
   <sub>`Jev-like alternative` · ★100+ · Yuhan Zhu and collaborators · `Py` · ⚠ `not Jev itself` `code untested` `self-submitted`</sub>
@@ -135,6 +141,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[JevTools](https://github.com/RileyCarney/JevTools)** — A local dashboard and CLI demo for Jev: it scores a product review with a six-question fan-out (scores, nouls and a choice) into a composite, classifies topics (choice) and runs custom decisions, logging every request and answer to a local SQLite file. <sub>(written by a model)</sub>
   <sub>`Project` · RileyCarney · `Py` · `choice` · `noul` · `score` · call site [`jev_demo.py`](https://github.com/RileyCarney/JevTools/blob/HEAD/jev_demo.py), read by a model 2026-11-13</sub>
+
+- **[Netizen](https://github.com/seheta/netizen)** — Simulates how Indonesian netizens react to a post before it goes live. In one request Jev answers, per persona such as ojol drivers or buzzers, whether they stop scrolling, what they do, where they stand and what their comment does, plus whether the post is sensitive and how far it spreads. <sub>(written by a model)</sub>
+  <sub>`Project` · seheta · `Py` · `noul` · `choice` · `score` · call site [`spike/spike.py`](https://github.com/seheta/netizen/blob/HEAD/spike/spike.py), read by a model 2026-11-12</sub>
 
 - **[psearch](https://github.com/komikat/psearch)** — Parallel web search for terminals and agents, with local Chromium and Jev-guided exploration. <sub>(upstream description)</sub>
   <sub>`Project` · komikat · `Py` · call site [`psearch.py`](https://github.com/komikat/psearch/blob/HEAD/psearch.py), read 2026-09-22 · ⚠ `one commit`</sub>

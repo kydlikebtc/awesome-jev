@@ -335,6 +335,21 @@ class RawTest(Base):
         self.assertEqual(len(net.requests), 1)
         self.assertEqual(net.requests[0], "https://raw.githubusercontent.com/a/b/HEAD/x.py")
 
+    def test_a_path_outside_ascii_is_percent_encoded(self):
+        # jkf87/jev-handson keeps every call site under folders named in
+        # Korean; sent unencoded, such a URL cannot leave the machine.
+        net = self.net(Ok(b"body"))
+        self.assertEqual(_github.raw_get("a/b", "HEAD", "02_라우터/code/mini router.mjs"), "body")
+        self.assertEqual(
+            net.requests[0],
+            "https://raw.githubusercontent.com/a/b/HEAD/02_%EB%9D%BC%EC%9A%B0%ED%84%B0/code/mini%20router.mjs",
+        )
+
+    def test_an_ordinary_path_is_sent_unchanged(self):
+        net = self.net(Ok(b"body"))
+        _github.raw_get("a/b", "main", "packages/@scope/x-y_z.v1~/a+b,c=d.ts")
+        self.assertEqual(net.requests[0], "https://raw.githubusercontent.com/a/b/main/packages/@scope/x-y_z.v1~/a+b,c=d.ts")
+
     def test_a_timeout_is_retried_once(self):
         net = self.net(socket.timeout(), Ok(b"print('hi')"))
         self.assertEqual(_github.raw_get("a/b", "main", "x.py"), "print('hi')")
