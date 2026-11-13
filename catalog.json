@@ -115336,6 +115336,7 @@
     "patterns": [
       "overview"
     ],
+    "has_code": true,
     "languages": [
       "python"
     ],
@@ -115349,16 +115350,26 @@
     "repo_license": "Apache-2.0",
     "flags": [
       "not-jev",
-      "vendor-reported"
+      "vendor-reported",
+      "self-submitted"
     ],
     "notes": "Not Jev: open models answering in Jev's request shape, so thresholds tuned on Jev do not transfer. Submitted by a maintainer of the project.",
     "sources": [
       {
-        "catalog": "maintainer submission",
-        "url": "https://github.com/Valen-Team/Valen"
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/118"
       }
     ],
-    "license": "CC0-1.0"
+    "license": "CC0-1.0",
+    "evidence": {
+      "path": "serving/vllm/src/valen_vllm/endpoint.py",
+      "matched": [
+        "from valen_vllm.protocol import SystemOneRequest",
+        "@app.post(\"/v1/systemone\")"
+      ],
+      "kind": "wire-shape",
+      "model_read_on": "2026-11-13"
+    }
   },
   {
     "slug": "vector-graph-rag",
