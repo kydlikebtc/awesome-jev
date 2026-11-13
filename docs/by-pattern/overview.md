@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 527 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 528 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 392 · wire shape 95 · example only 0 · independent reports 29 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 392 · wire shape 96 · example only 0 · independent reports 29 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -838,6 +838,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Unofficial TypeSafe.ai .NET SDK](https://github.com/laurentkempe/typesafejevplayground)** — Unofficial .NET port of TypeSafe's JavaScript SDK (C# 15, System.Text.Json, no runtime dependencies) that sends typed noul, choice and score questions to Jev's /v1/systemone, with an MCP server sample; it is the code behind the author's blog posts. <sub>(written by a model)</sub>
   <sub>`SDK` · laurentkempe · `C#` · `noul` · `choice` · `score` · call site [`src/TypeSafe/TypeSafeClient.cs`](https://github.com/laurentkempe/typesafejevplayground/blob/HEAD/src/TypeSafe/TypeSafeClient.cs), read by a model 2026-11-08 · ⚠ `no licence` `AI-written`</sub>
+
+- **[Valen](https://github.com/Valen-Team/Valen)** — Apache-2.0 multimodal decision models (Valen-Decision-1.5, 0.8B to 27B) answering `choice`, `score` and `noul` questions about text, images and video, plus `bbox` questions that return a box. Native, ONNX and GGUF weights, training code, and `/v1/systemone` serving via vLLM, SGLang or llama.cpp.
+  <sub>`Jev-like alternative` · Valen-Team · `Py` · cited file [`serving/vllm/src/valen_vllm/endpoint.py`](https://github.com/Valen-Team/Valen/blob/HEAD/serving/vllm/src/valen_vllm/endpoint.py), read by a model 2026-11-13 · ⚠ `not Jev itself` `vendor numbers` `self-submitted`</sub>
 
 - **[Verdict](https://github.com/Manavarya09/verdict)** — Small multilingual decision models (the default has 118M parameters and runs on a CPU) with choose, score and check calls, a server that takes Jev's POST /v1/systemone shape so existing integrations can switch by base URL, and training on your own labels. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · Manavarya09 · `Py` · cited file [`src/verdict/server.py`](https://github.com/Manavarya09/verdict/blob/HEAD/src/verdict/server.py), read by a model 2026-11-11 · ⚠ `not Jev itself` `vendor numbers`</sub>

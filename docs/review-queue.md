@@ -21,7 +21,7 @@ Rows a script has singled out for a person to read. Each entry is a machine sign
 | [Interfaces of alternatives nobody has read in the cited files · 人和模型都还没有在所引文件中读过的替代实现接口](#wire-unread) | 14 |
 | [Thresholds nobody has read in the cited file · 人和模型都还没有在所引文件中读过的阈值](#thresholds-unread) | 30 |
 | [Cited file shows an experimental Jev feature · 所引文件出现 Jev 的实验性功能](#experimental) | 33 |
-| [Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对](#model-read) | 426 |
+| [Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对](#model-read) | 427 |
 
 <a id="needs-person"></a>
 
@@ -1283,6 +1283,7 @@ To take a row off, check what the model read or wrote, correct anything it got w
 | [understudy](https://kydlikebtc.github.io/awesome-jev/?lang=en#understudy) |  | `call site` 2026-11-13 · `question_types` · `summary` |
 | [undertone](https://kydlikebtc.github.io/awesome-jev/?lang=en#undertone) |  | `call site` 2026-11-09 · `question_types` · `summary` |
 | [typesafejevplayground](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafejevplayground) |  | `call site` 2026-11-08 · `question_types` · `summary` |
+| [valen](https://kydlikebtc.github.io/awesome-jev/?lang=en#valen) |  | `call site` 2026-11-13 |
 | [verdict](https://kydlikebtc.github.io/awesome-jev/?lang=en#verdict) |  | `call site` 2026-11-11 · `summary` |
 | [wald-4b](https://kydlikebtc.github.io/awesome-jev/?lang=en#wald-4b) |  | `call site` 2026-11-10 · `summary` |
 | [webjev](https://kydlikebtc.github.io/awesome-jev/?lang=en#webjev) |  | `call site` 2026-11-10 · `summary` |

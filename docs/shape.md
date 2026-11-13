@@ -29,7 +29,7 @@ What the catalogue records about the rows filed under each pattern: reports coun
 | [Support triage](by-pattern/support-triage.md) | 13 | 1 | 8 | 0 | 0 | 2 | 0 | 5 |
 | [Content scoring](by-pattern/content-scoring.md) | 190 | 2 | 181 | 5 | 0 | 13 | 1 | 4 |
 | [Recommendation](by-pattern/recommendation.md) | 3 | 0 | 3 | 0 | 0 | 0 | 0 | 0 |
-| [Overview](by-pattern/overview.md) | 527 | 6 | 392 | 95 | 0 | 29 | 1 | 40 |
+| [Overview](by-pattern/overview.md) | 528 | 6 | 392 | 96 | 0 | 29 | 1 | 40 |
 
 29 independent reports are filed under `overview` and no other pattern, so this table cannot count them for the decision they measured until a person files them under it.
 
@@ -39,7 +39,7 @@ Rows recording each language (`languages`; a row may record several). 32 rows re
 
 | Language | Rows |
 | --- | --- |
-| `python` | 607 |
+| `python` | 608 |
 | `typescript` | 481 |
 | `javascript` | 168 |
 | `go` | 59 |
@@ -66,7 +66,7 @@ Rows recording each language (`languages`; a row may record several). 32 rows re
 | `typesafe-api` and nothing else | 1197 |
 | At least one value another surface in [the compatibility table](compatibility.md) stands for (a gateway, SDK or framework), and not `self-hosted` | 108 |
 | Besides `typesafe-api`, only values no compatibility surface stands for (a host, tool or framework the example runs in, or a route that table does not describe), and not `self-hosted` | 66 |
-| `self-hosted`, whatever else is recorded | 102 |
+| `self-hosted`, whatever else is recorded | 103 |
 | No value recorded | 25 |
 
 Every value rows record, with the compatibility surfaces that stand for it:
@@ -74,7 +74,7 @@ Every value rows record, with the compatibility surfaces that stand for it:
 | Value | Compatibility surface | Rows |
 | --- | --- | --- |
 | `typesafe-api` | `typesafe-native` | 1321 |
-| `self-hosted` | — | 102 |
+| `self-hosted` | — | 103 |
 | `openrouter` | `openrouter` | 63 |
 | `claude-code` | — | 49 |
 | `vercel-ai-gateway` | `vercel-eval`, `vercel-compat` | 41 |
@@ -125,7 +125,7 @@ Rows of each kind per star band, from GitHub's count at the last weekly refresh;
 | Video (`video`) | 3 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
 | Benchmark (`benchmark`) | 95 | 90 | 56 | 24 | 6 | 2 | 1 | 1 | under 10 |
 | Discussion (`discussion`) | 2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | — |
-| Jev-like alternative (`alternative`) | 116 | 111 | 19 | 47 | 31 | 13 | 1 | 0 | ★10+ |
+| Jev-like alternative (`alternative`) | 117 | 111 | 19 | 47 | 31 | 13 | 1 | 0 | ★10+ |
 
 ## Languages by decision pattern
 
@@ -150,7 +150,7 @@ Rows per pattern recording each of the 6 most recorded languages; the rest share
 | [Support triage](by-pattern/support-triage.md) | 7 | 4 | 0 | 1 | 0 | 0 | 3 |
 | [Content scoring](by-pattern/content-scoring.md) | 85 | 62 | 27 | 2 | 5 | 2 | 10 |
 | [Recommendation](by-pattern/recommendation.md) | 2 | 1 | 0 | 0 | 0 | 0 | 0 |
-| [Overview](by-pattern/overview.md) | 217 | 122 | 46 | 36 | 25 | 10 | 59 |
+| [Overview](by-pattern/overview.md) | 218 | 122 | 46 | 36 | 25 | 10 | 59 |
 
 ## Patterns filed together
 
@@ -171,7 +171,7 @@ Rows per pattern recording each of the 6 most recorded languages; the rest share
 
 ## Authors
 
-1381 rows name an author; they name 1253 different ones, compared by display name without regard to case. 1161 of them have one row here, 73 two, and 19 three or more; the most any one author has is 11. No author is named on this page: it shows how concentrated the catalogue is, not who contributes to it.
+1382 rows name an author; they name 1253 different ones, compared by display name without regard to case. 1160 of them have one row here, 74 two, and 19 three or more; the most any one author has is 11. No author is named on this page: it shows how concentrated the catalogue is, not who contributes to it.
 
 ## Over time
 

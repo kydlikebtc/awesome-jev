@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 527 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 528 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 392 · 接口形态 95 · 仅示例 0 · 独立报告 29 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 392 · 接口形态 96 · 仅示例 0 · 独立报告 29 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -838,6 +838,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Unofficial TypeSafe.ai .NET SDK](https://github.com/laurentkempe/typesafejevplayground)** — TypeSafe JavaScript SDK 的非官方 .NET 移植版（C# 15、System.Text.Json、无运行时依赖），向 Jev 的 /v1/systemone 发送类型化的 noul、choice 和 score 问题，附带一个 MCP 服务器示例；是作者系列博客文章背后的代码。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · laurentkempe · `C#` · `noul` · `choice` · `score` · 调用点 [`src/TypeSafe/TypeSafeClient.cs`](https://github.com/laurentkempe/typesafejevplayground/blob/HEAD/src/TypeSafe/TypeSafeClient.cs)，2026-11-08 模型阅读 · ⚠ `无许可证` `疑似 AI 生成`</sub>
+
+- **[Valen](https://github.com/Valen-Team/Valen)** — Apache-2.0 开放多模态决策模型（Valen-Decision-1.5，0.8B 至 27B），回答关于文本、图片和视频的 `choice`、`score`、`noul` 问题，`bbox` 问题在同一次前向中返回目标框。提供原生、ONNX 和 GGUF 权重与训练代码，可通过 vLLM、SGLang 或补丁版 llama.cpp 以 `/v1/systemone` 提供服务。
+  <sub>`Jev 替代实现` · Valen-Team · `Py` · 引用文件 [`serving/vllm/src/valen_vllm/endpoint.py`](https://github.com/Valen-Team/Valen/blob/HEAD/serving/vllm/src/valen_vllm/endpoint.py)，2026-11-13 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据` `作者自荐`</sub>
 
 - **[Verdict](https://github.com/Manavarya09/verdict)** — 小型多语言决策模型（默认模型 1.18 亿参数，CPU 即可运行），提供 choose、score 和 check 调用；服务器接受 Jev 的 POST /v1/systemone 请求格式，现有集成改个 base URL 就能切换；还支持用你自己的标注训练。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · Manavarya09 · `Py` · 引用文件 [`src/verdict/server.py`](https://github.com/Manavarya09/verdict/blob/HEAD/src/verdict/server.py)，2026-11-11 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
