@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 525 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 527 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 391 · 接口形态 94 · 仅示例 0 · 独立报告 28 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 392 · 接口形态 95 · 仅示例 0 · 独立报告 29 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -527,6 +527,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[decision-circuits](https://github.com/Barneyjm/decision-circuits)** — 决策电路：向 System One 模型提出带类型的问题，拿回校准概率，关卡写在代码里。零依赖。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · barneyjm · `Py` · 调用点 [`examples/02_jev_backend.py`](https://github.com/Barneyjm/decision-circuits/blob/HEAD/examples/02_jev_backend.py)，2026-09-24 阅读</sub>
 
+- **[decision-cli](https://github.com/cafe3310/decision-cli)** — 在 Apple Silicon 上（MLX）把本地 LLM 当作决策模型运行：只做一步预填充，读取候选 token 的 logits；并通过 Jev 的 POST /v1/systemone 格式（noul、choice、score）和带 SQLite 缓存的批处理命令行提供服务。支持文本和图片。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · cafe3310 · `Go` · 引用文件 [`internal/server/server.go`](https://github.com/cafe3310/decision-cli/blob/HEAD/internal/server/server.go)，2026-11-13 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
 - **[go-system-one](https://github.com/rcarmo/go-system-one)** — 当地鼠遇上 Jev：一个 Go 语言的 System One 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · rcarmo · `Go` · 调用点 [`docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py`](https://github.com/rcarmo/go-system-one/blob/HEAD/docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py)，2026-09-24 阅读</sub>
 
@@ -679,6 +682,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[s1_ruby](https://github.com/innocentdiaz/s1_ruby)** — 把 S1 模型的“测量”（以及随之而来的坍缩）变成 Ruby 的一个基本操作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · innocentdiaz · `Rb` · 调用点 [`lib/s1/providers/typesafe.rb`](https://github.com/innocentdiaz/s1_ruby/blob/HEAD/lib/s1/providers/typesafe.rb)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[S1MB (System One Mosaic Benchmark)](https://github.com/hotchpotch/S1MB)** — 基准测试：让各家 System One 决策模型（包括 Jev）用 choice、noul、score 问题跑同样的 100 多项英文、日文和视觉任务，并有公开排行榜。它的 TypeSafe 适配器把每条用例发到 Jev 的 /v1/systemone；其他适配器覆盖开源和托管的竞品。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · hotchpotch · `Py` · `choice` · `noul` · `score` · 调用点 [`evaluator/src/s1mb/adapters/typesafe.py`](https://github.com/hotchpotch/S1MB/blob/HEAD/evaluator/src/s1mb/adapters/typesafe.py)，2026-11-13 模型阅读</sub>
 
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)** — 首个独立的 System One 决策模型横评（Laya 对比 Jev）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · instax-dutta · `Py` · 调用点 [`runners/jev_runner.py`](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py)，2026-09-22 阅读</sub>

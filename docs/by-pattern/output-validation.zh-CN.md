@@ -4,11 +4,11 @@
 
 _在输出到达用户前，按评分标准检查模型产出。_
 
-这个决策的全部已收录例子 —— 共 162 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 163 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#output-validation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#output-validation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 157 · 接口形态 1 · 仅示例 0 · 独立报告 13 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 158 · 接口形态 1 · 仅示例 0 · 独立报告 13 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -277,6 +277,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[assay-001](https://github.com/jourdanlabs/assay-001)** — ASSAY-001：对 Jev 校准度与类型安全宣称的独立、预注册验证。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jourdanlabs · `Py` · 调用点 [`harness/run.py`](https://github.com/jourdanlabs/assay-001/blob/HEAD/harness/run.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+
+- **[c9r plugins (browser-check, soft-lint)](https://github.com/c9r-dev/plugins)** — 供 Claude Code 和 Codex 使用、以 Jev 为分类器的插件：browser-check 在真实浏览器里执行用平实英语写的检查清单，问每一步指的是哪个元素（choice）、每项检查是否成立（noul）；soft-lint 针对 diff 新增的代码行提出是非规则问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · c9r-dev · `TS` · `choice` · `noul` · 调用点 [`shared/classifier.ts`](https://github.com/c9r-dev/plugins/blob/HEAD/shared/classifier.ts)，2026-11-13 模型阅读</sub>
 
 - **[check-risk](https://github.com/moezubair/check-risk)** — 用确定性规则加 Jev 评估代码变更风险的 CLI 与 GitHub Action。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · moezubair · `TS` · 调用点 [`src/jev.ts`](https://github.com/moezubair/check-risk/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>

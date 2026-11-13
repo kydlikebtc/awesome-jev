@@ -4,11 +4,11 @@
 
 _Pack many questions — including speculative ones — into one request and let code pick what mattered._
 
-Every catalogued example of this decision — 40 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 41 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#fan-out): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 32 · wire shape 1 · example only 0 · independent reports 1 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 33 · wire shape 1 · example only 0 · independent reports 1 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -132,6 +132,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevswiftsdk](https://github.com/NSStudent/JevSwiftSDK)** — Independent, unofficial and dependency-free Swift SDK for the System One API: choice, noul and score questions typed as Swift values, such as a choice over an enum, named batches answered in one call with every answer checked, retries with a policy and cancellation. iOS 15+, macOS 12+ and Linux. <sub>(written by a model)</sub>
   <sub>`SDK` · nsstudent · `Swift` · call site [`Sources/JevSwiftSDK/Configuration.swift`](https://github.com/NSStudent/JevSwiftSDK/blob/HEAD/Sources/JevSwiftSDK/Configuration.swift), read 2026-09-22</sub>
+
+- **[JevTools](https://github.com/RileyCarney/JevTools)** — A local dashboard and CLI demo for Jev: it scores a product review with a six-question fan-out (scores, nouls and a choice) into a composite, classifies topics (choice) and runs custom decisions, logging every request and answer to a local SQLite file. <sub>(written by a model)</sub>
+  <sub>`Project` · RileyCarney · `Py` · `choice` · `noul` · `score` · call site [`jev_demo.py`](https://github.com/RileyCarney/JevTools/blob/HEAD/jev_demo.py), read by a model 2026-11-13</sub>
 
 - **[psearch](https://github.com/komikat/psearch)** — Parallel web search for terminals and agents, with local Chromium and Jev-guided exploration. <sub>(upstream description)</sub>
   <sub>`Project` · komikat · `Py` · call site [`psearch.py`](https://github.com/komikat/psearch/blob/HEAD/psearch.py), read 2026-09-22 · ⚠ `one commit`</sub>

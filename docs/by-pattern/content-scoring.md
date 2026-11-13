@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 188 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 190 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 179 · wire shape 5 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 181 · wire shape 5 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -296,6 +296,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[clear-head](https://github.com/VladyslavHontar/clear-head)** — Claude Code Stop hook that checks an AI assistant's claims against what it actually read this session, using TypeSafe's Jev as the judge <sub>(upstream description)</sub>
   <sub>`Plugin` · vladyslavhontar · `Py` · call site [`stop_verify.py`](https://github.com/VladyslavHontar/clear-head/blob/HEAD/stop_verify.py), read 2026-09-22</sub>
 
+- **[ComfyUI-Jev](https://github.com/hndrr/ComfyUI-Jev)** — ComfyUI custom nodes: Jev Interpret selects among candidates, judges conditions, scores text and picks numbers out of it (choice, noul, score), and Jev Skill Choice picks local SKILL.md skills for a request; the results feed other nodes. <sub>(written by a model)</sub>
+  <sub>`Plugin` · hndrr · `Py` · `choice` · `noul` · `score` · call site [`api.py`](https://github.com/hndrr/ComfyUI-Jev/blob/HEAD/api.py), read by a model 2026-11-13</sub>
+
 - **[decide-mcp](https://github.com/dakdevs/decide-mcp)** — Configurable decision MCP server with AI SDK, Jev, percentage scores, and bias profile routing <sub>(upstream description)</sub>
   <sub>`SDK` · dakdevs · `TS` · call site [`src/config.ts`](https://github.com/dakdevs/decide-mcp/blob/HEAD/src/config.ts), read 2026-09-22 · ⚠ `one commit`</sub>
 
@@ -478,6 +481,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevshield](https://github.com/lgy1027/jevshield)** — Sub-100ms security gate for AI agent tool calls, powered by TypeSafe's Jev (System-1) decision model. Single-request Choice/Noul/Score evaluation, dual-factor blocking matrix, calibrated-confidence routing, fail-closed parsing, zero-config local fallback. LangChain-ready. <sub>(upstream description)</sub>
   <sub>`Project` · lgy1027 · `Py` · call site [`jevshield/client.py`](https://github.com/lgy1027/jevshield/blob/HEAD/jevshield/client.py), read 2026-09-22</sub>
+
+- **[JevTools](https://github.com/RileyCarney/JevTools)** — A local dashboard and CLI demo for Jev: it scores a product review with a six-question fan-out (scores, nouls and a choice) into a composite, classifies topics (choice) and runs custom decisions, logging every request and answer to a local SQLite file. <sub>(written by a model)</sub>
+  <sub>`Project` · RileyCarney · `Py` · `choice` · `noul` · `score` · call site [`jev_demo.py`](https://github.com/RileyCarney/JevTools/blob/HEAD/jev_demo.py), read by a model 2026-11-13</sub>
 
 - **[judging-with-typesafe](https://github.com/carlsonchik/judging-with-typesafe)** — Скилл для агентов Letta: суждения по критериям через TypeSafe System One (Jev) <sub>(upstream description)</sub>
   <sub>`Project` · carlsonchik · `Py` · call site [`skills/judging-with-typesafe/scripts/typesafe.py`](https://github.com/carlsonchik/judging-with-typesafe/blob/HEAD/skills/judging-with-typesafe/scripts/typesafe.py), read 2026-09-22</sub>

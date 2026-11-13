@@ -11,10 +11,10 @@ Apart from `overview`, tool selection has the most rows whose cited file a perso
 <!-- readings:start -->
 |  | Rows |
 | --- | ---: |
-| Filed under this pattern | 274 |
-| Citing one file in their repository (`evidence`) | 270 |
+| Filed under this pattern | 278 |
+| Citing one file in their repository (`evidence`) | 274 |
 | Of those, the file read by a person (`evidence.read_on`) | 217 |
-| Of those, read only by a model (`evidence.model_read_on`) | 53 |
+| Of those, read only by a model (`evidence.model_read_on`) | 57 |
 | Of those, no reading recorded (a script's match only) | 0 |
 <!-- readings:end -->
 
@@ -37,11 +37,11 @@ Apart from `overview`, tool selection has the most rows whose cited file a perso
 <!-- primitives:start -->
 | Primitive | A person read the code calling it | A model read the code calling it | Only the text signal shows it |
 | --- | ---: | ---: | ---: |
-| `choice` | 26 | 42 | 107 |
-| `score` | 6 | 12 | 32 |
-| `noul` | 16 | 26 | 84 |
+| `choice` | 26 | 45 | 107 |
+| `score` | 6 | 15 | 32 |
+| `noul` | 16 | 29 | 84 |
 
-Primitives recorded together on one row (`question_types`, a person's or a model's reading): `choice` 29 · `choice` + `noul` 21 · `choice` + `score` + `noul` 17 · `noul` 4 · `choice` + `score` 1.
+Primitives recorded together on one row (`question_types`, a person's or a model's reading): `choice` 30 · `choice` + `noul` 21 · `choice` + `score` + `noul` 19 · `noul` 4 · `choice` + `score` 1 · `score` + `noul` 1.
 <!-- primitives:end -->
 
 Choice dominates, as the pattern's design notes expect. Noul appears beside it for two separate questions: whether any candidate fits at all, and whether the chosen action needs the user's confirmation (jev-cu). Score is rare here; where it appears it usually rides beside the choice, such as the conviction [beebots](https://kydlikebtc.github.io/awesome-jev/?lang=en#beebots) asks for alongside each trading move.

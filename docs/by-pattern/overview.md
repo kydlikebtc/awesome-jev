@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 525 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 527 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 391 · wire shape 94 · example only 0 · independent reports 28 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 392 · wire shape 95 · example only 0 · independent reports 29 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -527,6 +527,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[decision-circuits](https://github.com/Barneyjm/decision-circuits)** — Decision circuits: typed questions to a System One model, calibrated probabilities back, gates in code. Zero-dependency Python SDK with LangChain, OpenAI Agents, and Claude Agent SDK integrations. <sub>(upstream description)</sub>
   <sub>`SDK` · barneyjm · `Py` · call site [`examples/02_jev_backend.py`](https://github.com/Barneyjm/decision-circuits/blob/HEAD/examples/02_jev_backend.py), read 2026-09-24</sub>
 
+- **[decision-cli](https://github.com/cafe3310/decision-cli)** — Runs local LLMs on Apple Silicon (MLX) as decision models by reading the candidate tokens' logits from one prefill step, and serves them through Jev's POST /v1/systemone shape (noul, choice, score) and a batch CLI with a SQLite cache. Text and images. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · cafe3310 · `Go` · cited file [`internal/server/server.go`](https://github.com/cafe3310/decision-cli/blob/HEAD/internal/server/server.go), read by a model 2026-11-13 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[go-system-one](https://github.com/rcarmo/go-system-one)** — when a gopher met Jev <sub>(upstream description)</sub>
   <sub>`SDK` · rcarmo · `Go` · call site [`docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py`](https://github.com/rcarmo/go-system-one/blob/HEAD/docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py), read 2026-09-24</sub>
 
@@ -679,6 +682,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[s1_ruby](https://github.com/innocentdiaz/s1_ruby)** — Makes S1-model 'measurement' (and the collapse that follows it) a Ruby primitive. <sub>(upstream description)</sub>
   <sub>`SDK` · innocentdiaz · `Rb` · call site [`lib/s1/providers/typesafe.rb`](https://github.com/innocentdiaz/s1_ruby/blob/HEAD/lib/s1/providers/typesafe.rb), read 2026-09-24 · ⚠ `one commit`</sub>
+
+- **[S1MB (System One Mosaic Benchmark)](https://github.com/hotchpotch/S1MB)** — Benchmark that puts System One decision models, Jev among them, through the same 100+ English, Japanese and vision tasks as choice, noul and score questions, with a public leaderboard. Its TypeSafe adapter sends each case to Jev's /v1/systemone; other adapters cover open and hosted rivals. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · hotchpotch · `Py` · `choice` · `noul` · `score` · call site [`evaluator/src/s1mb/adapters/typesafe.py`](https://github.com/hotchpotch/S1MB/blob/HEAD/evaluator/src/s1mb/adapters/typesafe.py), read by a model 2026-11-13</sub>
 
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)** — First independent head-to-head benchmark of System One decision models (Laya vs Jev) on byte-identical inputs <sub>(upstream description)</sub>
   <sub>`Benchmark` · instax-dutta · `Py` · call site [`runners/jev_runner.py`](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py), read 2026-09-22</sub>

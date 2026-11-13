@@ -17,7 +17,7 @@ list by list below.
 | Source | URL | Rows |
 | --- | --- | --- |
 | Sibling directories linking the row's repository (one `owner/name` item per list, read weekly) | [each list, below](#sibling-directories-linking-catalogued-repositories) | 1399 |
-| sibling-list aggregate (docs/sibling-lists.txt) | <https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt> | 1310 |
+| sibling-list aggregate (docs/sibling-lists.txt) | <https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt> | 1325 |
 | GitHub code search | <https://github.com/search> | 51 |
 | TypeSafe AI docs index | <https://docs.typesafe.ai/llms.txt> | 36 |
 | author submission | various | 26 |
@@ -137,9 +137,9 @@ repository established.
 | `docs/`, `README*.md`                     | CC0-1.0, quoted summaries aside (below)                   |
 
 <!-- row-licences:start -->
-745 of the 1483 summaries in `catalog.json` are the linked project's own GitHub description, word for word apart from letter case, spacing and a final full stop (`summary_source: upstream-description`), and 30 more were taken from such a description and no longer match it (`upstream-description-stale`). The projects' authors wrote those words and the copyright in them is theirs: this repository does not dedicate them under `CC0-1.0`. 775 of their Chinese counterparts are machine translations of them (`zh_machine`); the Chinese of such a row translates the project's words, and this repository does not dedicate it under `CC0-1.0` either. The READMEs, the pattern pages and the site mark each such summary *(upstream description)* or *(earlier upstream description)*.
+745 of the 1498 summaries in `catalog.json` are the linked project's own GitHub description, word for word apart from letter case, spacing and a final full stop (`summary_source: upstream-description`), and 30 more were taken from such a description and no longer match it (`upstream-description-stale`). The projects' authors wrote those words and the copyright in them is theirs: this repository does not dedicate them under `CC0-1.0`. 775 of their Chinese counterparts are machine translations of them (`zh_machine`); the Chinese of such a row translates the project's words, and this repository does not dedicate it under `CC0-1.0` either. The READMEs, the pattern pages and the site mark each such summary *(upstream description)* or *(earlier upstream description)*.
 
-11 summaries are marked `curated`: written for this catalogue by a person. 383 are marked `model-written`: written for it by a model, and marked *(written by a model)* wherever they are shown. The other 314 carry no `summary_source`, so where their words come from is not recorded row by row.
+11 summaries are marked `curated`: written for this catalogue by a person. 398 are marked `model-written`: written for it by a model, and marked *(written by a model)* wherever they are shown. The other 314 carry no `summary_source`, so where their words come from is not recorded row by row.
 
 Every row's `license` field is `CC0-1.0`. It covers the row's structured metadata (slug, kind, patterns, flags, dates, counts, evidence records and the rest) and any text written for this catalogue, not a summary labelled as the project's own description or the Chinese translation of one.
 <!-- row-licences:end -->
@@ -157,12 +157,12 @@ Declared licences across the catalog's linked repositories:
 <!-- licences:start -->
 | Licence | Repositories |
 | --- | --- |
-| MIT | 897 |
-| None declared | 214 |
-| Apache-2.0 | 206 |
+| MIT | 909 |
+| None declared | 215 |
+| Apache-2.0 | 207 |
 | NOASSERTION (non-standard terms) | 60 |
 | AGPL-3.0 | 13 |
-| GPL-3.0 | 6 |
+| GPL-3.0 | 7 |
 | BSD-3-Clause | 3 |
 | CC0-1.0 | 3 |
 | GPL-2.0 | 3 |
@@ -171,7 +171,7 @@ Declared licences across the catalog's linked repositories:
 | LGPL-3.0 | 1 |
 <!-- licences:end -->
 
-In all, <!--n:no_licence-->214<!--/n--> linked projects declare no licence. If you
+In all, <!--n:no_licence-->215<!--/n--> linked projects declare no licence. If you
 plan to reuse code from one, that is a blocker, not a detail — check before you
 copy.
 

@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 162 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 163 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 157 · wire shape 1 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 158 · wire shape 1 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -277,6 +277,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[assay-001](https://github.com/jourdanlabs/assay-001)** — ASSAY-001: independent, pre-registered verification of TypeSafe Jev's calibration and type-safety claims. Split verdict, published in full. <sub>(upstream description)</sub>
   <sub>`Project` · jourdanlabs · `Py` · call site [`harness/run.py`](https://github.com/jourdanlabs/assay-001/blob/HEAD/harness/run.py), read 2026-09-22 · ⚠ `no licence`</sub>
+
+- **[c9r plugins (browser-check, soft-lint)](https://github.com/c9r-dev/plugins)** — Claude Code and Codex plugins that use Jev as their classifier: browser-check runs a plain-English checklist in a real browser, asking which element each step means (choice) and whether each check holds (noul); soft-lint asks yes/no rules about the lines a diff adds. <sub>(written by a model)</sub>
+  <sub>`Plugin` · c9r-dev · `TS` · `choice` · `noul` · call site [`shared/classifier.ts`](https://github.com/c9r-dev/plugins/blob/HEAD/shared/classifier.ts), read by a model 2026-11-13</sub>
 
 - **[check-risk](https://github.com/moezubair/check-risk)** — A CLI and GitHub Action that assesses code-change risk using deterministic rules and TypeSafe Jev, recommending checks and reviewers before merge. <sub>(upstream description)</sub>
   <sub>`Project` · moezubair · `TS` · call site [`src/jev.ts`](https://github.com/moezubair/check-risk/blob/HEAD/src/jev.ts), read 2026-09-22</sub>

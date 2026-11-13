@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 188 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 190 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 179 · 接口形态 5 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 181 · 接口形态 5 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -296,6 +296,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[clear-head](https://github.com/VladyslavHontar/clear-head)** — Claude Code Stop 钩子：核对 AI 助手的声明与它这轮实际读过的内容是否相符。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · vladyslavhontar · `Py` · 调用点 [`stop_verify.py`](https://github.com/VladyslavHontar/clear-head/blob/HEAD/stop_verify.py)，2026-09-22 阅读</sub>
 
+- **[ComfyUI-Jev](https://github.com/hndrr/ComfyUI-Jev)** — ComfyUI 自定义节点：Jev Interpret 在候选里做选择、判断条件、给文本打分、从文本中挑出数值（choice、noul、score）；Jev Skill Choice 为请求挑选本地 SKILL.md 技能；结果再传给其他节点。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · hndrr · `Py` · `choice` · `noul` · `score` · 调用点 [`api.py`](https://github.com/hndrr/ComfyUI-Jev/blob/HEAD/api.py)，2026-11-13 模型阅读</sub>
+
 - **[decide-mcp](https://github.com/dakdevs/decide-mcp)** — 可配置的决策 MCP server，带百分比分数与偏好画像。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · dakdevs · `TS` · 调用点 [`src/config.ts`](https://github.com/dakdevs/decide-mcp/blob/HEAD/src/config.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
@@ -478,6 +481,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevshield](https://github.com/lgy1027/jevshield)** — 亚 100 毫秒的智能体工具调用安全闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · lgy1027 · `Py` · 调用点 [`jevshield/client.py`](https://github.com/lgy1027/jevshield/blob/HEAD/jevshield/client.py)，2026-09-22 阅读</sub>
+
+- **[JevTools](https://github.com/RileyCarney/JevTools)** — Jev 的本地仪表盘和命令行演示：用六个问题（score、noul 和一个 choice）并行评估一条商品评论并汇总成综合分，对话题分类（choice），还能运行自定义决定；每个请求和答案都记录到本地 SQLite 文件。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · RileyCarney · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_demo.py`](https://github.com/RileyCarney/JevTools/blob/HEAD/jev_demo.py)，2026-11-13 模型阅读</sub>
 
 - **[judging-with-typesafe](https://github.com/carlsonchik/judging-with-typesafe)** — 给 Letta 智能体的技能：通过 System One 按给定标准做判断（俄语）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · carlsonchik · `Py` · 调用点 [`skills/judging-with-typesafe/scripts/typesafe.py`](https://github.com/carlsonchik/judging-with-typesafe/blob/HEAD/skills/judging-with-typesafe/scripts/typesafe.py)，2026-09-22 阅读</sub>

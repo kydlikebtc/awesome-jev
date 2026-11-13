@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 179 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 185 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 168 · wire shape 2 · example only 0 · independent reports 19 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 173 · wire shape 3 · example only 0 · independent reports 19 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -320,8 +320,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[agi-jev-containment](https://github.com/carlosedm10/agi-jev-containment)** — AGI JEV Detection — local AI agent monitor: chain-level malicious-agent detection (TypeSafe Jev + Sentinel), escalate-only L1–L5 containment, Neo4j forensics, AngryRobot dashboard. HackSpain 2026. <sub>(upstream description)</sub>
   <sub>`Project` · carlosedm10 · `Py` · call site [`backend/app/classification/jev.py`](https://github.com/carlosedm10/agi-jev-containment/blob/HEAD/backend/app/classification/jev.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[c9r plugins (browser-check, soft-lint)](https://github.com/c9r-dev/plugins)** — Claude Code and Codex plugins that use Jev as their classifier: browser-check runs a plain-English checklist in a real browser, asking which element each step means (choice) and whether each check holds (noul); soft-lint asks yes/no rules about the lines a diff adds. <sub>(written by a model)</sub>
+  <sub>`Plugin` · c9r-dev · `TS` · `choice` · `noul` · call site [`shared/classifier.ts`](https://github.com/c9r-dev/plugins/blob/HEAD/shared/classifier.ts), read by a model 2026-11-13</sub>
+
 - **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI custom nodes that branch a workflow on a typed judgement, such as which style a prompt wants, whether it is too graphic for children or whether it names a real person, with one dropdown switching the backend between Jev, Laya and Cloudflare's Clef. <sub>(written by a model)</sub>
   <sub>`Plugin` · dante01yoon · `Py` · `choice` · `noul` · `score` · call site [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py), read by a model 2026-11-11</sub>
+
+- **[decidekit](https://github.com/debuffjp/decidekit)** — A decision model that runs in the browser or Node: it picks one of your labels for a text with a confidence, learns from an LLM when unsure, and offers the shape of TypeSafe's SDK (client.systemOne({ state, questions })) for choice questions, so code written for Jev can run locally. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · debuffjp · `TS` · cited file [`src/typesafe.ts`](https://github.com/debuffjp/decidekit/blob/HEAD/src/typesafe.ts), read by a model 2026-11-13 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[Decision Lab](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases)** — Site with fifty financial demos that put the same typed choices, scores and nouls about ledgers, orders, fraud, wallets, trades and filings to Jev, grade the answers against known data, and backtest Jev's trade decisions on daily candles; recorded answers replay without a key. <sub>(written by a model)</sub>
   <sub>`Project` · IslamBaraka90 · `JS` · `choice` · `noul` · `score` · call site [`src/services/demo-runner.js`](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases/blob/HEAD/src/services/demo-runner.js), read by a model 2026-11-10</sub>
@@ -358,6 +364,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[guard-jev](https://github.com/NorbertBodziony/guard-jev)** — A text-moderation demo: one systemOne call screens seven Noul hazards and one severity Score in parallel, and the verdict is computed in code from policy thresholds.
   <sub>`Project` · norbertbodziony · `TS` · call site [`app/api/moderate/route.ts`](https://github.com/NorbertBodziony/guard-jev/blob/HEAD/app/api/moderate/route.ts), read 2026-09-24 · ⚠ `one commit` `no licence`</sub>
+
+- **[HekaJev](https://github.com/zurk/hekajev)** — Answers questions about Git history: for each commit it asks Jev the filters written in YAML as nouls and each category set as one choice (or a noul per label), splits large commits, and saves the evidence, answers and cost behind every result in JSONL, logs and an HTML report. <sub>(written by a model)</sub>
+  <sub>`Project` · zurk · `Py` · `noul` · `choice` · call site [`src/hekajev/jev.py`](https://github.com/zurk/hekajev/blob/HEAD/src/hekajev/jev.py), read by a model 2026-11-13</sub>
 
 - **[himalaya-jev-mail-classify](https://github.com/initrd/himalaya-jev-mail-classify)** — Label and prioritise Gmail with a language model. Reads mail through himalaya, classifies each thread with Jev (TypeSafe) over OpenRouter, and applies Gmail labels and colours. Dry run by default, idempotent, no state file. <sub>(upstream description)</sub>
   <sub>`Project` · initrd · `Py` · call site [`mail_classify.py`](https://github.com/initrd/himalaya-jev-mail-classify/blob/HEAD/mail_classify.py), read 2026-09-24</sub>
@@ -494,6 +503,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevticktrouter](https://github.com/GhrezaKh74/JevTicktRouter)** — A .NET 10 and React 19 application for fast, structured AI-powered ticket triage using TypeSafe Jev. <sub>(upstream description)</sub>
   <sub>`Project` · ghrezakh74 · `C#` · call site [`backend/JevTicketRouter.Application/Jev/Contracts/JevSystemOneRequest.cs`](https://github.com/GhrezaKh74/JevTicktRouter/blob/HEAD/backend/JevTicketRouter.Application/Jev/Contracts/JevSystemOneRequest.cs), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[JevTools](https://github.com/RileyCarney/JevTools)** — A local dashboard and CLI demo for Jev: it scores a product review with a six-question fan-out (scores, nouls and a choice) into a composite, classifies topics (choice) and runs custom decisions, logging every request and answer to a local SQLite file. <sub>(written by a model)</sub>
+  <sub>`Project` · RileyCarney · `Py` · `choice` · `noul` · `score` · call site [`jev_demo.py`](https://github.com/RileyCarney/JevTools/blob/HEAD/jev_demo.py), read by a model 2026-11-13</sub>
+
 - **[jevtriage](https://github.com/sathariels/jevtriage)** — GitHub Action + CLI: triage PRs with TypeSafe Jev (ready / needs review / risky) with confidence gates and jevcheck-friendly contracts. <sub>(upstream description)</sub>
   <sub>`Project` · sathariels · `Py` · call site [`src/jevtriage/client.py`](https://github.com/sathariels/jevtriage/blob/HEAD/src/jevtriage/client.py), read 2026-09-24</sub>
 
@@ -502,6 +514,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jlink](https://github.com/keltokhy/jlink)** — Record linkage for economists: write the match rule in plain English, get a probability per pair, audit it, cite it. Python, CLI, Stata and R. <sub>(upstream description)</sub>
   <sub>`Project` · keltokhy · `Py` · call site [`bench/local_models.py`](https://github.com/keltokhy/jlink/blob/HEAD/bench/local_models.py), read 2026-09-24</sub>
+
+- **[krasivo-jev](https://github.com/SergeyBazhmin/krasivo-jev)** — Datasets and training code for open System One models (Qwen3.5-2B with LoRA and a pointer head, trained on 100 Hugging Face datasets), plus an evaluation that asks hosted Jev the same test rows, one choice or noul question each, as the reference for accuracy, NLL and calibration. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · SergeyBazhmin · `Py` · `choice` · `noul` · call site [`src/jev_model/typesafe/client.py`](https://github.com/SergeyBazhmin/krasivo-jev/blob/HEAD/src/jev_model/typesafe/client.py), read by a model 2026-11-13 · ⚠ `no licence` `vendor numbers`</sub>
 
 - **[metis](https://github.com/Ayush0054/metis)** — Metis: automatic GitHub issue triage powered by TypeSafe AI Jev. A reusable GitHub Action. <sub>(upstream description)</sub>
   <sub>`Project` · ayush0054 · `Py` · call site [`src/metis_workflow/integrations/jev.py`](https://github.com/Ayush0054/metis/blob/HEAD/src/metis_workflow/integrations/jev.py), read by a model 2026-11-05</sub>
@@ -520,6 +535,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[one-system](https://github.com/rawwerks/one-system)** — Use local and hosted classifiers aka decision models aka Jev-like models, all through a single TypeSafe API <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · rawwerks · `TS` · cited file [`examples/public_release_review.py`](https://github.com/rawwerks/one-system/blob/HEAD/examples/public_release_review.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
+
+- **[OpenJev for opencode](https://github.com/darwintechlab/openjev)** — opencode plugin that gives the agent Jev as tools (jev_choice, jev_noul, jev_score, jev_ask) for the small decisions it would otherwise ask an LLM, such as whether a command is safe or which team gets a ticket. Each answer comes with a gate that acts when confident and escalates when not. <sub>(written by a model)</sub>
+  <sub>`Plugin` · darwintechlab · `TS` · `choice` · `noul` · `score` · call site [`src/client.ts`](https://github.com/darwintechlab/openjev/blob/HEAD/src/client.ts), read by a model 2026-11-13</sub>
 
 - **[progressgate](https://github.com/AshutoshVJTI/progressgate)** — Detect semantic stagnation in AI agent loops <sub>(upstream description)</sub>
   <sub>`Project` · ashutoshvjti · `TS` · call site [`experiments/jev-client.ts`](https://github.com/AshutoshVJTI/progressgate/blob/HEAD/experiments/jev-client.ts), read 2026-09-22</sub>
