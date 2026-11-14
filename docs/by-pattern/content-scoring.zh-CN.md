@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 189 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 192 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 180 · 接口形态 5 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 183 · 接口形态 5 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -344,6 +344,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — 可观测的浏览器潜行游戏：Jev 做类型化的守卫判断，确定性代码掌管世界规则。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts)，2026-09-22 阅读</sub>
 
+- **[heyreach-jev-bot](https://github.com/matthew004-web/heyreach-jev-bot)** — HeyReach 外联助手：让 Jev 给每个 LinkedIn 潜在客户的匹配度打分（score），给首条消息的各个版本和回复概率打分，并选出最佳消息（choice）；然后把客户名单和草稿（DRAFT）活动写回 HeyReach，自己从不发送任何消息。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · matthew004-web · `Py` · `score` · `noul` · `choice` · 调用点 [`gtm_bot/jev.py`](https://github.com/matthew004-web/heyreach-jev-bot/blob/HEAD/gtm_bot/jev.py)，2026-11-14 模型阅读 · ⚠ `无许可证` `需第三方密钥`</sub>
+
 - **[hush](https://github.com/emreozyoruk/hush)** — 不确定时保持沉默的 issue 分拣：校准过的标签，含垃圾与重复检测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · emreozyoruk · `JS` · 调用点 [`src/jev.js`](https://github.com/emreozyoruk/hush/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
 
@@ -379,6 +382,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-decision-lab](https://github.com/jlov7/jev-decision-lab)** — 一个本地实验室，观察 Jev 在真实业务场景上的判断表现。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jlov7 · `Py` · 调用点 [`jev_lab/adapters.py`](https://github.com/jlov7/jev-decision-lab/blob/HEAD/jev_lab/adapters.py)，2026-09-22 阅读</sub>
+
+- **[jev-demos](https://github.com/DataGobes/jev-demos)** — 五个演示：Cringe-o-Meter 用八个并行判断给 LinkedIn 草稿打分；semsql 把 jev_noul、jev_choice、jev_score 做成 DuckDB 的 SQL 函数；VISUALIZE 让 Jev 判断哪种图表能回答问题；用英语句子写的 dbt 测试；以及在 Databricks 上的同类做法。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · DataGobes · `Py` · `noul` · `choice` · `score` · 调用点 [`02-semsql/src/semsql/backend.py`](https://github.com/DataGobes/jev-demos/blob/HEAD/02-semsql/src/semsql/backend.py)，2026-11-14 模型阅读</sub>
 
 - **[jev-dsl](https://github.com/inanna-malick/jev-dsl)** — 面向智能体的 Haskell DSL：类型化数据包、类型推断，答案与问题同构。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · inanna-malick · `Hs` · 调用点 [`scripts/curate-fixtures.py`](https://github.com/inanna-malick/jev-dsl/blob/HEAD/scripts/curate-fixtures.py)，2026-09-22 阅读</sub>
@@ -457,6 +463,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevbus](https://github.com/zkjoie/jevbus)** — 一个流式事件总线：路由、订阅与消费都由概率决策决定。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zkjoie · `Rs` · 调用点 [`src/jev/http.rs`](https://github.com/zkjoie/jevbus/blob/HEAD/src/jev/http.rs)，2026-09-22 阅读</sub>
+
+- **[jevchik](https://github.com/smixs/jevchik)** — Telegram 群机器人，针对每条消息询问 Jev：0 到 4 的有用度评分（score）计入成员的 karma；四个垃圾信息 noul 和一个资料推广 noul 用来筛查新成员；粗鲁与否的 noul、语气 choice，以及是否回答、提问、致谢、刷屏的 noul 决定它的回复和管理动作。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · smixs · `TS` · `noul` · `score` · `choice` · 调用点 [`src/adapters/jev.ts`](https://github.com/smixs/jevchik/blob/HEAD/src/adapters/jev.ts)，2026-11-14 模型阅读</sub>
 
 - **[jevcut](https://github.com/VBS2004/jevcut)** — 把长视频剪成排好序的短片：代码列出片段所有可能的起止位置，Jev 只评判每个候选边界会剪出的片段，用 noul 判断它是否从半句话开始或结束、能否独立成立、是不是广告，用 choice 在候选之间挑选，用 score 评估开头抓不抓人。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · VBS2004 · `Py` · `noul` · `choice` · `score` · 调用点 [`src/jevcut/backends.py`](https://github.com/VBS2004/jevcut/blob/HEAD/src/jevcut/backends.py)，2026-11-09 模型阅读</sub>

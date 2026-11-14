@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 90 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 92 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 82 · wire shape 1 · example only 1 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 84 · wire shape 1 · example only 1 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -207,6 +207,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[janus](https://github.com/FirasSX914/Janus)** — Measure when to use Jev and other models on your data, then route accordingly. <sub>(upstream description)</sub>
   <sub>`Project` · firassx914 · `Py` · call site [`experiments/run_jev.py`](https://github.com/FirasSX914/Janus/blob/HEAD/experiments/run_jev.py), read 2026-09-22</sub>
 
+- **[Jev AI Skill](https://github.com/King4s/Jev-AI-Skill)** — One skill plus an MCP server for Claude Code, Codex and Hermes. Its Gate tools ask Jev whether an event needs an agent at all, which review findings the evidence closes, which route to take (choice), whether work is done and whether to ask the owner (nouls). <sub>(written by a model)</sub>
+  <sub>`Plugin` · King4s · `Py` · `choice` · `noul` · call site [`jev_mcp.py`](https://github.com/King4s/Jev-AI-Skill/blob/HEAD/jev_mcp.py), read by a model 2026-11-14</sub>
+
 - **[Jev AI Use Cases](https://medium.com/data-science-in-your-pocket/jev-ai-use-cases-9a87d57ac3b4)** — Walks through use case after use case — agent routing, an in-agent decision layer, ticket triage — each with a concrete option set and a sample response.
   <sub>`Tutorial` · Mehul Gupta · `Py` · `choice` · ⚠ `paywall`</sub>
 
@@ -269,6 +272,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[reasoning-router](https://github.com/robertn702/reasoning-router)** — Asks a classifier such as Jev how much reasoning effort each step of a coding session needs, with one choice question, so one strong model handles quick edits and hard debugging without switching effort by hand; works in OpenCode, Pi, Codex CLI and any client behind its local proxy. <sub>(written by a model)</sub>
   <sub>`Plugin` · robertn702 · `TS` · `choice` · call site [`packages/classifiers/src/jev.ts`](https://github.com/robertn702/reasoning-router/blob/HEAD/packages/classifiers/src/jev.ts), read by a model 2026-11-07</sub>
+
+- **[reflex](https://github.com/ursuciprian/reflex)** — Pre-execution hook for Claude Code, Codex CLI, opencode and pi. Before a tool runs it can ask Jev whether the call mutates, exfiltrates or strays off task (nouls), its blast radius (score) and environment (choice); it also guards against prompt injection and picks a LiteLLM model. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ursuciprian · `JS` · `noul` · `score` · `choice` · call site [`providers.mjs`](https://github.com/ursuciprian/reflex/blob/HEAD/providers.mjs), read by a model 2026-11-14</sub>
 
 - **[smart-switch](https://github.com/reycn/smart-switch)** — Reimagined window switcher for macOS using frontier artificial intelligence. Predicted by TypeSafe's Jev model <sub>(upstream description)</sub>
   <sub>`Project` · reycn · `Swift` · call site [`core/src/lib.rs`](https://github.com/reycn/smart-switch/blob/HEAD/core/src/lib.rs), read 2026-09-22</sub>

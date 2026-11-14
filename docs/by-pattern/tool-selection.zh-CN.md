@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 279 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 280 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 268 · 接口形态 7 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 269 · 接口形态 7 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -557,6 +557,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jet](https://github.com/arczhi/jet)** — 原生面向 TypeSafe（Jev）的编码智能体，基于递归式 LLM 上下文分解，配有原生 macOS 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arczhi · `Py` · 调用点 [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py)，2026-09-24 阅读</sub>
+
+- **[Jev AI Skill](https://github.com/King4s/Jev-AI-Skill)** — 一个技能加一个 MCP 服务器，供 Claude Code、Codex 和 Hermes 使用。它的 Gate 工具问 Jev：某个事件是否真的需要智能体，证据能关闭哪些审查发现，走哪条路线（choice），工作是否完成、是否要问主人（noul）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · King4s · `Py` · `choice` · `noul` · 调用点 [`jev_mcp.py`](https://github.com/King4s/Jev-AI-Skill/blob/HEAD/jev_mcp.py)，2026-11-14 模型阅读</sub>
 
 - **[Jev Civilizations](https://github.com/JonesSteven/jev_civilization)** — 一款带在线演示的小型策略游戏：四个部落自主生活，你只能改变环境。每回合 Jev 用 choice 从真正合法的行动中为每个部落选一个，普通的游戏引擎计算结果，检查器会显示 Jev 收到了哪些信息。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jonessteven · `TS` · `choice` · 调用点 [`scripts/probe-jev.ts`](https://github.com/JonesSteven/jev_civilization/blob/HEAD/scripts/probe-jev.ts)，2026-10-24 模型阅读</sub>

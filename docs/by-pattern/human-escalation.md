@@ -4,11 +4,11 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 89 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 93 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#human-escalation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 74 · wire shape 5 · example only 0 · independent reports 11 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 78 · wire shape 5 · example only 0 · independent reports 11 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -184,6 +184,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[daf-jev](https://github.com/docxology/daf-jev)** — daf-jev: composable Python toolkit for TypeSafe's Jev (System One) decision API — question builders, confidence gates, evaluator, calibration, CLI, MCP server, agent skill <sub>(upstream description)</sub>
   <sub>`Plugin` · docxology · `Py` · call site [`src/daf_jev/client.py`](https://github.com/docxology/daf-jev/blob/HEAD/src/daf_jev/client.py), read 2026-09-22</sub>
 
+- **[decision-models-lab](https://github.com/shashikantdev3/decision-models-lab)** — Learning lab on decision models through OpenRouter's decisions API, with Jev and Microsoft Decision-1 side by side. The hello-world triages a ticket in one call, asking whether it is urgent (noul), which team gets it (choice) and how severe it is (score); later steps escalate unsure cases to Claude. <sub>(written by a model)</sub>
+  <sub>`Tutorial` · shashikantdev3 · `JS` · `noul` · `choice` · `score` · call site [`examples/hello-world/hello.mjs`](https://github.com/shashikantdev3/decision-models-lab/blob/HEAD/examples/hello-world/hello.mjs), read by a model 2026-11-14</sub>
+
 - **[Edward](https://github.com/VeridicalTech/Edward)** — Supervisor for coding agents that run unattended: rules watch the event stream, and a probe battery asks Jev, in one batched request of choices, whether the agent's trajectory still looks right; code then lets it go on, pauses, cancels or blocks it, with a signed receipt for each decision. <sub>(written by a model)</sub>
   <sub>`Project` · VeridicalTech · `Py` · `choice` · `noul` · call site [`edward/backends.py`](https://github.com/VeridicalTech/Edward/blob/HEAD/edward/backends.py), read by a model 2026-11-09</sub>
 
@@ -192,6 +195,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[grok-jev-guard](https://github.com/0xwhrari/grok-jev-guard)** — A typed preflight and approval layer for Grok Bot: local policy owns the hard boundaries, Jev judges the ambiguous cases, and Grok Bot executes within the envelope it gets back.
   <sub>`Project` · 0xwhrari · `Py` · call site [`src/grok_jev_guard/jev.py`](https://github.com/0xwhrari/grok-jev-guard/blob/HEAD/src/grok_jev_guard/jev.py), read 2026-09-24 · ⚠ `one commit`</sub>
+
+- **[Gut Check for Home Assistant](https://github.com/funkadelic/ha-gutcheck)** — Home Assistant integration that runs a weekly checkup with Jev: it scores pending updates and chooses areas, device classes, labels and recorder settings to suggest. When Jev is unsure it leaves the item alone, and every finding waits in Repairs for the owner. <sub>(written by a model)</sub>
+  <sub>`Integration` · funkadelic · `Py` · `choice` · `score` · call site [`custom_components/gutcheck/client.py`](https://github.com/funkadelic/ha-gutcheck/blob/HEAD/custom_components/gutcheck/client.py), read by a model 2026-11-14</sub>
 
 - **[Hiep Paseo plugins](https://github.com/hieppp/hiep-paseo-plugin)** — Plugins for the Paseo agent app, three of them on Jev: a permission gate that asks a noul on whether a shell command is read-only and a choice to allow, deny or escalate it to you, an orchestrator that routes delegated tasks to a model and effort, and an MCP evaluation tool. <sub>(written by a model)</sub>
   <sub>`Plugin` · hieppp · `TS` · `noul` · `choice` · call site [`plugins/jev-permission-gate/server/jev-worker.ts`](https://github.com/hieppp/hiep-paseo-plugin/blob/HEAD/plugins/jev-permission-gate/server/jev-worker.ts), read by a model 2026-11-10 · ⚠ `no licence`</sub>
@@ -250,6 +256,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevbus](https://github.com/zkjoie/jevbus)** — A streaming event bus whose routing, subscription and consumption are decided by a probabilistic judge. The reference judge is TypeSafe AI's Jev (System One) model: send it a payload and a set of typed questions, get back calibrated probabilities instead of prose. <sub>(upstream description)</sub>
   <sub>`Project` · zkjoie · `Rs` · call site [`src/jev/http.rs`](https://github.com/zkjoie/jevbus/blob/HEAD/src/jev/http.rs), read 2026-09-22</sub>
 
+- **[Jevest](https://github.com/t7ncke/Jevest)** — GitHub Action for pull request review: a claude -p agent finds issues and a verifier tries to refute them, while Jev triages the pull request, decides whether each finding is published or turned into a question for the author, and picks its labels. <sub>(written by a model)</sub>
+  <sub>`Project` · t7ncke · `TS` · `choice` · `noul` · `score` · call site [`src/adapters/typesafe-decision-adapter.ts`](https://github.com/t7ncke/Jevest/blob/HEAD/src/adapters/typesafe-decision-adapter.ts), read by a model 2026-11-14 · ⚠ `3rd-party key` `vendor numbers`</sub>
+
 - **[luce](https://github.com/scienthoon/luce)** — Luce: a recipe for calibrated decision models — a sentence about your task in, a small model that answers typed questions with honest probabilities out (init → synth → train → eval → serve) <sub>(upstream description)</sub>
   <sub>`Project` · scienthoon · `Py` · call site [`scripts/jev_eval.mjs`](https://github.com/scienthoon/luce/blob/HEAD/scripts/jev_eval.mjs), read 2026-09-22</sub>
 
@@ -276,6 +285,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[qwen-rlcd](https://github.com/shamazharikh/qwen-rlcd)** — Jev-style calibrated decision model (Choice/Score/Noul) on Qwen3.5-0.8B <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · shamazharikh · `Py` · cited file [`scripts/bench_fork.py`](https://github.com/shamazharikh/qwen-rlcd/blob/HEAD/scripts/bench_fork.py), read 2026-09-22 · ⚠ `not Jev itself` `no licence`</sub>
+
+- **[reflex](https://github.com/ursuciprian/reflex)** — Pre-execution hook for Claude Code, Codex CLI, opencode and pi. Before a tool runs it can ask Jev whether the call mutates, exfiltrates or strays off task (nouls), its blast radius (score) and environment (choice); it also guards against prompt injection and picks a LiteLLM model. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ursuciprian · `JS` · `noul` · `score` · `choice` · call site [`providers.mjs`](https://github.com/ursuciprian/reflex/blob/HEAD/providers.mjs), read by a model 2026-11-14</sub>
 
 - **[spending-effort-with-jev](https://github.com/Yaxin9Luo/spending-effort-with-jev)** — Claude Code mod that reads each message you send and asks Jev a choice for the /effort level the task deserves and a noul on whether a long hand-off is still ambiguous; when the session's level looks wrong it offers a one-key switch, and it warns about fuzzy specs. <sub>(written by a model)</sub>
   <sub>`Plugin` · Yaxin9Luo · `TS` · `choice` · `noul` · call site [`plugins/spending-effort-with-jev/hooks/judge.ts`](https://github.com/Yaxin9Luo/spending-effort-with-jev/blob/HEAD/plugins/spending-effort-with-jev/hooks/judge.ts), read by a model 2026-11-10</sub>

@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 517 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 521 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 380 · wire shape 97 · example only 0 · independent reports 29 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 383 · wire shape 98 · example only 0 · independent reports 29 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -560,6 +560,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[decision-cli](https://github.com/cafe3310/decision-cli)** — Runs local LLMs on Apple Silicon (MLX) as decision models by reading the candidate tokens' logits from one prefill step, and serves them through Jev's POST /v1/systemone shape (noul, choice, score) and a batch CLI with a SQLite cache. Text and images. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · cafe3310 · `Go` · cited file [`internal/server/server.go`](https://github.com/cafe3310/decision-cli/blob/HEAD/internal/server/server.go), read by a model 2026-11-13 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
+- **[decision-model-sdk-rust](https://github.com/zchee/decision-model-sdk-rust)** — Async Rust client for the System One API, ported from typesafe-sdk-python 0.7.2: typed choice, noul and score questions, a derive macro for question sets, HTTP/2, and no default base URL, so callers name TypeSafe's endpoint themselves. <sub>(written by a model)</sub>
+  <sub>`SDK` · zchee · `Rs` · `choice` · `noul` · `score` · call site [`crates/sdk/src/client.rs`](https://github.com/zchee/decision-model-sdk-rust/blob/HEAD/crates/sdk/src/client.rs), read by a model 2026-11-14</sub>
+
 - **[Fovea-4B](https://github.com/sivasuthan9/fovea)** — Open 4B decision model for images: given a photo, document, receipt, chart or screenshot, a JSON state and a typed noul, choice or score question, it returns a probability for every allowed answer in one forward pass, served over TypeSafe's System One API so its clients work unchanged. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · sivasuthan9 · `Py` · cited file [`fovea_sdk/server.py`](https://github.com/sivasuthan9/fovea/blob/HEAD/fovea_sdk/server.py), read by a model 2026-11-12 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
@@ -683,6 +686,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevclient](https://github.com/AboveColin/jevclient)** — Async Python client for TypeSafe Jev. Typed questions in, probabilities and choices out, no prose to parse. <sub>(upstream description)</sub>
   <sub>`SDK` · abovecolin · `Py` · call site [`jevclient/const.py`](https://github.com/AboveColin/jevclient/blob/HEAD/jevclient/const.py), read 2026-09-22</sub>
 
+- **[jevcompat](https://github.com/mandu5/jevcompat)** — Conformance kit for servers that copy Jev's POST /v1/systemone: a spec of 48 requirements, a test runner that scores a server against it, a recording proxy and a mock server. It does not test TypeSafe's own API, whose terms forbid security testing, so its results cover open servers only. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · mandu5 · `Py` · cited file [`src/jevcompat/client.py`](https://github.com/mandu5/jevcompat/blob/HEAD/src/jevcompat/client.py), read by a model 2026-11-14 · ⚠ `not Jev itself`</sub>
+
 - **[jevgo](https://github.com/fgn/jevgo)** — Go client for TypeSafe AI's System One API (Jev), with optional Langfuse instrumentation <sub>(upstream description)</sub>
   <sub>`SDK` · fgn · `Go` · call site [`client.go`](https://github.com/fgn/jevgo/blob/HEAD/client.go), read 2026-09-22</sub>
 
@@ -694,6 +700,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevlang](https://github.com/sumanmichael/jevlang)** — The simplest way to write decision workflows in Python. Python with a smart if. <sub>(upstream description)</sub>
   <sub>`SDK` · sumanmichael · `Py` · call site [`jevlang/backend.py`](https://github.com/sumanmichael/jevlang/blob/HEAD/jevlang/backend.py), read 2026-09-24 · ⚠ `one commit`</sub>
+
+- **[jevoss](https://github.com/mertkayacs/jevoss)** — Evaluation toolkit for any server that speaks Jev's /v1/systemone: 16 suites of choice, noul and score cases, five probes, a calibration report and a side-by-side compare. Its endpoint defaults to localhost, and the FAQ says to point --endpoint at hosted Jev with your own key. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · mertkayacs · `Py` · `choice` · `noul` · `score` · call site [`src/jevoss/runner.py`](https://github.com/mertkayacs/jevoss/blob/HEAD/src/jevoss/runner.py), read by a model 2026-11-14 · ⚠ `vendor numbers`</sub>
 
 - **[jevsbistro](https://github.com/andrewsilber/JevsBistro)** — 3D restaurant service simulator for benchmarking low-latency decision models <sub>(upstream description)</sub>
   <sub>`Benchmark` · andrewsilber · `TS` · call site [`src/jev/protocol.ts`](https://github.com/andrewsilber/JevsBistro/blob/HEAD/src/jev/protocol.ts), read 2026-09-22</sub>
@@ -951,7 +960,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 214 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 215 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — Toolkit for voice AI avatars in apps, phone lines, signage and the metaverse. Its Jev turn-end gate asks a noul on the transcript, whether the assistant should stay silent and leave the user's turn open, and maps that probability to a wait of 0.4 to 2 seconds; on any error the turn ends. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · uezo · `Py` · call site [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py), read 2026-09-22</sub>
@@ -1516,6 +1525,9 @@ Projects and plugins with code, 214 of them, whose only pattern is `overview` an
 
 - **[river-run-typesafe](https://github.com/ashaazami/river-run-typesafe)** — River shooter game in Python, inspired by Atari's River Raid, played by a TypeSafe AI pilot <sub>(upstream description)</sub>
   <sub>`Project` · ashaazami · `Py` · call site [`typesafe_pilot/pilot.py`](https://github.com/ashaazami/river-run-typesafe/blob/HEAD/typesafe_pilot/pilot.py), read 2026-09-22</sub>
+
+- **[rlcd-gateway](https://github.com/JimmyWesley/rlcd-gateway)** — Self-hosted Go gateway for coding agents and SDK apps with routing, context pruning and a dashboard, plus a drop-in proxy for /v1/systemone that forwards each request unchanged to Jev or open-rlcd, logs every decision, scores outcomes (accuracy, ECE) and can mirror traffic to Jev. <sub>(written by a model)</sub>
+  <sub>`Project` · JimmyWesley · `Go` · call site [`gateway/internal/decisions/proxy.go`](https://github.com/JimmyWesley/rlcd-gateway/blob/HEAD/gateway/internal/decisions/proxy.go), read by a model 2026-11-14</sub>
 
 - **[rubikjev](https://github.com/0xtrou/rubikjev)** — Challenge the Jev's intelligence in Rubik Cube puzzles <sub>(upstream description)</sub>
   <sub>`Project` · 0xtrou · `TS` · call site [`src/server/jev-engine.ts`](https://github.com/0xtrou/rubikjev/blob/HEAD/src/server/jev-engine.ts), read 2026-09-22 · ⚠ `no licence`</sub>

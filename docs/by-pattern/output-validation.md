@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 164 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 168 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 159 · wire shape 1 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 163 · wire shape 1 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -317,8 +317,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[hunch](https://github.com/Kelbie/hunch)** — Semantic code review with Jev, plain-English rules and Agent Skills. <sub>(upstream description)</sub>
   <sub>`Project` · kelbie · `TS` · call site [`packages/core/src/jev.ts`](https://github.com/Kelbie/hunch/blob/HEAD/packages/core/src/jev.ts), read 2026-09-22</sub>
 
+- **[IntentSQL](https://github.com/Amine-LG/IntentSQL)** — Turns an English question into read-only SQLite: code grounds values and builds the options, Jev picks among them (column, filter, grouping, sort, join) as bounded choices, and code turns the typed plan into deterministic parameterized SQL, with noul and choice checks on the reading. <sub>(written by a model)</sub>
+  <sub>`Project` · Amine-LG · `Py` · `choice` · `noul` · call site [`intentsql/jev.py`](https://github.com/Amine-LG/IntentSQL/blob/HEAD/intentsql/jev.py), read by a model 2026-11-14</sub>
+
 - **[jackalope](https://github.com/Jackalope-Dev/jackalope)** — A desktop workspace for coding agents, parallel Git worktrees, and code review. <sub>(upstream description)</sub>
   <sub>`Project` · jackalope-dev · `Rs` · call site [`apps/desktop/src-tauri/src/commands/jev.rs`](https://github.com/Jackalope-Dev/jackalope/blob/HEAD/apps/desktop/src-tauri/src/commands/jev.rs), read 2026-09-22</sub>
+
+- **[Jev AI Skill](https://github.com/King4s/Jev-AI-Skill)** — One skill plus an MCP server for Claude Code, Codex and Hermes. Its Gate tools ask Jev whether an event needs an agent at all, which review findings the evidence closes, which route to take (choice), whether work is done and whether to ask the owner (nouls). <sub>(written by a model)</sub>
+  <sub>`Plugin` · King4s · `Py` · `choice` · `noul` · call site [`jev_mcp.py`](https://github.com/King4s/Jev-AI-Skill/blob/HEAD/jev_mcp.py), read by a model 2026-11-14</sub>
 
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
@@ -355,6 +361,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-demos](https://github.com/mani-aiml/jev-demos)** — Demos behind the author's videos: in the cited one Jev decides, with a noul per candidate lookup, which records a support agent fetches, and Claude then writes the answer once; others grade 500 AI-written answers against Laya and test prompt injection on Jev as a review gate. <sub>(written by a model)</sub>
   <sub>`Tutorial` · mani-aiml · `Py` · `noul` · call site [`jev-fetches-claude-writes/agent_jev_first.py`](https://github.com/mani-aiml/jev-demos/blob/HEAD/jev-fetches-claude-writes/agent_jev_first.py), read by a model 2026-11-08</sub>
+
+- **[jev-demos](https://github.com/DataGobes/jev-demos)** — Five demos: a Cringe-o-Meter that scores a LinkedIn draft with eight parallel judgments, semsql (jev_noul, jev_choice and jev_score as DuckDB SQL functions), VISUALIZE (Jev picks which chart answers the question), dbt tests written as English sentences, and the same on Databricks. <sub>(written by a model)</sub>
+  <sub>`Project` · DataGobes · `Py` · `noul` · `choice` · `score` · call site [`02-semsql/src/semsql/backend.py`](https://github.com/DataGobes/jev-demos/blob/HEAD/02-semsql/src/semsql/backend.py), read by a model 2026-11-14</sub>
 
 - **[jev-enterprise-decision-fabric](https://github.com/ghubnab99/jev-enterprise-decision-fabric)** — Architecture for running many semantic decisions through one validated path, with a labelled 111-case benchmark comparing TypeSafe Jev against a Claude baseline, and a dashboard for inspecting any single decision. Experimental, not production. <sub>(upstream description)</sub>
   <sub>`Benchmark` · ghubnab99 · `C#` · call site [`src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs`](https://github.com/ghubnab99/jev-enterprise-decision-fabric/blob/HEAD/src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs), read 2026-09-22</sub>
@@ -418,6 +427,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevarena](https://github.com/chenmingtang830/jevarena)** — Open-source BYOK arena for Jev and other AI judges. Find failures, compare quality, cost, and latency. <sub>(upstream description)</sub>
   <sub>`Benchmark` · chenmingtang830 · `TS` · call site [`jevjudge/providers.py`](https://github.com/chenmingtang830/jevarena/blob/HEAD/jevjudge/providers.py), read 2026-09-24</sub>
+
+- **[Jevest](https://github.com/t7ncke/Jevest)** — GitHub Action for pull request review: a claude -p agent finds issues and a verifier tries to refute them, while Jev triages the pull request, decides whether each finding is published or turned into a question for the author, and picks its labels. <sub>(written by a model)</sub>
+  <sub>`Project` · t7ncke · `TS` · `choice` · `noul` · `score` · call site [`src/adapters/typesafe-decision-adapter.ts`](https://github.com/t7ncke/Jevest/blob/HEAD/src/adapters/typesafe-decision-adapter.ts), read by a model 2026-11-14 · ⚠ `3rd-party key` `vendor numbers`</sub>
 
 - **[jevgate](https://github.com/Tech-Byte-Frontier/jevgate)** — Code-review gate for CI and coding agents: asks TypeSafe Jev small typed questions about functions, files, tests and docs, and reports findings with locations and probabilities <sub>(upstream description)</sub>
   <sub>`Project` · tech-byte-frontier · `Rs` · call site [`src/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/provider.rs), read 2026-09-24</sub>

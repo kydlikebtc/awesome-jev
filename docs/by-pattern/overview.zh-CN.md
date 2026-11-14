@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 517 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 521 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 380 · 接口形态 97 · 仅示例 0 · 独立报告 29 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 383 · 接口形态 98 · 仅示例 0 · 独立报告 29 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -560,6 +560,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[decision-cli](https://github.com/cafe3310/decision-cli)** — 在 Apple Silicon 上（MLX）把本地 LLM 当作决策模型运行：只做一步预填充，读取候选 token 的 logits；并通过 Jev 的 POST /v1/systemone 格式（noul、choice、score）和带 SQLite 缓存的批处理命令行提供服务。支持文本和图片。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · cafe3310 · `Go` · 引用文件 [`internal/server/server.go`](https://github.com/cafe3310/decision-cli/blob/HEAD/internal/server/server.go)，2026-11-13 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
+- **[decision-model-sdk-rust](https://github.com/zchee/decision-model-sdk-rust)** — System One API 的异步 Rust 客户端，移植自 typesafe-sdk-python 0.7.2：有类型的 choice、noul、score 问题，生成问题集的 derive 宏，HTTP/2；没有默认 base URL，调用方要自己写上 TypeSafe 的端点。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · zchee · `Rs` · `choice` · `noul` · `score` · 调用点 [`crates/sdk/src/client.rs`](https://github.com/zchee/decision-model-sdk-rust/blob/HEAD/crates/sdk/src/client.rs)，2026-11-14 模型阅读</sub>
+
 - **[Fovea-4B](https://github.com/sivasuthan9/fovea)** — 面向图像的开源 4B 决策模型：给定一张照片、文档、收据、图表或截图，加上 JSON 状态和一个类型化的 noul、choice 或 score 问题，一次前向计算就为每个允许的答案给出概率；它通过 TypeSafe 的 System One API 提供服务，该 API 的客户端无需改动即可调用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · sivasuthan9 · `Py` · 引用文件 [`fovea_sdk/server.py`](https://github.com/sivasuthan9/fovea/blob/HEAD/fovea_sdk/server.py)，2026-11-12 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
@@ -683,6 +686,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevclient](https://github.com/AboveColin/jevclient)** — Jev 的异步 Python 客户端：类型化问题进，概率与选择出，没有散文需要解析。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · abovecolin · `Py` · 调用点 [`jevclient/const.py`](https://github.com/AboveColin/jevclient/blob/HEAD/jevclient/const.py)，2026-09-22 阅读</sub>
 
+- **[jevcompat](https://github.com/mandu5/jevcompat)** — 针对仿照 Jev 的 POST /v1/systemone 的服务器的一致性工具包：一份含 48 条要求的规范、按规范给服务器打分的测试运行器、一个录制代理和一个 mock 服务器。它不测试 TypeSafe 自己的 API（其条款禁止安全测试），所以结果只覆盖开源服务器。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · mandu5 · `Py` · 引用文件 [`src/jevcompat/client.py`](https://github.com/mandu5/jevcompat/blob/HEAD/src/jevcompat/client.py)，2026-11-14 模型阅读 · ⚠ `并非 Jev 本身`</sub>
+
 - **[jevgo](https://github.com/fgn/jevgo)** — System One API 的 Go 客户端，可选接入 Langfuse 观测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · fgn · `Go` · 调用点 [`client.go`](https://github.com/fgn/jevgo/blob/HEAD/client.go)，2026-09-22 阅读</sub>
 
@@ -694,6 +700,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevlang](https://github.com/sumanmichael/jevlang)** — 用 Python 编写决策工作流最简单的方式：带“智能 if”的 Python。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · sumanmichael · `Py` · 调用点 [`jevlang/backend.py`](https://github.com/sumanmichael/jevlang/blob/HEAD/jevlang/backend.py)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[jevoss](https://github.com/mertkayacs/jevoss)** — 面向任何支持 Jev 的 /v1/systemone 接口的服务器的评测工具包：16 组 choice、noul、score 用例，五个探针，一份校准报告和并排对比。端点默认是 localhost；FAQ 说明可以用 --endpoint 指向托管的 Jev，并使用自己的密钥。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · mertkayacs · `Py` · `choice` · `noul` · `score` · 调用点 [`src/jevoss/runner.py`](https://github.com/mertkayacs/jevoss/blob/HEAD/src/jevoss/runner.py)，2026-11-14 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jevsbistro](https://github.com/andrewsilber/JevsBistro)** — 用于低延迟决策模型基准测试的 3D 餐厅服务模拟器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · andrewsilber · `TS` · 调用点 [`src/jev/protocol.ts`](https://github.com/andrewsilber/JevsBistro/blob/HEAD/src/jev/protocol.ts)，2026-09-22 阅读</sub>
@@ -951,7 +960,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ## 尚未按模式索引
 
-带代码的项目或插件，共 214 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
+带代码的项目或插件，共 215 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — 为应用、电话、导览屏和元宇宙打造语音 AI 虚拟形象的工具包。它的 Jev 话轮结束闸门就转写文本提一个 noul：助手是否应保持沉默、让用户的话轮继续，并把这个概率换算成 0.4 到 2 秒的等待；出错时直接结束话轮。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · uezo · `Py` · 调用点 [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py)，2026-09-22 阅读</sub>
@@ -1516,6 +1525,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[river-run-typesafe](https://github.com/ashaazami/river-run-typesafe)** — Python 写的河流射击游戏，由 AI 飞行员驾驶。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ashaazami · `Py` · 调用点 [`typesafe_pilot/pilot.py`](https://github.com/ashaazami/river-run-typesafe/blob/HEAD/typesafe_pilot/pilot.py)，2026-09-22 阅读</sub>
+
+- **[rlcd-gateway](https://github.com/JimmyWesley/rlcd-gateway)** — 自托管的 Go 网关，面向编程智能体和 SDK 应用，提供路由、上下文裁剪和仪表盘；另有一个可直接替换的 /v1/systemone 代理，把每个请求原样转发给 Jev 或 open-rlcd，记录每个决定，按结果计算准确率和 ECE，还能把流量镜像给 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · JimmyWesley · `Go` · 调用点 [`gateway/internal/decisions/proxy.go`](https://github.com/JimmyWesley/rlcd-gateway/blob/HEAD/gateway/internal/decisions/proxy.go)，2026-11-14 模型阅读</sub>
 
 - **[rubikjev](https://github.com/0xtrou/rubikjev)** — 用魔方谜题挑战 Jev 的智力。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · 0xtrou · `TS` · 调用点 [`src/server/jev-engine.ts`](https://github.com/0xtrou/rubikjev/blob/HEAD/src/server/jev-engine.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

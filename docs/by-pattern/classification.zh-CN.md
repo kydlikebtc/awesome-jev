@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 191 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 197 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 179 · 接口形态 3 · 仅示例 0 · 独立报告 19 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 185 · 接口形态 3 · 仅示例 0 · 独立报告 20 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -338,6 +338,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[c9r plugins (browser-check, soft-lint)](https://github.com/c9r-dev/plugins)** — 供 Claude Code 和 Codex 使用、以 Jev 为分类器的插件：browser-check 在真实浏览器里执行用平实英语写的检查清单，问每一步指的是哪个元素（choice）、每项检查是否成立（noul）；soft-lint 针对 diff 新增的代码行提出是非规则问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · c9r-dev · `TS` · `choice` · `noul` · 调用点 [`shared/classifier.ts`](https://github.com/c9r-dev/plugins/blob/HEAD/shared/classifier.ts)，2026-11-13 模型阅读</sub>
 
+- **[candidate-experience-benchmark](https://github.com/adambkovacs/candidate-experience-benchmark)** — 基准测试：60 条合成的求职者评价，每条四项 choice 判断（情绪、是否需要跟进、是否报告了严重问题、能否作为推荐语），在固定版本的托管 Jev 上运行，并与其他决策模型和通用 LLM 对比。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · adambkovacs · `Py` · `choice` · 调用点 [`scripts/jev_benchmark.py`](https://github.com/adambkovacs/candidate-experience-benchmark/blob/HEAD/scripts/jev_benchmark.py)，2026-11-14 模型阅读</sub>
+
 - **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI 自定义节点：根据类型化判断为工作流分支，比如提示词想要哪种风格、是否对儿童过于血腥、是否提到了真实人物；用一个下拉框就能在 Jev、Laya 和 Cloudflare 的 Clef 之间切换后端。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · dante01yoon · `Py` · `choice` · `noul` · `score` · 调用点 [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py)，2026-11-11 模型阅读</sub>
 
@@ -346,6 +349,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Decision Lab](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases)** — 一个包含五十个金融演示的网站：就账本、订单、欺诈、钱包、交易和申报文件，把同样的类型化 choice、score 和 noul 发给 Jev，用已知数据给答案打分，并在日 K 线上回测 Jev 的交易决策；录制好的答案无需密钥即可重放。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · IslamBaraka90 · `JS` · `choice` · `noul` · `score` · 调用点 [`src/services/demo-runner.js`](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases/blob/HEAD/src/services/demo-runner.js)，2026-11-10 模型阅读</sub>
+
+- **[decision-models-lab](https://github.com/shashikantdev3/decision-models-lab)** — 通过 OpenRouter 的 decisions API 学习决策模型的实验室，把 Jev 和 Microsoft Decision-1 并排对比。hello-world 用一次调用分拣工单：是否紧急（noul）、派给哪个团队（choice）、严重程度（score）；后面的步骤把没把握的情况上报给 Claude。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`教程` · shashikantdev3 · `JS` · `noul` · `choice` · `score` · 调用点 [`examples/hello-world/hello.mjs`](https://github.com/shashikantdev3/decision-models-lab/blob/HEAD/examples/hello-world/hello.mjs)，2026-11-14 模型阅读</sub>
 
 - **[discoprint](https://github.com/lirantal/discoprint)** — 用 Jev 按主题、情绪与歌词复杂度给一位艺人的全部作品分类，并可视化呈现。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · lirantal · `JS` · 调用点 [`src/jev.ts`](https://github.com/lirantal/discoprint/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
@@ -380,6 +386,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[guard-jev](https://github.com/NorbertBodziony/guard-jev)** — 一个文本审核演示：一次 systemOne 调用并行检查七个 Noul 风险项和一个严重程度 Score，最终结论由代码按策略阈值计算。 <sub>(机翻)</sub>
   <sub>`开源项目` · norbertbodziony · `TS` · 调用点 [`app/api/moderate/route.ts`](https://github.com/NorbertBodziony/guard-jev/blob/HEAD/app/api/moderate/route.ts)，2026-09-24 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
 
+- **[Gut Check for Home Assistant](https://github.com/funkadelic/ha-gutcheck)** — Home Assistant 集成，每周用 Jev 做一次体检：给待装的更新打分（score），并为区域、设备类别、标签和记录器设置挑选建议（choice）。Jev 没把握时不碰该项，所有发现都放在 Repairs（修复）里等主人处理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`平台集成` · funkadelic · `Py` · `choice` · `score` · 调用点 [`custom_components/gutcheck/client.py`](https://github.com/funkadelic/ha-gutcheck/blob/HEAD/custom_components/gutcheck/client.py)，2026-11-14 模型阅读</sub>
+
 - **[HekaJev](https://github.com/zurk/hekajev)** — 回答关于 Git 历史的问题：对每个提交，把 YAML 里写的筛选条件作为 noul、把每组类别作为一个 choice（或每个标签一个 noul）去问 Jev；会拆分大型提交，并把每个结果背后的证据、答案和成本保存为 JSONL、日志和 HTML 报告。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zurk · `Py` · `noul` · `choice` · 调用点 [`src/hekajev/jev.py`](https://github.com/zurk/hekajev/blob/HEAD/src/hekajev/jev.py)，2026-11-13 模型阅读</sub>
 
@@ -394,6 +403,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
   <sub>`开源项目` · Really Artificial · `JS` · `choice` · `score` · `noul` · 调用点 [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs)，2026-09-22 阅读 · ⚠ `疑似 AI 生成`</sub>
+
+- **[Jev Driver](https://github.com/reinhard-z/vision-jev)** — 浏览器驾驶游戏：Florence-2 为你拖到路上的图片生成描述，Cloudflare Worker 再问 Jev 该采取的驾驶动作、物体类别和限速，每项都是 choice。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · reinhard-z · `TS` · `choice` · 调用点 [`worker/src/jev.ts`](https://github.com/reinhard-z/vision-jev/blob/HEAD/worker/src/jev.ts)，2026-11-14 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — 在 480 道自编通用波斯语题、560 道文学题和一个古典诗歌试点上，把 Jev 与开源决策模型对比的基准：以 choice、noul 和 score 提问，保存原始响应并在本地评分；Jev 在 choice 和 noul 准确率上领先。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · armanjr · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py)，2026-11-11 模型阅读 · ⚠ `无许可证`</sub>
@@ -497,8 +509,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevbench](https://github.com/GautamTalksDev/jevbench)** — 对 TypeSafe Jev 在人类意见分歧下的校准进行预注册、经偏差校正的测试（ChaosNLI，每条 100 个人工标注） <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · Gautam Khosla · `Py` · `choice` · `noul` · 调用点 [`jevbench/clients/jev.py`](https://github.com/GautamTalksDev/jevbench/blob/HEAD/jevbench/clients/jev.py) · 作者结论：好坏参半（作者自述，未经本仓库复现） · ⚠ `疑似 AI 生成` `作者自荐`</sub>
 
+- **[jevchik](https://github.com/smixs/jevchik)** — Telegram 群机器人，针对每条消息询问 Jev：0 到 4 的有用度评分（score）计入成员的 karma；四个垃圾信息 noul 和一个资料推广 noul 用来筛查新成员；粗鲁与否的 noul、语气 choice，以及是否回答、提问、致谢、刷屏的 noul 决定它的回复和管理动作。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · smixs · `TS` · `noul` · `score` · `choice` · 调用点 [`src/adapters/jev.ts`](https://github.com/smixs/jevchik/blob/HEAD/src/adapters/jev.ts)，2026-11-14 模型阅读</sub>
+
 - **[jevcut](https://github.com/VBS2004/jevcut)** — 把长视频剪成排好序的短片：代码列出片段所有可能的起止位置，Jev 只评判每个候选边界会剪出的片段，用 noul 判断它是否从半句话开始或结束、能否独立成立、是不是广告，用 choice 在候选之间挑选，用 score 评估开头抓不抓人。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · VBS2004 · `Py` · `noul` · `choice` · `score` · 调用点 [`src/jevcut/backends.py`](https://github.com/VBS2004/jevcut/blob/HEAD/src/jevcut/backends.py)，2026-11-09 模型阅读</sub>
+
+- **[Jevest](https://github.com/t7ncke/Jevest)** — 用于审查 pull request 的 GitHub Action：claude -p 智能体找问题，验证器尝试反驳；Jev 负责分拣 pull request，决定每条发现是直接发布还是改成向作者提问，并挑选标签。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · t7ncke · `TS` · `choice` · `noul` · `score` · 调用点 [`src/adapters/typesafe-decision-adapter.ts`](https://github.com/t7ncke/Jevest/blob/HEAD/src/adapters/typesafe-decision-adapter.ts)，2026-11-14 模型阅读 · ⚠ `需第三方密钥` `厂商自报数据`</sub>
 
 - **[JevEye](https://github.com/Adityakhalkar/JevEye)** — 向 Jev 询问一张图片：CNN 报告它看到了什么（带校准置信度或选择弃权），再由 Jev 判断这意味着什么。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · adityakhalkar · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/Adityakhalkar/JevEye/blob/HEAD/src/lib/jev.ts)，2026-09-24 阅读</sub>

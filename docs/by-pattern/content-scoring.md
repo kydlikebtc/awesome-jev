@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 189 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 192 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 180 · wire shape 5 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 183 · wire shape 5 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -344,6 +344,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — Observable browser stealth game: Jev makes typed guard judgments while deterministic code owns the world. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts), read 2026-09-22</sub>
 
+- **[heyreach-jev-bot](https://github.com/matthew004-web/heyreach-jev-bot)** — Outreach helper for HeyReach that asks Jev to score each LinkedIn lead's fit, score first-message variants and the chance of a reply, and choose the best message; it then writes lead lists and DRAFT campaigns back to HeyReach and never sends anything itself. <sub>(written by a model)</sub>
+  <sub>`Project` · matthew004-web · `Py` · `score` · `noul` · `choice` · call site [`gtm_bot/jev.py`](https://github.com/matthew004-web/heyreach-jev-bot/blob/HEAD/gtm_bot/jev.py), read by a model 2026-11-14 · ⚠ `no licence` `3rd-party key`</sub>
+
 - **[hush](https://github.com/emreozyoruk/hush)** — Issue triage that stays quiet when it isn't sure. Calibrated labels, spam and duplicate detection — with abstention. <sub>(upstream description)</sub>
   <sub>`Project` · emreozyoruk · `JS` · call site [`src/jev.js`](https://github.com/emreozyoruk/hush/blob/HEAD/src/jev.js), read 2026-09-22</sub>
 
@@ -379,6 +382,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-decision-lab](https://github.com/jlov7/jev-decision-lab)** — A local lab for seeing what TypeSafe's Jev judgment model does on realistic business cases: typed answers, probabilities, policy in code, receipts. <sub>(upstream description)</sub>
   <sub>`Project` · jlov7 · `Py` · call site [`jev_lab/adapters.py`](https://github.com/jlov7/jev-decision-lab/blob/HEAD/jev_lab/adapters.py), read 2026-09-22</sub>
+
+- **[jev-demos](https://github.com/DataGobes/jev-demos)** — Five demos: a Cringe-o-Meter that scores a LinkedIn draft with eight parallel judgments, semsql (jev_noul, jev_choice and jev_score as DuckDB SQL functions), VISUALIZE (Jev picks which chart answers the question), dbt tests written as English sentences, and the same on Databricks. <sub>(written by a model)</sub>
+  <sub>`Project` · DataGobes · `Py` · `noul` · `choice` · `score` · call site [`02-semsql/src/semsql/backend.py`](https://github.com/DataGobes/jev-demos/blob/HEAD/02-semsql/src/semsql/backend.py), read by a model 2026-11-14</sub>
 
 - **[jev-dsl](https://github.com/inanna-malick/jev-dsl)** — Agent-first Haskell DSL for TypeSafe's Jev judgment model: typed packets, inferred types, answers under the same labels <sub>(upstream description)</sub>
   <sub>`Project` · inanna-malick · `Hs` · call site [`scripts/curate-fixtures.py`](https://github.com/inanna-malick/jev-dsl/blob/HEAD/scripts/curate-fixtures.py), read 2026-09-22</sub>
@@ -457,6 +463,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevbus](https://github.com/zkjoie/jevbus)** — A streaming event bus whose routing, subscription and consumption are decided by a probabilistic judge. The reference judge is TypeSafe AI's Jev (System One) model: send it a payload and a set of typed questions, get back calibrated probabilities instead of prose. <sub>(upstream description)</sub>
   <sub>`Project` · zkjoie · `Rs` · call site [`src/jev/http.rs`](https://github.com/zkjoie/jevbus/blob/HEAD/src/jev/http.rs), read 2026-09-22</sub>
+
+- **[jevchik](https://github.com/smixs/jevchik)** — Telegram group bot that asks Jev about each message: a usefulness score from 0 to 4 feeds members' karma, four spam nouls and a profile-promo noul screen newcomers, and a rude noul, a tone choice and nouls for answer, question, thanks and flood shape its replies and moderation. <sub>(written by a model)</sub>
+  <sub>`Project` · smixs · `TS` · `noul` · `score` · `choice` · call site [`src/adapters/jev.ts`](https://github.com/smixs/jevchik/blob/HEAD/src/adapters/jev.ts), read by a model 2026-11-14</sub>
 
 - **[jevcut](https://github.com/VBS2004/jevcut)** — Turns a long video into ranked short clips: code lists every place a clip could start or end, and Jev only judges the clip each candidate edge would make, with nouls on whether it starts or ends mid-thought, stands alone or is an ad, choices among candidates and scores for how it holds attention. <sub>(written by a model)</sub>
   <sub>`Project` · VBS2004 · `Py` · `noul` · `choice` · `score` · call site [`src/jevcut/backends.py`](https://github.com/VBS2004/jevcut/blob/HEAD/src/jevcut/backends.py), read by a model 2026-11-09</sub>

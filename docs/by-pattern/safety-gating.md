@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 170 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 172 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 163 · wire shape 3 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 165 · wire shape 3 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -428,6 +428,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevc](https://github.com/doronp/jevc)** — Compile agent policy prose into deterministic verdict programs: narrow evidence questions for the model, the verdict computed in code. Install: npm i -g jev-compiler <sub>(upstream description)</sub>
   <sub>`Project` · doronp · `TS` · call site [`src/runtime.ts`](https://github.com/doronp/jevc/blob/HEAD/src/runtime.ts), read 2026-09-24</sub>
 
+- **[jevchik](https://github.com/smixs/jevchik)** — Telegram group bot that asks Jev about each message: a usefulness score from 0 to 4 feeds members' karma, four spam nouls and a profile-promo noul screen newcomers, and a rude noul, a tone choice and nouls for answer, question, thanks and flood shape its replies and moderation. <sub>(written by a model)</sub>
+  <sub>`Project` · smixs · `TS` · `noul` · `score` · `choice` · call site [`src/adapters/jev.ts`](https://github.com/smixs/jevchik/blob/HEAD/src/adapters/jev.ts), read by a model 2026-11-14</sub>
+
 - **[jevegis](https://github.com/0xArx/jevegis)** — Guardrails for LLM apps in one API call. Prompt injection, jailbreaks, leaks, unsafe content. Built on TypeSafe Jev. MIT. <sub>(upstream description)</sub>
   <sub>`Project` · 0xarx · `TS` · call site [`src/lib/typesafe.ts`](https://github.com/0xArx/jevegis/blob/HEAD/src/lib/typesafe.ts), read 2026-09-22</sub>
 
@@ -493,6 +496,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[progressgate](https://github.com/AshutoshVJTI/progressgate)** — Detect semantic stagnation in AI agent loops <sub>(upstream description)</sub>
   <sub>`Project` · ashutoshvjti · `TS` · call site [`experiments/jev-client.ts`](https://github.com/AshutoshVJTI/progressgate/blob/HEAD/experiments/jev-client.ts), read 2026-09-22</sub>
+
+- **[reflex](https://github.com/ursuciprian/reflex)** — Pre-execution hook for Claude Code, Codex CLI, opencode and pi. Before a tool runs it can ask Jev whether the call mutates, exfiltrates or strays off task (nouls), its blast radius (score) and environment (choice); it also guards against prompt injection and picks a LiteLLM model. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ursuciprian · `JS` · `noul` · `score` · `choice` · call site [`providers.mjs`](https://github.com/ursuciprian/reflex/blob/HEAD/providers.mjs), read by a model 2026-11-14</sub>
 
 - **[s1s](https://github.com/cpaczek/s1s)** — System One Search: navigate and trace code with TypeSafe judgments and repository evidence <sub>(upstream description)</sub>
   <sub>`Project` · cpaczek · `TS` · call site [`src/client.ts`](https://github.com/cpaczek/s1s/blob/HEAD/src/client.ts), read 2026-09-22</sub>

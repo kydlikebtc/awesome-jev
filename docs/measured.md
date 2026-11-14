@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 93 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 94 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -217,6 +217,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[can-jev-bayes](https://github.com/TomRichner/can-jev-bayes)**<br>
   Jev Bayes, No? Testing TypeSafe AI's Jev against Bayesian-optimal strategies, and testing if Jev can effectivly use Bayesian priors. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · tomrichner · `Py` · [call site](https://github.com/TomRichner/can-jev-bayes/blob/HEAD/src/jevbandits/client.py), read 2026-09-24</sub>
+
+- **[candidate-experience-benchmark](https://github.com/adambkovacs/candidate-experience-benchmark)**<br>
+  Benchmark of 60 synthetic candidate reviews, each with four choice judgments (sentiment, whether follow-up is needed, whether a serious concern is reported, testimonial potential), run on pinned hosted Jev against other decision models and general LLMs. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · adambkovacs · `Py` · `choice` · [call site](https://github.com/adambkovacs/candidate-experience-benchmark/blob/HEAD/scripts/jev_benchmark.py), read by a model 2026-11-14</sub>
+
+  > The other models, and the local razorback16/OpenJev mode, are not Jev. The figures are the author's runs. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-14; a maintainer has not yet read the call site.
 
 - **[Decision Models as Guardrails](https://dm-as-guardrails.raxitlabs.com)**<br>
   Asks Jev 1.13.0, Jev 1.14.0 and 17 other systems, Bedrock Guardrails among them, the same 9,975 labelled guardrail checks in six suites. Jev answers each as a noul; 0.5 or more blocks, nothing tuned per model. Reports balanced accuracy with 95% intervals and USD per 1,000 checks at list price.<br>

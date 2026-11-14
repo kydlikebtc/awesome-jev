@@ -4,11 +4,11 @@
 
 _从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不是生成。_
 
-这个决策的全部已收录例子 —— 共 33 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#结构化抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 34 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#结构化抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#data-extraction)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#data-extraction)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 29 · 接口形态 0 · 仅示例 0 · 独立报告 3 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 30 · 接口形态 0 · 仅示例 0 · 独立报告 3 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -106,6 +106,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-data-questions](https://github.com/narulaskaran/jev-data-questions)** — 带上数据集，看到合适的图表：界面检查 CSV 的结构并提出洞察，由 Jev 填入具体数值。 <sub>(机翻)</sub>
   <sub>`开源项目` · narulaskaran · `TS` · 调用点 [`src/server/jev.ts`](https://github.com/narulaskaran/jev-data-questions/blob/HEAD/src/server/jev.ts)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
+
+- **[jev-demos](https://github.com/DataGobes/jev-demos)** — 五个演示：Cringe-o-Meter 用八个并行判断给 LinkedIn 草稿打分；semsql 把 jev_noul、jev_choice、jev_score 做成 DuckDB 的 SQL 函数；VISUALIZE 让 Jev 判断哪种图表能回答问题；用英语句子写的 dbt 测试；以及在 Databricks 上的同类做法。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · DataGobes · `Py` · `noul` · `choice` · `score` · 调用点 [`02-semsql/src/semsql/backend.py`](https://github.com/DataGobes/jev-demos/blob/HEAD/02-semsql/src/semsql/backend.py)，2026-11-14 模型阅读</sub>
 
 - **[jev-information-extraction](https://github.com/abhishekmamdapure/jev-information-extraction)** — 解析 PDF 并抽取相关信息。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abhishekmamdapure · `Py` · 调用点 [`backend/main.py`](https://github.com/abhishekmamdapure/jev-information-extraction/blob/HEAD/backend/main.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

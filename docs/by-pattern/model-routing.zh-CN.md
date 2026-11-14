@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 90 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 92 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 82 · 接口形态 1 · 仅示例 1 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 84 · 接口形态 1 · 仅示例 1 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -207,6 +207,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[janus](https://github.com/FirasSX914/Janus)** — 先在你自己的数据上衡量何时该用 Jev、何时该用别的模型，再据此路由。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · firassx914 · `Py` · 调用点 [`experiments/run_jev.py`](https://github.com/FirasSX914/Janus/blob/HEAD/experiments/run_jev.py)，2026-09-22 阅读</sub>
 
+- **[Jev AI Skill](https://github.com/King4s/Jev-AI-Skill)** — 一个技能加一个 MCP 服务器，供 Claude Code、Codex 和 Hermes 使用。它的 Gate 工具问 Jev：某个事件是否真的需要智能体，证据能关闭哪些审查发现，走哪条路线（choice），工作是否完成、是否要问主人（noul）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · King4s · `Py` · `choice` · `noul` · 调用点 [`jev_mcp.py`](https://github.com/King4s/Jev-AI-Skill/blob/HEAD/jev_mcp.py)，2026-11-14 模型阅读</sub>
+
 - **[Jev AI Use Cases](https://medium.com/data-science-in-your-pocket/jev-ai-use-cases-9a87d57ac3b4)** — 逐个用例走一遍 —— 智能体路由、智能体内部的决策层、工单分拣 —— 每个都给出具体的选项集和示例响应。
   <sub>`教程` · Mehul Gupta · `Py` · `choice` · ⚠ `付费墙`</sub>
 
@@ -269,6 +272,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[reasoning-router](https://github.com/robertn702/reasoning-router)** — 用一个 choice 问题询问 Jev 等分类器：编程会话中的每一步需要多少推理力度，这样一个强模型就能同时处理快速修改和疑难调试，而无需手动切换力度；可用于 OpenCode、Pi、Codex CLI，以及任何经其本地代理接入的客户端。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · robertn702 · `TS` · `choice` · 调用点 [`packages/classifiers/src/jev.ts`](https://github.com/robertn702/reasoning-router/blob/HEAD/packages/classifiers/src/jev.ts)，2026-11-07 模型阅读</sub>
+
+- **[reflex](https://github.com/ursuciprian/reflex)** — 面向 Claude Code、Codex CLI、opencode 和 pi 的执行前钩子。工具运行前，它可以问 Jev：这次调用是否会改动、外泄或偏离任务（noul），影响范围多大（score），属于哪个环境（choice）；它还防范提示注入，并挑选 LiteLLM 模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ursuciprian · `JS` · `noul` · `score` · `choice` · 调用点 [`providers.mjs`](https://github.com/ursuciprian/reflex/blob/HEAD/providers.mjs)，2026-11-14 模型阅读</sub>
 
 - **[smart-switch](https://github.com/reycn/smart-switch)** — 用前沿 AI 重新想象的 macOS 窗口切换器，由 Jev 做预测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · reycn · `Swift` · 调用点 [`core/src/lib.rs`](https://github.com/reycn/smart-switch/blob/HEAD/core/src/lib.rs)，2026-09-22 阅读</sub>

@@ -4,11 +4,11 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 89 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 93 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#human-escalation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#human-escalation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 74 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 78 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -184,6 +184,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[daf-jev](https://github.com/docxology/daf-jev)** — 可组合的 Python 工具包：问题构造器、置信闸门等。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · docxology · `Py` · 调用点 [`src/daf_jev/client.py`](https://github.com/docxology/daf-jev/blob/HEAD/src/daf_jev/client.py)，2026-09-22 阅读</sub>
 
+- **[decision-models-lab](https://github.com/shashikantdev3/decision-models-lab)** — 通过 OpenRouter 的 decisions API 学习决策模型的实验室，把 Jev 和 Microsoft Decision-1 并排对比。hello-world 用一次调用分拣工单：是否紧急（noul）、派给哪个团队（choice）、严重程度（score）；后面的步骤把没把握的情况上报给 Claude。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`教程` · shashikantdev3 · `JS` · `noul` · `choice` · `score` · 调用点 [`examples/hello-world/hello.mjs`](https://github.com/shashikantdev3/decision-models-lab/blob/HEAD/examples/hello-world/hello.mjs)，2026-11-14 模型阅读</sub>
+
 - **[Edward](https://github.com/VeridicalTech/Edward)** — 给无人值守运行的编码智能体用的监督器：规则监视事件流，一组探测问题在一次批量请求里用 choice 问 Jev 智能体的行为轨迹是否仍然正常；随后由代码决定让它继续、暂停、取消还是阻止，每个决定都附带签名回执。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · VeridicalTech · `Py` · `choice` · `noul` · 调用点 [`edward/backends.py`](https://github.com/VeridicalTech/Edward/blob/HEAD/edward/backends.py)，2026-11-09 模型阅读</sub>
 
@@ -192,6 +195,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[grok-jev-guard](https://github.com/0xwhrari/grok-jev-guard)** — Grok Bot 的类型化预检与审批层：硬性边界由本地策略掌控，模糊情况交给 Jev 判断，Grok Bot 只在返回的范围内执行。 <sub>(机翻)</sub>
   <sub>`开源项目` · 0xwhrari · `Py` · 调用点 [`src/grok_jev_guard/jev.py`](https://github.com/0xwhrari/grok-jev-guard/blob/HEAD/src/grok_jev_guard/jev.py)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[Gut Check for Home Assistant](https://github.com/funkadelic/ha-gutcheck)** — Home Assistant 集成，每周用 Jev 做一次体检：给待装的更新打分（score），并为区域、设备类别、标签和记录器设置挑选建议（choice）。Jev 没把握时不碰该项，所有发现都放在 Repairs（修复）里等主人处理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`平台集成` · funkadelic · `Py` · `choice` · `score` · 调用点 [`custom_components/gutcheck/client.py`](https://github.com/funkadelic/ha-gutcheck/blob/HEAD/custom_components/gutcheck/client.py)，2026-11-14 模型阅读</sub>
 
 - **[Hiep Paseo plugins](https://github.com/hieppp/hiep-paseo-plugin)** — Paseo 智能体应用的一组插件，其中三个用到 Jev：一个权限门，用 noul 判断 shell 命令是否只读，用 choice 决定允许、拒绝还是交给你；一个编排器，把委派的任务路由到某个模型和推理强度；以及一个 MCP 评估工具。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · hieppp · `TS` · `noul` · `choice` · 调用点 [`plugins/jev-permission-gate/server/jev-worker.ts`](https://github.com/hieppp/hiep-paseo-plugin/blob/HEAD/plugins/jev-permission-gate/server/jev-worker.ts)，2026-11-10 模型阅读 · ⚠ `无许可证`</sub>
@@ -250,6 +256,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevbus](https://github.com/zkjoie/jevbus)** — 一个流式事件总线：路由、订阅与消费都由概率决策决定。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zkjoie · `Rs` · 调用点 [`src/jev/http.rs`](https://github.com/zkjoie/jevbus/blob/HEAD/src/jev/http.rs)，2026-09-22 阅读</sub>
 
+- **[Jevest](https://github.com/t7ncke/Jevest)** — 用于审查 pull request 的 GitHub Action：claude -p 智能体找问题，验证器尝试反驳；Jev 负责分拣 pull request，决定每条发现是直接发布还是改成向作者提问，并挑选标签。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · t7ncke · `TS` · `choice` · `noul` · `score` · 调用点 [`src/adapters/typesafe-decision-adapter.ts`](https://github.com/t7ncke/Jevest/blob/HEAD/src/adapters/typesafe-decision-adapter.ts)，2026-11-14 模型阅读 · ⚠ `需第三方密钥` `厂商自报数据`</sub>
+
 - **[luce](https://github.com/scienthoon/luce)** — Luce：一份校准决策模型的配方 —— 输入一句任务描述，产出一个小模型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · scienthoon · `Py` · 调用点 [`scripts/jev_eval.mjs`](https://github.com/scienthoon/luce/blob/HEAD/scripts/jev_eval.mjs)，2026-09-22 阅读</sub>
 
@@ -276,6 +285,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[qwen-rlcd](https://github.com/shamazharikh/qwen-rlcd)** — 基于 Qwen3.5-0.8B 的 Jev 风格校准决策模型（Choice／Score／Noul）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · shamazharikh · `Py` · 引用文件 [`scripts/bench_fork.py`](https://github.com/shamazharikh/qwen-rlcd/blob/HEAD/scripts/bench_fork.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身` `无许可证`</sub>
+
+- **[reflex](https://github.com/ursuciprian/reflex)** — 面向 Claude Code、Codex CLI、opencode 和 pi 的执行前钩子。工具运行前，它可以问 Jev：这次调用是否会改动、外泄或偏离任务（noul），影响范围多大（score），属于哪个环境（choice）；它还防范提示注入，并挑选 LiteLLM 模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ursuciprian · `JS` · `noul` · `score` · `choice` · 调用点 [`providers.mjs`](https://github.com/ursuciprian/reflex/blob/HEAD/providers.mjs)，2026-11-14 模型阅读</sub>
 
 - **[spending-effort-with-jev](https://github.com/Yaxin9Luo/spending-effort-with-jev)** — Claude Code mod：读取你发出的每条消息，用 choice 问 Jev 这个任务值得哪个 /effort 档位，再用 noul 判断一项长时间托管的任务是否还有含糊之处；会话当前档位看起来不对时，提供一键切换，并提醒需求不清。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · Yaxin9Luo · `TS` · `choice` · `noul` · 调用点 [`plugins/spending-effort-with-jev/hooks/judge.ts`](https://github.com/Yaxin9Luo/spending-effort-with-jev/blob/HEAD/plugins/spending-effort-with-jev/hooks/judge.ts)，2026-11-10 模型阅读</sub>

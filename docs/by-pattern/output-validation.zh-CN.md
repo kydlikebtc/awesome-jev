@@ -4,11 +4,11 @@
 
 _在输出到达用户前，按评分标准检查模型产出。_
 
-这个决策的全部已收录例子 —— 共 164 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 168 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#output-validation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#output-validation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 159 · 接口形态 1 · 仅示例 0 · 独立报告 13 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 163 · 接口形态 1 · 仅示例 0 · 独立报告 13 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -317,8 +317,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[hunch](https://github.com/Kelbie/hunch)** — 用 Jev、大白话规则与 Agent 技能做语义代码审查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · kelbie · `TS` · 调用点 [`packages/core/src/jev.ts`](https://github.com/Kelbie/hunch/blob/HEAD/packages/core/src/jev.ts)，2026-09-22 阅读</sub>
 
+- **[IntentSQL](https://github.com/Amine-LG/IntentSQL)** — 把英语问题变成只读的 SQLite 查询：由代码定位取值、列出选项，Jev 以有限的 choice 在其中挑选（列、筛选、分组、排序、连接），再由代码把这份有类型的计划变成确定的参数化 SQL，并用 noul 和 choice 核对对问题的理解。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · Amine-LG · `Py` · `choice` · `noul` · 调用点 [`intentsql/jev.py`](https://github.com/Amine-LG/IntentSQL/blob/HEAD/intentsql/jev.py)，2026-11-14 模型阅读</sub>
+
 - **[jackalope](https://github.com/Jackalope-Dev/jackalope)** — 面向编程智能体、并行 Git worktree 与代码审查的桌面工作区。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jackalope-dev · `Rs` · 调用点 [`apps/desktop/src-tauri/src/commands/jev.rs`](https://github.com/Jackalope-Dev/jackalope/blob/HEAD/apps/desktop/src-tauri/src/commands/jev.rs)，2026-09-22 阅读</sub>
+
+- **[Jev AI Skill](https://github.com/King4s/Jev-AI-Skill)** — 一个技能加一个 MCP 服务器，供 Claude Code、Codex 和 Hermes 使用。它的 Gate 工具问 Jev：某个事件是否真的需要智能体，证据能关闭哪些审查发现，走哪条路线（choice），工作是否完成、是否要问主人（noul）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · King4s · `Py` · `choice` · `noul` · 调用点 [`jev_mcp.py`](https://github.com/King4s/Jev-AI-Skill/blob/HEAD/jev_mcp.py)，2026-11-14 模型阅读</sub>
 
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
   <sub>`开源项目` · Really Artificial · `JS` · `choice` · `score` · `noul` · 调用点 [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs)，2026-09-22 阅读 · ⚠ `疑似 AI 生成`</sub>
@@ -355,6 +361,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-demos](https://github.com/mani-aiml/jev-demos)** — 作者系列视频背后的演示：在所引的演示里，Jev 为每个候选查询回答一个 noul，决定客服智能体要取哪些记录，然后由 Claude 一次性写出回答；其他演示让 Jev 与 Laya 给 500 条 AI 写的回答打分，并测试把 Jev 用作复核关卡时能否被提示注入攻破。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`教程` · mani-aiml · `Py` · `noul` · 调用点 [`jev-fetches-claude-writes/agent_jev_first.py`](https://github.com/mani-aiml/jev-demos/blob/HEAD/jev-fetches-claude-writes/agent_jev_first.py)，2026-11-08 模型阅读</sub>
+
+- **[jev-demos](https://github.com/DataGobes/jev-demos)** — 五个演示：Cringe-o-Meter 用八个并行判断给 LinkedIn 草稿打分；semsql 把 jev_noul、jev_choice、jev_score 做成 DuckDB 的 SQL 函数；VISUALIZE 让 Jev 判断哪种图表能回答问题；用英语句子写的 dbt 测试；以及在 Databricks 上的同类做法。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · DataGobes · `Py` · `noul` · `choice` · `score` · 调用点 [`02-semsql/src/semsql/backend.py`](https://github.com/DataGobes/jev-demos/blob/HEAD/02-semsql/src/semsql/backend.py)，2026-11-14 模型阅读</sub>
 
 - **[jev-enterprise-decision-fabric](https://github.com/ghubnab99/jev-enterprise-decision-fabric)** — 让大量语义决策走同一条经过验证的路径的架构，附带标注数据集。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ghubnab99 · `C#` · 调用点 [`src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs`](https://github.com/ghubnab99/jev-enterprise-decision-fabric/blob/HEAD/src/DecisionFabric.TypeSafe/TypeSafeClientOptions.cs)，2026-09-22 阅读</sub>
@@ -418,6 +427,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevarena](https://github.com/chenmingtang830/jevarena)** — 开源的自带 key 竞技场，用来评测 Jev 与其他 AI 裁判：找出失败案例，比较质量、成本与延迟。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · chenmingtang830 · `TS` · 调用点 [`jevjudge/providers.py`](https://github.com/chenmingtang830/jevarena/blob/HEAD/jevjudge/providers.py)，2026-09-24 阅读</sub>
+
+- **[Jevest](https://github.com/t7ncke/Jevest)** — 用于审查 pull request 的 GitHub Action：claude -p 智能体找问题，验证器尝试反驳；Jev 负责分拣 pull request，决定每条发现是直接发布还是改成向作者提问，并挑选标签。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · t7ncke · `TS` · `choice` · `noul` · `score` · 调用点 [`src/adapters/typesafe-decision-adapter.ts`](https://github.com/t7ncke/Jevest/blob/HEAD/src/adapters/typesafe-decision-adapter.ts)，2026-11-14 模型阅读 · ⚠ `需第三方密钥` `厂商自报数据`</sub>
 
 - **[jevgate](https://github.com/Tech-Byte-Frontier/jevgate)** — 面向 CI 与编码智能体的代码审查关卡：就函数、文件、测试与依赖向 TypeSafe Jev 提出小而具体的类型化问题。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tech-byte-frontier · `Rs` · 调用点 [`src/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/provider.rs)，2026-09-24 阅读</sub>

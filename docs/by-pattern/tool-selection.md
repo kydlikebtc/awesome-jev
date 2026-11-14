@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 279 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 280 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 268 · wire shape 7 · example only 0 · independent reports 12 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 269 · wire shape 7 · example only 0 · independent reports 12 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -557,6 +557,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jet](https://github.com/arczhi/jet)** — A TypeSafe-native (Jev) coding agent built on Recursive LLM Context Decomposition (RLCD), with a native macOS client <sub>(upstream description)</sub>
   <sub>`Project` · arczhi · `Py` · call site [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py), read 2026-09-24</sub>
+
+- **[Jev AI Skill](https://github.com/King4s/Jev-AI-Skill)** — One skill plus an MCP server for Claude Code, Codex and Hermes. Its Gate tools ask Jev whether an event needs an agent at all, which review findings the evidence closes, which route to take (choice), whether work is done and whether to ask the owner (nouls). <sub>(written by a model)</sub>
+  <sub>`Plugin` · King4s · `Py` · `choice` · `noul` · call site [`jev_mcp.py`](https://github.com/King4s/Jev-AI-Skill/blob/HEAD/jev_mcp.py), read by a model 2026-11-14</sub>
 
 - **[Jev Civilizations](https://github.com/JonesSteven/jev_civilization)** — Small strategy game with a live demo: four tribes run their own lives while you only change the environment. Each turn Jev picks one action per tribe as a choice over the moves that are actually legal, a plain game engine works out the results, and an inspector shows what Jev was told. <sub>(written by a model)</sub>
   <sub>`Project` · jonessteven · `TS` · `choice` · call site [`scripts/probe-jev.ts`](https://github.com/JonesSteven/jev_civilization/blob/HEAD/scripts/probe-jev.ts), read by a model 2026-10-24</sub>

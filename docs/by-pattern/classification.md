@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 191 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 197 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 179 · wire shape 3 · example only 0 · independent reports 19 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 185 · wire shape 3 · example only 0 · independent reports 20 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -338,6 +338,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[c9r plugins (browser-check, soft-lint)](https://github.com/c9r-dev/plugins)** — Claude Code and Codex plugins that use Jev as their classifier: browser-check runs a plain-English checklist in a real browser, asking which element each step means (choice) and whether each check holds (noul); soft-lint asks yes/no rules about the lines a diff adds. <sub>(written by a model)</sub>
   <sub>`Plugin` · c9r-dev · `TS` · `choice` · `noul` · call site [`shared/classifier.ts`](https://github.com/c9r-dev/plugins/blob/HEAD/shared/classifier.ts), read by a model 2026-11-13</sub>
 
+- **[candidate-experience-benchmark](https://github.com/adambkovacs/candidate-experience-benchmark)** — Benchmark of 60 synthetic candidate reviews, each with four choice judgments (sentiment, whether follow-up is needed, whether a serious concern is reported, testimonial potential), run on pinned hosted Jev against other decision models and general LLMs. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · adambkovacs · `Py` · `choice` · call site [`scripts/jev_benchmark.py`](https://github.com/adambkovacs/candidate-experience-benchmark/blob/HEAD/scripts/jev_benchmark.py), read by a model 2026-11-14</sub>
+
 - **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI custom nodes that branch a workflow on a typed judgement, such as which style a prompt wants, whether it is too graphic for children or whether it names a real person, with one dropdown switching the backend between Jev, Laya and Cloudflare's Clef. <sub>(written by a model)</sub>
   <sub>`Plugin` · dante01yoon · `Py` · `choice` · `noul` · `score` · call site [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py), read by a model 2026-11-11</sub>
 
@@ -346,6 +349,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Decision Lab](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases)** — Site with fifty financial demos that put the same typed choices, scores and nouls about ledgers, orders, fraud, wallets, trades and filings to Jev, grade the answers against known data, and backtest Jev's trade decisions on daily candles; recorded answers replay without a key. <sub>(written by a model)</sub>
   <sub>`Project` · IslamBaraka90 · `JS` · `choice` · `noul` · `score` · call site [`src/services/demo-runner.js`](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases/blob/HEAD/src/services/demo-runner.js), read by a model 2026-11-10</sub>
+
+- **[decision-models-lab](https://github.com/shashikantdev3/decision-models-lab)** — Learning lab on decision models through OpenRouter's decisions API, with Jev and Microsoft Decision-1 side by side. The hello-world triages a ticket in one call, asking whether it is urgent (noul), which team gets it (choice) and how severe it is (score); later steps escalate unsure cases to Claude. <sub>(written by a model)</sub>
+  <sub>`Tutorial` · shashikantdev3 · `JS` · `noul` · `choice` · `score` · call site [`examples/hello-world/hello.mjs`](https://github.com/shashikantdev3/decision-models-lab/blob/HEAD/examples/hello-world/hello.mjs), read by a model 2026-11-14</sub>
 
 - **[discoprint](https://github.com/lirantal/discoprint)** — Classify an artist's discography by theme, mood, and lyrical complexity with Jev (TypeSafe AI), and view it as a colorful terminal dashboard <sub>(upstream description)</sub>
   <sub>`Project` · lirantal · `JS` · call site [`src/jev.ts`](https://github.com/lirantal/discoprint/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
@@ -380,6 +386,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[guard-jev](https://github.com/NorbertBodziony/guard-jev)** — A text-moderation demo: one systemOne call screens seven Noul hazards and one severity Score in parallel, and the verdict is computed in code from policy thresholds.
   <sub>`Project` · norbertbodziony · `TS` · call site [`app/api/moderate/route.ts`](https://github.com/NorbertBodziony/guard-jev/blob/HEAD/app/api/moderate/route.ts), read 2026-09-24 · ⚠ `one commit` `no licence`</sub>
 
+- **[Gut Check for Home Assistant](https://github.com/funkadelic/ha-gutcheck)** — Home Assistant integration that runs a weekly checkup with Jev: it scores pending updates and chooses areas, device classes, labels and recorder settings to suggest. When Jev is unsure it leaves the item alone, and every finding waits in Repairs for the owner. <sub>(written by a model)</sub>
+  <sub>`Integration` · funkadelic · `Py` · `choice` · `score` · call site [`custom_components/gutcheck/client.py`](https://github.com/funkadelic/ha-gutcheck/blob/HEAD/custom_components/gutcheck/client.py), read by a model 2026-11-14</sub>
+
 - **[HekaJev](https://github.com/zurk/hekajev)** — Answers questions about Git history: for each commit it asks Jev the filters written in YAML as nouls and each category set as one choice (or a noul per label), splits large commits, and saves the evidence, answers and cost behind every result in JSONL, logs and an HTML report. <sub>(written by a model)</sub>
   <sub>`Project` · zurk · `Py` · `noul` · `choice` · call site [`src/hekajev/jev.py`](https://github.com/zurk/hekajev/blob/HEAD/src/hekajev/jev.py), read by a model 2026-11-13</sub>
 
@@ -394,6 +403,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
+
+- **[Jev Driver](https://github.com/reinhard-z/vision-jev)** — Browser driving game: Florence-2 captions the image you drag onto the road, and a Cloudflare Worker asks Jev for the driving action, the object's category and the speed limit, each as a choice. <sub>(written by a model)</sub>
+  <sub>`Project` · reinhard-z · `TS` · `choice` · call site [`worker/src/jev.ts`](https://github.com/reinhard-z/vision-jev/blob/HEAD/worker/src/jev.ts), read by a model 2026-11-14 · ⚠ `vendor numbers`</sub>
 
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — Benchmark of Jev against open decision models on 480 authored general Persian questions, 560 literary questions and a classical poetry pilot, asked as choices, nouls and scores with raw responses saved and scored locally; Jev leads on choice and noul accuracy. <sub>(written by a model)</sub>
   <sub>`Benchmark` · armanjr · `Py` · `choice` · `noul` · `score` · call site [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py), read by a model 2026-11-11 · ⚠ `no licence`</sub>
@@ -497,8 +509,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevbench](https://github.com/GautamTalksDev/jevbench)** — Preregistered, bias-corrected test of TypeSafe Jev's calibration under human disagreement (ChaosNLI, 100 labels per item) <sub>(upstream description)</sub>
   <sub>`Benchmark` · Gautam Khosla · `Py` · `choice` · `noul` · call site [`jevbench/clients/jev.py`](https://github.com/GautamTalksDev/jevbench/blob/HEAD/jevbench/clients/jev.py) · author's conclusion: mixed (author-stated, not reproduced here) · ⚠ `AI-written` `self-submitted`</sub>
 
+- **[jevchik](https://github.com/smixs/jevchik)** — Telegram group bot that asks Jev about each message: a usefulness score from 0 to 4 feeds members' karma, four spam nouls and a profile-promo noul screen newcomers, and a rude noul, a tone choice and nouls for answer, question, thanks and flood shape its replies and moderation. <sub>(written by a model)</sub>
+  <sub>`Project` · smixs · `TS` · `noul` · `score` · `choice` · call site [`src/adapters/jev.ts`](https://github.com/smixs/jevchik/blob/HEAD/src/adapters/jev.ts), read by a model 2026-11-14</sub>
+
 - **[jevcut](https://github.com/VBS2004/jevcut)** — Turns a long video into ranked short clips: code lists every place a clip could start or end, and Jev only judges the clip each candidate edge would make, with nouls on whether it starts or ends mid-thought, stands alone or is an ad, choices among candidates and scores for how it holds attention. <sub>(written by a model)</sub>
   <sub>`Project` · VBS2004 · `Py` · `noul` · `choice` · `score` · call site [`src/jevcut/backends.py`](https://github.com/VBS2004/jevcut/blob/HEAD/src/jevcut/backends.py), read by a model 2026-11-09</sub>
+
+- **[Jevest](https://github.com/t7ncke/Jevest)** — GitHub Action for pull request review: a claude -p agent finds issues and a verifier tries to refute them, while Jev triages the pull request, decides whether each finding is published or turned into a question for the author, and picks its labels. <sub>(written by a model)</sub>
+  <sub>`Project` · t7ncke · `TS` · `choice` · `noul` · `score` · call site [`src/adapters/typesafe-decision-adapter.ts`](https://github.com/t7ncke/Jevest/blob/HEAD/src/adapters/typesafe-decision-adapter.ts), read by a model 2026-11-14 · ⚠ `3rd-party key` `vendor numbers`</sub>
 
 - **[JevEye](https://github.com/Adityakhalkar/JevEye)** — Ask Jev about an image. A CNN reports what it sees with a calibrated confidence or an abstention; Jev judges what it means. <sub>(upstream description)</sub>
   <sub>`Project` · adityakhalkar · `TS` · call site [`src/lib/jev.ts`](https://github.com/Adityakhalkar/JevEye/blob/HEAD/src/lib/jev.ts), read 2026-09-24</sub>
