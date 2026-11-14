@@ -113,18 +113,28 @@ In a shuffled order and without counts until the week closes, so nobody votes fo
 
 Products built on Jev, launched by their makers once a week, or hunted by anyone who found one. People vote with a thumbs-up on each launch's post in [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches); the week closes on Sunday 23:59 UTC with a rank. Votes say how many people cared; the evidence beside each launch says who read the code that calls Jev. The two are never added together, and a rank is not this catalogue's recommendation. [The board](https://kydlikebtc.github.io/awesome-jev/launches.html) has every week, a page per product and per maker, and the rising list.
 
-### ★ Rising: 2026-11-04 to 2026-11-12
+### ★ Rising: 2026-11-04 to 2026-11-14
 
 <table>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/solvi.html"><img src="https://github.com/solvi-ai.png?size=96" width="48" height="48" alt="solvi"></a></td>
+<td>
+
+**[solvi](https://kydlikebtc.github.io/awesome-jev/products/solvi.html)** — Python runtime with a System One API adapter: Jev, an LLM or a local checkpoint proposes typed answers; hard checks, rules and calibrated thresholds decide, abstain or escalate to a person, and every decision is a hash-chained replayable trace.<br>
+<sub>4 → 14 stars (+250%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=solvi&title=Launch%3A%20solvi)</sub>
+
+</td>
+<td align="center" width="80"><b>★&nbsp;+10</b><br><sub>stars</sub></td>
+</tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html"><img src="https://github.com/sunyasheng.png?size=96" width="48" height="48" alt="JevGPT: Thinking Fast and Slow in Autonomous Research"></a></td>
 <td>
 
 **[JevGPT: Thinking Fast and Slow in Autonomous Research](https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html)** — Research agent from arXiv 2610.18272. GPT-5.5 plans searches and writes the answer; in BrowseComp-Plus QA, Jev answers a Choice over numbered source lines (where is the answer) and a Noul (does the region address it) per document region and query, in parallel. GPT gets the original lines.<br>
-<sub>14 → 32 stars (+129%) · 🔍 text match only, nobody has read it · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgpt-sunyasheng&title=Launch%3A%20JevGPT%3A%20Thinking%20Fast%20and%20Slow%20in%20Autonomous%20Research)</sub>
+<sub>14 → 39 stars (+179%) · 🔍 text match only, nobody has read it · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgpt-sunyasheng&title=Launch%3A%20JevGPT%3A%20Thinking%20Fast%20and%20Slow%20in%20Autonomous%20Research)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+18</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+25</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/kojev.html"><img src="https://github.com/ItisNoMatter.png?size=96" width="48" height="48" alt="kojev"></a></td>
@@ -141,30 +151,20 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <td>
 
 **[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — Desktop automation that reads the system accessibility tree and decides which button, menu or field to act on next.<br>
-<sub>14,206 → 22,370 stars (+57%) · 👤 a person read the call site · [Vote ↗](https://github.com/kydlikebtc/awesome-jev/discussions/107)</sub>
+<sub>14,206 → 23,462 stars (+65%) · 👤 a person read the call site · [Vote ↗](https://github.com/kydlikebtc/awesome-jev/discussions/107)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+8,164</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+9,256</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-recipes.html"><img src="https://github.com/agencyenterprise.png?size=96" width="48" height="48" alt="jev-recipes"></a></td>
 <td>
 
 **[jev-recipes](https://kydlikebtc.github.io/awesome-jev/products/jev-recipes.html)** — 80+ composable TypeScript recipes powered by Jev for AI agents, retrieval, answer verification, and conversation workflows.<br>
-<sub>25 → 35 stars (+40%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jev-recipes&title=Launch%3A%20jev-recipes)</sub>
+<sub>25 → 37 stars (+48%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jev-recipes&title=Launch%3A%20jev-recipes)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+10</b><br><sub>stars</sub></td>
-</tr>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jevgraph.html"><img src="https://github.com/chenmingtang830.png?size=96" width="48" height="48" alt="jevgraph"></a></td>
-<td>
-
-**[jevgraph](https://kydlikebtc.github.io/awesome-jev/products/jevgraph.html)** — Evidence-backed knowledge graph construction with typed Jev relation decisions <sub>(upstream description)</sub><br>
-<sub>47 → 65 stars (+38%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgraph&title=Launch%3A%20jevgraph)</sub>
-
-</td>
-<td align="center" width="80"><b>★&nbsp;+18</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+12</b><br><sub>stars</sub></td>
 </tr>
 </table>
 

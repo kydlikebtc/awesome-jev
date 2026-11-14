@@ -113,18 +113,28 @@
 
 用 Jev 做出来的产品，由 Maker 每周发布一次，任何人也可以推荐（hunt）自己发现的产品。大家在每个 Launch 的 [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches) 帖子上点赞投票，每周日 23:59 UTC 收榜、排名。票数说明有多少人关心；每个 Launch 旁边的证据说明谁读过它调用 Jev 的代码。两者从不相加，名次也不是本目录的推荐。[发布榜](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)上有每一周、每个产品和每位 Maker 的页面，以及上升榜。 <sub>(机翻)</sub>
 
-### ★ 上升最快：2026-11-04 至 2026-11-12
+### ★ 上升最快：2026-11-04 至 2026-11-14
 
 <table>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/solvi.html"><img src="https://github.com/solvi-ai.png?size=96" width="48" height="48" alt="solvi"></a></td>
+<td>
+
+**[solvi](https://kydlikebtc.github.io/awesome-jev/products/solvi.html)** — Python 决策运行时，内置 System One API 适配器：由 Jev、LLM 或本地模型给出类型化答案，再由硬性检查、规则和校准阈值决定采纳、弃权或转交人工；每个决策都保存为可重放的哈希链记录。 <sub>(机翻)</sub><br>
+<sub>4 → 14 星（+250%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=solvi&title=Launch%3A%20solvi)</sub>
+
+</td>
+<td align="center" width="80"><b>★&nbsp;+10</b><br><sub>星标</sub></td>
+</tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html"><img src="https://github.com/sunyasheng.png?size=96" width="48" height="48" alt="JevGPT: Thinking Fast and Slow in Autonomous Research"></a></td>
 <td>
 
 **[JevGPT: Thinking Fast and Slow in Autonomous Research](https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html)** — 论文 arXiv 2610.18272 的研究 Agent。GPT-5.5 规划检索并写出答案；在 BrowseComp-Plus 问答中，对每个被检查的文档区域和每个查询，Jev 回答一个 Choice（在编号的原文行中选出答案所在行）和一个 Noul（该区域是否涉及该查询），在多个文档上并行运行。GPT 拿到的是原文行。 <sub>(机翻)</sub><br>
-<sub>14 → 32 星（+129%） · 🔍 仅文本匹配，还没有人读过 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgpt-sunyasheng&title=Launch%3A%20JevGPT%3A%20Thinking%20Fast%20and%20Slow%20in%20Autonomous%20Research)</sub>
+<sub>14 → 39 星（+179%） · 🔍 仅文本匹配，还没有人读过 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgpt-sunyasheng&title=Launch%3A%20JevGPT%3A%20Thinking%20Fast%20and%20Slow%20in%20Autonomous%20Research)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+18</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+25</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/kojev.html"><img src="https://github.com/ItisNoMatter.png?size=96" width="48" height="48" alt="kojev"></a></td>
@@ -141,30 +151,20 @@
 <td>
 
 **[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — 桌面自动化。读系统无障碍树，判断下一步该点哪个按钮、菜单或输入框。<br>
-<sub>14,206 → 22,370 星（+57%） · 👤 有人读过调用点 · [投票 ↗](https://github.com/kydlikebtc/awesome-jev/discussions/107)</sub>
+<sub>14,206 → 23,462 星（+65%） · 👤 有人读过调用点 · [投票 ↗](https://github.com/kydlikebtc/awesome-jev/discussions/107)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+8,164</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+9,256</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-recipes.html"><img src="https://github.com/agencyenterprise.png?size=96" width="48" height="48" alt="jev-recipes"></a></td>
 <td>
 
 **[jev-recipes](https://kydlikebtc.github.io/awesome-jev/products/jev-recipes.html)** — 80 多个由 Jev 驱动的可组合 TypeScript 配方，覆盖 AI 智能体、检索、答案校验与对话流程。 <sub>(机翻)</sub><br>
-<sub>25 → 35 星（+40%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jev-recipes&title=Launch%3A%20jev-recipes)</sub>
+<sub>25 → 37 星（+48%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jev-recipes&title=Launch%3A%20jev-recipes)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+10</b><br><sub>星标</sub></td>
-</tr>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jevgraph.html"><img src="https://github.com/chenmingtang830.png?size=96" width="48" height="48" alt="jevgraph"></a></td>
-<td>
-
-**[jevgraph](https://kydlikebtc.github.io/awesome-jev/products/jevgraph.html)** — 用类型化 Jev 关系决策构建有证据支撑的知识图谱。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
-<sub>47 → 65 星（+38%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgraph&title=Launch%3A%20jevgraph)</sub>
-
-</td>
-<td align="center" width="80"><b>★&nbsp;+18</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+12</b><br><sub>星标</sub></td>
 </tr>
 </table>
 
