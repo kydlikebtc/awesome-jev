@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 521 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 525 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 383 · wire shape 98 · example only 0 · independent reports 29 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 387 · wire shape 98 · example only 0 · independent reports 33 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -548,6 +548,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[decido](https://github.com/yairshy/decido)** — Probabilistic decisions for Python. Use Jev or bring your own provider; crawl with Playwright. <sub>(upstream description)</sub>
   <sub>`Integration` · yairshy · `Py` · call site [`src/decido/providers/typesafe.py`](https://github.com/yairshy/decido/blob/HEAD/src/decido/providers/typesafe.py), read 2026-09-22</sub>
 
+- **[Decision Models Under Pressure](https://github.com/gazelle93/decision-models-under-pressure)** — Study of eight decision systems, Jev among them, on one choice task as it gets harder: the candidate list grows to 128, the option order is shuffled, and the wrong answers get harder. It asks Jev each case through OpenRouter's /v1/systemone and keeps a resumable cost ledger. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · gazelle93 · `Py` · `choice` · call site [`harness/models/jev.py`](https://github.com/gazelle93/decision-models-under-pressure/blob/HEAD/harness/models/jev.py), read by a model 2026-11-15 · ⚠ `no licence`</sub>
+
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)** — Open benchmark runtime for document-grounded decision models <sub>(upstream description)</sub>
   <sub>`Benchmark` · hanno-labs · `Py` · call site [`src/decision_bench/models/jev_openrouter.py`](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py), read 2026-09-24</sub>
 
@@ -683,6 +686,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[JevAlt](https://github.com/mertkayacs/jevalt)** — Open 4B decision models for English, Turkish and German (Deem-4B, Karar-4B, Wähler-4B) that run on a CPU in about 3 GB of RAM and serve Jev's POST /v1/systemone shape with choice, score and noul questions, plus optional reasoning and abstain fields. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · mertkayacs · `Py` · cited file [`src/jevalt/server.py`](https://github.com/mertkayacs/jevalt/blob/HEAD/src/jevalt/server.py), read by a model 2026-11-10 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
+- **[JevBench](https://github.com/Leanmcp/jevbench)** — Open framework and paper for benchmarking typed decision models: datasets in six clusters (science, tool calling, business, selection, ranking, judging) asked as choice, noul and score questions of 17 models, Jev among them, with one index per model and the data on Hugging Face. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · Leanmcp · `Py` · `choice` · `noul` · `score` · call site [`jev_bench/workspace/common.py`](https://github.com/Leanmcp/jevbench/blob/HEAD/jev_bench/workspace/common.py), read by a model 2026-11-15</sub>
+
 - **[jevclient](https://github.com/AboveColin/jevclient)** — Async Python client for TypeSafe Jev. Typed questions in, probabilities and choices out, no prose to parse. <sub>(upstream description)</sub>
   <sub>`SDK` · abovecolin · `Py` · call site [`jevclient/const.py`](https://github.com/AboveColin/jevclient/blob/HEAD/jevclient/const.py), read 2026-09-22</sub>
 
@@ -733,6 +739,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)** — First independent head-to-head benchmark of System One decision models (Laya vs Jev) on byte-identical inputs <sub>(upstream description)</sub>
   <sub>`Benchmark` · instax-dutta · `Py` · call site [`runners/jev_runner.py`](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py), read 2026-09-22</sub>
+
+- **[System 1 Decision Benchmark](https://github.com/etsabary/system-1-decision-benchmark)** — Benchmark of 1,456 choice questions in 43 categories (reasoning, routing, tool use, authority and more) put to decision models, Jev among them through OpenRouter's decisions API, and to general LLMs, with accuracy, latency and cost per configuration and an interactive report. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · etsabary · `Py` · `choice` · call site [`scripts/run_benchmark.py`](https://github.com/etsabary/system-1-decision-benchmark/blob/HEAD/scripts/run_benchmark.py), read by a model 2026-11-15</sub>
 
 - **[system-one-adapter-rust](https://github.com/codeitlikemiley/system-one-adapter-rust)** — Rust port of TypeSafe system-one-adapter (LLM-backed system_one evaluations) <sub>(upstream description)</sub>
   <sub>`Integration` · codeitlikemiley · `Rs` · call site [`src/client.rs`](https://github.com/codeitlikemiley/system-one-adapter-rust/blob/HEAD/src/client.rs), read 2026-09-22</sub>
@@ -898,6 +907,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[what-is-jev](https://github.com/g0runmezadam/what-is-jev)** — Independent, source-linked research on TypeSafe AI's Jev (System One), with 947 rubric-scored public repositories, recurring patterns, datasets, and bilingual documentation. <sub>(upstream description)</sub>
   <sub>`Benchmark` · g0runmezadam · `Py`</sub>
+
+- **[zh-decision-bench](https://github.com/CodyQin/zh-decision-bench)** — Calibration benchmark for decision models on Chinese tasks (voice and support routing, urgency, scam detection, escalation): it asks Jev and open models choice, noul and score questions and reports accuracy, calibration error, option-order flips and Traditional Chinese flips. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · CodyQin · `Py` · `choice` · `noul` · `score` · call site [`src/jev_adapter.py`](https://github.com/CodyQin/zh-decision-bench/blob/HEAD/src/jev_adapter.py), read by a model 2026-11-15</sub>
 
 - **[awesome-jev (heyjunpenn)](https://github.com/heyjunpenn/awesome-jev)** — The broadest sibling directory: hundreds of projects in six languages, with a README that is itself the parsed data source.
   <sub>`Project` · ★1k+ · heyjunpenn</sub>

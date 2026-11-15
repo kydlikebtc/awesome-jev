@@ -4,11 +4,11 @@
 
 _Pull typed fields out of messy text by choosing among candidates rather than generating them._
 
-Every catalogued example of this decision — 34 of them. The same rows, with caveats, are in [the index](../../README.md#structured-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 35 of them. The same rows, with caveats, are in [the index](../../README.md#structured-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#data-extraction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 30 · wire shape 0 · example only 0 · independent reports 3 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 31 · wire shape 0 · example only 0 · independent reports 3 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -121,6 +121,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevsume](https://github.com/unownone/jevsume)** — ATS-friendly resume review powered by Jev (TypeSafe System One). The frontend extracts resume text the way a parser would, then a Cloudflare Worker runs typed JEV questions and composes a JevScore. <sub>(upstream description)</sub>
   <sub>`Project` · unownone · `TS` · call site [`packages/jev/http.ts`](https://github.com/unownone/jevsume/blob/HEAD/packages/jev/http.ts), read 2026-09-22 · ⚠ `no licence`</sub>
+
+- **[Medplum Provider + Jev](https://github.com/vintasoftware/medplum-provider-jev)** — Guided demo in the Medplum Provider App: when a follow-up visit is finished, a Medplum Bot asks Jev whether the note's dose of each medication agrees with the outside discharge summary (choice), which sentence states it (choice) and whether the note mentions the hospital stay (noul). <sub>(written by a model)</sub>
+  <sub>`Project` · vintasoftware · `TS` · `choice` · `noul` · call site [`provider/bots/consistency.ts`](https://github.com/vintasoftware/medplum-provider-jev/blob/HEAD/provider/bots/consistency.ts), read by a model 2026-11-15 · ⚠ `no licence` `vendor numbers`</sub>
 
 - **[question-kit](https://github.com/Engid/question-kit)** — TypeScript library of building blocks for Jev, with a Python port in preview, including a service agent: you describe a service as data, code runs the procedure, and Jev reads each customer turn for the intent, the values a step needs and the judgement calls, each behind a confidence gate. <sub>(written by a model)</sub>
   <sub>`SDK` · Engid · `TS` · `choice` · `noul` · `score` · call site [`packages/question-kit/core/typesafe.ts`](https://github.com/Engid/question-kit/blob/HEAD/packages/question-kit/core/typesafe.ts), read by a model 2026-11-11</sub>

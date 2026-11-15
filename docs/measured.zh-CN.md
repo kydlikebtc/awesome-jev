@@ -4,7 +4,7 @@
 
 本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。
 
-本目录收录的全部独立测量报告和负面结果 —— 共 94 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
+本目录收录的全部独立测量报告和负面结果 —— 共 98 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
@@ -230,6 +230,14 @@
 
   **注意:** `作者自荐`
 
+- **[Decision Models Under Pressure](https://github.com/gazelle93/decision-models-under-pressure)**<br>
+  研究八个决策系统（包括 Jev）在同一个 choice 任务变难时的表现：候选列表增加到 128 个、选项顺序被打乱、错误答案越来越难分辨。它通过 OpenRouter 的 /v1/systemone 向 Jev 提交每条用例，并保留可续跑的成本账本。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · gazelle93 · `Py` · `choice` · [调用点](https://github.com/gazelle93/decision-models-under-pressure/blob/HEAD/harness/models/jev.py)，2026-11-15 模型阅读</sub>
+
+  **注意:** `无许可证`
+
+  > 它对比的 OpenAI Decisions、Laya 和开源模型都不是 Jev，成绩是作者自己跑的。结论是 Jev 与 OpenAI Decisions 并列第一，选项顺序打乱时改答案的次数更少。仓库没有 LICENSE 文件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-15 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)**<br>
   面向基于文档的决策模型的开放基准运行框架。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · hanno-labs · `Py` · [调用点](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py)，2026-09-24 阅读</sub>
@@ -454,6 +462,12 @@
 
   **注意:** `疑似 AI 生成` · `作者自荐`
 
+- **[JevBench](https://github.com/Leanmcp/jevbench)**<br>
+  评测类型化决策模型的开放框架和论文：六组数据集（科学、工具调用、商业、选择、排序、评判）以 choice、noul、score 问题交给 17 个模型（包括 Jev），每个模型给出一个综合指数，数据发布在 Hugging Face。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · Leanmcp · `Py` · `choice` · `noul` · `score` · [调用点](https://github.com/Leanmcp/jevbench/blob/HEAD/jev_bench/workspace/common.py)，2026-11-15 模型阅读</sub>
+
+  > 它排名的大多数模型不是 Jev，成绩是作者自己跑的。jev_gateway 目录是一个小型 Bash 安全关卡，转发对话前先问 Jev。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-15 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
 - **[jevsbistro](https://github.com/andrewsilber/JevsBistro)**<br>
   用于低延迟决策模型基准测试的 3D 餐厅服务模拟器。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · andrewsilber · `TS` · [调用点](https://github.com/andrewsilber/JevsBistro/blob/HEAD/src/jev/protocol.ts)，2026-09-22 阅读</sub>
@@ -482,6 +496,12 @@
   首个独立的 System One 决策模型横评（Laya 对比 Jev）。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · instax-dutta · `Py` · [调用点](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py)，2026-09-22 阅读</sub>
 
+- **[System 1 Decision Benchmark](https://github.com/etsabary/system-1-decision-benchmark)**<br>
+  基准测试：1,456 道 choice 题，分 43 类（推理、路由、工具使用、权限等），交给各家决策模型（Jev 通过 OpenRouter 的 decisions API 参与）和通用 LLM，按配置报告准确率、延迟和成本，并有交互式报告。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · etsabary · `Py` · `choice` · [调用点](https://github.com/etsabary/system-1-decision-benchmark/blob/HEAD/scripts/run_benchmark.py)，2026-11-15 模型阅读</sub>
+
+  > 原名 etsabary/jev-1.14-comparison-benchmark。它排名的大多数模型不是 Jev，成绩是作者自己跑的。在暂定的 v5 报告里，Jev 答对 1,456 题中的 786 题，低于榜上多数模型。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-15 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
 - **[typesafe-jev-calibrate-for-code-review](https://github.com/Selmar/typesafe-jev-calibrate-for-code-review)**<br>
   关于为代码审查校准 Jev 的研究。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · selmar · `Py` · [调用点](https://github.com/Selmar/typesafe-jev-calibrate-for-code-review/blob/HEAD/calibrate.py)，2026-09-24 阅读</sub>
@@ -493,6 +513,12 @@
   <sub>`基准测试` · g0runmezadam · `Py`</sub>
 
   > 这是对生态的研究，而不是 API 的调用者，因此没有调用点证据。
+
+- **[zh-decision-bench](https://github.com/CodyQin/zh-decision-bench)**<br>
+  面向中文任务的决策模型校准基准（语音和客服路由、紧急程度、诈骗识别、上报）：向 Jev 和开源模型提出 choice、noul、score 问题，报告准确率、校准误差、选项顺序翻转率和繁体中文翻转率。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · CodyQin · `Py` · `choice` · `noul` · `score` · [调用点](https://github.com/CodyQin/zh-decision-bench/blob/HEAD/src/jev_adapter.py)，2026-11-15 模型阅读</sub>
+
+  > NeoHorse-Jev-4B、Laya、用 logit 探针的 Qwen 以及其他开源模型都不是 Jev，成绩是作者自己跑的。README 有英文和中文。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-15 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[Probing Jev's behaviour with repeated API calls](https://github.com/ahastudio/til)**<br>
   独立的韩语实测笔记，报告仅仅把选项顺序倒过来，就能让概率移动到足以翻转 0.9 阈值的程度。<br>

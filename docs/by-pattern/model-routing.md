@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 92 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 93 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 84 · wire shape 1 · example only 1 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 85 · wire shape 1 · example only 1 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -224,6 +224,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev Switch](https://github.com/ARCJ137442/SysTorch)** — Lightweight gateway that serves POST /v1/systemone and routes each call through an editable graph of upstreams (TypeSafe, Vercel, OpenRouter, Laya or a local server) with priorities and failover. Rust daemon with a React console, Tauri desktop app and Docker image. Chinese-first docs. <sub>(written by a model)</sub>
   <sub>`Project` · arcj137442 · `Rs` · `TS` · call site [`rs/crates/systorch-daemon/src/admin.rs`](https://github.com/ARCJ137442/SysTorch/blob/HEAD/rs/crates/systorch-daemon/src/admin.rs), read by a model 2026-10-24</sub>
+
+- **[jev-claw](https://github.com/trietphan/jev-claw)** — OpenClaw plugin that adds a jev_route tool and an opt-in hook: for each meaningful coding task it asks Jev the task type, complexity and risk (choices) and whether a second opinion would help (noul), then applies the user's routing policy in code to pick the model. <sub>(written by a model)</sub>
+  <sub>`Plugin` · trietphan · `JS` · `choice` · `noul` · call site [`route.js`](https://github.com/trietphan/jev-claw/blob/HEAD/route.js), read by a model 2026-11-15</sub>
 
 - **[jev-codex-bridge](https://github.com/ansidium/jev-codex-bridge)** — Model and reasoning routing for Codex Desktop and CLI, with a Windows service and validated updates <sub>(earlier upstream description)</sub>
   <sub>`Plugin` · ansidium · `JS` · call site [`src/router.mjs`](https://github.com/ansidium/jev-codex-bridge/blob/HEAD/src/router.mjs), read 2026-09-24</sub>

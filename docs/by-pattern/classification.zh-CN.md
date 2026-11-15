@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 197 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 202 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 185 · 接口形态 3 · 仅示例 0 · 独立报告 20 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 190 · 接口形态 3 · 仅示例 0 · 独立报告 20 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -524,8 +524,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevgate](https://github.com/gordonbrander/jevgate)** — 用于 shell 管道的命令行关卡：它从标准输入读取文本，就文本问 Jev 一个 noul，比如它是否在报告故障；P(yes) 超过阈值时，文本像 grep 匹配一样原样输出，或者运行 -- 之后的命令，否则什么也不输出。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · gordonbrander · `Rs` · `noul` · 调用点 [`src/provider.rs`](https://github.com/gordonbrander/jevgate/blob/HEAD/src/provider.rs)，2026-11-08 模型阅读</sub>
 
+- **[jevmem](https://github.com/illescasDaniel/jev-mem)** — AI 智能体的长期记忆（基于一个 SQLite 文件的 MCP 服务器、命令行、库和钩子），从不调用 LLM：由 Jev 判断一条笔记是否安全、属于哪类、是否与旧笔记矛盾、哪些笔记与问题相关，以及是否已经够用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · illescasDaniel · `Py` · `noul` · `choice` · `score` · 调用点 [`src/jevmem/decider.py`](https://github.com/illescasDaniel/jev-mem/blob/HEAD/src/jevmem/decider.py)，2026-11-15 模型阅读 · ⚠ `厂商自报数据`</sub>
+
 - **[jevmod](https://github.com/ohernandezdev/jevmod)** — 面向社区和应用的内容审核，由 Jev（TypeSafe）驱动：按类别给出概率，阈值由你掌控。支持 Discord。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ohernandezdev · `Py` · 调用点 [`jevmod/judge.py`](https://github.com/ohernandezdev/jevmod/blob/HEAD/jevmod/judge.py)，2026-09-24 阅读</sub>
+
+- **[jevskill](https://github.com/lazniak/jevskill)** — 供 Claude Code、Codex 等 20 多种智能体使用的技能，把大段工具输出交给 Jev 而不是主模型：先把日志切成块，问 Jev 哪些块要紧，只把少数相关的行传下去。它的脚本也能在命令行里提任意 noul、choice 或 score 问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · lazniak · `Py` · `noul` · `choice` · `score` · 调用点 [`skills/jev/scripts/jev_query.py`](https://github.com/lazniak/jevskill/blob/HEAD/skills/jev/scripts/jev_query.py)，2026-11-15 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[JEVsnap](https://github.com/brainstormity/jevsnap)** — 适用于 macOS、Linux 和 Windows 的截图热键：图片进入剪贴板前先涂黑密钥和个人信息；本地规则之后，Jev 用 noul 判断哪些 OCR 文本行和单词要隐藏，可选的视觉检查再用 box 问题找出剩下的部分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · brainstormity · `TS` · `noul` · `choice` · 调用点 [`desktop/src/core/jevClient.ts`](https://github.com/brainstormity/jevsnap/blob/HEAD/desktop/src/core/jevClient.ts)，2026-11-10 模型阅读 · ⚠ `仅一次提交`</sub>
@@ -548,8 +554,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jlink](https://github.com/keltokhy/jlink)** — 给经济学家用的记录链接：用自然语言写匹配规则，对每一对记录得到一个概率，可审计、可引用。支持 Python、CLI、Stata 和 R。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · keltokhy · `Py` · 调用点 [`bench/local_models.py`](https://github.com/keltokhy/jlink/blob/HEAD/bench/local_models.py)，2026-09-24 阅读</sub>
 
+- **[judgekit](https://github.com/lexingtonhibiki/judgekit)** — Python 库和命令行工具：用一个 YAML 任务（classify、route、score 或 verify）先跑免费的本地关键词规则，再交给模型。它的 TypeSafe 提供方对每条输入只问 Jev 一个问题：在任务标签里做 choice、按刻度给 score，或者为 verify 问一个 noul。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · lexingtonhibiki · `Py` · `choice` · `score` · `noul` · 调用点 [`judgekit/providers/typesafe.py`](https://github.com/lexingtonhibiki/judgekit/blob/HEAD/judgekit/providers/typesafe.py)，2026-11-15 模型阅读</sub>
+
 - **[krasivo-jev](https://github.com/SergeyBazhmin/krasivo-jev)** — 开源 System One 模型的数据集和训练代码（Qwen3.5-2B 加 LoRA 和指针头，在 100 个 Hugging Face 数据集上训练），另有一套评测：把同样的测试样本交给托管的 Jev，每条一个 choice 或 noul 问题，作为准确率、NLL 和校准的参照。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · SergeyBazhmin · `Py` · `choice` · `noul` · 调用点 [`src/jev_model/typesafe/client.py`](https://github.com/SergeyBazhmin/krasivo-jev/blob/HEAD/src/jev_model/typesafe/client.py)，2026-11-13 模型阅读 · ⚠ `无许可证` `厂商自报数据`</sub>
+
+- **[Medplum Provider + Jev](https://github.com/vintasoftware/medplum-provider-jev)** — Medplum Provider App 里的引导式演示：一次随访结束时，Medplum Bot 问 Jev 病历里每种药物的剂量是否与外院出院小结一致（choice）、哪一句写了剂量（choice），以及病历是否提到住院（noul）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · vintasoftware · `TS` · `choice` · `noul` · 调用点 [`provider/bots/consistency.ts`](https://github.com/vintasoftware/medplum-provider-jev/blob/HEAD/provider/bots/consistency.ts)，2026-11-15 模型阅读 · ⚠ `无许可证` `厂商自报数据`</sub>
 
 - **[metis](https://github.com/Ayush0054/metis)** — Metis：由 Jev 驱动的 GitHub issue 自动分拣，可复用的 GitHub Action。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ayush0054 · `Py` · 调用点 [`src/metis_workflow/integrations/jev.py`](https://github.com/Ayush0054/metis/blob/HEAD/src/metis_workflow/integrations/jev.py)，2026-11-05 模型阅读</sub>
@@ -604,6 +616,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[undertone](https://github.com/nuu-maan/undertone)** — 在你打字时读出消息语气的文本框：一次 Jev 请求用 choice 判断整体语气，用 noul 判断是否阴阳怪气、讽刺、过度道歉、咄咄逼人，以及能否发给上司，再用 score 评估紧迫程度和正式程度；代码把这些答案变成结论和修改提示。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · nuu-maan · `TS` · `choice` · `noul` · `score` · 调用点 [`src/lib/jev/questions.ts`](https://github.com/nuu-maan/undertone/blob/HEAD/src/lib/jev/questions.ts)，2026-11-09 模型阅读 · ⚠ `无许可证`</sub>
+
+- **[Vibefilter for Filament](https://github.com/vibefilter/filament)** — Laravel Filament 的表格筛选器，把一句话（如“客户很生气。”）变成零样本分类器：把剩余各行的文本按 100 条一批发给 Jev，得到每行“这句话成立”的概率（noul），只保留超过阈值的行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · vibefilter · `PHP` · `noul` · 调用点 [`src/Drivers/TypeSafeDriver.php`](https://github.com/vibefilter/filament/blob/HEAD/src/Drivers/TypeSafeDriver.php)，2026-11-15 模型阅读</sub>
 
 - **[watfile](https://github.com/jexp/watfile)** — 用 Jev 或本地校准决策模型给文本与 PDF 分类归档。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jexp · `Py` · 调用点 [`src/watfile/classifier/jev.py`](https://github.com/jexp/watfile/blob/HEAD/src/watfile/classifier/jev.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

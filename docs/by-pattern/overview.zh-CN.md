@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 521 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 525 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 383 · 接口形态 98 · 仅示例 0 · 独立报告 29 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 387 · 接口形态 98 · 仅示例 0 · 独立报告 33 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -548,6 +548,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[decido](https://github.com/yairshy/decido)** — 给 Python 的概率式决策：可用 Jev 也可自带 provider，配合 Playwright 抓取。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · yairshy · `Py` · 调用点 [`src/decido/providers/typesafe.py`](https://github.com/yairshy/decido/blob/HEAD/src/decido/providers/typesafe.py)，2026-09-22 阅读</sub>
 
+- **[Decision Models Under Pressure](https://github.com/gazelle93/decision-models-under-pressure)** — 研究八个决策系统（包括 Jev）在同一个 choice 任务变难时的表现：候选列表增加到 128 个、选项顺序被打乱、错误答案越来越难分辨。它通过 OpenRouter 的 /v1/systemone 向 Jev 提交每条用例，并保留可续跑的成本账本。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · gazelle93 · `Py` · `choice` · 调用点 [`harness/models/jev.py`](https://github.com/gazelle93/decision-models-under-pressure/blob/HEAD/harness/models/jev.py)，2026-11-15 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)** — 面向基于文档的决策模型的开放基准运行框架。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · hanno-labs · `Py` · 调用点 [`src/decision_bench/models/jev_openrouter.py`](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py)，2026-09-24 阅读</sub>
 
@@ -683,6 +686,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[JevAlt](https://github.com/mertkayacs/jevalt)** — 面向英语、土耳其语和德语的开源 4B 决策模型（Deem-4B、Karar-4B、Wähler-4B），在 CPU 上约占 3 GB 内存，提供 Jev 的 POST /v1/systemone 请求格式，支持 choice、score 和 noul 问题，另有可选的 reasoning 和 abstain 字段。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · mertkayacs · `Py` · 引用文件 [`src/jevalt/server.py`](https://github.com/mertkayacs/jevalt/blob/HEAD/src/jevalt/server.py)，2026-11-10 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
+- **[JevBench](https://github.com/Leanmcp/jevbench)** — 评测类型化决策模型的开放框架和论文：六组数据集（科学、工具调用、商业、选择、排序、评判）以 choice、noul、score 问题交给 17 个模型（包括 Jev），每个模型给出一个综合指数，数据发布在 Hugging Face。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · Leanmcp · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_bench/workspace/common.py`](https://github.com/Leanmcp/jevbench/blob/HEAD/jev_bench/workspace/common.py)，2026-11-15 模型阅读</sub>
+
 - **[jevclient](https://github.com/AboveColin/jevclient)** — Jev 的异步 Python 客户端：类型化问题进，概率与选择出，没有散文需要解析。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · abovecolin · `Py` · 调用点 [`jevclient/const.py`](https://github.com/AboveColin/jevclient/blob/HEAD/jevclient/const.py)，2026-09-22 阅读</sub>
 
@@ -733,6 +739,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)** — 首个独立的 System One 决策模型横评（Laya 对比 Jev）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · instax-dutta · `Py` · 调用点 [`runners/jev_runner.py`](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py)，2026-09-22 阅读</sub>
+
+- **[System 1 Decision Benchmark](https://github.com/etsabary/system-1-decision-benchmark)** — 基准测试：1,456 道 choice 题，分 43 类（推理、路由、工具使用、权限等），交给各家决策模型（Jev 通过 OpenRouter 的 decisions API 参与）和通用 LLM，按配置报告准确率、延迟和成本，并有交互式报告。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · etsabary · `Py` · `choice` · 调用点 [`scripts/run_benchmark.py`](https://github.com/etsabary/system-1-decision-benchmark/blob/HEAD/scripts/run_benchmark.py)，2026-11-15 模型阅读</sub>
 
 - **[system-one-adapter-rust](https://github.com/codeitlikemiley/system-one-adapter-rust)** — 官方 system-one-adapter 的 Rust 移植（用 LLM 支撑 system_one 评估）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · codeitlikemiley · `Rs` · 调用点 [`src/client.rs`](https://github.com/codeitlikemiley/system-one-adapter-rust/blob/HEAD/src/client.rs)，2026-09-22 阅读</sub>
@@ -898,6 +907,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[what-is-jev](https://github.com/g0runmezadam/what-is-jev)** — 关于 TypeSafe AI Jev（System One）的独立、有来源的研究，包含对 947 个公开仓库的评分。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · g0runmezadam · `Py`</sub>
+
+- **[zh-decision-bench](https://github.com/CodyQin/zh-decision-bench)** — 面向中文任务的决策模型校准基准（语音和客服路由、紧急程度、诈骗识别、上报）：向 Jev 和开源模型提出 choice、noul、score 问题，报告准确率、校准误差、选项顺序翻转率和繁体中文翻转率。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · CodyQin · `Py` · `choice` · `noul` · `score` · 调用点 [`src/jev_adapter.py`](https://github.com/CodyQin/zh-decision-bench/blob/HEAD/src/jev_adapter.py)，2026-11-15 模型阅读</sub>
 
 - **[awesome-jev (heyjunpenn)](https://github.com/heyjunpenn/awesome-jev)** — 覆盖最广的同类目录：数百个项目、六种语言，且它的 README 本身就是被解析的数据源。
   <sub>`开源项目` · ★1k+ · heyjunpenn</sub>

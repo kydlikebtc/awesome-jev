@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 94 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 98 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -232,6 +232,14 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 
   > Submitted by raxIT Labs, which built and ran it. Version 1.0.0 (15 Oct 2026): balanced accuracy 90.4 for the Perplexity Decisions API, 88.7 for Jev 1.14.0, 79.0 for Bedrock Guardrails; Jev 1.14.0 costs $39 per million checks at list price, Bedrock $113. One fixed 0.5 threshold, no per-model calibration. Drafted with an AI coding assistant.
 
+- **[Decision Models Under Pressure](https://github.com/gazelle93/decision-models-under-pressure)**<br>
+  Study of eight decision systems, Jev among them, on one choice task as it gets harder: the candidate list grows to 128, the option order is shuffled, and the wrong answers get harder. It asks Jev each case through OpenRouter's /v1/systemone and keeps a resumable cost ledger. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · gazelle93 · `Py` · `choice` · [call site](https://github.com/gazelle93/decision-models-under-pressure/blob/HEAD/harness/models/jev.py), read by a model 2026-11-15</sub>
+
+  **Caveats:** `no licence`
+
+  > OpenAI's Decisions, Laya and the open models it compares are not Jev, and the figures are the author's runs. It finds Jev ties OpenAI's Decisions at the top and changes its answer less when the order is shuffled. No LICENSE file. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-15; a maintainer has not yet read the call site.
+
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)**<br>
   Open benchmark runtime for document-grounded decision models <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · hanno-labs · `Py` · [call site](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py), read 2026-09-24</sub>
@@ -458,6 +466,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 
   > Submitted by its own author, who discloses that this entry was written with Claude Code and that the repository was built with AI coding assistance; the flags record that disclosure. Choice is close to calibrated on 750 low-disagreement items but overconfident on 750 high-disagreement ones (confidence 0.807 vs 0.468 agreement; bias-corrected ECE gap 0.264 vs a preregistered 0.09); Noul (0.076) is inconclusive. Aggregates are committed, per-call responses are not.
 
+- **[JevBench](https://github.com/Leanmcp/jevbench)**<br>
+  Open framework and paper for benchmarking typed decision models: datasets in six clusters (science, tool calling, business, selection, ranking, judging) asked as choice, noul and score questions of 17 models, Jev among them, with one index per model and the data on Hugging Face. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · Leanmcp · `Py` · `choice` · `noul` · `score` · [call site](https://github.com/Leanmcp/jevbench/blob/HEAD/jev_bench/workspace/common.py), read by a model 2026-11-15</sub>
+
+  > Most models it ranks are not Jev, and the figures are the authors' runs. Its jev_gateway folder is a small Bash safety gate that asks Jev before forwarding a conversation. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-15; a maintainer has not yet read the call site.
+
 - **[jevsbistro](https://github.com/andrewsilber/JevsBistro)**<br>
   3D restaurant service simulator for benchmarking low-latency decision models <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · andrewsilber · `TS` · [call site](https://github.com/andrewsilber/JevsBistro/blob/HEAD/src/jev/protocol.ts), read 2026-09-22</sub>
@@ -486,6 +500,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   First independent head-to-head benchmark of System One decision models (Laya vs Jev) on byte-identical inputs <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · instax-dutta · `Py` · [call site](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py), read 2026-09-22</sub>
 
+- **[System 1 Decision Benchmark](https://github.com/etsabary/system-1-decision-benchmark)**<br>
+  Benchmark of 1,456 choice questions in 43 categories (reasoning, routing, tool use, authority and more) put to decision models, Jev among them through OpenRouter's decisions API, and to general LLMs, with accuracy, latency and cost per configuration and an interactive report. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · etsabary · `Py` · `choice` · [call site](https://github.com/etsabary/system-1-decision-benchmark/blob/HEAD/scripts/run_benchmark.py), read by a model 2026-11-15</sub>
+
+  > Formerly etsabary/jev-1.14-comparison-benchmark. Most of the models it ranks are not Jev, and the figures are the author's runs. In the provisional v5 report Jev answers 786 of 1,456, below most models listed. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-15; a maintainer has not yet read the call site.
+
 - **[typesafe-jev-calibrate-for-code-review](https://github.com/Selmar/typesafe-jev-calibrate-for-code-review)**<br>
   About calibrating Jev for code reviews <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · selmar · `Py` · [call site](https://github.com/Selmar/typesafe-jev-calibrate-for-code-review/blob/HEAD/calibrate.py), read 2026-09-24</sub>
@@ -497,6 +517,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   <sub>`Benchmark` · g0runmezadam · `Py`</sub>
 
   > Research about the ecosystem rather than a caller of the API, so it carries no call-site evidence.
+
+- **[zh-decision-bench](https://github.com/CodyQin/zh-decision-bench)**<br>
+  Calibration benchmark for decision models on Chinese tasks (voice and support routing, urgency, scam detection, escalation): it asks Jev and open models choice, noul and score questions and reports accuracy, calibration error, option-order flips and Traditional Chinese flips. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · CodyQin · `Py` · `choice` · `noul` · `score` · [call site](https://github.com/CodyQin/zh-decision-bench/blob/HEAD/src/jev_adapter.py), read by a model 2026-11-15</sub>
+
+  > NeoHorse-Jev-4B, Laya, Qwen with a logit probe and the other open models are not Jev, and the figures are the author's runs. The README is in English and Chinese. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-15; a maintainer has not yet read the call site.
 
 - **[Probing Jev's behaviour with repeated API calls](https://github.com/ahastudio/til)**<br>
   Independent Korean-language notes reporting that reversing the order of options shifted a probability enough to flip a 0.9 threshold.<br>

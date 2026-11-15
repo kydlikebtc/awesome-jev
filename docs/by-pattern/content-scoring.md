@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 192 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 194 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 183 · wire shape 5 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 185 · wire shape 5 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -491,6 +491,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[JevTools](https://github.com/RileyCarney/JevTools)** — A local dashboard and CLI demo for Jev: it scores a product review with a six-question fan-out (scores, nouls and a choice) into a composite, classifies topics (choice) and runs custom decisions, logging every request and answer to a local SQLite file. <sub>(written by a model)</sub>
   <sub>`Project` · RileyCarney · `Py` · `choice` · `noul` · `score` · call site [`jev_demo.py`](https://github.com/RileyCarney/JevTools/blob/HEAD/jev_demo.py), read by a model 2026-11-13</sub>
 
+- **[judgekit](https://github.com/lexingtonhibiki/judgekit)** — Python library and CLI that runs one YAML task (classify, route, score or verify) with free local keyword rules first, then a model. Its TypeSafe provider asks Jev one question per input: a choice over the task's labels, a score on its levels, or a noul for verify. <sub>(written by a model)</sub>
+  <sub>`Project` · lexingtonhibiki · `Py` · `choice` · `score` · `noul` · call site [`judgekit/providers/typesafe.py`](https://github.com/lexingtonhibiki/judgekit/blob/HEAD/judgekit/providers/typesafe.py), read by a model 2026-11-15</sub>
+
 - **[judging-with-typesafe](https://github.com/carlsonchik/judging-with-typesafe)** — Скилл для агентов Letta: суждения по критериям через TypeSafe System One (Jev) <sub>(upstream description)</sub>
   <sub>`Project` · carlsonchik · `Py` · call site [`skills/judging-with-typesafe/scripts/typesafe.py`](https://github.com/carlsonchik/judging-with-typesafe/blob/HEAD/skills/judging-with-typesafe/scripts/typesafe.py), read 2026-09-22</sub>
 
@@ -550,6 +553,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[shady-town](https://github.com/tpaulshippy/shady-town)** — Shady Town: social-deduction party game for the living room TV, moderated by TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · tpaulshippy · `Rb` · call site [`lib/shady_town/evaluator.rb`](https://github.com/tpaulshippy/shady-town/blob/HEAD/lib/shady_town/evaluator.rb), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
+
+- **[Slop Mop](https://github.com/tomfrazier/slopmop)** — Browser extension for LinkedIn whose server asks Jev twelve questions about each post: nine signs of slop and two counter-signs (personal voice, usefulness) as scores, plus how likely a model drafted it. The answers and engagement become a score that folds or outlines the post. <sub>(written by a model)</sub>
+  <sub>`Project` · tomfrazier · `TS` · `score` · `noul` · call site [`slopmop-server/src/jevRequest.ts`](https://github.com/tomfrazier/slopmop/blob/HEAD/slopmop-server/src/jevRequest.ts), read by a model 2026-11-15</sub>
 
 - **[sloppy-jevs-extension](https://github.com/neddes/sloppy-jevs-extension)** — Open-source Chrome extension that filters AI-generated prose and ads with Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · neddes · `JS` · call site [`background.js`](https://github.com/neddes/sloppy-jevs-extension/blob/HEAD/background.js), read 2026-09-22</sub>

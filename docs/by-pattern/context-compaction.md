@@ -4,11 +4,11 @@
 
 _Decide which tool calls and results still matter so stale context can be dropped._
 
-Every catalogued example of this decision — 47 of them. The same rows, with caveats, are in [the index](../../README.md#context-compaction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 48 of them. The same rows, with caveats, are in [the index](../../README.md#context-compaction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#context-compaction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 47 · wire shape 0 · example only 0 · independent reports 2 · negative results 2 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 48 · wire shape 0 · example only 0 · independent reports 2 · negative results 2 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -136,6 +136,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevprune](https://github.com/ibrahemid/jevprune)** — Filter command output for coding agents using a task description. <sub>(upstream description)</sub>
   <sub>`Project` · ibrahemid · `TS` · call site [`src/typesafe-client.ts`](https://github.com/ibrahemid/jevprune/blob/HEAD/src/typesafe-client.ts), read 2026-09-24</sub>
+
+- **[jevskill](https://github.com/lazniak/jevskill)** — Agent skill for Claude Code, Codex and 20 other agents that hands big tool output to Jev instead of the main model: it splits a log into blocks, asks Jev which ones matter, and passes only the few relevant lines on. Its script also asks any noul, choice or score question from the command line. <sub>(written by a model)</sub>
+  <sub>`Plugin` · lazniak · `Py` · `noul` · `choice` · `score` · call site [`skills/jev/scripts/jev_query.py`](https://github.com/lazniak/jevskill/blob/HEAD/skills/jev/scripts/jev_query.py), read by a model 2026-11-15 · ⚠ `vendor numbers`</sub>
 
 - **[jit-context](https://github.com/wojciechwiesner/jit-context)** — Architectural Moat: JIT-JEV Context OS — Epistemic runtime & JEV System 1 context gate for AI agents (L0 SQLite WAL <3ms, Epistemic Invariants I1–I10, CERN Zenodo DOI: 10.5281/zenodo.22649542) <sub>(upstream description)</sub>
   <sub>`Project` · wojciechwiesner · `Py` · call site [`src/cognitive/jev_engine.py`](https://github.com/wojciechwiesner/jit-context/blob/HEAD/src/cognitive/jev_engine.py), read 2026-09-24</sub>

@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 280 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 282 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 269 · wire shape 7 · example only 0 · independent reports 12 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 271 · wire shape 7 · example only 0 · independent reports 12 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -555,6 +555,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — Observable browser stealth game: Jev makes typed guard judgments while deterministic code owns the world. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts), read 2026-09-22</sub>
 
+- **[hermes-jev](https://github.com/DoGMaTiiC/hermes-jev)** — Two Hermes Agent plugins: jev-judge gates terminal, write_file and patch calls by asking Jev whether a call is destructive or exfiltrates data (nouls) and how big its impact is (score), and jev-skill-router asks Jev which one skill is worth loading before the model call (choice). <sub>(written by a model)</sub>
+  <sub>`Plugin` · DoGMaTiiC · `Py` · `noul` · `score` · `choice` · call site [`plugins/jev-judge/jev.py`](https://github.com/DoGMaTiiC/hermes-jev/blob/HEAD/plugins/jev-judge/jev.py), read by a model 2026-11-15 · ⚠ `no licence`</sub>
+
 - **[jet](https://github.com/arczhi/jet)** — A TypeSafe-native (Jev) coding agent built on Recursive LLM Context Decomposition (RLCD), with a native macOS client <sub>(upstream description)</sub>
   <sub>`Project` · arczhi · `Py` · call site [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py), read 2026-09-24</sub>
 
@@ -815,6 +818,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Reflex](https://github.com/datadog-labs/reflex)** — Rust library for control loops on observability data: Datadog metrics and Toto forecasts become typed state, Jev recommends an action as a choice, such as Open, Probe or NoChange for a circuit, and the executor applies it only when legality checks, guards and invariants allow. <sub>(written by a model)</sub>
   <sub>`Project` · datadog-labs · `Rs` · `choice` · call site [`crates/reflex-typesafe/src/lib.rs`](https://github.com/datadog-labs/reflex/blob/HEAD/crates/reflex-typesafe/src/lib.rs), read by a model 2026-11-12</sub>
+
+- **[reflex-computer-use](https://github.com/8itlab/reflex-computer-use)** — Computer-use MCP server for coding agents on macOS, Windows or a remote Windows machine that reads the accessibility tree and hands the small decisions to Jev: which element a goal means (choice), and whether something is on screen, worked or finished loading (noul), optionally from a screenshot. <sub>(written by a model)</sub>
+  <sub>`Plugin` · 8itlab · `Py` · `choice` · `noul` · call site [`reflexcu/core.py`](https://github.com/8itlab/reflex-computer-use/blob/HEAD/reflexcu/core.py), read by a model 2026-11-15</sub>
 
 - **[robo-harness](https://github.com/grmkris/robo-harness)** — SO-101 robot-arm agent workbench: Bun/Effect coordinator, React workbench, Python LeRobot motor owner <sub>(upstream description)</sub>
   <sub>`Project` · grmkris · `TS` · call site [`apps/server/src/decision/jev.ts`](https://github.com/grmkris/robo-harness/blob/HEAD/apps/server/src/decision/jev.ts), read 2026-09-22 · ⚠ `no licence`</sub>

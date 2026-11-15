@@ -4,11 +4,11 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 172 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 176 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#safety-gating)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#safety-gating)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 165 · 接口形态 3 · 仅示例 0 · 独立报告 13 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 169 · 接口形态 3 · 仅示例 0 · 独立报告 13 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -314,6 +314,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — 可观测的浏览器潜行游戏：Jev 做类型化的守卫判断，确定性代码掌管世界规则。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts)，2026-09-22 阅读</sub>
 
+- **[hermes-jev](https://github.com/DoGMaTiiC/hermes-jev)** — 两个 Hermes Agent 插件：jev-judge 在 terminal、write_file 和 patch 调用前把关，问 Jev 这次调用是否具破坏性、是否外泄数据（noul）以及影响多大（score）；jev-skill-router 在模型调用前问 Jev 哪一个技能值得加载（choice）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · DoGMaTiiC · `Py` · `noul` · `score` · `choice` · 调用点 [`plugins/jev-judge/jev.py`](https://github.com/DoGMaTiiC/hermes-jev/blob/HEAD/plugins/jev-judge/jev.py)，2026-11-15 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[Hiep Paseo plugins](https://github.com/hieppp/hiep-paseo-plugin)** — Paseo 智能体应用的一组插件，其中三个用到 Jev：一个权限门，用 noul 判断 shell 命令是否只读，用 choice 决定允许、拒绝还是交给你；一个编排器，把委派的任务路由到某个模型和推理强度；以及一个 MCP 评估工具。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · hieppp · `TS` · `noul` · `choice` · 调用点 [`plugins/jev-permission-gate/server/jev-worker.ts`](https://github.com/hieppp/hiep-paseo-plugin/blob/HEAD/plugins/jev-permission-gate/server/jev-worker.ts)，2026-11-10 模型阅读 · ⚠ `无许可证`</sub>
 
@@ -443,6 +446,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[JevLang](https://github.com/TimMikeladze/JevLang)** — 面向 LLM 决策的策略引擎：用 TypeScript 或 Python 一次性声明路由、关卡和动作，每个决策都可追溯。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · timmikeladze · `JS` · 调用点 [`examples/entity-alignment.js`](https://github.com/TimMikeladze/JevLang/blob/HEAD/examples/entity-alignment.js)，2026-09-24 阅读</sub>
 
+- **[jevmem](https://github.com/illescasDaniel/jev-mem)** — AI 智能体的长期记忆（基于一个 SQLite 文件的 MCP 服务器、命令行、库和钩子），从不调用 LLM：由 Jev 判断一条笔记是否安全、属于哪类、是否与旧笔记矛盾、哪些笔记与问题相关，以及是否已经够用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · illescasDaniel · `Py` · `noul` · `choice` · `score` · 调用点 [`src/jevmem/decider.py`](https://github.com/illescasDaniel/jev-mem/blob/HEAD/src/jevmem/decider.py)，2026-11-15 模型阅读 · ⚠ `厂商自报数据`</sub>
+
 - **[jevmod](https://github.com/ohernandezdev/jevmod)** — 面向社区和应用的内容审核，由 Jev（TypeSafe）驱动：按类别给出概率，阈值由你掌控。支持 Discord。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ohernandezdev · `Py` · 调用点 [`jevmod/judge.py`](https://github.com/ohernandezdev/jevmod/blob/HEAD/jevmod/judge.py)，2026-09-24 阅读</sub>
 
@@ -457,6 +463,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jit-context](https://github.com/wojciechwiesner/jit-context)** — JIT-JEV 上下文操作系统：面向 AI 智能体的认知运行时与 JEV System 1 上下文关卡。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · wojciechwiesner · `Py` · 调用点 [`src/cognitive/jev_engine.py`](https://github.com/wojciechwiesner/jit-context/blob/HEAD/src/cognitive/jev_engine.py)，2026-09-24 阅读</sub>
+
+- **[Juardrails](https://github.com/abhaybhargav/juardrails)** — 带网页界面和命令行的 Go 护栏服务：在可视化编辑器或 YAML 里定义的策略问题（choice、score、noul）一次调用发给 Jev，再由明确的规则根据答案做决定。附带用于 Claude Code 工具调用和 Kubernetes Pod 安全的策略包。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · abhaybhargav · `Go` · `choice` · `score` · `noul` · 调用点 [`internal/guardrail/jev.go`](https://github.com/abhaybhargav/juardrails/blob/HEAD/internal/guardrail/jev.go)，2026-11-15 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — LangChain 集成：一个分类器，外加用于模型路由、以及在高风险工具调用执行前拦截它的实验性 middleware。
   <sub>`平台集成` · `Py` · `choice` · `score` · `noul` · ⚠ `需早期访问`</sub>
@@ -490,6 +499,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[pi-jev-permit](https://github.com/kurihada/pi-jev-permit)** — 给 Pi 编程智能体的 Jev 权限闸门：审判每一次 bash 与写入。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · kurihada · `TS` · 调用点 [`src/jev.ts`](https://github.com/kurihada/pi-jev-permit/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
+
+- **[pi-typesafe-approve](https://github.com/Davidasx/pi-typesafe-approve)** — Pi 编程智能体的扩展：先解开管道和编码过的内容，再问 Jev 这类 System One 模型一条 Bash 命令最主要属于哪个策略类别（choice）；常规命令直接运行，被标记的命令停下来询问用户。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · Davidasx · `TS` · `choice` · 调用点 [`src/systemone.ts`](https://github.com/Davidasx/pi-typesafe-approve/blob/HEAD/src/systemone.ts)，2026-11-15 模型阅读</sub>
 
 - **[pkg-gate](https://github.com/hemanth/pkg-gate)** — 用 System One 给 npm 生命周期脚本做安装前安全闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · hemanth · `JS` · 调用点 [`src/gate.js`](https://github.com/hemanth/pkg-gate/blob/HEAD/src/gate.js)，2026-09-22 阅读</sub>

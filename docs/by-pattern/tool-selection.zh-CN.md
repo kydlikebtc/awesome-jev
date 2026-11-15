@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 280 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 282 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 269 · 接口形态 7 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 271 · 接口形态 7 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -555,6 +555,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — 可观测的浏览器潜行游戏：Jev 做类型化的守卫判断，确定性代码掌管世界规则。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts)，2026-09-22 阅读</sub>
 
+- **[hermes-jev](https://github.com/DoGMaTiiC/hermes-jev)** — 两个 Hermes Agent 插件：jev-judge 在 terminal、write_file 和 patch 调用前把关，问 Jev 这次调用是否具破坏性、是否外泄数据（noul）以及影响多大（score）；jev-skill-router 在模型调用前问 Jev 哪一个技能值得加载（choice）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · DoGMaTiiC · `Py` · `noul` · `score` · `choice` · 调用点 [`plugins/jev-judge/jev.py`](https://github.com/DoGMaTiiC/hermes-jev/blob/HEAD/plugins/jev-judge/jev.py)，2026-11-15 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[jet](https://github.com/arczhi/jet)** — 原生面向 TypeSafe（Jev）的编码智能体，基于递归式 LLM 上下文分解，配有原生 macOS 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arczhi · `Py` · 调用点 [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py)，2026-09-24 阅读</sub>
 
@@ -815,6 +818,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Reflex](https://github.com/datadog-labs/reflex)** — 用于可观测性数据控制回路的 Rust 库：Datadog 指标和 Toto 预测变成类型化状态，由 Jev 以 choice 推荐一个动作（例如熔断器的 Open、Probe 或 NoChange），执行器只有在合法性检查、守卫条件和不变量都允许时才执行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · datadog-labs · `Rs` · `choice` · 调用点 [`crates/reflex-typesafe/src/lib.rs`](https://github.com/datadog-labs/reflex/blob/HEAD/crates/reflex-typesafe/src/lib.rs)，2026-11-12 模型阅读</sub>
+
+- **[reflex-computer-use](https://github.com/8itlab/reflex-computer-use)** — 面向编程智能体的计算机操作 MCP 服务器，支持 macOS、Windows 和远程 Windows：读取无障碍树，把小决定交给 Jev，例如某个目标指的是哪个元素（choice），屏幕上是否有某物、操作是否成功、是否加载完（noul），也可以看截图来判断。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · 8itlab · `Py` · `choice` · `noul` · 调用点 [`reflexcu/core.py`](https://github.com/8itlab/reflex-computer-use/blob/HEAD/reflexcu/core.py)，2026-11-15 模型阅读</sub>
 
 - **[robo-harness](https://github.com/grmkris/robo-harness)** — SO-101 机械臂智能体工作台：Bun/Effect 协调器、React 工作台、Python 电机控制。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · grmkris · `TS` · 调用点 [`apps/server/src/decision/jev.ts`](https://github.com/grmkris/robo-harness/blob/HEAD/apps/server/src/decision/jev.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

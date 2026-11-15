@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 197 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 202 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 185 · wire shape 3 · example only 0 · independent reports 20 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 190 · wire shape 3 · example only 0 · independent reports 20 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -524,8 +524,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevgate](https://github.com/gordonbrander/jevgate)** — Command-line gate for shell pipelines: it reads text on stdin and asks Jev one noul about it, such as whether it reports an outage; when P(yes) clears a threshold the text passes through like a grep match, or a command after -- runs, and otherwise nothing comes out. <sub>(written by a model)</sub>
   <sub>`Project` · gordonbrander · `Rs` · `noul` · call site [`src/provider.rs`](https://github.com/gordonbrander/jevgate/blob/HEAD/src/provider.rs), read by a model 2026-11-08</sub>
 
+- **[jevmem](https://github.com/illescasDaniel/jev-mem)** — Long-term memory for AI agents (MCP server, CLI, library and hooks on one SQLite file) that never calls an LLM: Jev decides whether a note is safe, what kind it is, whether it contradicts an older one, which notes matter for a question and whether they are enough. <sub>(written by a model)</sub>
+  <sub>`Project` · illescasDaniel · `Py` · `noul` · `choice` · `score` · call site [`src/jevmem/decider.py`](https://github.com/illescasDaniel/jev-mem/blob/HEAD/src/jevmem/decider.py), read by a model 2026-11-15 · ⚠ `vendor numbers`</sub>
+
 - **[jevmod](https://github.com/ohernandezdev/jevmod)** — Moderation for communities and apps, powered by Jev (TypeSafe): probabilities per category, thresholds you own. Discord/Telegram/Reddit bots, CLI, Python, npm, HTTP API, MCP. <sub>(upstream description)</sub>
   <sub>`Plugin` · ohernandezdev · `Py` · call site [`jevmod/judge.py`](https://github.com/ohernandezdev/jevmod/blob/HEAD/jevmod/judge.py), read 2026-09-24</sub>
+
+- **[jevskill](https://github.com/lazniak/jevskill)** — Agent skill for Claude Code, Codex and 20 other agents that hands big tool output to Jev instead of the main model: it splits a log into blocks, asks Jev which ones matter, and passes only the few relevant lines on. Its script also asks any noul, choice or score question from the command line. <sub>(written by a model)</sub>
+  <sub>`Plugin` · lazniak · `Py` · `noul` · `choice` · `score` · call site [`skills/jev/scripts/jev_query.py`](https://github.com/lazniak/jevskill/blob/HEAD/skills/jev/scripts/jev_query.py), read by a model 2026-11-15 · ⚠ `vendor numbers`</sub>
 
 - **[JEVsnap](https://github.com/brainstormity/jevsnap)** — Screenshot hotkey for macOS, Linux and Windows that blacks out secrets and personal data before the image reaches the clipboard: after local rules, Jev answers nouls on which OCR lines and words to hide, and an optional check finds what is left with box questions. <sub>(written by a model)</sub>
   <sub>`Project` · brainstormity · `TS` · `noul` · `choice` · call site [`desktop/src/core/jevClient.ts`](https://github.com/brainstormity/jevsnap/blob/HEAD/desktop/src/core/jevClient.ts), read by a model 2026-11-10 · ⚠ `one commit`</sub>
@@ -548,8 +554,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jlink](https://github.com/keltokhy/jlink)** — Record linkage for economists: write the match rule in plain English, get a probability per pair, audit it, cite it. Python, CLI, Stata and R. <sub>(upstream description)</sub>
   <sub>`Project` · keltokhy · `Py` · call site [`bench/local_models.py`](https://github.com/keltokhy/jlink/blob/HEAD/bench/local_models.py), read 2026-09-24</sub>
 
+- **[judgekit](https://github.com/lexingtonhibiki/judgekit)** — Python library and CLI that runs one YAML task (classify, route, score or verify) with free local keyword rules first, then a model. Its TypeSafe provider asks Jev one question per input: a choice over the task's labels, a score on its levels, or a noul for verify. <sub>(written by a model)</sub>
+  <sub>`Project` · lexingtonhibiki · `Py` · `choice` · `score` · `noul` · call site [`judgekit/providers/typesafe.py`](https://github.com/lexingtonhibiki/judgekit/blob/HEAD/judgekit/providers/typesafe.py), read by a model 2026-11-15</sub>
+
 - **[krasivo-jev](https://github.com/SergeyBazhmin/krasivo-jev)** — Datasets and training code for open System One models (Qwen3.5-2B with LoRA and a pointer head, trained on 100 Hugging Face datasets), plus an evaluation that asks hosted Jev the same test rows, one choice or noul question each, as the reference for accuracy, NLL and calibration. <sub>(written by a model)</sub>
   <sub>`Benchmark` · SergeyBazhmin · `Py` · `choice` · `noul` · call site [`src/jev_model/typesafe/client.py`](https://github.com/SergeyBazhmin/krasivo-jev/blob/HEAD/src/jev_model/typesafe/client.py), read by a model 2026-11-13 · ⚠ `no licence` `vendor numbers`</sub>
+
+- **[Medplum Provider + Jev](https://github.com/vintasoftware/medplum-provider-jev)** — Guided demo in the Medplum Provider App: when a follow-up visit is finished, a Medplum Bot asks Jev whether the note's dose of each medication agrees with the outside discharge summary (choice), which sentence states it (choice) and whether the note mentions the hospital stay (noul). <sub>(written by a model)</sub>
+  <sub>`Project` · vintasoftware · `TS` · `choice` · `noul` · call site [`provider/bots/consistency.ts`](https://github.com/vintasoftware/medplum-provider-jev/blob/HEAD/provider/bots/consistency.ts), read by a model 2026-11-15 · ⚠ `no licence` `vendor numbers`</sub>
 
 - **[metis](https://github.com/Ayush0054/metis)** — Metis: automatic GitHub issue triage powered by TypeSafe AI Jev. A reusable GitHub Action. <sub>(upstream description)</sub>
   <sub>`Project` · ayush0054 · `Py` · call site [`src/metis_workflow/integrations/jev.py`](https://github.com/Ayush0054/metis/blob/HEAD/src/metis_workflow/integrations/jev.py), read by a model 2026-11-05</sub>
@@ -604,6 +616,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[undertone](https://github.com/nuu-maan/undertone)** — Text box that reads a message's tone as you type: one Jev request asks a choice for the overall tone, nouls for passive aggression, sarcasm, over-apologising, pushiness and whether it is safe to send a manager, and scores for urgency and formality; code turns them into a verdict and tips. <sub>(written by a model)</sub>
   <sub>`Project` · nuu-maan · `TS` · `choice` · `noul` · `score` · call site [`src/lib/jev/questions.ts`](https://github.com/nuu-maan/undertone/blob/HEAD/src/lib/jev/questions.ts), read by a model 2026-11-09 · ⚠ `no licence`</sub>
+
+- **[Vibefilter for Filament](https://github.com/vibefilter/filament)** — Laravel Filament table filter that turns a sentence such as "The customer is angry." into a zero-shot classifier: it sends the remaining rows' text to Jev in batches of 100, gets the probability that the statement is true for each row (noul), and keeps the rows above a threshold. <sub>(written by a model)</sub>
+  <sub>`Plugin` · vibefilter · `PHP` · `noul` · call site [`src/Drivers/TypeSafeDriver.php`](https://github.com/vibefilter/filament/blob/HEAD/src/Drivers/TypeSafeDriver.php), read by a model 2026-11-15</sub>
 
 - **[watfile](https://github.com/jexp/watfile)** — Text/PDF - File categorization and sorting with Typesafe AI Jev or local calibrated decision model <sub>(upstream description)</sub>
   <sub>`Project` · jexp · `Py` · call site [`src/watfile/classifier/jev.py`](https://github.com/jexp/watfile/blob/HEAD/src/watfile/classifier/jev.py), read 2026-09-22 · ⚠ `no licence`</sub>

@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 172 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 176 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 165 · wire shape 3 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 169 · wire shape 3 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -314,6 +314,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — Observable browser stealth game: Jev makes typed guard judgments while deterministic code owns the world. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts), read 2026-09-22</sub>
 
+- **[hermes-jev](https://github.com/DoGMaTiiC/hermes-jev)** — Two Hermes Agent plugins: jev-judge gates terminal, write_file and patch calls by asking Jev whether a call is destructive or exfiltrates data (nouls) and how big its impact is (score), and jev-skill-router asks Jev which one skill is worth loading before the model call (choice). <sub>(written by a model)</sub>
+  <sub>`Plugin` · DoGMaTiiC · `Py` · `noul` · `score` · `choice` · call site [`plugins/jev-judge/jev.py`](https://github.com/DoGMaTiiC/hermes-jev/blob/HEAD/plugins/jev-judge/jev.py), read by a model 2026-11-15 · ⚠ `no licence`</sub>
+
 - **[Hiep Paseo plugins](https://github.com/hieppp/hiep-paseo-plugin)** — Plugins for the Paseo agent app, three of them on Jev: a permission gate that asks a noul on whether a shell command is read-only and a choice to allow, deny or escalate it to you, an orchestrator that routes delegated tasks to a model and effort, and an MCP evaluation tool. <sub>(written by a model)</sub>
   <sub>`Plugin` · hieppp · `TS` · `noul` · `choice` · call site [`plugins/jev-permission-gate/server/jev-worker.ts`](https://github.com/hieppp/hiep-paseo-plugin/blob/HEAD/plugins/jev-permission-gate/server/jev-worker.ts), read by a model 2026-11-10 · ⚠ `no licence`</sub>
 
@@ -443,6 +446,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[JevLang](https://github.com/TimMikeladze/JevLang)** — A policy engine for LLM decisions: declare routes, gates and actions once in TypeScript or Python, and every decision comes validated, explainable, replayable and audited. <sub>(upstream description)</sub>
   <sub>`SDK` · timmikeladze · `JS` · call site [`examples/entity-alignment.js`](https://github.com/TimMikeladze/JevLang/blob/HEAD/examples/entity-alignment.js), read 2026-09-24</sub>
 
+- **[jevmem](https://github.com/illescasDaniel/jev-mem)** — Long-term memory for AI agents (MCP server, CLI, library and hooks on one SQLite file) that never calls an LLM: Jev decides whether a note is safe, what kind it is, whether it contradicts an older one, which notes matter for a question and whether they are enough. <sub>(written by a model)</sub>
+  <sub>`Project` · illescasDaniel · `Py` · `noul` · `choice` · `score` · call site [`src/jevmem/decider.py`](https://github.com/illescasDaniel/jev-mem/blob/HEAD/src/jevmem/decider.py), read by a model 2026-11-15 · ⚠ `vendor numbers`</sub>
+
 - **[jevmod](https://github.com/ohernandezdev/jevmod)** — Moderation for communities and apps, powered by Jev (TypeSafe): probabilities per category, thresholds you own. Discord/Telegram/Reddit bots, CLI, Python, npm, HTTP API, MCP. <sub>(upstream description)</sub>
   <sub>`Plugin` · ohernandezdev · `Py` · call site [`jevmod/judge.py`](https://github.com/ohernandezdev/jevmod/blob/HEAD/jevmod/judge.py), read 2026-09-24</sub>
 
@@ -457,6 +463,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jit-context](https://github.com/wojciechwiesner/jit-context)** — Architectural Moat: JIT-JEV Context OS — Epistemic runtime & JEV System 1 context gate for AI agents (L0 SQLite WAL <3ms, Epistemic Invariants I1–I10, CERN Zenodo DOI: 10.5281/zenodo.22649542) <sub>(upstream description)</sub>
   <sub>`Project` · wojciechwiesner · `Py` · call site [`src/cognitive/jev_engine.py`](https://github.com/wojciechwiesner/jit-context/blob/HEAD/src/cognitive/jev_engine.py), read 2026-09-24</sub>
+
+- **[Juardrails](https://github.com/abhaybhargav/juardrails)** — Go guardrails service with a web UI and CLI: a policy's choice, score and noul questions, built in a visual editor or YAML, go to Jev in one call, and explicit rules then decide from the answers. It ships policy packs for Claude Code tool use and Kubernetes pod security. <sub>(written by a model)</sub>
+  <sub>`Project` · abhaybhargav · `Go` · `choice` · `score` · `noul` · call site [`internal/guardrail/jev.go`](https://github.com/abhaybhargav/juardrails/blob/HEAD/internal/guardrail/jev.go), read by a model 2026-11-15 · ⚠ `no licence`</sub>
 
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — The LangChain integration: a classifier plus experimental middleware for model routing and for gating risky tool calls before they run.
   <sub>`Integration` · `Py` · `choice` · `score` · `noul` · ⚠ `early access`</sub>
@@ -490,6 +499,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[pi-jev-permit](https://github.com/kurihada/pi-jev-permit)** — A Jev (TypeSafe System One) permission gate for the Pi coding agent: judges every bash / write / edit call before it runs <sub>(upstream description)</sub>
   <sub>`Project` · kurihada · `TS` · call site [`src/jev.ts`](https://github.com/kurihada/pi-jev-permit/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
+
+- **[pi-typesafe-approve](https://github.com/Davidasx/pi-typesafe-approve)** — Pi coding-agent extension that asks a System One model such as Jev which policy category a Bash command most importantly falls in (choice), decoding pipes and encoded payloads first; routine commands run without a prompt and anything flagged stops and asks the user. <sub>(written by a model)</sub>
+  <sub>`Plugin` · Davidasx · `TS` · `choice` · call site [`src/systemone.ts`](https://github.com/Davidasx/pi-typesafe-approve/blob/HEAD/src/systemone.ts), read by a model 2026-11-15</sub>
 
 - **[pkg-gate](https://github.com/hemanth/pkg-gate)** — Pre-install security gate for npm lifecycle scripts using TypeSafe System One. <sub>(upstream description)</sub>
   <sub>`Project` · hemanth · `JS` · call site [`src/gate.js`](https://github.com/hemanth/pkg-gate/blob/HEAD/src/gate.js), read 2026-09-22</sub>

@@ -4,11 +4,11 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 93 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 95 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#human-escalation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 78 · wire shape 5 · example only 0 · independent reports 11 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 80 · wire shape 5 · example only 0 · independent reports 11 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -262,6 +262,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[luce](https://github.com/scienthoon/luce)** — Luce: a recipe for calibrated decision models — a sentence about your task in, a small model that answers typed questions with honest probabilities out (init → synth → train → eval → serve) <sub>(upstream description)</sub>
   <sub>`Project` · scienthoon · `Py` · call site [`scripts/jev_eval.mjs`](https://github.com/scienthoon/luce/blob/HEAD/scripts/jev_eval.mjs), read 2026-09-22</sub>
 
+- **[Medplum Provider + Jev](https://github.com/vintasoftware/medplum-provider-jev)** — Guided demo in the Medplum Provider App: when a follow-up visit is finished, a Medplum Bot asks Jev whether the note's dose of each medication agrees with the outside discharge summary (choice), which sentence states it (choice) and whether the note mentions the hospital stay (noul). <sub>(written by a model)</sub>
+  <sub>`Project` · vintasoftware · `TS` · `choice` · `noul` · call site [`provider/bots/consistency.ts`](https://github.com/vintasoftware/medplum-provider-jev/blob/HEAD/provider/bots/consistency.ts), read by a model 2026-11-15 · ⚠ `no licence` `vendor numbers`</sub>
+
 - **[n8n-nodes-typesafe-ai](https://github.com/DomMonte/n8n-nodes-typesafe-ai)** — n8n community node for the TypeSafe AI System One API — typed yes/no, choice and score questions with calibrated probabilities <sub>(upstream description)</sub>
   <sub>`Project` · dommonte · `TS` · call site [`nodes/TypeSafeAi/constants.ts`](https://github.com/DomMonte/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/constants.ts), read 2026-09-22</sub>
 
@@ -276,6 +279,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[padflow-jev-evals](https://github.com/zsavage8/padflow-jev-evals)** — Typed-decision benchmark from PadFlow (land development SaaS): schemas, anonymized labeled rows, and a runner for confidence-calibrated models like TypeSafe Jev. <sub>(upstream description)</sub>
   <sub>`Benchmark` · zsavage8 · `Py` · call site [`scripts/run_baseline.py`](https://github.com/zsavage8/padflow-jev-evals/blob/HEAD/scripts/run_baseline.py), read 2026-09-22</sub>
+
+- **[pi-typesafe-approve](https://github.com/Davidasx/pi-typesafe-approve)** — Pi coding-agent extension that asks a System One model such as Jev which policy category a Bash command most importantly falls in (choice), decoding pipes and encoded payloads first; routine commands run without a prompt and anything flagged stops and asks the user. <sub>(written by a model)</sub>
+  <sub>`Plugin` · Davidasx · `TS` · `choice` · call site [`src/systemone.ts`](https://github.com/Davidasx/pi-typesafe-approve/blob/HEAD/src/systemone.ts), read by a model 2026-11-15</sub>
 
 - **[pi-typesafe-jev](https://github.com/legacybridge-tech/pi-typesafe-jev)** — A pi extension that exposes TypeSafe (Jev, System One) judgments as five pi tools, so a model can make narrow semantic judgments while your code and your users keep control of thresholds, weights, and actions. <sub>(upstream description)</sub>
   <sub>`Plugin` · legacybridge-tech · `TS` · call site [`src/client.ts`](https://github.com/legacybridge-tech/pi-typesafe-jev/blob/HEAD/src/client.ts), read 2026-09-22</sub>

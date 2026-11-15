@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 92 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 93 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 84 · 接口形态 1 · 仅示例 1 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 85 · 接口形态 1 · 仅示例 1 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -224,6 +224,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev Switch](https://github.com/ARCJ137442/SysTorch)** — 一个轻量的 Jev 协议网关：对外提供 POST /v1/systemone，并按可编辑的路由图把每次调用转发到上游（TypeSafe、Vercel、OpenRouter、Laya 或本地服务），支持优先级和故障切换。Rust 守护进程，附带 React 控制台、Tauri 桌面应用和 Docker 镜像。文档以中文为主。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arcj137442 · `Rs` · `TS` · 调用点 [`rs/crates/systorch-daemon/src/admin.rs`](https://github.com/ARCJ137442/SysTorch/blob/HEAD/rs/crates/systorch-daemon/src/admin.rs)，2026-10-24 模型阅读</sub>
+
+- **[jev-claw](https://github.com/trietphan/jev-claw)** — OpenClaw 插件，提供 jev_route 工具和一个可选的钩子：对每个有分量的编程任务，问 Jev 任务类型、复杂度和风险（choice），以及第二意见是否有用（noul），再由代码执行用户的路由策略来选模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · trietphan · `JS` · `choice` · `noul` · 调用点 [`route.js`](https://github.com/trietphan/jev-claw/blob/HEAD/route.js)，2026-11-15 模型阅读</sub>
 
 - **[jev-codex-bridge](https://github.com/ansidium/jev-codex-bridge)** — 为 Codex 桌面版与 CLI 做模型和推理力度路由，附带 Windows 服务与经过验证的更新。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ansidium · `JS` · 调用点 [`src/router.mjs`](https://github.com/ansidium/jev-codex-bridge/blob/HEAD/src/router.mjs)，2026-09-24 阅读</sub>

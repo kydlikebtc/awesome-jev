@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 192 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 194 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 183 · 接口形态 5 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 185 · 接口形态 5 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -491,6 +491,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[JevTools](https://github.com/RileyCarney/JevTools)** — Jev 的本地仪表盘和命令行演示：用六个问题（score、noul 和一个 choice）并行评估一条商品评论并汇总成综合分，对话题分类（choice），还能运行自定义决定；每个请求和答案都记录到本地 SQLite 文件。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · RileyCarney · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_demo.py`](https://github.com/RileyCarney/JevTools/blob/HEAD/jev_demo.py)，2026-11-13 模型阅读</sub>
 
+- **[judgekit](https://github.com/lexingtonhibiki/judgekit)** — Python 库和命令行工具：用一个 YAML 任务（classify、route、score 或 verify）先跑免费的本地关键词规则，再交给模型。它的 TypeSafe 提供方对每条输入只问 Jev 一个问题：在任务标签里做 choice、按刻度给 score，或者为 verify 问一个 noul。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · lexingtonhibiki · `Py` · `choice` · `score` · `noul` · 调用点 [`judgekit/providers/typesafe.py`](https://github.com/lexingtonhibiki/judgekit/blob/HEAD/judgekit/providers/typesafe.py)，2026-11-15 模型阅读</sub>
+
 - **[judging-with-typesafe](https://github.com/carlsonchik/judging-with-typesafe)** — 给 Letta 智能体的技能：通过 System One 按给定标准做判断（俄语）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · carlsonchik · `Py` · 调用点 [`skills/judging-with-typesafe/scripts/typesafe.py`](https://github.com/carlsonchik/judging-with-typesafe/blob/HEAD/skills/judging-with-typesafe/scripts/typesafe.py)，2026-09-22 阅读</sub>
 
@@ -550,6 +553,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[shady-town](https://github.com/tpaulshippy/shady-town)** — Shady Town：客厅电视上的社交推理派对游戏，由 Jev 主持。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tpaulshippy · `Rb` · 调用点 [`lib/shady_town/evaluator.rb`](https://github.com/tpaulshippy/shady-town/blob/HEAD/lib/shady_town/evaluator.rb)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
+
+- **[Slop Mop](https://github.com/tomfrazier/slopmop)** — LinkedIn 浏览器扩展，它的服务器就每条帖子问 Jev 十二个问题：九个“水文”迹象和两个反向迹象（个人语气、有用程度）用 score，另加一个“是否像模型起草”的问题。答案和互动数据合成一个分数，用来折叠或标出帖子。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · tomfrazier · `TS` · `score` · `noul` · 调用点 [`slopmop-server/src/jevRequest.ts`](https://github.com/tomfrazier/slopmop/blob/HEAD/slopmop-server/src/jevRequest.ts)，2026-11-15 模型阅读</sub>
 
 - **[sloppy-jevs-extension](https://github.com/neddes/sloppy-jevs-extension)** — 开源 Chrome 扩展：用 Jev 过滤 AI 生成的文字与广告。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · neddes · `JS` · 调用点 [`background.js`](https://github.com/neddes/sloppy-jevs-extension/blob/HEAD/background.js)，2026-09-22 阅读</sub>
