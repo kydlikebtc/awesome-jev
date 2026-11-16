@@ -123,6 +123,21 @@ class AwardTest(unittest.TestCase):
         self.assertNotIn("--force", jobs)
         self.assertNotIn("github.event.", jobs)
 
+    def test_a_month_with_no_award_and_no_award_folder_succeeds(self):
+        # 2026-11-15: before the first award there is no docs/award, and a bare
+        # `git add -A docs/award` failed the run on a pathspec that matched nothing.
+        import subprocess
+
+        text = (ROOT / ".github" / "workflows" / "award.yml").read_text()
+        adds = [line.strip() for line in text.splitlines() if "git add" in line and "docs/award" in line]
+        self.assertEqual(len(adds), 2)
+        with tempfile.TemporaryDirectory() as tmp:
+            subprocess.run(["git", "init", "-q", tmp], check=True)
+            for line in adds:
+                with self.subTest(line=line):
+                    done = subprocess.run(["bash", "-ec", line], cwd=tmp, capture_output=True, text=True)
+                    self.assertEqual(done.returncode, 0, done.stderr)
+
 
 class EngineTest(unittest.TestCase):
     """docs/launch-engine.md promises the board's rules can be copied without
