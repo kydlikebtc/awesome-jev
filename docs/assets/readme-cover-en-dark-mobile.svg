@@ -23,14 +23,17 @@
 <text x="396" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,339</text>
 <text x="396" y="355" font-size="19" class="muted">call-site records</text>
 <rect x="36" y="392" width="528" height="132" rx="12" fill="#121821" stroke="#30363d"/>
-<text x="56" y="424" font-size="13" class="mono faint" letter-spacing="1.2">THIS WEEK · 2026-W46 · VOTES OPEN</text>
+<text x="56" y="424" font-size="13" class="mono faint" letter-spacing="1.2">LAST WEEK · 2026-W46 · RESULTS</text>
 <path d="M62 442.8l5.25 8.399999999999999h-10.5z" fill="#f5a524"/>
-<text x="78" y="452" font-size="15" class="mono" font-weight="600">agent-desktop</text>
-<text x="208.9" y="452" font-size="13" class="muted">Desktop automation: Jev picks the button, menu o…</text>
+<text x="78" y="452" font-size="14" class="mono accent" font-weight="600">0 #1</text>
+<text x="122.72" y="452" font-size="15" class="mono" font-weight="600">agent-desktop</text>
+<text x="253.62" y="452" font-size="13" class="muted">Desktop automation: Jev picks the button,…</text>
 <path d="M62 468.8l5.25 8.399999999999999h-10.5z" fill="#f5a524"/>
-<text x="78" y="478" font-size="15" class="mono" font-weight="600">jeveryword</text>
-<text x="181.0" y="478" font-size="13" class="muted">Extracts fields, PII and exact quotes from text with…</text>
+<text x="78" y="478" font-size="14" class="mono accent" font-weight="600">0 #2</text>
+<text x="122.72" y="478" font-size="15" class="mono" font-weight="600">anydecisionmodel</text>
+<text x="281.52" y="478" font-size="13" class="muted">Swift package for typed choices, scor…</text>
 <path d="M62 494.8l5.25 8.399999999999999h-10.5z" fill="#f5a524"/>
-<text x="78" y="504" font-size="15" class="mono" font-weight="600">fastbrowse</text>
-<text x="181.0" y="504" font-size="13" class="muted">Browser agent: Jev chooses the next control from th…</text>
+<text x="78" y="504" font-size="14" class="mono accent" font-weight="600">0 #3</text>
+<text x="122.72" y="504" font-size="15" class="mono" font-weight="600">jev-guard</text>
+<text x="216.42000000000002" y="504" font-size="13" class="muted">Hook for coding agents: Jev judges each tool cal…</text>
 </svg>

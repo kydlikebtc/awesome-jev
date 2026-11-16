@@ -23,14 +23,17 @@
 <text x="396" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,339</text>
 <text x="396" y="355" font-size="19" class="muted">调用点记录</text>
 <rect x="36" y="392" width="528" height="132" rx="12" fill="#ffffff" stroke="#d1d9e0"/>
-<text x="56" y="424" font-size="13" class="mono faint" letter-spacing="1.2">本周 · 2026-W46 · 投票中</text>
+<text x="56" y="424" font-size="13" class="mono faint" letter-spacing="1.2">上周 · 2026-W46 · 结果</text>
 <path d="M62 442.8l5.25 8.399999999999999h-10.5z" fill="#a15c00"/>
-<text x="78" y="452" font-size="15" class="mono" font-weight="600">agent-desktop</text>
-<text x="208.9" y="452" font-size="13" class="muted">桌面自动化：由 Jev 选出下一步要操作的按钮、菜单或…</text>
+<text x="78" y="452" font-size="14" class="mono accent" font-weight="600">0 #1</text>
+<text x="122.72" y="452" font-size="15" class="mono" font-weight="600">agent-desktop</text>
+<text x="253.62" y="452" font-size="13" class="muted">桌面自动化：由 Jev 选出下一步要操作的按钮、…</text>
 <path d="M62 468.8l5.25 8.399999999999999h-10.5z" fill="#a15c00"/>
-<text x="78" y="478" font-size="15" class="mono" font-weight="600">jeveryword</text>
-<text x="181.0" y="478" font-size="13" class="muted">用 Jev 从文本中抽取字段、PII 和逐字引文</text>
+<text x="78" y="478" font-size="14" class="mono accent" font-weight="600">0 #2</text>
+<text x="122.72" y="478" font-size="15" class="mono" font-weight="600">anydecisionmodel</text>
+<text x="281.52" y="478" font-size="13" class="muted">Swift 包：从 Jev 或本地 MLX 模型取得…</text>
 <path d="M62 494.8l5.25 8.399999999999999h-10.5z" fill="#a15c00"/>
-<text x="78" y="504" font-size="15" class="mono" font-weight="600">fastbrowse</text>
-<text x="181.0" y="504" font-size="13" class="muted">浏览器智能体：由 Jev 从页面上已有的控件中选出下一步</text>
+<text x="78" y="504" font-size="14" class="mono accent" font-weight="600">0 #3</text>
+<text x="122.72" y="504" font-size="15" class="mono" font-weight="600">jev-guard</text>
+<text x="216.42000000000002" y="504" font-size="13" class="muted">编程智能体的安全钩子：每次工具调用前由 Jev 判断风…</text>
 </svg>

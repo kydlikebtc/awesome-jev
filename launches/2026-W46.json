@@ -1,6 +1,10 @@
 {
   "week": "2026-W46",
-  "status": "open",
+  "status": "closed",
+  "closed_on": "2026-11-16",
+  "rules": "v2",
+  "voters": 0,
+  "returning_voters": 0,
   "launches": [
     {
       "product": "jeveryword",
@@ -12,7 +16,13 @@
       "tagline_zh": "用 Jev 从文本中抽取字段、PII 和逐字引文",
       "status": "scheduled",
       "discussion": 108,
-      "tier_at_open": "person"
+      "tier_at_open": "person",
+      "result": {
+        "votes": 0,
+        "counted": 0.0,
+        "discounted": 0,
+        "rank": 4
+      }
     },
     {
       "product": "agent-desktop",
@@ -24,7 +34,13 @@
       "tagline_zh": "桌面自动化：由 Jev 选出下一步要操作的按钮、菜单或输入框",
       "status": "scheduled",
       "discussion": 107,
-      "tier_at_open": "person"
+      "tier_at_open": "person",
+      "result": {
+        "votes": 0,
+        "counted": 0.0,
+        "discounted": 0,
+        "rank": 1
+      }
     },
     {
       "product": "anydecisionmodel",
@@ -36,7 +52,13 @@
       "tagline_zh": "Swift 包：从 Jev 或本地 MLX 模型取得选择、分数和概率",
       "status": "scheduled",
       "discussion": 110,
-      "tier_at_open": "person"
+      "tier_at_open": "person",
+      "result": {
+        "votes": 0,
+        "counted": 0.0,
+        "discounted": 0,
+        "rank": 2
+      }
     },
     {
       "product": "fastbrowse",
@@ -48,7 +70,13 @@
       "tagline_zh": "浏览器智能体：由 Jev 从页面上已有的控件中选出下一步",
       "status": "scheduled",
       "discussion": 109,
-      "tier_at_open": "model"
+      "tier_at_open": "model",
+      "result": {
+        "votes": 0,
+        "counted": 0.0,
+        "discounted": 0,
+        "rank": 5
+      }
     },
     {
       "product": "jev-guard",
@@ -60,7 +88,13 @@
       "tagline_zh": "编程智能体的安全钩子：每次工具调用前由 Jev 判断风险",
       "status": "scheduled",
       "discussion": 111,
-      "tier_at_open": "person"
+      "tier_at_open": "person",
+      "result": {
+        "votes": 0,
+        "counted": 0.0,
+        "discounted": 0,
+        "rank": 3
+      }
     }
   ]
 }
