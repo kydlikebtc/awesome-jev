@@ -93,7 +93,7 @@ Every launch of 2026-W46, with the votes discounted and why: [the week's page](h
 
 Products built on Jev, launched by their makers once a week, or hunted by anyone who found one. People vote with a thumbs-up on each launch's post in [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches); the week closes on Sunday 23:59 UTC with a rank. Votes say how many people cared; the evidence beside each launch says who read the code that calls Jev. The two are never added together, and a rank is not this catalogue's recommendation. [The board](https://kydlikebtc.github.io/awesome-jev/launches.html) has every week, a page per product and per maker, and the rising list.
 
-### ★ Rising: 2026-11-10 to 2026-11-15
+### ★ Rising: 2026-11-10 to 2026-11-16
 
 <table>
 <tr>
@@ -101,20 +101,20 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <td>
 
 **[OnlyRead](https://kydlikebtc.github.io/awesome-jev/products/onlyread.html)** — Chrome extension that keeps browser agents read-only on the sites you pick: rules, per-site decoders and a verdict cache settle most requests, and Jev answers a noul on the rest (does this request create, modify or delete stored data?); code allows, blocks or sends the middle band to a review model. <sub>(written by a model)</sub><br>
-<sub>37 → 93 stars (+151%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=onlyread&title=Launch%3A%20OnlyRead)</sub>
+<sub>37 → 94 stars (+154%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=onlyread&title=Launch%3A%20OnlyRead)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+56</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+57</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html"><img src="https://github.com/sunyasheng.png?size=96" width="48" height="48" alt="JevGPT: Thinking Fast and Slow in Autonomous Research"></a></td>
 <td>
 
 **[JevGPT: Thinking Fast and Slow in Autonomous Research](https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html)** — Research agent from arXiv 2610.18272. GPT-5.5 plans searches and writes the answer; in BrowseComp-Plus QA, Jev answers a Choice over numbered source lines (where is the answer) and a Noul (does the region address it) per document region and query, in parallel. GPT gets the original lines.<br>
-<sub>23 → 40 stars (+74%) · 🔍 text match only, nobody has read it · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgpt-sunyasheng&title=Launch%3A%20JevGPT%3A%20Thinking%20Fast%20and%20Slow%20in%20Autonomous%20Research)</sub>
+<sub>23 → 43 stars (+87%) · 🔍 text match only, nobody has read it · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgpt-sunyasheng&title=Launch%3A%20JevGPT%3A%20Thinking%20Fast%20and%20Slow%20in%20Autonomous%20Research)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+17</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+20</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-recipes.html"><img src="https://github.com/agencyenterprise.png?size=96" width="48" height="48" alt="jev-recipes"></a></td>
@@ -131,20 +131,20 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 <td>
 
 **[optim-jev](https://kydlikebtc.github.io/awesome-jev/products/optim-jev.html)** — Claude Code plugin (Codex too) with three Jev tools: jev-compacter asks which stale tool calls and outputs can be dropped when context is compacted, jev-router picks a model and effort for each subagent, and jev-skills sends a short relevant skill list per prompt instead of the whole catalog. <sub>(written by a model)</sub><br>
-<sub>52 → 66 stars (+27%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=optim-jev&title=Launch%3A%20optim-jev)</sub>
+<sub>52 → 69 stars (+33%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=optim-jev&title=Launch%3A%20optim-jev)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+14</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+17</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
 <td>
 
 **[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — Desktop automation that reads the system accessibility tree and decides which button, menu or field to act on next.<br>
-<sub>20,568 → 23,915 stars (+16%) · 👤 a person read the call site · can launch again from 2027-01-11</sub>
+<sub>20,568 → 24,382 stars (+19%) · 👤 a person read the call site · can launch again from 2027-01-11</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+3,347</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+3,814</b><br><sub>stars</sub></td>
 </tr>
 </table>
 
