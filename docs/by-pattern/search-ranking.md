@@ -4,11 +4,11 @@
 
 _Score or re-rank candidates from a cheaper retrieval step._
 
-Every catalogued example of this decision — 96 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 98 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#search-ranking): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 92 · wire shape 0 · example only 0 · independent reports 8 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 94 · wire shape 0 · example only 0 · independent reports 8 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -273,6 +273,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-retrieval](https://github.com/romeromarcelo/jev-retrieval)** — Semantic code and document search CLI — BM25 recall + TypeSafe Jev calibrated precision <sub>(upstream description)</sub>
   <sub>`Project` · romeromarcelo · `Rs` · call site [`src/jev/client.rs`](https://github.com/romeromarcelo/jev-retrieval/blob/HEAD/src/jev/client.rs), read 2026-09-24</sub>
 
+- **[jev-riffs](https://github.com/hazlema/jev-riffs)** — Music pattern ripper: code turns a MIDI melody into semitone intervals and mines repeating units, then one batched request asks Jev to score each candidate's significance as a motif (a score per candidate). A web UI draws the piano roll and plays each motif. <sub>(written by a model)</sub>
+  <sub>`Project` · hazlema · `TS` · `score` · call site [`src/rip.ts`](https://github.com/hazlema/jev-riffs/blob/HEAD/src/rip.ts), read by a model 2026-11-16</sub>
+
 - **[jev-skill-gate](https://github.com/ShivamPansuriya/jev-skill-gate)** — Cut Claude Code's skill manifest by ~75% with TypeSafe Jev. Scores every installed skill for relevance and hides the rest via skillOverrides — 12,750 → 3,185 tokens on a 217-skill install, for $0.0009 a session. <sub>(upstream description)</sub>
   <sub>`Plugin` · shivampansuriya · `JS` · call site [`src/providers/typesafe.mjs`](https://github.com/ShivamPansuriya/jev-skill-gate/blob/HEAD/src/providers/typesafe.mjs), read 2026-09-24</sub>
 
@@ -302,6 +305,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[llama-index-jev](https://github.com/WiktorB2004/llama-index-jev)** — LlamaIndex reranker + router powered by TypeSafe Jev — typed scores/choices, cheaper than LLM-as-judge.
   <sub>`Project` · wiktorb2004 · `Py` · call site [`packages/llama-index-postprocessor-jev/llama_index/postprocessor/jev/openrouter.py`](https://github.com/WiktorB2004/llama-index-jev/blob/HEAD/packages/llama-index-postprocessor-jev/llama_index/postprocessor/jev/openrouter.py), read 2026-09-22</sub>
+
+- **[Mnemon](https://github.com/grivn/mnemon-memory-agent)** — Long-term memory agent that keeps raw, dated records and judges them when a question arrives: for every record its searches return, it asks Jev in one request whether the next reply should use it and whether a later message makes it no longer current (two nouls each). <sub>(written by a model)</sub>
+  <sub>`Project` · grivn · `TS` · `noul` · call site [`plugins/dsh-mnemon-strategy-jev-optmem/src/judge.ts`](https://github.com/grivn/mnemon-memory-agent/blob/HEAD/plugins/dsh-mnemon-strategy-jev-optmem/src/judge.ts), read by a model 2026-11-16 · ⚠ `3rd-party key` `vendor numbers`</sub>
 
 - **[pijev](https://github.com/tonyzdev/pijev)** — PiJev: a terminal coding agent with Jev in the loop — Jev ranks the repository's files before the first call, picks skills and triages failures; your coding model writes the code. Built on Pi. <sub>(upstream description)</sub>
   <sub>`Project` · tonyzdev · `TS` · call site [`src/jev.ts`](https://github.com/tonyzdev/pijev/blob/HEAD/src/jev.ts), read 2026-09-24</sub>

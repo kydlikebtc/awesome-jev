@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 525 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 527 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 387 · wire shape 98 · example only 0 · independent reports 33 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 389 · wire shape 98 · example only 0 · independent reports 33 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -728,6 +728,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[origin-civilization](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION)** — AI life-and-civilization simulation: TypeSafe Jev makes every decision (typed, probabilistic, auditable); LLMs plan — OpenAI-compatible APIs, local models (Ollama, LM Studio), Claude Code, Codex. <sub>(upstream description)</sub>
   <sub>`Benchmark` · jacquesgariepy · `TS` · call site [`legacy/source/providers.js`](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION/blob/HEAD/legacy/source/providers.js), read 2026-09-22</sub>
 
+- **[protoc-gen-jev](https://github.com/bufbuild/protoc-gen-jev)** — Protobuf plugin that turns decisions defined in .proto files into typed Jev clients for Go, TypeScript and Python: bool fields become nouls, numeric fields scores on a rubric, and enums, strings or routing oneofs choices, with thresholds set in schema options. <sub>(written by a model)</sub>
+  <sub>`SDK` · bufbuild · `Go` · `TS` · `Py` · `choice` · `noul` · `score` · call site [`pkg/jev/client.go`](https://github.com/bufbuild/protoc-gen-jev/blob/HEAD/pkg/jev/client.go), read by a model 2026-11-16</sub>
+
 - **[ReflexBench](https://github.com/brida-ai/reflexbench)** — Open benchmark for System One decision engines that sends the same typed choice, score and noul requests to Jev and six open models on a frozen 111-case hard set, reporting accuracy, calibration, option-order stability and latency separately; Jev leads raw accuracy at 73%. <sub>(written by a model)</sub>
   <sub>`Benchmark` · brida-ai · `Py` · `choice` · `score` · `noul` · call site [`reflexbench/systemone_http.py`](https://github.com/brida-ai/reflexbench/blob/HEAD/reflexbench/systemone_http.py), read by a model 2026-11-10 · ⚠ `vendor numbers`</sub>
 
@@ -972,7 +975,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 215 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 216 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — Toolkit for voice AI avatars in apps, phone lines, signage and the metaverse. Its Jev turn-end gate asks a noul on the transcript, whether the assistant should stay silent and leave the user's turn open, and maps that probability to a wait of 0.4 to 2 seconds; on any error the turn ends. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · uezo · `Py` · call site [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py), read 2026-09-22</sub>
@@ -1612,6 +1615,9 @@ Projects and plugins with code, 215 of them, whose only pattern is `overview` an
 
 - **[Typewright](https://github.com/Jev-Engineering/TypeWright)** — Declarative compiler for typed Jev decisions: you declare state, decisions and labelled examples in YAML, and it searches prompts with DSPy and GEPA, fits noul thresholds, score cuts and review gates on separate data, and freezes a checksummed JSON program that a light runtime sends to Jev. <sub>(written by a model)</sub>
   <sub>`Project` · Jev-Engineering · `Py` · `noul` · `choice` · `score` · call site [`src/typewright/backends.py`](https://github.com/Jev-Engineering/TypeWright/blob/HEAD/src/typewright/backends.py), read by a model 2026-11-09 · ⚠ `code untested`</sub>
+
+- **[warp-sys-one](https://github.com/fini/warped-sys1-lab)** — Local workbench for Jev experiments: each experiment is a JSON file of state and noul, choice or score questions, with inputs, file variables and cases. A SvelteKit UI or the CLI sends each case to Jev, shows the probabilities and compares past runs. <sub>(written by a model)</sub>
+  <sub>`Project` · fini · `TS` · `noul` · `choice` · `score` · call site [`src/lib/server/runner.ts`](https://github.com/fini/warped-sys1-lab/blob/HEAD/src/lib/server/runner.ts), read by a model 2026-11-16 · ⚠ `no licence`</sub>
 
 - **[wellposed](https://github.com/suraj-phanindra/wellposed)** — Lint your jev requests before they come back confidently wrong.
   <sub>`Project` · suraj-phanindra · `JS` · call site [`skills/wellposed/scripts/semantic.mjs`](https://github.com/suraj-phanindra/wellposed/blob/HEAD/skills/wellposed/scripts/semantic.mjs), read 2026-09-24</sub>

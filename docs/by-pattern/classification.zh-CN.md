@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 202 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 207 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 190 · 接口形态 3 · 仅示例 0 · 独立报告 20 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 195 · 接口形态 3 · 仅示例 0 · 独立报告 21 · 负面结果 1 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -410,6 +410,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — 在 480 道自编通用波斯语题、560 道文学题和一个古典诗歌试点上，把 Jev 与开源决策模型对比的基准：以 choice、noul 和 score 提问，保存原始响应并在本地评分；Jev 在 choice 和 noul 准确率上领先。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · armanjr · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py)，2026-11-11 模型阅读 · ⚠ `无许可证`</sub>
 
+- **[Jev plays Factorio](https://github.com/kgaspard/jev-factorio)** — 只看截图玩 Factorio，目标是做出 10 个红色科技包。每一步它把截图或特写发给 Jev，问资源或信息面板是否可见（noul）、在哪里（Box）、在哪个方向以及绕哪条路或从哪一侧下手（choice），再由代码按键。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · kgaspard · `Py` · `noul` · `choice` · 调用点 [`jev_factorio/brain.py`](https://github.com/kgaspard/jev-factorio/blob/HEAD/jev_factorio/brain.py)，2026-11-16 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[Jev Playwright](https://github.com/arthurfiorette/jev-playwright)** — 一个 Playwright 报告器：在启动任何浏览器之前，询问 Jev 某次代码改动可能影响哪些现有端到端测试，并跳过明显无关的测试。默认会发送改动路径、补丁和测试代码；README 提醒它可能漏掉受影响的测试。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arthurfiorette · `TS` · 调用点 [`src/config.ts`](https://github.com/arthurfiorette/jev-playwright/blob/HEAD/src/config.ts)，2026-10-24 模型阅读</sub>
 
@@ -584,14 +587,23 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[OpenJev for opencode](https://github.com/darwintechlab/openjev)** — opencode 插件，把 Jev 作为工具（jev_choice、jev_noul、jev_score、jev_ask）交给智能体，用来做原本要问 LLM 的小决定，比如某条命令是否安全、工单该派给哪个团队。每个答案都附带一道关卡：有把握时直接执行，没把握时上报。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · darwintechlab · `TS` · `choice` · `noul` · `score` · 调用点 [`src/client.ts`](https://github.com/darwintechlab/openjev/blob/HEAD/src/client.ts)，2026-11-13 模型阅读</sub>
 
+- **[Photo Ferret](https://github.com/jonessteven/photo-ferret)** — 照片图库，筛选条件来自 Jev：每上传一张照片，它在一次请求里问 Jev 画面中天空、水或雪占多少、有多壮观或多荒野（score），是否有人、野生动物或鸟（noul），主体是什么（choice），另外还有一个质量分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · jonessteven · `TS` · `score` · `noul` · `choice` · 调用点 [`server/jev.ts`](https://github.com/jonessteven/photo-ferret/blob/HEAD/server/jev.ts)，2026-11-16 模型阅读</sub>
+
 - **[progressgate](https://github.com/AshutoshVJTI/progressgate)** — 检测 AI 智能体循环中的语义停滞。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ashutoshvjti · `TS` · 调用点 [`experiments/jev-client.ts`](https://github.com/AshutoshVJTI/progressgate/blob/HEAD/experiments/jev-client.ts)，2026-09-22 阅读</sub>
 
 - **[Qualixar Jev Decision Layer](https://github.com/qualixar/jev-decision-layer)** — 插件加本地 MCP 服务器：让智能体每次把一个封闭问题交给 Jev，比如该用哪个工具、技能或格式，草稿是否符合要求，请求该归哪个团队，共 55 个配方；本地策略关卡检查每个类型化答案并记录凭据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · qualixar · `Py` · `choice` · `score` · `noul` · 调用点 [`plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py`](https://github.com/qualixar/jev-decision-layer/blob/HEAD/plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py)，2026-11-10 模型阅读</sub>
 
+- **[Scientific Decision Evaluation](https://github.com/bydeng01/scientific-decision-eval)** — 论文《Jev for Scientific Decisions》的代码和数据：来自已发表研究的 10 个案例共 20 个 choice，每个问样本之间是哪种关系。它通过 OpenRouter 的 decisions API 向 Jev 提问，每个案例五次，并分别评估选项、计算结果和最终标签。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · bydeng01 · `Py` · `choice` · 调用点 [`development/s2-execution-v1/providers.py`](https://github.com/bydeng01/scientific-decision-eval/blob/HEAD/development/s2-execution-v1/providers.py)，2026-11-16 模型阅读</sub>
+
 - **[Social Risk · Qwen3-VL + Jev](https://github.com/TianJinWeiBoss520/social-risk-qwen-jev)** — 关于中文图文表情包中厌女内容的研究项目：经过 LoRA 微调的 Qwen3-VL 把每条内容转成结构化证据，Jev 按固定政策回答一个 noul，判断内容是否攻击或贬低女性；代码再把概率分成风险等级。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · TianJinWeiBoss520 · `Py` · `noul` · 调用点 [`experiments/v1/src/run_ltedi_jev_cloud20.py`](https://github.com/TianJinWeiBoss520/social-risk-qwen-jev/blob/HEAD/experiments/v1/src/run_ltedi_jev_cloud20.py)，2026-11-10 模型阅读</sub>
+
+- **[Tab Sorter](https://github.com/AstonyCat/jev-tab-grouper)** — Chrome 扩展：把窗口里的每个标签页归入命名、带颜色的分组。它的规则引擎在一次请求里对每个标签页问 Jev 一个 choice，选项是你定义的分组；置信度低于 0.6 的标签页放进待复核分组。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · AstonyCat · `JS` · `choice` · 调用点 [`grouper.js`](https://github.com/AstonyCat/jev-tab-grouper/blob/HEAD/grouper.js)，2026-11-16 模型阅读</sub>
 
 - **[tab-bouncer](https://github.com/MANISH007700/tab-bouncer)** — 一个关闭多余标签页的 Chrome 扩展，由 TypeSafe Jev 一次调用完成判断。告诉它你在做什么即可。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · manish007700 · `JS` · 调用点 [`judge.js`](https://github.com/MANISH007700/tab-bouncer/blob/HEAD/judge.js)，2026-09-24 阅读</sub>
@@ -616,6 +628,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[undertone](https://github.com/nuu-maan/undertone)** — 在你打字时读出消息语气的文本框：一次 Jev 请求用 choice 判断整体语气，用 noul 判断是否阴阳怪气、讽刺、过度道歉、咄咄逼人，以及能否发给上司，再用 score 评估紧迫程度和正式程度；代码把这些答案变成结论和修改提示。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · nuu-maan · `TS` · `choice` · `noul` · `score` · 调用点 [`src/lib/jev/questions.ts`](https://github.com/nuu-maan/undertone/blob/HEAD/src/lib/jev/questions.ts)，2026-11-09 模型阅读 · ⚠ `无许可证`</sub>
+
+- **[Vellum](https://github.com/sanity-labs/vellum)** — 把 Markdown 映射成 Sanity 文档，全程不生成文字：它问 Jev 每个字段由哪个块提供、每个块属于哪个字段（choice），有争议的配对是否正确（noul），以及页面构建器的区块如何嵌套；被选中的文字由代码复制。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · sanity-labs · `TS` · `choice` · `noul` · 调用点 [`src/engine/jev/jev.ts`](https://github.com/sanity-labs/vellum/blob/HEAD/src/engine/jev/jev.ts)，2026-11-16 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[Vibefilter for Filament](https://github.com/vibefilter/filament)** — Laravel Filament 的表格筛选器，把一句话（如“客户很生气。”）变成零样本分类器：把剩余各行的文本按 100 条一批发给 Jev，得到每行“这句话成立”的概率（noul），只保留超过阈值的行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · vibefilter · `PHP` · `noul` · 调用点 [`src/Drivers/TypeSafeDriver.php`](https://github.com/vibefilter/filament/blob/HEAD/src/Drivers/TypeSafeDriver.php)，2026-11-15 模型阅读</sub>

@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 525 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 527 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 387 · 接口形态 98 · 仅示例 0 · 独立报告 33 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 389 · 接口形态 98 · 仅示例 0 · 独立报告 33 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -728,6 +728,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[origin-civilization](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION)** — AI 生命与文明模拟：每个决策都由 Jev 做出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · jacquesgariepy · `TS` · 调用点 [`legacy/source/providers.js`](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION/blob/HEAD/legacy/source/providers.js)，2026-09-22 阅读</sub>
 
+- **[protoc-gen-jev](https://github.com/bufbuild/protoc-gen-jev)** — Protobuf 插件：把 .proto 文件里定义的决策生成 Go、TypeScript 和 Python 的类型化 Jev 客户端。bool 字段变成 noul，数值字段变成按评分标准的 score，enum、字符串或路由 oneof 变成 choice，阈值写在 schema 选项里。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · bufbuild · `Go` · `TS` · `Py` · `choice` · `noul` · `score` · 调用点 [`pkg/jev/client.go`](https://github.com/bufbuild/protoc-gen-jev/blob/HEAD/pkg/jev/client.go)，2026-11-16 模型阅读</sub>
+
 - **[ReflexBench](https://github.com/brida-ai/reflexbench)** — 面向 System One 决策引擎的开放基准：在冻结的 111 例困难集上，把同样的类型化 choice、score 和 noul 请求发给 Jev 和六个开源模型，分别报告准确率、校准、选项顺序稳定性和延迟；Jev 的原始准确率以 73% 领先。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · brida-ai · `Py` · `choice` · `score` · `noul` · 调用点 [`reflexbench/systemone_http.py`](https://github.com/brida-ai/reflexbench/blob/HEAD/reflexbench/systemone_http.py)，2026-11-10 模型阅读 · ⚠ `厂商自报数据`</sub>
 
@@ -972,7 +975,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ## 尚未按模式索引
 
-带代码的项目或插件，共 215 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
+带代码的项目或插件，共 216 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — 为应用、电话、导览屏和元宇宙打造语音 AI 虚拟形象的工具包。它的 Jev 话轮结束闸门就转写文本提一个 noul：助手是否应保持沉默、让用户的话轮继续，并把这个概率换算成 0.4 到 2 秒的等待；出错时直接结束话轮。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · uezo · `Py` · 调用点 [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py)，2026-09-22 阅读</sub>
@@ -1612,6 +1615,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Typewright](https://github.com/Jev-Engineering/TypeWright)** — 面向类型化 Jev 决策的声明式编译器：你用 YAML 声明状态、决策和带标签的样例，它用 DSPy 和 GEPA 搜索提示词，在另一份数据上拟合 noul 阈值、score 分界和复核门槛，再冻结成带校验和的 JSON 程序，由轻量运行时发给 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · Jev-Engineering · `Py` · `noul` · `choice` · `score` · 调用点 [`src/typewright/backends.py`](https://github.com/Jev-Engineering/TypeWright/blob/HEAD/src/typewright/backends.py)，2026-11-09 模型阅读 · ⚠ `代码未实测`</sub>
+
+- **[warp-sys-one](https://github.com/fini/warped-sys1-lab)** — 本地 Jev 实验工作台：每个实验是一个 JSON 文件，包含 state 和 noul、choice 或 score 问题，以及输入、文件变量和用例。通过 SvelteKit 界面或命令行把每个用例发给 Jev，显示概率并对比历史运行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · fini · `TS` · `noul` · `choice` · `score` · 调用点 [`src/lib/server/runner.ts`](https://github.com/fini/warped-sys1-lab/blob/HEAD/src/lib/server/runner.ts)，2026-11-16 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[wellposed](https://github.com/suraj-phanindra/wellposed)** — 在 jev 请求自信地给出错误答案之前，先对请求本身做检查。 <sub>(机翻)</sub>
   <sub>`开源项目` · suraj-phanindra · `JS` · 调用点 [`skills/wellposed/scripts/semantic.mjs`](https://github.com/suraj-phanindra/wellposed/blob/HEAD/skills/wellposed/scripts/semantic.mjs)，2026-09-24 阅读</sub>

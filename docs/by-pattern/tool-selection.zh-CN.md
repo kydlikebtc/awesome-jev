@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 282 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 288 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 271 · 接口形态 7 · 仅示例 0 · 独立报告 12 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 277 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -549,6 +549,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[fast-compaction-dsh](https://github.com/kolawong/fast-compaction-dsh)** — 给 DeepSeek Harness 的判定式上下文压缩，取代有损的 LLM 摘要。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · kolawong · `TS` · 调用点 [`src/jev.ts`](https://github.com/kolawong/fast-compaction-dsh/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
+- **[FlightBench](https://github.com/AlperKartkaya/FlightBench)** — 基于 JSBSim 的降落模拟器和基准测试，面向决策模型、LLM 和传统控制器。它的 Jev 控制器每秒两次发送飞机状态，提出四个 choice（副翼、升降舵、方向舵、油门各一个），再把每个标签映射为固定指令。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · AlperKartkaya · `Py` · `choice` · 调用点 [`flightbench/controllers.py`](https://github.com/AlperKartkaya/FlightBench/blob/HEAD/flightbench/controllers.py)，2026-11-16 模型阅读</sub>
+
 - **[gg-friggin-ez](https://github.com/ItisShikhar/gg-friggin-ez)** — 给 Node.js 的快速多语言脏话与毒性筛查器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · itisshikhar · `TS` · 调用点 [`demo/js/models.js`](https://github.com/ItisShikhar/gg-friggin-ez/blob/HEAD/demo/js/models.js)，2026-09-22 阅读</sub>
 
@@ -561,6 +564,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jet](https://github.com/arczhi/jet)** — 原生面向 TypeSafe（Jev）的编码智能体，基于递归式 LLM 上下文分解，配有原生 macOS 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arczhi · `Py` · 调用点 [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py)，2026-09-24 阅读</sub>
 
+- **[JEV AgentNetwork](https://github.com/Kelly-Leeee/AgentNetwork-jev)** — 事件驱动的通用智能体网络：每当一个智能体完成任务，路由器就把待办工作、最近结果和空闲的智能体发给 Jev，问一个 choice 决定下一步：分配给某个智能体、结束，或者交给人处理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · Kelly-Leeee · `Py` · `choice` · 调用点 [`agentrouter/team.py`](https://github.com/Kelly-Leeee/AgentNetwork-jev/blob/HEAD/agentrouter/team.py)，2026-11-16 模型阅读 · ⚠ `需第三方密钥`</sub>
+
 - **[Jev AI Skill](https://github.com/King4s/Jev-AI-Skill)** — 一个技能加一个 MCP 服务器，供 Claude Code、Codex 和 Hermes 使用。它的 Gate 工具问 Jev：某个事件是否真的需要智能体，证据能关闭哪些审查发现，走哪条路线（choice），工作是否完成、是否要问主人（noul）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · King4s · `Py` · `choice` · `noul` · 调用点 [`jev_mcp.py`](https://github.com/King4s/Jev-AI-Skill/blob/HEAD/jev_mcp.py)，2026-11-14 模型阅读</sub>
 
@@ -569,6 +575,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[JEV Orchestrator](https://github.com/hiyoku/jev-orc)** — Claude Code 插件，让每次 Agent 派生都先经过 Jev：两个 score（任务有多难、需要多少推理）和若干 noul（是否要改文件、跑 shell 命令、上网、查库文档或用浏览器）决定子智能体的模型、推理强度和工具配置。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · hiyoku · `TS` · `score` · `noul` · 调用点 [`src/jev/client.ts`](https://github.com/hiyoku/jev-orc/blob/HEAD/src/jev/client.ts)，2026-11-13 模型阅读</sub>
+
+- **[Jev plays Factorio](https://github.com/kgaspard/jev-factorio)** — 只看截图玩 Factorio，目标是做出 10 个红色科技包。每一步它把截图或特写发给 Jev，问资源或信息面板是否可见（noul）、在哪里（Box）、在哪个方向以及绕哪条路或从哪一侧下手（choice），再由代码按键。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · kgaspard · `Py` · `noul` · `choice` · 调用点 [`jev_factorio/brain.py`](https://github.com/kgaspard/jev-factorio/blob/HEAD/jev_factorio/brain.py)，2026-11-16 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[Jev plays Vampire Survivors](https://github.com/oldmoldycake/jev_vampire_survivors)** — 一个 BepInEx mod 加一个 Python「大脑」，让 Jev 玩 Steam 上的正版游戏：每个决定都是用平实英语提出的 choice，包括选角色、选关卡、每次升级选什么，以及每秒四次选择行走方向；另有实时面板显示每个答案。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · oldmoldycake · `Py` · `choice` · 调用点 [`brain/jev_vs/jev_client.py`](https://github.com/oldmoldycake/jev_vampire_survivors/blob/HEAD/brain/jev_vs/jev_client.py)，2026-11-11 模型阅读</sub>
@@ -681,6 +690,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-mcp](https://github.com/legostin/jev-mcp)** — 让 Claude Code、Codex 等智能体操作真实 Chrome 浏览器的 MCP 服务器：Jev 回答 choice、noul 和 score，例如哪个元素是出发城市输入框、一次点击是否生效；有把握时工具直接执行，可撤销的步骤会换个候选再试，任何不可撤销的操作之前都先问智能体。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · legostin · `TS` · `choice` · `noul` · `score` · 调用点 [`src/core/jev/client.ts`](https://github.com/legostin/jev-mcp/blob/HEAD/src/core/jev/client.ts)，2026-11-09 模型阅读</sub>
 
+- **[jev-mcp-router](https://github.com/ini8labs/jev-mcp-router)** — 位于智能体和 MCP 服务器之间的 MCP 网关：每次请求它在一次调用里对每个服务器、每个工具各问 Jev 一个 noul，LLM 只看到 Jev 说“是”的那几个工具，而不是全部工具 schema。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ini8labs · `Py` · `noul` · 调用点 [`jevmcp/jev.py`](https://github.com/ini8labs/jev-mcp-router/blob/HEAD/jevmcp/jev.py)，2026-11-16 模型阅读 · ⚠ `厂商自报数据`</sub>
+
 - **[jev-model-tokengate](https://github.com/Thanh-Mathieu95/jev-model-tokengate)** — OpenAI 兼容代理，夹在你的 LLM 与用户之间，逐窗口评估输出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · thanh-mathieu95 · `JS` · 调用点 [`evaluator.js`](https://github.com/Thanh-Mathieu95/jev-model-tokengate/blob/HEAD/evaluator.js)，2026-09-22 阅读</sub>
 
@@ -765,6 +777,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevdroid](https://github.com/antiyro/jevdroid)** — 用 Jev 通过 ADB 控制 Android 的类型化 Python 框架。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · antiyro · `Py` · 调用点 [`src/jevdroid/providers/http.py`](https://github.com/antiyro/jevdroid/blob/HEAD/src/jevdroid/providers/http.py)，2026-09-22 阅读</sub>
 
+- **[JevEmon](https://github.com/daniel4x/jevemon)** — 让 Jev 走完 Pokémon FireRed ROM：每一段路，代码从内存读出地图并列出所有可去的地方（门、下一条道路、宝可梦中心），战斗中则列出招式，然后问 Jev 一个 choice 选择行动，再由代码操作模拟器。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · daniel4x · `Py` · `choice` · 调用点 [`jevemon/decisions.py`](https://github.com/daniel4x/jevemon/blob/HEAD/jevemon/decisions.py)，2026-11-16 模型阅读</sub>
+
 - **[jevex](https://github.com/jvsteiner/jevex)** — 一个最小化的智能体：由 Jev 主导循环，LangChain 聊天模型只负责填写参数和最终回复；背后是三个本地 MCP 服务器、十二个可用工具。 <sub>(机翻)</sub>
   <sub>`开源项目` · jvsteiner · `Py` · 调用点 [`src/jevex/benchmark.py`](https://github.com/jvsteiner/jevex/blob/HEAD/src/jevex/benchmark.py)，2026-09-24 阅读</sub>
 
@@ -788,6 +803,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[macos-computer-use-kit](https://github.com/Sur-Cai/macos-computer-use-kit)** — 面向 macOS AI 智能体的、以辅助功能为先的电脑操作工具包，可选配 Jev（TypeSafe System One）语义护栏。 <sub>(机翻)</sub>
   <sub>`插件` · sur-cai · `Py` · 调用点 [`src/macos_computer_use/jev.py`](https://github.com/Sur-Cai/macos-computer-use-kit/blob/HEAD/src/macos_computer_use/jev.py)，2026-09-24 阅读</sub>
+
+- **[nethack-jev](https://github.com/statico/jev-nethack)** — 让 Jev 玩 NetHack，全程没有 LLM：代码读取屏幕并列出合法选项，每回合 Jev 回答一个选最佳行动的 choice、一个判断女武神是否身处致命危险的 noul，以及一个选最安全行动的 choice，危险高时采用后者。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · statico · `Py` · `choice` · `noul` · 调用点 [`jev/bot.py`](https://github.com/statico/jev-nethack/blob/HEAD/jev/bot.py)，2026-11-16 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — 给 Codex 与 Claude Code 的二值批准闸门：每次被拦截的工具调用都要审查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · alexj11324 · `Go` · 引用文件 [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>

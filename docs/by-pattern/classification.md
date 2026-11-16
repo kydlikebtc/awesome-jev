@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 202 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 207 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 190 · wire shape 3 · example only 0 · independent reports 20 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 195 · wire shape 3 · example only 0 · independent reports 21 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -410,6 +410,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — Benchmark of Jev against open decision models on 480 authored general Persian questions, 560 literary questions and a classical poetry pilot, asked as choices, nouls and scores with raw responses saved and scored locally; Jev leads on choice and noul accuracy. <sub>(written by a model)</sub>
   <sub>`Benchmark` · armanjr · `Py` · `choice` · `noul` · `score` · call site [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py), read by a model 2026-11-11 · ⚠ `no licence`</sub>
 
+- **[Jev plays Factorio](https://github.com/kgaspard/jev-factorio)** — Plays Factorio from screenshots to craft 10 red science packs. Each tick it sends Jev a screenshot or close-up and asks whether a resource or panel is visible (nouls), where it is (Box), which way it lies and which detour or side to take (choices); code then presses the keys. <sub>(written by a model)</sub>
+  <sub>`Project` · kgaspard · `Py` · `noul` · `choice` · call site [`jev_factorio/brain.py`](https://github.com/kgaspard/jev-factorio/blob/HEAD/jev_factorio/brain.py), read by a model 2026-11-16 · ⚠ `no licence`</sub>
+
 - **[Jev Playwright](https://github.com/arthurfiorette/jev-playwright)** — Playwright reporter that asks Jev which existing end-to-end tests a code change could affect and skips the clearly unrelated ones before any browser starts. Sends changed paths, patches and test bodies by default; its README warns it can miss affected tests. <sub>(written by a model)</sub>
   <sub>`Project` · arthurfiorette · `TS` · call site [`src/config.ts`](https://github.com/arthurfiorette/jev-playwright/blob/HEAD/src/config.ts), read by a model 2026-10-24</sub>
 
@@ -584,14 +587,23 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[OpenJev for opencode](https://github.com/darwintechlab/openjev)** — opencode plugin that gives the agent Jev as tools (jev_choice, jev_noul, jev_score, jev_ask) for the small decisions it would otherwise ask an LLM, such as whether a command is safe or which team gets a ticket. Each answer comes with a gate that acts when confident and escalates when not. <sub>(written by a model)</sub>
   <sub>`Plugin` · darwintechlab · `TS` · `choice` · `noul` · `score` · call site [`src/client.ts`](https://github.com/darwintechlab/openjev/blob/HEAD/src/client.ts), read by a model 2026-11-13</sub>
 
+- **[Photo Ferret](https://github.com/jonessteven/photo-ferret)** — Photo gallery whose filters come from Jev: for each uploaded photo it asks Jev in one request how much sky, water or snow it shows, how dramatic or wild it is (scores), whether it shows people, wildlife or birds (nouls) and its primary subject (choice), plus a quality score. <sub>(written by a model)</sub>
+  <sub>`Project` · jonessteven · `TS` · `score` · `noul` · `choice` · call site [`server/jev.ts`](https://github.com/jonessteven/photo-ferret/blob/HEAD/server/jev.ts), read by a model 2026-11-16</sub>
+
 - **[progressgate](https://github.com/AshutoshVJTI/progressgate)** — Detect semantic stagnation in AI agent loops <sub>(upstream description)</sub>
   <sub>`Project` · ashutoshvjti · `TS` · call site [`experiments/jev-client.ts`](https://github.com/AshutoshVJTI/progressgate/blob/HEAD/experiments/jev-client.ts), read 2026-09-22</sub>
 
 - **[Qualixar Jev Decision Layer](https://github.com/qualixar/jev-decision-layer)** — Plugin and local MCP server that lets an agent hand Jev one closed question at a time, such as which tool, skill or format fits, whether a draft meets its brief, or which team a request belongs to, from 55 recipes; local policy gates check each typed answer and record a receipt. <sub>(written by a model)</sub>
   <sub>`Plugin` · qualixar · `Py` · `choice` · `score` · `noul` · call site [`plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py`](https://github.com/qualixar/jev-decision-layer/blob/HEAD/plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py), read by a model 2026-11-10</sub>
 
+- **[Scientific Decision Evaluation](https://github.com/bydeng01/scientific-decision-eval)** — Code and data for the paper "Jev for Scientific Decisions": 20 choices in 10 cases from published studies, each asking which relation holds between samples. It asks Jev through OpenRouter's decisions API, five times per case, and scores the choices, outputs and labels. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · bydeng01 · `Py` · `choice` · call site [`development/s2-execution-v1/providers.py`](https://github.com/bydeng01/scientific-decision-eval/blob/HEAD/development/s2-execution-v1/providers.py), read by a model 2026-11-16</sub>
+
 - **[Social Risk · Qwen3-VL + Jev](https://github.com/TianJinWeiBoss520/social-risk-qwen-jev)** — Research project on misogyny in Chinese image-and-text memes: a LoRA-tuned Qwen3-VL turns each post into structured evidence, and Jev answers one noul under a fixed policy on whether the post attacks or demeans women; code turns the probability into risk bands. <sub>(written by a model)</sub>
   <sub>`Project` · TianJinWeiBoss520 · `Py` · `noul` · call site [`experiments/v1/src/run_ltedi_jev_cloud20.py`](https://github.com/TianJinWeiBoss520/social-risk-qwen-jev/blob/HEAD/experiments/v1/src/run_ltedi_jev_cloud20.py), read by a model 2026-11-10</sub>
+
+- **[Tab Sorter](https://github.com/AstonyCat/jev-tab-grouper)** — Chrome extension that sorts every tab in a window into named, coloured groups. Its rules engine asks Jev one choice per tab, over the groups you define, in a single request; a tab whose answer falls below 0.6 confidence goes to a review group. <sub>(written by a model)</sub>
+  <sub>`Plugin` · AstonyCat · `JS` · `choice` · call site [`grouper.js`](https://github.com/AstonyCat/jev-tab-grouper/blob/HEAD/grouper.js), read by a model 2026-11-16</sub>
 
 - **[tab-bouncer](https://github.com/MANISH007700/tab-bouncer)** — Chrome extension that closes the tabs you don't need, judged by TypeSafe's Jev in one call. Tell it what you're doing; it shows the rest the door. <sub>(upstream description)</sub>
   <sub>`Plugin` · manish007700 · `JS` · call site [`judge.js`](https://github.com/MANISH007700/tab-bouncer/blob/HEAD/judge.js), read 2026-09-24</sub>
@@ -616,6 +628,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[undertone](https://github.com/nuu-maan/undertone)** — Text box that reads a message's tone as you type: one Jev request asks a choice for the overall tone, nouls for passive aggression, sarcasm, over-apologising, pushiness and whether it is safe to send a manager, and scores for urgency and formality; code turns them into a verdict and tips. <sub>(written by a model)</sub>
   <sub>`Project` · nuu-maan · `TS` · `choice` · `noul` · `score` · call site [`src/lib/jev/questions.ts`](https://github.com/nuu-maan/undertone/blob/HEAD/src/lib/jev/questions.ts), read by a model 2026-11-09 · ⚠ `no licence`</sub>
+
+- **[Vellum](https://github.com/sanity-labs/vellum)** — Maps Markdown into a Sanity document without generating text: it asks Jev which block supplies each field and which field each block fills (choices), whether a disputed pairing is right (noul), and how page-builder sections nest; code copies the chosen text. <sub>(written by a model)</sub>
+  <sub>`Project` · sanity-labs · `TS` · `choice` · `noul` · call site [`src/engine/jev/jev.ts`](https://github.com/sanity-labs/vellum/blob/HEAD/src/engine/jev/jev.ts), read by a model 2026-11-16 · ⚠ `vendor numbers`</sub>
 
 - **[Vibefilter for Filament](https://github.com/vibefilter/filament)** — Laravel Filament table filter that turns a sentence such as "The customer is angry." into a zero-shot classifier: it sends the remaining rows' text to Jev in batches of 100, gets the probability that the statement is true for each row (noul), and keeps the rows above a threshold. <sub>(written by a model)</sub>
   <sub>`Plugin` · vibefilter · `PHP` · `noul` · call site [`src/Drivers/TypeSafeDriver.php`](https://github.com/vibefilter/filament/blob/HEAD/src/Drivers/TypeSafeDriver.php), read by a model 2026-11-15</sub>

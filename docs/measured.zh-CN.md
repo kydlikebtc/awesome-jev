@@ -4,7 +4,7 @@
 
 本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。
 
-本目录收录的全部独立测量报告和负面结果 —— 共 98 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
+本目录收录的全部独立测量报告和负面结果 —— 共 100 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
@@ -262,6 +262,12 @@
 
   > 作为对比的模型（Qwen 和 Gemma，用它们自己的选项概率打分）不是 Jev。原始响应已发布在 Zenodo 上，不调用 API 也能重建论文里的表格。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-10 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
+- **[FlightBench](https://github.com/AlperKartkaya/FlightBench)**<br>
+  基于 JSBSim 的降落模拟器和基准测试，面向决策模型、LLM 和传统控制器。它的 Jev 控制器每秒两次发送飞机状态，提出四个 choice（副翼、升降舵、方向舵、油门各一个），再把每个标签映射为固定指令。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · AlperKartkaya · `Py` · `choice` · [调用点](https://github.com/AlperKartkaya/FlightBench/blob/HEAD/flightbench/controllers.py)，2026-11-16 模型阅读</sub>
+
+  > Codex 等 LLM 控制器、Ollama 和本地部署的决策模型以及基线控制器都不是 Jev。分数来自作者自己的运行：Jev 1.14 得 80.5 分，LLM 只在逐步暂停模式下着陆。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-16 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)**<br>
   在 480 道自编通用波斯语题、560 道文学题和一个古典诗歌试点上，把 Jev 与开源决策模型对比的基准：以 choice、noul 和 score 提问，保存原始响应并在本地评分；Jev 在 choice 和 noul 准确率上领先。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · armanjr · `Py` · `choice` · `noul` · `score` · [调用点](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py)，2026-11-11 模型阅读</sub>
@@ -485,6 +491,12 @@
   <sub>`基准测试` · hotchpotch · `Py` · `choice` · `noul` · `score` · [调用点](https://github.com/hotchpotch/S1MB/blob/HEAD/evaluator/src/s1mb/adapters/typesafe.py)，2026-11-13 模型阅读</sub>
 
   > 它排名的大多数模型都不是 Jev。排行榜上的数字是作者自己跑的，视觉评测集不公开。Box 问题单独报告。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-13 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
+- **[Scientific Decision Evaluation](https://github.com/bydeng01/scientific-decision-eval)**<br>
+  论文《Jev for Scientific Decisions》的代码和数据：来自已发表研究的 10 个案例共 20 个 choice，每个问样本之间是哪种关系。它通过 OpenRouter 的 decisions API 向 Jev 提问，每个案例五次，并分别评估选项、计算结果和最终标签。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · bydeng01 · `Py` · `choice` · [调用点](https://github.com/bydeng01/scientific-decision-eval/blob/HEAD/development/s2-execution-v1/providers.py)，2026-11-16 模型阅读</sub>
+
+  > 它对比的 OpenAI 和 Anthropic 模型都不是 Jev，成绩是作者自己跑的。结论是 Jev 每个 choice 都答对且中位延迟最低，并指出正确的结论标签可能掩盖错误的关系判断。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-16 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[smoking-extraction-benchmark](https://github.com/vclic/smoking-extraction-benchmark)**<br>
   合成的吸烟史抽取基准：对比 Jev 与 OpenAI 结构化输出。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>

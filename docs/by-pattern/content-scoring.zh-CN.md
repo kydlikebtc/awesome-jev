@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 194 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 196 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 185 · 接口形态 5 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 187 · 接口形态 5 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -425,6 +425,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-paper-judge](https://github.com/JacobLinCool/jev-paper-judge)** — 几秒内给出论文反馈。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jacoblincool · `TS` · 调用点 [`scripts/lib/typesafe.mjs`](https://github.com/JacobLinCool/jev-paper-judge/blob/HEAD/scripts/lib/typesafe.mjs)，2026-09-22 阅读</sub>
 
+- **[jev-riffs](https://github.com/hazlema/jev-riffs)** — 音乐模式提取工具：代码把 MIDI 旋律转成半音音程并挖出重复片段，然后用一次批量请求让 Jev 给每个候选作为动机的重要性打分（每个候选一个 score）。网页界面绘制钢琴卷帘并播放每个动机。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · hazlema · `TS` · `score` · 调用点 [`src/rip.ts`](https://github.com/hazlema/jev-riffs/blob/HEAD/src/rip.ts)，2026-11-16 模型阅读</sub>
+
 - **[jev-rl](https://github.com/Bring-AI/jev-rl)** — JEV 强化学习：用 JEV 提供的奖励训练四款经典游戏，附可复现实验与检查点。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · bring-ai · `Py` · 调用点 [`src/jev_reward/judges.py`](https://github.com/Bring-AI/jev-rl/blob/HEAD/src/jev_reward/judges.py)，2026-09-24 阅读</sub>
 
@@ -526,6 +529,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[pagegrade](https://github.com/kitze/pagegrade)** — 给页面各区块的清晰度、文案与页面 SEO 打分。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · kitze · `TS` · 调用点 [`lib/jev.ts`](https://github.com/kitze/pagegrade/blob/HEAD/lib/jev.ts)，2026-09-22 阅读</sub>
+
+- **[Photo Ferret](https://github.com/jonessteven/photo-ferret)** — 照片图库，筛选条件来自 Jev：每上传一张照片，它在一次请求里问 Jev 画面中天空、水或雪占多少、有多壮观或多荒野（score），是否有人、野生动物或鸟（noul），主体是什么（choice），另外还有一个质量分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · jonessteven · `TS` · `score` · `noul` · `choice` · 调用点 [`server/jev.ts`](https://github.com/jonessteven/photo-ferret/blob/HEAD/server/jev.ts)，2026-11-16 模型阅读</sub>
 
 - **[pi-jev-permit](https://github.com/kurihada/pi-jev-permit)** — 给 Pi 编程智能体的 Jev 权限闸门：审判每一次 bash 与写入。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · kurihada · `TS` · 调用点 [`src/jev.ts`](https://github.com/kurihada/pi-jev-permit/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>

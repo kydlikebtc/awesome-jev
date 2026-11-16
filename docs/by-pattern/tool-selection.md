@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 282 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 288 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 271 · wire shape 7 · example only 0 · independent reports 12 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 277 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -549,6 +549,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[fast-compaction-dsh](https://github.com/kolawong/fast-compaction-dsh)** — Verdict-based context compaction for DeepSeek Harness — replaces lossy LLM summaries with fast keep/truncate/drop decisions from jev-latest; everything kept stays verbatim. Port of tamaratran/fast-jev-compaction. <sub>(upstream description)</sub>
   <sub>`Project` · kolawong · `TS` · call site [`src/jev.ts`](https://github.com/kolawong/fast-compaction-dsh/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
+- **[FlightBench](https://github.com/AlperKartkaya/FlightBench)** — Landing simulator and benchmark (JSBSim) for decision models, LLMs and classical controllers. Twice a second its Jev controller sends the aircraft's state and asks four choices, one per actuator (aileron, elevator, rudder, throttle), and maps each label to a fixed command. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · AlperKartkaya · `Py` · `choice` · call site [`flightbench/controllers.py`](https://github.com/AlperKartkaya/FlightBench/blob/HEAD/flightbench/controllers.py), read by a model 2026-11-16</sub>
+
 - **[gg-friggin-ez](https://github.com/ItisShikhar/gg-friggin-ez)** — Fast, drop-in multilingual profanity and toxicity screener for Node.js, powered by System 1 models like TypeSafe AI Jev and Laya. Catches leetspeak, character spacing, and romanized profanity across languages including Kannada, Telugu, Tamil, Hindi, and Bengali. ~50-500ms latency. <sub>(upstream description)</sub>
   <sub>`Project` · itisshikhar · `TS` · call site [`demo/js/models.js`](https://github.com/ItisShikhar/gg-friggin-ez/blob/HEAD/demo/js/models.js), read 2026-09-22</sub>
 
@@ -561,6 +564,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jet](https://github.com/arczhi/jet)** — A TypeSafe-native (Jev) coding agent built on Recursive LLM Context Decomposition (RLCD), with a native macOS client <sub>(upstream description)</sub>
   <sub>`Project` · arczhi · `Py` · call site [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py), read 2026-09-24</sub>
 
+- **[JEV AgentNetwork](https://github.com/Kelly-Leeee/AgentNetwork-jev)** — Event-driven network of general-purpose agents: whenever an agent finishes, the router sends Jev the pending work, recent results and which agents are idle, and asks one choice of next action: assign the work to a named agent, finish, or ask a person. <sub>(written by a model)</sub>
+  <sub>`Project` · Kelly-Leeee · `Py` · `choice` · call site [`agentrouter/team.py`](https://github.com/Kelly-Leeee/AgentNetwork-jev/blob/HEAD/agentrouter/team.py), read by a model 2026-11-16 · ⚠ `3rd-party key`</sub>
+
 - **[Jev AI Skill](https://github.com/King4s/Jev-AI-Skill)** — One skill plus an MCP server for Claude Code, Codex and Hermes. Its Gate tools ask Jev whether an event needs an agent at all, which review findings the evidence closes, which route to take (choice), whether work is done and whether to ask the owner (nouls). <sub>(written by a model)</sub>
   <sub>`Plugin` · King4s · `Py` · `choice` · `noul` · call site [`jev_mcp.py`](https://github.com/King4s/Jev-AI-Skill/blob/HEAD/jev_mcp.py), read by a model 2026-11-14</sub>
 
@@ -569,6 +575,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[JEV Orchestrator](https://github.com/hiyoku/jev-orc)** — Claude Code plugin that sends every Agent spawn through Jev: two scores (how hard the task is, how much reasoning it needs) and nouls (does it edit files, run shell commands, need the web, library docs or a browser) pick the subagent's model, effort and tool profile. <sub>(written by a model)</sub>
   <sub>`Plugin` · hiyoku · `TS` · `score` · `noul` · call site [`src/jev/client.ts`](https://github.com/hiyoku/jev-orc/blob/HEAD/src/jev/client.ts), read by a model 2026-11-13</sub>
+
+- **[Jev plays Factorio](https://github.com/kgaspard/jev-factorio)** — Plays Factorio from screenshots to craft 10 red science packs. Each tick it sends Jev a screenshot or close-up and asks whether a resource or panel is visible (nouls), where it is (Box), which way it lies and which detour or side to take (choices); code then presses the keys. <sub>(written by a model)</sub>
+  <sub>`Project` · kgaspard · `Py` · `noul` · `choice` · call site [`jev_factorio/brain.py`](https://github.com/kgaspard/jev-factorio/blob/HEAD/jev_factorio/brain.py), read by a model 2026-11-16 · ⚠ `no licence`</sub>
 
 - **[Jev plays Vampire Survivors](https://github.com/oldmoldycake/jev_vampire_survivors)** — A BepInEx mod and a Python brain that let Jev play the real Steam game: each decision is a choice asked in plain English, for the character, the stage, every level-up and the walking direction four times a second, with a live dashboard of every answer. <sub>(written by a model)</sub>
   <sub>`Project` · oldmoldycake · `Py` · `choice` · call site [`brain/jev_vs/jev_client.py`](https://github.com/oldmoldycake/jev_vampire_survivors/blob/HEAD/brain/jev_vs/jev_client.py), read by a model 2026-11-11</sub>
@@ -681,6 +690,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-mcp](https://github.com/legostin/jev-mcp)** — MCP server that lets Claude Code, Codex and other agents drive a real Chrome browser: Jev answers choices, nouls and scores, such as which element is the departure-city input or whether a click worked; it acts when sure, retries reversible steps and asks the agent before anything irreversible. <sub>(written by a model)</sub>
   <sub>`Plugin` · legostin · `TS` · `choice` · `noul` · `score` · call site [`src/core/jev/client.ts`](https://github.com/legostin/jev-mcp/blob/HEAD/src/core/jev/client.ts), read by a model 2026-11-09</sub>
 
+- **[jev-mcp-router](https://github.com/ini8labs/jev-mcp-router)** — MCP gateway between an agent and its MCP servers: for each request it asks Jev one noul per server and per tool, in one request, and the LLM sees only the handful of tools Jev said yes to, instead of every tool schema. <sub>(written by a model)</sub>
+  <sub>`Project` · ini8labs · `Py` · `noul` · call site [`jevmcp/jev.py`](https://github.com/ini8labs/jev-mcp-router/blob/HEAD/jevmcp/jev.py), read by a model 2026-11-16 · ⚠ `vendor numbers`</sub>
+
 - **[jev-model-tokengate](https://github.com/Thanh-Mathieu95/jev-model-tokengate)** — An OpenAI-compatible proxy that sits between your LLM and your users. It evaluates each sliding window of tokens while the response is still streaming and cuts the stream before a violating token can reach the screen. <sub>(upstream description)</sub>
   <sub>`Project` · thanh-mathieu95 · `JS` · call site [`evaluator.js`](https://github.com/Thanh-Mathieu95/jev-model-tokengate/blob/HEAD/evaluator.js), read 2026-09-22</sub>
 
@@ -765,6 +777,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevdroid](https://github.com/antiyro/jevdroid)** — A typed Python framework for controlling Android over ADB with Jev. <sub>(upstream description)</sub>
   <sub>`Project` · antiyro · `Py` · call site [`src/jevdroid/providers/http.py`](https://github.com/antiyro/jevdroid/blob/HEAD/src/jevdroid/providers/http.py), read 2026-09-22</sub>
 
+- **[JevEmon](https://github.com/daniel4x/jevemon)** — Jev walks a Pokémon FireRed ROM: each leg, code reads the overworld from RAM and lists every place you could go next (a door, the next route, a Pokémon Center), and in battles the moves, and asks Jev one choice of action; code then drives the emulator. <sub>(written by a model)</sub>
+  <sub>`Project` · daniel4x · `Py` · `choice` · call site [`jevemon/decisions.py`](https://github.com/daniel4x/jevemon/blob/HEAD/jevemon/decisions.py), read by a model 2026-11-16</sub>
+
 - **[jevex](https://github.com/jvsteiner/jevex)** — A minimal agent in which Jev directs the loop and a LangChain chat model writes only argument values and the final reply, over three local MCP servers with twelve working tools.
   <sub>`Project` · jvsteiner · `Py` · call site [`src/jevex/benchmark.py`](https://github.com/jvsteiner/jevex/blob/HEAD/src/jevex/benchmark.py), read 2026-09-24</sub>
 
@@ -788,6 +803,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[macos-computer-use-kit](https://github.com/Sur-Cai/macos-computer-use-kit)** — AX-first computer use for AI agents on macOS with optional Jev (TypeSafe System One) semantic guards: calibrated target/input judgments before an irreversible action, decisions kept in code. Accessibility-tree targeting, window-scoped input, clipboard-safe paste, read-back verification…
   <sub>`Plugin` · sur-cai · `Py` · call site [`src/macos_computer_use/jev.py`](https://github.com/Sur-Cai/macos-computer-use-kit/blob/HEAD/src/macos_computer_use/jev.py), read 2026-09-24</sub>
+
+- **[nethack-jev](https://github.com/statico/jev-nethack)** — Jev plays NetHack with no LLM in the loop: code reads the screen and lists the legal options, and each turn Jev answers a choice of best action, a noul on whether the Valkyrie is in serious danger, and a choice of safest action, which wins when danger is high. <sub>(written by a model)</sub>
+  <sub>`Project` · statico · `Py` · `choice` · `noul` · call site [`jev/bot.py`](https://github.com/statico/jev-nethack/blob/HEAD/jev/bot.py), read by a model 2026-11-16 · ⚠ `vendor numbers`</sub>
 
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — Binary approval gate for Codex and Claude Code — every intercepted tool call is reviewed by TypeSafe JEV and composed through a versioned local policy, with scoped authorization. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · alexj11324 · `Go` · cited file [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go), read 2026-09-22 · ⚠ `not Jev itself`</sub>

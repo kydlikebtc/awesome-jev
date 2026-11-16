@@ -4,11 +4,11 @@
 
 _把自由文本转成数值特征，喂给下游的传统模型。_
 
-这个决策的全部已收录例子 —— 共 9 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#机器学习特征抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=feature-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 10 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#机器学习特征抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=feature-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#feature-extraction)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#feature-extraction)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 1 · 调用点 8 · 接口形态 0 · 仅示例 0 · 独立报告 0 · 负面结果 0 · 未引用文件 1。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 1 · 调用点 9 · 接口形态 0 · 仅示例 0 · 独立报告 0 · 负面结果 0 · 未引用文件 1。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -49,6 +49,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-calibrated-narrative-coding](https://github.com/pozapas/jev-calibrated-narrative-coding)** — 一篇论文的代码、问题模式和汇总结果：论文把 5,018,080 份得州警方交通事故叙述（2017–2025）以 noul、choice 和 score 问题交给 Jev，对照已编码字段和人工金标准集检验概率是否校准，并把校准结果换算成人需要复核多少被标记的记录。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · pozapas · `Py` · 调用点 [`src/jev_runner.py`](https://github.com/pozapas/jev-calibrated-narrative-coding/blob/HEAD/src/jev_runner.py)，2026-09-24 阅读</sub>
+
+- **[Photo Ferret](https://github.com/jonessteven/photo-ferret)** — 照片图库，筛选条件来自 Jev：每上传一张照片，它在一次请求里问 Jev 画面中天空、水或雪占多少、有多壮观或多荒野（score），是否有人、野生动物或鸟（noul），主体是什么（choice），另外还有一个质量分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · jonessteven · `TS` · `score` · `noul` · `choice` · 调用点 [`server/jev.ts`](https://github.com/jonessteven/photo-ferret/blob/HEAD/server/jev.ts)，2026-11-16 模型阅读</sub>
 
 - **[tiershift](https://github.com/iamvatsalpatel/tiershift)** — 模型路由器：每个请求都从最便宜的档位开始，只有当 Jev 给出的信号（多步推理、难度、风险高低、安全）越过 YAML 策略时才往上升。在作者的 120 条提示上，它以低 40% 的成本达到旗舰模型的质量；而单用快速模型也得到同样的分数，成本只有 3%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · iamvatsalpatel · `TS` · 调用点 [`bench/experiments/gate-experiment.ts`](https://github.com/iamvatsalpatel/tiershift/blob/HEAD/bench/experiments/gate-experiment.ts)，2026-09-22 阅读</sub>

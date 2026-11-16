@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 194 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 196 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 185 · wire shape 5 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 187 · wire shape 5 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -425,6 +425,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-paper-judge](https://github.com/JacobLinCool/jev-paper-judge)** — Feedback on your paper in seconds. <sub>(upstream description)</sub>
   <sub>`Project` · jacoblincool · `TS` · call site [`scripts/lib/typesafe.mjs`](https://github.com/JacobLinCool/jev-paper-judge/blob/HEAD/scripts/lib/typesafe.mjs), read 2026-09-22</sub>
 
+- **[jev-riffs](https://github.com/hazlema/jev-riffs)** — Music pattern ripper: code turns a MIDI melody into semitone intervals and mines repeating units, then one batched request asks Jev to score each candidate's significance as a motif (a score per candidate). A web UI draws the piano roll and plays each motif. <sub>(written by a model)</sub>
+  <sub>`Project` · hazlema · `TS` · `score` · call site [`src/rip.ts`](https://github.com/hazlema/jev-riffs/blob/HEAD/src/rip.ts), read by a model 2026-11-16</sub>
+
 - **[jev-rl](https://github.com/Bring-AI/jev-rl)** — JEV Reinforcement Learning: four classic games trained with JEV-powered rewards, reproducible experiments and checkpoint replays. <sub>(upstream description)</sub>
   <sub>`Project` · bring-ai · `Py` · call site [`src/jev_reward/judges.py`](https://github.com/Bring-AI/jev-rl/blob/HEAD/src/jev_reward/judges.py), read 2026-09-24</sub>
 
@@ -526,6 +529,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[pagegrade](https://github.com/kitze/pagegrade)** — Grade page sections for clarity, writing and on-page SEO. WXT + TypeSafe AI Jev. <sub>(upstream description)</sub>
   <sub>`Project` · kitze · `TS` · call site [`lib/jev.ts`](https://github.com/kitze/pagegrade/blob/HEAD/lib/jev.ts), read 2026-09-22</sub>
+
+- **[Photo Ferret](https://github.com/jonessteven/photo-ferret)** — Photo gallery whose filters come from Jev: for each uploaded photo it asks Jev in one request how much sky, water or snow it shows, how dramatic or wild it is (scores), whether it shows people, wildlife or birds (nouls) and its primary subject (choice), plus a quality score. <sub>(written by a model)</sub>
+  <sub>`Project` · jonessteven · `TS` · `score` · `noul` · `choice` · call site [`server/jev.ts`](https://github.com/jonessteven/photo-ferret/blob/HEAD/server/jev.ts), read by a model 2026-11-16</sub>
 
 - **[pi-jev-permit](https://github.com/kurihada/pi-jev-permit)** — A Jev (TypeSafe System One) permission gate for the Pi coding agent: judges every bash / write / edit call before it runs <sub>(upstream description)</sub>
   <sub>`Project` · kurihada · `TS` · call site [`src/jev.ts`](https://github.com/kurihada/pi-jev-permit/blob/HEAD/src/jev.ts), read 2026-09-22</sub>

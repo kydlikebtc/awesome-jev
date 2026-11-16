@@ -4,11 +4,11 @@
 
 _把大量问题（包括推测性的）打包进一次请求，再由代码挑出真正用得上的答案。_
 
-这个决策的全部已收录例子 —— 共 44 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#并行扇出)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 47 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#并行扇出)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#fan-out)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#fan-out)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 36 · 接口形态 1 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 7。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 39 · 接口形态 1 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 7。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -130,8 +130,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-fanout-bench](https://github.com/blowxian/jev-fanout-bench)** — 实测：在一次调用里向 TypeSafe Jev 提 N 个问题，state 只计费一次。基于 2,976 次真实请求，附原始数据和精确的计费核对。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · blowxian · `Py` · 调用点 [`bench.py`](https://github.com/blowxian/jev-fanout-bench/blob/HEAD/bench.py)，2026-09-24 阅读</sub>
 
+- **[jev-mcp-router](https://github.com/ini8labs/jev-mcp-router)** — 位于智能体和 MCP 服务器之间的 MCP 网关：每次请求它在一次调用里对每个服务器、每个工具各问 Jev 一个 noul，LLM 只看到 Jev 说“是”的那几个工具，而不是全部工具 schema。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ini8labs · `Py` · `noul` · 调用点 [`jevmcp/jev.py`](https://github.com/ini8labs/jev-mcp-router/blob/HEAD/jevmcp/jev.py)，2026-11-16 模型阅读 · ⚠ `厂商自报数据`</sub>
+
 - **[jev-pr-judge](https://github.com/juanegido/jev-pr-judge)** — 用 TypeSafe System One（Jev）为拉取请求给出类型化结论：一次并行调用，策略写在代码里，可作为 GitHub Action 使用。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · juanegido · `TS` · 调用点 [`dist/action/index.js`](https://github.com/juanegido/jev-pr-judge/blob/HEAD/dist/action/index.js)，2026-09-24 阅读</sub>
+
+- **[jev-riffs](https://github.com/hazlema/jev-riffs)** — 音乐模式提取工具：代码把 MIDI 旋律转成半音音程并挖出重复片段，然后用一次批量请求让 Jev 给每个候选作为动机的重要性打分（每个候选一个 score）。网页界面绘制钢琴卷帘并播放每个动机。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · hazlema · `TS` · `score` · 调用点 [`src/rip.ts`](https://github.com/hazlema/jev-riffs/blob/HEAD/src/rip.ts)，2026-11-16 模型阅读</sub>
 
 - **[jev-switchboard](https://github.com/ZIJIAN004/jev-switchboard)** — 给并行编程智能体的 JEV 门控语义通信层。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zijian004 · `JS` · 调用点 [`src/jev.mjs`](https://github.com/ZIJIAN004/jev-switchboard/blob/HEAD/src/jev.mjs)，2026-09-22 阅读</sub>
@@ -141,6 +147,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[JevTools](https://github.com/RileyCarney/JevTools)** — Jev 的本地仪表盘和命令行演示：用六个问题（score、noul 和一个 choice）并行评估一条商品评论并汇总成综合分，对话题分类（choice），还能运行自定义决定；每个请求和答案都记录到本地 SQLite 文件。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · RileyCarney · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_demo.py`](https://github.com/RileyCarney/JevTools/blob/HEAD/jev_demo.py)，2026-11-13 模型阅读</sub>
+
+- **[Mnemon](https://github.com/grivn/mnemon-memory-agent)** — 长期记忆智能体：保存原始、带日期的记录，等问题到来时再判断。对检索返回的每条记录，它在一次请求里问 Jev 下一条回复是否应该用它、以及后来的消息是否让它不再有效（每条两个 noul）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · grivn · `TS` · `noul` · 调用点 [`plugins/dsh-mnemon-strategy-jev-optmem/src/judge.ts`](https://github.com/grivn/mnemon-memory-agent/blob/HEAD/plugins/dsh-mnemon-strategy-jev-optmem/src/judge.ts)，2026-11-16 模型阅读 · ⚠ `需第三方密钥` `厂商自报数据`</sub>
 
 - **[Netizen](https://github.com/seheta/netizen)** — 在帖子发布前模拟印尼网民的反应。Jev 在一次请求中针对每个人设（如网约摩的司机或水军）回答：会不会停下来看、会做什么、立场如何、评论起什么作用；另外判断帖子是否涉及敏感话题、能传播多广。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · seheta · `Py` · `noul` · `choice` · `score` · 调用点 [`spike/spike.py`](https://github.com/seheta/netizen/blob/HEAD/spike/spike.py)，2026-11-12 模型阅读</sub>

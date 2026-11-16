@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 98 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 100 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -264,6 +264,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 
   > The comparison models (Qwen and Gemma, scored through their own option probabilities) are not Jev. The raw responses are published on Zenodo, so the tables can be rebuilt without API access. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-10; a maintainer has not yet read the call site.
 
+- **[FlightBench](https://github.com/AlperKartkaya/FlightBench)**<br>
+  Landing simulator and benchmark (JSBSim) for decision models, LLMs and classical controllers. Twice a second its Jev controller sends the aircraft's state and asks four choices, one per actuator (aileron, elevator, rudder, throttle), and maps each label to a fixed command. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · AlperKartkaya · `Py` · `choice` · [call site](https://github.com/AlperKartkaya/FlightBench/blob/HEAD/flightbench/controllers.py), read by a model 2026-11-16</sub>
+
+  > The Codex and other LLM controllers, the Ollama and locally served decision models, and the baseline are not Jev. The scores are the author's runs: Jev 1.14 scored 80.5 and the LLMs landed only in lockstep. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-16; a maintainer has not yet read the call site.
+
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)**<br>
   Benchmark of Jev against open decision models on 480 authored general Persian questions, 560 literary questions and a classical poetry pilot, asked as choices, nouls and scores with raw responses saved and scored locally; Jev leads on choice and noul accuracy. <sub>(written by a model)</sub><br>
   <sub>`Benchmark` · armanjr · `Py` · `choice` · `noul` · `score` · [call site](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py), read by a model 2026-11-11</sub>
@@ -489,6 +495,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   <sub>`Benchmark` · hotchpotch · `Py` · `choice` · `noul` · `score` · [call site](https://github.com/hotchpotch/S1MB/blob/HEAD/evaluator/src/s1mb/adapters/typesafe.py), read by a model 2026-11-13</sub>
 
   > Most models it ranks are not Jev. The leaderboard's figures are the author's runs, and the vision set is private. Box questions are reported separately. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-13; a maintainer has not yet read the call site.
+
+- **[Scientific Decision Evaluation](https://github.com/bydeng01/scientific-decision-eval)**<br>
+  Code and data for the paper "Jev for Scientific Decisions": 20 choices in 10 cases from published studies, each asking which relation holds between samples. It asks Jev through OpenRouter's decisions API, five times per case, and scores the choices, outputs and labels. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · bydeng01 · `Py` · `choice` · [call site](https://github.com/bydeng01/scientific-decision-eval/blob/HEAD/development/s2-execution-v1/providers.py), read by a model 2026-11-16</sub>
+
+  > The OpenAI and Anthropic models it compares are not Jev, and the figures are the authors' runs. They find Jev answered every choice correctly with the lowest median latency, and that a correct claim label can hide a wrong relation. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-16; a maintainer has not yet read the call site.
 
 - **[smoking-extraction-benchmark](https://github.com/vclic/smoking-extraction-benchmark)**<br>
   Synthetic smoking-history extraction benchmark comparing TypeSafe Jev and OpenAI structured outputs, with reproducible accuracy, cost, and latency results. <sub>(upstream description)</sub><br>

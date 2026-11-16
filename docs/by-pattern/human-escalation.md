@@ -4,11 +4,11 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 95 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 97 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#human-escalation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 80 · wire shape 5 · example only 0 · independent reports 11 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 82 · wire shape 5 · example only 0 · independent reports 11 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -202,6 +202,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Hiep Paseo plugins](https://github.com/hieppp/hiep-paseo-plugin)** — Plugins for the Paseo agent app, three of them on Jev: a permission gate that asks a noul on whether a shell command is read-only and a choice to allow, deny or escalate it to you, an orchestrator that routes delegated tasks to a model and effort, and an MCP evaluation tool. <sub>(written by a model)</sub>
   <sub>`Plugin` · hieppp · `TS` · `noul` · `choice` · call site [`plugins/jev-permission-gate/server/jev-worker.ts`](https://github.com/hieppp/hiep-paseo-plugin/blob/HEAD/plugins/jev-permission-gate/server/jev-worker.ts), read by a model 2026-11-10 · ⚠ `no licence`</sub>
 
+- **[JEV AgentNetwork](https://github.com/Kelly-Leeee/AgentNetwork-jev)** — Event-driven network of general-purpose agents: whenever an agent finishes, the router sends Jev the pending work, recent results and which agents are idle, and asks one choice of next action: assign the work to a named agent, finish, or ask a person. <sub>(written by a model)</sub>
+  <sub>`Project` · Kelly-Leeee · `Py` · `choice` · call site [`agentrouter/team.py`](https://github.com/Kelly-Leeee/AgentNetwork-jev/blob/HEAD/agentrouter/team.py), read by a model 2026-11-16 · ⚠ `3rd-party key`</sub>
+
 - **[Jev vs. the right baselines](https://github.com/ickma2311/jev-baselines-eval)** — Two pre-registered studies: Jev classifies customer intents on CLINC150 and Banking77 as a choice, as the gate of an escalation cascade, against LLMs and a supervised encoder; the second asks whether, under prompt injection, Jev's confidence separates hijacked decisions from resisted ones. <sub>(written by a model)</sub>
   <sub>`Benchmark` · ickma2311 · `Py` · `choice` · `noul` · call site [`code/common.py`](https://github.com/ickma2311/jev-baselines-eval/blob/HEAD/code/common.py), read by a model 2026-11-10</sub>
 
@@ -300,6 +303,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[system-one-gemma](https://github.com/akash-kamat/system-one-gemma)** — Open-source Jev-style System One decision model. Gemma 3 270M with a scoring head — fast, calibrated decisions in a single forward pass. No text generation. Inspired by TypeSafe.ai's Jev. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · akash-kamat · `Py` · cited file [`system_one.py`](https://github.com/akash-kamat/system-one-gemma/blob/HEAD/system_one.py), read 2026-09-22 · ⚠ `not Jev itself` `no licence`</sub>
+
+- **[Tab Sorter](https://github.com/AstonyCat/jev-tab-grouper)** — Chrome extension that sorts every tab in a window into named, coloured groups. Its rules engine asks Jev one choice per tab, over the groups you define, in a single request; a tab whose answer falls below 0.6 confidence goes to a review group. <sub>(written by a model)</sub>
+  <sub>`Plugin` · AstonyCat · `JS` · `choice` · call site [`grouper.js`](https://github.com/AstonyCat/jev-tab-grouper/blob/HEAD/grouper.js), read by a model 2026-11-16</sub>
 
 - **[tenbin](https://github.com/simota/tenbin)** — MCP server and agent skill for the TypeSafe AI System One API (Jev): decompose a judgment into Choice / Score / Noul questions, lint them, measure on labelled data, and put calibrated thresholds in code <sub>(upstream description)</sub>
   <sub>`Plugin` · simota · `TS` · call site [`skills/tenbin/scripts/evaluate.py`](https://github.com/simota/tenbin/blob/HEAD/skills/tenbin/scripts/evaluate.py), read 2026-09-22</sub>
