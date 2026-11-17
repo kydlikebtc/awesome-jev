@@ -83855,7 +83855,7 @@
       "name": "Lasimeri",
       "url": "https://github.com/Lasimeri"
     },
-    "repo_license": "MIT OR Apache-2.0",
+    "repo_license": "Apache-2.0",
     "languages": [
       "rust"
     ],
@@ -83870,8 +83870,8 @@
       ],
       "model_read_on": "2026-11-17"
     },
-    "notes": "It defaults to the author's Intel Phi Jev, a local model on Xeon Phi cards that is not Jev; TYPESAFE_BASE_URL and TYPESAFE_API_KEY point it at hosted Jev. The guard's figures are on the author's local models. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-17; a maintainer has not yet read the call site.",
-    "notes_zh": "默认连接作者自己的 Intel Phi Jev，即在 Xeon Phi 卡上运行的本地模型，它不是 Jev；设置 TYPESAFE_BASE_URL 和 TYPESAFE_API_KEY 即可指向托管的 Jev。守卫的数字来自作者的本地模型。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-17 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
+    "notes": "It defaults to the author's Intel Phi Jev, a local model on Xeon Phi cards that is not Jev; TYPESAFE_BASE_URL and TYPESAFE_API_KEY point it at hosted Jev. The guard's figures are on the author's local models. It is licensed MIT or Apache-2.0. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-17; a maintainer has not yet read the call site.",
+    "notes_zh": "默认连接作者自己的 Intel Phi Jev，即在 Xeon Phi 卡上运行的本地模型，它不是 Jev；设置 TYPESAFE_BASE_URL 和 TYPESAFE_API_KEY 即可指向托管的 Jev。守卫的数字来自作者的本地模型。它采用 MIT 或 Apache-2.0 双许可。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-17 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。",
     "sources": [
       {
         "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
