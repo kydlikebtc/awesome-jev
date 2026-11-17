@@ -93,7 +93,7 @@
 
 用 Jev 做出来的产品，由 Maker 每周发布一次，任何人也可以推荐（hunt）自己发现的产品。大家在每个 Launch 的 [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches) 帖子上点赞投票，每周日 23:59 UTC 收榜、排名。票数说明有多少人关心；每个 Launch 旁边的证据说明谁读过它调用 Jev 的代码。两者从不相加，名次也不是本目录的推荐。[发布榜](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)上有每一周、每个产品和每位 Maker 的页面，以及上升榜。 <sub>(机翻)</sub>
 
-### ★ 上升最快：2026-11-10 至 2026-11-16
+### ★ 上升最快：2026-11-10 至 2026-11-17
 
 <table>
 <tr>
@@ -101,20 +101,20 @@
 <td>
 
 **[OnlyRead](https://kydlikebtc.github.io/awesome-jev/products/onlyread.html)** — 让浏览器里的 AI 智能体在你选定的网站上只能读不能写的 Chrome 扩展：规则、按站点的解码器和判定缓存先处理大部分请求，其余的由 Jev 回答一个 noul（这个请求会不会创建、修改或删除服务器上存储的数据？）；代码据此放行、拦截，或把中间地带交给复核模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>37 → 94 星（+154%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=onlyread&title=Launch%3A%20OnlyRead)</sub>
+<sub>37 → 93 星（+151%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=onlyread&title=Launch%3A%20OnlyRead)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+57</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+56</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html"><img src="https://github.com/sunyasheng.png?size=96" width="48" height="48" alt="JevGPT: Thinking Fast and Slow in Autonomous Research"></a></td>
 <td>
 
 **[JevGPT: Thinking Fast and Slow in Autonomous Research](https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html)** — 论文 arXiv 2610.18272 的研究 Agent。GPT-5.5 规划检索并写出答案；在 BrowseComp-Plus 问答中，对每个被检查的文档区域和每个查询，Jev 回答一个 Choice（在编号的原文行中选出答案所在行）和一个 Noul（该区域是否涉及该查询），在多个文档上并行运行。GPT 拿到的是原文行。 <sub>(机翻)</sub><br>
-<sub>23 → 43 星（+87%） · 🔍 仅文本匹配，还没有人读过 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgpt-sunyasheng&title=Launch%3A%20JevGPT%3A%20Thinking%20Fast%20and%20Slow%20in%20Autonomous%20Research)</sub>
+<sub>23 → 44 星（+91%） · 🔍 仅文本匹配，还没有人读过 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgpt-sunyasheng&title=Launch%3A%20JevGPT%3A%20Thinking%20Fast%20and%20Slow%20in%20Autonomous%20Research)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+20</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+21</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-recipes.html"><img src="https://github.com/agencyenterprise.png?size=96" width="48" height="48" alt="jev-recipes"></a></td>
@@ -131,20 +131,20 @@
 <td>
 
 **[optim-jev](https://kydlikebtc.github.io/awesome-jev/products/optim-jev.html)** — Claude Code 插件（也支持 Codex），包含三个向 Jev 提问的工具：jev-compacter 在压缩上下文时判断哪些过期的工具调用和输出可以丢弃，jev-router 为每个子智能体选择模型和推理强度，jev-skills 为每条提示只发送一份简短且相关的技能列表，而不是整个目录。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>52 → 69 星（+33%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=optim-jev&title=Launch%3A%20optim-jev)</sub>
+<sub>52 → 73 星（+40%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=optim-jev&title=Launch%3A%20optim-jev)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+17</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+21</b><br><sub>星标</sub></td>
 </tr>
 <tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-seo-agricidaniel.html"><img src="https://github.com/AgriciDaniel.png?size=96" width="48" height="48" alt="jev-seo"></a></td>
 <td>
 
-**[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — 桌面自动化。读系统无障碍树，判断下一步该点哪个按钮、菜单或输入框。<br>
-<sub>20,568 → 24,382 星（+19%） · 👤 有人读过调用点 · 2027-01-11 起可再次发布</sub>
+**[jev-seo](https://kydlikebtc.github.io/awesome-jev/products/jev-seo-agricidaniel.html)** — 从一个首页网址出发的 SEO 审计：抓取整站，检查 52 条规则和 Core Web Vitals，并就每个页面向 Jev 提出 choice、score 和 noul 问题（页面类型、搜索意图、有用程度、可信度、开头是否直奔主题）。代码只采用达到 0.80 置信度的明确答案，再给修复项排序。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+<sub>763 → 968 星（+27%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jev-seo-agricidaniel&title=Launch%3A%20jev-seo)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+3,814</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+205</b><br><sub>星标</sub></td>
 </tr>
 </table>
 
