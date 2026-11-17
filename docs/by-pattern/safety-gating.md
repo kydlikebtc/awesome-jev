@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 177 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 179 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 170 · wire shape 3 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 172 · wire shape 3 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -479,11 +479,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[mastra-jev-moderation](https://github.com/CodeAlive-AI/mastra-jev-moderation)** — Input moderation for Mastra agents on TypeSafe Jev — one file <sub>(upstream description)</sub>
   <sub>`Project` · codealive-ai · `TS` · call site [`jev-moderation.ts`](https://github.com/CodeAlive-AI/mastra-jev-moderation/blob/HEAD/jev-moderation.ts), read 2026-09-22</sub>
 
+- **[Mechanical Jev](https://github.com/Lasimeri/Mechanical-Jev)** — Rust client, command line and terminal interface for System One questions. Besides one-off queries, its gate acts, asks for review or escalates on each answer, label and rank run questions over many inputs, and a Claude Code hook asks you before a shell command it reads as risky. <sub>(written by a model)</sub>
+  <sub>`SDK` · Lasimeri · `Rs` · `noul` · `choice` · `score` · call site [`src/client.rs`](https://github.com/Lasimeri/Mechanical-Jev/blob/HEAD/src/client.rs), read by a model 2026-11-17 · ⚠ `vendor numbers`</sub>
+
 - **[nethack-jev](https://github.com/statico/jev-nethack)** — Jev plays NetHack with no LLM in the loop: code reads the screen and lists the legal options, and each turn Jev answers a choice of best action, a noul on whether the Valkyrie is in serious danger, and a choice of safest action, which wins when danger is high. <sub>(written by a model)</sub>
   <sub>`Project` · statico · `Py` · `choice` · `noul` · call site [`jev/bot.py`](https://github.com/statico/jev-nethack/blob/HEAD/jev/bot.py), read by a model 2026-11-16 · ⚠ `vendor numbers`</sub>
 
 - **[omp-jevens-classifier](https://github.com/STRML/omp-jevens-classifier)** — Jev-powered model-judged permission gate for OMP (TypeSafe System One) <sub>(upstream description)</sub>
   <sub>`Project` · strml · `TS` · call site [`jev.ts`](https://github.com/STRML/omp-jevens-classifier/blob/HEAD/jev.ts), read 2026-09-22 · ⚠ `archived`</sub>
+
+- **[onesie](https://github.com/frodi-karlsson/onesie)** — Command line tool that gates scripts and CI on Jev: --pick asks a choice, --rate a score and a plain question a noul, and thresholds turn each answer into an exit code (0 pass, 1 block, 7 unsure: hand off to a person). It ships a shell-safety gate, a GitHub Action and a Claude Code plugin. <sub>(written by a model)</sub>
+  <sub>`Project` · frodi-karlsson · `Go` · `choice` · `score` · `noul` · call site [`internal/plan/wire.go`](https://github.com/frodi-karlsson/onesie/blob/HEAD/internal/plan/wire.go), read by a model 2026-11-17</sub>
 
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — Binary approval gate for Codex and Claude Code — every intercepted tool call is reviewed by TypeSafe JEV and composed through a versioned local policy, with scoped authorization. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · alexj11324 · `Go` · cited file [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go), read 2026-09-22 · ⚠ `not Jev itself`</sub>

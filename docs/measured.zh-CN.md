@@ -4,7 +4,7 @@
 
 本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。
 
-本目录收录的全部独立测量报告和负面结果 —— 共 100 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
+本目录收录的全部独立测量报告和负面结果 —— 共 101 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
@@ -457,6 +457,12 @@
 - **[jev-trace-classifier](https://github.com/sypherin/jev-trace-classifier)**<br>
   把 Jev 的 noul 原语应用到一个共谋语料库上。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · sypherin · `Py` · [调用点](https://github.com/sypherin/jev-trace-classifier/blob/HEAD/jev_client.py)，2026-09-22 阅读</sub>
+
+- **[jev-vs-pii](https://github.com/alanviollier/jev-vs-pii)**<br>
+  测量 Jev 找出需要遮蔽的个人信息的能力，与 Presidio、GLiNER、正则以及当下的 LLM 对比，数据是法院判决和合成文本。Jev 用 noul 和 choice 问题判断段落里哪些词能识别出某人、属于哪类信息。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · alanviollier · `Py` · `noul` · `choice` · [调用点](https://github.com/alanviollier/jev-vs-pii/blob/HEAD/jev_vs_pii/clients/decisions.py)，2026-11-17 模型阅读</sub>
+
+  > Claude Haiku 等 LLM、Presidio、GLiNER、正则和隐私过滤器都不是 Jev。数字来自作者自己的运行：在欧洲人权法院判决上 Jev 与 Haiku 持平（F2 0.83 对 0.82）；在短的合成文本上 LLM 领先。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-17 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[jevarena](https://github.com/chenmingtang830/jevarena)**<br>
   开源的自带 key 竞技场，用来评测 Jev 与其他 AI 裁判：找出失败案例，比较质量、成本与延迟。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>

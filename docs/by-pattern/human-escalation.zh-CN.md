@@ -4,11 +4,11 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 97 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 99 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#human-escalation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#human-escalation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 82 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 84 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 0 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -265,11 +265,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[luce](https://github.com/scienthoon/luce)** — Luce：一份校准决策模型的配方 —— 输入一句任务描述，产出一个小模型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · scienthoon · `Py` · 调用点 [`scripts/jev_eval.mjs`](https://github.com/scienthoon/luce/blob/HEAD/scripts/jev_eval.mjs)，2026-09-22 阅读</sub>
 
+- **[Mechanical Jev](https://github.com/Lasimeri/Mechanical-Jev)** — 面向 System One 问题的 Rust 客户端、命令行和终端界面。除单次查询外，gate 按每个回答决定执行、送审或上报，label 和 rank 对大量输入批量提问，还有一个 Claude Code 钩子会在它判断为危险的 shell 命令执行前先问你。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · Lasimeri · `Rs` · `noul` · `choice` · `score` · 调用点 [`src/client.rs`](https://github.com/Lasimeri/Mechanical-Jev/blob/HEAD/src/client.rs)，2026-11-17 模型阅读 · ⚠ `厂商自报数据`</sub>
+
 - **[Medplum Provider + Jev](https://github.com/vintasoftware/medplum-provider-jev)** — Medplum Provider App 里的引导式演示：一次随访结束时，Medplum Bot 问 Jev 病历里每种药物的剂量是否与外院出院小结一致（choice）、哪一句写了剂量（choice），以及病历是否提到住院（noul）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · vintasoftware · `TS` · `choice` · `noul` · 调用点 [`provider/bots/consistency.ts`](https://github.com/vintasoftware/medplum-provider-jev/blob/HEAD/provider/bots/consistency.ts)，2026-11-15 模型阅读 · ⚠ `无许可证` `厂商自报数据`</sub>
 
 - **[n8n-nodes-typesafe-ai](https://github.com/DomMonte/n8n-nodes-typesafe-ai)** — 面向 System One API 的 n8n 社区节点：类型化的是非、选择与打分问题。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · dommonte · `TS` · 调用点 [`nodes/TypeSafeAi/constants.ts`](https://github.com/DomMonte/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/constants.ts)，2026-09-22 阅读</sub>
+
+- **[onesie](https://github.com/frodi-karlsson/onesie)** — 用 Jev 给脚本和 CI 把关的命令行工具：--pick 提 choice，--rate 提 score，普通问题提 noul，再由阈值把每个回答变成退出码（0 通过，1 拦下，7 不确定、交给人处理）。附带 shell 安全闸门、GitHub Action 和 Claude Code 插件。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · frodi-karlsson · `Go` · `choice` · `score` · `noul` · 调用点 [`internal/plan/wire.go`](https://github.com/frodi-karlsson/onesie/blob/HEAD/internal/plan/wire.go)，2026-11-17 模型阅读</sub>
 
 - **[opencode-jev-guard](https://github.com/CogFlux/opencode-jev-guard)** — OpenCode 2 插件：把每条 shell 命令发给 TypeSafe 的 Jev，看起来有风险时先询问你。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · cogflux · `TS` · 调用点 [`src/jev.ts`](https://github.com/CogFlux/opencode-jev-guard/blob/HEAD/src/jev.ts)，2026-11-05 模型阅读</sub>

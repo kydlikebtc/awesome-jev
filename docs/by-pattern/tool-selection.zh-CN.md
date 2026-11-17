@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 288 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 290 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 277 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 279 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -525,6 +525,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[computer-use-jev](https://github.com/paulsmith/computer-use-jev)** — 以 Jev 为决策者的 macOS computer use。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · paulsmith · `Go` · 调用点 [`typesafe/client.go`](https://github.com/paulsmith/computer-use-jev/blob/HEAD/typesafe/client.go)，2026-09-22 阅读</sub>
 
+- **[Decisium](https://github.com/andletenkov/decisium)** — 用 Playwright 在真实浏览器里执行 Gherkin 测试步骤。每一轮它在一次请求里问 Jev 下一步操作哪个元素、怎么操作（两个 choice），以及这一步是否已完成（noul）；通过与否由代码判定，CI 回放录制结果，不再调用模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · andletenkov · `TS` · `choice` · `noul` · 调用点 [`src/model-decider.ts`](https://github.com/andletenkov/decisium/blob/HEAD/src/model-decider.ts)，2026-11-17 模型阅读</sub>
+
 - **[deepseek-harness-jev-pre-compaction](https://github.com/wjw66/deepseek-harness-jev-pre-compaction)** — 给 DeepSeek Harness 的压缩前顾问，在标准压缩流程之前运行。 <sub>(机翻)</sub>
   <sub>`开源项目` · wjw66 · `TS` · 调用点 [`src/jev/protocol.ts`](https://github.com/wjw66/deepseek-harness-jev-pre-compaction/blob/HEAD/src/jev/protocol.ts)，2026-09-22 阅读</sub>
 
@@ -650,6 +653,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-decision-benchmarks](https://github.com/baibizhe/jev-decision-benchmarks)** — JEV 在 MetaTool、When2Call 与 BFCL V4 上的决策基准结果，附双语表格和可复现报告。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · baibizhe · `Py` · 调用点 [`scripts/build_tables.py`](https://github.com/baibizhe/jev-decision-benchmarks/blob/HEAD/scripts/build_tables.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
+
+- **[jev-demofast](https://github.com/q3learners/jev-demofast)** — 把一句话变成带旁白的产品演示视频。LLM 写脚本、规划路线；驱动真实浏览器时，由 Cloudflare Workers AI 上的 Jev 选出每个要点击的元素（choice）并回答是非检查（noul），每次约四分之一秒。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · q3learners · `Py` · `choice` · `noul` · 调用点 [`src/jev_demofast/cloudflare.py`](https://github.com/q3learners/jev-demofast/blob/HEAD/src/jev_demofast/cloudflare.py)，2026-11-17 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[jev-demos](https://github.com/mani-aiml/jev-demos)** — 作者系列视频背后的演示：在所引的演示里，Jev 为每个候选查询回答一个 noul，决定客服智能体要取哪些记录，然后由 Claude 一次性写出回答；其他演示让 Jev 与 Laya 给 500 条 AI 写的回答打分，并测试把 Jev 用作复核关卡时能否被提示注入攻破。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`教程` · mani-aiml · `Py` · `noul` · 调用点 [`jev-fetches-claude-writes/agent_jev_first.py`](https://github.com/mani-aiml/jev-demos/blob/HEAD/jev-fetches-claude-writes/agent_jev_first.py)，2026-11-08 模型阅读</sub>

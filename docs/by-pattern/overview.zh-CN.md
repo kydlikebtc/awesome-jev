@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 527 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 531 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 389 · 接口形态 98 · 仅示例 0 · 独立报告 33 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 392 · 接口形态 99 · 仅示例 0 · 独立报告 33 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -527,6 +527,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[antigravity-mcp-semantic-search-with-typesafeai](https://github.com/greenyamao/Antigravity-mcp-semantic-search-with-TypeSafeAi)** — 给 AI 编程助手的快速语义代码搜索与 diff 合理性审查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · greenyamao · `Py` · 调用点 [`mcp_server.py`](https://github.com/greenyamao/Antigravity-mcp-semantic-search-with-TypeSafeAi/blob/HEAD/mcp_server.py)，2026-09-22 阅读</sub>
 
+- **[Ardana](https://github.com/ardana-ai/ardana)** — 像 Ollama 运行聊天模型那样，在本机拉取并运行开源决策模型，并以 Jev 的 POST /v1/systemone 接口提供服务，TypeSafe 的 SDK 可以直接指向它。命令行和试验台都能提 choice、score、noul 问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · ardana-ai · `Rs` · `noul` · `choice` · `score` · 引用文件 [`crates/ardana-server/src/lib.rs`](https://github.com/ardana-ai/ardana/blob/HEAD/crates/ardana-server/src/lib.rs)，2026-11-17 模型阅读 · ⚠ `并非 Jev 本身`</sub>
+
 - **[audio-jevlike](https://github.com/alperiox/audio-jevlike)** — Prosodia：原生面向音频、形似 Jev 的决策模型——直接从语音给出校准的类型化决策，无需语音识别。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · alperiox · `Py` · 引用文件 [`space/prosodia/evaluation/baselines.py`](https://github.com/alperiox/audio-jevlike/blob/HEAD/space/prosodia/evaluation/baselines.py)，2026-09-24 阅读 · ⚠ `并非 Jev 本身` `无许可证`</sub>
 
@@ -680,6 +683,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-symfony-bundle](https://github.com/vbcherepanov/jev-symfony-bundle)** — TypeSafe AI Jev 的非官方 Symfony bundle：带类型的客户端、校验约束、Messenger、Workflow 守卫等。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · vbcherepanov · `PHP` · 调用点 [`src/Client/JevClientInterface.php`](https://github.com/vbcherepanov/jev-symfony-bundle/blob/HEAD/src/Client/JevClientInterface.php)，2026-09-24 阅读</sub>
 
+- **[Jev.Net](https://github.com/brightshore/jev-net)** — 非官方的 .NET Jev 客户端，只有一个依赖，移植自 TypeSafe 的 Python SDK 0.7.4：把带类型的 noul、choice、score 问题发往 /v1/systemone，支持重试、超时和逐次调用的额外请求头。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · brightshore · `C#` · `noul` · `choice` · `score` · 调用点 [`src/Jev.Net/TypeSafeClient.cs`](https://github.com/brightshore/jev-net/blob/HEAD/src/Jev.Net/TypeSafeClient.cs)，2026-11-17 模型阅读</sub>
+
 - **[jev4mellea](https://github.com/SoundBlaster/Jev4Mellea)** — 给 Mellea 的 Jev 适配器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · soundblaster · `Py` · 调用点 [`src/mellea_jev/providers/typesafe.py`](https://github.com/SoundBlaster/Jev4Mellea/blob/HEAD/src/mellea_jev/providers/typesafe.py)，2026-09-22 阅读</sub>
 
@@ -715,6 +721,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[kunobi-jev](https://github.com/kunobi-ninja/kunobi-decision)** — System One API 的 Rust 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · kunobi-ninja · `Rs` · 调用点 [`src/client/mod.rs`](https://github.com/kunobi-ninja/kunobi-decision/blob/HEAD/src/client/mod.rs)，2026-09-22 阅读</sub>
+
+- **[Minos.NET](https://github.com/MarcelRoozekrans/Minos.NET)** — 非官方的 .NET 客户端，对接 Jev 的 /v1/systemone。把 noul、choice、score 问题声明成 C# 类型，源代码生成器在编译时写好请求和答案解析，因此可在 Native AOT 下运行；由 IDecisionClient 发往 TypeSafe 或经 OpenRouter 发送。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · MarcelRoozekrans · `C#` · `noul` · `choice` · `score` · 调用点 [`src/Minos.NET.SystemOne/SystemOneDecisionClient.cs`](https://github.com/MarcelRoozekrans/Minos.NET/blob/HEAD/src/Minos.NET.SystemOne/SystemOneDecisionClient.cs)，2026-11-17 模型阅读</sub>
 
 - **[Nouli](https://github.com/nouli-ai/nouli)** — 用于构建决策网络的终端应用、命令行工具和 Rust 库：把小决策串成大决策，每一步都是发给决策模型的 noul、choice 或 score 问题，并记录每一步。其设置可以连接 TypeSafe 的 jev-latest、经 OpenRouter 的 Jev、Cloudflare 的 Clef、Ollama 或 llama.cpp。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · nouli-ai · `Rs` · `choice` · `noul` · `score` · 调用点 [`nouli-cli/src/connect/recipes.rs`](https://github.com/nouli-ai/nouli/blob/HEAD/nouli-cli/src/connect/recipes.rs)，2026-11-12 模型阅读</sub>
@@ -975,7 +984,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ## 尚未按模式索引
 
-带代码的项目或插件，共 216 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
+带代码的项目或插件，共 217 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — 为应用、电话、导览屏和元宇宙打造语音 AI 虚拟形象的工具包。它的 Jev 话轮结束闸门就转写文本提一个 noul：助手是否应保持沉默、让用户的话轮继续，并把这个概率换算成 0.4 到 2 秒的等待；出错时直接结束话轮。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · uezo · `Py` · 调用点 [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py)，2026-09-22 阅读</sub>
@@ -1459,6 +1468,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevals](https://github.com/dayhaysoos/jevals)** — TypeSafe Jev 的本地评估工作台。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · dayhaysoos · `TS` · 调用点 [`src/server.ts`](https://github.com/dayhaysoos/jevals/blob/HEAD/src/server.ts)，2026-09-24 阅读</sub>
+
+- **[JEVals](https://github.com/duberblock/jevals)** — 一个试验台：把含 noul、choice、score 问题的 System One 请求同时发给真实的 Jev 和一个 LLM 模拟器，再逐题比较答案，并附上独立答案和评判，分三个网页界面展示。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · duberblock · `Py` · `noul` · `choice` · `score` · 调用点 [`apps/api/app/providers/jev.py`](https://github.com/duberblock/jevals/blob/HEAD/apps/api/app/providers/jev.py)，2026-11-17 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[jevcode](https://github.com/miounet11/jevcode)** — JevCode — Jev (TypeSafe System One) 技术解决方案与最佳实践 · https://www.jevcode.ai
   <sub>`开源项目` · miounet11 · `TS` · 调用点 [`scripts/build-jev-cards.mjs`](https://github.com/miounet11/jevcode/blob/HEAD/scripts/build-jev-cards.mjs)，2026-09-24 阅读 · ⚠ `无许可证`</sub>

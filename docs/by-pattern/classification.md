@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 207 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 214 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 195 · wire shape 3 · example only 0 · independent reports 21 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 202 · wire shape 3 · example only 0 · independent reports 22 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -335,6 +335,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[AI 海龟汤 (AI Turtle Soup)](https://github.com/zerotang05/situation-puzzle)** — Lateral-thinking puzzle game hosted by Jev: each player question gets a choice of Yes, No or Irrelevant, a written solution is ruled Solved, Close or Not yet, and submitted puzzles are reviewed before the public library. A verdict below the confidence threshold goes to a MiniMax model. <sub>(written by a model)</sub>
   <sub>`Project` · zerotang05 · `TS` · `choice` · call site [`packages/jev/src/config.ts`](https://github.com/zerotang05/situation-puzzle/blob/HEAD/packages/jev/src/config.ts), read by a model 2026-11-12</sub>
 
+- **[anofox-decide](https://github.com/DataZooDE/anofox-decide)** — DuckDB extension that asks decision models from SQL: noul, choice and score functions run over table rows concurrently, and decide_answers sends several questions about one text in a single request. Jev on TypeSafe is one of its remote providers. <sub>(written by a model)</sub>
+  <sub>`Plugin` · DataZooDE · `C++` · `noul` · `choice` · `score` · call site [`src/decide_remote.cpp`](https://github.com/DataZooDE/anofox-decide/blob/HEAD/src/decide_remote.cpp), read by a model 2026-11-17</sub>
+
 - **[c9r plugins (browser-check, soft-lint)](https://github.com/c9r-dev/plugins)** — Claude Code and Codex plugins that use Jev as their classifier: browser-check runs a plain-English checklist in a real browser, asking which element each step means (choice) and whether each check holds (noul); soft-lint asks yes/no rules about the lines a diff adds. <sub>(written by a model)</sub>
   <sub>`Plugin` · c9r-dev · `TS` · `choice` · `noul` · call site [`shared/classifier.ts`](https://github.com/c9r-dev/plugins/blob/HEAD/shared/classifier.ts), read by a model 2026-11-13</sub>
 
@@ -506,6 +509,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-triage](https://github.com/cephalization/jev-triage)** — Uses typeful jev, zero sync to pull and sync large repositories for issue triage <sub>(earlier upstream description)</sub>
   <sub>`Project` · cephalization · `TS` · call site [`apps/api/src/worker/typesafe.ts`](https://github.com/cephalization/jev-triage/blob/HEAD/apps/api/src/worker/typesafe.ts), read 2026-09-22</sub>
 
+- **[jev-vs-pii](https://github.com/alanviollier/jev-vs-pii)** — Measures how well Jev finds personal information to mask, against Presidio, GLiNER, regex and current LLMs, on court judgments and synthetic text. Jev reads each passage with noul and choice questions about which words identify someone and what kind of information they are. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · alanviollier · `Py` · `noul` · `choice` · call site [`jev_vs_pii/clients/decisions.py`](https://github.com/alanviollier/jev-vs-pii/blob/HEAD/jev_vs_pii/clients/decisions.py), read by a model 2026-11-17</sub>
+
+- **[jevalyzer](https://github.com/killerz3/jevalyzer)** — Grades the coding-agent sessions already on your disk (Claude Code, Codex CLI, opencode, Gemini CLI, Antigravity). Each exchange goes to Jev with 7 or 21 questions (scores, choices and yes-or-no) and the answers become a report of failures and the model you actually prefer. <sub>(written by a model)</sub>
+  <sub>`Project` · killerz3 · `TS` · `choice` · `score` · `noul` · call site [`src/core/evaluate.ts`](https://github.com/killerz3/jevalyzer/blob/HEAD/src/core/evaluate.ts), read by a model 2026-11-17</sub>
+
 - **[Jevatar](https://github.com/AppChainAI/Jevatar)** — An AI companion that replies only with facial expressions. Jev (TypeSafe System One) judges your message and picks 1 of 14 moods; blobatar morphs its face. React + Vite + Bun. <sub>(upstream description)</sub>
   <sub>`Project` · appchainai · `TS` · call site [`server.ts`](https://github.com/AppChainAI/Jevatar/blob/HEAD/server.ts), read 2026-09-24</sub>
 
@@ -563,6 +572,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[krasivo-jev](https://github.com/SergeyBazhmin/krasivo-jev)** — Datasets and training code for open System One models (Qwen3.5-2B with LoRA and a pointer head, trained on 100 Hugging Face datasets), plus an evaluation that asks hosted Jev the same test rows, one choice or noul question each, as the reference for accuracy, NLL and calibration. <sub>(written by a model)</sub>
   <sub>`Benchmark` · SergeyBazhmin · `Py` · `choice` · `noul` · call site [`src/jev_model/typesafe/client.py`](https://github.com/SergeyBazhmin/krasivo-jev/blob/HEAD/src/jev_model/typesafe/client.py), read by a model 2026-11-13 · ⚠ `no licence` `vendor numbers`</sub>
 
+- **[Mechanical Jev](https://github.com/Lasimeri/Mechanical-Jev)** — Rust client, command line and terminal interface for System One questions. Besides one-off queries, its gate acts, asks for review or escalates on each answer, label and rank run questions over many inputs, and a Claude Code hook asks you before a shell command it reads as risky. <sub>(written by a model)</sub>
+  <sub>`SDK` · Lasimeri · `Rs` · `noul` · `choice` · `score` · call site [`src/client.rs`](https://github.com/Lasimeri/Mechanical-Jev/blob/HEAD/src/client.rs), read by a model 2026-11-17 · ⚠ `vendor numbers`</sub>
+
 - **[Medplum Provider + Jev](https://github.com/vintasoftware/medplum-provider-jev)** — Guided demo in the Medplum Provider App: when a follow-up visit is finished, a Medplum Bot asks Jev whether the note's dose of each medication agrees with the outside discharge summary (choice), which sentence states it (choice) and whether the note mentions the hospital stay (noul). <sub>(written by a model)</sub>
   <sub>`Project` · vintasoftware · `TS` · `choice` · `noul` · call site [`provider/bots/consistency.ts`](https://github.com/vintasoftware/medplum-provider-jev/blob/HEAD/provider/bots/consistency.ts), read by a model 2026-11-15 · ⚠ `no licence` `vendor numbers`</sub>
 
@@ -584,11 +596,20 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[one-system](https://github.com/rawwerks/one-system)** — Use local and hosted classifiers aka decision models aka Jev-like models, all through a single TypeSafe API <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · rawwerks · `TS` · cited file [`examples/public_release_review.py`](https://github.com/rawwerks/one-system/blob/HEAD/examples/public_release_review.py), read 2026-09-22 · ⚠ `not Jev itself`</sub>
 
+- **[onesie](https://github.com/frodi-karlsson/onesie)** — Command line tool that gates scripts and CI on Jev: --pick asks a choice, --rate a score and a plain question a noul, and thresholds turn each answer into an exit code (0 pass, 1 block, 7 unsure: hand off to a person). It ships a shell-safety gate, a GitHub Action and a Claude Code plugin. <sub>(written by a model)</sub>
+  <sub>`Project` · frodi-karlsson · `Go` · `choice` · `score` · `noul` · call site [`internal/plan/wire.go`](https://github.com/frodi-karlsson/onesie/blob/HEAD/internal/plan/wire.go), read by a model 2026-11-17</sub>
+
 - **[OpenJev for opencode](https://github.com/darwintechlab/openjev)** — opencode plugin that gives the agent Jev as tools (jev_choice, jev_noul, jev_score, jev_ask) for the small decisions it would otherwise ask an LLM, such as whether a command is safe or which team gets a ticket. Each answer comes with a gate that acts when confident and escalates when not. <sub>(written by a model)</sub>
   <sub>`Plugin` · darwintechlab · `TS` · `choice` · `noul` · `score` · call site [`src/client.ts`](https://github.com/darwintechlab/openjev/blob/HEAD/src/client.ts), read by a model 2026-11-13</sub>
 
 - **[Photo Ferret](https://github.com/jonessteven/photo-ferret)** — Photo gallery whose filters come from Jev: for each uploaded photo it asks Jev in one request how much sky, water or snow it shows, how dramatic or wild it is (scores), whether it shows people, wildlife or birds (nouls) and its primary subject (choice), plus a quality score. <sub>(written by a model)</sub>
   <sub>`Project` · jonessteven · `TS` · `score` · `noul` · `choice` · call site [`server/jev.ts`](https://github.com/jonessteven/photo-ferret/blob/HEAD/server/jev.ts), read by a model 2026-11-16</sub>
+
+- **[pi-jev-todo-audit](https://github.com/xz-dev/pi-jev-todo-audit)** — Pi extension that checks whether the rpiv-todo board matches the work a coding session visibly did. For each task it asks choice questions, such as which transition the evidence supports and which source backs it, and gives advice; it never changes the board itself. <sub>(written by a model)</sub>
+  <sub>`Plugin` · xz-dev · `TS` · `choice` · call site [`questions.ts`](https://github.com/xz-dev/pi-jev-todo-audit/blob/HEAD/questions.ts), read by a model 2026-11-17</sub>
+
+- **[Privatemode Decisions vs. TypeSafe Jev vs. Laya](https://github.com/edgelesssys/privatemode-decisions-benchmark)** — Compares speed, accuracy, calibration and cost of three decision models on labelled public data. Each item goes to Jev as one choice question with the same state, options and instruction as Edgeless's Privatemode Decisions and the local Laya model get. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · edgelesssys · `Py` · `choice` · call site [`bench/adapters.py`](https://github.com/edgelesssys/privatemode-decisions-benchmark/blob/HEAD/bench/adapters.py), read by a model 2026-11-17 · ⚠ `vendor numbers`</sub>
 
 - **[progressgate](https://github.com/AshutoshVJTI/progressgate)** — Detect semantic stagnation in AI agent loops <sub>(upstream description)</sub>
   <sub>`Project` · ashutoshvjti · `TS` · call site [`experiments/jev-client.ts`](https://github.com/AshutoshVJTI/progressgate/blob/HEAD/experiments/jev-client.ts), read 2026-09-22</sub>

@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 100 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 101 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -459,6 +459,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[jev-trace-classifier](https://github.com/sypherin/jev-trace-classifier)**<br>
   Application of TypeSafe Jev (noul judgment primitive) on the collusion.wiki corpus: agent vs human page authorship, head-to-head vs local Qwen3.8-Flash-Next <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · sypherin · `Py` · [call site](https://github.com/sypherin/jev-trace-classifier/blob/HEAD/jev_client.py), read 2026-09-22</sub>
+
+- **[jev-vs-pii](https://github.com/alanviollier/jev-vs-pii)**<br>
+  Measures how well Jev finds personal information to mask, against Presidio, GLiNER, regex and current LLMs, on court judgments and synthetic text. Jev reads each passage with noul and choice questions about which words identify someone and what kind of information they are. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · alanviollier · `Py` · `noul` · `choice` · [call site](https://github.com/alanviollier/jev-vs-pii/blob/HEAD/jev_vs_pii/clients/decisions.py), read by a model 2026-11-17</sub>
+
+  > Claude Haiku and the other LLMs, Presidio, GLiNER, regex and the privacy filter are not Jev. The figures are the author's runs: Jev ties Haiku on ECHR judgments (F2 0.83 vs 0.82); LLMs lead on short synthetic text. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-17; a maintainer has not yet read the call site.
 
 - **[jevarena](https://github.com/chenmingtang830/jevarena)**<br>
   Open-source BYOK arena for Jev and other AI judges. Find failures, compare quality, cost, and latency. <sub>(upstream description)</sub><br>

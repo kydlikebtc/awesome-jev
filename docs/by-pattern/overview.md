@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 527 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 531 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 389 · wire shape 98 · example only 0 · independent reports 33 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 392 · wire shape 99 · example only 0 · independent reports 33 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -527,6 +527,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[antigravity-mcp-semantic-search-with-typesafeai](https://github.com/greenyamao/Antigravity-mcp-semantic-search-with-TypeSafeAi)** — Fast semantic code search & diff sanity auditor for AI coding assistants (Antigravity, Cursor, Claude Code) powered by TypeSafe System One. <sub>(upstream description)</sub>
   <sub>`Benchmark` · greenyamao · `Py` · call site [`mcp_server.py`](https://github.com/greenyamao/Antigravity-mcp-semantic-search-with-TypeSafeAi/blob/HEAD/mcp_server.py), read 2026-09-22</sub>
 
+- **[Ardana](https://github.com/ardana-ai/ardana)** — Pulls and runs open decision models on your machine, the way Ollama runs chat models, and serves them behind Jev's POST /v1/systemone, so TypeSafe's SDK can point at it. Its command line and playground ask choice, score and noul questions. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · ardana-ai · `Rs` · `noul` · `choice` · `score` · cited file [`crates/ardana-server/src/lib.rs`](https://github.com/ardana-ai/ardana/blob/HEAD/crates/ardana-server/src/lib.rs), read by a model 2026-11-17 · ⚠ `not Jev itself`</sub>
+
 - **[audio-jevlike](https://github.com/alperiox/audio-jevlike)** — Prosodia: an audio-native Jev-shaped decision model — typed calibrated decisions from speech, no ASR <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · alperiox · `Py` · cited file [`space/prosodia/evaluation/baselines.py`](https://github.com/alperiox/audio-jevlike/blob/HEAD/space/prosodia/evaluation/baselines.py), read 2026-09-24 · ⚠ `not Jev itself` `no licence`</sub>
 
@@ -680,6 +683,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-symfony-bundle](https://github.com/vbcherepanov/jev-symfony-bundle)** — Unofficial Symfony bundle for TypeSafe AI's Jev: typed client, validator constraints, Messenger, Workflow guards and profiler panel <sub>(upstream description)</sub>
   <sub>`SDK` · vbcherepanov · `PHP` · call site [`src/Client/JevClientInterface.php`](https://github.com/vbcherepanov/jev-symfony-bundle/blob/HEAD/src/Client/JevClientInterface.php), read 2026-09-24</sub>
 
+- **[Jev.Net](https://github.com/brightshore/jev-net)** — Unofficial .NET client for Jev with one dependency, ported from TypeSafe's Python SDK 0.7.4: typed noul, choice and score questions sent to /v1/systemone, with retries, timeouts and extra headers per call. <sub>(written by a model)</sub>
+  <sub>`SDK` · brightshore · `C#` · `noul` · `choice` · `score` · call site [`src/Jev.Net/TypeSafeClient.cs`](https://github.com/brightshore/jev-net/blob/HEAD/src/Jev.Net/TypeSafeClient.cs), read by a model 2026-11-17</sub>
+
 - **[jev4mellea](https://github.com/SoundBlaster/Jev4Mellea)** — Jev adapter for Mellea <sub>(upstream description)</sub>
   <sub>`Integration` · soundblaster · `Py` · call site [`src/mellea_jev/providers/typesafe.py`](https://github.com/SoundBlaster/Jev4Mellea/blob/HEAD/src/mellea_jev/providers/typesafe.py), read 2026-09-22</sub>
 
@@ -715,6 +721,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[kunobi-jev](https://github.com/kunobi-ninja/kunobi-decision)** — Rust client for the TypeSafe System One API (Jev) <sub>(upstream description)</sub>
   <sub>`SDK` · kunobi-ninja · `Rs` · call site [`src/client/mod.rs`](https://github.com/kunobi-ninja/kunobi-decision/blob/HEAD/src/client/mod.rs), read 2026-09-22</sub>
+
+- **[Minos.NET](https://github.com/MarcelRoozekrans/Minos.NET)** — Unofficial .NET client for Jev's /v1/systemone. You declare noul, choice and score questions as a C# type and a source generator writes the request and the answer parsing at compile time, so it runs under Native AOT; an IDecisionClient sends it to TypeSafe or through OpenRouter. <sub>(written by a model)</sub>
+  <sub>`SDK` · MarcelRoozekrans · `C#` · `noul` · `choice` · `score` · call site [`src/Minos.NET.SystemOne/SystemOneDecisionClient.cs`](https://github.com/MarcelRoozekrans/Minos.NET/blob/HEAD/src/Minos.NET.SystemOne/SystemOneDecisionClient.cs), read by a model 2026-11-17</sub>
 
 - **[Nouli](https://github.com/nouli-ai/nouli)** — Terminal app, CLI and Rust library for decision networks: small decisions chained into bigger ones, each step a noul, choice or score question to a decision model, every step traced. Its setup connects TypeSafe's jev-latest, Jev through OpenRouter, Cloudflare's Clef, Ollama or llama.cpp. <sub>(written by a model)</sub>
   <sub>`Project` · nouli-ai · `Rs` · `choice` · `noul` · `score` · call site [`nouli-cli/src/connect/recipes.rs`](https://github.com/nouli-ai/nouli/blob/HEAD/nouli-cli/src/connect/recipes.rs), read by a model 2026-11-12</sub>
@@ -975,7 +984,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 216 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 217 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — Toolkit for voice AI avatars in apps, phone lines, signage and the metaverse. Its Jev turn-end gate asks a noul on the transcript, whether the assistant should stay silent and leave the user's turn open, and maps that probability to a wait of 0.4 to 2 seconds; on any error the turn ends. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · uezo · `Py` · call site [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py), read 2026-09-22</sub>
@@ -1459,6 +1468,9 @@ Projects and plugins with code, 216 of them, whose only pattern is `overview` an
 
 - **[jevals](https://github.com/dayhaysoos/jevals)** — Local evaluation workbench for TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · dayhaysoos · `TS` · call site [`src/server.ts`](https://github.com/dayhaysoos/jevals/blob/HEAD/src/server.ts), read 2026-09-24</sub>
+
+- **[JEVals](https://github.com/duberblock/jevals)** — Playground that sends a System One request with noul, choice and score questions to real Jev and to an LLM emulator, then compares the answers question by question, with an independent answer and a judge, across three web screens. <sub>(written by a model)</sub>
+  <sub>`Project` · duberblock · `Py` · `noul` · `choice` · `score` · call site [`apps/api/app/providers/jev.py`](https://github.com/duberblock/jevals/blob/HEAD/apps/api/app/providers/jev.py), read by a model 2026-11-17 · ⚠ `3rd-party key`</sub>
 
 - **[jevcode](https://github.com/miounet11/jevcode)** — JevCode: technical solutions and best practices for Jev (TypeSafe System One), with a companion website.
   <sub>`Project` · miounet11 · `TS` · call site [`scripts/build-jev-cards.mjs`](https://github.com/miounet11/jevcode/blob/HEAD/scripts/build-jev-cards.mjs), read 2026-09-24 · ⚠ `no licence`</sub>
