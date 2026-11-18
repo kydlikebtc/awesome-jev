@@ -14,3 +14,4 @@
 # catalogued or declined is shown as settled until the upkeep deletes it.
 alexei-led/pi-model-router  # routes with whichever classifier Pi's registry.classify is given, so its router code holds no Jev call; Jev appears only in model-router.example.json and docs/examples/classifier-catalog.ts, and whether an example config is a call site is a rule question (2026-11-13)
 stefanwebb/meta-awesome-jev  # a meta list merging 106 awesome-jev lists into one README and catalog; its scripts render those and call no model, so it is a sibling list or a directory row, not a row the daily run drafts (2026-11-13)
+wh0rigin/pi-thinking-router-jev  # its client posts a choice to an endpoint the user must configure (no default) with question and options fields rather than instructions, calling it pi-decision-prior's protocol, so the code alone does not show the request reaches Jev (2026-11-18)

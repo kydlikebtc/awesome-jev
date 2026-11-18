@@ -133,7 +133,7 @@ class RealCatalogueTest(unittest.TestCase):
         self.assertEqual(
             sorted(e["slug"] for e in measurements.negative(CATALOG)),
             ["hermes-agent-jev-evaluation", "hermes-jev-skills", "jev-skill-router",
-             "no-mistakes-review-context", "worldmonitor-shadow-mode"],
+             "jevkit-bragamat", "no-mistakes-review-context", "worldmonitor-shadow-mode"],
         )
         self.assertEqual(_stats.compute()["negative_results"], len(measurements.negative(CATALOG)))
 
