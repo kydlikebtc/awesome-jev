@@ -54,6 +54,8 @@
 
 ## This week's launches
 
+No launch is on the board this week. A launch submitted by Thursday 23:59 UTC is filed on Friday and opens the next Monday: [launch a product](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml), yours or one you found, such as those rising below.
+
 ### 🏆 Last week: 2026-W46
 
 <table>
@@ -65,7 +67,7 @@
 <sub>▲ 0 votes, 0.0 counted · hunted by [kydlikebtc](https://github.com/kydlikebtc) · 👤 a person read the call site</sub>
 
 </td>
-<td align="center" width="80"><b>🥇&nbsp;0.0</b><br><sub>votes</sub></td>
+<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>votes</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html"><img src="https://github.com/mattt.png?size=96" width="48" height="48" alt="anydecisionmodel"></a></td>
@@ -75,7 +77,7 @@
 <sub>▲ 0 votes, 0.0 counted · hunted by [kydlikebtc](https://github.com/kydlikebtc) · 👤 a person read the call site</sub>
 
 </td>
-<td align="center" width="80"><b>🥈&nbsp;0.0</b><br><sub>votes</sub></td>
+<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>votes</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html"><img src="https://github.com/leepokai.png?size=96" width="48" height="48" alt="jev-guard"></a></td>
@@ -85,7 +87,7 @@
 <sub>▲ 0 votes, 0.0 counted · hunted by [kydlikebtc](https://github.com/kydlikebtc) · 👤 a person read the call site</sub>
 
 </td>
-<td align="center" width="80"><b>🥉&nbsp;0.0</b><br><sub>votes</sub></td>
+<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>votes</sub></td>
 </tr>
 </table>
 

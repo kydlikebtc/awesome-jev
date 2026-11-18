@@ -235,6 +235,18 @@ class FeedTests(unittest.TestCase):
             self.assertEqual(feed["heading"], board.HERO["en"]["rising"])
             self.assertEqual(feed["cards"][0]["count"], "+50")
             self.assertEqual(feed["cards"][0]["mark"], "★")
+        # A closed week nobody's vote counted in, or one older than last week,
+        # gives the cover to the rising products (2026-11-18).
+        nobody = {**closed, "launches": [{**launch, "result": {"votes": 0, "counted": 0, "discounted": 0, "rank": 1}}]}
+        later = {**row, "first_seen": "2026-11-17"}  # the files' today is in 2026-W47
+        for catalog, weeks in (([row], [nobody]), ([later], [closed])):
+            with self.subTest(weeks=weeks), patch.object(board.launches, "weeks", return_value=weeks), \
+                    patch.object(board.launches, "readings", return_value=[before, after]):
+                self.assertEqual(board.hero(catalog, "en")["heading"], board.HERO["en"]["rising"])
+        with patch.object(board.launches, "weeks", return_value=[closed]), \
+                patch.object(board.launches, "readings", return_value=[before, after]):
+            self.assertEqual(board.hero([{**row, "first_seen": "2026-11-10"}], "en")["heading"],
+                             "LAST WEEK · 2026-W45 · RESULTS")
 
 
 class HeroSelectionTests(unittest.TestCase):

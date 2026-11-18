@@ -54,6 +54,8 @@
 
 ## 本周发布榜
 
+本周榜上没有 Launch。周四 23:59 UTC 前提交的 Launch 周五登记、下周一开榜：[发布一个产品](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml)，自己做的或你发现的都行，比如下面上升最快的这些。 <sub>(机翻)</sub>
+
 ### 🏆 上周：2026-W46
 
 <table>
@@ -65,7 +67,7 @@
 <sub>▲ 0 票，计 0.0 票 · [kydlikebtc](https://github.com/kydlikebtc) 推荐 · 👤 有人读过调用点</sub>
 
 </td>
-<td align="center" width="80"><b>🥇&nbsp;0.0</b><br><sub>票</sub></td>
+<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>票</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html"><img src="https://github.com/mattt.png?size=96" width="48" height="48" alt="anydecisionmodel"></a></td>
@@ -75,7 +77,7 @@
 <sub>▲ 0 票，计 0.0 票 · [kydlikebtc](https://github.com/kydlikebtc) 推荐 · 👤 有人读过调用点</sub>
 
 </td>
-<td align="center" width="80"><b>🥈&nbsp;0.0</b><br><sub>票</sub></td>
+<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>票</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html"><img src="https://github.com/leepokai.png?size=96" width="48" height="48" alt="jev-guard"></a></td>
@@ -85,7 +87,7 @@
 <sub>▲ 0 票，计 0.0 票 · [kydlikebtc](https://github.com/kydlikebtc) 推荐 · 👤 有人读过调用点</sub>
 
 </td>
-<td align="center" width="80"><b>🥉&nbsp;0.0</b><br><sub>票</sub></td>
+<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>票</sub></td>
 </tr>
 </table>
 

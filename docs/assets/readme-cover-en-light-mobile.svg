@@ -23,17 +23,17 @@
 <text x="396" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,368</text>
 <text x="396" y="355" font-size="19" class="muted">call-site records</text>
 <rect x="36" y="392" width="528" height="132" rx="12" fill="#ffffff" stroke="#d1d9e0"/>
-<text x="56" y="424" font-size="13" class="mono faint" letter-spacing="1.2">LAST WEEK · 2026-W46 · RESULTS</text>
-<path d="M62 442.8l5.25 8.399999999999999h-10.5z" fill="#a15c00"/>
-<text x="78" y="452" font-size="14" class="mono accent" font-weight="600">0 #1</text>
-<text x="122.72" y="452" font-size="15" class="mono" font-weight="600">agent-desktop</text>
-<text x="253.62" y="452" font-size="13" class="muted">Desktop automation: Jev picks the button,…</text>
-<path d="M62 468.8l5.25 8.399999999999999h-10.5z" fill="#a15c00"/>
-<text x="78" y="478" font-size="14" class="mono accent" font-weight="600">0 #2</text>
-<text x="122.72" y="478" font-size="15" class="mono" font-weight="600">anydecisionmodel</text>
-<text x="281.52" y="478" font-size="13" class="muted">Swift package for typed choices, scor…</text>
-<path d="M62 494.8l5.25 8.399999999999999h-10.5z" fill="#a15c00"/>
-<text x="78" y="504" font-size="14" class="mono accent" font-weight="600">0 #3</text>
-<text x="122.72" y="504" font-size="15" class="mono" font-weight="600">jev-guard</text>
-<text x="216.42000000000002" y="504" font-size="13" class="muted">Hook for coding agents: Jev judges each tool cal…</text>
+<text x="56" y="424" font-size="13" class="mono faint" letter-spacing="1.2">RISING · STARS GAINED THIS WEEK</text>
+<polygon points="62.0,441.8 63.3,445.2 67.0,445.4 64.1,447.7 65.1,451.2 62.0,449.2 58.9,451.2 59.9,447.7 57.0,445.4 60.7,445.2" fill="#a15c00"/>
+<text x="78" y="452" font-size="14" class="mono accent" font-weight="600">+56</text>
+<text x="114.03999999999999" y="452" font-size="15" class="mono" font-weight="600">OnlyRead</text>
+<text x="198.44" y="452" font-size="13" class="muted">Chrome extension that keeps browser agents read-…</text>
+<polygon points="62.0,467.8 63.3,471.2 67.0,471.4 64.1,473.7 65.1,477.2 62.0,475.2 58.9,477.2 59.9,473.7 57.0,471.4 60.7,471.2" fill="#a15c00"/>
+<text x="78" y="478" font-size="14" class="mono accent" font-weight="600">+21</text>
+<text x="114.03999999999999" y="478" font-size="15" class="mono" font-weight="600">JevGPT: Thinking Fast…</text>
+<text x="328.64" y="478" font-size="13" class="muted">Research agent from arXiv 26…</text>
+<polygon points="62.0,493.8 63.3,497.2 67.0,497.4 64.1,499.7 65.1,503.2 62.0,501.2 58.9,503.2 59.9,499.7 57.0,497.4 60.7,497.2" fill="#a15c00"/>
+<text x="78" y="504" font-size="14" class="mono accent" font-weight="600">+13</text>
+<text x="114.03999999999999" y="504" font-size="15" class="mono" font-weight="600">jev-recipes</text>
+<text x="226.34" y="504" font-size="13" class="muted">80+ composable TypeScript recipes powered b…</text>
 </svg>
