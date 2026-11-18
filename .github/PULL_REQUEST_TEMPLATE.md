@@ -12,7 +12,7 @@
 - [ ] `question_types` reflects the call site I read, which `evidence` cites (or `evidence_none` says why it cannot: lint requires one when the repository is on GitHub), and I left `primitives_seen` to the weekly run (a script's text signal, never a substitute for reading the call)
 - [ ] `summary_zh` is Chinese I wrote myself, or `zh_machine: true` is set because a model wrote or drafted it (kept even after my edits; a row claimed from `docs/zh-queue.md` then says in `notes` that a model translated it and who checked it)
 - [ ] Caveats are flagged, and any flag needing an explanation has a `notes` line; `negative-result` only on a row that is not a benchmark, whose own author measured Jev and did not adopt it, with a `notes` line naming where they say so
-- [ ] This is my own project (I wrote or maintain it): its row has a source `{"catalog": "author submission", "url": <this pull request, or the issue that proposed it>}` and `self-submitted` in `flags`. Leave unticked otherwise.
+- [ ] This is my own project (I wrote or maintain it): its row has a source `{"catalog": "author submission", "url": <this pull request, or the issue that proposed it>}` and `self-submitted` in `flags`. Leave unticked otherwise. Once it merges, "Launch it" on its page puts it on the weekly launch board.
 
 <details>
 <summary>Every other field rule: tick the ones for fields your rows use</summary>

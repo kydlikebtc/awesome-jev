@@ -17,6 +17,7 @@ import pathlib
 import sys
 import tempfile
 import unittest
+import unittest.mock
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -349,6 +350,101 @@ class CollectTest(unittest.TestCase):
                                                lookup=FakeLookup(users={"o": None}))
         self.assertEqual(data["launches"], [])
         self.assertTrue(any("tries again" in n for n in notes), notes)
+
+
+def entry_body(url: str = "https://github.com/o/newthing", *, own: bool = True, ask: bool = True,
+               tagline: str = "Routes tickets with one Choice") -> str:
+    """A new-entry issue's body as GitHub renders the "Add an entry" form."""
+    import draft_from_issue as dfi
+
+    def box(label: str, on: bool) -> str:
+        return f"- [{'x' if on else ' '}] {label}"
+    return "\n\n".join([
+        f"### URL\n\n{url}", "### Title\n\nNew Thing", "### What does it actually demonstrate?\n\nRoutes tickets.",
+        f"### Does it call Jev?\n\n{dfi.READ_IT}",
+        "### Which primitives does the code actually call?\n\n- [x] `choice`",
+        "### Which decision pattern(s)?\n\nintent-routing",
+        "### Anything a reader deserves to know before clicking?\n\n" + box(dfi.OWN, own),
+        "### Notes\n\n_No response_",
+        "### Launch it on the board?\n\n" + box(dfi.LAUNCH_ASK, ask),
+        f"### One line for the board\n\n{tagline or '_No response_'}",
+        "### Confirmation\n\n- [x] I opened this link and wrote the summary from what was actually there",
+    ])
+
+
+def entry(number: int = 91, login: str = "o", created: str = "2026-11-10T10:00:00Z", **form) -> dict:
+    return {"number": number, "user": {"login": login}, "created_at": created, "body": entry_body(**form),
+            "labels": [{"name": launch_intake.ENTRY_LABEL}], "state": "closed"}
+
+
+class NewEntryLaunchTest(unittest.TestCase):
+    """Since 2026-11-18 an author adding their own project can launch it in the
+    same step: a new-entry issue that ticks the launch box is read as a launch
+    issue once its row is in."""
+
+    NEW = row("newthing", url="https://github.com/o/newthing")
+
+    def test_the_entry_form_s_answers_become_the_launch_form_s(self):
+        form = launch_intake.launch_answers(entry())
+        self.assertEqual((form["product"], form["role"], form["tagline"], form["source"]),
+                         ("https://github.com/o/newthing", launch_intake.MAKER, "Routes tickets with one Choice",
+                          "new-entry"))
+        self.assertEqual(launch_intake.ticked(form["confirm"]), list(launch_intake.CONFIRMS))
+        self.assertEqual(launch_intake.launch_answers(entry(own=False))["role"], launch_intake.HUNTER)
+        self.assertIsNone(launch_intake.launch_answers(entry(ask=False)))
+        self.assertEqual(launch_intake.launch_answers(issue())["source"], "launch")
+
+    def test_it_waits_for_its_row_then_launches_as_its_makers(self):
+        catalog = json.loads(json.dumps(CATALOG))
+        data, changed, notes = launch_intake.collect("2026-W47", [entry()], catalog, [], lookup=FakeLookup())
+        self.assertEqual(data["launches"], [])
+        self.assertEqual(notes, ["#91: a new entry that asks to launch; its row is not in the catalogue yet"])
+        # The row landed (and closed the issue): the next filing takes it.
+        catalog.append(json.loads(json.dumps(self.NEW)))
+        data, changed, notes = launch_intake.collect("2026-W47", [entry()], catalog, [], lookup=FakeLookup())
+        self.assertEqual(data["launches"], [{
+            "product": "newthing", "issue": 91, "submitted_by": "o", "role": "maker", "submitted_on": "2026-11-10",
+            "tagline": "Routes tickets with one Choice", "status": "scheduled",
+        }])
+        self.assertEqual(changed, ["newthing"])
+        self.assertEqual(catalog[-1]["tagline"], "Routes tickets with one Choice")
+        self.assertEqual(check_launches.check(catalog, {"2026-W47": data}, {}, LAUNCH_SCHEMA, MAKER_SCHEMA), [])
+        # Filed once: the next filing finds it on the week already.
+        again, _, notes = launch_intake.collect("2026-W48", [entry()], catalog, [data], lookup=FakeLookup())
+        self.assertEqual(again["launches"], [])
+
+    def test_the_board_s_rules_still_apply(self):
+        catalog = CATALOG + [self.NEW]
+        # Someone else's project: a hunter's launch.
+        result = assess(entry(login="h", own=False), catalog=catalog)
+        self.assertEqual((result["verdict"], result["launch"]["role"]), ("ready", "hunter"))
+        # Claimed as their own, and the check cannot confirm it: a hunter's too, and it says why.
+        result = assess(entry(login="h"), catalog=catalog)
+        self.assertEqual(result["launch"]["role"], "hunter")
+        self.assertTrue(any("could not confirm" in n for n in result["notes"]), result["notes"])
+        # No line for the board, or one too long: not launched, and said.
+        for line in ("", "x" * 81):
+            result = assess(entry(tagline=line), catalog=catalog)
+            self.assertEqual(result["verdict"], "refused")
+            self.assertTrue(any("line about it" in p for p in result["problems"]), result["problems"])
+
+    def test_the_filing_reads_entries_that_ask_open_or_closed(self):
+        asks, plain = entry(number=91), entry(number=92, ask=False)
+        pull = {**entry(number=93), "pull_request": {}}
+        launch_issue = {**issue(number=94), "labels": [{"name": "launch"}]}
+        asked = []
+
+        def api_get(path):
+            asked.append(path)
+            return [asks, plain, pull] if "new%20entry" in path else [launch_issue]
+        with unittest.mock.patch.object(launch_intake._github, "api_get", side_effect=api_get):
+            self.assertEqual([i["number"] for i in launch_intake.entry_issues("o/r", today=dt.date(2026, 11, 20))],
+                             [91])
+            self.assertEqual([i["number"] for i in launch_intake.launch_issues("o/r")], [91, 94])
+        self.assertIn("labels=new%20entry&state=all&since=2026-08-22T00:00:00Z", asked[0])
+        # The products about to launch whose call site nobody read include an entry's.
+        catalog = CATALOG + [row("newthing", url="https://github.com/o/newthing", evidence={"path": "x", "matched": ["y"]})]
+        self.assertEqual([x[0] for x in launch_intake.unread(catalog, [], [asks])], ["newthing"])
 
 
 class UnreadTest(unittest.TestCase):

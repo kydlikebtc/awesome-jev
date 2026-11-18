@@ -525,7 +525,9 @@ them. If you did, you know best whether it is right.
   vote, with the
   [Launch a product](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml)
   form ([docs/launches.md](docs/launches.md)); "Launch it" on the product's
-  page opens that form with the product filled in. The confirm form above also
+  page opens that form with the product filled in. Adding your project with
+  the "Add an entry" form, tick *Launch it on the weekly board once its row
+  is in* and it launches once its row lands, with no second form. The confirm form above also
   takes your product's one line (`tagline`) and a link where it runs
   (`demo_url`), in your words, and "Made this?" on the page opens it the same
   way.

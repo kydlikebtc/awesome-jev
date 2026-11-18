@@ -62,12 +62,19 @@ FIELDS = {
     "Which decision pattern(s)?": "patterns",
     "Anything a reader deserves to know before clicking?": "caveats",
     "Notes": "notes",
+    "Launch it on the board?": "launch",
+    "One line for the board": "tagline",
     "Confirmation": "confirm",
 }
 READ_IT = "Yes — I read the call site"
 ALTERNATIVE = "No — it is a Jev-like alternative or reimplementation"
 PRIMITIVES = ("choice", "score", "noul")
 OWN = "This is my own project — I wrote or maintain it (listed with the `self-submitted` flag)"
+# Since 2026-11-18 the form can ask to launch the product once its row is in:
+# launch_intake.py's Friday filing reads such an issue as a launch issue
+# (launch_intake.launch_answers). The box carries the launch form's vote pledge.
+LAUNCH_ASK = ("Launch it on the weekly board once its row is in. I will not buy votes or ask accounts to vote "
+              "in bulk; a launch found gamed is removed, with the reason kept")
 # A box that names exactly one flag sets it.
 CAVEAT_FLAGS = {
     "Performance numbers in it are the vendor's, not measured": "vendor-reported",
@@ -222,6 +229,31 @@ def launch_line(row: dict) -> str:
             f"or read [how the board works]({launches.query.LAUNCHES_DOC}) first.")
 
 
+def launch_ask(form: dict) -> list[str]:
+    """What the comment says when the form asks to launch the product once its
+    row is in (LAUNCH_ASK): when and as whose it launches, and whether the
+    line for the board needs changing first. The line itself is not quoted
+    back: everything the author wrote stays inside the draft's JSON block."""
+    if LAUNCH_ASK not in ticked(form.get("launch", "")):
+        return []
+    import launch_intake  # launch_intake imports this module; the bounds are its own
+
+    low, high = launch_intake.TAGLINE
+    whose = ("as yours if the check can confirm you made it (you own the repository, are a public member of its "
+             "organisation, or are one of its most active contributors), and otherwise as a hunter's"
+             if OWN in ticked(form.get("caveats", "")) else
+             "as a hunter's, since the form does not say it is your own project")
+    lines = [f"You asked to launch it on the weekly board. Once its row is in the catalogue, the filing early on "
+             f"Friday puts it on the next week's board, {whose}, with the line you gave; the link to its vote "
+             f"post is posted here when the week opens. Nothing else to fill in. "
+             f"[How the board works]({launches.query.LAUNCHES_DOC})."]
+    size = len(one_line(form.get("tagline", "")))
+    if not low <= size <= high:
+        lines += ["", f"The board needs one line about it first, {low} to {high} characters (it has {size}): edit "
+                      "the issue's *One line for the board* answer, and the filing reads the new one."]
+    return lines
+
+
 def find_row(rows: list[dict], slug: str) -> dict | None:
     return next((row for row in rows if (_github.repo_of(row) or "").lower() == slug), None)
 
@@ -254,7 +286,10 @@ def comment(issue: dict, *, read=None, today: dt.date | None = None) -> str:
             lines.append("The form says this is your own project, and the row does not say so yet. A "
                          "maintainer adds the `self-submitted` flag with this issue as its source, so every "
                          "surface discloses it.")
-        if launches.is_product(listed):
+        asked = launch_ask(form)
+        if asked:
+            lines += [""] + asked
+        elif launches.is_product(listed):
             lines.append("")
             lines.append(launch_line(listed))
         return "\n".join(head + lines + [""])
@@ -321,10 +356,10 @@ def comment(issue: dict, *, read=None, today: dt.date | None = None) -> str:
         f"what one row needs, and `Closes #{issue['number']}` in its description closes this issue when "
         "the row lands. Or leave it here, and a maintainer will.",
         "",
+    ] + (launch_ask(form) or [
         f"Once the row is in the catalogue, the product can also launch on the weekly board: "
-        f"[how the board works]({launches.query.LAUNCHES_DOC}).",
-        "",
-    ])
+        f"[how the board works]({launches.query.LAUNCHES_DOC})."
+    ]) + [""])
 
 
 def main(argv: list[str] | None = None) -> int:
