@@ -56,7 +56,7 @@
 
 No launch is on the board this week. A launch submitted by Thursday 23:59 UTC is filed on Friday and opens the next Monday: [launch a product](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml), yours or one you found, such as those rising below.
 
-### ★ Rising: 2026-11-10 to 2026-11-17
+### ★ Rising: 2026-11-11 to 2026-11-18
 
 <table>
 <tr>
@@ -64,20 +64,20 @@ No launch is on the board this week. A launch submitted by Thursday 23:59 UTC is
 <td>
 
 **[OnlyRead](https://kydlikebtc.github.io/awesome-jev/products/onlyread.html)** — Chrome extension that keeps browser agents read-only on the sites you pick: rules, per-site decoders and a verdict cache settle most requests, and Jev answers a noul on the rest (does this request create, modify or delete stored data?); code allows, blocks or sends the middle band to a review model. <sub>(written by a model)</sub><br>
-<sub>37 → 93 stars (+151%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=onlyread&title=Launch%3A%20OnlyRead)</sub>
+<sub>55 → 99 stars (+80%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=onlyread&title=Launch%3A%20OnlyRead)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+56</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+44</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html"><img src="https://github.com/sunyasheng.png?size=96" width="48" height="48" alt="JevGPT: Thinking Fast and Slow in Autonomous Research"></a></td>
 <td>
 
 **[JevGPT: Thinking Fast and Slow in Autonomous Research](https://kydlikebtc.github.io/awesome-jev/products/jevgpt-sunyasheng.html)** — Research agent from arXiv 2610.18272. GPT-5.5 plans searches and writes the answer; in BrowseComp-Plus QA, Jev answers a Choice over numbered source lines (where is the answer) and a Noul (does the region address it) per document region and query, in parallel. GPT gets the original lines.<br>
-<sub>23 → 44 stars (+91%) · 🔍 text match only, nobody has read it · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgpt-sunyasheng&title=Launch%3A%20JevGPT%3A%20Thinking%20Fast%20and%20Slow%20in%20Autonomous%20Research)</sub>
+<sub>26 → 44 stars (+69%) · 🔍 text match only, nobody has read it · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jevgpt-sunyasheng&title=Launch%3A%20JevGPT%3A%20Thinking%20Fast%20and%20Slow%20in%20Autonomous%20Research)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+21</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+18</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-recipes.html"><img src="https://github.com/agencyenterprise.png?size=96" width="48" height="48" alt="jev-recipes"></a></td>
@@ -94,20 +94,20 @@ No launch is on the board this week. A launch submitted by Thursday 23:59 UTC is
 <td>
 
 **[optim-jev](https://kydlikebtc.github.io/awesome-jev/products/optim-jev.html)** — Claude Code plugin (Codex too) with three Jev tools: jev-compacter asks which stale tool calls and outputs can be dropped when context is compacted, jev-router picks a model and effort for each subagent, and jev-skills sends a short relevant skill list per prompt instead of the whole catalog. <sub>(written by a model)</sub><br>
-<sub>52 → 73 stars (+40%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=optim-jev&title=Launch%3A%20optim-jev)</sub>
+<sub>52 → 77 stars (+48%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=optim-jev&title=Launch%3A%20optim-jev)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+21</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+25</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-seo-agricidaniel.html"><img src="https://github.com/AgriciDaniel.png?size=96" width="48" height="48" alt="jev-seo"></a></td>
 <td>
 
 **[jev-seo](https://kydlikebtc.github.io/awesome-jev/products/jev-seo-agricidaniel.html)** — SEO audit from one homepage URL: it crawls the site, checks 52 rules and Core Web Vitals, and asks Jev choice, score and noul questions about each page (type, search intent, helpfulness, trust, whether it opens with the point). Code acts only on decisive answers (0.80 confidence) and ranks fixes. <sub>(written by a model)</sub><br>
-<sub>763 → 968 stars (+27%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jev-seo-agricidaniel&title=Launch%3A%20jev-seo)</sub>
+<sub>765 → 990 stars (+29%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jev-seo-agricidaniel&title=Launch%3A%20jev-seo)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+205</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+225</b><br><sub>stars</sub></td>
 </tr>
 </table>
 
