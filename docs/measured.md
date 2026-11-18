@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 101 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 104 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -51,6 +51,14 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   **Caveats:** `measured, not adopted`
 
   > Its author ran it on 2026-09-21 and concluded that, as a router, it is unlikely to help a strong model, which already sees every skill's description. Its README: 6 of 6 scripted requests handled sensibly on 0.2.0, 3 of 6 real-session prompts wrong on 0.1.0, which the author calls an anecdote, not a rate. It stays in shadow mode. https://dev.to/shimo4228/i-added-jevs-skill-router-to-claude-code-and-turned-back-just-before-rewriting-the-skill-listing-34in A model wrote this row's Chinese note.
+
+- **[jevkit](https://github.com/bragamat/jevkit)**<br>
+  Command line toolkit that puts Jev in a coding agent's toolbox: find ranks a file's lines for a question, check tests whether the source backs a claim, triage asks the same questions about many items, and decide, yesno and score return a verdict (act, confirm or rephrase) tuned to the risk. <sub>(written by a model)</sub><br>
+  <sub>`Project` · bragamat · `Go` · `choice` · `noul` · `score` · [call site](https://github.com/bragamat/jevkit/blob/HEAD/internal/typesafe/client.go), read by a model 2026-11-18</sub>
+
+  **Caveats:** `measured, not adopted`
+
+  > Unofficial. Its docs/STUDIES.md records A/B runs of a removed gateway that used Jev to route tools and trim context: no saving in Claude Code (1.04x cost), 0.90x input in Codex. The author removed it, finding plain settings cut more. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-18; a maintainer has not yet read the call site.
 
 ## Other independent reports
 
@@ -270,6 +278,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 
   > The Codex and other LLM controllers, the Ollama and locally served decision models, and the baseline are not Jev. The scores are the author's runs: Jev 1.14 scored 80.5 and the LLMs landed only in lockstep. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-16; a maintainer has not yet read the call site.
 
+- **[Jev Benchmark](https://github.com/yididev/jev-benchmark)**<br>
+  Benchmark of rubric-based zero-shot classification, chained decision-tree execution and exam grading. Each document goes to Jev as one choice whose criteria are the rubric's folder descriptions, against two Claude models, OpenJev and open-weight decision models on accuracy, calibration and price. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · yididev · `Py` · `choice` · [call site](https://github.com/yididev/jev-benchmark/blob/HEAD/arms/jev.py), read by a model 2026-11-18</sub>
+
+  > Claude Haiku and Sonnet, OpenJev, Kev-4B, Nimble-9B, CLM-8B, Laya, Cygnet, Winnow-Q8, Strands Decider, Clef and the NLI and embedding controls are not Jev. The figures are the author's runs: 98.84% accuracy for Jev against 96.46% for Haiku on CT1-8. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-18; a maintainer has not yet read the call site.
+
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)**<br>
   Benchmark of Jev against open decision models on 480 authored general Persian questions, 560 literary questions and a classical poetry pilot, asked as choices, nouls and scores with raw responses saved and scored locally; Jev leads on choice and noul accuracy. <sub>(written by a model)</sub><br>
   <sub>`Benchmark` · armanjr · `Py` · `choice` · `noul` · `score` · [call site](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py), read by a model 2026-11-11</sub>
@@ -373,6 +387,14 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[jev-fanout-bench](https://github.com/blowxian/jev-fanout-bench)**<br>
   Measured: asking TypeSafe Jev N questions in one call bills the state once. 2,976 real requests, raw data, exact billing check. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · blowxian · `Py` · [call site](https://github.com/blowxian/jev-fanout-bench/blob/HEAD/bench.py), read 2026-09-24</sub>
+
+- **[jev-guardbench](https://github.com/dfranco-projects/jev-guardbench)**<br>
+  Tests whether Jev can replace the LLM judge that checks an agent's messages for personal data, prompt injection and harmful requests or replies: one noul per policy, or per split-out condition, on 7,925 public rows and inside a google-adk agent, against Gemini Flash and Claude Haiku judges. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · dfranco-projects · `Py` · `noul` · [call site](https://github.com/dfranco-projects/jev-guardbench/blob/HEAD/src/guardbench/guards/systemone.py), read by a model 2026-11-18</sub>
+
+  **Caveats:** `no licence`
+
+  > Gemini 3.6 Flash and Claude Haiku are not Jev. The figures are the author's runs: Jev was about 3x faster and 10-25x cheaper, matched the best judge on personal data and prompt injection and trailed on harmful content, missing the bar set in advance. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-18; a maintainer has not yet read the call site.
 
 - **[jev-korean-benchmark](https://github.com/mahlernim/jev-korean-benchmark)**<br>
   Reproducible early-access evaluation of Jev on Korean understanding and medical text, with runtime and cost evidence <sub>(upstream description)</sub><br>

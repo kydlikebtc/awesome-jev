@@ -4,11 +4,11 @@
 
 _Pack many questions — including speculative ones — into one request and let code pick what mattered._
 
-Every catalogued example of this decision — 48 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 49 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#fan-out): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 40 · wire shape 1 · example only 0 · independent reports 1 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 41 · wire shape 1 · example only 0 · independent reports 1 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -165,6 +165,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[sqlite-jev](https://github.com/mgaitan/sqlite-jev)** — Batched natural-language judgments for SQLite, powered by TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · mgaitan · `C` · call site [`src/jev.c`](https://github.com/mgaitan/sqlite-jev/blob/HEAD/src/jev.c), read 2026-09-24 · ⚠ `no licence`</sub>
+
+- **[trading-bot-jev](https://github.com/Spykoninho/trading-bot-jev)** — Crypto trend-following bot, paper trading by default, that has Jev read each news item: which asset it concerns (choice), its expected price impact (score), whether it is material or a hostile regulatory action (nouls), plus questions per source. Code turns these into a small bias and a buy veto. <sub>(written by a model)</sub>
+  <sub>`Project` · Spykoninho · `TS` · `choice` · `score` · `noul` · call site [`src/brain.ts`](https://github.com/Spykoninho/trading-bot-jev/blob/HEAD/src/brain.ts), read by a model 2026-11-18 · ⚠ `vendor numbers`</sub>
 
 - **[typesafe-image-diffusion](https://github.com/Wizhill05/typesafe-image-diffusion)** — Diffusion-style pixel art out of a general classifier (TypeSafe Jev): 256 parallel pixel questions + refinement passes <sub>(upstream description)</sub>
   <sub>`Project` · wizhill05 · `TS` · call site [`fix_synthesizer.py`](https://github.com/Wizhill05/typesafe-image-diffusion/blob/HEAD/fix_synthesizer.py), read 2026-09-22 · ⚠ `no licence`</sub>

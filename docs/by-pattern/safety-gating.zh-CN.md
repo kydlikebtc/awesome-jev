@@ -4,11 +4,11 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 179 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 181 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#safety-gating)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#safety-gating)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 172 · 接口形态 3 · 仅示例 0 · 独立报告 13 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 174 · 接口形态 3 · 仅示例 0 · 独立报告 14 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -287,6 +287,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[diffjury](https://github.com/raihankhan-rk/diffjury)** — PR 风险路由器兼代码审查教练。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · raihankhan-rk · `TS` · 调用点 [`src/lib/review.ts`](https://github.com/raihankhan-rk/diffjury/blob/HEAD/src/lib/review.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
+- **[dsh-jev-advisor](https://github.com/gordan-code/dsh-jev-advisor)** — DeepSeek Harness 插件，把 Jev 的第二意见展示给你而不是智能体：对智能体的选择题给出推荐选项和概率，对工具审批建议“允许一次”或“拒绝”并附风险分，对计划给出就绪程度。在你采纳之前，什么都不会提交给 DeepSeek Harness。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · gordan-code · `JS` · `choice` · `noul` · `score` · 调用点 [`src/index.js`](https://github.com/gordan-code/dsh-jev-advisor/blob/HEAD/src/index.js)，2026-11-18 模型阅读</sub>
+
 - **[dsh-jev-decide](https://github.com/nanami-0713/dsh-jev-decide)** — DSH 插件：把 Jev 注册成一个智能体工具。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · nanami-0713 · `JS` · 调用点 [`lib/index.js`](https://github.com/nanami-0713/dsh-jev-decide/blob/HEAD/lib/index.js)，2026-09-22 阅读</sub>
 
@@ -373,6 +376,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-guard](https://github.com/muratcakmak/jev-guard)** — 为 Claude Code 提供概率评分的护栏：拒绝违反规则的修改和未经要求的部署，并把文档路由到合适的位置。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · muratcakmak · `TS` · 调用点 [`scripts/jev-lint.ts`](https://github.com/muratcakmak/jev-guard/blob/HEAD/scripts/jev-lint.ts)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[jev-guardbench](https://github.com/dfranco-projects/jev-guardbench)** — 测试 Jev 能否取代检查智能体消息的 LLM 评审，检查个人信息、提示注入以及有害的请求或回复：每条策略一个 noul，或按拆分出的条件各一个，在 7,925 条公开数据上以及 google-adk 智能体内运行，对比 Gemini Flash 和 Claude Haiku 评审。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · dfranco-projects · `Py` · `noul` · 调用点 [`src/guardbench/guards/systemone.py`](https://github.com/dfranco-projects/jev-guardbench/blob/HEAD/src/guardbench/guards/systemone.py)，2026-11-18 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[jev-logtriage](https://github.com/jyatesdotdev/jev-logtriage)** — 由 Jev 判断一批日志是否值得处理：类型化问题、置信闸门，不执行任何动作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jyatesdotdev · `Py` · 调用点 [`logtriage/cli.py`](https://github.com/jyatesdotdev/jev-logtriage/blob/HEAD/logtriage/cli.py)，2026-09-22 阅读</sub>

@@ -4,11 +4,11 @@
 
 _把大量问题（包括推测性的）打包进一次请求，再由代码挑出真正用得上的答案。_
 
-这个决策的全部已收录例子 —— 共 48 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#并行扇出)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 49 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#并行扇出)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#fan-out)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#fan-out)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 40 · 接口形态 1 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 7。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 41 · 接口形态 1 · 仅示例 0 · 独立报告 1 · 负面结果 0 · 未引用文件 7。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -165,6 +165,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[sqlite-jev](https://github.com/mgaitan/sqlite-jev)** — 为 SQLite 提供批量的自然语言判断，由 TypeSafe Jev 驱动。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · mgaitan · `C` · 调用点 [`src/jev.c`](https://github.com/mgaitan/sqlite-jev/blob/HEAD/src/jev.c)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
+
+- **[trading-bot-jev](https://github.com/Spykoninho/trading-bot-jev)** — 加密货币趋势跟随交易机器人，默认纸面交易，让 Jev 阅读每条新闻：主要涉及哪个资产（choice）、预期价格影响（score）、是否重要、是否为不利的监管行动（noul），外加针对各新闻源的问题。代码再把这些答案变成一个小幅偏置和买入否决。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · Spykoninho · `TS` · `choice` · `score` · `noul` · 调用点 [`src/brain.ts`](https://github.com/Spykoninho/trading-bot-jev/blob/HEAD/src/brain.ts)，2026-11-18 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[typesafe-image-diffusion](https://github.com/Wizhill05/typesafe-image-diffusion)** — 用通用分类器做扩散风格像素画：256 个并行像素问题。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · wizhill05 · `TS` · 调用点 [`fix_synthesizer.py`](https://github.com/Wizhill05/typesafe-image-diffusion/blob/HEAD/fix_synthesizer.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

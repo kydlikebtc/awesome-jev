@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 198 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 200 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 189 · 接口形态 5 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 191 · 接口形态 5 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -356,6 +356,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[instruct-jev](https://github.com/ctaxnagomi/instruct-jev)** — INSTRUCT_JEV：Jev／System One 指令语料库（choice／noul／score）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ctaxnagomi · `Py` · 调用点 [`DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py`](https://github.com/ctaxnagomi/instruct-jev/blob/HEAD/DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py)，2026-09-22 阅读</sub>
 
+- **[Jev Benchmark](https://github.com/yididev/jev-benchmark)** — 基于评分细则的零样本分类、链式决策树执行和考试评分基准。每份文档以一个 choice 发给 Jev，criteria 是细则中各文件夹的完整描述，并与两个 Claude 模型、OpenJev 和其他开源权重决策模型比较准确率、校准和价格。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · yididev · `Py` · `choice` · 调用点 [`arms/jev.py`](https://github.com/yididev/jev-benchmark/blob/HEAD/arms/jev.py)，2026-11-18 模型阅读</sub>
+
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — 在 480 道自编通用波斯语题、560 道文学题和一个古典诗歌试点上，把 Jev 与开源决策模型对比的基准：以 choice、noul 和 score 提问，保存原始响应并在本地评分；Jev 在 choice 和 noul 准确率上领先。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · armanjr · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py)，2026-11-11 模型阅读 · ⚠ `无许可证`</sub>
 
@@ -577,6 +580,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[tenbin](https://github.com/simota/tenbin)** — MCP server 兼 agent 技能：把一个判断分解成多个类型化问题。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · simota · `TS` · 调用点 [`skills/tenbin/scripts/evaluate.py`](https://github.com/simota/tenbin/blob/HEAD/skills/tenbin/scripts/evaluate.py)，2026-09-22 阅读</sub>
+
+- **[trading-bot-jev](https://github.com/Spykoninho/trading-bot-jev)** — 加密货币趋势跟随交易机器人，默认纸面交易，让 Jev 阅读每条新闻：主要涉及哪个资产（choice）、预期价格影响（score）、是否重要、是否为不利的监管行动（noul），外加针对各新闻源的问题。代码再把这些答案变成一个小幅偏置和买入否决。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · Spykoninho · `TS` · `choice` · `score` · `noul` · 调用点 [`src/brain.ts`](https://github.com/Spykoninho/trading-bot-jev/blob/HEAD/src/brain.ts)，2026-11-18 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[transcript-scorecard](https://github.com/brandonbryant12/transcript-scorecard)** — 实时客服通话评分演示。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · brandonbryant12 · `TS` · 调用点 [`apps/api/src/classifier.ts`](https://github.com/brandonbryant12/transcript-scorecard/blob/HEAD/apps/api/src/classifier.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

@@ -4,11 +4,11 @@
 
 _Score or re-rank candidates from a cheaper retrieval step._
 
-Every catalogued example of this decision — 99 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 103 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#search-ranking): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 95 · wire shape 0 · example only 0 · independent reports 8 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 99 · wire shape 0 · example only 0 · independent reports 8 · negative results 2 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -252,8 +252,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[clay-jev-people-ranker](https://github.com/promptgtm-shared/clay-jev-people-ranker)** — Agent Skill and Python workflow for Clay lead scoring, B2B prospect qualification, and people-search ranking with TypeSafe JEV. <sub>(upstream description)</sub>
   <sub>`Plugin` · promptgtm-shared · `Py` · call site [`scripts/rank_clay_people.py`](https://github.com/promptgtm-shared/clay-jev-people-ranker/blob/HEAD/scripts/rank_clay_people.py), read 2026-09-24</sub>
 
+- **[genigrep](https://github.com/Cloudgeni-ai/genigrep)** — Code search for coding agents and people: ripgrep finds candidate files from a question and keywords, then Jev ranks the files and checks each passage with nouls (relevant? covers this part?), and only the passages that answer are printed. It is a CLI, an MCP server, a library and a skill. <sub>(written by a model)</sub>
+  <sub>`Project` · Cloudgeni-ai · `TS` · `noul` · call site [`src/engine/client.ts`](https://github.com/Cloudgeni-ai/genigrep/blob/HEAD/src/engine/client.ts), read by a model 2026-11-18 · ⚠ `vendor numbers`</sub>
+
 - **[Jev Codex Token Saver](https://github.com/jcressler/jev-codex-token-saver)** — Codex plugin whose MCP server searches the workspace or groups a large log locally, then asks Jev one noul per candidate excerpt on whether it holds evidence for the query and for each stated requirement, and returns only the selected exact excerpts to Codex. <sub>(written by a model)</sub>
   <sub>`Plugin` · jcressler · `JS` · `noul` · call site [`src/investigator.mjs`](https://github.com/jcressler/jev-codex-token-saver/blob/HEAD/src/investigator.mjs), read by a model 2026-11-10</sub>
+
+- **[JEV Research MCP](https://github.com/merth1470/jev-research-mcp)** — Self-hosted MCP server for coding-agent web research: it searches, asks Jev one noul per search result whether to fetch it, parses the pages into blocks, asks again per block whether it is useful evidence, and returns compact evidence with its sources within a token budget. <sub>(written by a model)</sub>
+  <sub>`Plugin` · merth1470 · `Py` · `noul` · call site [`src/jev_research_mcp/jev/http_provider.py`](https://github.com/merth1470/jev-research-mcp/blob/HEAD/src/jev_research_mcp/jev/http_provider.py), read by a model 2026-11-18 · ⚠ `3rd-party key`</sub>
 
 - **[jev-assist](https://github.com/glud123/jev-assist)** — Don't burn your expensive main model on grep-and-guess grunt work — let jev rank the whole repo, and save the main model for reading the right files and writing the right code.
   <sub>`Project` · glud123 · `JS` · call site [`scripts/jev.mjs`](https://github.com/glud123/jev-assist/blob/HEAD/scripts/jev.mjs), read 2026-09-22</sub>
@@ -294,11 +300,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevgrep](https://github.com/allebee/jevgrep)** — grep by meaning: pipe in any text, ask a yes/no question in plain English, get only the matching lines. Works behind tail -f, about $0.004 per 1,000 lines, powered by TypeSafe's Jev.
   <sub>`Project` · allebee · `Py` · call site [`src/jevgrep/judge.py`](https://github.com/allebee/jevgrep/blob/HEAD/src/jevgrep/judge.py), read 2026-09-22</sub>
 
+- **[jevkit](https://github.com/bragamat/jevkit)** — Command line toolkit that puts Jev in a coding agent's toolbox: find ranks a file's lines for a question, check tests whether the source backs a claim, triage asks the same questions about many items, and decide, yesno and score return a verdict (act, confirm or rephrase) tuned to the risk. <sub>(written by a model)</sub>
+  <sub>`Project` · bragamat · `Go` · `choice` · `noul` · `score` · call site [`internal/typesafe/client.go`](https://github.com/bragamat/jevkit/blob/HEAD/internal/typesafe/client.go), read by a model 2026-11-18 · ⚠ `measured, not adopted`</sub>
+
 - **[jevmem](https://github.com/illescasDaniel/jev-mem)** — Long-term memory for AI agents (MCP server, CLI, library and hooks on one SQLite file) that never calls an LLM: Jev decides whether a note is safe, what kind it is, whether it contradicts an older one, which notes matter for a question and whether they are enough. <sub>(written by a model)</sub>
   <sub>`Project` · illescasDaniel · `Py` · `noul` · `choice` · `score` · call site [`src/jevmem/decider.py`](https://github.com/illescasDaniel/jev-mem/blob/HEAD/src/jevmem/decider.py), read by a model 2026-11-15 · ⚠ `vendor numbers`</sub>
 
 - **[JevRAG](https://github.com/ajanm007/jevrag)** — Python library that turns five RAG judgement calls into nouls Jev answers: whether the evidence so far is enough to stop retrieving, where to split a chunk, which passages earn a context slot, whether an answer stays grounded, and whether a cached answer is safe to reuse. <sub>(written by a model)</sub>
   <sub>`Project` · ajanm007 · `Py` · `noul` · call site [`jevrag/decision.py`](https://github.com/ajanm007/jevrag/blob/HEAD/jevrag/decision.py), read by a model 2026-11-10</sub>
+
+- **[JevTrace](https://github.com/123wwwa/JevTrace)** — Returns the JS/TS code a coding task needs within a token budget: the TypeScript compiler follows calls, types, callers and tests, and Jev scores each candidate's relevance (noul) and picks which to inspect next (choice). It runs as an MCP server for Claude Code, Codex and Cursor. <sub>(written by a model)</sub>
+  <sub>`Project` · 123wwwa · `TS` · `noul` · `choice` · call site [`src/decision-backends.ts`](https://github.com/123wwwa/JevTrace/blob/HEAD/src/decision-backends.ts), read by a model 2026-11-18 · ⚠ `vendor numbers`</sub>
 
 - **[jfind](https://github.com/religa/jfind)** — Find files by describing them in plain English: find(1) with a semantic --like predicate, answered by TypeSafe.ai's jev model <sub>(upstream description)</sub>
   <sub>`Project` · religa · `Py` · call site [`src/jfind/matcher.py`](https://github.com/religa/jfind/blob/HEAD/src/jfind/matcher.py), read 2026-09-24</sub>

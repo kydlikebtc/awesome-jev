@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 290 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 291 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 279 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 280 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -596,6 +596,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-agent-design-with-topk-logits-choices](https://github.com/6Mikao9/jev-native-agent-with-extended-options)** — Research design for a Jev-native agent system: tool integration, speculative parameter proposals, external helper logits Top-k proposals with Jev-controlled fallback ,decision-aware hierarchical memory…
   <sub>`Project` · 6mikao9 · `Py` · call site [`benchmarks/benchmark_jev_latency_breakdown.py`](https://github.com/6Mikao9/jev-native-agent-with-extended-options/blob/HEAD/benchmarks/benchmark_jev_latency_breakdown.py), read 2026-09-24 · ⚠ `no licence`</sub>
+
+- **[jev-agent-hooks](https://github.com/onlyjq04/jev-agent-hooks)** — Hooks that suggest a skill for each prompt in Claude Code, Codex and pi. Jev first picks from the whole skill roster (choice), with nouls on whether the turn wants an action, then picks from the top three using their SKILL.md text, with a fit noul each; above 0.7 the hook names the skill. <sub>(written by a model)</sub>
+  <sub>`Plugin` · onlyjq04 · `JS` · `choice` · `noul` · call site [`hooks/jev-skill-suggest.mjs`](https://github.com/onlyjq04/jev-agent-hooks/blob/HEAD/hooks/jev-skill-suggest.mjs), read by a model 2026-11-18</sub>
 
 - **[jev-agent-skill](https://github.com/yuyang2230/jev-agent-skill)** — Free typed judgments for AI agents: offload classify/screen/score/verify to Jev (TypeSafe System One) via OpenCode Zen. Claude Code / ZCode skill. 给AI代理省token的免费决策分流技能 <sub>(upstream description)</sub>
   <sub>`Plugin` · yuyang2230 · `Py` · call site [`jev.py`](https://github.com/yuyang2230/jev-agent-skill/blob/HEAD/jev.py), read 2026-09-22</sub>

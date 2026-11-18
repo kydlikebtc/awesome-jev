@@ -4,11 +4,11 @@
 
 _Classify what the user wants and send the request down the right branch._
 
-Every catalogued example of this decision — 64 of them. The same rows, with caveats, are in [the index](../../README.md#intent-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 65 of them. The same rows, with caveats, are in [the index](../../README.md#intent-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=intent-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#intent-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 53 · wire shape 0 · example only 0 · independent reports 4 · negative results 0 · no file cited 11. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 54 · wire shape 0 · example only 0 · independent reports 4 · negative results 0 · no file cited 11. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -191,6 +191,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev AI Use Cases](https://medium.com/data-science-in-your-pocket/jev-ai-use-cases-9a87d57ac3b4)** — Walks through use case after use case — agent routing, an in-agent decision layer, ticket triage — each with a concrete option set and a sample response.
   <sub>`Tutorial` · Mehul Gupta · `Py` · `choice` · ⚠ `paywall`</sub>
+
+- **[Jev Chat Gate](https://github.com/pandore/jev-chat-gate)** — Lets a group-chat agent join without being tagged when that is useful. For each untagged message Jev answers four nouls (is it an open request, is it aimed at someone else or heated, is it already answered, can the agent add something concrete) and thresholds decide whether the main model may reply. <sub>(written by a model)</sub>
+  <sub>`Project` · pandore · `JS` · `noul` · call site [`src/jev.js`](https://github.com/pandore/jev-chat-gate/blob/HEAD/src/jev.js), read by a model 2026-11-18</sub>
 
 - **[Jev on Netlify AI Gateway](https://www.netlify.com/changelog/typesafe-jev-ai-gateway/)** — Zero-config access from a Netlify function: use the official SDK with no API key, base URL or provider setup, billed through Netlify credits.
   <sub>`Integration` · `TS` · `choice`</sub>

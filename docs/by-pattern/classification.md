@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 214 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 221 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 202 · wire shape 3 · example only 0 · independent reports 22 · negative results 1 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 209 · wire shape 3 · example only 0 · independent reports 23 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -356,6 +356,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[decision-models-lab](https://github.com/shashikantdev3/decision-models-lab)** — Learning lab on decision models through OpenRouter's decisions API, with Jev and Microsoft Decision-1 side by side. The hello-world triages a ticket in one call, asking whether it is urgent (noul), which team gets it (choice) and how severe it is (score); later steps escalate unsure cases to Claude. <sub>(written by a model)</sub>
   <sub>`Tutorial` · shashikantdev3 · `JS` · `noul` · `choice` · `score` · call site [`examples/hello-world/hello.mjs`](https://github.com/shashikantdev3/decision-models-lab/blob/HEAD/examples/hello-world/hello.mjs), read by a model 2026-11-14</sub>
 
+- **[DESIGN:OS Generative UI](https://github.com/jangtrinh/design-os-generative-ui)** — Streaming UI runtime for AI agents that renders live HTML, charts and WebGL widgets. Its composer first asks a local Laya model which widget and layout fit a request (choices) and whether it is about dashboards, landing pages or alerts (nouls), and asks Jev the same when Laya is unsure. <sub>(written by a model)</sub>
+  <sub>`Plugin` · jangtrinh · `TS` · `choice` · `noul` · call site [`src/engine/jev-adapter.ts`](https://github.com/jangtrinh/design-os-generative-ui/blob/HEAD/src/engine/jev-adapter.ts), read by a model 2026-11-18</sub>
+
 - **[discoprint](https://github.com/lirantal/discoprint)** — Classify an artist's discography by theme, mood, and lyrical complexity with Jev (TypeSafe AI), and view it as a colorful terminal dashboard <sub>(upstream description)</sub>
   <sub>`Project` · lirantal · `JS` · call site [`src/jev.ts`](https://github.com/lirantal/discoprint/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
@@ -404,8 +407,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[hush](https://github.com/emreozyoruk/hush)** — Issue triage that stays quiet when it isn't sure. Calibrated labels, spam and duplicate detection — with abstention. <sub>(upstream description)</sub>
   <sub>`Project` · emreozyoruk · `JS` · call site [`src/jev.js`](https://github.com/emreozyoruk/hush/blob/HEAD/src/jev.js), read 2026-09-22</sub>
 
+- **[Jev Benchmark](https://github.com/yididev/jev-benchmark)** — Benchmark of rubric-based zero-shot classification, chained decision-tree execution and exam grading. Each document goes to Jev as one choice whose criteria are the rubric's folder descriptions, against two Claude models, OpenJev and open-weight decision models on accuracy, calibration and price. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · yididev · `Py` · `choice` · call site [`arms/jev.py`](https://github.com/yididev/jev-benchmark/blob/HEAD/arms/jev.py), read by a model 2026-11-18</sub>
+
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
+
+- **[Jev Chat Gate](https://github.com/pandore/jev-chat-gate)** — Lets a group-chat agent join without being tagged when that is useful. For each untagged message Jev answers four nouls (is it an open request, is it aimed at someone else or heated, is it already answered, can the agent add something concrete) and thresholds decide whether the main model may reply. <sub>(written by a model)</sub>
+  <sub>`Project` · pandore · `JS` · `noul` · call site [`src/jev.js`](https://github.com/pandore/jev-chat-gate/blob/HEAD/src/jev.js), read by a model 2026-11-18</sub>
 
 - **[Jev Driver](https://github.com/reinhard-z/vision-jev)** — Browser driving game: Florence-2 captions the image you drag onto the road, and a Cloudflare Worker asks Jev for the driving action, the object's category and the speed limit, each as a choice. <sub>(written by a model)</sub>
   <sub>`Project` · reinhard-z · `TS` · `choice` · call site [`worker/src/jev.ts`](https://github.com/reinhard-z/vision-jev/blob/HEAD/worker/src/jev.ts), read by a model 2026-11-14 · ⚠ `vendor numbers`</sub>
@@ -503,6 +512,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-slop-guard](https://github.com/davertor/jev-slop-guard)** — Jev Slop Guard — a Chrome extension that scores and stamps AI slop on your X and LinkedIn feeds as you scroll <sub>(upstream description)</sub>
   <sub>`Plugin` · davertor · `JS` · call site [`lib/jev.ts`](https://github.com/davertor/jev-slop-guard/blob/HEAD/lib/jev.ts), read 2026-09-24</sub>
 
+- **[jev-testing](https://github.com/mdmintz/jev-testing)** — Tests Jev at detecting CAPTCHAs with SeleniumBase: from a page's reduced HTML, Jev answers whether a CAPTCHA is present (noul), how confident it is on a 0-100 scale (score), and which kind it is, such as Turnstile, reCAPTCHA or hCaptcha (choice). <sub>(written by a model)</sub>
+  <sub>`Project` · mdmintz · `Py` · `noul` · `score` · `choice` · call site [`seleniumbase_jev.py`](https://github.com/mdmintz/jev-testing/blob/HEAD/seleniumbase_jev.py), read by a model 2026-11-18</sub>
+
 - **[jev-trace-classifier](https://github.com/sypherin/jev-trace-classifier)** — Application of TypeSafe Jev (noul judgment primitive) on the collusion.wiki corpus: agent vs human page authorship, head-to-head vs local Qwen3.8-Flash-Next <sub>(upstream description)</sub>
   <sub>`Benchmark` · sypherin · `Py` · call site [`jev_client.py`](https://github.com/sypherin/jev-trace-classifier/blob/HEAD/jev_client.py), read 2026-09-22</sub>
 
@@ -535,6 +547,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevgate](https://github.com/gordonbrander/jevgate)** — Command-line gate for shell pipelines: it reads text on stdin and asks Jev one noul about it, such as whether it reports an outage; when P(yes) clears a threshold the text passes through like a grep match, or a command after -- runs, and otherwise nothing comes out. <sub>(written by a model)</sub>
   <sub>`Project` · gordonbrander · `Rs` · `noul` · call site [`src/provider.rs`](https://github.com/gordonbrander/jevgate/blob/HEAD/src/provider.rs), read by a model 2026-11-08</sub>
+
+- **[jevkit](https://github.com/bragamat/jevkit)** — Command line toolkit that puts Jev in a coding agent's toolbox: find ranks a file's lines for a question, check tests whether the source backs a claim, triage asks the same questions about many items, and decide, yesno and score return a verdict (act, confirm or rephrase) tuned to the risk. <sub>(written by a model)</sub>
+  <sub>`Project` · bragamat · `Go` · `choice` · `noul` · `score` · call site [`internal/typesafe/client.go`](https://github.com/bragamat/jevkit/blob/HEAD/internal/typesafe/client.go), read by a model 2026-11-18 · ⚠ `measured, not adopted`</sub>
 
 - **[jevmem](https://github.com/illescasDaniel/jev-mem)** — Long-term memory for AI agents (MCP server, CLI, library and hooks on one SQLite file) that never calls an LLM: Jev decides whether a note is safe, what kind it is, whether it contradicts an older one, which notes matter for a question and whether they are enough. <sub>(written by a model)</sub>
   <sub>`Project` · illescasDaniel · `Py` · `noul` · `choice` · `score` · call site [`src/jevmem/decider.py`](https://github.com/illescasDaniel/jev-mem/blob/HEAD/src/jevmem/decider.py), read by a model 2026-11-15 · ⚠ `vendor numbers`</sub>
@@ -617,6 +632,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Qualixar Jev Decision Layer](https://github.com/qualixar/jev-decision-layer)** — Plugin and local MCP server that lets an agent hand Jev one closed question at a time, such as which tool, skill or format fits, whether a draft meets its brief, or which team a request belongs to, from 55 recipes; local policy gates check each typed answer and record a receipt. <sub>(written by a model)</sub>
   <sub>`Plugin` · qualixar · `Py` · `choice` · `score` · `noul` · call site [`plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py`](https://github.com/qualixar/jev-decision-layer/blob/HEAD/plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py), read by a model 2026-11-10</sub>
 
+- **[reflex](https://github.com/starttoaster/reflex)** — Alertmanager webhook receiver that routes each alert group to an urgent or an informational Discord channel. Jev chooses page now or informational (choice) and gives a 0-4 urgency score that is only logged; when Jev is slow, unsure or down, label rules route instead, and groups only escalate. <sub>(written by a model)</sub>
+  <sub>`Project` · starttoaster · `Go` · `choice` · `score` · call site [`internal/jev/client.go`](https://github.com/starttoaster/reflex/blob/HEAD/internal/jev/client.go), read by a model 2026-11-18</sub>
+
 - **[Scientific Decision Evaluation](https://github.com/bydeng01/scientific-decision-eval)** — Code and data for the paper "Jev for Scientific Decisions": 20 choices in 10 cases from published studies, each asking which relation holds between samples. It asks Jev through OpenRouter's decisions API, five times per case, and scores the choices, outputs and labels. <sub>(written by a model)</sub>
   <sub>`Benchmark` · bydeng01 · `Py` · `choice` · call site [`development/s2-execution-v1/providers.py`](https://github.com/bydeng01/scientific-decision-eval/blob/HEAD/development/s2-execution-v1/providers.py), read by a model 2026-11-16</sub>
 
@@ -631,6 +649,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[TRA](https://github.com/bijectivelabs/bitra)** — Crypto trading desk with deterministic execution. Before a rule's new entry its event guard asks Jev about recent headlines: the event's kind as a choice in two orders, nouls on whether it concerns the asset and the market, and a noul screening machine-addressed instructions. <sub>(written by a model)</sub>
   <sub>`Project` · bijectivelabs · `Py` · `choice` · `noul` · call site [`src/trading_research_agents/llm/providers/typesafe.py`](https://github.com/bijectivelabs/bitra/blob/HEAD/src/trading_research_agents/llm/providers/typesafe.py), read by a model 2026-11-12</sub>
+
+- **[trading-bot-jev](https://github.com/Spykoninho/trading-bot-jev)** — Crypto trend-following bot, paper trading by default, that has Jev read each news item: which asset it concerns (choice), its expected price impact (score), whether it is material or a hostile regulatory action (nouls), plus questions per source. Code turns these into a small bias and a buy veto. <sub>(written by a model)</sub>
+  <sub>`Project` · Spykoninho · `TS` · `choice` · `score` · `noul` · call site [`src/brain.ts`](https://github.com/Spykoninho/trading-bot-jev/blob/HEAD/src/brain.ts), read by a model 2026-11-18 · ⚠ `vendor numbers`</sub>
 
 - **[TradingAgents](https://github.com/tauricresearch/tradingagents)** — Multi-agent LLM trading framework. With a TypeSafe key set, its Sentiment Analyst screens each StockTwits or Reddit post with Jev: a noul on whether it is about the instrument, dropped below 0.3, and a choice of the author's stance, bullish, bearish or neutral, counted at confidence 0.5 or more. <sub>(written by a model)</sub>
   <sub>`Project` · tauricresearch · `Py` · `noul` · `choice` · call site [`tradingagents/agents/post_screen.py`](https://github.com/tauricresearch/tradingagents/blob/HEAD/tradingagents/agents/post_screen.py), read by a model 2026-11-12</sub>

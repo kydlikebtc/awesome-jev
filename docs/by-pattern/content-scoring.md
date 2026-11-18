@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 198 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 200 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 189 · wire shape 5 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 191 · wire shape 5 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -356,6 +356,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[instruct-jev](https://github.com/ctaxnagomi/instruct-jev)** — INSTRUCT_JEV - TypeSafe AI Jev / System One instruction corpus (choice/noul/score), compiled by DeckerGUI. 119 rows. Mirrored on HuggingFace. <sub>(upstream description)</sub>
   <sub>`Project` · ctaxnagomi · `Py` · call site [`DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py`](https://github.com/ctaxnagomi/instruct-jev/blob/HEAD/DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py), read 2026-09-22</sub>
 
+- **[Jev Benchmark](https://github.com/yididev/jev-benchmark)** — Benchmark of rubric-based zero-shot classification, chained decision-tree execution and exam grading. Each document goes to Jev as one choice whose criteria are the rubric's folder descriptions, against two Claude models, OpenJev and open-weight decision models on accuracy, calibration and price. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · yididev · `Py` · `choice` · call site [`arms/jev.py`](https://github.com/yididev/jev-benchmark/blob/HEAD/arms/jev.py), read by a model 2026-11-18</sub>
+
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — Benchmark of Jev against open decision models on 480 authored general Persian questions, 560 literary questions and a classical poetry pilot, asked as choices, nouls and scores with raw responses saved and scored locally; Jev leads on choice and noul accuracy. <sub>(written by a model)</sub>
   <sub>`Benchmark` · armanjr · `Py` · `choice` · `noul` · `score` · call site [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py), read by a model 2026-11-11 · ⚠ `no licence`</sub>
 
@@ -577,6 +580,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[tenbin](https://github.com/simota/tenbin)** — MCP server and agent skill for the TypeSafe AI System One API (Jev): decompose a judgment into Choice / Score / Noul questions, lint them, measure on labelled data, and put calibrated thresholds in code <sub>(upstream description)</sub>
   <sub>`Plugin` · simota · `TS` · call site [`skills/tenbin/scripts/evaluate.py`](https://github.com/simota/tenbin/blob/HEAD/skills/tenbin/scripts/evaluate.py), read 2026-09-22</sub>
+
+- **[trading-bot-jev](https://github.com/Spykoninho/trading-bot-jev)** — Crypto trend-following bot, paper trading by default, that has Jev read each news item: which asset it concerns (choice), its expected price impact (score), whether it is material or a hostile regulatory action (nouls), plus questions per source. Code turns these into a small bias and a buy veto. <sub>(written by a model)</sub>
+  <sub>`Project` · Spykoninho · `TS` · `choice` · `score` · `noul` · call site [`src/brain.ts`](https://github.com/Spykoninho/trading-bot-jev/blob/HEAD/src/brain.ts), read by a model 2026-11-18 · ⚠ `vendor numbers`</sub>
 
 - **[transcript-scorecard](https://github.com/brandonbryant12/transcript-scorecard)** — ACME live support-call scoring demo with TypeSafe AI, Effect, SQLite, React, Vite, and Turborepo <sub>(upstream description)</sub>
   <sub>`Project` · brandonbryant12 · `TS` · call site [`apps/api/src/classifier.ts`](https://github.com/brandonbryant12/transcript-scorecard/blob/HEAD/apps/api/src/classifier.ts), read 2026-09-22 · ⚠ `no licence`</sub>

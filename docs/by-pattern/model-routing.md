@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 94 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 95 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 86 · wire shape 1 · example only 1 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 87 · wire shape 1 · example only 1 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -188,6 +188,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[codex-jev-router](https://github.com/tiandee/codex-jev-router)** — Wrapper for the Codex CLI that runs a local proxy and, on each fresh turn, asks Jev a choice of Codex model and scores for task complexity, reasoning required and tool complexity, then sets the model and reasoning effort; without Jev, Codex keeps its current settings. <sub>(written by a model)</sub>
   <sub>`Plugin` · tiandee · `JS` · `choice` · `score` · call site [`src/jev-client.mjs`](https://github.com/tiandee/codex-jev-router/blob/HEAD/src/jev-client.mjs), read by a model 2026-11-10</sub>
+
+- **[DESIGN:OS Generative UI](https://github.com/jangtrinh/design-os-generative-ui)** — Streaming UI runtime for AI agents that renders live HTML, charts and WebGL widgets. Its composer first asks a local Laya model which widget and layout fit a request (choices) and whether it is about dashboards, landing pages or alerts (nouls), and asks Jev the same when Laya is unsure. <sub>(written by a model)</sub>
+  <sub>`Plugin` · jangtrinh · `TS` · `choice` · `noul` · call site [`src/engine/jev-adapter.ts`](https://github.com/jangtrinh/design-os-generative-ui/blob/HEAD/src/engine/jev-adapter.ts), read by a model 2026-11-18</sub>
 
 - **[dsh-jev-plugin](https://github.com/jackie-cqz/dsh-jev-plugin)** — DeepSeek Harness plugin that gives agents Jev's noul, choice and score as tools, and can also use Jev as a pre-execution risk gate (a score over risk levels that denies a tool call, asks for approval or lets it run), a review of tool results and a model router. <sub>(written by a model)</sub>
   <sub>`Plugin` · jackie-cqz · `TS` · `noul` · `choice` · `score` · call site [`src/client.ts`](https://github.com/jackie-cqz/dsh-jev-plugin/blob/HEAD/src/client.ts), read by a model 2026-11-08</sub>

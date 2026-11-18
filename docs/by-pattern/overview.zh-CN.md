@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 531 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 533 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 392 · 接口形态 99 · 仅示例 0 · 独立报告 33 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 394 · 接口形态 99 · 仅示例 0 · 独立报告 33 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -764,6 +764,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[SystemOneDotNet](https://github.com/JabbaKadabra/SystemOneDotNet)** — TypeSafe System One（Jev）的 .NET 客户端：输入带类型的问题，输出带概率与置信度的类型化答案。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · jabbakadabra · `C#` · 调用点 [`samples/SystemOneDotNet.Sample/Program.cs`](https://github.com/JabbaKadabra/SystemOneDotNet/blob/HEAD/samples/SystemOneDotNet.Sample/Program.cs)，2026-09-24 阅读</sub>
 
+- **[taurus-jev-sdk-go](https://github.com/KKloudTarus/taurus-jev-sdk-go)** — 非官方的 Go Jev 客户端，除标准库外没有依赖：把带类型的 noul、choice、score 问题发往 /v1/systemone；缺少必填字段的响应会被拒绝而不是强行转换，API 密钥在错误和日志中被遮蔽，重定向时绝不发送 bearer token。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · KKloudTarus · `Go` · `noul` · `choice` · `score` · 调用点 [`jev.go`](https://github.com/KKloudTarus/taurus-jev-sdk-go/blob/HEAD/jev.go)，2026-11-18 模型阅读</sub>
+
 - **[ThinkThen](https://github.com/botassembly/thinkthen)** — 命令行工具，附带 13 种语言的 SDK 以及 DuckDB、SQLite 和 PostgreSQL 扩展，提供十个处理文本的函数，例如 decide、choose、tag、score、rank 和 find，每个都以 noul、choice 或 score 发给 Jev；decide 输出 true、false，或在两条阈值之间输出 unsure。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · botassembly · `Rs` · `noul` · `choice` · `score` · 调用点 [`crates/thinkthen/src/core/adapter/systemone.rs`](https://github.com/botassembly/thinkthen/blob/HEAD/crates/thinkthen/src/core/adapter/systemone.rs)，2026-11-09 模型阅读</sub>
 
@@ -984,7 +987,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ## 尚未按模式索引
 
-带代码的项目或插件，共 217 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
+带代码的项目或插件，共 218 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — 为应用、电话、导览屏和元宇宙打造语音 AI 虚拟形象的工具包。它的 Jev 话轮结束闸门就转写文本提一个 noul：助手是否应保持沉默、让用户的话轮继续，并把这个概率换算成 0.4 到 2 秒的等待；出错时直接结束话轮。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · uezo · `Py` · 调用点 [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py)，2026-09-22 阅读</sub>
@@ -1318,6 +1321,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev DevTools](https://github.com/diegoag64/jev-devtools)** — Jev 请求的 React 检查器：Node 服务端适配器包装 TypeSafe SDK 客户端的 fetch，记录每个请求的状态、问题、答案、概率、重试和错误，显示在应用内的面板里；可选的 flow API 把请求和应用步骤画成流程图。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · diegoag64 · `TS` · 调用点 [`packages/jev-devtools/server/index.ts`](https://github.com/diegoag64/jev-devtools/blob/HEAD/packages/jev-devtools/server/index.ts)，2026-11-09 模型阅读</sub>
+
+- **[Jev Starter](https://github.com/YanfLIZi56/jev-starter)** — Jev 的浏览器控制台：无需写代码就能配置 noul、choice 和 score 问题，通过一个调用 Jev 的小型 FastAPI 后端试跑，再把请求导出为 Python、JavaScript 或 cURL 代码，或导出成供他人参考的示例 JSON。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · YanfLIZi56 · `Py` · `noul` · `choice` · `score` · 调用点 [`backend/main.py`](https://github.com/YanfLIZi56/jev-starter/blob/HEAD/backend/main.py)，2026-11-18 模型阅读</sub>
 
 - **[Jev Talks](https://github.com/zie1ony/jev-talks)** — 让不会写字的 Jev 用文字回答问题的实验：每一轮先用 choice 从 3,000 词的词表里找出可能的下一个词，再用 noul 判断 240 个候选短语接在后面是否通顺，最后用 score 给并行写出的三个答案打分，留下最好的一个。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zie1ony · `Py` · `choice` · `noul` · `score` · 调用点 [`talk.py`](https://github.com/zie1ony/jev-talks/blob/HEAD/talk.py)，2026-11-10 模型阅读 · ⚠ `无许可证`</sub>

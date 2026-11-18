@@ -4,11 +4,11 @@
 
 _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 
-这个决策的全部已收录例子 —— 共 50 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#上下文压缩)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 53 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#上下文压缩)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#context-compaction)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#context-compaction)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 50 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 2 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 53 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 2 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -116,11 +116,17 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 - **[fast-jev for OpenCode](https://github.com/nrdz-labs/fast-jev-opencode)** — 从每个发出的模型请求里修剪过时工具调用和大块结果的 OpenCode 插件：Jev 对每次调用回答两个 noul，即这次调用是否应保留、它的完整输出是否应保留，其余由代码删除或截断；已存的历史和 OpenCode 自己的压缩都不受影响。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · nrdz-labs · `TS` · `noul` · 调用点 [`jev.ts`](https://github.com/nrdz-labs/fast-jev-opencode/blob/HEAD/jev.ts)，2026-11-09 模型阅读</sub>
 
+- **[genigrep](https://github.com/Cloudgeni-ai/genigrep)** — 面向编码智能体和人的代码搜索：ripgrep 根据问题和关键词找出候选文件，再由 Jev 用 noul 给文件排序并检查每段内容（是否相关、是否覆盖问题的这一部分），只输出能回答问题的段落。它有命令行、MCP 服务器、库和技能几种形式。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · Cloudgeni-ai · `TS` · `noul` · 调用点 [`src/engine/client.ts`](https://github.com/Cloudgeni-ai/genigrep/blob/HEAD/src/engine/client.ts)，2026-11-18 模型阅读 · ⚠ `厂商自报数据`</sub>
+
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
   <sub>`开源项目` · Really Artificial · `JS` · `choice` · `score` · `noul` · 调用点 [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs)，2026-09-22 阅读 · ⚠ `疑似 AI 生成`</sub>
 
 - **[Jev Codex Token Saver](https://github.com/jcressler/jev-codex-token-saver)** — Codex 插件：它的 MCP 服务器在本地搜索工作区或给大日志分组，然后对每段候选摘录问 Jev 一个 noul，判断其中是否有回答查询、满足每项需求的证据，只把选中的原文摘录返回给 Codex。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · jcressler · `JS` · `noul` · 调用点 [`src/investigator.mjs`](https://github.com/jcressler/jev-codex-token-saver/blob/HEAD/src/investigator.mjs)，2026-11-10 模型阅读</sub>
+
+- **[JEV Research MCP](https://github.com/merth1470/jev-research-mcp)** — 自托管的 MCP 服务器，用于编码智能体的网络调研：先搜索，再对每条搜索结果向 Jev 提一个 noul 决定是否抓取，把页面解析成块后再逐块询问是否是有用的证据，最后在 token 预算内返回带来源的精简证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · merth1470 · `Py` · `noul` · 调用点 [`src/jev_research_mcp/jev/http_provider.py`](https://github.com/merth1470/jev-research-mcp/blob/HEAD/src/jev_research_mcp/jev/http_provider.py)，2026-11-18 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[jev-compact](https://github.com/fatelei/jev-compact)** — 为 OpenAI Codex CLI 提供由 Jev 打分的上下文压缩——在压缩前为每个工具调用打分，并恢复关键内容。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · fatelei · `TS` · 调用点 [`plugins/jev-compact/dist/fast-jev.mjs`](https://github.com/fatelei/jev-compact/blob/HEAD/plugins/jev-compact/dist/fast-jev.mjs)，2026-09-24 阅读</sub>
@@ -142,6 +148,9 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 
 - **[jevskill](https://github.com/lazniak/jevskill)** — 供 Claude Code、Codex 等 20 多种智能体使用的技能，把大段工具输出交给 Jev 而不是主模型：先把日志切成块，问 Jev 哪些块要紧，只把少数相关的行传下去。它的脚本也能在命令行里提任意 noul、choice 或 score 问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · lazniak · `Py` · `noul` · `choice` · `score` · 调用点 [`skills/jev/scripts/jev_query.py`](https://github.com/lazniak/jevskill/blob/HEAD/skills/jev/scripts/jev_query.py)，2026-11-15 模型阅读 · ⚠ `厂商自报数据`</sub>
+
+- **[JevTrace](https://github.com/123wwwa/JevTrace)** — 在 token 预算内返回某个编码任务所需的 JS/TS 代码：由 TypeScript 编译器追踪调用、类型、调用方和测试，Jev 为每个候选判断相关性（noul）并选出下一个要查看的（choice）。它以 MCP 服务器形式供 Claude Code、Codex 和 Cursor 使用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · 123wwwa · `TS` · `noul` · `choice` · 调用点 [`src/decision-backends.ts`](https://github.com/123wwwa/JevTrace/blob/HEAD/src/decision-backends.ts)，2026-11-18 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jit-context](https://github.com/wojciechwiesner/jit-context)** — JIT-JEV 上下文操作系统：面向 AI 智能体的认知运行时与 JEV System 1 上下文关卡。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · wojciechwiesner · `Py` · 调用点 [`src/cognitive/jev_engine.py`](https://github.com/wojciechwiesner/jit-context/blob/HEAD/src/cognitive/jev_engine.py)，2026-09-24 阅读</sub>

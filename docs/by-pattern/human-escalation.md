@@ -4,11 +4,11 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 99 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 102 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#human-escalation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 84 · wire shape 5 · example only 0 · independent reports 11 · negative results 0 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 87 · wire shape 5 · example only 0 · independent reports 11 · negative results 1 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -187,6 +187,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[decision-models-lab](https://github.com/shashikantdev3/decision-models-lab)** — Learning lab on decision models through OpenRouter's decisions API, with Jev and Microsoft Decision-1 side by side. The hello-world triages a ticket in one call, asking whether it is urgent (noul), which team gets it (choice) and how severe it is (score); later steps escalate unsure cases to Claude. <sub>(written by a model)</sub>
   <sub>`Tutorial` · shashikantdev3 · `JS` · `noul` · `choice` · `score` · call site [`examples/hello-world/hello.mjs`](https://github.com/shashikantdev3/decision-models-lab/blob/HEAD/examples/hello-world/hello.mjs), read by a model 2026-11-14</sub>
 
+- **[dsh-jev-advisor](https://github.com/gordan-code/dsh-jev-advisor)** — DeepSeek Harness plugin that shows you, not the agent, a Jev second opinion: a recommended option with probabilities for the agent's multiple-choice questions, allow once or reject with a risk score for tool approvals, and readiness for plans. Nothing reaches the harness until you adopt it. <sub>(written by a model)</sub>
+  <sub>`Plugin` · gordan-code · `JS` · `choice` · `noul` · `score` · call site [`src/index.js`](https://github.com/gordan-code/dsh-jev-advisor/blob/HEAD/src/index.js), read by a model 2026-11-18</sub>
+
 - **[Edward](https://github.com/VeridicalTech/Edward)** — Supervisor for coding agents that run unattended: rules watch the event stream, and a probe battery asks Jev, in one batched request of choices, whether the agent's trajectory still looks right; code then lets it go on, pauses, cancels or blocks it, with a signed receipt for each decision. <sub>(written by a model)</sub>
   <sub>`Project` · VeridicalTech · `Py` · `choice` · `noul` · call site [`edward/backends.py`](https://github.com/VeridicalTech/Edward/blob/HEAD/edward/backends.py), read by a model 2026-11-09</sub>
 
@@ -262,6 +265,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jevest](https://github.com/t7ncke/Jevest)** — GitHub Action for pull request review: a claude -p agent finds issues and a verifier tries to refute them, while Jev triages the pull request, decides whether each finding is published or turned into a question for the author, and picks its labels. <sub>(written by a model)</sub>
   <sub>`Project` · t7ncke · `TS` · `choice` · `noul` · `score` · call site [`src/adapters/typesafe-decision-adapter.ts`](https://github.com/t7ncke/Jevest/blob/HEAD/src/adapters/typesafe-decision-adapter.ts), read by a model 2026-11-14 · ⚠ `3rd-party key` `vendor numbers`</sub>
 
+- **[jevkit](https://github.com/bragamat/jevkit)** — Command line toolkit that puts Jev in a coding agent's toolbox: find ranks a file's lines for a question, check tests whether the source backs a claim, triage asks the same questions about many items, and decide, yesno and score return a verdict (act, confirm or rephrase) tuned to the risk. <sub>(written by a model)</sub>
+  <sub>`Project` · bragamat · `Go` · `choice` · `noul` · `score` · call site [`internal/typesafe/client.go`](https://github.com/bragamat/jevkit/blob/HEAD/internal/typesafe/client.go), read by a model 2026-11-18 · ⚠ `measured, not adopted`</sub>
+
 - **[luce](https://github.com/scienthoon/luce)** — Luce: a recipe for calibrated decision models — a sentence about your task in, a small model that answers typed questions with honest probabilities out (init → synth → train → eval → serve) <sub>(upstream description)</sub>
   <sub>`Project` · scienthoon · `Py` · call site [`scripts/jev_eval.mjs`](https://github.com/scienthoon/luce/blob/HEAD/scripts/jev_eval.mjs), read 2026-09-22</sub>
 
@@ -300,6 +306,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[qwen-rlcd](https://github.com/shamazharikh/qwen-rlcd)** — Jev-style calibrated decision model (Choice/Score/Noul) on Qwen3.5-0.8B <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · shamazharikh · `Py` · cited file [`scripts/bench_fork.py`](https://github.com/shamazharikh/qwen-rlcd/blob/HEAD/scripts/bench_fork.py), read 2026-09-22 · ⚠ `not Jev itself` `no licence`</sub>
+
+- **[reflex](https://github.com/starttoaster/reflex)** — Alertmanager webhook receiver that routes each alert group to an urgent or an informational Discord channel. Jev chooses page now or informational (choice) and gives a 0-4 urgency score that is only logged; when Jev is slow, unsure or down, label rules route instead, and groups only escalate. <sub>(written by a model)</sub>
+  <sub>`Project` · starttoaster · `Go` · `choice` · `score` · call site [`internal/jev/client.go`](https://github.com/starttoaster/reflex/blob/HEAD/internal/jev/client.go), read by a model 2026-11-18</sub>
 
 - **[reflex](https://github.com/ursuciprian/reflex)** — Pre-execution hook for Claude Code, Codex CLI, opencode and pi. Before a tool runs it can ask Jev whether the call mutates, exfiltrates or strays off task (nouls), its blast radius (score) and environment (choice); it also guards against prompt injection and picks a LiteLLM model. <sub>(written by a model)</sub>
   <sub>`Plugin` · ursuciprian · `JS` · `noul` · `score` · `choice` · call site [`providers.mjs`](https://github.com/ursuciprian/reflex/blob/HEAD/providers.mjs), read by a model 2026-11-14</sub>

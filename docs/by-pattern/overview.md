@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 531 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 533 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 392 · wire shape 99 · example only 0 · independent reports 33 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 394 · wire shape 99 · example only 0 · independent reports 33 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -764,6 +764,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[SystemOneDotNet](https://github.com/JabbaKadabra/SystemOneDotNet)** — .NET client for TypeSafe System One (Jev) — typed questions in, typed answers with probabilities and confidence out. No prompt engineering, no output parsing. <sub>(upstream description)</sub>
   <sub>`SDK` · jabbakadabra · `C#` · call site [`samples/SystemOneDotNet.Sample/Program.cs`](https://github.com/JabbaKadabra/SystemOneDotNet/blob/HEAD/samples/SystemOneDotNet.Sample/Program.cs), read 2026-09-24</sub>
 
+- **[taurus-jev-sdk-go](https://github.com/KKloudTarus/taurus-jev-sdk-go)** — Unofficial Go client for Jev with no dependencies outside the standard library: typed noul, choice and score questions to /v1/systemone, with responses missing a required field rejected rather than coerced, the API key masked in errors and logs, and the bearer token never sent on redirects. <sub>(written by a model)</sub>
+  <sub>`SDK` · KKloudTarus · `Go` · `noul` · `choice` · `score` · call site [`jev.go`](https://github.com/KKloudTarus/taurus-jev-sdk-go/blob/HEAD/jev.go), read by a model 2026-11-18</sub>
+
 - **[ThinkThen](https://github.com/botassembly/thinkthen)** — Command line tool with SDKs for 13 languages and DuckDB, SQLite and PostgreSQL extensions, offering ten functions over text, such as decide, choose, tag, score, rank and find, each sent to Jev as nouls, choices or scores; decide prints true, false, or unsure between two bars. <sub>(written by a model)</sub>
   <sub>`SDK` · botassembly · `Rs` · `noul` · `choice` · `score` · call site [`crates/thinkthen/src/core/adapter/systemone.rs`](https://github.com/botassembly/thinkthen/blob/HEAD/crates/thinkthen/src/core/adapter/systemone.rs), read by a model 2026-11-09</sub>
 
@@ -984,7 +987,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 217 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 218 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — Toolkit for voice AI avatars in apps, phone lines, signage and the metaverse. Its Jev turn-end gate asks a noul on the transcript, whether the assistant should stay silent and leave the user's turn open, and maps that probability to a wait of 0.4 to 2 seconds; on any error the turn ends. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · uezo · `Py` · call site [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py), read 2026-09-22</sub>
@@ -1318,6 +1321,9 @@ Projects and plugins with code, 217 of them, whose only pattern is `overview` an
 
 - **[Jev DevTools](https://github.com/diegoag64/jev-devtools)** — React inspector for Jev requests: a Node server adapter wraps the TypeSafe SDK client's fetch and records each request's state, questions, answers, probabilities, retries and errors for an in-app panel; an optional flow API draws requests and app steps as diagrams. <sub>(written by a model)</sub>
   <sub>`Project` · diegoag64 · `TS` · call site [`packages/jev-devtools/server/index.ts`](https://github.com/diegoag64/jev-devtools/blob/HEAD/packages/jev-devtools/server/index.ts), read by a model 2026-11-09</sub>
+
+- **[Jev Starter](https://github.com/YanfLIZi56/jev-starter)** — Browser console for Jev: build noul, choice and score questions without code, run them through a small FastAPI backend that calls Jev, then export the request as Python, JavaScript or cURL, or as an example JSON others can start from. <sub>(written by a model)</sub>
+  <sub>`Project` · YanfLIZi56 · `Py` · `noul` · `choice` · `score` · call site [`backend/main.py`](https://github.com/YanfLIZi56/jev-starter/blob/HEAD/backend/main.py), read by a model 2026-11-18</sub>
 
 - **[Jev Talks](https://github.com/zie1ony/jev-talks)** — Experiment that makes Jev answer questions in words although it cannot write: each round, choices scout likely next words from a 3,000-word vocabulary, nouls judge 240 candidate phrases as a continuation, and a score grades three parallel answers to keep the best. <sub>(written by a model)</sub>
   <sub>`Project` · zie1ony · `Py` · `choice` · `noul` · `score` · call site [`talk.py`](https://github.com/zie1ony/jev-talks/blob/HEAD/talk.py), read by a model 2026-11-10 · ⚠ `no licence`</sub>

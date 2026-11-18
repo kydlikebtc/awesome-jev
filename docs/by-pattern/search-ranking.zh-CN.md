@@ -4,11 +4,11 @@
 
 _对来自廉价检索步骤的候选做打分或重排。_
 
-这个决策的全部已收录例子 —— 共 99 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 103 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#search-ranking)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#search-ranking)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 95 · 接口形态 0 · 仅示例 0 · 独立报告 8 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 99 · 接口形态 0 · 仅示例 0 · 独立报告 8 · 负面结果 2 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -252,8 +252,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[clay-jev-people-ranker](https://github.com/promptgtm-shared/clay-jev-people-ranker)** — 面向 Clay 的智能体技能与 Python 工作流：用 TypeSafe Jev 做线索评分、B2B 潜在客户筛选与人物搜索排序。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · promptgtm-shared · `Py` · 调用点 [`scripts/rank_clay_people.py`](https://github.com/promptgtm-shared/clay-jev-people-ranker/blob/HEAD/scripts/rank_clay_people.py)，2026-09-24 阅读</sub>
 
+- **[genigrep](https://github.com/Cloudgeni-ai/genigrep)** — 面向编码智能体和人的代码搜索：ripgrep 根据问题和关键词找出候选文件，再由 Jev 用 noul 给文件排序并检查每段内容（是否相关、是否覆盖问题的这一部分），只输出能回答问题的段落。它有命令行、MCP 服务器、库和技能几种形式。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · Cloudgeni-ai · `TS` · `noul` · 调用点 [`src/engine/client.ts`](https://github.com/Cloudgeni-ai/genigrep/blob/HEAD/src/engine/client.ts)，2026-11-18 模型阅读 · ⚠ `厂商自报数据`</sub>
+
 - **[Jev Codex Token Saver](https://github.com/jcressler/jev-codex-token-saver)** — Codex 插件：它的 MCP 服务器在本地搜索工作区或给大日志分组，然后对每段候选摘录问 Jev 一个 noul，判断其中是否有回答查询、满足每项需求的证据，只把选中的原文摘录返回给 Codex。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · jcressler · `JS` · `noul` · 调用点 [`src/investigator.mjs`](https://github.com/jcressler/jev-codex-token-saver/blob/HEAD/src/investigator.mjs)，2026-11-10 模型阅读</sub>
+
+- **[JEV Research MCP](https://github.com/merth1470/jev-research-mcp)** — 自托管的 MCP 服务器，用于编码智能体的网络调研：先搜索，再对每条搜索结果向 Jev 提一个 noul 决定是否抓取，把页面解析成块后再逐块询问是否是有用的证据，最后在 token 预算内返回带来源的精简证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · merth1470 · `Py` · `noul` · 调用点 [`src/jev_research_mcp/jev/http_provider.py`](https://github.com/merth1470/jev-research-mcp/blob/HEAD/src/jev_research_mcp/jev/http_provider.py)，2026-11-18 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[jev-assist](https://github.com/glud123/jev-assist)** — 别让昂贵的主模型干「grep 加猜」的粗活 —— 让 Jev 先把整个仓库排一遍序。 <sub>(机翻)</sub>
   <sub>`开源项目` · glud123 · `JS` · 调用点 [`scripts/jev.mjs`](https://github.com/glud123/jev-assist/blob/HEAD/scripts/jev.mjs)，2026-09-22 阅读</sub>
@@ -294,11 +300,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevgrep](https://github.com/allebee/jevgrep)** — 按含义 grep：管道传入任意文本，用大白话问一个是非问题，只留下匹配的行。 <sub>(机翻)</sub>
   <sub>`开源项目` · allebee · `Py` · 调用点 [`src/jevgrep/judge.py`](https://github.com/allebee/jevgrep/blob/HEAD/src/jevgrep/judge.py)，2026-09-22 阅读</sub>
 
+- **[jevkit](https://github.com/bragamat/jevkit)** — 把 Jev 放进编码智能体工具箱的命令行工具：find 按问题给文件各行排序，check 检验源码是否支持某个说法，triage 对大量条目提相同问题，decide、yesno 和 score 则根据风险返回裁决（执行、确认或换个问法）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · bragamat · `Go` · `choice` · `noul` · `score` · 调用点 [`internal/typesafe/client.go`](https://github.com/bragamat/jevkit/blob/HEAD/internal/typesafe/client.go)，2026-11-18 模型阅读 · ⚠ `实测后未采用`</sub>
+
 - **[jevmem](https://github.com/illescasDaniel/jev-mem)** — AI 智能体的长期记忆（基于一个 SQLite 文件的 MCP 服务器、命令行、库和钩子），从不调用 LLM：由 Jev 判断一条笔记是否安全、属于哪类、是否与旧笔记矛盾、哪些笔记与问题相关，以及是否已经够用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · illescasDaniel · `Py` · `noul` · `choice` · `score` · 调用点 [`src/jevmem/decider.py`](https://github.com/illescasDaniel/jev-mem/blob/HEAD/src/jevmem/decider.py)，2026-11-15 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[JevRAG](https://github.com/ajanm007/jevrag)** — Python 库：把 RAG 里的五个判断变成由 Jev 回答的 noul：已有证据是否足够、可以停止检索，块该在哪里切分，哪些段落值得放进上下文，答案是否有依据，缓存的答案能否安全复用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ajanm007 · `Py` · `noul` · 调用点 [`jevrag/decision.py`](https://github.com/ajanm007/jevrag/blob/HEAD/jevrag/decision.py)，2026-11-10 模型阅读</sub>
+
+- **[JevTrace](https://github.com/123wwwa/JevTrace)** — 在 token 预算内返回某个编码任务所需的 JS/TS 代码：由 TypeScript 编译器追踪调用、类型、调用方和测试，Jev 为每个候选判断相关性（noul）并选出下一个要查看的（choice）。它以 MCP 服务器形式供 Claude Code、Codex 和 Cursor 使用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · 123wwwa · `TS` · `noul` · `choice` · 调用点 [`src/decision-backends.ts`](https://github.com/123wwwa/JevTrace/blob/HEAD/src/decision-backends.ts)，2026-11-18 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jfind](https://github.com/religa/jfind)** — 用自然语言描述来找文件：带语义 --like 条件的 find(1)，由 TypeSafe.ai 的 jev 回答。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · religa · `Py` · 调用点 [`src/jfind/matcher.py`](https://github.com/religa/jfind/blob/HEAD/src/jfind/matcher.py)，2026-09-24 阅读</sub>

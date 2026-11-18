@@ -1,72 +1,72 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="638" height="530" viewBox="0 0 638 530" role="img" aria-label="各决策模式下的例子数">
 <style>.t{font:600 15px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#1f2328}.s{font:11px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#818b98}.l{font:12.5px -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;fill:#59636e}.n{font:600 12px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#1f2328}.g{font:italic 11px -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;fill:#818b98}</style>
 <text x="12" y="22" class="t">各决策模式下的例子数</text>
-<text x="12" y="40" class="s">1555 条 · 覆盖 18/18 个模式 · 2026-11-11</text>
+<text x="12" y="40" class="s">1570 条 · 覆盖 18/18 个模式 · 2026-11-11</text>
 <line x1="12" y1="50" x2="626" y2="50" stroke="#d1d9e0" stroke-width="1"/>
 <text x="12" y="74" class="l">工具选择</text>
 <rect x="168" y="65" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 65h206a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-206z" fill="#bc7503"/>
-<text x="560" y="75" class="n">290</text>
+<path d="M168 65h205a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-205z" fill="#bc7503"/>
+<text x="560" y="75" class="n">291</text>
 <text x="12" y="99" class="l">意图路由</text>
 <rect x="168" y="90" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 90h44a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-44z" fill="#e5b45f"/>
-<text x="560" y="100" class="n">64</text>
+<text x="560" y="100" class="n">65</text>
 <text x="12" y="124" class="l">上下文压缩</text>
 <rect x="168" y="115" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 115h34a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-34z" fill="#e5b45f"/>
-<text x="560" y="125" class="n">50</text>
+<path d="M168 115h36a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-36z" fill="#e5b45f"/>
+<text x="560" y="125" class="n">53</text>
 <text x="12" y="149" class="l">安全闸门</text>
 <rect x="168" y="140" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 140h126a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-126z" fill="#bc7503"/>
-<text x="560" y="150" class="n">179</text>
+<path d="M168 140h127a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-127z" fill="#bc7503"/>
+<text x="560" y="150" class="n">181</text>
 <text x="12" y="174" class="l">输出校验</text>
 <rect x="168" y="165" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 165h121a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-121z" fill="#bc7503"/>
-<text x="560" y="175" class="n">172</text>
+<path d="M168 165h122a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-122z" fill="#bc7503"/>
+<text x="560" y="175" class="n">174</text>
 <text x="12" y="199" class="l">重试控制</text>
 <rect x="168" y="190" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 190h4a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-4z" fill="#e5b45f"/>
 <text x="560" y="200" class="n">8</text>
 <text x="12" y="224" class="l">人工升级</text>
 <rect x="168" y="215" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 215h69a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-69z" fill="#e5b45f"/>
-<text x="560" y="225" class="n">99</text>
+<path d="M168 215h71a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-71z" fill="#e5b45f"/>
+<text x="560" y="225" class="n">102</text>
 <text x="12" y="249" class="l">模型路由</text>
 <rect x="168" y="240" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 240h65a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-65z" fill="#e5b45f"/>
-<text x="560" y="250" class="n">94</text>
+<path d="M168 240h66a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-66z" fill="#e5b45f"/>
+<text x="560" y="250" class="n">95</text>
 <text x="12" y="274" class="l">并行扇出</text>
 <rect x="168" y="265" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 265h32a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-32z" fill="#e5b45f"/>
-<text x="560" y="275" class="n">48</text>
+<path d="M168 265h33a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-33z" fill="#e5b45f"/>
+<text x="560" y="275" class="n">49</text>
 <text x="12" y="299" class="l">检索与排序</text>
 <rect x="168" y="290" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 290h69a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-69z" fill="#e5b45f"/>
-<text x="560" y="300" class="n">99</text>
+<path d="M168 290h71a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-71z" fill="#e5b45f"/>
+<text x="560" y="300" class="n">103</text>
 <text x="12" y="324" class="l">结构化抽取</text>
 <rect x="168" y="315" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 315h24a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-24z" fill="#e5b45f"/>
 <text x="560" y="325" class="n">37</text>
 <text x="12" y="349" class="l">分类</text>
 <rect x="168" y="340" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 340h151a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-151z" fill="#bc7503"/>
-<text x="560" y="350" class="n">214</text>
+<path d="M168 340h156a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-156z" fill="#bc7503"/>
+<text x="560" y="350" class="n">221</text>
 <text x="12" y="374" class="l">机器学习特征抽取</text>
 <rect x="168" y="365" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 365h5a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-5z" fill="#e5b45f"/>
 <text x="560" y="375" class="n">10</text>
 <text x="12" y="399" class="l">文档分拣</text>
 <rect x="168" y="390" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 390h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-14z" fill="#e5b45f"/>
-<text x="560" y="400" class="n">23</text>
+<path d="M168 390h15a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-15z" fill="#e5b45f"/>
+<text x="560" y="400" class="n">24</text>
 <text x="12" y="424" class="l">工单分拣</text>
 <rect x="168" y="415" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 415h7a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-7z" fill="#e5b45f"/>
 <text x="560" y="425" class="n">13</text>
 <text x="12" y="449" class="l">内容评分</text>
 <rect x="168" y="440" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 440h140a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-140z" fill="#bc7503"/>
-<text x="560" y="450" class="n">198</text>
+<path d="M168 440h141a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-141z" fill="#bc7503"/>
+<text x="560" y="450" class="n">200</text>
 <text x="12" y="474" class="l">实时推荐</text>
 <rect x="168" y="465" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 465h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-1z" fill="#e5b45f"/>
@@ -74,5 +74,5 @@
 <text x="12" y="499" class="l">总览</text>
 <rect x="168" y="490" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 490h378a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-378z" fill="#bc7503"/>
-<text x="560" y="500" class="n">531</text>
+<text x="560" y="500" class="n">533</text>
 </svg>

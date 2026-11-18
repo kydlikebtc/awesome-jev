@@ -4,11 +4,11 @@
 
 _Decide which tool calls and results still matter so stale context can be dropped._
 
-Every catalogued example of this decision — 50 of them. The same rows, with caveats, are in [the index](../../README.md#context-compaction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 53 of them. The same rows, with caveats, are in [the index](../../README.md#context-compaction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#context-compaction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 50 · wire shape 0 · example only 0 · independent reports 2 · negative results 2 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 53 · wire shape 0 · example only 0 · independent reports 2 · negative results 2 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -116,11 +116,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[fast-jev for OpenCode](https://github.com/nrdz-labs/fast-jev-opencode)** — OpenCode plugin that prunes stale tool calls and bulky results from each outgoing model request: Jev answers two nouls per call, whether the call and whether its full output should stay, and code drops or truncates the rest; stored history and OpenCode's own compaction are untouched. <sub>(written by a model)</sub>
   <sub>`Plugin` · nrdz-labs · `TS` · `noul` · call site [`jev.ts`](https://github.com/nrdz-labs/fast-jev-opencode/blob/HEAD/jev.ts), read by a model 2026-11-09</sub>
 
+- **[genigrep](https://github.com/Cloudgeni-ai/genigrep)** — Code search for coding agents and people: ripgrep finds candidate files from a question and keywords, then Jev ranks the files and checks each passage with nouls (relevant? covers this part?), and only the passages that answer are printed. It is a CLI, an MCP server, a library and a skill. <sub>(written by a model)</sub>
+  <sub>`Project` · Cloudgeni-ai · `TS` · `noul` · call site [`src/engine/client.ts`](https://github.com/Cloudgeni-ai/genigrep/blob/HEAD/src/engine/client.ts), read by a model 2026-11-18 · ⚠ `vendor numbers`</sub>
+
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
 
 - **[Jev Codex Token Saver](https://github.com/jcressler/jev-codex-token-saver)** — Codex plugin whose MCP server searches the workspace or groups a large log locally, then asks Jev one noul per candidate excerpt on whether it holds evidence for the query and for each stated requirement, and returns only the selected exact excerpts to Codex. <sub>(written by a model)</sub>
   <sub>`Plugin` · jcressler · `JS` · `noul` · call site [`src/investigator.mjs`](https://github.com/jcressler/jev-codex-token-saver/blob/HEAD/src/investigator.mjs), read by a model 2026-11-10</sub>
+
+- **[JEV Research MCP](https://github.com/merth1470/jev-research-mcp)** — Self-hosted MCP server for coding-agent web research: it searches, asks Jev one noul per search result whether to fetch it, parses the pages into blocks, asks again per block whether it is useful evidence, and returns compact evidence with its sources within a token budget. <sub>(written by a model)</sub>
+  <sub>`Plugin` · merth1470 · `Py` · `noul` · call site [`src/jev_research_mcp/jev/http_provider.py`](https://github.com/merth1470/jev-research-mcp/blob/HEAD/src/jev_research_mcp/jev/http_provider.py), read by a model 2026-11-18 · ⚠ `3rd-party key`</sub>
 
 - **[jev-compact](https://github.com/fatelei/jev-compact)** — Jev-scored context compaction for OpenAI Codex CLI — scores every tool call before compaction and restores critical tool outputs verbatim after it <sub>(upstream description)</sub>
   <sub>`Plugin` · fatelei · `TS` · call site [`plugins/jev-compact/dist/fast-jev.mjs`](https://github.com/fatelei/jev-compact/blob/HEAD/plugins/jev-compact/dist/fast-jev.mjs), read 2026-09-24</sub>
@@ -142,6 +148,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevskill](https://github.com/lazniak/jevskill)** — Agent skill for Claude Code, Codex and 20 other agents that hands big tool output to Jev instead of the main model: it splits a log into blocks, asks Jev which ones matter, and passes only the few relevant lines on. Its script also asks any noul, choice or score question from the command line. <sub>(written by a model)</sub>
   <sub>`Plugin` · lazniak · `Py` · `noul` · `choice` · `score` · call site [`skills/jev/scripts/jev_query.py`](https://github.com/lazniak/jevskill/blob/HEAD/skills/jev/scripts/jev_query.py), read by a model 2026-11-15 · ⚠ `vendor numbers`</sub>
+
+- **[JevTrace](https://github.com/123wwwa/JevTrace)** — Returns the JS/TS code a coding task needs within a token budget: the TypeScript compiler follows calls, types, callers and tests, and Jev scores each candidate's relevance (noul) and picks which to inspect next (choice). It runs as an MCP server for Claude Code, Codex and Cursor. <sub>(written by a model)</sub>
+  <sub>`Project` · 123wwwa · `TS` · `noul` · `choice` · call site [`src/decision-backends.ts`](https://github.com/123wwwa/JevTrace/blob/HEAD/src/decision-backends.ts), read by a model 2026-11-18 · ⚠ `vendor numbers`</sub>
 
 - **[jit-context](https://github.com/wojciechwiesner/jit-context)** — Architectural Moat: JIT-JEV Context OS — Epistemic runtime & JEV System 1 context gate for AI agents (L0 SQLite WAL <3ms, Epistemic Invariants I1–I10, CERN Zenodo DOI: 10.5281/zenodo.22649542) <sub>(upstream description)</sub>
   <sub>`Project` · wojciechwiesner · `Py` · call site [`src/cognitive/jev_engine.py`](https://github.com/wojciechwiesner/jit-context/blob/HEAD/src/cognitive/jev_engine.py), read 2026-09-24</sub>

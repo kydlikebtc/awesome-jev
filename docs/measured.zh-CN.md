@@ -4,7 +4,7 @@
 
 本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。
 
-本目录收录的全部独立测量报告和负面结果 —— 共 101 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
+本目录收录的全部独立测量报告和负面结果 —— 共 104 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
@@ -51,6 +51,14 @@
   **注意:** `实测后未采用`
 
   > 作者于 2026-09-21 运行后得出结论：作为路由器，它不太可能帮到本来就能看到全部技能描述的强模型。其 README 记录：0.2.0 版上 6 条脚本化请求全部处理得当，0.1.0 版在一次真实会话的 6 条提示中有 3 条出错，作者称这只是个例，不是比率。它一直停留在影子模式。https://dev.to/shimo4228/i-added-jevs-skill-router-to-claude-code-and-turned-back-just-before-rewriting-the-skill-listing-34in 本条中文备注由模型撰写。
+
+- **[jevkit](https://github.com/bragamat/jevkit)**<br>
+  把 Jev 放进编码智能体工具箱的命令行工具：find 按问题给文件各行排序，check 检验源码是否支持某个说法，triage 对大量条目提相同问题，decide、yesno 和 score 则根据风险返回裁决（执行、确认或换个问法）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`开源项目` · bragamat · `Go` · `choice` · `noul` · `score` · [调用点](https://github.com/bragamat/jevkit/blob/HEAD/internal/typesafe/client.go)，2026-11-18 模型阅读</sub>
+
+  **注意:** `实测后未采用`
+
+  > 非官方项目。docs/STUDIES.md 记录了一个已移除网关的 A/B 运行，该网关用 Jev 选择工具和裁剪上下文：在 Claude Code 中没有节省（成本 1.04 倍），在 Codex 中输入为 0.90 倍。作者发现普通设置节省更多，于是将其移除。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-18 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 ## 其他独立测量报告
 
@@ -268,6 +276,12 @@
 
   > Codex 等 LLM 控制器、Ollama 和本地部署的决策模型以及基线控制器都不是 Jev。分数来自作者自己的运行：Jev 1.14 得 80.5 分，LLM 只在逐步暂停模式下着陆。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-16 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
+- **[Jev Benchmark](https://github.com/yididev/jev-benchmark)**<br>
+  基于评分细则的零样本分类、链式决策树执行和考试评分基准。每份文档以一个 choice 发给 Jev，criteria 是细则中各文件夹的完整描述，并与两个 Claude 模型、OpenJev 和其他开源权重决策模型比较准确率、校准和价格。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · yididev · `Py` · `choice` · [调用点](https://github.com/yididev/jev-benchmark/blob/HEAD/arms/jev.py)，2026-11-18 模型阅读</sub>
+
+  > Claude Haiku 和 Sonnet、OpenJev、Kev-4B、Nimble-9B、CLM-8B、Laya、Cygnet、Winnow-Q8、Strands Decider、Clef 以及 NLI 和嵌入对照都不是 Jev。数字来自作者自己的运行：在 CT1-8 上 Jev 的准确率为 98.84%，Haiku 为 96.46%。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-18 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)**<br>
   在 480 道自编通用波斯语题、560 道文学题和一个古典诗歌试点上，把 Jev 与开源决策模型对比的基准：以 choice、noul 和 score 提问，保存原始响应并在本地评分；Jev 在 choice 和 noul 准确率上领先。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · armanjr · `Py` · `choice` · `noul` · `score` · [调用点](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py)，2026-11-11 模型阅读</sub>
@@ -371,6 +385,14 @@
 - **[jev-fanout-bench](https://github.com/blowxian/jev-fanout-bench)**<br>
   实测：在一次调用里向 TypeSafe Jev 提 N 个问题，state 只计费一次。基于 2,976 次真实请求，附原始数据和精确的计费核对。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · blowxian · `Py` · [调用点](https://github.com/blowxian/jev-fanout-bench/blob/HEAD/bench.py)，2026-09-24 阅读</sub>
+
+- **[jev-guardbench](https://github.com/dfranco-projects/jev-guardbench)**<br>
+  测试 Jev 能否取代检查智能体消息的 LLM 评审，检查个人信息、提示注入以及有害的请求或回复：每条策略一个 noul，或按拆分出的条件各一个，在 7,925 条公开数据上以及 google-adk 智能体内运行，对比 Gemini Flash 和 Claude Haiku 评审。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · dfranco-projects · `Py` · `noul` · [调用点](https://github.com/dfranco-projects/jev-guardbench/blob/HEAD/src/guardbench/guards/systemone.py)，2026-11-18 模型阅读</sub>
+
+  **注意:** `无许可证`
+
+  > Gemini 3.6 Flash 和 Claude Haiku 不是 Jev。数字来自作者自己的运行：Jev 快约 3 倍、便宜 10-25 倍，在个人信息和提示注入上与最好的评审持平，在有害内容上落后，未达到事先设定的标准。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-18 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[jev-korean-benchmark](https://github.com/mahlernim/jev-korean-benchmark)**<br>
   可复现的早期访问评测：Jev 在韩语理解与医学文本上的表现，附运行时与成本证据。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>

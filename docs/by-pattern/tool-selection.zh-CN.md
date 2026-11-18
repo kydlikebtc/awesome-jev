@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 290 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 291 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 279 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 280 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -596,6 +596,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-agent-design-with-topk-logits-choices](https://github.com/6Mikao9/jev-native-agent-with-extended-options)** — 一个原生面向 Jev 的智能体系统研究设计：工具集成、推测性参数提议、外部辅助 logits 等。 <sub>(机翻)</sub>
   <sub>`开源项目` · 6mikao9 · `Py` · 调用点 [`benchmarks/benchmark_jev_latency_breakdown.py`](https://github.com/6Mikao9/jev-native-agent-with-extended-options/blob/HEAD/benchmarks/benchmark_jev_latency_breakdown.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
+
+- **[jev-agent-hooks](https://github.com/onlyjq04/jev-agent-hooks)** — 在 Claude Code、Codex 和 pi 中为每条提示推荐技能的钩子。Jev 先从全部技能中挑选（choice），并用 noul 判断这一轮是否需要执行操作；再结合 SKILL.md 正文从前三名中挑选，每个配一个是否契合的 noul；超过 0.7 时钩子会点名该技能。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · onlyjq04 · `JS` · `choice` · `noul` · 调用点 [`hooks/jev-skill-suggest.mjs`](https://github.com/onlyjq04/jev-agent-hooks/blob/HEAD/hooks/jev-skill-suggest.mjs)，2026-11-18 模型阅读</sub>
 
 - **[jev-agent-skill](https://github.com/yuyang2230/jev-agent-skill)** — 给 AI 智能体的免费类型化判断：把分类／筛查／打分／校验卸载给 Jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · yuyang2230 · `Py` · 调用点 [`jev.py`](https://github.com/yuyang2230/jev-agent-skill/blob/HEAD/jev.py)，2026-09-22 阅读</sub>

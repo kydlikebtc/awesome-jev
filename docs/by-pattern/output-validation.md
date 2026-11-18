@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 172 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 174 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 167 · wire shape 1 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 169 · wire shape 1 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -305,6 +305,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[dsh-fact-check](https://github.com/7starsseeker/dsh-fact-check)** — Fact-check skill for DeepSeek Harness whose optional Jev layer asks factual nouls, such as whether the evidence supports a claim, whether it is enough to stop searching, and whether a source is primary; Jev may only downgrade a claim's tier, never raise it. <sub>(written by a model)</sub>
   <sub>`Plugin` · 7starsseeker · `JS` · `noul` · call site [`tools/jev-verdict.mjs`](https://github.com/7starsseeker/dsh-fact-check/blob/HEAD/tools/jev-verdict.mjs), read by a model 2026-11-11</sub>
 
+- **[dsh-jev-advisor](https://github.com/gordan-code/dsh-jev-advisor)** — DeepSeek Harness plugin that shows you, not the agent, a Jev second opinion: a recommended option with probabilities for the agent's multiple-choice questions, allow once or reject with a risk score for tool approvals, and readiness for plans. Nothing reaches the harness until you adopt it. <sub>(written by a model)</sub>
+  <sub>`Plugin` · gordan-code · `JS` · `choice` · `noul` · `score` · call site [`src/index.js`](https://github.com/gordan-code/dsh-jev-advisor/blob/HEAD/src/index.js), read by a model 2026-11-18</sub>
+
 - **[dsh-jev-plugin](https://github.com/jackie-cqz/dsh-jev-plugin)** — DeepSeek Harness plugin that gives agents Jev's noul, choice and score as tools, and can also use Jev as a pre-execution risk gate (a score over risk levels that denies a tool call, asks for approval or lets it run), a review of tool results and a model router. <sub>(written by a model)</sub>
   <sub>`Plugin` · jackie-cqz · `TS` · `noul` · `choice` · `score` · call site [`src/client.ts`](https://github.com/jackie-cqz/dsh-jev-plugin/blob/HEAD/src/client.ts), read by a model 2026-11-08</sub>
 
@@ -448,6 +451,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevkit](https://github.com/ariel-frischer/jevkit)** — Fast Rust CLI for TypeSafe Jev: typed decisions, offline linting before you pay <sub>(upstream description)</sub>
   <sub>`Project` · ariel-frischer · `Rs` · call site [`src/auth.rs`](https://github.com/ariel-frischer/jevkit/blob/HEAD/src/auth.rs), read 2026-09-22</sub>
+
+- **[jevkit](https://github.com/bragamat/jevkit)** — Command line toolkit that puts Jev in a coding agent's toolbox: find ranks a file's lines for a question, check tests whether the source backs a claim, triage asks the same questions about many items, and decide, yesno and score return a verdict (act, confirm or rephrase) tuned to the risk. <sub>(written by a model)</sub>
+  <sub>`Project` · bragamat · `Go` · `choice` · `noul` · `score` · call site [`internal/typesafe/client.go`](https://github.com/bragamat/jevkit/blob/HEAD/internal/typesafe/client.go), read by a model 2026-11-18 · ⚠ `measured, not adopted`</sub>
 
 - **[JevRAG](https://github.com/ajanm007/jevrag)** — Python library that turns five RAG judgement calls into nouls Jev answers: whether the evidence so far is enough to stop retrieving, where to split a chunk, which passages earn a context slot, whether an answer stays grounded, and whether a cached answer is safe to reuse. <sub>(written by a model)</sub>
   <sub>`Project` · ajanm007 · `Py` · `noul` · call site [`jevrag/decision.py`](https://github.com/ajanm007/jevrag/blob/HEAD/jevrag/decision.py), read by a model 2026-11-10</sub>

@@ -4,11 +4,11 @@
 
 _对进来的文档、发票、表单做分类和路由。_
 
-这个决策的全部已收录例子 —— 共 23 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#文档分拣)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 24 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#文档分拣)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#document-triage)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#document-triage)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 22 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 0 · 未引用文件 1。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 23 · 接口形态 0 · 仅示例 0 · 独立报告 3 · 负面结果 0 · 未引用文件 1。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -52,6 +52,9 @@ _对进来的文档、发票、表单做分类和路由。_
 
 - **[decision-first](https://github.com/harrymunro/decision-first)** — 适用于 Claude Code、Codex、Cursor 等的智能体技能：当某一步工作是有界判断（分类、分诊、排序、路由、筛选、核验、把关）时，智能体先通过附带的脚本向 Jev 发送 noul、choice 或 score 问题，再考虑写正则或 LLM 提示，并记录每次尝试，无论是否采用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · harrymunro · `Py` · 调用点 [`skills/decision-first/scripts/ask.py`](https://github.com/harrymunro/decision-first/blob/HEAD/skills/decision-first/scripts/ask.py)，2026-09-22 阅读</sub>
+
+- **[Jev Benchmark](https://github.com/yididev/jev-benchmark)** — 基于评分细则的零样本分类、链式决策树执行和考试评分基准。每份文档以一个 choice 发给 Jev，criteria 是细则中各文件夹的完整描述，并与两个 Claude 模型、OpenJev 和其他开源权重决策模型比较准确率、校准和价格。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · yididev · `Py` · `choice` · 调用点 [`arms/jev.py`](https://github.com/yididev/jev-benchmark/blob/HEAD/arms/jev.py)，2026-11-18 模型阅读</sub>
 
 - **[Jev Playwright](https://github.com/arthurfiorette/jev-playwright)** — 一个 Playwright 报告器：在启动任何浏览器之前，询问 Jev 某次代码改动可能影响哪些现有端到端测试，并跳过明显无关的测试。默认会发送改动路径、补丁和测试代码；README 提醒它可能漏掉受影响的测试。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arthurfiorette · `TS` · 调用点 [`src/config.ts`](https://github.com/arthurfiorette/jev-playwright/blob/HEAD/src/config.ts)，2026-10-24 模型阅读</sub>

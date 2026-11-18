@@ -4,11 +4,11 @@
 
 _在输出到达用户前，按评分标准检查模型产出。_
 
-这个决策的全部已收录例子 —— 共 172 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 174 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#output-validation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#output-validation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 167 · 接口形态 1 · 仅示例 0 · 独立报告 13 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 169 · 接口形态 1 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -305,6 +305,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[dsh-fact-check](https://github.com/7starsseeker/dsh-fact-check)** — DeepSeek Harness 的事实核查技能，其中可选的 Jev 层提出事实性 noul，比如证据是否支持某条论断、是否已足够停止搜索、来源是否为一手来源；Jev 只能下调论断的可信等级，不能上调。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · 7starsseeker · `JS` · `noul` · 调用点 [`tools/jev-verdict.mjs`](https://github.com/7starsseeker/dsh-fact-check/blob/HEAD/tools/jev-verdict.mjs)，2026-11-11 模型阅读</sub>
 
+- **[dsh-jev-advisor](https://github.com/gordan-code/dsh-jev-advisor)** — DeepSeek Harness 插件，把 Jev 的第二意见展示给你而不是智能体：对智能体的选择题给出推荐选项和概率，对工具审批建议“允许一次”或“拒绝”并附风险分，对计划给出就绪程度。在你采纳之前，什么都不会提交给 DeepSeek Harness。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · gordan-code · `JS` · `choice` · `noul` · `score` · 调用点 [`src/index.js`](https://github.com/gordan-code/dsh-jev-advisor/blob/HEAD/src/index.js)，2026-11-18 模型阅读</sub>
+
 - **[dsh-jev-plugin](https://github.com/jackie-cqz/dsh-jev-plugin)** — DeepSeek Harness 插件：把 Jev 的 noul、choice 和 score 作为工具提供给智能体，还可以把 Jev 用作执行前的风险关卡（对风险等级打分，据此拒绝工具调用、请求批准或放行）、工具结果的复核以及模型路由。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · jackie-cqz · `TS` · `noul` · `choice` · `score` · 调用点 [`src/client.ts`](https://github.com/jackie-cqz/dsh-jev-plugin/blob/HEAD/src/client.ts)，2026-11-08 模型阅读</sub>
 
@@ -448,6 +451,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevkit](https://github.com/ariel-frischer/jevkit)** — 用 Rust 写的快速 CLI：类型化决策，付费之前先离线 lint。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ariel-frischer · `Rs` · 调用点 [`src/auth.rs`](https://github.com/ariel-frischer/jevkit/blob/HEAD/src/auth.rs)，2026-09-22 阅读</sub>
+
+- **[jevkit](https://github.com/bragamat/jevkit)** — 把 Jev 放进编码智能体工具箱的命令行工具：find 按问题给文件各行排序，check 检验源码是否支持某个说法，triage 对大量条目提相同问题，decide、yesno 和 score 则根据风险返回裁决（执行、确认或换个问法）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · bragamat · `Go` · `choice` · `noul` · `score` · 调用点 [`internal/typesafe/client.go`](https://github.com/bragamat/jevkit/blob/HEAD/internal/typesafe/client.go)，2026-11-18 模型阅读 · ⚠ `实测后未采用`</sub>
 
 - **[JevRAG](https://github.com/ajanm007/jevrag)** — Python 库：把 RAG 里的五个判断变成由 Jev 回答的 noul：已有证据是否足够、可以停止检索，块该在哪里切分，哪些段落值得放进上下文，答案是否有依据，缓存的答案能否安全复用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ajanm007 · `Py` · `noul` · 调用点 [`jevrag/decision.py`](https://github.com/ajanm007/jevrag/blob/HEAD/jevrag/decision.py)，2026-11-10 模型阅读</sub>

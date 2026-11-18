@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 179 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 181 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 172 · wire shape 3 · example only 0 · independent reports 13 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 174 · wire shape 3 · example only 0 · independent reports 14 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -287,6 +287,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[diffjury](https://github.com/raihankhan-rk/diffjury)** — DiffJury — TypeSafe Jev PR risk router + code review coach <sub>(upstream description)</sub>
   <sub>`Project` · raihankhan-rk · `TS` · call site [`src/lib/review.ts`](https://github.com/raihankhan-rk/diffjury/blob/HEAD/src/lib/review.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[dsh-jev-advisor](https://github.com/gordan-code/dsh-jev-advisor)** — DeepSeek Harness plugin that shows you, not the agent, a Jev second opinion: a recommended option with probabilities for the agent's multiple-choice questions, allow once or reject with a risk score for tool approvals, and readiness for plans. Nothing reaches the harness until you adopt it. <sub>(written by a model)</sub>
+  <sub>`Plugin` · gordan-code · `JS` · `choice` · `noul` · `score` · call site [`src/index.js`](https://github.com/gordan-code/dsh-jev-advisor/blob/HEAD/src/index.js), read by a model 2026-11-18</sub>
+
 - **[dsh-jev-decide](https://github.com/nanami-0713/dsh-jev-decide)** — DSH plugin: register TypeSafe Jev (System One decision model) as an agent tool — jev_decide returns calibrated probabilities (noul/choice/score) for routing/triage/guardrail judgments, no text generation. 把 TypeSafe Jev 决策模型注册为 DSH agent 工具 <sub>(upstream description)</sub>
   <sub>`Plugin` · nanami-0713 · `JS` · call site [`lib/index.js`](https://github.com/nanami-0713/dsh-jev-decide/blob/HEAD/lib/index.js), read 2026-09-22</sub>
 
@@ -373,6 +376,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-guard](https://github.com/muratcakmak/jev-guard)** — Probability-scored guardrails for Claude Code: deny rule-breaking edits and unasked-for deploys, route your docs into each prompt, and check the final answer against the turn's own evidence. <sub>(upstream description)</sub>
   <sub>`Plugin` · muratcakmak · `TS` · call site [`scripts/jev-lint.ts`](https://github.com/muratcakmak/jev-guard/blob/HEAD/scripts/jev-lint.ts), read 2026-09-24 · ⚠ `one commit`</sub>
+
+- **[jev-guardbench](https://github.com/dfranco-projects/jev-guardbench)** — Tests whether Jev can replace the LLM judge that checks an agent's messages for personal data, prompt injection and harmful requests or replies: one noul per policy, or per split-out condition, on 7,925 public rows and inside a google-adk agent, against Gemini Flash and Claude Haiku judges. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · dfranco-projects · `Py` · `noul` · call site [`src/guardbench/guards/systemone.py`](https://github.com/dfranco-projects/jev-guardbench/blob/HEAD/src/guardbench/guards/systemone.py), read by a model 2026-11-18 · ⚠ `no licence`</sub>
 
 - **[jev-logtriage](https://github.com/jyatesdotdev/jev-logtriage)** — Jev decides whether a batch of logs is worth acting on. Typed questions, confidence gates, nothing executed. <sub>(upstream description)</sub>
   <sub>`Project` · jyatesdotdev · `Py` · call site [`logtriage/cli.py`](https://github.com/jyatesdotdev/jev-logtriage/blob/HEAD/logtriage/cli.py), read 2026-09-22</sub>
