@@ -159,8 +159,12 @@ avatar, since the site loads nothing from another host.
 
 A week goes like this, with no step for a person:
 
-1. **Any day:** someone opens a launch issue (the "Launch a product" form).
-   `launch-intake.yml` answers it with a comment from
+1. **Any day:** someone opens a launch issue (the "Launch a product" form),
+   or, since 2026-11-18, a new-entry issue that ticks "Launch it on the
+   weekly board once its row is in": the Friday filing reads it as a launch
+   issue once its row is in (`launch_intake.launch_answers`), open or closed,
+   and `new-entry.yml`'s comment says so. `launch-intake.yml` answers a
+   launch issue with a comment from
    `scripts/launch_intake.py`: ready for a week, with what the board's rules
    settled; not read yet, naming what GitHub did not answer, which Friday's
    filing reads again; or not launched and what to change. It only comments.

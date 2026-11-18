@@ -67,6 +67,8 @@ Maker 还可以通过 [confirm-entry 表单](https://github.com/kydlikebtc/aweso
    - fork 仓库要有至少 10 次自己的提交才能发布，60 天没有推送的仓库要有新的推送才能发布；在那之前暂不能发布，编辑 issue 会重新检查。
 
    调用点还没人读过的产品，会在开榜前读过，所以每个 Launch 开榜时至少有模型读过。
+
+   用"Add an entry"表单收录产品时，可以一步同时发布（2026-11-18 起）：勾选"Launch it on the weekly board once its row is in"，再写一句话介绍。这个 issue 就是 Launch issue：它的条目进入目录后，第一次周五排期就把它排上榜；表单说是自己的项目且检查能确认时，按 Maker 发布；投票链接也会贴在这个 issue 上。
 2. 周五（定在 00:20 UTC 运行，GitHub 可能晚几个小时才开始）把这一周的 Launch 写进 `launches/<YYYY>-W<ww>.json`（[schema](../schema/launch.schema.json)）并推到 `main`，不用等合并。榜单在"下周"下面列出它们。错过了自己那一周的 Launch（比如信息读得太晚），排进这一周。
 3. 周一开榜（定在 00:05 UTC 运行，同样可能晚几个小时）：每个 Launch 在仓库的 `Launches` Discussions 里有一个帖子，在帖子上点赞就是投票，周日 23:59 UTC 前投的票都算。Launch 的 issue 会收到帖子链接，然后关闭。
 4. 开榜期间，榜单按随机顺序展示，不显示票数，免得大家只给排在前面的投票。（Discussion 自己会显示点赞数，榜单不重复显示。）

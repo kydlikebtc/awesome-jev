@@ -103,6 +103,30 @@ body:
         interpret is worse than no flag. Also the place for anything surprising.
 
   - type: checkboxes
+    id: launch
+    attributes:
+      label: Launch it on the board?
+      description: >
+        Optional. Once its row is in the catalogue, the filing early on Friday
+        puts the product on the next week's launch board (docs/launches.md)
+        from this issue, and the link to its vote post is posted here. It
+        launches as yours when you ticked "This is my own project" above and
+        the check can confirm it (you own the repository, are a public member
+        of its organisation, or are one of its most active contributors), and
+        otherwise as a hunter's.
+      options:
+        - label: "Launch it on the weekly board once its row is in. I will not buy votes or ask accounts to vote in bulk; a launch found gamed is removed, with the reason kept"
+
+  - type: input
+    id: tagline
+    attributes:
+      label: One line for the board
+      description: >
+        If you ticked the box above: what it does, in your own words, at most
+        80 characters. Say what it does, not how good it is.
+      placeholder: Routes every support ticket with one Jev choice
+
+  - type: checkboxes
     id: confirm
     attributes:
       label: Confirmation

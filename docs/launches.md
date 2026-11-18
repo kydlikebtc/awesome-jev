@@ -113,6 +113,13 @@ Weeks are ISO weeks: Monday 00:00 UTC to Sunday 23:59 UTC.
 
    A product whose call site nobody has read yet is read before its week
    opens, so every launch opens with at least a model's reading.
+
+   Adding a product with the "Add an entry" form can launch it in the same
+   step (since 2026-11-18): tick *Launch it on the weekly board once its row
+   is in* and give its one line. That issue is the launch issue: the first
+   Friday filing after its row lands puts it on the board, as the maker's
+   when the form says it is their own project and the check confirms it, and
+   the vote link is posted there.
 2. On Friday (the run is set for 00:20 UTC, and GitHub can start it hours
    late) the week's launches are written to
    `launches/<YYYY>-W<ww>.json` ([schema](../schema/launch.schema.json)) and

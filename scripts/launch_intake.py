@@ -35,6 +35,12 @@ contributors with at least MAKER_COMMITS commits (GitHub's public
 contributors list). A repository's collaborator list needs that repository's
 own push access, which no token here has.
 
+Since 2026-11-18 a new-entry issue ("Add an entry") can tick "Launch it on
+the weekly board once its row is in" and give its line: the Friday filing reads
+those as launch issues too (launch_answers), open or closed, since the issue
+closes when its row lands, and files the launch once the row is in. Its
+author adding their own project launches it in the same step.
+
 Like draft_from_issue.py, the job that answers an issue only comments: anyone
 can open one. `--collect WEEK` reads every open launch issue, assesses each the
 same way, and writes the week's file (and, for a maker the check confirmed,
@@ -83,7 +89,9 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import _github  # noqa: E402
 import launches as L  # noqa: E402
-from draft_from_issue import fence, find_row, insert_after, one_line, parse_form, repository, ticked  # noqa: E402
+from draft_from_issue import (  # noqa: E402
+    FIELDS as ENTRY_FIELDS, LAUNCH_ASK, OWN, fence, find_row, insert_after, one_line, parse_form, repository, ticked,
+)
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = L.query.SITE
@@ -92,6 +100,11 @@ MARKER = "<!-- written by scripts/launch_intake.py -->"
 FACTS = re.compile(r"^<!-- launch-intake-facts (\{.*\}) -->$", re.MULTILINE)
 BOT = "github-actions[bot]"
 LABEL = "launch"
+# A new-entry issue that ticks LAUNCH_ASK is a launch too (2026-11-18). The
+# Friday filing reads those updated in the last ENTRY_DAYS days, open or
+# closed, since the issue closes when its row lands.
+ENTRY_LABEL = "new entry"
+ENTRY_DAYS = 90
 
 # The form's headings, as GitHub renders an issue form.
 FIELDS = {
@@ -330,6 +343,31 @@ def relaunch_problems(slug: str, week: str, all_weeks: list[dict]) -> list[str]:
     return out
 
 
+def launch_answers(issue: dict) -> dict | None:
+    """The launch form's answers an issue gives: a launch issue's own, or,
+    since 2026-11-18, those of a new-entry issue that ticks LAUNCH_ASK. For
+    that one the URL is the product, its "own project" box says the maker
+    launches it (confirmed as for any launch), its "One line for the board" is
+    the line, and the box stands for both confirmations: it carries the vote
+    pledge, and a product only launches once its row says where it calls Jev.
+    `source` says which form it was. None for any other issue."""
+    body = issue.get("body") or ""
+    form = parse_form(body, FIELDS)
+    if "product" in form:
+        return {**form, "source": "launch"}
+    entry = parse_form(body, ENTRY_FIELDS)
+    if "url" not in entry or LAUNCH_ASK not in ticked(entry.get("launch", "")):
+        return None
+    return {
+        "product": entry.get("url", ""),
+        "role": MAKER if OWN in ticked(entry.get("caveats", "")) else HUNTER,
+        "tagline": entry.get("tagline", ""),
+        "tagline_zh": "",
+        "confirm": "\n".join(f"- [x] {c}" for c in CONFIRMS),
+        "source": "new-entry",
+    }
+
+
 def assess(issue: dict, catalog: list[dict], all_weeks: list[dict], *, lookup: Lookup,
            not_before: str | None = None) -> dict:
     """What the check makes of one launch issue:
@@ -341,7 +379,7 @@ def assess(issue: dict, catalog: list[dict], all_weeks: list[dict], *, lookup: L
     Nothing is held for a person (since 2026-11-05): each case the check used
     to hold has a rule (the module's docstring). `not_before` is the week the
     Friday filing is filling: a launch whose own week has passed goes on it."""
-    form = parse_form(issue.get("body") or "", FIELDS)
+    form = launch_answers(issue) or parse_form(issue.get("body") or "", FIELDS)
     login = str((issue.get("user") or {}).get("login") or "")
     opened = opened_at(issue)
     out: dict = {"verdict": "refused", "week": None, "row": None, "problems": [], "notes": [], "unread": [],
@@ -362,9 +400,13 @@ def assess(issue: dict, catalog: list[dict], all_weeks: list[dict], *, lookup: L
 
     row = resolve(form.get("product", ""), catalog)
     if row is None:
+        # A new entry asking to launch waits for its row; so does a launch
+        # issue, since each Friday's filing reads every open one again.
+        out["waiting"] = form.get("source") == "new-entry"
         out["problems"].append(
             "the product is not in the catalogue. Add it with the new-entry form first "
-            f"({NEW_ENTRY}); it can launch once its row is in")
+            f"({NEW_ENTRY}); it can launch once its row is in, and each Friday's filing reads this issue "
+            "again, so a row on its way needs nothing more from you")
         return out
     slug = out["row"] = row["slug"]
     if not L.is_product(row):
@@ -530,6 +572,9 @@ def collect(week: str, issues: list[dict], catalog: list[dict], all_weeks: list[
         result = assess(issue, catalog, all_weeks, lookup=own, not_before=week)
         if result["verdict"] == "collected" or result["week"] != week:
             continue
+        if result.get("waiting"):
+            notes.append(f"#{number}: a new entry that asks to launch; its row is not in the catalogue yet")
+            continue
         if result["verdict"] == "refused":
             notes.append(f"#{number}: not launched ({'; '.join(result['problems'])})")
             continue
@@ -593,7 +638,7 @@ def unread(catalog: list[dict], all_weeks: list[dict], issues: list[dict]) -> li
     for issue in sorted(issues, key=lambda i: i.get("number") or 0):
         if issue.get("number") in filed:
             continue
-        row = resolve(parse_form(issue.get("body") or "", FIELDS).get("product", ""), catalog)
+        row = resolve((launch_answers(issue) or {}).get("product", ""), catalog)
         if row is not None:
             note(row["slug"], f"issue #{issue.get('number')}")
     return list(found.values())
@@ -612,6 +657,33 @@ def open_issues(repo: str) -> list[dict]:
     return out
 
 
+def entry_issues(repo: str, *, today: dt.date | None = None) -> list[dict]:
+    """The new-entry issues, open or closed, updated in the last ENTRY_DAYS
+    days, that ask to launch their product (launch_answers)."""
+    today = today or dt.datetime.now(dt.timezone.utc).date()
+    since = (today - dt.timedelta(days=ENTRY_DAYS)).isoformat()
+    label = urllib.parse.quote(ENTRY_LABEL)
+    out: list[dict] = []
+    for page in range(1, 11):
+        batch = _github.api_get(f"/repos/{repo}/issues?labels={label}&state=all&since={since}T00:00:00Z"
+                                f"&per_page=100&page={page}")
+        if not isinstance(batch, list):
+            break
+        out += [i for i in batch if "pull_request" not in i
+                and (launch_answers(i) or {}).get("source") == "new-entry"]
+        if len(batch) < 100:
+            break
+    return out
+
+
+def launch_issues(repo: str) -> list[dict]:
+    """Every issue that is a launch: the open launch issues, and the new-entry
+    issues that ask to launch (entry_issues), each once."""
+    found = {i.get("number"): i for i in entry_issues(repo)}
+    found.update({i.get("number"): i for i in open_issues(repo)})
+    return [found[n] for n in sorted(found, key=lambda n: n or 0)]
+
+
 def issue_comments(repo: str, number: int) -> list[dict]:
     found = _github.api_get(f"/repos/{repo}/issues/{number}/comments?per_page=100")
     return found if isinstance(found, list) else []
@@ -623,7 +695,7 @@ def write_json(path: pathlib.Path, data, *, indent: int = 2) -> None:
 
 
 def main(argv: list[str] | None = None, *, lookup: Lookup | None = None,
-         issues_for: Callable[[str], list[dict]] = open_issues,
+         issues_for: Callable[[str], list[dict]] = launch_issues,
          comments_for: Callable[[str, int], list[dict]] = issue_comments) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     source = parser.add_mutually_exclusive_group(required=True)

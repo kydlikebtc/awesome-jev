@@ -35,7 +35,7 @@ WORKFLOW = ROOT / ".github" / "workflows" / "new-entry.yml"
 
 def body(url="https://github.com/acme/jev-tool", *, read=True, primitives=("noul",), boxes=(), notes="",
          summary="Gates each shell command with a noul; code owns the 0.8 threshold.", patterns="safety-gating",
-         is_jev=None) -> str:
+         is_jev=None, launch=False, tagline="") -> str:
     """An issue body as GitHub renders the form."""
     def box(label, on):
         return f"- [{'x' if on else ' '}] {label}"
@@ -51,6 +51,8 @@ def body(url="https://github.com/acme/jev-tool", *, read=True, primitives=("noul
         "### Anything a reader deserves to know before clicking?\n\n"
         + "\n".join(box(label, label in boxes) for label in caveats),
         f"### Notes\n\n{notes or '_No response_'}",
+        f"### Launch it on the board?\n\n{box(dfi.LAUNCH_ASK, launch)}",
+        f"### One line for the board\n\n{tagline or '_No response_'}",
         "### Confirmation\n\n- [x] I opened this link and wrote the summary from what was actually there",
     ])
 
@@ -212,6 +214,31 @@ class CommentTest(unittest.TestCase):
                        and dfi.find_row(catalog, dfi.repository(e["url"])) is e)
         text = dfi.comment(issue(body(url=product["url"])), read=never, today=TODAY)
         self.assertIn(f"template=launch.yml&product={product['slug']}&title=Launch%3A%20", text)
+
+    def test_a_launch_asked_for_is_answered_without_quoting_the_line(self):
+        # Since 2026-11-18 the form can ask to launch the product once its row is in.
+        text = reply(body(boxes=(dfi.OWN,), launch=True, tagline="Gates <b>@everyone</b> shell commands"))
+        self.assertIn("You asked to launch it on the weekly board", text)
+        self.assertIn("as yours if the check can confirm you made it", text)
+        self.assertNotIn("can also launch on the weekly board", text)
+        self.assertNotIn("@everyone", text)
+        self.assertNotIn("needs one line", text)
+        text = reply(body(launch=True, tagline="x" * 81))
+        self.assertIn("as a hunter's, since the form does not say it is your own project", text)
+        self.assertIn("The board needs one line about it first, 3 to 80 characters (it has 81)", text)
+        self.assertIn("(it has 0)", reply(body(launch=True)))
+        # Not asked: the plain line, and the draft row knows nothing of it.
+        self.assertIn("can also launch on the weekly board", reply(body(tagline="Unused")))
+        self.assertNotIn("tagline", drafted(body(launch=True, tagline="Gates shell commands")))
+        # Already catalogued: the filing takes it from this issue, so no second form is offered.
+        catalog = json.loads((ROOT / "catalog.json").read_text())
+        product = next(e for e in catalog if dfi.launches.is_product(e) and e.get("url", "").startswith("https://github.com/")
+                       and dfi.find_row(catalog, dfi.repository(e["url"])) is e)
+        never = mock.Mock(side_effect=AssertionError("a catalogued repository is not read again"))
+        text = dfi.comment(issue(body(url=product["url"], boxes=(dfi.OWN,), launch=True, tagline="Gates shell commands")),
+                           read=never, today=TODAY)
+        self.assertIn("You asked to launch it", text)
+        self.assertNotIn("template=launch.yml", text)
 
     def test_retired_and_declined_say_why(self):
         retired = json.loads((ROOT / "retired.json").read_text())[0]
