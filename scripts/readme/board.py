@@ -38,6 +38,9 @@ from .strings import ZH_MACHINE
 # How many rising products the README lists; the board on the site lists
 # launches.RISING_SHOWN.
 README_RISING = 5
+# How many of the catalogue's newest products the README lists while no week
+# runs or is filed (launches.new_this_week); the site's board lists them all.
+README_NEW = 5
 # How many cards the README cover draws.
 HERO_CARDS = 3
 DISCUSSIONS = f"{REPO_URL}/discussions/categories/launches"
@@ -260,7 +263,8 @@ def closed_list(board: Board, strings: dict) -> list[str]:
 
 
 def rising_state(board: Board, row: dict, strings: dict, today) -> str:
-    """What a rising product can do next: launch now, wait, or be voted on."""
+    """What a rising or new product can do next: launch now, wait, or be
+    voted on."""
     mine = launches.launched(board.weeks).get(row["slug"], [])
     state, again = launches.launch_again(mine, board.weeks_by_id, today)
     if state == "now":
@@ -299,42 +303,70 @@ def rising_list(board: Board, catalog: list[dict], strings: dict) -> list[str]:
     return out + feed(items) + [f"<sub>{note}</sub>", ""]
 
 
+def new_list(board: Board, catalog: list[dict], strings: dict) -> list[str]:
+    """The products that entered the catalogue in its newest week
+    (launches.new_this_week, as the site's board lists them): whose call site
+    a person read first, then a model, then by stars. An order, not a ranking;
+    each with what it can do next, which for a new product is to launch."""
+    week, fresh = launches.new_this_week(catalog)
+    if not week or not fresh:
+        return []
+    lang, today, items = strings["lang_code"], launches.as_of(catalog), []
+    for row in fresh[:README_NEW]:
+        meta = [strings["tiers"][launches.tier(row)], rising_state(board, row, strings, today)]
+        stars = row.get("stars")
+        if isinstance(stars, int):
+            meta.insert(0, strings["board_new_stars"].format(stars=f"{stars:,}"))
+        # The day it was added: a new row has no stars until the Wednesday refresh.
+        right = box(launches.day(row["first_seen"]).strftime("%m-%d"), strings["box_new"])
+        items.append((row, one_line(row, lang), meta, right))
+    note = marked(strings, "board_new_note", n=len(fresh), week=week, listed=len(items), board=board_url(lang))
+    return [f"### {strings['board_new_h'].format(week=week)}", ""] + feed(items) + [f"<sub>{note}</sub>", ""]
+
+
 def this_weeks_launches(page) -> list[str]:
-    """The board as it stands, products first: the running week, the week
-    filed next, the newest closed week's top three (headed "last week" only
-    when it is, and after a line saying nothing runs when nothing does), or a
-    line saying no week has opened; then how the board works, then what is
-    rising."""
+    """The board as it stands, products first.
+
+    While a week runs or is filed: the running week, the week filed next, last
+    week's top three; then how the board works, then what is rising.
+
+    While none is (2026-11-18: no launch was filed for 2026-W47 or W48), what
+    moves every day leads instead of an old week: a line saying nothing is on
+    the board, the rising products, the products new in the catalogue, then
+    the newest closed week's top three (headed "last week" only when it is);
+    then how the board works. A filed week puts the board back on top."""
     strings, lang = page.strings, page.lang
     board = read_board(page.catalog)
     out = [f"## {strings['board_h']}", ""]
-    shown = False
-    if board.on(board.running):
-        shown = True
-        out += [f"### {strings['board_running_h'].format(week=board.running['week'])}", ""]
-        out += [marked(strings, "board_running_note"), ""]
-        out += launch_list(board, board.running, strings, vote=True)
-    if board.on(board.coming):
-        shown = True
-        monday, _ = launches.week_days(board.coming["week"])
-        out += [f"### {strings['board_next_h'].format(week=board.coming['week'])}", ""]
-        out += [marked(strings, "board_next_note", monday=monday), ""]
-        out += launch_list(board, board.coming, strings, vote=False)
-    if board.on(board.closed):
-        if not shown:
-            # Nothing runs or is filed: say so before the newest results, so
-            # an old week is not read as this week's board.
-            out += [marked(strings, "board_quiet", form=LAUNCH_FORM), ""]
-        shown = True
-        stale = launches.stale_close(board.closed, board.running, launches.as_of(page.catalog))
-        heading = strings["board_latest_h" if stale else "board_closed_h"]
-        out += [f"### {heading.format(week=board.closed['week'])}", ""]
-        out += closed_list(board, strings)
-    if not shown:
-        out += [marked(strings, "board_empty", form=LAUNCH_FORM), ""]
-    out += [marked(strings, "board_intro", discussions=DISCUSSIONS, board=board_url(lang)), ""]
+    if board.on(board.running) or board.on(board.coming):
+        if board.on(board.running):
+            out += [f"### {strings['board_running_h'].format(week=board.running['week'])}", ""]
+            out += [marked(strings, "board_running_note"), ""]
+            out += launch_list(board, board.running, strings, vote=True)
+        if board.on(board.coming):
+            monday, _ = launches.week_days(board.coming["week"])
+            out += [f"### {strings['board_next_h'].format(week=board.coming['week'])}", ""]
+            out += [marked(strings, "board_next_note", monday=monday), ""]
+            out += launch_list(board, board.coming, strings, vote=False)
+        if board.on(board.closed):
+            out += closed_section(board, page.catalog, strings)
+        out += [marked(strings, "board_intro", discussions=DISCUSSIONS, board=board_url(lang)), ""]
+        return out + rising_list(board, page.catalog, strings)
+    key = "board_quiet" if board.on(board.closed) else "board_empty"
+    out += [marked(strings, key, form=LAUNCH_FORM), ""]
     out += rising_list(board, page.catalog, strings)
-    return out
+    out += new_list(board, page.catalog, strings)
+    if board.on(board.closed):
+        out += closed_section(board, page.catalog, strings)
+    return out + [marked(strings, "board_intro", discussions=DISCUSSIONS, board=board_url(lang)), ""]
+
+
+def closed_section(board: Board, catalog: list[dict], strings: dict) -> list[str]:
+    """The newest closed week under its heading: "last week" while it is,
+    "latest results" once a whole week has passed since (launches.stale_close)."""
+    stale = launches.stale_close(board.closed, board.running, launches.as_of(catalog))
+    heading = strings["board_latest_h" if stale else "board_closed_h"]
+    return [f"### {heading.format(week=board.closed['week'])}", ""] + closed_list(board, strings)
 
 
 def example_product(board: Board, catalog: list[dict]) -> str | None:

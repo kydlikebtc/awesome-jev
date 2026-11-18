@@ -99,6 +99,13 @@ EN = {
         "[All {shown} on the board]({board})."
     ),
     "board_rising_none": "No product gained {n} stars between the two dates above.",
+    "board_new_h": "New in the catalogue: {week}",
+    "board_new_stars": "{stars} stars",
+    "board_new_note": (
+        "{n} products entered the catalogue in {week} so far; the first {listed} here, those whose call site a "
+        "person read first, then a model, then by stars. An order, not a ranking, and each can launch. "
+        "[All of them on the board]({board})."
+    ),
     "board_stars": "{before} → {after} stars ({share})",
     "board_launch_it": "Launch it ↗",
     "board_again": "can launch again from {day}",
@@ -114,6 +121,7 @@ EN = {
     "box_opens": "opens<br>{day}",
     "box_votes": "votes",
     "box_stars": "stars",
+    "box_new": "added",
     "tiers": {
         "person": "👤 a person read the call site",
         "model": "🤖 a model read the call site, no person yet",
@@ -530,6 +538,12 @@ ZH = {
         "[发布榜上的全部 {shown} 个]({board})。"
     ),
     "board_rising_none": "上面两个日期之间，没有产品的星标涨到 {n} 个。",
+    "board_new_h": "本周新收录：{week}",
+    "board_new_stars": "{stars} 星",
+    "board_new_note": (
+        "{week} 至今新收录 {n} 个产品，这里列前 {listed} 个：先列有人读过调用点的，再列模型读过的，然后按星标排序。"
+        "这是排序，不是排名，每个都可以发布。[发布榜上的全部]({board})。"
+    ),
     "board_stars": "{before} → {after} 星（{share}）",
     "board_launch_it": "发布它 ↗",
     "board_again": "{day} 起可再次发布",
@@ -543,6 +557,7 @@ ZH = {
     "box_opens": "{day}<br>开榜",
     "box_votes": "票",
     "box_stars": "星标",
+    "box_new": "收录",
     "tiers": {
         "person": "👤 有人读过调用点",
         "model": "🤖 模型读过调用点，尚无人复核",
@@ -855,8 +870,8 @@ ZH_MACHINE = frozenset(
         # The launch board's sections (2026-11-05): about_rows is marked line
         # by line in sections.what_this_is, launch_steps under its table.
         "about_rows", "about_not", "board_intro", "board_running_note", "board_next_note", "board_closed_more",
-        "board_empty", "board_quiet", "board_rising_note", "board_rising_none", "launch_intro", "launch_steps",
-        "launch_badge", "launch_more",
+        "board_empty", "board_quiet", "board_rising_note", "board_rising_none", "board_new_note",
+        "launch_intro", "launch_steps", "launch_badge", "launch_more",
     }
 )
 

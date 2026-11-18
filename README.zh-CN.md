@@ -56,45 +56,6 @@
 
 本周榜上没有 Launch。周四 23:59 UTC 前提交的 Launch 周五登记、下周一开榜：[发布一个产品](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml)，自己做的或你发现的都行，比如下面上升最快的这些。 <sub>(机翻)</sub>
 
-### 🏆 上周：2026-W46
-
-<table>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
-<td>
-
-**[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — 桌面自动化：由 Jev 选出下一步要操作的按钮、菜单或输入框<br>
-<sub>▲ 0 票，计 0.0 票 · [kydlikebtc](https://github.com/kydlikebtc) 推荐 · 👤 有人读过调用点</sub>
-
-</td>
-<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>票</sub></td>
-</tr>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html"><img src="https://github.com/mattt.png?size=96" width="48" height="48" alt="anydecisionmodel"></a></td>
-<td>
-
-**[anydecisionmodel](https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html)** — Swift 包：从 Jev 或本地 MLX 模型取得选择、分数和概率<br>
-<sub>▲ 0 票，计 0.0 票 · [kydlikebtc](https://github.com/kydlikebtc) 推荐 · 👤 有人读过调用点</sub>
-
-</td>
-<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>票</sub></td>
-</tr>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html"><img src="https://github.com/leepokai.png?size=96" width="48" height="48" alt="jev-guard"></a></td>
-<td>
-
-**[jev-guard](https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html)** — 编程智能体的安全钩子：每次工具调用前由 Jev 判断风险<br>
-<sub>▲ 0 票，计 0.0 票 · [kydlikebtc](https://github.com/kydlikebtc) 推荐 · 👤 有人读过调用点</sub>
-
-</td>
-<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>票</sub></td>
-</tr>
-</table>
-
-2026-W46 的全部 Launch、被折算的票和原因：[当周页面](https://kydlikebtc.github.io/awesome-jev/weeks/2026-W46.zh.html) · [结果订阅](https://kydlikebtc.github.io/awesome-jev/launches.zh.xml) <sub>(机翻)</sub>
-
-用 Jev 做出来的产品，由 Maker 每周发布一次，任何人也可以推荐（hunt）自己发现的产品。大家在每个 Launch 的 [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches) 帖子上点赞投票，每周日 23:59 UTC 收榜、排名。票数说明有多少人关心；每个 Launch 旁边的证据说明谁读过它调用 Jev 的代码。两者从不相加，名次也不是本目录的推荐。[发布榜](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)上有每一周、每个产品和每位 Maker 的页面，以及上升榜。 <sub>(机翻)</sub>
-
 ### ★ 上升最快：2026-11-10 至 2026-11-17
 
 <table>
@@ -151,6 +112,102 @@
 </table>
 
 <sub>上面两个日期之间 GitHub 星标涨得最快的 10 个产品（每个产品的星标每天读一次，拿最新一次和最接近一周前的那次比较）：至少涨了 10 个，按涨幅占原有星标的比例排序，这里列前 5 个。星标是 GitHub 的计数，是热度信号，不是评价；上升不会得到任何奖励。[发布榜上的全部 10 个](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)。 <sub>(机翻)</sub></sub>
+
+### 本周新收录：2026-W47
+
+<table>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/anofox-decide.html"><img src="https://github.com/DataZooDE.png?size=96" width="48" height="48" alt="anofox-decide"></a></td>
+<td>
+
+**[anofox-decide](https://kydlikebtc.github.io/awesome-jev/products/anofox-decide.html)** — DuckDB 扩展，可在 SQL 里调用决策模型：noul、choice、score 函数并发作用于表中各行，decide_answers 则把关于同一段文本的多个问题放进一个请求。TypeSafe 上的 Jev 是它的远程提供方之一。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+<sub>🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=anofox-decide&title=Launch%3A%20anofox-decide)</sub>
+
+</td>
+<td align="center" width="80"><b>11-17</b><br><sub>收录</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/astra-jev-harness.html"><img src="https://github.com/Oranquelui.png?size=96" width="48" height="48" alt="Astra + Jev"></a></td>
+<td>
+
+**[Astra + Jev](https://kydlikebtc.github.io/awesome-jev/products/astra-jev-harness.html)** — 面向 Codex Desktop、Codex CLI 和 Claude Code 的智能体技能和运行框架。编码模型写代码之前，它对每个候选文件向 Jev 提一个 noul（任务是否需要它），只保留有把握的“是”，任何回答不确定时就全部保留；它也用来筛选测试证据和长日志。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+<sub>🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=astra-jev-harness&title=Launch%3A%20Astra%20%2B%20Jev)</sub>
+
+</td>
+<td align="center" width="80"><b>11-17</b><br><sub>收录</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/decisium.html"><img src="https://github.com/andletenkov.png?size=96" width="48" height="48" alt="Decisium"></a></td>
+<td>
+
+**[Decisium](https://kydlikebtc.github.io/awesome-jev/products/decisium.html)** — 用 Playwright 在真实浏览器里执行 Gherkin 测试步骤。每一轮它在一次请求里问 Jev 下一步操作哪个元素、怎么操作（两个 choice），以及这一步是否已完成（noul）；通过与否由代码判定，CI 回放录制结果，不再调用模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+<sub>🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=decisium&title=Launch%3A%20Decisium)</sub>
+
+</td>
+<td align="center" width="80"><b>11-17</b><br><sub>收录</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/design-os-generative-ui.html"><img src="https://github.com/jangtrinh.png?size=96" width="48" height="48" alt="DESIGN:OS Generative UI"></a></td>
+<td>
+
+**[DESIGN:OS Generative UI](https://kydlikebtc.github.io/awesome-jev/products/design-os-generative-ui.html)** — 面向 AI 智能体的流式 UI 运行时，可渲染实时 HTML、图表和 WebGL 组件。它的编排器先问本地 Laya 模型哪个组件和布局适合请求（choice）以及请求是否关于仪表盘、落地页或告警（noul），Laya 没有把握时再把同样的问题发给 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+<sub>🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=design-os-generative-ui&title=Launch%3A%20DESIGN%3AOS%20Generative%20UI)</sub>
+
+</td>
+<td align="center" width="80"><b>11-18</b><br><sub>收录</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/dsh-jev-advisor.html"><img src="https://github.com/gordan-code.png?size=96" width="48" height="48" alt="dsh-jev-advisor"></a></td>
+<td>
+
+**[dsh-jev-advisor](https://kydlikebtc.github.io/awesome-jev/products/dsh-jev-advisor.html)** — DeepSeek Harness 插件，把 Jev 的第二意见展示给你而不是智能体：对智能体的选择题给出推荐选项和概率，对工具审批建议“允许一次”或“拒绝”并附风险分，对计划给出就绪程度。在你采纳之前，什么都不会提交给 DeepSeek Harness。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+<sub>🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=dsh-jev-advisor&title=Launch%3A%20dsh-jev-advisor)</sub>
+
+</td>
+<td align="center" width="80"><b>11-18</b><br><sub>收录</sub></td>
+</tr>
+</table>
+
+<sub>2026-W47 至今新收录 38 个产品，这里列前 5 个：先列有人读过调用点的，再列模型读过的，然后按星标排序。这是排序，不是排名，每个都可以发布。[发布榜上的全部](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)。 <sub>(机翻)</sub></sub>
+
+### 🏆 上周：2026-W46
+
+<table>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
+<td>
+
+**[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — 桌面自动化：由 Jev 选出下一步要操作的按钮、菜单或输入框<br>
+<sub>▲ 0 票，计 0.0 票 · [kydlikebtc](https://github.com/kydlikebtc) 推荐 · 👤 有人读过调用点</sub>
+
+</td>
+<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>票</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html"><img src="https://github.com/mattt.png?size=96" width="48" height="48" alt="anydecisionmodel"></a></td>
+<td>
+
+**[anydecisionmodel](https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html)** — Swift 包：从 Jev 或本地 MLX 模型取得选择、分数和概率<br>
+<sub>▲ 0 票，计 0.0 票 · [kydlikebtc](https://github.com/kydlikebtc) 推荐 · 👤 有人读过调用点</sub>
+
+</td>
+<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>票</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html"><img src="https://github.com/leepokai.png?size=96" width="48" height="48" alt="jev-guard"></a></td>
+<td>
+
+**[jev-guard](https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html)** — 编程智能体的安全钩子：每次工具调用前由 Jev 判断风险<br>
+<sub>▲ 0 票，计 0.0 票 · [kydlikebtc](https://github.com/kydlikebtc) 推荐 · 👤 有人读过调用点</sub>
+
+</td>
+<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>票</sub></td>
+</tr>
+</table>
+
+2026-W46 的全部 Launch、被折算的票和原因：[当周页面](https://kydlikebtc.github.io/awesome-jev/weeks/2026-W46.zh.html) · [结果订阅](https://kydlikebtc.github.io/awesome-jev/launches.zh.xml) <sub>(机翻)</sub>
+
+用 Jev 做出来的产品，由 Maker 每周发布一次，任何人也可以推荐（hunt）自己发现的产品。大家在每个 Launch 的 [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches) 帖子上点赞投票，每周日 23:59 UTC 收榜、排名。票数说明有多少人关心；每个 Launch 旁边的证据说明谁读过它调用 Jev 的代码。两者从不相加，名次也不是本目录的推荐。[发布榜](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)上有每一周、每个产品和每位 Maker 的页面，以及上升榜。 <sub>(机翻)</sub>
 
 ## 发布你的产品
 
