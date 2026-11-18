@@ -56,45 +56,6 @@
 
 No launch is on the board this week. A launch submitted by Thursday 23:59 UTC is filed on Friday and opens the next Monday: [launch a product](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml), yours or one you found, such as those rising below.
 
-### 🏆 Last week: 2026-W46
-
-<table>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
-<td>
-
-**[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — Desktop automation: Jev picks the button, menu or field to act on next<br>
-<sub>▲ 0 votes, 0.0 counted · hunted by [kydlikebtc](https://github.com/kydlikebtc) · 👤 a person read the call site</sub>
-
-</td>
-<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>votes</sub></td>
-</tr>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html"><img src="https://github.com/mattt.png?size=96" width="48" height="48" alt="anydecisionmodel"></a></td>
-<td>
-
-**[anydecisionmodel](https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html)** — Swift package for typed choices, scores and probabilities from Jev or MLX<br>
-<sub>▲ 0 votes, 0.0 counted · hunted by [kydlikebtc](https://github.com/kydlikebtc) · 👤 a person read the call site</sub>
-
-</td>
-<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>votes</sub></td>
-</tr>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html"><img src="https://github.com/leepokai.png?size=96" width="48" height="48" alt="jev-guard"></a></td>
-<td>
-
-**[jev-guard](https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html)** — Hook for coding agents: Jev judges each tool call's risk before it runs<br>
-<sub>▲ 0 votes, 0.0 counted · hunted by [kydlikebtc](https://github.com/kydlikebtc) · 👤 a person read the call site</sub>
-
-</td>
-<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>votes</sub></td>
-</tr>
-</table>
-
-Every launch of 2026-W46, with the votes discounted and why: [the week's page](https://kydlikebtc.github.io/awesome-jev/weeks/2026-W46.html) · [results feed](https://kydlikebtc.github.io/awesome-jev/launches.xml)
-
-Products built on Jev, launched by their makers once a week, or hunted by anyone who found one. People vote with a thumbs-up on each launch's post in [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches); the week closes on Sunday 23:59 UTC with a rank. Votes say how many people cared; the evidence beside each launch says who read the code that calls Jev. The two are never added together, and a rank is not this catalogue's recommendation. [The board](https://kydlikebtc.github.io/awesome-jev/launches.html) has every week, a page per product and per maker, and the rising list.
-
 ### ★ Rising: 2026-11-10 to 2026-11-17
 
 <table>
@@ -151,6 +112,102 @@ Products built on Jev, launched by their makers once a week, or hunted by anyone
 </table>
 
 <sub>The 10 products whose GitHub stars grew fastest between the two dates above (every product's stars are read each day, and the newest reading is compared with the one closest to a week before it), at least 10 stars gained, by the gain as a share of the stars before; the first 5 here. Stars are GitHub's count, a popularity signal, not a verdict, and nothing is awarded for rising. [All 10 on the board](https://kydlikebtc.github.io/awesome-jev/launches.html).</sub>
+
+### New in the catalogue: 2026-W47
+
+<table>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/anofox-decide.html"><img src="https://github.com/DataZooDE.png?size=96" width="48" height="48" alt="anofox-decide"></a></td>
+<td>
+
+**[anofox-decide](https://kydlikebtc.github.io/awesome-jev/products/anofox-decide.html)** — DuckDB extension that asks decision models from SQL: noul, choice and score functions run over table rows concurrently, and decide_answers sends several questions about one text in a single request. Jev on TypeSafe is one of its remote providers. <sub>(written by a model)</sub><br>
+<sub>🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=anofox-decide&title=Launch%3A%20anofox-decide)</sub>
+
+</td>
+<td align="center" width="80"><b>11-17</b><br><sub>added</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/astra-jev-harness.html"><img src="https://github.com/Oranquelui.png?size=96" width="48" height="48" alt="Astra + Jev"></a></td>
+<td>
+
+**[Astra + Jev](https://kydlikebtc.github.io/awesome-jev/products/astra-jev-harness.html)** — Agent skills and a harness for Codex Desktop, Codex CLI and Claude Code. Before the coding model writes code, it asks Jev one noul per candidate file (does the task need it?) and keeps only sure yeses, keeping everything when any answer is unsure; it also sorts test evidence and long logs. <sub>(written by a model)</sub><br>
+<sub>🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=astra-jev-harness&title=Launch%3A%20Astra%20%2B%20Jev)</sub>
+
+</td>
+<td align="center" width="80"><b>11-17</b><br><sub>added</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/decisium.html"><img src="https://github.com/andletenkov.png?size=96" width="48" height="48" alt="Decisium"></a></td>
+<td>
+
+**[Decisium](https://kydlikebtc.github.io/awesome-jev/products/decisium.html)** — Runs Gherkin test steps in a real browser with Playwright. Each turn it asks Jev in one request which element to act on and how (two choices) and whether the step is done (noul); code decides pass or fail, and CI replays the recordings with no model calls. <sub>(written by a model)</sub><br>
+<sub>🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=decisium&title=Launch%3A%20Decisium)</sub>
+
+</td>
+<td align="center" width="80"><b>11-17</b><br><sub>added</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/design-os-generative-ui.html"><img src="https://github.com/jangtrinh.png?size=96" width="48" height="48" alt="DESIGN:OS Generative UI"></a></td>
+<td>
+
+**[DESIGN:OS Generative UI](https://kydlikebtc.github.io/awesome-jev/products/design-os-generative-ui.html)** — Streaming UI runtime for AI agents that renders live HTML, charts and WebGL widgets. Its composer first asks a local Laya model which widget and layout fit a request (choices) and whether it is about dashboards, landing pages or alerts (nouls), and asks Jev the same when Laya is unsure. <sub>(written by a model)</sub><br>
+<sub>🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=design-os-generative-ui&title=Launch%3A%20DESIGN%3AOS%20Generative%20UI)</sub>
+
+</td>
+<td align="center" width="80"><b>11-18</b><br><sub>added</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/dsh-jev-advisor.html"><img src="https://github.com/gordan-code.png?size=96" width="48" height="48" alt="dsh-jev-advisor"></a></td>
+<td>
+
+**[dsh-jev-advisor](https://kydlikebtc.github.io/awesome-jev/products/dsh-jev-advisor.html)** — DeepSeek Harness plugin that shows you, not the agent, a Jev second opinion: a recommended option with probabilities for the agent's multiple-choice questions, allow once or reject with a risk score for tool approvals, and readiness for plans. Nothing reaches the harness until you adopt it. <sub>(written by a model)</sub><br>
+<sub>🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=dsh-jev-advisor&title=Launch%3A%20dsh-jev-advisor)</sub>
+
+</td>
+<td align="center" width="80"><b>11-18</b><br><sub>added</sub></td>
+</tr>
+</table>
+
+<sub>38 products entered the catalogue in 2026-W47 so far; the first 5 here, those whose call site a person read first, then a model, then by stars. An order, not a ranking, and each can launch. [All of them on the board](https://kydlikebtc.github.io/awesome-jev/launches.html).</sub>
+
+### 🏆 Last week: 2026-W46
+
+<table>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
+<td>
+
+**[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — Desktop automation: Jev picks the button, menu or field to act on next<br>
+<sub>▲ 0 votes, 0.0 counted · hunted by [kydlikebtc](https://github.com/kydlikebtc) · 👤 a person read the call site</sub>
+
+</td>
+<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>votes</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html"><img src="https://github.com/mattt.png?size=96" width="48" height="48" alt="anydecisionmodel"></a></td>
+<td>
+
+**[anydecisionmodel](https://kydlikebtc.github.io/awesome-jev/products/anydecisionmodel.html)** — Swift package for typed choices, scores and probabilities from Jev or MLX<br>
+<sub>▲ 0 votes, 0.0 counted · hunted by [kydlikebtc](https://github.com/kydlikebtc) · 👤 a person read the call site</sub>
+
+</td>
+<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>votes</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html"><img src="https://github.com/leepokai.png?size=96" width="48" height="48" alt="jev-guard"></a></td>
+<td>
+
+**[jev-guard](https://kydlikebtc.github.io/awesome-jev/products/jev-guard.html)** — Hook for coding agents: Jev judges each tool call's risk before it runs<br>
+<sub>▲ 0 votes, 0.0 counted · hunted by [kydlikebtc](https://github.com/kydlikebtc) · 👤 a person read the call site</sub>
+
+</td>
+<td align="center" width="80"><b>▲&nbsp;0.0</b><br><sub>votes</sub></td>
+</tr>
+</table>
+
+Every launch of 2026-W46, with the votes discounted and why: [the week's page](https://kydlikebtc.github.io/awesome-jev/weeks/2026-W46.html) · [results feed](https://kydlikebtc.github.io/awesome-jev/launches.xml)
+
+Products built on Jev, launched by their makers once a week, or hunted by anyone who found one. People vote with a thumbs-up on each launch's post in [Discussions](https://github.com/kydlikebtc/awesome-jev/discussions/categories/launches); the week closes on Sunday 23:59 UTC with a rank. Votes say how many people cared; the evidence beside each launch says who read the code that calls Jev. The two are never added together, and a rank is not this catalogue's recommendation. [The board](https://kydlikebtc.github.io/awesome-jev/launches.html) has every week, a page per product and per maker, and the rising list.
 
 ## Launch your product
 

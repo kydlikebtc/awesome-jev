@@ -132,13 +132,49 @@ class FeedTests(unittest.TestCase):
     def test_products_come_first_then_how_the_board_works(self):
         for weeks in ([RUNNING], [FILED], [CLOSED], []):
             text = section(weeks, [BEFORE, AFTER])
-            intro = text.index("People vote with a thumbs-up")
-            first = text.index("<table>")
-            if weeks:
-                self.assertLess(first, intro)
-            else:
-                self.assertLess(text.index("No launch is on the board yet"), intro)
-                self.assertLess(intro, first)  # the only table is the rising list
+            self.assertLess(text.index("<table>"), text.index("People vote with a thumbs-up"))
+        self.assertLess(section([], [BEFORE, AFTER]).index("No launch is on the board yet"),
+                        section([], [BEFORE, AFTER]).index("<table>"))
+
+    def test_with_a_week_on_the_board_it_leads_and_rising_follows(self):
+        for weeks in ([RUNNING], [FILED], [CLOSED, RUNNING]):
+            text = section(weeks, [BEFORE, AFTER])
+            self.assertLess(text.index("People vote with a thumbs-up"), text.index("★ Rising"))
+            self.assertNotIn("New in the catalogue", text)
+
+    def test_with_no_week_on_the_board_what_moves_daily_leads(self):
+        # 2026-11-18: no launch was filed after 2026-W46. Rising, then the
+        # catalogue's new products, then the old week, then how the board works.
+        fresh = [product("gamma", first_seen="2026-11-17", stars=7, evidence={"path": "a.py", "read_on": "2026-11-17"}),
+                 product("delta", first_seen="2026-11-16", stars=90),
+                 product("old", first_seen="2026-11-02", stars=500)]
+        catalog = ROWS + fresh
+        for strings, new_h in ((build_readme.EN, "### New in the catalogue: 2026-W47"),
+                               (build_readme.ZH, "### 本周新收录：2026-W47")):
+            page = type("Page", (), {"strings": strings, "lang": strings["lang_code"], "catalog": catalog})()
+            with patch.object(board.launches, "weeks", return_value=[CLOSED]), \
+                    patch.object(board.launches, "readings", return_value=[BEFORE, AFTER]):
+                text = "\n".join(board.this_weeks_launches(page))
+            order = [text.index(strings["board_quiet"].split(".")[0].split("。")[0]),
+                     text.index(strings["board_rising_h"].split(":")[0].split("：")[0]),
+                     text.index(new_h), text.index("2026-W45"), text.index(strings["board_intro"][:12])]
+            self.assertEqual(order, sorted(order), strings["lang_code"])
+            new = text.split(new_h, 1)[1].split("###", 1)[0]
+            # The person-read row first, then by stars; last week's rows are not this week's.
+            self.assertLess(new.index("[Gamma]"), new.index("[Delta]"))
+            self.assertNotIn("[Old]", new)
+            self.assertIn("<b>11-16</b><br><sub>%s</sub>" % strings["box_new"], new)
+            self.assertIn(strings["board_new_stars"].format(stars="90"), new)
+            self.assertIn("template=launch.yml&product=delta", new)
+            self.assertIn("2026-W45", text.split(new_h, 1)[1])
+        # No week has ever opened: the same order, without results.
+        page = type("Page", (), {"strings": build_readme.EN, "lang": "en", "catalog": catalog})()
+        with patch.object(board.launches, "weeks", return_value=[]), \
+                patch.object(board.launches, "readings", return_value=[BEFORE, AFTER]):
+            text = "\n".join(board.this_weeks_launches(page))
+        self.assertLess(text.index("No launch is on the board yet"), text.index("★ Rising"))
+        self.assertLess(text.index("★ Rising"), text.index("New in the catalogue"))
+        self.assertLess(text.index("New in the catalogue"), text.index("People vote with a thumbs-up"))
 
 
 class WeekFigureTests(unittest.TestCase):

@@ -146,7 +146,10 @@ the repository owner's GitHub avatar, the product and its line, and a box
 with the vote link, the day it opens, the medal and counted votes, or the
 stars gained), and the README cover draws the same cards. "Launch your
 product" opens with a figure of the week's four stations that marks where
-the board is now (`scripts/build_readme_week.py`). So the commits that
+the board is now (`scripts/build_readme_week.py`). While no week runs or is
+filed (none was for 2026-W47), the section leads with what moves every day
+instead: the rising list, the catalogue's new products, then the newest
+closed week as "latest results" (2026-11-18). So the commits that
 change those files, Friday's filing, Monday's open and each day's star
 reading, regenerate the READMEs and figures before their checks, as the
 weekly refresh already does; a file pushed without them would fail the next
