@@ -234,17 +234,26 @@ def launch_list(board: Board, week: dict, strings: dict, *, vote: bool) -> list[
     return feed(items)
 
 
+def place_mark(result: dict) -> str:
+    """The mark before a closed launch's counted votes: its medal
+    (launches.placed), else its rank once a vote counted, else the vote mark,
+    since a rank nobody voted for is only the tie order."""
+    rank = result.get("rank")
+    if launches.placed(result):
+        return MEDALS[rank]
+    return f"#{rank}" if float(result.get("counted") or 0) > 0 else VOTE
+
+
 def closed_list(board: Board, strings: dict) -> list[str]:
-    """Last week's top three by rank, their votes beside their evidence, and
-    the link to the whole week."""
+    """The newest closed week's top three by rank, their votes beside their
+    evidence, and the link to the whole week."""
     lang, week, items = strings["lang_code"], board.closed, []
     for launch in board.ranked(week)[:3]:
         row, result = board.rows[launch["product"]], launch.get("result") or {}
-        rank = result.get("rank")
         votes = strings["board_votes"].format(votes=result.get("votes", 0), counted=result.get("counted", 0))
         meta = [f"{VOTE} {votes}"] + ([strings["board_ring"]] if result.get("ring") else [])
         meta += [who(launch, strings), strings["tiers"][launches.tier(row)]]
-        right = box(f"{MEDALS.get(rank, f'#{rank}')}&nbsp;{result.get('counted', 0):,}", strings["box_votes"])
+        right = box(f"{place_mark(result)}&nbsp;{result.get('counted', 0):,}", strings["box_votes"])
         items.append((row, esc(tagline(launch, lang)), meta, right))
     more = marked(strings, "board_closed_more", week=week["week"], page=week_url(week["week"], lang), feed=feed_url(lang))
     return feed(items) + [more, ""]
@@ -292,8 +301,10 @@ def rising_list(board: Board, catalog: list[dict], strings: dict) -> list[str]:
 
 def this_weeks_launches(page) -> list[str]:
     """The board as it stands, products first: the running week, the week
-    filed next, last week's top three, or a line saying no week has opened;
-    then how the board works, then what is rising."""
+    filed next, the newest closed week's top three (headed "last week" only
+    when it is, and after a line saying nothing runs when nothing does), or a
+    line saying no week has opened; then how the board works, then what is
+    rising."""
     strings, lang = page.strings, page.lang
     board = read_board(page.catalog)
     out = [f"## {strings['board_h']}", ""]
@@ -310,8 +321,14 @@ def this_weeks_launches(page) -> list[str]:
         out += [marked(strings, "board_next_note", monday=monday), ""]
         out += launch_list(board, board.coming, strings, vote=False)
     if board.on(board.closed):
+        if not shown:
+            # Nothing runs or is filed: say so before the newest results, so
+            # an old week is not read as this week's board.
+            out += [marked(strings, "board_quiet", form=LAUNCH_FORM), ""]
         shown = True
-        out += [f"### {strings['board_closed_h'].format(week=board.closed['week'])}", ""]
+        stale = launches.stale_close(board.closed, board.running, launches.as_of(page.catalog))
+        heading = strings["board_latest_h" if stale else "board_closed_h"]
+        out += [f"### {heading.format(week=board.closed['week'])}", ""]
         out += closed_list(board, strings)
     if not shown:
         out += [marked(strings, "board_empty", form=LAUNCH_FORM), ""]
@@ -393,14 +410,17 @@ def hero(catalog: list[dict], lang: str) -> dict:
     section reads: a heading, HERO_CARDS cards (a vote or star mark, a count
     where the board shows one, a rank once a week closed, the product, its
     line and its evidence tier) and a footer. The running week first, then
-    the week filed next, then the last closed week, then the rising products;
-    with none of those, the three steps as cards."""
+    the week filed next, then last week's results if a vote counted in them,
+    then the rising products; with none of those, the three steps as cards.
+    An older week, or one nobody's vote counted in, gives the cover to the
+    rising products, which move every day (2026-11-18)."""
     words, board = HERO[lang], read_board(catalog)
     for week, key in ((board.running, "running"), (board.coming, "next")):
         if week and board.on(week):
             cards = [hero_card(board.rows[x["product"]], tagline(x, lang), mark=VOTE) for x in board.shuffled(week)]
             return {"heading": words[key].format(week=week["week"]), "cards": cards[:HERO_CARDS], "footer": words["footer"]}
-    if board.closed and board.on(board.closed):
+    voted = any(float((x.get("result") or {}).get("counted") or 0) > 0 for x in board.on(board.closed))
+    if voted and not launches.stale_close(board.closed, board.running, launches.as_of(catalog)):
         cards = []
         for x in board.ranked(board.closed)[:HERO_CARDS]:
             result = x.get("result") or {}

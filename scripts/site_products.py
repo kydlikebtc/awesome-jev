@@ -127,6 +127,9 @@ BOARD = {
         "running": "This week: {week}",
         "running_note": "In a shuffled order, without counts, until the week closes.",
         "closed": "Last week: {week}",
+        "latest": "Latest results: {week}",
+        "quiet": "No launch is on the board this week. A launch submitted by Thursday 23:59 UTC opens the next "
+                 "Monday: a maker can launch a product, and anyone can hunt one, such as those rising below.",
         "votes": "{votes} votes, {counted} counted",
         "ring": "most votes came from new accounts, which counted for nothing",
         "no_launch": "No launch is on the board yet. A launch submitted by Thursday 23:59 UTC opens the next "
@@ -188,6 +191,9 @@ BOARD = {
         "running": "本周：{week}",
         "running_note": "收榜前按随机顺序展示，不显示票数。",
         "closed": "上周：{week}",
+        "latest": "最近一期结果：{week}",
+        "quiet": "本周榜上没有 Launch。周四 23:59 UTC 前提交的 Launch 在下周一开放：Maker 可以发布自己的产品，"
+                 "任何人也可以 hunt 别人的产品，比如下面上升最快的这些。",
         "votes": "{votes} 票，计 {counted} 票",
         "ring": "多数票来自新账号，这些票不计",
         "no_launch": "榜上还没有 Launch。周四 23:59 UTC 前提交的 Launch 在下周一开放：Maker 可以发布自己的产品，"
@@ -579,7 +585,13 @@ def board_item(launch: dict, row: dict, lang: str, *, result: dict | None, base:
         links.append(f'<a href="{esc(base + badge_path(row["slug"]))}">{esc(b["badge"])}</a>')
     box = ""
     if result:
-        box = vote_box(MEDALS.get(result["rank"], f"#{result['rank']}"), f"{result['counted']:g}")
+        # A medal only where rank() gave a badge; a rank nobody voted for is
+        # only the tie order (launches.placed).
+        if launches.placed(result):
+            lead = MEDALS[result["rank"]]
+        else:
+            lead = f"#{result['rank']}" if float(result.get("counted") or 0) > 0 else "▲"
+        box = vote_box(lead, f"{result['counted']:g}")
     elif isinstance(launch.get("discussion"), int):
         box = vote_box("▲", b["vote"], DISCUSSION.format(n=launch["discussion"]))
     elif opens:
@@ -617,8 +629,11 @@ def board_page(lang: str, *, catalog: list[dict], rows: dict[str, dict], all_wee
         body.append("      </ol>")
     if closed:
         on = [x for x in closed.get("launches") or [] if x.get("status") == "scheduled" and x["product"] in rows]
+        if not running:
+            body.append(f'      <p class="note">{esc(b["quiet"])}</p>')
+        heading = b["latest" if launches.stale_close(closed, running, launches.as_of(catalog)) else "closed"]
         body += [f'      <h2><a href="{esc(week_path(closed["week"], lang))}">'
-                 f"{esc(b['closed'].format(week=closed['week']))}</a></h2>",
+                 f"{esc(heading.format(week=closed['week']))}</a></h2>",
                  f'      <p class="note">{esc(measures(closed, lang))}</p>', '      <ol class="rows">']
         for launch in sorted(on, key=lambda x: x["result"]["rank"]):
             body += board_item(launch, rows[launch["product"]], lang, result=launch["result"])

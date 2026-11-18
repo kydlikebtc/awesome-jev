@@ -75,6 +75,13 @@ EN = {
         "Filed for next week, in no particular order. Their vote posts open on Monday {monday}."
     ),
     "board_closed_h": "🏆 Last week: {week}",
+    # The newest closed week when it is older than last week (no launch was
+    # filed for the weeks since): launches.stale_close.
+    "board_latest_h": "Latest results: {week}",
+    "board_quiet": (
+        "No launch is on the board this week. A launch submitted by Thursday 23:59 UTC is filed on Friday and "
+        "opens the next Monday: [launch a product]({form}), yours or one you found, such as those rising below."
+    ),
     "board_closed_more": (
         "Every launch of {week}, with the votes discounted and why: [the week's page]({page}) · "
         "[results feed]({feed})"
@@ -505,6 +512,11 @@ ZH = {
     "board_next_h": "下周：{week}",
     "board_next_note": "已登记、下周上榜的 Launch，不分先后。投票帖在 {monday}（周一）开放。",
     "board_closed_h": "🏆 上周：{week}",
+    "board_latest_h": "最近一期结果：{week}",
+    "board_quiet": (
+        "本周榜上没有 Launch。周四 23:59 UTC 前提交的 Launch 周五登记、下周一开榜："
+        "[发布一个产品]({form})，自己做的或你发现的都行，比如下面上升最快的这些。"
+    ),
     "board_closed_more": "{week} 的全部 Launch、被折算的票和原因：[当周页面]({page}) · [结果订阅]({feed})",
     "board_empty": (
         "榜上还没有 Launch。周四 23:59 UTC 前提交的 Launch 周五登记、下周一开榜："
@@ -843,8 +855,8 @@ ZH_MACHINE = frozenset(
         # The launch board's sections (2026-11-05): about_rows is marked line
         # by line in sections.what_this_is, launch_steps under its table.
         "about_rows", "about_not", "board_intro", "board_running_note", "board_next_note", "board_closed_more",
-        "board_empty", "board_rising_note", "board_rising_none", "launch_intro", "launch_steps", "launch_badge",
-        "launch_more",
+        "board_empty", "board_quiet", "board_rising_note", "board_rising_none", "launch_intro", "launch_steps",
+        "launch_badge", "launch_more",
     }
 )
 

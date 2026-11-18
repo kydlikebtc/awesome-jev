@@ -189,6 +189,33 @@ class VotesTest(unittest.TestCase):
         ordered = launches.rank([launch("alpha", result={"counted": 0})], {r["slug"]: r for r in CATALOG})
         self.assertNotIn("badges", ordered[0]["result"])
 
+    def test_a_medal_is_a_top_three_place_with_a_vote_counted(self):
+        # The same launches rank() gives a badge, so the board never shows a
+        # medal the badge does not carry (2026-W46 closed with no vote).
+        self.assertTrue(launches.placed({"rank": 1, "counted": 0.5}))
+        self.assertTrue(launches.placed({"rank": 3, "counted": 2}))
+        self.assertFalse(launches.placed({"rank": 1, "counted": 0}))
+        self.assertFalse(launches.placed({"rank": 4, "counted": 9}))
+        self.assertFalse(launches.placed({}))
+        self.assertFalse(launches.placed(None))
+        rows = {r["slug"]: r for r in CATALOG}
+        ordered = launches.rank([launch("alpha", result={"counted": 0}), launch("beta", result={"counted": 2})], rows)
+        self.assertEqual([launches.placed(x["result"]) for x in ordered],
+                         [bool(x["result"].get("badges")) for x in ordered])
+
+    def test_a_closed_week_is_stale_once_a_whole_week_has_passed_since(self):
+        closed = week("2026-W46", "closed", [])
+        # Last week, by the running week or by the files' today.
+        self.assertFalse(launches.stale_close(closed, week("2026-W47", "open", []), None))
+        self.assertFalse(launches.stale_close(closed, None, dt.date(2026, 11, 22)))
+        # No file for 2026-W47: on 2026-11-23 the newest closed week is two weeks old.
+        self.assertTrue(launches.stale_close(closed, None, dt.date(2026, 11, 23)))
+        self.assertTrue(launches.stale_close(closed, week("2026-W48", "open", []), dt.date(2026, 11, 18)))
+        # Unknown today, a today older than the week, or no closed week: not stale.
+        self.assertFalse(launches.stale_close(closed, None, None))
+        self.assertFalse(launches.stale_close(closed, None, dt.date(2026, 11, 3)))
+        self.assertFalse(launches.stale_close(None, None, dt.date(2026, 11, 23)))
+
     def test_a_week_s_accounts_are_those_whose_vote_counted_for_something(self):
         voters = launches.counted_voters(
             [vote("a"), vote("A", at="2026-11-18T00:00:00Z"), vote("Maker"), vote("new", born="2026-11-10T00:00:00Z"),
@@ -596,6 +623,20 @@ class PagesTest(unittest.TestCase):
         self.assertLess(closed.index('id="alpha"'), closed.index('id="beta"'))
         self.assertIn("4 votes, 3.5 counted", closed)
         self.assertNotIn('id="gamma"', closed)  # removed
+
+    def test_a_medal_needs_a_vote_and_an_old_week_is_not_last_week(self):
+        board = build(weeks=[CLOSED])["launches.html"]
+        # alpha placed first with 3.5 counted; beta is second with no vote counted.
+        self.assertIn('<span class="box">🥇<b>3.5</b></span>', board)
+        self.assertNotIn("🥈", board)
+        self.assertIn('<span class="box">▲<b>0</b></span>', board)
+        self.assertIn("No launch is on the board this week.", board)
+        self.assertIn("Last week: 2026-W46", board)
+        # No week was filed after 2026-W46, and the files' today is in 2026-W48.
+        later = build(catalog=CATALOG + [row("late", first_seen="2026-11-24")], weeks=[CLOSED])
+        self.assertIn("Latest results: 2026-W46", later["launches.html"])
+        self.assertNotIn("Last week", later["launches.html"])
+        self.assertIn("最近一期结果：2026-W46", later["launches.zh.html"])
 
     def test_the_running_order_is_the_same_in_every_build(self):
         many = [launch(s) for s in ("alpha", "beta", "gamma", "quiet")]

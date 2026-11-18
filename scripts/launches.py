@@ -429,6 +429,34 @@ def rank(launches: list[dict], catalog: dict[str, dict]) -> list[dict]:
     return ordered
 
 
+def placed(result: dict | None) -> bool:
+    """Whether a closed launch's place is a medal: a top-three rank with a vote
+    counted, the launches rank() gives a badge. With no vote counted a rank is
+    only the tie order (evidence, submission day, slug), and the board shows no
+    medal for it (2026-11-18: 2026-W46 closed with no vote, and its first three
+    were shown 🥇🥈🥉 beside 0.0 votes)."""
+    result = result or {}
+    return 1 <= int(result.get("rank") or 0) <= len(BADGES) and float(result.get("counted") or 0) > 0
+
+
+def stale_close(closed: dict | None, running: dict | None, today: dt.date | None) -> bool:
+    """Whether the newest closed week is older than last week. A week with no
+    launch filed has no file, so the newest closed week can be weeks old (no
+    launch was filed for 2026-W47, and from 2026-11-23 2026-W46 would still
+    have been called "last week"). "Now" is the running week, else the week of
+    `today` (as_of, from the files); with neither it cannot be told, and the
+    week is not stale."""
+    if not closed or not WEEK.match(str(closed.get("week"))):
+        return False
+    if running and WEEK.match(str(running.get("week"))):
+        now = week_days(running["week"])[0]
+    elif today is not None:
+        now = today - dt.timedelta(days=today.weekday())
+    else:
+        return False
+    return week_days(closed["week"])[0] + dt.timedelta(days=7) < now
+
+
 # --------------------------------------------------------------------------
 # Files
 # --------------------------------------------------------------------------

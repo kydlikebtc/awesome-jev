@@ -134,7 +134,11 @@ Weeks are ISO weeks: Monday 00:00 UTC to Sunday 23:59 UTC.
    counted put their place on their README badge
    ([below](#the-readme-badge)), and the week gets its own page. Each
    launch's issue is told its result, and a top three the line that shows
-   its badge.
+   its badge. The board shows a medal only beside those places: a rank
+   nobody voted for is only the tie order, shown as ▲ 0. A week with no
+   launch has no file, so the newest closed week is headed "last week"
+   only while it is; after that, "latest results", and the README cover
+   shows the rising list instead (2026-11-18).
 
 Each month's report ([docs/monthly/](monthly/), written in the first week of
 the next) lists the weeks that ended in the month with their top three.

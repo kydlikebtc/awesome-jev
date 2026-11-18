@@ -95,6 +95,35 @@ class FeedTests(unittest.TestCase):
         self.assertIn("▲ 42 votes, 40 counted", text)
         self.assertLess(text.index("🥇"), text.index("🥈"))
 
+    def test_a_rank_nobody_voted_for_gets_no_medal(self):
+        # 2026-W46 closed with no vote: its order was only the tie order.
+        nobody = {**CLOSED, "launches": [
+            launch("alpha", result={"votes": 0, "counted": 0, "discounted": 0, "rank": 1}),
+            launch("beta", result={"votes": 1, "counted": 0.5, "discounted": 1, "rank": 2}),
+        ]}
+        text = section([nobody])
+        self.assertNotIn("🥇", text)
+        self.assertIn("<b>▲&nbsp;0</b><br><sub>votes</sub>", text)
+        self.assertIn("<b>🥈&nbsp;0.5</b><br><sub>votes</sub>", text)
+
+    def test_with_nothing_running_an_old_week_is_the_latest_results_not_last_week(self):
+        text = section([CLOSED])
+        self.assertIn("No launch is on the board this week.", text)
+        self.assertIn("### 🏆 Last week: 2026-W45", text)
+        self.assertLess(text.index("No launch is on the board this week."), text.index("<table>"))
+        # The files' today in 2026-W47: no week was filed after 2026-W45.
+        later = [{**ROWS[0], "first_seen": "2026-11-17"}, ROWS[1]]
+        for strings, heading in ((build_readme.EN, "### Latest results: 2026-W45"),
+                                 (build_readme.ZH, "### 最近一期结果：2026-W45")):
+            page = type("Page", (), {"strings": strings, "lang": strings["lang_code"], "catalog": later})()
+            with patch.object(board.launches, "weeks", return_value=[CLOSED]), \
+                    patch.object(board.launches, "readings", return_value=[]):
+                text = "\n".join(board.this_weeks_launches(page))
+            self.assertIn(heading, text)
+            self.assertNotIn("🏆", text)
+        # A running week says nothing about a quiet week.
+        self.assertNotIn("No launch is on the board this week.", section([CLOSED, {**RUNNING, "week": "2026-W46"}]))
+
     def test_rising_products_show_the_stars_they_gained(self):
         text = section([], [BEFORE, AFTER])
         self.assertIn("<b>★&nbsp;+50</b><br><sub>stars</sub>", text)
