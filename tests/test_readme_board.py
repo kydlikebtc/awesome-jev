@@ -164,7 +164,10 @@ class FeedTests(unittest.TestCase):
             self.assertLess(new.index("[Gamma]"), new.index("[Delta]"))
             self.assertNotIn("[Old]", new)
             self.assertIn("<b>11-16</b><br><sub>%s</sub>" % strings["box_new"], new)
-            self.assertIn(strings["board_new_stars"].format(stars="90"), new)
+            # Stars as a band, as in the rest of the README (I22): never the exact count.
+            self.assertIn("★10+", new)
+            self.assertNotIn("90 stars", new)
+            self.assertNotIn("90 星", new)
             self.assertIn("template=launch.yml&product=delta", new)
             self.assertIn("2026-W45", text.split(new_h, 1)[1])
         # No week has ever opened: the same order, without results.
@@ -175,6 +178,27 @@ class FeedTests(unittest.TestCase):
         self.assertLess(text.index("No launch is on the board yet"), text.index("★ Rising"))
         self.assertLess(text.index("★ Rising"), text.index("New in the catalogue"))
         self.assertLess(text.index("New in the catalogue"), text.index("People vote with a thumbs-up"))
+
+    def test_new_products_move_only_when_a_count_crosses_a_band(self):
+        # I22 (scripts/tests/test_star_bands.py): a count that moves inside its
+        # band changes no README line. The weekly refresh of 2026-11-18 gave this
+        # week's new rows their first counts, the list printed and sorted them
+        # exactly, and the refresh failed lint's checks twice.
+        def render(delta: int, epsilon: int) -> str:
+            fresh = [product("delta", first_seen="2026-11-16", stars=delta),
+                     product("epsilon", first_seen="2026-11-17", stars=epsilon)]
+            page = type("Page", (), {"strings": build_readme.EN, "lang": "en", "catalog": ROWS + fresh})()
+            with patch.object(board.launches, "weeks", return_value=[CLOSED]), \
+                    patch.object(board.launches, "readings", return_value=[BEFORE, AFTER]):
+                return "\n".join(board.this_weeks_launches(page))
+
+        self.assertEqual(render(12, 90), render(90, 12))
+        self.assertEqual(render(150, 3), render(999, 9))
+        crossed = render(12, 100)
+        self.assertNotEqual(render(12, 90), crossed)
+        new = crossed.split("New in the catalogue", 1)[1].split("###", 1)[0]
+        self.assertLess(new.index("[Epsilon]"), new.index("[Delta]"))
+        self.assertIn("★100+", new)
 
 
 class WeekFigureTests(unittest.TestCase):

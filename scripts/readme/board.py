@@ -32,7 +32,7 @@ from html import escape
 import launches
 from _github import repo_of
 
-from .rows import REPO_URL, SITE, esc, marked, summary_of
+from .rows import REPO_URL, SITE, esc, marked, sort_key, star_label, summary_of
 from .strings import ZH_MACHINE
 
 # How many rising products the README lists; the board on the site lists
@@ -305,18 +305,26 @@ def rising_list(board: Board, catalog: list[dict], strings: dict) -> list[str]:
 
 def new_list(board: Board, catalog: list[dict], strings: dict) -> list[str]:
     """The products that entered the catalogue in its newest week
-    (launches.new_this_week, as the site's board lists them): whose call site
-    a person read first, then a model, then by stars. An order, not a ranking;
-    each with what it can do next, which for a new product is to launch."""
+    (launches.new_this_week, the products the site's board lists): whose call
+    site a person read first, then a model, then in the README's own order
+    (rows.sort_key: star band, then title). An order, not a ranking; each with
+    what it can do next, which for a new product is to launch.
+
+    Stars show as a band, as everywhere else in the README (I22, see
+    scripts/tests/test_star_bands.py): the site orders and prints by the exact
+    count, but here a count that moves inside its band moves no row and
+    changes no line. Printed and sorted by the exact count, the weekly refresh
+    of 2026-11-18 rewrote this section and failed lint's checks twice."""
     week, fresh = launches.new_this_week(catalog)
     if not week or not fresh:
         return []
+    fresh = sorted(fresh, key=lambda r: (launches.TIERS.index(launches.tier(r)), *sort_key(r)))
     lang, today, items = strings["lang_code"], launches.as_of(catalog), []
     for row in fresh[:README_NEW]:
         meta = [strings["tiers"][launches.tier(row)], rising_state(board, row, strings, today)]
-        stars = row.get("stars")
-        if isinstance(stars, int):
-            meta.insert(0, strings["board_new_stars"].format(stars=f"{stars:,}"))
+        band = star_label(row.get("stars"))
+        if band:
+            meta.insert(0, band)
         # The day it was added: a new row has no stars until the Wednesday refresh.
         right = box(launches.day(row["first_seen"]).strftime("%m-%d"), strings["box_new"])
         items.append((row, one_line(row, lang), meta, right))
