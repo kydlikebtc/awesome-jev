@@ -4,11 +4,11 @@
 
 _在输出到达用户前，按评分标准检查模型产出。_
 
-这个决策的全部已收录例子 —— 共 174 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 179 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#output-validation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#output-validation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 169 · 接口形态 1 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 174 · 接口形态 1 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -89,6 +89,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[perch: semantic code linting](https://github.com/lakeday-org/perch)** — 先用 tree-sitter 找出并排序方法，再把用户自写的 YAML 规则编译成 noul；严重度取评分量表的期望值，而不是概率最高的那一档。
   <sub>`开源项目` · ★100+ · `JS` · `choice` · `score` · `noul` · 调用点 [`src/cli.js`](https://github.com/lakeday-org/perch/blob/HEAD/src/cli.js)，2026-09-22 阅读</sub>
 
+- **[stanley-code](https://github.com/devagrawal09/stanley-code)** — 检查代码改动的命令行工具：用一次 Jev 的 choice 把每个请求分派给某个工作流或判为 cannot_tell；每个工作流都是代码，针对有限的证据向 Jev 提小问题，例如某个改动块是否属于这项任务、测试是否被削弱。其他请求交给编程智能体，并为这类请求起草一个工作流。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · devagrawal09 · `TS` · 调用点 [`src/adapters/jev.ts`](https://github.com/devagrawal09/stanley-code/blob/HEAD/src/adapters/jev.ts)，2026-09-22 阅读</sub>
+
 - **[supercov](https://github.com/supercorp-ai/supercov)** — 给编程智能体用的代码质量与覆盖率判断，Rust 实现。
   <sub>`开源项目` · ★100+ · supercorp-ai · `Rs` · 调用点 [`crates/supercov-cli/src/quality.rs`](https://github.com/supercorp-ai/supercov/blob/HEAD/crates/supercov-cli/src/quality.rs)，2026-09-22 阅读</sub>
 
@@ -134,6 +137,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[invalidate](https://github.com/chopratejas/invalidate)** — AI 记忆的失效层：每条事实都有租期，新证据会终结它。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · chopratejas · `Py` · 调用点 [`evals/screen_matrix.py`](https://github.com/chopratejas/invalidate/blob/HEAD/evals/screen_matrix.py)，2026-09-22 阅读</sub>
 
+- **[james_library](https://github.com/topherchris420/james_library)** — R.A.I.N. Lab：一个实验性的科学智能体架构，把快速的本地判断、独立的概率判断与推理分离开来。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · topherchris420 · `Rs` · 调用点 [`james_library/judgment/typesafe.py`](https://github.com/topherchris420/james_library/blob/HEAD/james_library/judgment/typesafe.py)，2026-09-24 阅读 · ⚠ `已归档`</sub>
+
 - **[jeff](https://github.com/Alurith/jeff)** — 只读的 Go 命令行工具，在本地或 CI 中用 Jev 按规则检查源文件：每条规则（失败路径完整性、未声明的副作用、重复的策略、名称与行为矛盾）对每个文件是一个是非题，由规则自带的阈值决定通过、失败或无法判定。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · Alurith · `Go` · `noul` · 调用点 [`internal/typesafe/client.go`](https://github.com/Alurith/jeff/blob/HEAD/internal/typesafe/client.go)，2026-10-31 模型阅读</sub>
 
@@ -176,11 +182,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-feels](https://github.com/Qew7/jev-feels)** — 把语义决策变成普通 Ruby —— feels?、decide、score，以及 Rails 校验与模式匹配。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · qew7 · `Rb` · 调用点 [`lib/jev/client.rb`](https://github.com/Qew7/jev-feels/blob/HEAD/lib/jev/client.rb)，2026-09-22 阅读</sub>
 
+- **[jev-judge-mcp](https://github.com/PyModel/jev-judge-mcp)** — 面向 MCP 智能体的带类型判断工具：把 TypeSafe Jev 模型包装成 verify、screen、find、classify、rerank、decide、compare 等工具。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · pymodel · `Py` · 调用点 [`src/jev_judge_mcp/domain/questions.py`](https://github.com/PyModel/jev-judge-mcp/blob/HEAD/src/jev_judge_mcp/domain/questions.py)，2026-09-24 阅读</sub>
+
 - **[jev-libero](https://github.com/Dimweaker/jev-libero)** — 精细的机器人控制，带物理预览与可配置的 LIBERO 任务。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · dimweaker · `Py` · 调用点 [`src/jev_libero/client.py`](https://github.com/Dimweaker/jev-libero/blob/HEAD/src/jev_libero/client.py)，2026-09-22 阅读</sub>
 
 - **[jev-lint](https://github.com/ckorhonen/jev-lint)** — 面向编程 Agent 的模糊 linter：Agent 写完文件后，团队用自然语言写的每条规则都作为一个 Jev noul 来问，约 0.3 秒后 Agent 就能知道自己违反了哪些规则。可以从仓库自动生成规则；也可改用 Cloudflare 或 OpenAI 作为评判。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · ckorhonen · `TS` · `noul` · 调用点 [`src/jev.ts`](https://github.com/ckorhonen/jev-lint/blob/HEAD/src/jev.ts)，2026-10-24 模型阅读</sub>
+
+- **[jev-mcp](https://github.com/burnigtm/jev-mcp)** — 把 TypeSafe Jev 接入 Cursor、Codex 等任意 MCP 客户端编码流程的 MCP 服务器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · burnigtm · `TS` · 调用点 [`src/typesafe.ts`](https://github.com/burnigtm/jev-mcp/blob/HEAD/src/typesafe.ts)，2026-09-24 阅读</sub>
 
 - **[jev-pref](https://github.com/doeixd/jev-pref)** — 把 AGENTS.md 里的偏好变成一个由 Jev 驱动的快速 AI linter。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · doeixd · `JS` · 调用点 [`packages/jev-pref/src/config.js`](https://github.com/doeixd/jev-pref/blob/HEAD/packages/jev-pref/src/config.js)，2026-09-22 阅读</sub>
@@ -385,6 +397,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-guard](https://github.com/muratcakmak/jev-guard)** — 为 Claude Code 提供概率评分的护栏：拒绝违反规则的修改和未经要求的部署，并把文档路由到合适的位置。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · muratcakmak · `TS` · 调用点 [`scripts/jev-lint.ts`](https://github.com/muratcakmak/jev-guard/blob/HEAD/scripts/jev-lint.ts)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[jev-guardrails](https://github.com/deepansh-saxena/jev-guardrails)** — 一个模拟运营商客服智能体，用同样的 25 条规则和阈值把护栏做了两遍（LLM 评判和 Jev），再在 51 个带标注的案例上对比。Jev 在一次请求中为每条规则回答一个 noul，用 choice 判断范围和受理部门，并对每次工具调用给出允许、确认或拦截。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · deepansh-saxena · `Py` · `noul` · `choice` · 调用点 [`tlife_agent/guardrails/backends/jev_backend.py`](https://github.com/deepansh-saxena/jev-guardrails/blob/HEAD/tlife_agent/guardrails/backends/jev_backend.py)，2026-11-19 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[jev-ios-bridge](https://github.com/hugues-vnsgn/jev-ios-bridge)** — Claude Code 插件和 MCP 服务器，用脚本检查 iOS 和 Android 应用：在每个检查点，它把屏幕文字发给 Jev，对每条断言（例如“订单总额显示为 5 美元”）问一个 noul，这样保存的脚本无需 Claude 参与即可重跑。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · hugues-vnsgn · `TS` · `noul` · 调用点 [`src/scripted/jev.ts`](https://github.com/hugues-vnsgn/jev-ios-bridge/blob/HEAD/src/scripted/jev.ts)，2026-11-16 模型阅读 · ⚠ `厂商自报数据`</sub>

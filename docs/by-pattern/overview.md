@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 533 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 524 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 394 · wire shape 99 · example only 0 · independent reports 33 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 384 · wire shape 100 · example only 0 · independent reports 33 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -230,6 +230,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevbench](https://github.com/fstandhartinger/jevbench)** — Benchmark Heaven's benchmark for Jev and Jev-compatible decision models: noul, choice and score tasks, sent through a /v1/systemone adapter and scored for accuracy, calibration, latency and cost. Release v1.6.1 (2026-10-06); some inputs are sealed, so it cannot be fully rerun independently. <sub>(written by a model)</sub>
   <sub>`Benchmark` · ★100+ · fstandhartinger · `Py` · call site [`jevbench/adapters/typesafe.py`](https://github.com/fstandhartinger/jevbench/blob/HEAD/jevbench/adapters/typesafe.py), read 2026-09-22</sub>
 
+- **[jevchat](https://github.com/kyle-pena-nlp/jevchat)** — Turns Jev into a chatbot <sub>(upstream description)</sub>
+  <sub>`Project` · ★100+ · kyle-pena-nlp · `Py` · call site [`jevchat/client.py`](https://github.com/kyle-pena-nlp/jevchat/blob/HEAD/jevchat/client.py), read 2026-09-24 · ⚠ `no licence`</sub>
+
 - **[jevcore](https://github.com/PerryLink/jevcore)** — Jev for DeepSeek Harness, other MCP hosts and plain Node: a core library of noul, choice and score calls, and a DSH plugin and MCP server exposing the same three Jev tools with two opt-in gates. Nothing is sent until a live provider is set up, and the startup log says what will be sent where. <sub>(written by a model)</sub>
   <sub>`SDK` · ★100+ · perrylink · `TS` · call site [`packages/cli/src/runtime.ts`](https://github.com/PerryLink/jevcore/blob/HEAD/packages/cli/src/runtime.ts), read 2026-09-24</sub>
 
@@ -368,6 +371,15 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-explained](https://github.com/davila7/jev-explained)** — Jev Explained <sub>(upstream description)</sub>
   <sub>`Tutorial` · ★10+ · davila7 · `TS` · call site [`src/lib/providers.ts`](https://github.com/davila7/jev-explained/blob/HEAD/src/lib/providers.ts), read 2026-09-24</sub>
 
+- **[jev-leftpad](https://github.com/f/jev-leftpad)** — Left-pad strings with TypeSafe AI's Jev. For reasons. <sub>(upstream description)</sub>
+  <sub>`Project` · ★10+ · f · `JS` · call site [`src/index.js`](https://github.com/f/jev-leftpad/blob/HEAD/src/index.js), read 2026-09-22 · ⚠ `one commit`</sub>
+
+- **[jev-paint](https://github.com/achimala/jev-paint)** — Use Jev to make art! <sub>(upstream description)</sub>
+  <sub>`Project` · ★10+ · achimala · `JS` · call site [`web/jev.mjs`](https://github.com/achimala/jev-paint/blob/HEAD/web/jev.mjs), read 2026-09-22</sub>
+
+- **[jev-playground](https://github.com/mizchi/jev-playground)** — A playground for calling Jev from MoonBit, with a CLI per question type (score, choice, noul) and measured reports on which composition patterns win.
+  <sub>`Project` · ★10+ · mizchi · `TS` · call site [`experiments/agent-questions/src/spec.ts`](https://github.com/mizchi/jev-playground/blob/HEAD/experiments/agent-questions/src/spec.ts), read 2026-09-24 · ⚠ `no licence`</sub>
+
 - **[Jev-Quantum](https://github.com/karminski/Jev-Quantum)** — A Jev-protocol random baseline: it speaks noul, choice and score but reads no prompt, answering from a fast pseudo-random generator — a mock, and a lower bound for routing evaluations.
   <sub>`Jev-like alternative` · ★10+ · karminski · `Rs` · cited file [`crates/jev-quantum-bench/src/config.rs`](https://github.com/karminski/Jev-Quantum/blob/HEAD/crates/jev-quantum-bench/src/config.rs), read 2026-09-24 · ⚠ `not Jev itself` `one commit`</sub>
 
@@ -382,6 +394,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[JevEmbed](https://github.com/HITsz-TMG/JevEmbed)** — Toolkit that turns embedding models into choice, score and noul answerers: data synthesis, fine-tuning, a /v1/systemone server, a benchmark module and a playground. Released fine-tuned Qwen3-Embedding and KaLM checkpoints and a 1.67M-question dataset on Hugging Face. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · ★10+ · hitsz-tmg · `Py` · cited file [`src/jevembed/server.py`](https://github.com/HITsz-TMG/JevEmbed/blob/HEAD/src/jevembed/server.py), read by a model 2026-10-24 · ⚠ `not Jev itself`</sub>
+
+- **[jeview](https://github.com/andududu/jeview)** — An unofficial local visualizer for Jev (TypeSafe): a live view of every call your code makes. Not affiliated with TypeSafe AI. <sub>(upstream description)</sub>
+  <sub>`Project` · ★10+ · andududu · `JS` · call site [`jeview.ts`](https://github.com/andududu/jeview/blob/HEAD/jeview.ts), read 2026-09-22</sub>
+
+- **[jevify](https://github.com/altryne/jevify)** — An agent skill to discover TypeSafe Jev opportunities, design typed questions, and learn from recent community experiments. <sub>(upstream description)</sub>
+  <sub>`Plugin` · ★10+ · altryne · `Py` · call site [`scripts/jev_client.py`](https://github.com/altryne/jevify/blob/HEAD/scripts/jev_client.py), read 2026-09-22</sub>
 
 - **[jevify](https://github.com/fidecastro/jevify)** — Supersimple way to serve LLMs as a Jev-like endpoint <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · ★10+ · fidecastro · `Py` · cited file [`jevify/api/app.py`](https://github.com/fidecastro/jevify/blob/HEAD/jevify/api/app.py), read 2026-09-24 · ⚠ `not Jev itself`</sub>
@@ -442,6 +460,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[OpenSourceJev](https://github.com/sabeel111/OpenSourceJev)** — Turning an LLM model into a Jev like System. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · ★10+ · sabeel111 · `Py` · cited file [`app/main.py`](https://github.com/sabeel111/OpenSourceJev/blob/HEAD/app/main.py), read 2026-09-24 · ⚠ `not Jev itself`</sub>
+
+- **[openthai-systemone](https://github.com/iapp-technology/openthai-systemone)** — OpenThai-SystemOne: open Thai + English System One decision model (0.8B, 256-way slot head, Apache-2.0) <sub>(upstream description)</sub>
+  <sub>`Project` · ★10+ · iapp-technology · `Py` · call site [`openthai_systemone/server.py`](https://github.com/iapp-technology/openthai-systemone/blob/HEAD/openthai_systemone/server.py), read 2026-09-22</sub>
 
 - **[pijev](https://github.com/TypeLLM/pijev)** — Averages Jev's answers over option orderings — all permutations in one request — with Brier score and log loss guaranteed no worse than the average across the orderings included. A one-line import change.
   <sub>`SDK` · ★10+ · typellm · `Py` · call site [`pijev/__init__.py`](https://github.com/TypeLLM/pijev/blob/HEAD/pijev/__init__.py), read 2026-09-24</sub>
@@ -536,6 +557,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[awesome-ai-quant](https://github.com/vicfei/awesome-ai-quant)** — Curated reading map for AI engineers entering quantitative finance: trading agents, LLM factor mining, decision models in markets, tabular FMs — each entry annotated with why AI engineers should care.
   <sub>`Tutorial` · vicfei · `Py` · ⚠ `self-submitted`</sub>
 
+- **[Bongard](https://github.com/agentbull/bongard)** — Not Jev: an open model, bongard-mini, trained on judgments, semantic relations and action outcomes, that reads a situation once and returns a distribution per question, over text or images; its HTTP service answers Jev's POST /v1/systemone wire format. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · agentbull · `Py` · cited file [`bongard/server.py`](https://github.com/agentbull/bongard/blob/HEAD/bongard/server.py), read by a model 2026-11-19 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[Build Your Own JEV Locally: Run a 100% Private AI Agent on Your Machine](https://medium.com/coding-nexus/build-your-own-jev-locally-run-a-100-private-ai-agent-on-your-machine-bb98126d394a)** — Despite the title, this does not run Jev. It builds a Jev-like decision engine from an open LLM using constrained next-token scoring.
   <sub>`Jev-like alternative` · DataScience Nexus · `Py` · ⚠ `not Jev itself` `code untested` `paywall`</sub>
 
@@ -569,6 +593,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[decision-model-sdk-rust](https://github.com/zchee/decision-model-sdk-rust)** — Async Rust client for the System One API, ported from typesafe-sdk-python 0.7.2: typed choice, noul and score questions, a derive macro for question sets, HTTP/2, and no default base URL, so callers name TypeSafe's endpoint themselves. <sub>(written by a model)</sub>
   <sub>`SDK` · zchee · `Rs` · `choice` · `noul` · `score` · call site [`crates/sdk/src/client.rs`](https://github.com/zchee/decision-model-sdk-rust/blob/HEAD/crates/sdk/src/client.rs), read by a model 2026-11-14</sub>
 
+- **[ex_typesafe_ai](https://github.com/iamtalha-arshad/ex_typesafe_ai)** — Unofficial Elixir client for TypeSafe's API, on Hex as ex_typesafe_ai: builds noul, choice and score questions, sends them with one state to /v1/systemone and returns typed answer structs grouped by primitive, with retries that honour Retry-After and typed errors. <sub>(written by a model)</sub>
+  <sub>`SDK` · iamtalha-arshad · `Ex` · `noul` · `choice` · `score` · call site [`lib/type_safe.ex`](https://github.com/iamtalha-arshad/ex_typesafe_ai/blob/HEAD/lib/type_safe.ex), read by a model 2026-11-19</sub>
+
 - **[Fovea-4B](https://github.com/sivasuthan9/fovea)** — Open 4B decision model for images: given a photo, document, receipt, chart or screenshot, a JSON state and a typed noul, choice or score question, it returns a probability for every allowed answer in one forward pass, served over TypeSafe's System One API so its clients work unchanged. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · sivasuthan9 · `Py` · cited file [`fovea_sdk/server.py`](https://github.com/sivasuthan9/fovea/blob/HEAD/fovea_sdk/server.py), read by a model 2026-11-12 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
@@ -598,6 +625,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev Explained: How to Add Fast, Typed Decisions to an AI Agent](https://aihubmix.com/blog/jev-explained-how-to-add-fast-typed-decisions-to-an-ai-agent)** — A third-party explainer with a useful architecture sketch and an unusually honest list of cases where you should not use a decision model.
   <sub>`Article` · `Py` · ⚠ `code untested`</sub>
+
+- **[JEV 调研报告 (JEV Research Report)](https://github.com/chorylee7/jev)** — Chinese research report, with an English version, on Jev and its open alternatives: pricing, latency, accuracy and calibration claims graded by source, a scenario guide and risk checklists. Its eval scaffold runs labelled cases against Jev, Laya or a mock and reports accuracy, abstentions and ECE. <sub>(written by a model)</sub>
+  <sub>`Article` · chorylee7 · `Py` · call site [`eval/jev_client.py`](https://github.com/chorylee7/jev/blob/HEAD/eval/jev_client.py), read by a model 2026-11-19 · ⚠ `vendor numbers`</sub>
 
 - **[jev-acento](https://github.com/marcosmartinez/jev-acento)** — ¿Jev entiende tu acento? Pre-registered audit of TypeSafe AI's Jev on Spanish — accuracy, calibration and token cost — plus a CLI to run the same comparison on your own labelled data. <sub>(upstream description)</sub>
   <sub>`Benchmark` · marcosmartinez · `Py` · call site [`src/jev_acento/providers.py`](https://github.com/marcosmartinez/jev-acento/blob/HEAD/src/jev_acento/providers.py), read 2026-09-24</sub>
@@ -650,11 +680,11 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-lab](https://github.com/Menny1337/jev-lab)** — TypeScript experiments, evaluations, and latency benchmarks for TypeSafe's Jev model <sub>(upstream description)</sub>
   <sub>`Benchmark` · menny1337 · `TS` · call site [`src/client.ts`](https://github.com/Menny1337/jev-lab/blob/HEAD/src/client.ts), read 2026-09-24 · ⚠ `no licence`</sub>
 
-- **[Jev-LCT](https://github.com/gitchw/lct)** — Open decision models (a looped calibration transformer on Qwen 2.5 and Qwen3 backbones, 0.5B to 8B) that read confidence from the model's own recurrent loops and serve Jev's POST /v1/systemone shape (choice, noul, score) from a FastAPI server, with a Python SDK and weights on Hugging Face. <sub>(written by a model)</sub>
-  <sub>`Jev-like alternative` · gitchw · `Py` · cited file [`lct/api/server.py`](https://github.com/gitchw/lct/blob/HEAD/lct/api/server.py), read by a model 2026-11-08 · ⚠ `not Jev itself` `vendor numbers`</sub>
-
 - **[jev-little-airways](https://github.com/lbotinelly/jev-little-airways)** — A show-and-tell capability study for Jev, TypeSafe's System One decision model. <sub>(upstream description)</sub>
   <sub>`Benchmark` · lbotinelly · `TS` · call site [`demo/js/jev-monitor.mjs`](https://github.com/lbotinelly/jev-little-airways/blob/HEAD/demo/js/jev-monitor.mjs), read 2026-09-22</sub>
+
+- **[jev-mcp](https://github.com/songokou1983/jev-mcp)** — Local MCP server, documented in Chinese, that gives Claude Code and Codex Jev as tools: classify (a choice), check (a noul), rate (a score), a batch judge that sends each item alone and a raw System One call, with a confidence gate, a session budget, a cache and a pinned jev-1.13.0. <sub>(written by a model)</sub>
+  <sub>`Plugin` · songokou1983 · `Py` · `choice` · `noul` · `score` · call site [`src/jev_mcp/server.py`](https://github.com/songokou1983/jev-mcp/blob/HEAD/src/jev_mcp/server.py), read by a model 2026-11-19 · ⚠ `no licence`</sub>
 
 - **[jev-no-enem](https://github.com/patryckalves/jev-no-enem)** — Reproducible benchmark evaluating TypeSafe AI's Jev (System One paradigm) on Brazil's ENEM 2025 standardized exam. Evaluates typed decision-making, domain-specific accuracy, and RLCD uncertainty calibration against open LLM baselines with an interactive GitHub Pages dashboard. <sub>(upstream description)</sub>
   <sub>`Benchmark` · patryckalves · `Py` · call site [`src/evaluate_jev.py`](https://github.com/patryckalves/jev-no-enem/blob/HEAD/src/evaluate_jev.py), read 2026-09-24 · ⚠ `no licence`</sub>
@@ -721,6 +751,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[kunobi-jev](https://github.com/kunobi-ninja/kunobi-decision)** — Rust client for the TypeSafe System One API (Jev) <sub>(upstream description)</sub>
   <sub>`SDK` · kunobi-ninja · `Rs` · call site [`src/client/mod.rs`](https://github.com/kunobi-ninja/kunobi-decision/blob/HEAD/src/client/mod.rs), read 2026-09-22</sub>
+
+- **[laya-java](https://github.com/apscot/laya-java)** — Not Jev: runs Laya's open typed-decision models inside the JVM, with no Python or GPU, behind a JDK HTTP server that answers Jev's POST /v1/systemone and an OpenAI-style /v1/decisions, plus a small Java client and a Gradle plugin. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · apscot · `Java` · cited file [`laya-api/src/main/java/io/github/apscot/laya/api/LayaHttpServer.java`](https://github.com/apscot/laya-java/blob/HEAD/laya-api/src/main/java/io/github/apscot/laya/api/LayaHttpServer.java), read by a model 2026-11-19 · ⚠ `not Jev itself`</sub>
 
 - **[Minos.NET](https://github.com/MarcelRoozekrans/Minos.NET)** — Unofficial .NET client for Jev's /v1/systemone. You declare noul, choice and score questions as a C# type and a source generator writes the request and the answer parsing at compile time, so it runs under Native AOT; an IDecisionClient sends it to TypeSafe or through OpenRouter. <sub>(written by a model)</sub>
   <sub>`SDK` · MarcelRoozekrans · `C#` · `noul` · `choice` · `score` · call site [`src/Minos.NET.SystemOne/SystemOneDecisionClient.cs`](https://github.com/MarcelRoozekrans/Minos.NET/blob/HEAD/src/Minos.NET.SystemOne/SystemOneDecisionClient.cs), read by a model 2026-11-17</sub>
@@ -987,19 +1020,10 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 218 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 198 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — Toolkit for voice AI avatars in apps, phone lines, signage and the metaverse. Its Jev turn-end gate asks a noul on the transcript, whether the assistant should stay silent and leave the user's turn open, and maps that probability to a wait of 0.4 to 2 seconds; on any error the turn ends. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · uezo · `Py` · call site [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py), read 2026-09-22</sub>
-
-- **[jevchat](https://github.com/kyle-pena-nlp/jevchat)** — Turns Jev into a chatbot <sub>(upstream description)</sub>
-  <sub>`Project` · ★100+ · kyle-pena-nlp · `Py` · call site [`jevchat/client.py`](https://github.com/kyle-pena-nlp/jevchat/blob/HEAD/jevchat/client.py), read 2026-09-24 · ⚠ `no licence`</sub>
-
-- **[laya-vs-jev](https://github.com/virajbhartiya/laya-vs-jev)** — Side-by-side T-Rex runner where Laya, a local model on Apple Silicon via MLX, and Jev over TypeSafe's API each choose the next move from those a physics planner labels; safety checks can override a stale or unsafe pick unless --unassisted is set. Latency, streaks and crash replays are shown live. <sub>(written by a model)</sub>
-  <sub>`Project` · ★100+ · virajbhartiya · `Py` · call site [`laya_mlx/agent.py`](https://github.com/virajbhartiya/laya-vs-jev/blob/HEAD/laya_mlx/agent.py), read 2026-09-22</sub>
-
-- **[stanley-code](https://github.com/devagrawal09/stanley-code)** — Code-change checker CLI: a Jev choice routes each request to a workflow or cannot_tell; each workflow is code asking Jev small questions about bounded evidence, such as whether a hunk belongs to the task or a test got weaker. Other requests go to a coding agent, and a workflow for them is drafted. <sub>(written by a model)</sub>
-  <sub>`Project` · ★100+ · devagrawal09 · `TS` · call site [`src/adapters/jev.ts`](https://github.com/devagrawal09/stanley-code/blob/HEAD/src/adapters/jev.ts), read 2026-09-22</sub>
 
 - **[ask-jev-skill](https://github.com/shantanugoel/ask-jev-skill)** — Skill for Hermes, and other agents, to ask typesafe's jev <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · shantanugoel · `Py` · call site [`scripts/askjev.py`](https://github.com/shantanugoel/ask-jev-skill/blob/HEAD/scripts/askjev.py), read 2026-09-22 · ⚠ `one commit`</sub>
@@ -1007,20 +1031,11 @@ Projects and plugins with code, 218 of them, whose only pattern is `overview` an
 - **[awesome-jev](https://github.com/daftAI2026/awesome-jev)** — TypeSafe System One / Jev community directory — GitHub projects & posts around typed decisions (typesafe.ai)
   <sub>`Project` · ★10+ · daftai2026 · `TS` · call site [`scripts/jev-client.ts`](https://github.com/daftAI2026/awesome-jev/blob/HEAD/scripts/jev-client.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
-- **[call-coach-ai](https://github.com/ZeroGold/call-coach-ai)** — Jev powered call coach <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · zerogold · `TS` · call site [`lib/coach.mjs`](https://github.com/ZeroGold/call-coach-ai/blob/HEAD/lib/coach.mjs), read by a model 2026-11-05</sub>
-
-- **[captaincore](https://github.com/CaptainCore/captaincore)** — 👨🏽‍💻 CaptainCore is a command line application for automating WordPress maintenance. <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · captaincore · `Go` · call site [`typesafe/client.go`](https://github.com/CaptainCore/captaincore/blob/HEAD/typesafe/client.go), read 2026-09-22</sub>
-
 - **[clash-jev](https://github.com/bytelabs-oss/clash-jev)** — A Clash Royale bot with no trained policy: Jev (TypeSafe System One) makes every decision from the live game state <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · bytelabs-oss · `Py` · call site [`clash_jev/policy.py`](https://github.com/bytelabs-oss/clash-jev/blob/HEAD/clash_jev/policy.py), read 2026-09-22</sub>
 
 - **[cultivar](https://github.com/pinecone-io/cultivar)** — Use cultivar to test your Agent Skills and Docs by running them in sandboxes, and across different agents. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · pinecone-io · `Py` · call site [`evals/framework/typesafe_grader.py`](https://github.com/pinecone-io/cultivar/blob/HEAD/evals/framework/typesafe_grader.py), read 2026-09-22</sub>
-
-- **[dspy-typesafeify](https://github.com/typesafeainate/dspy-typesafeify)** — Add a decorator for dspy Signatures that automatically uses TypeSafe where relevant <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · typesafeainate · `Py` · call site [`examples/typesafe_dspy_ticket_triage/run_demo.py`](https://github.com/typesafeainate/dspy-typesafeify/blob/HEAD/examples/typesafe_dspy_ticket_triage/run_demo.py), read 2026-09-22</sub>
 
 - **[duckdb-jev](https://github.com/colliber/duckdb-jev)** — DuckDB extension: typed Jev answers as real SQL types <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · colliber · `C++` · call site [`src/include/jev_secret.hpp`](https://github.com/colliber/duckdb-jev/blob/HEAD/src/include/jev_secret.hpp), read 2026-09-24</sub>
@@ -1030,12 +1045,6 @@ Projects and plugins with code, 218 of them, whose only pattern is `overview` an
 
 - **[is-jeven](https://github.com/wobsoriano/is-jeven)** — Is it even? Ask Jev. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · wobsoriano · `JS` · call site [`index.js`](https://github.com/wobsoriano/is-jeven/blob/HEAD/index.js), read 2026-09-24</sub>
-
-- **[james_library](https://github.com/topherchris420/james_library)** — R.A.I.N. Lab is an experimental scientific-agent architecture that separates fast local judgment, independent probabilistic evaluation, multi-agent deliberation, evidence, and authorization into distinct computational layers.🐙(Predates Karpathy's AutoResearch) <sub>(earlier upstream description)</sub>
-  <sub>`Project` · ★10+ · topherchris420 · `Rs` · call site [`james_library/judgment/typesafe.py`](https://github.com/topherchris420/james_library/blob/HEAD/james_library/judgment/typesafe.py), read 2026-09-24 · ⚠ `archived`</sub>
-
-- **[jev](https://github.com/BorisLeMeec/jev)** — A claude code plugin for jev <sub>(upstream description)</sub>
-  <sub>`Plugin` · ★10+ · borislemeec · `Go` · call site [`internal/typesafe/client.go`](https://github.com/BorisLeMeec/jev/blob/HEAD/internal/typesafe/client.go), read 2026-09-22</sub>
 
 - **[Jev](https://github.com/mayank953/Jev)** — Six live, side-by-side demos of Jev deciding while an LLM writes the words and code owns the control flow; the LLM side switches between Claude and Kimi models.
   <sub>`Project` · ★10+ · mayank953 · `JS` · call site [`src/jev.ts`](https://github.com/mayank953/Jev/blob/HEAD/src/jev.ts), read 2026-09-24</sub>
@@ -1064,21 +1073,6 @@ Projects and plugins with code, 218 of them, whose only pattern is `overview` an
 - **[jev-cli](https://github.com/shaharia-lab/jev-cli)** — Command-line tool for TypeSafe AI's Jev model. Ask yes/no, multiple-choice and rubric questions about any text and get calibrated probabilities back. Answers become exit codes for shells and CI, JSON for scripts, and MCP tools for AI agents. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · shaharia-lab · `Rs` · call site [`crates/jev-cli/src/cli.rs`](https://github.com/shaharia-lab/jev-cli/blob/HEAD/crates/jev-cli/src/cli.rs), read 2026-09-24</sub>
 
-- **[jev-judge-mcp](https://github.com/PyModel/jev-judge-mcp)** — Typed judgment tools for MCP agents. TypeSafe's Jev model as verify, screen, find, classify, rerank, decide, compare, extract, review, gate, and score: the model judges, policy decides auto, review, or escalate. <sub>(upstream description)</sub>
-  <sub>`Plugin` · ★10+ · pymodel · `Py` · call site [`src/jev_judge_mcp/domain/questions.py`](https://github.com/PyModel/jev-judge-mcp/blob/HEAD/src/jev_judge_mcp/domain/questions.py), read 2026-09-24</sub>
-
-- **[jev-leftpad](https://github.com/f/jev-leftpad)** — Left-pad strings with TypeSafe AI's Jev. For reasons. <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · f · `JS` · call site [`src/index.js`](https://github.com/f/jev-leftpad/blob/HEAD/src/index.js), read 2026-09-22 · ⚠ `one commit`</sub>
-
-- **[jev-mcp](https://github.com/burnigtm/jev-mcp)** — MCP server that puts TypeSafe Jev on the coding loop in Cursor, Codex, and any MCP client <sub>(upstream description)</sub>
-  <sub>`Plugin` · ★10+ · burnigtm · `TS` · call site [`src/typesafe.ts`](https://github.com/burnigtm/jev-mcp/blob/HEAD/src/typesafe.ts), read 2026-09-24</sub>
-
-- **[jev-paint](https://github.com/achimala/jev-paint)** — Use Jev to make art! <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · achimala · `JS` · call site [`web/jev.mjs`](https://github.com/achimala/jev-paint/blob/HEAD/web/jev.mjs), read 2026-09-22</sub>
-
-- **[jev-playground](https://github.com/mizchi/jev-playground)** — A playground for calling Jev from MoonBit, with a CLI per question type (score, choice, noul) and measured reports on which composition patterns win.
-  <sub>`Project` · ★10+ · mizchi · `TS` · call site [`experiments/agent-questions/src/spec.ts`](https://github.com/mizchi/jev-playground/blob/HEAD/experiments/agent-questions/src/spec.ts), read 2026-09-24 · ⚠ `no licence`</sub>
-
 - **[jev-realtime-trading](https://github.com/rthomas24/jev-realtime-trading)** — Paper trading agents on a live tape, decided every second by TypeSafe's Jev (System One). Electron desktop app. <sub>(earlier upstream description)</sub>
   <sub>`Project` · ★10+ · rthomas24 · `TS` · call site [`src/core/realtime/jev.ts`](https://github.com/rthomas24/jev-realtime-trading/blob/HEAD/src/core/realtime/jev.ts), read 2026-09-22</sub>
 
@@ -1087,9 +1081,6 @@ Projects and plugins with code, 218 of them, whose only pattern is `overview` an
 
 - **[jev-register-tool](https://github.com/2951461586/Jev-Register-Tool)** — TypeSafe（Jev / System One）申请 → 确认邮件 → 获批 → 注册 → 建 API Key 全链路工具，纯 HTTP 无浏览器 <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · 2951461586 · `Py` · call site [`src/typesafe.py`](https://github.com/2951461586/Jev-Register-Tool/blob/HEAD/src/typesafe.py), read 2026-09-22 · ⚠ `no licence`</sub>
-
-- **[jev-rules](https://github.com/EliaAlberti/jev-rules)** — Jev picks which of your rules apply to each prompt, so Claude only sees the ones that matter. <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · eliaalberti · `JS` · call site [`plugins/jev-rules/hooks/lib/jev.mjs`](https://github.com/EliaAlberti/jev-rules/blob/HEAD/plugins/jev-rules/hooks/lib/jev.mjs), read 2026-09-22</sub>
 
 - **[jev-search](https://github.com/larguesa/jev-search)** — Experimental semantic line search with TypeSafe Jev via OpenRouter. Python CLI with no runtime dependencies. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · larguesa · `Py` · call site [`jev_search.py`](https://github.com/larguesa/jev-search/blob/HEAD/jev_search.py), read 2026-09-22</sub>
@@ -1112,9 +1103,6 @@ Projects and plugins with code, 218 of them, whose only pattern is `overview` an
 - **[jev-to-answer](https://github.com/csskrtao/jev-to-answer)** — A Book of Answers toy: ask a question and Jev picks the answer.
   <sub>`Project` · ★10+ · csskrtao · `JS` · call site [`src/jev.js`](https://github.com/csskrtao/jev-to-answer/blob/HEAD/src/jev.js), read 2026-09-24 · ⚠ `no licence`</sub>
 
-- **[jev-trades](https://github.com/zadescoxp/Jev-Trades)** — Trading bot with the all new TypeSafe AI's first system one model named as Jev <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · zadescoxp · `Py` · call site [`pipeline/paper_trader.py`](https://github.com/zadescoxp/Jev-Trades/blob/HEAD/pipeline/paper_trader.py), read 2026-09-22</sub>
-
 - **[jev-tree](https://github.com/Chuf-H/jev-tree)** — Jev-native probability tree and graph runtime for verifiable multi-step decision making. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · chuf-h · `Py` · call site [`src/jevtree/providers.py`](https://github.com/Chuf-H/jev-tree/blob/HEAD/src/jevtree/providers.py), read 2026-09-24</sub>
 
@@ -1136,20 +1124,8 @@ Projects and plugins with code, 218 of them, whose only pattern is `overview` an
 - **[jevernetes](https://github.com/sunil-sadasivan/jevernetes)** — Live Kubernetes log analysis, contextual investigation, and agent handoff powered by Jev. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · sunil-sadasivan · `Go` · call site [`internal/provider/provider.go`](https://github.com/sunil-sadasivan/jevernetes/blob/HEAD/internal/provider/provider.go), read by a model 2026-11-05</sub>
 
-- **[jevgraph](https://github.com/chenmingtang830/jevgraph)** — Evidence-backed knowledge graph construction with typed Jev relation decisions <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · chenmingtang830 · `Py` · call site [`src/jevgraph/benchmark.py`](https://github.com/chenmingtang830/jevgraph/blob/HEAD/src/jevgraph/benchmark.py), read 2026-09-22</sub>
-
-- **[jeview](https://github.com/andududu/jeview)** — An unofficial local visualizer for Jev (TypeSafe): a live view of every call your code makes. Not affiliated with TypeSafe AI. <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · andududu · `JS` · call site [`jeview.ts`](https://github.com/andududu/jeview/blob/HEAD/jeview.ts), read 2026-09-22</sub>
-
-- **[jevify](https://github.com/altryne/jevify)** — An agent skill to discover TypeSafe Jev opportunities, design typed questions, and learn from recent community experiments. <sub>(upstream description)</sub>
-  <sub>`Plugin` · ★10+ · altryne · `Py` · call site [`scripts/jev_client.py`](https://github.com/altryne/jevify/blob/HEAD/scripts/jev_client.py), read 2026-09-22</sub>
-
 - **[jevloop](https://github.com/zjunlp/JevLoop)** — The agent loop where decisions don't cost a large language model call. Zero deps, runs offline, no API key needed. <sub>(earlier upstream description)</sub>
   <sub>`Project` · ★10+ · zjunlp · `TS` · call site [`bench/compare.ts`](https://github.com/zjunlp/JevLoop/blob/HEAD/bench/compare.ts), read 2026-09-22</sub>
-
-- **[jevocks](https://github.com/unicodeveloper/jevocks)** — Everyday Stocks Status with Jev <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · unicodeveloper · `TS` · call site [`src/lib/classify.ts`](https://github.com/unicodeveloper/jevocks/blob/HEAD/src/lib/classify.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
 - **[jevplayspokemon](https://github.com/anxkhn/JevPlaysPokemon)** — Jev plays Generation 3 Pokémon via Showdown and a real FireRed ROM. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · anxkhn · `TS` · call site [`jev.js`](https://github.com/anxkhn/JevPlaysPokemon/blob/HEAD/jev.js), read 2026-09-22</sub>
@@ -1184,9 +1160,6 @@ Projects and plugins with code, 218 of them, whose only pattern is `overview` an
 - **[open-spark-jev](https://github.com/abhishek085/open-spark-jev)** — Open-source, local decision models inspired by TypeSafe’s Jev and System One - built on Qwen3 for NVIDIA DGX Spark. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · abhishek085 · `Py` · call site [`open_spark_jev/eval/speed_vs_generation.py`](https://github.com/abhishek085/open-spark-jev/blob/HEAD/open_spark_jev/eval/speed_vs_generation.py), read 2026-09-22</sub>
 
-- **[openthai-systemone](https://github.com/iapp-technology/openthai-systemone)** — OpenThai-SystemOne: open Thai + English System One decision model (0.8B, 256-way slot head, Apache-2.0) <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · iapp-technology · `Py` · call site [`openthai_systemone/server.py`](https://github.com/iapp-technology/openthai-systemone/blob/HEAD/openthai_systemone/server.py), read 2026-09-22</sub>
-
 - **[pi-quiet-ask](https://github.com/HyunjunJeon/pi-quiet-ask)** — TypeSafe Jev as the pi coding agent's quiet decision layer <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · hyunjunjeon · `TS` · call site [`bench/src/jev_bench/providers/jev.py`](https://github.com/HyunjunJeon/pi-quiet-ask/blob/HEAD/bench/src/jev_bench/providers/jev.py), read 2026-09-22</sub>
 
@@ -1215,7 +1188,7 @@ Projects and plugins with code, 218 of them, whose only pattern is `overview` an
   <sub>`Project` · ★10+ · manifoldor · `JS` · call site [`extension/service.js`](https://github.com/manifoldor/xtags/blob/HEAD/extension/service.js), read 2026-09-22</sub>
 
 - **[aegis: TypeSafe as a first-class provider](https://github.com/dvjn/aegis)** — A personal Rust AI gateway with a TypeSafe provider, usage extraction and alias resolution tested against real response bodies.
-  <sub>`Project` · dvjn · `Rs` · call site [`src/providers.rs`](https://github.com/dvjn/aegis/blob/HEAD/src/providers.rs) · ⚠ `code untested` `no licence`</sub>
+  <sub>`Project` · dvjn · `Rs` · call site [`crates/aegis/src/providers.rs`](https://github.com/dvjn/aegis/blob/HEAD/crates/aegis/src/providers.rs) · ⚠ `code untested` `no licence`</sub>
 
 - **[agent-jev-tetris](https://github.com/Yasserbhb/Agent-JEV-Tetris)** — using the new model JEV to play the game tetris <sub>(upstream description)</sub>
   <sub>`Project` · yasserbhb · `TS` · call site [`server.mjs`](https://github.com/Yasserbhb/Agent-JEV-Tetris/blob/HEAD/server.mjs), read 2026-09-22 · ⚠ `no licence`</sub>

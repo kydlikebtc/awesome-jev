@@ -4,7 +4,7 @@
 
 本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。
 
-本目录收录的全部独立测量报告和负面结果 —— 共 104 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
+本目录收录的全部独立测量报告和负面结果 —— 共 105 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
@@ -393,6 +393,14 @@
   **注意:** `无许可证`
 
   > Gemini 3.6 Flash 和 Claude Haiku 不是 Jev。数字来自作者自己的运行：Jev 快约 3 倍、便宜 10-25 倍，在个人信息和提示注入上与最好的评审持平，在有害内容上落后，未达到事先设定的标准。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-18 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
+- **[jev-guardrails](https://github.com/deepansh-saxena/jev-guardrails)**<br>
+  一个模拟运营商客服智能体，用同样的 25 条规则和阈值把护栏做了两遍（LLM 评判和 Jev），再在 51 个带标注的案例上对比。Jev 在一次请求中为每条规则回答一个 noul，用 choice 判断范围和受理部门，并对每次工具调用给出允许、确认或拦截。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · deepansh-saxena · `Py` · `noul` · `choice` · [调用点](https://github.com/deepansh-saxena/jev-guardrails/blob/HEAD/tlife_agent/guardrails/backends/jev_backend.py)，2026-11-19 模型阅读</sub>
+
+  **注意:** `无许可证`
+
+  > 数据由作者自测：Jev 51 例中对 48 例，LLM 评判对 46 例；中位延迟分别为 177 毫秒和 1,193 毫秒，作者认为真正的错误数量持平。Jev 经由 LangChain 的 TypeSafe 集成调用。没有 LICENSE 文件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-19 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[jev-korean-benchmark](https://github.com/mahlernim/jev-korean-benchmark)**<br>
   可复现的早期访问评测：Jev 在韩语理解与医学文本上的表现，附运行时与成本证据。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
