@@ -100,10 +100,9 @@ EN = {
     ),
     "board_rising_none": "No product gained {n} stars between the two dates above.",
     "board_new_h": "New in the catalogue: {week}",
-    "board_new_stars": "{stars} stars",
     "board_new_note": (
         "{n} products entered the catalogue in {week} so far; the first {listed} here, those whose call site a "
-        "person read first, then a model, then by stars. An order, not a ranking, and each can launch. "
+        "person read first, then a model, then by star band and title. An order, not a ranking, and each can launch. "
         "[All of them on the board]({board})."
     ),
     "board_stars": "{before} → {after} stars ({share})",
@@ -539,9 +538,8 @@ ZH = {
     ),
     "board_rising_none": "上面两个日期之间，没有产品的星标涨到 {n} 个。",
     "board_new_h": "本周新收录：{week}",
-    "board_new_stars": "{stars} 星",
     "board_new_note": (
-        "{week} 至今新收录 {n} 个产品，这里列前 {listed} 个：先列有人读过调用点的，再列模型读过的，然后按星标排序。"
+        "{week} 至今新收录 {n} 个产品，这里列前 {listed} 个：先列有人读过调用点的，再列模型读过的，然后按星标区间和名称排序。"
         "这是排序，不是排名，每个都可以发布。[发布榜上的全部]({board})。"
     ),
     "board_stars": "{before} → {after} 星（{share}）",
