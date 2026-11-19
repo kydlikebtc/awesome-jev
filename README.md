@@ -168,7 +168,7 @@ No launch is on the board this week. A launch submitted by Thursday 23:59 UTC is
 </tr>
 </table>
 
-<sub>38 products entered the catalogue in 2026-W47 so far; the first 5 here, those whose call site a person read first, then a model, then by stars. An order, not a ranking, and each can launch. [All of them on the board](https://kydlikebtc.github.io/awesome-jev/launches.html).</sub>
+<sub>38 products entered the catalogue in 2026-W47 so far; the first 5 here, those whose call site a person read first, then a model, then by star band and title. An order, not a ranking, and each can launch. [All of them on the board](https://kydlikebtc.github.io/awesome-jev/launches.html).</sub>
 
 ### 🏆 Last week: 2026-W46
 

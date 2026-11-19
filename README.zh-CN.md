@@ -168,7 +168,7 @@
 </tr>
 </table>
 
-<sub>2026-W47 至今新收录 38 个产品，这里列前 5 个：先列有人读过调用点的，再列模型读过的，然后按星标排序。这是排序，不是排名，每个都可以发布。[发布榜上的全部](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)。 <sub>(机翻)</sub></sub>
+<sub>2026-W47 至今新收录 38 个产品，这里列前 5 个：先列有人读过调用点的，再列模型读过的，然后按星标区间和名称排序。这是排序，不是排名，每个都可以发布。[发布榜上的全部](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)。 <sub>(机翻)</sub></sub>
 
 ### 🏆 上周：2026-W46
 
