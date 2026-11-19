@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 104 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 105 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -395,6 +395,14 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   **Caveats:** `no licence`
 
   > Gemini 3.6 Flash and Claude Haiku are not Jev. The figures are the author's runs: Jev was about 3x faster and 10-25x cheaper, matched the best judge on personal data and prompt injection and trailed on harmful content, missing the bar set in advance. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-18; a maintainer has not yet read the call site.
+
+- **[jev-guardrails](https://github.com/deepansh-saxena/jev-guardrails)**<br>
+  Mock carrier support agent whose guardrails are built twice on the same 25 rules and thresholds, an LLM judge and Jev, then measured on 51 labelled cases. Jev answers in one request a noul per rule, choices of scope and desk, and allow, confirm or block for each tool call. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · deepansh-saxena · `Py` · `noul` · `choice` · [call site](https://github.com/deepansh-saxena/jev-guardrails/blob/HEAD/tlife_agent/guardrails/backends/jev_backend.py), read by a model 2026-11-19</sub>
+
+  **Caveats:** `no licence`
+
+  > The figures are the author's: 48 of 51 for Jev against 46 for the LLM judge, at a median 177 ms against 1,193 ms, and the author counts genuine errors as even. Jev is reached through LangChain's TypeSafe integration. No LICENSE file. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-19; a maintainer has not yet read the call site.
 
 - **[jev-korean-benchmark](https://github.com/mahlernim/jev-korean-benchmark)**<br>
   Reproducible early-access evaluation of Jev on Korean understanding and medical text, with runtime and cost evidence <sub>(upstream description)</sub><br>

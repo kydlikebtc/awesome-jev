@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 95 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 99 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 87 · 接口形态 1 · 仅示例 1 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 89 · 接口形态 2 · 仅示例 2 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -34,7 +34,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`官方文档` · `Py` · `choice`</sub>
 
 - **[@langchain/typesafe](https://github.com/langchain-ai/langchainjs)** — LangChain 集成的 JavaScript 对应版本，分类器与 middleware 形状一致。
-  <sub>`平台集成` · ★10k+ · `TS` · `choice` · `score` · `noul` · 调用点 [`libs/providers/langchain-typesafe/src/types.ts`](https://github.com/langchain-ai/langchainjs/blob/HEAD/libs/providers/langchain-typesafe/src/types.ts)，2026-09-22 阅读</sub>
+  <sub>`平台集成` · ★10k+ · `TS` · `choice` · `score` · `noul` · 调用点 [`libs/providers/langchain-typesafe/src/classifier.ts`](https://github.com/langchain-ai/langchainjs/blob/HEAD/libs/providers/langchain-typesafe/src/classifier.ts)，2026-11-19 模型阅读</sub>
 
 - **[claude-code-templates: three Jev plugins](https://github.com/davila7/claude-code-templates)** — 三个可独立安装的 Claude Code 插件 —— 护栏、模型路由、技能推荐 —— 各自带 hook 和测试。
   <sub>`插件` · ★10k+ · `Py` · `TS` · `choice` · `score` · `noul` · 调用点 [`scripts/jev-spike.mjs`](https://github.com/davila7/claude-code-templates/blob/HEAD/scripts/jev-spike.mjs)，2026-09-22 阅读</sub>
@@ -99,6 +99,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Hermes Switchyard](https://github.com/bgrablin/hermes-switchyard)** — Hermes Agent 插件，把会话中的小决策交给 Jev，并在你设定的范围内依据答案行动：每一轮需要多少推理力度、加载哪个技能、计算机操作中点击哪个控件，以及对历史会话搜索结果重新排序；每次决策都会留下本地记录。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · bgrablin · `Py` · `choice` · `noul` · `score` · 调用点 [`hermes_switchyard/client.py`](https://github.com/bgrablin/hermes-switchyard/blob/HEAD/hermes_switchyard/client.py)，2026-11-07 模型阅读</sub>
 
+- **[james_library](https://github.com/topherchris420/james_library)** — R.A.I.N. Lab：一个实验性的科学智能体架构，把快速的本地判断、独立的概率判断与推理分离开来。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · topherchris420 · `Rs` · 调用点 [`james_library/judgment/typesafe.py`](https://github.com/topherchris420/james_library/blob/HEAD/james_library/judgment/typesafe.py)，2026-09-24 阅读 · ⚠ `已归档`</sub>
+
 - **[jev-auto-router](https://github.com/miniLV/Jev-Auto-Router)** — 实验性的逐次调用 GPT 模型路由，通过 Jev 与一个本地 Rescue 层为 Codex 服务。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · minilv · `TS` · 调用点 [`src/codex-router/jev.ts`](https://github.com/miniLV/Jev-Auto-Router/blob/HEAD/src/codex-router/jev.ts)，2026-11-05 模型阅读</sub>
 
@@ -113,6 +116,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-kit](https://github.com/jonathanavis96/jev-kit)** — 一套 Claude Code 工具包：PreToolUse 守卫先用免费的代码预筛放行约 93% 的工具调用，其余交给 Jev 判断（放行、警告、改写或拦截，出错时默认放行）；还能为子 Agent 选择合适的规格，并把 Jev 接入文件搜索、浏览和代码审阅。作者报告浏览器任务 9/9 成功，Claude 花费仅 0.0008 美元。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · jonathanavis96 · `Py` · `choice` · `noul` · 调用点 [`vendor/jev-ultrafast/jev_ultrafast/model.py`](https://github.com/jonathanavis96/jev-kit/blob/HEAD/vendor/jev-ultrafast/jev_ultrafast/model.py)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
+
+- **[jev-mcp](https://github.com/burnigtm/jev-mcp)** — 把 TypeSafe Jev 接入 Cursor、Codex 等任意 MCP 客户端编码流程的 MCP 服务器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · burnigtm · `TS` · 调用点 [`src/typesafe.ts`](https://github.com/burnigtm/jev-mcp/blob/HEAD/src/typesafe.ts)，2026-09-24 阅读</sub>
 
 - **[jev-opus](https://github.com/WXK-AI/jev-opus)** — 让 Claude Code 在 Opus 5.5 上运行，并由 Jev 在每次收到提示和每批工具调用之后重新选择推理强度（测试失败时调高，通过后调回），以逐条消息的强度声明发送，从而保住提示缓存。可作为本地网关或无界面驱动器使用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · wxk-ai · `TS` · 调用点 [`dist/config.js`](https://github.com/WXK-AI/jev-opus/blob/HEAD/dist/config.js)，2026-10-24 模型阅读</sub>
@@ -249,6 +255,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-harness-router](https://github.com/JoacoMarc/jev-harness-router)** — 面向智能体框架的逐轮路由器：一次约 350 毫秒的 Jev 调用选出模型档位、推理力度、工具与技能，并有硬性兜底。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · joacomarc · `TS` · 调用点 [`src/jev.ts`](https://github.com/JoacoMarc/jev-harness-router/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>
 
+- **[jev-laya-dsh](https://github.com/alexdoandev/jev-laya-dsh)** — 并非 Jev：基于开源模型 Laya、为 DeepSeek Harness 智能体加上的本地 System One 层。每一步之前，它问一个任务类型的 choice、一个是否需要动代码的 noul 和一个紧急程度的 score；有风险的工具调用之前，再用三个 noul 问它是否具有破坏性、是否不可逆、是否影响全局。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · alexdoandev · `JS` · 引用文件 [`packages/dsh-jev-router/lib/index.js`](https://github.com/alexdoandev/jev-laya-dsh/blob/HEAD/packages/dsh-jev-router/lib/index.js)，2026-11-19 模型阅读 · ⚠ `并非 Jev 本身`</sub>
+
 - **[jev-model-router](https://github.com/az9713/jev-model-router)** — 运行在 Vercel AI Gateway 上的 Jev（TypeSafe）模型路由器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · az9713 · `JS` · 调用点 [`probe.mjs`](https://github.com/az9713/jev-model-router/blob/HEAD/probe.mjs)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
 
@@ -275,6 +284,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[pi-jev-router](https://github.com/philippdubach/pi-jev-router)** — 为 pi 打造的极简帕累托最优 OpenRouter 模型路由器，基于 Jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · philippdubach · `TS` · 调用点 [`src/classifier.ts`](https://github.com/philippdubach/pi-jev-router/blob/HEAD/src/classifier.ts)，2026-09-24 阅读</sub>
+
+- **[pi-model-router](https://github.com/alexei-led/pi-model-router)** — Pi 编程智能体的模型路由器，可以向 Pi 中注册的分类器（其参考配置用的是 Jev 1.14）在一次请求中最多问四个 choice：当前请求是否开启新任务、哪条已配置的路由适合正在进行的工作、任务的目标，以及所处阶段。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · alexei-led · `TS` · `choice` · 引用文件 [`docs/examples/classifier-catalog.ts`](https://github.com/alexei-led/pi-model-router/blob/HEAD/docs/examples/classifier-catalog.ts)，2026-11-19 模型阅读</sub>
 
 - **[pi-typesafe-router](https://github.com/jekozyra/pi-typesafe-router)** — 一个 Pi 扩展：让 Jev 为每个请求分类并路由到合适的模型；在你配置好映射之前默认关闭。 <sub>(机翻)</sub>
   <sub>`插件` · jekozyra · `TS` · 调用点 [`src/config.ts`](https://github.com/jekozyra/pi-typesafe-router/blob/HEAD/src/config.ts)，2026-09-24 阅读</sub>

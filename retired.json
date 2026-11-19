@@ -66,6 +66,76 @@
     "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
   },
   {
+    "slug": "cheshi",
+    "title": "Cheshi",
+    "summary": "Jev-powered conversation memory: find past sessions and revisit decisions with original sources. A macOS workspace for OpenAI Codex. Manage AI conversations and agents, explore code with CodeGraph, and work with Git, Ghostty terminals, and Apple Notes in one app.",
+    "summary_source": "upstream-description",
+    "summary_zh": "由 Jev 驱动的对话记忆：找回过去的会话，并结合原始来源重新审视当时的决策。一个 macOS 工作区。",
+    "url": "https://github.com/CheshiAI/Cheshi",
+    "kind": "plugin",
+    "patterns": [
+      "search-ranking"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "cheshiai",
+      "url": "https://github.com/cheshiai"
+    },
+    "has_code": true,
+    "official": false,
+    "stars": 19,
+    "repo_license": "MIT",
+    "repo_created_at": "2026-09-13T17:44:07Z",
+    "repo_pushed_at": "2026-10-25T14:01:43Z",
+    "repo_commits": 110,
+    "published": "2026-09-13",
+    "first_seen": "2026-09-24",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "hellogumbo/awesome-jev",
+        "url": "https://github.com/hellogumbo/awesome-jev"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "MrJev/awesome-jev",
+        "url": "https://github.com/MrJev/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "evidence": {
+      "path": "desktop/lib/typesafe-connection.mts",
+      "matched": [
+        "api.typesafe.ai",
+        "jev-latest",
+        "/v1/systemone"
+      ],
+      "read_on": "2026-09-24"
+    },
+    "primitives_seen": [
+      "choice"
+    ],
+    "zh_machine": true,
+    "languages": [
+      "c"
+    ],
+    "checked": "2026-11-11",
+    "notes": "Retired 2026-11-19: the TypeSafe connection the row cited is gone, its tests now check that Settings and the history tools no longer mention TypeSafe or Jev, and no code file on its default branch calls Jev any more (searched 2026-11-19). Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-19 退役：本条目所引的 TypeSafe 连接已删除，其测试现在会检查设置页和历史工具里不再出现 TypeSafe 或 Jev，默认分支上也已没有任何代码文件调用 Jev（2026-11-19 搜索）。保留于此，以便这条引用仍可检索。"
+  },
+  {
     "slug": "datajev",
     "title": "datajev",
     "summary": "⚡ DataJev LLM → Analyze Jev → Continue / Switch / Verify / Stop System-1 control for System-2 data agents",
@@ -648,6 +718,67 @@
     "link_status": 404,
     "notes": "Retired 2026-10-24: the repository has not resolved in any weekly refresh since 2026-10-13 (last on 2026-10-21) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
     "notes_zh": "2026-10-24 退役：自 2026-10-13 起每周刷新都无法访问该仓库（最近一次为 2026-10-21）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "jev-issue-radar",
+    "title": "jev-issue-radar",
+    "summary": "GitHub issue triage with side-by-side evidence. Try the public sample without setup, or run the local app with TypeSafe Jev via OpenRouter.",
+    "summary_source": "upstream-description",
+    "summary_zh": "带并排证据的 GitHub issue 分拣，可免配置试用公开样例。",
+    "zh_machine": true,
+    "url": "https://github.com/Patrick-SCH03/jev-issue-radar",
+    "kind": "project",
+    "patterns": [
+      "classification"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "patrick-sch03",
+      "url": "https://github.com/patrick-sch03"
+    },
+    "has_code": true,
+    "stars": 1,
+    "repo_license": "MIT",
+    "repo_created_at": "2026-09-20T14:10:07Z",
+    "repo_pushed_at": "2026-09-20T15:08:14Z",
+    "repo_commits": 8,
+    "evidence": {
+      "path": "lib/jev.mjs",
+      "matched": [
+        "typesafe/jev",
+        "jev-1.13"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "AppitStudio/awesome-jev",
+        "url": "https://github.com/AppitStudio/awesome-jev"
+      },
+      {
+        "catalog": "daftAI2026/awesome-jev",
+        "url": "https://github.com/daftAI2026/awesome-jev"
+      },
+      {
+        "catalog": "logicrw/awesome-jev-projects",
+        "url": "https://github.com/logicrw/awesome-jev-projects"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "javascript"
+    ],
+    "checked": "2026-11-16",
+    "link_status": 404,
+    "notes": "Retired 2026-11-19: the repository has not resolved in any weekly check since 2026-11-09 (last on 2026-11-16) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-19 退役：自 2026-11-09 起每周检查都无法访问该仓库（最近一次为 2026-11-16）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
   },
   {
     "slug": "jev-mac-voice",
@@ -1497,6 +1628,80 @@
     "link_status": 404,
     "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
     "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "lct",
+    "title": "Jev-LCT",
+    "summary": "Open decision models (a looped calibration transformer on Qwen 2.5 and Qwen3 backbones, 0.5B to 8B) that read confidence from the model's own recurrent loops and serve Jev's POST /v1/systemone shape (choice, noul, score) from a FastAPI server, with a Python SDK and weights on Hugging Face.",
+    "summary_source": "model-written",
+    "summary_zh": "开源决策模型（在 Qwen 2.5 和 Qwen3 骨干上构建的循环校准 Transformer，0.5B 到 8B），从模型自身的循环计算轨迹读出置信度，并用 FastAPI 服务器提供 Jev 的 POST /v1/systemone 请求格式（choice、noul、score），附带 Python SDK，权重发布在 Hugging Face。",
+    "url": "https://github.com/gitchw/lct",
+    "kind": "alternative",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "self-hosted"
+    ],
+    "author": {
+      "name": "gitchw",
+      "url": "https://github.com/gitchw"
+    },
+    "repo_license": "Apache-2.0",
+    "languages": [
+      "python"
+    ],
+    "flags": [
+      "not-jev",
+      "vendor-reported"
+    ],
+    "evidence": {
+      "path": "lct/api/server.py",
+      "matched": [
+        "Complies with TypeSafe AI Jev official endpoint POST /v1/systemone.",
+        "\"/v1/systemone\","
+      ],
+      "kind": "wire-shape",
+      "model_read_on": "2026-11-08"
+    },
+    "notes": "Retired 2026-11-19: the repository has not resolved in any weekly check since 2026-11-09 (last on 2026-11-16) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-19 退役：自 2026-11-09 起每周检查都无法访问该仓库（最近一次为 2026-11-16）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "AppitStudio/awesome-jev",
+        "url": "https://github.com/AppitStudio/awesome-jev"
+      },
+      {
+        "catalog": "daftAI2026/awesome-jev",
+        "url": "https://github.com/daftAI2026/awesome-jev"
+      },
+      {
+        "catalog": "Eurekaleo/awesome-jev-survey",
+        "url": "https://github.com/Eurekaleo/awesome-jev-survey"
+      },
+      {
+        "catalog": "hellogumbo/awesome-jev",
+        "url": "https://github.com/hellogumbo/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      },
+      {
+        "catalog": "robokrunch/awesome-jev",
+        "url": "https://github.com/robokrunch/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "first_seen": "2026-11-08",
+    "zh_machine": true,
+    "has_code": true,
+    "checked": "2026-11-16",
+    "link_status": 404
   },
   {
     "slug": "lichen",

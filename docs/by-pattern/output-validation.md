@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 174 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 179 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 169 · wire shape 1 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 174 · wire shape 1 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -89,6 +89,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[perch: semantic code linting](https://github.com/lakeday-org/perch)** — Tree-sitter finds and ranks methods, then user-authored YAML rules compile into nouls, with severity read as the rubric's expected value rather than the top band.
   <sub>`Project` · ★100+ · `JS` · `choice` · `score` · `noul` · call site [`src/cli.js`](https://github.com/lakeday-org/perch/blob/HEAD/src/cli.js), read 2026-09-22</sub>
 
+- **[stanley-code](https://github.com/devagrawal09/stanley-code)** — Code-change checker CLI: a Jev choice routes each request to a workflow or cannot_tell; each workflow is code asking Jev small questions about bounded evidence, such as whether a hunk belongs to the task or a test got weaker. Other requests go to a coding agent, and a workflow for them is drafted. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · devagrawal09 · `TS` · call site [`src/adapters/jev.ts`](https://github.com/devagrawal09/stanley-code/blob/HEAD/src/adapters/jev.ts), read 2026-09-22</sub>
+
 - **[supercov](https://github.com/supercorp-ai/supercov)** — Code quality and coverage judgements for coding agents, in Rust.
   <sub>`Project` · ★100+ · supercorp-ai · `Rs` · call site [`crates/supercov-cli/src/quality.rs`](https://github.com/supercorp-ai/supercov/blob/HEAD/crates/supercov-cli/src/quality.rs), read 2026-09-22</sub>
 
@@ -134,6 +137,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[invalidate](https://github.com/chopratejas/invalidate)** — The invalidation layer for AI memory. Every fact gets a lease; new evidence ends it. Built on TypeSafe Jev. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · chopratejas · `Py` · call site [`evals/screen_matrix.py`](https://github.com/chopratejas/invalidate/blob/HEAD/evals/screen_matrix.py), read 2026-09-22</sub>
 
+- **[james_library](https://github.com/topherchris420/james_library)** — R.A.I.N. Lab is an experimental scientific-agent architecture that separates fast local judgment, independent probabilistic evaluation, multi-agent deliberation, evidence, and authorization into distinct computational layers.🐙(Predates Karpathy's AutoResearch) <sub>(earlier upstream description)</sub>
+  <sub>`Project` · ★10+ · topherchris420 · `Rs` · call site [`james_library/judgment/typesafe.py`](https://github.com/topherchris420/james_library/blob/HEAD/james_library/judgment/typesafe.py), read 2026-09-24 · ⚠ `archived`</sub>
+
 - **[jeff](https://github.com/Alurith/jeff)** — Read-only Go CLI that checks source files against rules with Jev, locally or in CI: each rule (failure-path integrity, undisclosed side effects, duplicated policy, names contradicting behaviour) is a yes/no question per file, and the rule's thresholds decide pass, fail or inconclusive. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · Alurith · `Go` · `noul` · call site [`internal/typesafe/client.go`](https://github.com/Alurith/jeff/blob/HEAD/internal/typesafe/client.go), read by a model 2026-10-31</sub>
 
@@ -176,11 +182,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-feels](https://github.com/Qew7/jev-feels)** — Semantic decisions as ordinary Ruby — feels?, decide, score, Rails validations and pattern matching powered by Jev
   <sub>`Project` · ★10+ · qew7 · `Rb` · call site [`lib/jev/client.rb`](https://github.com/Qew7/jev-feels/blob/HEAD/lib/jev/client.rb), read 2026-09-22</sub>
 
+- **[jev-judge-mcp](https://github.com/PyModel/jev-judge-mcp)** — Typed judgment tools for MCP agents. TypeSafe's Jev model as verify, screen, find, classify, rerank, decide, compare, extract, review, gate, and score: the model judges, policy decides auto, review, or escalate. <sub>(upstream description)</sub>
+  <sub>`Plugin` · ★10+ · pymodel · `Py` · call site [`src/jev_judge_mcp/domain/questions.py`](https://github.com/PyModel/jev-judge-mcp/blob/HEAD/src/jev_judge_mcp/domain/questions.py), read 2026-09-24</sub>
+
 - **[jev-libero](https://github.com/Dimweaker/jev-libero)** — Fine-grained robot control with Jev, physics previews, and configurable LIBERO tasks. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · dimweaker · `Py` · call site [`src/jev_libero/client.py`](https://github.com/Dimweaker/jev-libero/blob/HEAD/src/jev_libero/client.py), read 2026-09-22</sub>
 
 - **[jev-lint](https://github.com/ckorhonen/jev-lint)** — Fuzzy linter for coding agents: after an agent writes a file, each of the team's plain-language rules is asked as a Jev noul, and about 0.3 s later the agent hears which rules it broke. Can generate rules from the repository; Cloudflare and OpenAI judges as alternatives. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · ckorhonen · `TS` · `noul` · call site [`src/jev.ts`](https://github.com/ckorhonen/jev-lint/blob/HEAD/src/jev.ts), read by a model 2026-10-24</sub>
+
+- **[jev-mcp](https://github.com/burnigtm/jev-mcp)** — MCP server that puts TypeSafe Jev on the coding loop in Cursor, Codex, and any MCP client <sub>(upstream description)</sub>
+  <sub>`Plugin` · ★10+ · burnigtm · `TS` · call site [`src/typesafe.ts`](https://github.com/burnigtm/jev-mcp/blob/HEAD/src/typesafe.ts), read 2026-09-24</sub>
 
 - **[jev-pref](https://github.com/doeixd/jev-pref)** — Turn your AGENTS.md preferences into a fast, Jev-powered AI linter. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · doeixd · `JS` · call site [`packages/jev-pref/src/config.js`](https://github.com/doeixd/jev-pref/blob/HEAD/packages/jev-pref/src/config.js), read 2026-09-22</sub>
@@ -385,6 +397,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-guard](https://github.com/muratcakmak/jev-guard)** — Probability-scored guardrails for Claude Code: deny rule-breaking edits and unasked-for deploys, route your docs into each prompt, and check the final answer against the turn's own evidence. <sub>(upstream description)</sub>
   <sub>`Plugin` · muratcakmak · `TS` · call site [`scripts/jev-lint.ts`](https://github.com/muratcakmak/jev-guard/blob/HEAD/scripts/jev-lint.ts), read 2026-09-24 · ⚠ `one commit`</sub>
+
+- **[jev-guardrails](https://github.com/deepansh-saxena/jev-guardrails)** — Mock carrier support agent whose guardrails are built twice on the same 25 rules and thresholds, an LLM judge and Jev, then measured on 51 labelled cases. Jev answers in one request a noul per rule, choices of scope and desk, and allow, confirm or block for each tool call. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · deepansh-saxena · `Py` · `noul` · `choice` · call site [`tlife_agent/guardrails/backends/jev_backend.py`](https://github.com/deepansh-saxena/jev-guardrails/blob/HEAD/tlife_agent/guardrails/backends/jev_backend.py), read by a model 2026-11-19 · ⚠ `no licence`</sub>
 
 - **[jev-ios-bridge](https://github.com/hugues-vnsgn/jev-ios-bridge)** — Claude Code plugin and MCP server that runs scripted checks of iOS and Android apps: at each checkpoint it sends Jev the screen's text and asks one noul per claim, such as "The order total reads $5", so a saved script reruns without Claude in the loop. <sub>(written by a model)</sub>
   <sub>`Plugin` · hugues-vnsgn · `TS` · `noul` · call site [`src/scripted/jev.ts`](https://github.com/hugues-vnsgn/jev-ios-bridge/blob/HEAD/src/scripted/jev.ts), read by a model 2026-11-16 · ⚠ `vendor numbers`</sub>
