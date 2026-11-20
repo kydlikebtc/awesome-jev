@@ -4,11 +4,11 @@
 
 _Score or re-rank candidates from a cheaper retrieval step._
 
-Every catalogued example of this decision — 104 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 106 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#search-ranking): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 100 · wire shape 0 · example only 0 · independent reports 8 · negative results 2 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 102 · wire shape 0 · example only 0 · independent reports 8 · negative results 2 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -294,6 +294,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-test](https://github.com/mity-prodgen/jev-test)** — Test harness behind three write-ups on Jev: an audit of whether its confidence means anything, Jev as a judge of whether a claim is supported by a source passage against an LLM judge, and Jev in RAG as a reranker, including whether a chunk's own text can change its rank. <sub>(written by a model)</sub>
   <sub>`Benchmark` · mity-prodgen · `Py` · `choice` · `score` · `noul` · call site [`jev_harness/client.py`](https://github.com/mity-prodgen/jev-test/blob/HEAD/jev_harness/client.py), read by a model 2026-11-11</sub>
 
+- **[jev-tool-search](https://github.com/kachar/jev-tool-search)** — Benchmark of picking the right tool for an LLM agent: Jev gets one choice whose options are the candidate tools, against BM25, Voyage embeddings and rerankers on 525 real MCP tools from LiveMCPBench, plus an experimental search engine that shortlists with embeddings and lets Jev decide. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · kachar · `TS` · `choice` · call site [`src/jev.ts`](https://github.com/kachar/jev-tool-search/blob/HEAD/src/jev.ts), read by a model 2026-11-20 · ⚠ `vendor numbers`</sub>
+
 - **[jev.nvim](https://github.com/valentynkit/jev.nvim)** — Neovim: ask the buffer a question, get a quickfix list. Treesitter splits functions, Jev scores each one, probabilities land as virtual text <sub>(upstream description)</sub>
   <sub>`Plugin` · valentynkit · `Lua` · call site [`lua/jev/client.lua`](https://github.com/valentynkit/jev.nvim/blob/HEAD/lua/jev/client.lua), read 2026-09-24</sub>
 
@@ -326,6 +329,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Mnemon](https://github.com/grivn/mnemon-memory-agent)** — Long-term memory agent that keeps raw, dated records and judges them when a question arrives: for every record its searches return, it asks Jev in one request whether the next reply should use it and whether a later message makes it no longer current (two nouls each). <sub>(written by a model)</sub>
   <sub>`Project` · grivn · `TS` · `noul` · call site [`plugins/dsh-mnemon-strategy-jev-optmem/src/judge.ts`](https://github.com/grivn/mnemon-memory-agent/blob/HEAD/plugins/dsh-mnemon-strategy-jev-optmem/src/judge.ts), read by a model 2026-11-16 · ⚠ `3rd-party key` `vendor numbers`</sub>
+
+- **[OpenCode plugin for decision models](https://github.com/atvari-eu/opencode-decisions)** — OpenCode plugin where Jev screens tool results for junk and prompt injection, vets permission requests, picks the model and reasoning effort for each turn, keeps or drops tool calls during compaction, checks whether the agent stopped early and searches code by meaning. <sub>(written by a model)</sub>
+  <sub>`Plugin` · atvari-eu · `TS` · `noul` · `choice` · `score` · call site [`src/index.ts`](https://github.com/atvari-eu/opencode-decisions/blob/HEAD/src/index.ts), read by a model 2026-11-20</sub>
 
 - **[pijev](https://github.com/tonyzdev/pijev)** — PiJev: a terminal coding agent with Jev in the loop — Jev ranks the repository's files before the first call, picks skills and triages failures; your coding model writes the code. Built on Pi. <sub>(upstream description)</sub>
   <sub>`Project` · tonyzdev · `TS` · call site [`src/jev.ts`](https://github.com/tonyzdev/pijev/blob/HEAD/src/jev.ts), read 2026-09-24</sub>

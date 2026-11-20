@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 203 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 207 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 194 · 接口形态 5 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 198 · 接口形态 5 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -302,6 +302,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ask-jev-ai](https://github.com/waynesutton/ask-jev-ai)** — 一面公开的墙：任何人用三到十五个词提问，由 Jev 作答。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · waynesutton · `JS` · 调用点 [`convex/lib/typesafe.ts`](https://github.com/waynesutton/ask-jev-ai/blob/HEAD/convex/lib/typesafe.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
+- **[astrbot_plugin_jev](https://github.com/czyczy23/astrbot_plugin_jev)** — AstrBot 群聊插件的分支，在机器人插话之前询问 System One 决策模型：是否值得开口（noul）、话题相关度（score）以及以何种方式加入（choice）。提供方设为 OpenRouter 时由 Jev 作答。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · czyczy23 · `Py` · `noul` · `score` · `choice` · 调用点 [`utils/systemone_judge.py`](https://github.com/czyczy23/astrbot_plugin_jev/blob/HEAD/utils/systemone_judge.py)，2026-11-20 模型阅读</sub>
+
 - **[book-aurora](https://github.com/dani1005/book-aurora)** — Jev 几秒钟读完一整本小说，每个段落都变成一行颜色。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · dani1005 · `TS` · 调用点 [`server/jev.ts`](https://github.com/dani1005/book-aurora/blob/HEAD/server/jev.ts)，2026-09-24 阅读</sub>
 
@@ -368,6 +371,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jev Benchmark](https://github.com/yididev/jev-benchmark)** — 基于评分细则的零样本分类、链式决策树执行和考试评分基准。每份文档以一个 choice 发给 Jev，criteria 是细则中各文件夹的完整描述，并与两个 Claude 模型、OpenJev 和其他开源权重决策模型比较准确率、校准和价格。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · yididev · `Py` · `choice` · 调用点 [`arms/jev.py`](https://github.com/yididev/jev-benchmark/blob/HEAD/arms/jev.py)，2026-11-18 模型阅读</sub>
 
+- **[Jev for QA / SDET demos](https://github.com/gauravkhuraana/jev-qa-demos)** — 面向测试人员的 Jev 视频演示代码，经 Vercel AI Gateway 和 AI SDK 调用：按根因（choice）、对发布的影响（score）以及重试能否通过（noul）分诊失败的 CI 测试，并用 noul 审查智能体要执行的命令、检查 RAG 回答是否有依据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`教程` · gauravkhuraana · `TS` · `choice` · `score` · `noul` · 调用点 [`src/lib/triage.ts`](https://github.com/gauravkhuraana/jev-qa-demos/blob/HEAD/src/lib/triage.ts)，2026-11-20 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — 在 480 道自编通用波斯语题、560 道文学题和一个古典诗歌试点上，把 Jev 与开源决策模型对比的基准：以 choice、noul 和 score 提问，保存原始响应并在本地评分；Jev 在 choice 和 noul 准确率上领先。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · armanjr · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py)，2026-11-11 模型阅读 · ⚠ `无许可证`</sub>
 
@@ -418,6 +424,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-llm-router-benchmark](https://github.com/erendikmenn/jev-llm-router-benchmark)** — 以基准驱动的 Jev 路由器与评判者，服务于成本可控的 LLM 编程流程。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · erendikmenn · `Py` · 调用点 [`src/jev_router/providers/review.py`](https://github.com/erendikmenn/jev-llm-router-benchmark/blob/HEAD/src/jev_router/providers/review.py)，2026-09-22 阅读</sub>
+
+- **[jev-mcp](https://github.com/codaaiteam/jev-mcp)** — 为 Claude Code、Codex、Cursor 和 Pi 智能体提供 Jev 工具的 MCP 服务器：分类（choice）、按智能体定义的刻度打分、判断是或否（noul），并在执行 shell 命令或编辑文件之前把关，给出风险分数、是否触及生产或数据的 noul，以及允许、确认或阻止的 choice。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · codaaiteam · `JS` · `choice` · `score` · `noul` · 调用点 [`src/index.js`](https://github.com/codaaiteam/jev-mcp/blob/HEAD/src/index.js)，2026-11-20 模型阅读</sub>
 
 - **[jev-mcp-server](https://github.com/wangkuangkuang/jev-mcp-server)** — Jev 的 MCP server：提供官方三种问题类型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · wangkuangkuang · `Py` · 调用点 [`src/jev_mcp_server/config.py`](https://github.com/wangkuangkuang/jev-mcp-server/blob/HEAD/src/jev_mcp_server/config.py)，2026-09-22 阅读</sub>
@@ -538,6 +547,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Netizen](https://github.com/seheta/netizen)** — 在帖子发布前模拟印尼网民的反应。Jev 在一次请求中针对每个人设（如网约摩的司机或水军）回答：会不会停下来看、会做什么、立场如何、评论起什么作用；另外判断帖子是否涉及敏感话题、能传播多广。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · seheta · `Py` · `noul` · `choice` · `score` · 调用点 [`spike/spike.py`](https://github.com/seheta/netizen/blob/HEAD/spike/spike.py)，2026-11-12 模型阅读</sub>
+
+- **[NYC 311 JEV Heatmaps](https://github.com/CompleteTech-LLC-AI-Research/jev-311-heatmap)** — 研究演示：让 Jev 判断纽约 311 投诉描述——若情况属实，其潜在影响有多大（score）、是否构成可信的安全隐患（noul）以及属于哪类问题（choice），再把缓存的答案画到 500 米网格的地图上。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · CompleteTech-LLC-AI-Research · `Py` · `score` · `noul` · `choice` · 调用点 [`generate_heatmap.py`](https://github.com/CompleteTech-LLC-AI-Research/jev-311-heatmap/blob/HEAD/generate_heatmap.py)，2026-11-20 模型阅读</sub>
 
 - **[omp-jevens-classifier](https://github.com/STRML/omp-jevens-classifier)** — 给 OMP 的模型裁决式权限闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · strml · `TS` · 调用点 [`jev.ts`](https://github.com/STRML/omp-jevens-classifier/blob/HEAD/jev.ts)，2026-09-22 阅读 · ⚠ `已归档`</sub>

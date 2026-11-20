@@ -4,11 +4,11 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 108 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 109 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#human-escalation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#human-escalation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 93 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 94 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -330,6 +330,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[reflex](https://github.com/ursuciprian/reflex)** — 面向 Claude Code、Codex CLI、opencode 和 pi 的执行前钩子。工具运行前，它可以问 Jev：这次调用是否会改动、外泄或偏离任务（noul），影响范围多大（score），属于哪个环境（choice）；它还防范提示注入，并挑选 LiteLLM 模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ursuciprian · `JS` · `noul` · `score` · `choice` · 调用点 [`providers.mjs`](https://github.com/ursuciprian/reflex/blob/HEAD/providers.mjs)，2026-11-14 模型阅读</sub>
+
+- **[Snapif](https://github.com/snapif/snapif)** — Rust 库和命令行工具，把智能体的一次工具调用评为自动执行、复核或升级：它向 System One 后端（默认是 Jev）询问危害类别（choice）和一组关于该调用的 noul，套用内置策略，也可作为工具调用前的钩子运行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · snapif · `Rs` · `choice` · `noul` · `score` · 调用点 [`src/backends/http.rs`](https://github.com/snapif/snapif/blob/HEAD/src/backends/http.rs)，2026-11-20 模型阅读</sub>
 
 - **[spending-effort-with-jev](https://github.com/Yaxin9Luo/spending-effort-with-jev)** — Claude Code mod：读取你发出的每条消息，用 choice 问 Jev 这个任务值得哪个 /effort 档位，再用 noul 判断一项长时间托管的任务是否还有含糊之处；会话当前档位看起来不对时，提供一键切换，并提醒需求不清。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · Yaxin9Luo · `TS` · `choice` · `noul` · 调用点 [`plugins/spending-effort-with-jev/hooks/judge.ts`](https://github.com/Yaxin9Luo/spending-effort-with-jev/blob/HEAD/plugins/spending-effort-with-jev/hooks/judge.ts)，2026-11-10 模型阅读</sub>

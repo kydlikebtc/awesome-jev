@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 524 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 528 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 384 · wire shape 100 · example only 0 · independent reports 33 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 388 · wire shape 100 · example only 0 · independent reports 33 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -821,6 +821,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[TypeSafe AI SDK for Go](https://github.com/captain-corgi/typesafe-sdk-go)** — Community Go SDK for TypeSafe's API, with no runtime dependencies (the standard library only) and parity with the Python SDK 0.7.5: typed noul, choice and score questions about any state, images included, in one request. <sub>(written by a model)</sub>
   <sub>`SDK` · captain-corgi · `Go` · `noul` · `choice` · `score` · call site [`client.go`](https://github.com/captain-corgi/typesafe-sdk-go/blob/HEAD/client.go), read by a model 2026-11-08</sub>
 
+- **[TypeSafe C++ SDK](https://github.com/pewriebontal/typesafe-sdk-cpp)** — C++20 SDK for TypeSafe's System One API: a builder configures the client from TYPESAFE_API_KEY or for OpenRouter, Choice, Score and Noul questions are typed so answers arrive as fields, and it sends requests to Jev synchronously or as futures and lists the account's models. <sub>(written by a model)</sub>
+  <sub>`SDK` · pewriebontal · `C++` · `choice` · `score` · `noul` · call site [`src/client.cpp`](https://github.com/pewriebontal/typesafe-sdk-cpp/blob/HEAD/src/client.cpp), read by a model 2026-11-20</sub>
+
 - **[TypeSafe models in Pydantic AI](https://pydantic.dev/docs/ai/models/typesafe/)** — First-party Pydantic AI support: an Agent with output_type=bool over the typesafe:jev-latest model string.
   <sub>`Integration` · `Py`</sub>
 
@@ -1020,7 +1023,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 198 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 201 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — Toolkit for voice AI avatars in apps, phone lines, signage and the metaverse. Its Jev turn-end gate asks a noul on the transcript, whether the assistant should stay silent and leave the user's turn open, and maps that probability to a wait of 0.4 to 2 seconds; on any error the turn ends. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · uezo · `Py` · call site [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py), read 2026-09-22</sub>
@@ -1376,6 +1379,9 @@ Projects and plugins with code, 198 of them, whose only pattern is `overview` an
 - **[jev-mcp](https://github.com/BYK/jev-mcp)** — An eval-first MCP server for TypeSafe's Jev, a System One model that returns typed judgments (noul, choice, score) with probabilities instead of generated text. <sub>(upstream description)</sub>
   <sub>`Plugin` · byk · `TS` · call site [`src/typesafe.ts`](https://github.com/BYK/jev-mcp/blob/HEAD/src/typesafe.ts), read 2026-09-24</sub>
 
+- **[jev-mcp](https://github.com/CodeIA-Academy/jev-mcp)** — Minimal dependency-free MCP server that gives Claude Code, Codex, Cursor and other agents an ask_jev tool: the agent passes a state and typed choice, score or noul questions, the server checks them and posts them to Jev, and it returns the answers with their confidence and usage. <sub>(written by a model)</sub>
+  <sub>`Plugin` · CodeIA-Academy · `Py` · `choice` · `score` · `noul` · call site [`server.py`](https://github.com/CodeIA-Academy/jev-mcp/blob/HEAD/server.py), read by a model 2026-11-20</sub>
+
 - **[jev-mcp](https://github.com/freepik-company/jev-mcp)** — MCP server for typed decisions with Jev / System One via OpenRouter or TypeSafe <sub>(upstream description)</sub>
   <sub>`Plugin` · freepik-company · `Go` · call site [`internal/config/config.go`](https://github.com/freepik-company/jev-mcp/blob/HEAD/internal/config/config.go), read 2026-09-24</sub>
 
@@ -1478,6 +1484,9 @@ Projects and plugins with code, 198 of them, whose only pattern is `overview` an
 - **[jevtok](https://github.com/LabGuy94/jevtok)** — Exact token counting and request-cost prediction for TypeSafe's Jev (tiktoken-style) <sub>(upstream description)</sub>
   <sub>`Project` · labguy94 · `Py` · call site [`src/jevtok/cli.py`](https://github.com/LabGuy94/jevtok/blob/HEAD/src/jevtok/cli.py), read 2026-09-22</sub>
 
+- **[jevtok-ts](https://github.com/aarzhaev/jevtok-ts)** — Offline token counting and request accounting for Jev in Node.js, a TypeScript port of jevtok. The library counts a request's tokens with no network call, and its CLI can send the same requests to Jev through TypeSafe or OpenRouter to compare the predicted counts with the usage Jev reports. <sub>(written by a model)</sub>
+  <sub>`Project` · aarzhaev · `TS` · call site [`src/cli.ts`](https://github.com/aarzhaev/jevtok-ts/blob/HEAD/src/cli.ts), read by a model 2026-11-20</sub>
+
 - **[labs](https://github.com/kiarina/labs)** — Small, independent projects for experiments, research, and investigations. <sub>(upstream description)</sub>
   <sub>`Project` · kiarina · `Py` · call site [`2026/09/17/typesafe-jev-evaluation/client.py`](https://github.com/kiarina/labs/blob/HEAD/2026/09/17/typesafe-jev-evaluation/client.py), read 2026-09-22</sub>
 
@@ -1576,6 +1585,9 @@ Projects and plugins with code, 198 of them, whose only pattern is `overview` an
 
 - **[tryjev](https://github.com/sugarforever/tryjev)** — Hosted playground for Jev: preset scenarios, an editable state and typed noul, choice and score questions, and answers with probabilities, sent with your own key through OpenRouter, Vercel AI Gateway or TypeSafe's API. <sub>(written by a model)</sub>
   <sub>`Project` · sugarforever · `TS` · `noul` · `choice` · `score` · call site [`src/lib/server/providers.ts`](https://github.com/sugarforever/tryjev/blob/HEAD/src/lib/server/providers.ts), read by a model 2026-11-10</sub>
+
+- **[TypeSafe CLI](https://github.com/geilt/typesafe-cli)** — Standard-library Python CLI and agent skill for Jev: it evaluates a state against typed choice, score and noul questions given as flags or JSON, and prints structured answers. The skill tells coding agents when to call it, and USE-CASES.md says when a typed judgment beats a chat model. <sub>(written by a model)</sub>
+  <sub>`Project` · geilt · `Py` · `choice` · `score` · `noul` · call site [`typesafe`](https://github.com/geilt/typesafe-cli/blob/HEAD/typesafe), read by a model 2026-11-20 · ⚠ `no licence`</sub>
 
 - **[typesafe-ai-playground](https://github.com/markjaquith/typesafe-ai-playground)** — A playground for experiments around Jev, TypeSafe's System One model. <sub>(upstream description)</sub>
   <sub>`Project` · markjaquith · `Rs` · call site [`src/typesafe.rs`](https://github.com/markjaquith/typesafe-ai-playground/blob/HEAD/src/typesafe.rs), read 2026-09-22</sub>

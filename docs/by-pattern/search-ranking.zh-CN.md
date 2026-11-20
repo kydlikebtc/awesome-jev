@@ -4,11 +4,11 @@
 
 _对来自廉价检索步骤的候选做打分或重排。_
 
-这个决策的全部已收录例子 —— 共 104 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 106 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#search-ranking)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#search-ranking)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 100 · 接口形态 0 · 仅示例 0 · 独立报告 8 · 负面结果 2 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 102 · 接口形态 0 · 仅示例 0 · 独立报告 8 · 负面结果 2 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -294,6 +294,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-test](https://github.com/mity-prodgen/jev-test)** — 三篇 Jev 测评文章背后的测试工具：检验 Jev 的置信度是否有意义；让 Jev 判断某个论断是否有来源段落支持，并与大模型评判对比；以及把 Jev 用在 RAG 里做重排序，包括某个片段自身的文字能否改变它的排名。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · mity-prodgen · `Py` · `choice` · `score` · `noul` · 调用点 [`jev_harness/client.py`](https://github.com/mity-prodgen/jev-test/blob/HEAD/jev_harness/client.py)，2026-11-11 模型阅读</sub>
 
+- **[jev-tool-search](https://github.com/kachar/jev-tool-search)** — 为 LLM 智能体挑选正确工具的基准：Jev 收到一个 choice，选项是候选工具，在 LiveMCPBench 的 525 个真实 MCP 工具上与 BM25、Voyage 嵌入和重排模型对比；另有一个实验性搜索引擎，先用嵌入筛出候选再由 Jev 决定。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · kachar · `TS` · `choice` · 调用点 [`src/jev.ts`](https://github.com/kachar/jev-tool-search/blob/HEAD/src/jev.ts)，2026-11-20 模型阅读 · ⚠ `厂商自报数据`</sub>
+
 - **[jev.nvim](https://github.com/valentynkit/jev.nvim)** — Neovim 插件：向当前缓冲区提问，得到 quickfix 列表。Treesitter 切分函数，Jev 给每个函数打分，概率以虚拟文本显示。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · valentynkit · `Lua` · 调用点 [`lua/jev/client.lua`](https://github.com/valentynkit/jev.nvim/blob/HEAD/lua/jev/client.lua)，2026-09-24 阅读</sub>
 
@@ -326,6 +329,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Mnemon](https://github.com/grivn/mnemon-memory-agent)** — 长期记忆智能体：保存原始、带日期的记录，等问题到来时再判断。对检索返回的每条记录，它在一次请求里问 Jev 下一条回复是否应该用它、以及后来的消息是否让它不再有效（每条两个 noul）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · grivn · `TS` · `noul` · 调用点 [`plugins/dsh-mnemon-strategy-jev-optmem/src/judge.ts`](https://github.com/grivn/mnemon-memory-agent/blob/HEAD/plugins/dsh-mnemon-strategy-jev-optmem/src/judge.ts)，2026-11-16 模型阅读 · ⚠ `需第三方密钥` `厂商自报数据`</sub>
+
+- **[OpenCode plugin for decision models](https://github.com/atvari-eu/opencode-decisions)** — OpenCode 插件，由 Jev 筛查工具结果中的垃圾内容和提示注入、审查权限请求、为每一轮选择模型和推理强度、在上下文压缩时决定保留或丢弃工具调用、检查智能体是否过早停下，并按语义搜索代码。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · atvari-eu · `TS` · `noul` · `choice` · `score` · 调用点 [`src/index.ts`](https://github.com/atvari-eu/opencode-decisions/blob/HEAD/src/index.ts)，2026-11-20 模型阅读</sub>
 
 - **[pijev](https://github.com/tonyzdev/pijev)** — PiJev：Jev 参与循环的终端编码智能体——在第一次调用前由 Jev 给仓库文件排序，并挑选技能。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tonyzdev · `TS` · 调用点 [`src/jev.ts`](https://github.com/tonyzdev/pijev/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>

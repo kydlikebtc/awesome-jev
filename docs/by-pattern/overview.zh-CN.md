@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 524 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 528 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 384 · 接口形态 100 · 仅示例 0 · 独立报告 33 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 388 · 接口形态 100 · 仅示例 0 · 独立报告 33 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -821,6 +821,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[TypeSafe AI SDK for Go](https://github.com/captain-corgi/typesafe-sdk-go)** — TypeSafe API 的社区版 Go SDK：没有运行时依赖（只用标准库），功能与 Python SDK 0.7.5 对齐；一次请求即可就任意 state（包括图片）提出类型化的 noul、choice 和 score 问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · captain-corgi · `Go` · `noul` · `choice` · `score` · 调用点 [`client.go`](https://github.com/captain-corgi/typesafe-sdk-go/blob/HEAD/client.go)，2026-11-08 模型阅读</sub>
 
+- **[TypeSafe C++ SDK](https://github.com/pewriebontal/typesafe-sdk-cpp)** — TypeSafe System One API 的 C++20 SDK：通过构建器从 TYPESAFE_API_KEY 或为 OpenRouter 配置客户端，Choice、Score、Noul 问题都有类型，答案以字段形式返回；可同步或以 future 方式向 Jev 发送请求，并列出账户的模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · pewriebontal · `C++` · `choice` · `score` · `noul` · 调用点 [`src/client.cpp`](https://github.com/pewriebontal/typesafe-sdk-cpp/blob/HEAD/src/client.cpp)，2026-11-20 模型阅读</sub>
+
 - **[TypeSafe models in Pydantic AI](https://pydantic.dev/docs/ai/models/typesafe/)** — Pydantic AI 的一方支持：用 typesafe:jev-latest 这个模型串、配 output_type=bool 建 Agent。
   <sub>`平台集成` · `Py`</sub>
 
@@ -1020,7 +1023,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ## 尚未按模式索引
 
-带代码的项目或插件，共 198 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
+带代码的项目或插件，共 201 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — 为应用、电话、导览屏和元宇宙打造语音 AI 虚拟形象的工具包。它的 Jev 话轮结束闸门就转写文本提一个 noul：助手是否应保持沉默、让用户的话轮继续，并把这个概率换算成 0.4 到 2 秒的等待；出错时直接结束话轮。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · uezo · `Py` · 调用点 [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py)，2026-09-22 阅读</sub>
@@ -1376,6 +1379,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-mcp](https://github.com/BYK/jev-mcp)** — 以评测为先的 TypeSafe Jev MCP 服务器；Jev 是 System One 模型，返回带概率的类型化判断（noul、choice、score），而不是生成文本。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · byk · `TS` · 调用点 [`src/typesafe.ts`](https://github.com/BYK/jev-mcp/blob/HEAD/src/typesafe.ts)，2026-09-24 阅读</sub>
 
+- **[jev-mcp](https://github.com/CodeIA-Academy/jev-mcp)** — 极简、无依赖的 MCP 服务器，为 Claude Code、Codex、Cursor 等智能体提供 ask_jev 工具：智能体传入 state 和带类型的 choice、score 或 noul 问题，服务器校验后发给 Jev，并返回答案及其置信度和用量。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · CodeIA-Academy · `Py` · `choice` · `score` · `noul` · 调用点 [`server.py`](https://github.com/CodeIA-Academy/jev-mcp/blob/HEAD/server.py)，2026-11-20 模型阅读</sub>
+
 - **[jev-mcp](https://github.com/freepik-company/jev-mcp)** — 通过 OpenRouter 或 TypeSafe 调用 Jev / System One 做带类型决策的 MCP 服务器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · freepik-company · `Go` · 调用点 [`internal/config/config.go`](https://github.com/freepik-company/jev-mcp/blob/HEAD/internal/config/config.go)，2026-09-24 阅读</sub>
 
@@ -1478,6 +1484,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevtok](https://github.com/LabGuy94/jevtok)** — Jev 的精确 token 计数与请求成本预测（tiktoken 风格）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · labguy94 · `Py` · 调用点 [`src/jevtok/cli.py`](https://github.com/LabGuy94/jevtok/blob/HEAD/src/jevtok/cli.py)，2026-09-22 阅读</sub>
 
+- **[jevtok-ts](https://github.com/aarzhaev/jevtok-ts)** — 面向 Node.js 的 Jev 离线 token 计数和请求计量工具，是 jevtok 的 TypeScript 移植版。库本身不联网即可计算请求的 token 数，其 CLI 可以把同样的请求经 TypeSafe 或 OpenRouter 发给 Jev，比较预测的计数和 Jev 报告的用量。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · aarzhaev · `TS` · 调用点 [`src/cli.ts`](https://github.com/aarzhaev/jevtok-ts/blob/HEAD/src/cli.ts)，2026-11-20 模型阅读</sub>
+
 - **[labs](https://github.com/kiarina/labs)** — 用于实验、研究与调查的小型独立项目集。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · kiarina · `Py` · 调用点 [`2026/09/17/typesafe-jev-evaluation/client.py`](https://github.com/kiarina/labs/blob/HEAD/2026/09/17/typesafe-jev-evaluation/client.py)，2026-09-22 阅读</sub>
 
@@ -1576,6 +1585,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[tryjev](https://github.com/sugarforever/tryjev)** — Jev 的在线试用页：提供预设场景、可编辑的状态和类型化的 noul、choice、score 问题，显示带概率的答案；用你自己的密钥经 OpenRouter、Vercel AI Gateway 或 TypeSafe API 发送。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · sugarforever · `TS` · `noul` · `choice` · `score` · 调用点 [`src/lib/server/providers.ts`](https://github.com/sugarforever/tryjev/blob/HEAD/src/lib/server/providers.ts)，2026-11-10 模型阅读</sub>
+
+- **[TypeSafe CLI](https://github.com/geilt/typesafe-cli)** — 仅用 Python 标准库的 Jev 命令行工具和智能体技能：按命令行参数或 JSON 给出的 choice、score、noul 问题评估 state，并输出结构化答案。技能告诉编码智能体何时调用它，USE-CASES.md 说明何时带类型的判断胜过聊天模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · geilt · `Py` · `choice` · `score` · `noul` · 调用点 [`typesafe`](https://github.com/geilt/typesafe-cli/blob/HEAD/typesafe)，2026-11-20 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[typesafe-ai-playground](https://github.com/markjaquith/typesafe-ai-playground)** — 围绕 Jev 做实验的 playground。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · markjaquith · `Rs` · 调用点 [`src/typesafe.rs`](https://github.com/markjaquith/typesafe-ai-playground/blob/HEAD/src/typesafe.rs)，2026-09-22 阅读</sub>

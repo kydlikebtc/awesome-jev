@@ -15,13 +15,13 @@ Rows a script has singled out for a person to read. Each entry is a machine sign
 | [Evidence read from an examples directory · 证据取自 examples 目录](#examples-dir) | 25 |
 | [Evidence resting on one model name or the API host · 证据只靠一个模型名或 API 主机](#single-model-name) | 75 |
 | [Tool selection resting on words the keyword rules no longer count · 工具选择只靠关键词规则已不再计入的词](#tool-selection-broad-words) | 66 |
-| [Overview rows with code, not yet indexed by pattern · 带代码、尚未按模式索引的 overview 行](#unsorted-overview) | 198 |
+| [Overview rows with code, not yet indexed by pattern · 带代码、尚未按模式索引的 overview 行](#unsorted-overview) | 201 |
 | [Rows with code whose summary names nothing about Jev · 带代码、摘要没有提到 Jev 的行](#generic-summary) | 71 |
 | [Benchmark measurements nobody has read against the report · 人和模型都还没有对照报告读过的基准测试测量](#measurement-unread) | 27 |
 | [Interfaces of alternatives nobody has read in the cited files · 人和模型都还没有在所引文件中读过的替代实现接口](#wire-unread) | 14 |
 | [Thresholds nobody has read in the cited file · 人和模型都还没有在所引文件中读过的阈值](#thresholds-unread) | 30 |
 | [Cited file shows an experimental Jev feature · 所引文件出现 Jev 的实验性功能](#experimental) | 33 |
-| [Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对](#model-read) | 543 |
+| [Read or written by a model, not yet checked by a person · 模型读过或撰写、尚无人核对](#model-read) | 558 |
 
 <a id="needs-person"></a>
 
@@ -472,6 +472,7 @@ To take a row off, read the project against [the patterns](patterns.md). Put the
 | [jev-grug](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-grug) | `project` |  | — |
 | [jev-mcp-arunav25](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-mcp-arunav25) | `plugin` |  | `content-scoring` `feature-extraction` |
 | [jev-mcp-byk](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-mcp-byk) | `plugin` |  | `content-scoring` |
+| [jev-mcp-codeia-academy](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-mcp-codeia-academy) | `plugin` |  | `output-validation` `content-scoring` `human-escalation` |
 | [jev-mcp-freepik-company](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-mcp-freepik-company) | `plugin` |  | — |
 | [jev-mcp-rajasekharponakala](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-mcp-rajasekharponakala) | `plugin` |  | `content-scoring` |
 | [jev-mcp-rashedint32](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-mcp-rashedint32) | `plugin` |  | `classification` `output-validation` `content-scoring` |
@@ -506,6 +507,7 @@ To take a row off, read the project against [the patterns](patterns.md). Put the
 | [jevtape](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevtape) | `project` |  | — |
 | [jevtest](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevtest) | `project` |  | — |
 | [jevtok](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevtok) | `project` |  | — |
+| [jevtok-ts](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevtok-ts) | `project` |  | — |
 | [labs](https://kydlikebtc.github.io/awesome-jev/?lang=en#labs) | `project` |  | — |
 | [magic-jev-ball](https://kydlikebtc.github.io/awesome-jev/?lang=en#magic-jev-ball) | `project` |  | `safety-gating` |
 | [mcts-agent](https://kydlikebtc.github.io/awesome-jev/?lang=en#mcts-agent) | `project` |  | — |
@@ -539,6 +541,7 @@ To take a row off, read the project against [the patterns](patterns.md). Put the
 | [systemone-lite](https://kydlikebtc.github.io/awesome-jev/?lang=en#systemone-lite) | `project` |  | — |
 | [tempo-jev-demo](https://kydlikebtc.github.io/awesome-jev/?lang=en#tempo-jev-demo) | `project` |  | — |
 | [tryjev](https://kydlikebtc.github.io/awesome-jev/?lang=en#tryjev) | `project` |  | `safety-gating` `content-scoring` |
+| [typesafe-cli-geilt](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-cli-geilt) | `project` |  | `content-scoring` |
 | [typesafe-ai-playground](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-ai-playground) | `project` |  | — |
 | [typesafe-assist](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-assist) | `project` |  | — |
 | [typesafe-comment](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-comment) | `project` |  | — |
@@ -1163,6 +1166,7 @@ To take a row off, check what the model read or wrote, correct anything it got w
 | [ardana](https://kydlikebtc.github.io/awesome-jev/?lang=en#ardana) |  | `call site` 2026-11-17 · `question_types` · `summary` |
 | [ask-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#ask-jev) |  | `summary` |
 | [astra-jev-harness](https://kydlikebtc.github.io/awesome-jev/?lang=en#astra-jev-harness) |  | `call site` 2026-11-17 · `question_types` · `summary` |
+| [astrbot-plugin-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#astrbot-plugin-jev) |  | `call site` 2026-11-20 · `question_types` · `summary` |
 | [bongard](https://kydlikebtc.github.io/awesome-jev/?lang=en#bongard) |  | `call site` 2026-11-19 · `summary` |
 | [c9r-plugins](https://kydlikebtc.github.io/awesome-jev/?lang=en#c9r-plugins) |  | `call site` 2026-11-13 · `question_types` · `summary` |
 | [candidate-experience-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=en#candidate-experience-benchmark) |  | `call site` 2026-11-14 · `question_types` · `summary` |
@@ -1206,16 +1210,20 @@ To take a row off, check what the model read or wrote, correct anything it got w
 | [hiep-paseo-plugin](https://kydlikebtc.github.io/awesome-jev/?lang=en#hiep-paseo-plugin) |  | `call site` 2026-11-10 · `question_types` · `summary` |
 | [intentsql](https://kydlikebtc.github.io/awesome-jev/?lang=en#intentsql) |  | `call site` 2026-11-14 · `question_types` · `summary` |
 | [jebadiah](https://kydlikebtc.github.io/awesome-jev/?lang=en#jebadiah) |  | `call site` 2026-11-07 · `summary` |
+| [jev-2048-selenium](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-2048-selenium) |  | `call site` 2026-11-20 · `question_types` · `summary` |
 | [jev-agent-control](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-agent-control) |  | `patterns` 2026-11-19 · `call site` 2026-11-19 · `question_types` · `summary` |
 | [jev-agent-tools](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-agent-tools) |  | `call site` 2026-11-10 · `question_types` · `summary` |
 | [agentnetwork-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#agentnetwork-jev) |  | `call site` 2026-11-16 · `question_types` · `summary` |
 | [jev-ai-skill](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-ai-skill) |  | `call site` 2026-11-14 · `question_types` · `summary` |
 | [jev-benchmark-yididev](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-benchmark-yididev) |  | `call site` 2026-11-18 · `question_types` · `summary` |
+| [jevcards](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevcards) |  | `call site` 2026-11-20 · `question_types` · `summary` |
 | [jev-chat-gate](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-chat-gate) |  | `call site` 2026-11-18 · `question_types` · `summary` |
 | [jev-civilizations](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-civilizations) |  | `call site` 2026-10-24 · `question_types` · `summary` |
 | [jev-codex-token-saver](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-codex-token-saver) |  | `call site` 2026-11-10 · `question_types` · `summary` |
+| [jev-deterministic-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-deterministic-benchmark) |  | `call site` 2026-11-20 · `question_types` · `summary` |
 | [jev-devtools](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-devtools) |  | `call site` 2026-11-09 · `summary` |
 | [vision-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#vision-jev) |  | `call site` 2026-11-14 · `question_types` · `summary` |
+| [jev-qa-demos](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-qa-demos) |  | `call site` 2026-11-20 · `question_types` · `summary` |
 | [jev-model-router-zerone-agents](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-model-router-zerone-agents) |  | `call site` 2026-11-17 · `question_types` · `summary` |
 | [jev-orc](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-orc) |  | `call site` 2026-11-13 · `question_types` · `summary` |
 | [jev-persian-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-persian-benchmark) |  | `call site` 2026-11-11 · `question_types` · `summary` |
@@ -1249,6 +1257,9 @@ To take a row off, check what the model read or wrote, correct anything it got w
 | [jev-helper](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-helper) |  | `call site` 2026-11-09 · `question_types` · `summary` |
 | [jev-ios-bridge](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-ios-bridge) |  | `call site` 2026-11-16 · `question_types` · `summary` |
 | [jev-laya-dsh](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-laya-dsh) |  | `patterns` 2026-11-19 · `call site` 2026-11-19 · `summary` |
+| [jev-max](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-max) |  | `call site` 2026-11-20 · `question_types` · `summary` |
+| [jev-mcp-codaaiteam](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-mcp-codaaiteam) |  | `call site` 2026-11-20 · `question_types` · `summary` |
+| [jev-mcp-codeia-academy](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-mcp-codeia-academy) |  | `call site` 2026-11-20 · `question_types` · `summary` |
 | [jev-mcp-legostin](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-mcp-legostin) |  | `call site` 2026-11-09 · `question_types` · `summary` |
 | [jev-mcp-songokou1983](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-mcp-songokou1983) |  | `patterns` 2026-11-19 · `call site` 2026-11-19 · `question_types` · `summary` |
 | [jev-mcp-router](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-mcp-router) |  | `call site` 2026-11-16 · `question_types` · `summary` |
@@ -1259,6 +1270,7 @@ To take a row off, check what the model read or wrote, correct anything it got w
 | [jev-router-hyspacex](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-router-hyspacex) |  | `call site` 2026-11-13 · `question_types` · `summary` |
 | [jev-test-mity-prodgen](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-test-mity-prodgen) |  | `call site` 2026-11-11 · `question_types` · `summary` |
 | [jev-testing](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-testing) |  | `call site` 2026-11-18 · `question_types` · `summary` |
+| [jev-tool-search](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-tool-search) |  | `call site` 2026-11-20 · `question_types` · `summary` |
 | [jev-triage-boldbug1](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-triage-boldbug1) |  | `summary` |
 | [jev-vs-pii](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-vs-pii) |  | `call site` 2026-11-17 · `question_types` · `summary` |
 | [jev-net](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-net) |  | `call site` 2026-11-17 · `question_types` · `summary` |
@@ -1284,6 +1296,7 @@ To take a row off, check what the model read or wrote, correct anything it got w
 | [jevsnap](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevsnap) |  | `call site` 2026-11-10 · `question_types` · `summary` |
 | [jevswiftsdk](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevswiftsdk) |  | `summary` |
 | [jevtpp](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevtpp) |  | `call site` 2026-10-24 · `summary` |
+| [jevtok-ts](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevtok-ts) |  | `call site` 2026-11-20 · `summary` |
 | [jevtools](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevtools) |  | `call site` 2026-11-13 · `question_types` · `summary` |
 | [jevtrace](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevtrace) |  | `call site` 2026-11-18 · `question_types` · `summary` |
 | [jevx](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevx) |  | `call site` 2026-11-10 · `question_types` · `summary` |
@@ -1301,7 +1314,9 @@ To take a row off, check what the model read or wrote, correct anything it got w
 | [jev-nethack](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-nethack) |  | `call site` 2026-11-16 · `question_types` · `summary` |
 | [netizen](https://kydlikebtc.github.io/awesome-jev/?lang=en#netizen) |  | `patterns` 2026-11-12 · `call site` 2026-11-12 · `question_types` · `summary` |
 | [nouli](https://kydlikebtc.github.io/awesome-jev/?lang=en#nouli) |  | `patterns` 2026-11-12 · `call site` 2026-11-12 · `question_types` · `summary` |
+| [jev-311-heatmap](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-311-heatmap) |  | `call site` 2026-11-20 · `question_types` · `summary` |
 | [onesie](https://kydlikebtc.github.io/awesome-jev/?lang=en#onesie) |  | `call site` 2026-11-17 · `question_types` · `summary` |
+| [opencode-decisions](https://kydlikebtc.github.io/awesome-jev/?lang=en#opencode-decisions) |  | `call site` 2026-11-20 · `question_types` · `summary` |
 | [opencode-jev-guard](https://kydlikebtc.github.io/awesome-jev/?lang=en#opencode-jev-guard) |  | `call site` 2026-11-05 |
 | [openjev-lookski](https://kydlikebtc.github.io/awesome-jev/?lang=en#openjev-lookski) |  | `call site` 2026-11-10 · `summary` |
 | [openjev-darwintechlab](https://kydlikebtc.github.io/awesome-jev/?lang=en#openjev-darwintechlab) |  | `call site` 2026-11-13 · `question_types` · `summary` |
@@ -1329,6 +1344,7 @@ To take a row off, check what the model read or wrote, correct anything it got w
 | [semble-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#semble-jev) |  | `call site` 2026-11-10 · `question_types` · `summary` |
 | [slidepilot](https://kydlikebtc.github.io/awesome-jev/?lang=en#slidepilot) |  | `call site` 2026-11-05 · `summary` |
 | [slopmop](https://kydlikebtc.github.io/awesome-jev/?lang=en#slopmop) |  | `call site` 2026-11-15 · `question_types` · `summary` |
+| [snapif](https://kydlikebtc.github.io/awesome-jev/?lang=en#snapif) |  | `call site` 2026-11-20 · `question_types` · `summary` |
 | [social-risk-qwen-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#social-risk-qwen-jev) |  | `call site` 2026-11-10 · `question_types` · `summary` |
 | [sommelier](https://kydlikebtc.github.io/awesome-jev/?lang=en#sommelier) |  | `call site` 2026-11-09 · `question_types` · `summary` |
 | [spending-effort-with-jev](https://kydlikebtc.github.io/awesome-jev/?lang=en#spending-effort-with-jev) |  | `call site` 2026-11-10 · `question_types` · `summary` |
@@ -1345,6 +1361,8 @@ To take a row off, check what the model read or wrote, correct anything it got w
 | [trio-spark](https://kydlikebtc.github.io/awesome-jev/?lang=en#trio-spark) |  | `call site` 2026-11-11 · `summary` |
 | [tryjev](https://kydlikebtc.github.io/awesome-jev/?lang=en#tryjev) |  | `call site` 2026-11-10 · `question_types` · `summary` |
 | [typesafe-sdk-go-captain-corgi](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-sdk-go-captain-corgi) |  | `call site` 2026-11-08 · `question_types` · `summary` |
+| [typesafe-sdk-cpp](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-sdk-cpp) |  | `call site` 2026-11-20 · `question_types` · `summary` |
+| [typesafe-cli-geilt](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-cli-geilt) |  | `call site` 2026-11-20 · `question_types` · `summary` |
 | [typesafe-ai-php](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-ai-php) |  | `call site` 2026-10-24 · `summary` |
 | [typesafe-client-haileyok](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-client-haileyok) |  | `call site` 2026-10-24 · `question_types` · `summary` |
 | [typesafe-dotnet](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-dotnet) |  | `call site` 2026-11-11 · `question_types` · `summary` |

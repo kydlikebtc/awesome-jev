@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 105 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 106 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -283,6 +283,14 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   <sub>`Benchmark` · yididev · `Py` · `choice` · [call site](https://github.com/yididev/jev-benchmark/blob/HEAD/arms/jev.py), read by a model 2026-11-18</sub>
 
   > Claude Haiku and Sonnet, OpenJev, Kev-4B, Nimble-9B, CLM-8B, Laya, Cygnet, Winnow-Q8, Strands Decider, Clef and the NLI and embedding controls are not Jev. The figures are the author's runs: 98.84% accuracy for Jev against 96.46% for Haiku on CT1-8. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-18; a maintainer has not yet read the call site.
+
+- **[Jev Deterministic Decision Benchmark](https://github.com/etsabary/jev-deterministic-benchmark)**<br>
+  Benchmark of 1,000 deterministic decisions across 25 reasoning families, each a choice among five options sent to Jev through TypeSafe, OpenRouter and Experiential Labs, recording the choice, its probabilities and the model each route returned. A later report adds 136 matched diagnostic questions. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · etsabary · `Py` · `choice` · [call site](https://github.com/etsabary/jev-deterministic-benchmark/blob/HEAD/run_benchmark.py), read by a model 2026-11-20</sub>
+
+  **Caveats:** `no licence`
+
+  > GPT-6 Luna Decisions is not Jev. The figures are the author's runs: about 81% on the 1,000 questions, and 80.1% for Jev against 60.5% for Luna on 1,136. Experiential Labs is a third provider route to Jev that no platform value names. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-20; a maintainer has not yet read the call site.
 
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)**<br>
   Benchmark of Jev against open decision models on 480 authored general Persian questions, 560 literary questions and a classical poetry pilot, asked as choices, nouls and scores with raw responses saved and scored locally; Jev leads on choice and noul accuracy. <sub>(written by a model)</sub><br>

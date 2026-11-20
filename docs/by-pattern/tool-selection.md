@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 294 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 297 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 283 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 286 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -573,6 +573,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jet](https://github.com/arczhi/jet)** — A TypeSafe-native (Jev) coding agent built on Recursive LLM Context Decomposition (RLCD), with a native macOS client <sub>(upstream description)</sub>
   <sub>`Project` · arczhi · `Py` · call site [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py), read 2026-09-24</sub>
 
+- **[Jev 2048 Selenium Player](https://github.com/ammirosoh/jev-2048-selenium)** — Plays 2048 in a browser with Selenium: an expectimax search scores the legal moves, then Jev picks the next move in one choice given the board and the search's evidence, and the two distributions are blended by Jev's confidence. Another mode lets Jev decide alone. <sub>(written by a model)</sub>
+  <sub>`Project` · ammirosoh · `Py` · `choice` · call site [`src/jev2048/jev.py`](https://github.com/ammirosoh/jev-2048-selenium/blob/HEAD/src/jev2048/jev.py), read by a model 2026-11-20 · ⚠ `no licence`</sub>
+
 - **[JEV AgentNetwork](https://github.com/Kelly-Leeee/AgentNetwork-jev)** — Event-driven network of general-purpose agents: whenever an agent finishes, the router sends Jev the pending work, recent results and which agents are idle, and asks one choice of next action: assign the work to a named agent, finish, or ask a person. <sub>(written by a model)</sub>
   <sub>`Project` · Kelly-Leeee · `Py` · `choice` · call site [`agentrouter/team.py`](https://github.com/Kelly-Leeee/AgentNetwork-jev/blob/HEAD/agentrouter/team.py), read by a model 2026-11-16 · ⚠ `3rd-party key`</sub>
 
@@ -702,6 +705,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-market-reflex](https://github.com/zzsong1023/jev-market-reflex)** — Fast typed AI decisions on live crypto markets using TypeSafe AI Jev. <sub>(upstream description)</sub>
   <sub>`Project` · zzsong1023 · `TS` · call site [`src/jev.ts`](https://github.com/zzsong1023/jev-market-reflex/blob/HEAD/src/jev.ts), read 2026-09-24 · ⚠ `one commit`</sub>
 
+- **[jev-max](https://github.com/saloni-garg/jev-max)** — Browser agent where one Jev request per step picks the operation (choice) and, in the same call, the target element for each possible operation from a table that reaches into shadow roots and iframes. A separate Jev noul checks that the goal is met before the agent stops. <sub>(written by a model)</sub>
+  <sub>`Project` · saloni-garg · `Py` · `choice` · `noul` · call site [`jev_max/model.py`](https://github.com/saloni-garg/jev-max/blob/HEAD/jev_max/model.py), read by a model 2026-11-20</sub>
+
 - **[jev-mcp](https://github.com/legostin/jev-mcp)** — MCP server that lets Claude Code, Codex and other agents drive a real Chrome browser: Jev answers choices, nouls and scores, such as which element is the departure-city input or whether a click worked; it acts when sure, retries reversible steps and asks the agent before anything irreversible. <sub>(written by a model)</sub>
   <sub>`Plugin` · legostin · `TS` · `choice` · `noul` · `score` · call site [`src/core/jev/client.ts`](https://github.com/legostin/jev-mcp/blob/HEAD/src/core/jev/client.ts), read by a model 2026-11-09</sub>
 
@@ -761,6 +767,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-tetris](https://github.com/thelau/jev-tetris)** — A Tetris that a judgment model plays. The code finds every way the piece can land and writes each one as a sentence; JEV reads them and points at one. The board glows with its whole distribution before the piece falls. <sub>(upstream description)</sub>
   <sub>`Project` · thelau · `JS` · call site [`src/jev.js`](https://github.com/thelau/jev-tetris/blob/HEAD/src/jev.js), read 2026-09-24</sub>
+
+- **[jev-tool-search](https://github.com/kachar/jev-tool-search)** — Benchmark of picking the right tool for an LLM agent: Jev gets one choice whose options are the candidate tools, against BM25, Voyage embeddings and rerankers on 525 real MCP tools from LiveMCPBench, plus an experimental search engine that shortlists with embeddings and lets Jev decide. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · kachar · `TS` · `choice` · call site [`src/jev.ts`](https://github.com/kachar/jev-tool-search/blob/HEAD/src/jev.ts), read by a model 2026-11-20 · ⚠ `vendor numbers`</sub>
 
 - **[jev-turbo](https://github.com/sightmap/jev-turbo)** — Jev-powered semantic browser use <sub>(upstream description)</sub>
   <sub>`Project` · sightmap · `Go` · call site [`explore/jev.go`](https://github.com/sightmap/jev-turbo/blob/HEAD/explore/jev.go), read 2026-09-22</sub>

@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 294 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 297 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 283 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 286 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -573,6 +573,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jet](https://github.com/arczhi/jet)** — 原生面向 TypeSafe（Jev）的编码智能体，基于递归式 LLM 上下文分解，配有原生 macOS 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arczhi · `Py` · 调用点 [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py)，2026-09-24 阅读</sub>
 
+- **[Jev 2048 Selenium Player](https://github.com/ammirosoh/jev-2048-selenium)** — 用 Selenium 在浏览器里玩 2048：先由期望最大搜索为合法走法打分，再把棋盘和搜索依据交给 Jev，用一个 choice 选出下一步，两者的概率分布按 Jev 的置信度融合。另有一种模式完全由 Jev 决定。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ammirosoh · `Py` · `choice` · 调用点 [`src/jev2048/jev.py`](https://github.com/ammirosoh/jev-2048-selenium/blob/HEAD/src/jev2048/jev.py)，2026-11-20 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[JEV AgentNetwork](https://github.com/Kelly-Leeee/AgentNetwork-jev)** — 事件驱动的通用智能体网络：每当一个智能体完成任务，路由器就把待办工作、最近结果和空闲的智能体发给 Jev，问一个 choice 决定下一步：分配给某个智能体、结束，或者交给人处理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · Kelly-Leeee · `Py` · `choice` · 调用点 [`agentrouter/team.py`](https://github.com/Kelly-Leeee/AgentNetwork-jev/blob/HEAD/agentrouter/team.py)，2026-11-16 模型阅读 · ⚠ `需第三方密钥`</sub>
 
@@ -702,6 +705,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-market-reflex](https://github.com/zzsong1023/jev-market-reflex)** — 用 TypeSafe AI Jev 在实时加密市场上做快速的类型化决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zzsong1023 · `TS` · 调用点 [`src/jev.ts`](https://github.com/zzsong1023/jev-market-reflex/blob/HEAD/src/jev.ts)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
 
+- **[jev-max](https://github.com/saloni-garg/jev-max)** — 浏览器智能体：每一步用一次 Jev 请求选出操作（choice），并在同一次调用中为每种可能的操作从元素表中选出目标，元素表可深入 shadow root 和 iframe。智能体停止前，另用一个 Jev noul 确认目标已经达成。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · saloni-garg · `Py` · `choice` · `noul` · 调用点 [`jev_max/model.py`](https://github.com/saloni-garg/jev-max/blob/HEAD/jev_max/model.py)，2026-11-20 模型阅读</sub>
+
 - **[jev-mcp](https://github.com/legostin/jev-mcp)** — 让 Claude Code、Codex 等智能体操作真实 Chrome 浏览器的 MCP 服务器：Jev 回答 choice、noul 和 score，例如哪个元素是出发城市输入框、一次点击是否生效；有把握时工具直接执行，可撤销的步骤会换个候选再试，任何不可撤销的操作之前都先问智能体。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · legostin · `TS` · `choice` · `noul` · `score` · 调用点 [`src/core/jev/client.ts`](https://github.com/legostin/jev-mcp/blob/HEAD/src/core/jev/client.ts)，2026-11-09 模型阅读</sub>
 
@@ -761,6 +767,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-tetris](https://github.com/thelau/jev-tetris)** — 由判断模型来玩的俄罗斯方块：代码找出方块所有可能的落点，并把每一种写成一句话，交给 JEV 选择。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · thelau · `JS` · 调用点 [`src/jev.js`](https://github.com/thelau/jev-tetris/blob/HEAD/src/jev.js)，2026-09-24 阅读</sub>
+
+- **[jev-tool-search](https://github.com/kachar/jev-tool-search)** — 为 LLM 智能体挑选正确工具的基准：Jev 收到一个 choice，选项是候选工具，在 LiveMCPBench 的 525 个真实 MCP 工具上与 BM25、Voyage 嵌入和重排模型对比；另有一个实验性搜索引擎，先用嵌入筛出候选再由 Jev 决定。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · kachar · `TS` · `choice` · 调用点 [`src/jev.ts`](https://github.com/kachar/jev-tool-search/blob/HEAD/src/jev.ts)，2026-11-20 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jev-turbo](https://github.com/sightmap/jev-turbo)** — 由 Jev 驱动的语义化浏览器操作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · sightmap · `Go` · 调用点 [`explore/jev.go`](https://github.com/sightmap/jev-turbo/blob/HEAD/explore/jev.go)，2026-09-22 阅读</sub>
