@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 207 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 209 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 198 · wire shape 5 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 200 · wire shape 5 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -323,6 +323,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[decide-mcp](https://github.com/dakdevs/decide-mcp)** — Configurable decision MCP server with AI SDK, Jev, percentage scores, and bias profile routing <sub>(upstream description)</sub>
   <sub>`SDK` · dakdevs · `TS` · call site [`src/config.ts`](https://github.com/dakdevs/decide-mcp/blob/HEAD/src/config.ts), read 2026-09-22 · ⚠ `one commit`</sub>
 
+- **[DeciFlow](https://github.com/call518/deciflow-ai-decision)** — Web app that turns text logs and conversation records from local, SSH or HDFS sources into typed decisions: each profile asks a choice for the category, a score and a noul about every event, keeps the evidence for human review and can then run a Python action. Jev is the paid engine beside Laya. <sub>(written by a model)</sub>
+  <sub>`Project` · call518 · `Py` · `choice` · `score` · `noul` · call site [`deciflow/classifier.py`](https://github.com/call518/deciflow-ai-decision/blob/HEAD/deciflow/classifier.py), read by a model 2026-11-21</sub>
+
 - **[Decision Lab](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases)** — Site with fifty financial demos that put the same typed choices, scores and nouls about ledgers, orders, fraud, wallets, trades and filings to Jev, grade the answers against known data, and backtest Jev's trade decisions on daily candles; recorded answers replay without a key. <sub>(written by a model)</sub>
   <sub>`Project` · IslamBaraka90 · `JS` · `choice` · `noul` · `score` · call site [`src/services/demo-runner.js`](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases/blob/HEAD/src/services/demo-runner.js), read by a model 2026-11-10</sub>
 
@@ -331,6 +334,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[deslop](https://github.com/yoichiojima-2/deslop)** — Score web pages for ads, slop, SEO and second-hand content. An agent skill built on TypeSafe Jev: four probabilities per page, no verdict, the caller sets the thresholds. <sub>(upstream description)</sub>
   <sub>`Plugin` · yoichiojima-2 · `Py` · call site [`skills/deslop/jev.py`](https://github.com/yoichiojima-2/deslop/blob/HEAD/skills/deslop/jev.py), read 2026-09-24</sub>
+
+- **[DGUI-HyperMem](https://github.com/ctaxnagomi/dgui-hypermem)** — Self-hosted long-term memory MCP server on Cloudflare Workers. Jev labels each new memory's type (choice), judges whether it is durable (noul) and scores its salience; on recall it reranks vector and full-text candidates with one noul each, and it asks whether a new memory supersedes an old one. <sub>(written by a model)</sub>
+  <sub>`Project` · ctaxnagomi · `TS` · `choice` · `noul` · `score` · call site [`src/jev.ts`](https://github.com/ctaxnagomi/dgui-hypermem/blob/HEAD/src/jev.ts), read by a model 2026-11-21</sub>
 
 - **[draftpulse](https://github.com/pbember/draftpulse)** — Experimental: live X draft viral scorer powered by TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · pekth · `TS` · call site [`server/analyze.ts`](https://github.com/pbember/draftpulse/blob/HEAD/server/analyze.ts), read 2026-09-22 · ⚠ `no licence`</sub>

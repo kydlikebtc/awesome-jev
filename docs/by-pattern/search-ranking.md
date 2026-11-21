@@ -4,11 +4,11 @@
 
 _Score or re-rank candidates from a cheaper retrieval step._
 
-Every catalogued example of this decision — 106 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 108 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#search-ranking): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 102 · wire shape 0 · example only 0 · independent reports 8 · negative results 2 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 104 · wire shape 0 · example only 0 · independent reports 8 · negative results 2 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -254,6 +254,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[clay-jev-people-ranker](https://github.com/promptgtm-shared/clay-jev-people-ranker)** — Agent Skill and Python workflow for Clay lead scoring, B2B prospect qualification, and people-search ranking with TypeSafe JEV. <sub>(upstream description)</sub>
   <sub>`Plugin` · promptgtm-shared · `Py` · call site [`scripts/rank_clay_people.py`](https://github.com/promptgtm-shared/clay-jev-people-ranker/blob/HEAD/scripts/rank_clay_people.py), read 2026-09-24</sub>
+
+- **[Codex Decision](https://github.com/philippelhaus/codex-decision)** — VS Code extension for Codex that asks a decision model, one noul per line, whether each line of a long tool output holds a finding the task needs, then shortens the output and links the original. Its MCP tools also score context candidates, classify test failures and check completion claims. <sub>(written by a model)</sub>
+  <sub>`Plugin` · philippelhaus · `Rs` · `noul` · `score` · `choice` · call site [`rust/decision/src/provider.rs`](https://github.com/philippelhaus/codex-decision/blob/HEAD/rust/decision/src/provider.rs), read by a model 2026-11-21</sub>
+
+- **[DGUI-HyperMem](https://github.com/ctaxnagomi/dgui-hypermem)** — Self-hosted long-term memory MCP server on Cloudflare Workers. Jev labels each new memory's type (choice), judges whether it is durable (noul) and scores its salience; on recall it reranks vector and full-text candidates with one noul each, and it asks whether a new memory supersedes an old one. <sub>(written by a model)</sub>
+  <sub>`Project` · ctaxnagomi · `TS` · `choice` · `noul` · `score` · call site [`src/jev.ts`](https://github.com/ctaxnagomi/dgui-hypermem/blob/HEAD/src/jev.ts), read by a model 2026-11-21</sub>
 
 - **[genigrep](https://github.com/Cloudgeni-ai/genigrep)** — Code search for coding agents and people: ripgrep finds candidate files from a question and keywords, then Jev ranks the files and checks each passage with nouls (relevant? covers this part?), and only the passages that answer are printed. It is a CLI, an MCP server, a library and a skill. <sub>(written by a model)</sub>
   <sub>`Project` · Cloudgeni-ai · `TS` · `noul` · call site [`src/engine/client.ts`](https://github.com/Cloudgeni-ai/genigrep/blob/HEAD/src/engine/client.ts), read by a model 2026-11-18 · ⚠ `vendor numbers`</sub>

@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 230 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 235 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 218 · wire shape 3 · example only 0 · independent reports 24 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 223 · wire shape 3 · example only 0 · independent reports 24 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -356,11 +356,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[candidate-experience-benchmark](https://github.com/adambkovacs/candidate-experience-benchmark)** — Benchmark of 60 synthetic candidate reviews, each with four choice judgments (sentiment, whether follow-up is needed, whether a serious concern is reported, testimonial potential), run on pinned hosted Jev against other decision models and general LLMs. <sub>(written by a model)</sub>
   <sub>`Benchmark` · adambkovacs · `Py` · `choice` · call site [`scripts/jev_benchmark.py`](https://github.com/adambkovacs/candidate-experience-benchmark/blob/HEAD/scripts/jev_benchmark.py), read by a model 2026-11-14</sub>
 
+- **[Codex Decision](https://github.com/philippelhaus/codex-decision)** — VS Code extension for Codex that asks a decision model, one noul per line, whether each line of a long tool output holds a finding the task needs, then shortens the output and links the original. Its MCP tools also score context candidates, classify test failures and check completion claims. <sub>(written by a model)</sub>
+  <sub>`Plugin` · philippelhaus · `Rs` · `noul` · `score` · `choice` · call site [`rust/decision/src/provider.rs`](https://github.com/philippelhaus/codex-decision/blob/HEAD/rust/decision/src/provider.rs), read by a model 2026-11-21</sub>
+
 - **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI custom nodes that branch a workflow on a typed judgement, such as which style a prompt wants, whether it is too graphic for children or whether it names a real person, with one dropdown switching the backend between Jev, Laya and Cloudflare's Clef. <sub>(written by a model)</sub>
   <sub>`Plugin` · dante01yoon · `Py` · `choice` · `noul` · `score` · call site [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py), read by a model 2026-11-11</sub>
 
 - **[decidekit](https://github.com/debuffjp/decidekit)** — A decision model that runs in the browser or Node: it picks one of your labels for a text with a confidence, learns from an LLM when unsure, and offers the shape of TypeSafe's SDK (client.systemOne({ state, questions })) for choice questions, so code written for Jev can run locally. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · debuffjp · `TS` · cited file [`src/typesafe.ts`](https://github.com/debuffjp/decidekit/blob/HEAD/src/typesafe.ts), read by a model 2026-11-13 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
+- **[DeciFlow](https://github.com/call518/deciflow-ai-decision)** — Web app that turns text logs and conversation records from local, SSH or HDFS sources into typed decisions: each profile asks a choice for the category, a score and a noul about every event, keeps the evidence for human review and can then run a Python action. Jev is the paid engine beside Laya. <sub>(written by a model)</sub>
+  <sub>`Project` · call518 · `Py` · `choice` · `score` · `noul` · call site [`deciflow/classifier.py`](https://github.com/call518/deciflow-ai-decision/blob/HEAD/deciflow/classifier.py), read by a model 2026-11-21</sub>
 
 - **[Decision Lab](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases)** — Site with fifty financial demos that put the same typed choices, scores and nouls about ledgers, orders, fraud, wallets, trades and filings to Jev, grade the answers against known data, and backtest Jev's trade decisions on daily candles; recorded answers replay without a key. <sub>(written by a model)</sub>
   <sub>`Project` · IslamBaraka90 · `JS` · `choice` · `noul` · `score` · call site [`src/services/demo-runner.js`](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases/blob/HEAD/src/services/demo-runner.js), read by a model 2026-11-10</sub>
@@ -370,6 +376,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[DESIGN:OS Generative UI](https://github.com/jangtrinh/design-os-generative-ui)** — Streaming UI runtime for AI agents that renders live HTML, charts and WebGL widgets. Its composer first asks a local Laya model which widget and layout fit a request (choices) and whether it is about dashboards, landing pages or alerts (nouls), and asks Jev the same when Laya is unsure. <sub>(written by a model)</sub>
   <sub>`Plugin` · jangtrinh · `TS` · `choice` · `noul` · call site [`src/engine/jev-adapter.ts`](https://github.com/jangtrinh/design-os-generative-ui/blob/HEAD/src/engine/jev-adapter.ts), read by a model 2026-11-18</sub>
+
+- **[DGUI-HyperMem](https://github.com/ctaxnagomi/dgui-hypermem)** — Self-hosted long-term memory MCP server on Cloudflare Workers. Jev labels each new memory's type (choice), judges whether it is durable (noul) and scores its salience; on recall it reranks vector and full-text candidates with one noul each, and it asks whether a new memory supersedes an old one. <sub>(written by a model)</sub>
+  <sub>`Project` · ctaxnagomi · `TS` · `choice` · `noul` · `score` · call site [`src/jev.ts`](https://github.com/ctaxnagomi/dgui-hypermem/blob/HEAD/src/jev.ts), read by a model 2026-11-21</sub>
 
 - **[discoprint](https://github.com/lirantal/discoprint)** — Classify an artist's discography by theme, mood, and lyrical complexity with Jev (TypeSafe AI), and view it as a colorful terminal dashboard <sub>(upstream description)</sub>
   <sub>`Project` · lirantal · `JS` · call site [`src/jev.ts`](https://github.com/lirantal/discoprint/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
@@ -418,6 +427,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[hush](https://github.com/emreozyoruk/hush)** — Issue triage that stays quiet when it isn't sure. Calibrated labels, spam and duplicate detection — with abstention. <sub>(upstream description)</sub>
   <sub>`Project` · emreozyoruk · `JS` · call site [`src/jev.js`](https://github.com/emreozyoruk/hush/blob/HEAD/src/jev.js), read 2026-09-22</sub>
+
+- **[inbox-jev](https://github.com/hellolitebox/litebox-inbox-jev)** — Gmail triage that every few minutes asks Jev each new email's category (choice) and nouls on whether it needs a reply and on each configured tag, then labels, archives, unsubscribes or moves scams to spam, leaves what it is unsure of for review and learns sender rules from corrections. <sub>(written by a model)</sub>
+  <sub>`Project` · hellolitebox · `Py` · `choice` · `noul` · call site [`src/inbox_jev/classifier.py`](https://github.com/hellolitebox/litebox-inbox-jev/blob/HEAD/src/inbox_jev/classifier.py), read by a model 2026-11-21</sub>
 
 - **[Jev Benchmark](https://github.com/yididev/jev-benchmark)** — Benchmark of rubric-based zero-shot classification, chained decision-tree execution and exam grading. Each document goes to Jev as one choice whose criteria are the rubric's folder descriptions, against two Claude models, OpenJev and open-weight decision models on accuracy, calibration and price. <sub>(written by a model)</sub>
   <sub>`Benchmark` · yididev · `Py` · `choice` · call site [`arms/jev.py`](https://github.com/yididev/jev-benchmark/blob/HEAD/arms/jev.py), read by a model 2026-11-18</sub>
@@ -688,6 +700,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[twitter-jev-guard](https://github.com/qs-lll/twitter-jev-guard)** — Uses TypeSafe Jev to spot low-quality, spam and advertising posts on the X/Twitter timeline and stamps a conspicuous translucent watermark over their text.
   <sub>`Plugin` · qs-lll · `JS` · call site [`extension/background.js`](https://github.com/qs-lll/twitter-jev-guard/blob/HEAD/extension/background.js), read 2026-09-24 · ⚠ `no licence`</sub>
+
+- **[TypeCheck](https://github.com/jev-engineering/typecheck)** — Discord moderation bot, formerly Jev Image Guard. For each text or image rule it asks Jev nouls such as whether the post meets the policy, gives enough context and promotes the conduct, and a choice for what the author is doing; reference rules ask whether an image matches a stored one. <sub>(written by a model)</sub>
+  <sub>`Project` · jev-engineering · `TS` · `noul` · `choice` · call site [`server/jev.ts`](https://github.com/jev-engineering/typecheck/blob/HEAD/server/jev.ts), read by a model 2026-11-21</sub>
 
 - **[typesafe-image-diffusion](https://github.com/Wizhill05/typesafe-image-diffusion)** — Diffusion-style pixel art out of a general classifier (TypeSafe Jev): 256 parallel pixel questions + refinement passes <sub>(upstream description)</sub>
   <sub>`Project` · wizhill05 · `TS` · call site [`fix_synthesizer.py`](https://github.com/Wizhill05/typesafe-image-diffusion/blob/HEAD/fix_synthesizer.py), read 2026-09-22 · ⚠ `no licence`</sub>

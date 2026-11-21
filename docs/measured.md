@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 106 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 107 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -533,6 +533,14 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[padflow-jev-evals](https://github.com/zsavage8/padflow-jev-evals)**<br>
   Typed-decision benchmark from PadFlow (land development SaaS): schemas, anonymized labeled rows, and a runner for confidence-calibrated models like TypeSafe Jev. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · zsavage8 · `Py` · [call site](https://github.com/zsavage8/padflow-jev-evals/blob/HEAD/scripts/run_baseline.py), read 2026-09-22</sub>
+
+- **[S1CogBench](https://github.com/dengzhe-hou/S1CogBench)**<br>
+  Benchmark of decision models on 24 established cognitive experiments. Jev 1.14 answers each trial as a choice, or a noul for probability reports, scored next to four open decision models, three language-model controls and uniform choice, separating acting in the task from predicting human choices. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · Dengzhe Hou · `Py` · `choice` · `noul` · [call site](https://github.com/dengzhe-hou/S1CogBench/blob/HEAD/examples/templates/decision_api_choice.py), read by a model 2026-11-20</sub>
+
+  **Caveats:** `self-submitted`
+
+  > Submitted by the first author. Paper arXiv:2611.00911 (v2, 14 Nov 2026). Jev answers in a median of 0.35 seconds over all 27 modes. The paper reports Jev task by task and does not state an overall verdict on it. Drafted with an AI coding assistant and reviewed by the author.
 
 - **[S1MB (System One Mosaic Benchmark)](https://github.com/hotchpotch/S1MB)**<br>
   Benchmark that puts System One decision models, Jev among them, through the same 100+ English, Japanese and vision tasks as choice, noul and score questions, with a public leaderboard. Its TypeSafe adapter sends each case to Jev's /v1/systemone; other adapters cover open and hosted rivals. <sub>(written by a model)</sub><br>

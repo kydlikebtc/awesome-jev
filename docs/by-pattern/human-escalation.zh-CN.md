@@ -4,11 +4,11 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 109 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 111 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#human-escalation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#human-escalation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 94 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 96 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -217,6 +217,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Hiep Paseo plugins](https://github.com/hieppp/hiep-paseo-plugin)** — Paseo 智能体应用的一组插件，其中三个用到 Jev：一个权限门，用 noul 判断 shell 命令是否只读，用 choice 决定允许、拒绝还是交给你；一个编排器，把委派的任务路由到某个模型和推理强度；以及一个 MCP 评估工具。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · hieppp · `TS` · `noul` · `choice` · 调用点 [`plugins/jev-permission-gate/server/jev-worker.ts`](https://github.com/hieppp/hiep-paseo-plugin/blob/HEAD/plugins/jev-permission-gate/server/jev-worker.ts)，2026-11-10 模型阅读 · ⚠ `无许可证`</sub>
 
+- **[inbox-jev](https://github.com/hellolitebox/litebox-inbox-jev)** — Gmail 分拣工具：每隔几分钟对每封新邮件向 Jev 询问类别（choice），并用 noul 判断是否需要回复以及各个已配置的标签，然后打标签、归档、退订或把诈骗邮件移入垃圾箱；没把握的留待复核，并从用户的更正中学习发件人规则。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · hellolitebox · `Py` · `choice` · `noul` · 调用点 [`src/inbox_jev/classifier.py`](https://github.com/hellolitebox/litebox-inbox-jev/blob/HEAD/src/inbox_jev/classifier.py)，2026-11-21 模型阅读</sub>
+
 - **[Jev Agent Control](https://github.com/krzysztof-cieslak/jev-agent-control)** — OpenCode 插件，在 Plan、Build 和你自己的主智能体之间分派每个请求：Jev 在一次请求中选出处理下一步未完成工作的智能体，并判断所请求的工作是仍可继续、在等用户，还是已经完成，从而在一步完成后自动交接，直到工作做完。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · krzysztof-cieslak · `TS` · `choice` · 调用点 [`src/jev.ts`](https://github.com/krzysztof-cieslak/jev-agent-control/blob/HEAD/src/jev.ts)，2026-11-19 模型阅读</sub>
 
@@ -336,6 +339,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[spending-effort-with-jev](https://github.com/Yaxin9Luo/spending-effort-with-jev)** — Claude Code mod：读取你发出的每条消息，用 choice 问 Jev 这个任务值得哪个 /effort 档位，再用 noul 判断一项长时间托管的任务是否还有含糊之处；会话当前档位看起来不对时，提供一键切换，并提醒需求不清。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · Yaxin9Luo · `TS` · `choice` · `noul` · 调用点 [`plugins/spending-effort-with-jev/hooks/judge.ts`](https://github.com/Yaxin9Luo/spending-effort-with-jev/blob/HEAD/plugins/spending-effort-with-jev/hooks/judge.ts)，2026-11-10 模型阅读</sub>
+
+- **[subagent-jev](https://github.com/g0-0000/pi-subagent-jev)** — 面向 CodeBuddy Code、Claude Code 和 pi 的子智能体派发合规闸门：子智能体启动前，它就任务向 Jev 提出配置好的问题，再决定拦截或警告；可选的工具闸门会给 Bash 或编辑调用的风险打分，并询问是否应由人来批准。出错时一律放行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · g0-0000 · `TS` · `noul` · `score` · `choice` · 调用点 [`jev/client.ts`](https://github.com/g0-0000/pi-subagent-jev/blob/HEAD/jev/client.ts)，2026-11-21 模型阅读</sub>
 
 - **[system-one-gemma](https://github.com/akash-kamat/system-one-gemma)** — 开源的 Jev 式 System One 决策模型：Gemma 3 270M 加一个打分头。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · akash-kamat · `Py` · 引用文件 [`system_one.py`](https://github.com/akash-kamat/system-one-gemma/blob/HEAD/system_one.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身` `无许可证`</sub>

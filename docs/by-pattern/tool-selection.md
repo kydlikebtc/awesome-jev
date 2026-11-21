@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 297 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 300 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 286 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 289 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -504,6 +504,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[agent-fastpath](https://github.com/abhishekswe/agent-fastpath)** — Jev MCP server: a decision layer for coding agents, built on TypeSafe Jev (System One model). Ship gates, risk checks, file triage that keeps files out of context, and a safe headless browser, with calibrated confidence. For Claude Code, Codex, Cursor. <sub>(upstream description)</sub>
   <sub>`Plugin` · abhishekswe · `TS` · call site [`packages/provider-typesafe/src/client.ts`](https://github.com/abhishekswe/agent-fastpath/blob/HEAD/packages/provider-typesafe/src/client.ts), read 2026-09-22</sub>
 
+- **[agent-reflex](https://github.com/psygreg/agent-reflex)** — Plugin for eight coding agents, OpenCode first, that asks a System One decision model nouls and choices to block dangerous shell commands, pick the tool groups and skills a prompt needs, set reasoning effort by complexity, steer history compaction and choose a tool when the agent cannot. <sub>(written by a model)</sub>
+  <sub>`Plugin` · psygreg · `TS` · `noul` · `choice` · call site [`plugins/opencode/index.ts`](https://github.com/psygreg/agent-reflex/blob/HEAD/plugins/opencode/index.ts), read by a model 2026-11-21</sub>
+
 - **[agi-jev-containment](https://github.com/carlosedm10/agi-jev-containment)** — AGI JEV Detection — local AI agent monitor: chain-level malicious-agent detection (TypeSafe Jev + Sentinel), escalate-only L1–L5 containment, Neo4j forensics, AngryRobot dashboard. HackSpain 2026. <sub>(upstream description)</sub>
   <sub>`Project` · carlosedm10 · `Py` · call site [`backend/app/classification/jev.py`](https://github.com/carlosedm10/agi-jev-containment/blob/HEAD/backend/app/classification/jev.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
@@ -536,6 +539,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[deepseek-harness-jev-pre-compaction](https://github.com/wjw66/deepseek-harness-jev-pre-compaction)** — A pre-compaction advisor for DeepSeek Harness. Runs before the standard `compaction-basic` backend, using TypeSafe JEV to safely prune low-value tool results from model context. Original session events stay in the append-only log; only the model-visible view is replaced with compact markers or
   <sub>`Project` · wjw66 · `TS` · call site [`src/jev/protocol.ts`](https://github.com/wjw66/deepseek-harness-jev-pre-compaction/blob/HEAD/src/jev/protocol.ts), read 2026-09-22</sub>
+
+- **[Doom in Claude Code](https://github.com/abelardodiaz/doom-in-claude-code)** — Bot that plays Doom (ViZDoom with Freedoom) in a Claude Code pane. About 2.5 times a second Jev sees the screen, picks which goal to chase and a tactic as choices, and answers nouls on immediate danger and whether to fight; code walks, aims and fights, and Claude plans the level and narrates. <sub>(written by a model)</sub>
+  <sub>`Project` · abelardodiaz · `Py` · `choice` · `noul` · call site [`bridge/jev_pilot.py`](https://github.com/abelardodiaz/doom-in-claude-code/blob/HEAD/bridge/jev_pilot.py), read by a model 2026-11-21</sub>
 
 - **[dsh-jev-prune](https://github.com/yangyu666/dsh-jev-prune)** — Jev-judged context compaction for DeepSeek Harness: semantic tool-result pruning + deterministic receipt compaction <sub>(upstream description)</sub>
   <sub>`Project` · yangyu666 · `JS` · call site [`src/jev.js`](https://github.com/yangyu666/dsh-jev-prune/blob/HEAD/src/jev.js), read 2026-09-22</sub>
@@ -737,6 +743,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-pong](https://github.com/ably-labs/jev-pong)** — Pong where the ball moves one step per model decision. Jev vs LLMs via Vercel AI Gateway, every player and agent on an Ably channel. <sub>(upstream description)</sub>
   <sub>`Project` · ably-labs · `TS` · call site [`lib/compare/compare-models.ts`](https://github.com/ably-labs/jev-pong/blob/HEAD/lib/compare/compare-models.ts), read 2026-09-24</sub>
+
+- **[jev-quant](https://github.com/itsadrianxv/jev-quant)** — C++ futures-trading pet project that sends Jev the order book, position, account and risk limits and asks two choices: a long or short bias, and whether to open, close or hold over a 1–5 minute horizon. It trades simulated SHFE futures through SimNow and the CTP SDK. <sub>(written by a model)</sub>
+  <sub>`Project` · itsadrianxv · `C++` · `choice` · call site [`src/trading/strategy/jev_http_client.cpp`](https://github.com/itsadrianxv/jev-quant/blob/HEAD/src/trading/strategy/jev_http_client.cpp), read by a model 2026-11-21</sub>
 
 - **[jev-ra](https://github.com/brnyxx/jev-ra)** — Browser use for coding agents, 3-5x faster than browser-use. MCP server + CLI; TypeSafe Jev decides every step in ~300 ms. <sub>(upstream description)</sub>
   <sub>`Plugin` · brnyxx · `Py` · call site [`jev_ra/config.py`](https://github.com/brnyxx/jev-ra/blob/HEAD/jev_ra/config.py), read 2026-09-22</sub>

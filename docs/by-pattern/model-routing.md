@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 100 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 103 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 90 · wire shape 2 · example only 2 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 93 · wire shape 2 · example only 2 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -180,6 +180,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[stuntd](https://github.com/bladedevoff/stuntd)** — Local proxy that learns your app's typed LLM decisions and answers them with a Laya head. Jev and OpenAI compatible. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · bladedevoff · `Py` · call site [`stuntd/jev/answer.py`](https://github.com/bladedevoff/stuntd/blob/HEAD/stuntd/jev/answer.py), read 2026-09-24</sub>
 
+- **[agent-reflex](https://github.com/psygreg/agent-reflex)** — Plugin for eight coding agents, OpenCode first, that asks a System One decision model nouls and choices to block dangerous shell commands, pick the tool groups and skills a prompt needs, set reasoning effort by complexity, steer history compaction and choose a tool when the agent cannot. <sub>(written by a model)</sub>
+  <sub>`Plugin` · psygreg · `TS` · `noul` · `choice` · call site [`plugins/opencode/index.ts`](https://github.com/psygreg/agent-reflex/blob/HEAD/plugins/opencode/index.ts), read by a model 2026-11-21</sub>
+
 - **[AgentScope](https://github.com/agentscope-ai/agentscope)** — Multi-agent framework whose classifier models include Jev: JevClassifierModel sends binary, choice and score questions to System One through TypeSafe's Python SDK, and the ModelRouter middleware asks a classifier one choice per reply to pick the chat model that answers. <sub>(written by a model)</sub>
   <sub>`Project` · agentscope-ai · `Py` · `choice` · `noul` · `score` · call site [`src/agentscope/classifier/_jev/_model.py`](https://github.com/agentscope-ai/agentscope/blob/HEAD/src/agentscope/classifier/_jev/_model.py), read by a model 2026-11-12</sub>
 
@@ -215,6 +218,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[janus](https://github.com/FirasSX914/Janus)** — Measure when to use Jev and other models on your data, then route accordingly. <sub>(upstream description)</sub>
   <sub>`Project` · firassx914 · `Py` · call site [`experiments/run_jev.py`](https://github.com/FirasSX914/Janus/blob/HEAD/experiments/run_jev.py), read 2026-09-22</sub>
+
+- **[Jeffort](https://github.com/andrewstephenson-v1/jeffort)** — Claude Code mod that sets Claude's effort level for each turn: Jev scores the prompt on reasoning depth, scope, stakes and ambiguity, with a noul on whether it only says to carry on with the previous request, and Jeffort maps the scores to an effort level, leaving the model unchanged. <sub>(written by a model)</sub>
+  <sub>`Plugin` · andrewstephenson-v1 · `TS` · `score` · `noul` · call site [`hooks/register.tsx`](https://github.com/andrewstephenson-v1/jeffort/blob/HEAD/hooks/register.tsx), read by a model 2026-11-21</sub>
 
 - **[Jev AI Skill](https://github.com/King4s/Jev-AI-Skill)** — One skill plus an MCP server for Claude Code, Codex and Hermes. Its Gate tools ask Jev whether an event needs an agent at all, which review findings the evidence closes, which route to take (choice), whether work is done and whether to ask the owner (nouls). <sub>(written by a model)</sub>
   <sub>`Plugin` · King4s · `Py` · `choice` · `noul` · call site [`jev_mcp.py`](https://github.com/King4s/Jev-AI-Skill/blob/HEAD/jev_mcp.py), read by a model 2026-11-14</sub>
@@ -281,6 +287,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[model-router-python](https://github.com/TheCoder30ec4/model_router_python)** — Python library that, for each prompt, drops models whose context, output or budget cannot fit, then asks Jev to choose among the rest with their live prices and limits, and returns the model id for your code to call; Jev is reached through jevai.org or OpenRouter. <sub>(written by a model)</sub>
   <sub>`Project` · TheCoder30ec4 · `Py` · `choice` · call site [`src/model_router/jev.py`](https://github.com/TheCoder30ec4/model_router_python/blob/HEAD/src/model_router/jev.py), read by a model 2026-11-11</sub>
+
+- **[ModelRudder](https://github.com/cybrking/modelrudder)** — Advisory launcher for Codex and Claude Code on macOS that asks Jev one choice per task: which of four model profiles, from a light GPT-6 Luna setting to GPT-6 Astra, is the lightest adequate one. It shows the advice as a note and leaves switching the model to you. <sub>(written by a model)</sub>
+  <sub>`Plugin` · cybrking · `TS` · `choice` · call site [`src/adapters/jev.ts`](https://github.com/cybrking/modelrudder/blob/HEAD/src/adapters/jev.ts), read by a model 2026-11-21</sub>
 
 - **[OpenCode plugin for decision models](https://github.com/atvari-eu/opencode-decisions)** — OpenCode plugin where Jev screens tool results for junk and prompt injection, vets permission requests, picks the model and reasoning effort for each turn, keeps or drops tool calls during compaction, checks whether the agent stopped early and searches code by meaning. <sub>(written by a model)</sub>
   <sub>`Plugin` · atvari-eu · `TS` · `noul` · `choice` · `score` · call site [`src/index.ts`](https://github.com/atvari-eu/opencode-decisions/blob/HEAD/src/index.ts), read by a model 2026-11-20</sub>

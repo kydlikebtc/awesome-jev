@@ -4,11 +4,11 @@
 
 _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 
-这个决策的全部已收录例子 —— 共 56 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#上下文压缩)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 58 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#上下文压缩)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#context-compaction)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#context-compaction)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 56 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 2 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 58 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 2 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -104,8 +104,14 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 - **[yoshi](https://github.com/compozy/yoshi)** — 给 Claude Code 和 Codex 做的上下文裁剪代理：由 Jev 判断哪些历史还需要 —— 实测而非宣称。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · compozy · `TS` · 调用点 [`benchmarks/jev-calibrate.ts`](https://github.com/compozy/yoshi/blob/HEAD/benchmarks/jev-calibrate.ts)，2026-09-22 阅读</sub>
 
+- **[agent-reflex](https://github.com/psygreg/agent-reflex)** — 面向八个编程智能体（以 OpenCode 为主）的插件：它向 System One 决策模型提出 noul 和 choice，用来拦截危险的 shell 命令、挑选提示需要的工具组和技能、按复杂度设置推理投入、引导历史压缩，并在智能体拿不定主意时选择工具。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · psygreg · `TS` · `noul` · `choice` · 调用点 [`plugins/opencode/index.ts`](https://github.com/psygreg/agent-reflex/blob/HEAD/plugins/opencode/index.ts)，2026-11-21 模型阅读</sub>
+
 - **[Astra + Jev](https://github.com/Oranquelui/astra-jev-harness)** — 面向 Codex Desktop、Codex CLI 和 Claude Code 的智能体技能和运行框架。编码模型写代码之前，它对每个候选文件向 Jev 提一个 noul（任务是否需要它），只保留有把握的“是”，任何回答不确定时就全部保留；它也用来筛选测试证据和长日志。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · Oranquelui · `Go` · `noul` · 调用点 [`internal/harness/provider.go`](https://github.com/Oranquelui/astra-jev-harness/blob/HEAD/internal/harness/provider.go)，2026-11-17 模型阅读 · ⚠ `厂商自报数据`</sub>
+
+- **[Codex Decision](https://github.com/philippelhaus/codex-decision)** — 面向 Codex 的 VS Code 扩展：对长工具输出的每一行用一个 noul 问决策模型，这一行是否包含任务需要的发现，然后缩短输出并链接到原文。它的 MCP 工具还会给上下文候选打分、给测试失败分类、核对完成声明。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · philippelhaus · `Rs` · `noul` · `score` · `choice` · 调用点 [`rust/decision/src/provider.rs`](https://github.com/philippelhaus/codex-decision/blob/HEAD/rust/decision/src/provider.rs)，2026-11-21 模型阅读</sub>
 
 - **[deepseek-harness-jev-pre-compaction](https://github.com/wjw66/deepseek-harness-jev-pre-compaction)** — 给 DeepSeek Harness 的压缩前顾问，在标准压缩流程之前运行。 <sub>(机翻)</sub>
   <sub>`开源项目` · wjw66 · `TS` · 调用点 [`src/jev/protocol.ts`](https://github.com/wjw66/deepseek-harness-jev-pre-compaction/blob/HEAD/src/jev/protocol.ts)，2026-09-22 阅读</sub>

@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 207 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 209 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 198 · 接口形态 5 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 200 · 接口形态 5 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -323,6 +323,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[decide-mcp](https://github.com/dakdevs/decide-mcp)** — 可配置的决策 MCP server，带百分比分数与偏好画像。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · dakdevs · `TS` · 调用点 [`src/config.ts`](https://github.com/dakdevs/decide-mcp/blob/HEAD/src/config.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
+- **[DeciFlow](https://github.com/call518/deciflow-ai-decision)** — 把来自本地、SSH 或 HDFS 的文本日志和对话记录变成带类型判定的 Web 应用：每个配置对每个事件提出一个分类 choice、一个 score 和一个 noul，保留证据供人复核，之后还可以运行 Python 动作。Jev 是 Laya 之外的付费引擎。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · call518 · `Py` · `choice` · `score` · `noul` · 调用点 [`deciflow/classifier.py`](https://github.com/call518/deciflow-ai-decision/blob/HEAD/deciflow/classifier.py)，2026-11-21 模型阅读</sub>
+
 - **[Decision Lab](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases)** — 一个包含五十个金融演示的网站：就账本、订单、欺诈、钱包、交易和申报文件，把同样的类型化 choice、score 和 noul 发给 Jev，用已知数据给答案打分，并在日 K 线上回测 Jev 的交易决策；录制好的答案无需密钥即可重放。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · IslamBaraka90 · `JS` · `choice` · `noul` · `score` · 调用点 [`src/services/demo-runner.js`](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases/blob/HEAD/src/services/demo-runner.js)，2026-11-10 模型阅读</sub>
 
@@ -331,6 +334,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[deslop](https://github.com/yoichiojima-2/deslop)** — 给网页的广告、垃圾内容、SEO 和二手内容打分。一个基于 TypeSafe Jev 的智能体技能：每页四个概率。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · yoichiojima-2 · `Py` · 调用点 [`skills/deslop/jev.py`](https://github.com/yoichiojima-2/deslop/blob/HEAD/skills/deslop/jev.py)，2026-09-24 阅读</sub>
+
+- **[DGUI-HyperMem](https://github.com/ctaxnagomi/dgui-hypermem)** — 运行在 Cloudflare Workers 上的自托管长期记忆 MCP 服务器。Jev 给每条新记忆标注类型（choice）、判断它是否值得长期保留（noul）并给重要性打分；召回时用每个候选一个 noul 对向量和全文检索的候选重新排序，还会判断新记忆是否取代旧记忆。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ctaxnagomi · `TS` · `choice` · `noul` · `score` · 调用点 [`src/jev.ts`](https://github.com/ctaxnagomi/dgui-hypermem/blob/HEAD/src/jev.ts)，2026-11-21 模型阅读</sub>
 
 - **[draftpulse](https://github.com/pbember/draftpulse)** — 实验性的 X 草稿传播度实时评分。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · pekth · `TS` · 调用点 [`server/analyze.ts`](https://github.com/pbember/draftpulse/blob/HEAD/server/analyze.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

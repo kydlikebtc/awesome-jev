@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 528 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 533 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 388 · wire shape 100 · example only 0 · independent reports 33 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 393 · wire shape 100 · example only 0 · independent reports 34 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -599,6 +599,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Fovea-4B](https://github.com/sivasuthan9/fovea)** — Open 4B decision model for images: given a photo, document, receipt, chart or screenshot, a JSON state and a typed noul, choice or score question, it returns a probability for every allowed answer in one forward pass, served over TypeSafe's System One API so its clients work unchanged. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · sivasuthan9 · `Py` · cited file [`fovea_sdk/server.py`](https://github.com/sivasuthan9/fovea/blob/HEAD/fovea_sdk/server.py), read by a model 2026-11-12 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
+- **[fuzzy-jev](https://github.com/dsaad68/fuzzy-jev)** — Rust client, CLI and Python package for OpenRouter's decision models, Jev by default: ask choice, score or noul questions about text or images and get probabilities back. A rules file reads those probabilities as fuzzy truth values and combines them with AND, OR, NOT and hedges into decisions. <sub>(written by a model)</sub>
+  <sub>`SDK` · dsaad68 · `Rs` · `choice` · `score` · `noul` · call site [`src/lib.rs`](https://github.com/dsaad68/fuzzy-jev/blob/HEAD/src/lib.rs), read by a model 2026-11-21</sub>
+
 - **[go-system-one](https://github.com/rcarmo/go-system-one)** — when a gopher met Jev <sub>(upstream description)</sub>
   <sub>`SDK` · rcarmo · `Go` · call site [`docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py`](https://github.com/rcarmo/go-system-one/blob/HEAD/docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py), read 2026-09-24</sub>
 
@@ -778,6 +781,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[s1_ruby](https://github.com/innocentdiaz/s1_ruby)** — Makes S1-model 'measurement' (and the collapse that follows it) a Ruby primitive. <sub>(upstream description)</sub>
   <sub>`SDK` · innocentdiaz · `Rb` · call site [`lib/s1/providers/typesafe.rb`](https://github.com/innocentdiaz/s1_ruby/blob/HEAD/lib/s1/providers/typesafe.rb), read 2026-09-24 · ⚠ `one commit`</sub>
+
+- **[S1CogBench](https://github.com/dengzhe-hou/S1CogBench)** — Benchmark of decision models on 24 established cognitive experiments. Jev 1.14 answers each trial as a choice, or a noul for probability reports, scored next to four open decision models, three language-model controls and uniform choice, separating acting in the task from predicting human choices. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · Dengzhe Hou · `Py` · `choice` · `noul` · call site [`examples/templates/decision_api_choice.py`](https://github.com/dengzhe-hou/S1CogBench/blob/HEAD/examples/templates/decision_api_choice.py), read by a model 2026-11-20 · ⚠ `self-submitted`</sub>
 
 - **[S1MB (System One Mosaic Benchmark)](https://github.com/hotchpotch/S1MB)** — Benchmark that puts System One decision models, Jev among them, through the same 100+ English, Japanese and vision tasks as choice, noul and score questions, with a public leaderboard. Its TypeSafe adapter sends each case to Jev's /v1/systemone; other adapters cover open and hosted rivals. <sub>(written by a model)</sub>
   <sub>`Benchmark` · hotchpotch · `Py` · `choice` · `noul` · `score` · call site [`evaluator/src/s1mb/adapters/typesafe.py`](https://github.com/hotchpotch/S1MB/blob/HEAD/evaluator/src/s1mb/adapters/typesafe.py), read by a model 2026-11-13</sub>
@@ -1023,7 +1029,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 201 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 204 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — Toolkit for voice AI avatars in apps, phone lines, signage and the metaverse. Its Jev turn-end gate asks a noul on the transcript, whether the assistant should stay silent and leave the user's turn open, and maps that probability to a wait of 0.4 to 2 seconds; on any error the turn ends. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · uezo · `Py` · call site [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py), read 2026-09-22</sub>
@@ -1358,6 +1364,9 @@ Projects and plugins with code, 201 of them, whose only pattern is `overview` an
 - **[jev-eyes](https://github.com/LeddoEngano/jev-eyes)** — Give Jev eyes — honest, local image perception for TypeSafe's text-only System One model. OCR + spatial layout → Jev state. CLI, MCP server, agent skill. <sub>(upstream description)</sub>
   <sub>`Plugin` · leddoengano · `Py` · call site [`benchmarks/jev_accuracy.py`](https://github.com/LeddoEngano/jev-eyes/blob/HEAD/benchmarks/jev_accuracy.py), read 2026-09-22</sub>
 
+- **[jev-fabric](https://github.com/fabric-runtime/jev-fabric)** — Native process orchestrator for coding agents, written in Bend: one executable owns each process, its deadline and bounded logs, and asks Jev a typed choice, noul or score question only when the agent tells it to, so the answer feeds a branch the agent already wrote. <sub>(written by a model)</sub>
+  <sub>`Project` · fabric-runtime · `TS` · `sh` · `choice` · `noul` · `score` · call site [`native/JevCore.bend`](https://github.com/fabric-runtime/jev-fabric/blob/HEAD/native/JevCore.bend), read by a model 2026-11-21</sub>
+
 - **[jev-freeform](https://github.com/kesku/jev-freeform)** — An observable raw-character chat experiment powered entirely by TypeSafe Jev Choice <sub>(upstream description)</sub>
   <sub>`Project` · kesku · `JS` · call site [`main.mjs`](https://github.com/kesku/jev-freeform/blob/HEAD/main.mjs), read 2026-09-22 · ⚠ `no licence`</sub>
 
@@ -1417,6 +1426,9 @@ Projects and plugins with code, 201 of them, whose only pattern is `overview` an
 
 - **[jev-practice-speed](https://github.com/tubone24/jev-practice-speed)** — A WebGL demo where you play the card game Speed against a CPU whose brain is TypeSafe AI's Jev. The whole point of the app is to measure and show Jev's decision speed and decision accuracy in real time. <sub>(upstream description)</sub>
   <sub>`Project` · tubone24 · `JS` · call site [`src/core/jev-core.js`](https://github.com/tubone24/jev-practice-speed/blob/HEAD/src/core/jev-core.js), read 2026-09-22 · ⚠ `no licence`</sub>
+
+- **[jev-repl](https://github.com/aoprisan/jev-ts-repl)** — Terminal REPL for shaping System One requests before writing code: set a state, add named noul, choice and score questions, send them to Jev and read the typed answers and distributions. Lessons, a one-page sketch editor, code generation, cost estimates and an MCP server for agents ship with it. <sub>(written by a model)</sub>
+  <sub>`Project` · aoprisan · `TS` · `noul` · `choice` · `score` · call site [`src/typesafe/client.ts`](https://github.com/aoprisan/jev-ts-repl/blob/HEAD/src/typesafe/client.ts), read by a model 2026-11-21</sub>
 
 - **[jev-resume-disqualifier](https://github.com/AiPersonacademy/jev-resume-disqualifier)** — Jev Resume Disqualifier: Sub-25ms automated resume knockout engine powered by TypeSafe Jev System One decision intelligence. Eliminates 80% of unqualified applicants with deterministic date math & EEOC-safe rejection notices. <sub>(upstream description)</sub>
   <sub>`Project` · aipersonacademy · `Py` · call site [`engine/decision_gateway.py`](https://github.com/AiPersonacademy/jev-resume-disqualifier/blob/HEAD/engine/decision_gateway.py), read 2026-09-22</sub>
@@ -1618,6 +1630,9 @@ Projects and plugins with code, 201 of them, whose only pattern is `overview` an
 
 - **[Typewright](https://github.com/Jev-Engineering/TypeWright)** — Declarative compiler for typed Jev decisions: you declare state, decisions and labelled examples in YAML, and it searches prompts with DSPy and GEPA, fits noul thresholds, score cuts and review gates on separate data, and freezes a checksummed JSON program that a light runtime sends to Jev. <sub>(written by a model)</sub>
   <sub>`Project` · Jev-Engineering · `Py` · `noul` · `choice` · `score` · call site [`src/typewright/backends.py`](https://github.com/Jev-Engineering/TypeWright/blob/HEAD/src/typewright/backends.py), read by a model 2026-11-09 · ⚠ `code untested`</sub>
+
+- **[vd-jev](https://github.com/ondata/vd-jev)** — VisiData plugin that asks a closed question about every cell of a text column through OpenRouter's decision models, Jev by default, and writes the answers back as typed columns: a noul probability, a choice label or a score position, each with its confidence and per-option probabilities. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ondata · `Py` · `noul` · `choice` · `score` · call site [`vd_jev.py`](https://github.com/ondata/vd-jev/blob/HEAD/vd_jev.py), read by a model 2026-11-21</sub>
 
 - **[warp-sys-one](https://github.com/fini/warped-sys1-lab)** — Local workbench for Jev experiments: each experiment is a JSON file of state and noul, choice or score questions, with inputs, file variables and cases. A SvelteKit UI or the CLI sends each case to Jev, shows the probabilities and compares past runs. <sub>(written by a model)</sub>
   <sub>`Project` · fini · `TS` · `noul` · `choice` · `score` · call site [`src/lib/server/runner.ts`](https://github.com/fini/warped-sys1-lab/blob/HEAD/src/lib/server/runner.ts), read by a model 2026-11-16 · ⚠ `no licence`</sub>

@@ -6,7 +6,7 @@
 
 Every `kind: benchmark` row that carries a `measurement`: what its own author measured, indexed field by field from the author's report. This repository measured and re-ran none of it. A **direction** is the author's own conclusion about Jev for that task, author-stated and not reproduced here, and is left blank where the author states none in words. Task, dataset and comparator names are recorded as the author names them.
 
-**110** benchmark rows; **27** carry a measurement. Of those, a person has read **0** against their report (`measurement.read_on`) and only a model **0** (`measurement.model_read_on`); a script or a model filled in the other **27** and nobody has read them back. The review queue lists [the unread rows](review-queue.md#measurement-unread) and [those only a model has read](review-queue.md#model-read). How the fields were first filled in: [docs/method.md](method.md). Field rules: [CONTRIBUTING](../CONTRIBUTING.md#field-rules).
+**111** benchmark rows; **28** carry a measurement. Of those, a person has read **0** against their report (`measurement.read_on`) and only a model **1** (`measurement.model_read_on`); a script or a model filled in the other **27** and nobody has read them back. The review queue lists [the unread rows](review-queue.md#measurement-unread) and [those only a model has read](review-queue.md#model-read). How the fields were first filled in: [docs/method.md](method.md). Field rules: [CONTRIBUTING](../CONTRIBUTING.md#field-rules).
 
 ## Direction by decision pattern
 
@@ -27,7 +27,7 @@ Benchmark rows per decision pattern, by the direction their authors state. A row
 | Document triage | · | 1 | · | · | 1 | 1 |
 | Support triage | · | · | · | · | 1 | 3 |
 | Content scoring | · | 2 | 1 | · | · | 11 |
-| Overview | · | 3 | · | · | 2 | 31 |
+| Overview | · | 3 | · | · | 3 | 31 |
 
 ## By comparator
 
@@ -35,7 +35,7 @@ What authors compared Jev with, as each names it, and the rows that did.
 
 | Comparator | Rows |
 | --- | --- |
-| Laya | [jevbench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevbench), [jev-capability-atlas](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-capability-atlas), [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=en#decision-models-as-guardrails) |
+| Laya | [jevbench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevbench), [jev-capability-atlas](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-capability-atlas), [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=en#decision-models-as-guardrails), [S1CogBench](https://kydlikebtc.github.io/awesome-jev/?lang=en#s1cogbench) |
 | Clef | [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=en#decision-models-as-guardrails), [Support-routing benchmark: 100 held-out cases](https://kydlikebtc.github.io/awesome-jev/?lang=en#decisionmodelhub-support-routing) |
 | Amazon Bedrock Guardrails | [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=en#decision-models-as-guardrails) |
 | ash keyword ranker | [jev-search-rerank-eval](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-search-rerank-eval) |
@@ -48,10 +48,12 @@ What authors compared Jev with, as each names it, and the rows that did.
 | Claude Haiku 4.5 | [jev-phishing-bench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-phishing-bench) |
 | Claude Opus 5 | [windtunnel](https://kydlikebtc.github.io/awesome-jev/?lang=en#windtunnel) |
 | Clef Flash | [Support-routing benchmark: 100 held-out cases](https://kydlikebtc.github.io/awesome-jev/?lang=en#decisionmodelhub-support-routing) |
+| CLM-v0.1-8B | [S1CogBench](https://kydlikebtc.github.io/awesome-jev/?lang=en#s1cogbench) |
 | Cohere Rerank 3.5 | [jev-rag-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-rag-benchmark) |
 | Cohere Rerank 4 Fast | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-rerank-bench) |
 | Cohere Rerank 4 Pro | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-rerank-bench) |
 | decider-4b v2 | [jevbench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevbench) |
+| Decision-2.0-Nox-4B | [S1CogBench](https://kydlikebtc.github.io/awesome-jev/?lang=en#s1cogbench) |
 | Decisions API | [Support-routing benchmark: 100 held-out cases](https://kydlikebtc.github.io/awesome-jev/?lang=en#decisionmodelhub-support-routing) |
 | DeepSeek Flash | [jev-arena](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-arena) |
 | DeepSeek V4.1 Flash | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-rerank-bench) |
@@ -76,10 +78,13 @@ What authors compared Jev with, as each names it, and the rows that did.
 | Hermes summary compaction, closed-book | [Hermes Agent: Jev compaction evaluation](https://kydlikebtc.github.io/awesome-jev/?lang=en#hermes-agent-jev-evaluation) |
 | hybrid order without a reranker | [jev-rag-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-rag-benchmark) |
 | Imajev-4B | [jevbench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevbench) |
+| Intern-Decision-4B | [S1CogBench](https://kydlikebtc.github.io/awesome-jev/?lang=en#s1cogbench) |
 | JevK5 v0.2.0 | [jevbench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevbench) |
 | Kev | [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=en#decision-models-as-guardrails) |
 | Laya 421M | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-rerank-bench) |
+| Llama-3.1-8B-Instruct | [S1CogBench](https://kydlikebtc.github.io/awesome-jev/?lang=en#s1cogbench) |
 | local cross-encoder reranker | [hippo-memory](https://kydlikebtc.github.io/awesome-jev/?lang=en#hippo-memory) |
+| Minitaur-8B | [S1CogBench](https://kydlikebtc.github.io/awesome-jev/?lang=en#s1cogbench) |
 | Needle 3, local | [typesafe-ai-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-ai-benchmark) |
 | Open-Jev | [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=en#decision-models-as-guardrails) |
 | Open-Jev 9B | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-rerank-bench) |
@@ -88,6 +93,7 @@ What authors compared Jev with, as each names it, and the rows that did.
 | Plumb-4B | [jevbench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevbench) |
 | Qwen 3.8 27B on Cerebras, structured output | [typesafe-ai-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=en#typesafe-ai-benchmark) |
 | Qwen3-Reranker-4B | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-rerank-bench) |
+| Qwen3.5-4B | [S1CogBench](https://kydlikebtc.github.io/awesome-jev/?lang=en#s1cogbench) |
 | random mover | [jev-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-benchmark) |
 | recency-ranked tool retention at the same budget | [Hermes Agent: Jev compaction evaluation](https://kydlikebtc.github.io/awesome-jev/?lang=en#hermes-agent-jev-evaluation) |
 | regex rule on link hosts | [jev-phishing-bench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-phishing-bench) |
@@ -96,6 +102,7 @@ What authors compared Jev with, as each names it, and the rows that did.
 | Strands Deciders | [Decision Models as Guardrails](https://kydlikebtc.github.io/awesome-jev/?lang=en#decision-models-as-guardrails) |
 | text-embedding-3-small | [jev-search-rerank-eval](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-search-rerank-eval) |
 | the same review without the pre-brief | [no-mistakes: Jev review pre-brief, measured and retired](https://kydlikebtc.github.io/awesome-jev/?lang=en#no-mistakes-review-context) |
+| uniform choice | [S1CogBench](https://kydlikebtc.github.io/awesome-jev/?lang=en#s1cogbench) |
 | ZeroEntropy zerank-2 | [jev-rerank-bench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-rerank-bench) |
 
 ## By dataset
@@ -104,6 +111,7 @@ Named datasets and benchmark suites the measurements used, as each author names 
 
 | Dataset | Rows |
 | --- | --- |
+| 24 published cognitive tasks listed in docs/DATA.md | [S1CogBench](https://kydlikebtc.github.io/awesome-jev/?lang=en#s1cogbench) |
 | AG News | [jev-benchmarks](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-benchmarks) |
 | Banking77 | [jev-benchmarks](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-benchmarks) |
 | Belebele | [jev-korean-benchmark](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-korean-benchmark) |
@@ -165,6 +173,7 @@ Rows by star band, then title. **Independent** is yes unless the row is flagged 
 | [jev-little-airways](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-little-airways) | — | yes | — | — | — | Make in-flight judgements for aircraft in a toy air-traffic simulation: divert, declare an emergency, give way, landing order | latency, cost | — | `jev-latest` | 2026-09-17 | — | — |
 | [jev-ood-calibration](https://kydlikebtc.github.io/awesome-jev/?lang=en#jev-ood-calibration) | — | yes | yes | — | — | Check whether Jev's probabilities stay calibrated on a rule-based ticket task it cannot have seen, beside three public benchmarks | accuracy, calibration | 4621 | `typesafe-ai/jev` | 2026-09-19 | mixed | — |
 | [jevbench](https://kydlikebtc.github.io/awesome-jev/?lang=en#jevbench-human-disagreement) | — | yes | no | yes | `AI-written` `self-submitted` | Whether Jev's stated confidence drops on natural language inference items where human annotators disagree · [report](https://doi.org/10.5281/zenodo.22971491) | calibration, ranking quality | 1500 | `jev-1.13.0` | 2026-09-26 | mixed | — |
+| [S1CogBench](https://kydlikebtc.github.io/awesome-jev/?lang=en#s1cogbench) | — | yes | — | — | `self-submitted` | Predict held-out human choices and act autonomously in 24 established cognitive experiments · [report](https://arxiv.org/abs/2611.00911) | accuracy, task success, calibration, latency | — | — | 2026-11-14 | — | 2026-11-20 *(model)* |
 | [Probing Jev's behaviour with repeated API calls](https://kydlikebtc.github.io/awesome-jev/?lang=en#ahastudio-til-jev-probing) | ★100+ | yes | — | — | `no licence` `unverified claims` | Probe how Jev is built from about 10,000 API calls, including reversing the order of options · [report](https://github.com/ahastudio/til/blob/HEAD/jev/architecture-unmasked.md) | robustness, latency, tokens | — | `jev-1.13.0` | 2026-09-17 | — | — |
 | [Support-routing benchmark: 100 held-out cases](https://kydlikebtc.github.io/awesome-jev/?lang=en#decisionmodelhub-support-routing) | — | yes | yes | — | `self-submitted` | Route a support message to one of five team labels: billing, technical, account, sales or needs_clarification | accuracy, F1, calibration, latency, cost | 100 | `jev-1.13.0` | 2026-10-09 | — | — |
 

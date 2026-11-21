@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 100 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 103 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 90 · 接口形态 2 · 仅示例 2 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 93 · 接口形态 2 · 仅示例 2 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -180,6 +180,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[stuntd](https://github.com/bladedevoff/stuntd)** — 本地代理：学习应用里带类型的 LLM 决策，并用一个 Laya 头来回答。兼容 Jev 与 OpenAI 接口。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · bladedevoff · `Py` · 调用点 [`stuntd/jev/answer.py`](https://github.com/bladedevoff/stuntd/blob/HEAD/stuntd/jev/answer.py)，2026-09-24 阅读</sub>
 
+- **[agent-reflex](https://github.com/psygreg/agent-reflex)** — 面向八个编程智能体（以 OpenCode 为主）的插件：它向 System One 决策模型提出 noul 和 choice，用来拦截危险的 shell 命令、挑选提示需要的工具组和技能、按复杂度设置推理投入、引导历史压缩，并在智能体拿不定主意时选择工具。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · psygreg · `TS` · `noul` · `choice` · 调用点 [`plugins/opencode/index.ts`](https://github.com/psygreg/agent-reflex/blob/HEAD/plugins/opencode/index.ts)，2026-11-21 模型阅读</sub>
+
 - **[AgentScope](https://github.com/agentscope-ai/agentscope)** — 多智能体框架，其分类器模型包括 Jev：JevClassifierModel 通过 TypeSafe 的 Python SDK 把二元、choice 和 score 问题发给 System One；ModelRouter 中间件在每次回复时让分类器做一个 choice，选出由哪个聊天模型作答。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · agentscope-ai · `Py` · `choice` · `noul` · `score` · 调用点 [`src/agentscope/classifier/_jev/_model.py`](https://github.com/agentscope-ai/agentscope/blob/HEAD/src/agentscope/classifier/_jev/_model.py)，2026-11-12 模型阅读</sub>
 
@@ -215,6 +218,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[janus](https://github.com/FirasSX914/Janus)** — 先在你自己的数据上衡量何时该用 Jev、何时该用别的模型，再据此路由。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · firassx914 · `Py` · 调用点 [`experiments/run_jev.py`](https://github.com/FirasSX914/Janus/blob/HEAD/experiments/run_jev.py)，2026-09-22 阅读</sub>
+
+- **[Jeffort](https://github.com/andrewstephenson-v1/jeffort)** — 一个 Claude Code 模组，为每一轮设置 Claude 的投入程度：Jev 从推理深度、范围、风险和模糊程度四个方面给提示打分，并用一个 noul 判断它是否只是让助手继续上一个请求，Jeffort 再把分数映射成投入等级，模型保持不变。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · andrewstephenson-v1 · `TS` · `score` · `noul` · 调用点 [`hooks/register.tsx`](https://github.com/andrewstephenson-v1/jeffort/blob/HEAD/hooks/register.tsx)，2026-11-21 模型阅读</sub>
 
 - **[Jev AI Skill](https://github.com/King4s/Jev-AI-Skill)** — 一个技能加一个 MCP 服务器，供 Claude Code、Codex 和 Hermes 使用。它的 Gate 工具问 Jev：某个事件是否真的需要智能体，证据能关闭哪些审查发现，走哪条路线（choice），工作是否完成、是否要问主人（noul）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · King4s · `Py` · `choice` · `noul` · 调用点 [`jev_mcp.py`](https://github.com/King4s/Jev-AI-Skill/blob/HEAD/jev_mcp.py)，2026-11-14 模型阅读</sub>
@@ -281,6 +287,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[model-router-python](https://github.com/TheCoder30ec4/model_router_python)** — Python 库：针对每个提示，先排除上下文、输出长度或预算不合适的模型，再结合实时价格和限额让 Jev 从剩下的模型里选一个，返回模型 id 由你的代码去调用；经 jevai.org 或 OpenRouter 调用 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · TheCoder30ec4 · `Py` · `choice` · 调用点 [`src/model_router/jev.py`](https://github.com/TheCoder30ec4/model_router_python/blob/HEAD/src/model_router/jev.py)，2026-11-11 模型阅读</sub>
+
+- **[ModelRudder](https://github.com/cybrking/modelrudder)** — 面向 macOS 上 Codex 和 Claude Code 的建议式启动器：每个任务向 Jev 提出一个 choice，在从轻量的 GPT-6 Luna 到 GPT-6 Astra 的四档模型配置中选出够用的最轻一档。它只以提示的形式给出建议，换不换模型由你决定。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · cybrking · `TS` · `choice` · 调用点 [`src/adapters/jev.ts`](https://github.com/cybrking/modelrudder/blob/HEAD/src/adapters/jev.ts)，2026-11-21 模型阅读</sub>
 
 - **[OpenCode plugin for decision models](https://github.com/atvari-eu/opencode-decisions)** — OpenCode 插件，由 Jev 筛查工具结果中的垃圾内容和提示注入、审查权限请求、为每一轮选择模型和推理强度、在上下文压缩时决定保留或丢弃工具调用、检查智能体是否过早停下，并按语义搜索代码。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · atvari-eu · `TS` · `noul` · `choice` · `score` · 调用点 [`src/index.ts`](https://github.com/atvari-eu/opencode-decisions/blob/HEAD/src/index.ts)，2026-11-20 模型阅读</sub>

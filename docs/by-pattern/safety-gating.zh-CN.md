@@ -4,11 +4,11 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 189 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 192 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#safety-gating)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#safety-gating)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 181 · 接口形态 4 · 仅示例 0 · 独立报告 15 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 184 · 接口形态 4 · 仅示例 0 · 独立报告 15 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -250,6 +250,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[agent-handoff-gate](https://github.com/zsoXi/agent-handoff-gate)** — 面向证据感知的智能体交接与有界工作续跑的实验性协议。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · zsoxi · `Py` · 调用点 [`tools/build_benchmark_prompts.py`](https://github.com/zsoXi/agent-handoff-gate/blob/HEAD/tools/build_benchmark_prompts.py)，2026-09-22 阅读 · ⚠ `仅一次提交` `已归档`</sub>
+
+- **[agent-reflex](https://github.com/psygreg/agent-reflex)** — 面向八个编程智能体（以 OpenCode 为主）的插件：它向 System One 决策模型提出 noul 和 choice，用来拦截危险的 shell 命令、挑选提示需要的工具组和技能、按复杂度设置推理投入、引导历史压缩，并在智能体拿不定主意时选择工具。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · psygreg · `TS` · `noul` · `choice` · 调用点 [`plugins/opencode/index.ts`](https://github.com/psygreg/agent-reflex/blob/HEAD/plugins/opencode/index.ts)，2026-11-21 模型阅读</sub>
 
 - **[agi-jev-containment](https://github.com/carlosedm10/agi-jev-containment)** — 本地 AI 智能体监控：链路级恶意智能体检测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · carlosedm10 · `Py` · 调用点 [`backend/app/classification/jev.py`](https://github.com/carlosedm10/agi-jev-containment/blob/HEAD/backend/app/classification/jev.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
@@ -575,11 +578,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[stepwarden](https://github.com/getexcited/stepwarden)** — 智能体的每一次工具调用在执行前都过一遍检查的 Claude Code 插件。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · getexcited · `TS` · 调用点 [`lib/jev.ts`](https://github.com/getexcited/stepwarden/blob/HEAD/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
+- **[subagent-jev](https://github.com/g0-0000/pi-subagent-jev)** — 面向 CodeBuddy Code、Claude Code 和 pi 的子智能体派发合规闸门：子智能体启动前，它就任务向 Jev 提出配置好的问题，再决定拦截或警告；可选的工具闸门会给 Bash 或编辑调用的风险打分，并询问是否应由人来批准。出错时一律放行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · g0-0000 · `TS` · `noul` · `score` · `choice` · 调用点 [`jev/client.ts`](https://github.com/g0-0000/pi-subagent-jev/blob/HEAD/jev/client.ts)，2026-11-21 模型阅读</sub>
+
 - **[switchboard](https://github.com/aniruddh-krovvidi/switchboard)** — 基于 TypeSafe Jev（System One 模型）的 LLM 网关护栏与模型路由器，附带独立的准确率与校准评估。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · aniruddh-krovvidi · `Py` · 调用点 [`jev.py`](https://github.com/aniruddh-krovvidi/switchboard/blob/HEAD/jev.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
 
 - **[TRA](https://github.com/bijectivelabs/bitra)** — 执行完全确定的加密货币交易台。规则开新仓之前，其事件守卫会就近期新闻标题询问 Jev：用 choice 判断事件类型（正反两种选项顺序各问一次），用 noul 判断是否涉及该资产和整个市场，再用一个 noul 筛查写给机器的指令。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · bijectivelabs · `Py` · `choice` · `noul` · 调用点 [`src/trading_research_agents/llm/providers/typesafe.py`](https://github.com/bijectivelabs/bitra/blob/HEAD/src/trading_research_agents/llm/providers/typesafe.py)，2026-11-12 模型阅读</sub>
+
+- **[TypeCheck](https://github.com/jev-engineering/typecheck)** — Discord 审核机器人，前身是 Jev Image Guard。对每条文本或图片规则，它向 Jev 提出若干 noul，例如帖子是否符合该政策、上下文是否充分、是否在宣扬该行为，再用一个 choice 判断作者在做什么；参考图规则则问图片是否与存档的图片相符。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · jev-engineering · `TS` · `noul` · `choice` · 调用点 [`server/jev.ts`](https://github.com/jev-engineering/typecheck/blob/HEAD/server/jev.ts)，2026-11-21 模型阅读</sub>
 
 - **[typesafe-migration-guard](https://github.com/opaielsheikh/typesafe-migration-guard)** — 由 Jev 驱动的数据库迁移安全自动审查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · opaielsheikh · `TS` · 调用点 [`lib/typesafe.ts`](https://github.com/opaielsheikh/typesafe-migration-guard/blob/HEAD/lib/typesafe.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

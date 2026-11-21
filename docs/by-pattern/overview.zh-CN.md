@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 528 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 533 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 388 · 接口形态 100 · 仅示例 0 · 独立报告 33 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 393 · 接口形态 100 · 仅示例 0 · 独立报告 34 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -599,6 +599,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Fovea-4B](https://github.com/sivasuthan9/fovea)** — 面向图像的开源 4B 决策模型：给定一张照片、文档、收据、图表或截图，加上 JSON 状态和一个类型化的 noul、choice 或 score 问题，一次前向计算就为每个允许的答案给出概率；它通过 TypeSafe 的 System One API 提供服务，该 API 的客户端无需改动即可调用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · sivasuthan9 · `Py` · 引用文件 [`fovea_sdk/server.py`](https://github.com/sivasuthan9/fovea/blob/HEAD/fovea_sdk/server.py)，2026-11-12 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
+- **[fuzzy-jev](https://github.com/dsaad68/fuzzy-jev)** — 面向 OpenRouter 决策模型的 Rust 客户端、命令行工具和 Python 包，默认使用 Jev：就文本或图片提出 choice、score 或 noul 问题，拿回概率。规则文件把这些概率当作模糊真值，用 AND、OR、NOT 和修饰词组合成决策。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · dsaad68 · `Rs` · `choice` · `score` · `noul` · 调用点 [`src/lib.rs`](https://github.com/dsaad68/fuzzy-jev/blob/HEAD/src/lib.rs)，2026-11-21 模型阅读</sub>
+
 - **[go-system-one](https://github.com/rcarmo/go-system-one)** — 当地鼠遇上 Jev：一个 Go 语言的 System One 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · rcarmo · `Go` · 调用点 [`docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py`](https://github.com/rcarmo/go-system-one/blob/HEAD/docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py)，2026-09-24 阅读</sub>
 
@@ -778,6 +781,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[s1_ruby](https://github.com/innocentdiaz/s1_ruby)** — 把 S1 模型的“测量”（以及随之而来的坍缩）变成 Ruby 的一个基本操作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · innocentdiaz · `Rb` · 调用点 [`lib/s1/providers/typesafe.rb`](https://github.com/innocentdiaz/s1_ruby/blob/HEAD/lib/s1/providers/typesafe.rb)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
+
+- **[S1CogBench](https://github.com/dengzhe-hou/S1CogBench)** — 在 24 个经典认知实验上评测决策模型。Jev 1.14 逐试次作答，选择题用 choice，概率报告用 noul，与四个开源决策模型、三个语言模型对照和均匀随机选择一起计分，把在任务中行动和预测人类选择分开评估。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · Dengzhe Hou · `Py` · `choice` · `noul` · 调用点 [`examples/templates/decision_api_choice.py`](https://github.com/dengzhe-hou/S1CogBench/blob/HEAD/examples/templates/decision_api_choice.py)，2026-11-20 模型阅读 · ⚠ `作者自荐`</sub>
 
 - **[S1MB (System One Mosaic Benchmark)](https://github.com/hotchpotch/S1MB)** — 基准测试：让各家 System One 决策模型（包括 Jev）用 choice、noul、score 问题跑同样的 100 多项英文、日文和视觉任务，并有公开排行榜。它的 TypeSafe 适配器把每条用例发到 Jev 的 /v1/systemone；其他适配器覆盖开源和托管的竞品。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · hotchpotch · `Py` · `choice` · `noul` · `score` · 调用点 [`evaluator/src/s1mb/adapters/typesafe.py`](https://github.com/hotchpotch/S1MB/blob/HEAD/evaluator/src/s1mb/adapters/typesafe.py)，2026-11-13 模型阅读</sub>
@@ -1023,7 +1029,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ## 尚未按模式索引
 
-带代码的项目或插件，共 201 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
+带代码的项目或插件，共 204 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — 为应用、电话、导览屏和元宇宙打造语音 AI 虚拟形象的工具包。它的 Jev 话轮结束闸门就转写文本提一个 noul：助手是否应保持沉默、让用户的话轮继续，并把这个概率换算成 0.4 到 2 秒的等待；出错时直接结束话轮。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · uezo · `Py` · 调用点 [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py)，2026-09-22 阅读</sub>
@@ -1358,6 +1364,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-eyes](https://github.com/LeddoEngano/jev-eyes)** — 给 Jev 装上眼睛 —— 为纯文本的 System One 模型提供诚实的本地图像感知。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · leddoengano · `Py` · 调用点 [`benchmarks/jev_accuracy.py`](https://github.com/LeddoEngano/jev-eyes/blob/HEAD/benchmarks/jev_accuracy.py)，2026-09-22 阅读</sub>
 
+- **[jev-fabric](https://github.com/fabric-runtime/jev-fabric)** — 用 Bend 编写、面向编程智能体的原生进程编排器：一个可执行文件管理每个进程、它的期限和有上限的日志，只有在智能体要求时才向 Jev 提出带类型的 choice、noul 或 score 问题，让答案进入智能体事先写好的分支。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · fabric-runtime · `TS` · `sh` · `choice` · `noul` · `score` · 调用点 [`native/JevCore.bend`](https://github.com/fabric-runtime/jev-fabric/blob/HEAD/native/JevCore.bend)，2026-11-21 模型阅读</sub>
+
 - **[jev-freeform](https://github.com/kesku/jev-freeform)** — 完全由 Jev Choice 驱动的可观测逐字符聊天实验。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · kesku · `JS` · 调用点 [`main.mjs`](https://github.com/kesku/jev-freeform/blob/HEAD/main.mjs)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
@@ -1417,6 +1426,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-practice-speed](https://github.com/tubone24/jev-practice-speed)** — WebGL 演示：与一个大脑是 Jev 的 CPU 玩快速纸牌。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tubone24 · `JS` · 调用点 [`src/core/jev-core.js`](https://github.com/tubone24/jev-practice-speed/blob/HEAD/src/core/jev-core.js)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+
+- **[jev-repl](https://github.com/aoprisan/jev-ts-repl)** — 在写代码之前打磨 System One 请求的终端 REPL：设定 state，加入具名的 noul、choice 和 score 问题，发给 Jev，再阅读带类型的答案和概率分布。附带课程、单页草图编辑器、代码生成、费用估算，以及供智能体使用的 MCP 服务器。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · aoprisan · `TS` · `noul` · `choice` · `score` · 调用点 [`src/typesafe/client.ts`](https://github.com/aoprisan/jev-ts-repl/blob/HEAD/src/typesafe/client.ts)，2026-11-21 模型阅读</sub>
 
 - **[jev-resume-disqualifier](https://github.com/AiPersonacademy/jev-resume-disqualifier)** — 亚 25 毫秒的简历自动淘汰引擎。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · aipersonacademy · `Py` · 调用点 [`engine/decision_gateway.py`](https://github.com/AiPersonacademy/jev-resume-disqualifier/blob/HEAD/engine/decision_gateway.py)，2026-09-22 阅读</sub>
@@ -1618,6 +1630,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Typewright](https://github.com/Jev-Engineering/TypeWright)** — 面向类型化 Jev 决策的声明式编译器：你用 YAML 声明状态、决策和带标签的样例，它用 DSPy 和 GEPA 搜索提示词，在另一份数据上拟合 noul 阈值、score 分界和复核门槛，再冻结成带校验和的 JSON 程序，由轻量运行时发给 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · Jev-Engineering · `Py` · `noul` · `choice` · `score` · 调用点 [`src/typewright/backends.py`](https://github.com/Jev-Engineering/TypeWright/blob/HEAD/src/typewright/backends.py)，2026-11-09 模型阅读 · ⚠ `代码未实测`</sub>
+
+- **[vd-jev](https://github.com/ondata/vd-jev)** — VisiData 插件：通过 OpenRouter 的决策模型（默认 Jev）对文本列的每个单元格提出一个封闭式问题，再把答案写回为带类型的列：noul 概率、choice 标签或 score 位置，每个都带置信度和各选项的概率。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ondata · `Py` · `noul` · `choice` · `score` · 调用点 [`vd_jev.py`](https://github.com/ondata/vd-jev/blob/HEAD/vd_jev.py)，2026-11-21 模型阅读</sub>
 
 - **[warp-sys-one](https://github.com/fini/warped-sys1-lab)** — 本地 Jev 实验工作台：每个实验是一个 JSON 文件，包含 state 和 noul、choice 或 score 问题，以及输入、文件变量和用例。通过 SvelteKit 界面或命令行把每个用例发给 Jev，显示概率并对比历史运行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · fini · `TS` · `noul` · `choice` · `score` · 调用点 [`src/lib/server/runner.ts`](https://github.com/fini/warped-sys1-lab/blob/HEAD/src/lib/server/runner.ts)，2026-11-16 模型阅读 · ⚠ `无许可证`</sub>

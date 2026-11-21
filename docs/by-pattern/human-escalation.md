@@ -4,11 +4,11 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 109 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 111 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#human-escalation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 94 · wire shape 5 · example only 0 · independent reports 11 · negative results 1 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 96 · wire shape 5 · example only 0 · independent reports 11 · negative results 1 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -217,6 +217,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Hiep Paseo plugins](https://github.com/hieppp/hiep-paseo-plugin)** — Plugins for the Paseo agent app, three of them on Jev: a permission gate that asks a noul on whether a shell command is read-only and a choice to allow, deny or escalate it to you, an orchestrator that routes delegated tasks to a model and effort, and an MCP evaluation tool. <sub>(written by a model)</sub>
   <sub>`Plugin` · hieppp · `TS` · `noul` · `choice` · call site [`plugins/jev-permission-gate/server/jev-worker.ts`](https://github.com/hieppp/hiep-paseo-plugin/blob/HEAD/plugins/jev-permission-gate/server/jev-worker.ts), read by a model 2026-11-10 · ⚠ `no licence`</sub>
 
+- **[inbox-jev](https://github.com/hellolitebox/litebox-inbox-jev)** — Gmail triage that every few minutes asks Jev each new email's category (choice) and nouls on whether it needs a reply and on each configured tag, then labels, archives, unsubscribes or moves scams to spam, leaves what it is unsure of for review and learns sender rules from corrections. <sub>(written by a model)</sub>
+  <sub>`Project` · hellolitebox · `Py` · `choice` · `noul` · call site [`src/inbox_jev/classifier.py`](https://github.com/hellolitebox/litebox-inbox-jev/blob/HEAD/src/inbox_jev/classifier.py), read by a model 2026-11-21</sub>
+
 - **[Jev Agent Control](https://github.com/krzysztof-cieslak/jev-agent-control)** — OpenCode plugin that routes each request between Plan, Build and your own primary agents: in one request Jev picks the agent for the next unfinished step and says whether the requested work is still actionable, waiting for the user or complete, so finished steps hand off until the work is done. <sub>(written by a model)</sub>
   <sub>`Plugin` · krzysztof-cieslak · `TS` · `choice` · call site [`src/jev.ts`](https://github.com/krzysztof-cieslak/jev-agent-control/blob/HEAD/src/jev.ts), read by a model 2026-11-19</sub>
 
@@ -336,6 +339,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[spending-effort-with-jev](https://github.com/Yaxin9Luo/spending-effort-with-jev)** — Claude Code mod that reads each message you send and asks Jev a choice for the /effort level the task deserves and a noul on whether a long hand-off is still ambiguous; when the session's level looks wrong it offers a one-key switch, and it warns about fuzzy specs. <sub>(written by a model)</sub>
   <sub>`Plugin` · Yaxin9Luo · `TS` · `choice` · `noul` · call site [`plugins/spending-effort-with-jev/hooks/judge.ts`](https://github.com/Yaxin9Luo/spending-effort-with-jev/blob/HEAD/plugins/spending-effort-with-jev/hooks/judge.ts), read by a model 2026-11-10</sub>
+
+- **[subagent-jev](https://github.com/g0-0000/pi-subagent-jev)** — Compliance gate for subagent dispatches in CodeBuddy Code, Claude Code and pi: before a subagent starts it asks configured Jev questions about the task and blocks or warns, and an opt-in tool gate scores a Bash or edit call's risk and asks whether a person should approve it. Errors fail open. <sub>(written by a model)</sub>
+  <sub>`Plugin` · g0-0000 · `TS` · `noul` · `score` · `choice` · call site [`jev/client.ts`](https://github.com/g0-0000/pi-subagent-jev/blob/HEAD/jev/client.ts), read by a model 2026-11-21</sub>
 
 - **[system-one-gemma](https://github.com/akash-kamat/system-one-gemma)** — Open-source Jev-style System One decision model. Gemma 3 270M with a scoring head — fast, calibrated decisions in a single forward pass. No text generation. Inspired by TypeSafe.ai's Jev. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · akash-kamat · `Py` · cited file [`system_one.py`](https://github.com/akash-kamat/system-one-gemma/blob/HEAD/system_one.py), read 2026-09-22 · ⚠ `not Jev itself` `no licence`</sub>

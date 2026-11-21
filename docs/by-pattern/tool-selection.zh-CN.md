@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 297 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 300 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 286 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 289 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -504,6 +504,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[agent-fastpath](https://github.com/abhishekswe/agent-fastpath)** — Jev MCP server：给编程智能体的决策层。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · abhishekswe · `TS` · 调用点 [`packages/provider-typesafe/src/client.ts`](https://github.com/abhishekswe/agent-fastpath/blob/HEAD/packages/provider-typesafe/src/client.ts)，2026-09-22 阅读</sub>
 
+- **[agent-reflex](https://github.com/psygreg/agent-reflex)** — 面向八个编程智能体（以 OpenCode 为主）的插件：它向 System One 决策模型提出 noul 和 choice，用来拦截危险的 shell 命令、挑选提示需要的工具组和技能、按复杂度设置推理投入、引导历史压缩，并在智能体拿不定主意时选择工具。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · psygreg · `TS` · `noul` · `choice` · 调用点 [`plugins/opencode/index.ts`](https://github.com/psygreg/agent-reflex/blob/HEAD/plugins/opencode/index.ts)，2026-11-21 模型阅读</sub>
+
 - **[agi-jev-containment](https://github.com/carlosedm10/agi-jev-containment)** — 本地 AI 智能体监控：链路级恶意智能体检测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · carlosedm10 · `Py` · 调用点 [`backend/app/classification/jev.py`](https://github.com/carlosedm10/agi-jev-containment/blob/HEAD/backend/app/classification/jev.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
@@ -536,6 +539,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[deepseek-harness-jev-pre-compaction](https://github.com/wjw66/deepseek-harness-jev-pre-compaction)** — 给 DeepSeek Harness 的压缩前顾问，在标准压缩流程之前运行。 <sub>(机翻)</sub>
   <sub>`开源项目` · wjw66 · `TS` · 调用点 [`src/jev/protocol.ts`](https://github.com/wjw66/deepseek-harness-jev-pre-compaction/blob/HEAD/src/jev/protocol.ts)，2026-09-22 阅读</sub>
+
+- **[Doom in Claude Code](https://github.com/abelardodiaz/doom-in-claude-code)** — 在 Claude Code 面板里玩 Doom（ViZDoom 加 Freedoom）的机器人。Jev 每秒约 2.5 次看屏幕，用 choice 选择去追哪个目标和采用什么战术，并用 noul 回答是否有立即危险、要不要开战；行走、瞄准和战斗由代码完成，Claude 负责规划关卡并解说。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · abelardodiaz · `Py` · `choice` · `noul` · 调用点 [`bridge/jev_pilot.py`](https://github.com/abelardodiaz/doom-in-claude-code/blob/HEAD/bridge/jev_pilot.py)，2026-11-21 模型阅读</sub>
 
 - **[dsh-jev-prune](https://github.com/yangyu666/dsh-jev-prune)** — 给 DeepSeek Harness 的 Jev 判定式上下文压缩：语义化的工具结果裁剪。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · yangyu666 · `JS` · 调用点 [`src/jev.js`](https://github.com/yangyu666/dsh-jev-prune/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
@@ -737,6 +743,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-pong](https://github.com/ably-labs/jev-pong)** — 一个每次模型决策球才走一步的乒乓游戏：Jev 对阵多个 LLM，经由 Vercel AI Gateway。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ably-labs · `TS` · 调用点 [`lib/compare/compare-models.ts`](https://github.com/ably-labs/jev-pong/blob/HEAD/lib/compare/compare-models.ts)，2026-09-24 阅读</sub>
+
+- **[jev-quant](https://github.com/itsadrianxv/jev-quant)** — 一个 C++ 期货交易练手项目：把订单簿、持仓、账户和风控限额发给 Jev，提出两个 choice：做多还是做空的倾向，以及在 1–5 分钟的持有期内开仓、平仓还是持有。它通过 SimNow 和 CTP SDK 交易模拟的上期所期货。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · itsadrianxv · `C++` · `choice` · 调用点 [`src/trading/strategy/jev_http_client.cpp`](https://github.com/itsadrianxv/jev-quant/blob/HEAD/src/trading/strategy/jev_http_client.cpp)，2026-11-21 模型阅读</sub>
 
 - **[jev-ra](https://github.com/brnyxx/jev-ra)** — 给编程智能体的浏览器操作，号称比 browser-use 快 3–5 倍：每一步由 Jev 决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · brnyxx · `Py` · 调用点 [`jev_ra/config.py`](https://github.com/brnyxx/jev-ra/blob/HEAD/jev_ra/config.py)，2026-09-22 阅读</sub>

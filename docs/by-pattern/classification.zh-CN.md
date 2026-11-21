@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 230 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 235 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 218 · 接口形态 3 · 仅示例 0 · 独立报告 24 · 负面结果 2 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 223 · 接口形态 3 · 仅示例 0 · 独立报告 24 · 负面结果 2 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -356,11 +356,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[candidate-experience-benchmark](https://github.com/adambkovacs/candidate-experience-benchmark)** — 基准测试：60 条合成的求职者评价，每条四项 choice 判断（情绪、是否需要跟进、是否报告了严重问题、能否作为推荐语），在固定版本的托管 Jev 上运行，并与其他决策模型和通用 LLM 对比。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · adambkovacs · `Py` · `choice` · 调用点 [`scripts/jev_benchmark.py`](https://github.com/adambkovacs/candidate-experience-benchmark/blob/HEAD/scripts/jev_benchmark.py)，2026-11-14 模型阅读</sub>
 
+- **[Codex Decision](https://github.com/philippelhaus/codex-decision)** — 面向 Codex 的 VS Code 扩展：对长工具输出的每一行用一个 noul 问决策模型，这一行是否包含任务需要的发现，然后缩短输出并链接到原文。它的 MCP 工具还会给上下文候选打分、给测试失败分类、核对完成声明。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · philippelhaus · `Rs` · `noul` · `score` · `choice` · 调用点 [`rust/decision/src/provider.rs`](https://github.com/philippelhaus/codex-decision/blob/HEAD/rust/decision/src/provider.rs)，2026-11-21 模型阅读</sub>
+
 - **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI 自定义节点：根据类型化判断为工作流分支，比如提示词想要哪种风格、是否对儿童过于血腥、是否提到了真实人物；用一个下拉框就能在 Jev、Laya 和 Cloudflare 的 Clef 之间切换后端。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · dante01yoon · `Py` · `choice` · `noul` · `score` · 调用点 [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py)，2026-11-11 模型阅读</sub>
 
 - **[decidekit](https://github.com/debuffjp/decidekit)** — 可在浏览器或 Node 中运行的决策模型：为一段文本从你给的标签里选一个并给出置信度，没把握时向 LLM 学习；它还为 choice 问题提供 TypeSafe SDK 的调用形式（client.systemOne({ state, questions })），让为 Jev 写的代码能在本地运行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · debuffjp · `TS` · 引用文件 [`src/typesafe.ts`](https://github.com/debuffjp/decidekit/blob/HEAD/src/typesafe.ts)，2026-11-13 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
+- **[DeciFlow](https://github.com/call518/deciflow-ai-decision)** — 把来自本地、SSH 或 HDFS 的文本日志和对话记录变成带类型判定的 Web 应用：每个配置对每个事件提出一个分类 choice、一个 score 和一个 noul，保留证据供人复核，之后还可以运行 Python 动作。Jev 是 Laya 之外的付费引擎。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · call518 · `Py` · `choice` · `score` · `noul` · 调用点 [`deciflow/classifier.py`](https://github.com/call518/deciflow-ai-decision/blob/HEAD/deciflow/classifier.py)，2026-11-21 模型阅读</sub>
 
 - **[Decision Lab](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases)** — 一个包含五十个金融演示的网站：就账本、订单、欺诈、钱包、交易和申报文件，把同样的类型化 choice、score 和 noul 发给 Jev，用已知数据给答案打分，并在日 K 线上回测 Jev 的交易决策；录制好的答案无需密钥即可重放。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · IslamBaraka90 · `JS` · `choice` · `noul` · `score` · 调用点 [`src/services/demo-runner.js`](https://github.com/IslamBaraka90/jev-typesafe-real-financial-use-cases/blob/HEAD/src/services/demo-runner.js)，2026-11-10 模型阅读</sub>
@@ -370,6 +376,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[DESIGN:OS Generative UI](https://github.com/jangtrinh/design-os-generative-ui)** — 面向 AI 智能体的流式 UI 运行时，可渲染实时 HTML、图表和 WebGL 组件。它的编排器先问本地 Laya 模型哪个组件和布局适合请求（choice）以及请求是否关于仪表盘、落地页或告警（noul），Laya 没有把握时再把同样的问题发给 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · jangtrinh · `TS` · `choice` · `noul` · 调用点 [`src/engine/jev-adapter.ts`](https://github.com/jangtrinh/design-os-generative-ui/blob/HEAD/src/engine/jev-adapter.ts)，2026-11-18 模型阅读</sub>
+
+- **[DGUI-HyperMem](https://github.com/ctaxnagomi/dgui-hypermem)** — 运行在 Cloudflare Workers 上的自托管长期记忆 MCP 服务器。Jev 给每条新记忆标注类型（choice）、判断它是否值得长期保留（noul）并给重要性打分；召回时用每个候选一个 noul 对向量和全文检索的候选重新排序，还会判断新记忆是否取代旧记忆。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ctaxnagomi · `TS` · `choice` · `noul` · `score` · 调用点 [`src/jev.ts`](https://github.com/ctaxnagomi/dgui-hypermem/blob/HEAD/src/jev.ts)，2026-11-21 模型阅读</sub>
 
 - **[discoprint](https://github.com/lirantal/discoprint)** — 用 Jev 按主题、情绪与歌词复杂度给一位艺人的全部作品分类，并可视化呈现。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · lirantal · `JS` · 调用点 [`src/jev.ts`](https://github.com/lirantal/discoprint/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
@@ -418,6 +427,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[hush](https://github.com/emreozyoruk/hush)** — 不确定时保持沉默的 issue 分拣：校准过的标签，含垃圾与重复检测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · emreozyoruk · `JS` · 调用点 [`src/jev.js`](https://github.com/emreozyoruk/hush/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
+
+- **[inbox-jev](https://github.com/hellolitebox/litebox-inbox-jev)** — Gmail 分拣工具：每隔几分钟对每封新邮件向 Jev 询问类别（choice），并用 noul 判断是否需要回复以及各个已配置的标签，然后打标签、归档、退订或把诈骗邮件移入垃圾箱；没把握的留待复核，并从用户的更正中学习发件人规则。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · hellolitebox · `Py` · `choice` · `noul` · 调用点 [`src/inbox_jev/classifier.py`](https://github.com/hellolitebox/litebox-inbox-jev/blob/HEAD/src/inbox_jev/classifier.py)，2026-11-21 模型阅读</sub>
 
 - **[Jev Benchmark](https://github.com/yididev/jev-benchmark)** — 基于评分细则的零样本分类、链式决策树执行和考试评分基准。每份文档以一个 choice 发给 Jev，criteria 是细则中各文件夹的完整描述，并与两个 Claude 模型、OpenJev 和其他开源权重决策模型比较准确率、校准和价格。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · yididev · `Py` · `choice` · 调用点 [`arms/jev.py`](https://github.com/yididev/jev-benchmark/blob/HEAD/arms/jev.py)，2026-11-18 模型阅读</sub>
@@ -688,6 +700,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[twitter-jev-guard](https://github.com/qs-lll/twitter-jev-guard)** — 使用 TypeSafe Jev 在 X/Twitter 时间线上识别低质量、垃圾和广告帖子，并在文字区域显示醒目的半透明水印。
   <sub>`插件` · qs-lll · `JS` · 调用点 [`extension/background.js`](https://github.com/qs-lll/twitter-jev-guard/blob/HEAD/extension/background.js)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
+
+- **[TypeCheck](https://github.com/jev-engineering/typecheck)** — Discord 审核机器人，前身是 Jev Image Guard。对每条文本或图片规则，它向 Jev 提出若干 noul，例如帖子是否符合该政策、上下文是否充分、是否在宣扬该行为，再用一个 choice 判断作者在做什么；参考图规则则问图片是否与存档的图片相符。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · jev-engineering · `TS` · `noul` · `choice` · 调用点 [`server/jev.ts`](https://github.com/jev-engineering/typecheck/blob/HEAD/server/jev.ts)，2026-11-21 模型阅读</sub>
 
 - **[typesafe-image-diffusion](https://github.com/Wizhill05/typesafe-image-diffusion)** — 用通用分类器做扩散风格像素画：256 个并行像素问题。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · wizhill05 · `TS` · 调用点 [`fix_synthesizer.py`](https://github.com/Wizhill05/typesafe-image-diffusion/blob/HEAD/fix_synthesizer.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
