@@ -12,3 +12,5 @@
 # or changed, a line in declined.txt, or nothing to do, and deletes its line in
 # the same pull request. Nobody else is waited for. A line whose candidate is
 # catalogued or declined is shown as settled until the upkeep deletes it.
+dengyie/decidex  # calls Jev (src/decidex/providers/typesafe.py), but its README and failover.py describe a pool of 1,170+ TypeSafe keys and draining free promotion quota on third-party Jev gateways first; rule 5 (a key pool) or a row with that disclosed
+nefelim584/jev_judge  # calls Jev only to compare it with its own ModernBERT judge (scripts/predict_jev_api.py), and neither the README nor docs/ shows Jev results (rule 4)
