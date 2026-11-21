@@ -192,8 +192,23 @@ class RealCatalogueTest(unittest.TestCase):
 
     def test_the_model_read_backfill_claims_no_reading(self):
         # The fields first filled in on 2026-09-28 were read by a model, so no
-        # row claims a person's reading (read_on) for them.
-        self.assertEqual(len(measurements.unread(CATALOG)), len(measurements.measured(CATALOG)))
+        # row claims a person's reading (read_on) for them. When this test was
+        # written, unread() meant "no read_on". Since 2026-10-24 a model that
+        # reads a report records measurement.model_read_on instead, which
+        # unread() also leaves out: that row moves to the review queue's model
+        # section and is still nobody's reading but a model's.
+        query = measurements.load_query()
+        measured = measurements.measured(CATALOG)
+        by_a_person = [e["slug"] for e in measured if query.read_by(query.measurement_of(e)) == query.PERSON]
+        self.assertEqual(by_a_person, [])
+        self.assertEqual(len(measurements.unread(CATALOG)) + len(measurements.model_read(CATALOG)), len(measured))
+
+    def test_a_model_reading_of_a_report_is_not_a_persons(self):
+        read = with_measurement(model_read_on="2026-09-20")
+        self.assertEqual(measurements.unread([read]), [])
+        self.assertEqual(measurements.model_read([read]), [read])
+        self.assertEqual(measurements.unread([MEASURED]), [MEASURED])
+        self.assertEqual(measurements.model_read([MEASURED]), [])
 
     def test_stats_count_what_the_rows_hold(self):
         stats = _stats.compute()
