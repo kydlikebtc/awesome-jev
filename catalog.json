@@ -101927,6 +101927,79 @@
     ]
   },
   {
+    "slug": "s1cogbench",
+    "title": "S1CogBench",
+    "summary": "Benchmark of decision models on 24 established cognitive experiments. Jev 1.14 answers each trial as a choice, or a noul for probability reports, scored next to four open decision models, three language-model controls and uniform choice, separating acting in the task from predicting human choices.",
+    "summary_source": "model-written",
+    "summary_zh": "在 24 个经典认知实验上评测决策模型。Jev 1.14 逐试次作答，选择题用 choice，概率报告用 noul，与四个开源决策模型、三个语言模型对照和均匀随机选择一起计分，把在任务中行动和预测人类选择分开评估。",
+    "zh_machine": true,
+    "url": "https://github.com/dengzhe-hou/S1CogBench",
+    "repo": "https://github.com/dengzhe-hou/S1CogBench",
+    "kind": "benchmark",
+    "patterns": [
+      "overview"
+    ],
+    "question_types": [
+      "choice",
+      "noul"
+    ],
+    "author": {
+      "name": "Dengzhe Hou",
+      "url": "https://github.com/dengzhe-hou"
+    },
+    "has_code": true,
+    "stars": 0,
+    "repo_license": "MIT",
+    "evidence": {
+      "path": "examples/templates/decision_api_choice.py",
+      "matched": [
+        "typesafe/jev-1.14",
+        "https://openrouter.ai/api/alpha/decisions",
+        "answer.get('type') != 'choice'"
+      ],
+      "model_read_on": "2026-11-20"
+    },
+    "measurement": {
+      "task": "Predict held-out human choices and act autonomously in 24 established cognitive experiments",
+      "datasets": [
+        "24 published cognitive tasks listed in docs/DATA.md"
+      ],
+      "comparators": [
+        "Laya",
+        "Intern-Decision-4B",
+        "Decision-2.0-Nox-4B",
+        "CLM-v0.1-8B",
+        "Llama-3.1-8B-Instruct",
+        "Qwen3.5-4B",
+        "Minitaur-8B",
+        "uniform choice"
+      ],
+      "metrics": [
+        "accuracy",
+        "task-success",
+        "calibration",
+        "latency"
+      ],
+      "as_of": "2026-11-14",
+      "report": "https://arxiv.org/abs/2611.00911",
+      "model_read_on": "2026-11-20"
+    },
+    "flags": [
+      "self-submitted"
+    ],
+    "notes": "Submitted by the first author. Paper arXiv:2611.00911 (v2, 14 Nov 2026). Jev answers in a median of 0.35 seconds over all 27 modes. The paper reports Jev task by task and does not state an overall verdict on it. Drafted with an AI coding assistant and reviewed by the author.",
+    "sources": [
+      {
+        "catalog": "author submission",
+        "url": "https://github.com/kydlikebtc/awesome-jev/pull/134"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ]
+  },
+  {
     "slug": "s1mb",
     "title": "S1MB (System One Mosaic Benchmark)",
     "summary": "Benchmark that puts System One decision models, Jev among them, through the same 100+ English, Japanese and vision tasks as choice, noul and score questions, with a public leaderboard. Its TypeSafe adapter sends each case to Jev's /v1/systemone; other adapters cover open and hosted rivals.",
