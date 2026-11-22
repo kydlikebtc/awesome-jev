@@ -14,3 +14,5 @@
 # catalogued or declined is shown as settled until the upkeep deletes it.
 dengyie/decidex  # calls Jev (src/decidex/providers/typesafe.py), but its README and failover.py describe a pool of 1,170+ TypeSafe keys and draining free promotion quota on third-party Jev gateways first; rule 5 (a key pool) or a row with that disclosed
 nefelim584/jev_judge  # calls Jev only to compare it with its own ModernBERT judge (scripts/predict_jev_api.py), and neither the README nor docs/ shows Jev results (rule 4)
+maxtrezzi/jev4s  # Scala client that calls Jev (scala3/src/main/scala/io/github/maxtrezzi/jev4s/Transport.scala, default https://api.typesafe.ai), but the schema's languages list has no Scala, so a row would name no language; rule 8: add scala to the list or draft the row without one
+smha1012/jev-torch  # trains open models on Jev's published output distributions and compares them with Jev's published predictions; no call to Jev and no /v1/systemone surface (rule 6)
