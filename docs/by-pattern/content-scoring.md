@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 209 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 213 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 200 · wire shape 5 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 204 · wire shape 5 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -296,6 +296,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[anofox-decide](https://github.com/DataZooDE/anofox-decide)** — DuckDB extension that asks decision models from SQL: noul, choice and score functions run over table rows concurrently, and decide_answers sends several questions about one text in a single request. Jev on TypeSafe is one of its remote providers. <sub>(written by a model)</sub>
   <sub>`Plugin` · DataZooDE · `C++` · `noul` · `choice` · `score` · call site [`src/decide_remote.cpp`](https://github.com/DataZooDE/anofox-decide/blob/HEAD/src/decide_remote.cpp), read by a model 2026-11-17</sub>
 
+- **[arxiv-jev-digest](https://github.com/monkeypox966/arxiv-jev-digest)** — Daily arXiv digest that asks Jev one noul per configured interest and one per exclusion about each new paper, keeps the papers that clear the thresholds and then has another model summarise them. It runs on a schedule in GitHub Actions. <sub>(written by a model)</sub>
+  <sub>`Project` · monkeypox966 · `Py` · `noul` · call site [`src/arxiv_digest/clients.py`](https://github.com/monkeypox966/arxiv-jev-digest/blob/HEAD/src/arxiv_digest/clients.py), read by a model 2026-11-22</sub>
+
 - **[aside-jev](https://github.com/himomohi/aside-jev)** — Aside agents decide with TypeSafe Jev (System One: Choice/Score/Noul). Not a Cua binding — Jev is the model, Aside is the browser runtime. <sub>(upstream description)</sub>
   <sub>`SDK` · himomohi · `Py` · call site [`src/aside_jev/jev.py`](https://github.com/himomohi/aside-jev/blob/HEAD/src/aside_jev/jev.py), read 2026-09-22</sub>
 
@@ -307,6 +310,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[book-aurora](https://github.com/dani1005/book-aurora)** — Jev reads a whole novel in seconds. Every passage becomes a row of colour. <sub>(upstream description)</sub>
   <sub>`Project` · dani1005 · `TS` · call site [`server/jev.ts`](https://github.com/dani1005/book-aurora/blob/HEAD/server/jev.ts), read 2026-09-24</sub>
+
+- **[Call Coach](https://github.com/byrondarlison/call-coach)** — Live checklist for interviews and discovery calls on a Mac. After each transcribed turn Jev chooses which listed question was asked, asks nouls for whether each question is answered and whether an answer is worth a follow-up, and notices when the call is wrapping up. <sub>(written by a model)</sub>
+  <sub>`Project` · byrondarlison · `Py` · `Swift` · `noul` · `choice` · call site [`callcoach/jev.py`](https://github.com/byrondarlison/call-coach/blob/HEAD/callcoach/jev.py), read by a model 2026-11-22</sub>
 
 - **[clarity-judge](https://github.com/TypeSafeAI/clarity-judge)** — Multi-axis writing quality checker powered by TypeSafe AI's Jev model. Separate named checks, each with its own verdict and confidence. <sub>(upstream description)</sub>
   <sub>`Project` · bunsdev · `TS` · call site [`lib/jevClient.ts`](https://github.com/TypeSafeAI/clarity-judge/blob/HEAD/lib/jevClient.ts), read 2026-09-24 · ⚠ `no licence`</sub>
@@ -362,6 +368,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[gpt-vs-jev](https://github.com/TanayPadar/gpt-vs-jev)** — Compare GPT generated language with JEV structured Noul decisions on the same input. <sub>(upstream description)</sub>
   <sub>`Project` · tanaypadar · `TS` · call site [`lib/jev.ts`](https://github.com/TanayPadar/gpt-vs-jev/blob/HEAD/lib/jev.ts), read 2026-09-22 · ⚠ `one commit`</sub>
 
+- **[grokbot-jev-jobs](https://github.com/mcgalleg/grokbot-jev-jobs)** — Job search pipeline that scores public postings against a resume with Jev: a title-only triage, then fourteen questions over the full posting (choices, scores and yes/no blockers) that code combines into one score. Pre-sales roles are ignored; an Apply button hands a posting to a form-filling bot. <sub>(written by a model)</sub>
+  <sub>`Project` · mcgalleg · `TS` · `choice` · `score` · `noul` · call site [`lib/jev/model.ts`](https://github.com/mcgalleg/grokbot-jev-jobs/blob/HEAD/lib/jev/model.ts), read by a model 2026-11-22 · ⚠ `no licence`</sub>
+
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — Observable browser stealth game: Jev makes typed guard judgments while deterministic code owns the world. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts), read 2026-09-22</sub>
 
@@ -385,6 +394,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev PR Quality](https://github.com/rawtreedb/jev-pr-quality)** — GitHub Action that reviews each pull request's diff with Jev across 19 software-quality dimensions: per dimension a noul on whether it applies, a score from 1 to 10 and a choice of its worst weakness; it comments on the PR and fails the check below your threshold. <sub>(written by a model)</sub>
   <sub>`Project` · rawtreedb · `JS` · `noul` · `score` · `choice` · call site [`scripts/jev-review/review.mjs`](https://github.com/rawtreedb/jev-pr-quality/blob/HEAD/scripts/jev-review/review.mjs), read by a model 2026-11-10</sub>
+
+- **[Jev Tweet Radar](https://github.com/ddnim/jev-tweet-radar)** — Chrome extension that asks Jev once per post on the X timeline a set of nouls, such as worth engaging against your goal, likely to go viral, spam or AI-written, and shows the probabilities beside the avatar; it can fade posts that match a filter and also scores your own drafts and replies. <sub>(written by a model)</sub>
+  <sub>`Project` · ddnim · `JS` · `noul` · call site [`background.js`](https://github.com/ddnim/jev-tweet-radar/blob/HEAD/background.js), read by a model 2026-11-22</sub>
 
 - **[Jev × DimABSA](https://github.com/zhangyiqun018/jev-dimabsa)** — SemEval-2026 Task 3 (DimABSA) system built on Jev alone, without generation or fine-tuning: scores place each aspect's valence and arousal on a 1 to 9 scale, and choices and nouls pull out aspect, opinion and category triplets and quadruplets. <sub>(written by a model)</sub>
   <sub>`Benchmark` · zhangyiqun018 · `Py` · `score` · `choice` · `noul` · call site [`jev/client.py`](https://github.com/zhangyiqun018/jev-dimabsa/blob/HEAD/jev/client.py), read by a model 2026-11-10 · ⚠ `no licence`</sub>

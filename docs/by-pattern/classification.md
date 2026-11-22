@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 235 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 237 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 223 · wire shape 3 · example only 0 · independent reports 24 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 225 · wire shape 3 · example only 0 · independent reports 24 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -353,6 +353,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[c9r plugins (browser-check, soft-lint)](https://github.com/c9r-dev/plugins)** — Claude Code and Codex plugins that use Jev as their classifier: browser-check runs a plain-English checklist in a real browser, asking which element each step means (choice) and whether each check holds (noul); soft-lint asks yes/no rules about the lines a diff adds. <sub>(written by a model)</sub>
   <sub>`Plugin` · c9r-dev · `TS` · `choice` · `noul` · call site [`shared/classifier.ts`](https://github.com/c9r-dev/plugins/blob/HEAD/shared/classifier.ts), read by a model 2026-11-13</sub>
 
+- **[Call Coach](https://github.com/byrondarlison/call-coach)** — Live checklist for interviews and discovery calls on a Mac. After each transcribed turn Jev chooses which listed question was asked, asks nouls for whether each question is answered and whether an answer is worth a follow-up, and notices when the call is wrapping up. <sub>(written by a model)</sub>
+  <sub>`Project` · byrondarlison · `Py` · `Swift` · `noul` · `choice` · call site [`callcoach/jev.py`](https://github.com/byrondarlison/call-coach/blob/HEAD/callcoach/jev.py), read by a model 2026-11-22</sub>
+
 - **[candidate-experience-benchmark](https://github.com/adambkovacs/candidate-experience-benchmark)** — Benchmark of 60 synthetic candidate reviews, each with four choice judgments (sentiment, whether follow-up is needed, whether a serious concern is reported, testimonial potential), run on pinned hosted Jev against other decision models and general LLMs. <sub>(written by a model)</sub>
   <sub>`Benchmark` · adambkovacs · `Py` · `choice` · call site [`scripts/jev_benchmark.py`](https://github.com/adambkovacs/candidate-experience-benchmark/blob/HEAD/scripts/jev_benchmark.py), read by a model 2026-11-14</sub>
 
@@ -409,6 +412,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[github-issue-classification-using-jev](https://github.com/KalyanM45/GitHub-Issue-Classification-Using-Jev)** — This repository contains a GitHub issue classifier built on Jev, TypeSafe AI's System One model. It labels every new issue with typed values and calibrated confidence in milliseconds, labelling what it is sure about and escalating what it is not. Three guardrail layers guard every write, and a
   <sub>`Project` · kalyanm45 · `Py` · call site [`src/ghtriage/adapters/typesafe.py`](https://github.com/KalyanM45/GitHub-Issue-Classification-Using-Jev/blob/HEAD/src/ghtriage/adapters/typesafe.py), read 2026-09-22 · ⚠ `one commit`</sub>
+
+- **[grokbot-jev-jobs](https://github.com/mcgalleg/grokbot-jev-jobs)** — Job search pipeline that scores public postings against a resume with Jev: a title-only triage, then fourteen questions over the full posting (choices, scores and yes/no blockers) that code combines into one score. Pre-sales roles are ignored; an Apply button hands a posting to a form-filling bot. <sub>(written by a model)</sub>
+  <sub>`Project` · mcgalleg · `TS` · `choice` · `score` · `noul` · call site [`lib/jev/model.ts`](https://github.com/mcgalleg/grokbot-jev-jobs/blob/HEAD/lib/jev/model.ts), read by a model 2026-11-22 · ⚠ `no licence`</sub>
 
 - **[guard-jev](https://github.com/NorbertBodziony/guard-jev)** — A text-moderation demo: one systemOne call screens seven Noul hazards and one severity Score in parallel, and the verdict is computed in code from policy thresholds.
   <sub>`Project` · norbertbodziony · `TS` · call site [`app/api/moderate/route.ts`](https://github.com/NorbertBodziony/guard-jev/blob/HEAD/app/api/moderate/route.ts), read 2026-09-24 · ⚠ `one commit` `no licence`</sub>

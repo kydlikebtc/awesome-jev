@@ -4,11 +4,11 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 111 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 112 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#human-escalation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 96 · wire shape 5 · example only 0 · independent reports 11 · negative results 1 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 97 · wire shape 5 · example only 0 · independent reports 11 · negative results 1 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -225,6 +225,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[JEV AgentNetwork](https://github.com/Kelly-Leeee/AgentNetwork-jev)** — Event-driven network of general-purpose agents: whenever an agent finishes, the router sends Jev the pending work, recent results and which agents are idle, and asks one choice of next action: assign the work to a named agent, finish, or ask a person. <sub>(written by a model)</sub>
   <sub>`Project` · Kelly-Leeee · `Py` · `choice` · call site [`agentrouter/team.py`](https://github.com/Kelly-Leeee/AgentNetwork-jev/blob/HEAD/agentrouter/team.py), read by a model 2026-11-16 · ⚠ `3rd-party key`</sub>
+
+- **[JEV Fuse](https://github.com/0xshikhar/jev-fuse)** — Proxy between coding agents and a decision model that turns probabilities into actions. Shell commands pass a denylist and an allowlist; the rest get four nouls (destroys data or history, leaks secrets, weakens security), and doubtful ones ask the user. Its MCP tools also route and prune context. <sub>(written by a model)</sub>
+  <sub>`Project` · 0xshikhar · `Py` · `noul` · `choice` · call site [`src/jevfuse/provider/jev.py`](https://github.com/0xshikhar/jev-fuse/blob/HEAD/src/jevfuse/provider/jev.py), read by a model 2026-11-22</sub>
 
 - **[Jev vs. the right baselines](https://github.com/ickma2311/jev-baselines-eval)** — Two pre-registered studies: Jev classifies customer intents on CLINC150 and Banking77 as a choice, as the gate of an escalation cascade, against LLMs and a supervised encoder; the second asks whether, under prompt injection, Jev's confidence separates hijacked decisions from resisted ones. <sub>(written by a model)</sub>
   <sub>`Benchmark` · ickma2311 · `Py` · `choice` · `noul` · call site [`code/common.py`](https://github.com/ickma2311/jev-baselines-eval/blob/HEAD/code/common.py), read by a model 2026-11-10</sub>

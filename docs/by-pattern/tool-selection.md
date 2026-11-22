@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 300 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 301 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 289 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 290 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -590,6 +590,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev Civilizations](https://github.com/JonesSteven/jev_civilization)** — Small strategy game with a live demo: four tribes run their own lives while you only change the environment. Each turn Jev picks one action per tribe as a choice over the moves that are actually legal, a plain game engine works out the results, and an inspector shows what Jev was told. <sub>(written by a model)</sub>
   <sub>`Project` · jonessteven · `TS` · `choice` · call site [`scripts/probe-jev.ts`](https://github.com/JonesSteven/jev_civilization/blob/HEAD/scripts/probe-jev.ts), read by a model 2026-10-24</sub>
+
+- **[Jev Harness (Apixly)](https://github.com/apixly-ai/jev-harness)** — Runs task scripts another AI writes for open goals: the script defines tools, parameter providers and completion checks, and at each step Jev reads the goal, new state and history and chooses the next tool and its arguments, or review when unsure. Code runs the step and checks completion. <sub>(written by a model)</sub>
+  <sub>`Project` · apixly-ai · `Py` · `choice` · call site [`src/apixly_jev_harness/backend.py`](https://github.com/apixly-ai/jev-harness/blob/HEAD/src/apixly_jev_harness/backend.py), read by a model 2026-11-22</sub>
 
 - **[JEV Orchestrator](https://github.com/hiyoku/jev-orc)** — Claude Code plugin that sends every Agent spawn through Jev: two scores (how hard the task is, how much reasoning it needs) and nouls (does it edit files, run shell commands, need the web, library docs or a browser) pick the subagent's model, effort and tool profile. <sub>(written by a model)</sub>
   <sub>`Plugin` · hiyoku · `TS` · `score` · `noul` · call site [`src/jev/client.ts`](https://github.com/hiyoku/jev-orc/blob/HEAD/src/jev/client.ts), read by a model 2026-11-13</sub>

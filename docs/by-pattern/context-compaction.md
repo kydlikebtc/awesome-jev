@@ -4,11 +4,11 @@
 
 _Decide which tool calls and results still matter so stale context can be dropped._
 
-Every catalogued example of this decision — 58 of them. The same rows, with caveats, are in [the index](../../README.md#context-compaction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 59 of them. The same rows, with caveats, are in [the index](../../README.md#context-compaction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#context-compaction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 58 · wire shape 0 · example only 0 · independent reports 2 · negative results 2 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 59 · wire shape 0 · example only 0 · independent reports 2 · negative results 2 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -136,6 +136,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev Codex Token Saver](https://github.com/jcressler/jev-codex-token-saver)** — Codex plugin whose MCP server searches the workspace or groups a large log locally, then asks Jev one noul per candidate excerpt on whether it holds evidence for the query and for each stated requirement, and returns only the selected exact excerpts to Codex. <sub>(written by a model)</sub>
   <sub>`Plugin` · jcressler · `JS` · `noul` · call site [`src/investigator.mjs`](https://github.com/jcressler/jev-codex-token-saver/blob/HEAD/src/investigator.mjs), read by a model 2026-11-10</sub>
+
+- **[JEV Fuse](https://github.com/0xshikhar/jev-fuse)** — Proxy between coding agents and a decision model that turns probabilities into actions. Shell commands pass a denylist and an allowlist; the rest get four nouls (destroys data or history, leaks secrets, weakens security), and doubtful ones ask the user. Its MCP tools also route and prune context. <sub>(written by a model)</sub>
+  <sub>`Project` · 0xshikhar · `Py` · `noul` · `choice` · call site [`src/jevfuse/provider/jev.py`](https://github.com/0xshikhar/jev-fuse/blob/HEAD/src/jevfuse/provider/jev.py), read by a model 2026-11-22</sub>
 
 - **[JEV Research MCP](https://github.com/merth1470/jev-research-mcp)** — Self-hosted MCP server for coding-agent web research: it searches, asks Jev one noul per search result whether to fetch it, parses the pages into blocks, asks again per block whether it is useful evidence, and returns compact evidence with its sources within a token budget. <sub>(written by a model)</sub>
   <sub>`Plugin` · merth1470 · `Py` · `noul` · call site [`src/jev_research_mcp/jev/http_provider.py`](https://github.com/merth1470/jev-research-mcp/blob/HEAD/src/jev_research_mcp/jev/http_provider.py), read by a model 2026-11-18 · ⚠ `3rd-party key`</sub>

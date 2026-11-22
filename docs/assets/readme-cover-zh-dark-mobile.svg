@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="560" viewBox="0 0 600 560" role="img" aria-labelledby="title description">
 <title id="title">awesome-jev · Jev Launches</title>
-<desc id="description">Jev 发布榜：1,292 个用 Jev 做的产品、1,125 位 Maker、1,403 条调用点引用记录。数字来自保存的记录，不代表当前链接可用或运行与性能测试通过。</desc>
+<desc id="description">Jev 发布榜：1,303 个用 Jev 做的产品、1,135 位 Maker、1,417 条调用点引用记录。数字来自保存的记录，不代表当前链接可用或运行与性能测试通过。</desc>
 <style>text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;fill:#e6edf3}.mono{font-family:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace}.muted{fill:#9198a1}.faint{fill:#8b949e}.accent{fill:#f5a524}</style>
 <defs>
 <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity=".045"/></pattern>
@@ -16,11 +16,11 @@
 <text x="36" y="196" font-size="26" class="muted">用 Jev 做的产品，每周发布一次。</text>
 <text x="36" y="232" font-size="26" class="accent" font-weight="500">投票之后，再看证据。</text>
 <path d="M36 272H564" stroke="#30363d"/>
-<text x="36" y="322" font-size="34" class="mono accent" font-weight="600" letter-spacing="-1">1,292</text>
+<text x="36" y="322" font-size="34" class="mono accent" font-weight="600" letter-spacing="-1">1,303</text>
 <text x="36" y="355" font-size="19" class="muted">产品</text>
-<text x="216" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,125</text>
+<text x="216" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,135</text>
 <text x="216" y="355" font-size="19" class="muted">Maker</text>
-<text x="396" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,403</text>
+<text x="396" y="322" font-size="34" class="mono" font-weight="600" letter-spacing="-1">1,417</text>
 <text x="396" y="355" font-size="19" class="muted">调用点记录</text>
 <rect x="36" y="392" width="528" height="132" rx="12" fill="#121821" stroke="#30363d"/>
 <text x="56" y="424" font-size="13" class="mono faint" letter-spacing="1.2">上升最快 · 本周星标</text>
@@ -29,11 +29,11 @@
 <text x="114.03999999999999" y="452" font-size="15" class="mono" font-weight="600">optim-jev</text>
 <text x="207.74" y="452" font-size="13" class="muted">Claude Code 插件（也支持 Codex），包含三个向 Jev…</text>
 <polygon points="62.0,467.8 63.3,471.2 67.0,471.4 64.1,473.7 65.1,477.2 62.0,475.2 58.9,477.2 59.9,473.7 57.0,471.4 60.7,471.2" fill="#f5a524"/>
-<text x="78" y="478" font-size="14" class="mono accent" font-weight="600">+248</text>
-<text x="122.72" y="478" font-size="15" class="mono" font-weight="600">jev-seo</text>
-<text x="197.82" y="478" font-size="13" class="muted">从一个首页网址出发的 SEO 审计：抓取整站，检查 52 条…</text>
+<text x="78" y="478" font-size="14" class="mono accent" font-weight="600">+383</text>
+<text x="122.72" y="478" font-size="15" class="mono" font-weight="600">celesto</text>
+<text x="197.82" y="478" font-size="13" class="muted">给 AI 智能体的安全持久化计算环境。</text>
 <polygon points="62.0,493.8 63.3,497.2 67.0,497.4 64.1,499.7 65.1,503.2 62.0,501.2 58.9,503.2 59.9,499.7 57.0,497.4 60.7,497.2" fill="#f5a524"/>
-<text x="78" y="504" font-size="14" class="mono accent" font-weight="600">+383</text>
-<text x="122.72" y="504" font-size="15" class="mono" font-weight="600">celesto</text>
-<text x="197.82" y="504" font-size="13" class="muted">给 AI 智能体的安全持久化计算环境。</text>
+<text x="78" y="504" font-size="14" class="mono accent" font-weight="600">+20</text>
+<text x="114.03999999999999" y="504" font-size="15" class="mono" font-weight="600">OnlyRead</text>
+<text x="198.44" y="504" font-size="13" class="muted">让浏览器里的 AI 智能体在你选定的网站上只能读不能写…</text>
 </svg>

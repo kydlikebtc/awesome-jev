@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 209 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 213 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 200 · 接口形态 5 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 204 · 接口形态 5 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -296,6 +296,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[anofox-decide](https://github.com/DataZooDE/anofox-decide)** — DuckDB 扩展，可在 SQL 里调用决策模型：noul、choice、score 函数并发作用于表中各行，decide_answers 则把关于同一段文本的多个问题放进一个请求。TypeSafe 上的 Jev 是它的远程提供方之一。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · DataZooDE · `C++` · `noul` · `choice` · `score` · 调用点 [`src/decide_remote.cpp`](https://github.com/DataZooDE/anofox-decide/blob/HEAD/src/decide_remote.cpp)，2026-11-17 模型阅读</sub>
 
+- **[arxiv-jev-digest](https://github.com/monkeypox966/arxiv-jev-digest)** — 每日 arXiv 摘要：对每篇新论文，按配置的每个兴趣和每个排除条件各向 Jev 提一个 noul，保留超过阈值的论文，再交给另一个模型写摘要。它在 GitHub Actions 上定时运行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · monkeypox966 · `Py` · `noul` · 调用点 [`src/arxiv_digest/clients.py`](https://github.com/monkeypox966/arxiv-jev-digest/blob/HEAD/src/arxiv_digest/clients.py)，2026-11-22 模型阅读</sub>
+
 - **[aside-jev](https://github.com/himomohi/aside-jev)** — 让 Aside 智能体用 Jev 做决策（Choice／Score／Noul）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · himomohi · `Py` · 调用点 [`src/aside_jev/jev.py`](https://github.com/himomohi/aside-jev/blob/HEAD/src/aside_jev/jev.py)，2026-09-22 阅读</sub>
 
@@ -307,6 +310,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[book-aurora](https://github.com/dani1005/book-aurora)** — Jev 几秒钟读完一整本小说，每个段落都变成一行颜色。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · dani1005 · `TS` · 调用点 [`server/jev.ts`](https://github.com/dani1005/book-aurora/blob/HEAD/server/jev.ts)，2026-09-24 阅读</sub>
+
+- **[Call Coach](https://github.com/byrondarlison/call-coach)** — Mac 上用于面试和需求访谈的实时清单。每段转写完成后，Jev 选出问的是清单上的哪个问题，用 noul 判断每个问题是否已被回答、某个回答是否值得追问，并察觉通话是否要结束。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · byrondarlison · `Py` · `Swift` · `noul` · `choice` · 调用点 [`callcoach/jev.py`](https://github.com/byrondarlison/call-coach/blob/HEAD/callcoach/jev.py)，2026-11-22 模型阅读</sub>
 
 - **[clarity-judge](https://github.com/TypeSafeAI/clarity-judge)** — 由 TypeSafe AI Jev 模型驱动的多维度写作质量检查器：每项检查独立命名，各自给出结论。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · bunsdev · `TS` · 调用点 [`lib/jevClient.ts`](https://github.com/TypeSafeAI/clarity-judge/blob/HEAD/lib/jevClient.ts)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
@@ -362,6 +368,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[gpt-vs-jev](https://github.com/TanayPadar/gpt-vs-jev)** — 在同一输入上对比 GPT 的生成式语言与 JEV 的结构化 Noul 决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tanaypadar · `TS` · 调用点 [`lib/jev.ts`](https://github.com/TanayPadar/gpt-vs-jev/blob/HEAD/lib/jev.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
+- **[grokbot-jev-jobs](https://github.com/mcgalleg/grokbot-jev-jobs)** — 求职流水线，用 Jev 按简历给公开职位打分：先只看标题做一次初筛，再对完整职位描述提出十四个问题（choice、score 和是否有硬性障碍的是非题），由代码合成一个分数。售前岗位会被忽略，点 Apply 按钮会把职位交给一个填表机器人。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · mcgalleg · `TS` · `choice` · `score` · `noul` · 调用点 [`lib/jev/model.ts`](https://github.com/mcgalleg/grokbot-jev-jobs/blob/HEAD/lib/jev/model.ts)，2026-11-22 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — 可观测的浏览器潜行游戏：Jev 做类型化的守卫判断，确定性代码掌管世界规则。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts)，2026-09-22 阅读</sub>
 
@@ -385,6 +394,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev PR Quality](https://github.com/rawtreedb/jev-pr-quality)** — 用 Jev 审查每个 pull request 的 GitHub Action：在 19 个软件质量维度上，每个维度用 noul 判断是否适用，用 score 打 1 到 10 分，再用 choice 选出最严重的缺陷；它在 PR 上发评论，任何维度低于阈值时检查失败。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · rawtreedb · `JS` · `noul` · `score` · `choice` · 调用点 [`scripts/jev-review/review.mjs`](https://github.com/rawtreedb/jev-pr-quality/blob/HEAD/scripts/jev-review/review.mjs)，2026-11-10 模型阅读</sub>
+
+- **[Jev Tweet Radar](https://github.com/ddnim/jev-tweet-radar)** — Chrome 扩展：对 X 时间线上的每条帖子调用 Jev 一次，提出一组 noul，例如按你的目标是否值得互动、是否会火、是否垃圾或 AI 写的，并把概率显示在头像旁；它可以把符合过滤条件的帖子调淡，也会给你自己的草稿和回复打分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ddnim · `JS` · `noul` · 调用点 [`background.js`](https://github.com/ddnim/jev-tweet-radar/blob/HEAD/background.js)，2026-11-22 模型阅读</sub>
 
 - **[Jev × DimABSA](https://github.com/zhangyiqun018/jev-dimabsa)** — 只用 Jev、不生成文本也不微调的 SemEval-2026 任务 3（DimABSA）参赛系统：用 score 把每个方面词的效价和唤醒度放到 1 到 9 的刻度上，再用 choice 和 noul 抽取方面词、观点词和类别组成的三元组与四元组。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · zhangyiqun018 · `Py` · `score` · `choice` · `noul` · 调用点 [`jev/client.py`](https://github.com/zhangyiqun018/jev-dimabsa/blob/HEAD/jev/client.py)，2026-11-10 模型阅读 · ⚠ `无许可证`</sub>

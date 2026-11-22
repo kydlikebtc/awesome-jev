@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 192 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 193 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 184 · wire shape 4 · example only 0 · independent reports 15 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 185 · wire shape 4 · example only 0 · independent reports 15 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -340,6 +340,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev for QA / SDET demos](https://github.com/gauravkhuraana/jev-qa-demos)** — Demo code for a video on Jev for testers, through Vercel AI Gateway and the AI SDK: it triages failed CI tests by root cause (choice), release impact (score) and whether a retry will pass (noul), and uses nouls to screen an agent's commands and to check that a RAG answer is grounded. <sub>(written by a model)</sub>
   <sub>`Tutorial` · gauravkhuraana · `TS` · `choice` · `score` · `noul` · call site [`src/lib/triage.ts`](https://github.com/gauravkhuraana/jev-qa-demos/blob/HEAD/src/lib/triage.ts), read by a model 2026-11-20 · ⚠ `no licence`</sub>
+
+- **[JEV Fuse](https://github.com/0xshikhar/jev-fuse)** — Proxy between coding agents and a decision model that turns probabilities into actions. Shell commands pass a denylist and an allowlist; the rest get four nouls (destroys data or history, leaks secrets, weakens security), and doubtful ones ask the user. Its MCP tools also route and prune context. <sub>(written by a model)</sub>
+  <sub>`Project` · 0xshikhar · `Py` · `noul` · `choice` · call site [`src/jevfuse/provider/jev.py`](https://github.com/0xshikhar/jev-fuse/blob/HEAD/src/jevfuse/provider/jev.py), read by a model 2026-11-22</sub>
 
 - **[Jev Router](https://github.com/AIAnytime/Jev-Router)** — OpenAI-compatible router that asks Jev, in one call, which eligible model fits a request (choice), how demanding it is (score), whether it needs a frontier model (noul) and the task kind (choice), optionally with guardrail nouls and which tools are relevant; a policy engine then picks the model. <sub>(written by a model)</sub>
   <sub>`Project` · AIAnytime · `Py` · `choice` · `score` · `noul` · call site [`jev_router/engine/jev_client.py`](https://github.com/AIAnytime/Jev-Router/blob/HEAD/jev_router/engine/jev_client.py), read by a model 2026-11-13</sub>

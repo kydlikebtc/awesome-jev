@@ -4,11 +4,11 @@
 
 _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 
-这个决策的全部已收录例子 —— 共 58 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#上下文压缩)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 59 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#上下文压缩)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#context-compaction)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#context-compaction)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 58 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 2 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 59 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 2 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -136,6 +136,9 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 
 - **[Jev Codex Token Saver](https://github.com/jcressler/jev-codex-token-saver)** — Codex 插件：它的 MCP 服务器在本地搜索工作区或给大日志分组，然后对每段候选摘录问 Jev 一个 noul，判断其中是否有回答查询、满足每项需求的证据，只把选中的原文摘录返回给 Codex。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · jcressler · `JS` · `noul` · 调用点 [`src/investigator.mjs`](https://github.com/jcressler/jev-codex-token-saver/blob/HEAD/src/investigator.mjs)，2026-11-10 模型阅读</sub>
+
+- **[JEV Fuse](https://github.com/0xshikhar/jev-fuse)** — 位于编码智能体和决策模型之间的代理，把概率变成动作。Shell 命令先过禁止名单和允许名单；其余命令要回答四个 noul（是否毁掉数据或历史、泄露密钥、削弱安全），落在不确定区间的就去问用户。它的 MCP 工具还能做路由和上下文裁剪。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · 0xshikhar · `Py` · `noul` · `choice` · 调用点 [`src/jevfuse/provider/jev.py`](https://github.com/0xshikhar/jev-fuse/blob/HEAD/src/jevfuse/provider/jev.py)，2026-11-22 模型阅读</sub>
 
 - **[JEV Research MCP](https://github.com/merth1470/jev-research-mcp)** — 自托管的 MCP 服务器，用于编码智能体的网络调研：先搜索，再对每条搜索结果向 Jev 提一个 noul 决定是否抓取，把页面解析成块后再逐块询问是否是有用的证据，最后在 token 预算内返回带来源的精简证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · merth1470 · `Py` · `noul` · 调用点 [`src/jev_research_mcp/jev/http_provider.py`](https://github.com/merth1470/jev-research-mcp/blob/HEAD/src/jev_research_mcp/jev/http_provider.py)，2026-11-18 模型阅读 · ⚠ `需第三方密钥`</sub>

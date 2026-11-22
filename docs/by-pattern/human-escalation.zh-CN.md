@@ -4,11 +4,11 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 111 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 112 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#human-escalation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#human-escalation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 96 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 97 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -225,6 +225,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[JEV AgentNetwork](https://github.com/Kelly-Leeee/AgentNetwork-jev)** — 事件驱动的通用智能体网络：每当一个智能体完成任务，路由器就把待办工作、最近结果和空闲的智能体发给 Jev，问一个 choice 决定下一步：分配给某个智能体、结束，或者交给人处理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · Kelly-Leeee · `Py` · `choice` · 调用点 [`agentrouter/team.py`](https://github.com/Kelly-Leeee/AgentNetwork-jev/blob/HEAD/agentrouter/team.py)，2026-11-16 模型阅读 · ⚠ `需第三方密钥`</sub>
+
+- **[JEV Fuse](https://github.com/0xshikhar/jev-fuse)** — 位于编码智能体和决策模型之间的代理，把概率变成动作。Shell 命令先过禁止名单和允许名单；其余命令要回答四个 noul（是否毁掉数据或历史、泄露密钥、削弱安全），落在不确定区间的就去问用户。它的 MCP 工具还能做路由和上下文裁剪。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · 0xshikhar · `Py` · `noul` · `choice` · 调用点 [`src/jevfuse/provider/jev.py`](https://github.com/0xshikhar/jev-fuse/blob/HEAD/src/jevfuse/provider/jev.py)，2026-11-22 模型阅读</sub>
 
 - **[Jev vs. the right baselines](https://github.com/ickma2311/jev-baselines-eval)** — 两项预注册的独立研究：Jev 以 choice 在 CLINC150 和 Banking77 上分类客户意图，作为升级级联的关卡，与小型和前沿大模型以及有监督编码器对比；第二项研究检验在提示注入下，Jev 的置信度能否区分被劫持的决策和抵抗住的决策。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ickma2311 · `Py` · `choice` · `noul` · 调用点 [`code/common.py`](https://github.com/ickma2311/jev-baselines-eval/blob/HEAD/code/common.py)，2026-11-10 模型阅读</sub>

@@ -4,11 +4,11 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 192 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 193 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#safety-gating)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#safety-gating)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 184 · 接口形态 4 · 仅示例 0 · 独立报告 15 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 185 · 接口形态 4 · 仅示例 0 · 独立报告 15 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -340,6 +340,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev for QA / SDET demos](https://github.com/gauravkhuraana/jev-qa-demos)** — 面向测试人员的 Jev 视频演示代码，经 Vercel AI Gateway 和 AI SDK 调用：按根因（choice）、对发布的影响（score）以及重试能否通过（noul）分诊失败的 CI 测试，并用 noul 审查智能体要执行的命令、检查 RAG 回答是否有依据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`教程` · gauravkhuraana · `TS` · `choice` · `score` · `noul` · 调用点 [`src/lib/triage.ts`](https://github.com/gauravkhuraana/jev-qa-demos/blob/HEAD/src/lib/triage.ts)，2026-11-20 模型阅读 · ⚠ `无许可证`</sub>
+
+- **[JEV Fuse](https://github.com/0xshikhar/jev-fuse)** — 位于编码智能体和决策模型之间的代理，把概率变成动作。Shell 命令先过禁止名单和允许名单；其余命令要回答四个 noul（是否毁掉数据或历史、泄露密钥、削弱安全），落在不确定区间的就去问用户。它的 MCP 工具还能做路由和上下文裁剪。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · 0xshikhar · `Py` · `noul` · `choice` · 调用点 [`src/jevfuse/provider/jev.py`](https://github.com/0xshikhar/jev-fuse/blob/HEAD/src/jevfuse/provider/jev.py)，2026-11-22 模型阅读</sub>
 
 - **[Jev Router](https://github.com/AIAnytime/Jev-Router)** — OpenAI 兼容的路由器：在一次调用里问 Jev 哪个候选模型适合这个请求（choice）、请求有多难（score）、是否需要前沿模型（noul）以及任务类型（choice），可选再问护栏类 noul 和哪些工具相关；然后由策略引擎选定模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · AIAnytime · `Py` · `choice` · `score` · `noul` · 调用点 [`jev_router/engine/jev_client.py`](https://github.com/AIAnytime/Jev-Router/blob/HEAD/jev_router/engine/jev_client.py)，2026-11-13 模型阅读</sub>
