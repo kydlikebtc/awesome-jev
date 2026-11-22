@@ -10,6 +10,16 @@ three fields, and where they are published. They move every week, so the
 READMEs and pattern pages must not depend on them at all, docs/status.md only
 through the calendar month of the last push, and nothing anywhere turns them
 into an age or a verdict.
+
+One exception came later, on purpose. Since 2026-11-03 the launch board, which
+the README has fronted since 2026-11-05, leaves out a quiet product: one whose
+repository has had no push for launches.QUIET_DAYS before the newest day the
+catalogue records (launches.quiet, docs/launches.md "Rising",
+docs/launch-engine.md). That reads the day of the last push and prints nothing
+about it. So the README may depend on `repo_pushed_at` through that check and
+nothing else: the tests below hold each row's quiet answer fixed while the
+facts move, and pin the check itself on a fixture. Until 2026-11-22 no product
+the README lists sat on the quiet line, so the older assertion held by chance.
 """
 
 from __future__ import annotations
@@ -22,6 +32,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 SCRIPTS = ROOT / "scripts"
@@ -30,6 +41,7 @@ sys.path.insert(0, str(SCRIPTS))
 import _stats  # noqa: E402
 import build_docs  # noqa: E402
 import build_readme  # noqa: E402
+import launches  # noqa: E402
 import lint  # noqa: E402
 import refresh_metadata  # noqa: E402
 from readme import strings  # noqa: E402
@@ -44,12 +56,21 @@ def shifted(catalog: list[dict], *, month: str | None = None) -> list[dict]:
     """A copy of the catalogue whose repository facts all moved: every last
     push to another second of its own month (or into `month`), every creation
     date one second on, every count above one up by seven. A count of one stays
-    one, so `single-commit` still agrees with it."""
+    one, so `single-commit` still agrees with it.
+
+    A move inside its own month never carries a push across the board's quiet
+    line (launches.quiet, the one deliberate use of the last push: see the
+    module docstring). A push the move would carry across it stays on its day
+    and moves to another second of that day, which launches.quiet cannot see."""
     out = copy.deepcopy(catalog)
+    today = launches.as_of(catalog)
     for entry in out:
         pushed = entry.get("repo_pushed_at")
         if pushed:
-            entry["repo_pushed_at"] = f"{month or pushed[:7]}-{'28' if pushed[8:10] != '28' else '27'}T23:59:59Z"
+            moved = f"{month or pushed[:7]}-{'28' if pushed[8:10] != '28' else '27'}T23:59:59Z"
+            if month is None and launches.quiet({"repo_pushed_at": moved}, today) != launches.quiet(entry, today):
+                moved = f"{pushed[:10]}T{'00:00:00' if pushed[11:19] != '00:00:00' else '00:00:01'}Z"
+            entry["repo_pushed_at"] = moved
         created = entry.get("repo_created_at")
         if created:
             entry["repo_created_at"] = created[:-3] + ("01Z" if created[-3:] != "01Z" else "02Z")
@@ -121,10 +142,19 @@ class RealCatalogueTest(unittest.TestCase):
         for entry in removed:
             for field in FIELDS:
                 entry.pop(field, None)
+        # The board's quiet check is the README's one allowed reading of the
+        # last push (module docstring): each row keeps the answer it has on the
+        # real catalogue, and everything else must come out the same.
+        today = launches.as_of(self.catalog)
+        quiet_now = {e["slug"]: launches.quiet(e, today) for e in self.catalog}
+
+        def as_today(row: dict, _today) -> bool:
+            return quiet_now.get(row.get("slug"), False)
+
         for pack in (strings.EN, strings.ZH):
             base = build_readme.render(copy.deepcopy(self.catalog), copy.deepcopy(self.retired), pack)
             for name, variant in (("moved", moved), ("removed", removed)):
-                with self.subTest(lang=pack["lang_code"], variant=name):
+                with self.subTest(lang=pack["lang_code"], variant=name), mock.patch.object(launches, "quiet", as_today):
                     self.assertEqual(base, build_readme.render(copy.deepcopy(variant), copy.deepcopy(self.retired), pack))
         before = build_readme.group_by_pattern(copy.deepcopy(self.catalog))
         after = build_readme.group_by_pattern(copy.deepcopy(moved))
@@ -132,6 +162,38 @@ class RealCatalogueTest(unittest.TestCase):
             for pack in (strings.EN, strings.ZH):
                 with self.subTest(pattern=key, lang=pack["lang_code"]):
                     self.assertEqual(build_readme.render_page(key, members, pack), build_readme.render_page(key, after[key], pack))
+
+
+class QuietLineTest(unittest.TestCase):
+    """The board's quiet check, the one place a last push changes the README."""
+
+    def test_a_product_is_quiet_only_after_its_quiet_days(self):
+        today = launches.day("2026-11-22")
+        line = today - launches.dt.timedelta(days=launches.QUIET_DAYS)
+        self.assertFalse(launches.quiet({"repo_pushed_at": f"{line.isoformat()}T00:45:41Z"}, today))
+        before = line - launches.dt.timedelta(days=1)
+        self.assertTrue(launches.quiet({"repo_pushed_at": f"{before.isoformat()}T23:59:59Z"}, today))
+        self.assertFalse(launches.quiet({}, today), "a row with no recorded push is not called quiet")
+        self.assertFalse(launches.quiet({"repo_pushed_at": "2026-01-01T00:00:00Z"}, None))
+
+    def test_rising_leaves_a_quiet_product_out(self):
+        def product(slug: str, pushed: str) -> dict:
+            return {"slug": slug, "kind": "project", "has_code": True, "first_seen": "2026-11-22",
+                    "repo_pushed_at": pushed}
+
+        catalog = [product("busy", "2026-11-20T00:00:00Z"), product("quiet", "2026-09-01T00:00:00Z")]
+        before = {"rows": [{"slug": "busy", "stars": 10}, {"slug": "quiet", "stars": 10}]}
+        after = {"rows": [{"slug": "busy", "stars": 40}, {"slug": "quiet", "stars": 40}]}
+        self.assertEqual([x["row"]["slug"] for x in launches.rising(catalog, before, after)], ["busy"])
+
+    def test_a_move_inside_the_month_keeps_every_quiet_answer(self):
+        catalog, *_ = _stats.load()
+        today = launches.as_of(catalog)
+        moved = shifted(catalog)
+        self.assertEqual(launches.as_of(moved), today)
+        self.assertEqual([launches.quiet(e, today) for e in moved], [launches.quiet(e, today) for e in catalog])
+        pushed = [(a["repo_pushed_at"], b["repo_pushed_at"]) for a, b in zip(catalog, moved) if a.get("repo_pushed_at")]
+        self.assertTrue(all(old != new and old[:7] == new[:7] for old, new in pushed), "every push still moves, inside its month")
 
 
 class StatusBlockTest(unittest.TestCase):
