@@ -16,3 +16,4 @@ dengyie/decidex  # calls Jev (src/decidex/providers/typesafe.py), but its README
 nefelim584/jev_judge  # calls Jev only to compare it with its own ModernBERT judge (scripts/predict_jev_api.py), and neither the README nor docs/ shows Jev results (rule 4)
 maxtrezzi/jev4s  # Scala client that calls Jev (scala3/src/main/scala/io/github/maxtrezzi/jev4s/Transport.scala, default https://api.typesafe.ai), but the schema's languages list has no Scala, so a row would name no language; rule 8: add scala to the list or draft the row without one
 smha1012/jev-torch  # trains open models on Jev's published output distributions and compares them with Jev's published predictions; no call to Jev and no /v1/systemone surface (rule 6)
+CMaintz/jev-triage  # a Marketplace wrapper: action.yml runs the triage code that lives in CMaintz/jev-tools (packages/triage), so this repository holds no call site (rule 1); jev-tools itself can be drafted instead
