@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 104 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 105 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 94 · 接口形态 2 · 仅示例 2 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 95 · 接口形态 2 · 仅示例 2 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -230,6 +230,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev AI Use Cases](https://medium.com/data-science-in-your-pocket/jev-ai-use-cases-9a87d57ac3b4)** — 逐个用例走一遍 —— 智能体路由、智能体内部的决策层、工单分拣 —— 每个都给出具体的选项集和示例响应。
   <sub>`教程` · Mehul Gupta · `Py` · `choice` · ⚠ `付费墙`</sub>
+
+- **[Jev Foundry Judge](https://github.com/nguyennhianhtri/jev-foundry-judge)** — 把 Jev 用作 Azure AI Foundry 智能体评估的评判者：四个可直接替换的评估器（意图解析、任务遵循、工具调用准确性、有据性）把每个指标拆成小的类型化问题，每段对话一次调用答完。同样的模式还驱动一个模型路由器，每条提示一个 choice。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · nguyennhianhtri · `Py` · `noul` · `score` · `choice` · 调用点 [`src/jev_foundry_judge/jev_client.py`](https://github.com/nguyennhianhtri/jev-foundry-judge/blob/HEAD/src/jev_foundry_judge/jev_client.py)，2026-11-23 模型阅读</sub>
 
 - **[Jev Model Router](https://github.com/zerone-agents/jev-model-router)** — 面向 AI 智能体的模型路由器，提供 OpenAI Chat Completions 和 Anthropic Messages 端点。模型设为 auto 时，每个请求都让 Jev 根据你用自然语言写的各模型长处、成本和速度描述选出模型和推理强度（choice）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zerone-agents · `Go` · `choice` · 调用点 [`internal/decision/jev.go`](https://github.com/zerone-agents/jev-model-router/blob/HEAD/internal/decision/jev.go)，2026-11-17 模型阅读 · ⚠ `需第三方密钥` `厂商自报数据`</sub>

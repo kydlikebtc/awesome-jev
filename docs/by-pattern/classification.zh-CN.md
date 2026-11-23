@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 237 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 241 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 225 · 接口形态 3 · 仅示例 0 · 独立报告 24 · 负面结果 2 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 229 · 接口形态 3 · 仅示例 0 · 独立报告 24 · 负面结果 2 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -458,6 +458,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jev for QA / SDET demos](https://github.com/gauravkhuraana/jev-qa-demos)** — 面向测试人员的 Jev 视频演示代码，经 Vercel AI Gateway 和 AI SDK 调用：按根因（choice）、对发布的影响（score）以及重试能否通过（noul）分诊失败的 CI 测试，并用 noul 审查智能体要执行的命令、检查 RAG 回答是否有依据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`教程` · gauravkhuraana · `TS` · `choice` · `score` · `noul` · 调用点 [`src/lib/triage.ts`](https://github.com/gauravkhuraana/jev-qa-demos/blob/HEAD/src/lib/triage.ts)，2026-11-20 模型阅读 · ⚠ `无许可证`</sub>
 
+- **[Jev Mail (KirtanUgreja)](https://github.com/KirtanUgreja/jev-mail)** — Chrome 和 Brave 扩展，用每封邮件一次 Jev 请求来整理 Gmail：用 choice 判断类别和优先级，用 noul 判断是否重要、是否需要回复、是否未经请求、是否垃圾邮件等。它会打上 Jev 标签、可以自动归档，并按发件人清理垃圾邮件，先预览、只移到回收站、可一键撤销。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · KirtanUgreja · `JS` · `choice` · `noul` · 调用点 [`src/common/jev.js`](https://github.com/KirtanUgreja/jev-mail/blob/HEAD/src/common/jev.js)，2026-11-23 模型阅读</sub>
+
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — 在 480 道自编通用波斯语题、560 道文学题和一个古典诗歌试点上，把 Jev 与开源决策模型对比的基准：以 choice、noul 和 score 提问，保存原始响应并在本地评分；Jev 在 choice 和 noul 准确率上领先。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · armanjr · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py)，2026-11-11 模型阅读 · ⚠ `无许可证`</sub>
 
@@ -466,6 +469,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev Playwright](https://github.com/arthurfiorette/jev-playwright)** — 一个 Playwright 报告器：在启动任何浏览器之前，询问 Jev 某次代码改动可能影响哪些现有端到端测试，并跳过明显无关的测试。默认会发送改动路径、补丁和测试代码；README 提醒它可能漏掉受影响的测试。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arthurfiorette · `TS` · 调用点 [`src/config.ts`](https://github.com/arthurfiorette/jev-playwright/blob/HEAD/src/config.ts)，2026-10-24 模型阅读</sub>
+
+- **[Jev Unpack](https://github.com/lucaminudel/jev-unpack-hook)** — 面向 Codex 和 Claude Code 的 Stop 钩子：把智能体每条较长的消息发给 Jev，用两个 choice 问其中有几个请求、几个要点；一条消息里捆了好几个时，钩子会拦下结束，让智能体带着上下文一次只提一个请求。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · lucaminudel · `Py` · `choice` · 调用点 [`src/jev_unpack/interaction_protocol_review_with_jev.py`](https://github.com/lucaminudel/jev-unpack-hook/blob/HEAD/src/jev_unpack/interaction_protocol_review_with_jev.py)，2026-11-23 模型阅读</sub>
 
 - **[Jev vs. the right baselines](https://github.com/ickma2311/jev-baselines-eval)** — 两项预注册的独立研究：Jev 以 choice 在 CLINC150 和 Banking77 上分类客户意图，作为升级级联的关卡，与小型和前沿大模型以及有监督编码器对比；第二项研究检验在提示注入下，Jev 的置信度能否区分被劫持的决策和抵抗住的决策。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ickma2311 · `Py` · `choice` · `noul` · 调用点 [`code/common.py`](https://github.com/ickma2311/jev-baselines-eval/blob/HEAD/code/common.py)，2026-11-10 模型阅读</sub>
@@ -668,11 +674,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[pi-jev-todo-audit](https://github.com/xz-dev/pi-jev-todo-audit)** — Pi 扩展，检查 rpiv-todo 看板是否与编码会话中可见的工作一致。它对每个任务提出 choice 问题，例如证据支持哪种状态变化、由哪条来源支撑，然后给出建议；它从不自己改动看板。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · xz-dev · `TS` · `choice` · 调用点 [`questions.ts`](https://github.com/xz-dev/pi-jev-todo-audit/blob/HEAD/questions.ts)，2026-11-17 模型阅读</sub>
 
+- **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — @playwright/test 的附加组件：在测试套件原本要全部重跑或花一轮 LLM 的地方，向 Jev 提小的类型化问题：用 choice 判断失败的根因并据此重试和修复，用 score 裁剪快照、排列测试顺序，用 noul 核验步骤和断言，再用 choice 修复定位器。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · AdriaanVE · `TS` · `choice` · `noul` · `score` · 调用点 [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts)，2026-11-23 模型阅读</sub>
+
 - **[Privatemode Decisions vs. TypeSafe Jev vs. Laya](https://github.com/edgelesssys/privatemode-decisions-benchmark)** — 在带标注的公开数据上比较三个决策模型的速度、准确率、校准和成本。每道题以一个 choice 问题发给 Jev，状态、选项和指令与 Edgeless 的 Privatemode Decisions 以及本地 Laya 模型完全相同。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · edgelesssys · `Py` · `choice` · 调用点 [`bench/adapters.py`](https://github.com/edgelesssys/privatemode-decisions-benchmark/blob/HEAD/bench/adapters.py)，2026-11-17 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[progressgate](https://github.com/AshutoshVJTI/progressgate)** — 检测 AI 智能体循环中的语义停滞。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ashutoshvjti · `TS` · 调用点 [`experiments/jev-client.ts`](https://github.com/AshutoshVJTI/progressgate/blob/HEAD/experiments/jev-client.ts)，2026-09-22 阅读</sub>
+
+- **[Pálpito para 30X](https://github.com/blockstars-labs/30x-JEV)** — 一个西班牙语原型，为 30X 逐个报名者决定发什么、发给谁、何时发：一次 Jev 调用问出此人的角色、痛点和目标（choice）、意向（score）以及资料是否真实（noul）；由代码规则选定项目和动作或转交人工，每条拟好的消息还要过 Jev 的 noul 检查。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · blockstars-labs · `Py` · `choice` · `score` · `noul` · 调用点 [`app/jev.py`](https://github.com/blockstars-labs/30x-JEV/blob/HEAD/app/jev.py)，2026-11-23 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[Qualixar Jev Decision Layer](https://github.com/qualixar/jev-decision-layer)** — 插件加本地 MCP 服务器：让智能体每次把一个封闭问题交给 Jev，比如该用哪个工具、技能或格式，草稿是否符合要求，请求该归哪个团队，共 55 个配方；本地策略关卡检查每个类型化答案并记录凭据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · qualixar · `Py` · `choice` · `score` · `noul` · 调用点 [`plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py`](https://github.com/qualixar/jev-decision-layer/blob/HEAD/plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py)，2026-11-10 模型阅读</sub>

@@ -4,11 +4,11 @@
 
 _从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不是生成。_
 
-这个决策的全部已收录例子 —— 共 38 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#结构化抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 39 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#结构化抽取)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#data-extraction)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#data-extraction)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 34 · 接口形态 0 · 仅示例 0 · 独立报告 4 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 35 · 接口形态 0 · 仅示例 0 · 独立报告 4 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -136,6 +136,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[smoking-extraction-benchmark](https://github.com/vclic/smoking-extraction-benchmark)** — 合成的吸烟史抽取基准：对比 Jev 与 OpenAI 结构化输出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · vclic · `Py` · 调用点 [`smoking_eval/providers.py`](https://github.com/vclic/smoking-extraction-benchmark/blob/HEAD/smoking_eval/providers.py)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
+
+- **[tinystruct-typesafe](https://github.com/tinystruct/tinystruct-typesafe-sdk)** — 让自然语言调用现有的 tinystruct @Action 方法，由 Jev 充当分发器：用一个 choice 选出动作，每个参数要么来自对枚举常量的 choice，要么是布尔值或集合成员的 noul，要么是对输入片段的 choice。置信度低时拒绝执行或请求确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`平台集成` · tinystruct · `Java` · `choice` · `noul` · 调用点 [`tinystruct-typesafe-client/src/main/java/org/tinystruct/typesafe/client/HttpTypesafeClient.java`](https://github.com/tinystruct/tinystruct-typesafe-sdk/blob/HEAD/tinystruct-typesafe-client/src/main/java/org/tinystruct/typesafe/client/HttpTypesafeClient.java)，2026-11-23 模型阅读</sub>
 
 - **[typesafe-ai-jev-example](https://github.com/ItBayMax/typesafe-ai-jev-example)** — Jev 的动手演示：六个可运行示例与四则实战笔记。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · itbaymax · `Py` · 调用点 [`lib/typesafe_client.py`](https://github.com/ItBayMax/typesafe-ai-jev-example/blob/HEAD/lib/typesafe_client.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>

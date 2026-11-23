@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 237 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 241 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 225 · wire shape 3 · example only 0 · independent reports 24 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 229 · wire shape 3 · example only 0 · independent reports 24 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -458,6 +458,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev for QA / SDET demos](https://github.com/gauravkhuraana/jev-qa-demos)** — Demo code for a video on Jev for testers, through Vercel AI Gateway and the AI SDK: it triages failed CI tests by root cause (choice), release impact (score) and whether a retry will pass (noul), and uses nouls to screen an agent's commands and to check that a RAG answer is grounded. <sub>(written by a model)</sub>
   <sub>`Tutorial` · gauravkhuraana · `TS` · `choice` · `score` · `noul` · call site [`src/lib/triage.ts`](https://github.com/gauravkhuraana/jev-qa-demos/blob/HEAD/src/lib/triage.ts), read by a model 2026-11-20 · ⚠ `no licence`</sub>
 
+- **[Jev Mail (KirtanUgreja)](https://github.com/KirtanUgreja/jev-mail)** — Chrome and Brave extension that triages Gmail with one Jev request per email: choices for category and priority and nouls such as important, needs a reply, unsolicited and junk. It applies Jev labels, can archive, and cleans up junk by sender with a preview, Trash only and an undo. <sub>(written by a model)</sub>
+  <sub>`Project` · KirtanUgreja · `JS` · `choice` · `noul` · call site [`src/common/jev.js`](https://github.com/KirtanUgreja/jev-mail/blob/HEAD/src/common/jev.js), read by a model 2026-11-23</sub>
+
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — Benchmark of Jev against open decision models on 480 authored general Persian questions, 560 literary questions and a classical poetry pilot, asked as choices, nouls and scores with raw responses saved and scored locally; Jev leads on choice and noul accuracy. <sub>(written by a model)</sub>
   <sub>`Benchmark` · armanjr · `Py` · `choice` · `noul` · `score` · call site [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py), read by a model 2026-11-11 · ⚠ `no licence`</sub>
 
@@ -466,6 +469,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev Playwright](https://github.com/arthurfiorette/jev-playwright)** — Playwright reporter that asks Jev which existing end-to-end tests a code change could affect and skips the clearly unrelated ones before any browser starts. Sends changed paths, patches and test bodies by default; its README warns it can miss affected tests. <sub>(written by a model)</sub>
   <sub>`Project` · arthurfiorette · `TS` · call site [`src/config.ts`](https://github.com/arthurfiorette/jev-playwright/blob/HEAD/src/config.ts), read by a model 2026-10-24</sub>
+
+- **[Jev Unpack](https://github.com/lucaminudel/jev-unpack-hook)** — Stop hook for Codex and Claude Code that sends each long agent message to Jev with two choices, how many asks and how many points it holds; when a message bundles several, the hook blocks the stop and has the agent present them one ask at a time with context. <sub>(written by a model)</sub>
+  <sub>`Plugin` · lucaminudel · `Py` · `choice` · call site [`src/jev_unpack/interaction_protocol_review_with_jev.py`](https://github.com/lucaminudel/jev-unpack-hook/blob/HEAD/src/jev_unpack/interaction_protocol_review_with_jev.py), read by a model 2026-11-23</sub>
 
 - **[Jev vs. the right baselines](https://github.com/ickma2311/jev-baselines-eval)** — Two pre-registered studies: Jev classifies customer intents on CLINC150 and Banking77 as a choice, as the gate of an escalation cascade, against LLMs and a supervised encoder; the second asks whether, under prompt injection, Jev's confidence separates hijacked decisions from resisted ones. <sub>(written by a model)</sub>
   <sub>`Benchmark` · ickma2311 · `Py` · `choice` · `noul` · call site [`code/common.py`](https://github.com/ickma2311/jev-baselines-eval/blob/HEAD/code/common.py), read by a model 2026-11-10</sub>
@@ -668,11 +674,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[pi-jev-todo-audit](https://github.com/xz-dev/pi-jev-todo-audit)** — Pi extension that checks whether the rpiv-todo board matches the work a coding session visibly did. For each task it asks choice questions, such as which transition the evidence supports and which source backs it, and gives advice; it never changes the board itself. <sub>(written by a model)</sub>
   <sub>`Plugin` · xz-dev · `TS` · `choice` · call site [`questions.ts`](https://github.com/xz-dev/pi-jev-todo-audit/blob/HEAD/questions.ts), read by a model 2026-11-17</sub>
 
+- **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — Add-on for @playwright/test that asks Jev small typed questions where a suite would rerun everything or spend an LLM turn: a choice for a failure's root cause that drives retry and heal, scores to prune snapshots and order tests, nouls to verify steps and assertions, and a choice to heal locators. <sub>(written by a model)</sub>
+  <sub>`Plugin` · AdriaanVE · `TS` · `choice` · `noul` · `score` · call site [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts), read by a model 2026-11-23</sub>
+
 - **[Privatemode Decisions vs. TypeSafe Jev vs. Laya](https://github.com/edgelesssys/privatemode-decisions-benchmark)** — Compares speed, accuracy, calibration and cost of three decision models on labelled public data. Each item goes to Jev as one choice question with the same state, options and instruction as Edgeless's Privatemode Decisions and the local Laya model get. <sub>(written by a model)</sub>
   <sub>`Benchmark` · edgelesssys · `Py` · `choice` · call site [`bench/adapters.py`](https://github.com/edgelesssys/privatemode-decisions-benchmark/blob/HEAD/bench/adapters.py), read by a model 2026-11-17 · ⚠ `vendor numbers`</sub>
 
 - **[progressgate](https://github.com/AshutoshVJTI/progressgate)** — Detect semantic stagnation in AI agent loops <sub>(upstream description)</sub>
   <sub>`Project` · ashutoshvjti · `TS` · call site [`experiments/jev-client.ts`](https://github.com/AshutoshVJTI/progressgate/blob/HEAD/experiments/jev-client.ts), read 2026-09-22</sub>
+
+- **[Pálpito para 30X](https://github.com/blockstars-labs/30x-JEV)** — Spanish prototype deciding, per sign-up, what 30X sends, to whom and when: one Jev call asks the person's role, pain and goal (choices), intent (score) and whether the profile is genuine (noul); code rules pick the program and action or hand off to a person, and Jev nouls check each drafted message. <sub>(written by a model)</sub>
+  <sub>`Project` · blockstars-labs · `Py` · `choice` · `score` · `noul` · call site [`app/jev.py`](https://github.com/blockstars-labs/30x-JEV/blob/HEAD/app/jev.py), read by a model 2026-11-23 · ⚠ `no licence`</sub>
 
 - **[Qualixar Jev Decision Layer](https://github.com/qualixar/jev-decision-layer)** — Plugin and local MCP server that lets an agent hand Jev one closed question at a time, such as which tool, skill or format fits, whether a draft meets its brief, or which team a request belongs to, from 55 recipes; local policy gates check each typed answer and record a receipt. <sub>(written by a model)</sub>
   <sub>`Plugin` · qualixar · `Py` · `choice` · `score` · `noul` · call site [`plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py`](https://github.com/qualixar/jev-decision-layer/blob/HEAD/plugins/qualixar-jev-decision-layer/runtime/jev_auto/providers.py), read by a model 2026-11-10</sub>

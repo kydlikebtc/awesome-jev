@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 193 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 195 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 185 · wire shape 4 · example only 0 · independent reports 15 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 187 · wire shape 4 · example only 0 · independent reports 15 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -485,6 +485,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevnav](https://github.com/dtduc-git/jevnav)** — Page truth for browser agents — and decisions that replay, test and audit. Jev picks the element, risky actions are gated, every run replays offline in CI. <sub>(upstream description)</sub>
   <sub>`Project` · dtduc-git · `Py` · call site [`src/jevnav/decide.py`](https://github.com/dtduc-git/jevnav/blob/HEAD/src/jevnav/decide.py), read 2026-09-24</sub>
 
+- **[jevpilot](https://github.com/bloudhood/jevpilot)** — MCP server that gives an agent a browser that finishes a goal on its own: it drives a real Chrome step by step with Jev choosing each action, stops with a question when unsure or a value is missing, and holds buy, pay and delete buttons for approval. <sub>(written by a model)</sub>
+  <sub>`Plugin` · bloudhood · `TS` · `choice` · `noul` · `score` · call site [`src/decision/adapters.ts`](https://github.com/bloudhood/jevpilot/blob/HEAD/src/decision/adapters.ts), read by a model 2026-11-23</sub>
+
 - **[JevRAG](https://github.com/ajanm007/jevrag)** — Python library that turns five RAG judgement calls into nouls Jev answers: whether the evidence so far is enough to stop retrieving, where to split a chunk, which passages earn a context slot, whether an answer stays grounded, and whether a cached answer is safe to reuse. <sub>(written by a model)</sub>
   <sub>`Project` · ajanm007 · `Py` · `noul` · call site [`jevrag/decision.py`](https://github.com/ajanm007/jevrag/blob/HEAD/jevrag/decision.py), read by a model 2026-11-10</sub>
 
@@ -550,6 +553,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[progressgate](https://github.com/AshutoshVJTI/progressgate)** — Detect semantic stagnation in AI agent loops <sub>(upstream description)</sub>
   <sub>`Project` · ashutoshvjti · `TS` · call site [`experiments/jev-client.ts`](https://github.com/AshutoshVJTI/progressgate/blob/HEAD/experiments/jev-client.ts), read 2026-09-22</sub>
+
+- **[Pálpito para 30X](https://github.com/blockstars-labs/30x-JEV)** — Spanish prototype deciding, per sign-up, what 30X sends, to whom and when: one Jev call asks the person's role, pain and goal (choices), intent (score) and whether the profile is genuine (noul); code rules pick the program and action or hand off to a person, and Jev nouls check each drafted message. <sub>(written by a model)</sub>
+  <sub>`Project` · blockstars-labs · `Py` · `choice` · `score` · `noul` · call site [`app/jev.py`](https://github.com/blockstars-labs/30x-JEV/blob/HEAD/app/jev.py), read by a model 2026-11-23 · ⚠ `no licence`</sub>
 
 - **[reflex](https://github.com/ursuciprian/reflex)** — Pre-execution hook for Claude Code, Codex CLI, opencode and pi. Before a tool runs it can ask Jev whether the call mutates, exfiltrates or strays off task (nouls), its blast radius (score) and environment (choice); it also guards against prompt injection and picks a LiteLLM model. <sub>(written by a model)</sub>
   <sub>`Plugin` · ursuciprian · `JS` · `noul` · `score` · `choice` · call site [`providers.mjs`](https://github.com/ursuciprian/reflex/blob/HEAD/providers.mjs), read by a model 2026-11-14</sub>

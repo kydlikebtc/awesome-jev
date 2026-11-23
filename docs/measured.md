@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 107 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 108 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -521,6 +521,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   <sub>`Benchmark` · Leanmcp · `Py` · `choice` · `noul` · `score` · [call site](https://github.com/Leanmcp/jevbench/blob/HEAD/jev_bench/workspace/common.py), read by a model 2026-11-15</sub>
 
   > Most models it ranks are not Jev, and the figures are the authors' runs. Its jev_gateway folder is a small Bash safety gate that asks Jev before forwarding a conversation. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-15; a maintainer has not yet read the call site.
+
+- **[JevOut](https://github.com/xzx34/JevOut)**<br>
+  Research on whether decision models can tell useful context from a distraction: short, natural-looking additions that keep the task and the right answer can flip a correct decision to a chosen wrong one. It reports a 61.4% targeted flip rate on Jev over seven datasets, higher on three open systems. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · xzx34 · `Py` · `choice` · `noul` · [call site](https://github.com/xzx34/JevOut/blob/HEAD/context_optimization/targets.py), read by a model 2026-11-23</sub>
+
+  > Accepted as a poster at Agenthon @ NeurIPS 2026. The figures are the authors' runs with at most 64 target evaluations per decision; OpenSourceJev, Von and plain Qwen are not Jev. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-23; a maintainer has not yet read the call site.
 
 - **[jevsbistro](https://github.com/andrewsilber/JevsBistro)**<br>
   3D restaurant service simulator for benchmarking low-latency decision models <sub>(upstream description)</sub><br>

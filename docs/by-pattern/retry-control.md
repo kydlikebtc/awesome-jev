@@ -4,11 +4,11 @@
 
 _Decide whether a failed step is worth retrying._
 
-Every catalogued example of this decision — 9 of them. The same rows, with caveats, are in [the index](../../README.md#retry-control); [the site](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 10 of them. The same rows, with caveats, are in [the index](../../README.md#retry-control); [the site](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#retry-control): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 8 · wire shape 1 · example only 0 · independent reports 0 · negative results 0 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 9 · wire shape 1 · example only 0 · independent reports 0 · negative results 0 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -44,6 +44,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevswiftsdk](https://github.com/NSStudent/JevSwiftSDK)** — Independent, unofficial and dependency-free Swift SDK for the System One API: choice, noul and score questions typed as Swift values, such as a choice over an enum, named batches answered in one call with every answer checked, retries with a policy and cancellation. iOS 15+, macOS 12+ and Linux. <sub>(written by a model)</sub>
   <sub>`SDK` · nsstudent · `Swift` · call site [`Sources/JevSwiftSDK/Configuration.swift`](https://github.com/NSStudent/JevSwiftSDK/blob/HEAD/Sources/JevSwiftSDK/Configuration.swift), read 2026-09-22</sub>
+
+- **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — Add-on for @playwright/test that asks Jev small typed questions where a suite would rerun everything or spend an LLM turn: a choice for a failure's root cause that drives retry and heal, scores to prune snapshots and order tests, nouls to verify steps and assertions, and a choice to heal locators. <sub>(written by a model)</sub>
+  <sub>`Plugin` · AdriaanVE · `TS` · `choice` · `noul` · `score` · call site [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts), read by a model 2026-11-23</sub>
 
 - **[Reflex](https://github.com/datadog-labs/reflex)** — Rust library for control loops on observability data: Datadog metrics and Toto forecasts become typed state, Jev recommends an action as a choice, such as Open, Probe or NoChange for a circuit, and the executor applies it only when legality checks, guards and invariants allow. <sub>(written by a model)</sub>
   <sub>`Project` · datadog-labs · `Rs` · `choice` · call site [`crates/reflex-typesafe/src/lib.rs`](https://github.com/datadog-labs/reflex/blob/HEAD/crates/reflex-typesafe/src/lib.rs), read by a model 2026-11-12</sub>

@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 184 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 187 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 179 · wire shape 1 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 182 · wire shape 1 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -353,8 +353,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev for QA / SDET demos](https://github.com/gauravkhuraana/jev-qa-demos)** — Demo code for a video on Jev for testers, through Vercel AI Gateway and the AI SDK: it triages failed CI tests by root cause (choice), release impact (score) and whether a retry will pass (noul), and uses nouls to screen an agent's commands and to check that a RAG answer is grounded. <sub>(written by a model)</sub>
   <sub>`Tutorial` · gauravkhuraana · `TS` · `choice` · `score` · `noul` · call site [`src/lib/triage.ts`](https://github.com/gauravkhuraana/jev-qa-demos/blob/HEAD/src/lib/triage.ts), read by a model 2026-11-20 · ⚠ `no licence`</sub>
 
+- **[Jev Foundry Judge](https://github.com/nguyennhianhtri/jev-foundry-judge)** — Jev as the judge for Azure AI Foundry agent evaluation: four drop-in evaluators (intent resolution, task adherence, tool call accuracy, groundedness) split each metric into small typed questions answered in one call per conversation. The same pattern runs a model router with one choice per prompt. <sub>(written by a model)</sub>
+  <sub>`Project` · nguyennhianhtri · `Py` · `noul` · `score` · `choice` · call site [`src/jev_foundry_judge/jev_client.py`](https://github.com/nguyennhianhtri/jev-foundry-judge/blob/HEAD/src/jev_foundry_judge/jev_client.py), read by a model 2026-11-23</sub>
+
 - **[Jev PR Quality](https://github.com/rawtreedb/jev-pr-quality)** — GitHub Action that reviews each pull request's diff with Jev across 19 software-quality dimensions: per dimension a noul on whether it applies, a score from 1 to 10 and a choice of its worst weakness; it comments on the PR and fails the check below your threshold. <sub>(written by a model)</sub>
   <sub>`Project` · rawtreedb · `JS` · `noul` · `score` · `choice` · call site [`scripts/jev-review/review.mjs`](https://github.com/rawtreedb/jev-pr-quality/blob/HEAD/scripts/jev-review/review.mjs), read by a model 2026-11-10</sub>
+
+- **[Jev Unpack](https://github.com/lucaminudel/jev-unpack-hook)** — Stop hook for Codex and Claude Code that sends each long agent message to Jev with two choices, how many asks and how many points it holds; when a message bundles several, the hook blocks the stop and has the agent present them one ask at a time with context. <sub>(written by a model)</sub>
+  <sub>`Plugin` · lucaminudel · `Py` · `choice` · call site [`src/jev_unpack/interaction_protocol_review_with_jev.py`](https://github.com/lucaminudel/jev-unpack-hook/blob/HEAD/src/jev_unpack/interaction_protocol_review_with_jev.py), read by a model 2026-11-23</sub>
 
 - **[jev-agent-skill](https://github.com/yuyang2230/jev-agent-skill)** — Free typed judgments for AI agents: offload classify/screen/score/verify to Jev (TypeSafe System One) via OpenCode Zen. Claude Code / ZCode skill. 给AI代理省token的免费决策分流技能 <sub>(upstream description)</sub>
   <sub>`Plugin` · yuyang2230 · `Py` · call site [`jev.py`](https://github.com/yuyang2230/jev-agent-skill/blob/HEAD/jev.py), read 2026-09-22</sub>
@@ -523,6 +529,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[pi-jev-todo-audit](https://github.com/xz-dev/pi-jev-todo-audit)** — Pi extension that checks whether the rpiv-todo board matches the work a coding session visibly did. For each task it asks choice questions, such as which transition the evidence supports and which source backs it, and gives advice; it never changes the board itself. <sub>(written by a model)</sub>
   <sub>`Plugin` · xz-dev · `TS` · `choice` · call site [`questions.ts`](https://github.com/xz-dev/pi-jev-todo-audit/blob/HEAD/questions.ts), read by a model 2026-11-17</sub>
+
+- **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — Add-on for @playwright/test that asks Jev small typed questions where a suite would rerun everything or spend an LLM turn: a choice for a failure's root cause that drives retry and heal, scores to prune snapshots and order tests, nouls to verify steps and assertions, and a choice to heal locators. <sub>(written by a model)</sub>
+  <sub>`Plugin` · AdriaanVE · `TS` · `choice` · `noul` · `score` · call site [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts), read by a model 2026-11-23</sub>
 
 - **[plotveil](https://github.com/Dearest/plotveil)** — A quiet spoiler blocker for YouTube comments. One typed Jev (TypeSafe System One) Noul decision per comment; covered while checked, still covered if the check fails. <sub>(upstream description)</sub>
   <sub>`Project` · dearest · `TS` · call site [`scripts/evaluate-jev.ts`](https://github.com/Dearest/plotveil/blob/HEAD/scripts/evaluate-jev.ts), read 2026-09-22 · ⚠ `one commit`</sub>

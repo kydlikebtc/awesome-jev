@@ -4,11 +4,11 @@
 
 _Use calibrated confidence to decide what a person must see._
 
-Every catalogued example of this decision — 112 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 115 of them. The same rows, with caveats, are in [the index](../../README.md#human-escalation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#human-escalation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 97 · wire shape 5 · example only 0 · independent reports 11 · negative results 1 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 7 · call site 100 · wire shape 5 · example only 0 · independent reports 11 · negative results 1 · no file cited 10. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -289,6 +289,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevkit](https://github.com/bragamat/jevkit)** — Command line toolkit that puts Jev in a coding agent's toolbox: find ranks a file's lines for a question, check tests whether the source backs a claim, triage asks the same questions about many items, and decide, yesno and score return a verdict (act, confirm or rephrase) tuned to the risk. <sub>(written by a model)</sub>
   <sub>`Project` · bragamat · `Go` · `choice` · `noul` · `score` · call site [`internal/typesafe/client.go`](https://github.com/bragamat/jevkit/blob/HEAD/internal/typesafe/client.go), read by a model 2026-11-18 · ⚠ `measured, not adopted`</sub>
 
+- **[jevpilot](https://github.com/bloudhood/jevpilot)** — MCP server that gives an agent a browser that finishes a goal on its own: it drives a real Chrome step by step with Jev choosing each action, stops with a question when unsure or a value is missing, and holds buy, pay and delete buttons for approval. <sub>(written by a model)</sub>
+  <sub>`Plugin` · bloudhood · `TS` · `choice` · `noul` · `score` · call site [`src/decision/adapters.ts`](https://github.com/bloudhood/jevpilot/blob/HEAD/src/decision/adapters.ts), read by a model 2026-11-23</sub>
+
 - **[legends-jev](https://github.com/avalonreset/legends-jev)** — Decision adviser for an operator choosing the next app, browser, document or local SEO review action: Jev picks one candidate action or unknown, a noul flags thin evidence and a score rates support. With screenshots or photos it also checks text, locates targets and verifies storefront signs. <sub>(written by a model)</sub>
   <sub>`Plugin` · avalonreset · `Py` · `choice` · `noul` · `score` · call site [`legends_jev/core.py`](https://github.com/avalonreset/legends-jev/blob/HEAD/legends_jev/core.py), read by a model 2026-11-19</sub>
 
@@ -325,6 +328,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[pi-typesafe-jev](https://github.com/legacybridge-tech/pi-typesafe-jev)** — A pi extension that exposes TypeSafe (Jev, System One) judgments as five pi tools, so a model can make narrow semantic judgments while your code and your users keep control of thresholds, weights, and actions. <sub>(upstream description)</sub>
   <sub>`Plugin` · legacybridge-tech · `TS` · call site [`src/client.ts`](https://github.com/legacybridge-tech/pi-typesafe-jev/blob/HEAD/src/client.ts), read 2026-09-22</sub>
 
+- **[Pálpito para 30X](https://github.com/blockstars-labs/30x-JEV)** — Spanish prototype deciding, per sign-up, what 30X sends, to whom and when: one Jev call asks the person's role, pain and goal (choices), intent (score) and whether the profile is genuine (noul); code rules pick the program and action or hand off to a person, and Jev nouls check each drafted message. <sub>(written by a model)</sub>
+  <sub>`Project` · blockstars-labs · `Py` · `choice` · `score` · `noul` · call site [`app/jev.py`](https://github.com/blockstars-labs/30x-JEV/blob/HEAD/app/jev.py), read by a model 2026-11-23 · ⚠ `no licence`</sub>
+
 - **[qualm](https://github.com/qddegtya/qualm)** — Typed decisions from a System One model, where uncertainty is something you have to handle. <sub>(upstream description)</sub>
   <sub>`Project` · qddegtya · `TS` · call site [`src/client.ts`](https://github.com/qddegtya/qualm/blob/HEAD/src/client.ts), read 2026-09-22</sub>
 
@@ -357,6 +363,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[tink-route](https://github.com/jon-devlapaz/tink-route)** — Dynamic, confidence-aware Agent Skill routing with TypeSafe Jev and Tink <sub>(upstream description)</sub>
   <sub>`Plugin` · jon-devlapaz · `Py` · call site [`src/tink_route/core/constants.py`](https://github.com/jon-devlapaz/tink-route/blob/HEAD/src/tink_route/core/constants.py), read 2026-09-24</sub>
+
+- **[tinystruct-typesafe](https://github.com/tinystruct/tinystruct-typesafe-sdk)** — Lets natural language call existing tinystruct @Action methods with Jev as the dispatcher: a choice picks the action, and each argument comes from a choice over the enum's constants, a noul for a boolean or set member, or a choice over input spans. Low confidence is refused or asks for confirmation. <sub>(written by a model)</sub>
+  <sub>`Integration` · tinystruct · `Java` · `choice` · `noul` · call site [`tinystruct-typesafe-client/src/main/java/org/tinystruct/typesafe/client/HttpTypesafeClient.java`](https://github.com/tinystruct/tinystruct-typesafe-sdk/blob/HEAD/tinystruct-typesafe-client/src/main/java/org/tinystruct/typesafe/client/HttpTypesafeClient.java), read by a model 2026-11-23</sub>
 
 - **[typesafe-local](https://github.com/aabolfazl/typesafe-local)** — Inspired by TypeSafe Ai, Ask a local LLM typed questions, get calibrated probabilities instead of text. Structured output without generation or parsing. MLX / Apple Silicon. <sub>(upstream description)</sub>
   <sub>`Project` · aabolfazl · `Py` · call site [`ots/server.py`](https://github.com/aabolfazl/typesafe-local/blob/HEAD/ots/server.py), read 2026-09-22</sub>

@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 301 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 304 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 290 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 293 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -516,6 +516,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[AskJev](https://github.com/ranjan2829/AskJev)** — AskJev：适用于任意网站的 Jev 自动驾驶，并对不可逆的点击加一道防护（使用 TypeSafe System One，而不是 Claude）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ranjan2829 · `TS` · 调用点 [`mcp/src/jev-client.ts`](https://github.com/ranjan2829/AskJev/blob/HEAD/mcp/src/jev-client.ts)，2026-09-24 阅读</sub>
 
+- **[Astra + Jev: Fallout: New Vegas](https://github.com/0mis/astra-jev-new-vegas)** — 一个受监督的智能体控制器，用普通键鼠输入把《辐射：新维加斯》主线打到了结局：频繁而有边界的游戏内选择（路线、对话、VATS、装备、Pip-Boy）由 Jev 以 choice 问题做出，Astra 则搭建控制器、规划路线并修复循环。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · 0mis · `Py` · `choice` · 调用点 [`jev_bridge.py`](https://github.com/0mis/astra-jev-new-vegas/blob/HEAD/jev_bridge.py)，2026-11-23 模型阅读</sub>
+
 - **[bicameral](https://github.com/AbdelStark/bicameral)** — 混合式编程 harness：System 2 负责写，System 1（Jev）负责反射式动作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`packages/s1-runtime/src/backends/typesafe.ts`](https://github.com/AbdelStark/bicameral/blob/HEAD/packages/s1-runtime/src/backends/typesafe.ts)，2026-09-22 阅读</sub>
 
@@ -828,6 +831,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevonly](https://github.com/buluoray/JevOnly)** — 纯 Jev 驱动的智能体：能「打字」并推进任务直至完成。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · buluoray · `Py` · 调用点 [`src/jevonly/core/jev.py`](https://github.com/buluoray/JevOnly/blob/HEAD/src/jevonly/core/jev.py)，2026-09-22 阅读</sub>
 
+- **[jevpilot](https://github.com/bloudhood/jevpilot)** — 一个 MCP 服务器，给智能体提供能自己完成目标的浏览器：它一步步驱动真实的 Chrome，由 Jev 选择每个动作；拿不准或缺少某个值时就停下来提问，购买、支付和删除按钮要等批准。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · bloudhood · `TS` · `choice` · `noul` · `score` · 调用点 [`src/decision/adapters.ts`](https://github.com/bloudhood/jevpilot/blob/HEAD/src/decision/adapters.ts)，2026-11-23 模型阅读</sub>
+
 - **[jevshield](https://github.com/lgy1027/jevshield)** — 亚 100 毫秒的智能体工具调用安全闸门。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · lgy1027 · `Py` · 调用点 [`jevshield/client.py`](https://github.com/lgy1027/jevshield/blob/HEAD/jevshield/client.py)，2026-09-22 阅读</sub>
 
@@ -908,6 +914,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[tictacjev](https://github.com/darthblanc/tictacjev)** — 一个井字棋应用，其中一方是 TypeSafe AI 的 System One 模型 Jev，并实时显示置信度与概率。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · darthblanc · `TS` · 调用点 [`backend/app/jev_client.py`](https://github.com/darthblanc/tictacjev/blob/HEAD/backend/app/jev_client.py)，2026-09-24 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
+
+- **[tinystruct-typesafe](https://github.com/tinystruct/tinystruct-typesafe-sdk)** — 让自然语言调用现有的 tinystruct @Action 方法，由 Jev 充当分发器：用一个 choice 选出动作，每个参数要么来自对枚举常量的 choice，要么是布尔值或集合成员的 noul，要么是对输入片段的 choice。置信度低时拒绝执行或请求确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`平台集成` · tinystruct · `Java` · `choice` · `noul` · 调用点 [`tinystruct-typesafe-client/src/main/java/org/tinystruct/typesafe/client/HttpTypesafeClient.java`](https://github.com/tinystruct/tinystruct-typesafe-sdk/blob/HEAD/tinystruct-typesafe-client/src/main/java/org/tinystruct/typesafe/client/HttpTypesafeClient.java)，2026-11-23 模型阅读</sub>
 
 - **[tsai-civ2](https://github.com/phyous/tsai-civ2)** — 让 Jev 在浏览器里玩初代《文明 II》，实时展示动作概率。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · phyous · `Py` · 调用点 [`civ2/typesafe.py`](https://github.com/phyous/tsai-civ2/blob/HEAD/civ2/typesafe.py)，2026-09-22 阅读</sub>

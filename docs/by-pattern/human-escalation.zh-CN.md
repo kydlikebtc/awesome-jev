@@ -4,11 +4,11 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 112 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 115 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#human-escalation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#human-escalation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 97 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 100 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -289,6 +289,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevkit](https://github.com/bragamat/jevkit)** — 把 Jev 放进编码智能体工具箱的命令行工具：find 按问题给文件各行排序，check 检验源码是否支持某个说法，triage 对大量条目提相同问题，decide、yesno 和 score 则根据风险返回裁决（执行、确认或换个问法）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · bragamat · `Go` · `choice` · `noul` · `score` · 调用点 [`internal/typesafe/client.go`](https://github.com/bragamat/jevkit/blob/HEAD/internal/typesafe/client.go)，2026-11-18 模型阅读 · ⚠ `实测后未采用`</sub>
 
+- **[jevpilot](https://github.com/bloudhood/jevpilot)** — 一个 MCP 服务器，给智能体提供能自己完成目标的浏览器：它一步步驱动真实的 Chrome，由 Jev 选择每个动作；拿不准或缺少某个值时就停下来提问，购买、支付和删除按钮要等批准。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · bloudhood · `TS` · `choice` · `noul` · `score` · 调用点 [`src/decision/adapters.ts`](https://github.com/bloudhood/jevpilot/blob/HEAD/src/decision/adapters.ts)，2026-11-23 模型阅读</sub>
+
 - **[legends-jev](https://github.com/avalonreset/legends-jev)** — 为操作者挑选下一步应用、浏览器、文档或本地 SEO 审查操作的决策顾问：Jev 从候选操作中选一个（或选 unknown），用一个 noul 标出证据不足，用一个 score 评估支持程度。提供截图或照片时，还会核对文字、定位目标并核验店面招牌。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · avalonreset · `Py` · `choice` · `noul` · `score` · 调用点 [`legends_jev/core.py`](https://github.com/avalonreset/legends-jev/blob/HEAD/legends_jev/core.py)，2026-11-19 模型阅读</sub>
 
@@ -325,6 +328,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[pi-typesafe-jev](https://github.com/legacybridge-tech/pi-typesafe-jev)** — 一个 pi 扩展，把 Jev 判断暴露成五个 pi 工具，让模型能做狭义的语义判断。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · legacybridge-tech · `TS` · 调用点 [`src/client.ts`](https://github.com/legacybridge-tech/pi-typesafe-jev/blob/HEAD/src/client.ts)，2026-09-22 阅读</sub>
 
+- **[Pálpito para 30X](https://github.com/blockstars-labs/30x-JEV)** — 一个西班牙语原型，为 30X 逐个报名者决定发什么、发给谁、何时发：一次 Jev 调用问出此人的角色、痛点和目标（choice）、意向（score）以及资料是否真实（noul）；由代码规则选定项目和动作或转交人工，每条拟好的消息还要过 Jev 的 noul 检查。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · blockstars-labs · `Py` · `choice` · `score` · `noul` · 调用点 [`app/jev.py`](https://github.com/blockstars-labs/30x-JEV/blob/HEAD/app/jev.py)，2026-11-23 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[qualm](https://github.com/qddegtya/qualm)** — 来自 System One 模型的类型化决策 —— 不确定性是你必须自己处理的东西。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · qddegtya · `TS` · 调用点 [`src/client.ts`](https://github.com/qddegtya/qualm/blob/HEAD/src/client.ts)，2026-09-22 阅读</sub>
 
@@ -357,6 +363,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[tink-route](https://github.com/jon-devlapaz/tink-route)** — 动态的、感知置信度的 Agent 技能路由。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · jon-devlapaz · `Py` · 调用点 [`src/tink_route/core/constants.py`](https://github.com/jon-devlapaz/tink-route/blob/HEAD/src/tink_route/core/constants.py)，2026-09-24 阅读</sub>
+
+- **[tinystruct-typesafe](https://github.com/tinystruct/tinystruct-typesafe-sdk)** — 让自然语言调用现有的 tinystruct @Action 方法，由 Jev 充当分发器：用一个 choice 选出动作，每个参数要么来自对枚举常量的 choice，要么是布尔值或集合成员的 noul，要么是对输入片段的 choice。置信度低时拒绝执行或请求确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`平台集成` · tinystruct · `Java` · `choice` · `noul` · 调用点 [`tinystruct-typesafe-client/src/main/java/org/tinystruct/typesafe/client/HttpTypesafeClient.java`](https://github.com/tinystruct/tinystruct-typesafe-sdk/blob/HEAD/tinystruct-typesafe-client/src/main/java/org/tinystruct/typesafe/client/HttpTypesafeClient.java)，2026-11-23 模型阅读</sub>
 
 - **[typesafe-local](https://github.com/aabolfazl/typesafe-local)** — 受 TypeSafe 启发：向本地 LLM 提类型化问题，拿到校准概率。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · aabolfazl · `Py` · 调用点 [`ots/server.py`](https://github.com/aabolfazl/typesafe-local/blob/HEAD/ots/server.py)，2026-09-22 阅读</sub>

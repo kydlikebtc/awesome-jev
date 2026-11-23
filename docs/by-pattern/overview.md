@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 540 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 545 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 399 · wire shape 101 · example only 0 · independent reports 34 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 403 · wire shape 102 · example only 0 · independent reports 35 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -695,6 +695,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-mcp](https://github.com/songokou1983/jev-mcp)** — Local MCP server, documented in Chinese, that gives Claude Code and Codex Jev as tools: classify (a choice), check (a noul), rate (a score), a batch judge that sends each item alone and a raw System One call, with a confidence gate, a session budget, a cache and a pinned jev-1.13.0. <sub>(written by a model)</sub>
   <sub>`Plugin` · songokou1983 · `Py` · `choice` · `noul` · `score` · call site [`src/jev_mcp/server.py`](https://github.com/songokou1983/jev-mcp/blob/HEAD/src/jev_mcp/server.py), read by a model 2026-11-19 · ⚠ `no licence`</sub>
 
+- **[jev-msw](https://github.com/royalpinto007/jev-msw)** — Not Jev: contract-aware MSW handlers that answer the official TypeScript SDK's POST /v1/systemone in tests, so Jev-driven code can be tested with set choices, scores and nouls and no API calls, key, latency or credits. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · royalpinto007 · `TS` · cited file [`src/create-jev.ts`](https://github.com/royalpinto007/jev-msw/blob/HEAD/src/create-jev.ts), read by a model 2026-11-23 · ⚠ `not Jev itself`</sub>
+
 - **[jev-no-enem](https://github.com/patryckalves/jev-no-enem)** — Reproducible benchmark evaluating TypeSafe AI's Jev (System One paradigm) on Brazil's ENEM 2025 standardized exam. Evaluates typed decision-making, domain-specific accuracy, and RLCD uncertainty calibration against open LLM baselines with an interactive GitHub Pages dashboard. <sub>(upstream description)</sub>
   <sub>`Benchmark` · patryckalves · `Py` · call site [`src/evaluate_jev.py`](https://github.com/patryckalves/jev-no-enem/blob/HEAD/src/evaluate_jev.py), read 2026-09-24 · ⚠ `no licence`</sub>
 
@@ -761,8 +764,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevoss](https://github.com/mertkayacs/jevoss)** — Evaluation toolkit for any server that speaks Jev's /v1/systemone: 16 suites of choice, noul and score cases, five probes, a calibration report and a side-by-side compare. Its endpoint defaults to localhost, and the FAQ says to point --endpoint at hosted Jev with your own key. <sub>(written by a model)</sub>
   <sub>`Benchmark` · mertkayacs · `Py` · `choice` · `noul` · `score` · call site [`src/jevoss/runner.py`](https://github.com/mertkayacs/jevoss/blob/HEAD/src/jevoss/runner.py), read by a model 2026-11-14 · ⚠ `vendor numbers`</sub>
 
+- **[JevOut](https://github.com/xzx34/JevOut)** — Research on whether decision models can tell useful context from a distraction: short, natural-looking additions that keep the task and the right answer can flip a correct decision to a chosen wrong one. It reports a 61.4% targeted flip rate on Jev over seven datasets, higher on three open systems. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · xzx34 · `Py` · `choice` · `noul` · call site [`context_optimization/targets.py`](https://github.com/xzx34/JevOut/blob/HEAD/context_optimization/targets.py), read by a model 2026-11-23</sub>
+
 - **[jevsbistro](https://github.com/andrewsilber/JevsBistro)** — 3D restaurant service simulator for benchmarking low-latency decision models <sub>(upstream description)</sub>
   <sub>`Benchmark` · andrewsilber · `TS` · call site [`src/jev/protocol.ts`](https://github.com/andrewsilber/JevsBistro/blob/HEAD/src/jev/protocol.ts), read 2026-09-22</sub>
+
+- **[KLibJev](https://github.com/BoD/klibjev)** — Kotlin Multiplatform client for Jev: evaluate text or structured data with noul, choice and score questions and get typed answers with probabilities; since 1.1.0 it also sends images and Box questions. Published on Maven Central. <sub>(written by a model)</sub>
+  <sub>`SDK` · BoD · `Kt` · `noul` · `choice` · `score` · call site [`library/src/commonMain/kotlin/org/jraf/klibjev/client/JevClient.kt`](https://github.com/BoD/klibjev/blob/HEAD/library/src/commonMain/kotlin/org/jraf/klibjev/client/JevClient.kt), read by a model 2026-11-23</sub>
 
 - **[kunobi-jev](https://github.com/kunobi-ninja/kunobi-decision)** — Rust client for the TypeSafe System One API (Jev) <sub>(upstream description)</sub>
   <sub>`SDK` · kunobi-ninja · `Rs` · call site [`src/client/mod.rs`](https://github.com/kunobi-ninja/kunobi-decision/blob/HEAD/src/client/mod.rs), read 2026-09-22</sub>
@@ -1044,7 +1053,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 206 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 208 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — Toolkit for voice AI avatars in apps, phone lines, signage and the metaverse. Its Jev turn-end gate asks a noul on the transcript, whether the assistant should stay silent and leave the user's turn open, and maps that probability to a wait of 0.4 to 2 seconds; on any error the turn ends. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · uezo · `Py` · call site [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py), read 2026-09-22</sub>
@@ -1264,6 +1273,9 @@ Projects and plugins with code, 206 of them, whose only pattern is `overview` an
 
 - **[dbt_jev](https://github.com/smithclay/dbt_jev)** — use jev in dbt <sub>(upstream description)</sub>
   <sub>`Plugin` · smithclay · `Py` · call site [`src/dbt_jev/runtime.py`](https://github.com/smithclay/dbt_jev/blob/HEAD/src/dbt_jev/runtime.py), read 2026-09-24</sub>
+
+- **[decision-gate](https://github.com/zachlandes/decision-gate)** — Rate and spend limits for code that calls Jev in a loop: every request waits for room under the account's rate limit, all callers pause together on a slow-down, a daily spend ceiling per key is checked, and an answer cache stops paying twice for the same question. <sub>(written by a model)</sub>
+  <sub>`Project` · zachlandes · `JS` · call site [`lib/providers/typesafe.mjs`](https://github.com/zachlandes/decision-gate/blob/HEAD/lib/providers/typesafe.mjs), read by a model 2026-11-23</sub>
 
 - **[decisionkit](https://github.com/adityajha2005/decisionkit)** — Provider-neutral CLI, Claude Code plugin and MCP server for closed-form decisions in agents, scripts and CI: yes or no, pick one, rate on a scale or rank candidates; through Jev each becomes a noul, choice or score answered with probabilities, so confident answers act and the rest go to a person. <sub>(written by a model)</sub>
   <sub>`Plugin` · adityajha2005 · `TS` · `noul` · `choice` · `score` · call site [`src/providers/jev.ts`](https://github.com/adityajha2005/decisionkit/blob/HEAD/src/providers/jev.ts), read by a model 2026-11-09</sub>
@@ -1546,6 +1558,9 @@ Projects and plugins with code, 206 of them, whose only pattern is `overview` an
 
 - **[open-jev-bridge](https://github.com/louis-szeto/open-jev-bridge)** — MCP plugin to connect jev-like system one API (local hosted or typesafe jev) to codex and claude code for decision tasks like compaction, verification judgement, etc. <sub>(upstream description)</sub>
   <sub>`Plugin` · louis-szeto · `JS` · call site [`bin/open-jev-bridge.mjs`](https://github.com/louis-szeto/open-jev-bridge/blob/HEAD/bin/open-jev-bridge.mjs), read 2026-09-24</sub>
+
+- **[openpave-jev](https://github.com/cnrai/openpave-jev)** — A jev command and skill for PAVE and Claude that asks a decision model typed questions (choice, score, noul) to classify, route, score and gate without an LLM round trip, with a confidence floor that exits non-zero when the model is unsure. <sub>(written by a model)</sub>
+  <sub>`Plugin` · cnrai · `JS` · `choice` · `score` · `noul` · call site [`lib/http.js`](https://github.com/cnrai/openpave-jev/blob/HEAD/lib/http.js), read by a model 2026-11-23</sub>
 
 - **[openpoke-meets-jev](https://github.com/0xShin0221/openpoke-meets-jev)** — Open source implementation of Poke <sub>(upstream description)</sub>
   <sub>`Project` · 0xshin0221 · `Py` · call site [`server/jev/client.py`](https://github.com/0xShin0221/openpoke-meets-jev/blob/HEAD/server/jev/client.py), read 2026-09-22</sub>

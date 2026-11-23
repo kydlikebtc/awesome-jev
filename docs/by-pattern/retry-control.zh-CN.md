@@ -4,11 +4,11 @@
 
 _判断失败的步骤是否值得重试。_
 
-这个决策的全部已收录例子 —— 共 9 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#重试控制)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 10 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#重试控制)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=retry-control&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#retry-control)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#retry-control)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 8 · 接口形态 1 · 仅示例 0 · 独立报告 0 · 负面结果 0 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 9 · 接口形态 1 · 仅示例 0 · 独立报告 0 · 负面结果 0 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -44,6 +44,9 @@ _判断失败的步骤是否值得重试。_
 
 - **[jevswiftsdk](https://github.com/NSStudent/JevSwiftSDK)** — 独立、非官方、零依赖的 System One API Swift SDK：choice、noul 和 score 问题都映射为 Swift 类型（比如对枚举的 choice），具名批量问题一次调用作答并逐个校验答案，支持按策略重试和取消。支持 iOS 15+、macOS 12+ 和 Linux。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · nsstudent · `Swift` · 调用点 [`Sources/JevSwiftSDK/Configuration.swift`](https://github.com/NSStudent/JevSwiftSDK/blob/HEAD/Sources/JevSwiftSDK/Configuration.swift)，2026-09-22 阅读</sub>
+
+- **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — @playwright/test 的附加组件：在测试套件原本要全部重跑或花一轮 LLM 的地方，向 Jev 提小的类型化问题：用 choice 判断失败的根因并据此重试和修复，用 score 裁剪快照、排列测试顺序，用 noul 核验步骤和断言，再用 choice 修复定位器。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · AdriaanVE · `TS` · `choice` · `noul` · `score` · 调用点 [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts)，2026-11-23 模型阅读</sub>
 
 - **[Reflex](https://github.com/datadog-labs/reflex)** — 用于可观测性数据控制回路的 Rust 库：Datadog 指标和 Toto 预测变成类型化状态，由 Jev 以 choice 推荐一个动作（例如熔断器的 Open、Probe 或 NoChange），执行器只有在合法性检查、守卫条件和不变量都允许时才执行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · datadog-labs · `Rs` · `choice` · 调用点 [`crates/reflex-typesafe/src/lib.rs`](https://github.com/datadog-labs/reflex/blob/HEAD/crates/reflex-typesafe/src/lib.rs)，2026-11-12 模型阅读</sub>

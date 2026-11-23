@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 213 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 216 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 204 · wire shape 5 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 207 · wire shape 5 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -389,6 +389,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev for QA / SDET demos](https://github.com/gauravkhuraana/jev-qa-demos)** — Demo code for a video on Jev for testers, through Vercel AI Gateway and the AI SDK: it triages failed CI tests by root cause (choice), release impact (score) and whether a retry will pass (noul), and uses nouls to screen an agent's commands and to check that a RAG answer is grounded. <sub>(written by a model)</sub>
   <sub>`Tutorial` · gauravkhuraana · `TS` · `choice` · `score` · `noul` · call site [`src/lib/triage.ts`](https://github.com/gauravkhuraana/jev-qa-demos/blob/HEAD/src/lib/triage.ts), read by a model 2026-11-20 · ⚠ `no licence`</sub>
 
+- **[Jev Mail (KirtanUgreja)](https://github.com/KirtanUgreja/jev-mail)** — Chrome and Brave extension that triages Gmail with one Jev request per email: choices for category and priority and nouls such as important, needs a reply, unsolicited and junk. It applies Jev labels, can archive, and cleans up junk by sender with a preview, Trash only and an undo. <sub>(written by a model)</sub>
+  <sub>`Project` · KirtanUgreja · `JS` · `choice` · `noul` · call site [`src/common/jev.js`](https://github.com/KirtanUgreja/jev-mail/blob/HEAD/src/common/jev.js), read by a model 2026-11-23</sub>
+
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — Benchmark of Jev against open decision models on 480 authored general Persian questions, 560 literary questions and a classical poetry pilot, asked as choices, nouls and scores with raw responses saved and scored locally; Jev leads on choice and noul accuracy. <sub>(written by a model)</sub>
   <sub>`Benchmark` · armanjr · `Py` · `choice` · `noul` · `score` · call site [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py), read by a model 2026-11-11 · ⚠ `no licence`</sub>
 
@@ -608,6 +611,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[shady-town](https://github.com/tpaulshippy/shady-town)** — Shady Town: social-deduction party game for the living room TV, moderated by TypeSafe Jev <sub>(upstream description)</sub>
   <sub>`Project` · tpaulshippy · `Rb` · call site [`lib/shady_town/evaluator.rb`](https://github.com/tpaulshippy/shady-town/blob/HEAD/lib/shady_town/evaluator.rb), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>
 
+- **[Skillfeed](https://github.com/iikareem/skillfeed)** — Tech reading feed ranked to your skills: it pulls the day's writing from Hacker News, Dev.to, Hashnode and Lobsters and asks Jev one score question per article, from poor to excellent, on how well it matches a short summary of what you know, then sorts the feed by those scores. <sub>(written by a model)</sub>
+  <sub>`Project` · iikareem · `TS` · `score` · call site [`src/evaluation/providers/vercel-gateway.ts`](https://github.com/iikareem/skillfeed/blob/HEAD/src/evaluation/providers/vercel-gateway.ts), read by a model 2026-11-23</sub>
+
 - **[Slop Mop](https://github.com/tomfrazier/slopmop)** — Browser extension for LinkedIn whose server asks Jev twelve questions about each post: nine signs of slop and two counter-signs (personal voice, usefulness) as scores, plus how likely a model drafted it. The answers and engagement become a score that folds or outlines the post. <sub>(written by a model)</sub>
   <sub>`Project` · tomfrazier · `TS` · `score` · `noul` · call site [`slopmop-server/src/jevRequest.ts`](https://github.com/tomfrazier/slopmop/blob/HEAD/slopmop-server/src/jevRequest.ts), read by a model 2026-11-15</sub>
 
@@ -661,6 +667,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[watfile](https://github.com/jexp/watfile)** — Text/PDF - File categorization and sorting with Typesafe AI Jev or local calibrated decision model <sub>(upstream description)</sub>
   <sub>`Project` · jexp · `Py` · call site [`src/watfile/classifier/jev.py`](https://github.com/jexp/watfile/blob/HEAD/src/watfile/classifier/jev.py), read 2026-09-22 · ⚠ `no licence`</sub>
+
+- **[X Reply Judge (Clef / Jev)](https://github.com/liaocaoxuezhe/x-reply-judge-jev)** — Chrome extension that puts one badge on each post or reply on X with an experimental estimate that the text was AI-written: it sends only the text to Jev with one noul and colours the badge by the probability. Mute and Block buttons act only when clicked. <sub>(written by a model)</sub>
+  <sub>`Project` · liaocaoxuezhe · `JS` · `noul` · call site [`api.js`](https://github.com/liaocaoxuezhe/x-reply-judge-jev/blob/HEAD/api.js), read by a model 2026-11-23</sub>
 
 - **[zcode-jev](https://github.com/Zahrannnn/zcode-jev)** — Typed judgment layer for coding agents — gates from PRD to ship. Jev-ready, provider-agnostic. <sub>(upstream description)</sub>
   <sub>`Integration` · zahrannnn · `TS` · call site [`src/backends/jev.ts`](https://github.com/Zahrannnn/zcode-jev/blob/HEAD/src/backends/jev.ts), read 2026-09-22 · ⚠ `one commit` `no licence`</sub>

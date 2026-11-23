@@ -4,11 +4,11 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 193 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 195 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#safety-gating)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#safety-gating)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 185 · 接口形态 4 · 仅示例 0 · 独立报告 15 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 187 · 接口形态 4 · 仅示例 0 · 独立报告 15 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -485,6 +485,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevnav](https://github.com/dtduc-git/jevnav)** — 为浏览器智能体提供“页面真相”，以及可回放、可测试、可审计的决策。Jev 选择元素，高风险操作需要把关。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · dtduc-git · `Py` · 调用点 [`src/jevnav/decide.py`](https://github.com/dtduc-git/jevnav/blob/HEAD/src/jevnav/decide.py)，2026-09-24 阅读</sub>
 
+- **[jevpilot](https://github.com/bloudhood/jevpilot)** — 一个 MCP 服务器，给智能体提供能自己完成目标的浏览器：它一步步驱动真实的 Chrome，由 Jev 选择每个动作；拿不准或缺少某个值时就停下来提问，购买、支付和删除按钮要等批准。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · bloudhood · `TS` · `choice` · `noul` · `score` · 调用点 [`src/decision/adapters.ts`](https://github.com/bloudhood/jevpilot/blob/HEAD/src/decision/adapters.ts)，2026-11-23 模型阅读</sub>
+
 - **[JevRAG](https://github.com/ajanm007/jevrag)** — Python 库：把 RAG 里的五个判断变成由 Jev 回答的 noul：已有证据是否足够、可以停止检索，块该在哪里切分，哪些段落值得放进上下文，答案是否有依据，缓存的答案能否安全复用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ajanm007 · `Py` · `noul` · 调用点 [`jevrag/decision.py`](https://github.com/ajanm007/jevrag/blob/HEAD/jevrag/decision.py)，2026-11-10 模型阅读</sub>
 
@@ -550,6 +553,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[progressgate](https://github.com/AshutoshVJTI/progressgate)** — 检测 AI 智能体循环中的语义停滞。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ashutoshvjti · `TS` · 调用点 [`experiments/jev-client.ts`](https://github.com/AshutoshVJTI/progressgate/blob/HEAD/experiments/jev-client.ts)，2026-09-22 阅读</sub>
+
+- **[Pálpito para 30X](https://github.com/blockstars-labs/30x-JEV)** — 一个西班牙语原型，为 30X 逐个报名者决定发什么、发给谁、何时发：一次 Jev 调用问出此人的角色、痛点和目标（choice）、意向（score）以及资料是否真实（noul）；由代码规则选定项目和动作或转交人工，每条拟好的消息还要过 Jev 的 noul 检查。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · blockstars-labs · `Py` · `choice` · `score` · `noul` · 调用点 [`app/jev.py`](https://github.com/blockstars-labs/30x-JEV/blob/HEAD/app/jev.py)，2026-11-23 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[reflex](https://github.com/ursuciprian/reflex)** — 面向 Claude Code、Codex CLI、opencode 和 pi 的执行前钩子。工具运行前，它可以问 Jev：这次调用是否会改动、外泄或偏离任务（noul），影响范围多大（score），属于哪个环境（choice）；它还防范提示注入，并挑选 LiteLLM 模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ursuciprian · `JS` · `noul` · `score` · `choice` · 调用点 [`providers.mjs`](https://github.com/ursuciprian/reflex/blob/HEAD/providers.mjs)，2026-11-14 模型阅读</sub>

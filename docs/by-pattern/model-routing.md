@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 104 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 105 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 94 · wire shape 2 · example only 2 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 95 · wire shape 2 · example only 2 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -230,6 +230,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev AI Use Cases](https://medium.com/data-science-in-your-pocket/jev-ai-use-cases-9a87d57ac3b4)** — Walks through use case after use case — agent routing, an in-agent decision layer, ticket triage — each with a concrete option set and a sample response.
   <sub>`Tutorial` · Mehul Gupta · `Py` · `choice` · ⚠ `paywall`</sub>
+
+- **[Jev Foundry Judge](https://github.com/nguyennhianhtri/jev-foundry-judge)** — Jev as the judge for Azure AI Foundry agent evaluation: four drop-in evaluators (intent resolution, task adherence, tool call accuracy, groundedness) split each metric into small typed questions answered in one call per conversation. The same pattern runs a model router with one choice per prompt. <sub>(written by a model)</sub>
+  <sub>`Project` · nguyennhianhtri · `Py` · `noul` · `score` · `choice` · call site [`src/jev_foundry_judge/jev_client.py`](https://github.com/nguyennhianhtri/jev-foundry-judge/blob/HEAD/src/jev_foundry_judge/jev_client.py), read by a model 2026-11-23</sub>
 
 - **[Jev Model Router](https://github.com/zerone-agents/jev-model-router)** — Model router for AI agents behind OpenAI Chat Completions and Anthropic Messages endpoints. With model auto, each request asks Jev to choose a model from your plain-language descriptions of their strengths, cost and speed, and the reasoning effort (choices). <sub>(written by a model)</sub>
   <sub>`Project` · zerone-agents · `Go` · `choice` · call site [`internal/decision/jev.go`](https://github.com/zerone-agents/jev-model-router/blob/HEAD/internal/decision/jev.go), read by a model 2026-11-17 · ⚠ `3rd-party key` `vendor numbers`</sub>

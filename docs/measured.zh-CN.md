@@ -4,7 +4,7 @@
 
 本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。
 
-本目录收录的全部独立测量报告和负面结果 —— 共 107 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
+本目录收录的全部独立测量报告和负面结果 —— 共 108 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
@@ -517,6 +517,12 @@
   <sub>`基准测试` · Leanmcp · `Py` · `choice` · `noul` · `score` · [调用点](https://github.com/Leanmcp/jevbench/blob/HEAD/jev_bench/workspace/common.py)，2026-11-15 模型阅读</sub>
 
   > 它排名的大多数模型不是 Jev，成绩是作者自己跑的。jev_gateway 目录是一个小型 Bash 安全关卡，转发对话前先问 Jev。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-15 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
+- **[JevOut](https://github.com/xzx34/JevOut)**<br>
+  研究决策模型能否分清有用的上下文和干扰：一些简短、看似自然、不改变任务和正确答案的补充内容，就能把正确的判定翻转成预先指定的错误答案。它报告在七个数据集上对 Jev 的定向翻转率为 61.4%，在三个开源系统上更高。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · xzx34 · `Py` · `choice` · `noul` · [调用点](https://github.com/xzx34/JevOut/blob/HEAD/context_optimization/targets.py)，2026-11-23 模型阅读</sub>
+
+  > 已作为海报被 NeurIPS 2026 的 Agenthon 接收。这些数字是作者在每个判定至多 64 次目标评估下跑出的结果；OpenSourceJev、Von 和原版 Qwen 都不是 Jev。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-23 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[jevsbistro](https://github.com/andrewsilber/JevsBistro)**<br>
   用于低延迟决策模型基准测试的 3D 餐厅服务模拟器。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>

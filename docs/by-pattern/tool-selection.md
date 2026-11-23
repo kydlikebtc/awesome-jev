@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 301 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 304 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 290 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 293 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -516,6 +516,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[AskJev](https://github.com/ranjan2829/AskJev)** — AskJev — Jev autopilot for any website + guard on irreversible clicks (TypeSafe System One, not Claude) <sub>(upstream description)</sub>
   <sub>`Project` · ranjan2829 · `TS` · call site [`mcp/src/jev-client.ts`](https://github.com/ranjan2829/AskJev/blob/HEAD/mcp/src/jev-client.ts), read 2026-09-24</sub>
 
+- **[Astra + Jev: Fallout: New Vegas](https://github.com/0mis/astra-jev-new-vegas)** — Supervised agent controller that played Fallout: New Vegas's main story to its ending with keyboard and mouse input: Jev made the frequent bounded gameplay choices (routes, dialogue, VATS, equipment, Pip-Boy) as choice questions, while Astra built the controller, planned routes and fixed loops. <sub>(written by a model)</sub>
+  <sub>`Project` · 0mis · `Py` · `choice` · call site [`jev_bridge.py`](https://github.com/0mis/astra-jev-new-vegas/blob/HEAD/jev_bridge.py), read by a model 2026-11-23</sub>
+
 - **[bicameral](https://github.com/AbdelStark/bicameral)** — Hybrid coding harness: System 2 writes, System 1 (Jev) runs reflexes. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`packages/s1-runtime/src/backends/typesafe.ts`](https://github.com/AbdelStark/bicameral/blob/HEAD/packages/s1-runtime/src/backends/typesafe.ts), read 2026-09-22</sub>
 
@@ -828,6 +831,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevonly](https://github.com/buluoray/JevOnly)** — Pure Jev that can "type" and drive towards task completion. <sub>(upstream description)</sub>
   <sub>`Project` · buluoray · `Py` · call site [`src/jevonly/core/jev.py`](https://github.com/buluoray/JevOnly/blob/HEAD/src/jevonly/core/jev.py), read 2026-09-22</sub>
 
+- **[jevpilot](https://github.com/bloudhood/jevpilot)** — MCP server that gives an agent a browser that finishes a goal on its own: it drives a real Chrome step by step with Jev choosing each action, stops with a question when unsure or a value is missing, and holds buy, pay and delete buttons for approval. <sub>(written by a model)</sub>
+  <sub>`Plugin` · bloudhood · `TS` · `choice` · `noul` · `score` · call site [`src/decision/adapters.ts`](https://github.com/bloudhood/jevpilot/blob/HEAD/src/decision/adapters.ts), read by a model 2026-11-23</sub>
+
 - **[jevshield](https://github.com/lgy1027/jevshield)** — Sub-100ms security gate for AI agent tool calls, powered by TypeSafe's Jev (System-1) decision model. Single-request Choice/Noul/Score evaluation, dual-factor blocking matrix, calibrated-confidence routing, fail-closed parsing, zero-config local fallback. LangChain-ready. <sub>(upstream description)</sub>
   <sub>`Project` · lgy1027 · `Py` · call site [`jevshield/client.py`](https://github.com/lgy1027/jevshield/blob/HEAD/jevshield/client.py), read 2026-09-22</sub>
 
@@ -908,6 +914,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[tictacjev](https://github.com/darthblanc/tictacjev)** — A tic-tac-toe app where one player is Jev, TypeSafe AI's System One Model with live confidence scores and probabilities. <sub>(upstream description)</sub>
   <sub>`Project` · darthblanc · `TS` · call site [`backend/app/jev_client.py`](https://github.com/darthblanc/tictacjev/blob/HEAD/backend/app/jev_client.py), read 2026-09-24 · ⚠ `one commit` `no licence`</sub>
+
+- **[tinystruct-typesafe](https://github.com/tinystruct/tinystruct-typesafe-sdk)** — Lets natural language call existing tinystruct @Action methods with Jev as the dispatcher: a choice picks the action, and each argument comes from a choice over the enum's constants, a noul for a boolean or set member, or a choice over input spans. Low confidence is refused or asks for confirmation. <sub>(written by a model)</sub>
+  <sub>`Integration` · tinystruct · `Java` · `choice` · `noul` · call site [`tinystruct-typesafe-client/src/main/java/org/tinystruct/typesafe/client/HttpTypesafeClient.java`](https://github.com/tinystruct/tinystruct-typesafe-sdk/blob/HEAD/tinystruct-typesafe-client/src/main/java/org/tinystruct/typesafe/client/HttpTypesafeClient.java), read by a model 2026-11-23</sub>
 
 - **[tsai-civ2](https://github.com/phyous/tsai-civ2)** — TypeSafe Jev plays original Civilization II in a browser, with live action probabilities. Experimental full-game harness. <sub>(upstream description)</sub>
   <sub>`Project` · phyous · `Py` · call site [`civ2/typesafe.py`](https://github.com/phyous/tsai-civ2/blob/HEAD/civ2/typesafe.py), read 2026-09-22</sub>

@@ -4,11 +4,11 @@
 
 _Choose what to surface next, fast enough for a live conversation._
 
-Every catalogued example of this decision — 4 of them. The same rows, with caveats, are in [the index](../../README.md#recommendation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=recommendation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 5 of them. The same rows, with caveats, are in [the index](../../README.md#recommendation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=recommendation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#recommendation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 4 · wire shape 0 · example only 0 · independent reports 0 · negative results 0 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 5 · wire shape 0 · example only 0 · independent reports 0 · negative results 0 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -35,6 +35,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jevflix](https://github.com/ArielBubis/Jevflix)** — Movie recommender: FAISS and BM25 search narrow 4,800 films to a shortlist, Jev reads the request's constraints (runtime, no graphic content) for code to filter on, and one Jev choice over at most 250 candidates picks a film. If unsure, an LLM weighs the top five or asks one question. <sub>(written by a model)</sub>
   <sub>`Project` · arielbubis · `Py` · call site [`movie_rec/jev_client.py`](https://github.com/ArielBubis/Jevflix/blob/HEAD/movie_rec/jev_client.py), read 2026-09-24</sub>
+
+- **[Skillfeed](https://github.com/iikareem/skillfeed)** — Tech reading feed ranked to your skills: it pulls the day's writing from Hacker News, Dev.to, Hashnode and Lobsters and asks Jev one score question per article, from poor to excellent, on how well it matches a short summary of what you know, then sorts the feed by those scores. <sub>(written by a model)</sub>
+  <sub>`Project` · iikareem · `TS` · `score` · call site [`src/evaluation/providers/vercel-gateway.ts`](https://github.com/iikareem/skillfeed/blob/HEAD/src/evaluation/providers/vercel-gateway.ts), read by a model 2026-11-23</sub>
 
 ---
 
