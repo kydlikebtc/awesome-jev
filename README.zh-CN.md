@@ -56,7 +56,7 @@
 
 本周榜上没有 Launch。周四 23:59 UTC 前提交的 Launch 周五登记、下周一开榜：[发布一个产品](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml)，自己做的或你发现的都行，比如下面上升最快的这些。 <sub>(机翻)</sub>
 
-### ★ 上升最快：2026-11-16 至 2026-11-23
+### ★ 上升最快：2026-11-17 至 2026-11-24
 
 <table>
 <tr>
@@ -64,50 +64,50 @@
 <td>
 
 **[celesto](https://kydlikebtc.github.io/awesome-jev/products/celesto.html)** — 给 AI 智能体的安全持久化计算环境。 <sub>(机翻)</sub><br>
-<sub>1,434 → 1,874 星（+31%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=celesto&title=Launch%3A%20celesto)</sub>
+<sub>1,493 → 1,932 星（+29%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=celesto&title=Launch%3A%20celesto)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+440</b><br><sub>星标</sub></td>
-</tr>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/optim-jev.html"><img src="https://github.com/Oqura-ai.png?size=96" width="48" height="48" alt="optim-jev"></a></td>
-<td>
-
-**[optim-jev](https://kydlikebtc.github.io/awesome-jev/products/optim-jev.html)** — Claude Code 插件（也支持 Codex），包含三个向 Jev 提问的工具：jev-compacter 在压缩上下文时判断哪些过期的工具调用和输出可以丢弃，jev-router 为每个子智能体选择模型和推理强度，jev-skills 为每条提示只发送一份简短且相关的技能列表，而不是整个目录。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>69 → 85 星（+23%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=optim-jev&title=Launch%3A%20optim-jev)</sub>
-
-</td>
-<td align="center" width="80"><b>★&nbsp;+16</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+439</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/onlyread.html"><img src="https://github.com/onlyreadai.png?size=96" width="48" height="48" alt="OnlyRead"></a></td>
 <td>
 
 **[OnlyRead](https://kydlikebtc.github.io/awesome-jev/products/onlyread.html)** — 让浏览器里的 AI 智能体在你选定的网站上只能读不能写的 Chrome 扩展：规则、按站点的解码器和判定缓存先处理大部分请求，其余的由 Jev 回答一个 noul（这个请求会不会创建、修改或删除服务器上存储的数据？）；代码据此放行、拦截，或把中间地带交给复核模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>94 → 109 星（+16%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=onlyread&title=Launch%3A%20OnlyRead)</sub>
+<sub>93 → 109 星（+17%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=onlyread&title=Launch%3A%20OnlyRead)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+15</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+16</b><br><sub>星标</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/optim-jev.html"><img src="https://github.com/Oqura-ai.png?size=96" width="48" height="48" alt="optim-jev"></a></td>
+<td>
+
+**[optim-jev](https://kydlikebtc.github.io/awesome-jev/products/optim-jev.html)** — Claude Code 插件（也支持 Codex），包含三个向 Jev 提问的工具：jev-compacter 在压缩上下文时判断哪些过期的工具调用和输出可以丢弃，jev-router 为每个子智能体选择模型和推理强度，jev-skills 为每条提示只发送一份简短且相关的技能列表，而不是整个目录。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+<sub>73 → 85 星（+16%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=optim-jev&title=Launch%3A%20optim-jev)</sub>
+
+</td>
+<td align="center" width="80"><b>★&nbsp;+12</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/rikkahub-sillytavern-android.html"><img src="https://github.com/MiaoWuNYA.png?size=96" width="48" height="48" alt="RikkaHub Plus · Lantern"></a></td>
 <td>
 
 **[RikkaHub Plus · Lantern](https://kydlikebtc.github.io/awesome-jev/products/rikkahub-sillytavern-android.html)** — 面向 SillyTavern 式角色扮演的 Android 聊天客户端，是 RikkaHub 的 Kotlin 分支。可选的 Jev 决策功能对每条记忆问一个 `noul`（它与当前对话是否相关？），以此代替嵌入检索；还给主模型一个 `judge` 工具，用于是非、选择和评分问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>208 → 232 星（+12%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=rikkahub-sillytavern-android&title=Launch%3A%20RikkaHub%20Plus%20%C2%B7%20Lantern)</sub>
+<sub>216 → 239 星（+11%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=rikkahub-sillytavern-android&title=Launch%3A%20RikkaHub%20Plus%20%C2%B7%20Lantern)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+24</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+23</b><br><sub>星标</sub></td>
 </tr>
 <tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/openwhisper.html"><img src="https://github.com/Knuckles92.png?size=96" width="48" height="48" alt="openwhisper"></a></td>
 <td>
 
-**[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — 桌面自动化。读系统无障碍树，判断下一步该点哪个按钮、菜单或输入框。<br>
-<sub>24,382 → 26,239 星（+8%） · 👤 有人读过调用点 · 2027-01-11 起可再次发布</sub>
+**[openwhisper](https://kydlikebtc.github.io/awesome-jev/products/openwhisper.html)** — 基于 Whisper 的本地语音转写、听写与会议记录。 <sub>(机翻)</sub><br>
+<sub>274 → 295 星（+8%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=openwhisper&title=Launch%3A%20openwhisper)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+1,857</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+21</b><br><sub>星标</sub></td>
 </tr>
 </table>
 
