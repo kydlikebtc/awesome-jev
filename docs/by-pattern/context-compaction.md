@@ -4,11 +4,11 @@
 
 _Decide which tool calls and results still matter so stale context can be dropped._
 
-Every catalogued example of this decision — 60 of them. The same rows, with caveats, are in [the index](../../README.md#context-compaction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 62 of them. The same rows, with caveats, are in [the index](../../README.md#context-compaction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#context-compaction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 60 · wire shape 0 · example only 0 · independent reports 2 · negative results 2 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 62 · wire shape 0 · example only 0 · independent reports 2 · negative results 2 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -113,6 +113,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Codex Decision](https://github.com/philippelhaus/codex-decision)** — VS Code extension for Codex that asks a decision model, one noul per line, whether each line of a long tool output holds a finding the task needs, then shortens the output and links the original. Its MCP tools also score context candidates, classify test failures and check completion claims. <sub>(written by a model)</sub>
   <sub>`Plugin` · philippelhaus · `Rs` · `noul` · `score` · `choice` · call site [`rust/decision/src/provider.rs`](https://github.com/philippelhaus/codex-decision/blob/HEAD/rust/decision/src/provider.rs), read by a model 2026-11-21</sub>
 
+- **[Codex Jev](https://github.com/Hyper-AI-Lab/codex-jev)** — Retrieval layer for Codex, as an MCP server: it finds candidate code, test, config and log excerpts locally, can then ask Jev one noul per excerpt (is it useful evidence for the query) and one per stated requirement, and returns a bounded, source-addressed set chosen by relevance and coverage. <sub>(written by a model)</sub>
+  <sub>`Plugin` · Hyper-AI-Lab · `JS` · `noul` · call site [`src/investigator.mjs`](https://github.com/Hyper-AI-Lab/codex-jev/blob/HEAD/src/investigator.mjs), read by a model 2026-11-24</sub>
+
 - **[deepseek-harness-jev-pre-compaction](https://github.com/wjw66/deepseek-harness-jev-pre-compaction)** — A pre-compaction advisor for DeepSeek Harness. Runs before the standard `compaction-basic` backend, using TypeSafe JEV to safely prune low-value tool results from model context. Original session events stay in the append-only log; only the model-visible view is replaced with compact markers or
   <sub>`Project` · wjw66 · `TS` · call site [`src/jev/protocol.ts`](https://github.com/wjw66/deepseek-harness-jev-pre-compaction/blob/HEAD/src/jev/protocol.ts), read 2026-09-22</sub>
 
@@ -196,6 +199,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[pi-jev-context-curator](https://github.com/Shashank-H/pi-jev-context-curator)** — A Jev based context curator for pi <sub>(upstream description)</sub>
   <sub>`Plugin` · shashank-h · `TS` · call site [`extensions/curator-jev/config.ts`](https://github.com/Shashank-H/pi-jev-context-curator/blob/HEAD/extensions/curator-jev/config.ts), read 2026-09-24</sub>
+
+- **[pi-skimmer](https://github.com/jon-devlapaz/pi-skimmer)** — Extension for the Pi coding agent with two tools, skim_text and filter_items: it splits supplied text or JSON records into units and asks Jev one noul per unit on whether it would help reach the stated goal, keeping relevant chunks with their line ranges and never dropping what Jev did not judge. <sub>(written by a model)</sub>
+  <sub>`Plugin` · jon-devlapaz · `TS` · `noul` · call site [`extensions/skimmer/core.ts`](https://github.com/jon-devlapaz/pi-skimmer/blob/HEAD/extensions/skimmer/core.ts), read by a model 2026-11-24</sub>
 
 - **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — Add-on for @playwright/test that asks Jev small typed questions where a suite would rerun everything or spend an LLM turn: a choice for a failure's root cause that drives retry and heal, scores to prune snapshots and order tests, nouls to verify steps and assertions, and a choice to heal locators. <sub>(written by a model)</sub>
   <sub>`Plugin` · AdriaanVE · `TS` · `choice` · `noul` · `score` · call site [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts), read by a model 2026-11-23</sub>

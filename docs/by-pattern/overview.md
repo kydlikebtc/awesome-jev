@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 545 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 547 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 403 · wire shape 102 · example only 0 · independent reports 35 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 404 · wire shape 103 · example only 0 · independent reports 35 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -818,6 +818,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[System 1 Decision Benchmark](https://github.com/etsabary/system-1-decision-benchmark)** — Benchmark of 1,456 choice questions in 43 categories (reasoning, routing, tool use, authority and more) put to decision models, Jev among them through OpenRouter's decisions API, and to general LLMs, with accuracy, latency and cost per configuration and an interactive report. <sub>(written by a model)</sub>
   <sub>`Benchmark` · etsabary · `Py` · `choice` · call site [`scripts/run_benchmark.py`](https://github.com/etsabary/system-1-decision-benchmark/blob/HEAD/scripts/run_benchmark.py), read by a model 2026-11-15</sub>
 
+- **[System One lab](https://github.com/baldellimtt/systemone-lab)** — Not Jev: a hands-on lab for System One decisions whose quick start runs the open Laya model locally behind Jev's POST /v1/systemone shape, with examples for the three primitives, ticket routing, an agent judge and thresholds, and a playground UI. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · baldellimtt · `Py` · cited file [`jev_lab/client.py`](https://github.com/baldellimtt/systemone-lab/blob/HEAD/jev_lab/client.py), read by a model 2026-11-24 · ⚠ `not Jev itself`</sub>
+
 - **[system-one-adapter-rust](https://github.com/codeitlikemiley/system-one-adapter-rust)** — Rust port of TypeSafe system-one-adapter (LLM-backed system_one evaluations) <sub>(upstream description)</sub>
   <sub>`Integration` · codeitlikemiley · `Rs` · call site [`src/client.rs`](https://github.com/codeitlikemiley/system-one-adapter-rust/blob/HEAD/src/client.rs), read 2026-09-22</sub>
 
@@ -1053,7 +1056,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 208 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 209 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — Toolkit for voice AI avatars in apps, phone lines, signage and the metaverse. Its Jev turn-end gate asks a noul on the transcript, whether the assistant should stay silent and leave the user's turn open, and maps that probability to a wait of 0.4 to 2 seconds; on any error the turn ends. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · uezo · `Py` · call site [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py), read 2026-09-22</sub>
@@ -1366,6 +1369,9 @@ Projects and plugins with code, 208 of them, whose only pattern is `overview` an
 
 - **[jev-cli](https://github.com/jtsang4/jev-cli)** — CLI for TypeSafe AI's Jev evaluation model — typed questions in, structured JSON answers out <sub>(upstream description)</sub>
   <sub>`Project` · jtsang4 · `TS` · call site [`src/providers/jev.ts`](https://github.com/jtsang4/jev-cli/blob/HEAD/src/providers/jev.ts), read 2026-09-24</sub>
+
+- **[jev-cli](https://github.com/portlandhodl/jev-cli)** — Agent-facing command line for Jev on the unofficial jev-sdk Rust crate: predict asks a noul on whether an action will succeed, choose picks one of several paths, score rates against levels, and ask sends a full request, so a shell script can gate on a threshold before it acts. <sub>(written by a model)</sub>
+  <sub>`Project` · portlandhodl · `Rs` · `noul` · `choice` · `score` · call site [`src/run.rs`](https://github.com/portlandhodl/jev-cli/blob/HEAD/src/run.rs), read by a model 2026-11-24</sub>
 
 - **[jev-cloud-quiz](https://github.com/minorun365/jev-cloud-quiz)** — A demo in which Jev judges, with probabilities, which of the three big clouds a feature name belongs to.
   <sub>`Project` · minorun365 · `TS` · call site [`server/server.mjs`](https://github.com/minorun365/jev-cloud-quiz/blob/HEAD/server/server.mjs), read 2026-09-24</sub>

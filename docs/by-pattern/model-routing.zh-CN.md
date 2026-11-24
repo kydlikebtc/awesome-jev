@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 105 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 107 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 95 · 接口形态 2 · 仅示例 2 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 97 · 接口形态 2 · 仅示例 2 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -243,6 +243,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jev Router](https://github.com/AIAnytime/Jev-Router)** — OpenAI 兼容的路由器：在一次调用里问 Jev 哪个候选模型适合这个请求（choice）、请求有多难（score）、是否需要前沿模型（noul）以及任务类型（choice），可选再问护栏类 noul 和哪些工具相关；然后由策略引擎选定模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · AIAnytime · `Py` · `choice` · `score` · `noul` · 调用点 [`jev_router/engine/jev_client.py`](https://github.com/AIAnytime/Jev-Router/blob/HEAD/jev_router/engine/jev_client.py)，2026-11-13 模型阅读</sub>
 
+- **[Jev Router Playground](https://github.com/hugo-alves/jev-router-playground)** — 一个用于模型路由的浏览器试验场：你用 OpenRouter 的模型和描述组成候选池，再给 Jev 一项任务；Jev 对每个候选回答一个是否合适的 noul，概率最高者即为选择，你再把它与你认为最好的模型比较。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · hugo-alves · `JS` · `noul` · 调用点 [`app.js`](https://github.com/hugo-alves/jev-router-playground/blob/HEAD/app.js)，2026-11-24 模型阅读</sub>
+
 - **[Jev Skills](https://github.com/n23eos/jev-skills)** — 供 Claude Code 和 Codex 使用的十四个技能，每个技能里 Jev 只做一个有界的 choice：读哪个已装技能、用哪个已配置模型、先看哪个文件、测试或组件，或者下一步用哪个方案、工具或评审动作。具体工作仍由编程智能体完成。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · n23eos · `Py` · `choice` · 调用点 [`src/jev_skills/core.py`](https://github.com/n23eos/jev-skills/blob/HEAD/src/jev_skills/core.py)，2026-11-13 模型阅读</sub>
 
@@ -281,6 +284,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-router](https://github.com/hyspacex/jev-router)** — 面向编程智能体和 OpenAI 兼容客户端的自托管模型路由器。新任务开始时，它在一次调用里问 Jev：任务类型（choice）、难度（score），以及答错是否会造成损害、是否需要忠实于原文（noul）；再由 YAML 规则为整个会话选定模型和推理强度。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · hyspacex · `Py` · `choice` · `score` · `noul` · 调用点 [`src/jev_router/deciders/jev.py`](https://github.com/hyspacex/jev-router/blob/HEAD/src/jev_router/deciders/jev.py)，2026-11-13 模型阅读</sub>
+
+- **[jev-router](https://github.com/pyxl-dev/jev-router)** — 一个 Claude Code 模组：每条消息发出前，经 OpenRouter 问 Jev 这项任务需要多少推理力度（低、中或高，一个 choice 问题）。置信度达到 60% 时就在同一个模型上设定该力度，提示缓存得以保留；否则沿用应用自身的设置。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · pyxl-dev · `TS` · `choice` · 调用点 [`hooks/register.tsx`](https://github.com/pyxl-dev/jev-router/blob/HEAD/hooks/register.tsx)，2026-11-24 模型阅读</sub>
 
 - **[jev-smart-router](https://github.com/rmosleydb/jev-smart-router)** — JEV Smart Router：一个 Databricks 应用，用 TypeSafe JEV 选择由哪个模型回答每条消息，再执行推理。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · rmosleydb · `Py` · 调用点 [`src/app.py`](https://github.com/rmosleydb/jev-smart-router/blob/HEAD/src/app.py)，2026-09-24 阅读</sub>

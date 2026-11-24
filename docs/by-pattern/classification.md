@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 241 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 244 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 229 · wire shape 3 · example only 0 · independent reports 24 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 232 · wire shape 3 · example only 0 · independent reports 24 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -437,6 +437,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[inbox-jev](https://github.com/hellolitebox/litebox-inbox-jev)** — Gmail triage that every few minutes asks Jev each new email's category (choice) and nouls on whether it needs a reply and on each configured tag, then labels, archives, unsubscribes or moves scams to spam, leaves what it is unsure of for review and learns sender rules from corrections. <sub>(written by a model)</sub>
   <sub>`Project` · hellolitebox · `Py` · `choice` · `noul` · call site [`src/inbox_jev/classifier.py`](https://github.com/hellolitebox/litebox-inbox-jev/blob/HEAD/src/inbox_jev/classifier.py), read by a model 2026-11-21</sub>
 
+- **[Jeff](https://github.com/saembit/jeff-bot)** — Discord bot in which every feature is a Jev question: /settle picks the better of two answers, /rank scores items on each criterion, forum posts get the fitting tag or none, help channels check whether a message is a question a FAQ entry answers, and tabletop oracle and odds games use nouls. <sub>(written by a model)</sub>
+  <sub>`Project` · saembit · `Py` · `choice` · `noul` · `score` · call site [`src/utils/jev.py`](https://github.com/saembit/jeff-bot/blob/HEAD/src/utils/jev.py), read by a model 2026-11-24</sub>
+
 - **[Jev Benchmark](https://github.com/yididev/jev-benchmark)** — Benchmark of rubric-based zero-shot classification, chained decision-tree execution and exam grading. Each document goes to Jev as one choice whose criteria are the rubric's folder descriptions, against two Claude models, OpenJev and open-weight decision models on accuracy, calibration and price. <sub>(written by a model)</sub>
   <sub>`Benchmark` · yididev · `Py` · `choice` · call site [`arms/jev.py`](https://github.com/yididev/jev-benchmark/blob/HEAD/arms/jev.py), read by a model 2026-11-18</sub>
 
@@ -460,6 +463,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev Mail (KirtanUgreja)](https://github.com/KirtanUgreja/jev-mail)** — Chrome and Brave extension that triages Gmail with one Jev request per email: choices for category and priority and nouls such as important, needs a reply, unsolicited and junk. It applies Jev labels, can archive, and cleans up junk by sender with a preview, Trash only and an undo. <sub>(written by a model)</sub>
   <sub>`Project` · KirtanUgreja · `JS` · `choice` · `noul` · call site [`src/common/jev.js`](https://github.com/KirtanUgreja/jev-mail/blob/HEAD/src/common/jev.js), read by a model 2026-11-23</sub>
+
+- **[Jev MCP Server](https://github.com/MattiooFR/mcp-server-jev)** — MCP server giving Codex, Claude and other clients two tools: jev_evaluate for mixed noul, choice and score questions about supplied content, and jev_classify, which asks one choice per item against shared class definitions with a required none class and returns each class with its probability. <sub>(written by a model)</sub>
+  <sub>`Plugin` · MattiooFR · `JS` · `choice` · `noul` · `score` · call site [`src/client.mjs`](https://github.com/MattiooFR/mcp-server-jev/blob/HEAD/src/client.mjs), read by a model 2026-11-24</sub>
 
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — Benchmark of Jev against open decision models on 480 authored general Persian questions, 560 literary questions and a classical poetry pilot, asked as choices, nouls and scores with raw responses saved and scored locally; Jev leads on choice and noul accuracy. <sub>(written by a model)</sub>
   <sub>`Benchmark` · armanjr · `Py` · `choice` · `noul` · `score` · call site [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py), read by a model 2026-11-11 · ⚠ `no licence`</sub>
@@ -631,6 +637,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[krasivo-jev](https://github.com/SergeyBazhmin/krasivo-jev)** — Datasets and training code for open System One models (Qwen3.5-2B with LoRA and a pointer head, trained on 100 Hugging Face datasets), plus an evaluation that asks hosted Jev the same test rows, one choice or noul question each, as the reference for accuracy, NLL and calibration. <sub>(written by a model)</sub>
   <sub>`Benchmark` · SergeyBazhmin · `Py` · `choice` · `noul` · call site [`src/jev_model/typesafe/client.py`](https://github.com/SergeyBazhmin/krasivo-jev/blob/HEAD/src/jev_model/typesafe/client.py), read by a model 2026-11-13 · ⚠ `no licence` `vendor numbers`</sub>
+
+- **[lark-mbti-jev](https://github.com/akiiwa-games/lark-mbti-jev)** — Windows overlay for Feishu / Lark group chats that syncs history with lark-cli and asks Jev, per speaker, a choice on each MBTI axis (E/I, S/N, T/F, J/P) and one among the 16 types, with an unknown option; a label shows beside the name only when its probability clears a threshold. <sub>(written by a model)</sub>
+  <sub>`Project` · akiiwa-games · `Py` · `choice` · call site [`feishu_mbti/classifier.py`](https://github.com/akiiwa-games/lark-mbti-jev/blob/HEAD/feishu_mbti/classifier.py), read by a model 2026-11-24</sub>
 
 - **[legends-jev](https://github.com/avalonreset/legends-jev)** — Decision adviser for an operator choosing the next app, browser, document or local SEO review action: Jev picks one candidate action or unknown, a noul flags thin evidence and a score rates support. With screenshots or photos it also checks text, locates targets and verifies storefront signs. <sub>(written by a model)</sub>
   <sub>`Plugin` · avalonreset · `Py` · `choice` · `noul` · `score` · call site [`legends_jev/core.py`](https://github.com/avalonreset/legends-jev/blob/HEAD/legends_jev/core.py), read by a model 2026-11-19</sub>

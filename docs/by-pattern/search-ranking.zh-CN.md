@@ -4,11 +4,11 @@
 
 _对来自廉价检索步骤的候选做打分或重排。_
 
-这个决策的全部已收录例子 —— 共 108 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 109 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#search-ranking)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#search-ranking)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 104 · 接口形态 0 · 仅示例 0 · 独立报告 8 · 负面结果 2 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 105 · 接口形态 0 · 仅示例 0 · 独立报告 8 · 负面结果 2 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -257,6 +257,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Codex Decision](https://github.com/philippelhaus/codex-decision)** — 面向 Codex 的 VS Code 扩展：对长工具输出的每一行用一个 noul 问决策模型，这一行是否包含任务需要的发现，然后缩短输出并链接到原文。它的 MCP 工具还会给上下文候选打分、给测试失败分类、核对完成声明。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · philippelhaus · `Rs` · `noul` · `score` · `choice` · 调用点 [`rust/decision/src/provider.rs`](https://github.com/philippelhaus/codex-decision/blob/HEAD/rust/decision/src/provider.rs)，2026-11-21 模型阅读</sub>
+
+- **[Codex Jev](https://github.com/Hyper-AI-Lab/codex-jev)** — 一个面向 Codex 的检索层（MCP 服务器）：先在本地找出候选的代码、测试、配置和日志片段，再可以就每个片段问 Jev 一个 noul（它是否是该查询的有用证据），并就每条给定要求各问一个，最后按相关性和覆盖面返回一组有上限、标明出处的证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · Hyper-AI-Lab · `JS` · `noul` · 调用点 [`src/investigator.mjs`](https://github.com/Hyper-AI-Lab/codex-jev/blob/HEAD/src/investigator.mjs)，2026-11-24 模型阅读</sub>
 
 - **[DGUI-HyperMem](https://github.com/ctaxnagomi/dgui-hypermem)** — 运行在 Cloudflare Workers 上的自托管长期记忆 MCP 服务器。Jev 给每条新记忆标注类型（choice）、判断它是否值得长期保留（noul）并给重要性打分；召回时用每个候选一个 noul 对向量和全文检索的候选重新排序，还会判断新记忆是否取代旧记忆。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ctaxnagomi · `TS` · `choice` · `noul` · `score` · 调用点 [`src/jev.ts`](https://github.com/ctaxnagomi/dgui-hypermem/blob/HEAD/src/jev.ts)，2026-11-21 模型阅读</sub>

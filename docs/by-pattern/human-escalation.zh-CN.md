@@ -4,11 +4,11 @@
 
 _用校准置信度决定哪些情况必须由人来看。_
 
-这个决策的全部已收录例子 —— 共 115 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 117 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#人工升级)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=human-escalation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#human-escalation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#human-escalation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 100 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 7 · 调用点 102 · 接口形态 5 · 仅示例 0 · 独立报告 11 · 负面结果 1 · 未引用文件 10。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -208,6 +208,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Example: confidence-gated escalation](https://github.com/kydlikebtc/awesome-jev/blob/main/examples/02-confidence-gate/main.py)** — 带「自动执行或转人工」闸门的路由；策略函数刻意留空 —— 阈值该定在哪，是你的决定。
   <sub>`代码片段` · `Py` · `choice` · 调用点 [`examples/02-confidence-gate/main.py`](https://github.com/kydlikebtc/awesome-jev/blob/HEAD/examples/02-confidence-gate/main.py)，2026-09-22 阅读 · ⚠ `代码未实测`</sub>
 
+- **[Fast decisions with Jev, slow thinking with an LLM](https://github.com/emiroberti77/jev-py-integration)** — 一个小型客服工单分诊流程，用来讲解系统一与系统二：每张工单调用一次 Jev，问三个 noul（是否紧急、是否愤怒、是否需要人工）和一个意图 choice；再由普通的 if 语句丢弃垃圾信息，只把紧急、愤怒或需要人工的工单交给 LLM 写回复。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`教程` · emiroberti77 · `Py` · `noul` · `choice` · 调用点 [`code_2/app.py`](https://github.com/emiroberti77/jev-py-integration/blob/HEAD/code_2/app.py)，2026-11-24 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[grok-jev-guard](https://github.com/0xwhrari/grok-jev-guard)** — Grok Bot 的类型化预检与审批层：硬性边界由本地策略掌控，模糊情况交给 Jev 判断，Grok Bot 只在返回的范围内执行。 <sub>(机翻)</sub>
   <sub>`开源项目` · 0xwhrari · `Py` · 调用点 [`src/grok_jev_guard/jev.py`](https://github.com/0xwhrari/grok-jev-guard/blob/HEAD/src/grok_jev_guard/jev.py)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
 
@@ -315,6 +318,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[opencode-jev-orchestrator](https://github.com/aaronshaf/opencode-jev-orchestrator)** — 让 OpenCode 粘在便宜模型上以保持缓存热度，由 Jev 把困难的轮次升级给更强的模型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · aaronshaf · `TS` · 调用点 [`src/jev.ts`](https://github.com/aaronshaf/opencode-jev-orchestrator/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
+
+- **[OpenJev for Claude Code](https://github.com/darwintechlab/claude-jev)** — Claude Code 插件，其 MCP 服务器把 Jev 作为工具（jev_choice、jev_noul、jev_score、jev_ask）交给智能体，用于它的小决定，例如某条命令是否安全、工单该给哪个团队。每个回答都要过一道门槛：有把握就执行，没把握就上报；风险命令的门槛更严。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · darwintechlab · `TS` · `choice` · `noul` · `score` · 调用点 [`mcp-server/src/client.ts`](https://github.com/darwintechlab/claude-jev/blob/HEAD/mcp-server/src/client.ts)，2026-11-24 模型阅读</sub>
 
 - **[OpenJev for opencode](https://github.com/darwintechlab/openjev)** — opencode 插件，把 Jev 作为工具（jev_choice、jev_noul、jev_score、jev_ask）交给智能体，用来做原本要问 LLM 的小决定，比如某条命令是否安全、工单该派给哪个团队。每个答案都附带一道关卡：有把握时直接执行，没把握时上报。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · darwintechlab · `TS` · `choice` · `noul` · `score` · 调用点 [`src/client.ts`](https://github.com/darwintechlab/openjev/blob/HEAD/src/client.ts)，2026-11-13 模型阅读</sub>

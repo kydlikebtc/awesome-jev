@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 105 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 107 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 95 · wire shape 2 · example only 2 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 97 · wire shape 2 · example only 2 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -243,6 +243,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev Router](https://github.com/AIAnytime/Jev-Router)** — OpenAI-compatible router that asks Jev, in one call, which eligible model fits a request (choice), how demanding it is (score), whether it needs a frontier model (noul) and the task kind (choice), optionally with guardrail nouls and which tools are relevant; a policy engine then picks the model. <sub>(written by a model)</sub>
   <sub>`Project` · AIAnytime · `Py` · `choice` · `score` · `noul` · call site [`jev_router/engine/jev_client.py`](https://github.com/AIAnytime/Jev-Router/blob/HEAD/jev_router/engine/jev_client.py), read by a model 2026-11-13</sub>
 
+- **[Jev Router Playground](https://github.com/hugo-alves/jev-router-playground)** — Browser playground for model routing: you build a pool of OpenRouter models with descriptions and give Jev a task; Jev answers one noul per candidate on whether it fits, the highest probability is the pick, and you compare it with the model you judge best. <sub>(written by a model)</sub>
+  <sub>`Project` · hugo-alves · `JS` · `noul` · call site [`app.js`](https://github.com/hugo-alves/jev-router-playground/blob/HEAD/app.js), read by a model 2026-11-24</sub>
+
 - **[Jev Skills](https://github.com/n23eos/jev-skills)** — Fourteen skills for Claude Code and Codex in which Jev makes one bounded choice: which installed skill to read, which configured model to use, which file, test or component to look at first, or which plan, tool or review action comes next. The coding agent does the work. <sub>(written by a model)</sub>
   <sub>`Plugin` · n23eos · `Py` · `choice` · call site [`src/jev_skills/core.py`](https://github.com/n23eos/jev-skills/blob/HEAD/src/jev_skills/core.py), read by a model 2026-11-13</sub>
 
@@ -281,6 +284,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-router](https://github.com/hyspacex/jev-router)** — Self-hosted model router for coding agents and OpenAI-compatible clients. When a task starts it asks Jev, in one call, the task type (choice), its difficulty (score) and whether a wrong answer would do harm or needs faithfulness (nouls); YAML rules then pick the session's model and effort. <sub>(written by a model)</sub>
   <sub>`Project` · hyspacex · `Py` · `choice` · `score` · `noul` · call site [`src/jev_router/deciders/jev.py`](https://github.com/hyspacex/jev-router/blob/HEAD/src/jev_router/deciders/jev.py), read by a model 2026-11-13</sub>
+
+- **[jev-router](https://github.com/pyxl-dev/jev-router)** — Mod for Claude Code that asks Jev, through OpenRouter, how much reasoning effort each message's task needs (low, medium or high, one choice question). At 60% confidence or more it sets that effort on the same model, so the prompt cache stays; otherwise the app's own setting applies. <sub>(written by a model)</sub>
+  <sub>`Plugin` · pyxl-dev · `TS` · `choice` · call site [`hooks/register.tsx`](https://github.com/pyxl-dev/jev-router/blob/HEAD/hooks/register.tsx), read by a model 2026-11-24</sub>
 
 - **[jev-smart-router](https://github.com/rmosleydb/jev-smart-router)** — JEV Smart Router — a Databricks App that uses TypeSafe JEV to pick which model answers each message, then runs inference on the chosen Databricks Foundation Model API endpoint. <sub>(upstream description)</sub>
   <sub>`Project` · rmosleydb · `Py` · call site [`src/app.py`](https://github.com/rmosleydb/jev-smart-router/blob/HEAD/src/app.py), read 2026-09-24</sub>

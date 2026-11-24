@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 241 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 244 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 229 · 接口形态 3 · 仅示例 0 · 独立报告 24 · 负面结果 2 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 232 · 接口形态 3 · 仅示例 0 · 独立报告 24 · 负面结果 2 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -437,6 +437,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[inbox-jev](https://github.com/hellolitebox/litebox-inbox-jev)** — Gmail 分拣工具：每隔几分钟对每封新邮件向 Jev 询问类别（choice），并用 noul 判断是否需要回复以及各个已配置的标签，然后打标签、归档、退订或把诈骗邮件移入垃圾箱；没把握的留待复核，并从用户的更正中学习发件人规则。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · hellolitebox · `Py` · `choice` · `noul` · 调用点 [`src/inbox_jev/classifier.py`](https://github.com/hellolitebox/litebox-inbox-jev/blob/HEAD/src/inbox_jev/classifier.py)，2026-11-21 模型阅读</sub>
 
+- **[Jeff](https://github.com/saembit/jeff-bot)** — 一个 Discord 机器人，每项功能都是一个 Jev 问题：/settle 从两个答案中选出更好的，/rank 按每条标准给条目打分，论坛帖子会被打上合适的标签或不打，帮助频道会判断一条消息是不是某条 FAQ 能回答的问题，桌游的神谕和赔率游戏则用 noul。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · saembit · `Py` · `choice` · `noul` · `score` · 调用点 [`src/utils/jev.py`](https://github.com/saembit/jeff-bot/blob/HEAD/src/utils/jev.py)，2026-11-24 模型阅读</sub>
+
 - **[Jev Benchmark](https://github.com/yididev/jev-benchmark)** — 基于评分细则的零样本分类、链式决策树执行和考试评分基准。每份文档以一个 choice 发给 Jev，criteria 是细则中各文件夹的完整描述，并与两个 Claude 模型、OpenJev 和其他开源权重决策模型比较准确率、校准和价格。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · yididev · `Py` · `choice` · 调用点 [`arms/jev.py`](https://github.com/yididev/jev-benchmark/blob/HEAD/arms/jev.py)，2026-11-18 模型阅读</sub>
 
@@ -460,6 +463,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev Mail (KirtanUgreja)](https://github.com/KirtanUgreja/jev-mail)** — Chrome 和 Brave 扩展，用每封邮件一次 Jev 请求来整理 Gmail：用 choice 判断类别和优先级，用 noul 判断是否重要、是否需要回复、是否未经请求、是否垃圾邮件等。它会打上 Jev 标签、可以自动归档，并按发件人清理垃圾邮件，先预览、只移到回收站、可一键撤销。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · KirtanUgreja · `JS` · `choice` · `noul` · 调用点 [`src/common/jev.js`](https://github.com/KirtanUgreja/jev-mail/blob/HEAD/src/common/jev.js)，2026-11-23 模型阅读</sub>
+
+- **[Jev MCP Server](https://github.com/MattiooFR/mcp-server-jev)** — 一个 MCP 服务器，为 Codex、Claude 等客户端提供两个工具：jev_evaluate 针对所给内容提出混合的 noul、choice 和 score 问题；jev_classify 按共用的类别定义（必须含一个 none 类）为每个条目问一个 choice，并返回各类别及其概率。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · MattiooFR · `JS` · `choice` · `noul` · `score` · 调用点 [`src/client.mjs`](https://github.com/MattiooFR/mcp-server-jev/blob/HEAD/src/client.mjs)，2026-11-24 模型阅读</sub>
 
 - **[Jev Persian Benchmark](https://github.com/armanjr/jev-persian-benchmark)** — 在 480 道自编通用波斯语题、560 道文学题和一个古典诗歌试点上，把 Jev 与开源决策模型对比的基准：以 choice、noul 和 score 提问，保存原始响应并在本地评分；Jev 在 choice 和 noul 准确率上领先。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · armanjr · `Py` · `choice` · `noul` · `score` · 调用点 [`jev_benchmark/runner.py`](https://github.com/armanjr/jev-persian-benchmark/blob/HEAD/jev_benchmark/runner.py)，2026-11-11 模型阅读 · ⚠ `无许可证`</sub>
@@ -631,6 +637,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[krasivo-jev](https://github.com/SergeyBazhmin/krasivo-jev)** — 开源 System One 模型的数据集和训练代码（Qwen3.5-2B 加 LoRA 和指针头，在 100 个 Hugging Face 数据集上训练），另有一套评测：把同样的测试样本交给托管的 Jev，每条一个 choice 或 noul 问题，作为准确率、NLL 和校准的参照。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · SergeyBazhmin · `Py` · `choice` · `noul` · 调用点 [`src/jev_model/typesafe/client.py`](https://github.com/SergeyBazhmin/krasivo-jev/blob/HEAD/src/jev_model/typesafe/client.py)，2026-11-13 模型阅读 · ⚠ `无许可证` `厂商自报数据`</sub>
+
+- **[lark-mbti-jev](https://github.com/akiiwa-games/lark-mbti-jev)** — 一个用于飞书 / Lark 群聊的 Windows 悬浮层工具：用 lark-cli 同步聊天记录，按发言人分别问 Jev 每个 MBTI 维度（E/I、S/N、T/F、J/P）的 choice 以及 16 型中的一个，均带 unknown 选项；只有概率超过阈值时，名字旁才显示标签。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · akiiwa-games · `Py` · `choice` · 调用点 [`feishu_mbti/classifier.py`](https://github.com/akiiwa-games/lark-mbti-jev/blob/HEAD/feishu_mbti/classifier.py)，2026-11-24 模型阅读</sub>
 
 - **[legends-jev](https://github.com/avalonreset/legends-jev)** — 为操作者挑选下一步应用、浏览器、文档或本地 SEO 审查操作的决策顾问：Jev 从候选操作中选一个（或选 unknown），用一个 noul 标出证据不足，用一个 score 评估支持程度。提供截图或照片时，还会核对文字、定位目标并核验店面招牌。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · avalonreset · `Py` · `choice` · `noul` · `score` · 调用点 [`legends_jev/core.py`](https://github.com/avalonreset/legends-jev/blob/HEAD/legends_jev/core.py)，2026-11-19 模型阅读</sub>

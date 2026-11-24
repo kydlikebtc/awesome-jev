@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 195 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 198 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 187 · wire shape 4 · example only 0 · independent reports 15 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 190 · wire shape 4 · example only 0 · independent reports 15 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -260,6 +260,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[AI 海龟汤 (AI Turtle Soup)](https://github.com/zerotang05/situation-puzzle)** — Lateral-thinking puzzle game hosted by Jev: each player question gets a choice of Yes, No or Irrelevant, a written solution is ruled Solved, Close or Not yet, and submitted puzzles are reviewed before the public library. A verdict below the confidence threshold goes to a MiniMax model. <sub>(written by a model)</sub>
   <sub>`Project` · zerotang05 · `TS` · `choice` · call site [`packages/jev/src/config.ts`](https://github.com/zerotang05/situation-puzzle/blob/HEAD/packages/jev/src/config.ts), read by a model 2026-11-12</sub>
 
+- **[android-jev](https://github.com/FZ2000/android-jev)** — MCP tool that controls an Android phone over adb: at each step it reads the screen and asks Jev which operation, target and app come next (choices), whether the goal is done, and whether the step is consequential and authorised (nouls), then checks the result before saying whether it worked. <sub>(written by a model)</sub>
+  <sub>`Project` · FZ2000 · `Py` · `choice` · `noul` · call site [`src/phone_control/jev.py`](https://github.com/FZ2000/android-jev/blob/HEAD/src/phone_control/jev.py), read by a model 2026-11-24</sub>
+
 - **[AskJev](https://github.com/ranjan2829/AskJev)** — AskJev — Jev autopilot for any website + guard on irreversible clicks (TypeSafe System One, not Claude) <sub>(upstream description)</sub>
   <sub>`Project` · ranjan2829 · `TS` · call site [`mcp/src/jev-client.ts`](https://github.com/ranjan2829/AskJev/blob/HEAD/mcp/src/jev-client.ts), read 2026-09-24</sub>
 
@@ -500,6 +503,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Juardrails](https://github.com/abhaybhargav/juardrails)** — Go guardrails service with a web UI and CLI: a policy's choice, score and noul questions, built in a visual editor or YAML, go to Jev in one call, and explicit rules then decide from the answers. It ships policy packs for Claude Code tool use and Kubernetes pod security. <sub>(written by a model)</sub>
   <sub>`Project` · abhaybhargav · `Go` · `choice` · `score` · `noul` · call site [`internal/guardrail/jev.go`](https://github.com/abhaybhargav/juardrails/blob/HEAD/internal/guardrail/jev.go), read by a model 2026-11-15 · ⚠ `no licence`</sub>
 
+- **[Juger vite, bloquer juste](https://github.com/lorenzorama/juger-vite-bloquer-juste)** — Talk demo (IndabaX Madagascar 2026) of a mail agent under prompt injection: Jev nouls quarantine incoming mail that addresses an AI and block drafts that leave the user's request or leak a secret; a shadow configuration only observes, and a Jev score grades each run against a golden set. <sub>(written by a model)</sub>
+  <sub>`Project` · lorenzorama · `Py` · `noul` · call site [`backend/app/guard.py`](https://github.com/lorenzorama/juger-vite-bloquer-juste/blob/HEAD/backend/app/guard.py), read by a model 2026-11-24</sub>
+
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — The LangChain integration: a classifier plus experimental middleware for model routing and for gating risky tool calls before they run.
   <sub>`Integration` · `Py` · `choice` · `score` · `noul` · ⚠ `early access`</sub>
 
@@ -535,6 +541,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[opencode-jev-guard](https://github.com/CogFlux/opencode-jev-guard)** — OpenCode 2 plugin that sends every shell command (local or via FarHand) to TypeSafe's Jev and asks you first when it leaves files outside the project, installs software globally, changes global settings, is harmful or exposes private data <sub>(upstream description)</sub>
   <sub>`Plugin` · cogflux · `TS` · call site [`src/jev.ts`](https://github.com/CogFlux/opencode-jev-guard/blob/HEAD/src/jev.ts), read by a model 2026-11-05</sub>
+
+- **[OpenJev for Claude Code](https://github.com/darwintechlab/claude-jev)** — Claude Code plugin whose MCP server gives the agent Jev tools (jev_choice, jev_noul, jev_score, jev_ask) for small decisions, such as whether a command is safe or which team gets a ticket. Each answer meets a gate that acts when confident and escalates when not; risky commands meet a stricter one. <sub>(written by a model)</sub>
+  <sub>`Plugin` · darwintechlab · `TS` · `choice` · `noul` · `score` · call site [`mcp-server/src/client.ts`](https://github.com/darwintechlab/claude-jev/blob/HEAD/mcp-server/src/client.ts), read by a model 2026-11-24</sub>
 
 - **[openrouter-jev-mcp](https://github.com/ctmx/openrouter-jev-mcp)** — High-speed System One Jev AI decision gateway and MCP server powered by OpenRouter <sub>(upstream description)</sub>
   <sub>`Plugin` · ctmx · `Py` · call site [`examples/demo_typesafe_sdk.py`](https://github.com/ctmx/openrouter-jev-mcp/blob/HEAD/examples/demo_typesafe_sdk.py), read 2026-09-22</sub>

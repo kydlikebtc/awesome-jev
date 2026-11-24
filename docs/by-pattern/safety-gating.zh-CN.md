@@ -4,11 +4,11 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 195 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 198 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#safety-gating)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#safety-gating)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 187 · 接口形态 4 · 仅示例 0 · 独立报告 15 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 190 · 接口形态 4 · 仅示例 0 · 独立报告 15 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -260,6 +260,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[AI 海龟汤 (AI Turtle Soup)](https://github.com/zerotang05/situation-puzzle)** — 由 Jev 主持的海龟汤推理游戏：玩家的每个提问由 choice 回答“是、否或无关”，写下的还原被判为“还原成功、接近或尚未”，投稿的题目先经审核再进入公开题库。置信度低于阈值的判定交给 MiniMax 模型重判。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zerotang05 · `TS` · `choice` · 调用点 [`packages/jev/src/config.ts`](https://github.com/zerotang05/situation-puzzle/blob/HEAD/packages/jev/src/config.ts)，2026-11-12 模型阅读</sub>
 
+- **[android-jev](https://github.com/FZ2000/android-jev)** — 一个通过 adb 控制安卓手机的 MCP 工具：每一步先读取屏幕，再问 Jev 下一步的操作、目标和应用（choice），目标是否已完成，以及这一步是否后果重大、是否已获授权（noul），最后核对结果，再如实报告是否成功。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · FZ2000 · `Py` · `choice` · `noul` · 调用点 [`src/phone_control/jev.py`](https://github.com/FZ2000/android-jev/blob/HEAD/src/phone_control/jev.py)，2026-11-24 模型阅读</sub>
+
 - **[AskJev](https://github.com/ranjan2829/AskJev)** — AskJev：适用于任意网站的 Jev 自动驾驶，并对不可逆的点击加一道防护（使用 TypeSafe System One，而不是 Claude）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ranjan2829 · `TS` · 调用点 [`mcp/src/jev-client.ts`](https://github.com/ranjan2829/AskJev/blob/HEAD/mcp/src/jev-client.ts)，2026-09-24 阅读</sub>
 
@@ -500,6 +503,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Juardrails](https://github.com/abhaybhargav/juardrails)** — 带网页界面和命令行的 Go 护栏服务：在可视化编辑器或 YAML 里定义的策略问题（choice、score、noul）一次调用发给 Jev，再由明确的规则根据答案做决定。附带用于 Claude Code 工具调用和 Kubernetes Pod 安全的策略包。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abhaybhargav · `Go` · `choice` · `score` · `noul` · 调用点 [`internal/guardrail/jev.go`](https://github.com/abhaybhargav/juardrails/blob/HEAD/internal/guardrail/jev.go)，2026-11-15 模型阅读 · ⚠ `无许可证`</sub>
 
+- **[Juger vite, bloquer juste](https://github.com/lorenzorama/juger-vite-bloquer-juste)** — 一场演讲（IndabaX Madagascar 2026）的演示代码，展示一个遭受提示注入的邮件智能体：Jev 的 noul 把对 AI 下指令的来信隔离，并拦下偏离用户请求或泄露机密的草稿；影子配置只观察不拦截，每次运行再由 Jev 的 score 对照标准集打分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · lorenzorama · `Py` · `noul` · 调用点 [`backend/app/guard.py`](https://github.com/lorenzorama/juger-vite-bloquer-juste/blob/HEAD/backend/app/guard.py)，2026-11-24 模型阅读</sub>
+
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — LangChain 集成：一个分类器，外加用于模型路由、以及在高风险工具调用执行前拦截它的实验性 middleware。
   <sub>`平台集成` · `Py` · `choice` · `score` · `noul` · ⚠ `需早期访问`</sub>
 
@@ -535,6 +541,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[opencode-jev-guard](https://github.com/CogFlux/opencode-jev-guard)** — OpenCode 2 插件：把每条 shell 命令发给 TypeSafe 的 Jev，看起来有风险时先询问你。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · cogflux · `TS` · 调用点 [`src/jev.ts`](https://github.com/CogFlux/opencode-jev-guard/blob/HEAD/src/jev.ts)，2026-11-05 模型阅读</sub>
+
+- **[OpenJev for Claude Code](https://github.com/darwintechlab/claude-jev)** — Claude Code 插件，其 MCP 服务器把 Jev 作为工具（jev_choice、jev_noul、jev_score、jev_ask）交给智能体，用于它的小决定，例如某条命令是否安全、工单该给哪个团队。每个回答都要过一道门槛：有把握就执行，没把握就上报；风险命令的门槛更严。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · darwintechlab · `TS` · `choice` · `noul` · `score` · 调用点 [`mcp-server/src/client.ts`](https://github.com/darwintechlab/claude-jev/blob/HEAD/mcp-server/src/client.ts)，2026-11-24 模型阅读</sub>
 
 - **[openrouter-jev-mcp](https://github.com/ctmx/openrouter-jev-mcp)** — 由 OpenRouter 驱动的高速 System One 决策网关与 MCP server。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ctmx · `Py` · 调用点 [`examples/demo_typesafe_sdk.py`](https://github.com/ctmx/openrouter-jev-mcp/blob/HEAD/examples/demo_typesafe_sdk.py)，2026-09-22 阅读</sub>

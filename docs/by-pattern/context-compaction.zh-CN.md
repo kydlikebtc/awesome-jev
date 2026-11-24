@@ -4,11 +4,11 @@
 
 _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 
-这个决策的全部已收录例子 —— 共 60 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#上下文压缩)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 62 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#上下文压缩)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=context-compaction&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#context-compaction)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#context-compaction)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 60 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 2 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 62 · 接口形态 0 · 仅示例 0 · 独立报告 2 · 负面结果 2 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -113,6 +113,9 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 - **[Codex Decision](https://github.com/philippelhaus/codex-decision)** — 面向 Codex 的 VS Code 扩展：对长工具输出的每一行用一个 noul 问决策模型，这一行是否包含任务需要的发现，然后缩短输出并链接到原文。它的 MCP 工具还会给上下文候选打分、给测试失败分类、核对完成声明。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · philippelhaus · `Rs` · `noul` · `score` · `choice` · 调用点 [`rust/decision/src/provider.rs`](https://github.com/philippelhaus/codex-decision/blob/HEAD/rust/decision/src/provider.rs)，2026-11-21 模型阅读</sub>
 
+- **[Codex Jev](https://github.com/Hyper-AI-Lab/codex-jev)** — 一个面向 Codex 的检索层（MCP 服务器）：先在本地找出候选的代码、测试、配置和日志片段，再可以就每个片段问 Jev 一个 noul（它是否是该查询的有用证据），并就每条给定要求各问一个，最后按相关性和覆盖面返回一组有上限、标明出处的证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · Hyper-AI-Lab · `JS` · `noul` · 调用点 [`src/investigator.mjs`](https://github.com/Hyper-AI-Lab/codex-jev/blob/HEAD/src/investigator.mjs)，2026-11-24 模型阅读</sub>
+
 - **[deepseek-harness-jev-pre-compaction](https://github.com/wjw66/deepseek-harness-jev-pre-compaction)** — 给 DeepSeek Harness 的压缩前顾问，在标准压缩流程之前运行。 <sub>(机翻)</sub>
   <sub>`开源项目` · wjw66 · `TS` · 调用点 [`src/jev/protocol.ts`](https://github.com/wjw66/deepseek-harness-jev-pre-compaction/blob/HEAD/src/jev/protocol.ts)，2026-09-22 阅读</sub>
 
@@ -196,6 +199,9 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 
 - **[pi-jev-context-curator](https://github.com/Shashank-H/pi-jev-context-curator)** — 基于 Jev 的 pi 上下文整理器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · shashank-h · `TS` · 调用点 [`extensions/curator-jev/config.ts`](https://github.com/Shashank-H/pi-jev-context-curator/blob/HEAD/extensions/curator-jev/config.ts)，2026-09-24 阅读</sub>
+
+- **[pi-skimmer](https://github.com/jon-devlapaz/pi-skimmer)** — Pi 编程智能体的一个扩展，提供 skim_text 和 filter_items 两个工具：把给定的文本或 JSON 记录拆成单元，就每个单元问 Jev 一个 noul（它是否有助于达成既定目标），保留相关片段及其行号范围，Jev 未判断的内容一律不丢。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · jon-devlapaz · `TS` · `noul` · 调用点 [`extensions/skimmer/core.ts`](https://github.com/jon-devlapaz/pi-skimmer/blob/HEAD/extensions/skimmer/core.ts)，2026-11-24 模型阅读</sub>
 
 - **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — @playwright/test 的附加组件：在测试套件原本要全部重跑或花一轮 LLM 的地方，向 Jev 提小的类型化问题：用 choice 判断失败的根因并据此重试和修复，用 score 裁剪快照、排列测试顺序，用 noul 核验步骤和断言，再用 choice 修复定位器。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · AdriaanVE · `TS` · `choice` · `noul` · `score` · 调用点 [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts)，2026-11-23 模型阅读</sub>

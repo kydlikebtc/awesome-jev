@@ -4,11 +4,11 @@
 
 _Pull typed fields out of messy text by choosing among candidates rather than generating them._
 
-Every catalogued example of this decision — 39 of them. The same rows, with caveats, are in [the index](../../README.md#structured-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 40 of them. The same rows, with caveats, are in [the index](../../README.md#structured-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#data-extraction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 35 · wire shape 0 · example only 0 · independent reports 4 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 36 · wire shape 0 · example only 0 · independent reports 4 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -121,6 +121,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-vs-pii](https://github.com/alanviollier/jev-vs-pii)** — Measures how well Jev finds personal information to mask, against Presidio, GLiNER, regex and current LLMs, on court judgments and synthetic text. Jev reads each passage with noul and choice questions about which words identify someone and what kind of information they are. <sub>(written by a model)</sub>
   <sub>`Benchmark` · alanviollier · `Py` · `noul` · `choice` · call site [`jev_vs_pii/clients/decisions.py`](https://github.com/alanviollier/jev-vs-pii/blob/HEAD/jev_vs_pii/clients/decisions.py), read by a model 2026-11-17</sub>
+
+- **[jevextract](https://github.com/gabazureus/jevextract)** — Grounded extraction library: code proposes candidate spans with exact offsets from a YAML schema, and Jev decides, in choice and noul questions, which class each span belongs to (or none) and its closed-set attributes, so every extraction is a substring of the document. <sub>(written by a model)</sub>
+  <sub>`Project` · gabazureus · `Py` · `choice` · `noul` · call site [`src/jevextract/deciders.py`](https://github.com/gabazureus/jevextract/blob/HEAD/src/jevextract/deciders.py), read by a model 2026-11-24 · ⚠ `vendor numbers`</sub>
 
 - **[JEVsnap](https://github.com/brainstormity/jevsnap)** — Screenshot hotkey for macOS, Linux and Windows that blacks out secrets and personal data before the image reaches the clipboard: after local rules, Jev answers nouls on which OCR lines and words to hide, and an optional check finds what is left with box questions. <sub>(written by a model)</sub>
   <sub>`Project` · brainstormity · `TS` · `noul` · `choice` · call site [`desktop/src/core/jevClient.ts`](https://github.com/brainstormity/jevsnap/blob/HEAD/desktop/src/core/jevClient.ts), read by a model 2026-11-10 · ⚠ `one commit`</sub>
