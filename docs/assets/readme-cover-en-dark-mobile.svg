@@ -25,15 +25,15 @@
 <rect x="36" y="392" width="528" height="132" rx="12" fill="#121821" stroke="#30363d"/>
 <text x="56" y="424" font-size="13" class="mono faint" letter-spacing="1.2">RISING · STARS GAINED THIS WEEK</text>
 <polygon points="62.0,441.8 63.3,445.2 67.0,445.4 64.1,447.7 65.1,451.2 62.0,449.2 58.9,451.2 59.9,447.7 57.0,445.4 60.7,445.2" fill="#f5a524"/>
-<text x="78" y="452" font-size="14" class="mono accent" font-weight="600">+439</text>
+<text x="78" y="452" font-size="14" class="mono accent" font-weight="600">+416</text>
 <text x="122.72" y="452" font-size="15" class="mono" font-weight="600">celesto</text>
 <text x="197.82" y="452" font-size="13" class="muted">Secure and persistent computer for AI agents -- b…</text>
 <polygon points="62.0,467.8 63.3,471.2 67.0,471.4 64.1,473.7 65.1,477.2 62.0,475.2 58.9,477.2 59.9,473.7 57.0,471.4 60.7,471.2" fill="#f5a524"/>
-<text x="78" y="478" font-size="14" class="mono accent" font-weight="600">+16</text>
-<text x="114.03999999999999" y="478" font-size="15" class="mono" font-weight="600">OnlyRead</text>
-<text x="198.44" y="478" font-size="13" class="muted">Chrome extension that keeps browser agents read-…</text>
+<text x="78" y="478" font-size="14" class="mono accent" font-weight="600">+2.2k</text>
+<text x="131.4" y="478" font-size="15" class="mono" font-weight="600">XERJ</text>
+<text x="178.60000000000002" y="478" font-size="13" class="muted">Local-first search engine and MCP server in one Rust…</text>
 <polygon points="62.0,493.8 63.3,497.2 67.0,497.4 64.1,499.7 65.1,503.2 62.0,501.2 58.9,503.2 59.9,499.7 57.0,497.4 60.7,497.2" fill="#f5a524"/>
-<text x="78" y="504" font-size="14" class="mono accent" font-weight="600">+12</text>
-<text x="114.03999999999999" y="504" font-size="15" class="mono" font-weight="600">optim-jev</text>
-<text x="207.74" y="504" font-size="13" class="muted">Claude Code plugin (Codex too) with three Jev too…</text>
+<text x="78" y="504" font-size="14" class="mono accent" font-weight="600">+10</text>
+<text x="114.03999999999999" y="504" font-size="15" class="mono" font-weight="600">OnlyRead</text>
+<text x="198.44" y="504" font-size="13" class="muted">Chrome extension that keeps browser agents read-…</text>
 </svg>

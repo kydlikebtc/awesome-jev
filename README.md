@@ -56,7 +56,7 @@
 
 No launch is on the board this week. A launch submitted by Thursday 23:59 UTC is filed on Friday and opens the next Monday: [launch a product](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml), yours or one you found, such as those rising below.
 
-### ★ Rising: 2026-11-17 to 2026-11-24
+### ★ Rising: 2026-11-18 to 2026-11-25
 
 <table>
 <tr>
@@ -64,50 +64,50 @@ No launch is on the board this week. A launch submitted by Thursday 23:59 UTC is
 <td>
 
 **[celesto](https://kydlikebtc.github.io/awesome-jev/products/celesto.html)** — Secure and persistent computer for AI agents -- build your own Grokbot, and Muse.<br>
-<sub>1,493 → 1,932 stars (+29%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=celesto&title=Launch%3A%20celesto)</sub>
+<sub>1,553 → 1,969 stars (+27%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=celesto&title=Launch%3A%20celesto)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+439</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+416</b><br><sub>stars</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/xerj.html"><img src="https://github.com/xerj-org.png?size=96" width="48" height="48" alt="XERJ"></a></td>
+<td>
+
+**[XERJ](https://kydlikebtc.github.io/awesome-jev/products/xerj.html)** — Local-first search engine and MCP server in one Rust binary. Its optional `rerank` stage asks Jev one `noul` per top hit (does `document` answer the query in the state?) and re-sorts by the probabilities. The authors report FiQA nDCG@10 rising from 0.24 to 0.36, about $0.64 for 648 searches. <sub>(written by a model)</sub><br>
+<sub>19,220 → 21,424 stars (+11%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=xerj&title=Launch%3A%20XERJ)</sub>
+
+</td>
+<td align="center" width="80"><b>★&nbsp;+2,204</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/onlyread.html"><img src="https://github.com/onlyreadai.png?size=96" width="48" height="48" alt="OnlyRead"></a></td>
 <td>
 
 **[OnlyRead](https://kydlikebtc.github.io/awesome-jev/products/onlyread.html)** — Chrome extension that keeps browser agents read-only on the sites you pick: rules, per-site decoders and a verdict cache settle most requests, and Jev answers a noul on the rest (does this request create, modify or delete stored data?); code allows, blocks or sends the middle band to a review model. <sub>(written by a model)</sub><br>
-<sub>93 → 109 stars (+17%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=onlyread&title=Launch%3A%20OnlyRead)</sub>
+<sub>99 → 109 stars (+10%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=onlyread&title=Launch%3A%20OnlyRead)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+16</b><br><sub>stars</sub></td>
-</tr>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/optim-jev.html"><img src="https://github.com/Oqura-ai.png?size=96" width="48" height="48" alt="optim-jev"></a></td>
-<td>
-
-**[optim-jev](https://kydlikebtc.github.io/awesome-jev/products/optim-jev.html)** — Claude Code plugin (Codex too) with three Jev tools: jev-compacter asks which stale tool calls and outputs can be dropped when context is compacted, jev-router picks a model and effort for each subagent, and jev-skills sends a short relevant skill list per prompt instead of the whole catalog. <sub>(written by a model)</sub><br>
-<sub>73 → 85 stars (+16%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=optim-jev&title=Launch%3A%20optim-jev)</sub>
-
-</td>
-<td align="center" width="80"><b>★&nbsp;+12</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+10</b><br><sub>stars</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/rikkahub-sillytavern-android.html"><img src="https://github.com/MiaoWuNYA.png?size=96" width="48" height="48" alt="RikkaHub Plus · Lantern"></a></td>
 <td>
 
 **[RikkaHub Plus · Lantern](https://kydlikebtc.github.io/awesome-jev/products/rikkahub-sillytavern-android.html)** — Android chat client for SillyTavern-style character roleplay, a Kotlin fork of RikkaHub. Optional Jev decisioning asks a `noul` per stored memory (is it relevant to this conversation?) in place of embedding search, and gives the main model a `judge` tool for yes/no, choice and score questions. <sub>(written by a model)</sub><br>
-<sub>216 → 239 stars (+11%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=rikkahub-sillytavern-android&title=Launch%3A%20RikkaHub%20Plus%20%C2%B7%20Lantern)</sub>
+<sub>219 → 241 stars (+10%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=rikkahub-sillytavern-android&title=Launch%3A%20RikkaHub%20Plus%20%C2%B7%20Lantern)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+23</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+22</b><br><sub>stars</sub></td>
 </tr>
 <tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/openwhisper.html"><img src="https://github.com/Knuckles92.png?size=96" width="48" height="48" alt="openwhisper"></a></td>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/goutoujunshi-jev-chat.html"><img src="https://github.com/shengjidaguai-china.png?size=96" width="48" height="48" alt="狗头军师 Jev Chat"></a></td>
 <td>
 
-**[openwhisper](https://kydlikebtc.github.io/awesome-jev/products/openwhisper.html)** — Local speech-to-text, dictation, and meetings with Whisper and OpenAI API. Optional Windows x64 engines: Parakeet, Qwen3-ASR, Nemotron Streaming, and Moonshine.<br>
-<sub>274 → 295 stars (+8%) · 👤 a person read the call site · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=openwhisper&title=Launch%3A%20openwhisper)</sub>
+**[狗头军师 Jev Chat](https://kydlikebtc.github.io/awesome-jev/products/goutoujunshi-jev-chat.html)** — Chat-reply assistant (desktop overlay, Android floating assistant, iOS keyboard) built on Jev Android. From the visible chat or a screenshot it asks Jev the literal question, the other person's intent, a danger level, whether to reply now and the best action, then has Jev pick among drafted replies. <sub>(written by a model)</sub><br>
+<sub>651 → 698 stars (+7%) · 🤖 a model read the call site, no person yet · [Launch it ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=goutoujunshi-jev-chat&title=Launch%3A%20%E7%8B%97%E5%A4%B4%E5%86%9B%E5%B8%88%20Jev%20Chat)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+21</b><br><sub>stars</sub></td>
+<td align="center" width="80"><b>★&nbsp;+47</b><br><sub>stars</sub></td>
 </tr>
 </table>
 
