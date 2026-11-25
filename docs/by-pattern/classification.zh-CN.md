@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 244 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 247 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 232 · 接口形态 3 · 仅示例 0 · 独立报告 24 · 负面结果 2 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 235 · 接口形态 3 · 仅示例 0 · 独立报告 24 · 负面结果 2 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -350,6 +350,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[astrbot_plugin_jev](https://github.com/czyczy23/astrbot_plugin_jev)** — AstrBot 群聊插件的分支，在机器人插话之前询问 System One 决策模型：是否值得开口（noul）、话题相关度（score）以及以何种方式加入（choice）。提供方设为 OpenRouter 时由 Jev 作答。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · czyczy23 · `Py` · `noul` · `score` · `choice` · 调用点 [`utils/systemone_judge.py`](https://github.com/czyczy23/astrbot_plugin_jev/blob/HEAD/utils/systemone_judge.py)，2026-11-20 模型阅读</sub>
 
+- **[btx-skill-jev-judge](https://github.com/bitranox/btx-skill-jev-judge)** — 一个只含一个技能 jev-judge 的 Claude Code 插件：当同一个判断要对大量条目重复进行（例如给 600 张客服工单打标签）时，Claude 通过一个经过测试的命令行工具把它交给 Jev，为每个条目问一个 noul、choice 或 score，而不必把每个条目都读进自己的上下文。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · bitranox · `Py` · `noul` · `choice` · `score` · 调用点 [`src/btx_skill_jev_judge/adapters/jev/client.py`](https://github.com/bitranox/btx-skill-jev-judge/blob/HEAD/src/btx_skill_jev_judge/adapters/jev/client.py)，2026-11-25 模型阅读</sub>
+
 - **[c9r plugins (browser-check, soft-lint)](https://github.com/c9r-dev/plugins)** — 供 Claude Code 和 Codex 使用、以 Jev 为分类器的插件：browser-check 在真实浏览器里执行用平实英语写的检查清单，问每一步指的是哪个元素（choice）、每项检查是否成立（noul）；soft-lint 针对 diff 新增的代码行提出是非规则问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · c9r-dev · `TS` · `choice` · `noul` · 调用点 [`shared/classifier.ts`](https://github.com/c9r-dev/plugins/blob/HEAD/shared/classifier.ts)，2026-11-13 模型阅读</sub>
 
@@ -364,6 +367,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI 自定义节点：根据类型化判断为工作流分支，比如提示词想要哪种风格、是否对儿童过于血腥、是否提到了真实人物；用一个下拉框就能在 Jev、Laya 和 Cloudflare 的 Clef 之间切换后端。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · dante01yoon · `Py` · `choice` · `noul` · `score` · 调用点 [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py)，2026-11-11 模型阅读</sub>
+
+- **[CourtVision](https://github.com/aiden-guan/courtvision)** — 仅凭画面，在 Mac 上把单机位篮球视频转成回合、球权和技术统计；可选的 Jev 比赛语境会问打法类型（choice）、球权摘要是否清楚、某次进攻是否算精彩（noul）以及当时局面有多关键（score），用来引导解说。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · aiden-guan · `Py` · `choice` · `noul` · `score` · 调用点 [`courtvision/decision/client.py`](https://github.com/aiden-guan/courtvision/blob/HEAD/courtvision/decision/client.py)，2026-11-25 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[decidekit](https://github.com/debuffjp/decidekit)** — 可在浏览器或 Node 中运行的决策模型：为一段文本从你给的标签里选一个并给出置信度，没把握时向 LLM 学习；它还为 choice 问题提供 TypeSafe SDK 的调用形式（client.systemOne({ state, questions })），让为 Jev 写的代码能在本地运行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · debuffjp · `TS` · 引用文件 [`src/typesafe.ts`](https://github.com/debuffjp/decidekit/blob/HEAD/src/typesafe.ts)，2026-11-13 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
@@ -643,6 +649,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[legends-jev](https://github.com/avalonreset/legends-jev)** — 为操作者挑选下一步应用、浏览器、文档或本地 SEO 审查操作的决策顾问：Jev 从候选操作中选一个（或选 unknown），用一个 noul 标出证据不足，用一个 score 评估支持程度。提供截图或照片时，还会核对文字、定位目标并核验店面招牌。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · avalonreset · `Py` · `choice` · `noul` · `score` · 调用点 [`legends_jev/core.py`](https://github.com/avalonreset/legends-jev/blob/HEAD/legends_jev/core.py)，2026-11-19 模型阅读</sub>
+
+- **[Liuyao · 六爻](https://github.com/masonweb3/liuyao)** — 一个六爻占卜网站，Jev 只读用户的问题：用 choice 把问题归入某个主题，由此确定用神；再用 noul 筛掉自伤、紧急情况和赌博，并判断问题是否诚心；排盘和吉凶都由确定性规则得出。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · masonweb3 · `TS` · `choice` · `noul` · 调用点 [`src/pages/api/judge.ts`](https://github.com/masonweb3/liuyao/blob/HEAD/src/pages/api/judge.ts)，2026-11-25 模型阅读</sub>
 
 - **[Mechanical Jev](https://github.com/Lasimeri/Mechanical-Jev)** — 面向 System One 问题的 Rust 客户端、命令行和终端界面。除单次查询外，gate 按每个回答决定执行、送审或上报，label 和 rank 对大量输入批量提问，还有一个 Claude Code 钩子会在它判断为危险的 shell 命令执行前先问你。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · Lasimeri · `Rs` · `noul` · `choice` · `score` · 调用点 [`src/client.rs`](https://github.com/Lasimeri/Mechanical-Jev/blob/HEAD/src/client.rs)，2026-11-17 模型阅读 · ⚠ `厂商自报数据`</sub>

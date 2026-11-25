@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 305 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 307 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 294 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 296 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -549,6 +549,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Doom in Claude Code](https://github.com/abelardodiaz/doom-in-claude-code)** — 在 Claude Code 面板里玩 Doom（ViZDoom 加 Freedoom）的机器人。Jev 每秒约 2.5 次看屏幕，用 choice 选择去追哪个目标和采用什么战术，并用 noul 回答是否有立即危险、要不要开战；行走、瞄准和战斗由代码完成，Claude 负责规划关卡并解说。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abelardodiaz · `Py` · `choice` · `noul` · 调用点 [`bridge/jev_pilot.py`](https://github.com/abelardodiaz/doom-in-claude-code/blob/HEAD/bridge/jev_pilot.py)，2026-11-21 模型阅读</sub>
 
+- **[DoomSat](https://github.com/doom-satellite/doomsat)** — Doom 作为航天器载荷运行在一套飞行软件栈之后，Jev 是地面上的驾驶员：每半秒它给每个方向和前方危险打分，并选择一个目标，地面再把这个意图上传；Claude 复盘每一次尝试。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · doom-satellite · `Py` · `score` · `choice` · 调用点 [`ground/providers.py`](https://github.com/doom-satellite/doomsat/blob/HEAD/ground/providers.py)，2026-11-25 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[dsh-jev-prune](https://github.com/yangyu666/dsh-jev-prune)** — 给 DeepSeek Harness 的 Jev 判定式上下文压缩：语义化的工具结果裁剪。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · yangyu666 · `JS` · 调用点 [`src/jev.js`](https://github.com/yangyu666/dsh-jev-prune/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
 
@@ -584,6 +587,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jet](https://github.com/arczhi/jet)** — 原生面向 TypeSafe（Jev）的编码智能体，基于递归式 LLM 上下文分解，配有原生 macOS 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arczhi · `Py` · 调用点 [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py)，2026-09-24 阅读</sub>
+
+- **[JEV / Mesa de missão LUS-222](https://github.com/igrejaborabora/lus222-jev-challenge)** — 一个葡萄牙语的飞行演示，场景是圣若昂之夜的波尔图上空：访客可以把飞机交给 Jev，它读取代码算好的分类文字（航线、高度、按钟点方位描述的威胁），选择任务动作和飞行意图，并以 score 给出紧急程度和天气风险。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · igrejaborabora · `JS` · `choice` · `score` · 调用点 [`api/jev.js`](https://github.com/igrejaborabora/lus222-jev-challenge/blob/HEAD/api/jev.js)，2026-11-25 模型阅读</sub>
 
 - **[Jev 2048 Selenium Player](https://github.com/ammirosoh/jev-2048-selenium)** — 用 Selenium 在浏览器里玩 2048：先由期望最大搜索为合法走法打分，再把棋盘和搜索依据交给 Jev，用一个 choice 选出下一步，两者的概率分布按 Jev 的置信度融合。另有一种模式完全由 Jev 决定。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ammirosoh · `Py` · `choice` · 调用点 [`src/jev2048/jev.py`](https://github.com/ammirosoh/jev-2048-selenium/blob/HEAD/src/jev2048/jev.py)，2026-11-20 模型阅读 · ⚠ `无许可证`</sub>

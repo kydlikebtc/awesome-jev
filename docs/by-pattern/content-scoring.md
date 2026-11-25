@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 217 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 218 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 208 · wire shape 5 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 209 · wire shape 5 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -325,6 +325,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[ComfyUI-Jev](https://github.com/hndrr/ComfyUI-Jev)** — ComfyUI custom nodes: Jev Interpret selects among candidates, judges conditions, scores text and picks numbers out of it (choice, noul, score), and Jev Skill Choice picks local SKILL.md skills for a request; the results feed other nodes. <sub>(written by a model)</sub>
   <sub>`Plugin` · hndrr · `Py` · `choice` · `noul` · `score` · call site [`api.py`](https://github.com/hndrr/ComfyUI-Jev/blob/HEAD/api.py), read by a model 2026-11-13</sub>
+
+- **[CourtVision](https://github.com/aiden-guan/courtvision)** — Turns single-camera basketball video into plays, possessions and box scores on a Mac from the pixels alone; optional Jev play context asks the play type (choice), whether a possession summary is clear and a play a highlight (nouls) and how much was at stake (score) to steer the commentary. <sub>(written by a model)</sub>
+  <sub>`Project` · aiden-guan · `Py` · `choice` · `noul` · `score` · call site [`courtvision/decision/client.py`](https://github.com/aiden-guan/courtvision/blob/HEAD/courtvision/decision/client.py), read by a model 2026-11-25 · ⚠ `vendor numbers`</sub>
 
 - **[decide-mcp](https://github.com/dakdevs/decide-mcp)** — Configurable decision MCP server with AI SDK, Jev, percentage scores, and bias profile routing <sub>(upstream description)</sub>
   <sub>`SDK` · dakdevs · `TS` · call site [`src/config.ts`](https://github.com/dakdevs/decide-mcp/blob/HEAD/src/config.ts), read 2026-09-22 · ⚠ `one commit`</sub>

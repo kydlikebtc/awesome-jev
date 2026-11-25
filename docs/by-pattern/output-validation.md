@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 189 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 191 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 184 · wire shape 1 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 186 · wire shape 1 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -353,6 +353,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
 
+- **[Jev Eye](https://github.com/bismawy/pi-jev-eye)** — Supervisor for the Pi coding agent: regex rules block destructive commands and leaked secrets locally, and each diff of at least 10 lines goes to Jev as nouls on whether it holds a lazy stub or unfinished work and, on a reviewed turn, whether it fulfils the request. <sub>(written by a model)</sub>
+  <sub>`Plugin` · bismawy · `TS` · `noul` · call site [`extensions/gate.ts`](https://github.com/bismawy/pi-jev-eye/blob/HEAD/extensions/gate.ts), read by a model 2026-11-25</sub>
+
 - **[Jev for QA / SDET demos](https://github.com/gauravkhuraana/jev-qa-demos)** — Demo code for a video on Jev for testers, through Vercel AI Gateway and the AI SDK: it triages failed CI tests by root cause (choice), release impact (score) and whether a retry will pass (noul), and uses nouls to screen an agent's commands and to check that a RAG answer is grounded. <sub>(written by a model)</sub>
   <sub>`Tutorial` · gauravkhuraana · `TS` · `choice` · `score` · `noul` · call site [`src/lib/triage.ts`](https://github.com/gauravkhuraana/jev-qa-demos/blob/HEAD/src/lib/triage.ts), read by a model 2026-11-20 · ⚠ `no licence`</sub>
 
@@ -475,6 +478,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jevest](https://github.com/t7ncke/Jevest)** — GitHub Action for pull request review: a claude -p agent finds issues and a verifier tries to refute them, while Jev triages the pull request, decides whether each finding is published or turned into a question for the author, and picks its labels. <sub>(written by a model)</sub>
   <sub>`Project` · t7ncke · `TS` · `choice` · `noul` · `score` · call site [`src/adapters/typesafe-decision-adapter.ts`](https://github.com/t7ncke/Jevest/blob/HEAD/src/adapters/typesafe-decision-adapter.ts), read by a model 2026-11-14 · ⚠ `3rd-party key` `vendor numbers`</sub>
+
+- **[JevGAG · DDAG](https://github.com/j1s4nn/JevGAG)** — Research on adaptive temporal granularity for causal video generation: Jev serves as an off-device oracle that signals when a generator needs fine per-frame compute, and in the cited critic experiment it answers nouls on sampled frames, a visible discontinuity and physical plausibility. <sub>(written by a model)</sub>
+  <sub>`Project` · j1s4nn · `Py` · `noul` · call site [`ddag/experiments/10_jev_critic/jcd.py`](https://github.com/j1s4nn/JevGAG/blob/HEAD/ddag/experiments/10_jev_critic/jcd.py), read by a model 2026-11-25 · ⚠ `vendor numbers`</sub>
 
 - **[jevgate](https://github.com/Tech-Byte-Frontier/jevgate)** — Code-review gate for CI and coding agents: asks TypeSafe Jev small typed questions about functions, files, tests and docs, and reports findings with locations and probabilities <sub>(upstream description)</sub>
   <sub>`Project` · tech-byte-frontier · `Rs` · call site [`src/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/provider.rs), read 2026-09-24</sub>

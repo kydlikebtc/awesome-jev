@@ -4,11 +4,11 @@
 
 _在输出到达用户前，按评分标准检查模型产出。_
 
-这个决策的全部已收录例子 —— 共 189 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 191 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#output-validation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#output-validation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 184 · 接口形态 1 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 186 · 接口形态 1 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -353,6 +353,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — 十个可运行的 JavaScript 智能体决策，一个文件一个：新记忆与旧记忆冲突时该改还是该留、工具返回 200 是否真的完成了任务、写入超时后该重试还是该对账、上下文分块在预算内如何取舍、压缩后的交接是否丢掉了某条禁令。Jev 只回答带类型的问题，阈值和最终提案由普通代码决定。
   <sub>`开源项目` · Really Artificial · `JS` · `choice` · `score` · `noul` · 调用点 [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs)，2026-09-22 阅读 · ⚠ `疑似 AI 生成`</sub>
 
+- **[Jev Eye](https://github.com/bismawy/pi-jev-eye)** — Pi 编程智能体的一个监督器：正则规则在本地拦下破坏性命令和泄露的密钥；每份至少 10 行的改动都交给 Jev，用 noul 判断其中是否有偷懒的桩代码或未完成的工作，在需审查的轮次还会问它是否满足了请求。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · bismawy · `TS` · `noul` · 调用点 [`extensions/gate.ts`](https://github.com/bismawy/pi-jev-eye/blob/HEAD/extensions/gate.ts)，2026-11-25 模型阅读</sub>
+
 - **[Jev for QA / SDET demos](https://github.com/gauravkhuraana/jev-qa-demos)** — 面向测试人员的 Jev 视频演示代码，经 Vercel AI Gateway 和 AI SDK 调用：按根因（choice）、对发布的影响（score）以及重试能否通过（noul）分诊失败的 CI 测试，并用 noul 审查智能体要执行的命令、检查 RAG 回答是否有依据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`教程` · gauravkhuraana · `TS` · `choice` · `score` · `noul` · 调用点 [`src/lib/triage.ts`](https://github.com/gauravkhuraana/jev-qa-demos/blob/HEAD/src/lib/triage.ts)，2026-11-20 模型阅读 · ⚠ `无许可证`</sub>
 
@@ -475,6 +478,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jevest](https://github.com/t7ncke/Jevest)** — 用于审查 pull request 的 GitHub Action：claude -p 智能体找问题，验证器尝试反驳；Jev 负责分拣 pull request，决定每条发现是直接发布还是改成向作者提问，并挑选标签。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · t7ncke · `TS` · `choice` · `noul` · `score` · 调用点 [`src/adapters/typesafe-decision-adapter.ts`](https://github.com/t7ncke/Jevest/blob/HEAD/src/adapters/typesafe-decision-adapter.ts)，2026-11-14 模型阅读 · ⚠ `需第三方密钥` `厂商自报数据`</sub>
+
+- **[JevGAG · DDAG](https://github.com/j1s4nn/JevGAG)** — 关于因果视频生成中自适应时间粒度的研究：Jev 充当设备外的预言者，提示生成器何时需要逐帧精细计算；在所引的评审实验中，它针对抽取的帧回答 noul：是否有可见的不连续、动作是否物理上合理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · j1s4nn · `Py` · `noul` · 调用点 [`ddag/experiments/10_jev_critic/jcd.py`](https://github.com/j1s4nn/JevGAG/blob/HEAD/ddag/experiments/10_jev_critic/jcd.py)，2026-11-25 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jevgate](https://github.com/Tech-Byte-Frontier/jevgate)** — 面向 CI 与编码智能体的代码审查关卡：就函数、文件、测试与依赖向 TypeSafe Jev 提出小而具体的类型化问题。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tech-byte-frontier · `Rs` · 调用点 [`src/provider.rs`](https://github.com/Tech-Byte-Frontier/jevgate/blob/HEAD/src/provider.rs)，2026-09-24 阅读</sub>

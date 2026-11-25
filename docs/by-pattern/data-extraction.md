@@ -4,11 +4,11 @@
 
 _Pull typed fields out of messy text by choosing among candidates rather than generating them._
 
-Every catalogued example of this decision — 40 of them. The same rows, with caveats, are in [the index](../../README.md#structured-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 41 of them. The same rows, with caveats, are in [the index](../../README.md#structured-extraction); [the site](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#data-extraction): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 36 · wire shape 0 · example only 0 · independent reports 4 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 37 · wire shape 0 · example only 0 · independent reports 4 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -100,6 +100,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[ex-regex](https://github.com/nothans/ex-regex)** — Python library shaped like the re module whose find, replace, split, filter and extract decide each match by meaning: Jev judges candidate spans of the input, so every match is a verbatim slice with its offsets, never invented text. <sub>(written by a model)</sub>
   <sub>`Project` · nothans · `Py` · `noul` · `choice` · `score` · call site [`src/exregex/backends.py`](https://github.com/nothans/ex-regex/blob/HEAD/src/exregex/backends.py), read by a model 2026-11-11</sub>
+
+- **[Factbag](https://github.com/factbag/factbag)** — TypeScript library that turns documents into evidence: Jev assesses whether each passage supports, contradicts or is irrelevant to each claim you define, and your rules combine that evidence with your own facts into conclusions (true, false, conflicted or unknown) that point back to their sources. <sub>(written by a model)</sub>
+  <sub>`Project` · factbag · `TS` · `choice` · `noul` · call site [`providers/jev/src/index.ts`](https://github.com/factbag/factbag/blob/HEAD/providers/jev/src/index.ts), read by a model 2026-11-25</sub>
 
 - **[Jev × DimABSA](https://github.com/zhangyiqun018/jev-dimabsa)** — SemEval-2026 Task 3 (DimABSA) system built on Jev alone, without generation or fine-tuning: scores place each aspect's valence and arousal on a 1 to 9 scale, and choices and nouls pull out aspect, opinion and category triplets and quadruplets. <sub>(written by a model)</sub>
   <sub>`Benchmark` · zhangyiqun018 · `Py` · `score` · `choice` · `noul` · call site [`jev/client.py`](https://github.com/zhangyiqun018/jev-dimabsa/blob/HEAD/jev/client.py), read by a model 2026-11-10 · ⚠ `no licence`</sub>

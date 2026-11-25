@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 305 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 307 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 294 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 296 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -549,6 +549,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Doom in Claude Code](https://github.com/abelardodiaz/doom-in-claude-code)** — Bot that plays Doom (ViZDoom with Freedoom) in a Claude Code pane. About 2.5 times a second Jev sees the screen, picks which goal to chase and a tactic as choices, and answers nouls on immediate danger and whether to fight; code walks, aims and fights, and Claude plans the level and narrates. <sub>(written by a model)</sub>
   <sub>`Project` · abelardodiaz · `Py` · `choice` · `noul` · call site [`bridge/jev_pilot.py`](https://github.com/abelardodiaz/doom-in-claude-code/blob/HEAD/bridge/jev_pilot.py), read by a model 2026-11-21</sub>
 
+- **[DoomSat](https://github.com/doom-satellite/doomsat)** — Doom runs as a spacecraft payload behind a flight-software stack, and Jev is the pilot on the ground: every half second it scores each direction and the danger ahead and chooses a goal, and the ground uplinks that intent; Claude reviews each attempt. <sub>(written by a model)</sub>
+  <sub>`Project` · doom-satellite · `Py` · `score` · `choice` · call site [`ground/providers.py`](https://github.com/doom-satellite/doomsat/blob/HEAD/ground/providers.py), read by a model 2026-11-25 · ⚠ `no licence`</sub>
+
 - **[dsh-jev-prune](https://github.com/yangyu666/dsh-jev-prune)** — Jev-judged context compaction for DeepSeek Harness: semantic tool-result pruning + deterministic receipt compaction <sub>(upstream description)</sub>
   <sub>`Project` · yangyu666 · `JS` · call site [`src/jev.js`](https://github.com/yangyu666/dsh-jev-prune/blob/HEAD/src/jev.js), read 2026-09-22</sub>
 
@@ -584,6 +587,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jet](https://github.com/arczhi/jet)** — A TypeSafe-native (Jev) coding agent built on Recursive LLM Context Decomposition (RLCD), with a native macOS client <sub>(upstream description)</sub>
   <sub>`Project` · arczhi · `Py` · call site [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py), read 2026-09-24</sub>
+
+- **[JEV / Mesa de missão LUS-222](https://github.com/igrejaborabora/lus222-jev-challenge)** — Portuguese flight demo over Porto on São João night: the visitor can hand the plane to Jev, which reads categorised text computed in code (route, altitude, threats by clock position) and chooses the mission action and the flight intent, with urgency and weather risk as scores. <sub>(written by a model)</sub>
+  <sub>`Project` · igrejaborabora · `JS` · `choice` · `score` · call site [`api/jev.js`](https://github.com/igrejaborabora/lus222-jev-challenge/blob/HEAD/api/jev.js), read by a model 2026-11-25</sub>
 
 - **[Jev 2048 Selenium Player](https://github.com/ammirosoh/jev-2048-selenium)** — Plays 2048 in a browser with Selenium: an expectimax search scores the legal moves, then Jev picks the next move in one choice given the board and the search's evidence, and the two distributions are blended by Jev's confidence. Another mode lets Jev decide alone. <sub>(written by a model)</sub>
   <sub>`Project` · ammirosoh · `Py` · `choice` · call site [`src/jev2048/jev.py`](https://github.com/ammirosoh/jev-2048-selenium/blob/HEAD/src/jev2048/jev.py), read by a model 2026-11-20 · ⚠ `no licence`</sub>

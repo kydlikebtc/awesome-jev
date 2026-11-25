@@ -12,7 +12,7 @@
   <source media="(max-width: 767px) and (prefers-color-scheme: light)" srcset="docs/assets/readme-cover-zh-light-mobile.svg">
   <source media="(max-width: 767px)" srcset="docs/assets/readme-cover-zh-dark-mobile.svg">
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/readme-cover-zh-dark.svg">
-  <img src="docs/assets/readme-cover-zh-light.svg" alt="awesome-jev — Jev 发布榜：1,329 个用 Jev 做的产品、1,158 位 Maker、1,445 条调用点引用记录。数字来自保存的记录，不代表当前链接可用或运行与性能测试通过。" width="100%">
+  <img src="docs/assets/readme-cover-zh-light.svg" alt="awesome-jev — Jev 发布榜：1,343 个用 Jev 做的产品、1,170 位 Maker、1,460 条调用点引用记录。数字来自保存的记录，不代表当前链接可用或运行与性能测试通过。" width="100%">
 </picture>
 </a>
 
@@ -127,6 +127,16 @@
 <td align="center" width="80"><b>11-24</b><br><sub>收录</sub></td>
 </tr>
 <tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/askjev-brian-w-zhang.html"><img src="https://github.com/brian-w-zhang.png?size=96" width="48" height="48" alt="askjev"></a></td>
+<td>
+
+**[askjev](https://kydlikebtc.github.io/awesome-jev/products/askjev-brian-w-zhang.html)** — 一个人绘制的 Jev 性格地图：来自 312 个来源的一百多万道封闭式问题，归入一棵有 1,737 个主题的树，每题由 Jev 以 noul、choice 或 score 作答，并在有对照时与真人的回答并列，题目涉及品味、伦理、日期和从众压力。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+<sub>🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=askjev-brian-w-zhang&title=Launch%3A%20askjev)</sub>
+
+</td>
+<td align="center" width="80"><b>11-25</b><br><sub>收录</sub></td>
+</tr>
+<tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/astra-jev-new-vegas.html"><img src="https://github.com/0mis.png?size=96" width="48" height="48" alt="Astra + Jev: Fallout: New Vegas"></a></td>
 <td>
 
@@ -137,38 +147,28 @@
 <td align="center" width="80"><b>11-23</b><br><sub>收录</sub></td>
 </tr>
 <tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/codex-jev.html"><img src="https://github.com/Hyper-AI-Lab.png?size=96" width="48" height="48" alt="Codex Jev"></a></td>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/bouncer.html"><img src="https://github.com/clownware.png?size=96" width="48" height="48" alt="Bouncer"></a></td>
 <td>
 
-**[Codex Jev](https://kydlikebtc.github.io/awesome-jev/products/codex-jev.html)** — 一个面向 Codex 的检索层（MCP 服务器）：先在本地找出候选的代码、测试、配置和日志片段，再可以就每个片段问 Jev 一个 noul（它是否是该查询的有用证据），并就每条给定要求各问一个，最后按相关性和覆盖面返回一组有上限、标明出处的证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=codex-jev&title=Launch%3A%20Codex%20Jev)</sub>
+**[Bouncer](https://kydlikebtc.github.io/awesome-jev/products/bouncer.html)** — 面向 Claude Code 工具调用的判断层：PreToolUse 钩子按你自己的 YAML 策略，就每次拟议的调用向 Jev 提出白话问题，例如某条命令是否会毁掉难以恢复的工作；推送策略则会问提交说明是否与改动相符、是否遗留了调试代码。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+<sub>🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=bouncer&title=Launch%3A%20Bouncer)</sub>
 
 </td>
-<td align="center" width="80"><b>11-24</b><br><sub>收录</sub></td>
+<td align="center" width="80"><b>11-25</b><br><sub>收录</sub></td>
 </tr>
 <tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/decision-gate.html"><img src="https://github.com/zachlandes.png?size=96" width="48" height="48" alt="decision-gate"></a></td>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/btx-skill-jev-judge.html"><img src="https://github.com/bitranox.png?size=96" width="48" height="48" alt="btx-skill-jev-judge"></a></td>
 <td>
 
-**[decision-gate](https://kydlikebtc.github.io/awesome-jev/products/decision-gate.html)** — 为在循环里调用 Jev 的代码提供速率和花费限制：每个请求都等待账户速率限额内的空档，遇到降速信号时所有调用方一起暂停，按密钥检查每日花费上限，答案缓存避免为同一个问题付两次钱。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=decision-gate&title=Launch%3A%20decision-gate)</sub>
+**[btx-skill-jev-judge](https://kydlikebtc.github.io/awesome-jev/products/btx-skill-jev-judge.html)** — 一个只含一个技能 jev-judge 的 Claude Code 插件：当同一个判断要对大量条目重复进行（例如给 600 张客服工单打标签）时，Claude 通过一个经过测试的命令行工具把它交给 Jev，为每个条目问一个 noul、choice 或 score，而不必把每个条目都读进自己的上下文。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+<sub>🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=btx-skill-jev-judge&title=Launch%3A%20btx-skill-jev-judge)</sub>
 
 </td>
-<td align="center" width="80"><b>11-23</b><br><sub>收录</sub></td>
-</tr>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/jeff-bot.html"><img src="https://github.com/saembit.png?size=96" width="48" height="48" alt="Jeff"></a></td>
-<td>
-
-**[Jeff](https://kydlikebtc.github.io/awesome-jev/products/jeff-bot.html)** — 一个 Discord 机器人，每项功能都是一个 Jev 问题：/settle 从两个答案中选出更好的，/rank 按每条标准给条目打分，论坛帖子会被打上合适的标签或不打，帮助频道会判断一条消息是不是某条 FAQ 能回答的问题，桌游的神谕和赔率游戏则用 noul。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=jeff-bot&title=Launch%3A%20Jeff)</sub>
-
-</td>
-<td align="center" width="80"><b>11-24</b><br><sub>收录</sub></td>
+<td align="center" width="80"><b>11-25</b><br><sub>收录</sub></td>
 </tr>
 </table>
 
-<sub>2026-W48 至今新收录 26 个产品，这里列前 5 个：先列有人读过调用点的，再列模型读过的，然后按星标区间和名称排序。这是排序，不是排名，每个都可以发布。[发布榜上的全部](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)。 <sub>(机翻)</sub></sub>
+<sub>2026-W48 至今新收录 40 个产品，这里列前 5 个：先列有人读过调用点的，再列模型读过的，然后按星标区间和名称排序。这是排序，不是排名，每个都可以发布。[发布榜上的全部](https://kydlikebtc.github.io/awesome-jev/launches.zh.html)。 <sub>(机翻)</sub></sub>
 
 ### 最近一期结果：2026-W46
 
@@ -314,15 +314,15 @@
 
 | 场景 | 场景 |
 | :--- | :--- |
-| [工具选择](#工具选择) · **305** | [意图路由](#意图路由) · **70** |
-| [上下文压缩](#上下文压缩) · **62** | [安全闸门](#安全闸门) · **198** |
-| [输出校验](#输出校验) · **189** | [重试控制](#重试控制) · **10** |
-| [人工升级](#人工升级) · **117** | [模型路由](#模型路由) · **107** |
-| [并行扇出](#并行扇出) · **54** | [检索与排序](#检索与排序) · **109** |
-| [结构化抽取](#结构化抽取) · **40** | [分类](#分类) · **244** |
+| [工具选择](#工具选择) · **307** | [意图路由](#意图路由) · **70** |
+| [上下文压缩](#上下文压缩) · **62** | [安全闸门](#安全闸门) · **201** |
+| [输出校验](#输出校验) · **191** | [重试控制](#重试控制) · **10** |
+| [人工升级](#人工升级) · **117** | [模型路由](#模型路由) · **110** |
+| [并行扇出](#并行扇出) · **55** | [检索与排序](#检索与排序) · **109** |
+| [结构化抽取](#结构化抽取) · **41** | [分类](#分类) · **247** |
 | [机器学习特征抽取](#机器学习特征抽取) · **10** | [文档分拣](#文档分拣) · **24** |
-| [工单分拣](#工单分拣) · **16** | [内容评分](#内容评分) · **217** |
-| [实时推荐](#实时推荐) · **5** | [总览](#总览) · **547** |
+| [工单分拣](#工单分拣) · **16** | [内容评分](#内容评分) · **218** |
+| [实时推荐](#实时推荐) · **5** | [总览](#总览) · **551** |
 
 ## 实测，而非宣称
 
@@ -465,7 +465,7 @@ _智能体下一步该调用哪个工具或动作。_
 
 </details>
 
-已显示 **10 / 305** 条 · [在单独页面查看全部 305 条 →](docs/by-pattern/tool-selection.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)
+已显示 **10 / 307** 条 · [在单独页面查看全部 307 条 →](docs/by-pattern/tool-selection.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -630,7 +630,7 @@ _在执行前判断一个动作是否安全。属纵深防御，绝不是安全�
 
 </details>
 
-已显示 **10 / 198** 条 · [在单独页面查看全部 198 条 →](docs/by-pattern/safety-gating.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)
+已显示 **10 / 201** 条 · [在单独页面查看全部 201 条 →](docs/by-pattern/safety-gating.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -683,7 +683,7 @@ _在输出到达用户前，按评分标准检查模型产出。_
 
 </details>
 
-已显示 **10 / 189** 条 · [在单独页面查看全部 189 条 →](docs/by-pattern/output-validation.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)
+已显示 **10 / 191** 条 · [在单独页面查看全部 191 条 →](docs/by-pattern/output-validation.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -854,7 +854,7 @@ _选择由哪个下游模型或档位处理请求。_
 
 </details>
 
-已显示 **10 / 107** 条 · [在单独页面查看全部 107 条 →](docs/by-pattern/model-routing.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)
+已显示 **10 / 110** 条 · [在单独页面查看全部 110 条 →](docs/by-pattern/model-routing.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -913,7 +913,7 @@ _把大量问题（包括推测性的）打包进一次请求，再由代码挑�
 
 </details>
 
-已显示 **10 / 54** 条 · [在单独页面查看全部 54 条 →](docs/by-pattern/fan-out.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)
+已显示 **10 / 55** 条 · [在单独页面查看全部 55 条 →](docs/by-pattern/fan-out.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -1023,7 +1023,7 @@ _从杂乱文本中取出类型化字段 —— 靠在候选中选择，而不�
 
 </details>
 
-已显示 **10 / 40** 条 · [在单独页面查看全部 40 条 →](docs/by-pattern/data-extraction.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)
+已显示 **10 / 41** 条 · [在单独页面查看全部 41 条 →](docs/by-pattern/data-extraction.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=data-extraction&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -1080,7 +1080,7 @@ _把条目归入分类体系，包括用概率遍历的深层层级。_
 
 </details>
 
-已显示 **10 / 244** 条 · [在单独页面查看全部 244 条 →](docs/by-pattern/classification.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)
+已显示 **10 / 247** 条 · [在单独页面查看全部 247 条 →](docs/by-pattern/classification.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -1306,7 +1306,7 @@ _在有序量表上给质量、风险或相关性打分。_
 
 </details>
 
-已显示 **10 / 217** 条 · [在单独页面查看全部 217 条 →](docs/by-pattern/content-scoring.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)
+已显示 **10 / 218** 条 · [在单独页面查看全部 218 条 →](docs/by-pattern/content-scoring.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -1396,11 +1396,11 @@ _介绍模型或整个领域，而非单一模式。_
 
 </details>
 
-已显示 **10 / 547** 条 · [在单独页面查看全部 547 条 →](docs/by-pattern/overview.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)
+已显示 **10 / 551** 条 · [在单独页面查看全部 551 条 →](docs/by-pattern/overview.zh-CN.md) · [在站点上筛选](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)
 
 #### 尚未按模式索引
 
-其中 **209** 行是带代码的项目或插件。`overview` 也是关键词规则无法归类时给出的默认值，而这些行没有任何人对照决策模式阅读过的记录（`patterns_reviewed`），因此单独列出：见 [Overview 页面末尾](docs/by-pattern/overview.zh-CN.md#unindexed)、[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)，以及附有规则建议的[复核队列](docs/review-queue.md#unsorted-overview)。 <sub>(机翻)</sub>
+其中 **211** 行是带代码的项目或插件。`overview` 也是关键词规则无法归类时给出的默认值，而这些行没有任何人对照决策模式阅读过的记录（`patterns_reviewed`），因此单独列出：见 [Overview 页面末尾](docs/by-pattern/overview.zh-CN.md#unindexed)、[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)，以及附有规则建议的[复核队列](docs/review-queue.md#unsorted-overview)。 <sub>(机翻)</sub>
 
 <sub>[↑ 场景索引](#pattern-index)</sub>
 
@@ -1411,12 +1411,12 @@ _介绍模型或整个领域，而非单一模式。_
 | 形态 | 例子数 | 点开会看到 |
 | --- | ---: | --- |
 | **官方文档** | **31** | 厂商文档、cookbook 与模式页。 |
-| **SDK** | **126** | 客户端库，官方与社区。 |
+| **SDK** | **128** | 客户端库，官方与社区。 |
 | **平台集成** | **42** | 接入模型的网关、框架或平台路径。 |
 | **代码片段** | **4** | 本仓库内的小型可运行样例。 |
-| **开源项目** | **826** | 真正在调用 Jev 的应用或库。 |
-| **插件** | **343** | 可安装的编辑器、智能体、MCP 集成。 |
-| **教程** | **24** | 带代码的分步教学材料。 |
+| **开源项目** | **834** | 真正在调用 Jev 的应用或库。 |
+| **插件** | **347** | 可安装的编辑器、智能体、MCP 集成。 |
+| **教程** | **25** | 带代码的分步教学材料。 |
 | **基准测试** | **112** | 实测。注意区分独立实测与厂商自报。 |
 | **文章** | **15** | 讲解、分析与发布报道。 |
 | **视频** | **3** | 演示与评测。 |
@@ -1430,7 +1430,7 @@ _介绍模型或整个领域，而非单一模式。_
 <details>
 <summary><b>查看可搜索站点预览</b></summary>
 
-<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=5c1823aba911c351" alt="可搜索的 Jev 目录：精选路径、筛选排序、带日期的来源证据与条目卡片" width="760"></a>
+<a href="https://kydlikebtc.github.io/awesome-jev/?lang=zh"><img src="https://kydlikebtc.github.io/awesome-jev/img/site-zh.png?v=d0e5894b3ca4eb33" alt="可搜索的 Jev 目录：精选路径、筛选排序、带日期的来源证据与条目卡片" width="760"></a>
 
 <sub>点击条形即可筛选。另有两个视图：<a href="https://kydlikebtc.github.io/awesome-jev/?view=prims&lang=zh">三个原语</a> · <a href="https://kydlikebtc.github.io/awesome-jev/?view=compat&lang=zh">兼容性矩阵</a>。每个筛选条件和每个条目都是可分享的 URL。也有静态页面：<a href="https://kydlikebtc.github.io/awesome-jev/patterns/">每个模式一页</a> · <a href="https://kydlikebtc.github.io/awesome-jev/new.zh.html">每周新增与退役</a>（<a href="https://kydlikebtc.github.io/awesome-jev/feed.zh.xml">Atom 订阅</a>）。有代码的产品还可以上<a href="https://kydlikebtc.github.io/awesome-jev/launches.zh.html">每周发布榜</a>（<a href="docs/launches.zh-CN.md">规则说明</a>）。</sub>
 
@@ -1457,17 +1457,17 @@ _介绍模型或整个领域，而非单一模式。_
 
 ## 哪些经过核实，哪些没有
 
-- **链接检查** —— 有 1463 行记录了 HTTP 2xx 响应和 `checked` 日期，另有 190 行没有带日期的成功记录。检查日期因条目而异，过去成功不保证今天仍可访问。star 数和许可证也是仓库元数据的快照。
+- **链接检查** —— 有 1463 行记录了 HTTP 2xx 响应和 `checked` 日期，另有 205 行没有带日期的成功记录。检查日期因条目而异，过去成功不保证今天仍可访问。star 数和许可证也是仓库元数据的快照。
 
 - **来源与代码阅读** —— `evidence.path` 指向所读文件，`evidence.read_on` 记录声明的阅读日期，`evidence.model_read_on` 记录模型的阅读、单独显示，`evidence_none` 解释缺少文件证据的原因。阅读调用点与运行代码是两件事。摘要包含源项目描述与机翻，详见[方法与局限](docs/method.md)。 <sub>(机翻)</sub>
 
-- **摘要是谁的文字** —— 732 条摘要的英文原文就是被链接项目自己在 GitHub 上的描述，逐字相同，这些行标为 *(项目自述)*；30 条标为 *(项目旧自述)*：英文取自项目描述，但两者已不再相同。这些文字出自项目作者，中文摘要是其译文。11 条摘要标明由人为本目录撰写，565 条由模型为本目录撰写并标为 *(模型撰写)*，315 条未作记录。每周刷新会把每条英文摘要与其仓库描述比对并标出相同者；只有人才能把摘要标为人写的。 <sub>(机翻)</sub>
+- **摘要是谁的文字** —— 732 条摘要的英文原文就是被链接项目自己在 GitHub 上的描述，逐字相同，这些行标为 *(项目自述)*；30 条标为 *(项目旧自述)*：英文取自项目描述，但两者已不再相同。这些文字出自项目作者，中文摘要是其译文。11 条摘要标明由人为本目录撰写，580 条由模型为本目录撰写并标为 *(模型撰写)*，315 条未作记录。每周刷新会把每条英文摘要与其仓库描述比对并标出相同者；只有人才能把摘要标为人写的。 <sub>(机翻)</sub>
 
-- **中文是谁写的** —— 1653 行中有 192 行的中文摘要由人撰写；其余 1461 行由模型翻译，带有 `zh_machine`，并在中文 README、中文模式页面和站点的中文视图中逐条标为 *(机翻)*。[翻译队列](docs/zh-queue.md)列出等待有人替换的机翻：先是星标最高各行的全部机翻，再按星标从高到低列出被脚本计算的三项文本信号（比英文短得多、缺少英文里的数字、大部分是 ASCII 字符）中至少一项标出的其他机翻。信号只是对照比较，不是对译文的结论，README、模式页面和站点上的各行都不显示信号。认领方法见[认领翻译](CONTRIBUTING.md#claim-a-translation)；只有你自己写的译文才能去掉 `zh_machine`。 <sub>(机翻)</sub>
+- **中文是谁写的** —— 1668 行中有 192 行的中文摘要由人撰写；其余 1476 行由模型翻译，带有 `zh_machine`，并在中文 README、中文模式页面和站点的中文视图中逐条标为 *(机翻)*。[翻译队列](docs/zh-queue.md)列出等待有人替换的机翻：先是星标最高各行的全部机翻，再按星标从高到低列出被脚本计算的三项文本信号（比英文短得多、缺少英文里的数字、大部分是 ASCII 字符）中至少一项标出的其他机翻。信号只是对照比较，不是对译文的结论，README、模式页面和站点上的各行都不显示信号。认领方法见[认领翻译](CONTRIBUTING.md#claim-a-translation)；只有你自己写的译文才能去掉 `zh_machine`。 <sub>(机翻)</sub>
 
-- **调用点文本复查** —— 有 1445 行通过 `evidence` 记录了项目调用 Jev 的文件及其中匹配的字符串。另有 121 行记录的文件只表明项目采用了 Jev 的请求结构、并非基于 Jev 构建（所有 `alternative`——无论是自己提供这种结构，还是向 Jev 发送同样的请求作对比——以及由其他模型支撑的适配器），2 行记录的只是项目附带的示例；`evidence.kind` 标明属于哪一种。每周 [claims 任务](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) 检查这些字符串是否仍在默认分支，发现文本或文件缺失时报告。这些数字是已记录的证据数量，**不是最新 CI 通过数**。文本匹配不能证明调用实际执行、API 兼容或结果正确。脚本标出、需要人重读的引用列在[复核队列](docs/review-queue.md)。 <sub>(机翻)</sub>
+- **调用点文本复查** —— 有 1460 行通过 `evidence` 记录了项目调用 Jev 的文件及其中匹配的字符串。另有 121 行记录的文件只表明项目采用了 Jev 的请求结构、并非基于 Jev 构建（所有 `alternative`——无论是自己提供这种结构，还是向 Jev 发送同样的请求作对比——以及由其他模型支撑的适配器），2 行记录的只是项目附带的示例；`evidence.kind` 标明属于哪一种。每周 [claims 任务](https://github.com/kydlikebtc/awesome-jev/actions/workflows/claims.yml) 检查这些字符串是否仍在默认分支，发现文本或文件缺失时报告。这些数字是已记录的证据数量，**不是最新 CI 通过数**。文本匹配不能证明调用实际执行、API 兼容或结果正确。脚本标出、需要人重读的引用列在[复核队列](docs/review-queue.md)。 <sub>(机翻)</sub>
 
-- **用了哪些原语** —— 有 108 行在 `question_types` 中记录了有人读代码时确认调用的原语；另有 389 行记录的是模型读代码时确认的原语，这些行的调用点只有模型读过（`evidence.model_read_on`）。此外还有 832 行带 `primitives_seen`，这是机器文本信号：每周刷新在该行所引的那一个文件中找到了某个原语的请求或回答结构（`"type": "choice"`、`Noul(`、`.noul`）。文件里出现这种结构不等于调用；其中 641 行没有 `question_types`，这个信号就是关于它们所用原语的全部记录。本目录的筛选、计数和规则都不会把它当作原语声明。 <sub>(机翻)</sub>
+- **用了哪些原语** —— 有 108 行在 `question_types` 中记录了有人读代码时确认调用的原语；另有 403 行记录的是模型读代码时确认的原语，这些行的调用点只有模型读过（`evidence.model_read_on`）。此外还有 832 行带 `primitives_seen`，这是机器文本信号：每周刷新在该行所引的那一个文件中找到了某个原语的请求或回答结构（`"type": "choice"`、`Noul(`、`.noul`）。文件里出现这种结构不等于调用；其中 641 行没有 `question_types`，这个信号就是关于它们所用原语的全部记录。本目录的筛选、计数和规则都不会把它当作原语声明。 <sub>(机翻)</sub>
 
 - **本仓库未独立验证运行与性能** —— 所有目录条目默认都未经本仓库实测，没有 `code-untested` 标签也不代表已测试。被收录的基准是原作者的测量，本目录没有独立复现。仓库构建检查与安装包冒烟测试不运行这些集成，也不调用 Jev 在线 API；收录亦不代表安全审计。
 
@@ -1541,7 +1541,7 @@ _介绍模型或整个领域，而非单一模式。_
 
 | 文件 | 是什么 |
 | --- | --- |
-| [`catalog.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json) | 1653 条目 |
+| [`catalog.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/catalog.json) | 1668 条目 |
 | [`retired.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/retired.json) | 36 已退休 |
 | [`compat.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/compat.json) | `docs/compatibility.md` 使用的平台兼容性数据 |
 | [`patterns.json`](https://raw.githubusercontent.com/kydlikebtc/awesome-jev/main/patterns.json) | 生成器与 MCP server 共用的决策模式分类 |

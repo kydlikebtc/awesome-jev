@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 244 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 247 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 232 · wire shape 3 · example only 0 · independent reports 24 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 235 · wire shape 3 · example only 0 · independent reports 24 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -350,6 +350,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[astrbot_plugin_jev](https://github.com/czyczy23/astrbot_plugin_jev)** — Fork of an AstrBot group-chat plugin that asks a System One decision model, before the bot joins a conversation, whether it is worth speaking (noul), how relevant the topic is (score) and how to join in (choice). Jev answers when the provider is OpenRouter. <sub>(written by a model)</sub>
   <sub>`Plugin` · czyczy23 · `Py` · `noul` · `score` · `choice` · call site [`utils/systemone_judge.py`](https://github.com/czyczy23/astrbot_plugin_jev/blob/HEAD/utils/systemone_judge.py), read by a model 2026-11-20</sub>
 
+- **[btx-skill-jev-judge](https://github.com/bitranox/btx-skill-jev-judge)** — Claude Code plugin with one skill, jev-judge: when the same judgment repeats over many items, such as labelling 600 support tickets, Claude hands it to Jev through a tested command-line tool that asks each item a noul, choice or score instead of reading every item into its own context. <sub>(written by a model)</sub>
+  <sub>`Plugin` · bitranox · `Py` · `noul` · `choice` · `score` · call site [`src/btx_skill_jev_judge/adapters/jev/client.py`](https://github.com/bitranox/btx-skill-jev-judge/blob/HEAD/src/btx_skill_jev_judge/adapters/jev/client.py), read by a model 2026-11-25</sub>
+
 - **[c9r plugins (browser-check, soft-lint)](https://github.com/c9r-dev/plugins)** — Claude Code and Codex plugins that use Jev as their classifier: browser-check runs a plain-English checklist in a real browser, asking which element each step means (choice) and whether each check holds (noul); soft-lint asks yes/no rules about the lines a diff adds. <sub>(written by a model)</sub>
   <sub>`Plugin` · c9r-dev · `TS` · `choice` · `noul` · call site [`shared/classifier.ts`](https://github.com/c9r-dev/plugins/blob/HEAD/shared/classifier.ts), read by a model 2026-11-13</sub>
 
@@ -364,6 +367,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI custom nodes that branch a workflow on a typed judgement, such as which style a prompt wants, whether it is too graphic for children or whether it names a real person, with one dropdown switching the backend between Jev, Laya and Cloudflare's Clef. <sub>(written by a model)</sub>
   <sub>`Plugin` · dante01yoon · `Py` · `choice` · `noul` · `score` · call site [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py), read by a model 2026-11-11</sub>
+
+- **[CourtVision](https://github.com/aiden-guan/courtvision)** — Turns single-camera basketball video into plays, possessions and box scores on a Mac from the pixels alone; optional Jev play context asks the play type (choice), whether a possession summary is clear and a play a highlight (nouls) and how much was at stake (score) to steer the commentary. <sub>(written by a model)</sub>
+  <sub>`Project` · aiden-guan · `Py` · `choice` · `noul` · `score` · call site [`courtvision/decision/client.py`](https://github.com/aiden-guan/courtvision/blob/HEAD/courtvision/decision/client.py), read by a model 2026-11-25 · ⚠ `vendor numbers`</sub>
 
 - **[decidekit](https://github.com/debuffjp/decidekit)** — A decision model that runs in the browser or Node: it picks one of your labels for a text with a confidence, learns from an LLM when unsure, and offers the shape of TypeSafe's SDK (client.systemOne({ state, questions })) for choice questions, so code written for Jev can run locally. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · debuffjp · `TS` · cited file [`src/typesafe.ts`](https://github.com/debuffjp/decidekit/blob/HEAD/src/typesafe.ts), read by a model 2026-11-13 · ⚠ `not Jev itself` `vendor numbers`</sub>
@@ -643,6 +649,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[legends-jev](https://github.com/avalonreset/legends-jev)** — Decision adviser for an operator choosing the next app, browser, document or local SEO review action: Jev picks one candidate action or unknown, a noul flags thin evidence and a score rates support. With screenshots or photos it also checks text, locates targets and verifies storefront signs. <sub>(written by a model)</sub>
   <sub>`Plugin` · avalonreset · `Py` · `choice` · `noul` · `score` · call site [`legends_jev/core.py`](https://github.com/avalonreset/legends-jev/blob/HEAD/legends_jev/core.py), read by a model 2026-11-19</sub>
+
+- **[Liuyao · 六爻](https://github.com/masonweb3/liuyao)** — I Ching divination site in which Jev only reads the user's question: a choice sorts it into a topic, which picks the use god for the reading, and nouls screen out self-harm, emergencies and gambling and check the question is sincere; the chart and the verdict come from deterministic rules. <sub>(written by a model)</sub>
+  <sub>`Project` · masonweb3 · `TS` · `choice` · `noul` · call site [`src/pages/api/judge.ts`](https://github.com/masonweb3/liuyao/blob/HEAD/src/pages/api/judge.ts), read by a model 2026-11-25</sub>
 
 - **[Mechanical Jev](https://github.com/Lasimeri/Mechanical-Jev)** — Rust client, command line and terminal interface for System One questions. Besides one-off queries, its gate acts, asks for review or escalates on each answer, label and rank run questions over many inputs, and a Claude Code hook asks you before a shell command it reads as risky. <sub>(written by a model)</sub>
   <sub>`SDK` · Lasimeri · `Rs` · `noul` · `choice` · `score` · call site [`src/client.rs`](https://github.com/Lasimeri/Mechanical-Jev/blob/HEAD/src/client.rs), read by a model 2026-11-17 · ⚠ `vendor numbers`</sub>

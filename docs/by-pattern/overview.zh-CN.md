@@ -4,11 +4,11 @@
 
 _介绍模型或整个领域，而非单一模式。_
 
-这个决策的全部已收录例子 —— 共 547 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 551 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#总览)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=zh)还能按语言、原语和形态进一步筛选。
 
 `overview` 在本目录里是什么意思、为什么只归在它下面的带代码项目算作尚未按模式索引，见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#overview)（由模型从[英文版](../patterns.md#overview)译写，以英文版为准）。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 404 · 接口形态 103 · 仅示例 0 · 独立报告 35 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 6 · 调用点 408 · 接口形态 103 · 仅示例 0 · 独立报告 35 · 负面结果 1 · 未引用文件 40。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -638,6 +638,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[JEV 调研报告 (JEV Research Report)](https://github.com/chorylee7/jev)** — 中文调研报告（附英文版），讲 Jev 是什么以及有哪些开源替代：按来源分级的价格、延迟、准确率和校准说法，场景选型指南和风险清单。其评估脚手架把你标注好的案例发给 Jev、Laya 或模拟后端，报告准确率、弃权率和 ECE。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`文章` · chorylee7 · `Py` · 调用点 [`eval/jev_client.py`](https://github.com/chorylee7/jev/blob/HEAD/eval/jev_client.py)，2026-11-19 模型阅读 · ⚠ `厂商自报数据`</sub>
 
+- **[Jev's Playground](https://github.com/ahmar004/jev-playground)** — 一个互动网站，讲解 Jev 这类系统一模型擅长什么、在哪里会失灵，以及何时前沿 LLM 或普通代码更合适：八个关卡（预测、上手、揭晓、核对），以及让 Jev 与 LLM 以真实延迟做同一件事的竞速，用到 noul、choice 和 score。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`教程` · ahmar004 · `TS` · `noul` · `choice` · `score` · 调用点 [`src/runner/providers/typesafe.ts`](https://github.com/ahmar004/jev-playground/blob/HEAD/src/runner/providers/typesafe.ts)，2026-11-25 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[jev-acento](https://github.com/marcosmartinez/jev-acento)** — Jev 听得懂你的口音吗？一项预先注册的、针对 TypeSafe AI Jev 西班牙语表现的审计——准确率、校准与 token 成本。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · marcosmartinez · `Py` · 调用点 [`src/jev_acento/providers.py`](https://github.com/marcosmartinez/jev-acento/blob/HEAD/src/jev_acento/providers.py)，2026-09-24 阅读</sub>
 
@@ -769,6 +772,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevsbistro](https://github.com/andrewsilber/JevsBistro)** — 用于低延迟决策模型基准测试的 3D 餐厅服务模拟器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · andrewsilber · `TS` · 调用点 [`src/jev/protocol.ts`](https://github.com/andrewsilber/JevsBistro/blob/HEAD/src/jev/protocol.ts)，2026-09-22 阅读</sub>
+
+- **[judgment](https://github.com/chussenot/judgment)** — 一个 Rust 包和 jud 命令行工具，用于类型化判断：一个决定写成一份含问题和阈值的文件，由 Jev 作答（noul、choice 或 score，可附图片）；每个回答只能按所问的类型读取，录下的回答让这个决定无需密钥就能测试和调参。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · chussenot · `Rs` · `noul` · `choice` · `score` · 调用点 [`src/client.rs`](https://github.com/chussenot/judgment/blob/HEAD/src/client.rs)，2026-11-25 模型阅读</sub>
 
 - **[KLibJev](https://github.com/BoD/klibjev)** — Jev 的 Kotlin Multiplatform 客户端：用 noul、choice 和 score 问题评估文本或结构化数据，得到带概率的类型化答案；从 1.1.0 起还能发送图片和 Box 问题。发布在 Maven Central。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · BoD · `Kt` · `noul` · `choice` · `score` · 调用点 [`library/src/commonMain/kotlin/org/jraf/klibjev/client/JevClient.kt`](https://github.com/BoD/klibjev/blob/HEAD/library/src/commonMain/kotlin/org/jraf/klibjev/client/JevClient.kt)，2026-11-23 模型阅读</sub>
@@ -1056,7 +1062,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 ## 尚未按模式索引
 
-带代码的项目或插件，共 209 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
+带代码的项目或插件，共 211 行：唯一的模式是 `overview`，且没有记录 `patterns_reviewed`。`overview` 也是关键词规则无法归类时给出的默认值，所以这些行可能从未被归类。有人为某行指定模式，或对照[决策模式](../patterns.zh-CN.md#overview)读过它并把日期记入 `patterns_reviewed` 后，该行就会离开此列表。[复核队列](../review-queue.md#unsorted-overview)列出了它们以及规则给出的建议。 <sub>(机翻)</sub>
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — 为应用、电话、导览屏和元宇宙打造语音 AI 虚拟形象的工具包。它的 Jev 话轮结束闸门就转写文本提一个 noul：助手是否应保持沉默、让用户的话轮继续，并把这个概率换算成 0.4 到 2 秒的等待；出错时直接结束话轮。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · uezo · `Py` · 调用点 [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py)，2026-09-22 阅读</sub>
@@ -1241,6 +1247,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[askjev](https://github.com/pZacca/askjev)** — 非官方的 Jev MCP server。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · pzacca · `TS` · 调用点 [`src/jev.ts`](https://github.com/pZacca/askjev/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
+- **[askjev](https://github.com/brian-w-zhang/askjev)** — 一个人绘制的 Jev 性格地图：来自 312 个来源的一百多万道封闭式问题，归入一棵有 1,737 个主题的树，每题由 Jev 以 noul、choice 或 score 作答，并在有对照时与真人的回答并列，题目涉及品味、伦理、日期和从众压力。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · brian-w-zhang · `Py` · `noul` · `choice` · `score` · 调用点 [`src/askjev/jev.py`](https://github.com/brian-w-zhang/askjev/blob/HEAD/src/askjev/jev.py)，2026-11-25 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[AskJev-MCP](https://github.com/cbruyndoncx/AskJev-MCP)** — TypeSafe System One API（Jev）的 MCP 服务器：带校准概率的类型化 choice/noul/score 判断。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · cbruyndoncx · `JS` · 调用点 [`src/index.ts`](https://github.com/cbruyndoncx/AskJev-MCP/blob/HEAD/src/index.ts)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
 
@@ -1333,6 +1342,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Jev DevTools](https://github.com/diegoag64/jev-devtools)** — Jev 请求的 React 检查器：Node 服务端适配器包装 TypeSafe SDK 客户端的 fetch，记录每个请求的状态、问题、答案、概率、重试和错误，显示在应用内的面板里；可选的 flow API 把请求和应用步骤画成流程图。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · diegoag64 · `TS` · 调用点 [`packages/jev-devtools/server/index.ts`](https://github.com/diegoag64/jev-devtools/blob/HEAD/packages/jev-devtools/server/index.ts)，2026-11-09 模型阅读</sub>
+
+- **[Jev Observer](https://github.com/LimePencil/jev-observer)** — 一个面向 Jev 的本地代理和仪表盘：应用经它把请求发往 TypeSafe 或其他提供方，它保存每个问题和回答，方便查看决定、把重复的问题归组，并在问题定义改变时比较前后统计。它自己不向 Jev 提问。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · LimePencil · `Rs` · 调用点 [`src/config.rs`](https://github.com/LimePencil/jev-observer/blob/HEAD/src/config.rs)，2026-11-25 模型阅读</sub>
 
 - **[Jev Starter](https://github.com/YanfLIZi56/jev-starter)** — Jev 的浏览器控制台：无需写代码就能配置 noul、choice 和 score 问题，通过一个调用 Jev 的小型 FastAPI 后端试跑，再把请求导出为 Python、JavaScript 或 cURL 代码，或导出成供他人参考的示例 JSON。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · YanfLIZi56 · `Py` · `noul` · `choice` · `score` · 调用点 [`backend/main.py`](https://github.com/YanfLIZi56/jev-starter/blob/HEAD/backend/main.py)，2026-11-18 模型阅读</sub>

@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 547 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 551 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 404 · wire shape 103 · example only 0 · independent reports 35 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 408 · wire shape 103 · example only 0 · independent reports 35 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -638,6 +638,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[JEV 调研报告 (JEV Research Report)](https://github.com/chorylee7/jev)** — Chinese research report, with an English version, on Jev and its open alternatives: pricing, latency, accuracy and calibration claims graded by source, a scenario guide and risk checklists. Its eval scaffold runs labelled cases against Jev, Laya or a mock and reports accuracy, abstentions and ECE. <sub>(written by a model)</sub>
   <sub>`Article` · chorylee7 · `Py` · call site [`eval/jev_client.py`](https://github.com/chorylee7/jev/blob/HEAD/eval/jev_client.py), read by a model 2026-11-19 · ⚠ `vendor numbers`</sub>
 
+- **[Jev's Playground](https://github.com/ahmar004/jev-playground)** — Interactive website that teaches where System One models like Jev work well, where they break, and where a frontier LLM or plain code is better: eight levels (predict, play, reveal, check) and races where Jev and an LLM do the same job at their real latency, with nouls, choices and scores. <sub>(written by a model)</sub>
+  <sub>`Tutorial` · ahmar004 · `TS` · `noul` · `choice` · `score` · call site [`src/runner/providers/typesafe.ts`](https://github.com/ahmar004/jev-playground/blob/HEAD/src/runner/providers/typesafe.ts), read by a model 2026-11-25 · ⚠ `no licence`</sub>
+
 - **[jev-acento](https://github.com/marcosmartinez/jev-acento)** — ¿Jev entiende tu acento? Pre-registered audit of TypeSafe AI's Jev on Spanish — accuracy, calibration and token cost — plus a CLI to run the same comparison on your own labelled data. <sub>(upstream description)</sub>
   <sub>`Benchmark` · marcosmartinez · `Py` · call site [`src/jev_acento/providers.py`](https://github.com/marcosmartinez/jev-acento/blob/HEAD/src/jev_acento/providers.py), read 2026-09-24</sub>
 
@@ -769,6 +772,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevsbistro](https://github.com/andrewsilber/JevsBistro)** — 3D restaurant service simulator for benchmarking low-latency decision models <sub>(upstream description)</sub>
   <sub>`Benchmark` · andrewsilber · `TS` · call site [`src/jev/protocol.ts`](https://github.com/andrewsilber/JevsBistro/blob/HEAD/src/jev/protocol.ts), read 2026-09-22</sub>
+
+- **[judgment](https://github.com/chussenot/judgment)** — Rust crate and jud command line for typed judgments: a decision is written as a file of questions and thresholds, Jev answers it (noul, choice or score, images included), each answer can only be read as the type asked, and recorded answers let the decision be tested and tuned with no key. <sub>(written by a model)</sub>
+  <sub>`SDK` · chussenot · `Rs` · `noul` · `choice` · `score` · call site [`src/client.rs`](https://github.com/chussenot/judgment/blob/HEAD/src/client.rs), read by a model 2026-11-25</sub>
 
 - **[KLibJev](https://github.com/BoD/klibjev)** — Kotlin Multiplatform client for Jev: evaluate text or structured data with noul, choice and score questions and get typed answers with probabilities; since 1.1.0 it also sends images and Box questions. Published on Maven Central. <sub>(written by a model)</sub>
   <sub>`SDK` · BoD · `Kt` · `noul` · `choice` · `score` · call site [`library/src/commonMain/kotlin/org/jraf/klibjev/client/JevClient.kt`](https://github.com/BoD/klibjev/blob/HEAD/library/src/commonMain/kotlin/org/jraf/klibjev/client/JevClient.kt), read by a model 2026-11-23</sub>
@@ -1056,7 +1062,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 ## Not yet indexed by pattern
 
-Projects and plugins with code, 209 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
+Projects and plugins with code, 211 of them, whose only pattern is `overview` and whose rows record no `patterns_reviewed`. `overview` is also where the keyword rules put a description they could not place, so these rows may never have been placed at all. A row leaves this list when a person gives it a pattern, or reads it against [the patterns](../patterns.md#overview) and records the date in `patterns_reviewed`. The [review queue](../review-queue.md#unsorted-overview) lists them with the rules' suggestion.
 
 - **[aiavatarkit](https://github.com/uezo/aiavatarkit)** — Toolkit for voice AI avatars in apps, phone lines, signage and the metaverse. Its Jev turn-end gate asks a noul on the transcript, whether the assistant should stay silent and leave the user's turn open, and maps that probability to a wait of 0.4 to 2 seconds; on any error the turn ends. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · uezo · `Py` · call site [`aiavatar/sts/vad/turn_end_gates/jev.py`](https://github.com/uezo/aiavatarkit/blob/HEAD/aiavatar/sts/vad/turn_end_gates/jev.py), read 2026-09-22</sub>
@@ -1241,6 +1247,9 @@ Projects and plugins with code, 209 of them, whose only pattern is `overview` an
 - **[askjev](https://github.com/pZacca/askjev)** — Unofficial MCP server for Jev (Typesafe AI) <sub>(upstream description)</sub>
   <sub>`Plugin` · pzacca · `TS` · call site [`src/jev.ts`](https://github.com/pZacca/askjev/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
+- **[askjev](https://github.com/brian-w-zhang/askjev)** — One person's map of what Jev is like: over a million closed questions from 312 sources, filed on a tree of 1,737 topics, each answered by Jev as a noul, choice or score and shown next to real people's answers where they exist, with questions on taste, ethics, dates and pressure to conform. <sub>(written by a model)</sub>
+  <sub>`Project` · brian-w-zhang · `Py` · `noul` · `choice` · `score` · call site [`src/askjev/jev.py`](https://github.com/brian-w-zhang/askjev/blob/HEAD/src/askjev/jev.py), read by a model 2026-11-25 · ⚠ `no licence`</sub>
+
 - **[AskJev-MCP](https://github.com/cbruyndoncx/AskJev-MCP)** — MCP server for TypeSafe's System One API (Jev): typed choice/noul/score judgments with calibrated probabilities and confidence <sub>(upstream description)</sub>
   <sub>`Plugin` · cbruyndoncx · `JS` · call site [`src/index.ts`](https://github.com/cbruyndoncx/AskJev-MCP/blob/HEAD/src/index.ts), read 2026-09-24 · ⚠ `no licence`</sub>
 
@@ -1333,6 +1342,9 @@ Projects and plugins with code, 209 of them, whose only pattern is `overview` an
 
 - **[Jev DevTools](https://github.com/diegoag64/jev-devtools)** — React inspector for Jev requests: a Node server adapter wraps the TypeSafe SDK client's fetch and records each request's state, questions, answers, probabilities, retries and errors for an in-app panel; an optional flow API draws requests and app steps as diagrams. <sub>(written by a model)</sub>
   <sub>`Project` · diegoag64 · `TS` · call site [`packages/jev-devtools/server/index.ts`](https://github.com/diegoag64/jev-devtools/blob/HEAD/packages/jev-devtools/server/index.ts), read by a model 2026-11-09</sub>
+
+- **[Jev Observer](https://github.com/LimePencil/jev-observer)** — Local proxy and dashboard for Jev: an application sends its requests through it to TypeSafe or another provider, and it saves each question and answer so you can inspect decisions, group repeated questions and compare their statistics when a question's definition changes. It asks Jev nothing itself. <sub>(written by a model)</sub>
+  <sub>`Project` · LimePencil · `Rs` · call site [`src/config.rs`](https://github.com/LimePencil/jev-observer/blob/HEAD/src/config.rs), read by a model 2026-11-25</sub>
 
 - **[Jev Starter](https://github.com/YanfLIZi56/jev-starter)** — Browser console for Jev: build noul, choice and score questions without code, run them through a small FastAPI backend that calls Jev, then export the request as Python, JavaScript or cURL, or as an example JSON others can start from. <sub>(written by a model)</sub>
   <sub>`Project` · YanfLIZi56 · `Py` · `noul` · `choice` · `score` · call site [`backend/main.py`](https://github.com/YanfLIZi56/jev-starter/blob/HEAD/backend/main.py), read by a model 2026-11-18</sub>

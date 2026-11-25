@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 107 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 110 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 97 · wire shape 2 · example only 2 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 100 · wire shape 2 · example only 2 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -198,6 +198,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[codex-jev-router](https://github.com/tiandee/codex-jev-router)** — Wrapper for the Codex CLI that runs a local proxy and, on each fresh turn, asks Jev a choice of Codex model and scores for task complexity, reasoning required and tool complexity, then sets the model and reasoning effort; without Jev, Codex keeps its current settings. <sub>(written by a model)</sub>
   <sub>`Plugin` · tiandee · `JS` · `choice` · `score` · call site [`src/jev-client.mjs`](https://github.com/tiandee/codex-jev-router/blob/HEAD/src/jev-client.mjs), read by a model 2026-11-10</sub>
 
+- **[codex-router](https://github.com/alexei-led/codex-router)** — Wrapper for Codex CLI that picks the model and reasoning effort for each turn: Jev classifies the prompt, a task-goal anchor and recent dialogue with a route choice, a continuation noul and activity and phase choices, and the router weighs that with cache state and tool results before it switches. <sub>(written by a model)</sub>
+  <sub>`Plugin` · alexei-led · `Go` · `choice` · `noul` · call site [`internal/classifier/systemone.go`](https://github.com/alexei-led/codex-router/blob/HEAD/internal/classifier/systemone.go), read by a model 2026-11-25</sub>
+
 - **[Coding Router Jev](https://github.com/guanghuang/coding-router-jev)** — Wrappers for the Codex and Claude Code CLIs and a Pi extension that send each user turn to Jev, which scores task complexity, reasoning and tool needs and chooses a model tier, a reasoning effort and a sensitivity level; the wrapper then starts the agent with that model. <sub>(written by a model)</sub>
   <sub>`Plugin` · guanghuang · `TS` · `score` · `choice` · call site [`src/router.ts`](https://github.com/guanghuang/coding-router-jev/blob/HEAD/src/router.ts), read by a model 2026-11-22</sub>
 
@@ -294,6 +297,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-synthetic-survey](https://github.com/jjd-lab/jev-synthetic-survey)** — Jev vs GPT-4.1 as synthetic survey respondents on Twin-2K-500. How you ask mattered more than which model you used. <sub>(upstream description)</sub>
   <sub>`Project` · jjd-lab · `Py` · call site [`scripts/twin2k/jev_client.py`](https://github.com/jjd-lab/jev-synthetic-survey/blob/HEAD/scripts/twin2k/jev_client.py), read 2026-09-22</sub>
 
+- **[JevGAG · DDAG](https://github.com/j1s4nn/JevGAG)** — Research on adaptive temporal granularity for causal video generation: Jev serves as an off-device oracle that signals when a generator needs fine per-frame compute, and in the cited critic experiment it answers nouls on sampled frames, a visible discontinuity and physical plausibility. <sub>(written by a model)</sub>
+  <sub>`Project` · j1s4nn · `Py` · `noul` · call site [`ddag/experiments/10_jev_critic/jcd.py`](https://github.com/j1s4nn/JevGAG/blob/HEAD/ddag/experiments/10_jev_critic/jcd.py), read by a model 2026-11-25 · ⚠ `vendor numbers`</sub>
+
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — The LangChain integration: a classifier plus experimental middleware for model routing and for gating risky tool calls before they run.
   <sub>`Integration` · `Py` · `choice` · `score` · `noul` · ⚠ `early access`</sub>
 
@@ -314,6 +320,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[pi-typesafe-router](https://github.com/jekozyra/pi-typesafe-router)** — A Pi extension that has Jev classify each request and route it to the right model, off until you configure the mappings.
   <sub>`Plugin` · jekozyra · `TS` · call site [`src/config.ts`](https://github.com/jekozyra/pi-typesafe-router/blob/HEAD/src/config.ts), read 2026-09-24</sub>
+
+- **[pydecide](https://github.com/gopaljigaur/decide)** — Python library that speaks to decision models through one API (TypeSafe's Jev, OpenRouter, OpenAI's Decisions endpoint, open laya models, CrossEncoders, a JSON-prompted LLM) and chains them: a backend that errors or answers below its confidence threshold passes the question on. <sub>(written by a model)</sub>
+  <sub>`SDK` · gopaljigaur · `Py` · `choice` · `score` · `noul` · call site [`decide/backends/typesafe.py`](https://github.com/gopaljigaur/decide/blob/HEAD/decide/backends/typesafe.py), read by a model 2026-11-25</sub>
 
 - **[reasoning-router](https://github.com/robertn702/reasoning-router)** — Asks a classifier such as Jev how much reasoning effort each step of a coding session needs, with one choice question, so one strong model handles quick edits and hard debugging without switching effort by hand; works in OpenCode, Pi, Codex CLI and any client behind its local proxy. <sub>(written by a model)</sub>
   <sub>`Plugin` · robertn702 · `TS` · `choice` · call site [`packages/classifiers/src/jev.ts`](https://github.com/robertn702/reasoning-router/blob/HEAD/packages/classifiers/src/jev.ts), read by a model 2026-11-07</sub>

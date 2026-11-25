@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 217 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 218 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 208 · 接口形态 5 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 209 · 接口形态 5 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -325,6 +325,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[ComfyUI-Jev](https://github.com/hndrr/ComfyUI-Jev)** — ComfyUI 自定义节点：Jev Interpret 在候选里做选择、判断条件、给文本打分、从文本中挑出数值（choice、noul、score）；Jev Skill Choice 为请求挑选本地 SKILL.md 技能；结果再传给其他节点。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · hndrr · `Py` · `choice` · `noul` · `score` · 调用点 [`api.py`](https://github.com/hndrr/ComfyUI-Jev/blob/HEAD/api.py)，2026-11-13 模型阅读</sub>
+
+- **[CourtVision](https://github.com/aiden-guan/courtvision)** — 仅凭画面，在 Mac 上把单机位篮球视频转成回合、球权和技术统计；可选的 Jev 比赛语境会问打法类型（choice）、球权摘要是否清楚、某次进攻是否算精彩（noul）以及当时局面有多关键（score），用来引导解说。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · aiden-guan · `Py` · `choice` · `noul` · `score` · 调用点 [`courtvision/decision/client.py`](https://github.com/aiden-guan/courtvision/blob/HEAD/courtvision/decision/client.py)，2026-11-25 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[decide-mcp](https://github.com/dakdevs/decide-mcp)** — 可配置的决策 MCP server，带百分比分数与偏好画像。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · dakdevs · `TS` · 调用点 [`src/config.ts`](https://github.com/dakdevs/decide-mcp/blob/HEAD/src/config.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>

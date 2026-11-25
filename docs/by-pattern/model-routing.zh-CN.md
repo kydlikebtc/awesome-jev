@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 107 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 110 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 97 · 接口形态 2 · 仅示例 2 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 100 · 接口形态 2 · 仅示例 2 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -198,6 +198,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[codex-jev-router](https://github.com/tiandee/codex-jev-router)** — Codex CLI 的包装器：运行一个本地代理，每个新回合用 choice 问 Jev 该用哪个 Codex 模型，再用 score 评估任务复杂度、所需推理和工具复杂度，据此设定模型和推理强度；Jev 不可用时，Codex 保持当前设置。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · tiandee · `JS` · `choice` · `score` · 调用点 [`src/jev-client.mjs`](https://github.com/tiandee/codex-jev-router/blob/HEAD/src/jev-client.mjs)，2026-11-10 模型阅读</sub>
 
+- **[codex-router](https://github.com/alexei-led/codex-router)** — 一个 Codex CLI 的包装器，为每一轮选择模型和推理力度：Jev 依据提示、有界的任务目标锚点和近期对话，回答一个路由 choice、一个是否延续的 noul 以及活动和阶段的 choice；路由器再结合缓存状态和工具结果决定是否切换。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · alexei-led · `Go` · `choice` · `noul` · 调用点 [`internal/classifier/systemone.go`](https://github.com/alexei-led/codex-router/blob/HEAD/internal/classifier/systemone.go)，2026-11-25 模型阅读</sub>
+
 - **[Coding Router Jev](https://github.com/guanghuang/coding-router-jev)** — Codex 和 Claude Code 命令行的包装器以及一个 Pi 扩展：把每个用户回合发给 Jev，由它给任务复杂度、推理需求和工具需求打分，并选出模型档位、推理强度和敏感级别；包装器随后用这个模型启动智能体。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · guanghuang · `TS` · `score` · `choice` · 调用点 [`src/router.ts`](https://github.com/guanghuang/coding-router-jev/blob/HEAD/src/router.ts)，2026-11-22 模型阅读</sub>
 
@@ -294,6 +297,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-synthetic-survey](https://github.com/jjd-lab/jev-synthetic-survey)** — 把 Jev 与 GPT-4.1 当作合成问卷受访者做对比 —— 怎么问比用哪个模型更重要。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jjd-lab · `Py` · 调用点 [`scripts/twin2k/jev_client.py`](https://github.com/jjd-lab/jev-synthetic-survey/blob/HEAD/scripts/twin2k/jev_client.py)，2026-09-22 阅读</sub>
 
+- **[JevGAG · DDAG](https://github.com/j1s4nn/JevGAG)** — 关于因果视频生成中自适应时间粒度的研究：Jev 充当设备外的预言者，提示生成器何时需要逐帧精细计算；在所引的评审实验中，它针对抽取的帧回答 noul：是否有可见的不连续、动作是否物理上合理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · j1s4nn · `Py` · `noul` · 调用点 [`ddag/experiments/10_jev_critic/jcd.py`](https://github.com/j1s4nn/JevGAG/blob/HEAD/ddag/experiments/10_jev_critic/jcd.py)，2026-11-25 模型阅读 · ⚠ `厂商自报数据`</sub>
+
 - **[langchain-typesafe](https://docs.langchain.com/oss/python/integrations/providers/typesafe)** — LangChain 集成：一个分类器，外加用于模型路由、以及在高风险工具调用执行前拦截它的实验性 middleware。
   <sub>`平台集成` · `Py` · `choice` · `score` · `noul` · ⚠ `需早期访问`</sub>
 
@@ -314,6 +320,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[pi-typesafe-router](https://github.com/jekozyra/pi-typesafe-router)** — 一个 Pi 扩展：让 Jev 为每个请求分类并路由到合适的模型；在你配置好映射之前默认关闭。 <sub>(机翻)</sub>
   <sub>`插件` · jekozyra · `TS` · 调用点 [`src/config.ts`](https://github.com/jekozyra/pi-typesafe-router/blob/HEAD/src/config.ts)，2026-09-24 阅读</sub>
+
+- **[pydecide](https://github.com/gopaljigaur/decide)** — 一个 Python 库，用同一套 API 调用各种决策模型（TypeSafe 的 Jev、OpenRouter、OpenAI 的 Decisions 端点、开源的 laya 模型、CrossEncoder、按 JSON 提示的 LLM），并把它们串成链：出错或置信度低于阈值的后端会把问题交给下一个。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · gopaljigaur · `Py` · `choice` · `score` · `noul` · 调用点 [`decide/backends/typesafe.py`](https://github.com/gopaljigaur/decide/blob/HEAD/decide/backends/typesafe.py)，2026-11-25 模型阅读</sub>
 
 - **[reasoning-router](https://github.com/robertn702/reasoning-router)** — 用一个 choice 问题询问 Jev 等分类器：编程会话中的每一步需要多少推理力度，这样一个强模型就能同时处理快速修改和疑难调试，而无需手动切换力度；可用于 OpenCode、Pi、Codex CLI，以及任何经其本地代理接入的客户端。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · robertn702 · `TS` · `choice` · 调用点 [`packages/classifiers/src/jev.ts`](https://github.com/robertn702/reasoning-router/blob/HEAD/packages/classifiers/src/jev.ts)，2026-11-07 模型阅读</sub>

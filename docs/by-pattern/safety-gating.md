@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 198 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 201 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 190 · wire shape 4 · example only 0 · independent reports 15 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 193 · wire shape 4 · example only 0 · independent reports 15 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -269,6 +269,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[assay-001](https://github.com/jourdanlabs/assay-001)** — ASSAY-001: independent, pre-registered verification of TypeSafe Jev's calibration and type-safety claims. Split verdict, published in full. <sub>(upstream description)</sub>
   <sub>`Project` · jourdanlabs · `Py` · call site [`harness/run.py`](https://github.com/jourdanlabs/assay-001/blob/HEAD/harness/run.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[Bouncer](https://github.com/clownware/bouncer)** — Judgment layer for Claude Code tool calls: a PreToolUse hook asks Jev plain-English questions from a YAML policy you own about each proposed call, such as whether a command destroys hard-to-recover work, and a push policy asks whether commits match the diff or leave debugging code behind. <sub>(written by a model)</sub>
+  <sub>`Plugin` · clownware · `TS` · `noul` · `choice` · `score` · call site [`src/adapters/jev.ts`](https://github.com/clownware/bouncer/blob/HEAD/src/adapters/jev.ts), read by a model 2026-11-25</sub>
+
 - **[Building a Harness with Jev](https://www.langchain.com/blog/building-a-harness-with-jev)** — LangChain's explainer and integration walkthrough: the three question types, plus model routing and gating risky tool calls before they run.
   <sub>`Article` · Sydney Runkle, Hunter Lovell · `Py` · ⚠ `vendor numbers`</sub>
 
@@ -340,6 +343,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev by Example](https://github.com/ReallyArtificial/jev-by-example)** — Ten runnable JavaScript agent decisions, one file each: reconciling a new memory against a stored one, gating whether an HTTP 200 really satisfied the task, retry vs. reconcile after an uncertain write, scoring context against a budget, checking a handoff for dropped prohibitions.
   <sub>`Project` · Really Artificial · `JS` · `choice` · `score` · `noul` · call site [`src/client.mjs`](https://github.com/ReallyArtificial/jev-by-example/blob/HEAD/src/client.mjs), read 2026-09-22 · ⚠ `AI-written`</sub>
+
+- **[Jev Eye](https://github.com/bismawy/pi-jev-eye)** — Supervisor for the Pi coding agent: regex rules block destructive commands and leaked secrets locally, and each diff of at least 10 lines goes to Jev as nouls on whether it holds a lazy stub or unfinished work and, on a reviewed turn, whether it fulfils the request. <sub>(written by a model)</sub>
+  <sub>`Plugin` · bismawy · `TS` · `noul` · call site [`extensions/gate.ts`](https://github.com/bismawy/pi-jev-eye/blob/HEAD/extensions/gate.ts), read by a model 2026-11-25</sub>
 
 - **[Jev for QA / SDET demos](https://github.com/gauravkhuraana/jev-qa-demos)** — Demo code for a video on Jev for testers, through Vercel AI Gateway and the AI SDK: it triages failed CI tests by root cause (choice), release impact (score) and whether a retry will pass (noul), and uses nouls to screen an agent's commands and to check that a RAG answer is grounded. <sub>(written by a model)</sub>
   <sub>`Tutorial` · gauravkhuraana · `TS` · `choice` · `score` · `noul` · call site [`src/lib/triage.ts`](https://github.com/gauravkhuraana/jev-qa-demos/blob/HEAD/src/lib/triage.ts), read by a model 2026-11-20 · ⚠ `no licence`</sub>
@@ -511,6 +517,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[last-exit](https://github.com/0x963D/last-exit)** — A cyberpunk border encounter powered by TypeSafe Jev. Bluff the guard. Inspect the receipts. <sub>(upstream description)</sub>
   <sub>`Project` · 0x963d · `JS` · call site [`lib/hosted.mjs`](https://github.com/0x963D/last-exit/blob/HEAD/lib/hosted.mjs), read 2026-09-22</sub>
+
+- **[Liuyao · 六爻](https://github.com/masonweb3/liuyao)** — I Ching divination site in which Jev only reads the user's question: a choice sorts it into a topic, which picks the use god for the reading, and nouls screen out self-harm, emergencies and gambling and check the question is sincere; the chart and the verdict come from deterministic rules. <sub>(written by a model)</sub>
+  <sub>`Project` · masonweb3 · `TS` · `choice` · `noul` · call site [`src/pages/api/judge.ts`](https://github.com/masonweb3/liuyao/blob/HEAD/src/pages/api/judge.ts), read by a model 2026-11-25</sub>
 
 - **[macos-computer-use-kit](https://github.com/Sur-Cai/macos-computer-use-kit)** — AX-first computer use for AI agents on macOS with optional Jev (TypeSafe System One) semantic guards: calibrated target/input judgments before an irreversible action, decisions kept in code. Accessibility-tree targeting, window-scoped input, clipboard-safe paste, read-back verification…
   <sub>`Plugin` · sur-cai · `Py` · call site [`src/macos_computer_use/jev.py`](https://github.com/Sur-Cai/macos-computer-use-kit/blob/HEAD/src/macos_computer_use/jev.py), read 2026-09-24</sub>

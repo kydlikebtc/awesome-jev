@@ -4,11 +4,11 @@
 
 _Pack many questions — including speculative ones — into one request and let code pick what mattered._
 
-Every catalogued example of this decision — 54 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 55 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#fan-out): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 45 · wire shape 1 · example only 1 · independent reports 2 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 46 · wire shape 1 · example only 1 · independent reports 2 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -123,6 +123,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[anofox-decide](https://github.com/DataZooDE/anofox-decide)** — DuckDB extension that asks decision models from SQL: noul, choice and score functions run over table rows concurrently, and decide_answers sends several questions about one text in a single request. Jev on TypeSafe is one of its remote providers. <sub>(written by a model)</sub>
   <sub>`Plugin` · DataZooDE · `C++` · `noul` · `choice` · `score` · call site [`src/decide_remote.cpp`](https://github.com/DataZooDE/anofox-decide/blob/HEAD/src/decide_remote.cpp), read by a model 2026-11-17</sub>
+
+- **[btx-skill-jev-judge](https://github.com/bitranox/btx-skill-jev-judge)** — Claude Code plugin with one skill, jev-judge: when the same judgment repeats over many items, such as labelling 600 support tickets, Claude hands it to Jev through a tested command-line tool that asks each item a noul, choice or score instead of reading every item into its own context. <sub>(written by a model)</sub>
+  <sub>`Plugin` · bitranox · `Py` · `noul` · `choice` · `score` · call site [`src/btx_skill_jev_judge/adapters/jev/client.py`](https://github.com/bitranox/btx-skill-jev-judge/blob/HEAD/src/btx_skill_jev_judge/adapters/jev/client.py), read by a model 2026-11-25</sub>
 
 - **[CloakBrowser Agent](https://github.com/CloakHQ/CloakBrowser-Agent)** — Browser agent in which Jev decides every step in one request: a choice of operation plus a choice of target element for each possible operation, while the CloakBrowser stealth Chromium carries it out with human-like input; it runs as an MCP server, a CLI or a library. <sub>(written by a model)</sub>
   <sub>`Project` · CloakHQ · `Py` · `choice` · call site [`cloak_agent/model.py`](https://github.com/CloakHQ/CloakBrowser-Agent/blob/HEAD/cloak_agent/model.py), read by a model 2026-11-11</sub>
