@@ -47,6 +47,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Cookbook: Structure recovery](https://docs.typesafe.ai/cookbooks/autoformat)** ⭐ — 用两次请求把丢了格式的纯文本还原成 Markdown：一次把硬换行的段落重新接起来，一次给每个块分类。
   <sub>`官方文档` · `Py`</sub>
 
+- **[TradingAgents](https://github.com/tauricresearch/tradingagents)** — 多智能体 LLM 交易框架。设置了 TypeSafe 密钥时，其情绪分析师会用 Jev 筛查每条 StockTwits 或 Reddit 帖子：用一个 noul 判断帖子是否在谈该标的，低于 0.3 则丢弃；再用一个 choice 判断作者立场（看涨、看跌或中性），置信度达到 0.5 才计入。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100k+ · tauricresearch · `Py` · `noul` · `choice` · 调用点 [`tradingagents/agents/post_screen.py`](https://github.com/tauricresearch/tradingagents/blob/HEAD/tradingagents/agents/post_screen.py)，2026-11-12 模型阅读</sub>
+
 - **[Inbox Zero: seven email decisions](https://github.com/elie222/inbox-zero)** — 七个互不相同的邮件决策，每个都有自己单独设定的阈值，任何出错都回落到普通 LLM。
   <sub>`开源项目` · ★10k+ · `TS` · `choice` · `noul` · 调用点 [`apps/web/utils/decision-model/decision-model.ts`](https://github.com/elie222/inbox-zero/blob/HEAD/apps/web/utils/decision-model/decision-model.ts)，2026-11-05 模型阅读</sub>
 
@@ -70,6 +73,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[classifier-dev](https://github.com/mrmps/classifier-dev)** — 基于纯 HTTP 的零样本文本分类，无需密钥或注册：传入标签和文本，返回一个标签和校准过的置信度，一次请求可含一千条文本。两个档位都由 Jev 作答：每条文本一个 choice，多标签时每个标签一个 noul；smart 档会把置信度低于 0.7 的答案交给推理模型重答。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · mrmps · `TS` · 调用点 [`src/jev.ts`](https://github.com/mrmps/classifier-dev/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
+
+- **[Claude x Jev](https://github.com/charlesdove977/claude-x-jev)** — Claude Code 技能及配套命令：由 Jev（经 OpenRouter）负责分拣，Claude 负责写作。可以批量分类、核查或打分，只把不确定的条目交给 Claude，核对 Claude 的草稿，并用 PreToolUse 钩子把关工具调用，询问该调用能否撤销、是否服务于当前任务。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★100+ · charlesdove977 · `Py` · `choice` · `noul` · `score` · 调用点 [`skill/scripts/jev.py`](https://github.com/charlesdove977/claude-x-jev/blob/HEAD/skill/scripts/jev.py)，2026-10-30 模型阅读 · ⚠ `营销内容`</sub>
 
 - **[crush-monitor](https://github.com/FerryCorleone/crush-monitor)** — 在本机运行的网页工具，分析你粘贴的与心仪对象的微信聊天记录。对每条消息，Jev 在 12 类情绪和 35 类意图中给出概率，各展示最高的三项，并为好感信号和你自己的回复打分（回复按 SSS 到 D 分档）。也可以改用文本 LLM 代替 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · ferrycorleone · `TS` · 调用点 [`server/provider-config.ts`](https://github.com/FerryCorleone/crush-monitor/blob/HEAD/server/provider-config.ts)，2026-09-24 阅读</sub>
@@ -101,6 +107,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevmem](https://github.com/Avinash-jetwani/jevmem)** — 为 Claude Code、Cursor 和 Codex 提供项目记忆：用 Jev 的 noul 判断聊天中的一个决定值不值得保留，保留的写进 JEVMEM.md，相关时再带回来；文件编辑和命令会先对照这些记录检查。作者的测试中，Claude 在 72 次会话里有 66 次遵循了这些决定，不用它时是 28 次，手动维护 CLAUDE.md 时是 67 次。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · avinash-jetwani · `TS` · 调用点 [`src/jev.ts`](https://github.com/Avinash-jetwani/jevmem/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>
 
+- **[OnlyRead](https://github.com/onlyreadai/onlyread)** — 让浏览器里的 AI 智能体在你选定的网站上只能读不能写的 Chrome 扩展：规则、按站点的解码器和判定缓存先处理大部分请求，其余的由 Jev 回答一个 noul（这个请求会不会创建、修改或删除服务器上存储的数据？）；代码据此放行、拦截，或把中间地带交给复核模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★100+ · onlyreadai · `TS` · `noul` · 调用点 [`extension/src/background/judge/jev.ts`](https://github.com/onlyreadai/onlyread/blob/HEAD/extension/src/background/judge/jev.ts)，2026-11-08 模型阅读 · ⚠ `作者自荐`</sub>
+
 - **[orchestkit](https://github.com/yonatangross/orchestkit)** — 面向 Claude Code 的插件，含 110 个技能、36 个智能体和 163 个钩子，覆盖审查、测试、安全和记忆。可选让 Jev 作为会话工作类别的第二个分类器：根据 git 分支和第一条提示，在 9 个类别中做一次 choice；所引用的脚本在 150 个留出会话上运行它。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · yonatangross · `TS` · 调用点 [`docs/audits/jev-session-category-heldout-2026-09-17/run_jev_b.mjs`](https://github.com/yonatangross/orchestkit/blob/HEAD/docs/audits/jev-session-category-heldout-2026-09-17/run_jev_b.mjs)，2026-09-22 阅读</sub>
 
@@ -125,6 +134,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[youtube-sponsor-detection](https://github.com/trungdq88/youtube-sponsor-detection)** — 跳过 YouTube 赞助口播的 Chrome 扩展：字幕按每 80 行分窗，用 Jev 的 noul 判断口播是否从这里开始，用 choice 指出是哪一行，再对短语逐个用 noul 定下切点；由代码把行号换算成秒数。音频模式每隔几秒问 Jev 口播是否正在播放。默认把握达到 70% 才跳过。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · trungdq88 · `JS` · 调用点 [`extension/lib/jev.js`](https://github.com/trungdq88/youtube-sponsor-detection/blob/HEAD/extension/lib/jev.js)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
+- **[AI 海龟汤 (AI Turtle Soup)](https://github.com/zerotang05/situation-puzzle)** — 由 Jev 主持的海龟汤推理游戏：玩家的每个提问由 choice 回答“是、否或无关”，写下的还原被判为“还原成功、接近或尚未”，投稿的题目先经审核再进入公开题库。置信度低于阈值的判定交给 MiniMax 模型重判。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · zerotang05 · `TS` · `choice` · 调用点 [`packages/jev/src/config.ts`](https://github.com/zerotang05/situation-puzzle/blob/HEAD/packages/jev/src/config.ts)，2026-11-12 模型阅读</sub>
+
 - **[Apparite](https://github.com/dglazkov/jev2ui)** — 把文字描述变成可点击应用样稿、并按 DESIGN.md 上色的设计工具：Jev 在一次 choice 和 noul 请求里决定一个界面有哪些区块、用什么布局和图标，以及后续每条消息要求改什么；文字由一个小型 Gemini 模型撰写，界面由代码拼装。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · dglazkov · `TS` · `choice` · `noul` · `score` · 调用点 [`src/server/plan.ts`](https://github.com/dglazkov/jev2ui/blob/HEAD/src/server/plan.ts)，2026-11-09 模型阅读 · ⚠ `需第三方密钥`</sub>
 
@@ -133,9 +145,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[captaincore](https://github.com/CaptainCore/captaincore)** — 自动化 WordPress 运维的命令行应用。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · captaincore · `Go` · 调用点 [`typesafe/client.go`](https://github.com/CaptainCore/captaincore/blob/HEAD/typesafe/client.go)，2026-09-22 阅读</sub>
-
-- **[Claude x Jev](https://github.com/charlesdove977/claude-x-jev)** — Claude Code 技能及配套命令：由 Jev（经 OpenRouter）负责分拣，Claude 负责写作。可以批量分类、核查或打分，只把不确定的条目交给 Claude，核对 Claude 的草稿，并用 PreToolUse 钩子把关工具调用，询问该调用能否撤销、是否服务于当前任务。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · ★10+ · charlesdove977 · `Py` · `choice` · `noul` · `score` · 调用点 [`skill/scripts/jev.py`](https://github.com/charlesdove977/claude-x-jev/blob/HEAD/skill/scripts/jev.py)，2026-10-30 模型阅读 · ⚠ `营销内容`</sub>
 
 - **[commit-miner](https://github.com/devanshbatham/commit-miner)** — 用 Jev 对 Git 提交的 diff 与信息做分类：缺陷修复、安全修复、变更类型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · devanshbatham · `Rs` · 调用点 [`src/jev.rs`](https://github.com/devanshbatham/commit-miner/blob/HEAD/src/jev.rs)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
@@ -163,6 +172,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[ha-jev](https://github.com/AboveColin/HA-Jev)** — 一个 Home Assistant 集成：把关于家的类型化答案变成传感器，提供可用于自动化的 noul、choice 和 score 动作，以及一个对话代理。 <sub>(机翻)</sub>
   <sub>`平台集成` · ★10+ · abovecolin · `Py` · `noul` · `choice` · `score` · 调用点 [`custom_components/jev/services.py`](https://github.com/AboveColin/HA-Jev/blob/HEAD/custom_components/jev/services.py)，2026-09-30 阅读 · ⚠ `疑似 AI 生成` `作者自荐`</sub>
+
+- **[hunch](https://github.com/steven-shoemaker/hunch)** — 对数据列向 Jev 提问：封闭集合的问题，带缓存，并把结果连接回原表。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · steven-shoemaker · `Py` · 调用点 [`src/hunch/client.py`](https://github.com/steven-shoemaker/hunch/blob/HEAD/src/hunch/client.py)，2026-09-24 阅读</sub>
 
 - **[Jev Account Filter](https://github.com/caiweihan/jev-account-filter)** — 把视频平台账号（抖音、快手、YouTube、哔哩哔哩）作为数据集来源进行筛选：根据账号的视频标题、封面缩略图、名称和简介，用一次 Jev 请求判断其类别、相关概率、每个视频的相关度以及最佳视频。手语创作者是已验证的场景。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · caiweihan · `Py` · `choice` · `noul` · 调用点 [`account_filter/screening/classifier.py`](https://github.com/caiweihan/jev-account-filter/blob/HEAD/account_filter/screening/classifier.py)，2026-10-31 模型阅读</sub>
@@ -224,6 +236,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-sift](https://github.com/kbhuw/jev-sift)** — 先分类，再选择性阅读：可移植的批量文本分类插件与 MCP 工具。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · kbhuw · `JS` · 调用点 [`dist/server.mjs`](https://github.com/kbhuw/jev-sift/blob/HEAD/dist/server.mjs)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
+- **[jev-skip](https://github.com/valentynkit/jev-skip)** — 读字幕、在观看时判断，从而跳过视频里的赞助段落。
+  <sub>`开源项目` · ★10+ · valentynkit · `TS` · 调用点 [`lib/jev.ts`](https://github.com/valentynkit/jev-skip/blob/HEAD/lib/jev.ts)，2026-09-22 阅读</sub>
+
 - **[jev-trader](https://github.com/buberlo/jev-trader)** — 模拟盘做市系统：每个 300 毫秒的区块用一次调用向 Jev 提出六个判断——市场状态和方向（choice）、成交流是否有毒、流动性是否偏薄（是非题）、报价环境好坏以及减仓的紧迫程度（score）。由代码执行策略和硬性风控否决。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · buberlo · `Py` · `choice` · `noul` · `score` · 调用点 [`src/jev_trader/judgment/client.py`](https://github.com/buberlo/jev-trader/blob/HEAD/src/jev_trader/judgment/client.py)，2026-10-31 模型阅读 · ⚠ `仅一次提交`</sub>
 
@@ -238,6 +253,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevclip](https://github.com/cclank/jevclip)** — 根据字幕剪辑视频：Jev 逐段阅读约 20 秒的片段并回答五个问题（属于八类内容中的哪一类、信息密度 0–3 分、有无缺乏依据的说法、脱离前文能否看懂、是否切合你的关注点）；由代码取舍、排序，剪出 3 分钟高亮版和去水完整版。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · cclank · `Py` · `choice` · `score` · `noul` · 调用点 [`jevclip/jev.py`](https://github.com/cclank/jevclip/blob/HEAD/jevclip/jev.py)，2026-10-31 模型阅读</sub>
+
+- **[jevcut](https://github.com/VBS2004/jevcut)** — 把长视频剪成排好序的短片：代码列出片段所有可能的起止位置，Jev 只评判每个候选边界会剪出的片段，用 noul 判断它是否从半句话开始或结束、能否独立成立、是不是广告，用 choice 在候选之间挑选，用 score 评估开头抓不抓人。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · VBS2004 · `Py` · `noul` · `choice` · `score` · 调用点 [`src/jevcut/backends.py`](https://github.com/VBS2004/jevcut/blob/HEAD/src/jevcut/backends.py)，2026-11-09 模型阅读</sub>
 
 - **[jeveryword](https://github.com/jkrup/jeveryword)** — 用 Jev 做文本抽取：字段抽取、PII 检测与逐字引文。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · jkrup · `JS` · 调用点 [`src/client.mjs`](https://github.com/jkrup/jeveryword/blob/HEAD/src/client.mjs)，2026-09-22 阅读</sub>
@@ -272,6 +290,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jgrep (npm: jevgrep)](https://github.com/kyu1204/jgrep)** — 按代码的作用来 grep：对每个代码块、diff 块或 CSV 行问一个 Noul，输出带概率的 file:line 命中。--diff 用一条英文规则在 CI 里为 PR 把关（退出码 0 命中 / 1 干净 / 2 出错）；--tests 列出一次 diff 可能影响的测试文件。
   <sub>`开源项目` · ★10+ · kyu1204 · `TS` · `noul` · `choice` · `score` · 调用点 [`src/providers.ts`](https://github.com/kyu1204/jgrep/blob/HEAD/src/providers.ts)，2026-09-23 阅读 · ⚠ `宣称未核实` `作者自荐`</sub>
 
+- **[krasivo-jev](https://github.com/SergeyBazhmin/krasivo-jev)** — 开源 System One 模型的数据集和训练代码（Qwen3.5-2B 加 LoRA 和指针头，在 100 个 Hugging Face 数据集上训练），另有一套评测：把同样的测试样本交给托管的 Jev，每条一个 choice 或 noul 问题，作为准确率、NLL 和校准的参照。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · ★10+ · SergeyBazhmin · `Py` · `choice` · `noul` · 调用点 [`src/jev_model/typesafe/client.py`](https://github.com/SergeyBazhmin/krasivo-jev/blob/HEAD/src/jev_model/typesafe/client.py)，2026-11-13 模型阅读 · ⚠ `无许可证` `厂商自报数据`</sub>
+
 - **[Laser](https://github.com/iyassr/omarchy-laser)** — 面向 Linux 上 Omarchy 和 Hyprland 的专注模式插件：针对每个屏幕，它询问 Jev 屏幕上的内容是否服务于你声明的任务（一个 noul），以及属于哪类活动（一个 choice）；你走神时，它会从红点、提醒、红色屏幕边缘、遮罩逐步升级到关闭标签页。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · iyassr · `Py` · `noul` · `choice` · 调用点 [`laser/jev.py`](https://github.com/iyassr/omarchy-laser/blob/HEAD/laser/jev.py)，2026-11-07 模型阅读</sub>
 
@@ -287,8 +308,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Natural Language Logic Interpreter](https://github.com/narphorium/nl-logic-interpreter)** — 用自然英语书写事实和规则的单步逻辑解释器：它像 Prolog 一样用 SLD 归结证明目标，但合一由 Jev 完成：用一个 choice 判断两句话是什么关系，用 noul 判断它们是否陈述同一事实，再用 choice 把每个变量绑定到一个短语上。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · narphorium · `TS` · `choice` · `noul` · 调用点 [`src/server/aiUnifier.ts`](https://github.com/narphorium/nl-logic-interpreter/blob/HEAD/src/server/aiUnifier.ts)，2026-11-08 模型阅读</sub>
 
-- **[OnlyRead](https://github.com/onlyreadai/onlyread)** — 让浏览器里的 AI 智能体在你选定的网站上只能读不能写的 Chrome 扩展：规则、按站点的解码器和判定缓存先处理大部分请求，其余的由 Jev 回答一个 noul（这个请求会不会创建、修改或删除服务器上存储的数据？）；代码据此放行、拦截，或把中间地带交给复核模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · ★10+ · onlyreadai · `TS` · `noul` · 调用点 [`extension/src/background/judge/jev.ts`](https://github.com/onlyreadai/onlyread/blob/HEAD/extension/src/background/judge/jev.ts)，2026-11-08 模型阅读 · ⚠ `作者自荐`</sub>
+- **[OpenJev for opencode](https://github.com/darwintechlab/openjev)** — opencode 插件，把 Jev 作为工具（jev_choice、jev_noul、jev_score、jev_ask）交给智能体，用来做原本要问 LLM 的小决定，比如某条命令是否安全、工单该派给哪个团队。每个答案都附带一道关卡：有把握时直接执行，没把握时上报。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · darwintechlab · `TS` · `choice` · `noul` · `score` · 调用点 [`src/client.ts`](https://github.com/darwintechlab/openjev/blob/HEAD/src/client.ts)，2026-11-13 模型阅读</sub>
 
 - **[Parallax](https://github.com/zilize/parallax-dsh)** — DeepSeek Harness 插件，用于在本地 SQLite 语料库中查找某个主题的 arXiv 论文：智能体按关键词召回并组合集合，然后由 Jev 用一个 noul 按纳入标准筛选每篇论文（p ≥ 0.5 保留），再用多个 noul 或一个 choice 把论文分到各主题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · zilize · `TS` · `noul` · `choice` · 调用点 [`src/sets/jev.ts`](https://github.com/zilize/parallax-dsh/blob/HEAD/src/sets/jev.ts)，2026-11-06 模型阅读</sub>
@@ -310,6 +331,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Slop Filter](https://github.com/adamnroman/slop-filter)** — Chrome 和 Firefox 扩展，隐藏 X、LinkedIn、Reddit 和 YouTube 上由 AI 写成的帖子和评论：Jev 针对每段文字的写法回答 30 个细分的是非题，代码统计标点和套话词汇，再用根据你自己的标注拟合的权重合成一个分数。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · adamnroman · `JS` · `noul` · 调用点 [`src/jev-client.js`](https://github.com/adamnroman/slop-filter/blob/HEAD/src/jev-client.js)，2026-11-01 模型阅读</sub>
+
+- **[TRA](https://github.com/bijectivelabs/bitra)** — 执行完全确定的加密货币交易台。规则开新仓之前，其事件守卫会就近期新闻标题询问 Jev：用 choice 判断事件类型（正反两种选项顺序各问一次），用 noul 判断是否涉及该资产和整个市场，再用一个 noul 筛查写给机器的指令。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · bijectivelabs · `Py` · `choice` · `noul` · 调用点 [`src/trading_research_agents/llm/providers/typesafe.py`](https://github.com/bijectivelabs/bitra/blob/HEAD/src/trading_research_agents/llm/providers/typesafe.py)，2026-11-12 模型阅读</sub>
 
 - **[typesafe-adblock](https://github.com/realZachi/typesafe-adblock)** — 一个 Chrome 扩展，逐个询问 DOM 元素是不是广告。
   <sub>`开源项目` · ★10+ · realzachi · `JS` · 调用点 [`src/typesafe.js`](https://github.com/realZachi/typesafe-adblock/blob/HEAD/src/typesafe.js)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
@@ -340,9 +364,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[agi-jev-containment](https://github.com/carlosedm10/agi-jev-containment)** — 本地 AI 智能体监控：链路级恶意智能体检测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · carlosedm10 · `Py` · 调用点 [`backend/app/classification/jev.py`](https://github.com/carlosedm10/agi-jev-containment/blob/HEAD/backend/app/classification/jev.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
-
-- **[AI 海龟汤 (AI Turtle Soup)](https://github.com/zerotang05/situation-puzzle)** — 由 Jev 主持的海龟汤推理游戏：玩家的每个提问由 choice 回答“是、否或无关”，写下的还原被判为“还原成功、接近或尚未”，投稿的题目先经审核再进入公开题库。置信度低于阈值的判定交给 MiniMax 模型重判。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · zerotang05 · `TS` · `choice` · 调用点 [`packages/jev/src/config.ts`](https://github.com/zerotang05/situation-puzzle/blob/HEAD/packages/jev/src/config.ts)，2026-11-12 模型阅读</sub>
 
 - **[anofox-decide](https://github.com/DataZooDE/anofox-decide)** — DuckDB 扩展，可在 SQL 里调用决策模型：noul、choice、score 函数并发作用于表中各行，decide_answers 则把关于同一段文本的多个问题放进一个请求。TypeSafe 上的 Jev 是它的远程提供方之一。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · DataZooDE · `C++` · `noul` · `choice` · `score` · 调用点 [`src/decide_remote.cpp`](https://github.com/DataZooDE/anofox-decide/blob/HEAD/src/decide_remote.cpp)，2026-11-17 模型阅读</sub>
@@ -433,9 +454,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[himalaya-jev-mail-classify](https://github.com/initrd/himalaya-jev-mail-classify)** — 用语言模型给 Gmail 打标签、排优先级：通过 himalaya 读取邮件，用 Jev（TypeSafe）为每个会话分类。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · initrd · `Py` · 调用点 [`mail_classify.py`](https://github.com/initrd/himalaya-jev-mail-classify/blob/HEAD/mail_classify.py)，2026-09-24 阅读</sub>
-
-- **[hunch](https://github.com/steven-shoemaker/hunch)** — 对数据列向 Jev 提问：封闭集合的问题，带缓存，并把结果连接回原表。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · steven-shoemaker · `Py` · 调用点 [`src/hunch/client.py`](https://github.com/steven-shoemaker/hunch/blob/HEAD/src/hunch/client.py)，2026-09-24 阅读</sub>
 
 - **[hush](https://github.com/emreozyoruk/hush)** — 不确定时保持沉默的 issue 分拣：校准过的标签，含垃圾与重复检测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · emreozyoruk · `JS` · 调用点 [`src/jev.js`](https://github.com/emreozyoruk/hush/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
@@ -563,9 +581,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-secret-detection](https://github.com/teyhouse/jev-secret-detection)** — 衡量 Jev 在文件片段中识别真实密钥凭据的能力。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · teyhouse · `Py` · 调用点 [`main.py`](https://github.com/teyhouse/jev-secret-detection/blob/HEAD/main.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
-- **[jev-skip](https://github.com/valentynkit/jev-skip)** — 读字幕、在观看时判断，从而跳过视频里的赞助段落。
-  <sub>`开源项目` · valentynkit · `TS` · 调用点 [`lib/jev.ts`](https://github.com/valentynkit/jev-skip/blob/HEAD/lib/jev.ts)，2026-09-22 阅读</sub>
-
 - **[jev-slop-guard](https://github.com/davertor/jev-slop-guard)** — Jev Slop Guard：一个 Chrome 扩展，在你浏览 X 和 LinkedIn 时为 AI 生成的垃圾内容打分并盖章。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · davertor · `JS` · 调用点 [`lib/jev.ts`](https://github.com/davertor/jev-slop-guard/blob/HEAD/lib/jev.ts)，2026-09-24 阅读</sub>
 
@@ -592,9 +607,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevchik](https://github.com/smixs/jevchik)** — Telegram 群机器人，针对每条消息询问 Jev：0 到 4 的有用度评分（score）计入成员的 karma；四个垃圾信息 noul 和一个资料推广 noul 用来筛查新成员；粗鲁与否的 noul、语气 choice，以及是否回答、提问、致谢、刷屏的 noul 决定它的回复和管理动作。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · smixs · `TS` · `noul` · `score` · `choice` · 调用点 [`src/adapters/jev.ts`](https://github.com/smixs/jevchik/blob/HEAD/src/adapters/jev.ts)，2026-11-14 模型阅读</sub>
-
-- **[jevcut](https://github.com/VBS2004/jevcut)** — 把长视频剪成排好序的短片：代码列出片段所有可能的起止位置，Jev 只评判每个候选边界会剪出的片段，用 noul 判断它是否从半句话开始或结束、能否独立成立、是不是广告，用 choice 在候选之间挑选，用 score 评估开头抓不抓人。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · VBS2004 · `Py` · `noul` · `choice` · `score` · 调用点 [`src/jevcut/backends.py`](https://github.com/VBS2004/jevcut/blob/HEAD/src/jevcut/backends.py)，2026-11-09 模型阅读</sub>
 
 - **[Jevest](https://github.com/t7ncke/Jevest)** — 用于审查 pull request 的 GitHub Action：claude -p 智能体找问题，验证器尝试反驳；Jev 负责分拣 pull request，决定每条发现是直接发布还是改成向作者提问，并挑选标签。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · t7ncke · `TS` · `choice` · `noul` · `score` · 调用点 [`src/adapters/typesafe-decision-adapter.ts`](https://github.com/t7ncke/Jevest/blob/HEAD/src/adapters/typesafe-decision-adapter.ts)，2026-11-14 模型阅读 · ⚠ `需第三方密钥` `厂商自报数据`</sub>
@@ -641,9 +653,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[judgekit](https://github.com/lexingtonhibiki/judgekit)** — Python 库和命令行工具：用一个 YAML 任务（classify、route、score 或 verify）先跑免费的本地关键词规则，再交给模型。它的 TypeSafe 提供方对每条输入只问 Jev 一个问题：在任务标签里做 choice、按刻度给 score，或者为 verify 问一个 noul。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · lexingtonhibiki · `Py` · `choice` · `score` · `noul` · 调用点 [`judgekit/providers/typesafe.py`](https://github.com/lexingtonhibiki/judgekit/blob/HEAD/judgekit/providers/typesafe.py)，2026-11-15 模型阅读</sub>
 
-- **[krasivo-jev](https://github.com/SergeyBazhmin/krasivo-jev)** — 开源 System One 模型的数据集和训练代码（Qwen3.5-2B 加 LoRA 和指针头，在 100 个 Hugging Face 数据集上训练），另有一套评测：把同样的测试样本交给托管的 Jev，每条一个 choice 或 noul 问题，作为准确率、NLL 和校准的参照。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`基准测试` · SergeyBazhmin · `Py` · `choice` · `noul` · 调用点 [`src/jev_model/typesafe/client.py`](https://github.com/SergeyBazhmin/krasivo-jev/blob/HEAD/src/jev_model/typesafe/client.py)，2026-11-13 模型阅读 · ⚠ `无许可证` `厂商自报数据`</sub>
-
 - **[lark-mbti-jev](https://github.com/akiiwa-games/lark-mbti-jev)** — 一个用于飞书 / Lark 群聊的 Windows 悬浮层工具：用 lark-cli 同步聊天记录，按发言人分别问 Jev 每个 MBTI 维度（E/I、S/N、T/F、J/P）的 choice 以及 16 型中的一个，均带 unknown 选项；只有概率超过阈值时，名字旁才显示标签。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · akiiwa-games · `Py` · `choice` · 调用点 [`feishu_mbti/classifier.py`](https://github.com/akiiwa-games/lark-mbti-jev/blob/HEAD/feishu_mbti/classifier.py)，2026-11-24 模型阅读</sub>
 
@@ -683,9 +692,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[onesie](https://github.com/frodi-karlsson/onesie)** — 用 Jev 给脚本和 CI 把关的命令行工具：--pick 提 choice，--rate 提 score，普通问题提 noul，再由阈值把每个回答变成退出码（0 通过，1 拦下，7 不确定、交给人处理）。附带 shell 安全闸门、GitHub Action 和 Claude Code 插件。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · frodi-karlsson · `Go` · `choice` · `score` · `noul` · 调用点 [`internal/plan/wire.go`](https://github.com/frodi-karlsson/onesie/blob/HEAD/internal/plan/wire.go)，2026-11-17 模型阅读</sub>
 
-- **[OpenJev for opencode](https://github.com/darwintechlab/openjev)** — opencode 插件，把 Jev 作为工具（jev_choice、jev_noul、jev_score、jev_ask）交给智能体，用来做原本要问 LLM 的小决定，比如某条命令是否安全、工单该派给哪个团队。每个答案都附带一道关卡：有把握时直接执行，没把握时上报。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · darwintechlab · `TS` · `choice` · `noul` · `score` · 调用点 [`src/client.ts`](https://github.com/darwintechlab/openjev/blob/HEAD/src/client.ts)，2026-11-13 模型阅读</sub>
-
 - **[Photo Ferret](https://github.com/jonessteven/photo-ferret)** — 照片图库，筛选条件来自 Jev：每上传一张照片，它在一次请求里问 Jev 画面中天空、水或雪占多少、有多壮观或多荒野（score），是否有人、野生动物或鸟（noul），主体是什么（choice），另外还有一个质量分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jonessteven · `TS` · `score` · `noul` · `choice` · 调用点 [`server/jev.ts`](https://github.com/jonessteven/photo-ferret/blob/HEAD/server/jev.ts)，2026-11-16 模型阅读</sub>
 
@@ -722,14 +728,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[tab-bouncer](https://github.com/MANISH007700/tab-bouncer)** — 一个关闭多余标签页的 Chrome 扩展，由 TypeSafe Jev 一次调用完成判断。告诉它你在做什么即可。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · manish007700 · `JS` · 调用点 [`judge.js`](https://github.com/MANISH007700/tab-bouncer/blob/HEAD/judge.js)，2026-09-24 阅读</sub>
 
-- **[TRA](https://github.com/bijectivelabs/bitra)** — 执行完全确定的加密货币交易台。规则开新仓之前，其事件守卫会就近期新闻标题询问 Jev：用 choice 判断事件类型（正反两种选项顺序各问一次），用 noul 判断是否涉及该资产和整个市场，再用一个 noul 筛查写给机器的指令。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · bijectivelabs · `Py` · `choice` · `noul` · 调用点 [`src/trading_research_agents/llm/providers/typesafe.py`](https://github.com/bijectivelabs/bitra/blob/HEAD/src/trading_research_agents/llm/providers/typesafe.py)，2026-11-12 模型阅读</sub>
-
 - **[trading-bot-jev](https://github.com/Spykoninho/trading-bot-jev)** — 加密货币趋势跟随交易机器人，默认纸面交易，让 Jev 阅读每条新闻：主要涉及哪个资产（choice）、预期价格影响（score）、是否重要、是否为不利的监管行动（noul），外加针对各新闻源的问题。代码再把这些答案变成一个小幅偏置和买入否决。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · Spykoninho · `TS` · `choice` · `score` · `noul` · 调用点 [`src/brain.ts`](https://github.com/Spykoninho/trading-bot-jev/blob/HEAD/src/brain.ts)，2026-11-18 模型阅读 · ⚠ `厂商自报数据`</sub>
-
-- **[TradingAgents](https://github.com/tauricresearch/tradingagents)** — 多智能体 LLM 交易框架。设置了 TypeSafe 密钥时，其情绪分析师会用 Jev 筛查每条 StockTwits 或 Reddit 帖子：用一个 noul 判断帖子是否在谈该标的，低于 0.3 则丢弃；再用一个 choice 判断作者立场（看涨、看跌或中性），置信度达到 0.5 才计入。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · tauricresearch · `Py` · `noul` · `choice` · 调用点 [`tradingagents/agents/post_screen.py`](https://github.com/tauricresearch/tradingagents/blob/HEAD/tradingagents/agents/post_screen.py)，2026-11-12 模型阅读</sub>
 
 - **[triagedy](https://github.com/m0rphtail/triagedy)** — 把告警分拣做成 UNIX 过滤器：JSONL 安全告警进，类型化决策出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · m0rphtail · `Rs` · 调用点 [`src/backends/jev.rs`](https://github.com/m0rphtail/triagedy/blob/HEAD/src/backends/jev.rs)，2026-09-22 阅读</sub>

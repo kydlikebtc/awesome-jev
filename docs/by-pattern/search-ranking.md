@@ -144,8 +144,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[webctl](https://github.com/dorkitude/webctl)** — Web search CLI for agents: it queries 3 search backends, has Jev score each result against the query and goal (on topic, from a good source), keeps the best and dedupes them with MinHash and Jev. With --filter-chunks it scrapes the top pages and keeps only the chunks Jev judges relevant. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · dorkitude · `Go` · call site [`internal/jev/client.go`](https://github.com/dorkitude/webctl/blob/HEAD/internal/jev/client.go), read 2026-09-22</sub>
 
-- **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — Chat-reply assistant (desktop overlay, Android floating assistant, iOS keyboard) built on Jev Android. From the visible chat or a screenshot it asks Jev the literal question, the other person's intent, a danger level, whether to reply now and the best action, then has Jev pick among drafted replies. <sub>(written by a model)</sub>
-  <sub>`Project` · ★100+ · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · call site [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt), read by a model 2026-10-26 · ⚠ `3rd-party key`</sub>
+- **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-chat)** — Chat-reply assistant (desktop overlay, Android floating assistant, iOS keyboard) built on Jev Android. From the visible chat or a screenshot it asks Jev the literal question, the other person's intent, a danger level, whether to reply now and the best action, then has Jev pick among drafted replies. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · call site [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt), read by a model 2026-10-26 · ⚠ `3rd-party key`</sub>
 
 - **[every](https://github.com/sufianetaouil/every)** — Ask a yes/no question of every function in a codebase. Ranked answers in seconds, for cents. Grep whose pattern is a question, powered by TypeSafe Jev. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · sufianetaouil · `Py` · call site [`reference/probe_jev.py`](https://github.com/sufianetaouil/every/blob/HEAD/reference/probe_jev.py), read 2026-09-22</sub>
@@ -279,8 +279,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-bfs](https://github.com/komikat/jev-bfs)** — Wikipedia link races with direct Jev ranking and a live terminal display. <sub>(upstream description)</sub>
   <sub>`Project` · komikat · `Py` · call site [`jev_bfs/core.py`](https://github.com/komikat/jev-bfs/blob/HEAD/jev_bfs/core.py), read 2026-09-22 · ⚠ `one commit`</sub>
 
-- **[jev-nlgrep](https://github.com/YehuiTang0316/jev-nlgrep)** — Search code and text by meaning with natural-language grep, powered by Jev. <sub>(upstream description)</sub>
-  <sub>`Project` · yehuitang0316 · `TS` · call site [`src/jev.ts`](https://github.com/YehuiTang0316/jev-nlgrep/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
+- **[jev-nlgrep](https://github.com/yehui-tang/jev-nlgrep)** — Search code and text by meaning with natural-language grep, powered by Jev. <sub>(upstream description)</sub>
+  <sub>`Project` · yehuitang0316 · `TS` · call site [`src/jev.ts`](https://github.com/yehui-tang/jev-nlgrep/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
 - **[jev-orderby-bench](https://github.com/yodablocks/jev-orderby-bench)** — Does ORDER BY over a Jev probability put rows in a defensible order? Independent ranking, calibration and invariant measurements of TypeSafe AI's Jev: passes six pre-registered gates on 360 labeled rows, fails four of six on graded product relevance. <sub>(upstream description)</sub>
   <sub>`Benchmark` · yodablocks · `Py` · call site [`harness/client.py`](https://github.com/yodablocks/jev-orderby-bench/blob/HEAD/harness/client.py), read 2026-09-22</sub>

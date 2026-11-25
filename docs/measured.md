@@ -74,6 +74,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 
   > The decision track has its own score and leaderboard, and the README says a correct choice does not show a model can write working Convex code. Hosted runs pin typesafe/jev-1.13 and use three option orderings. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-29; a maintainer has not yet read the call site.
 
+- **[Decision Index](https://github.com/apolinario/decision-index)**<br>
+  Reproduction kit for the Decision Index, a leaderboard of typed decision engines (Jev and open models answering choice and noul questions) on 37 public benchmarks, scored chance-corrected. Its http engine sends each request unchanged to any /v1/systemone server; jev-1.13.0 is the reference. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ★100+ · apolinario · `Py` · [call site](https://github.com/apolinario/decision-index/blob/HEAD/decision_index/engines/http.py), read by a model 2026-10-30</sub>
+
+  > Not affiliated with TypeSafe. The queue cited a constants file; this row cites the http engine, which docs/engines.md says drives Jev through TypeSafe's hosted API. The live board is 0.4; the kit runs the public 0.3 suite. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-30; a maintainer has not yet read the call site.
+
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)**<br>
   Biologically-inspired memory for AI agents. Decay, retrieval strengthening, consolidation. Zero runtime deps, SQLite, MCP. Benchmarked retrieval with an opt-in TypeSafe Jev reranker.<br>
   <sub>`Benchmark` · ★100+ · kitfunso · `TS` · [call site](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/infra/rerankers/endpoint.ts), read by a model 2026-11-05 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
@@ -97,12 +103,6 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   <sub>`Benchmark` · ★10+ · notxf1le · `TS` · `JS` · `choice` · [call site](https://github.com/notxf1le/choosekit/blob/HEAD/benchmarks/run-supergpqa.mjs), read by a model 2026-11-05</sub>
 
   > choosekit itself calls no Jev: Jev 1.13 runs through OpenRouter's Decisions API only in the benchmark scripts, as the hosted comparison. The README notes that the SemIf latencies include different transport overhead. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-05; a maintainer has not yet read the call site.
-
-- **[Decision Index](https://github.com/apolinario/decision-index)**<br>
-  Reproduction kit for the Decision Index, a leaderboard of typed decision engines (Jev and open models answering choice and noul questions) on 37 public benchmarks, scored chance-corrected. Its http engine sends each request unchanged to any /v1/systemone server; jev-1.13.0 is the reference. <sub>(written by a model)</sub><br>
-  <sub>`Benchmark` · ★10+ · apolinario · `Py` · [call site](https://github.com/apolinario/decision-index/blob/HEAD/decision_index/engines/http.py), read by a model 2026-10-30</sub>
-
-  > Not affiliated with TypeSafe. The queue cited a constants file; this row cites the http engine, which docs/engines.md says drives Jev through TypeSafe's hosted API. The live board is 0.4; the kit runs the public 0.3 suite. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-10-30; a maintainer has not yet read the call site.
 
 - **[DMB: decision-model benchmark](https://github.com/nibzard/decision-model-benchmark)**<br>
   Benchmark of APIs that pick one option from a list with a confidence: Jev, LLMs with structured output and deterministic baselines, on accuracy, latency, cost, failures and confidence. The author reports jev-latest at 79.2% on Banking77, 88.6% on CLINC150 and 48.3% micro F1 on NLU++. <sub>(written by a model)</sub><br>
@@ -200,6 +200,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 
   > A generic question reached a median AUROC of 0.886 zero-shot, per the authors. The data is gated on Hugging Face under CC BY-NC 4.0 and contains harmful model outputs; the code is MIT. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-01; a maintainer has not yet read the call site.
 
+- **[S1MB (System One Mosaic Benchmark)](https://github.com/hotchpotch/S1MB)**<br>
+  Benchmark that puts System One decision models, Jev among them, through the same 100+ English, Japanese and vision tasks as choice, noul and score questions, with a public leaderboard. Its TypeSafe adapter sends each case to Jev's /v1/systemone; other adapters cover open and hosted rivals. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · ★10+ · hotchpotch · `Py` · `choice` · `noul` · `score` · [call site](https://github.com/hotchpotch/S1MB/blob/HEAD/evaluator/src/s1mb/adapters/typesafe.py), read by a model 2026-11-13</sub>
+
+  > Most models it ranks are not Jev. The leaderboard's figures are the author's runs, and the vision set is private. Box questions are reported separately. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-13; a maintainer has not yet read the call site.
+
 - **[smartmoney-cub](https://github.com/myc0576/SmartMoney-Cub)**<br>
   Read-only trading journal and review harness: Jev typed judgments, agent integration, and a reproducible finance benchmark. No orders, no advice. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · ★10+ · myc0576 · `Py` · [call site](https://github.com/myc0576/SmartMoney-Cub/blob/HEAD/src/smartmoney_cub_harness/jev/direct.py), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
@@ -251,6 +257,8 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)**<br>
   Open benchmark runtime for document-grounded decision models <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · hanno-labs · `Py` · [call site](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py), read 2026-09-24</sub>
+
+  **Caveats:** `archived`
 
 - **[dsh-jev-verify](https://github.com/xienda/dsh-jev-verify)**<br>
   Jev (TypeSafe System One) decision tools + live verification benchmark for DeepSeek Harness: jev_decision (choice/score/noul) and jev_verify, honest by design. <sub>(earlier upstream description)</sub><br>
@@ -547,12 +555,6 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
   **Caveats:** `self-submitted`
 
   > Submitted by the first author. Paper arXiv:2611.00911 (v2, 14 Nov 2026). Jev answers in a median of 0.35 seconds over all 27 modes. The paper reports Jev task by task and does not state an overall verdict on it. Drafted with an AI coding assistant and reviewed by the author.
-
-- **[S1MB (System One Mosaic Benchmark)](https://github.com/hotchpotch/S1MB)**<br>
-  Benchmark that puts System One decision models, Jev among them, through the same 100+ English, Japanese and vision tasks as choice, noul and score questions, with a public leaderboard. Its TypeSafe adapter sends each case to Jev's /v1/systemone; other adapters cover open and hosted rivals. <sub>(written by a model)</sub><br>
-  <sub>`Benchmark` · hotchpotch · `Py` · `choice` · `noul` · `score` · [call site](https://github.com/hotchpotch/S1MB/blob/HEAD/evaluator/src/s1mb/adapters/typesafe.py), read by a model 2026-11-13</sub>
-
-  > Most models it ranks are not Jev. The leaderboard's figures are the author's runs, and the vision set is private. Box questions are reported separately. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-13; a maintainer has not yet read the call site.
 
 - **[Scientific Decision Evaluation](https://github.com/bydeng01/scientific-decision-eval)**<br>
   Code and data for the paper "Jev for Scientific Decisions": 20 choices in 10 cases from published studies, each asking which relation holds between samples. It asks Jev through OpenRouter's decisions API, five times per case, and scores the choices, outputs and labels. <sub>(written by a model)</sub><br>

@@ -114,8 +114,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[taskuary](https://github.com/ldbumble/taskuary)** — 本地优先的工作助手：把邮件、聊天和工单变成任务，交给你的编程智能体去做，未经你批准什么都不会发出。配置 TypeSafe 密钥后由 Jev 分诊：状态里带上你的资料和过往判断，用 noul 按你会怎么判断来提问，例如这一项要不要建成任务。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★100+ · ldbumble · `Py` · 调用点 [`taskuary/jev.py`](https://github.com/ldbumble/taskuary/blob/HEAD/taskuary/jev.py)，2026-09-22 阅读</sub>
 
-- **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — 聊天回复助手（桌面悬浮窗、Android 悬浮助手、iOS 键盘），基于 Jev Android。它根据可见对话或截图向 Jev 询问字面问题、对方意图、危险程度、是否现在回复以及最佳行动，再让 Jev 在起草的回复中挑选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★100+ · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · 调用点 [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-10-26 模型阅读 · ⚠ `需第三方密钥`</sub>
+- **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-chat)** — 聊天回复助手（桌面悬浮窗、Android 悬浮助手、iOS 键盘），基于 Jev Android。它根据可见对话或截图向 Jev 询问字面问题、对方意图、危险程度、是否现在回复以及最佳行动，再让 Jev 在起草的回复中挑选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · 调用点 [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-10-26 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[Apparite](https://github.com/dglazkov/jev2ui)** — 把文字描述变成可点击应用样稿、并按 DESIGN.md 上色的设计工具：Jev 在一次 choice 和 noul 请求里决定一个界面有哪些区块、用什么布局和图标，以及后续每条消息要求改什么；文字由一个小型 Gemini 模型撰写，界面由代码拼装。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · dglazkov · `TS` · `choice` · `noul` · `score` · 调用点 [`src/server/plan.ts`](https://github.com/dglazkov/jev2ui/blob/HEAD/src/server/plan.ts)，2026-11-09 模型阅读 · ⚠ `需第三方密钥`</sub>
@@ -164,6 +164,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Orchvia](https://github.com/masonlee39/orchvia)** — 在你自己的应用里把 Claude Code 和 Codex 智能体组成团队运行。它的可选路由层向可插拔的评判者（Jev 或纯规则）提出 Choice、Noul 和 Score 类型的问题，判断由哪个智能体接手请求；置信度低于 0.85 或差距小于 0.2 时，提议要等人确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · masonlee39 · `Py` · `choice` · `noul` · `score` · 调用点 [`python/src/orchvia/routing.py`](https://github.com/masonlee39/orchvia/blob/HEAD/python/src/orchvia/routing.py)，2026-11-05 模型阅读</sub>
+
+- **[pi-model-router](https://github.com/alexei-led/pi-model-router)** — Pi 编程智能体的模型路由器，可以向 Pi 中注册的分类器（其参考配置用的是 Jev 1.14）在一次请求中最多问四个 choice：当前请求是否开启新任务、哪条已配置的路由适合正在进行的工作、任务的目标，以及所处阶段。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · alexei-led · `TS` · `choice` · 引用文件 [`docs/examples/classifier-catalog.ts`](https://github.com/alexei-led/pi-model-router/blob/HEAD/docs/examples/classifier-catalog.ts)，2026-11-19 模型阅读</sub>
 
 - **[RoboDiag Harness](https://github.com/yuebit/robodiag-harness)** — 面向 ROS 2 机器人的诊断工具：由 Jev 把每个请求分为查询、诊断、操作或闲聊，并在诊断时挑选下一个只读的取证工具。代码要求诊断结束前至少有一项健康测试和一次实时测量，再由聊天模型解释证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · yuebit · `Py` · `choice` · 调用点 [`robodiag_jev.py`](https://github.com/yuebit/robodiag-harness/blob/HEAD/robodiag_jev.py)，2026-11-01 模型阅读</sub>
@@ -227,9 +230,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[langgraph-jev-router](https://github.com/JTankariya/langgraph-jev-router)** — 一个 Python 包，把 Jev 放在现有的 LangGraph 路由器前面：用一个 choice 问题为新的用户消息选路由，只有 Jev 有把握时才由它决定；置信度低、出错、未知路由以及对话中途的消息都交给你原有的路由器。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · JTankariya · `Py` · `choice` · 调用点 [`src/langgraph_jev_router/backends.py`](https://github.com/JTankariya/langgraph-jev-router/blob/HEAD/src/langgraph_jev_router/backends.py)，2026-11-24 模型阅读</sub>
-
-- **[pi-model-router](https://github.com/alexei-led/pi-model-router)** — Pi 编程智能体的模型路由器，可以向 Pi 中注册的分类器（其参考配置用的是 Jev 1.14）在一次请求中最多问四个 choice：当前请求是否开启新任务、哪条已配置的路由适合正在进行的工作、任务的目标，以及所处阶段。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · alexei-led · `TS` · `choice` · 引用文件 [`docs/examples/classifier-catalog.ts`](https://github.com/alexei-led/pi-model-router/blob/HEAD/docs/examples/classifier-catalog.ts)，2026-11-19 模型阅读</sub>
 
 - **[question-kit](https://github.com/Engid/question-kit)** — 面向 Jev 的 TypeScript 构件库，Python 移植版在预览中；其中包括一个服务智能体：你把服务描述成数据，由代码执行流程，Jev 读取客户的每一轮发言，判断意图、某一步需要的值以及流程没写明的判断，每个结论都要过置信度关卡。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · Engid · `TS` · `choice` · `noul` · `score` · 调用点 [`packages/question-kit/core/typesafe.ts`](https://github.com/Engid/question-kit/blob/HEAD/packages/question-kit/core/typesafe.ts)，2026-11-11 模型阅读</sub>

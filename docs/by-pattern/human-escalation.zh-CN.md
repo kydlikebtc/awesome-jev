@@ -175,6 +175,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[muse-jev-playbook](https://github.com/Bodila51/muse-jev-playbook)** — 为 Muse 提供的 Jev 决策层：在昂贵的智能体工作之前加一道快速、便宜的 TypeSafe AI 关卡——置信度策略与配方。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · bodila51 · `Py` · 调用点 [`src/jev_client.py`](https://github.com/Bodila51/muse-jev-playbook/blob/HEAD/src/jev_client.py)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
 
+- **[OpenJev for opencode](https://github.com/darwintechlab/openjev)** — opencode 插件，把 Jev 作为工具（jev_choice、jev_noul、jev_score、jev_ask）交给智能体，用来做原本要问 LLM 的小决定，比如某条命令是否安全、工单该派给哪个团队。每个答案都附带一道关卡：有把握时直接执行，没把握时上报。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · darwintechlab · `TS` · `choice` · `noul` · `score` · 调用点 [`src/client.ts`](https://github.com/darwintechlab/openjev/blob/HEAD/src/client.ts)，2026-11-13 模型阅读</sub>
+
 - **[Orchvia](https://github.com/masonlee39/orchvia)** — 在你自己的应用里把 Claude Code 和 Codex 智能体组成团队运行。它的可选路由层向可插拔的评判者（Jev 或纯规则）提出 Choice、Noul 和 Score 类型的问题，判断由哪个智能体接手请求；置信度低于 0.85 或差距小于 0.2 时，提议要等人确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · masonlee39 · `Py` · `choice` · `noul` · `score` · 调用点 [`python/src/orchvia/routing.py`](https://github.com/masonlee39/orchvia/blob/HEAD/python/src/orchvia/routing.py)，2026-11-05 模型阅读</sub>
 
@@ -188,7 +191,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`插件` · ★10+ · riskaversetech · `TS` · 调用点 [`src/backends/typesafe.ts`](https://github.com/RiskAverseTech/toolgate/blob/HEAD/src/backends/typesafe.ts)，2026-09-22 阅读</sub>
 
 - **[typed-decisions](https://github.com/mithril-lang/typed-decisions)** — Jev 形状的类型化决策模型：状态加问题进，校准概率出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10+ · kotoba-lang · `Py` · 调用点 [`src/typed_decisions/jev_holes.py`](https://github.com/mithril-lang/typed-decisions/blob/HEAD/src/typed_decisions/jev_holes.py)，2026-09-22 阅读</sub>
+  <sub>`开源项目` · ★10+ · kotoba-lang · `Py` · 调用点 [`src/typed_decisions/jev_holes.py`](https://github.com/mithril-lang/typed-decisions/blob/HEAD/src/typed_decisions/jev_holes.py)，2026-09-22 阅读 · ⚠ `已归档`</sub>
 
 - **[assay-001](https://github.com/jourdanlabs/assay-001)** — ASSAY-001：对 Jev 校准度与类型安全宣称的独立、预注册验证。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jourdanlabs · `Py` · 调用点 [`harness/run.py`](https://github.com/jourdanlabs/assay-001/blob/HEAD/harness/run.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
@@ -317,13 +320,10 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`插件` · cogflux · `TS` · 调用点 [`src/jev.ts`](https://github.com/CogFlux/opencode-jev-guard/blob/HEAD/src/jev.ts)，2026-11-05 模型阅读</sub>
 
 - **[opencode-jev-orchestrator](https://github.com/aaronshaf/opencode-jev-orchestrator)** — 让 OpenCode 粘在便宜模型上以保持缓存热度，由 Jev 把困难的轮次升级给更强的模型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · aaronshaf · `TS` · 调用点 [`src/jev.ts`](https://github.com/aaronshaf/opencode-jev-orchestrator/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
+  <sub>`开源项目` · aaronshaf · `TS` · 调用点 [`src/jev.ts`](https://github.com/aaronshaf/opencode-jev-orchestrator/blob/HEAD/src/jev.ts)，2026-09-22 阅读 · ⚠ `已归档`</sub>
 
 - **[OpenJev for Claude Code](https://github.com/darwintechlab/claude-jev)** — Claude Code 插件，其 MCP 服务器把 Jev 作为工具（jev_choice、jev_noul、jev_score、jev_ask）交给智能体，用于它的小决定，例如某条命令是否安全、工单该给哪个团队。每个回答都要过一道门槛：有把握就执行，没把握就上报；风险命令的门槛更严。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · darwintechlab · `TS` · `choice` · `noul` · `score` · 调用点 [`mcp-server/src/client.ts`](https://github.com/darwintechlab/claude-jev/blob/HEAD/mcp-server/src/client.ts)，2026-11-24 模型阅读</sub>
-
-- **[OpenJev for opencode](https://github.com/darwintechlab/openjev)** — opencode 插件，把 Jev 作为工具（jev_choice、jev_noul、jev_score、jev_ask）交给智能体，用来做原本要问 LLM 的小决定，比如某条命令是否安全、工单该派给哪个团队。每个答案都附带一道关卡：有把握时直接执行，没把握时上报。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · darwintechlab · `TS` · `choice` · `noul` · `score` · 调用点 [`src/client.ts`](https://github.com/darwintechlab/openjev/blob/HEAD/src/client.ts)，2026-11-13 模型阅读</sub>
 
 - **[padflow-jev-evals](https://github.com/zsavage8/padflow-jev-evals)** — 来自某土地开发 SaaS 的类型化决策基准：schema、匿名标注数据与运行器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · zsavage8 · `Py` · 调用点 [`scripts/run_baseline.py`](https://github.com/zsavage8/padflow-jev-evals/blob/HEAD/scripts/run_baseline.py)，2026-09-22 阅读</sub>

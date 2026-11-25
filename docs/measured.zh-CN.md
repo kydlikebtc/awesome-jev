@@ -74,6 +74,12 @@
 
   > 决策赛道有独立的分数和排行榜；README 说明，选对答案并不代表模型能写出可用的 Convex 代码。托管运行固定使用 typesafe/jev-1.13，并采用三种选项排列。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-29 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
+- **[Decision Index](https://github.com/apolinario/decision-index)**<br>
+  Decision Index 的复现工具包。Decision Index 是类型化决策引擎（Jev 以及回答 choice 和 noul 问题的开源模型）的排行榜，涵盖 37 个公开基准，按扣除随机水平的方式计分。其 http 引擎把每个请求原样发给任何 /v1/systemone 服务器；参考模型为 jev-1.13.0。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★100+ · apolinario · `Py` · [调用点](https://github.com/apolinario/decision-index/blob/HEAD/decision_index/engines/http.py)，2026-10-30 模型阅读</sub>
+
+  > 与 TypeSafe 无关联。发现队列引用的是常量文件；本条目改引 http 引擎，docs/engines.md 说明它通过 TypeSafe 的托管 API 运行 Jev。线上排行榜为 0.4 版；本工具包运行公开的 0.3 套件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-30 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
 - **[hippo-memory](https://github.com/kitfunso/hippo-memory)**<br>
   受生物启发的智能体记忆：衰减、检索强化与巩固。零运行时依赖，基于 SQLite。 <sub>(机翻)</sub><br>
   <sub>`基准测试` · ★100+ · kitfunso · `TS` · [调用点](https://github.com/kitfunso/hippo-memory/blob/HEAD/src/infra/rerankers/endpoint.ts)，2026-11-05 模型阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
@@ -97,12 +103,6 @@
   <sub>`基准测试` · ★10+ · notxf1le · `TS` · `JS` · `choice` · [调用点](https://github.com/notxf1le/choosekit/blob/HEAD/benchmarks/run-supergpqa.mjs)，2026-11-05 模型阅读</sub>
 
   > choosekit 本身不调用 Jev：只有基准脚本通过 OpenRouter 的 Decisions API 运行 Jev 1.13，作为托管对照。README 说明 SemIf 的延迟数据包含不同的传输开销。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-05 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
-
-- **[Decision Index](https://github.com/apolinario/decision-index)**<br>
-  Decision Index 的复现工具包。Decision Index 是类型化决策引擎（Jev 以及回答 choice 和 noul 问题的开源模型）的排行榜，涵盖 37 个公开基准，按扣除随机水平的方式计分。其 http 引擎把每个请求原样发给任何 /v1/systemone 服务器；参考模型为 jev-1.13.0。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · ★10+ · apolinario · `Py` · [调用点](https://github.com/apolinario/decision-index/blob/HEAD/decision_index/engines/http.py)，2026-10-30 模型阅读</sub>
-
-  > 与 TypeSafe 无关联。发现队列引用的是常量文件；本条目改引 http 引擎，docs/engines.md 说明它通过 TypeSafe 的托管 API 运行 Jev。线上排行榜为 0.4 版；本工具包运行公开的 0.3 套件。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-10-30 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[DMB: decision-model benchmark](https://github.com/nibzard/decision-model-benchmark)**<br>
   针对“从列表中选一项并给出置信度”这类 API 的基准测试：比较 Jev、带结构化输出的 LLM 和确定性基线的准确率、延迟、成本、失败率和置信度。作者报告 jev-latest 在 Banking77 上为 79.2%，CLINC150 上为 88.6%，NLU++ 上微平均 F1 为 48.3%。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
@@ -200,6 +200,12 @@
 
   > 据作者报告，一个通用问题在零样本下的 AUROC 中位数为 0.886。数据在 Hugging Face 上需申请访问，采用 CC BY-NC 4.0 许可，含有有害的模型输出；代码采用 MIT 许可。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-01 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
+- **[S1MB (System One Mosaic Benchmark)](https://github.com/hotchpotch/S1MB)**<br>
+  基准测试：让各家 System One 决策模型（包括 Jev）用 choice、noul、score 问题跑同样的 100 多项英文、日文和视觉任务，并有公开排行榜。它的 TypeSafe 适配器把每条用例发到 Jev 的 /v1/systemone；其他适配器覆盖开源和托管的竞品。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · ★10+ · hotchpotch · `Py` · `choice` · `noul` · `score` · [调用点](https://github.com/hotchpotch/S1MB/blob/HEAD/evaluator/src/s1mb/adapters/typesafe.py)，2026-11-13 模型阅读</sub>
+
+  > 它排名的大多数模型都不是 Jev。排行榜上的数字是作者自己跑的，视觉评测集不公开。Box 问题单独报告。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-13 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
+
 - **[smartmoney-cub](https://github.com/myc0576/SmartMoney-Cub)**<br>
   只读的交易日志与复盘 harness：Jev 类型化判断、智能体集成，以及一个可复现的金融基准。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · ★10+ · myc0576 · `Py` · [调用点](https://github.com/myc0576/SmartMoney-Cub/blob/HEAD/src/smartmoney_cub_harness/jev/direct.py)，2026-09-22 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
@@ -249,6 +255,8 @@
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)**<br>
   面向基于文档的决策模型的开放基准运行框架。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · hanno-labs · `Py` · [调用点](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py)，2026-09-24 阅读</sub>
+
+  **注意:** `已归档`
 
 - **[dsh-jev-verify](https://github.com/xienda/dsh-jev-verify)**<br>
   给 DeepSeek Harness 的 Jev 决策工具与实时验证基准。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub><br>
@@ -541,12 +549,6 @@
   <sub>`基准测试` · Dengzhe Hou · `Py` · `choice` · `noul` · [调用点](https://github.com/dengzhe-hou/S1CogBench/blob/HEAD/examples/templates/decision_api_choice.py)，2026-11-20 模型阅读</sub>
 
   **注意:** `作者自荐`
-
-- **[S1MB (System One Mosaic Benchmark)](https://github.com/hotchpotch/S1MB)**<br>
-  基准测试：让各家 System One 决策模型（包括 Jev）用 choice、noul、score 问题跑同样的 100 多项英文、日文和视觉任务，并有公开排行榜。它的 TypeSafe 适配器把每条用例发到 Jev 的 /v1/systemone；其他适配器覆盖开源和托管的竞品。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-  <sub>`基准测试` · hotchpotch · `Py` · `choice` · `noul` · `score` · [调用点](https://github.com/hotchpotch/S1MB/blob/HEAD/evaluator/src/s1mb/adapters/typesafe.py)，2026-11-13 模型阅读</sub>
-
-  > 它排名的大多数模型都不是 Jev。排行榜上的数字是作者自己跑的，视觉评测集不公开。Box 问题单独报告。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-13 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[Scientific Decision Evaluation](https://github.com/bydeng01/scientific-decision-eval)**<br>
   论文《Jev for Scientific Decisions》的代码和数据：来自已发表研究的 10 个案例共 20 个 choice，每个问样本之间是哪种关系。它通过 OpenRouter 的 decisions API 向 Jev 提问，每个案例五次，并分别评估选项、计算结果和最终标签。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>

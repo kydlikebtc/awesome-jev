@@ -106,8 +106,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevocks](https://github.com/unicodeveloper/jevocks)** — Everyday Stocks Status with Jev <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · unicodeveloper · `TS` · call site [`src/lib/classify.ts`](https://github.com/unicodeveloper/jevocks/blob/HEAD/src/lib/classify.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[Netizen](https://github.com/seheta/netizen)** — Simulates how Indonesian netizens react to a post before it goes live. In one request Jev answers, per persona such as ojol drivers or buzzers, whether they stop scrolling, what they do, where they stand and what their comment does, plus whether the post is sensitive and how far it spreads. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · seheta · `Py` · `noul` · `choice` · `score` · call site [`spike/spike.py`](https://github.com/seheta/netizen/blob/HEAD/spike/spike.py), read by a model 2026-11-12</sub>
+
 - **[OneVOneJev](https://github.com/emrickgarrett/OneVOneJev)** — A browser 1v1 FPS where every decision tick judges movement, view angle, aim, fire and jump.
   <sub>`Project` · ★10+ · `TS` · `choice` · call site [`server/src/jev.ts`](https://github.com/emrickgarrett/OneVOneJev/blob/HEAD/server/src/jev.ts), read 2026-09-22 · ⚠ `code untested` `no licence`</sub>
+
+- **[pi-model-router](https://github.com/alexei-led/pi-model-router)** — Model router for the Pi coding agent that can ask a classifier registered in Pi, Jev 1.14 in its reference config, up to four choices in one request: whether the request starts a new task, which configured route fits the work underway, the task's goal and its phase. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · alexei-led · `TS` · `choice` · cited file [`docs/examples/classifier-catalog.ts`](https://github.com/alexei-led/pi-model-router/blob/HEAD/docs/examples/classifier-catalog.ts), read by a model 2026-11-19</sub>
 
 - **[pi-typesafe](https://github.com/DevMortimer/pi-typesafe)** — TypeSafe decisions for Pi: batched evaluation tool, terminal playground, and typed API for extension authors <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · devmortimer · `TS` · call site [`src/client.ts`](https://github.com/DevMortimer/pi-typesafe/blob/HEAD/src/client.ts), read 2026-09-24</sub>
@@ -149,7 +155,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Benchmark` · deepansh-saxena · `Py` · `noul` · `choice` · call site [`tlife_agent/guardrails/backends/jev_backend.py`](https://github.com/deepansh-saxena/jev-guardrails/blob/HEAD/tlife_agent/guardrails/backends/jev_backend.py), read by a model 2026-11-19 · ⚠ `no licence`</sub>
 
 - **[jev-mcp-router](https://github.com/ini8labs/jev-mcp-router)** — MCP gateway between an agent and its MCP servers: for each request it asks Jev one noul per server and per tool, in one request, and the LLM sees only the handful of tools Jev said yes to, instead of every tool schema. <sub>(written by a model)</sub>
-  <sub>`Project` · ini8labs · `Py` · `noul` · call site [`jevmcp/jev.py`](https://github.com/ini8labs/jev-mcp-router/blob/HEAD/jevmcp/jev.py), read by a model 2026-11-16 · ⚠ `vendor numbers`</sub>
+  <sub>`Project` · ini8labs · `Py` · `noul` · call site [`jevmcp/jev.py`](https://github.com/ini8labs/jev-mcp-router/blob/HEAD/jevmcp/jev.py), read by a model 2026-11-16 · ⚠ `one commit` `vendor numbers`</sub>
 
 - **[jev-pr-judge](https://github.com/juanegido/jev-pr-judge)** — Typed verdicts on pull requests with TypeSafe System One (Jev): one parallel call, policy in code, usable as a GitHub Action <sub>(upstream description)</sub>
   <sub>`Project` · juanegido · `TS` · call site [`dist/action/index.js`](https://github.com/juanegido/jev-pr-judge/blob/HEAD/dist/action/index.js), read 2026-09-24</sub>
@@ -168,12 +174,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Mnemon](https://github.com/grivn/mnemon-memory-agent)** — Long-term memory agent that keeps raw, dated records and judges them when a question arrives: for every record its searches return, it asks Jev in one request whether the next reply should use it and whether a later message makes it no longer current (two nouls each). <sub>(written by a model)</sub>
   <sub>`Project` · grivn · `TS` · `noul` · call site [`plugins/dsh-mnemon-strategy-jev-optmem/src/judge.ts`](https://github.com/grivn/mnemon-memory-agent/blob/HEAD/plugins/dsh-mnemon-strategy-jev-optmem/src/judge.ts), read by a model 2026-11-16 · ⚠ `3rd-party key` `vendor numbers`</sub>
-
-- **[Netizen](https://github.com/seheta/netizen)** — Simulates how Indonesian netizens react to a post before it goes live. In one request Jev answers, per persona such as ojol drivers or buzzers, whether they stop scrolling, what they do, where they stand and what their comment does, plus whether the post is sensitive and how far it spreads. <sub>(written by a model)</sub>
-  <sub>`Project` · seheta · `Py` · `noul` · `choice` · `score` · call site [`spike/spike.py`](https://github.com/seheta/netizen/blob/HEAD/spike/spike.py), read by a model 2026-11-12</sub>
-
-- **[pi-model-router](https://github.com/alexei-led/pi-model-router)** — Model router for the Pi coding agent that can ask a classifier registered in Pi, Jev 1.14 in its reference config, up to four choices in one request: whether the request starts a new task, which configured route fits the work underway, the task's goal and its phase. <sub>(written by a model)</sub>
-  <sub>`Plugin` · alexei-led · `TS` · `choice` · cited file [`docs/examples/classifier-catalog.ts`](https://github.com/alexei-led/pi-model-router/blob/HEAD/docs/examples/classifier-catalog.ts), read by a model 2026-11-19</sub>
 
 - **[psearch](https://github.com/komikat/psearch)** — Parallel web search for terminals and agents, with local Chromium and Jev-guided exploration. <sub>(upstream description)</sub>
   <sub>`Project` · komikat · `Py` · call site [`psearch.py`](https://github.com/komikat/psearch/blob/HEAD/psearch.py), read 2026-09-22 · ⚠ `one commit`</sub>

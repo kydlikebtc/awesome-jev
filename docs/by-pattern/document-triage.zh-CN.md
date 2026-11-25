@@ -26,6 +26,9 @@ _对进来的文档、发票、表单做分类和路由。_
 
 *作者结论*是基准测试作者本人对 Jev 在其所测任务上给出的结论方向（`measurement.direction`：有利、好坏参半、不利或无定论），按作者的报告索引：属作者自述，未经本仓库复现；作者没有用文字说明结论的则不标。[docs/benchmarks.zh-CN.md](../benchmarks.zh-CN.md) 把每条基准测试的测量字段并列展示。 <sub>(机翻)</sub>
 
+- **[TradingAgents](https://github.com/tauricresearch/tradingagents)** — 多智能体 LLM 交易框架。设置了 TypeSafe 密钥时，其情绪分析师会用 Jev 筛查每条 StockTwits 或 Reddit 帖子：用一个 noul 判断帖子是否在谈该标的，低于 0.3 则丢弃；再用一个 choice 判断作者立场（看涨、看跌或中性），置信度达到 0.5 才计入。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100k+ · tauricresearch · `Py` · `noul` · `choice` · 调用点 [`tradingagents/agents/post_screen.py`](https://github.com/tauricresearch/tradingagents/blob/HEAD/tradingagents/agents/post_screen.py)，2026-11-12 模型阅读</sub>
+
 - **[docjev](https://github.com/jerryjliu/docjev)** — 对 PDF、DOCX 和 PPTX 文件做分类和切分：LiteParse 在本地提取每页文字，然后 Jev 用一个 choice 按你的规则选出文档类别；对多文档合订本则逐页回答一个类别 choice 和一个“新文档是否从这里开始”的 noul。其报告涵盖 40 份真实 PDF。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · jerryjliu · `Py` · 调用点 [`src/jev_docs/engines/jev.py`](https://github.com/jerryjliu/docjev/blob/HEAD/src/jev_docs/engines/jev.py)，2026-09-22 阅读</sub>
 
@@ -91,9 +94,6 @@ _对进来的文档、发票、表单做分类和路由。_
 
 - **[tiab-review-plugin](https://github.com/youkiti/tiab-review-plugin)** — 一个加速系统综述中“标题与摘要筛选”的 Chrome 扩展，已上架 Chrome 应用商店。 <sub>(机翻)</sub>
   <sub>`插件` · youkiti · `TS` · 调用点 [`src/lib/providers/typesafe.ts`](https://github.com/youkiti/tiab-review-plugin/blob/HEAD/src/lib/providers/typesafe.ts)，2026-09-24 阅读</sub>
-
-- **[TradingAgents](https://github.com/tauricresearch/tradingagents)** — 多智能体 LLM 交易框架。设置了 TypeSafe 密钥时，其情绪分析师会用 Jev 筛查每条 StockTwits 或 Reddit 帖子：用一个 noul 判断帖子是否在谈该标的，低于 0.3 则丢弃；再用一个 choice 判断作者立场（看涨、看跌或中性），置信度达到 0.5 才计入。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · tauricresearch · `Py` · `noul` · `choice` · 调用点 [`tradingagents/agents/post_screen.py`](https://github.com/tauricresearch/tradingagents/blob/HEAD/tradingagents/agents/post_screen.py)，2026-11-12 模型阅读</sub>
 
 - **[jevai.org community showcase cases](https://www.jevai.org/cases)** — 九个社区演练场景：意图路由、发票分类、新闻过滤、商品打标、内容审核、主张核验、CSV 校验等。
   <sub>`开源项目` · ⚠ `宣称未核实`</sub>

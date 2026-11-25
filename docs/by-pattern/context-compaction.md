@@ -65,6 +65,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[dsh-jev-tools](https://github.com/HorusJiang/dsh-jev-tools)** — DeepSeek Harness plugin asking Jev, before tool output enters the context, which segments of a long read or fetch matter (kept by rank, not threshold), whether a fetched page holds instructions aimed at an AI (warned at 0.75, left unchanged), which skill to suggest, and if a done claim has evidence. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · horusjiang · `TS` · call site [`src/config.ts`](https://github.com/HorusJiang/dsh-jev-tools/blob/HEAD/src/config.ts), read 2026-09-24</sub>
 
+- **[fast-compact](https://github.com/NodarDavituri/fast-compact)** — Claude Code plugin that frees context in about a second without summarising: Jev answers one noul per older, long tool output on whether later steps still need it, those rated needed stay whole, and the rest are cut to their start and end, with the full text saved for Claude to read back. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · NodarDavituri · `TS` · `noul` · call site [`src/jev.ts`](https://github.com/NodarDavituri/fast-compact/blob/HEAD/src/jev.ts), read by a model 2026-11-09</sub>
+
 - **[fast-dev-compaction](https://github.com/leonaaardob/fast-dev-compaction)** — Codex plugin: verbatim Jev-guided context restoration around session compaction. Port of tamaratran/fast-jev-compaction to Codex lifecycle hooks. <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · leonaaardob · `TS` · call site [`src/request.ts`](https://github.com/leonaaardob/fast-dev-compaction/blob/HEAD/src/request.ts), read 2026-09-24</sub>
 
@@ -83,7 +86,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[lcc](https://github.com/lucasmartins-ai/lcc)** — Local Context Compiler (lcc): clean, dedupe and compact prompt context before it reaches the model, then report every block dropped, the cache tokens a pass invalidates and when pruning pays off. Runs offline with a local 1K decision model. MIT, no API key, zero telemetry. <sub>(earlier upstream description)</sub>
   <sub>`Project` · ★10+ · lucasmartins-ai · `Py` · call site [`src/lcc/relevance/jev.py`](https://github.com/lucasmartins-ai/lcc/blob/HEAD/src/lcc/relevance/jev.py), read 2026-09-24</sub>
 
-- **[omp-jev-compaction](https://github.com/jerryfane/omp-jev-compaction)** — Verbatim Jev-scored context reduction for omp, over TypeSafe or OpenRouter <sub>(upstream description)</sub>
+- **[omp-jev-compaction](https://github.com/jerryfane/omp-jev-compaction)** — Verbatim Jev-scored context reduction for omp, over TypeSafe or OpenRouter <sub>(earlier upstream description)</sub>
   <sub>`Project` · ★10+ · jerryfane · `TS` · call site [`src/vendor/fast-jev/request.ts`](https://github.com/jerryfane/omp-jev-compaction/blob/HEAD/src/vendor/fast-jev/request.ts), read 2026-09-22</sub>
 
 - **[optim-jev](https://github.com/Oqura-ai/optim-jev)** — Claude Code plugin (Codex too) with three Jev tools: jev-compacter asks which stale tool calls and outputs can be dropped when context is compacted, jev-router picks a model and effort for each subagent, and jev-skills sends a short relevant skill list per prompt instead of the whole catalog. <sub>(written by a model)</sub>
@@ -121,9 +124,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[dsh-jev-prune](https://github.com/yangyu666/dsh-jev-prune)** — Jev-judged context compaction for DeepSeek Harness: semantic tool-result pruning + deterministic receipt compaction <sub>(upstream description)</sub>
   <sub>`Project` · yangyu666 · `JS` · call site [`src/jev.js`](https://github.com/yangyu666/dsh-jev-prune/blob/HEAD/src/jev.js), read 2026-09-22</sub>
-
-- **[fast-compact](https://github.com/NodarDavituri/fast-compact)** — Claude Code plugin that frees context in about a second without summarising: Jev answers one noul per older, long tool output on whether later steps still need it, those rated needed stay whole, and the rest are cut to their start and end, with the full text saved for Claude to read back. <sub>(written by a model)</sub>
-  <sub>`Plugin` · NodarDavituri · `TS` · `noul` · call site [`src/jev.ts`](https://github.com/NodarDavituri/fast-compact/blob/HEAD/src/jev.ts), read by a model 2026-11-09</sub>
 
 - **[fast-compaction-dsh](https://github.com/kolawong/fast-compaction-dsh)** — Verdict-based context compaction for DeepSeek Harness — replaces lossy LLM summaries with fast keep/truncate/drop decisions from jev-latest; everything kept stays verbatim. Port of tamaratran/fast-jev-compaction. <sub>(upstream description)</sub>
   <sub>`Project` · kolawong · `TS` · call site [`src/jev.ts`](https://github.com/kolawong/fast-compaction-dsh/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
@@ -201,7 +201,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Plugin` · shashank-h · `TS` · call site [`extensions/curator-jev/config.ts`](https://github.com/Shashank-H/pi-jev-context-curator/blob/HEAD/extensions/curator-jev/config.ts), read 2026-09-24</sub>
 
 - **[pi-skimmer](https://github.com/jon-devlapaz/pi-skimmer)** — Extension for the Pi coding agent with two tools, skim_text and filter_items: it splits supplied text or JSON records into units and asks Jev one noul per unit on whether it would help reach the stated goal, keeping relevant chunks with their line ranges and never dropping what Jev did not judge. <sub>(written by a model)</sub>
-  <sub>`Plugin` · jon-devlapaz · `TS` · `noul` · call site [`extensions/skimmer/core.ts`](https://github.com/jon-devlapaz/pi-skimmer/blob/HEAD/extensions/skimmer/core.ts), read by a model 2026-11-24</sub>
+  <sub>`Plugin` · jon-devlapaz · `TS` · `noul` · call site [`extensions/skimmer/core.ts`](https://github.com/jon-devlapaz/pi-skimmer/blob/HEAD/extensions/skimmer/core.ts), read by a model 2026-11-24 · ⚠ `archived`</sub>
 
 - **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — Add-on for @playwright/test that asks Jev small typed questions where a suite would rerun everything or spend an LLM turn: a choice for a failure's root cause that drives retry and heal, scores to prune snapshots and order tests, nouls to verify steps and assertions, and a choice to heal locators. <sub>(written by a model)</sub>
   <sub>`Plugin` · AdriaanVE · `TS` · `choice` · `noul` · `score` · call site [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts), read by a model 2026-11-23</sub>

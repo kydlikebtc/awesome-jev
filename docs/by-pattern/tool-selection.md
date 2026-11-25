@@ -222,6 +222,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[agent-chaperone](https://github.com/agent-chaperone/agent-chaperone)** — Screens an AI agent's tool calls before they run and tool results before the agent reads them. An MCP proxy plus a hooks adapter for a client's built-in tools. <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · agent-chaperone · `TS` · call site [`src/backends/typesafe.ts`](https://github.com/agent-chaperone/agent-chaperone/blob/HEAD/src/backends/typesafe.ts), read 2026-09-22</sub>
 
+- **[aside-jev](https://github.com/himomohi/aside-jev)** — Aside agents decide with TypeSafe Jev (System One: Choice/Score/Noul). Not a Cua binding — Jev is the model, Aside is the browser runtime. <sub>(upstream description)</sub>
+  <sub>`SDK` · ★10+ · himomohi · `Py` · call site [`src/aside_jev/jev.py`](https://github.com/himomohi/aside-jev/blob/HEAD/src/aside_jev/jev.py), read 2026-09-22</sub>
+
 - **[atoma](https://github.com/atoma-run/atoma)** — Platform that coordinates AI agents to turn a request into finished work. Jev takes its bounded decisions: which agent or stored recipe takes a task, with a noul on whether each candidate fits, and whether a plan or result can be approved; unsure answers go back to the run's models. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · atoma-run · `TS` · `choice` · `noul` · call site [`src/core/jev.ts`](https://github.com/atoma-run/atoma/blob/HEAD/src/core/jev.ts), read by a model 2026-11-06</sub>
 
@@ -474,6 +477,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[public-browser](https://github.com/Silbercue/public-browser)** — Lets Claude Code and Cursor drive Chrome. Browse your real profile: -30% tokens, -25% cost, -41% tool calls, -34% tool defs, +40% faster. Direct CDP, a11y-tree refs, server-side plan executor. MIT, no paid tier.
   <sub>`Plugin` · ★10+ · silbercue · `TS` · call site [`examples/jev-loop.mjs`](https://github.com/Silbercue/public-browser/blob/HEAD/examples/jev-loop.mjs), read 2026-09-24 · ⚠ `unverified claims`</sub>
 
+- **[Reflex](https://github.com/datadog-labs/reflex)** — Rust library for control loops on observability data: Datadog metrics and Toto forecasts become typed state, Jev recommends an action as a choice, such as Open, Probe or NoChange for a circuit, and the executor applies it only when legality checks, guards and invariants allow. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · datadog-labs · `Rs` · `choice` · call site [`crates/reflex-typesafe/src/lib.rs`](https://github.com/datadog-labs/reflex/blob/HEAD/crates/reflex-typesafe/src/lib.rs), read by a model 2026-11-12</sub>
+
 - **[RoboDiag Harness](https://github.com/yuebit/robodiag-harness)** — Diagnostic harness for ROS 2 robots in which Jev sorts each request into query, diagnosis, action or chat and, for a diagnosis, picks the next read-only evidence tool. Code requires a health test and a live measurement before a diagnosis ends, and a chat model explains the evidence. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · yuebit · `Py` · `choice` · call site [`robodiag_jev.py`](https://github.com/yuebit/robodiag-harness/blob/HEAD/robodiag_jev.py), read by a model 2026-11-01</sub>
 
@@ -512,9 +518,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[android-jev](https://github.com/FZ2000/android-jev)** — MCP tool that controls an Android phone over adb: at each step it reads the screen and asks Jev which operation, target and app come next (choices), whether the goal is done, and whether the step is consequential and authorised (nouls), then checks the result before saying whether it worked. <sub>(written by a model)</sub>
   <sub>`Project` · FZ2000 · `Py` · `choice` · `noul` · call site [`src/phone_control/jev.py`](https://github.com/FZ2000/android-jev/blob/HEAD/src/phone_control/jev.py), read by a model 2026-11-24</sub>
-
-- **[aside-jev](https://github.com/himomohi/aside-jev)** — Aside agents decide with TypeSafe Jev (System One: Choice/Score/Noul). Not a Cua binding — Jev is the model, Aside is the browser runtime. <sub>(upstream description)</sub>
-  <sub>`SDK` · himomohi · `Py` · call site [`src/aside_jev/jev.py`](https://github.com/himomohi/aside-jev/blob/HEAD/src/aside_jev/jev.py), read 2026-09-22</sub>
 
 - **[AskJev](https://github.com/ranjan2829/AskJev)** — AskJev — Jev autopilot for any website + guard on irreversible clicks (TypeSafe System One, not Claude) <sub>(upstream description)</sub>
   <sub>`Project` · ranjan2829 · `TS` · call site [`mcp/src/jev-client.ts`](https://github.com/ranjan2829/AskJev/blob/HEAD/mcp/src/jev-client.ts), read 2026-09-24</sub>
@@ -733,7 +736,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Plugin` · legostin · `TS` · `choice` · `noul` · `score` · call site [`src/core/jev/client.ts`](https://github.com/legostin/jev-mcp/blob/HEAD/src/core/jev/client.ts), read by a model 2026-11-09</sub>
 
 - **[jev-mcp-router](https://github.com/ini8labs/jev-mcp-router)** — MCP gateway between an agent and its MCP servers: for each request it asks Jev one noul per server and per tool, in one request, and the LLM sees only the handful of tools Jev said yes to, instead of every tool schema. <sub>(written by a model)</sub>
-  <sub>`Project` · ini8labs · `Py` · `noul` · call site [`jevmcp/jev.py`](https://github.com/ini8labs/jev-mcp-router/blob/HEAD/jevmcp/jev.py), read by a model 2026-11-16 · ⚠ `vendor numbers`</sub>
+  <sub>`Project` · ini8labs · `Py` · `noul` · call site [`jevmcp/jev.py`](https://github.com/ini8labs/jev-mcp-router/blob/HEAD/jevmcp/jev.py), read by a model 2026-11-16 · ⚠ `one commit` `vendor numbers`</sub>
 
 - **[jev-model-tokengate](https://github.com/Thanh-Mathieu95/jev-model-tokengate)** — An OpenAI-compatible proxy that sits between your LLM and your users. It evaluates each sliding window of tokens while the response is still streaming and cuts the stream before a violating token can reach the screen. <sub>(upstream description)</sub>
   <sub>`Project` · thanh-mathieu95 · `JS` · call site [`evaluator.js`](https://github.com/Thanh-Mathieu95/jev-model-tokengate/blob/HEAD/evaluator.js), read 2026-09-22</sub>
@@ -859,7 +862,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Plugin` · sur-cai · `Py` · call site [`src/macos_computer_use/jev.py`](https://github.com/Sur-Cai/macos-computer-use-kit/blob/HEAD/src/macos_computer_use/jev.py), read 2026-09-24</sub>
 
 - **[nethack-jev](https://github.com/statico/jev-nethack)** — Jev plays NetHack with no LLM in the loop: code reads the screen and lists the legal options, and each turn Jev answers a choice of best action, a noul on whether the Valkyrie is in serious danger, and a choice of safest action, which wins when danger is high. <sub>(written by a model)</sub>
-  <sub>`Project` · statico · `Py` · `choice` · `noul` · call site [`jev/bot.py`](https://github.com/statico/jev-nethack/blob/HEAD/jev/bot.py), read by a model 2026-11-16 · ⚠ `vendor numbers`</sub>
+  <sub>`Project` · statico · `Py` · `choice` · `noul` · call site [`jev/bot.py`](https://github.com/statico/jev-nethack/blob/HEAD/jev/bot.py), read by a model 2026-11-16 · ⚠ `vendor numbers` `archived`</sub>
 
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — Binary approval gate for Codex and Claude Code — every intercepted tool call is reviewed by TypeSafe JEV and composed through a versioned local policy, with scoped authorization. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · alexj11324 · `Go` · cited file [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go), read 2026-09-22 · ⚠ `not Jev itself`</sub>
@@ -887,9 +890,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[reflex](https://github.com/kaustav1996/reflex)** — A coding agent and personal assistant with System One reflexes (TypeSafe Jev) on top of the Pi coding agent <sub>(upstream description)</sub>
   <sub>`Plugin` · kaustav1996 · `TS` · call site [`src/extensions/typesafe/provider.ts`](https://github.com/kaustav1996/reflex/blob/HEAD/src/extensions/typesafe/provider.ts), read 2026-09-24</sub>
-
-- **[Reflex](https://github.com/datadog-labs/reflex)** — Rust library for control loops on observability data: Datadog metrics and Toto forecasts become typed state, Jev recommends an action as a choice, such as Open, Probe or NoChange for a circuit, and the executor applies it only when legality checks, guards and invariants allow. <sub>(written by a model)</sub>
-  <sub>`Project` · datadog-labs · `Rs` · `choice` · call site [`crates/reflex-typesafe/src/lib.rs`](https://github.com/datadog-labs/reflex/blob/HEAD/crates/reflex-typesafe/src/lib.rs), read by a model 2026-11-12</sub>
 
 - **[reflex-computer-use](https://github.com/8itlab/reflex-computer-use)** — Computer-use MCP server for coding agents on macOS, Windows or a remote Windows machine that reads the accessibility tree and hands the small decisions to Jev: which element a goal means (choice), and whether something is on screen, worked or finished loading (noul), optionally from a screenshot. <sub>(written by a model)</sub>
   <sub>`Plugin` · 8itlab · `Py` · `choice` · `noul` · call site [`reflexcu/core.py`](https://github.com/8itlab/reflex-computer-use/blob/HEAD/reflexcu/core.py), read by a model 2026-11-15</sub>

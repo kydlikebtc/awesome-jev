@@ -50,6 +50,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-chat-jarvis](https://github.com/jev-chat/jev-chat-jarvis)** — An Android reply co-pilot that judges intent, timing and risk from on-screen text, while separate models handle OCR and drafting.
   <sub>`Project` · ★1k+ · `Java` · `choice` · `score` · `noul` · call site [`cn/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/jev-chat/jev-chat-jarvis/blob/HEAD/cn/app/src/main/java/com/jev/probe/jev/JevQuestions.kt), read 2026-09-22</sub>
 
+- **[jev-seo](https://github.com/AgriciDaniel/jev-seo)** — SEO audit from one homepage URL: it crawls the site, checks 52 rules and Core Web Vitals, and asks Jev choice, score and noul questions about each page (type, search intent, helpfulness, trust, whether it opens with the point). Code acts only on decisive answers (0.80 confidence) and ranks fixes. <sub>(written by a model)</sub>
+  <sub>`Project` · ★1k+ · agricidaniel · `Py` · call site [`jevseo/jev.py`](https://github.com/AgriciDaniel/jev-seo/blob/HEAD/jevseo/jev.py), read 2026-09-24</sub>
+
 - **[pg-jev](https://github.com/realZachi/pg-jev)** — A real PostgreSQL extension exposing the primitives as SQL functions, so a semantic decision can appear in a WHERE clause over any row type.
   <sub>`Project` · ★1k+ · `Py` · `sh` · `choice` · `score` · `noul` · call site [`sql/jev--0.2.0.sql`](https://github.com/realZachi/pg-jev/blob/HEAD/sql/jev--0.2.0.sql), read 2026-09-22</sub>
 
@@ -86,9 +89,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-review](https://github.com/devagrawal09/jev-review)** — Pre-screens code review with Jev to surface high-risk changes for a more expensive model or a person, with a local dashboard.
   <sub>`Project` · ★100+ · `TS` · `choice` · `score` · `noul` · call site [`src/review/codebase-judgments.ts`](https://github.com/devagrawal09/jev-review/blob/HEAD/src/review/codebase-judgments.ts), read 2026-09-22</sub>
 
-- **[jev-seo](https://github.com/AgriciDaniel/jev-seo)** — SEO audit from one homepage URL: it crawls the site, checks 52 rules and Core Web Vitals, and asks Jev choice, score and noul questions about each page (type, search intent, helpfulness, trust, whether it opens with the point). Code acts only on decisive answers (0.80 confidence) and ranks fixes. <sub>(written by a model)</sub>
-  <sub>`Project` · ★100+ · agricidaniel · `Py` · call site [`jevseo/jev.py`](https://github.com/AgriciDaniel/jev-seo/blob/HEAD/jevseo/jev.py), read 2026-09-24</sub>
-
 - **[jevmeter](https://github.com/ChetasLua/jevmeter)** — Scores every sentence of a video and renders the result as a live meter.
   <sub>`Project` · ★100+ · chetaslua · `Py` · call site [`jevmeter/score.py`](https://github.com/ChetasLua/jevmeter/blob/HEAD/jevmeter/score.py), read 2026-09-22</sub>
 
@@ -110,11 +110,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[sys1grep](https://github.com/uehaj/sys1grep)** — grep by meaning, now named sys1grep: for every line Jev answers a noul on whether the line matches a meaning, such as network failure, and a threshold decides. Meanings combine with AND, OR and NOT, a regex can prefilter lines, and the meaning and the text can be in different languages. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · uehaj · `JS` · call site [`sys1grep.mjs`](https://github.com/uehaj/sys1grep/blob/HEAD/sys1grep.mjs), read by a model 2026-11-05</sub>
 
-- **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — Chat-reply assistant (desktop overlay, Android floating assistant, iOS keyboard) built on Jev Android. From the visible chat or a screenshot it asks Jev the literal question, the other person's intent, a danger level, whether to reply now and the best action, then has Jev pick among drafted replies. <sub>(written by a model)</sub>
-  <sub>`Project` · ★100+ · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · call site [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt), read by a model 2026-10-26 · ⚠ `3rd-party key`</sub>
+- **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-chat)** — Chat-reply assistant (desktop overlay, Android floating assistant, iOS keyboard) built on Jev Android. From the visible chat or a screenshot it asks Jev the literal question, the other person's intent, a danger level, whether to reply now and the best action, then has Jev pick among drafted replies. <sub>(written by a model)</sub>
+  <sub>`Project` · ★100+ · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · call site [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt), read by a model 2026-10-26 · ⚠ `3rd-party key`</sub>
 
 - **[anydecisionmodel](https://github.com/mattt/AnyDecisionModel)** — A Swift package for typed decisions from language models (probabilities, choices, and scores), with support for local MLX models and the TypeSafe Jev API. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · mattt · `Swift` · call site [`Sources/AnyDecisionModel/Models/JevDecisionModel.swift`](https://github.com/mattt/AnyDecisionModel/blob/HEAD/Sources/AnyDecisionModel/Models/JevDecisionModel.swift), read 2026-09-22</sub>
+
+- **[aside-jev](https://github.com/himomohi/aside-jev)** — Aside agents decide with TypeSafe Jev (System One: Choice/Score/Noul). Not a Cua binding — Jev is the model, Aside is the browser runtime. <sub>(upstream description)</sub>
+  <sub>`SDK` · ★10+ · himomohi · `Py` · call site [`src/aside_jev/jev.py`](https://github.com/himomohi/aside-jev/blob/HEAD/src/aside_jev/jev.py), read 2026-09-22</sub>
 
 - **[call-coach-ai](https://github.com/ZeroGold/call-coach-ai)** — Jev powered call coach <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · zerogold · `TS` · call site [`lib/coach.mjs`](https://github.com/ZeroGold/call-coach-ai/blob/HEAD/lib/coach.mjs), read by a model 2026-11-05</sub>
@@ -164,7 +167,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jev-Moderation-Bot](https://github.com/brainstormity/Jev-Moderation-Bot)** — A Discord moderation bot: a Choice tiers each message while a Noul carries ban urgency, and an admin pardon is fed back as a safe precedent in later requests.
   <sub>`Project` · ★10+ · brainstormity · `Py` · `choice` · `noul` · call site [`typesafe/__init__.py`](https://github.com/brainstormity/Jev-Moderation-Bot/blob/HEAD/typesafe/__init__.py), read 2026-09-22</sub>
 
-- **[JEV-Paper-Radar](https://github.com/Eliot5566/JEV-Paper-Radar)** — Let Jev read every new arXiv paper each morning and surface the few you should read. Plain-English interests, calibrated probabilities, ~$0.06/day, fork and go. <sub>(upstream description)</sub>
+- **[JEV-Paper-Radar](https://github.com/Eliot5566/JEV-Paper-Radar)** — Let Jev read every new arXiv paper each morning and surface the few you should read. Plain-English interests, calibrated probabilities, ~$0.06/day, fork and go. <sub>(earlier upstream description)</sub>
   <sub>`Project` · ★10+ · eliot5566 · `Py` · call site [`paper_radar/jev.py`](https://github.com/Eliot5566/JEV-Paper-Radar/blob/HEAD/paper_radar/jev.py), read 2026-09-24</sub>
 
 - **[jev-remix-cutter](https://github.com/gnipbao/jev-remix-cutter)** — Agent skill and Python CLI that cuts a licensed remix from video: shot detection, beat or narration slots, Jev judging how well each shot fits each slot, constrained casting, local rendering and a review page, with originality and footage-licence reports. <sub>(written by a model)</sub>
@@ -190,6 +193,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jevclip](https://github.com/cclank/jevclip)** — Cuts video from its subtitles: Jev reads each ~20-second segment and answers five questions (which of eight kinds of talk it is, information density 0–3, unfounded claims, whether it stands alone, whether it fits your focus); code keeps, ranks and cuts a 3-minute highlight and a trimmed full cut. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · cclank · `Py` · `choice` · `score` · `noul` · call site [`jevclip/jev.py`](https://github.com/cclank/jevclip/blob/HEAD/jevclip/jev.py), read by a model 2026-10-31</sub>
+
+- **[jevcut](https://github.com/VBS2004/jevcut)** — Turns a long video into ranked short clips: code lists every place a clip could start or end, and Jev only judges the clip each candidate edge would make, with nouls on whether it starts or ends mid-thought, stands alone or is an ad, choices among candidates and scores for how it holds attention. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · VBS2004 · `Py` · `noul` · `choice` · `score` · call site [`src/jevcut/backends.py`](https://github.com/VBS2004/jevcut/blob/HEAD/src/jevcut/backends.py), read by a model 2026-11-09</sub>
 
 - **[Jevflake](https://github.com/KranzL/Jevflake)** — dbt package (with a Terraform module) that lets Snowflake ask Jev about table rows: it sets up external access to api.typesafe.ai and creates SQL functions jev_noul, jev_choice, jev_score and jev_ask, plus dbt macros and tests so answers are stored once, reused and checked. <sub>(written by a model)</sub>
   <sub>`Integration` · ★10+ · KranzL · `Py` · `noul` · `choice` · `score` · call site [`macros/setup/handler.sql`](https://github.com/KranzL/Jevflake/blob/HEAD/macros/setup/handler.sql), read by a model 2026-11-02</sub>
@@ -230,7 +236,10 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[MetaCog](https://github.com/ItIsCuthNotCup/MetaCog)** — Inference-time metacognition: a small, fast judge scores a bigger model's answers and steers its reasoning; Jev is one of the judges it can use.
   <sub>`Project` · ★10+ · itiscuthnotcup · `Py` · call site [`examples/jev_best_of_n.py`](https://github.com/ItIsCuthNotCup/MetaCog/blob/HEAD/examples/jev_best_of_n.py), read 2026-09-24</sub>
 
-- **[omp-jev-compaction](https://github.com/jerryfane/omp-jev-compaction)** — Verbatim Jev-scored context reduction for omp, over TypeSafe or OpenRouter <sub>(upstream description)</sub>
+- **[Netizen](https://github.com/seheta/netizen)** — Simulates how Indonesian netizens react to a post before it goes live. In one request Jev answers, per persona such as ojol drivers or buzzers, whether they stop scrolling, what they do, where they stand and what their comment does, plus whether the post is sensitive and how far it spreads. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · seheta · `Py` · `noul` · `choice` · `score` · call site [`spike/spike.py`](https://github.com/seheta/netizen/blob/HEAD/spike/spike.py), read by a model 2026-11-12</sub>
+
+- **[omp-jev-compaction](https://github.com/jerryfane/omp-jev-compaction)** — Verbatim Jev-scored context reduction for omp, over TypeSafe or OpenRouter <sub>(earlier upstream description)</sub>
   <sub>`Project` · ★10+ · jerryfane · `TS` · call site [`src/vendor/fast-jev/request.ts`](https://github.com/jerryfane/omp-jev-compaction/blob/HEAD/src/vendor/fast-jev/request.ts), read 2026-09-22</sub>
 
 - **[plugins](https://github.com/cline/plugins)** — Official curated plugins for Cline CLI and extensions <sub>(upstream description)</sub>
@@ -261,7 +270,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · ★10+ · hawkymisc · `Py` · call site [`src/jevbert/api/routes.py`](https://github.com/hawkymisc/typed-decision-bert/blob/HEAD/src/jevbert/api/routes.py), read 2026-09-22</sub>
 
 - **[typed-decisions](https://github.com/mithril-lang/typed-decisions)** — Jev-shaped typed-decision model (state + Choice/Score/Noul questions -> calibrated probabilities, one pass) on ModernBERT / DeBERTa / LLaDA-MoE, with measured latency, accuracy, calibration and training cost <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · kotoba-lang · `Py` · call site [`src/typed_decisions/jev_holes.py`](https://github.com/mithril-lang/typed-decisions/blob/HEAD/src/typed_decisions/jev_holes.py), read 2026-09-22</sub>
+  <sub>`Project` · ★10+ · kotoba-lang · `Py` · call site [`src/typed_decisions/jev_holes.py`](https://github.com/mithril-lang/typed-decisions/blob/HEAD/src/typed_decisions/jev_holes.py), read 2026-09-22 · ⚠ `archived`</sub>
 
 - **[typesafe-jev](https://github.com/gtaras7/typesafe-jev)** — Screen a folder of CVs with the TypeSafe Jev decision model: typed judgments, an editable policy, free re-scoring. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · gtaras7 · `TS` · call site [`cv-screen/src/cli.ts`](https://github.com/gtaras7/typesafe-jev/blob/HEAD/cv-screen/src/cli.ts), read 2026-09-22</sub>
@@ -298,9 +307,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[arxiv-jev-digest](https://github.com/monkeypox966/arxiv-jev-digest)** — Daily arXiv digest that asks Jev one noul per configured interest and one per exclusion about each new paper, keeps the papers that clear the thresholds and then has another model summarise them. It runs on a schedule in GitHub Actions. <sub>(written by a model)</sub>
   <sub>`Project` · monkeypox966 · `Py` · `noul` · call site [`src/arxiv_digest/clients.py`](https://github.com/monkeypox966/arxiv-jev-digest/blob/HEAD/src/arxiv_digest/clients.py), read by a model 2026-11-22</sub>
-
-- **[aside-jev](https://github.com/himomohi/aside-jev)** — Aside agents decide with TypeSafe Jev (System One: Choice/Score/Noul). Not a Cua binding — Jev is the model, Aside is the browser runtime. <sub>(upstream description)</sub>
-  <sub>`SDK` · himomohi · `Py` · call site [`src/aside_jev/jev.py`](https://github.com/himomohi/aside-jev/blob/HEAD/src/aside_jev/jev.py), read 2026-09-22</sub>
 
 - **[ask-jev-ai](https://github.com/waynesutton/ask-jev-ai)** — A public wall where anyone asks a question in three to fifteen words and Jev, TypeSafe's judgment model, answers yes, no, or it depends in about 100 milliseconds. Every judged ask lands on the wall in realtime, with a running count toward one million, showing cost. <sub>(upstream description)</sub>
   <sub>`Project` · waynesutton · `JS` · call site [`convex/lib/typesafe.ts`](https://github.com/waynesutton/ask-jev-ai/blob/HEAD/convex/lib/typesafe.ts), read 2026-09-22 · ⚠ `no licence`</sub>
@@ -348,7 +354,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · ctaxnagomi · `TS` · `choice` · `noul` · `score` · call site [`src/jev.ts`](https://github.com/ctaxnagomi/dgui-hypermem/blob/HEAD/src/jev.ts), read by a model 2026-11-21</sub>
 
 - **[draftpulse](https://github.com/pbember/draftpulse)** — Experimental: live X draft viral scorer powered by TypeSafe Jev <sub>(upstream description)</sub>
-  <sub>`Project` · pekth · `TS` · call site [`server/analyze.ts`](https://github.com/pbember/draftpulse/blob/HEAD/server/analyze.ts), read 2026-09-22 · ⚠ `no licence`</sub>
+  <sub>`Project` · pekth · `TS` · call site [`server/analyze.ts`](https://github.com/pbember/draftpulse/blob/HEAD/server/analyze.ts), read 2026-09-22 · ⚠ `no licence` `archived`</sub>
 
 - **[dsh-jev](https://github.com/noetion/dsh-jev)** — DSH bundle that registers jev_ask for TypeSafe Jev noul, choice, and score answers. <sub>(upstream description)</sub>
   <sub>`Project` · noetion · `TS` · call site [`src/client.ts`](https://github.com/noetion/dsh-jev/blob/HEAD/src/client.ts), read 2026-09-22</sub>
@@ -524,9 +530,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jevchik](https://github.com/smixs/jevchik)** — Telegram group bot that asks Jev about each message: a usefulness score from 0 to 4 feeds members' karma, four spam nouls and a profile-promo noul screen newcomers, and a rude noul, a tone choice and nouls for answer, question, thanks and flood shape its replies and moderation. <sub>(written by a model)</sub>
   <sub>`Project` · smixs · `TS` · `noul` · `score` · `choice` · call site [`src/adapters/jev.ts`](https://github.com/smixs/jevchik/blob/HEAD/src/adapters/jev.ts), read by a model 2026-11-14</sub>
 
-- **[jevcut](https://github.com/VBS2004/jevcut)** — Turns a long video into ranked short clips: code lists every place a clip could start or end, and Jev only judges the clip each candidate edge would make, with nouls on whether it starts or ends mid-thought, stands alone or is an ad, choices among candidates and scores for how it holds attention. <sub>(written by a model)</sub>
-  <sub>`Project` · VBS2004 · `Py` · `noul` · `choice` · `score` · call site [`src/jevcut/backends.py`](https://github.com/VBS2004/jevcut/blob/HEAD/src/jevcut/backends.py), read by a model 2026-11-09</sub>
-
 - **[jevmetrics](https://github.com/ishantanu/jevmetrics)** — An experimental OpenTelemetry Collector processor that asks Jev how operationally valuable each metric instrument is, from its metadata, then applies deterministic policy to decide what to keep.
   <sub>`Project` · ishantanu · `Go` · call site [`internal/evaluator/jev.go`](https://github.com/ishantanu/jevmetrics/blob/HEAD/internal/evaluator/jev.go), read 2026-09-24</sub>
 
@@ -571,9 +574,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[n8n-nodes-typesafe-ai](https://github.com/DomMonte/n8n-nodes-typesafe-ai)** — n8n community node for the TypeSafe AI System One API — typed yes/no, choice and score questions with calibrated probabilities <sub>(upstream description)</sub>
   <sub>`Project` · dommonte · `TS` · call site [`nodes/TypeSafeAi/constants.ts`](https://github.com/DomMonte/n8n-nodes-typesafe-ai/blob/HEAD/nodes/TypeSafeAi/constants.ts), read 2026-09-22</sub>
-
-- **[Netizen](https://github.com/seheta/netizen)** — Simulates how Indonesian netizens react to a post before it goes live. In one request Jev answers, per persona such as ojol drivers or buzzers, whether they stop scrolling, what they do, where they stand and what their comment does, plus whether the post is sensitive and how far it spreads. <sub>(written by a model)</sub>
-  <sub>`Project` · seheta · `Py` · `noul` · `choice` · `score` · call site [`spike/spike.py`](https://github.com/seheta/netizen/blob/HEAD/spike/spike.py), read by a model 2026-11-12</sub>
 
 - **[NYC 311 JEV Heatmaps](https://github.com/CompleteTech-LLC-AI-Research/jev-311-heatmap)** — Research demo that asks Jev about NYC 311 complaint descriptions: the potential impact of the condition if it exists as described (score), whether it is a plausible safety hazard (noul) and its issue category (choice), then maps the cached answers on a 500-metre grid. <sub>(written by a model)</sub>
   <sub>`Project` · CompleteTech-LLC-AI-Research · `Py` · `score` · `noul` · `choice` · call site [`generate_heatmap.py`](https://github.com/CompleteTech-LLC-AI-Research/jev-311-heatmap/blob/HEAD/generate_heatmap.py), read by a model 2026-11-20</sub>

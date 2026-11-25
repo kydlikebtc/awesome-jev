@@ -65,6 +65,9 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 - **[dsh-jev-tools](https://github.com/HorusJiang/dsh-jev-tools)** — DeepSeek Harness 插件，在工具输出进入上下文之前先问 Jev：长篇读取或抓取结果里哪些段落相关（按排序保留，不卡阈值）；抓回的页面里有没有针对 AI 的指令（概率达到 0.75 时附提醒，内容原样保留）；推荐哪一个技能；以及每条“完成”声明有没有证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · horusjiang · `TS` · 调用点 [`src/config.ts`](https://github.com/HorusJiang/dsh-jev-tools/blob/HEAD/src/config.ts)，2026-09-24 阅读</sub>
 
+- **[fast-compact](https://github.com/NodarDavituri/fast-compact)** — 大约一秒释放 Claude Code 上下文、又不做摘要的插件：对每条较早的长工具输出，Jev 用一个 noul 判断后续步骤是否还需要它，判为需要的保留原文，其余只留开头和结尾，全文另存到文件里供 Claude 读回。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · NodarDavituri · `TS` · `noul` · 调用点 [`src/jev.ts`](https://github.com/NodarDavituri/fast-compact/blob/HEAD/src/jev.ts)，2026-11-09 模型阅读</sub>
+
 - **[fast-dev-compaction](https://github.com/leonaaardob/fast-dev-compaction)** — Codex 插件：在会话压缩前后，由 Jev 引导逐字恢复上下文。移植自 tamaratran/fast-jev-compaction，适配 Codex 的生命周期钩子。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · leonaaardob · `TS` · 调用点 [`src/request.ts`](https://github.com/leonaaardob/fast-dev-compaction/blob/HEAD/src/request.ts)，2026-09-24 阅读</sub>
 
@@ -83,7 +86,7 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 - **[lcc](https://github.com/lucasmartins-ai/lcc)** — 本地上下文编译器（lcc）：在提示上下文送达模型之前清洗、去重并压缩，并报告每一处改动。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · lucasmartins-ai · `Py` · 调用点 [`src/lcc/relevance/jev.py`](https://github.com/lucasmartins-ai/lcc/blob/HEAD/src/lcc/relevance/jev.py)，2026-09-24 阅读</sub>
 
-- **[omp-jev-compaction](https://github.com/jerryfane/omp-jev-compaction)** — 给 omp 做的逐字保留式 Jev 打分上下文削减。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+- **[omp-jev-compaction](https://github.com/jerryfane/omp-jev-compaction)** — 给 omp 做的逐字保留式 Jev 打分上下文削减。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · jerryfane · `TS` · 调用点 [`src/vendor/fast-jev/request.ts`](https://github.com/jerryfane/omp-jev-compaction/blob/HEAD/src/vendor/fast-jev/request.ts)，2026-09-22 阅读</sub>
 
 - **[optim-jev](https://github.com/Oqura-ai/optim-jev)** — Claude Code 插件（也支持 Codex），包含三个向 Jev 提问的工具：jev-compacter 在压缩上下文时判断哪些过期的工具调用和输出可以丢弃，jev-router 为每个子智能体选择模型和推理强度，jev-skills 为每条提示只发送一份简短且相关的技能列表，而不是整个目录。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
@@ -121,9 +124,6 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
 
 - **[dsh-jev-prune](https://github.com/yangyu666/dsh-jev-prune)** — 给 DeepSeek Harness 的 Jev 判定式上下文压缩：语义化的工具结果裁剪。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · yangyu666 · `JS` · 调用点 [`src/jev.js`](https://github.com/yangyu666/dsh-jev-prune/blob/HEAD/src/jev.js)，2026-09-22 阅读</sub>
-
-- **[fast-compact](https://github.com/NodarDavituri/fast-compact)** — 大约一秒释放 Claude Code 上下文、又不做摘要的插件：对每条较早的长工具输出，Jev 用一个 noul 判断后续步骤是否还需要它，判为需要的保留原文，其余只留开头和结尾，全文另存到文件里供 Claude 读回。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · NodarDavituri · `TS` · `noul` · 调用点 [`src/jev.ts`](https://github.com/NodarDavituri/fast-compact/blob/HEAD/src/jev.ts)，2026-11-09 模型阅读</sub>
 
 - **[fast-compaction-dsh](https://github.com/kolawong/fast-compaction-dsh)** — 给 DeepSeek Harness 的判定式上下文压缩，取代有损的 LLM 摘要。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · kolawong · `TS` · 调用点 [`src/jev.ts`](https://github.com/kolawong/fast-compaction-dsh/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
@@ -201,7 +201,7 @@ _判断哪些工具调用和结果仍然相关，从而丢弃过期上下文。_
   <sub>`插件` · shashank-h · `TS` · 调用点 [`extensions/curator-jev/config.ts`](https://github.com/Shashank-H/pi-jev-context-curator/blob/HEAD/extensions/curator-jev/config.ts)，2026-09-24 阅读</sub>
 
 - **[pi-skimmer](https://github.com/jon-devlapaz/pi-skimmer)** — Pi 编程智能体的一个扩展，提供 skim_text 和 filter_items 两个工具：把给定的文本或 JSON 记录拆成单元，就每个单元问 Jev 一个 noul（它是否有助于达成既定目标），保留相关片段及其行号范围，Jev 未判断的内容一律不丢。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · jon-devlapaz · `TS` · `noul` · 调用点 [`extensions/skimmer/core.ts`](https://github.com/jon-devlapaz/pi-skimmer/blob/HEAD/extensions/skimmer/core.ts)，2026-11-24 模型阅读</sub>
+  <sub>`插件` · jon-devlapaz · `TS` · `noul` · 调用点 [`extensions/skimmer/core.ts`](https://github.com/jon-devlapaz/pi-skimmer/blob/HEAD/extensions/skimmer/core.ts)，2026-11-24 模型阅读 · ⚠ `已归档`</sub>
 
 - **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — @playwright/test 的附加组件：在测试套件原本要全部重跑或花一轮 LLM 的地方，向 Jev 提小的类型化问题：用 choice 判断失败的根因并据此重试和修复，用 score 裁剪快照、排列测试顺序，用 noul 核验步骤和断言，再用 choice 修复定位器。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · AdriaanVE · `TS` · `choice` · `noul` · `score` · 调用点 [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts)，2026-11-23 模型阅读</sub>

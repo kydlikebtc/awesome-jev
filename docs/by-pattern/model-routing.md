@@ -36,6 +36,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[@langchain/typesafe](https://github.com/langchain-ai/langchainjs)** — The JavaScript counterpart of the LangChain integration, with the same classifier and middleware shapes.
   <sub>`Integration` · ★10k+ · `TS` · `choice` · `score` · `noul` · call site [`libs/providers/langchain-typesafe/src/classifier.ts`](https://github.com/langchain-ai/langchainjs/blob/HEAD/libs/providers/langchain-typesafe/src/classifier.ts), read by a model 2026-11-19</sub>
 
+- **[AgentScope](https://github.com/agentscope-ai/agentscope)** — Multi-agent framework whose classifier models include Jev: JevClassifierModel sends binary, choice and score questions to System One through TypeSafe's Python SDK, and the ModelRouter middleware asks a classifier one choice per reply to pick the chat model that answers. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10k+ · agentscope-ai · `Py` · `choice` · `noul` · `score` · call site [`src/agentscope/classifier/_jev/_model.py`](https://github.com/agentscope-ai/agentscope/blob/HEAD/src/agentscope/classifier/_jev/_model.py), read by a model 2026-11-12</sub>
+
 - **[claude-code-templates: three Jev plugins](https://github.com/davila7/claude-code-templates)** — Three independently installable Claude Code plugins — guardrails, model router and skill suggestion — each with its own hooks and tests.
   <sub>`Plugin` · ★10k+ · `Py` · `TS` · `choice` · `score` · `noul` · call site [`scripts/jev-spike.mjs`](https://github.com/davila7/claude-code-templates/blob/HEAD/scripts/jev-spike.mjs), read 2026-09-22</sub>
 
@@ -59,6 +62,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Astra-Ares](https://github.com/miuuyy/Astra-Ares)** — Runs a patched Codex CLI in which Jev reads bounded task context and, with two choices, picks the reasoning effort for GPT-6's next response and how many responses (1, 2, 5 or 10) it should last; GPT-6 can change effort without breaking the prompt cache. An experimental reference implementation. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · miuuyy · `JS` · call site [`src/jev.mjs`](https://github.com/miuuyy/Astra-Ares/blob/HEAD/src/jev.mjs), read 2026-09-24</sub>
+
+- **[Claude x Jev](https://github.com/charlesdove977/claude-x-jev)** — Claude Code skill and commands in which Jev, through OpenRouter, sorts and Claude writes: classify, check or score batches, send only unsure items to Claude, verify Claude's drafts, and gate tool calls with a PreToolUse hook that asks whether a call can be undone and whether it serves the task. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★100+ · charlesdove977 · `Py` · `choice` · `noul` · `score` · call site [`skill/scripts/jev.py`](https://github.com/charlesdove977/claude-x-jev/blob/HEAD/skill/scripts/jev.py), read by a model 2026-10-30 · ⚠ `marketing`</sub>
 
 - **[distill](https://github.com/samuelfaj/distill)** — Coding-agent harness and TUI for Grok and Codex subscriptions and any OpenAI-compatible model, built to spend fewer tokens. When a model tier's effort is left on auto, the default, Jev picks the reasoning effort for every call; the client reaches Jev through OpenRouter by default. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · samuelfaj · `Rs` · call site [`crates/codegen/distill-workspace/src/jev/client.rs`](https://github.com/samuelfaj/distill/blob/HEAD/crates/codegen/distill-workspace/src/jev/client.rs), read 2026-09-22</sub>
@@ -84,17 +90,20 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Yielded Agent](https://github.com/yielded-dev/agent)** — TypeScript runtime for durable agent threads on Effect and Effect AI. Its AutoModel picks a model profile when a thread is created, asking a decision model through Decision.classify which of the application's described models fits, and keeps that choice for later runs; the docs example uses Jev. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · yielded-dev · `TS` · `choice` · cited file [`docs/snippets/travel-planner/auto-model.ts`](https://github.com/yielded-dev/agent/blob/HEAD/docs/snippets/travel-planner/auto-model.ts), read by a model 2026-11-05</sub>
 
-- **[a3m-router](https://github.com/Das-rebel/a3m-router)** — ⚡ Adaptive multi-model LLM router — 80+ providers, Jev System One single-pass routing (model=jev-auto), pheromone-trail failover, parallel ensemble merge. npm: adaptive-memory-multi-model-router <sub>(upstream description)</sub>
+- **[a3m-router](https://github.com/Das-rebel/a3m-router)** — ⚡ Adaptive multi-model LLM router — 80+ providers, Jev System One single-pass routing (model=jev-auto), pheromone-trail failover, parallel ensemble merge. npm: adaptive-memory-multi-model-router <sub>(earlier upstream description)</sub>
   <sub>`Project` · ★10+ · das-rebel · `TS` · call site [`dist/routing/jev/remote.d.ts`](https://github.com/Das-rebel/a3m-router/blob/HEAD/dist/routing/jev/remote.d.ts), read 2026-09-24</sub>
+
+- **[AI 海龟汤 (AI Turtle Soup)](https://github.com/zerotang05/situation-puzzle)** — Lateral-thinking puzzle game hosted by Jev: each player question gets a choice of Yes, No or Irrelevant, a written solution is ruled Solved, Close or Not yet, and submitted puzzles are reviewed before the public library. A verdict below the confidence threshold goes to a MiniMax model. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · zerotang05 · `TS` · `choice` · call site [`packages/jev/src/config.ts`](https://github.com/zerotang05/situation-puzzle/blob/HEAD/packages/jev/src/config.ts), read by a model 2026-11-12</sub>
 
 - **[Claude Model Router](https://github.com/alexei-led/claude-router)** — Claude Code mod that picks the model and effort for each turn and each subagent from a classifier's advice. Jev is the default classifier: one choice for the tier and one for the turn's activity, re-asked every few requests. Clef, OpenAI or a local Ollama model can stand in. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · alexei-led · `JS` · `choice` · call site [`lib/classifier-apis.mjs`](https://github.com/alexei-led/claude-router/blob/HEAD/lib/classifier-apis.mjs), read by a model 2026-10-31</sub>
 
-- **[Claude x Jev](https://github.com/charlesdove977/claude-x-jev)** — Claude Code skill and commands in which Jev, through OpenRouter, sorts and Claude writes: classify, check or score batches, send only unsure items to Claude, verify Claude's drafts, and gate tool calls with a PreToolUse hook that asks whether a call can be undone and whether it serves the task. <sub>(written by a model)</sub>
-  <sub>`Plugin` · ★10+ · charlesdove977 · `Py` · `choice` · `noul` · `score` · call site [`skill/scripts/jev.py`](https://github.com/charlesdove977/claude-x-jev/blob/HEAD/skill/scripts/jev.py), read by a model 2026-10-30 · ⚠ `marketing`</sub>
-
 - **[Codex Jev Router](https://github.com/suenot/codex-jev-router)** — Uses Jev Choice and Noul judgments on short task summaries to select a Codex subagent model and reasoning effort with a Sol fallback.
   <sub>`Project` · ★10+ · suenot · `JS` · `choice` · `noul` · call site [`src/router.mjs`](https://github.com/suenot/codex-jev-router/blob/HEAD/src/router.mjs), read 2026-09-24 · ⚠ `AI-written` `self-submitted`</sub>
+
+- **[dsh-jev-plugin](https://github.com/jackie-cqz/dsh-jev-plugin)** — DeepSeek Harness plugin that gives agents Jev's noul, choice and score as tools, and can also use Jev as a pre-execution risk gate (a score over risk levels that denies a tool call, asks for approval or lets it run), a review of tool results and a model router. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · jackie-cqz · `TS` · `noul` · `choice` · `score` · call site [`src/client.ts`](https://github.com/jackie-cqz/dsh-jev-plugin/blob/HEAD/src/client.ts), read by a model 2026-11-08</sub>
 
 - **[Hermes Switchyard](https://github.com/bgrablin/hermes-switchyard)** — Hermes Agent plugin that hands a session's small decisions to Jev and acts on the answers within limits you set: the reasoning effort each turn needs, which skill to load, which control to click in computer use, and re-ranking past-session search, with a local receipt of each. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · bgrablin · `Py` · `choice` · `noul` · `score` · call site [`hermes_switchyard/client.py`](https://github.com/bgrablin/hermes-switchyard/blob/HEAD/hermes_switchyard/client.py), read by a model 2026-11-07</sub>
@@ -128,6 +137,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-router](https://github.com/prismhq/jev-router)** — Open-source LLM router that uses TypeSafe's Jev to pick a model, on top of LiteLLM <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · prismhq · `Py` · call site [`jev_router/deciders.py`](https://github.com/prismhq/jev-router/blob/HEAD/jev_router/deciders.py), read 2026-09-22 · ⚠ `one commit`</sub>
+
+- **[jev-router](https://github.com/hyspacex/jev-router)** — Self-hosted model router for coding agents and OpenAI-compatible clients. When a task starts it asks Jev, in one call, the task type (choice), its difficulty (score) and whether a wrong answer would do harm or needs faithfulness (nouls); YAML rules then pick the session's model and effort. <sub>(written by a model)</sub>
+  <sub>`Project` · ★10+ · hyspacex · `Py` · `choice` · `score` · `noul` · call site [`src/jev_router/deciders/jev.py`](https://github.com/hyspacex/jev-router/blob/HEAD/src/jev_router/deciders/jev.py), read by a model 2026-11-13</sub>
 
 - **[jev-router](https://github.com/rajdhakad9826/jev-router)** — LLM router that picks the cheapest model capable of handling a query, using TypeSafe's Jev for fast classification instead of an LLM call. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · rajdhakad9826 · `TS` · call site [`src/jev/classifier.ts`](https://github.com/rajdhakad9826/jev-router/blob/HEAD/src/jev/classifier.ts), read 2026-09-24</sub>
@@ -171,6 +183,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[pi-jev-router](https://github.com/mejiasd3v/pi-jev-router)** — Automatic model routing for Pi using TypeSafe's Jev through Vercel AI Gateway <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · mejiasd3v · `JS` · call site [`index.ts`](https://github.com/mejiasd3v/pi-jev-router/blob/HEAD/index.ts), read 2026-09-22</sub>
 
+- **[pi-model-router](https://github.com/alexei-led/pi-model-router)** — Model router for the Pi coding agent that can ask a classifier registered in Pi, Jev 1.14 in its reference config, up to four choices in one request: whether the request starts a new task, which configured route fits the work underway, the task's goal and its phase. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · alexei-led · `TS` · `choice` · cited file [`docs/examples/classifier-catalog.ts`](https://github.com/alexei-led/pi-model-router/blob/HEAD/docs/examples/classifier-catalog.ts), read by a model 2026-11-19</sub>
+
 - **[pi-shift-router](https://github.com/green-dalii/pi-shift-router)** — Extension for the pi coding agent that routes each turn between a fast and a smart model tier, with failover on rate limits and exhausted quotas. Its judge can be a decision model such as Jev: one choice picks the tier and one noul decides whether to hand the task to subagents. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · green-dalii · `TS` · `choice` · `noul` · call site [`src/judge.ts`](https://github.com/green-dalii/pi-shift-router/blob/HEAD/src/judge.ts), read by a model 2026-11-03</sub>
 
@@ -182,12 +197,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[agent-reflex](https://github.com/psygreg/agent-reflex)** — Plugin for eight coding agents, OpenCode first, that asks a System One decision model nouls and choices to block dangerous shell commands, pick the tool groups and skills a prompt needs, set reasoning effort by complexity, steer history compaction and choose a tool when the agent cannot. <sub>(written by a model)</sub>
   <sub>`Plugin` · psygreg · `TS` · `noul` · `choice` · call site [`plugins/opencode/index.ts`](https://github.com/psygreg/agent-reflex/blob/HEAD/plugins/opencode/index.ts), read by a model 2026-11-21</sub>
-
-- **[AgentScope](https://github.com/agentscope-ai/agentscope)** — Multi-agent framework whose classifier models include Jev: JevClassifierModel sends binary, choice and score questions to System One through TypeSafe's Python SDK, and the ModelRouter middleware asks a classifier one choice per reply to pick the chat model that answers. <sub>(written by a model)</sub>
-  <sub>`Project` · agentscope-ai · `Py` · `choice` · `noul` · `score` · call site [`src/agentscope/classifier/_jev/_model.py`](https://github.com/agentscope-ai/agentscope/blob/HEAD/src/agentscope/classifier/_jev/_model.py), read by a model 2026-11-12</sub>
-
-- **[AI 海龟汤 (AI Turtle Soup)](https://github.com/zerotang05/situation-puzzle)** — Lateral-thinking puzzle game hosted by Jev: each player question gets a choice of Yes, No or Irrelevant, a written solution is ruled Solved, Close or Not yet, and submitted puzzles are reviewed before the public library. A verdict below the confidence threshold goes to a MiniMax model. <sub>(written by a model)</sub>
-  <sub>`Project` · zerotang05 · `TS` · `choice` · call site [`packages/jev/src/config.ts`](https://github.com/zerotang05/situation-puzzle/blob/HEAD/packages/jev/src/config.ts), read by a model 2026-11-12</sub>
 
 - **[Building a Harness with Jev](https://www.langchain.com/blog/building-a-harness-with-jev)** — LangChain's explainer and integration walkthrough: the three question types, plus model routing and gating risky tool calls before they run.
   <sub>`Article` · Sydney Runkle, Hunter Lovell · `Py` · ⚠ `vendor numbers`</sub>
@@ -206,9 +215,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[DESIGN:OS Generative UI](https://github.com/jangtrinh/design-os-generative-ui)** — Streaming UI runtime for AI agents that renders live HTML, charts and WebGL widgets. Its composer first asks a local Laya model which widget and layout fit a request (choices) and whether it is about dashboards, landing pages or alerts (nouls), and asks Jev the same when Laya is unsure. <sub>(written by a model)</sub>
   <sub>`Plugin` · jangtrinh · `TS` · `choice` · `noul` · call site [`src/engine/jev-adapter.ts`](https://github.com/jangtrinh/design-os-generative-ui/blob/HEAD/src/engine/jev-adapter.ts), read by a model 2026-11-18</sub>
-
-- **[dsh-jev-plugin](https://github.com/jackie-cqz/dsh-jev-plugin)** — DeepSeek Harness plugin that gives agents Jev's noul, choice and score as tools, and can also use Jev as a pre-execution risk gate (a score over risk levels that denies a tool call, asks for approval or lets it run), a review of tool results and a model router. <sub>(written by a model)</sub>
-  <sub>`Plugin` · jackie-cqz · `TS` · `noul` · `choice` · `score` · call site [`src/client.ts`](https://github.com/jackie-cqz/dsh-jev-plugin/blob/HEAD/src/client.ts), read by a model 2026-11-08</sub>
 
 - **[dsh-plugin-jev-effort-selector](https://github.com/justhalfbit/dsh-plugin-jev-effort-selector)** — A DeepSeek Harness plugin that picks the reasoning level automatically: Jev judges how much thought each message deserves, follow-ups inherit the topic's depth, low confidence rounds up, and any failure falls back silently.
   <sub>`Plugin` · justhalfbit · `JS` · call site [`lib/client.js`](https://github.com/justhalfbit/dsh-plugin-jev-effort-selector/blob/HEAD/lib/client.js), read 2026-09-24</sub>
@@ -285,9 +291,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-model-router](https://github.com/satviksinha/jev-model-router)** — Model router for Claude Code using Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · satviksinha · `TS` · call site [`scripts/check-jev.mjs`](https://github.com/satviksinha/jev-model-router/blob/HEAD/scripts/check-jev.mjs), read 2026-09-24</sub>
 
-- **[jev-router](https://github.com/hyspacex/jev-router)** — Self-hosted model router for coding agents and OpenAI-compatible clients. When a task starts it asks Jev, in one call, the task type (choice), its difficulty (score) and whether a wrong answer would do harm or needs faithfulness (nouls); YAML rules then pick the session's model and effort. <sub>(written by a model)</sub>
-  <sub>`Project` · hyspacex · `Py` · `choice` · `score` · `noul` · call site [`src/jev_router/deciders/jev.py`](https://github.com/hyspacex/jev-router/blob/HEAD/src/jev_router/deciders/jev.py), read by a model 2026-11-13</sub>
-
 - **[jev-router](https://github.com/pyxl-dev/jev-router)** — Mod for Claude Code that asks Jev, through OpenRouter, how much reasoning effort each message's task needs (low, medium or high, one choice question). At 60% confidence or more it sets that effort on the same model, so the prompt cache stays; otherwise the app's own setting applies. <sub>(written by a model)</sub>
   <sub>`Plugin` · pyxl-dev · `TS` · `choice` · call site [`hooks/register.tsx`](https://github.com/pyxl-dev/jev-router/blob/HEAD/hooks/register.tsx), read by a model 2026-11-24</sub>
 
@@ -314,9 +317,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[pi-jev-router](https://github.com/philippdubach/pi-jev-router)** — A minimal Pareto-optimal OpenRouter model router for pi, based on Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · philippdubach · `TS` · call site [`src/classifier.ts`](https://github.com/philippdubach/pi-jev-router/blob/HEAD/src/classifier.ts), read 2026-09-24</sub>
-
-- **[pi-model-router](https://github.com/alexei-led/pi-model-router)** — Model router for the Pi coding agent that can ask a classifier registered in Pi, Jev 1.14 in its reference config, up to four choices in one request: whether the request starts a new task, which configured route fits the work underway, the task's goal and its phase. <sub>(written by a model)</sub>
-  <sub>`Plugin` · alexei-led · `TS` · `choice` · cited file [`docs/examples/classifier-catalog.ts`](https://github.com/alexei-led/pi-model-router/blob/HEAD/docs/examples/classifier-catalog.ts), read by a model 2026-11-19</sub>
 
 - **[pi-typesafe-router](https://github.com/jekozyra/pi-typesafe-router)** — A Pi extension that has Jev classify each request and route it to the right model, off until you configure the mappings.
   <sub>`Plugin` · jekozyra · `TS` · call site [`src/config.ts`](https://github.com/jekozyra/pi-typesafe-router/blob/HEAD/src/config.ts), read 2026-09-24</sub>

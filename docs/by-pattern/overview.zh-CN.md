@@ -83,6 +83,12 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ai](https://github.com/vercel/ai)** — TypeScript 的 AI 工具包，来自 Next.js 的作者们。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · ★10k+ · vercel · `TS` · 调用点 [`examples/ai-functions/src/decide/typesafe-ai/basic.ts`](https://github.com/vercel/ai/blob/HEAD/examples/ai-functions/src/decide/typesafe-ai/basic.ts)，2026-09-22 阅读</sub>
 
+- **[Bifrost TypeSafe gateway route](https://github.com/maximhq/bifrost/tree/dev/core/providers/typesafe)** — 一个 Go 网关 provider，对原生 API 做一比一透传 —— 官方 SDK 只需改 base URL 即可使用。
+  <sub>`开源项目` · ★10k+ · `Go` · 调用点 [`core/providers/typesafe/typesafe.go`](https://github.com/maximhq/bifrost/blob/HEAD/core/providers/typesafe/typesafe.go)</sub>
+
+- **[kev](https://github.com/jaredpalmer/kev)** — 一套可训练、可自托管的 Jev-like 决策模型，API 与 System One 兼容 —— 官方 SDK 可以直接指向你自己的服务。
+  <sub>`Jev 替代实现` · ★10k+ · Jared Palmer · `Py` · `choice` · `score` · `noul` · 引用文件 [`playground/scripts/jev-evaluate.mjs`](https://github.com/jaredpalmer/kev/blob/HEAD/playground/scripts/jev-evaluate.mjs)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
+
 - **[laya](https://github.com/NandhaKishorM/laya)** — System One 接口的重新实现，不是 Jev：用自己的非自回归检查点，在一次前向传播中回答关于文本或 JSON 的 choice、score 和 noul 问题；据作者在 T4 上的测量，单个问题 33 毫秒；支持 100 多种语言，并由路由器为每个请求挑选检查点。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★10k+ · nandhakishorm · `Py` · 引用文件 [`laya-ts/src/shortlist.ts`](https://github.com/NandhaKishorM/laya/blob/HEAD/laya-ts/src/shortlist.ts)，2026-09-24 阅读 · ⚠ `并非 Jev 本身`</sub>
 
@@ -97,9 +103,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[ax](https://github.com/ax-llm/ax)** — DSPy 风格的类型化 LLM 程序框架，以 TypeScript 为主，也编译成 Python、Java、C++、Go 和 Rust 库。它的原生 TypeSafe 客户端把布尔、类别和有序评分签名作为 noul、choice 和 score 问题发给 Jev，并可保留每个答案的概率和置信度。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★1k+ · ax-llm · `TS` · 调用点 [`src/ax/ai/typesafe/client.ts`](https://github.com/ax-llm/ax/blob/HEAD/src/ax/ai/typesafe/client.ts)，2026-09-22 阅读</sub>
-
-- **[Bifrost TypeSafe gateway route](https://github.com/maximhq/bifrost/tree/dev/core/providers/typesafe)** — 一个 Go 网关 provider，对原生 API 做一比一透传 —— 官方 SDK 只需改 base URL 即可使用。
-  <sub>`开源项目` · ★1k+ · `Go` · 调用点 [`core/providers/typesafe/typesafe.go`](https://github.com/maximhq/bifrost/blob/HEAD/core/providers/typesafe/typesafe.go)</sub>
 
 - **[CLM (Contrastive Language Models)](https://github.com/contrastive-lm/clm)** — 对比语言模型（CLM）：CLM-8B 是以对比学习目标训练、把 state 与动作联系起来的 System One 模型，部署在兼容 TypeSafe 的 API 之后，原样接受 Jev 的 `noul`、`choice` 和 `score` 问题。state 与动作的嵌入分开缓存，另有一个端点给候选答案排序。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★1k+ · contrastive-lm · `Py` · 引用文件 [`src/clm/server.py`](https://github.com/contrastive-lm/clm/blob/HEAD/src/clm/server.py)，2026-10-29 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
@@ -121,9 +124,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jevlike](https://github.com/vinnylarouge/jevlike)** — 一个独立可训练的模型，输入输出形状与 Jev 相同：文本加 N 个选项进，每个选项一个概率出，单次前向完成。
   <sub>`Jev 替代实现` · ★1k+ · vinnylarouge · `Py` · ⚠ `并非 Jev 本身`</sub>
-
-- **[kev](https://github.com/jaredpalmer/kev)** — 一套可训练、可自托管的 Jev-like 决策模型，API 与 System One 兼容 —— 官方 SDK 可以直接指向你自己的服务。
-  <sub>`Jev 替代实现` · ★1k+ · Jared Palmer · `Py` · `choice` · `score` · `noul` · 引用文件 [`playground/scripts/jev-evaluate.mjs`](https://github.com/jaredpalmer/kev/blob/HEAD/playground/scripts/jev-evaluate.mjs)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
 
 - **[Kiln: Jev adapter](https://github.com/Kiln-AI/Kiln)** — 一个接进 adapter registry 的「JSON Schema 转问题」编译器，并诚实说明了它无法支持的场景。
   <sub>`平台集成` · ★1k+ · `Py` · `choice` · `score` · `noul` · 调用点 [`libs/core/kiln_ai/adapters/jev/jev_client.py`](https://github.com/Kiln-AI/Kiln/blob/HEAD/libs/core/kiln_ai/adapters/jev/jev_client.py)，2026-09-22 阅读</sub>
@@ -175,6 +175,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Convex Coding Evals](https://github.com/convex/convex-evals)** — Convex 的编程基准新增了决策模型赛道：108 道关于 Convex 知识的选择题，每题四个选项，覆盖其 112 个编程评测中的 90 个。Jev 通过 OpenRouter 的决策端点，以一个 `choice` 回答每道题；语言模型则通过聊天补全接口回答同样的问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ★100+ · convex · `TS` · `choice` · 调用点 [`runner/decisions/providers.ts`](https://github.com/convex/convex-evals/blob/HEAD/runner/decisions/providers.ts)，2026-10-29 模型阅读</sub>
+
+- **[Decision Index](https://github.com/apolinario/decision-index)** — Decision Index 的复现工具包。Decision Index 是类型化决策引擎（Jev 以及回答 choice 和 noul 问题的开源模型）的排行榜，涵盖 37 个公开基准，按扣除随机水平的方式计分。其 http 引擎把每个请求原样发给任何 /v1/systemone 服务器；参考模型为 jev-1.13.0。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · ★100+ · apolinario · `Py` · 调用点 [`decision_index/engines/http.py`](https://github.com/apolinario/decision-index/blob/HEAD/decision_index/engines/http.py)，2026-10-30 模型阅读</sub>
 
 - **[djev](https://github.com/mmastrac/djev)** — 不是 Jev：一个在 vLLM 上用 DiffusionGemma 回答 Jev 式问题的服务。把答案模板预置到画布上，只把答案槽位留作噪声，于是一步去噪就能得到每个槽位的分布。它按 Jev 的请求和回答格式支持 noul、choice 和 score，另外加了 span 类问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★100+ · mmastrac · `Py` · 引用文件 [`structured_server.py`](https://github.com/mmastrac/djev/blob/HEAD/structured_server.py)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
@@ -290,14 +293,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[RSI-Jev](https://github.com/Shanghua-Gao/RSI-Jev)** — 一个由 Agent 驱动的研究循环：提出假设、预先登记预测，然后训练并淘汰开源决策模型。这些模型按 /v1/systemone 格式回答 noul、choice 和 score。496 个实验全部写成记录，失败的也包括在内。作者报告 27B 视觉语言模型在公开的 Decision Index 0.3 集上得分 65.64。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★100+ · shanghua-gao · `Py` · 引用文件 [`rsijev/contract.py`](https://github.com/Shanghua-Gao/RSI-Jev/blob/HEAD/rsijev/contract.py)，2026-10-24 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
-- **[runline](https://github.com/Michaelliv/runline)** — 给智能体的代码模式：内置 204 个插件，把各种 API 和主机功能变成动作，由智能体编写的 JavaScript 在 QuickJS 沙箱中调用。它的 TypeSafe 插件把状态和 choice、score 或 noul 问题发给 Jev，并先检查请求是否超出 Jev 的 token 上限。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★100+ · michaelliv · `TS` · 调用点 [`packages/runline-plugins/typesafe/src/shared.ts`](https://github.com/Michaelliv/runline/blob/HEAD/packages/runline-plugins/typesafe/src/shared.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
+- **[runline](https://github.com/shift-labs-ai/codemode)** — 给智能体的代码模式：内置 204 个插件，把各种 API 和主机功能变成动作，由智能体编写的 JavaScript 在 QuickJS 沙箱中调用。它的 TypeSafe 插件把状态和 choice、score 或 noul 问题发给 Jev，并先检查请求是否超出 Jev 的 token 上限。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · michaelliv · `TS` · 调用点 [`packages/runline-plugins/typesafe/src/shared.ts`](https://github.com/shift-labs-ai/codemode/blob/HEAD/packages/runline-plugins/typesafe/src/shared.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
 - **[simple-jev](https://github.com/featherless-ai/simple-jev)** — 通过读取 next-token logits，把任意开源权重模型变成 Jev 形状的端点 —— JSON 由服务端组装，而不是模型生成。
   <sub>`Jev 替代实现` · ★100+ · `Py` · 引用文件 [`hf-server/hf_server.py`](https://github.com/featherless-ai/simple-jev/blob/HEAD/hf-server/hf_server.py) · ⚠ `并非 Jev 本身`</sub>
 
 - **[typesafe-mcp](https://github.com/itsmostafa/system-one-connector)** — 最适合刚拿到 API 的人。把 Jev 接进 Claude Code、Claude Desktop、Codex 和 Pi，随时做 Choice / Score / Noul。
   <sub>`插件` · ★100+ · `Go` · `choice` · `score` · `noul` · 调用点 [`cmd/evaluate/main.go`](https://github.com/itsmostafa/system-one-connector/blob/HEAD/cmd/evaluate/main.go)，2026-09-22 阅读</sub>
+
+- **[Valen](https://github.com/Valen-Team/Valen)** — Apache-2.0 开放多模态决策模型（Valen-Decision-1.5，0.8B 至 27B），回答关于文本、图片和视频的 `choice`、`score`、`noul` 问题，`bbox` 问题在同一次前向中返回目标框。提供原生、ONNX 和 GGUF 权重与训练代码，可通过 vLLM、SGLang 或补丁版 llama.cpp 以 `/v1/systemone` 提供服务。
+  <sub>`Jev 替代实现` · ★100+ · Valen-Team · `Py` · 引用文件 [`serving/vllm/src/valen_vllm/endpoint.py`](https://github.com/Valen-Team/Valen/blob/HEAD/serving/vllm/src/valen_vllm/endpoint.py)，2026-11-13 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据` `作者自荐`</sub>
 
 - **[vLLM Jev](https://github.com/mode-io/vllm-jev)** — 基于 vLLM 的推理引擎，用于 Valen 等开源的 Jev 形态决策模型：通过 prefill 并复用共享前缀为 choice、noul、score 候选打分，支持图像和视频输入，并为 Apple Silicon 提供 MLX 路径。作者报告在一次视频测试中比 Valen 的 PyTorch 参考实现快 4.3 倍。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★100+ · mode-io · `Py` · 引用文件 [`vllm_jev/endpoint.py`](https://github.com/mode-io/vllm-jev/blob/HEAD/vllm_jev/endpoint.py)，2026-10-24 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
@@ -326,8 +332,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Decis](https://github.com/chaitin/Decis)** — 可自托管的开源决策模型推理服务器，实现了 /v1/systemone 协议，官方 TypeSafe SDK 只需改 base_url 即可接入。每个引擎一个内置权重的 Docker 镜像（laya-multilingual、kev-0.8b 和两个 Jeff 版本），另附游戏演示场。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★10+ · chaitin · `Py` · 引用文件 [`examples/python_sdk.py`](https://github.com/chaitin/Decis/blob/HEAD/examples/python_sdk.py)，2026-10-24 模型阅读 · ⚠ `并非 Jev 本身`</sub>
 
-- **[Decision Index](https://github.com/apolinario/decision-index)** — Decision Index 的复现工具包。Decision Index 是类型化决策引擎（Jev 以及回答 choice 和 noul 问题的开源模型）的排行榜，涵盖 37 个公开基准，按扣除随机水平的方式计分。其 http 引擎把每个请求原样发给任何 /v1/systemone 服务器；参考模型为 jev-1.13.0。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`基准测试` · ★10+ · apolinario · `Py` · 调用点 [`decision_index/engines/http.py`](https://github.com/apolinario/decision-index/blob/HEAD/decision_index/engines/http.py)，2026-10-30 模型阅读</sub>
+- **[decision-cascade](https://github.com/slavabars/decision-cascade)** — 一个本地决策引擎，思路与 Jev 相同：训练好的决策头在你自己的硬件上回答 noul、choice 和 score 问题，给出校准过的概率，只有不确定的问题才升级给远程模型。其服务器按 Jev 的请求格式响应 POST /v1/systemone。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · ★10+ · slavabars · `Py` · 引用文件 [`api/server/main.py`](https://github.com/slavabars/decision-cascade/blob/HEAD/api/server/main.py)，2026-11-12 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
 - **[diffusion-jev-sglang](https://github.com/Hangzhi/diffusion-jev-sglang)** — 由 DiffusionGemma 与 SGLang 驱动的类 Jev 决策引擎——“长了眼睛的 Jev”。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★10+ · hangzhi · `Py` · 引用文件 [`scripts/compare_jevbench.py`](https://github.com/Hangzhi/diffusion-jev-sglang/blob/HEAD/scripts/compare_jevbench.py)，2026-09-24 阅读 · ⚠ `并非 Jev 本身`</sub>
@@ -338,8 +344,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[fastjev](https://github.com/chengyongru/fastjev)** — 以 SDK 为先、独立维护的 SemIf 分支，用于快速的自托管语义决策。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★10+ · chengyongru · `Py` · 引用文件 [`demo/jev-ultrafast/record.py`](https://github.com/chengyongru/fastjev/blob/HEAD/demo/jev-ultrafast/record.py)，2026-09-24 阅读 · ⚠ `并非 Jev 本身`</sub>
 
+- **[Fovea-4B](https://github.com/sivasuthan9/fovea)** — 面向图像的开源 4B 决策模型：给定一张照片、文档、收据、图表或截图，加上 JSON 状态和一个类型化的 noul、choice 或 score 问题，一次前向计算就为每个允许的答案给出概率；它通过 TypeSafe 的 System One API 提供服务，该 API 的客户端无需改动即可调用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`Jev 替代实现` · ★10+ · sivasuthan9 · `Py` · 引用文件 [`fovea_sdk/server.py`](https://github.com/sivasuthan9/fovea/blob/HEAD/fovea_sdk/server.py)，2026-11-12 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+
 - **[go-jev](https://github.com/mattn/go-jev)** — TypeSafe Jev 的 Go SDK 与 CLI：从模型获得带类型的决策（是非、选择、评分）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · ★10+ · mattn · `Go` · 调用点 [`jev.go`](https://github.com/mattn/go-jev/blob/HEAD/jev.go)，2026-09-24 阅读</sub>
+
+- **[go-system-one](https://github.com/rcarmo/go-system-one)** — 当地鼠遇上 Jev：一个 Go 语言的 System One 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · ★10+ · rcarmo · `Go` · 调用点 [`docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py`](https://github.com/rcarmo/go-system-one/blob/HEAD/docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py)，2026-09-24 阅读</sub>
 
 - **[Groot 1](https://github.com/leofmarciano/groot)** — 开源的类型化决策模型（基于 mmBERT 的 482M 参数 Groot 1 和 149M 参数 Groot 1 S），使用 System One 请求格式，支持 choice、score 和 noul 问题，现有的 jev-latest 客户端可直接改指向它；以英语和葡萄牙语训练，并有纯 Bend 实现的前向计算。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★10+ · leofmarciano · `Py` · 引用文件 [`groot1/bench.py`](https://github.com/leofmarciano/groot/blob/HEAD/groot1/bench.py)，2026-11-06 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
@@ -440,6 +452,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[NotJev : Kev](https://github.com/arjun988/Kev)** — 自托管的 System One 决策引擎（TypeScript），通过 POST /v1/systemone 提供 choice、score 和 noul，底层用你自带的模型（Ollama、vLLM 或任何兼容 OpenAI 的服务）或内置的模拟后端，另有 SDK、命令行工具、MCP 服务器和试玩页面。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★10+ · arjun988 · `TS` · 引用文件 [`benchmarks/suites/openjev-heldout/run.ts`](https://github.com/arjun988/Kev/blob/HEAD/benchmarks/suites/openjev-heldout/run.ts)，2026-11-01 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
+- **[Nouli](https://github.com/nouli-ai/nouli)** — 用于构建决策网络的终端应用、命令行工具和 Rust 库：把小决策串成大决策，每一步都是发给决策模型的 noul、choice 或 score 问题，并记录每一步。其设置可以连接 TypeSafe 的 jev-latest、经 OpenRouter 的 Jev、Cloudflare 的 Clef、Ollama 或 llama.cpp。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · nouli-ai · `Rs` · `choice` · `noul` · `score` · 调用点 [`nouli-cli/src/connect/recipes.rs`](https://github.com/nouli-ai/nouli/blob/HEAD/nouli-cli/src/connect/recipes.rs)，2026-11-12 模型阅读</sub>
+
 - **[Ollajev](https://github.com/nvkudva/ollajev)** — 类似 Ollama 的开源决策模型运行器，从 Hugging Face 拉取模型（默认 Vega，另有 Clef 等），通过 POST /v1/systemone 提供服务，因此只需修改 base URL 即可使用 typesafe-sdk：支持 pull、list、run、serve、终端模型管理器和浏览器试玩页，并可输入图像、音频和视频。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★10+ · nvkudva · `Py` · 引用文件 [`src/ollajev/_vendor/kev/api.py`](https://github.com/nvkudva/ollajev/blob/HEAD/src/ollajev/_vendor/kev/api.py)，2026-11-02 模型阅读 · ⚠ `并非 Jev 本身`</sub>
 
@@ -482,6 +497,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ruling](https://github.com/bradAGI/ruling)** — 由本地模型给出带类型、经校准的决策，不生成文本。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★10+ · bradagi · `Py` · 引用文件 [`ruling/against.py`](https://github.com/bradAGI/ruling/blob/HEAD/ruling/against.py)，2026-09-24 阅读 · ⚠ `并非 Jev 本身` `宣称未核实`</sub>
 
+- **[S1MB (System One Mosaic Benchmark)](https://github.com/hotchpotch/S1MB)** — 基准测试：让各家 System One 决策模型（包括 Jev）用 choice、noul、score 问题跑同样的 100 多项英文、日文和视觉任务，并有公开排行榜。它的 TypeSafe 适配器把每条用例发到 Jev 的 /v1/systemone；其他适配器覆盖开源和托管的竞品。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · ★10+ · hotchpotch · `Py` · `choice` · `noul` · `score` · 调用点 [`evaluator/src/s1mb/adapters/typesafe.py`](https://github.com/hotchpotch/S1MB/blob/HEAD/evaluator/src/s1mb/adapters/typesafe.py)，2026-11-13 模型阅读</sub>
+
 - **[SelfJev](https://github.com/jwuthri-cloud/selfjev)** — 自托管的决策服务：它自己的 4B 视觉模型（selfjev-4b-vision）在你的 GPU 上运行，以 Jev 的请求和回答格式在 /v1/systemone、/api/alpha/decisions 和 /v1/decisions 提供服务，Jev 客户端无需改模型名。它另加了用于多选题的 multi 类型，并提供 Python SDK。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★10+ · jwuthri-cloud · `Py` · 引用文件 [`src/selfjev/server/app.py`](https://github.com/jwuthri-cloud/selfjev/blob/HEAD/src/selfjev/server/app.py)，2026-11-06 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
@@ -511,6 +529,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[system-one](https://github.com/iamaamir/system-one)** — 面向 TypeScript 与 Pi 的、与提供方无关的 System One 运行时。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · ★10+ · iamaamir · `TS` · 调用点 [`pi-system-one/src/tool.ts`](https://github.com/iamaamir/system-one/blob/HEAD/pi-system-one/src/tool.ts)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
+
+- **[SystemOne Client](https://github.com/schainks/system_one_client)** — 面向 System One 决策模型的 Elixir 客户端：返回带完整概率分布的类型化答案（choice 取前 k 个、noul 设阈值、score 按等级切分），支持 TypeSafe 的 Jev、OpenRouter 的 decisions 端点，以及并非 Jev 的模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · ★10+ · schainks · `Ex` · `noul` · `choice` · `score` · 调用点 [`lib/system_one_client/provider.ex`](https://github.com/schainks/system_one_client/blob/HEAD/lib/system_one_client/provider.ex)，2026-11-08 模型阅读</sub>
 
 - **[tinyjev](https://github.com/ankit-aglawe/tinyjev)** — 一个微型类 Jev 模型：一次前向传播回答 Choice、Score 与 Noul 问题并返回校准概率。支持 MLX 或 PyTorch，完全离线，兼容 System One 接口。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · ★10+ · ankit-aglawe · `Py` · 引用文件 [`tinyjev/cli.py`](https://github.com/ankit-aglawe/tinyjev/blob/HEAD/tinyjev/cli.py)，2026-09-24 阅读 · ⚠ `并非 Jev 本身`</sub>
@@ -585,10 +606,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`基准测试` · gazelle93 · `Py` · `choice` · 调用点 [`harness/models/jev.py`](https://github.com/gazelle93/decision-models-under-pressure/blob/HEAD/harness/models/jev.py)，2026-11-15 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[decision-bench](https://github.com/Hanno-Labs/decision-bench)** — 面向基于文档的决策模型的开放基准运行框架。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`基准测试` · hanno-labs · `Py` · 调用点 [`src/decision_bench/models/jev_openrouter.py`](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py)，2026-09-24 阅读</sub>
-
-- **[decision-cascade](https://github.com/slavabars/decision-cascade)** — 一个本地决策引擎，思路与 Jev 相同：训练好的决策头在你自己的硬件上回答 noul、choice 和 score 问题，给出校准过的概率，只有不确定的问题才升级给远程模型。其服务器按 Jev 的请求格式响应 POST /v1/systemone。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`Jev 替代实现` · slavabars · `Py` · 引用文件 [`api/server/main.py`](https://github.com/slavabars/decision-cascade/blob/HEAD/api/server/main.py)，2026-11-12 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
+  <sub>`基准测试` · hanno-labs · `Py` · 调用点 [`src/decision_bench/models/jev_openrouter.py`](https://github.com/Hanno-Labs/decision-bench/blob/HEAD/src/decision_bench/models/jev_openrouter.py)，2026-09-24 阅读 · ⚠ `已归档`</sub>
 
 - **[decision-circuits](https://github.com/Barneyjm/decision-circuits)** — 决策电路：向 System One 模型提出带类型的问题，拿回校准概率，关卡写在代码里。零依赖。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · barneyjm · `Py` · 调用点 [`examples/02_jev_backend.py`](https://github.com/Barneyjm/decision-circuits/blob/HEAD/examples/02_jev_backend.py)，2026-09-24 阅读</sub>
@@ -602,14 +620,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ex_typesafe_ai](https://github.com/iamtalha-arshad/ex_typesafe_ai)** — TypeSafe API 的非官方 Elixir 客户端，以 ex_typesafe_ai 发布在 Hex 上：构建 noul、choice 和 score 问题，与一个 state 一起发往 /v1/systemone，按原语分组返回带类型的回答结构体；重试时遵循 Retry-After，错误也有类型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · iamtalha-arshad · `Ex` · `noul` · `choice` · `score` · 调用点 [`lib/type_safe.ex`](https://github.com/iamtalha-arshad/ex_typesafe_ai/blob/HEAD/lib/type_safe.ex)，2026-11-19 模型阅读</sub>
 
-- **[Fovea-4B](https://github.com/sivasuthan9/fovea)** — 面向图像的开源 4B 决策模型：给定一张照片、文档、收据、图表或截图，加上 JSON 状态和一个类型化的 noul、choice 或 score 问题，一次前向计算就为每个允许的答案给出概率；它通过 TypeSafe 的 System One API 提供服务，该 API 的客户端无需改动即可调用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`Jev 替代实现` · sivasuthan9 · `Py` · 引用文件 [`fovea_sdk/server.py`](https://github.com/sivasuthan9/fovea/blob/HEAD/fovea_sdk/server.py)，2026-11-12 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
-
 - **[fuzzy-jev](https://github.com/dsaad68/fuzzy-jev)** — 面向 OpenRouter 决策模型的 Rust 客户端、命令行工具和 Python 包，默认使用 Jev：就文本或图片提出 choice、score 或 noul 问题，拿回概率。规则文件把这些概率当作模糊真值，用 AND、OR、NOT 和修饰词组合成决策。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · dsaad68 · `Rs` · `choice` · `score` · `noul` · 调用点 [`src/lib.rs`](https://github.com/dsaad68/fuzzy-jev/blob/HEAD/src/lib.rs)，2026-11-21 模型阅读</sub>
-
-- **[go-system-one](https://github.com/rcarmo/go-system-one)** — 当地鼠遇上 Jev：一个 Go 语言的 System One 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`SDK` · rcarmo · `Go` · 调用点 [`docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py`](https://github.com/rcarmo/go-system-one/blob/HEAD/docs/benchmarks/data/jevbench-public-20260923/protocol/aggregate.py)，2026-09-24 阅读</sub>
 
 - **[gut](https://github.com/Kungie/gut)** — 把一次判断写成一行代码的 Python 库（PyPI 上名为 gutfeel）：likely 向 Jev 问一个 noul，classify 在一个 Enum 上问 choice，rate 按你给的等级问 score；开启 ask_human 时，落在两个阈值之间会返回 UNSURE。还附带封装同样调用的 CLI 和 MCP 服务器。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · Kungie · `Py` · `noul` · `choice` · `score` · 调用点 [`src/gut/_backends/jev.py`](https://github.com/Kungie/gut/blob/HEAD/src/gut/_backends/jev.py)，2026-11-09 模型阅读</sub>
@@ -788,9 +800,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Minos.NET](https://github.com/MarcelRoozekrans/Minos.NET)** — 非官方的 .NET 客户端，对接 Jev 的 /v1/systemone。把 noul、choice、score 问题声明成 C# 类型，源代码生成器在编译时写好请求和答案解析，因此可在 Native AOT 下运行；由 IDecisionClient 发往 TypeSafe 或经 OpenRouter 发送。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · MarcelRoozekrans · `C#` · `noul` · `choice` · `score` · 调用点 [`src/Minos.NET.SystemOne/SystemOneDecisionClient.cs`](https://github.com/MarcelRoozekrans/Minos.NET/blob/HEAD/src/Minos.NET.SystemOne/SystemOneDecisionClient.cs)，2026-11-17 模型阅读</sub>
 
-- **[Nouli](https://github.com/nouli-ai/nouli)** — 用于构建决策网络的终端应用、命令行工具和 Rust 库：把小决策串成大决策，每一步都是发给决策模型的 noul、choice 或 score 问题，并记录每一步。其设置可以连接 TypeSafe 的 jev-latest、经 OpenRouter 的 Jev、Cloudflare 的 Clef、Ollama 或 llama.cpp。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · nouli-ai · `Rs` · `choice` · `noul` · `score` · 调用点 [`nouli-cli/src/connect/recipes.rs`](https://github.com/nouli-ai/nouli/blob/HEAD/nouli-cli/src/connect/recipes.rs)，2026-11-12 模型阅读</sub>
-
 - **[nu_plugin_jev](https://github.com/gleb-chipiga/nu_plugin_jev)** — Jev 的 Nushell 插件：jev ask 在一个请求里对同一状态提出多个命名问题，jev annotate 以有界流式方式对表格的每一行提问，构造器把 noul、choice 和 score 问题做成普通的 Nu 记录，演练模式无需密钥。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · gleb-chipiga · `Rs` · `noul` · `choice` · `score` · 调用点 [`src/api/client.rs`](https://github.com/gleb-chipiga/nu_plugin_jev/blob/HEAD/src/api/client.rs)，2026-11-22 模型阅读</sub>
 
@@ -815,9 +824,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[S1CogBench](https://github.com/dengzhe-hou/S1CogBench)** — 在 24 个经典认知实验上评测决策模型。Jev 1.14 逐试次作答，选择题用 choice，概率报告用 noul，与四个开源决策模型、三个语言模型对照和均匀随机选择一起计分，把在任务中行动和预测人类选择分开评估。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · Dengzhe Hou · `Py` · `choice` · `noul` · 调用点 [`examples/templates/decision_api_choice.py`](https://github.com/dengzhe-hou/S1CogBench/blob/HEAD/examples/templates/decision_api_choice.py)，2026-11-20 模型阅读 · ⚠ `作者自荐`</sub>
 
-- **[S1MB (System One Mosaic Benchmark)](https://github.com/hotchpotch/S1MB)** — 基准测试：让各家 System One 决策模型（包括 Jev）用 choice、noul、score 问题跑同样的 100 多项英文、日文和视觉任务，并有公开排行榜。它的 TypeSafe 适配器把每条用例发到 Jev 的 /v1/systemone；其他适配器覆盖开源和托管的竞品。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`基准测试` · hotchpotch · `Py` · `choice` · `noul` · `score` · 调用点 [`evaluator/src/s1mb/adapters/typesafe.py`](https://github.com/hotchpotch/S1MB/blob/HEAD/evaluator/src/s1mb/adapters/typesafe.py)，2026-11-13 模型阅读</sub>
-
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)** — 首个独立的 System One 决策模型横评（Laya 对比 Jev）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · instax-dutta · `Py` · 调用点 [`runners/jev_runner.py`](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py)，2026-09-22 阅读</sub>
 
@@ -825,16 +831,13 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`基准测试` · etsabary · `Py` · `choice` · 调用点 [`scripts/run_benchmark.py`](https://github.com/etsabary/system-1-decision-benchmark/blob/HEAD/scripts/run_benchmark.py)，2026-11-15 模型阅读</sub>
 
 - **[System One lab](https://github.com/baldellimtt/systemone-lab)** — 并非 Jev：一个动手学习系统一决策的实验项目，快速上手部分在本地运行开源的 Laya 模型，接口沿用 Jev 的 POST /v1/systemone 格式，附有三种原语、工单路由、智能体评审和阈值的示例，以及一个试验界面。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`Jev 替代实现` · baldellimtt · `Py` · 引用文件 [`jev_lab/client.py`](https://github.com/baldellimtt/systemone-lab/blob/HEAD/jev_lab/client.py)，2026-11-24 模型阅读 · ⚠ `并非 Jev 本身`</sub>
+  <sub>`Jev 替代实现` · baldellimtt · `Py` · 引用文件 [`jev_lab/client.py`](https://github.com/baldellimtt/systemone-lab/blob/HEAD/jev_lab/client.py)，2026-11-24 模型阅读 · ⚠ `并非 Jev 本身` `仅一次提交`</sub>
 
 - **[system-one-adapter-rust](https://github.com/codeitlikemiley/system-one-adapter-rust)** — 官方 system-one-adapter 的 Rust 移植（用 LLM 支撑 system_one 评估）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · codeitlikemiley · `Rs` · 调用点 [`src/client.rs`](https://github.com/codeitlikemiley/system-one-adapter-rust/blob/HEAD/src/client.rs)，2026-09-22 阅读</sub>
 
-- **[SystemOne Client](https://github.com/schainks/system_one_client)** — 面向 System One 决策模型的 Elixir 客户端：返回带完整概率分布的类型化答案（choice 取前 k 个、noul 设阈值、score 按等级切分），支持 TypeSafe 的 Jev、OpenRouter 的 decisions 端点，以及并非 Jev 的模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`SDK` · schainks · `Ex` · `noul` · `choice` · `score` · 调用点 [`lib/system_one_client/provider.ex`](https://github.com/schainks/system_one_client/blob/HEAD/lib/system_one_client/provider.ex)，2026-11-08 模型阅读</sub>
-
-- **[SystemOneDotNet](https://github.com/JabbaKadabra/SystemOneDotNet)** — TypeSafe System One（Jev）的 .NET 客户端：输入带类型的问题，输出带概率与置信度的类型化答案。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`SDK` · jabbakadabra · `C#` · 调用点 [`samples/SystemOneDotNet.Sample/Program.cs`](https://github.com/JabbaKadabra/SystemOneDotNet/blob/HEAD/samples/SystemOneDotNet.Sample/Program.cs)，2026-09-24 阅读</sub>
+- **[SystemOneDotNet](https://github.com/daniel-nordstein/SystemOneDotNet)** — TypeSafe System One（Jev）的 .NET 客户端：输入带类型的问题，输出带概率与置信度的类型化答案。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · jabbakadabra · `C#` · 调用点 [`samples/SystemOneDotNet.Sample/Program.cs`](https://github.com/daniel-nordstein/SystemOneDotNet/blob/HEAD/samples/SystemOneDotNet.Sample/Program.cs)，2026-09-24 阅读</sub>
 
 - **[taurus-jev-sdk-go](https://github.com/KKloudTarus/taurus-jev-sdk-go)** — 非官方的 Go Jev 客户端，除标准库外没有依赖：把带类型的 noul、choice、score 问题发往 /v1/systemone；缺少必填字段的响应会被拒绝而不是强行转换，API 密钥在错误和日志中被遮蔽，重定向时绝不发送 bearer token。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · KKloudTarus · `Go` · `noul` · `choice` · `score` · 调用点 [`jev.go`](https://github.com/KKloudTarus/taurus-jev-sdk-go/blob/HEAD/jev.go)，2026-11-18 模型阅读</sub>
@@ -983,9 +986,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Unofficial TypeSafe.ai .NET SDK](https://github.com/laurentkempe/typesafejevplayground)** — TypeSafe JavaScript SDK 的非官方 .NET 移植版（C# 15、System.Text.Json、无运行时依赖），向 Jev 的 /v1/systemone 发送类型化的 noul、choice 和 score 问题，附带一个 MCP 服务器示例；是作者系列博客文章背后的代码。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · laurentkempe · `C#` · `noul` · `choice` · `score` · 调用点 [`src/TypeSafe/TypeSafeClient.cs`](https://github.com/laurentkempe/typesafejevplayground/blob/HEAD/src/TypeSafe/TypeSafeClient.cs)，2026-11-08 模型阅读 · ⚠ `无许可证` `疑似 AI 生成`</sub>
 
-- **[Valen](https://github.com/Valen-Team/Valen)** — Apache-2.0 开放多模态决策模型（Valen-Decision-1.5，0.8B 至 27B），回答关于文本、图片和视频的 `choice`、`score`、`noul` 问题，`bbox` 问题在同一次前向中返回目标框。提供原生、ONNX 和 GGUF 权重与训练代码，可通过 vLLM、SGLang 或补丁版 llama.cpp 以 `/v1/systemone` 提供服务。
-  <sub>`Jev 替代实现` · Valen-Team · `Py` · 引用文件 [`serving/vllm/src/valen_vllm/endpoint.py`](https://github.com/Valen-Team/Valen/blob/HEAD/serving/vllm/src/valen_vllm/endpoint.py)，2026-11-13 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据` `作者自荐`</sub>
-
 - **[Verdict](https://github.com/Manavarya09/verdict)** — 小型多语言决策模型（默认模型 1.18 亿参数，CPU 即可运行），提供 choose、score 和 check 调用；服务器接受 Jev 的 POST /v1/systemone 请求格式，现有集成改个 base URL 就能切换；还支持用你自己的标注训练。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · Manavarya09 · `Py` · 引用文件 [`src/verdict/server.py`](https://github.com/Manavarya09/verdict/blob/HEAD/src/verdict/server.py)，2026-11-11 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
@@ -1088,6 +1088,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[is-jeven](https://github.com/wobsoriano/is-jeven)** — 它是偶数吗？问 Jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · wobsoriano · `JS` · 调用点 [`index.js`](https://github.com/wobsoriano/is-jeven/blob/HEAD/index.js)，2026-09-24 阅读</sub>
 
+- **[jeq](https://github.com/cristianoliveira/jeq)** — 当 jev 遇上 jq 会怎样？可以用管道串联的“智能”，适合快速实验和脚本。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · cristianoliveira · `Go` · 调用点 [`internal/infra/typesafeapi/client.go`](https://github.com/cristianoliveira/jeq/blob/HEAD/internal/infra/typesafeapi/client.go)，2026-09-24 阅读</sub>
+
 - **[Jev](https://github.com/mayank953/Jev)** — 六个实时并排的演示：Jev 负责决策，LLM 负责写字，代码掌控流程；LLM 一侧可在 Claude 与 Kimi 模型之间切换。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · mayank953 · `JS` · 调用点 [`src/jev.ts`](https://github.com/mayank953/Jev/blob/HEAD/src/jev.ts)，2026-09-24 阅读</sub>
 
@@ -1110,7 +1113,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`插件` · ★10+ · ethanplusai · `JS` · 调用点 [`extension/jev.mjs`](https://github.com/ethanplusai/jev-chat-for-twitch/blob/HEAD/extension/jev.mjs)，2026-09-22 阅读</sub>
 
 - **[jev-chat-windows-deepseek-jev](https://github.com/Aimark-dai/jev-chat-windows-deepseek-jev)** — Windows 微信回复助手：大模型生成话术、Jev 判断排序，支持可取消的三秒自动发送。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10+ · aimark-dai · `Py` · 调用点 [`core/typesafe_client.py`](https://github.com/Aimark-dai/jev-chat-windows-deepseek-jev/blob/HEAD/core/typesafe_client.py)，2026-09-22 阅读</sub>
+  <sub>`开源项目` · ★10+ · aimark-dai · `Py` · 调用点 [`core/typesafe_client.py`](https://github.com/Aimark-dai/jev-chat-windows-deepseek-jev/blob/HEAD/core/typesafe_client.py)，2026-09-22 阅读 · ⚠ `已归档`</sub>
 
 - **[jev-cli](https://github.com/shaharia-lab/jev-cli)** — TypeSafe AI Jev 模型的命令行工具：对任意文本提出是非题、多选题和评分题，并得到校准后的答案。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · shaharia-lab · `Rs` · 调用点 [`crates/jev-cli/src/cli.rs`](https://github.com/shaharia-lab/jev-cli/blob/HEAD/crates/jev-cli/src/cli.rs)，2026-09-24 阅读</sub>
@@ -1131,7 +1134,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`插件` · ★10+ · shimo4228 · `Py` · 调用点 [`scripts/jev_client.py`](https://github.com/shimo4228/jev-skill-router/blob/HEAD/scripts/jev_client.py)，2026-09-22 阅读 · ⚠ `实测后未采用`</sub>
 
 - **[jev-skill-suggester](https://github.com/win4r/jev-skill-suggester)** — 用 Jev 做有界的已安装技能推荐，含 Python CLI。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · ★10+ · win4r · `Py` · 调用点 [`scripts/jev_client.py`](https://github.com/win4r/jev-skill-suggester/blob/HEAD/scripts/jev_client.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
+  <sub>`插件` · ★10+ · win4r · `Py` · 调用点 [`scripts/jev_client.py`](https://github.com/win4r/jev-skill-suggester/blob/HEAD/scripts/jev_client.py)，2026-09-22 阅读</sub>
 
 - **[jev-spring-boot-starter](https://github.com/danvega/jev-spring-boot-starter)** — 给 Spring Boot 4 的简单 Jev starter，基于 Spring MVC 与 RestClient。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · danvega · `Java` · 调用点 [`src/main/java/dev/danvega/jev/autoconfigure/JevProperties.java`](https://github.com/danvega/jev-spring-boot-starter/blob/HEAD/src/main/java/dev/danvega/jev/autoconfigure/JevProperties.java)，2026-09-22 阅读 · ⚠ `仅一次提交` `无许可证`</sub>
@@ -1336,9 +1339,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jeff-cli](https://github.com/saembit/jeff-cli)** — jeff：用 Go 写的 Jev 命令行工具。在 shell 脚本里给它 state 和一个固定选项的问题，就能拿回校准概率；支持排序命令和有意义的退出码。 <sub>(机翻)</sub>
   <sub>`开源项目` · saembit · `Go` · 调用点 [`pkg/jev/client.go`](https://github.com/saembit/jeff-cli/blob/HEAD/pkg/jev/client.go)，2026-09-24 阅读</sub>
-
-- **[jeq](https://github.com/cristianoliveira/jeq)** — 当 jev 遇上 jq 会怎样？可以用管道串联的“智能”，适合快速实验和脚本。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · cristianoliveira · `Go` · 调用点 [`internal/infra/typesafeapi/client.go`](https://github.com/cristianoliveira/jeq/blob/HEAD/internal/infra/typesafeapi/client.go)，2026-09-24 阅读</sub>
 
 - **[Jev DevTools](https://github.com/diegoag64/jev-devtools)** — Jev 请求的 React 检查器：Node 服务端适配器包装 TypeSafe SDK 客户端的 fetch，记录每个请求的状态、问题、答案、概率、重试和错误，显示在应用内的面板里；可选的 flow API 把请求和应用步骤画成流程图。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · diegoag64 · `TS` · 调用点 [`packages/jev-devtools/server/index.ts`](https://github.com/diegoag64/jev-devtools/blob/HEAD/packages/jev-devtools/server/index.ts)，2026-11-09 模型阅读</sub>
@@ -1653,7 +1653,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`开源项目` · sugarforever · `TS` · `noul` · `choice` · `score` · 调用点 [`src/lib/server/providers.ts`](https://github.com/sugarforever/tryjev/blob/HEAD/src/lib/server/providers.ts)，2026-11-10 模型阅读</sub>
 
 - **[TypeSafe CLI](https://github.com/geilt/typesafe-cli)** — 仅用 Python 标准库的 Jev 命令行工具和智能体技能：按命令行参数或 JSON 给出的 choice、score、noul 问题评估 state，并输出结构化答案。技能告诉编码智能体何时调用它，USE-CASES.md 说明何时带类型的判断胜过聊天模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · geilt · `Py` · `choice` · `score` · `noul` · 调用点 [`typesafe`](https://github.com/geilt/typesafe-cli/blob/HEAD/typesafe)，2026-11-20 模型阅读 · ⚠ `无许可证`</sub>
+  <sub>`开源项目` · geilt · `Py` · `choice` · `score` · `noul` · 调用点 [`typesafe`](https://github.com/geilt/typesafe-cli/blob/HEAD/typesafe)，2026-11-20 模型阅读 · ⚠ `仅一次提交` `无许可证`</sub>
 
 - **[typesafe-ai-playground](https://github.com/markjaquith/typesafe-ai-playground)** — 围绕 Jev 做实验的 playground。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · markjaquith · `Rs` · 调用点 [`src/typesafe.rs`](https://github.com/markjaquith/typesafe-ai-playground/blob/HEAD/src/typesafe.rs)，2026-09-22 阅读</sub>

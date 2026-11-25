@@ -139,7 +139,7 @@
 <text x="366" y="773" class="d">Give the full list, with an other or none option if it may</text>
 <text x="366" y="788" class="d">not cover every input.</text>
 <text x="366" y="803" class="k">pattern: Tool selection</text>
-<text x="366" y="818" class="c">26 read by a person · 109 text signal only</text>
+<text x="366" y="818" class="c">26 read by a person · 108 text signal only</text>
 <line x1="36" y1="830" x2="36" y2="850" stroke="#59636e"/>
 <path d="M32 850l4 6 4-6z" fill="#59636e"/>
 <text x="44" y="847.0" class="a">no</text>

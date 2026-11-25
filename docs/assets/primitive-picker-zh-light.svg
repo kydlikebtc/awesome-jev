@@ -130,7 +130,7 @@
 <text x="366" y="729" class="d">给出完整的选项列表；若它可能覆盖不了所有输入，加一个</text>
 <text x="366" y="744" class="d">other 或 none 选项。</text>
 <text x="366" y="759" class="k">模式：工具选择</text>
-<text x="366" y="774" class="c">人读确认 26 条 · 仅文本信号 109 条</text>
+<text x="366" y="774" class="c">人读确认 26 条 · 仅文本信号 108 条</text>
 <line x1="36" y1="786" x2="36" y2="806" stroke="#59636e"/>
 <path d="M32 806l4 6 4-6z" fill="#59636e"/>
 <text x="44" y="803.0" class="a">否</text>

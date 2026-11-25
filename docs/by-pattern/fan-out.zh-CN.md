@@ -106,8 +106,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jevocks](https://github.com/unicodeveloper/jevocks)** — 用 Jev 看每日股票状态。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · unicodeveloper · `TS` · 调用点 [`src/lib/classify.ts`](https://github.com/unicodeveloper/jevocks/blob/HEAD/src/lib/classify.ts)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
+- **[Netizen](https://github.com/seheta/netizen)** — 在帖子发布前模拟印尼网民的反应。Jev 在一次请求中针对每个人设（如网约摩的司机或水军）回答：会不会停下来看、会做什么、立场如何、评论起什么作用；另外判断帖子是否涉及敏感话题、能传播多广。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · seheta · `Py` · `noul` · `choice` · `score` · 调用点 [`spike/spike.py`](https://github.com/seheta/netizen/blob/HEAD/spike/spike.py)，2026-11-12 模型阅读</sub>
+
 - **[OneVOneJev](https://github.com/emrickgarrett/OneVOneJev)** — 浏览器里的 1v1 FPS。每个决策 tick 都要判断走位、视角、瞄准、开火和跳跃。
   <sub>`开源项目` · ★10+ · `TS` · `choice` · 调用点 [`server/src/jev.ts`](https://github.com/emrickgarrett/OneVOneJev/blob/HEAD/server/src/jev.ts)，2026-09-22 阅读 · ⚠ `代码未实测` `无许可证`</sub>
+
+- **[pi-model-router](https://github.com/alexei-led/pi-model-router)** — Pi 编程智能体的模型路由器，可以向 Pi 中注册的分类器（其参考配置用的是 Jev 1.14）在一次请求中最多问四个 choice：当前请求是否开启新任务、哪条已配置的路由适合正在进行的工作、任务的目标，以及所处阶段。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · alexei-led · `TS` · `choice` · 引用文件 [`docs/examples/classifier-catalog.ts`](https://github.com/alexei-led/pi-model-router/blob/HEAD/docs/examples/classifier-catalog.ts)，2026-11-19 模型阅读</sub>
 
 - **[pi-typesafe](https://github.com/DevMortimer/pi-typesafe)** — 给 Pi 用的 Jev 决策：批量评估工具、终端 playground，以及给扩展作者的类型化 API。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · devmortimer · `TS` · 调用点 [`src/client.ts`](https://github.com/DevMortimer/pi-typesafe/blob/HEAD/src/client.ts)，2026-09-24 阅读</sub>
@@ -149,7 +155,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`基准测试` · deepansh-saxena · `Py` · `noul` · `choice` · 调用点 [`tlife_agent/guardrails/backends/jev_backend.py`](https://github.com/deepansh-saxena/jev-guardrails/blob/HEAD/tlife_agent/guardrails/backends/jev_backend.py)，2026-11-19 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[jev-mcp-router](https://github.com/ini8labs/jev-mcp-router)** — 位于智能体和 MCP 服务器之间的 MCP 网关：每次请求它在一次调用里对每个服务器、每个工具各问 Jev 一个 noul，LLM 只看到 Jev 说“是”的那几个工具，而不是全部工具 schema。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ini8labs · `Py` · `noul` · 调用点 [`jevmcp/jev.py`](https://github.com/ini8labs/jev-mcp-router/blob/HEAD/jevmcp/jev.py)，2026-11-16 模型阅读 · ⚠ `厂商自报数据`</sub>
+  <sub>`开源项目` · ini8labs · `Py` · `noul` · 调用点 [`jevmcp/jev.py`](https://github.com/ini8labs/jev-mcp-router/blob/HEAD/jevmcp/jev.py)，2026-11-16 模型阅读 · ⚠ `仅一次提交` `厂商自报数据`</sub>
 
 - **[jev-pr-judge](https://github.com/juanegido/jev-pr-judge)** — 用 TypeSafe System One（Jev）为拉取请求给出类型化结论：一次并行调用，策略写在代码里，可作为 GitHub Action 使用。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · juanegido · `TS` · 调用点 [`dist/action/index.js`](https://github.com/juanegido/jev-pr-judge/blob/HEAD/dist/action/index.js)，2026-09-24 阅读</sub>
@@ -168,12 +174,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Mnemon](https://github.com/grivn/mnemon-memory-agent)** — 长期记忆智能体：保存原始、带日期的记录，等问题到来时再判断。对检索返回的每条记录，它在一次请求里问 Jev 下一条回复是否应该用它、以及后来的消息是否让它不再有效（每条两个 noul）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · grivn · `TS` · `noul` · 调用点 [`plugins/dsh-mnemon-strategy-jev-optmem/src/judge.ts`](https://github.com/grivn/mnemon-memory-agent/blob/HEAD/plugins/dsh-mnemon-strategy-jev-optmem/src/judge.ts)，2026-11-16 模型阅读 · ⚠ `需第三方密钥` `厂商自报数据`</sub>
-
-- **[Netizen](https://github.com/seheta/netizen)** — 在帖子发布前模拟印尼网民的反应。Jev 在一次请求中针对每个人设（如网约摩的司机或水军）回答：会不会停下来看、会做什么、立场如何、评论起什么作用；另外判断帖子是否涉及敏感话题、能传播多广。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · seheta · `Py` · `noul` · `choice` · `score` · 调用点 [`spike/spike.py`](https://github.com/seheta/netizen/blob/HEAD/spike/spike.py)，2026-11-12 模型阅读</sub>
-
-- **[pi-model-router](https://github.com/alexei-led/pi-model-router)** — Pi 编程智能体的模型路由器，可以向 Pi 中注册的分类器（其参考配置用的是 Jev 1.14）在一次请求中最多问四个 choice：当前请求是否开启新任务、哪条已配置的路由适合正在进行的工作、任务的目标，以及所处阶段。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · alexei-led · `TS` · `choice` · 引用文件 [`docs/examples/classifier-catalog.ts`](https://github.com/alexei-led/pi-model-router/blob/HEAD/docs/examples/classifier-catalog.ts)，2026-11-19 模型阅读</sub>
 
 - **[psearch](https://github.com/komikat/psearch)** — 给终端与智能体的并行网页搜索，带本地 Chromium 与 Jev 引导的探索。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · komikat · `Py` · 调用点 [`psearch.py`](https://github.com/komikat/psearch/blob/HEAD/psearch.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>

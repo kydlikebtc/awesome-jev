@@ -144,8 +144,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[webctl](https://github.com/dorkitude/webctl)** — 给智能体用的网页搜索 CLI：同时查询 3 个搜索后端，让 Jev 结合查询和目标给每条结果打分（是否切题、来源是否可靠），保留高分结果，再用 MinHash 和 Jev 去重。加 --filter-chunks 时会抓取排名靠前的页面，只保留 Jev 判为相关的段落。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★100+ · dorkitude · `Go` · 调用点 [`internal/jev/client.go`](https://github.com/dorkitude/webctl/blob/HEAD/internal/jev/client.go)，2026-09-22 阅读</sub>
 
-- **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)** — 聊天回复助手（桌面悬浮窗、Android 悬浮助手、iOS 键盘），基于 Jev Android。它根据可见对话或截图向 Jev 询问字面问题、对方意图、危险程度、是否现在回复以及最佳行动，再让 Jev 在起草的回复中挑选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★100+ · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · 调用点 [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-10-26 模型阅读 · ⚠ `需第三方密钥`</sub>
+- **[狗头军师 Jev Chat](https://github.com/shengjidaguai-china/goutoujunshi-chat)** — 聊天回复助手（桌面悬浮窗、Android 悬浮助手、iOS 键盘），基于 Jev Android。它根据可见对话或截图向 Jev 询问字面问题、对方意图、危险程度、是否现在回复以及最佳行动，再让 Jev 在起草的回复中挑选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★100+ · shengjidaguai-china · `Kt` · `choice` · `score` · `noul` · 调用点 [`integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt`](https://github.com/shengjidaguai-china/goutoujunshi-chat/blob/HEAD/integrations/jev_android/app/src/main/java/com/jev/probe/jev/JevQuestions.kt)，2026-10-26 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[every](https://github.com/sufianetaouil/every)** — 对代码库里每一个函数问一个是非问题，几秒内得到排序结果 —— 模式本身是一个问题的 grep。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · sufianetaouil · `Py` · 调用点 [`reference/probe_jev.py`](https://github.com/sufianetaouil/every/blob/HEAD/reference/probe_jev.py)，2026-09-22 阅读</sub>
@@ -279,8 +279,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-bfs](https://github.com/komikat/jev-bfs)** — 用 Jev 直接排序来跑维基百科链接竞速，带实时终端显示。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · komikat · `Py` · 调用点 [`jev_bfs/core.py`](https://github.com/komikat/jev-bfs/blob/HEAD/jev_bfs/core.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
-- **[jev-nlgrep](https://github.com/YehuiTang0316/jev-nlgrep)** — 用自然语言 grep 按含义搜索代码与文本。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · yehuitang0316 · `TS` · 调用点 [`src/jev.ts`](https://github.com/YehuiTang0316/jev-nlgrep/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
+- **[jev-nlgrep](https://github.com/yehui-tang/jev-nlgrep)** — 用自然语言 grep 按含义搜索代码与文本。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · yehuitang0316 · `TS` · 调用点 [`src/jev.ts`](https://github.com/yehui-tang/jev-nlgrep/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
 - **[jev-orderby-bench](https://github.com/yodablocks/jev-orderby-bench)** — 按 Jev 概率做 ORDER BY 能否给出站得住脚的排序？独立的排序、校准与不变量实测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · yodablocks · `Py` · 调用点 [`harness/client.py`](https://github.com/yodablocks/jev-orderby-bench/blob/HEAD/harness/client.py)，2026-09-22 阅读</sub>

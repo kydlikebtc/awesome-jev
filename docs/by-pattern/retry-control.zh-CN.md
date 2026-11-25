@@ -30,6 +30,9 @@ _判断失败的步骤是否值得重试。_
 - **[jev-mcp](https://github.com/burnigtm/jev-mcp)** — 把 TypeSafe Jev 接入 Cursor、Codex 等任意 MCP 客户端编码流程的 MCP 服务器。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · burnigtm · `TS` · 调用点 [`src/typesafe.ts`](https://github.com/burnigtm/jev-mcp/blob/HEAD/src/typesafe.ts)，2026-09-24 阅读</sub>
 
+- **[Reflex](https://github.com/datadog-labs/reflex)** — 用于可观测性数据控制回路的 Rust 库：Datadog 指标和 Toto 预测变成类型化状态，由 Jev 以 choice 推荐一个动作（例如熔断器的 Open、Probe 或 NoChange），执行器只有在合法性检查、守卫条件和不变量都允许时才执行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · datadog-labs · `Rs` · `choice` · 调用点 [`crates/reflex-typesafe/src/lib.rs`](https://github.com/datadog-labs/reflex/blob/HEAD/crates/reflex-typesafe/src/lib.rs)，2026-11-12 模型阅读</sub>
+
 - **[DuoMind](https://github.com/j1s4nn/duomind)** — 一个 OpenAI 兼容的本地服务器，把 llama.cpp 上的小模型与 Jev 搭配：在生成之前、之中和之后共 18 个决策点（是否需要推理、是否安全、输出格式、是否该停、是否重试）引导本地模型。提示词会发送给 TypeSafe，生成过程留在本地。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · j1s4nn · `Py` · `noul` · `choice` · 调用点 [`src/duomind/jev_client.py`](https://github.com/j1s4nn/duomind/blob/HEAD/src/duomind/jev_client.py)，2026-10-24 模型阅读 · ⚠ `厂商自报数据`</sub>
 
@@ -47,9 +50,6 @@ _判断失败的步骤是否值得重试。_
 
 - **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — @playwright/test 的附加组件：在测试套件原本要全部重跑或花一轮 LLM 的地方，向 Jev 提小的类型化问题：用 choice 判断失败的根因并据此重试和修复，用 score 裁剪快照、排列测试顺序，用 noul 核验步骤和断言，再用 choice 修复定位器。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · AdriaanVE · `TS` · `choice` · `noul` · `score` · 调用点 [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts)，2026-11-23 模型阅读</sub>
-
-- **[Reflex](https://github.com/datadog-labs/reflex)** — 用于可观测性数据控制回路的 Rust 库：Datadog 指标和 Toto 预测变成类型化状态，由 Jev 以 choice 推荐一个动作（例如熔断器的 Open、Probe 或 NoChange），执行器只有在合法性检查、守卫条件和不变量都允许时才执行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · datadog-labs · `Rs` · `choice` · 调用点 [`crates/reflex-typesafe/src/lib.rs`](https://github.com/datadog-labs/reflex/blob/HEAD/crates/reflex-typesafe/src/lib.rs)，2026-11-12 模型阅读</sub>
 
 - **[XavierJev](https://github.com/liu-x27/XavierJev)** — Jev 形状的本地决策层：是非、选择和量表问题都从本地模型单个 token 的 logprob 读出答案；附带一个在留出命令集上测量过的 Claude Code 权限闸门。 <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · Xinyu Liu · `TS` · `noul` · `choice` · `score` · 引用文件 [`src/gate.ts`](https://github.com/liu-x27/XavierJev/blob/HEAD/src/gate.ts)，2026-09-25 阅读 · ⚠ `并非 Jev 本身` `疑似 AI 生成`</sub>

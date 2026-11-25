@@ -56,6 +56,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Canny](https://github.com/qkal/Canny)** — Guards against a coding agent claiming it finished: reads tool output, the diff and test results, then judges whether the completion claim holds.
   <sub>`Project` · ★100+ · `TS` · `noul` · `score` · call site [`src/jev.ts`](https://github.com/qkal/Canny/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
 
+- **[Claude x Jev](https://github.com/charlesdove977/claude-x-jev)** — Claude Code skill and commands in which Jev, through OpenRouter, sorts and Claude writes: classify, check or score batches, send only unsure items to Claude, verify Claude's drafts, and gate tool calls with a PreToolUse hook that asks whether a call can be undone and whether it serves the task. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★100+ · charlesdove977 · `Py` · `choice` · `noul` · `score` · call site [`skill/scripts/jev.py`](https://github.com/charlesdove977/claude-x-jev/blob/HEAD/skill/scripts/jev.py), read by a model 2026-10-30 · ⚠ `marketing`</sub>
+
 - **[deepseek-harness-jev (luobosibing2)](https://github.com/luobosibing2/dsh-jev-plugin)** — DeepSeek Harness plugin with twelve opt-in features using Jev as the judgment model: skill selection and glob-result ranking (one `noul` per candidate), completion and goal checks, drift reminders, interjection routing, tool-output and test-log filtering, and approval of single workspace operations. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★100+ · luobosibing2 · `TS` · `noul` · call site [`packages/jev/src/selection.ts`](https://github.com/luobosibing2/dsh-jev-plugin/blob/HEAD/packages/jev/src/selection.ts), read by a model 2026-10-28</sub>
 
@@ -110,9 +113,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[citation-verifier](https://github.com/MarissaFamularo/citation-verifier)** — Check whether each cited paper supports the sentence citing it. Claude proves the quote, TypeSafe's Jev scores it, a human decides. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · marissafamularo · `JS` · call site [`src/lib/typesafe.js`](https://github.com/MarissaFamularo/citation-verifier/blob/HEAD/src/lib/typesafe.js), read 2026-09-22</sub>
 
-- **[Claude x Jev](https://github.com/charlesdove977/claude-x-jev)** — Claude Code skill and commands in which Jev, through OpenRouter, sorts and Claude writes: classify, check or score batches, send only unsure items to Claude, verify Claude's drafts, and gate tool calls with a PreToolUse hook that asks whether a call can be undone and whether it serves the task. <sub>(written by a model)</sub>
-  <sub>`Plugin` · ★10+ · charlesdove977 · `Py` · `choice` · `noul` · `score` · call site [`skill/scripts/jev.py`](https://github.com/charlesdove977/claude-x-jev/blob/HEAD/skill/scripts/jev.py), read by a model 2026-10-30 · ⚠ `marketing`</sub>
-
 - **[claude-jev](https://github.com/0x7067/claude-jev)** — Claude Code and Pi plugin that sends small judgments to Jev: whether an edit breaks a rule in CLAUDE.md (blocked with a file:line citation), which context blocks to keep verbatim at compaction, a model tier per subagent with nouls on its brief, and a routing hint per prompt. Every hook fails open. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · 0x7067 · `Py` · call site [`scripts/jev.py`](https://github.com/0x7067/claude-jev/blob/HEAD/scripts/jev.py), read 2026-09-22</sub>
 
@@ -121,6 +121,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[cmd-mod-jev-nudge](https://github.com/CommandCodeAI/cmd-mod-jev-nudge)** — Command Code mod: nudges the agent to keep going when it stops with work left, judged by Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · commandcodeai · `TS` · call site [`src/protocol.ts`](https://github.com/CommandCodeAI/cmd-mod-jev-nudge/blob/HEAD/src/protocol.ts), read 2026-09-24</sub>
+
+- **[dsh-jev-plugin](https://github.com/jackie-cqz/dsh-jev-plugin)** — DeepSeek Harness plugin that gives agents Jev's noul, choice and score as tools, and can also use Jev as a pre-execution risk gate (a score over risk levels that denies a tool call, asks for approval or lets it run), a review of tool results and a model router. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · jackie-cqz · `TS` · `noul` · `choice` · `score` · call site [`src/client.ts`](https://github.com/jackie-cqz/dsh-jev-plugin/blob/HEAD/src/client.ts), read by a model 2026-11-08</sub>
 
 - **[dsh-jev-tools](https://github.com/HorusJiang/dsh-jev-tools)** — DeepSeek Harness plugin asking Jev, before tool output enters the context, which segments of a long read or fetch matter (kept by rank, not threshold), whether a fetched page holds instructions aimed at an AI (warned at 0.75, left unchanged), which skill to suggest, and if a done claim has evidence. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · horusjiang · `TS` · call site [`src/config.ts`](https://github.com/HorusJiang/dsh-jev-tools/blob/HEAD/src/config.ts), read 2026-09-24</sub>
@@ -204,7 +207,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · ★10+ · skeptrunedev · `Py` · call site [`jev_ultrafast/decision_provider.py`](https://github.com/skeptrunedev/jev-recruiter/blob/HEAD/jev_ultrafast/decision_provider.py), read 2026-09-22</sub>
 
 - **[jev-security-scan](https://github.com/win4r/jev-security-scan)** — 使用 TypeSafe Jev 审查 Skill 与 MCP 可疑行为 \| Review Agent Skills and MCP code with Jev, static evidence, and explicit coverage gaps <sub>(upstream description)</sub>
-  <sub>`Plugin` · ★10+ · win4r · `Py` · call site [`scripts/jev_client.py`](https://github.com/win4r/jev-security-scan/blob/HEAD/scripts/jev_client.py), read 2026-09-24 · ⚠ `one commit`</sub>
+  <sub>`Plugin` · ★10+ · win4r · `Py` · call site [`scripts/jev_client.py`](https://github.com/win4r/jev-security-scan/blob/HEAD/scripts/jev_client.py), read 2026-09-24</sub>
 
 - **[jev-spec](https://github.com/nozomi-koborinai/jev-spec)** — ⚡ Catch spec drift on every commit: check your code against your Markdown specs with TypeSafe AI's Jev model. <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · nozomi-koborinai · `TS` · call site [`src/evaluator/jev-evaluator.ts`](https://github.com/nozomi-koborinai/jev-spec/blob/HEAD/src/evaluator/jev-evaluator.ts), read 2026-09-22</sub>
@@ -325,9 +328,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[dsh-jev-advisor](https://github.com/gordan-code/dsh-jev-advisor)** — DeepSeek Harness plugin that shows you, not the agent, a Jev second opinion: a recommended option with probabilities for the agent's multiple-choice questions, allow once or reject with a risk score for tool approvals, and readiness for plans. Nothing reaches the harness until you adopt it. <sub>(written by a model)</sub>
   <sub>`Plugin` · gordan-code · `JS` · `choice` · `noul` · `score` · call site [`src/index.js`](https://github.com/gordan-code/dsh-jev-advisor/blob/HEAD/src/index.js), read by a model 2026-11-18</sub>
-
-- **[dsh-jev-plugin](https://github.com/jackie-cqz/dsh-jev-plugin)** — DeepSeek Harness plugin that gives agents Jev's noul, choice and score as tools, and can also use Jev as a pre-execution risk gate (a score over risk levels that denies a tool call, asks for approval or lets it run), a review of tool results and a model router. <sub>(written by a model)</sub>
-  <sub>`Plugin` · jackie-cqz · `TS` · `noul` · `choice` · `score` · call site [`src/client.ts`](https://github.com/jackie-cqz/dsh-jev-plugin/blob/HEAD/src/client.ts), read by a model 2026-11-08</sub>
 
 - **[dsh-jev-verify](https://github.com/xienda/dsh-jev-verify)** — Jev (TypeSafe System One) decision tools + live verification benchmark for DeepSeek Harness: jev_decision (choice/score/noul) and jev_verify, honest by design. <sub>(earlier upstream description)</sub>
   <sub>`Benchmark` · xienda · `JS` · call site [`lib/index.js`](https://github.com/xienda/dsh-jev-verify/blob/HEAD/lib/index.js), read 2026-09-22</sub>
@@ -467,8 +467,8 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-the-janitor](https://github.com/kylehovance-ai/jev-the-janitor)** — A janitor for markdown vaults powered by TypeSafe Jev: Jev votes on each note, your code files it, you review the low-confidence pile.
   <sub>`Project` · kylehovance-ai · `Py` · call site [`janitor/client.py`](https://github.com/kylehovance-ai/jev-the-janitor/blob/HEAD/janitor/client.py), read 2026-09-22</sub>
 
-- **[jev-verify](https://github.com/stillmarcus24/jev-verify)** — Check whether a published Jev output was actually produced by Jev. Implements the Yurin confidence identity; flags published fixtures that violate it. <sub>(upstream description)</sub>
-  <sub>`Project` · stillmarcus24 · `JS` · call site [`scripts/live_confirm.cjs`](https://github.com/stillmarcus24/jev-verify/blob/HEAD/scripts/live_confirm.cjs), read 2026-09-24</sub>
+- **[jev-verify](https://github.com/StillOSdev/jev-verify)** — Check whether a published Jev output was actually produced by Jev. Implements the Yurin confidence identity; flags published fixtures that violate it. <sub>(upstream description)</sub>
+  <sub>`Project` · stillmarcus24 · `JS` · call site [`scripts/live_confirm.cjs`](https://github.com/StillOSdev/jev-verify/blob/HEAD/scripts/live_confirm.cjs), read 2026-09-24</sub>
 
 - **[jevarena](https://github.com/chenmingtang830/jevarena)** — Open-source BYOK arena for Jev and other AI judges. Find failures, compare quality, cost, and latency. <sub>(upstream description)</sub>
   <sub>`Benchmark` · chenmingtang830 · `TS` · call site [`jevjudge/providers.py`](https://github.com/chenmingtang830/jevarena/blob/HEAD/jevjudge/providers.py), read 2026-09-24</sub>

@@ -222,6 +222,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[agent-chaperone](https://github.com/agent-chaperone/agent-chaperone)** — 在智能体工具调用执行前、以及工具结果被读取前做筛查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · agent-chaperone · `TS` · 调用点 [`src/backends/typesafe.ts`](https://github.com/agent-chaperone/agent-chaperone/blob/HEAD/src/backends/typesafe.ts)，2026-09-22 阅读</sub>
 
+- **[aside-jev](https://github.com/himomohi/aside-jev)** — 让 Aside 智能体用 Jev 做决策（Choice／Score／Noul）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · ★10+ · himomohi · `Py` · 调用点 [`src/aside_jev/jev.py`](https://github.com/himomohi/aside-jev/blob/HEAD/src/aside_jev/jev.py)，2026-09-22 阅读</sub>
+
 - **[atoma](https://github.com/atoma-run/atoma)** — 协调多个 AI 智能体、把一个请求变成成品的平台。其中有边界的决策由 Jev 来做：哪个智能体或已存的配方接手某项任务（并对每个候选是否合适提一个 noul），以及某个计划或结果能否获批；Jev 拿不准的答案会交回给本次运行的模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · atoma-run · `TS` · `choice` · `noul` · 调用点 [`src/core/jev.ts`](https://github.com/atoma-run/atoma/blob/HEAD/src/core/jev.ts)，2026-11-06 模型阅读</sub>
 
@@ -474,6 +477,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[public-browser](https://github.com/Silbercue/public-browser)** — 让 Claude Code 和 Cursor 驱动 Chrome，使用你真实的浏览器配置，并称能减少 token、成本与工具调用。 <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · silbercue · `TS` · 调用点 [`examples/jev-loop.mjs`](https://github.com/Silbercue/public-browser/blob/HEAD/examples/jev-loop.mjs)，2026-09-24 阅读 · ⚠ `宣称未核实`</sub>
 
+- **[Reflex](https://github.com/datadog-labs/reflex)** — 用于可观测性数据控制回路的 Rust 库：Datadog 指标和 Toto 预测变成类型化状态，由 Jev 以 choice 推荐一个动作（例如熔断器的 Open、Probe 或 NoChange），执行器只有在合法性检查、守卫条件和不变量都允许时才执行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · datadog-labs · `Rs` · `choice` · 调用点 [`crates/reflex-typesafe/src/lib.rs`](https://github.com/datadog-labs/reflex/blob/HEAD/crates/reflex-typesafe/src/lib.rs)，2026-11-12 模型阅读</sub>
+
 - **[RoboDiag Harness](https://github.com/yuebit/robodiag-harness)** — 面向 ROS 2 机器人的诊断工具：由 Jev 把每个请求分为查询、诊断、操作或闲聊，并在诊断时挑选下一个只读的取证工具。代码要求诊断结束前至少有一项健康测试和一次实时测量，再由聊天模型解释证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · yuebit · `Py` · `choice` · 调用点 [`robodiag_jev.py`](https://github.com/yuebit/robodiag-harness/blob/HEAD/robodiag_jev.py)，2026-11-01 模型阅读</sub>
 
@@ -512,9 +518,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[android-jev](https://github.com/FZ2000/android-jev)** — 一个通过 adb 控制安卓手机的 MCP 工具：每一步先读取屏幕，再问 Jev 下一步的操作、目标和应用（choice），目标是否已完成，以及这一步是否后果重大、是否已获授权（noul），最后核对结果，再如实报告是否成功。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · FZ2000 · `Py` · `choice` · `noul` · 调用点 [`src/phone_control/jev.py`](https://github.com/FZ2000/android-jev/blob/HEAD/src/phone_control/jev.py)，2026-11-24 模型阅读</sub>
-
-- **[aside-jev](https://github.com/himomohi/aside-jev)** — 让 Aside 智能体用 Jev 做决策（Choice／Score／Noul）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`SDK` · himomohi · `Py` · 调用点 [`src/aside_jev/jev.py`](https://github.com/himomohi/aside-jev/blob/HEAD/src/aside_jev/jev.py)，2026-09-22 阅读</sub>
 
 - **[AskJev](https://github.com/ranjan2829/AskJev)** — AskJev：适用于任意网站的 Jev 自动驾驶，并对不可逆的点击加一道防护（使用 TypeSafe System One，而不是 Claude）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ranjan2829 · `TS` · 调用点 [`mcp/src/jev-client.ts`](https://github.com/ranjan2829/AskJev/blob/HEAD/mcp/src/jev-client.ts)，2026-09-24 阅读</sub>
@@ -733,7 +736,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`插件` · legostin · `TS` · `choice` · `noul` · `score` · 调用点 [`src/core/jev/client.ts`](https://github.com/legostin/jev-mcp/blob/HEAD/src/core/jev/client.ts)，2026-11-09 模型阅读</sub>
 
 - **[jev-mcp-router](https://github.com/ini8labs/jev-mcp-router)** — 位于智能体和 MCP 服务器之间的 MCP 网关：每次请求它在一次调用里对每个服务器、每个工具各问 Jev 一个 noul，LLM 只看到 Jev 说“是”的那几个工具，而不是全部工具 schema。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ini8labs · `Py` · `noul` · 调用点 [`jevmcp/jev.py`](https://github.com/ini8labs/jev-mcp-router/blob/HEAD/jevmcp/jev.py)，2026-11-16 模型阅读 · ⚠ `厂商自报数据`</sub>
+  <sub>`开源项目` · ini8labs · `Py` · `noul` · 调用点 [`jevmcp/jev.py`](https://github.com/ini8labs/jev-mcp-router/blob/HEAD/jevmcp/jev.py)，2026-11-16 模型阅读 · ⚠ `仅一次提交` `厂商自报数据`</sub>
 
 - **[jev-model-tokengate](https://github.com/Thanh-Mathieu95/jev-model-tokengate)** — OpenAI 兼容代理，夹在你的 LLM 与用户之间，逐窗口评估输出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · thanh-mathieu95 · `JS` · 调用点 [`evaluator.js`](https://github.com/Thanh-Mathieu95/jev-model-tokengate/blob/HEAD/evaluator.js)，2026-09-22 阅读</sub>
@@ -859,7 +862,7 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
   <sub>`插件` · sur-cai · `Py` · 调用点 [`src/macos_computer_use/jev.py`](https://github.com/Sur-Cai/macos-computer-use-kit/blob/HEAD/src/macos_computer_use/jev.py)，2026-09-24 阅读</sub>
 
 - **[nethack-jev](https://github.com/statico/jev-nethack)** — 让 Jev 玩 NetHack，全程没有 LLM：代码读取屏幕并列出合法选项，每回合 Jev 回答一个选最佳行动的 choice、一个判断女武神是否身处致命危险的 noul，以及一个选最安全行动的 choice，危险高时采用后者。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · statico · `Py` · `choice` · `noul` · 调用点 [`jev/bot.py`](https://github.com/statico/jev-nethack/blob/HEAD/jev/bot.py)，2026-11-16 模型阅读 · ⚠ `厂商自报数据`</sub>
+  <sub>`开源项目` · statico · `Py` · `choice` · `noul` · 调用点 [`jev/bot.py`](https://github.com/statico/jev-nethack/blob/HEAD/jev/bot.py)，2026-11-16 模型阅读 · ⚠ `厂商自报数据` `已归档`</sub>
 
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — 给 Codex 与 Claude Code 的二值批准闸门：每次被拦截的工具调用都要审查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · alexj11324 · `Go` · 引用文件 [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
@@ -887,9 +890,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[reflex](https://github.com/kaustav1996/reflex)** — 构建在 Pi 编码智能体之上的编码助手与个人助理，拥有 System One 式的“条件反射”（TypeSafe Jev）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · kaustav1996 · `TS` · 调用点 [`src/extensions/typesafe/provider.ts`](https://github.com/kaustav1996/reflex/blob/HEAD/src/extensions/typesafe/provider.ts)，2026-09-24 阅读</sub>
-
-- **[Reflex](https://github.com/datadog-labs/reflex)** — 用于可观测性数据控制回路的 Rust 库：Datadog 指标和 Toto 预测变成类型化状态，由 Jev 以 choice 推荐一个动作（例如熔断器的 Open、Probe 或 NoChange），执行器只有在合法性检查、守卫条件和不变量都允许时才执行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · datadog-labs · `Rs` · `choice` · 调用点 [`crates/reflex-typesafe/src/lib.rs`](https://github.com/datadog-labs/reflex/blob/HEAD/crates/reflex-typesafe/src/lib.rs)，2026-11-12 模型阅读</sub>
 
 - **[reflex-computer-use](https://github.com/8itlab/reflex-computer-use)** — 面向编程智能体的计算机操作 MCP 服务器，支持 macOS、Windows 和远程 Windows：读取无障碍树，把小决定交给 Jev，例如某个目标指的是哪个元素（choice），屏幕上是否有某物、操作是否成功、是否加载完（noul），也可以看截图来判断。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · 8itlab · `Py` · `choice` · `noul` · 调用点 [`reflexcu/core.py`](https://github.com/8itlab/reflex-computer-use/blob/HEAD/reflexcu/core.py)，2026-11-15 模型阅读</sub>

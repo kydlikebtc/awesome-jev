@@ -175,6 +175,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[muse-jev-playbook](https://github.com/Bodila51/muse-jev-playbook)** — Jev decision layer for Muse: a fast, cheap TypeSafe AI gate before expensive agent work — confidence policy, recipes, reference router, honest measurement. <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · bodila51 · `Py` · call site [`src/jev_client.py`](https://github.com/Bodila51/muse-jev-playbook/blob/HEAD/src/jev_client.py), read 2026-09-24 · ⚠ `one commit`</sub>
 
+- **[OpenJev for opencode](https://github.com/darwintechlab/openjev)** — opencode plugin that gives the agent Jev as tools (jev_choice, jev_noul, jev_score, jev_ask) for the small decisions it would otherwise ask an LLM, such as whether a command is safe or which team gets a ticket. Each answer comes with a gate that acts when confident and escalates when not. <sub>(written by a model)</sub>
+  <sub>`Plugin` · ★10+ · darwintechlab · `TS` · `choice` · `noul` · `score` · call site [`src/client.ts`](https://github.com/darwintechlab/openjev/blob/HEAD/src/client.ts), read by a model 2026-11-13</sub>
+
 - **[Orchvia](https://github.com/masonlee39/orchvia)** — Runs Claude Code and Codex agents as a team from your own application. Its optional routing layer asks a pluggable judge, Jev or plain rules, typed Choice, Noul and Score questions about which agent takes a request; below 0.85 confidence or a 0.2 margin the proposal waits for a person. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · masonlee39 · `Py` · `choice` · `noul` · `score` · call site [`python/src/orchvia/routing.py`](https://github.com/masonlee39/orchvia/blob/HEAD/python/src/orchvia/routing.py), read by a model 2026-11-05</sub>
 
@@ -188,7 +191,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Plugin` · ★10+ · riskaversetech · `TS` · call site [`src/backends/typesafe.ts`](https://github.com/RiskAverseTech/toolgate/blob/HEAD/src/backends/typesafe.ts), read 2026-09-22</sub>
 
 - **[typed-decisions](https://github.com/mithril-lang/typed-decisions)** — Jev-shaped typed-decision model (state + Choice/Score/Noul questions -> calibrated probabilities, one pass) on ModernBERT / DeBERTa / LLaDA-MoE, with measured latency, accuracy, calibration and training cost <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · kotoba-lang · `Py` · call site [`src/typed_decisions/jev_holes.py`](https://github.com/mithril-lang/typed-decisions/blob/HEAD/src/typed_decisions/jev_holes.py), read 2026-09-22</sub>
+  <sub>`Project` · ★10+ · kotoba-lang · `Py` · call site [`src/typed_decisions/jev_holes.py`](https://github.com/mithril-lang/typed-decisions/blob/HEAD/src/typed_decisions/jev_holes.py), read 2026-09-22 · ⚠ `archived`</sub>
 
 - **[assay-001](https://github.com/jourdanlabs/assay-001)** — ASSAY-001: independent, pre-registered verification of TypeSafe Jev's calibration and type-safety claims. Split verdict, published in full. <sub>(upstream description)</sub>
   <sub>`Project` · jourdanlabs · `Py` · call site [`harness/run.py`](https://github.com/jourdanlabs/assay-001/blob/HEAD/harness/run.py), read 2026-09-22 · ⚠ `no licence`</sub>
@@ -317,13 +320,10 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Plugin` · cogflux · `TS` · call site [`src/jev.ts`](https://github.com/CogFlux/opencode-jev-guard/blob/HEAD/src/jev.ts), read by a model 2026-11-05</sub>
 
 - **[opencode-jev-orchestrator](https://github.com/aaronshaf/opencode-jev-orchestrator)** — Keeps OpenCode on a cheap sticky model for warm cache; Jev escalates hard turns to stronger subagents. <sub>(upstream description)</sub>
-  <sub>`Project` · aaronshaf · `TS` · call site [`src/jev.ts`](https://github.com/aaronshaf/opencode-jev-orchestrator/blob/HEAD/src/jev.ts), read 2026-09-22</sub>
+  <sub>`Project` · aaronshaf · `TS` · call site [`src/jev.ts`](https://github.com/aaronshaf/opencode-jev-orchestrator/blob/HEAD/src/jev.ts), read 2026-09-22 · ⚠ `archived`</sub>
 
 - **[OpenJev for Claude Code](https://github.com/darwintechlab/claude-jev)** — Claude Code plugin whose MCP server gives the agent Jev tools (jev_choice, jev_noul, jev_score, jev_ask) for small decisions, such as whether a command is safe or which team gets a ticket. Each answer meets a gate that acts when confident and escalates when not; risky commands meet a stricter one. <sub>(written by a model)</sub>
   <sub>`Plugin` · darwintechlab · `TS` · `choice` · `noul` · `score` · call site [`mcp-server/src/client.ts`](https://github.com/darwintechlab/claude-jev/blob/HEAD/mcp-server/src/client.ts), read by a model 2026-11-24</sub>
-
-- **[OpenJev for opencode](https://github.com/darwintechlab/openjev)** — opencode plugin that gives the agent Jev as tools (jev_choice, jev_noul, jev_score, jev_ask) for the small decisions it would otherwise ask an LLM, such as whether a command is safe or which team gets a ticket. Each answer comes with a gate that acts when confident and escalates when not. <sub>(written by a model)</sub>
-  <sub>`Plugin` · darwintechlab · `TS` · `choice` · `noul` · `score` · call site [`src/client.ts`](https://github.com/darwintechlab/openjev/blob/HEAD/src/client.ts), read by a model 2026-11-13</sub>
 
 - **[padflow-jev-evals](https://github.com/zsavage8/padflow-jev-evals)** — Typed-decision benchmark from PadFlow (land development SaaS): schemas, anonymized labeled rows, and a runner for confidence-calibrated models like TypeSafe Jev. <sub>(upstream description)</sub>
   <sub>`Benchmark` · zsavage8 · `Py` · call site [`scripts/run_baseline.py`](https://github.com/zsavage8/padflow-jev-evals/blob/HEAD/scripts/run_baseline.py), read 2026-09-22</sub>

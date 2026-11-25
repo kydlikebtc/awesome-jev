@@ -40,7 +40,7 @@ A gate asks whether something an agent is about to do (a shell command, a tool c
 | Primitive | A person read the code calling it | A model read the code calling it | Only the text signal shows it |
 | --- | ---: | ---: | ---: |
 | `choice` | 12 | 51 | 47 |
-| `score` | 9 | 31 | 31 |
+| `score` | 9 | 31 | 35 |
 | `noul` | 15 | 62 | 63 |
 
 Primitives recorded together on one row (`question_types`, a person's or a model's reading): `choice` + `score` + `noul` 37 · `choice` + `noul` 23 · `noul` 14 · `choice` 3 · `score` + `noul` 3.
