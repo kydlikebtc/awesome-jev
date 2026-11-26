@@ -136,9 +136,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)** — Jev (TypeSafe) vs Claude Haiku 4.5 on 2 000 phishing emails: accuracy, calibration, latency, cost. Reproducible benchmark. <sub>(earlier upstream description)</sub>
   <sub>`Benchmark` · ★10+ · anisselbd · `Py` · call site [`run_jev.py`](https://github.com/anisselbd/jev-phishing-bench/blob/HEAD/run_jev.py), read 2026-09-22 · author's conclusion: mixed (author-stated, not reproduced here)</sub>
 
-- **[jev-usecases](https://github.com/kenhuangus/jev-usecases)** — Production TypeSafe Jev (System One) use-case harnesses with confidence-gated decision logic <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · kenhuangus · `Py` · call site [`src/jev_usecases/client.py`](https://github.com/kenhuangus/jev-usecases/blob/HEAD/src/jev_usecases/client.py), read 2026-09-22</sub>
-
 - **[jeval](https://github.com/rlaope/jeval)** — Measures what your Jev classifier's confidence is really worth, and sets the human hand-off line from what a mistake costs. <sub>(earlier upstream description)</sub>
   <sub>`Project` · ★10+ · rlaope · `Py` · call site [`jeval/collect.py`](https://github.com/rlaope/jeval/blob/HEAD/jeval/collect.py), read 2026-09-24</sub>
 
@@ -192,6 +189,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[typed-decisions](https://github.com/mithril-lang/typed-decisions)** — Jev-shaped typed-decision model (state + Choice/Score/Noul questions -> calibrated probabilities, one pass) on ModernBERT / DeBERTa / LLaDA-MoE, with measured latency, accuracy, calibration and training cost <sub>(upstream description)</sub>
   <sub>`Project` · ★10+ · kotoba-lang · `Py` · call site [`src/typed_decisions/jev_holes.py`](https://github.com/mithril-lang/typed-decisions/blob/HEAD/src/typed_decisions/jev_holes.py), read 2026-09-22 · ⚠ `archived`</sub>
+
+- **[AgentRun](https://github.com/parcha-ai/agentrun)** — Open-source platform that runs Claude Code, Codex, OpenCode or pi agents with learning, durable runs and a control plane; its typed workflows add Jev judge steps (choice, noul, score, box) whose answers and confidence decide whether a case goes on, back to an agent, or to review. <sub>(written by a model)</sub>
+  <sub>`Project` · parcha-ai · `TS` · `choice` · `noul` · `score` · call site [`packages/jev/src/index.ts`](https://github.com/parcha-ai/agentrun/blob/HEAD/packages/jev/src/index.ts), read by a model 2026-11-26</sub>
 
 - **[assay-001](https://github.com/jourdanlabs/assay-001)** — ASSAY-001: independent, pre-registered verification of TypeSafe Jev's calibration and type-safety claims. Split verdict, published in full. <sub>(upstream description)</sub>
   <sub>`Project` · jourdanlabs · `Py` · call site [`harness/run.py`](https://github.com/jourdanlabs/assay-001/blob/HEAD/harness/run.py), read 2026-09-22 · ⚠ `no licence`</sub>

@@ -114,7 +114,7 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
   <sub>`Project` · ★10+ · rokcso · `TS` · call site [`src/contracts/ai.ts`](https://github.com/rokcso/bluenoise/blob/HEAD/src/contracts/ai.ts), read 2026-09-22</sub>
 
 - **[dsh-jev-interceptor](https://github.com/AskTheWay/dsh-jev-interceptor)** — ⚡ Millisecond System-1 judgement for every tool call in DeepSeek Harness — Jev-powered risk classification & evidence-gated auto-approval. Fail-closed by construction. dsh 生态第一个 System-1 决策插件 <sub>(upstream description)</sub>
-  <sub>`Plugin` · ★10+ · asktheway · `TS` · call site [`scripts/smoke.mjs`](https://github.com/AskTheWay/dsh-jev-interceptor/blob/HEAD/scripts/smoke.mjs), read 2026-09-24</sub>
+  <sub>`Plugin` · ★10+ · asktheway · `TS` · call site [`src/config.ts`](https://github.com/AskTheWay/dsh-jev-interceptor/blob/HEAD/src/config.ts), read 2026-09-24</sub>
 
 - **[dsh-jev-plugin](https://github.com/jackie-cqz/dsh-jev-plugin)** — DeepSeek Harness plugin that gives agents Jev's noul, choice and score as tools, and can also use Jev as a pre-execution risk gate (a score over risk levels that denies a tool call, asks for approval or lets it run), a review of tool results and a model router. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · jackie-cqz · `TS` · `noul` · `choice` · `score` · call site [`src/client.ts`](https://github.com/jackie-cqz/dsh-jev-plugin/blob/HEAD/src/client.ts), read by a model 2026-11-08</sub>
@@ -199,9 +199,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-sim-use](https://github.com/Ryu0118/jev-sim-use)** — Navigator for the iOS Simulator and Android devices built on sim-use: given a goal, each step is one Jev request asking which on-screen operation and target come next, whether that step finishes the goal and whether a tap is irreversible. When unsure it stops and leaves a session for your agent. <sub>(written by a model)</sub>
   <sub>`Project` · ★10+ · Ryu0118 · `Swift` · `choice` · `noul` · call site [`Sources/JevSimUseKit/Agent/JevStepPlanner.swift`](https://github.com/Ryu0118/jev-sim-use/blob/HEAD/Sources/JevSimUseKit/Agent/JevStepPlanner.swift), read by a model 2026-11-03</sub>
-
-- **[jev-usecases](https://github.com/kenhuangus/jev-usecases)** — Production TypeSafe Jev (System One) use-case harnesses with confidence-gated decision logic <sub>(upstream description)</sub>
-  <sub>`Project` · ★10+ · kenhuangus · `Py` · call site [`src/jev_usecases/client.py`](https://github.com/kenhuangus/jev-usecases/blob/HEAD/src/jev_usecases/client.py), read 2026-09-22</sub>
 
 - **[jev_antispam_bot](https://github.com/backmeupplz/jev_antispam_bot)** — Minimal grammY Telegram anti-spam bot powered by TypeSafe Jev <sub>(earlier upstream description)</sub>
   <sub>`Project` · ★10+ · backmeupplz · `TS` · call site [`src/spam.ts`](https://github.com/backmeupplz/jev_antispam_bot/blob/HEAD/src/spam.ts), read 2026-09-22</sub>
@@ -358,6 +355,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Jev Router](https://github.com/AIAnytime/Jev-Router)** — OpenAI-compatible router that asks Jev, in one call, which eligible model fits a request (choice), how demanding it is (score), whether it needs a frontier model (noul) and the task kind (choice), optionally with guardrail nouls and which tools are relevant; a policy engine then picks the model. <sub>(written by a model)</sub>
   <sub>`Project` · AIAnytime · `Py` · `choice` · `score` · `noul` · call site [`jev_router/engine/jev_client.py`](https://github.com/AIAnytime/Jev-Router/blob/HEAD/jev_router/engine/jev_client.py), read by a model 2026-11-13</sub>
+
+- **[JEV Shield](https://github.com/jamesanz/jevpromptshield)** — Prompt-injection and command guard for coding agents: one request asks Jev a choice for the text's role (data, user task, model instruction) and nouls for injection, secret extraction, exfiltration, malicious tool use and other attacks; ordinary code turns the answers into block, ask or pass. <sub>(written by a model)</sub>
+  <sub>`Project` · jamesanz · `TS` · `choice` · `noul` · call site [`src/jev/client.ts`](https://github.com/jamesanz/jevpromptshield/blob/HEAD/src/jev/client.ts), read by a model 2026-11-26 · ⚠ `unverified claims`</sub>
 
 - **[Jev vs. the right baselines](https://github.com/ickma2311/jev-baselines-eval)** — Two pre-registered studies: Jev classifies customer intents on CLINC150 and Banking77 as a choice, as the gate of an escalation cascade, against LLMs and a supervised encoder; the second asks whether, under prompt injection, Jev's confidence separates hijacked decisions from resisted ones. <sub>(written by a model)</sub>
   <sub>`Benchmark` · ickma2311 · `Py` · `choice` · `noul` · call site [`code/common.py`](https://github.com/ickma2311/jev-baselines-eval/blob/HEAD/code/common.py), read by a model 2026-11-10</sub>

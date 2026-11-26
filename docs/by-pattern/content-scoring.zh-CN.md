@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 218 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 221 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 209 · 接口形态 5 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 212 · 接口形态 5 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -263,6 +263,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[snifftest](https://github.com/DanRWilloughby/snifftest)** — 识别 AI 写作痕迹的文风 linter：零依赖，可计数规则外加一个判断模型。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · danrwilloughby · `TS` · 调用点 [`src/jev.ts`](https://github.com/DanRWilloughby/snifftest/blob/HEAD/src/jev.ts)，2026-09-22 阅读</sub>
 
+- **[st-jeved](https://github.com/mossyfield/ST-jeved)** — SillyTavern 扩展：度量每条回复，并在规则命中时指导叙述者。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · mossyfield · `JS` · 调用点 [`src/classifier.js`](https://github.com/mossyfield/ST-jeved/blob/HEAD/src/classifier.js)，2026-09-22 阅读</sub>
+
 - **[toolgate](https://github.com/RiskAverseTech/toolgate)** — 面向 AI 智能体的开源自动模式：一个校准过的工具调用防火墙。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · riskaversetech · `TS` · 调用点 [`src/backends/typesafe.ts`](https://github.com/RiskAverseTech/toolgate/blob/HEAD/src/backends/typesafe.ts)，2026-09-22 阅读</sub>
 
@@ -322,6 +325,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[clarity-judge](https://github.com/TypeSafeAI/clarity-judge)** — 由 TypeSafe AI Jev 模型驱动的多维度写作质量检查器：每项检查独立命名，各自给出结论。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · bunsdev · `TS` · 调用点 [`lib/jevClient.ts`](https://github.com/TypeSafeAI/clarity-judge/blob/HEAD/lib/jevClient.ts)，2026-09-24 阅读 · ⚠ `无许可证`</sub>
+
+- **[Claude Code Trace](https://github.com/delexw/claude-code-trace)** — Claude Code 本地会话日志的桌面、网页和终端查看器；可选的效率分析把脱敏后的会话摘要发给 Jev，用 noul 判断重复工作、出错后的恢复、token 用量、子代理是否有用和任务是否完成，并用 score 评估思考量是否得当。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · delexw · `Rs` · `noul` · `score` · 调用点 [`src-tauri/src/efficiency/jev.rs`](https://github.com/delexw/claude-code-trace/blob/HEAD/src-tauri/src/efficiency/jev.rs)，2026-11-26 模型阅读</sub>
 
 - **[claude-jev](https://github.com/buchmark/claude-jev)** — Claude Code 插件：用 TypeSafe Jev 为审查发现、调试假设和设计方案打分，给出校准概率。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · buchmark · `TS` · 调用点 [`src/infrastructure/typesafe-jev.ts`](https://github.com/buchmark/claude-jev/blob/HEAD/src/infrastructure/typesafe-jev.ts)，2026-09-24 阅读</sub>
@@ -670,6 +676,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[vgi-typesafe](https://github.com/Query-farm/vgi-typesafe)** — 一个 VGI worker，把 System One 的 choice／noul／score 以可 LATERAL 连接的表函数形式暴露给 DuckDB／SQL。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · query-farm · `Py` · 调用点 [`vgi_typesafe/typesafe_api.py`](https://github.com/Query-farm/vgi-typesafe/blob/HEAD/vgi_typesafe/typesafe_api.py)，2026-09-22 阅读</sub>
+
+- **[VideoAdGuard](https://github.com/zerotang05/videoadguard)** — 浏览器扩展，根据 B 站视频的字幕找出植入广告片段并跳过；它的 System One 选项在一次请求里为每条字幕和每个关联商品各问 Jev 一个 noul，把高概率字幕连成广告区间，并为视频文案的“AI 感”打分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · zerotang05 · `TS` · `noul` · `score` · 调用点 [`src/services/llm/system-one.ts`](https://github.com/zerotang05/videoadguard/blob/HEAD/src/services/llm/system-one.ts)，2026-11-26 模型阅读</sub>
 
 - **[watfile](https://github.com/jexp/watfile)** — 用 Jev 或本地校准决策模型给文本与 PDF 分类归档。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jexp · `Py` · 调用点 [`src/watfile/classifier/jev.py`](https://github.com/jexp/watfile/blob/HEAD/src/watfile/classifier/jev.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

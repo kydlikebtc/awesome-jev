@@ -240,9 +240,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[skimmer](https://github.com/dorkitude/skimmer)** — 把网页、文件和列表精简到只剩与目标相关部分的命令行工具：每个约 2,000 字符的片段或列表项向 Jev 提一个是非题——它对目标有没有帮助，只按原顺序返回保留的部分。可选的第二个问题会标出试图操纵读者的文本，但这只是过滤器，不是安全边界。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · dorkitude · `Go` · `noul` · 调用点 [`internal/jev/client.go`](https://github.com/dorkitude/skimmer/blob/HEAD/internal/jev/client.go)，2026-10-31 模型阅读</sub>
 
-- **[transcript-lens](https://github.com/sensahin/transcript-lens)** — 按含义浏览 YouTube 字幕：土耳其语界面、由 Jev 分析、可导出字幕，并附 Vercel 部署说明。 <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10+ · sensahin · `TS` · 调用点 [`src/lib/jev.ts`](https://github.com/sensahin/transcript-lens/blob/HEAD/src/lib/jev.ts)，2026-09-24 阅读 · ⚠ `仅一次提交`</sub>
-
 - **[Truffler](https://github.com/kieranklaassen/truffler)** — 面向 Rails 应用的意图搜索：每当记录被保存，Truffler 就向 Jev 提出为它声明的是非题、choice 和 score 问题，并把每个答案存成数值，使记录形成按名称分维的嵌入，搜索时按意图加权。用户需要时，Jev 还会把靠前结果重排为“很可能”“可能”“不太可能”三档。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`平台集成` · ★10+ · kieranklaassen · `Rb` · `noul` · `choice` · `score` · 调用点 [`lib/truffler/questions.rb`](https://github.com/kieranklaassen/truffler/blob/HEAD/lib/truffler/questions.rb)，2026-10-30 模型阅读</sub>
 
@@ -308,6 +305,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev.nvim](https://github.com/valentynkit/jev.nvim)** — Neovim 插件：向当前缓冲区提问，得到 quickfix 列表。Treesitter 切分函数，Jev 给每个函数打分，概率以虚拟文本显示。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · valentynkit · `Lua` · 调用点 [`lua/jev/client.lua`](https://github.com/valentynkit/jev.nvim/blob/HEAD/lua/jev/client.lua)，2026-09-24 阅读</sub>
+
+- **[Jevbox](https://github.com/extend-hq/jevbox)** — 自托管、带权限控制的文档库，搜索由决策模型完成：Jev 用 choice 问题在类别、文档和章节之间做束搜索，为每段来源文字的有用程度打分，并为新文档选文件夹；随后由聊天模型给出带引用的回答。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · extend-hq · `TS` · `choice` · `score` · 调用点 [`server/jev.ts`](https://github.com/extend-hq/jevbox/blob/HEAD/server/jev.ts)，2026-11-26 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[Jevflix](https://github.com/ArielBubis/Jevflix)** — 电影推荐器：FAISS 与 BM25 检索把 4,800 部电影缩成短名单，Jev 读出请求里的约束（片长、不要血腥画面）供代码过滤，再由一次覆盖最多 250 个候选的 Jev choice 选出一部影片。没有把握时，由 LLM 权衡前五名或追问一个问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arielbubis · `Py` · 调用点 [`movie_rec/jev_client.py`](https://github.com/ArielBubis/Jevflix/blob/HEAD/movie_rec/jev_client.py)，2026-09-24 阅读</sub>

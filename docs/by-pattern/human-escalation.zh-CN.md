@@ -136,9 +136,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-phishing-bench](https://github.com/anisselbd/jev-phishing-bench)** — 在 2000 封钓鱼邮件上对比 Jev 与一个轻量 LLM：准确率、校准度、延迟、成本。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · ★10+ · anisselbd · `Py` · 调用点 [`run_jev.py`](https://github.com/anisselbd/jev-phishing-bench/blob/HEAD/run_jev.py)，2026-09-22 阅读 · 作者结论：好坏参半（作者自述，未经本仓库复现）</sub>
 
-- **[jev-usecases](https://github.com/kenhuangus/jev-usecases)** — 生产级的 Jev 用例 harness，带置信度门控的决策逻辑。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10+ · kenhuangus · `Py` · 调用点 [`src/jev_usecases/client.py`](https://github.com/kenhuangus/jev-usecases/blob/HEAD/src/jev_usecases/client.py)，2026-09-22 阅读</sub>
-
 - **[jeval](https://github.com/rlaope/jeval)** — 衡量 Jev 分类器的置信度究竟值多少，并根据出错的代价设定交给人类处理的分界线。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · rlaope · `Py` · 调用点 [`jeval/collect.py`](https://github.com/rlaope/jeval/blob/HEAD/jeval/collect.py)，2026-09-24 阅读</sub>
 
@@ -192,6 +189,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[typed-decisions](https://github.com/mithril-lang/typed-decisions)** — Jev 形状的类型化决策模型：状态加问题进，校准概率出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · kotoba-lang · `Py` · 调用点 [`src/typed_decisions/jev_holes.py`](https://github.com/mithril-lang/typed-decisions/blob/HEAD/src/typed_decisions/jev_holes.py)，2026-09-22 阅读 · ⚠ `已归档`</sub>
+
+- **[AgentRun](https://github.com/parcha-ai/agentrun)** — 开源平台，在 Claude Code、Codex、OpenCode 或 pi 代理之上加入学习、持久运行和控制面；它的类型化工作流加入 Jev 判断步骤（choice、noul、score、box），由答案和置信度决定一个案例继续执行、交回代理还是送人审核。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · parcha-ai · `TS` · `choice` · `noul` · `score` · 调用点 [`packages/jev/src/index.ts`](https://github.com/parcha-ai/agentrun/blob/HEAD/packages/jev/src/index.ts)，2026-11-26 模型阅读</sub>
 
 - **[assay-001](https://github.com/jourdanlabs/assay-001)** — ASSAY-001：对 Jev 校准度与类型安全宣称的独立、预注册验证。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jourdanlabs · `Py` · 调用点 [`harness/run.py`](https://github.com/jourdanlabs/assay-001/blob/HEAD/harness/run.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>

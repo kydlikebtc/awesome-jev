@@ -231,8 +231,8 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[azdaja](https://github.com/kubet/azdaja)** — 与 harness 无关的极简递归语言模型层：单个二进制。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · kubet · `Py` · 调用点 [`bench/jev/adapter.py`](https://github.com/kubet/azdaja/blob/HEAD/bench/jev/adapter.py)，2026-09-22 阅读</sub>
 
-- **[browserclaw](https://github.com/GoldenLoaf24h/browserpaw)** — 高效率的 Chrome 浏览器自动化 MCP server。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
-  <sub>`插件` · ★10+ · goldenloaf24h · `TS` · 调用点 [`app/native-server/src/jev/jev-client.ts`](https://github.com/GoldenLoaf24h/browserpaw/blob/HEAD/app/native-server/src/jev/jev-client.ts)，2026-09-22 阅读</sub>
+- **[clash-jev](https://github.com/bytelabs-oss/clash-jev)** — 没有训练策略的皇室战争机器人：每个决策都由 Jev 现场做出。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · bytelabs-oss · `Py` · 调用点 [`clash_jev/policy.py`](https://github.com/bytelabs-oss/clash-jev/blob/HEAD/clash_jev/policy.py)，2026-09-22 阅读</sub>
 
 - **[CUA-JEV](https://github.com/ZJU-REAL/CUA-JEV)** — 用 Jev 做电脑操作。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · zju-real · `Py` · 调用点 [`src/cua_jev/cost.py`](https://github.com/ZJU-REAL/CUA-JEV/blob/HEAD/src/cua_jev/cost.py)，2026-09-24 阅读</sub>
@@ -381,6 +381,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-sim-use](https://github.com/Ryu0118/jev-sim-use)** — 基于 sim-use 的 iOS 模拟器和 Android 设备导航工具：给定目标后，每一步都是一次 Jev 请求，询问接下来执行哪个屏幕操作、作用于哪个目标、这一步是否完成目标，以及点击是否不可撤销。拿不准时它会停下，并留下会话供你的智能体接手。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · Ryu0118 · `Swift` · `choice` · `noul` · 调用点 [`Sources/JevSimUseKit/Agent/JevStepPlanner.swift`](https://github.com/Ryu0118/jev-sim-use/blob/HEAD/Sources/JevSimUseKit/Agent/JevStepPlanner.swift)，2026-11-03 模型阅读</sub>
 
+- **[jev-skill-suggester](https://github.com/win4r/jev-skill-suggester)** — 用 Jev 做有界的已安装技能推荐，含 Python CLI。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · win4r · `Py` · 调用点 [`scripts/jev_client.py`](https://github.com/win4r/jev-skill-suggester/blob/HEAD/scripts/jev_client.py)，2026-09-22 阅读</sub>
+
 - **[jev-tool-router](https://github.com/jackbarunz/jev-tool-router)** — 给 Codex 的 Jev 驱动 MCP 工具路由。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · jackbarunz · `JS` · 调用点 [`scripts/setup-codex.mjs`](https://github.com/jackbarunz/jev-tool-router/blob/HEAD/scripts/setup-codex.mjs)，2026-09-22 阅读</sub>
 
@@ -392,9 +395,6 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-use](https://github.com/shitianfang/jev-use)** — 一个智能体插件：把不需要文本输出的步骤交给 Jev，而不是主模型。
   <sub>`插件` · ★10+ · shitianfang · `JS` · 调用点 [`src/backends/typesafe.ts`](https://github.com/shitianfang/jev-use/blob/HEAD/src/backends/typesafe.ts)，2026-09-22 阅读</sub>
-
-- **[jev-usecases](https://github.com/kenhuangus/jev-usecases)** — 生产级的 Jev 用例 harness，带置信度门控的决策逻辑。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
-  <sub>`开源项目` · ★10+ · kenhuangus · `Py` · 调用点 [`src/jev_usecases/client.py`](https://github.com/kenhuangus/jev-usecases/blob/HEAD/src/jev_usecases/client.py)，2026-09-22 阅读</sub>
 
 - **[Jev_Star](https://github.com/sc2musa/Jev_Star)** — 星际争霸 II 的宏观运营与微操：由 JEV 选择动作，可选配 LLM 做规划；附论文和完整的获胜对局录像。 <sub>(机翻)</sub>
   <sub>`开源项目` · ★10+ · sc2musa · `Py` · 调用点 [`macro/sc2_rl_agent/starcraftenv_test/agent/jev_agent.py`](https://github.com/sc2musa/Jev_Star/blob/HEAD/macro/sc2_rl_agent/starcraftenv_test/agent/jev_agent.py)，2026-09-24 阅读 · ⚠ `无许可证`</sub>

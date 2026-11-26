@@ -26,9 +26,6 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 *Author's conclusion* is the direction a benchmark's own author states for Jev on the task they measured (`measurement.direction`: favourable, mixed, unfavourable or inconclusive), indexed from the author's report: author-stated, not reproduced here, and absent where the author states none in words. [docs/benchmarks.md](../benchmarks.md) sets every benchmark's measurement side by side.
 
-- **[TradingAgents](https://github.com/tauricresearch/tradingagents)** — Multi-agent LLM trading framework. With a TypeSafe key set, its Sentiment Analyst screens each StockTwits or Reddit post with Jev: a noul on whether it is about the instrument, dropped below 0.3, and a choice of the author's stance, bullish, bearish or neutral, counted at confidence 0.5 or more. <sub>(written by a model)</sub>
-  <sub>`Project` · ★100k+ · tauricresearch · `Py` · `noul` · `choice` · call site [`tradingagents/agents/post_screen.py`](https://github.com/tauricresearch/tradingagents/blob/HEAD/tradingagents/agents/post_screen.py), read by a model 2026-11-12</sub>
-
 - **[docjev](https://github.com/jerryjliu/docjev)** — Classifies and splits PDF, DOCX and PPTX files: LiteParse extracts page text locally, then Jev picks a document's category with a choice over your rules, or for a packet answers per page a category choice and a noul on whether a new document starts there. Its report covers 40 real PDFs. <sub>(written by a model)</sub>
   <sub>`Project` · ★100+ · jerryjliu · `Py` · call site [`src/jev_docs/engines/jev.py`](https://github.com/jerryjliu/docjev/blob/HEAD/src/jev_docs/engines/jev.py), read 2026-09-22</sub>
 
@@ -88,6 +85,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-score](https://github.com/a-Fig/jev-score)** — Local-first document evaluation workspaces powered by Jev <sub>(upstream description)</sub>
   <sub>`Project` · a-fig · `JS` · call site [`src/jev.mjs`](https://github.com/a-Fig/jev-score/blob/HEAD/src/jev.mjs), read 2026-09-22</sub>
+
+- **[Jevbox](https://github.com/extend-hq/jevbox)** — Self-hosted, permission-aware document library whose search runs on a decision model: Jev walks categories, documents and sections with choice questions in a beam search, scores each source passage's usefulness, and picks folders for new documents; a chat model then answers with citations. <sub>(written by a model)</sub>
+  <sub>`Project` · extend-hq · `TS` · `choice` · `score` · call site [`server/jev.ts`](https://github.com/extend-hq/jevbox/blob/HEAD/server/jev.ts), read by a model 2026-11-26 · ⚠ `3rd-party key`</sub>
 
 - **[last-exit](https://github.com/0x963D/last-exit)** — A cyberpunk border encounter powered by TypeSafe Jev. Bluff the guard. Inspect the receipts. <sub>(upstream description)</sub>
   <sub>`Project` · 0x963d · `JS` · call site [`lib/hosted.mjs`](https://github.com/0x963D/last-exit/blob/HEAD/lib/hosted.mjs), read 2026-09-22</sub>
