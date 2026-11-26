@@ -77,6 +77,8 @@ LANG_LABELS = {
     "haskell": "Hs",
     "c": "C",
     "cpp": "C++",
+    "scala": "Scala",
+    "pascal": "Pas",
 }
 
 

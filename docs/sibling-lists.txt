@@ -85,3 +85,8 @@ https://github.com/reacher-z/awesome-jev
 # Added 2026-11-19 by the weekly upkeep: a meta list the daily run held
 # (docs/held.txt) and the upkeep settled as a list to harvest rather than a row.
 https://github.com/stefanwebb/meta-awesome-jev
+
+# Added 2026-11-26 by the weekly upkeep: a curated list the daily run held
+# (docs/held.txt). Its pipeline also calls Jev, so the upkeep added a row for
+# that pipeline as well, as fatwang2/awesome-jev has both.
+https://github.com/ozers/jevsome-projects

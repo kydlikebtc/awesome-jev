@@ -4,11 +4,11 @@
 
 _把大量问题（包括推测性的）打包进一次请求，再由代码挑出真正用得上的答案。_
 
-这个决策的全部已收录例子 —— 共 55 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#并行扇出)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 58 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#并行扇出)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#fan-out)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#fan-out)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 46 · 接口形态 1 · 仅示例 1 · 独立报告 2 · 负面结果 0 · 未引用文件 7。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 49 · 接口形态 1 · 仅示例 1 · 独立报告 2 · 负面结果 0 · 未引用文件 7。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -133,6 +133,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[btx-skill-jev-judge](https://github.com/bitranox/btx-skill-jev-judge)** — 一个只含一个技能 jev-judge 的 Claude Code 插件：当同一个判断要对大量条目重复进行（例如给 600 张客服工单打标签）时，Claude 通过一个经过测试的命令行工具把它交给 Jev，为每个条目问一个 noul、choice 或 score，而不必把每个条目都读进自己的上下文。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · bitranox · `Py` · `noul` · `choice` · `score` · 调用点 [`src/btx_skill_jev_judge/adapters/jev/client.py`](https://github.com/bitranox/btx-skill-jev-judge/blob/HEAD/src/btx_skill_jev_judge/adapters/jev/client.py)，2026-11-25 模型阅读</sub>
 
+- **[Claude Code Trace](https://github.com/delexw/claude-code-trace)** — Claude Code 本地会话日志的桌面、网页和终端查看器；可选的效率分析把脱敏后的会话摘要发给 Jev，用 noul 判断重复工作、出错后的恢复、token 用量、子代理是否有用和任务是否完成，并用 score 评估思考量是否得当。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · delexw · `Rs` · `noul` · `score` · 调用点 [`src-tauri/src/efficiency/jev.rs`](https://github.com/delexw/claude-code-trace/blob/HEAD/src-tauri/src/efficiency/jev.rs)，2026-11-26 模型阅读</sub>
+
 - **[CloakBrowser Agent](https://github.com/CloakHQ/CloakBrowser-Agent)** — 浏览器智能体：每一步都由 Jev 在一次请求里决定，用 choice 选择操作，并为每种可能的操作再用 choice 选出目标元素，由 CloakBrowser 隐身 Chromium 以类人的方式执行；可作为 MCP 服务器、CLI 或库使用。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · CloakHQ · `Py` · `choice` · 调用点 [`cloak_agent/model.py`](https://github.com/CloakHQ/CloakBrowser-Agent/blob/HEAD/cloak_agent/model.py)，2026-11-11 模型阅读</sub>
 
@@ -166,6 +169,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-switchboard](https://github.com/ZIJIAN004/jev-switchboard)** — 给并行编程智能体的 JEV 门控语义通信层。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · zijian004 · `JS` · 调用点 [`src/jev.mjs`](https://github.com/ZIJIAN004/jev-switchboard/blob/HEAD/src/jev.mjs)，2026-09-22 阅读</sub>
 
+- **[Jevsome Projects](https://github.com/ozers/jevsome-projects)** — 收录确实调用 Jev 的开源项目的目录，每一条都链接到调用代码；它的流水线可以对每个仓库发一次请求，问 Jev 用 choice 选出所属分区、用 noul 判断是否真实项目（低于 0.5 就不收录），并用 score 评估项目的分量。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ozers · `JS` · `choice` · `noul` · `score` · 调用点 [`pipeline/lib/jev.mjs`](https://github.com/ozers/jevsome-projects/blob/HEAD/pipeline/lib/jev.mjs)，2026-11-26 模型阅读</sub>
+
 - **[jevswiftsdk](https://github.com/NSStudent/JevSwiftSDK)** — 独立、非官方、零依赖的 System One API Swift SDK：choice、noul 和 score 问题都映射为 Swift 类型（比如对枚举的 choice），具名批量问题一次调用作答并逐个校验答案，支持按策略重试和取消。支持 iOS 15+、macOS 12+ 和 Linux。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · nsstudent · `Swift` · 调用点 [`Sources/JevSwiftSDK/Configuration.swift`](https://github.com/NSStudent/JevSwiftSDK/blob/HEAD/Sources/JevSwiftSDK/Configuration.swift)，2026-09-22 阅读</sub>
 
@@ -195,6 +201,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Using TypeSafe Jev with the AI SDK](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk)** — Vercel 最完整的实操指南：单问题与多问题调用、按概率阈值路由，以及用 mock evaluation 模型写单元测试。
   <sub>`教程` · `TS` · `noul` · `choice` · `score`</sub>
+
+- **[VideoAdGuard](https://github.com/zerotang05/videoadguard)** — 浏览器扩展，根据 B 站视频的字幕找出植入广告片段并跳过；它的 System One 选项在一次请求里为每条字幕和每个关联商品各问 Jev 一个 noul，把高概率字幕连成广告区间，并为视频文案的“AI 感”打分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · zerotang05 · `TS` · `noul` · `score` · 调用点 [`src/services/llm/system-one.ts`](https://github.com/zerotang05/videoadguard/blob/HEAD/src/services/llm/system-one.ts)，2026-11-26 模型阅读</sub>
 
 ---
 

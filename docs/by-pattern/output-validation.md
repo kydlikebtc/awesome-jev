@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 191 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 195 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 186 · wire shape 1 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 190 · wire shape 1 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -121,6 +121,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[cmd-mod-jev-nudge](https://github.com/CommandCodeAI/cmd-mod-jev-nudge)** — Command Code mod: nudges the agent to keep going when it stops with work left, judged by Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · ★10+ · commandcodeai · `TS` · call site [`src/protocol.ts`](https://github.com/CommandCodeAI/cmd-mod-jev-nudge/blob/HEAD/src/protocol.ts), read 2026-09-24</sub>
+
+- **[cultivar](https://github.com/pinecone-io/cultivar)** — Use cultivar to test your Agent Skills and Docs by running them in sandboxes, and across different agents. <sub>(upstream description)</sub>
+  <sub>`Project` · ★10+ · pinecone-io · `Py` · call site [`evals/framework/typesafe_grader.py`](https://github.com/pinecone-io/cultivar/blob/HEAD/evals/framework/typesafe_grader.py), read 2026-09-22</sub>
 
 - **[dsh-jev-plugin](https://github.com/jackie-cqz/dsh-jev-plugin)** — DeepSeek Harness plugin that gives agents Jev's noul, choice and score as tools, and can also use Jev as a pre-execution risk gate (a score over risk levels that denies a tool call, asks for approval or lets it run), a review of tool results and a model router. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · jackie-cqz · `TS` · `noul` · `choice` · `score` · call site [`src/client.ts`](https://github.com/jackie-cqz/dsh-jev-plugin/blob/HEAD/src/client.ts), read by a model 2026-11-08</sub>
@@ -272,6 +275,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[solvi](https://github.com/solvi-ai/solvi)** — Python runtime with a System One API adapter: Jev, an LLM or a local checkpoint proposes typed answers; hard checks, rules and calibrated thresholds decide, abstain or escalate to a person, and every decision is a hash-chained replayable trace.
   <sub>`SDK` · ★10+ · mxkuzn · `Py` · `choice` · `noul` · call site [`src/solvi/core/deciders/systemone.py`](https://github.com/solvi-ai/solvi/blob/HEAD/src/solvi/core/deciders/systemone.py), read 2026-10-23 · ⚠ `self-submitted`</sub>
 
+- **[st-jeved](https://github.com/mossyfield/ST-jeved)** — SillyTavern extension that measures each reply and instructs the narrator only when a rule matches. <sub>(upstream description)</sub>
+  <sub>`Plugin` · ★10+ · mossyfield · `JS` · call site [`src/classifier.js`](https://github.com/mossyfield/ST-jeved/blob/HEAD/src/classifier.js), read 2026-09-22</sub>
+
 - **[stingray](https://github.com/nanako0129/stingray)** — Claude Code Stop hook that catches turns that stop half-done: Jev judges whether the turn did nothing, declared an action its tool calls do not back, promised to watch work that is not running, or answered in the wrong language, and the hook blocks the stop with a fixed nudge. <sub>(written by a model)</sub>
   <sub>`Plugin` · ★10+ · nanako0129 · `sh` · `noul` · call site [`hooks/stingray.sh`](https://github.com/nanako0129/stingray/blob/HEAD/hooks/stingray.sh), read by a model 2026-11-04</sub>
 
@@ -292,6 +298,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[agent-handoff-gate](https://github.com/zsoXi/agent-handoff-gate)** — An experimental protocol for evidence-aware agent handoffs, bounded worker continuation, and TypeSafe/Jev-assisted review, with reproducible evaluation. <sub>(earlier upstream description)</sub>
   <sub>`Benchmark` · zsoxi · `Py` · call site [`tools/build_benchmark_prompts.py`](https://github.com/zsoXi/agent-handoff-gate/blob/HEAD/tools/build_benchmark_prompts.py), read 2026-09-22 · ⚠ `one commit` `archived`</sub>
+
+- **[AgentRun](https://github.com/parcha-ai/agentrun)** — Open-source platform that runs Claude Code, Codex, OpenCode or pi agents with learning, durable runs and a control plane; its typed workflows add Jev judge steps (choice, noul, score, box) whose answers and confidence decide whether a case goes on, back to an agent, or to review. <sub>(written by a model)</sub>
+  <sub>`Project` · parcha-ai · `TS` · `choice` · `noul` · `score` · call site [`packages/jev/src/index.ts`](https://github.com/parcha-ai/agentrun/blob/HEAD/packages/jev/src/index.ts), read by a model 2026-11-26</sub>
 
 - **[android-jev](https://github.com/FZ2000/android-jev)** — MCP tool that controls an Android phone over adb: at each step it reads the screen and asks Jev which operation, target and app come next (choices), whether the goal is done, and whether the step is consequential and authorised (nouls), then checks the result before saying whether it worked. <sub>(written by a model)</sub>
   <sub>`Project` · FZ2000 · `Py` · `choice` · `noul` · call site [`src/phone_control/jev.py`](https://github.com/FZ2000/android-jev/blob/HEAD/src/phone_control/jev.py), read by a model 2026-11-24</sub>
@@ -526,6 +535,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[omp-typesafe](https://github.com/siddicky/omp-typesafe)** — TypeSafe AI (Jev) adversarial reviewer and typesafe_ask tool for the omp coding agent <sub>(upstream description)</sub>
   <sub>`Plugin` · siddicky · `TS` · call site [`src/client.ts`](https://github.com/siddicky/omp-typesafe/blob/HEAD/src/client.ts), read 2026-09-24</sub>
+
+- **[OntoSmith](https://github.com/dongbumlee/ontosmith)** — Ontology-driven knowledge-graph builder on Neo4j: cheap models propose entities and triples under a schema a person approved, and Jev judges each with noul gates (same entity, relation holds, axiom admitted) and a choice of relation label, so only judged facts with their evidence span are written. <sub>(written by a model)</sub>
+  <sub>`Project` · dongbumlee · `Py` · `noul` · `choice` · `score` · call site [`pipeline/decisions.py`](https://github.com/dongbumlee/ontosmith/blob/HEAD/pipeline/decisions.py), read by a model 2026-11-26 · ⚠ `3rd-party key`</sub>
 
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — Binary approval gate for Codex and Claude Code — every intercepted tool call is reviewed by TypeSafe JEV and composed through a versioned local policy, with scoped authorization. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · alexj11324 · `Go` · cited file [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go), read 2026-09-22 · ⚠ `not Jev itself`</sub>

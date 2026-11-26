@@ -1,5 +1,66 @@
 [
   {
+    "slug": "browserclaw",
+    "title": "browserclaw",
+    "summary": "BrowserClaw - High-efficiency Chrome browser automation MCP server",
+    "summary_source": "upstream-description-stale",
+    "summary_zh": "高效率的 Chrome 浏览器自动化 MCP server。",
+    "zh_machine": true,
+    "url": "https://github.com/GoldenLoaf24h/browserpaw",
+    "kind": "plugin",
+    "patterns": [
+      "tool-selection"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "goldenloaf24h",
+      "url": "https://github.com/goldenloaf24h"
+    },
+    "has_code": true,
+    "stars": 43,
+    "repo_license": "AGPL-3.0",
+    "repo_created_at": "2026-09-10T01:18:01Z",
+    "repo_pushed_at": "2026-11-22T11:27:44Z",
+    "repo_commits": 293,
+    "evidence": {
+      "path": "app/native-server/src/jev/jev-client.ts",
+      "matched": [
+        "@typesafe-ai/sdk",
+        "systemOne",
+        "TypeSafeClient"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "AppitStudio/awesome-jev",
+        "url": "https://github.com/AppitStudio/awesome-jev"
+      },
+      {
+        "catalog": "MrJev/awesome-jev",
+        "url": "https://github.com/MrJev/awesome-jev"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "typescript"
+    ],
+    "checked": "2026-11-25",
+    "notes": "Retired 2026-11-26: the Jev client the row cited (app/native-server/src/jev/jev-client.ts) is gone, Jev now appears only in its research notes and archived reviews, and no code file on its default branch calls Jev any more (searched 2026-11-26). Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-26 退役：本条目所引的 Jev 客户端（app/native-server/src/jev/jev-client.ts）已删除，Jev 如今只出现在其研究笔记和归档评审中，默认分支上也已没有任何代码文件调用 Jev（2026-11-26 搜索）。保留于此，以便这条引用仍可检索。"
+  },
+  {
     "slug": "cartshield",
     "title": "cartshield",
     "summary": "CartShield — SMB checkout fraud disposition via TypeSafe Jev",
@@ -1362,6 +1423,152 @@
     "notes_zh": "2026-10-24 退役：自 2026-10-13 起每周刷新都无法访问该仓库（最近一次为 2026-10-21）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
   },
   {
+    "slug": "jev-system-one",
+    "title": "jev-system-one",
+    "summary": "A polished OpenAI + TypeSafe Jev terminal interface for answers with transparent decision reports",
+    "summary_source": "upstream-description",
+    "summary_zh": "打磨过的终端界面，输出答案的同时给出透明的决策报告。",
+    "zh_machine": true,
+    "url": "https://github.com/haseeb-heaven/jev-system-one",
+    "kind": "project",
+    "patterns": [
+      "overview"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "haseeb-heaven",
+      "url": "https://github.com/haseeb-heaven"
+    },
+    "has_code": true,
+    "stars": 5,
+    "repo_license": "MIT",
+    "repo_created_at": "2026-09-17T02:09:04Z",
+    "repo_pushed_at": "2026-09-17T02:45:22Z",
+    "repo_commits": 8,
+    "evidence": {
+      "path": "src/jev_system_one/jev.py",
+      "matched": [
+        "typesafe_sdk",
+        "system_one",
+        "TypeSafeClient"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "JohnDotOwl/awesome-jev",
+        "url": "https://github.com/JohnDotOwl/awesome-jev"
+      },
+      {
+        "catalog": "jtnkminimal/awesome-jev",
+        "url": "https://github.com/jtnkminimal/awesome-jev"
+      },
+      {
+        "catalog": "logicrw/awesome-jev-projects",
+        "url": "https://github.com/logicrw/awesome-jev-projects"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      },
+      {
+        "catalog": "valentynkit/awesome-jev-typesafe",
+        "url": "https://github.com/valentynkit/awesome-jev-typesafe"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "checked": "2026-11-25",
+    "link_status": 404,
+    "notes": "Retired 2026-11-26: the repository has not resolved in any weekly check since 2026-11-16 (last on 2026-11-25) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-26 退役：自 2026-11-16 起每周检查都无法访问该仓库（最近一次为 2026-11-25）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "jev-usecases",
+    "title": "jev-usecases",
+    "summary": "Production TypeSafe Jev (System One) use-case harnesses with confidence-gated decision logic",
+    "summary_source": "upstream-description",
+    "summary_zh": "生产级的 Jev 用例 harness，带置信度门控的决策逻辑。",
+    "zh_machine": true,
+    "url": "https://github.com/kenhuangus/jev-usecases",
+    "kind": "project",
+    "patterns": [
+      "tool-selection",
+      "safety-gating",
+      "human-escalation"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "kenhuangus",
+      "url": "https://github.com/kenhuangus"
+    },
+    "has_code": true,
+    "stars": 27,
+    "repo_license": "MIT",
+    "repo_created_at": "2026-09-18T10:59:28Z",
+    "repo_pushed_at": "2026-09-21T15:12:12Z",
+    "repo_commits": 8,
+    "evidence": {
+      "path": "src/jev_usecases/client.py",
+      "matched": [
+        "typesafe_sdk",
+        "jev-latest",
+        "TypeSafeClient"
+      ],
+      "read_on": "2026-09-22"
+    },
+    "first_seen": "2026-09-22",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "jqueryscript/awesome-jev",
+        "url": "https://github.com/jqueryscript/awesome-jev"
+      },
+      {
+        "catalog": "logicrw/awesome-jev-projects",
+        "url": "https://github.com/logicrw/awesome-jev-projects"
+      },
+      {
+        "catalog": "Omrigotlieb/awesome-jev",
+        "url": "https://github.com/Omrigotlieb/awesome-jev"
+      },
+      {
+        "catalog": "robokrunch/awesome-jev",
+        "url": "https://github.com/robokrunch/awesome-jev"
+      },
+      {
+        "catalog": "yibie/awesome-jev",
+        "url": "https://github.com/yibie/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "languages": [
+      "python"
+    ],
+    "checked": "2026-11-25",
+    "link_status": 404,
+    "notes": "Retired 2026-11-26: the repository has not resolved in any weekly check since 2026-11-16 (last on 2026-11-25) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-26 退役：自 2026-11-16 起每周检查都无法访问该仓库（最近一次为 2026-11-25）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
     "slug": "jevchess",
     "title": "jevchess",
     "summary": "Jev, TypeSafe's System One model, plays chess against any OpenRouter LLM, Stockfish and you. One-page web app with live moves, Jev's move probabilities, saved games and win rates.",
@@ -2201,6 +2408,141 @@
     "link_status": 404,
     "notes": "Retired 2026-11-12: the repository has not resolved in any weekly check since 2026-11-02 (last on 2026-11-11) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
     "notes_zh": "2026-11-12 退役：自 2026-11-02 起每周检查都无法访问该仓库（最近一次为 2026-11-11）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
+  },
+  {
+    "slug": "tradingagents",
+    "title": "TradingAgents",
+    "summary": "Multi-agent LLM trading framework. With a TypeSafe key set, its Sentiment Analyst screens each StockTwits or Reddit post with Jev: a noul on whether it is about the instrument, dropped below 0.3, and a choice of the author's stance, bullish, bearish or neutral, counted at confidence 0.5 or more.",
+    "summary_source": "model-written",
+    "summary_zh": "多智能体 LLM 交易框架。设置了 TypeSafe 密钥时，其情绪分析师会用 Jev 筛查每条 StockTwits 或 Reddit 帖子：用一个 noul 判断帖子是否在谈该标的，低于 0.3 则丢弃；再用一个 choice 判断作者立场（看涨、看跌或中性），置信度达到 0.5 才计入。",
+    "url": "https://github.com/tauricresearch/tradingagents",
+    "kind": "project",
+    "patterns": [
+      "classification",
+      "document-triage"
+    ],
+    "patterns_model_read_on": "2026-11-12",
+    "question_types": [
+      "noul",
+      "choice"
+    ],
+    "platforms": [
+      "typesafe-api",
+      "openrouter"
+    ],
+    "author": {
+      "name": "tauricresearch",
+      "url": "https://github.com/tauricresearch"
+    },
+    "languages": [
+      "python"
+    ],
+    "evidence": {
+      "path": "tradingagents/agents/post_screen.py",
+      "matched": [
+        "_DEFAULT_BASE_URL = \"https://api.typesafe.ai\"",
+        "_DEFAULT_MODEL = \"jev-latest\"",
+        "_OFF_TOPIC_BELOW = 0.3",
+        "_STANCE_CONFIDENCE = 0.5"
+      ],
+      "model_read_on": "2026-11-12"
+    },
+    "notes": "Retired 2026-11-26: the Sentiment Analyst's post screen the row cited (tradingagents/agents/post_screen.py) is gone, no file on its default branch names Jev or TypeSafe any more, and no code file calls Jev (searched 2026-11-26). Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-26 退役：本条目所引的情绪分析师帖子筛选（tradingagents/agents/post_screen.py）已删除，默认分支上已没有文件提到 Jev 或 TypeSafe，也没有代码文件调用 Jev（2026-11-26 搜索）。保留于此，以便这条引用仍可检索。",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "AppitStudio/awesome-jev",
+        "url": "https://github.com/AppitStudio/awesome-jev"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      },
+      {
+        "catalog": "jqueryscript/awesome-jev",
+        "url": "https://github.com/jqueryscript/awesome-jev"
+      },
+      {
+        "catalog": "rhc98/awesome-jev",
+        "url": "https://github.com/rhc98/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "repo_license": "Apache-2.0",
+    "repo_created_at": "2024-12-28T03:31:08Z",
+    "repo_pushed_at": "2026-11-25T07:27:54Z",
+    "repo_commits": 519,
+    "first_seen": "2026-11-12",
+    "zh_machine": true,
+    "has_code": true,
+    "checked": "2026-11-25",
+    "stars": 123753
+  },
+  {
+    "slug": "transcript-lens",
+    "title": "transcript-lens",
+    "summary": "Explore YouTube transcripts by meaning: a Turkish interface, analysis by Jev, subtitle export and a Vercel deploy recipe.",
+    "summary_zh": "按含义浏览 YouTube 字幕：土耳其语界面、由 Jev 分析、可导出字幕，并附 Vercel 部署说明。",
+    "url": "https://github.com/sensahin/transcript-lens",
+    "kind": "project",
+    "patterns": [
+      "search-ranking"
+    ],
+    "platforms": [
+      "typesafe-api"
+    ],
+    "author": {
+      "name": "sensahin",
+      "url": "https://github.com/sensahin"
+    },
+    "has_code": true,
+    "official": false,
+    "stars": 17,
+    "repo_license": "MIT",
+    "repo_created_at": "2026-09-19T09:59:15Z",
+    "repo_pushed_at": "2026-09-19T10:00:10Z",
+    "repo_commits": 1,
+    "published": "2026-09-19",
+    "first_seen": "2026-09-24",
+    "sources": [
+      {
+        "catalog": "sibling-list aggregate (docs/sibling-lists.txt)",
+        "url": "https://github.com/kydlikebtc/awesome-jev/blob/main/docs/sibling-lists.txt"
+      },
+      {
+        "catalog": "AppitStudio/awesome-jev",
+        "url": "https://github.com/AppitStudio/awesome-jev"
+      },
+      {
+        "catalog": "heyjunpenn/awesome-jev",
+        "url": "https://github.com/heyjunpenn/awesome-jev"
+      }
+    ],
+    "license": "CC0-1.0",
+    "evidence": {
+      "path": "src/lib/jev.ts",
+      "matched": [
+        "api.typesafe.ai",
+        "typesafe-ai/jev",
+        "jev-latest"
+      ],
+      "read_on": "2026-09-24"
+    },
+    "zh_machine": true,
+    "languages": [
+      "typescript"
+    ],
+    "checked": "2026-11-25",
+    "link_status": 404,
+    "flags": [
+      "single-commit"
+    ],
+    "notes": "Retired 2026-11-26: the repository has not resolved in any weekly check since 2026-11-16 (last on 2026-11-25) — deleted, renamed without a redirect, or made private. Kept here so the reference stays searchable.",
+    "notes_zh": "2026-11-26 退役：自 2026-11-16 起每周检查都无法访问该仓库（最近一次为 2026-11-25）—— 已删除、改名且无跳转，或转为私有。保留于此，以便这条引用仍可检索。"
   },
   {
     "slug": "trustgate",

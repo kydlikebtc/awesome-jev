@@ -4,11 +4,11 @@
 
 _Pack many questions — including speculative ones — into one request and let code pick what mattered._
 
-Every catalogued example of this decision — 55 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 58 of them. The same rows, with caveats, are in [the index](../../README.md#speculative-fan-out); [the site](https://kydlikebtc.github.io/awesome-jev/?p=fan-out&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#fan-out): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 46 · wire shape 1 · example only 1 · independent reports 2 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 49 · wire shape 1 · example only 1 · independent reports 2 · negative results 0 · no file cited 7. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -133,6 +133,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[btx-skill-jev-judge](https://github.com/bitranox/btx-skill-jev-judge)** — Claude Code plugin with one skill, jev-judge: when the same judgment repeats over many items, such as labelling 600 support tickets, Claude hands it to Jev through a tested command-line tool that asks each item a noul, choice or score instead of reading every item into its own context. <sub>(written by a model)</sub>
   <sub>`Plugin` · bitranox · `Py` · `noul` · `choice` · `score` · call site [`src/btx_skill_jev_judge/adapters/jev/client.py`](https://github.com/bitranox/btx-skill-jev-judge/blob/HEAD/src/btx_skill_jev_judge/adapters/jev/client.py), read by a model 2026-11-25</sub>
 
+- **[Claude Code Trace](https://github.com/delexw/claude-code-trace)** — Desktop, web and terminal viewer for Claude Code's local session logs; its optional efficiency analysis sends a redacted session summary to Jev, which answers nouls on repeated work, recovery, token use, useful subagents and task completion and a score on how balanced the thinking was. <sub>(written by a model)</sub>
+  <sub>`Project` · delexw · `Rs` · `noul` · `score` · call site [`src-tauri/src/efficiency/jev.rs`](https://github.com/delexw/claude-code-trace/blob/HEAD/src-tauri/src/efficiency/jev.rs), read by a model 2026-11-26</sub>
+
 - **[CloakBrowser Agent](https://github.com/CloakHQ/CloakBrowser-Agent)** — Browser agent in which Jev decides every step in one request: a choice of operation plus a choice of target element for each possible operation, while the CloakBrowser stealth Chromium carries it out with human-like input; it runs as an MCP server, a CLI or a library. <sub>(written by a model)</sub>
   <sub>`Project` · CloakHQ · `Py` · `choice` · call site [`cloak_agent/model.py`](https://github.com/CloakHQ/CloakBrowser-Agent/blob/HEAD/cloak_agent/model.py), read by a model 2026-11-11</sub>
 
@@ -166,6 +169,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-switchboard](https://github.com/ZIJIAN004/jev-switchboard)** — A JEV-gated semantic communication layer for parallel coding agents. <sub>(upstream description)</sub>
   <sub>`Project` · zijian004 · `JS` · call site [`src/jev.mjs`](https://github.com/ZIJIAN004/jev-switchboard/blob/HEAD/src/jev.mjs), read 2026-09-22</sub>
 
+- **[Jevsome Projects](https://github.com/ozers/jevsome-projects)** — A directory of open-source projects that provably call Jev, each linked to its call site; its pipeline can ask Jev, in one request per repository, a choice of section, a noul on whether it is a real project (below 0.5 it is left out) and a score of how substantial it looks. <sub>(written by a model)</sub>
+  <sub>`Project` · ozers · `JS` · `choice` · `noul` · `score` · call site [`pipeline/lib/jev.mjs`](https://github.com/ozers/jevsome-projects/blob/HEAD/pipeline/lib/jev.mjs), read by a model 2026-11-26</sub>
+
 - **[jevswiftsdk](https://github.com/NSStudent/JevSwiftSDK)** — Independent, unofficial and dependency-free Swift SDK for the System One API: choice, noul and score questions typed as Swift values, such as a choice over an enum, named batches answered in one call with every answer checked, retries with a policy and cancellation. iOS 15+, macOS 12+ and Linux. <sub>(written by a model)</sub>
   <sub>`SDK` · nsstudent · `Swift` · call site [`Sources/JevSwiftSDK/Configuration.swift`](https://github.com/NSStudent/JevSwiftSDK/blob/HEAD/Sources/JevSwiftSDK/Configuration.swift), read 2026-09-22</sub>
 
@@ -195,6 +201,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Using TypeSafe Jev with the AI SDK](https://vercel.com/kb/guide/typesafe-jev-and-ai-sdk)** — The richest Vercel walkthrough: single and multi-question calls, probability-threshold routing, and unit tests with a mock evaluation model.
   <sub>`Tutorial` · `TS` · `noul` · `choice` · `score`</sub>
+
+- **[VideoAdGuard](https://github.com/zerotang05/videoadguard)** — Browser extension that finds sponsored segments in Bilibili videos from their subtitles and skips them; its System One option asks Jev one noul per caption and per linked product in one request, joins high-probability captions into ad ranges, and scores how AI-written a video's copy reads. <sub>(written by a model)</sub>
+  <sub>`Plugin` · zerotang05 · `TS` · `noul` · `score` · call site [`src/services/llm/system-one.ts`](https://github.com/zerotang05/videoadguard/blob/HEAD/src/services/llm/system-one.ts), read by a model 2026-11-26</sub>
 
 ---
 

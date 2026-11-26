@@ -177,7 +177,9 @@
           "kotlin",
           "haskell",
           "c",
-          "cpp"
+          "cpp",
+          "scala",
+          "pascal"
         ]
       }
     },

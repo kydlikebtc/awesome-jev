@@ -91,6 +91,8 @@ LANG_EXT: dict[str, tuple[str, ...]] = {
     "haskell": (".hs",),
     "c": (".c", ".h"),
     "cpp": (".cc", ".cpp", ".cxx", ".hpp", ".hh"),
+    "scala": (".scala", ".sc"),
+    "pascal": (".pas", ".dpr", ".dpk", ".lpr"),  # Delphi and Free Pascal
 }
 # SQL is not a catalogue language, but a query calling Jev is still a call site.
 CODE_EXT: tuple[str, ...] = tuple(e for exts in LANG_EXT.values() for e in exts) + (".sql",)

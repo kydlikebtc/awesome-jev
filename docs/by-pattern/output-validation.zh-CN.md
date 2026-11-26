@@ -4,11 +4,11 @@
 
 _在输出到达用户前，按评分标准检查模型产出。_
 
-这个决策的全部已收录例子 —— 共 191 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 195 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#output-validation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#output-validation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 186 · 接口形态 1 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 190 · 接口形态 1 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -121,6 +121,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[cmd-mod-jev-nudge](https://github.com/CommandCodeAI/cmd-mod-jev-nudge)** — Command Code 的 mod：当智能体在还有工作未完成时停下，由 Jev 判断后推它继续。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · commandcodeai · `TS` · 调用点 [`src/protocol.ts`](https://github.com/CommandCodeAI/cmd-mod-jev-nudge/blob/HEAD/src/protocol.ts)，2026-09-24 阅读</sub>
+
+- **[cultivar](https://github.com/pinecone-io/cultivar)** — 在沙盒里跨环境测试你的 Agent 技能与文档。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · ★10+ · pinecone-io · `Py` · 调用点 [`evals/framework/typesafe_grader.py`](https://github.com/pinecone-io/cultivar/blob/HEAD/evals/framework/typesafe_grader.py)，2026-09-22 阅读</sub>
 
 - **[dsh-jev-plugin](https://github.com/jackie-cqz/dsh-jev-plugin)** — DeepSeek Harness 插件：把 Jev 的 noul、choice 和 score 作为工具提供给智能体，还可以把 Jev 用作执行前的风险关卡（对风险等级打分，据此拒绝工具调用、请求批准或放行）、工具结果的复核以及模型路由。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · jackie-cqz · `TS` · `noul` · `choice` · `score` · 调用点 [`src/client.ts`](https://github.com/jackie-cqz/dsh-jev-plugin/blob/HEAD/src/client.ts)，2026-11-08 模型阅读</sub>
@@ -272,6 +275,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[solvi](https://github.com/solvi-ai/solvi)** — Python 决策运行时，内置 System One API 适配器：由 Jev、LLM 或本地模型给出类型化答案，再由硬性检查、规则和校准阈值决定采纳、弃权或转交人工；每个决策都保存为可重放的哈希链记录。 <sub>(机翻)</sub>
   <sub>`SDK` · ★10+ · mxkuzn · `Py` · `choice` · `noul` · 调用点 [`src/solvi/core/deciders/systemone.py`](https://github.com/solvi-ai/solvi/blob/HEAD/src/solvi/core/deciders/systemone.py)，2026-10-23 阅读 · ⚠ `作者自荐`</sub>
 
+- **[st-jeved](https://github.com/mossyfield/ST-jeved)** — SillyTavern 扩展：度量每条回复，并在规则命中时指导叙述者。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · ★10+ · mossyfield · `JS` · 调用点 [`src/classifier.js`](https://github.com/mossyfield/ST-jeved/blob/HEAD/src/classifier.js)，2026-09-22 阅读</sub>
+
 - **[stingray](https://github.com/nanako0129/stingray)** — Claude Code 的 Stop 钩子，拦截做到一半就停下的轮次：由 Jev 判断这一轮是否什么都没做、宣称了工具调用无法佐证的操作、承诺监看并未运行的工作，或用错了回复语言，钩子随后以一段固定提示阻止停止。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ★10+ · nanako0129 · `sh` · `noul` · 调用点 [`hooks/stingray.sh`](https://github.com/nanako0129/stingray/blob/HEAD/hooks/stingray.sh)，2026-11-04 模型阅读</sub>
 
@@ -292,6 +298,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[agent-handoff-gate](https://github.com/zsoXi/agent-handoff-gate)** — 面向证据感知的智能体交接与有界工作续跑的实验性协议。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · zsoxi · `Py` · 调用点 [`tools/build_benchmark_prompts.py`](https://github.com/zsoXi/agent-handoff-gate/blob/HEAD/tools/build_benchmark_prompts.py)，2026-09-22 阅读 · ⚠ `仅一次提交` `已归档`</sub>
+
+- **[AgentRun](https://github.com/parcha-ai/agentrun)** — 开源平台，在 Claude Code、Codex、OpenCode 或 pi 代理之上加入学习、持久运行和控制面；它的类型化工作流加入 Jev 判断步骤（choice、noul、score、box），由答案和置信度决定一个案例继续执行、交回代理还是送人审核。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · parcha-ai · `TS` · `choice` · `noul` · `score` · 调用点 [`packages/jev/src/index.ts`](https://github.com/parcha-ai/agentrun/blob/HEAD/packages/jev/src/index.ts)，2026-11-26 模型阅读</sub>
 
 - **[android-jev](https://github.com/FZ2000/android-jev)** — 一个通过 adb 控制安卓手机的 MCP 工具：每一步先读取屏幕，再问 Jev 下一步的操作、目标和应用（choice），目标是否已完成，以及这一步是否后果重大、是否已获授权（noul），最后核对结果，再如实报告是否成功。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · FZ2000 · `Py` · `choice` · `noul` · 调用点 [`src/phone_control/jev.py`](https://github.com/FZ2000/android-jev/blob/HEAD/src/phone_control/jev.py)，2026-11-24 模型阅读</sub>
@@ -526,6 +535,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[omp-typesafe](https://github.com/siddicky/omp-typesafe)** — 为 omp 编码智能体提供的 TypeSafe AI（Jev）对抗式审查器与 typesafe_ask 工具。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · siddicky · `TS` · 调用点 [`src/client.ts`](https://github.com/siddicky/omp-typesafe/blob/HEAD/src/client.ts)，2026-09-24 阅读</sub>
+
+- **[OntoSmith](https://github.com/dongbumlee/ontosmith)** — 基于 Neo4j、以本体为先的知识图谱构建工具：廉价模型在人工批准的模式下提出实体和三元组，Jev 用 noul 关卡（是否同一实体、关系是否成立、公理是否接纳）和关系标签上的 choice 逐一判断，只写入经过判断、带证据片段的事实。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · dongbumlee · `Py` · `noul` · `choice` · `score` · 调用点 [`pipeline/decisions.py`](https://github.com/dongbumlee/ontosmith/blob/HEAD/pipeline/decisions.py)，2026-11-26 模型阅读 · ⚠ `需第三方密钥`</sub>
 
 - **[open-jev-approvals](https://github.com/alexj11324/open-jev-approvals)** — 给 Codex 与 Claude Code 的二值批准闸门：每次被拦截的工具调用都要审查。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · alexj11324 · `Go` · 引用文件 [`internal/jev/client.go`](https://github.com/alexj11324/open-jev-approvals/blob/HEAD/internal/jev/client.go)，2026-09-22 阅读 · ⚠ `并非 Jev 本身`</sub>
