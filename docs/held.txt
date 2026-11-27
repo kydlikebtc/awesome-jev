@@ -12,3 +12,4 @@
 # or changed, a line in declined.txt, or nothing to do, and deletes its line in
 # the same pull request. Nobody else is waited for. A line whose candidate is
 # catalogued or declined is shown as settled until the upkeep deletes it.
+JevBench/jevbench  # benchmark of whether decision models' probabilities stay coherent (50 laws over noul, choice and score), sent through POST /v1/systemone to 21 openly released models in Jev's shape; it never measures Jev, and its README says "Jev" names only the wire interface. Not an alternative (it serves no model) and not a comparison with Jev (rules 3, 4 and 6); rule 8
