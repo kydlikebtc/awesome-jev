@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 252 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 254 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 240 · wire shape 3 · example only 0 · independent reports 24 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 242 · wire shape 3 · example only 0 · independent reports 24 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -539,6 +539,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-guard](https://github.com/klauswg/jev-guard)** — Real-time risk triage gateway for exchange deposits and withdrawals — Jev (TypeSafe System One) handles triage only; adjudication stays in deterministic code. <sub>(upstream description)</sub>
   <sub>`Project` · klauswg · `Java` · call site [`src/main/java/com/jevguard/eval/EvalRunner.java`](https://github.com/klauswg/jev-guard/blob/HEAD/src/main/java/com/jevguard/eval/EvalRunner.java), read 2026-09-24</sub>
 
+- **[Jev-Interaction](https://github.com/native-bond-lab/Jev-Interaction)** — Full-duplex voice framework that writes turn-taking as questions for Jev: from the live transcript it asks whether the user has finished, what their words over the agent's line mean, which pace the call is in and whether to wait, yield, cut in or say "mm-hm"; any language model writes the words. <sub>(written by a model)</sub>
+  <sub>`Project` · native-bond-lab · `Py` · `choice` · call site [`jev_interaction/judge/client.py`](https://github.com/native-bond-lab/Jev-Interaction/blob/HEAD/jev_interaction/judge/client.py), read by a model 2026-11-27 · ⚠ `vendor numbers`</sub>
+
 - **[jev-labeler-action](https://github.com/yamadashy/jev-labeler-action)** — Zero-config AI issue labeling with TypeSafe's Jev. No generated text. Unofficial. <sub>(upstream description)</sub>
   <sub>`Project` · yamadashy · `TS` · call site [`src/jev/client.ts`](https://github.com/yamadashy/jev-labeler-action/blob/HEAD/src/jev/client.ts), read 2026-09-24</sub>
 
@@ -712,6 +715,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — Add-on for @playwright/test that asks Jev small typed questions where a suite would rerun everything or spend an LLM turn: a choice for a failure's root cause that drives retry and heal, scores to prune snapshots and order tests, nouls to verify steps and assertions, and a choice to heal locators. <sub>(written by a model)</sub>
   <sub>`Plugin` · AdriaanVE · `TS` · `choice` · `noul` · `score` · call site [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts), read by a model 2026-11-23</sub>
+
+- **[Practical Data](https://github.com/philrenaud/practical-data)** — Chrome extension that shades the comparable columns of HTML tables: for each table near the viewport Jev decides what kind of numbers a column holds, whether a higher value is better or worse for a typical reader, whether a log scale fits and whether edge rows are totals; code does the rest. <sub>(written by a model)</sub>
+  <sub>`Project` · philrenaud · `TS` · `choice` · `noul` · call site [`src/decide/model.ts`](https://github.com/philrenaud/practical-data/blob/HEAD/src/decide/model.ts), read by a model 2026-11-27</sub>
 
 - **[Privatemode Decisions vs. TypeSafe Jev vs. Laya](https://github.com/edgelesssys/privatemode-decisions-benchmark)** — Compares speed, accuracy, calibration and cost of three decision models on labelled public data. Each item goes to Jev as one choice question with the same state, options and instruction as Edgeless's Privatemode Decisions and the local Laya model get. <sub>(written by a model)</sub>
   <sub>`Benchmark` · edgelesssys · `Py` · `choice` · call site [`bench/adapters.py`](https://github.com/edgelesssys/privatemode-decisions-benchmark/blob/HEAD/bench/adapters.py), read by a model 2026-11-17 · ⚠ `vendor numbers`</sub>

@@ -4,11 +4,11 @@
 
 _选择下一步呈现什么，快到能用在实时会话里。_
 
-这个决策的全部已收录例子 —— 共 5 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#实时推荐)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=recommendation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 6 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#实时推荐)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=recommendation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#recommendation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#recommendation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 5 · 接口形态 0 · 仅示例 0 · 独立报告 0 · 负面结果 0 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 0 · 调用点 6 · 接口形态 0 · 仅示例 0 · 独立报告 0 · 负面结果 0 · 未引用文件 0。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -32,6 +32,9 @@ _选择下一步呈现什么，快到能用在实时会话里。_
 
 - **[1 Million Emojis](https://github.com/cwdx/1-million-emojis)** — 一块 1,000 × 1,000 的共享表情画布，Jev 和人一起作画：每一笔之后发一次请求，用 choice 从“表情加位置”的选项里挑一个，再用 noul 判断这一笔是否还没画完；先走 Vercel AI Gateway，TypeSafe 直连作为后备。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · cwdx · `TS` · `choice` · `noul` · 调用点 [`packages/jev/src/index.ts`](https://github.com/cwdx/1-million-emojis/blob/HEAD/packages/jev/src/index.ts)，2026-10-24 模型阅读 · ⚠ `作者自荐`</sub>
+
+- **[Jev Internal Links](https://github.com/NicoSKOOL/jev-internal-links)** — 一个查找缺失内链的 Claude Code 技能：它抓取站点地图，用本地模型为每段挑出四个相关页面，再问 Jev 哪个页面是读者最有用的下一步（或都不是）、这段是否需要链接、有没有自然的短语可作锚文本，以及读者处于哪个阶段。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · NicoSKOOL · `Py` · `choice` · `noul` · 调用点 [`scripts/score.py`](https://github.com/NicoSKOOL/jev-internal-links/blob/HEAD/scripts/score.py)，2026-11-27 模型阅读</sub>
 
 - **[Jevflix](https://github.com/ArielBubis/Jevflix)** — 电影推荐器：FAISS 与 BM25 检索把 4,800 部电影缩成短名单，Jev 读出请求里的约束（片长、不要血腥画面）供代码过滤，再由一次覆盖最多 250 个候选的 Jev choice 选出一部影片。没有把握时，由 LLM 权衡前五名或追问一个问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arielbubis · `Py` · 调用点 [`movie_rec/jev_client.py`](https://github.com/ArielBubis/Jevflix/blob/HEAD/movie_rec/jev_client.py)，2026-09-24 阅读</sub>

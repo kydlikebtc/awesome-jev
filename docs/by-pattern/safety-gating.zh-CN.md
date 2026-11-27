@@ -4,11 +4,11 @@
 
 _在执行前判断一个动作是否安全。属纵深防御，绝不是安全边界。_
 
-这个决策的全部已收录例子 —— 共 201 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 203 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#安全闸门)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#safety-gating)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#safety-gating)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 193 · 接口形态 4 · 仅示例 0 · 独立报告 15 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 195 · 接口形态 4 · 仅示例 0 · 独立报告 15 · 负面结果 0 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -290,6 +290,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ClauJev](https://github.com/civalski/claujev)** — 让 Jev 在回复到达你之前检查 Claude 工作的 Claude Code 插件：用 score 和 noul 把本轮真实的 git diff 与 Claude 自称做了的事对比，看起来没做完就让它回去补完；Jev 还会给每个请求打分以建议推理强度，并为子智能体选路由。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · civalski · `JS` · `choice` · `score` · `noul` · 调用点 [`plugins/claujev/hooks/claujev.mjs`](https://github.com/civalski/claujev/blob/HEAD/plugins/claujev/hooks/claujev.mjs)，2026-11-10 模型阅读</sub>
 
+- **[Coding Agent Toolkit](https://github.com/GaganSD/coding-agent-toolkit)** — 一组 Pi 编程智能体扩展。在 pi-web-search 中，Jev 评判每条搜索结果：摘录是否回答了查询、是否跑题、是否自成一体、属于哪种安全类别（如提示注入），以及这些结果合起来是否无需再搜就能作答。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · GaganSD · `TS` · `noul` · `choice` · 调用点 [`pi-web-search/src/classifier/judge.ts`](https://github.com/GaganSD/coding-agent-toolkit/blob/HEAD/pi-web-search/src/classifier/judge.ts)，2026-11-27 模型阅读</sub>
+
 - **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI 自定义节点：根据类型化判断为工作流分支，比如提示词想要哪种风格、是否对儿童过于血腥、是否提到了真实人物；用一个下拉框就能在 Jev、Laya 和 Cloudflare 的 Clef 之间切换后端。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · dante01yoon · `Py` · `choice` · `noul` · `score` · 调用点 [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py)，2026-11-11 模型阅读</sub>
 
@@ -466,6 +469,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev-web-analyzer](https://github.com/replynodes/jev-web-analyzer)** — 看看 Jev 怎么评价你的 SaaS 网站。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · replynodes · `TS` · 调用点 [`app/api/analyze/route.ts`](https://github.com/replynodes/jev-web-analyzer/blob/HEAD/app/api/analyze/route.ts)，2026-09-22 阅读</sub>
+
+- **[JevAgentHarness](https://github.com/JevAgentHarness/JevAgentHarness)** — 一个给编程智能体用的本地 OpenAI 兼容代理：每一步之前问 Jev，智能体的下一步是例行还是困难，再把它交给便宜或强的模型；可选的决策点还能预测工具、接受完成、标出卡住的智能体，或让高风险命令再过一遍。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · JevAgentHarness · `Py` · `choice` · 调用点 [`src/jevagentharness/decision.py`](https://github.com/JevAgentHarness/JevAgentHarness/blob/HEAD/src/jevagentharness/decision.py)，2026-11-27 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jevaluate](https://github.com/ElshinQ/jevaluate)** — 先评估再信任：实战笔记、可运行脚本与一个 agent 技能。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · elshinq · `JS` · 调用点 [`scripts/jev.mjs`](https://github.com/ElshinQ/jevaluate/blob/HEAD/scripts/jev.mjs)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>

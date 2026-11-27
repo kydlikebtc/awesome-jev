@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 307 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 308 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 296 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 297 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -812,6 +812,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev2048](https://github.com/erhanmeydan/jev2048)** — TypeSafe's Jev decision model plays a real online 2048 site: one API call per move, one key.
   <sub>`Project` · erhanmeydan · `Py` · call site [`jev2048/model.py`](https://github.com/erhanmeydan/jev2048/blob/HEAD/jev2048/model.py), read 2026-09-24</sub>
+
+- **[JevAgentHarness](https://github.com/JevAgentHarness/JevAgentHarness)** — Local OpenAI-compatible proxy for coding agents: before each step it asks Jev whether the agent's next step is routine or hard and sends it to a cheap or strong model, and optional decision points predict the tool, accept a finish, flag a stuck agent or give risky commands a second look. <sub>(written by a model)</sub>
+  <sub>`Project` · JevAgentHarness · `Py` · `choice` · call site [`src/jevagentharness/decision.py`](https://github.com/JevAgentHarness/JevAgentHarness/blob/HEAD/src/jevagentharness/decision.py), read by a model 2026-11-27 · ⚠ `vendor numbers`</sub>
 
 - **[jevaluate](https://github.com/ElshinQ/jevaluate)** — Jevaluate: evaluate before you trust. Field notes, runnable scripts and an agent skill for TypeSafe Jev: gated evals, a browser loop, a product walk with DeepSeek vision, a UI text judge and a first-click tree test. Co-authored with Claude Fable 5.1. <sub>(upstream description)</sub>
   <sub>`Plugin` · elshinq · `JS` · call site [`scripts/jev.mjs`](https://github.com/ElshinQ/jevaluate/blob/HEAD/scripts/jev.mjs), read 2026-09-22 · ⚠ `one commit`</sub>

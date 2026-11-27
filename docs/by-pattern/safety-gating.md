@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 201 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 203 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 193 · wire shape 4 · example only 0 · independent reports 15 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 195 · wire shape 4 · example only 0 · independent reports 15 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -290,6 +290,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[ClauJev](https://github.com/civalski/claujev)** — Claude Code plugin in which Jev checks Claude's work before the reply reaches you: scores and nouls compare the turn's real git diff with what Claude says it did and send it back when the work looks unfinished; Jev also scores each request to suggest an effort level and routes subagents. <sub>(written by a model)</sub>
   <sub>`Plugin` · civalski · `JS` · `choice` · `score` · `noul` · call site [`plugins/claujev/hooks/claujev.mjs`](https://github.com/civalski/claujev/blob/HEAD/plugins/claujev/hooks/claujev.mjs), read by a model 2026-11-10</sub>
 
+- **[Coding Agent Toolkit](https://github.com/GaganSD/coding-agent-toolkit)** — Extensions for the Pi coding agent. In pi-web-search, Jev judges each search result: whether its excerpt answers the query, is off-topic or is self-contained, which safety category it falls in such as prompt injection, and whether the results together answer without another search. <sub>(written by a model)</sub>
+  <sub>`Plugin` · GaganSD · `TS` · `noul` · `choice` · call site [`pi-web-search/src/classifier/judge.ts`](https://github.com/GaganSD/coding-agent-toolkit/blob/HEAD/pi-web-search/src/classifier/judge.ts), read by a model 2026-11-27</sub>
+
 - **[ComfyUI System One](https://github.com/dante01yoon/ComfyUI-SystemOne)** — ComfyUI custom nodes that branch a workflow on a typed judgement, such as which style a prompt wants, whether it is too graphic for children or whether it names a real person, with one dropdown switching the backend between Jev, Laya and Cloudflare's Clef. <sub>(written by a model)</sub>
   <sub>`Plugin` · dante01yoon · `Py` · `choice` · `noul` · `score` · call site [`systemone/backends.py`](https://github.com/dante01yoon/ComfyUI-SystemOne/blob/HEAD/systemone/backends.py), read by a model 2026-11-11</sub>
 
@@ -466,6 +469,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jev-web-analyzer](https://github.com/replynodes/jev-web-analyzer)** — See what Jev thinks about your SaaS website — powered by ReplyNodes web context and Vercel AI Gateway. <sub>(upstream description)</sub>
   <sub>`Project` · replynodes · `TS` · call site [`app/api/analyze/route.ts`](https://github.com/replynodes/jev-web-analyzer/blob/HEAD/app/api/analyze/route.ts), read 2026-09-22</sub>
+
+- **[JevAgentHarness](https://github.com/JevAgentHarness/JevAgentHarness)** — Local OpenAI-compatible proxy for coding agents: before each step it asks Jev whether the agent's next step is routine or hard and sends it to a cheap or strong model, and optional decision points predict the tool, accept a finish, flag a stuck agent or give risky commands a second look. <sub>(written by a model)</sub>
+  <sub>`Project` · JevAgentHarness · `Py` · `choice` · call site [`src/jevagentharness/decision.py`](https://github.com/JevAgentHarness/JevAgentHarness/blob/HEAD/src/jevagentharness/decision.py), read by a model 2026-11-27 · ⚠ `vendor numbers`</sub>
 
 - **[jevaluate](https://github.com/ElshinQ/jevaluate)** — Jevaluate: evaluate before you trust. Field notes, runnable scripts and an agent skill for TypeSafe Jev: gated evals, a browser loop, a product walk with DeepSeek vision, a UI text judge and a first-click tree test. Co-authored with Claude Fable 5.1. <sub>(upstream description)</sub>
   <sub>`Plugin` · elshinq · `JS` · call site [`scripts/jev.mjs`](https://github.com/ElshinQ/jevaluate/blob/HEAD/scripts/jev.mjs), read 2026-09-22 · ⚠ `one commit`</sub>

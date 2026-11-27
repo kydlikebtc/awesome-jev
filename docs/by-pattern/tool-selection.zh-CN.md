@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 307 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 308 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 296 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 297 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -812,6 +812,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jev2048](https://github.com/erhanmeydan/jev2048)** — TypeSafe 的 Jev 决策模型在一个真实的在线 2048 网站上玩游戏：每一步一次 API 调用，只需一个 key。 <sub>(机翻)</sub>
   <sub>`开源项目` · erhanmeydan · `Py` · 调用点 [`jev2048/model.py`](https://github.com/erhanmeydan/jev2048/blob/HEAD/jev2048/model.py)，2026-09-24 阅读</sub>
+
+- **[JevAgentHarness](https://github.com/JevAgentHarness/JevAgentHarness)** — 一个给编程智能体用的本地 OpenAI 兼容代理：每一步之前问 Jev，智能体的下一步是例行还是困难，再把它交给便宜或强的模型；可选的决策点还能预测工具、接受完成、标出卡住的智能体，或让高风险命令再过一遍。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · JevAgentHarness · `Py` · `choice` · 调用点 [`src/jevagentharness/decision.py`](https://github.com/JevAgentHarness/JevAgentHarness/blob/HEAD/src/jevagentharness/decision.py)，2026-11-27 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jevaluate](https://github.com/ElshinQ/jevaluate)** — 先评估再信任：实战笔记、可运行脚本与一个 agent 技能。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · elshinq · `JS` · 调用点 [`scripts/jev.mjs`](https://github.com/ElshinQ/jevaluate/blob/HEAD/scripts/jev.mjs)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>

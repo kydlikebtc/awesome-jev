@@ -4,11 +4,11 @@
 
 _Score or re-rank candidates from a cheaper retrieval step._
 
-Every catalogued example of this decision — 109 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 112 of them. The same rows, with caveats, are in [the index](../../README.md#search--ranking); [the site](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#search-ranking): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 105 · wire shape 0 · example only 0 · independent reports 8 · negative results 2 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 108 · wire shape 0 · example only 0 · independent reports 8 · negative results 2 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -246,6 +246,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[agent-seek](https://github.com/Gitmaxd/agent-seek)** — Agent Seek — precision web recall for agents. You.com discover + TypeSafe Jev ranking. MCP + REST. Live demo: https://agentseek.dev <sub>(upstream description)</sub>
   <sub>`Plugin` · gitmaxd · `Py` · call site [`packages/core/rank/jev.py`](https://github.com/Gitmaxd/agent-seek/blob/HEAD/packages/core/rank/jev.py), read 2026-09-24</sub>
 
+- **[Apple RAG](https://github.com/BingoWon/apple-rag-mcp)** — MCP server and CLI over Apple developer documentation and WWDC transcripts: hybrid symbol and vector recall finds candidate passages, then Jev scores each from unrelated to directly useful for the query, respecting its API, platform and OS version constraints; the best return with URLs. <sub>(written by a model)</sub>
+  <sub>`Plugin` · BingoWon · `TS` · `score` · call site [`worker/services/reranker.ts`](https://github.com/BingoWon/apple-rag-mcp/blob/HEAD/worker/services/reranker.ts), read by a model 2026-11-27</sub>
+
 - **[askgrep](https://github.com/fajarhide/askgrep)** — grep for the questions you cannot write as a pattern. Reads every function instead of sampling a few. Powered by Jev, TypeSafe AI's System One model. <sub>(upstream description)</sub>
   <sub>`Project` · fajarhide · `Rs` · call site [`src/jev.rs`](https://github.com/fajarhide/askgrep/blob/HEAD/src/jev.rs), read 2026-09-24</sub>
 
@@ -257,6 +260,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Codex Jev](https://github.com/Hyper-AI-Lab/codex-jev)** — Retrieval layer for Codex, as an MCP server: it finds candidate code, test, config and log excerpts locally, can then ask Jev one noul per excerpt (is it useful evidence for the query) and one per stated requirement, and returns a bounded, source-addressed set chosen by relevance and coverage. <sub>(written by a model)</sub>
   <sub>`Plugin` · Hyper-AI-Lab · `JS` · `noul` · call site [`src/investigator.mjs`](https://github.com/Hyper-AI-Lab/codex-jev/blob/HEAD/src/investigator.mjs), read by a model 2026-11-24</sub>
+
+- **[Coding Agent Toolkit](https://github.com/GaganSD/coding-agent-toolkit)** — Extensions for the Pi coding agent. In pi-web-search, Jev judges each search result: whether its excerpt answers the query, is off-topic or is self-contained, which safety category it falls in such as prompt injection, and whether the results together answer without another search. <sub>(written by a model)</sub>
+  <sub>`Plugin` · GaganSD · `TS` · `noul` · `choice` · call site [`pi-web-search/src/classifier/judge.ts`](https://github.com/GaganSD/coding-agent-toolkit/blob/HEAD/pi-web-search/src/classifier/judge.ts), read by a model 2026-11-27</sub>
 
 - **[DGUI-HyperMem](https://github.com/ctaxnagomi/dgui-hypermem)** — Self-hosted long-term memory MCP server on Cloudflare Workers. Jev labels each new memory's type (choice), judges whether it is durable (noul) and scores its salience; on recall it reranks vector and full-text candidates with one noul each, and it asks whether a new memory supersedes an old one. <sub>(written by a model)</sub>
   <sub>`Project` · ctaxnagomi · `TS` · `choice` · `noul` · `score` · call site [`src/jev.ts`](https://github.com/ctaxnagomi/dgui-hypermem/blob/HEAD/src/jev.ts), read by a model 2026-11-21</sub>
@@ -356,6 +362,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[typesafe-mod](https://github.com/BeLazy167/typesafe-mod)** — Claude Code mod that routes decisions to TypeSafe's Jev model: ranks installed skills per prompt, and answers the agent's own this-or-that questions when confident. <sub>(upstream description)</sub>
   <sub>`Plugin` · belazy167 · `TS` · call site [`hooks/suggest.ts`](https://github.com/BeLazy167/typesafe-mod/blob/HEAD/hooks/suggest.ts), read 2026-09-22</sub>
+
+- **[unified-brain](https://github.com/DevLoops-ai/unified-brain)** — Evidence-gathering layer for coding agents over MCP: retrieval from a local SQLite memory finds candidate code and documents, then a decision model scores each skill, follows names through the code and decides which leads reach the writer, so any language model answers in one pass. <sub>(written by a model)</sub>
+  <sub>`Project` · DevLoops-ai · `Py` · `noul` · `choice` · `score` · call site [`codebase_qa_service.py`](https://github.com/DevLoops-ai/unified-brain/blob/HEAD/codebase_qa_service.py), read by a model 2026-11-27 · ⚠ `vendor numbers`</sub>
 
 ---
 

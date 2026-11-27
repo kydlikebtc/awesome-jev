@@ -4,11 +4,11 @@
 
 _Choose what to surface next, fast enough for a live conversation._
 
-Every catalogued example of this decision — 5 of them. The same rows, with caveats, are in [the index](../../README.md#recommendation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=recommendation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 6 of them. The same rows, with caveats, are in [the index](../../README.md#recommendation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=recommendation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#recommendation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 5 · wire shape 0 · example only 0 · independent reports 0 · negative results 0 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 6 · wire shape 0 · example only 0 · independent reports 0 · negative results 0 · no file cited 0. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -32,6 +32,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[1 Million Emojis](https://github.com/cwdx/1-million-emojis)** — A shared 1,000 × 1,000 emoji canvas where Jev paints next to people: after each stroke one request asks a choice of emoji-and-placement options and a noul on whether the stroke looks unfinished, through Vercel AI Gateway with TypeSafe direct as fallback. <sub>(written by a model)</sub>
   <sub>`Project` · cwdx · `TS` · `choice` · `noul` · call site [`packages/jev/src/index.ts`](https://github.com/cwdx/1-million-emojis/blob/HEAD/packages/jev/src/index.ts), read by a model 2026-10-24 · ⚠ `self-submitted`</sub>
+
+- **[Jev Internal Links](https://github.com/NicoSKOOL/jev-internal-links)** — Claude Code skill that finds missing internal links: it crawls a sitemap, shortlists four related pages per paragraph with a local model, then asks Jev which page is the reader's most useful next step or none, whether the paragraph needs a link, which phrase can carry it and where the reader is. <sub>(written by a model)</sub>
+  <sub>`Plugin` · NicoSKOOL · `Py` · `choice` · `noul` · call site [`scripts/score.py`](https://github.com/NicoSKOOL/jev-internal-links/blob/HEAD/scripts/score.py), read by a model 2026-11-27</sub>
 
 - **[Jevflix](https://github.com/ArielBubis/Jevflix)** — Movie recommender: FAISS and BM25 search narrow 4,800 films to a shortlist, Jev reads the request's constraints (runtime, no graphic content) for code to filter on, and one Jev choice over at most 250 candidates picks a film. If unsure, an LLM weighs the top five or asks one question. <sub>(written by a model)</sub>
   <sub>`Project` · arielbubis · `Py` · call site [`movie_rec/jev_client.py`](https://github.com/ArielBubis/Jevflix/blob/HEAD/movie_rec/jev_client.py), read 2026-09-24</sub>

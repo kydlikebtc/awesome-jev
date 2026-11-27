@@ -4,11 +4,11 @@
 
 _Surveys the model or the space rather than one pattern._
 
-Every catalogued example of this decision — 549 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 554 of them. The same rows, with caveats, are in [the index](../../README.md#overview); [the site](https://kydlikebtc.github.io/awesome-jev/?p=overview&lang=en) can filter them further by language, primitive and kind.
 
 What `overview` means in this catalogue, and why a project with code filed only under it counts as not yet indexed by pattern: [docs/patterns.md](../patterns.md#overview).
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 406 · wire shape 103 · example only 0 · independent reports 35 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 6 · call site 406 · wire shape 108 · example only 0 · independent reports 35 · negative results 1 · no file cited 40. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -665,6 +665,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[decision-model-sdk-rust](https://github.com/zchee/decision-model-sdk-rust)** — Async Rust client for the System One API, ported from typesafe-sdk-python 0.7.2: typed choice, noul and score questions, a derive macro for question sets, HTTP/2, and no default base URL, so callers name TypeSafe's endpoint themselves. <sub>(written by a model)</sub>
   <sub>`SDK` · zchee · `Rs` · `choice` · `noul` · `score` · call site [`crates/sdk/src/client.rs`](https://github.com/zchee/decision-model-sdk-rust/blob/HEAD/crates/sdk/src/client.rs), read by a model 2026-11-14</sub>
 
+- **[EuLLM](https://github.com/eullm/eullm)** — Local-first inference engine in one binary, from a Raspberry Pi to EuroHPC machines, with Ollama and OpenAI APIs and a /v1/systemone decision mode in Jev's request shape: a local model reads noul, choice and score answers from its next-token probabilities, so a Jev client can point at it. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · eullm · `Rs` · cited file [`engine/src/api/systemone.rs`](https://github.com/eullm/eullm/blob/HEAD/engine/src/api/systemone.rs), read by a model 2026-11-27 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[ex_typesafe_ai](https://github.com/iamtalha-arshad/ex_typesafe_ai)** — Unofficial Elixir client for TypeSafe's API, on Hex as ex_typesafe_ai: builds noul, choice and score questions, sends them with one state to /v1/systemone and returns typed answer structs grouped by primitive, with retries that honour Retry-After and typed errors. <sub>(written by a model)</sub>
   <sub>`SDK` · iamtalha-arshad · `Ex` · `noul` · `choice` · `score` · call site [`lib/type_safe.ex`](https://github.com/iamtalha-arshad/ex_typesafe_ai/blob/HEAD/lib/type_safe.ex), read by a model 2026-11-19</sub>
 
@@ -851,6 +854,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[laya-java](https://github.com/apscot/laya-java)** — Not Jev: runs Laya's open typed-decision models inside the JVM, with no Python or GPU, behind a JDK HTTP server that answers Jev's POST /v1/systemone and an OpenAI-style /v1/decisions, plus a small Java client and a Gradle plugin. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · apscot · `Java` · cited file [`laya-api/src/main/java/io/github/apscot/laya/api/LayaHttpServer.java`](https://github.com/apscot/laya-java/blob/HEAD/laya-api/src/main/java/io/github/apscot/laya/api/LayaHttpServer.java), read by a model 2026-11-19 · ⚠ `not Jev itself`</sub>
 
+- **[Lev (OpenLAIR)](https://github.com/OpenLAIR/lev)** — Recurrent language models adapted into typed decision models: a pointer head gives a probability for each option after every recurrent step, so one checkpoint answers at several depths, and a server takes TypeSafe's /v1/systemone request shape. Code, three checkpoints and datasets are public. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · OpenLAIR · `Py` · cited file [`kev/api.py`](https://github.com/OpenLAIR/lev/blob/HEAD/kev/api.py), read by a model 2026-11-27 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
 - **[Minos.NET](https://github.com/MarcelRoozekrans/Minos.NET)** — Unofficial .NET client for Jev's /v1/systemone. You declare noul, choice and score questions as a C# type and a source generator writes the request and the answer parsing at compile time, so it runs under Native AOT; an IDecisionClient sends it to TypeSafe or through OpenRouter. <sub>(written by a model)</sub>
   <sub>`SDK` · MarcelRoozekrans · `C#` · `noul` · `choice` · `score` · call site [`src/Minos.NET.SystemOne/SystemOneDecisionClient.cs`](https://github.com/MarcelRoozekrans/Minos.NET/blob/HEAD/src/Minos.NET.SystemOne/SystemOneDecisionClient.cs), read by a model 2026-11-17</sub>
 
@@ -862,6 +868,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[OpenJev](https://github.com/xingwudao/OpenJev)** — OpenJev: an independent Jev-inspired System One decision API based on TypeSafe.ai concepts. Choice, score and noul primitives, local mock server, Python and TypeScript SDKs. Real inference planned; not affiliated with TypeSafe AI. <sub>(upstream description)</sub>
   <sub>`Jev-like alternative` · xingwudao · `Py` · cited file [`sdk/python/openjev/__init__.py`](https://github.com/xingwudao/OpenJev/blob/HEAD/sdk/python/openjev/__init__.py), read 2026-09-24 · ⚠ `not Jev itself` `no licence`</sub>
+
+- **[OpenJev-4B](https://github.com/ejhshen/OpenJev)** — Open 4B decision model built on Qwen3.5-4B's text backbone: given a state, a question and request-defined options, it predicts a probability per option with an order-independent head, post-trained by SFT and REINFORCE, and its runtime serves TypeSafe's /v1/systemone shape for choice, noul and score. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · ejhshen · `Py` · cited file [`src/openjev/api/typesafe.py`](https://github.com/ejhshen/OpenJev/blob/HEAD/src/openjev/api/typesafe.py), read by a model 2026-11-27 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[origin-civilization](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION)** — AI life-and-civilization simulation: TypeSafe Jev makes every decision (typed, probabilistic, auditable); LLMs plan — OpenAI-compatible APIs, local models (Ollama, LM Studio), Claude Code, Codex. <sub>(upstream description)</sub>
   <sub>`Benchmark` · jacquesgariepy · `TS` · call site [`legacy/source/providers.js`](https://github.com/JacquesGariepy/ORIGIN-CIVILIZATION/blob/HEAD/legacy/source/providers.js), read 2026-09-22</sub>
@@ -877,6 +886,12 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[S1CogBench](https://github.com/dengzhe-hou/S1CogBench)** — Benchmark of decision models on 24 established cognitive experiments. Jev 1.14 answers each trial as a choice, or a noul for probability reports, scored next to four open decision models, three language-model controls and uniform choice, separating acting in the task from predicting human choices. <sub>(written by a model)</sub>
   <sub>`Benchmark` · Dengzhe Hou · `Py` · `choice` · `noul` · call site [`examples/templates/decision_api_choice.py`](https://github.com/dengzhe-hou/S1CogBench/blob/HEAD/examples/templates/decision_api_choice.py), read by a model 2026-11-20 · ⚠ `self-submitted`</sub>
+
+- **[SparkScore](https://github.com/Enntity/sparkscore)** — Packaging that serves the open d3-ultra decision model, quantized to NVFP4, on one NVIDIA DGX Spark with the Atlas engine, behind an API in the shape of Jev's that accepts the model name jev-latest; demos route support tickets and read photos through /v1/systemone. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · Enntity · `JS` · cited file [`demo/app.js`](https://github.com/Enntity/sparkscore/blob/HEAD/demo/app.js), read by a model 2026-11-27 · ⚠ `not Jev itself` `vendor numbers`</sub>
+
+- **[Super Decider](https://github.com/Singularity-Compute/super-decider)** — Open-weights diffusion decision model with a Jev-compatible API: a server in front of vLLM takes Jev's /v1/systemone body (noul, choice, score, plus span questions) and answers with a probability per option, writing a short thought first only when unsure. Self-hosted or on its hosted endpoint. <sub>(written by a model)</sub>
+  <sub>`Jev-like alternative` · Singularity-Compute · `Py` · cited file [`runtime/structured_server.py`](https://github.com/Singularity-Compute/super-decider/blob/HEAD/runtime/structured_server.py), read by a model 2026-11-27 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
 - **[sysone-bench](https://github.com/instax-dutta/sysone-bench)** — First independent head-to-head benchmark of System One decision models (Laya vs Jev) on byte-identical inputs <sub>(upstream description)</sub>
   <sub>`Benchmark` · instax-dutta · `Py` · call site [`runners/jev_runner.py`](https://github.com/instax-dutta/sysone-bench/blob/HEAD/runners/jev_runner.py), read 2026-09-22</sub>

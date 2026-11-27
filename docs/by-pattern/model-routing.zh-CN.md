@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 110 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 113 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 100 · 接口形态 2 · 仅示例 2 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 103 · 接口形态 2 · 仅示例 2 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -294,11 +294,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-router](https://github.com/pyxl-dev/jev-router)** — 一个 Claude Code 模组：每条消息发出前，经 OpenRouter 问 Jev 这项任务需要多少推理力度（低、中或高，一个 choice 问题）。置信度达到 60% 时就在同一个模型上设定该力度，提示缓存得以保留；否则沿用应用自身的设置。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · pyxl-dev · `TS` · `choice` · 调用点 [`hooks/register.tsx`](https://github.com/pyxl-dev/jev-router/blob/HEAD/hooks/register.tsx)，2026-11-24 模型阅读</sub>
 
+- **[jev-router (effort edition)](https://github.com/globalmpc/jev-router-effort)** — 一个本地代理，把编程命令行工具（Claude Code、Codex、Antigravity、GLM）的每一轮交给够用且最便宜的模型和推理强度：它把提示、任务上下文和可用模型发给 Jev，由 Jev 选出档位和推理强度并给任务复杂度打分；任何失败都保留当前模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · globalmpc · `JS` · `choice` · `score` · 调用点 [`src/router.mjs`](https://github.com/globalmpc/jev-router-effort/blob/HEAD/src/router.mjs)，2026-11-27 模型阅读</sub>
+
 - **[jev-smart-router](https://github.com/rmosleydb/jev-smart-router)** — JEV Smart Router：一个 Databricks 应用，用 TypeSafe JEV 选择由哪个模型回答每条消息，再执行推理。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · rmosleydb · `Py` · 调用点 [`src/app.py`](https://github.com/rmosleydb/jev-smart-router/blob/HEAD/src/app.py)，2026-09-24 阅读</sub>
 
 - **[jev-synthetic-survey](https://github.com/jjd-lab/jev-synthetic-survey)** — 把 Jev 与 GPT-4.1 当作合成问卷受访者做对比 —— 怎么问比用哪个模型更重要。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · jjd-lab · `Py` · 调用点 [`scripts/twin2k/jev_client.py`](https://github.com/jjd-lab/jev-synthetic-survey/blob/HEAD/scripts/twin2k/jev_client.py)，2026-09-22 阅读</sub>
+
+- **[JevAgentHarness](https://github.com/JevAgentHarness/JevAgentHarness)** — 一个给编程智能体用的本地 OpenAI 兼容代理：每一步之前问 Jev，智能体的下一步是例行还是困难，再把它交给便宜或强的模型；可选的决策点还能预测工具、接受完成、标出卡住的智能体，或让高风险命令再过一遍。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · JevAgentHarness · `Py` · `choice` · 调用点 [`src/jevagentharness/decision.py`](https://github.com/JevAgentHarness/JevAgentHarness/blob/HEAD/src/jevagentharness/decision.py)，2026-11-27 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[JevGAG · DDAG](https://github.com/j1s4nn/JevGAG)** — 关于因果视频生成中自适应时间粒度的研究：Jev 充当设备外的预言者，提示生成器何时需要逐帧精细计算；在所引的评审实验中，它针对抽取的帧回答 noul：是否有可见的不连续、动作是否物理上合理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · j1s4nn · `Py` · `noul` · 调用点 [`ddag/experiments/10_jev_critic/jcd.py`](https://github.com/j1s4nn/JevGAG/blob/HEAD/ddag/experiments/10_jev_critic/jcd.py)，2026-11-25 模型阅读 · ⚠ `厂商自报数据`</sub>
@@ -314,6 +320,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[OpenCode plugin for decision models](https://github.com/atvari-eu/opencode-decisions)** — OpenCode 插件，由 Jev 筛查工具结果中的垃圾内容和提示注入、审查权限请求、为每一轮选择模型和推理强度、在上下文压缩时决定保留或丢弃工具调用、检查智能体是否过早停下，并按语义搜索代码。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · atvari-eu · `TS` · `noul` · `choice` · `score` · 调用点 [`src/index.ts`](https://github.com/atvari-eu/opencode-decisions/blob/HEAD/src/index.ts)，2026-11-20 模型阅读</sub>
+
+- **[Pi Jev Router (win4r)](https://github.com/win4r/pi-jev-router)** — 一个面向 Pi 编程智能体、在任务边界处工作的模型路由器：遇到新任务时，Jev 选出最低够用的能力档位，并以是非题判断上下文是否充分、后果如何，再由代码在用户配置的模型中挑选；“continue”沿用当前任务的模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · win4r · `TS` · `choice` · `noul` · 调用点 [`src/classifier.ts`](https://github.com/win4r/pi-jev-router/blob/HEAD/src/classifier.ts)，2026-11-27 模型阅读</sub>
 
 - **[pi-jev-router](https://github.com/philippdubach/pi-jev-router)** — 为 pi 打造的极简帕累托最优 OpenRouter 模型路由器，基于 Jev。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · philippdubach · `TS` · 调用点 [`src/classifier.ts`](https://github.com/philippdubach/pi-jev-router/blob/HEAD/src/classifier.ts)，2026-09-24 阅读</sub>

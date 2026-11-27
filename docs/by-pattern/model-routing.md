@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 110 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 113 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 100 · wire shape 2 · example only 2 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 103 · wire shape 2 · example only 2 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -294,11 +294,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[jev-router](https://github.com/pyxl-dev/jev-router)** — Mod for Claude Code that asks Jev, through OpenRouter, how much reasoning effort each message's task needs (low, medium or high, one choice question). At 60% confidence or more it sets that effort on the same model, so the prompt cache stays; otherwise the app's own setting applies. <sub>(written by a model)</sub>
   <sub>`Plugin` · pyxl-dev · `TS` · `choice` · call site [`hooks/register.tsx`](https://github.com/pyxl-dev/jev-router/blob/HEAD/hooks/register.tsx), read by a model 2026-11-24</sub>
 
+- **[jev-router (effort edition)](https://github.com/globalmpc/jev-router-effort)** — Local proxy that routes each coding-CLI turn (Claude Code, Codex, Antigravity, GLM) to the cheapest sufficient model and reasoning effort: it sends Jev the prompt, task context and available models, and Jev picks the model and effort and scores the task's complexity; failure keeps the current model. <sub>(written by a model)</sub>
+  <sub>`Project` · globalmpc · `JS` · `choice` · `score` · call site [`src/router.mjs`](https://github.com/globalmpc/jev-router-effort/blob/HEAD/src/router.mjs), read by a model 2026-11-27</sub>
+
 - **[jev-smart-router](https://github.com/rmosleydb/jev-smart-router)** — JEV Smart Router — a Databricks App that uses TypeSafe JEV to pick which model answers each message, then runs inference on the chosen Databricks Foundation Model API endpoint. <sub>(upstream description)</sub>
   <sub>`Project` · rmosleydb · `Py` · call site [`src/app.py`](https://github.com/rmosleydb/jev-smart-router/blob/HEAD/src/app.py), read 2026-09-24</sub>
 
 - **[jev-synthetic-survey](https://github.com/jjd-lab/jev-synthetic-survey)** — Jev vs GPT-4.1 as synthetic survey respondents on Twin-2K-500. How you ask mattered more than which model you used. <sub>(upstream description)</sub>
   <sub>`Project` · jjd-lab · `Py` · call site [`scripts/twin2k/jev_client.py`](https://github.com/jjd-lab/jev-synthetic-survey/blob/HEAD/scripts/twin2k/jev_client.py), read 2026-09-22</sub>
+
+- **[JevAgentHarness](https://github.com/JevAgentHarness/JevAgentHarness)** — Local OpenAI-compatible proxy for coding agents: before each step it asks Jev whether the agent's next step is routine or hard and sends it to a cheap or strong model, and optional decision points predict the tool, accept a finish, flag a stuck agent or give risky commands a second look. <sub>(written by a model)</sub>
+  <sub>`Project` · JevAgentHarness · `Py` · `choice` · call site [`src/jevagentharness/decision.py`](https://github.com/JevAgentHarness/JevAgentHarness/blob/HEAD/src/jevagentharness/decision.py), read by a model 2026-11-27 · ⚠ `vendor numbers`</sub>
 
 - **[JevGAG · DDAG](https://github.com/j1s4nn/JevGAG)** — Research on adaptive temporal granularity for causal video generation: Jev serves as an off-device oracle that signals when a generator needs fine per-frame compute, and in the cited critic experiment it answers nouls on sampled frames, a visible discontinuity and physical plausibility. <sub>(written by a model)</sub>
   <sub>`Project` · j1s4nn · `Py` · `noul` · call site [`ddag/experiments/10_jev_critic/jcd.py`](https://github.com/j1s4nn/JevGAG/blob/HEAD/ddag/experiments/10_jev_critic/jcd.py), read by a model 2026-11-25 · ⚠ `vendor numbers`</sub>
@@ -314,6 +320,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[OpenCode plugin for decision models](https://github.com/atvari-eu/opencode-decisions)** — OpenCode plugin where Jev screens tool results for junk and prompt injection, vets permission requests, picks the model and reasoning effort for each turn, keeps or drops tool calls during compaction, checks whether the agent stopped early and searches code by meaning. <sub>(written by a model)</sub>
   <sub>`Plugin` · atvari-eu · `TS` · `noul` · `choice` · `score` · call site [`src/index.ts`](https://github.com/atvari-eu/opencode-decisions/blob/HEAD/src/index.ts), read by a model 2026-11-20</sub>
+
+- **[Pi Jev Router (win4r)](https://github.com/win4r/pi-jev-router)** — Task-boundary model router for the Pi coding agent: at a new task Jev chooses the minimum capability tier and answers yes/no questions on whether the context is sufficient and what the consequences are, and code picks among the user's configured models; "continue" keeps the current task's model. <sub>(written by a model)</sub>
+  <sub>`Plugin` · win4r · `TS` · `choice` · `noul` · call site [`src/classifier.ts`](https://github.com/win4r/pi-jev-router/blob/HEAD/src/classifier.ts), read by a model 2026-11-27</sub>
 
 - **[pi-jev-router](https://github.com/philippdubach/pi-jev-router)** — A minimal Pareto-optimal OpenRouter model router for pi, based on Jev <sub>(upstream description)</sub>
   <sub>`Plugin` · philippdubach · `TS` · call site [`src/classifier.ts`](https://github.com/philippdubach/pi-jev-router/blob/HEAD/src/classifier.ts), read 2026-09-24</sub>

@@ -4,11 +4,11 @@
 
 _对来自廉价检索步骤的候选做打分或重排。_
 
-这个决策的全部已收录例子 —— 共 109 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 112 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#检索与排序)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=search-ranking&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#search-ranking)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#search-ranking)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 105 · 接口形态 0 · 仅示例 0 · 独立报告 8 · 负面结果 2 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 108 · 接口形态 0 · 仅示例 0 · 独立报告 8 · 负面结果 2 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -246,6 +246,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[agent-seek](https://github.com/Gitmaxd/agent-seek)** — Agent Seek——为智能体提供精准的网页召回：You.com 负责发现，TypeSafe Jev 负责排序。提供 MCP 与 REST。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · gitmaxd · `Py` · 调用点 [`packages/core/rank/jev.py`](https://github.com/Gitmaxd/agent-seek/blob/HEAD/packages/core/rank/jev.py)，2026-09-24 阅读</sub>
 
+- **[Apple RAG](https://github.com/BingoWon/apple-rag-mcp)** — 一个面向 Apple 开发者文档和 WWDC 讲座文字稿的 MCP 服务器和命令行工具：先用符号与向量混合召回候选段落，再由 Jev 按查询的 API、平台和系统版本要求，给每段从“无关”到“直接有用”打分，最好的段落连同 URL 返回。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · BingoWon · `TS` · `score` · 调用点 [`worker/services/reranker.ts`](https://github.com/BingoWon/apple-rag-mcp/blob/HEAD/worker/services/reranker.ts)，2026-11-27 模型阅读</sub>
+
 - **[askgrep](https://github.com/fajarhide/askgrep)** — 为那些写不成正则的问题而生的 grep：逐个读取每个函数而不是抽样，由 TypeSafe Jev 驱动。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · fajarhide · `Rs` · 调用点 [`src/jev.rs`](https://github.com/fajarhide/askgrep/blob/HEAD/src/jev.rs)，2026-09-24 阅读</sub>
 
@@ -257,6 +260,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Codex Jev](https://github.com/Hyper-AI-Lab/codex-jev)** — 一个面向 Codex 的检索层（MCP 服务器）：先在本地找出候选的代码、测试、配置和日志片段，再可以就每个片段问 Jev 一个 noul（它是否是该查询的有用证据），并就每条给定要求各问一个，最后按相关性和覆盖面返回一组有上限、标明出处的证据。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · Hyper-AI-Lab · `JS` · `noul` · 调用点 [`src/investigator.mjs`](https://github.com/Hyper-AI-Lab/codex-jev/blob/HEAD/src/investigator.mjs)，2026-11-24 模型阅读</sub>
+
+- **[Coding Agent Toolkit](https://github.com/GaganSD/coding-agent-toolkit)** — 一组 Pi 编程智能体扩展。在 pi-web-search 中，Jev 评判每条搜索结果：摘录是否回答了查询、是否跑题、是否自成一体、属于哪种安全类别（如提示注入），以及这些结果合起来是否无需再搜就能作答。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · GaganSD · `TS` · `noul` · `choice` · 调用点 [`pi-web-search/src/classifier/judge.ts`](https://github.com/GaganSD/coding-agent-toolkit/blob/HEAD/pi-web-search/src/classifier/judge.ts)，2026-11-27 模型阅读</sub>
 
 - **[DGUI-HyperMem](https://github.com/ctaxnagomi/dgui-hypermem)** — 运行在 Cloudflare Workers 上的自托管长期记忆 MCP 服务器。Jev 给每条新记忆标注类型（choice）、判断它是否值得长期保留（noul）并给重要性打分；召回时用每个候选一个 noul 对向量和全文检索的候选重新排序，还会判断新记忆是否取代旧记忆。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ctaxnagomi · `TS` · `choice` · `noul` · `score` · 调用点 [`src/jev.ts`](https://github.com/ctaxnagomi/dgui-hypermem/blob/HEAD/src/jev.ts)，2026-11-21 模型阅读</sub>
@@ -356,6 +362,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[typesafe-mod](https://github.com/BeLazy167/typesafe-mod)** — Claude Code 模组：把决策路由给 Jev，逐会话给已安装技能排序。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · belazy167 · `TS` · 调用点 [`hooks/suggest.ts`](https://github.com/BeLazy167/typesafe-mod/blob/HEAD/hooks/suggest.ts)，2026-09-22 阅读</sub>
+
+- **[unified-brain](https://github.com/DevLoops-ai/unified-brain)** — 一个通过 MCP 为编程智能体收集证据的层：先从本地 SQLite 记忆中检索候选代码和文档，再由决策模型给每个技能打分、顺着名字追踪代码，并决定哪些线索交给写作模型，让任意语言模型一次作答。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · DevLoops-ai · `Py` · `noul` · `choice` · `score` · 调用点 [`codebase_qa_service.py`](https://github.com/DevLoops-ai/unified-brain/blob/HEAD/codebase_qa_service.py)，2026-11-27 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 ---
 

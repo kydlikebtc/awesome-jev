@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 252 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 254 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 240 · 接口形态 3 · 仅示例 0 · 独立报告 24 · 负面结果 2 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 242 · 接口形态 3 · 仅示例 0 · 独立报告 24 · 负面结果 2 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -539,6 +539,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[jev-guard](https://github.com/klauswg/jev-guard)** — 面向交易所充值与提现的实时风险分诊网关——Jev（TypeSafe System One）只负责分诊，裁决另有机制。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · klauswg · `Java` · 调用点 [`src/main/java/com/jevguard/eval/EvalRunner.java`](https://github.com/klauswg/jev-guard/blob/HEAD/src/main/java/com/jevguard/eval/EvalRunner.java)，2026-09-24 阅读</sub>
 
+- **[Jev-Interaction](https://github.com/native-bond-lab/Jev-Interaction)** — 一个全双工语音框架，把话轮交替写成交给 Jev 的问题：根据实时转写，它询问用户是否说完、用户在智能体说话时插进来的话意味着什么、通话处于哪种节奏，以及该等待、让出、插话还是回一声“嗯”，而措辞由任意语言模型来写。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · native-bond-lab · `Py` · `choice` · 调用点 [`jev_interaction/judge/client.py`](https://github.com/native-bond-lab/Jev-Interaction/blob/HEAD/jev_interaction/judge/client.py)，2026-11-27 模型阅读 · ⚠ `厂商自报数据`</sub>
+
 - **[jev-labeler-action](https://github.com/yamadashy/jev-labeler-action)** — 零配置的 AI 议题打标签工具，基于 TypeSafe 的 Jev。不生成文本，非官方。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · yamadashy · `TS` · 调用点 [`src/jev/client.ts`](https://github.com/yamadashy/jev-labeler-action/blob/HEAD/src/jev/client.ts)，2026-09-24 阅读</sub>
 
@@ -712,6 +715,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — @playwright/test 的附加组件：在测试套件原本要全部重跑或花一轮 LLM 的地方，向 Jev 提小的类型化问题：用 choice 判断失败的根因并据此重试和修复，用 score 裁剪快照、排列测试顺序，用 noul 核验步骤和断言，再用 choice 修复定位器。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · AdriaanVE · `TS` · `choice` · `noul` · `score` · 调用点 [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts)，2026-11-23 模型阅读</sub>
+
+- **[Practical Data](https://github.com/philrenaud/practical-data)** — 一个为网页 HTML 表格中可比较的列着色的 Chrome 扩展：对视口附近的每张表，Jev 判断某列是哪类数字、对一般读者来说数值越高越好还是越差、是否适合对数色阶，以及首尾几行是否为合计；解析和配色由代码完成。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · philrenaud · `TS` · `choice` · `noul` · 调用点 [`src/decide/model.ts`](https://github.com/philrenaud/practical-data/blob/HEAD/src/decide/model.ts)，2026-11-27 模型阅读</sub>
 
 - **[Privatemode Decisions vs. TypeSafe Jev vs. Laya](https://github.com/edgelesssys/privatemode-decisions-benchmark)** — 在带标注的公开数据上比较三个决策模型的速度、准确率、校准和成本。每道题以一个 choice 问题发给 Jev，状态、选项和指令与 Edgeless 的 Privatemode Decisions 以及本地 Laya 模型完全相同。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · edgelesssys · `Py` · `choice` · 调用点 [`bench/adapters.py`](https://github.com/edgelesssys/privatemode-decisions-benchmark/blob/HEAD/bench/adapters.py)，2026-11-17 模型阅读 · ⚠ `厂商自报数据`</sub>
