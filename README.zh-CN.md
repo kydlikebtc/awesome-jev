@@ -56,7 +56,7 @@
 
 本周榜上没有 Launch。周四 23:59 UTC 前提交的 Launch 周五登记、下周一开榜：[发布一个产品](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml)，自己做的或你发现的都行，比如下面上升最快的这些。 <sub>(机翻)</sub>
 
-### ★ 上升最快：2026-11-19 至 2026-11-26
+### ★ 上升最快：2026-11-20 至 2026-11-27
 
 <table>
 <tr>
@@ -64,50 +64,50 @@
 <td>
 
 **[celesto](https://kydlikebtc.github.io/awesome-jev/products/celesto.html)** — 给 AI 智能体的安全持久化计算环境。 <sub>(机翻)</sub><br>
-<sub>1,602 → 2,050 星（+28%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=celesto&title=Launch%3A%20celesto)</sub>
+<sub>1,655 → 2,087 星（+26%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=celesto&title=Launch%3A%20celesto)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+448</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+432</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/xerj.html"><img src="https://github.com/xerj-org.png?size=96" width="48" height="48" alt="XERJ"></a></td>
 <td>
 
 **[XERJ](https://kydlikebtc.github.io/awesome-jev/products/xerj.html)** — 一个本地优先的搜索引擎兼 MCP 服务器，打包为单个 Rust 二进制文件。可选的 `rerank` 阶段对每条靠前结果向 Jev 提一个 `noul`（`document` 是否回答了 state 中的查询？），再按概率重新排序。作者报告 FiQA 上的 nDCG@10 从 0.24 升至 0.36，总共 648 次搜索花费约 0.64 美元。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>19,256 → 21,564 星（+12%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=xerj&title=Launch%3A%20XERJ)</sub>
+<sub>18,978 → 21,732 星（+15%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=xerj&title=Launch%3A%20XERJ)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+2,308</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+2,754</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/rikkahub-sillytavern-android.html"><img src="https://github.com/MiaoWuNYA.png?size=96" width="48" height="48" alt="RikkaHub Plus · Lantern"></a></td>
 <td>
 
 **[RikkaHub Plus · Lantern](https://kydlikebtc.github.io/awesome-jev/products/rikkahub-sillytavern-android.html)** — 面向 SillyTavern 式角色扮演的 Android 聊天客户端，是 RikkaHub 的 Kotlin 分支。可选的 Jev 决策功能对每条记忆问一个 `noul`（它与当前对话是否相关？），以此代替嵌入检索；还给主模型一个 `judge` 工具，用于是非、选择和评分问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>221 → 245 星（+11%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=rikkahub-sillytavern-android&title=Launch%3A%20RikkaHub%20Plus%20%C2%B7%20Lantern)</sub>
+<sub>226 → 248 星（+10%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=rikkahub-sillytavern-android&title=Launch%3A%20RikkaHub%20Plus%20%C2%B7%20Lantern)</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+24</b><br><sub>星标</sub></td>
-</tr>
-<tr>
-<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/goutoujunshi-jev-chat.html"><img src="https://github.com/shengjidaguai-china.png?size=96" width="48" height="48" alt="狗头军师 Jev Chat"></a></td>
-<td>
-
-**[狗头军师 Jev Chat](https://kydlikebtc.github.io/awesome-jev/products/goutoujunshi-jev-chat.html)** — 聊天回复助手（桌面悬浮窗、Android 悬浮助手、iOS 键盘），基于 Jev Android。它根据可见对话或截图向 Jev 询问字面问题、对方意图、危险程度、是否现在回复以及最佳行动，再让 Jev 在起草的回复中挑选。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
-<sub>664 → 702 星（+6%） · 🤖 模型读过调用点，尚无人复核 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=goutoujunshi-jev-chat&title=Launch%3A%20%E7%8B%97%E5%A4%B4%E5%86%9B%E5%B8%88%20Jev%20Chat)</sub>
-
-</td>
-<td align="center" width="80"><b>★&nbsp;+38</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+22</b><br><sub>星标</sub></td>
 </tr>
 <tr>
 <td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html"><img src="https://github.com/vercel-labs.png?size=96" width="48" height="48" alt="agent-desktop"></a></td>
 <td>
 
 **[agent-desktop](https://kydlikebtc.github.io/awesome-jev/products/agent-desktop.html)** — 桌面自动化。读系统无障碍树，判断下一步该点哪个按钮、菜单或输入框。<br>
-<sub>25,429 → 26,779 星（+5%） · 👤 有人读过调用点 · 2027-01-11 起可再次发布</sub>
+<sub>25,647 → 27,009 星（+5%） · 👤 有人读过调用点 · 2027-01-11 起可再次发布</sub>
 
 </td>
-<td align="center" width="80"><b>★&nbsp;+1,350</b><br><sub>星标</sub></td>
+<td align="center" width="80"><b>★&nbsp;+1,362</b><br><sub>星标</sub></td>
+</tr>
+<tr>
+<td align="center" width="56"><a href="https://kydlikebtc.github.io/awesome-jev/products/openwhisper.html"><img src="https://github.com/Knuckles92.png?size=96" width="48" height="48" alt="openwhisper"></a></td>
+<td>
+
+**[openwhisper](https://kydlikebtc.github.io/awesome-jev/products/openwhisper.html)** — 基于 Whisper 的本地语音转写、听写与会议记录。 <sub>(机翻)</sub><br>
+<sub>286 → 301 星（+5%） · 👤 有人读过调用点 · [发布它 ↗](https://github.com/kydlikebtc/awesome-jev/issues/new?template=launch.yml&product=openwhisper&title=Launch%3A%20openwhisper)</sub>
+
+</td>
+<td align="center" width="80"><b>★&nbsp;+15</b><br><sub>星标</sub></td>
 </tr>
 </table>
 

@@ -27,21 +27,21 @@
 <rect x="712" y="114" width="3" height="36" rx="1.5" fill="#4ec97a"/>
 <rect x="728" y="106" width="60" height="52" rx="8" fill="#0b0d10" stroke="#30363d"/>
 <polygon points="758.0,113.5 759.9,118.4 765.1,118.7 761.0,122.0 762.4,127.1 758.0,124.2 753.6,127.1 755.0,122.0 750.9,118.7 756.1,118.4" fill="#f5a524"/>
-<text x="758.0" y="149" font-size="13" class="mono accent" font-weight="600" text-anchor="middle" letter-spacing="-0.5">+448</text>
+<text x="758.0" y="149" font-size="13" class="mono accent" font-weight="600" text-anchor="middle" letter-spacing="-0.5">+432</text>
 <text x="802" y="126" font-size="18" class="mono" font-weight="600">celesto</text>
 <text x="802" y="148" font-size="14" class="muted">给 AI 智能体的安全持久化计算环境。</text>
 <rect x="712" y="182" width="428" height="72" rx="10" fill="#121821" stroke="#30363d"/>
 <rect x="712" y="200" width="3" height="36" rx="1.5" fill="#a9b3c0"/>
 <rect x="728" y="192" width="60" height="52" rx="8" fill="#0b0d10" stroke="#30363d"/>
 <polygon points="758.0,199.5 759.9,204.4 765.1,204.7 761.0,208.0 762.4,213.1 758.0,210.2 753.6,213.1 755.0,208.0 750.9,204.7 756.1,204.4" fill="#f5a524"/>
-<text x="758.0" y="235" font-size="13" class="mono accent" font-weight="600" text-anchor="middle" letter-spacing="-0.5">+2.3k</text>
+<text x="758.0" y="235" font-size="13" class="mono accent" font-weight="600" text-anchor="middle" letter-spacing="-0.5">+2.8k</text>
 <text x="802" y="212" font-size="18" class="mono" font-weight="600">XERJ</text>
 <text x="802" y="234" font-size="14" class="muted">一个本地优先的搜索引擎兼 MCP 服务器，打包为…</text>
 <rect x="712" y="268" width="428" height="72" rx="10" fill="#121821" stroke="#30363d"/>
 <rect x="712" y="286" width="3" height="36" rx="1.5" fill="#a9b3c0"/>
 <rect x="728" y="278" width="60" height="52" rx="8" fill="#0b0d10" stroke="#30363d"/>
 <polygon points="758.0,285.5 759.9,290.4 765.1,290.7 761.0,294.0 762.4,299.1 758.0,296.2 753.6,299.1 755.0,294.0 750.9,290.7 756.1,290.4" fill="#f5a524"/>
-<text x="758.0" y="321" font-size="13" class="mono accent" font-weight="600" text-anchor="middle" letter-spacing="-0.5">+24</text>
+<text x="758.0" y="321" font-size="13" class="mono accent" font-weight="600" text-anchor="middle" letter-spacing="-0.5">+22</text>
 <text x="802" y="298" font-size="18" class="mono" font-weight="600">RikkaHub Plus · Lantern</text>
 <text x="802" y="320" font-size="14" class="muted">面向 SillyTavern 式角色扮演的 Android 聊天客…</text>
 <text x="712" y="383" font-size="12" class="mono faint" letter-spacing="1">票数与证据并列 · 从不相加</text>
