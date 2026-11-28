@@ -4,11 +4,11 @@
 
 _Decide whether an action is safe to run. Defence in depth, never a security boundary._
 
-Every catalogued example of this decision — 203 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 206 of them. The same rows, with caveats, are in [the index](../../README.md#safety-gating); [the site](https://kydlikebtc.github.io/awesome-jev/?p=safety-gating&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#safety-gating): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 195 · wire shape 4 · example only 0 · independent reports 15 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 198 · wire shape 4 · example only 0 · independent reports 15 · negative results 0 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -272,6 +272,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[assay-001](https://github.com/jourdanlabs/assay-001)** — ASSAY-001: independent, pre-registered verification of TypeSafe Jev's calibration and type-safety claims. Split verdict, published in full. <sub>(upstream description)</sub>
   <sub>`Project` · jourdanlabs · `Py` · call site [`harness/run.py`](https://github.com/jourdanlabs/assay-001/blob/HEAD/harness/run.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[Blackrose](https://github.com/Dino-Kupinic/blackrose)** — Decision layer for LLM apps, in Python and JavaScript: it asks a decision model typed questions about a model's input and output (yes/no, rubric levels, closed choices), applies your confidence thresholds in your own code, and returns allow, review or block with reasons. <sub>(written by a model)</sub>
+  <sub>`SDK` · Dino-Kupinic · `Py` · `noul` · `score` · `choice` · call site [`packages/python/src/blackrose/providers/typesafe.py`](https://github.com/Dino-Kupinic/blackrose/blob/HEAD/packages/python/src/blackrose/providers/typesafe.py), read by a model 2026-11-28</sub>
+
 - **[Bouncer](https://github.com/clownware/bouncer)** — Judgment layer for Claude Code tool calls: a PreToolUse hook asks Jev plain-English questions from a YAML policy you own about each proposed call, such as whether a command destroys hard-to-recover work, and a push policy asks whether commits match the diff or leave debugging code behind. <sub>(written by a model)</sub>
   <sub>`Plugin` · clownware · `TS` · `noul` · `choice` · `score` · call site [`src/adapters/jev.ts`](https://github.com/clownware/bouncer/blob/HEAD/src/adapters/jev.ts), read by a model 2026-11-25</sub>
 
@@ -308,6 +311,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[diffjury](https://github.com/raihankhan-rk/diffjury)** — DiffJury — TypeSafe Jev PR risk router + code review coach <sub>(upstream description)</sub>
   <sub>`Project` · raihankhan-rk · `TS` · call site [`src/lib/review.ts`](https://github.com/raihankhan-rk/diffjury/blob/HEAD/src/lib/review.ts), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[DOXA](https://github.com/docwilde/doxa)** — Rust terminal workspace for coding agents: at the start of each turn Jev chooses which configured model or agent CLI handles it, from owner-written descriptions, and in agent fleets Jev can also judge each peer message with yes/no questions about scope, authority changes, secrets and human review. <sub>(written by a model)</sub>
+  <sub>`Project` · docwilde · `Rs` · `choice` · `noul` · call site [`rust/doxa-router/src/lib.rs`](https://github.com/docwilde/doxa/blob/HEAD/rust/doxa-router/src/lib.rs), read by a model 2026-11-28</sub>
+
 - **[dsh-jev-advisor](https://github.com/gordan-code/dsh-jev-advisor)** — DeepSeek Harness plugin that shows you, not the agent, a Jev second opinion: a recommended option with probabilities for the agent's multiple-choice questions, allow once or reject with a risk score for tool approvals, and readiness for plans. Nothing reaches the harness until you adopt it. <sub>(written by a model)</sub>
   <sub>`Plugin` · gordan-code · `JS` · `choice` · `noul` · `score` · call site [`src/index.js`](https://github.com/gordan-code/dsh-jev-advisor/blob/HEAD/src/index.js), read by a model 2026-11-18</sub>
 
@@ -340,6 +346,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Hiep Paseo plugins](https://github.com/hieppp/hiep-paseo-plugin)** — Plugins for the Paseo agent app, three of them on Jev: a permission gate that asks a noul on whether a shell command is read-only and a choice to allow, deny or escalate it to you, an orchestrator that routes delegated tasks to a model and effort, and an MCP evaluation tool. <sub>(written by a model)</sub>
   <sub>`Plugin` · hieppp · `TS` · `noul` · `choice` · call site [`plugins/jev-permission-gate/server/jev-worker.ts`](https://github.com/hieppp/hiep-paseo-plugin/blob/HEAD/plugins/jev-permission-gate/server/jev-worker.ts), read by a model 2026-11-10 · ⚠ `no licence`</sub>
+
+- **[hsom](https://github.com/gi-dellav/hsom)** — Strict-allowlist harness that runs shell commands chosen by Jev: walking a decision tree from environment.toml, Jev picks the command, subcommand, flags and path slots (choice and yes/no questions); read actions run at once, and write or destructive ones ask for confirmation. <sub>(written by a model)</sub>
+  <sub>`Project` · gi-dellav · `Py` · `choice` · `noul` · call site [`src/hsom/questions.py`](https://github.com/gi-dellav/hsom/blob/HEAD/src/hsom/questions.py), read by a model 2026-11-28 · ⚠ `vendor numbers`</sub>
 
 - **[hush](https://github.com/emreozyoruk/hush)** — Issue triage that stays quiet when it isn't sure. Calibrated labels, spam and duplicate detection — with abstention. <sub>(upstream description)</sub>
   <sub>`Project` · emreozyoruk · `JS` · call site [`src/jev.js`](https://github.com/emreozyoruk/hush/blob/HEAD/src/jev.js), read 2026-09-22</sub>

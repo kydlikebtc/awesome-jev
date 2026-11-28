@@ -4,11 +4,11 @@
 
 _Which tool or action the agent should call next._
 
-Every catalogued example of this decision — 308 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 311 of them. The same rows, with caveats, are in [the index](../../README.md#tool-selection); [the site](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#tool-selection): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 297 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 3 · call site 300 · wire shape 7 · example only 0 · independent reports 13 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -516,6 +516,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[agi-jev-containment](https://github.com/carlosedm10/agi-jev-containment)** — AGI JEV Detection — local AI agent monitor: chain-level malicious-agent detection (TypeSafe Jev + Sentinel), escalate-only L1–L5 containment, Neo4j forensics, AngryRobot dashboard. HackSpain 2026. <sub>(upstream description)</sub>
   <sub>`Project` · carlosedm10 · `Py` · call site [`backend/app/classification/jev.py`](https://github.com/carlosedm10/agi-jev-containment/blob/HEAD/backend/app/classification/jev.py), read 2026-09-22 · ⚠ `no licence`</sub>
 
+- **[Android Use](https://github.com/arcships/android-use)** — Brings an Android phone or emulator into the Dim Agent app and other MCP clients: the agent plans and verifies, and for repeated UI steps Jev picks the next action from the candidate controls read off the screen (a choice question), which Android Use validates and then taps, types or scrolls. <sub>(written by a model)</sub>
+  <sub>`Plugin` · arcships · `Py` · `choice` · `noul` · call site [`src/android_use/jev.py`](https://github.com/arcships/android-use/blob/HEAD/src/android_use/jev.py), read by a model 2026-11-28</sub>
+
 - **[android-jev](https://github.com/FZ2000/android-jev)** — MCP tool that controls an Android phone over adb: at each step it reads the screen and asks Jev which operation, target and app come next (choices), whether the goal is done, and whether the step is consequential and authorised (nouls), then checks the result before saying whether it worked. <sub>(written by a model)</sub>
   <sub>`Project` · FZ2000 · `Py` · `choice` · `noul` · call site [`src/phone_control/jev.py`](https://github.com/FZ2000/android-jev/blob/HEAD/src/phone_control/jev.py), read by a model 2026-11-24</sub>
 
@@ -585,8 +588,14 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — Observable browser stealth game: Jev makes typed guard judgments while deterministic code owns the world. <sub>(upstream description)</sub>
   <sub>`Project` · abdelstark · `TS` · call site [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts), read 2026-09-22</sub>
 
+- **[Herdr-Jev](https://github.com/flaviomartil/herdr-jev)** — Plugin for Herdr and AI-Harness that routes coding-agent turns: Jev scores each task's difficulty and scope, picks its intent and the tool or skill to use, and other questions gate diffs and read agent panes, before work goes to a worker model with independent review. <sub>(written by a model)</sub>
+  <sub>`Plugin` · flaviomartil · `TS` · `score` · `choice` · `noul` · call site [`src/routing/questions.ts`](https://github.com/flaviomartil/herdr-jev/blob/HEAD/src/routing/questions.ts), read by a model 2026-11-28 · ⚠ `no licence`</sub>
+
 - **[hermes-jev](https://github.com/DoGMaTiiC/hermes-jev)** — Two Hermes Agent plugins: jev-judge gates terminal, write_file and patch calls by asking Jev whether a call is destructive or exfiltrates data (nouls) and how big its impact is (score), and jev-skill-router asks Jev which one skill is worth loading before the model call (choice). <sub>(written by a model)</sub>
   <sub>`Plugin` · DoGMaTiiC · `Py` · `noul` · `score` · `choice` · call site [`plugins/jev-judge/jev.py`](https://github.com/DoGMaTiiC/hermes-jev/blob/HEAD/plugins/jev-judge/jev.py), read by a model 2026-11-15 · ⚠ `no licence`</sub>
+
+- **[hsom](https://github.com/gi-dellav/hsom)** — Strict-allowlist harness that runs shell commands chosen by Jev: walking a decision tree from environment.toml, Jev picks the command, subcommand, flags and path slots (choice and yes/no questions); read actions run at once, and write or destructive ones ask for confirmation. <sub>(written by a model)</sub>
+  <sub>`Project` · gi-dellav · `Py` · `choice` · `noul` · call site [`src/hsom/questions.py`](https://github.com/gi-dellav/hsom/blob/HEAD/src/hsom/questions.py), read by a model 2026-11-28 · ⚠ `vendor numbers`</sub>
 
 - **[jet](https://github.com/arczhi/jet)** — A TypeSafe-native (Jev) coding agent built on Recursive LLM Context Decomposition (RLCD), with a native macOS client <sub>(upstream description)</sub>
   <sub>`Project` · arczhi · `Py` · call site [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py), read 2026-09-24</sub>

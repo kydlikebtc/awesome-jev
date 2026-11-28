@@ -4,11 +4,11 @@
 
 _Check a model's output against a rubric before it reaches a user._
 
-Every catalogued example of this decision — 195 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 198 of them. The same rows, with caveats, are in [the index](../../README.md#output-validation); [the site](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#output-validation): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 190 · wire shape 1 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 193 · wire shape 1 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -311,6 +311,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Astra + Jev](https://github.com/Oranquelui/astra-jev-harness)** — Agent skills and a harness for Codex Desktop, Codex CLI and Claude Code. Before the coding model writes code, it asks Jev one noul per candidate file (does the task need it?) and keeps only sure yeses, keeping everything when any answer is unsure; it also sorts test evidence and long logs. <sub>(written by a model)</sub>
   <sub>`Plugin` · Oranquelui · `Go` · `noul` · call site [`internal/harness/provider.go`](https://github.com/Oranquelui/astra-jev-harness/blob/HEAD/internal/harness/provider.go), read by a model 2026-11-17 · ⚠ `vendor numbers`</sub>
 
+- **[Blackrose](https://github.com/Dino-Kupinic/blackrose)** — Decision layer for LLM apps, in Python and JavaScript: it asks a decision model typed questions about a model's input and output (yes/no, rubric levels, closed choices), applies your confidence thresholds in your own code, and returns allow, review or block with reasons. <sub>(written by a model)</sub>
+  <sub>`SDK` · Dino-Kupinic · `Py` · `noul` · `score` · `choice` · call site [`packages/python/src/blackrose/providers/typesafe.py`](https://github.com/Dino-Kupinic/blackrose/blob/HEAD/packages/python/src/blackrose/providers/typesafe.py), read by a model 2026-11-28</sub>
+
 - **[c9r plugins (browser-check, soft-lint)](https://github.com/c9r-dev/plugins)** — Claude Code and Codex plugins that use Jev as their classifier: browser-check runs a plain-English checklist in a real browser, asking which element each step means (choice) and whether each check holds (noul); soft-lint asks yes/no rules about the lines a diff adds. <sub>(written by a model)</sub>
   <sub>`Plugin` · c9r-dev · `TS` · `choice` · `noul` · call site [`shared/classifier.ts`](https://github.com/c9r-dev/plugins/blob/HEAD/shared/classifier.ts), read by a model 2026-11-13</sub>
 
@@ -343,6 +346,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[Footwork](https://github.com/Tom-R-Main/Footwork)** — A verified browser agent: a cheap Jev guard (evidence-checked completions, a destructive gate) in front of any LLM browser driver, with Jev taking the mechanical steps in dual mode. Built on browser-use; every number pre-registered and measured. <sub>(earlier upstream description)</sub>
   <sub>`Project` · tom-r-main · `Py` · call site [`jevdual/evals/runner.py`](https://github.com/Tom-R-Main/Footwork/blob/HEAD/jevdual/evals/runner.py), read 2026-09-24</sub>
+
+- **[Herdr-Jev](https://github.com/flaviomartil/herdr-jev)** — Plugin for Herdr and AI-Harness that routes coding-agent turns: Jev scores each task's difficulty and scope, picks its intent and the tool or skill to use, and other questions gate diffs and read agent panes, before work goes to a worker model with independent review. <sub>(written by a model)</sub>
+  <sub>`Plugin` · flaviomartil · `TS` · `score` · `choice` · `noul` · call site [`src/routing/questions.ts`](https://github.com/flaviomartil/herdr-jev/blob/HEAD/src/routing/questions.ts), read by a model 2026-11-28 · ⚠ `no licence`</sub>
 
 - **[human-compiler](https://github.com/asfarsadewa/human-compiler)** — A compiler for human language. Paste text, get diagnostics. Measured by TypeSafe Jev. <sub>(upstream description)</sub>
   <sub>`Project` · asfarsadewa · `TS` · call site [`src/worker/index.ts`](https://github.com/asfarsadewa/human-compiler/blob/HEAD/src/worker/index.ts), read 2026-09-22</sub>
@@ -520,6 +526,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[jod](https://github.com/mateonunez/jod)** — Semantic schemas over TypeSafe's Jev — validate the state locally, then project typed answers. <sub>(upstream description)</sub>
   <sub>`Project` · mateonunez · `TS` · call site [`e2e/support.ts`](https://github.com/mateonunez/jod/blob/HEAD/e2e/support.ts), read 2026-09-22</sub>
+
+- **[judgelint](https://github.com/jpcamara/judgelint)** — Linter for conventions written in plain English as bullets in a README: for each file and each bullet it asks Jev whether the file breaks the rule (yes/no questions, or choice questions for rules with options), then reports violations with line numbers and an exit code like any linter. <sub>(written by a model)</sub>
+  <sub>`Project` · jpcamara · `Rs` · `noul` · `choice` · call site [`src/protocol.rs`](https://github.com/jpcamara/judgelint/blob/HEAD/src/protocol.rs), read by a model 2026-11-28</sub>
 
 - **[Juger vite, bloquer juste](https://github.com/lorenzorama/juger-vite-bloquer-juste)** — Talk demo (IndabaX Madagascar 2026) of a mail agent under prompt injection: Jev nouls quarantine incoming mail that addresses an AI and block drafts that leave the user's request or leak a secret; a shadow configuration only observes, and a Jev score grades each run against a golden set. <sub>(written by a model)</sub>
   <sub>`Project` · lorenzorama · `Py` · `noul` · call site [`backend/app/guard.py`](https://github.com/lorenzorama/juger-vite-bloquer-juste/blob/HEAD/backend/app/guard.py), read by a model 2026-11-24</sub>

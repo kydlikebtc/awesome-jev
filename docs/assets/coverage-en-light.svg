@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="638" height="530" viewBox="0 0 638 530" role="img" aria-label="Examples per decision pattern">
 <style>.t{font:600 15px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#1f2328}.s{font:11px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#818b98}.l{font:12.5px -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;fill:#59636e}.n{font:600 12px ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;fill:#1f2328}.g{font:italic 11px -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;fill:#818b98}</style>
 <text x="12" y="22" class="t">Examples per decision pattern</text>
-<text x="12" y="40" class="s">1688 entries · 18 of 18 patterns covered · 2026-11-25</text>
+<text x="12" y="40" class="s">1703 entries · 18 of 18 patterns covered · 2026-11-25</text>
 <line x1="12" y1="50" x2="626" y2="50" stroke="#d1d9e0" stroke-width="1"/>
 <text x="12" y="74" class="l">Tool selection</text>
 <rect x="168" y="65" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 65h209a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-209z" fill="#bc7503"/>
-<text x="560" y="75" class="n">308</text>
+<path d="M168 65h211a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-211z" fill="#bc7503"/>
+<text x="560" y="75" class="n">311</text>
 <text x="12" y="99" class="l">Intent routing</text>
 <rect x="168" y="90" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 90h46a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-46z" fill="#e5b45f"/>
@@ -17,12 +17,12 @@
 <text x="560" y="125" class="n">62</text>
 <text x="12" y="149" class="l">Safety gating</text>
 <rect x="168" y="140" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 140h137a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-137z" fill="#bc7503"/>
-<text x="560" y="150" class="n">203</text>
+<path d="M168 140h139a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-139z" fill="#bc7503"/>
+<text x="560" y="150" class="n">206</text>
 <text x="12" y="174" class="l">Output validation</text>
 <rect x="168" y="165" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 165h132a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-132z" fill="#bc7503"/>
-<text x="560" y="175" class="n">195</text>
+<path d="M168 165h134a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-134z" fill="#bc7503"/>
+<text x="560" y="175" class="n">198</text>
 <text x="12" y="199" class="l">Retry control</text>
 <rect x="168" y="190" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 190h5a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-5z" fill="#e5b45f"/>
@@ -33,8 +33,8 @@
 <text x="560" y="225" class="n">117</text>
 <text x="12" y="249" class="l">Model routing</text>
 <rect x="168" y="240" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 240h76a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-76z" fill="#e5b45f"/>
-<text x="560" y="250" class="n">113</text>
+<path d="M168 240h78a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-78z" fill="#e5b45f"/>
+<text x="560" y="250" class="n">116</text>
 <text x="12" y="274" class="l">Speculative fan-out</text>
 <rect x="168" y="265" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 265h38a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-38z" fill="#e5b45f"/>
@@ -49,24 +49,24 @@
 <text x="560" y="325" class="n">41</text>
 <text x="12" y="349" class="l">Classification</text>
 <rect x="168" y="340" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 340h172a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-172z" fill="#bc7503"/>
-<text x="560" y="350" class="n">254</text>
+<path d="M168 340h175a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-175z" fill="#bc7503"/>
+<text x="560" y="350" class="n">258</text>
 <text x="12" y="374" class="l">ML feature extraction</text>
 <rect x="168" y="365" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 365h5a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-5z" fill="#e5b45f"/>
-<text x="560" y="375" class="n">10</text>
+<path d="M168 365h6a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-6z" fill="#e5b45f"/>
+<text x="560" y="375" class="n">11</text>
 <text x="12" y="399" class="l">Document triage</text>
 <rect x="168" y="390" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 390h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-14z" fill="#e5b45f"/>
-<text x="560" y="400" class="n">24</text>
+<path d="M168 390h16a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-16z" fill="#e5b45f"/>
+<text x="560" y="400" class="n">26</text>
 <text x="12" y="424" class="l">Support triage</text>
 <rect x="168" y="415" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 415h9a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-9z" fill="#e5b45f"/>
 <text x="560" y="425" class="n">16</text>
 <text x="12" y="449" class="l">Content scoring</text>
 <rect x="168" y="440" width="380" height="11" rx="1" fill="#eef1f4"/>
-<path d="M168 440h150a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-150z" fill="#bc7503"/>
-<text x="560" y="450" class="n">222</text>
+<path d="M168 440h152a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-152z" fill="#bc7503"/>
+<text x="560" y="450" class="n">224</text>
 <text x="12" y="474" class="l">Recommendation</text>
 <rect x="168" y="465" width="380" height="11" rx="1" fill="#eef1f4"/>
 <path d="M168 465h2a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-2z" fill="#e5b45f"/>

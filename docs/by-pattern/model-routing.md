@@ -4,11 +4,11 @@
 
 _Pick which downstream model or tier should handle a request._
 
-Every catalogued example of this decision — 113 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 116 of them. The same rows, with caveats, are in [the index](../../README.md#model-routing); [the site](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#model-routing): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 103 · wire shape 2 · example only 2 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 106 · wire shape 2 · example only 2 · independent reports 0 · negative results 1 · no file cited 6. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -204,6 +204,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[ClauJev](https://github.com/civalski/claujev)** — Claude Code plugin in which Jev checks Claude's work before the reply reaches you: scores and nouls compare the turn's real git diff with what Claude says it did and send it back when the work looks unfinished; Jev also scores each request to suggest an effort level and routes subagents. <sub>(written by a model)</sub>
   <sub>`Plugin` · civalski · `JS` · `choice` · `score` · `noul` · call site [`plugins/claujev/hooks/claujev.mjs`](https://github.com/civalski/claujev/blob/HEAD/plugins/claujev/hooks/claujev.mjs), read by a model 2026-11-10</sub>
 
+- **[Codex Sift](https://github.com/romanmeclazcke/codex-sift)** — Model router for the OpenAI Codex CLI: on each user turn Jev says what kind of turn it is, how hard it is, and whether it needs diagnosis, planning, many files or sensitive areas such as auth or payments; a YAML policy turns those answers into a cheap, middle or strong model lane. <sub>(written by a model)</sub>
+  <sub>`Project` · romanmeclazcke · `TS` · `choice` · `score` · `noul` · call site [`src/jev.ts`](https://github.com/romanmeclazcke/codex-sift/blob/HEAD/src/jev.ts), read by a model 2026-11-28 · ⚠ `vendor numbers`</sub>
+
 - **[codex-jev-router](https://github.com/tiandee/codex-jev-router)** — Wrapper for the Codex CLI that runs a local proxy and, on each fresh turn, asks Jev a choice of Codex model and scores for task complexity, reasoning required and tool complexity, then sets the model and reasoning effort; without Jev, Codex keeps its current settings. <sub>(written by a model)</sub>
   <sub>`Plugin` · tiandee · `JS` · `choice` · `score` · call site [`src/jev-client.mjs`](https://github.com/tiandee/codex-jev-router/blob/HEAD/src/jev-client.mjs), read by a model 2026-11-10</sub>
 
@@ -216,11 +219,17 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[DESIGN:OS Generative UI](https://github.com/jangtrinh/design-os-generative-ui)** — Streaming UI runtime for AI agents that renders live HTML, charts and WebGL widgets. Its composer first asks a local Laya model which widget and layout fit a request (choices) and whether it is about dashboards, landing pages or alerts (nouls), and asks Jev the same when Laya is unsure. <sub>(written by a model)</sub>
   <sub>`Plugin` · jangtrinh · `TS` · `choice` · `noul` · call site [`src/engine/jev-adapter.ts`](https://github.com/jangtrinh/design-os-generative-ui/blob/HEAD/src/engine/jev-adapter.ts), read by a model 2026-11-18</sub>
 
+- **[DOXA](https://github.com/docwilde/doxa)** — Rust terminal workspace for coding agents: at the start of each turn Jev chooses which configured model or agent CLI handles it, from owner-written descriptions, and in agent fleets Jev can also judge each peer message with yes/no questions about scope, authority changes, secrets and human review. <sub>(written by a model)</sub>
+  <sub>`Project` · docwilde · `Rs` · `choice` · `noul` · call site [`rust/doxa-router/src/lib.rs`](https://github.com/docwilde/doxa/blob/HEAD/rust/doxa-router/src/lib.rs), read by a model 2026-11-28</sub>
+
 - **[dsh-plugin-jev-effort-selector](https://github.com/justhalfbit/dsh-plugin-jev-effort-selector)** — A DeepSeek Harness plugin that picks the reasoning level automatically: Jev judges how much thought each message deserves, follow-ups inherit the topic's depth, low confidence rounds up, and any failure falls back silently.
   <sub>`Plugin` · justhalfbit · `JS` · call site [`lib/client.js`](https://github.com/justhalfbit/dsh-plugin-jev-effort-selector/blob/HEAD/lib/client.js), read 2026-09-24</sub>
 
 - **[DuckDB Dual Cognition](https://github.com/prasanthj/duckdb-dual-cognition)** — Native DuckDB extension whose SQL functions ask Jev choices, scores and nouls over every row in batches, including picking a row's foreign key from candidates or answering ambiguous or no_match, and send only rows below a confidence threshold to an OpenAI model for reasoning. <sub>(written by a model)</sub>
   <sub>`Plugin` · prasanthj · `C++` · `choice` · `score` · `noul` · call site [`src/dc_extension.cpp`](https://github.com/prasanthj/duckdb-dual-cognition/blob/HEAD/src/dc_extension.cpp), read by a model 2026-11-11 · ⚠ `3rd-party key`</sub>
+
+- **[Herdr-Jev](https://github.com/flaviomartil/herdr-jev)** — Plugin for Herdr and AI-Harness that routes coding-agent turns: Jev scores each task's difficulty and scope, picks its intent and the tool or skill to use, and other questions gate diffs and read agent panes, before work goes to a worker model with independent review. <sub>(written by a model)</sub>
+  <sub>`Plugin` · flaviomartil · `TS` · `score` · `choice` · `noul` · call site [`src/routing/questions.ts`](https://github.com/flaviomartil/herdr-jev/blob/HEAD/src/routing/questions.ts), read by a model 2026-11-28 · ⚠ `no licence`</sub>
 
 - **[hermes-jev-router](https://github.com/ussyverse/hermes-jev-router)** — Experimental Hermes plugin: Jev-assisted model routing plans with budget and capability constraints. API access pending. <sub>(upstream description)</sub>
   <sub>`Plugin` · ussyverse · `Py` · call site [`jev.py`](https://github.com/ussyverse/hermes-jev-router/blob/HEAD/jev.py), read 2026-09-22 · ⚠ `one commit`</sub>

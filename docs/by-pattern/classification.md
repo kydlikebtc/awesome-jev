@@ -4,11 +4,11 @@
 
 _Put an item into a taxonomy, including deep hierarchies walked with probabilities._
 
-Every catalogued example of this decision — 254 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 258 of them. The same rows, with caveats, are in [the index](../../README.md#classification); [the site](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#classification): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 242 · wire shape 3 · example only 0 · independent reports 24 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 4 · call site 246 · wire shape 3 · example only 0 · independent reports 25 · negative results 2 · no file cited 9. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -392,6 +392,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[CourtVision](https://github.com/aiden-guan/courtvision)** — Turns single-camera basketball video into plays, possessions and box scores on a Mac from the pixels alone; optional Jev play context asks the play type (choice), whether a possession summary is clear and a play a highlight (nouls) and how much was at stake (score) to steer the commentary. <sub>(written by a model)</sub>
   <sub>`Project` · aiden-guan · `Py` · `choice` · `noul` · `score` · call site [`courtvision/decision/client.py`](https://github.com/aiden-guan/courtvision/blob/HEAD/courtvision/decision/client.py), read by a model 2026-11-25 · ⚠ `vendor numbers`</sub>
 
+- **[dbt_decisions](https://github.com/dbt-labs/dbt-decisions)** — dbt package from dbt Labs that puts Jev-class decision models inside SQL: macros ask a yes/no, choice or ordered-scale question about a column, such as whether a support ticket's customer is likely to churn or which kind of problem it is, and return the probability, choice or level. <sub>(written by a model)</sub>
+  <sub>`Integration` · dbt-labs · `Py` · `noul` · `choice` · `score` · call site [`functions/snowflake/decisions_ask_json.py`](https://github.com/dbt-labs/dbt-decisions/blob/HEAD/functions/snowflake/decisions_ask_json.py), read by a model 2026-11-28</sub>
+
 - **[decidekit](https://github.com/debuffjp/decidekit)** — A decision model that runs in the browser or Node: it picks one of your labels for a text with a confidence, learns from an LLM when unsure, and offers the shape of TypeSafe's SDK (client.systemOne({ state, questions })) for choice questions, so code written for Jev can run locally. <sub>(written by a model)</sub>
   <sub>`Jev-like alternative` · debuffjp · `TS` · cited file [`src/typesafe.ts`](https://github.com/debuffjp/decidekit/blob/HEAD/src/typesafe.ts), read by a model 2026-11-13 · ⚠ `not Jev itself` `vendor numbers`</sub>
 
@@ -403,6 +406,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[decision-models-lab](https://github.com/shashikantdev3/decision-models-lab)** — Learning lab on decision models through OpenRouter's decisions API, with Jev and Microsoft Decision-1 side by side. The hello-world triages a ticket in one call, asking whether it is urgent (noul), which team gets it (choice) and how severe it is (score); later steps escalate unsure cases to Claude. <sub>(written by a model)</sub>
   <sub>`Tutorial` · shashikantdev3 · `JS` · `noul` · `choice` · `score` · call site [`examples/hello-world/hello.mjs`](https://github.com/shashikantdev3/decision-models-lab/blob/HEAD/examples/hello-world/hello.mjs), read by a model 2026-11-14</sub>
+
+- **[DecisionForge](https://github.com/Blackteaxx/DecisionForge)** — Toolkit that turns a decision scenario into a trained, evaluated decision model: it builds Jev-format choice, yes/no and score data from your materials, trains a native model and compares it with Jev, training-free methods and chat models on the same evaluation set, across seven domains. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · Blackteaxx · `Py` · `choice` · `noul` · `score` · call site [`src/decisionforge/eval/adapters/jev.py`](https://github.com/Blackteaxx/DecisionForge/blob/HEAD/src/decisionforge/eval/adapters/jev.py), read by a model 2026-11-28 · ⚠ `vendor numbers`</sub>
 
 - **[DESIGN:OS Generative UI](https://github.com/jangtrinh/design-os-generative-ui)** — Streaming UI runtime for AI agents that renders live HTML, charts and WebGL widgets. Its composer first asks a local Laya model which widget and layout fit a request (choices) and whether it is about dashboards, landing pages or alerts (nouls), and asks Jev the same when Laya is unsure. <sub>(written by a model)</sub>
   <sub>`Plugin` · jangtrinh · `TS` · `choice` · `noul` · call site [`src/engine/jev-adapter.ts`](https://github.com/jangtrinh/design-os-generative-ui/blob/HEAD/src/engine/jev-adapter.ts), read by a model 2026-11-18</sub>
@@ -608,6 +614,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[Jevatar](https://github.com/AppChainAI/Jevatar)** — An AI companion that replies only with facial expressions. Jev (TypeSafe System One) judges your message and picks 1 of 14 moods; blobatar morphs its face. React + Vite + Bun. <sub>(upstream description)</sub>
   <sub>`Project` · appchainai · `TS` · call site [`server.ts`](https://github.com/AppChainAI/Jevatar/blob/HEAD/server.ts), read 2026-09-24</sub>
 
+- **[jevbench](https://github.com/dhruvmehra/jevbench)** — Small reproducible benchmark of Jev as a text classifier: one choice question per example over three public datasets, against the open Laya model, a small and a frontier LLM, fine-tuned DistilBERT and zero-shot BART, reporting accuracy, macro-F1, calibration, latency, throughput and cost. <sub>(written by a model)</sub>
+  <sub>`Benchmark` · dhruvmehra · `Py` · `choice` · call site [`src/jevbench/classifiers/jev.py`](https://github.com/dhruvmehra/jevbench/blob/HEAD/src/jevbench/classifiers/jev.py), read by a model 2026-11-28</sub>
+
 - **[jevbench](https://github.com/GautamTalksDev/jevbench)** — Preregistered, bias-corrected test of TypeSafe Jev's calibration under human disagreement (ChaosNLI, 100 labels per item) <sub>(upstream description)</sub>
   <sub>`Benchmark` · Gautam Khosla · `Py` · `choice` · `noul` · call site [`jevbench/clients/jev.py`](https://github.com/GautamTalksDev/jevbench/blob/HEAD/jevbench/clients/jev.py) · author's conclusion: mixed (author-stated, not reproduced here) · ⚠ `AI-written` `self-submitted`</sub>
 
@@ -712,6 +721,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[pi-jev-todo-audit](https://github.com/xz-dev/pi-jev-todo-audit)** — Pi extension that checks whether the rpiv-todo board matches the work a coding session visibly did. For each task it asks choice questions, such as which transition the evidence supports and which source backs it, and gives advice; it never changes the board itself. <sub>(written by a model)</sub>
   <sub>`Plugin` · xz-dev · `TS` · `choice` · call site [`questions.ts`](https://github.com/xz-dev/pi-jev-todo-audit/blob/HEAD/questions.ts), read by a model 2026-11-17</sub>
+
+- **[pi-jfiles](https://github.com/fr0ziii/pi-jfiles)** — Pi extension that asks your own typed questions about whole project files through Pi's codemode: each selected file goes to Jev with yes/no, choice and score questions, such as whether it checks permissions or which layer it belongs to, and paths come back with answers and coverage. <sub>(written by a model)</sub>
+  <sub>`Plugin` · fr0ziii · `TS` · `noul` · `choice` · `score` · call site [`src/file-classification.ts`](https://github.com/fr0ziii/pi-jfiles/blob/HEAD/src/file-classification.ts), read by a model 2026-11-28</sub>
 
 - **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — Add-on for @playwright/test that asks Jev small typed questions where a suite would rerun everything or spend an LLM turn: a choice for a failure's root cause that drives retry and heal, scores to prune snapshots and order tests, nouls to verify steps and assertions, and a choice to heal locators. <sub>(written by a model)</sub>
   <sub>`Plugin` · AdriaanVE · `TS` · `choice` · `noul` · `score` · call site [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts), read by a model 2026-11-23</sub>

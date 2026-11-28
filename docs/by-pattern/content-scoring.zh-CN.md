@@ -4,11 +4,11 @@
 
 _在有序量表上给质量、风险或相关性打分。_
 
-这个决策的全部已收录例子 —— 共 222 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 224 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#内容评分)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#content-scoring)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#content-scoring)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 213 · 接口形态 5 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 215 · 接口形态 5 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -341,6 +341,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[CourtVision](https://github.com/aiden-guan/courtvision)** — 仅凭画面，在 Mac 上把单机位篮球视频转成回合、球权和技术统计；可选的 Jev 比赛语境会问打法类型（choice）、球权摘要是否清楚、某次进攻是否算精彩（noul）以及当时局面有多关键（score），用来引导解说。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · aiden-guan · `Py` · `choice` · `noul` · `score` · 调用点 [`courtvision/decision/client.py`](https://github.com/aiden-guan/courtvision/blob/HEAD/courtvision/decision/client.py)，2026-11-25 模型阅读 · ⚠ `厂商自报数据`</sub>
 
+- **[dbt_decisions](https://github.com/dbt-labs/dbt-decisions)** — dbt Labs 推出的 dbt 包，把 Jev 这类决策模型放进 SQL：宏针对某一列提出是非题、选择题或有序等级题，例如支持工单的客户是否可能流失、属于哪类问题，并返回概率、所选项或等级。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`平台集成` · dbt-labs · `Py` · `noul` · `choice` · `score` · 调用点 [`functions/snowflake/decisions_ask_json.py`](https://github.com/dbt-labs/dbt-decisions/blob/HEAD/functions/snowflake/decisions_ask_json.py)，2026-11-28 模型阅读</sub>
+
 - **[decide-mcp](https://github.com/dakdevs/decide-mcp)** — 可配置的决策 MCP server，带百分比分数与偏好画像。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`SDK` · dakdevs · `TS` · 调用点 [`src/config.ts`](https://github.com/dakdevs/decide-mcp/blob/HEAD/src/config.ts)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>
 
@@ -397,6 +400,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[instruct-jev](https://github.com/ctaxnagomi/instruct-jev)** — INSTRUCT_JEV：Jev／System One 指令语料库（choice／noul／score）。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · ctaxnagomi · `Py` · 调用点 [`DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py`](https://github.com/ctaxnagomi/instruct-jev/blob/HEAD/DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py)，2026-09-22 阅读</sub>
+
+- **[IntelliPrompter](https://github.com/finetuningsingh/intelliprompter)** — 一个列要点而非逐字稿的提词器：你用自己的话、按任意顺序讲，Jev 对最新的讲话给每个未讲到的要点打分，看讲到了多少，分数够高时页面就把该要点勾掉，长长的清单不会漏讲。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · finetuningsingh · `JS` · `score` · 调用点 [`prompter.js`](https://github.com/finetuningsingh/intelliprompter/blob/HEAD/prompter.js)，2026-11-28 模型阅读</sub>
 
 - **[Jeff](https://github.com/saembit/jeff-bot)** — 一个 Discord 机器人，每项功能都是一个 Jev 问题：/settle 从两个答案中选出更好的，/rank 按每条标准给条目打分，论坛帖子会被打上合适的标签或不打，帮助频道会判断一条消息是不是某条 FAQ 能回答的问题，桌游的神谕和赔率游戏则用 noul。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · saembit · `Py` · `choice` · `noul` · `score` · 调用点 [`src/utils/jev.py`](https://github.com/saembit/jeff-bot/blob/HEAD/src/utils/jev.py)，2026-11-24 模型阅读</sub>

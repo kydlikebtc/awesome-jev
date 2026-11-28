@@ -4,11 +4,11 @@
 
 _Score quality, risk or relevance on an ordered scale._
 
-Every catalogued example of this decision — 222 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 224 of them. The same rows, with caveats, are in [the index](../../README.md#content-scoring); [the site](https://kydlikebtc.github.io/awesome-jev/?p=content-scoring&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#content-scoring): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 213 · wire shape 5 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 2 · call site 215 · wire shape 5 · example only 0 · independent reports 14 · negative results 1 · no file cited 4. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -341,6 +341,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[CourtVision](https://github.com/aiden-guan/courtvision)** — Turns single-camera basketball video into plays, possessions and box scores on a Mac from the pixels alone; optional Jev play context asks the play type (choice), whether a possession summary is clear and a play a highlight (nouls) and how much was at stake (score) to steer the commentary. <sub>(written by a model)</sub>
   <sub>`Project` · aiden-guan · `Py` · `choice` · `noul` · `score` · call site [`courtvision/decision/client.py`](https://github.com/aiden-guan/courtvision/blob/HEAD/courtvision/decision/client.py), read by a model 2026-11-25 · ⚠ `vendor numbers`</sub>
 
+- **[dbt_decisions](https://github.com/dbt-labs/dbt-decisions)** — dbt package from dbt Labs that puts Jev-class decision models inside SQL: macros ask a yes/no, choice or ordered-scale question about a column, such as whether a support ticket's customer is likely to churn or which kind of problem it is, and return the probability, choice or level. <sub>(written by a model)</sub>
+  <sub>`Integration` · dbt-labs · `Py` · `noul` · `choice` · `score` · call site [`functions/snowflake/decisions_ask_json.py`](https://github.com/dbt-labs/dbt-decisions/blob/HEAD/functions/snowflake/decisions_ask_json.py), read by a model 2026-11-28</sub>
+
 - **[decide-mcp](https://github.com/dakdevs/decide-mcp)** — Configurable decision MCP server with AI SDK, Jev, percentage scores, and bias profile routing <sub>(upstream description)</sub>
   <sub>`SDK` · dakdevs · `TS` · call site [`src/config.ts`](https://github.com/dakdevs/decide-mcp/blob/HEAD/src/config.ts), read 2026-09-22 · ⚠ `one commit`</sub>
 
@@ -397,6 +400,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[instruct-jev](https://github.com/ctaxnagomi/instruct-jev)** — INSTRUCT_JEV - TypeSafe AI Jev / System One instruction corpus (choice/noul/score), compiled by DeckerGUI. 119 rows. Mirrored on HuggingFace. <sub>(upstream description)</sub>
   <sub>`Project` · ctaxnagomi · `Py` · call site [`DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py`](https://github.com/ctaxnagomi/instruct-jev/blob/HEAD/DeckerGUI_JEV-CorpusDGUI/build_instruct_jev.py), read 2026-09-22</sub>
+
+- **[IntelliPrompter](https://github.com/finetuningsingh/intelliprompter)** — Teleprompter of talking points rather than a script: while you speak in your own words and any order, Jev scores how fully the latest speech covers each open point, and the page ticks a point off once its score is high enough, so nothing on a long list is forgotten. <sub>(written by a model)</sub>
+  <sub>`Project` · finetuningsingh · `JS` · `score` · call site [`prompter.js`](https://github.com/finetuningsingh/intelliprompter/blob/HEAD/prompter.js), read by a model 2026-11-28</sub>
 
 - **[Jeff](https://github.com/saembit/jeff-bot)** — Discord bot in which every feature is a Jev question: /settle picks the better of two answers, /rank scores items on each criterion, forum posts get the fitting tag or none, help channels check whether a message is a question a FAQ entry answers, and tabletop oracle and odds games use nouls. <sub>(written by a model)</sub>
   <sub>`Project` · saembit · `Py` · `choice` · `noul` · `score` · call site [`src/utils/jev.py`](https://github.com/saembit/jeff-bot/blob/HEAD/src/utils/jev.py), read by a model 2026-11-24</sub>

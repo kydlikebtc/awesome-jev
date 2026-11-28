@@ -4,11 +4,11 @@
 
 _Classify and route incoming documents, invoices and forms._
 
-Every catalogued example of this decision — 24 of them. The same rows, with caveats, are in [the index](../../README.md#document-triage); [the site](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=en) can filter them further by language, primitive and kind.
+Every catalogued example of this decision — 26 of them. The same rows, with caveats, are in [the index](../../README.md#document-triage); [the site](https://kydlikebtc.github.io/awesome-jev/?p=document-triage&lang=en) can filter them further by language, primitive and kind.
 
 Design notes for this decision are in [docs/patterns.md](../patterns.md#document-triage): what it decides and which primitive shapes it, and, where one is written, when not to use a decision model for it.
 
-Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 23 · wire shape 0 · example only 0 · independent reports 3 · negative results 0 · no file cited 1. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
+Evidence recorded for this pattern's rows (reports counted, not a verdict; a row may count more than once): official documentation 0 · call site 25 · wire shape 0 · example only 0 · independent reports 3 · negative results 0 · no file cited 1. “Independent” = a benchmark not flagged vendor-reported, not reproduced by this repository. [Every pattern side by side](../shape.md#evidence-by-decision-pattern).
 
 ## Official material
 
@@ -53,6 +53,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 - **[decision-first](https://github.com/harrymunro/decision-first)** — Agent skill for Claude Code, Codex, Cursor and more: when a step is a bounded judgment (classify, triage, rank, route, filter, verify, gate), the agent tries Jev first, via a bundled script sending noul, choice or score questions, before a regex or LLM prompt, and logs each attempt, adopted or not. <sub>(written by a model)</sub>
   <sub>`Plugin` · harrymunro · `Py` · call site [`skills/decision-first/scripts/ask.py`](https://github.com/harrymunro/decision-first/blob/HEAD/skills/decision-first/scripts/ask.py), read 2026-09-22</sub>
 
+- **[Docket](https://github.com/glamboyosa/docket)** — Go terminal document classifier: it copies a document into a local library, extracts the text and asks Jev five questions (its category, how sensitive and how urgent it is, whether it asks the reader to act, and whether that action is still open), then files the copy by those answers. <sub>(written by a model)</sub>
+  <sub>`Project` · glamboyosa · `Go` · `choice` · `score` · `noul` · call site [`internal/provider/jev.go`](https://github.com/glamboyosa/docket/blob/HEAD/internal/provider/jev.go), read by a model 2026-11-28 · ⚠ `no licence`</sub>
+
 - **[Jev Benchmark](https://github.com/yididev/jev-benchmark)** — Benchmark of rubric-based zero-shot classification, chained decision-tree execution and exam grading. Each document goes to Jev as one choice whose criteria are the rubric's folder descriptions, against two Claude models, OpenJev and open-weight decision models on accuracy, calibration and price. <sub>(written by a model)</sub>
   <sub>`Benchmark` · yididev · `Py` · `choice` · call site [`arms/jev.py`](https://github.com/yididev/jev-benchmark/blob/HEAD/arms/jev.py), read by a model 2026-11-18</sub>
 
@@ -91,6 +94,9 @@ A *call site* link opens the one file a row cites (`evidence.path`) at `HEAD` of
 
 - **[last-exit](https://github.com/0x963D/last-exit)** — A cyberpunk border encounter powered by TypeSafe Jev. Bluff the guard. Inspect the receipts. <sub>(upstream description)</sub>
   <sub>`Project` · 0x963d · `JS` · call site [`lib/hosted.mjs`](https://github.com/0x963D/last-exit/blob/HEAD/lib/hosted.mjs), read 2026-09-22</sub>
+
+- **[paperless-jev](https://github.com/PenDraga/paperless-jev)** — Docker service that classifies new documents in the Paperless-ngx inbox: Jev chooses the document type, correspondent and storage path from your existing Paperless metadata, picks the issue date and tags, and the results wait for review in a web UI. <sub>(written by a model)</sub>
+  <sub>`Integration` · PenDraga · `Py` · `choice` · `noul` · call site [`src/paperless_jev/jev.py`](https://github.com/PenDraga/paperless-jev/blob/HEAD/src/paperless_jev/jev.py), read by a model 2026-11-28</sub>
 
 - **[tiab-review-plugin](https://github.com/youkiti/tiab-review-plugin)** — A Chrome extension that speeds up title-and-abstract screening for systematic reviews, published on the Chrome Web Store.
   <sub>`Plugin` · youkiti · `TS` · call site [`src/lib/providers/typesafe.ts`](https://github.com/youkiti/tiab-review-plugin/blob/HEAD/src/lib/providers/typesafe.ts), read 2026-09-24</sub>

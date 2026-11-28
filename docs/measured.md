@@ -4,7 +4,7 @@
 
 Independent measurement reports in the catalogue, including **negative results** that help explain where an approach fails. These are the original authors' measurements; this repository has not independently reproduced them. Check each report's dataset, method and model version before comparing results.
 
-Every independent measurement report and negative result in the catalogue — 108 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
+Every independent measurement report and negative result in the catalogue — 109 rows — with every note and caveat tag, the negative results first. [The README](../README.md#measured-not-claimed) shows those, then the picks of the curated [independent reports](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=en) path and the first few others; [the site](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=en) lists the same rows and can filter them further.
 
 ★ gives a repository's GitHub stars as a band — ★10+, ★100+, ★1k+, ★10k+ and ★100k+; rows with no repository or under 10 stars show no band. Rows run official first, then with code, then by band, then by title. A band is a popularity signal, not a quality verdict; the exact count, as last read from GitHub, is in [`catalog.json`](../catalog.json) and on [the site](https://kydlikebtc.github.io/awesome-jev/?lang=en).
 
@@ -515,6 +515,12 @@ Rows whose own author measured Jev for the use and concluded against it: a bench
 - **[jevarena](https://github.com/chenmingtang830/jevarena)**<br>
   Open-source BYOK arena for Jev and other AI judges. Find failures, compare quality, cost, and latency. <sub>(upstream description)</sub><br>
   <sub>`Benchmark` · chenmingtang830 · `TS` · [call site](https://github.com/chenmingtang830/jevarena/blob/HEAD/jevjudge/providers.py), read 2026-09-24</sub>
+
+- **[jevbench](https://github.com/dhruvmehra/jevbench)**<br>
+  Small reproducible benchmark of Jev as a text classifier: one choice question per example over three public datasets, against the open Laya model, a small and a frontier LLM, fine-tuned DistilBERT and zero-shot BART, reporting accuracy, macro-F1, calibration, latency, throughput and cost. <sub>(written by a model)</sub><br>
+  <sub>`Benchmark` · dhruvmehra · `Py` · `choice` · [call site](https://github.com/dhruvmehra/jevbench/blob/HEAD/src/jevbench/classifiers/jev.py), read by a model 2026-11-28</sub>
+
+  > It reaches Jev only through OpenRouter's decisions API; the published tables use 500 examples per dataset. Row drafted from the discovery queue (issue #14) by an AI assistant that read the README and the cited file on 2026-11-28; a maintainer has not yet read the call site.
 
 - **[jevbench](https://github.com/GautamTalksDev/jevbench)**<br>
   Preregistered, bias-corrected test of TypeSafe Jev's calibration under human disagreement (ChaosNLI, 100 labels per item) <sub>(upstream description)</sub><br>

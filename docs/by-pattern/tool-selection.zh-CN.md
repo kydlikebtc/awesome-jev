@@ -4,11 +4,11 @@
 
 _智能体下一步该调用哪个工具或动作。_
 
-这个决策的全部已收录例子 —— 共 308 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 311 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#工具选择)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=tool-selection&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#tool-selection)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#tool-selection)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 297 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 3 · 调用点 300 · 接口形态 7 · 仅示例 0 · 独立报告 13 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -516,6 +516,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[agi-jev-containment](https://github.com/carlosedm10/agi-jev-containment)** — 本地 AI 智能体监控：链路级恶意智能体检测。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · carlosedm10 · `Py` · 调用点 [`backend/app/classification/jev.py`](https://github.com/carlosedm10/agi-jev-containment/blob/HEAD/backend/app/classification/jev.py)，2026-09-22 阅读 · ⚠ `无许可证`</sub>
 
+- **[Android Use](https://github.com/arcships/android-use)** — 把安卓手机或模拟器接入 Dim Agent 应用和其他 MCP 客户端：智能体负责规划和最终核对；对重复的界面操作，由 Jev 从屏幕上读出的候选控件中选出下一步动作（选择题），Android Use 校验后再点按、输入或滚动。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · arcships · `Py` · `choice` · `noul` · 调用点 [`src/android_use/jev.py`](https://github.com/arcships/android-use/blob/HEAD/src/android_use/jev.py)，2026-11-28 模型阅读</sub>
+
 - **[android-jev](https://github.com/FZ2000/android-jev)** — 一个通过 adb 控制安卓手机的 MCP 工具：每一步先读取屏幕，再问 Jev 下一步的操作、目标和应用（choice），目标是否已完成，以及这一步是否后果重大、是否已获授权（noul），最后核对结果，再如实报告是否成功。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · FZ2000 · `Py` · `choice` · `noul` · 调用点 [`src/phone_control/jev.py`](https://github.com/FZ2000/android-jev/blob/HEAD/src/phone_control/jev.py)，2026-11-24 模型阅读</sub>
 
@@ -585,8 +588,14 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[heist-one](https://github.com/AbdelStark/heist-one)** — 可观测的浏览器潜行游戏：Jev 做类型化的守卫判断，确定性代码掌管世界规则。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · abdelstark · `TS` · 调用点 [`apps/server/src/jev.ts`](https://github.com/AbdelStark/heist-one/blob/HEAD/apps/server/src/jev.ts)，2026-09-22 阅读</sub>
 
+- **[Herdr-Jev](https://github.com/flaviomartil/herdr-jev)** — 一个面向 Herdr 和 AI-Harness 的插件，为编程智能体的回合做路由：Jev 给每个任务的难度和范围打分，选出意图以及要用的工具或技能，其他问题则把关代码差异、读取智能体窗格状态，然后再把工作交给带独立评审的执行模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · flaviomartil · `TS` · `score` · `choice` · `noul` · 调用点 [`src/routing/questions.ts`](https://github.com/flaviomartil/herdr-jev/blob/HEAD/src/routing/questions.ts)，2026-11-28 模型阅读 · ⚠ `无许可证`</sub>
+
 - **[hermes-jev](https://github.com/DoGMaTiiC/hermes-jev)** — 两个 Hermes Agent 插件：jev-judge 在 terminal、write_file 和 patch 调用前把关，问 Jev 这次调用是否具破坏性、是否外泄数据（noul）以及影响多大（score）；jev-skill-router 在模型调用前问 Jev 哪一个技能值得加载（choice）。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · DoGMaTiiC · `Py` · `noul` · `score` · `choice` · 调用点 [`plugins/jev-judge/jev.py`](https://github.com/DoGMaTiiC/hermes-jev/blob/HEAD/plugins/jev-judge/jev.py)，2026-11-15 模型阅读 · ⚠ `无许可证`</sub>
+
+- **[hsom](https://github.com/gi-dellav/hsom)** — 一个严格白名单的执行框架，运行由 Jev 选出的 shell 命令：沿着 environment.toml 定义的决策树，Jev 依次选出命令、子命令、参数和路径槽（选择题和是非题）；只读操作直接运行，写入或破坏性操作需要确认。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · gi-dellav · `Py` · `choice` · `noul` · 调用点 [`src/hsom/questions.py`](https://github.com/gi-dellav/hsom/blob/HEAD/src/hsom/questions.py)，2026-11-28 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[jet](https://github.com/arczhi/jet)** — 原生面向 TypeSafe（Jev）的编码智能体，基于递归式 LLM 上下文分解，配有原生 macOS 客户端。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · arczhi · `Py` · 调用点 [`src/jet/providers/typesafe_judge.py`](https://github.com/arczhi/jet/blob/HEAD/src/jet/providers/typesafe_judge.py)，2026-09-24 阅读</sub>

@@ -4,11 +4,11 @@
 
 _把条目归入分类体系，包括用概率遍历的深层层级。_
 
-这个决策的全部已收录例子 —— 共 254 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 258 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#分类)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=classification&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#classification)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#classification)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 242 · 接口形态 3 · 仅示例 0 · 独立报告 24 · 负面结果 2 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 4 · 调用点 246 · 接口形态 3 · 仅示例 0 · 独立报告 25 · 负面结果 2 · 未引用文件 9。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -392,6 +392,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[CourtVision](https://github.com/aiden-guan/courtvision)** — 仅凭画面，在 Mac 上把单机位篮球视频转成回合、球权和技术统计；可选的 Jev 比赛语境会问打法类型（choice）、球权摘要是否清楚、某次进攻是否算精彩（noul）以及当时局面有多关键（score），用来引导解说。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · aiden-guan · `Py` · `choice` · `noul` · `score` · 调用点 [`courtvision/decision/client.py`](https://github.com/aiden-guan/courtvision/blob/HEAD/courtvision/decision/client.py)，2026-11-25 模型阅读 · ⚠ `厂商自报数据`</sub>
 
+- **[dbt_decisions](https://github.com/dbt-labs/dbt-decisions)** — dbt Labs 推出的 dbt 包，把 Jev 这类决策模型放进 SQL：宏针对某一列提出是非题、选择题或有序等级题，例如支持工单的客户是否可能流失、属于哪类问题，并返回概率、所选项或等级。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`平台集成` · dbt-labs · `Py` · `noul` · `choice` · `score` · 调用点 [`functions/snowflake/decisions_ask_json.py`](https://github.com/dbt-labs/dbt-decisions/blob/HEAD/functions/snowflake/decisions_ask_json.py)，2026-11-28 模型阅读</sub>
+
 - **[decidekit](https://github.com/debuffjp/decidekit)** — 可在浏览器或 Node 中运行的决策模型：为一段文本从你给的标签里选一个并给出置信度，没把握时向 LLM 学习；它还为 choice 问题提供 TypeSafe SDK 的调用形式（client.systemOne({ state, questions })），让为 Jev 写的代码能在本地运行。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`Jev 替代实现` · debuffjp · `TS` · 引用文件 [`src/typesafe.ts`](https://github.com/debuffjp/decidekit/blob/HEAD/src/typesafe.ts)，2026-11-13 模型阅读 · ⚠ `并非 Jev 本身` `厂商自报数据`</sub>
 
@@ -403,6 +406,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[decision-models-lab](https://github.com/shashikantdev3/decision-models-lab)** — 通过 OpenRouter 的 decisions API 学习决策模型的实验室，把 Jev 和 Microsoft Decision-1 并排对比。hello-world 用一次调用分拣工单：是否紧急（noul）、派给哪个团队（choice）、严重程度（score）；后面的步骤把没把握的情况上报给 Claude。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`教程` · shashikantdev3 · `JS` · `noul` · `choice` · `score` · 调用点 [`examples/hello-world/hello.mjs`](https://github.com/shashikantdev3/decision-models-lab/blob/HEAD/examples/hello-world/hello.mjs)，2026-11-14 模型阅读</sub>
+
+- **[DecisionForge](https://github.com/Blackteaxx/DecisionForge)** — 一个把决策场景变成已训练、已评估的决策模型的工具包：它从你的材料生成 Jev 格式的选择题、是非题和评分题数据，训练原生模型，并在同一评估集上与 Jev、免训练方法和对话模型对比，覆盖七个领域。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · Blackteaxx · `Py` · `choice` · `noul` · `score` · 调用点 [`src/decisionforge/eval/adapters/jev.py`](https://github.com/Blackteaxx/DecisionForge/blob/HEAD/src/decisionforge/eval/adapters/jev.py)，2026-11-28 模型阅读 · ⚠ `厂商自报数据`</sub>
 
 - **[DESIGN:OS Generative UI](https://github.com/jangtrinh/design-os-generative-ui)** — 面向 AI 智能体的流式 UI 运行时，可渲染实时 HTML、图表和 WebGL 组件。它的编排器先问本地 Laya 模型哪个组件和布局适合请求（choice）以及请求是否关于仪表盘、落地页或告警（noul），Laya 没有把握时再把同样的问题发给 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · jangtrinh · `TS` · `choice` · `noul` · 调用点 [`src/engine/jev-adapter.ts`](https://github.com/jangtrinh/design-os-generative-ui/blob/HEAD/src/engine/jev-adapter.ts)，2026-11-18 模型阅读</sub>
@@ -608,6 +614,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Jevatar](https://github.com/AppChainAI/Jevatar)** — 一个只用面部表情回复的 AI 伙伴：Jev（TypeSafe System One）判断你的消息，并挑选一个表情。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · appchainai · `TS` · 调用点 [`server.ts`](https://github.com/AppChainAI/Jevatar/blob/HEAD/server.ts)，2026-09-24 阅读</sub>
 
+- **[jevbench](https://github.com/dhruvmehra/jevbench)** — 一个把 Jev 当作文本分类器的小型可复现基准：在三个公开数据集上每个样本问一道选择题，与开源 Laya 模型、一个小型和一个前沿 LLM、微调的 DistilBERT 及零样本 BART 对比，报告准确率、macro-F1、校准、延迟、吞吐和成本。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`基准测试` · dhruvmehra · `Py` · `choice` · 调用点 [`src/jevbench/classifiers/jev.py`](https://github.com/dhruvmehra/jevbench/blob/HEAD/src/jevbench/classifiers/jev.py)，2026-11-28 模型阅读</sub>
+
 - **[jevbench](https://github.com/GautamTalksDev/jevbench)** — 对 TypeSafe Jev 在人类意见分歧下的校准进行预注册、经偏差校正的测试（ChaosNLI，每条 100 个人工标注） <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`基准测试` · Gautam Khosla · `Py` · `choice` · `noul` · 调用点 [`jevbench/clients/jev.py`](https://github.com/GautamTalksDev/jevbench/blob/HEAD/jevbench/clients/jev.py) · 作者结论：好坏参半（作者自述，未经本仓库复现） · ⚠ `疑似 AI 生成` `作者自荐`</sub>
 
@@ -712,6 +721,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[pi-jev-todo-audit](https://github.com/xz-dev/pi-jev-todo-audit)** — Pi 扩展，检查 rpiv-todo 看板是否与编码会话中可见的工作一致。它对每个任务提出 choice 问题，例如证据支持哪种状态变化、由哪条来源支撑，然后给出建议；它从不自己改动看板。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · xz-dev · `TS` · `choice` · 调用点 [`questions.ts`](https://github.com/xz-dev/pi-jev-todo-audit/blob/HEAD/questions.ts)，2026-11-17 模型阅读</sub>
+
+- **[pi-jfiles](https://github.com/fr0ziii/pi-jfiles)** — 一个 Pi 扩展，通过 Pi 的 codemode 就整个项目文件提出你自定义的类型化问题：每个选中的文件连同是非题、选择题和评分题发给 Jev，例如它是否检查权限、属于哪一层，返回文件路径、答案和覆盖情况。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · fr0ziii · `TS` · `noul` · `choice` · `score` · 调用点 [`src/file-classification.ts`](https://github.com/fr0ziii/pi-jfiles/blob/HEAD/src/file-classification.ts)，2026-11-28 模型阅读</sub>
 
 - **[playwright-jev](https://github.com/AdriaanVE/playwright-jev)** — @playwright/test 的附加组件：在测试套件原本要全部重跑或花一轮 LLM 的地方，向 Jev 提小的类型化问题：用 choice 判断失败的根因并据此重试和修复，用 score 裁剪快照、排列测试顺序，用 noul 核验步骤和断言，再用 choice 修复定位器。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · AdriaanVE · `TS` · `choice` · `noul` · `score` · 调用点 [`src/providers/openrouter.ts`](https://github.com/AdriaanVE/playwright-jev/blob/HEAD/src/providers/openrouter.ts)，2026-11-23 模型阅读</sub>

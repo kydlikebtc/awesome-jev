@@ -4,7 +4,7 @@
 
 本目录收录的独立测量报告，包括有助于理解适用边界的**负面结果**。这些是原作者的测量，本仓库没有独立复现。比较结果前，请分别查看数据集、测试方法和模型版本。
 
-本目录收录的全部独立测量报告和负面结果 —— 共 108 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
+本目录收录的全部独立测量报告和负面结果 —— 共 109 条，附全部备注和警示标记，负面结果排在最前。[README](../README.zh-CN.md#实测而非宣称) 先显示负面结果，再显示精选路径[独立测量报告](https://kydlikebtc.github.io/awesome-jev/?collection=measured&lang=zh)选出的条目和其余条目中靠前的几条；[站点](https://kydlikebtc.github.io/awesome-jev/?indep=1&lang=zh)列出同样这些条目，并可进一步筛选。 <sub>(机翻)</sub>
 
 ★ 以区间给出仓库的 GitHub star 数 —— ★10+、★100+、★1k+、★10k+、★100k+；没有仓库或不足 10 星的行不标区间。排序：官方优先，其次是含代码的，再按区间，最后按标题。区间只反映热度，不代表质量；最近一次从 GitHub 读到的精确数字在 [`catalog.json`](../catalog.json) 和[站点](https://kydlikebtc.github.io/awesome-jev/?lang=zh)上。 <sub>(机翻)</sub>
 
@@ -513,6 +513,12 @@
 - **[jevarena](https://github.com/chenmingtang830/jevarena)**<br>
   开源的自带 key 竞技场，用来评测 Jev 与其他 AI 裁判：找出失败案例，比较质量、成本与延迟。 <sub>(项目自述)</sub> <sub>(机翻)</sub><br>
   <sub>`基准测试` · chenmingtang830 · `TS` · [调用点](https://github.com/chenmingtang830/jevarena/blob/HEAD/jevjudge/providers.py)，2026-09-24 阅读</sub>
+
+- **[jevbench](https://github.com/dhruvmehra/jevbench)**<br>
+  一个把 Jev 当作文本分类器的小型可复现基准：在三个公开数据集上每个样本问一道选择题，与开源 Laya 模型、一个小型和一个前沿 LLM、微调的 DistilBERT 及零样本 BART 对比，报告准确率、macro-F1、校准、延迟、吞吐和成本。 <sub>(模型撰写)</sub> <sub>(机翻)</sub><br>
+  <sub>`基准测试` · dhruvmehra · `Py` · `choice` · [调用点](https://github.com/dhruvmehra/jevbench/blob/HEAD/src/jevbench/classifiers/jev.py)，2026-11-28 模型阅读</sub>
+
+  > 它只经 OpenRouter 的决策 API 调用 Jev；已发布的结果表每个数据集用 500 个样本。本条目由 AI 助手根据发现队列（issue #14）起草，于 2026-11-28 阅读了 README 和所引文件；维护者尚未亲自阅读调用点。
 
 - **[jevbench](https://github.com/GautamTalksDev/jevbench)**<br>
   对 TypeSafe Jev 在人类意见分歧下的校准进行预注册、经偏差校正的测试（ChaosNLI，每条 100 个人工标注） <sub>(项目自述)</sub> <sub>(机翻)</sub><br>

@@ -4,11 +4,11 @@
 
 _选择由哪个下游模型或档位处理请求。_
 
-这个决策的全部已收录例子 —— 共 113 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 116 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#模型路由)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=model-routing&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#model-routing)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#model-routing)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 103 · 接口形态 2 · 仅示例 2 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 106 · 接口形态 2 · 仅示例 2 · 独立报告 0 · 负面结果 1 · 未引用文件 6。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -204,6 +204,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[ClauJev](https://github.com/civalski/claujev)** — 让 Jev 在回复到达你之前检查 Claude 工作的 Claude Code 插件：用 score 和 noul 把本轮真实的 git diff 与 Claude 自称做了的事对比，看起来没做完就让它回去补完；Jev 还会给每个请求打分以建议推理强度，并为子智能体选路由。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · civalski · `JS` · `choice` · `score` · `noul` · 调用点 [`plugins/claujev/hooks/claujev.mjs`](https://github.com/civalski/claujev/blob/HEAD/plugins/claujev/hooks/claujev.mjs)，2026-11-10 模型阅读</sub>
 
+- **[Codex Sift](https://github.com/romanmeclazcke/codex-sift)** — 面向 OpenAI Codex CLI 的模型路由器：每个用户回合，Jev 判断这是哪类回合、有多难，以及是否需要诊断、先做计划、涉及很多文件或认证、支付等敏感区域；YAML 策略再把这些答案换成便宜、中等或最强的模型通道。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · romanmeclazcke · `TS` · `choice` · `score` · `noul` · 调用点 [`src/jev.ts`](https://github.com/romanmeclazcke/codex-sift/blob/HEAD/src/jev.ts)，2026-11-28 模型阅读 · ⚠ `厂商自报数据`</sub>
+
 - **[codex-jev-router](https://github.com/tiandee/codex-jev-router)** — Codex CLI 的包装器：运行一个本地代理，每个新回合用 choice 问 Jev 该用哪个 Codex 模型，再用 score 评估任务复杂度、所需推理和工具复杂度，据此设定模型和推理强度；Jev 不可用时，Codex 保持当前设置。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · tiandee · `JS` · `choice` · `score` · 调用点 [`src/jev-client.mjs`](https://github.com/tiandee/codex-jev-router/blob/HEAD/src/jev-client.mjs)，2026-11-10 模型阅读</sub>
 
@@ -216,11 +219,17 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[DESIGN:OS Generative UI](https://github.com/jangtrinh/design-os-generative-ui)** — 面向 AI 智能体的流式 UI 运行时，可渲染实时 HTML、图表和 WebGL 组件。它的编排器先问本地 Laya 模型哪个组件和布局适合请求（choice）以及请求是否关于仪表盘、落地页或告警（noul），Laya 没有把握时再把同样的问题发给 Jev。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · jangtrinh · `TS` · `choice` · `noul` · 调用点 [`src/engine/jev-adapter.ts`](https://github.com/jangtrinh/design-os-generative-ui/blob/HEAD/src/engine/jev-adapter.ts)，2026-11-18 模型阅读</sub>
 
+- **[DOXA](https://github.com/docwilde/doxa)** — 一个面向编程智能体的 Rust 终端工作区：每个回合开始时，Jev 根据所有者写的描述选出由哪个已配置的模型或智能体 CLI 处理；在智能体编队中，Jev 还能用是非题审查每条同伴消息是否越界、是否要求改变权限、是否涉及密钥、是否需要人工复核。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · docwilde · `Rs` · `choice` · `noul` · 调用点 [`rust/doxa-router/src/lib.rs`](https://github.com/docwilde/doxa/blob/HEAD/rust/doxa-router/src/lib.rs)，2026-11-28 模型阅读</sub>
+
 - **[dsh-plugin-jev-effort-selector](https://github.com/justhalfbit/dsh-plugin-jev-effort-selector)** — DeepSeek Harness (DSH) 推理等级自动选择插件：由 Jev System One 模型判断每条消息值多少思考量，按模型声明的等级自动推导档位，上下文信封让「继续」这类追问继承话题深度，低置信度向上取，任何失败都静默沿用原等级。 \| Jev-driven reasoning effort per message: per-model ladders derived from what each model advertises, a fixed-size context envelope so follow-ups inherit topic depth…
   <sub>`插件` · justhalfbit · `JS` · 调用点 [`lib/client.js`](https://github.com/justhalfbit/dsh-plugin-jev-effort-selector/blob/HEAD/lib/client.js)，2026-09-24 阅读</sub>
 
 - **[DuckDB Dual Cognition](https://github.com/prasanthj/duckdb-dual-cognition)** — 原生 DuckDB 扩展：用 SQL 函数批量对每一行问 Jev choice、score 和 noul，包括从候选里为一行挑出外键，或答 ambiguous、no_match；只有置信度低于阈值的行才交给 OpenAI 模型去推理。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · prasanthj · `C++` · `choice` · `score` · `noul` · 调用点 [`src/dc_extension.cpp`](https://github.com/prasanthj/duckdb-dual-cognition/blob/HEAD/src/dc_extension.cpp)，2026-11-11 模型阅读 · ⚠ `需第三方密钥`</sub>
+
+- **[Herdr-Jev](https://github.com/flaviomartil/herdr-jev)** — 一个面向 Herdr 和 AI-Harness 的插件，为编程智能体的回合做路由：Jev 给每个任务的难度和范围打分，选出意图以及要用的工具或技能，其他问题则把关代码差异、读取智能体窗格状态，然后再把工作交给带独立评审的执行模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · flaviomartil · `TS` · `score` · `choice` · `noul` · 调用点 [`src/routing/questions.ts`](https://github.com/flaviomartil/herdr-jev/blob/HEAD/src/routing/questions.ts)，2026-11-28 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[hermes-jev-router](https://github.com/ussyverse/hermes-jev-router)** — 实验性 Hermes 插件：带预算与能力约束的 Jev 辅助模型路由方案。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`插件` · ussyverse · `Py` · 调用点 [`jev.py`](https://github.com/ussyverse/hermes-jev-router/blob/HEAD/jev.py)，2026-09-22 阅读 · ⚠ `仅一次提交`</sub>

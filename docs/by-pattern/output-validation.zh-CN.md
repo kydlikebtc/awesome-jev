@@ -4,11 +4,11 @@
 
 _在输出到达用户前，按评分标准检查模型产出。_
 
-这个决策的全部已收录例子 —— 共 195 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
+这个决策的全部已收录例子 —— 共 198 条。同样这些行及其警示也在[索引](../../README.zh-CN.md#输出校验)里；[站点](https://kydlikebtc.github.io/awesome-jev/?p=output-validation&lang=zh)还能按语言、原语和形态进一步筛选。
 
 这个决策的设计说明见 [docs/patterns.zh-CN.md](../patterns.zh-CN.md#output-validation)：它决定什么、用哪种原语来建模，以及（凡写了的）什么时候不该用决策模型。那一页由模型从[英文版](../patterns.md#output-validation)译写，以英文版为准。 <sub>(机翻)</sub>
 
-本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 190 · 接口形态 1 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
+本模式各行记录的证据（只是计数，不是结论；一行可能计入多项）：官方文档 2 · 调用点 193 · 接口形态 1 · 仅示例 0 · 独立报告 14 · 负面结果 1 · 未引用文件 4。“独立”指未标 vendor-reported 的基准测试，未经本仓库复现。[各模式并排对照](../shape.zh-CN.md#按决策模式看证据)。 <sub>(机翻)</sub>
 
 ## 官方材料
 
@@ -311,6 +311,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 - **[Astra + Jev](https://github.com/Oranquelui/astra-jev-harness)** — 面向 Codex Desktop、Codex CLI 和 Claude Code 的智能体技能和运行框架。编码模型写代码之前，它对每个候选文件向 Jev 提一个 noul（任务是否需要它），只保留有把握的“是”，任何回答不确定时就全部保留；它也用来筛选测试证据和长日志。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · Oranquelui · `Go` · `noul` · 调用点 [`internal/harness/provider.go`](https://github.com/Oranquelui/astra-jev-harness/blob/HEAD/internal/harness/provider.go)，2026-11-17 模型阅读 · ⚠ `厂商自报数据`</sub>
 
+- **[Blackrose](https://github.com/Dino-Kupinic/blackrose)** — 面向 LLM 应用的决策层，提供 Python 和 JavaScript 版本：它就模型的输入和输出向决策模型提出类型化问题（是非题、评分等级、封闭选项），在你自己的代码里套用你设定的置信度阈值，返回允许、复核或拦截及理由。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`SDK` · Dino-Kupinic · `Py` · `noul` · `score` · `choice` · 调用点 [`packages/python/src/blackrose/providers/typesafe.py`](https://github.com/Dino-Kupinic/blackrose/blob/HEAD/packages/python/src/blackrose/providers/typesafe.py)，2026-11-28 模型阅读</sub>
+
 - **[c9r plugins (browser-check, soft-lint)](https://github.com/c9r-dev/plugins)** — 供 Claude Code 和 Codex 使用、以 Jev 为分类器的插件：browser-check 在真实浏览器里执行用平实英语写的检查清单，问每一步指的是哪个元素（choice）、每项检查是否成立（noul）；soft-lint 针对 diff 新增的代码行提出是非规则问题。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`插件` · c9r-dev · `TS` · `choice` · `noul` · 调用点 [`shared/classifier.ts`](https://github.com/c9r-dev/plugins/blob/HEAD/shared/classifier.ts)，2026-11-13 模型阅读</sub>
 
@@ -343,6 +346,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[Footwork](https://github.com/Tom-R-Main/Footwork)** — 经过验证的浏览器智能体：在任意 LLM 浏览器智能体前加一道便宜的 Jev 防护（经证据检查的完成判断、破坏性操作关卡）。 <sub>(项目旧自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · tom-r-main · `Py` · 调用点 [`jevdual/evals/runner.py`](https://github.com/Tom-R-Main/Footwork/blob/HEAD/jevdual/evals/runner.py)，2026-09-24 阅读</sub>
+
+- **[Herdr-Jev](https://github.com/flaviomartil/herdr-jev)** — 一个面向 Herdr 和 AI-Harness 的插件，为编程智能体的回合做路由：Jev 给每个任务的难度和范围打分，选出意图以及要用的工具或技能，其他问题则把关代码差异、读取智能体窗格状态，然后再把工作交给带独立评审的执行模型。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`插件` · flaviomartil · `TS` · `score` · `choice` · `noul` · 调用点 [`src/routing/questions.ts`](https://github.com/flaviomartil/herdr-jev/blob/HEAD/src/routing/questions.ts)，2026-11-28 模型阅读 · ⚠ `无许可证`</sub>
 
 - **[human-compiler](https://github.com/asfarsadewa/human-compiler)** — 人类语言的编译器：粘贴文本，得到诊断，由 Jev 度量。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · asfarsadewa · `TS` · 调用点 [`src/worker/index.ts`](https://github.com/asfarsadewa/human-compiler/blob/HEAD/src/worker/index.ts)，2026-09-22 阅读</sub>
@@ -520,6 +526,9 @@ TypeSafe AI 自己发布、归在这个模式下的材料（标为 `official` �
 
 - **[jod](https://github.com/mateonunez/jod)** — 构建在 Jev 之上的语义 schema：先在本地校验状态，再投影出类型化答案。 <sub>(项目自述)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · mateonunez · `TS` · 调用点 [`e2e/support.ts`](https://github.com/mateonunez/jod/blob/HEAD/e2e/support.ts)，2026-09-22 阅读</sub>
+
+- **[judgelint](https://github.com/jpcamara/judgelint)** — 一个检查用自然语言写成的代码约定的工具：约定以要点形式写在 README 里，它对每个文件、每条要点询问 Jev 该文件是否违反了规则（是非题，带选项的规则用选择题），然后像普通 linter 一样报告带行号的违规并返回退出码。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
+  <sub>`开源项目` · jpcamara · `Rs` · `noul` · `choice` · 调用点 [`src/protocol.rs`](https://github.com/jpcamara/judgelint/blob/HEAD/src/protocol.rs)，2026-11-28 模型阅读</sub>
 
 - **[Juger vite, bloquer juste](https://github.com/lorenzorama/juger-vite-bloquer-juste)** — 一场演讲（IndabaX Madagascar 2026）的演示代码，展示一个遭受提示注入的邮件智能体：Jev 的 noul 把对 AI 下指令的来信隔离，并拦下偏离用户请求或泄露机密的草稿；影子配置只观察不拦截，每次运行再由 Jev 的 score 对照标准集打分。 <sub>(模型撰写)</sub> <sub>(机翻)</sub>
   <sub>`开源项目` · lorenzorama · `Py` · `noul` · 调用点 [`backend/app/guard.py`](https://github.com/lorenzorama/juger-vite-bloquer-juste/blob/HEAD/backend/app/guard.py)，2026-11-24 模型阅读</sub>
